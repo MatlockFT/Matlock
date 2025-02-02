@@ -3,8 +3,6 @@ title: "Rabbit Rabbit Rabbit"
 date: 2025-02-01
 ---
 
-# Rabbit rabbit rabbit
-
 I’m hoping February brings better vibes—because, honestly, we could use them. Between Conor McGregor tweeting racial slurs and Bryce Mitchell praising a certain mustached German dictator, it’d be nice to focus on something other than politics and culture wars for a change.
 
 <iframe width="315" height="560"
