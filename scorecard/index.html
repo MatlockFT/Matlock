@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MMA Scorecard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>MMA Fight Scorecard</h1>
+    <div class="scorecard">
+      <div class="fighter" id="fighter1">
+        <h2>Fighter 1</h2>
+        <div class="controls">
+          <label for="f1r1">Round 1:</label>
+          <input type="number" class="round-input" id="f1r1" min="0" max="10" value="10">
+        </div>
+        <div class="controls">
+          <label for="f1r2">Round 2:</label>
+          <input type="number" class="round-input" id="f1r2" min="0" max="10" value="10">
+        </div>
+        <div class="controls">
+          <label for="f1r3">Round 3:</label>
+          <input type="number" class="round-input" id="f1r3" min="0" max="10" value="10">
+        </div>
+        <h3>Total: <span id="f1-total">30</span></h3>
+      </div>
+
+      <div class="fighter" id="fighter2">
+        <h2>Fighter 2</h2>
+        <div class="controls">
+          <label for="f2r1">Round 1:</label>
+          <input type="number" class="round-input" id="f2r1" min="0" max="10" value="9">
+        </div>
+        <div class="controls">
+          <label for="f2r2">Round 2:</label>
+          <input type="number" class="round-input" id="f2r2" min="0" max="10" value="9">
+        </div>
+        <div class="controls">
+          <label for="f2r3">Round 3:</label>
+          <input type="number" class="round-input" id="f2r3" min="0" max="10" value="9">
+        </div>
+        <h3>Total: <span id="f2-total">27</span></h3>
+      </div>
+    </div>
+    <div class="winner-display">
+      <button id="calculate-btn">Calculate Winner</button>
+      <h2 id="winner">Winner: </h2>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
