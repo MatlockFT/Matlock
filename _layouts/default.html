@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
     <!-- Favicon -->
-<link rel="icon" type="image/png" href="{{ '/assets/favicon.png' | relative_url }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" type="image/png" href="{{ '/assets/favicon.png' | relative_url }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
 </head>
 <body>
@@ -15,18 +18,18 @@
         <h1>{{ site.title }}</h1>
         <nav>
             {% for item in site.nav %}
-            <a href="{{ item.link | relative_url }}">{{ item.name }}</a>
+                <a href="{{ item.link | relative_url }}">{{ item.name }}</a>
             {% endfor %}
             <a href="https://linktr.ee/fighttalkmma?utm_source=linktree_profile_share&ltsid=3f881c7c-6162-4cb9-b727-52ec814f79f6" target="_blank" rel="noopener noreferrer">
-    <i class="fa fa-tree linktree-icon"></i>
-</a>
+                <i class="fa fa-tree linktree-icon"></i>
+            </a>
         </nav>
     </header>
     <main>
         {{ content }}
     </main>
     <footer>
-        &copy; {{ site.time | date: "%Y" }} Matlock's Fight Talk - All Rights Reserved
+        &copy; {{ site.time | date: "%Y" }} {{ site.title }} - All Rights Reserved
     </footer>
 </body>
 </html>
