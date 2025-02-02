@@ -1,1 +1,68 @@
-theme: minima
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matlock's Fight Talk</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #FF4500;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #222;
+            padding: 10px 0;
+        }
+        nav a {
+            color: #FF6347;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        nav a:hover {
+            background: #FF4500;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #1E1E1E;
+            border-radius: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #222;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>Matlock's Fight Talk</header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#news">News</a>
+        <a href="#analysis">Analysis</a>
+        <a href="#interviews">Interviews</a>
+        <a href="#about">About</a>
+    </nav>
+    <div class="container">
+        <h2>Welcome to Matlock's Fight Talk</h2>
+        <p>Your go-to source for fight news, analysis, and exclusive interviews.</p>
+    </div>
+    <footer>
+        &copy; 2025 Matlock's Fight Talk - All Rights Reserved
+    </footer>
+</body>
+</html>
