@@ -1,94 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/assets/favicon.png"> <!-- Replace with the actual favicon path -->
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+<!-- Font Awesome CDN for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    <!-- Font Awesome CDN for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<!-- Meta Tags -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Stay updated on the latest MMA/UFC news, fight predictions, and in-depth analysis with Matlock's Fight Talk.">
+<meta name="keywords" content="UFC, MMA, fight analysis, UFC predictions, MMA news, UFC fight breakdowns, martial arts">
+<meta name="author" content="Matlock's Fight Talk">
+<meta name="robots" content="index, follow">
 
-    <!-- Meta Tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Stay updated on the latest MMA/UFC news, fight predictions, and in-depth analysis with Matlock's Fight Talk.">
-    <meta name="keywords" content="UFC, MMA, fight analysis, UFC predictions, MMA news, UFC fight breakdowns, martial arts">
-    <meta name="author" content="Matlock's Fight Talk">
-    <meta name="robots" content="index, follow">
+<!-- Open Graph Tags for Social Media -->
+<meta property="og:title" content="Matlock's Fight Talk - MMA and UFC Content">
+<meta property="og:description" content="Get expert MMA fight analysis, UFC predictions, news, and insights with Matlock's Fight Talk.">
+<meta property="og:image" content="/assets/cub-swanson.png"> <!-- Replace with actual path -->
+<meta property="og:url" content="https://matlockfighttlak.com"> <!-- Replace with actual site URL -->
+<meta property="og:type" content="website">
 
-    <!-- Open Graph Tags for Social Media -->
-    <meta property="og:title" content="Matlock's Fight Talk - MMA and UFC Content">
-    <meta property="og:description" content="Get expert MMA fight analysis, UFC predictions, news, and insights with Matlock's Fight Talk.">
-    <meta property="og:image" content="/assets/cub-swanson.png"> <!-- Replace with actual path -->
-    <meta property="og:url" content="https://matlockfighttlak.com"> <!-- Replace with actual site URL -->
-    <meta property="og:type" content="website">
+<!-- Twitter Card for Social Media -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Matlock's Fight Talk - MMA and UFC Content">
+<meta name="twitter:description" content="Explore UFC fight predictions, MMA news, and fight analysis.">
+<meta name="twitter:image" content="/assets/cub-swanson.png">
+<meta name="twitter:site" content="@FightTalkYT">
 
-    <!-- Twitter Card for Social Media -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Matlock's Fight Talk - MMA and UFC Content">
-    <meta name="twitter:description" content="Explore UFC fight predictions, MMA news, and fight analysis.">
-    <meta name="twitter:image" content="/assets/cub-swanson.png">
-    <meta name="twitter:site" content="@FightTalkYT">
+<!-- Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Matlock's Fight Talk",
+  "url": "https://matlockfighttalk.com",
+  "sameAs": [
+    "https://twitter.com/FightTalkYT",
+    "https://www.instagram.com/FightTalkMMA/"
+  ],
+  "logo": "/assets/favicon.png"
+}
+</script>
 
-    <!-- Schema Markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://matlockfighttalk.com",
-      "@type": "MEDIA",
-      "name": "Matlock's Fight Talk",
-      "url": "https://matlockfighttalk.com",
-      "sameAs": [
-        "https://twitter.com/FightTalkYT",
-        "https://www.instagram.com/FightTalkMMA/"
-      ],
-      "logo": "/assets/favicon.png"
-    }
-    </script>
+<!-- Dynamic Page Title -->
+<title>{{ page.title }}</title>
 
-    <!-- Dynamic Page Title -->
-    <title>{{ page.title }}</title>
+<!-- Link to Site CSS -->
+<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
 
-    <!-- Link to Site CSS -->
-    <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
-</head>
-<body>
-    <!-- Header Section -->
-    <header>
-        <div class="header-container">
-            <h1>{{ site.title }}</h1>
-            <nav>
-                {% for item in site.nav %}
-                <a href="{{ item.link | relative_url }}">{{ item.name }}</a>
-                {% endfor %}
-                <!-- Linktree Icon -->
-                <a href="https://linktr.ee/fighttalkmma" target="_blank" rel="noopener noreferrer" aria-label="Visit Fight Talk MMA on Linktree">
-                    <i class="fa fa-tree linktree-icon"></i>
-                </a>
-            </nav>
-        </div>
-    </header>
+{{ site.title }}
+{% for item in site.nav %} {{ item.name }} {% endfor %}
 
-    <!-- Main Content Area -->
-    <main>
-        <!-- Example Blog Post -->
-        <article class="blog-post">
-            <header class="post-metadata">
-                <p class="post-date">October 10, 2023</p> <!-- Date is placed here above the title -->
-                <h1 class="post-title">My Blog Post Title</h1> <!-- Blog post title here -->
-            </header>
-            <section class="post-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut urna ut augue auctor convallis non id risus.</p>
-            </section>
-        </article>
-    </main>
+<!-- Main Content Area -->
+<main>
+    {{ content }}
+</main>
 
-    <!-- Footer Section -->
-    <footer>
-        <div class="footer-container">
-            &copy; {{ site.time | date: "%Y" }} {{ site.title }} - All Rights Reserved
-        </div>
-    </footer>
-</body>
-</html>
+<!-- Footer Section -->
+<footer>
+    <div class="footer-container">
+        &copy; {{ site.time | date: "%Y" }} {{ site.title }} - All Rights Reserved
+    </div>
+</footer>
