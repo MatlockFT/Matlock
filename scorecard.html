@@ -5,6 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MMA Scorecard</title>
   <link rel="stylesheet" href="/assets/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .fighter-inputs, .scorecard {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    input[type="text"], select, input[type="number"], button {
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      margin-top: 5px;
+    }
+    button {
+      background: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .winner-display {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+    h2, h3 {
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -32,7 +93,7 @@
       </div>
       <button id="next-round-btn" style="display:none;">Next Round</button>
     </div>
-    <div class="winner-display" style="display:none;">
+    <div class="winner-display" id="winner-display" style="display:none;">
       <button id="calculate-btn">Calculate Winner</button>
       <h2 id="winner">Winner: </h2>
     </div>
