@@ -1,7 +1,7 @@
 title: "Matlock's Fight Talk"
-description: "Your go-to source for fight news, analysis, and exclusive interviews."
+description: "Mixed Martial Arts"
 baseurl: "" # If the site is in a subdirectory, specify it (e.g., "/blog")
-url: "https://your-github-username.github.io" # Update with your actual GitHub Pages URL
+url: "https://matlockft.github.io" # Update with your actual GitHub Pages URL
 
 theme: minima # You can change this to a different Jekyll theme or set to null for custom styles
 
@@ -9,12 +9,8 @@ theme: minima # You can change this to a different Jekyll theme or set to null f
 nav:
   - name: Home
     link: /
-  - name: Blog
-    link: /blog
   - name: Analysis
     link: /analysis
-  - name: About
-    link: /about
 
 plugins:
   - jekyll-feed
