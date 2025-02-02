@@ -23,6 +23,7 @@ header {
     height: 300px; /* Adjust according to header size requirements */
     color: white; /* Keeps text visible on the image */
     display: flex; /* Centers content within the header */
+    flex-direction: column
     justify-content: center; /* Centers horizontally */
     align-items: center; /* Centers vertically */
     text-align: center;
