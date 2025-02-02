@@ -29,10 +29,13 @@ fighter2Inputs.forEach((input) =>
 calculateBtn.addEventListener("click", () => {
   const { f1Total, f2Total } = updateTotals();
 
+  const fighter1Name = document.getElementById("fighter1-display").innerText;
+  const fighter2Name = document.getElementById("fighter2-display").innerText;
+
   if (f1Total > f2Total) {
-    winnerDisplay.textContent = "Winner: Fighter 1";
+    winnerDisplay.textContent = "Winner: " + fighter1Name;
   } else if (f2Total > f1Total) {
-    winnerDisplay.textContent = "Winner: Fighter 2";
+    winnerDisplay.textContent = "Winner: " + fighter2Name;
   } else {
     winnerDisplay.textContent = "Winner: Draw!";
   }
