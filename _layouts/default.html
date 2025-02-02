@@ -2,32 +2,50 @@
 <html lang="en">
 <head>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ '/assets/favicon.png' | relative_url }}">
-    
+    <link rel="icon" type="image/png" href="/assets/favicon.png"> <!-- Replace with the actual favicon path -->
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+
     <!-- Font Awesome CDN for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Stay updated on the latest MMA/UFC news, fight predictions, and in-depth analysis with Matlock's Fight Talk. Get unique insights into the exciting world of mixed martial arts.">
+    <meta name="description" content="Stay updated on the latest MMA/UFC news, fight predictions, and in-depth analysis with Matlock's Fight Talk.">
     <meta name="keywords" content="UFC, MMA, fight analysis, UFC predictions, MMA news, UFC fight breakdowns, martial arts">
     <meta name="author" content="Matlock's Fight Talk">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph Tags for Social Media -->
     <meta property="og:title" content="Matlock's Fight Talk - MMA and UFC Content">
-    <meta property="og:description" content="Get expert MMA fight analysis, UFC predictions, news, and insights with Matlock's Fight Talk. Join the conversation around UFC fights and martial arts.">
-    <meta property="og:image" content="{{ '/assets/share-thumbnail.jpg' | relative_url }}">
-    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:description" content="Get expert MMA fight analysis, UFC predictions, news, and insights with Matlock's Fight Talk.">
+    <meta property="og:image" content="/assets/share-thumbnail.jpg"> <!-- Replace with actual path -->
+    <meta property="og:url" content="https://example.com"> <!-- Replace with actual site URL -->
     <meta property="og:type" content="website">
 
     <!-- Twitter Card for Social Media -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Matlock's Fight Talk - MMA and UFC Content">
-    <meta name="twitter:description" content="Explore UFC fight predictions, MMA news, and in-depth fight analysis at Matlock's Fight Talk. Your go-to site for fight insights.">
-    <meta name="twitter:image" content="{{ '/assets/share-thumbnail.jpg' | relative_url }}">
+    <meta name="twitter:description" content="Explore UFC fight predictions, MMA news, and fight analysis.">
+    <meta name="twitter:image" content="/assets/share-thumbnail.jpg">
     <meta name="twitter:site" content="@FightTalkYT">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Matlock's Fight Talk",
+      "url": "https://example.com",
+      "sameAs": [
+        "https://twitter.com/FightTalkYT",
+        "https://www.instagram.com/FightTalkMMA/"
+      ],
+      "logo": "/assets/logo.png"
+    }
+    </script>
 
     <!-- Dynamic Page Title -->
     <title>{{ page.title }}</title>
@@ -41,12 +59,11 @@
         <div class="header-container">
             <h1>{{ site.title }}</h1>
             <nav>
-                <!-- Navigation Bar -->
                 {% for item in site.nav %}
-                    <a href="{{ item.link | relative_url }}">{{ item.name }}</a>
+                <a href="{{ item.link | relative_url }}">{{ item.name }}</a>
                 {% endfor %}
                 <!-- Linktree Icon -->
-                <a href="https://linktr.ee/fighttalkmma?utm_source=linktree_profile_share&ltsid=3f881c7c-6162-4cb9-b727-52ec814f79f6" target="_blank" rel="noopener noreferrer">
+                <a href="https://linktr.ee/fighttalkmma" target="_blank" rel="noopener noreferrer" aria-label="Visit Fight Talk MMA on Linktree">
                     <i class="fa fa-tree linktree-icon"></i>
                 </a>
             </nav>
