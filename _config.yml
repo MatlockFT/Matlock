@@ -1,1 +1,19 @@
-theme: jekyll-theme-basically-basic
+title: "Matlock's Fight Talk"
+description: "Your go-to source for fight news, analysis, and exclusive interviews."
+baseurl: "" # If the site is in a subdirectory, specify it (e.g., "/blog")
+url: "https://your-github-username.github.io" # Update with your actual GitHub Pages URL
+
+theme: minima # You can change this to a different Jekyll theme or set to null for custom styles
+
+# Navigation Links
+nav:
+  - name: Home
+    link: /
+  - name: Analysis
+    link: /analysis
+  - name: About
+    link: /about
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
