@@ -9,7 +9,7 @@
 body {
     background-color: #121212; /* Keeps the dark theme */
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: 'Oswald', Arial, sans-serif; /* Updated font */
     line-height: 1.6;
     margin: 0;
     padding: 0;
@@ -20,13 +20,13 @@ header {
     background-color: #db4624; /* Strong red for a bold impression */
     text-align: center;
     padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow makes the header pop */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 header h1 {
     font-size: 2.5rem;
     font-weight: bold;
-    text-transform: uppercase; /* Capitalizes for a strong MMA theme */
+    text-transform: uppercase;
     color: white;
     margin-bottom: 5px;
 }
@@ -38,58 +38,59 @@ header nav {
 /* Navigation Bar */
 nav {
     display: flex;
+    flex-wrap: wrap; /* Ensures nav items wrap on smaller screens */
     justify-content: center;
     padding: 10px 0;
-    background: #222; /* Differentiates navigation from the header */
+    background: #222;
     position: sticky;
     top: 0;
-    z-index: 1000; /* Keeps nav visible on scroll */
+    z-index: 1000;
 }
 
 nav a {
-    color: #db4624; /* Matches header's red for unity */
+    color: #db4624;
     text-decoration: none;
     padding: 10px 20px;
     font-weight: bold;
     text-transform: uppercase;
-    transition: background 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 nav a:hover {
-    background: #FF4500; /* Brighter red for emphasis on hover */
+    background: #FF4500;
     color: white;
     border-radius: 5px;
 }
 
 /* Linktree Icon Styling */
 .linktree-icon {
-    color: #39E09B; /* Icon represents a contrasting green for variety */
+    color: #39E09B;
     font-size: 20px;
     margin-left: 10px;
-    transition: color 0.3s ease; /* Adds subtle hover animation */
+    transition: color 0.3s ease;
 }
 
 .linktree-icon:hover {
-    color: #4df5aa; /* Bright green on hover for interactivity */
+    color: #4df5aa;
 }
 
 /* Main Content Styling */
 main {
     max-width: 800px;
-    margin: 20px auto;
+    margin: 70px auto 20px auto; /* Added top margin to account for sticky nav */
     padding: 20px;
-    background: #1E1E1E; /* Slightly lighter than the body for content area */
+    background: #1E1E1E;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Adds depth */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 main p {
-    margin-bottom: 20px; /* Separates paragraphs for better readability */
+    margin-bottom: 20px;
 }
 
 main h2 {
     font-size: 1.8rem;
-    color: #FF4500; /* Brighter red for subheadings */
+    color: #FF4500;
     margin-bottom: 15px;
     border-bottom: 2px solid #db4624;
     padding-bottom: 5px;
@@ -99,26 +100,26 @@ main h2 {
 footer {
     text-align: center;
     padding: 10px;
-    background: #222; /* Matches the navigation bar's background */
+    background: #222;
     margin-top: 20px;
-    color: #ccc; /* Light gray for footer text */
+    color: #ccc;
 }
 
 footer a {
-    color: #db4624; /* Uses the "theme red" for links */
+    color: #db4624;
     text-decoration: none;
     font-weight: bold;
 }
 
 footer a:hover {
-    color: #FF4500; /* Brighter red on hover */
+    color: #FF4500;
 }
 
 footer p {
     font-size: 0.9rem;
 }
 
-/* Additional Styling for Interactivity */
+/* Buttons */
 button {
     background: #db4624;
     color: white;
@@ -129,6 +130,12 @@ button {
     cursor: pointer;
     text-transform: uppercase;
     transition: background 0.3s ease;
+}
+
+button:focus,
+a.button-link:focus {
+    outline: 3px solid #FF4500;
+    outline-offset: 2px;
 }
 
 button:hover {
@@ -151,19 +158,17 @@ a.button-link:hover {
     background: #FF4500;
 }
 
-/* Responsive Design (For Mobile and Tablet Devices) */
+/* Responsive Design for Mobile */
 @media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-    }
-
     nav a {
         padding: 10px 12px;
         font-size: 1rem;
+        flex-grow: 1;
+        text-align: center;
     }
 
     main {
-        margin: 10px auto;
+        margin: 20px auto;
         padding: 15px;
     }
 
