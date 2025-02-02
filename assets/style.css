@@ -1,51 +1,173 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
 body {
-    background-color: #121212;
+    background-color: #121212; /* Keeps the dark theme */
     color: white;
     font-family: Arial, sans-serif;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
 }
 
+/* Header Styling */
 header {
-    background-color: #db4624;
+    background-color: #db4624; /* Strong red for a bold impression */
     text-align: center;
     padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle shadow makes the header pop */
 }
 
-.linktree-icon {
-    color: #39E09B;
-    font-size: 20px;
-    margin-left: 10px;
+header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase; /* Capitalizes for a strong MMA theme */
+    color: white;
+    margin-bottom: 5px;
 }
 
+header nav {
+    margin-top: 10px;
+}
+
+/* Navigation Bar */
 nav {
     display: flex;
     justify-content: center;
-    background: #222;
     padding: 10px 0;
+    background: #222; /* Differentiates navigation from the header */
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Keeps nav visible on scroll */
 }
 
 nav a {
-    color: #db4624;
+    color: #db4624; /* Matches header's red for unity */
     text-decoration: none;
     padding: 10px 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.3s ease, color 0.3s ease; /* Smooth hover effect */
 }
 
 nav a:hover {
-    background: #FF4500;
+    background: #FF4500; /* Brighter red for emphasis on hover */
+    color: white;
+    border-radius: 5px;
 }
 
+/* Linktree Icon Styling */
+.linktree-icon {
+    color: #39E09B; /* Icon represents a contrasting green for variety */
+    font-size: 20px;
+    margin-left: 10px;
+    transition: color 0.3s ease; /* Adds subtle hover animation */
+}
+
+.linktree-icon:hover {
+    color: #4df5aa; /* Bright green on hover for interactivity */
+}
+
+/* Main Content Styling */
 main {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background: #1E1E1E;
+    background: #1E1E1E; /* Slightly lighter than the body for content area */
     border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Adds depth */
 }
 
+main p {
+    margin-bottom: 20px; /* Separates paragraphs for better readability */
+}
+
+main h2 {
+    font-size: 1.8rem;
+    color: #FF4500; /* Brighter red for subheadings */
+    margin-bottom: 15px;
+    border-bottom: 2px solid #db4624;
+    padding-bottom: 5px;
+}
+
+/* Footer Styling */
 footer {
     text-align: center;
     padding: 10px;
-    background: #222;
+    background: #222; /* Matches the navigation bar's background */
     margin-top: 20px;
+    color: #ccc; /* Light gray for footer text */
+}
+
+footer a {
+    color: #db4624; /* Uses the "theme red" for links */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    color: #FF4500; /* Brighter red on hover */
+}
+
+footer p {
+    font-size: 0.9rem;
+}
+
+/* Additional Styling for Interactivity */
+button {
+    background: #db4624;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #FF4500;
+}
+
+a.button-link {
+    display: inline-block;
+    background: #db4624;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+a.button-link:hover {
+    background: #FF4500;
+}
+
+/* Responsive Design (For Mobile and Tablet Devices) */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+
+    nav a {
+        padding: 10px 12px;
+        font-size: 1rem;
+    }
+
+    main {
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
 }
