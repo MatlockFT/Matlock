@@ -1,0 +1,75 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #222;
+  color: #fff;
+}
+
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+.scorecard {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.fighter {
+  background: #333;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 45%;
+}
+
+h2 {
+  color: #f4a261;
+}
+
+h3 {
+  color: #2a9d8f;
+}
+
+.controls {
+  margin-bottom: 1rem;
+}
+
+input.round-input {
+  width: 50px;
+  padding: 5px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #e76f51;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #f4a261;
+}
+
+#winner {
+  margin-top: 1rem;
+  color: #e9c46a;
+  font-weight: bold;
+}
