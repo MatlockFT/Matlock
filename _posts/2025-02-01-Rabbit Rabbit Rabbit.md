@@ -18,5 +18,5 @@ Out of the woodwork came all the neo-nazis and white nationalists and confused i
 
 A lot of these confused souls kept referencing a documentary called Europa and when I looked into it, its just anti-semetic propaganda that's been thoroughly debunked. Luckily for me, that clip did pretty well on YouTube and I was able to monetarily profit off their stupidity while arguing so that was fun. What I really found amusing was that the Flat Earthers were disappointed in Bryce because of his pro-Hitler speech, citing that now people are going to think flat earth is "just a conspiracy". What a time to be alive.
 
-Back to Benavide vs. Morrell 
+Back to Benavidez vs. Morrell 
 
