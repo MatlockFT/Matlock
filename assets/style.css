@@ -15,221 +15,70 @@ body {
     padding: 0;
 }
 
-/* Header Styling with Dynamic Background Image */
-header {
-    background-image: url('/assets/cub-swanson.png'); /* Replace with the actual image path */
-    background-size: cover; /* Ensures the image dynamically scales */
-    background-position: center; /* Keeps the center of the image visible */
-    height: 300px; /* Adjust according to header size requirements */
-    color: white; /* Keeps text visible on the image */
-    display: flex; /* Centers content within the header */
-    justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
-    text-align: center;
-    position: relative; /* Supports child elements like overlays */
-    overflow: hidden; /* Prevents any content overflow */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Keeps shadow for depth */
+/* Blog Post Styling */
+.blog-post {
+    margin: 40px auto;
+    max-width: 800px; /* Limit blog post content width */
+    background: #1E1E1E; /* Slightly darker background for the blog post */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Adds subtle shadow for depth */
 }
 
-/* Add an optional overlay for text visibility */
-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)); /* Transparent overlay for better contrast */
-    z-index: 1; /* Keeps the overlay below text */
-}
-
-/* Header Text Styling */
-header h1 {
-    font-size: 2.5rem;
-    font-family: 'Oswald', Arial, sans-serif;
-    z-index: 2; /* Brings text above the overlay */
-    color: white;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Subtle shadow for better text visibility */
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-/* Header Navigation Styling */
-header nav {
-    z-index: 2; /* Keeps navigation above the overlay */
-    margin-top: 10px;
-}
-
-/* Navigation Bar */
-nav {
+/* Metadata Styling (Date and Title) */
+.post-metadata {
     display: flex;
-    flex-wrap: wrap; /* Allows navigation links to wrap on smaller screens */
-    justify-content: center;
-    padding: 10px 0;
-    background: #222; /* Dark background for navbar */
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    flex-direction: column; /* Ensures date is above the blog title */
+    align-items: flex-start; /* Align items (date and title) to the left */
+    margin-bottom: 20px; /* Add space below metadata */
 }
 
-nav a {
-    color: #db4624; /* Main link color */
-    text-decoration: none; /* Removes underlines */
-    padding: 10px 20px;
+/* Styling for the Date */
+.post-date {
+    font-size: 0.9rem; /* Smaller font size compared to the title */
+    color: gray; /* Subtle, less intrusive color for the date */
+    margin-bottom: 10px; /* Adds space below the date */
+}
+
+/* Styling for the Title */
+.post-title {
+    font-size: 2rem;
     font-weight: bold;
-    text-transform: uppercase;
-    transition: background 0.3s ease, color 0.3s ease;
+    color: white;
+    margin-bottom: 0; /* Remove bottom margin for a clean look */
+    text-transform: uppercase; /* Optional: Make title uppercase */
 }
 
-/* Styling for hovered links */
-nav a:hover {
-    background: #000000; /* Bright orange background on hover */
-    color: white; /* White text for contrast */
-    border-radius: 5px;
+/* Blog Post Content */
+.post-content {
+    font-size: 1rem;
+    color: #ccc; /* Light gray for readability */
+    line-height: 1.8;
 }
 
-/* Styling for visited links */
-nav a:visited {
-    color: #cc3a1f; /* Slightly darker red for differentiation */
+/* Links in the Post */
+.post-content a {
+    color: #db4624; /* Orange-red link color */
     text-decoration: none;
-}
-
-/* Linktree Icon Styling */
-.linktree-icon {
-    color: #39E09B; /* Teal-green icon color */
-    font-size: 20px;
-    margin-left: 10px;
     transition: color 0.3s ease;
 }
 
-.linktree-icon:hover {
-    color: #4df5aa; /* Lighter teal on hover */
-}
-
-/* Main Content Styling */
-main {
-    max-width: 800px; /* Limits content width */
-    margin: 70px auto 20px auto; /* Adds spacing around main content */
-    padding: 20px;
-    background: #1E1E1E; /* Darker gray for content background */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Adds a subtle shadow */
-}
-
-main p {
-    margin-bottom: 20px; /* Spacing for paragraphs */
-}
-
-main h2 {
-    font-size: 1.8rem;
-    color: #FF4500; /* Bright orange for headings */
-    margin-bottom: 15px;
-    border-bottom: 2px solid #db4624; /* Underline the heading */
-    padding-bottom: 5px;
-}
-
-/* Link Styling */
-a {
-    color: #db4624; /* Default link color (orange-red) */
-    text-decoration: none; /* Removes underline */
-    transition: background 0.3s ease, color 0.3s ease;
-}
-
-a:hover {
-    background: #000; /* Bright orange highlight */
-    color: white; /* White text for contrast */
-    border-radius: 5px;
-}
-
-a:visited {
-    color: #cc3a1f; /* Slightly darker red for visited links */
-    text-decoration: none;
-}
-
-/* Footer Styling */
-footer {
-    text-align: center;
-    padding: 10px;
-    background: #222;
-    margin-top: 20px;
-    color: #ccc;
-}
-
-footer a {
-    color: #db4624; /* Footer links in orange */
-    text-decoration: none;
-    font-weight: bold;
-}
-
-footer a:hover {
+.post-content a:hover {
     color: #FF4500; /* Brighter orange on hover */
-}
-
-footer p {
-    font-size: 0.9rem; /* Smaller text for the footer */
-}
-
-/* Buttons */
-button {
-    background: #db4624; /* Orange-red button color */
-    color: white;
-    font-weight: bold;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: background 0.3s ease;
-}
-
-/* Styling for buttons on hover */
-button:hover {
-    background: #FF4500; /* Bright orange on hover */
-}
-
-button:focus,
-a.button-link:focus {
-    outline: 3px solid #FF4500;
-    outline-offset: 2px;
-}
-
-/* Button Links */
-a.button-link {
-    display: inline-block;
-    background: #db4624; /* Button color matches regular buttons */
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-}
-
-a.button-link:hover {
-    background: #FF4500; /* Bright orange on hover for link buttons */
 }
 
 /* Responsive Design for Mobile */
 @media (max-width: 768px) {
-    header {
-        height: 200px; /* Reduce header height for smaller screens */
+    .blog-post {
+        padding: 15px; /* Adjust padding for smaller screens */
+        margin: 20px auto; /* Reduce margin on smaller devices */
     }
 
-    header h1 {
-        font-size: 2rem; /* Adjust font size for smaller screens */
-    }
-    
-    nav a {
-        padding: 10px 12px; /* Adjust link padding for mobile */
-        font-size: 1rem; /* Slightly smaller font size */
-        flex-grow: 1;
-        text-align: center;
+    .post-title {
+        font-size: 1.8rem; /* Smaller title for mobile */
     }
 
-    main {
-        margin: 20px auto;
-        padding: 15px; /* Adjust main content padding */
+    .post-date {
+        font-size: 0.8rem; /* Scale down date text */
     }
 }
