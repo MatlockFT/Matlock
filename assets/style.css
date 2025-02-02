@@ -15,23 +15,49 @@ body {
     padding: 0;
 }
 
-/* Header Styling */
+/* Header Styling with Dynamic Background Image */
 header {
-    background-color: #db4624; /* Strong red for a bold impression */
+    background-image: url('/assets/header-image.jpg'); /* Replace with the actual image path */
+    background-size: cover; /* Ensures the image dynamically scales */
+    background-position: center; /* Keeps the center of the image visible */
+    height: 300px; /* Adjust to match the size of your header */
+    color: white; /* Keeps text visible on the image */
+    display: flex; /* Centers text within the header */
+    justify-content: center; /* Centers text horizontally */
+    align-items: center; /* Centers text vertically */
     text-align: center;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative; /* Allows for child elements like overlays */
+    overflow: hidden; /* Prevents any content overflow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Keeps existing shadow */
 }
 
+/* Add an optional overlay for text visibility */
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)); /* Semi-transparent gradient */
+    z-index: 1; /* Keeps the overlay below the text */
+}
+
+/* Header Text Styling */
 header h1 {
     font-size: 2.5rem;
-    font-weight: bold;
-    text-transform: uppercase;
+    font-family: 'Oswald', Arial, sans-serif; /* Example font */
+    z-index: 2; /* Brings the text above the overlay */
     color: white;
-    margin-bottom: 5px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Adds a subtle shadow for better visibility */
+    margin-bottom: 5px; /* Keeps consistent spacing below */
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
+/* Header Navigation Styling */
 header nav {
+    z-index: 2; /* Keeps the navigation links above the overlay */
     margin-top: 10px;
 }
 
@@ -160,6 +186,14 @@ a.button-link:hover {
 
 /* Responsive Design for Mobile */
 @media (max-width: 768px) {
+    header {
+        height: 200px; /* Reduce height for smaller screens */
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+    
     nav a {
         padding: 10px 12px;
         font-size: 1rem;
@@ -170,9 +204,5 @@ a.button-link:hover {
     main {
         margin: 20px auto;
         padding: 15px;
-    }
-
-    header h1 {
-        font-size: 2rem;
     }
 }
