@@ -96,20 +96,8 @@ nav a:visited {
     text-decoration: none;
 }
 
-/* Linktree Icon Styling */
-.linktree-icon {
-    color: #39E09B; /* Teal-green icon color */
-    font-size: 20px;
-    margin-left: 10px;
-    transition: color 0.3s ease;
-}
-
-.linktree-icon:hover {
-    color: #4df5aa; /* Lighter teal on hover */
-}
-
 /* Main Content Styling */
-main {
+main.container {
     max-width: 800px; /* Limits content width */
     margin: 70px auto 20px auto; /* Adds spacing around main content */
     padding: 20px;
@@ -130,22 +118,70 @@ main h2 {
     padding-bottom: 5px;
 }
 
-/* Link Styling */
-a {
-    color: #db4624; /* Default link color (orange-red) */
-    text-decoration: none; /* Removes underline */
-    transition: background 0.3s ease, color 0.3s ease;
+/* Input Section Styling */
+.input-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
-a:hover {
-    background: #000; /* Bright orange highlight */
-    color: white; /* White text for contrast */
-    border-radius: 5px;
+.input-field {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
 }
 
-a:visited {
-    color: #cc3a1f; /* Slightly darker red for visited links */
-    text-decoration: none;
+.action-button {
+    padding: 0.75rem 1.5rem;
+    margin: 0.5rem 0;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.action-button:hover {
+    background-color: #0056b3;
+}
+
+/* Scorecard Section */
+.scorecard {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.fighter-section {
+    flex: 1;
+    margin: 0 1rem;
+}
+
+.rounds-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.round-input {
+    width: 100%;
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.winner-display {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+    color: #007bff;
 }
 
 /* Footer Styling */
@@ -171,47 +207,6 @@ footer p {
     font-size: 0.9rem; /* Smaller text for the footer */
 }
 
-/* Buttons */
-button {
-    background: #db4624; /* Orange-red button color */
-    color: white;
-    font-weight: bold;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: background 0.3s ease;
-}
-
-/* Styling for buttons on hover */
-button:hover {
-    background: #FF4500; /* Bright orange on hover */
-}
-
-button:focus,
-a.button-link:focus {
-    outline: 3px solid #FF4500;
-    outline-offset: 2px;
-}
-
-/* Button Links */
-a.button-link {
-    display: inline-block;
-    background: #db4624; /* Button color matches regular buttons */
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-}
-
-a.button-link:hover {
-    background: #FF4500; /* Bright orange on hover for link buttons */
-}
-
 /* Responsive Design for Mobile */
 @media (max-width: 768px) {
     header {
@@ -229,7 +224,7 @@ a.button-link:hover {
         text-align: center;
     }
 
-    main {
+    main.container {
         margin: 20px auto;
         padding: 15px; /* Adjust main content padding */
     }
