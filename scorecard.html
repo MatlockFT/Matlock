@@ -1,50 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MMA Scorecard</title>
-  <link rel="stylesheet" href="assets/style.css">
-</head>
-<body>
-  <header>
-    <h1>MMA Fight Scorecard</h1>
-  </header>
-  <nav>
-    <!-- Navigation links (example) -->
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
-  <main class="container">
-    <div class="input-section">
-      <input type="text" id="fighter1-name" placeholder="Fighter 1 Name" class="input-field">
-      <input type="text" id="fighter2-name" placeholder="Fighter 2 Name" class="input-field">
-      <select id="rounds-selection" class="input-field">
-        <option value="3">3 Rounds</option>
-        <option value="5">5 Rounds</option>
-      </select>
-      <button id="lock-in-btn" class="action-button">Lock In</button>
-    </div>
-    <div id="scorecard" class="scorecard" style="display: none;">
-      <div class="fighter-section">
-        <h2 id="fighter1-display"></h2>
-        <div id="fighter1-rounds" class="rounds-inputs"></div>
-        <p>Total: <span id="f1-total">0</span></p>
-      </div>
-      <div class="fighter-section">
-        <h2 id="fighter2-display"></h2>
-        <div id="fighter2-rounds" class="rounds-inputs"></div>
-        <p>Total: <span id="f2-total">0</span></p>
-      </div>
-    </div>
-    <button id="next-round-btn" class="action-button">Next Round</button>
-    <button id="calculate-btn" class="action-button" style="display: none;">Calculate Winner</button>
-    <p id="winner" class="winner-display"></p>
-  </main>
-  <footer>
-    <p>&copy; 2025 MatlockFT. All rights reserved.</p>
-  </footer>
-  <script src="script.js"></script>
-</body>
-</html>
+// Scoring System Module
+const ScoringSystem = {
+    state: {
+        currentRound: 1,
+        totalRounds: 3,
+        scores: {
+            red: [],
+            blue: []
+        },
+        fighters: {
+            red: '',
+            blue: ''
+        },
+        event: ''
+    },
+
+    init() {
+        this.bindElements();
+        this.attachEventListeners();
+        this.loadFromLocalStorage();
+    },
+
+    bindElements() {
+        // Cache DOM elements
+        this.elements = {
+            form: document.getElementById('fightDetailsForm'),
+            lockButton: document.getElementById('lockInButton'),
+            // ... more element bindings
+        };
+    },
+
+    attachEventListeners() {
+        // Add event listeners with error handling
+        try {
+            this.elements.form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.lockInFight();
+            });
+            // ... more event listeners
+        } catch (error) {
+            console.error('Error attaching event listeners:', error);
+            // Show user-friendly error message
+        }
+    },
+
+    calculateScore(damageValue, controlValue, defenseValue) {
+        return {
+            damage: damageValue * 0.5,
+            control: controlValue * 0.3,
+            defense: defenseValue * 0.2,
+            total: (damageValue * 0.5) + (controlValue * 0.3) + (defenseValue * 0.2)
+        };
+    },
+
+    // Add more methods for functionality
+
+    saveToLocalStorage() {
+        try {
+            localStorage.setItem('scoringSystem', JSON.stringify(this.state));
+        } catch (error) {
+            console.error('Error saving to localStorage:', error);
+        }
+    },
+
+    loadFromLocalStorage() {
+        try {
+            const saved = localStorage.getItem('scoringSystem');
+            if (saved) {
+                this.state = JSON.parse(saved);
+                this.updateUI();
+            }
+        } catch (error) {
+            console.error('Error loading from localStorage:', error);
+        }
+    }
+};
+
+// Initialize the scoring system
+document.addEventListener('DOMContentLoaded', () => {
+    ScoringSystem.init();
+});
