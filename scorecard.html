@@ -4,91 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MMA Scorecard</title>
-  <link rel="stylesheet" href="/assets/style.css">
-  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
-  <meta name="description" content="MMA and Boxing Scorecard">
-  <meta name="keywords" content="MMA, Boxing, Scorecard, Fight, Combat Sports">
-  <meta name="author" content="MatlockFT">
-  <style>
-    .container {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      background: #1E1E1E;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      font-family: 'Oswald', Arial, sans-serif;
-    }
-    .fighter-inputs, .scorecard {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .controls {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-    .winner-display {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 20px;
-    }
-    h2, h3 {
-      text-align: center;
-    }
-
-    /* Balanced layout for scorecard */
-    .scorecard-container {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-    }
-    .fighter {
-      flex: 1;
-    }
-    .red-corner {
-      color: #FF4500;
-    }
-    .blue-corner {
-      color: #1E90FF;
-    }
-  </style>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <header>
     <h1>MMA Fight Scorecard</h1>
   </header>
+  <nav>
+    <!-- Navigation links (example) -->
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
   <main class="container">
-    <div class="fighter-inputs">
-      <input type="text" id="fighter1-name" placeholder="Enter Red Corner Name">
-      <input type="text" id="fighter2-name" placeholder="Enter Blue Corner Name">
-      <select id="rounds-selection">
+    <div class="input-section">
+      <input type="text" id="fighter1-name" placeholder="Fighter 1 Name" class="input-field">
+      <input type="text" id="fighter2-name" placeholder="Fighter 2 Name" class="input-field">
+      <select id="rounds-selection" class="input-field">
         <option value="3">3 Rounds</option>
         <option value="5">5 Rounds</option>
-        <option value="12">12 Rounds</option>
       </select>
-      <button id="lock-in-btn">Lock In</button>
+      <button id="lock-in-btn" class="action-button">Lock In</button>
     </div>
-    <div class="scorecard-container" id="scorecard" style="display:none;">
-      <div class="fighter red-corner" id="fighter1">
+    <div id="scorecard" class="scorecard" style="display: none;">
+      <div class="fighter-section">
         <h2 id="fighter1-display"></h2>
-        <div class="controls" id="fighter1-rounds"></div>
-        <h3>Total: <span id="f1-total">0</span></h3>
+        <div id="fighter1-rounds" class="rounds-inputs"></div>
+        <p>Total: <span id="f1-total">0</span></p>
       </div>
-      <div class="fighter blue-corner" id="fighter2">
+      <div class="fighter-section">
         <h2 id="fighter2-display"></h2>
-        <div class="controls" id="fighter2-rounds"></div>
-        <h3>Total: <span id="f2-total">0</span></h3>
+        <div id="fighter2-rounds" class="rounds-inputs"></div>
+        <p>Total: <span id="f2-total">0</span></p>
       </div>
     </div>
-    <div class="winner-display" id="winner-display" style="display:none;">
-      <button id="calculate-btn">Calculate Winner</button>
-      <h2 id="winner">Winner: </h2>
-    </div>
+    <button id="next-round-btn" class="action-button">Next Round</button>
+    <button id="calculate-btn" class="action-button" style="display: none;">Calculate Winner</button>
+    <p id="winner" class="winner-display"></p>
   </main>
-
+  <footer>
+    <p>&copy; 2025 MatlockFT. All rights reserved.</p>
+  </footer>
   <script src="script.js"></script>
 </body>
 </html>
