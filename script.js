@@ -26,6 +26,11 @@ document.getElementById('lock-in-btn').addEventListener('click', function() {
 
 // Function to setup round inputs
 function setupRounds() {
+  const fighter1Rounds = document.getElementById('fighter1-rounds');
+  const fighter2Rounds = document.getElementById('fighter2-rounds');
+  fighter1Rounds.innerHTML = ''; // Clear previous inputs
+  fighter2Rounds.innerHTML = ''; // Clear previous inputs
+
   for (let i = 1; i <= totalRounds; i++) {
     const f1RoundInput = document.createElement('input');
     f1RoundInput.type = 'number';
@@ -34,7 +39,7 @@ function setupRounds() {
     f1RoundInput.min = 0;
     f1RoundInput.max = 10;
     f1RoundInput.style.display = 'none';
-    document.getElementById('fighter1-rounds').appendChild(f1RoundInput);
+    fighter1Rounds.appendChild(f1RoundInput);
 
     const f2RoundInput = document.createElement('input');
     f2RoundInput.type = 'number';
@@ -43,7 +48,7 @@ function setupRounds() {
     f2RoundInput.min = 0;
     f2RoundInput.max = 10;
     f2RoundInput.style.display = 'none';
-    document.getElementById('fighter2-rounds').appendChild(f2RoundInput);
+    fighter2Rounds.appendChild(f2RoundInput);
   }
 
   // Display inputs for the first round
@@ -55,6 +60,12 @@ function setupRounds() {
 document.getElementById('next-round-btn').addEventListener('click', function() {
   const f1RoundScore = parseInt(document.getElementById(`f1r${currentRound}`).value) || 0;
   const f2RoundScore = parseInt(document.getElementById(`f2r${currentRound}`).value) || 0;
+
+  // Validate scores
+  if (f1RoundScore < 0 || f1RoundScore > 10 || f2RoundScore < 0 || f2RoundScore > 10) {
+    alert('Scores must be between 0 and 10.');
+    return;
+  }
 
   // Disable inputs after scoring
   document.getElementById(`f1r${currentRound}`).disabled = true;
@@ -81,10 +92,7 @@ document.getElementById('next-round-btn').addEventListener('click', function() {
 });
 
 // Calculate winner button event listener
-const calculateBtn = document.getElementById("calculate-btn");
-const winnerDisplay = document.getElementById("winner");
-
-calculateBtn.addEventListener("click", () => {
+document.getElementById("calculate-btn").addEventListener("click", () => {
   const f1Total = parseInt(document.getElementById('f1-total').innerText);
   const f2Total = parseInt(document.getElementById('f2-total').innerText);
 
@@ -92,11 +100,13 @@ calculateBtn.addEventListener("click", () => {
   const fighter2Name = document.getElementById("fighter2-display").innerText;
 
   // Determine and display the winner
+  let result = '';
   if (f1Total > f2Total) {
-    winnerDisplay.textContent = "Winner: " + fighter1Name;
+    result = `Winner: ${fighter1Name}`;
   } else if (f2Total > f1Total) {
-    winnerDisplay.textContent = "Winner: " + fighter2Name;
+    result = `Winner: ${fighter2Name}`;
   } else {
-    winnerDisplay.textContent = "Winner: Draw!";
+    result = "Winner: Draw!";
   }
+  document.getElementById("winner").textContent = result;
 });
