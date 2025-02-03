@@ -17,7 +17,7 @@ document.getElementById('lock-in-btn').addEventListener('click', function() {
   document.getElementById('rounds-selection').disabled = true;
   document.getElementById('lock-in-btn').disabled = true;
 
-  // Show scorecard
+  // Show scorecard and next round button
   document.getElementById('scorecard').style.display = 'flex';
 
   // Setup round inputs
@@ -74,7 +74,8 @@ document.getElementById('next-round-btn').addEventListener('click', function() {
     document.getElementById(`f1r${currentRound}`).style.display = 'block';
     document.getElementById(`f2r${currentRound}`).style.display = 'block';
   } else {
-    // Show calculate winner button
+    // Hide next round button and show calculate winner button
+    document.getElementById('next-round-btn').style.display = 'none';
     document.getElementById('winner-display').style.display = 'block';
   }
 });
