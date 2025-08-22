@@ -4,26 +4,41 @@ title: Vegas Slots
 ---
 <center>
     <h2>MMA Knockout Slots!</h2>
-    <p><font color="#FFFFFF">Spin for a TKO! Match fists, gloves, or cages to win!</font></p>
+    <p><font color="#FFFFFF">Spin for a TKO! Bet, spin, and hit the jackpot! Match symbols for wins. Collect 5+ belts for bonus spins and jackpots!</font></p>
 </center>
 
 <div class="slot-machine">
+    <div id="credits">Credits: 100</div>
     <div class="reels" id="reels">
-        <div class="reel" id="reel1">👊</div>
-        <div class="reel" id="reel2">🥊</div>
-        <div class="reel" id="reel3">🏟️</div>
+        <div class="reel">👊</div>
+        <div class="reel">👊</div>
+        <div class="reel">👊</div>
+        <div class="reel">👊</div>
+        <div class="reel">👊</div>
     </div>
-    <button class="slot-button" id="spinButton">SPIN</button>
+    <div class="controls">
+        <button class="slot-button" id="betButton">Bet 10</button>
+        <button class="slot-button" id="spinButton" disabled>Spin</button>
+    </div>
     <div id="result"></div>
 </div>
 
 <script>
-    const symbols = ['👊', '🥊', '🏟️', '🥋', '🏆', '🩸', '💪'];
+    // Customizable symbols - edit this array to change symbols
+    const symbols = ['👊', '🥊', '🏟️', '🥋', '🩸', '💪', '🏆']; // MMA-themed: fist, glove, cage, gi, blood, muscle, belt (special for jackpot/bonus)
+
     const reels = document.querySelectorAll('.reel');
     const reelsContainer = document.getElementById('reels');
+    const betButton = document.getElementById('betButton');
     const spinButton = document.getElementById('spinButton');
     const resultDisplay = document.getElementById('result');
-    // const spinSound = new Audio('/assets/spin.mp3'); // Uncomment and upload spin.mp3
+    const creditsDisplay = document.getElementById('credits');
+    // const spinSound = new Audio('/assets/spin.mp3'); // Uncomment and upload for sound
+
+    let credits = 100;
+    let bet = 0;
+    let bonusSpins = 0;
+
     function getRandomInt(max) {
         if (window.crypto && window.crypto.getRandomValues) {
             const array = new Uint32Array(1);
@@ -32,13 +47,31 @@ title: Vegas Slots
         }
         return Math.floor(Math.random() * max);
     }
+
+    function updateCredits() {
+        creditsDisplay.textContent = `Credits: ${credits}`;
+    }
+
+    function placeBet() {
+        if (credits >= 10) {
+            bet = 10;
+            credits -= bet;
+            updateCredits();
+            spinButton.disabled = false;
+            betButton.disabled = true;
+        } else {
+            resultDisplay.textContent = 'Not enough credits!';
+        }
+    }
+
     function spinReels() {
         spinButton.disabled = true;
         resultDisplay.textContent = '';
         reelsContainer.classList.add('spinning');
-        // spinSound.play(); // Uncomment to play sound
+        // spinSound.play(); // Uncomment for sound
+
         let spinCount = 0;
-        const maxSpins = 20;
+        const maxSpins = 25; // Slightly longer for more fun
         const spinInterval = setInterval(() => {
             reels.forEach(reel => {
                 const randomIndex = getRandomInt(symbols.length);
@@ -49,14 +82,59 @@ title: Vegas Slots
                 clearInterval(spinInterval);
                 endSpin();
             }
-        }, 100);
+        }, 80); // Slower spin for visibility
     }
+
     function endSpin() {
         reelsContainer.classList.remove('spinning');
         const finalSymbols = Array.from(reels).map(reel => reel.textContent);
-        const isWin = finalSymbols.every(symbol => symbol === finalSymbols[0]);
-        resultDisplay.textContent = isWin ? '💥 TKO WIN!' : 'No Knockout... Spin Again!';
-        spinButton.disabled = false;
+        
+        // Count occurrences
+        const symbolCounts = {};
+        finalSymbols.forEach(sym => {
+            symbolCounts[sym] = (symbolCounts[sym] || 0) + 1;
+        });
+
+        // Win conditions - more winning chances
+        let winAmount = 0;
+        let message = 'No Knockout...';
+        const maxCount = Math.max(...Object.values(symbolCounts));
+        const maxSymbol = Object.keys(symbolCounts).find(sym => symbolCounts[sym] === maxCount);
+
+        if (maxCount >= 3) {
+            winAmount = bet * maxCount; // e.g., 3 matches = 30, 4 = 40, 5 = 50
+            message = `Hit! ${maxCount} ${maxSymbol} - Win ${winAmount}!`;
+        }
+
+        // Special jackpot/bonus for belt (🏆) - like Lightning Link hold & spin
+        const beltCount = symbolCounts['🏆'] || 0;
+        if (beltCount >= 5) {
+            winAmount += bet * 10; // Jackpot bonus
+            bonusSpins = 3; // Free spins like hold & spin
+            message = `JACKPOT! ${beltCount} Belts - Win ${winAmount} + 3 Bonus Spins!`;
+        } else if (beltCount >= 3) {
+            winAmount += bet * 5; // Minor jackpot
+            message = `Mini Jackpot! ${beltCount} Belts - Win ${winAmount}!`;
+        }
+
+        credits += winAmount;
+        updateCredits();
+        resultDisplay.textContent = message;
+
+        bet = 0;
+        betButton.disabled = false;
+
+        // Handle bonus spins
+        if (bonusSpins > 0) {
+            bonusSpins--;
+            setTimeout(spinReels, 1000); // Auto-spin for bonus
+        } else {
+            spinButton.disabled = true;
+        }
     }
+
+    betButton.addEventListener('click', placeBet);
     spinButton.addEventListener('click', spinReels);
+
+    updateCredits(); // Initial display
 </script>
