@@ -1,87 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/assets/favicon.png"> <!-- Replace with the actual favicon path -->
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome CDN for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
-    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Stay updated on the latest MMA/UFC news, fight predictions, and in-depth analysis with Matlock's Fight Talk.">
-    <meta name="keywords" content="UFC, MMA, fight analysis, UFC predictions, MMA news, UFC fight breakdowns, martial arts">
-    <meta name="author" content="Matlock's Fight Talk">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph Tags for Social Media -->
-    <meta property="og:title" content="Matlock's Fight Talk - MMA and UFC Content">
-    <meta property="og:description" content="Get expert MMA fight analysis, UFC predictions, news, and insights with Matlock's Fight Talk.">
-    <meta property="og:image" content="/assets/cub-swanson.png"> <!-- Replace with actual path -->
-    <meta property="og:url" content="https://matlockfighttlak.com"> <!-- Replace with actual site URL -->
-    <meta property="og:type" content="website">
-
-    <!-- Twitter Card for Social Media -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Matlock's Fight Talk - MMA and UFC Content">
-    <meta name="twitter:description" content="Explore UFC fight predictions, MMA news, and fight analysis.">
-    <meta name="twitter:image" content="/assets/cub-swanson.png">
-    <meta name="twitter:site" content="@FightTalkYT">
-
-    <!-- Schema Markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Matlock's Fight Talk",
-      "url": "https://matlockfighttalk.com",
-      "sameAs": [
-        "https://twitter.com/FightTalkYT",
-        "https://www.instagram.com/FightTalkMMA/"
-      ],
-      "logo": "/assets/favicon.png"
-    }
-    </script>
-
-    <!-- Dynamic Page Title -->
-    <title>{{ page.title }}</title>
-
-    <!-- Link to Site CSS -->
-    <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+    <title>{% if page.title %}{{ page.title }} - Matlock Fight Talk{% else %}Matlock Fight Talk{% endif %}</title>
+    <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <div class="header-container">
-            <h1>{{ site.title }}</h1>
-            <nav>
-                {% for item in site.nav %}
-                <a href="{{ item.link | relative_url }}">{{ item.name }}</a>
-                {% endfor %}
-                <!-- Linktree Icon -->
-                <a href="https://linktr.ee/fighttalkmma" target="_blank" rel="noopener noreferrer" aria-label="Visit Fight Talk MMA on Linktree">
-                    <i class="fa fa-tree linktree-icon"></i>
-                </a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Main Content Area -->
-    <main>
-        {{ content }}
-    </main>
-
-    <!-- Footer Section -->
-    <footer>
-        <div class="footer-container">
-            &copy; {{ site.time | date: "%Y" }} {{ site.title }} - All Rights Reserved
-        </div>
-    </footer>
+    <table width="100%" border="1" cellspacing="0" cellpadding="10" bgcolor="#000000" bordercolor="#FF0000">
+        <tr>
+            <td colspan="2" align="center">
+                <img src="/assets/under_construction.gif" alt="Under Construction" width="200" height="100"> <!-- Add a retro GIF here; you can download a 90's style under construction GIF and place it in assets -->
+                <h1><blink>Matlock Fight Talk</blink></h1> <!-- Blink tag for that classic 90's annoyance -->
+                <marquee behavior="scroll" direction="left" scrollamount="5"><font color="#00FF00">Welcome to the ultimate MMA fight talk zone! Punching through the web since 2025!</font></marquee>
+            </td>
+        </tr>
+        <tr>
+            <td width="20%" valign="top" bgcolor="#0000FF">
+                <h2>Navigation</h2>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/analysis">Analysis</a></li>
+                </ul>
+                <hr>
+                <center><img src="/assets/fist.gif" alt="Fist Icon" width="100" height="100"></center> <!-- Add a pixelated fist or MMA icon GIF for retro flair -->
+            </td>
+            <td width="80%" valign="top">
+                {{ content }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center" bgcolor="#FFFF00">
+                <font color="#000000">Copyright © 2025 Matlock Fight Talk. All rights reserved. | Visitor count: <img src="/assets/counter.gif" alt="Hit Counter"> <!-- Fake hit counter; add a GIF if you want --></font>
+                <br>
+                <marquee behavior="alternate"><font color="#FF0000">Powered by GeoCities spirit... but actually Jekyll on GitHub!</font></marquee>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
