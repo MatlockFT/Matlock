@@ -114,3 +114,80 @@ audio {
     font-size: 14px;
     line-height: 1.5;
 }
+
+.slot-machine {
+    background-color: #000000;
+    border: 4px double #FF0000;
+    padding: 15px;
+    box-shadow: 4px 4px 8px #CC0000;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+    font-family: "Courier New", "Courier", monospace;
+    background-image: url('/assets/stripes.gif');
+    background-repeat: repeat;
+}
+
+.reels {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
+.reel {
+    width: 80px;
+    height: 80px;
+    background-color: #000000;
+    border: 2px solid #FF0000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: #FFFFFF;
+    text-shadow: 1px 1px #CC0000;
+    image-rendering: pixelated;
+}
+
+.spinning .reel {
+    animation: spin 0.1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
+.slot-button {
+    background-color: #000000;
+    border: 2px solid #FF0000;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: "Impact", "Arial Black", sans-serif;
+    color: #FF0000;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px #CC0000;
+    background-image: url('/assets/spin_button.gif');
+    background-size: cover;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+}
+
+.slot-button:hover {
+    background-color: #333333;
+    color: #FFFFFF;
+}
+
+.slot-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#result {
+    margin-top: 15px;
+    font-size: 20px;
+    color: #FF0000;
+    font-family: "Impact", "Arial Black", sans-serif;
+    text-shadow: 1px 1px #000000;
+}
