@@ -3,7 +3,7 @@ description: "Mixed Martial Arts"
 baseurl: "" # If the site is in a subdirectory, specify it (e.g., "/blog")
 url: "https://matlockfighttalk.com" # Update with your actual GitHub Pages URL
 
-theme: minima # You can change this to a different Jekyll theme or set to null for custom styles
+theme: null # You can change this to a different Jekyll theme or set to null for custom styles
 
 # Navigation Links
 nav:
@@ -11,12 +11,9 @@ nav:
     link: /
   - name: Analysis
     link: /analysis
-  - name: Weighted Scorecard
-    link: /scorecard
-  - name: 10 Point
-    link: /10point
 
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+
 
