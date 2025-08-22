@@ -28,16 +28,21 @@
                 <hr>
                 <center>
                     <div id="audio-player">
-                        <audio id="player" autoplay controls>
-                            <source src="/assets/retro_song1.mp3" type="audio/mpeg">
-                            <source src="/assets/retro_song2.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
+                        <p><font color="#FF0000"><blink>Click to start fight tunes!</blink></font></p>
+                        <div class="audio-container">
+                            <audio id="player" autoplay controls>
+                                <source src="/assets/facethepain.mp3" type="audio/mpeg">
+                                <source src="/assets/Original.mp3" type="audio/mpeg">
+                                <source src="/assets/DeathorGlory.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
                         <select id="song-selector" onchange="changeSong()">
                             <option value="/assets/facethepain.mp3">Face The Pain</option>
                             <option value="/assets/Original.mp3">O.G.</option>
                             <option value="/assets/DeathorGlory.mp3">Death or Glory</option>
                         </select>
+                        <p><font color="#FF0000">MATLOCK'S FIGHT TALK</font></p>
                     </div>
                     <script>
                         function changeSong() {
@@ -46,6 +51,14 @@
                             player.src = selector.value;
                             player.play();
                         }
+                        // Attempt to autoplay on page load
+                        window.addEventListener('load', function() {
+                            var player = document.getElementById('player');
+                            player.src = '/assets/facethepain.mp3'; // Explicitly set first song
+                            player.play().catch(function(error) {
+                                console.log("Autoplay blocked: ", error);
+                            });
+                        });
                     </script>
                 </center>
                 <hr>
