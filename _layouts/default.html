@@ -6,6 +6,9 @@
     <title>{% if page.title %}{{ page.title }} - Matlock Fight Talk{% else %}Matlock Fight Talk{% endif %}</title>
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 </head>
 <body>
     <table width="100%" border="1" cellspacing="0" cellpadding="10" bgcolor="#000000" bordercolor="#FF0000">
@@ -71,7 +74,7 @@
                 </center>
                 <hr>
                 <center>
-                    {% if page.url == "/chatroom" %}
+                    {% if page.url == "/chatroom" or page.url == "/chatroom/" %}
                     <div id="chat-container" class="chat-container">
                         <div id="chat-login">
                             <input type="text" id="chat-username" placeholder="Enter Username">
@@ -84,41 +87,76 @@
                         </div>
                     </div>
                     <script>
-                        const chatMessages = document.getElementById('chat-messages');
-                        const chatInput = document.getElementById('chat-input');
-                        const chatSendButton = document.getElementById('chat-send-button');
-                        const chatUsername = document.getElementById('chat-username');
-                        const chatLoginButton = document.getElementById('chat-login-button');
-                        let username = '';
+                        // Initialize Firebase
+                        const firebaseConfig = {
+                            apiKey: "YOUR_API_KEY",
+                            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+                            databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+                            projectId: "YOUR_PROJECT_ID",
+                            storageBucket: "YOUR_PROJECT_ID.appspot.com",
+                            messagingSenderId: "YOUR_SENDER_ID",
+                            appId: "YOUR_APP_ID"
+                        };
+                        firebase.initializeApp(firebaseConfig);
+                        const database = firebase.database();
 
-                        function addMessage(user, message) {
-                            const messageElement = document.createElement('div');
-                            messageElement.textContent = `${user}: ${message}`;
-                            chatMessages.appendChild(messageElement);
-                            chatMessages.scrollTop = chatMessages.scrollHeight;
-                        }
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const chatMessages = document.getElementById('chat-messages');
+                            const chatInput = document.getElementById('chat-input');
+                            const chatSendButton = document.getElementById('chat-send-button');
+                            const chatUsername = document.getElementById('chat-username');
+                            const chatLoginButton = document.getElementById('chat-login-button');
+                            let username = '';
 
-                        chatLoginButton.addEventListener('click', () => {
-                            if (chatUsername.value.trim()) {
-                                username = chatUsername.value.trim();
-                                document.getElementById('chat-login').style.display = 'none';
-                                document.getElementById('chat-input-area').style.display = 'block';
-                                addMessage('System', `${username} entered the cage!`);
+                            if (!chatMessages || !chatInput || !chatSendButton || !chatUsername || !chatLoginButton) {
+                                console.error('Chat elements not found');
+                                return;
                             }
-                        });
 
-                        chatSendButton.addEventListener('click', () => {
-                            if (chatInput.value.trim() && username) {
-                                addMessage(username, chatInput.value.trim());
-                                chatInput.value = '';
-                            }
-                        });
+                            // Load messages from Firebase
+                            const messagesRef = database.ref('chatroom/messages');
+                            messagesRef.limitToLast(50).on('child_added', (snapshot) => {
+                                const data = snapshot.val();
+                                const messageElement = document.createElement('div');
+                                messageElement.textContent = `${data.username}: ${data.message}`;
+                                chatMessages.appendChild(messageElement);
+                                chatMessages.scrollTop = chatMessages.scrollHeight;
+                            });
 
-                        chatInput.addEventListener('keypress', (e) => {
-                            if (e.key === 'Enter' && chatInput.value.trim() && username) {
-                                addMessage(username, chatInput.value.trim());
-                                chatInput.value = '';
-                            }
+                            chatLoginButton.addEventListener('click', () => {
+                                if (chatUsername.value.trim()) {
+                                    username = chatUsername.value.trim();
+                                    document.getElementById('chat-login').style.display = 'none';
+                                    document.getElementById('chat-input-area').style.display = 'block';
+                                    messagesRef.push({
+                                        username: 'System',
+                                        message: `${username} entered the cage!`,
+                                        timestamp: Date.now()
+                                    });
+                                }
+                            });
+
+                            chatSendButton.addEventListener('click', () => {
+                                if (chatInput.value.trim() && username) {
+                                    messagesRef.push({
+                                        username: username,
+                                        message: chatInput.value.trim(),
+                                        timestamp: Date.now()
+                                    });
+                                    chatInput.value = '';
+                                }
+                            });
+
+                            chatInput.addEventListener('keypress', (e) => {
+                                if (e.key === 'Enter' && chatInput.value.trim() && username) {
+                                    messagesRef.push({
+                                        username: username,
+                                        message: chatInput.value.trim(),
+                                        timestamp: Date.now()
+                                    });
+                                    chatInput.value = '';
+                                }
+                            });
                         });
                     </script>
                     {% endif %}
