@@ -1,35 +1,35 @@
 body {
-    background-image: url('/assets/tiled_bg.gif'); /* Find a 90's tiled background like stars or bricks online, save as tiled_bg.gif in assets, and make it repeat */
+    background-image: url('/assets/tiled_bg.gif');
     background-repeat: repeat;
-    font-family: "Arial", "Helvetica", sans-serif; /* Switched from Comic Sans to a classic 90's sans-serif font */
-    color: #00FF00; /* Lime green text on black for that hacker/retro vibe */
+    font-family: "Arial", "Helvetica", sans-serif;
+    color: #FFFFFF; /* White text for readability, less vibrant */
     margin: 0;
     padding: 0;
 }
 
 h1, h2 {
-    color: #FF00FF; /* Bright magenta for headings */
+    color: #FF0000; /* Red for headings to match fight theme */
     text-align: center;
-    text-shadow: 2px 2px #000000; /* Basic shadow for pop */
-    font-family: "Impact", "Arial Black", sans-serif; /* Bold font for headings to keep retro feel */
+    text-shadow: 2px 2px #000000;
+    font-family: "Impact", "Arial Black", sans-serif;
 }
 
 a {
-    color: #FFFF00; /* Yellow links */
-    text-decoration: underline wavy; /* Wavy underline for fun */
+    color: #CC0000; /* Darker red for links */
+    text-decoration: underline wavy;
 }
 
 a:hover {
-    color: #FF0000; /* Red on hover */
-    background-color: #FFFFFF; /* White bg on hover for contrast */
+    color: #FF0000;
+    background-color: #333333; /* Dark gray hover for contrast */
 }
 
 ul {
-    list-style-type: square; /* Retro square bullets */
+    list-style-type: square;
 }
 
 blink {
-    animation: blinker 1s linear infinite; /* Modern CSS to simulate <blink> since it's deprecated */
+    animation: blinker 1s linear infinite;
 }
 
 @keyframes blinker {
@@ -39,14 +39,30 @@ blink {
 }
 
 marquee {
-    font-size: 20px; /* Bigger text for marquee */
+    font-size: 20px;
 }
 
-/* Add some pixelation effect if you want ultra-retro */
 img {
-    image-rendering: pixelated; /* For GIFs to look crunchy */
+    image-rendering: pixelated;
 }
 
 audio {
-    width: 100%; /* Make audio player fit the sidebar */
+    width: 100%;
+    background-color: #000000;
+    border: 3px solid #FF0000; /* Red border for fight theme */
+    border-style: double; /* Double border for retro flair */
+    box-shadow: 2px 2px 5px #CC0000; /* Subtle red glow */
+}
+
+#audio-player {
+    margin: 10px 0;
+}
+
+#song-selector {
+    width: 100%;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 2px solid #FF0000; /* Red border to match audio player */
+    font-family: "Arial", "Helvetica", sans-serif;
+    padding: 5px;
 }
