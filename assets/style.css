@@ -1,7 +1,7 @@
 body {
     background-image: url('/assets/tiled_bg.gif'); /* Find a 90's tiled background like stars or bricks online, save as tiled_bg.gif in assets, and make it repeat */
     background-repeat: repeat;
-    font-family: "Comic Sans MS", "Courier New", monospace; /* Classic 90's fonts */
+    font-family: "Arial", "Helvetica", sans-serif; /* Switched from Comic Sans to a classic 90's sans-serif font */
     color: #00FF00; /* Lime green text on black for that hacker/retro vibe */
     margin: 0;
     padding: 0;
@@ -11,6 +11,7 @@ h1, h2 {
     color: #FF00FF; /* Bright magenta for headings */
     text-align: center;
     text-shadow: 2px 2px #000000; /* Basic shadow for pop */
+    font-family: "Impact", "Arial Black", sans-serif; /* Bold font for headings to keep retro feel */
 }
 
 a {
@@ -44,4 +45,8 @@ marquee {
 /* Add some pixelation effect if you want ultra-retro */
 img {
     image-rendering: pixelated; /* For GIFs to look crunchy */
+}
+
+audio {
+    width: 100%; /* Make audio player fit the sidebar */
 }
