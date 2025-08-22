@@ -10,13 +10,13 @@
     <table width="100%" border="1" cellspacing="0" cellpadding="10" bgcolor="#000000" bordercolor="#FF0000">
         <tr>
             <td colspan="2" align="center">
-                <img src="/assets/under_construction.gif" alt="Under Construction" width="200" height="100"> <!-- Add a retro GIF here; you can download a 90's style under construction GIF and place it in assets -->
-                <h1><blink>MATLOCK</blink></h1> <!-- Blink tag for that classic 90's annoyance -->
-                <marquee behavior="scroll" direction="left" scrollamount="5"><font color="#00FF00">Welcome to the ultimate MMA fight talk zone! Punching through the web since 2025!</font></marquee>
+                <img src="/assets/under_construction.gif" alt="Under Construction" width="200" height="100">
+                <h1><blink>MATLOCK</blink></h1>
+                <marquee behavior="scroll" direction="left" scrollamount="5"><font color="#CC0000">Welcome to the ultimate MMA fight talk zone! Punching through the web since 2025!</font></marquee>
             </td>
         </tr>
         <tr>
-            <td width="20%" valign="top" bgcolor="#0000FF">
+            <td width="20%" valign="top" bgcolor="#000000">
                 <h2>Navigation</h2>
                 <ul>
                     <li><a href="/">Home</a></li>
@@ -24,13 +24,29 @@
                     <li><a href="/guestbook">Guestbook</a></li>
                 </ul>
                 <hr>
-                <center><img src="/assets/fist.gif" alt="Fist Icon" width="100" height="100"></center> <!-- Add a pixelated fist or MMA icon GIF for retro flair -->
+                <center><img src="/assets/fist.gif" alt="Fist Icon" width="100" height="100"></center>
                 <hr>
                 <center>
-                    <audio controls>
-                        <source src="/assets/facethepain.mp3" type="audio/mpeg">
-                        Your browser does not support the audio element.
-                    </audio>
+                    <div id="audio-player">
+                        <audio id="player" autoplay controls>
+                            <source src="/assets/retro_song1.mp3" type="audio/mpeg">
+                            <source src="/assets/retro_song2.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                        <select id="song-selector" onchange="changeSong()">
+                            <option value="/assets/retro_song1.mp3">Song 1: MMA Anthem</option>
+                            <option value="/assets/retro_song2.mp3">Song 2: Cage Fighter Jams</option>
+                        </select>
+                        <p><font color="#FF0000">MATLOCK'S FIGHT TALK</font></p>
+                    </div>
+                    <script>
+                        function changeSong() {
+                            var selector = document.getElementById('song-selector');
+                            var player = document.getElementById('player');
+                            player.src = selector.value;
+                            player.play();
+                        }
+                    </script>
                 </center>
                 <hr>
                 <center>
@@ -44,8 +60,8 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2" align="center" bgcolor="#FFFF00">
-                <font color="#000000">Copyright © 2025 Matlock'S Fight Talk. All rights reserved. | Visitor count: <img src="/assets/counter.gif" alt="Hit Counter"> <!-- Fake hit counter; add a GIF if you want --></font>
+            <td colspan="2" align="center" bgcolor="#333333">
+                <font color="#FFFFFF">Copyright © 2025 Matlock'S Fight Talk. All rights reserved. | Visitor count: <img src="/assets/counter.gif" alt="Hit Counter"></font>
                 <br>
                 <marquee behavior="alternate"><font color="#FF0000">Powered by Secret Juice</font></marquee>
             </td>
