@@ -1,13 +1,13 @@
 ---
-title: Welcome to Matlock Fight Talk
+title: MATLOCK'S FIGHT TALK
 layout: default
 ---
 <center>
-    <h2>Welcome to the Cage!</h2>
-    <p><font color="#FFFFFF">Your home for MMA rants, trauma dumping, and half-assed fight analysis. Dive into the chaos!</font></p>
+    <h2>WHERE ARE YOU?</h2>
+    <p><font color="#FFFFFF"> You're here at the end of the internet. Its not much, I know... However! You can check out my fight analysis. Sure, it may have some trauma dumping mixed in but at least you'll get some enjoyable content out of it. Maybe. </font></p>
 </center>
 <div class="intro-container">
-    <p><font color="#FFFFFF">Matlock Fight Talk is where the punches land and the opinions fly. Check out my latest <a href="/fighttalk">Fight Talk</a> posts for raw takes on UFC matchups, join the <a href="/chatroom">Chatroom</a> for live fight chatter, spin the <a href="/vegas">Vegas Slots</a> for some retro fun, or leave your mark in the <a href="/guestbook">Guestbook</a>.</font></p>
+    <p><font color="#FFFFFF"> For fight breakdowns, check out <a href="/matlockpapers">The Matlock Papers</a> on your left. I'll host watchalongs on fight nights so be sure to join the <a href="/chatroom">Chatroom</a> for the livestream and chatter, spin the <a href="/vegas">Vegas Slots</a> to waste time, or leave your mark in the <a href="/guestbook">Guestbook</a>.</font></p>
 </div>
 {% assign latest_post = site.posts | first %}
 {% if latest_post %}
