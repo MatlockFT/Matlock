@@ -4,48 +4,122 @@ title: Chatroom
 ---
 <center>
     <h2>MMA Fight Chat!</h2>
-    <p><font color="#FFFFFF">Join the cage-side chatter! Enter your username and talk fights while watching live!</font></p>
+    <p><font color="#FFFFFF">Join the cage-side chatter! Talk fights while watching live!</font></p>
 </center>
 
-<div class="video-placeholder">
-    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+<div class="chatroom-layout">
+    <div class="chatroom-video">
+        <div class="video-placeholder">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="chatroom-chat">
+        <div id="chat-container" class="chat-container">
+            <div id="chat-login">
+                <input type="text" id="chat-username" placeholder="Enter Username">
+                <button id="chat-login-button">Join Cage</button>
+            </div>
+            <div id="chat-input-area" style="display: none;">
+                <div id="chat-messages"></div>
+                <input type="text" id="chat-input" placeholder="Type your fight talk...">
+                <button id="chat-send-button">Send</button>
+            </div>
+        </div>
+    </div>
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
-    const chatMessages = document.getElementById('chat-messages');
-    const chatInput = document.getElementById('chat-input');
-    const chatSendButton = document.getElementById('chat-send-button');
-    const chatUsername = document.getElementById('chat-username');
-    const chatLoginButton = document.getElementById('chat-login-button');
-    let username = '';
-
-    function addMessage(user, message) {
-        const messageElement = document.createElement('div');
-        messageElement.textContent = `${user}: ${message}`;
-        chatMessages.appendChild(messageElement);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+    // Initialize Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyBhM9yPLtn7YDa9Ulx6gzqY1G58ywTy5xM",
+        authDomain: "matlockfighttalk.firebaseapp.com",
+        databaseURL: "https://matlockfighttalk-default-rtdb.firebaseio.com",
+        projectId: "matlockfighttalk",
+        storageBucket: "matlockfighttalk.firebasestorage.app",
+        messagingSenderId: "520477465023",
+        appId: "1:520477465023:web:db53e9987bc0b4b96ee90a"
+    };
+    try {
+        firebase.initializeApp(firebaseConfig);
+        console.log('Firebase initialized successfully');
+    } catch (error) {
+        console.error('Firebase initialization error:', error);
     }
+    const database = firebase.database();
 
-    chatLoginButton.addEventListener('click', () => {
-        if (chatUsername.value.trim()) {
-            username = chatUsername.value.trim();
-            document.getElementById('chat-login').style.display = 'none';
-            document.getElementById('chat-input-area').style.display = 'block';
-            addMessage('System', `${username} entered the cage!`);
-        }
-    });
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('DOM loaded, initializing chat');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const chatSendButton = document.getElementById('chat-send-button');
+        const chatUsername = document.getElementById('chat-username');
+        const chatLoginButton = document.getElementById('chat-login-button');
+        let username = '';
 
-    chatSendButton.addEventListener('click', () => {
-        if (chatInput.value.trim() && username) {
-            addMessage(username, chatInput.value.trim());
-            chatInput.value = '';
+        if (!chatMessages || !chatInput || !chatSendButton || !chatUsername || !chatLoginButton) {
+            console.error('Chat elements not found:', {
+                chatMessages: !!chatMessages,
+                chatInput: !!chatInput,
+                chatSendButton: !!chatSendButton,
+                chatUsername: !!chatUsername,
+                chatLoginButton: !!chatLoginButton
+            });
+            return;
         }
-    });
 
-    chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter' && chatInput.value.trim() && username) {
-            addMessage(username, chatInput.value.trim());
-            chatInput.value = '';
-        }
+        // Load messages from Firebase
+        const messagesRef = database.ref('chatroom/messages');
+        messagesRef.limitToLast(50).on('child_added', (snapshot) => {
+            const data = snapshot.val();
+            const messageElement = document.createElement('div');
+            messageElement.textContent = `${data.username}: ${data.message}`;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, (error) => {
+            console.error('Firebase message load error:', error);
+        });
+
+        chatLoginButton.addEventListener('click', () => {
+            if (chatUsername.value.trim()) {
+                username = chatUsername.value.trim();
+                document.getElementById('chat-login').style.display = 'none';
+                document.getElementById('chat-input-area').style.display = 'block';
+                messagesRef.push({
+                    username: 'System',
+                    message: `${username} entered the cage!`,
+                    timestamp: Date.now()
+                }).catch((error) => {
+                    console.error('Firebase push error:', error);
+                });
+            }
+        });
+
+        chatSendButton.addEventListener('click', () => {
+            if (chatInput.value.trim() && username) {
+                messagesRef.push({
+                    username: username,
+                    message: chatInput.value.trim(),
+                    timestamp: Date.now()
+                }).catch((error) => {
+                    console.error('Firebase push error:', error);
+                });
+                chatInput.value = '';
+            }
+        });
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && chatInput.value.trim() && username) {
+                messagesRef.push({
+                    username: username,
+                    message: chatInput.value.trim(),
+                    timestamp: Date.now()
+                }).catch((error) => {
+                    console.error('Firebase push error:', error);
+                });
+                chatInput.value = '';
+            }
+        });
     });
 </script>
