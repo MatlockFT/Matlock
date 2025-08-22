@@ -2,26 +2,26 @@ body {
     background-image: url('/assets/tiled_bg.gif');
     background-repeat: repeat;
     font-family: "Arial", "Helvetica", sans-serif;
-    color: #FFFFFF; /* White text for readability, less vibrant */
+    color: #FFFFFF;
     margin: 0;
     padding: 0;
 }
 
 h1, h2 {
-    color: #FF0000; /* Red for headings to match fight theme */
+    color: #FF0000;
     text-align: center;
     text-shadow: 2px 2px #000000;
     font-family: "Impact", "Arial Black", sans-serif;
 }
 
 a {
-    color: #CC0000; /* Darker red for links */
+    color: #CC0000;
     text-decoration: underline wavy;
 }
 
 a:hover {
     color: #FF0000;
-    background-color: #333333; /* Dark gray hover for contrast */
+    background-color: #333333;
 }
 
 ul {
@@ -46,12 +46,34 @@ img {
     image-rendering: pixelated;
 }
 
+.audio-container {
+    background-color: #000000;
+    border: 4px double #FF0000;
+    padding: 8px;
+    box-shadow: 4px 4px 8px #CC0000;
+    background-image: url('/assets/cage_texture.gif');
+    background-repeat: repeat;
+    margin-bottom: 5px;
+}
+
 audio {
     width: 100%;
+    background: transparent;
+    filter: brightness(0.8) contrast(1.2);
+}
+
+audio::-webkit-media-controls-panel {
     background-color: #000000;
-    border: 3px solid #FF0000; /* Red border for fight theme */
-    border-style: double; /* Double border for retro flair */
-    box-shadow: 2px 2px 5px #CC0000; /* Subtle red glow */
+    color: #FF0000;
+    border: 2px solid #FF0000;
+    font-family: "Arial", sans-serif;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-volume-slider,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+    filter: invert(20%) sepia(100%) saturate(500%) hue-rotate(360deg);
 }
 
 #audio-player {
@@ -62,7 +84,7 @@ audio {
     width: 100%;
     background-color: #000000;
     color: #FFFFFF;
-    border: 2px solid #FF0000; /* Red border to match audio player */
+    border: 2px solid #FF0000;
     font-family: "Arial", "Helvetica", sans-serif;
     padding: 5px;
 }
