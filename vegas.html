@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot Machine</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .slot-machine {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 400px;
+            max-width: 90%;
+        }
+        .reels {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .reel {
+            width: 100px;
+            height: 100px;
+            background-color: #fff;
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 50px;
+            transition: transform 0.1s;
+        }
+        .spinning .reel {
+            animation: spin 0.1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+        button {
+            background-color: #ff4500;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #e03e00;
+        }
+        button:disabled {
+            background-color: #666;
+            cursor: not-allowed;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="slot-machine">
+        <div class="reels" id="reels">
+            <div class="reel" id="reel1">🍒</div>
+            <div class="reel" id="reel2">🍋</div>
+            <div class="reel" id="reel3">🍊</div>
+        </div>
+        <button id="spinButton">Spin</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const symbols = ['🍒', '🍋', '🍊', '🍉', '⭐', '🔔', '💎'];
+        const reels = document.querySelectorAll('.reel');
+        const reelsContainer = document.getElementById('reels');
+        const spinButton = document.getElementById('spinButton');
+        const resultDisplay = document.getElementById('result');
+        // const spinSound = new Audio('spin.mp3'); // Uncomment and provide audio file for sound
+
+        // Cryptographically secure random number generator
+        function getRandomInt(max) {
+            if (window.crypto && window.crypto.getRandomValues) {
+                const array = new Uint32Array(1);
+                window.crypto.getRandomValues(array);
+                return array[0] % max;
+            }
+            return Math.floor(Math.random() * max);
+        }
+
+        // Simulate spinning animation
+        function spinReels() {
+            spinButton.disabled = true;
+            resultDisplay.textContent = '';
+            reelsContainer.classList.add('spinning');
+            // spinSound.play(); // Uncomment to play sound
+
+            let spinCount = 0;
+            const maxSpins = 20; // Number of symbol changes during spin
+            const spinInterval = setInterval(() => {
+                reels.forEach(reel => {
+                    const randomIndex = getRandomInt(symbols.length);
+                    reel.textContent = symbols[randomIndex];
+                });
+                spinCount++;
+                if (spinCount >= maxSpins) {
+                    clearInterval(spinInterval);
+                    endSpin();
+                }
+            }, 100);
+        }
+
+        // Finalize spin and check for win
+        function endSpin() {
+            reelsContainer.classList.remove('spinning');
+            const finalSymbols = Array.from(reels).map(reel => reel.textContent);
+            const isWin = finalSymbols.every(symbol => symbol === finalSymbols[0]);
+            resultDisplay.textContent = isWin ? '🎉 You Win!' : 'Try Again!';
+            spinButton.disabled = false;
+        }
+
+        // Event listener for spin button
+        spinButton.addEventListener('click', spinReels);
+    </script>
+</body>
+</html>
