@@ -94,6 +94,16 @@ audio {
     padding: 5px;
 }
 
+.intro-container {
+    font-family: "Courier New", "Courier", monospace;
+    color: #FFFFFF;
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 3px 3px 6px #800000;
+}
+
 .blog-post {
     font-family: "Courier New", "Courier", monospace;
     color: #FFFFFF;
@@ -293,7 +303,7 @@ audio {
 }
 
 .chatroom-chat {
-    flex:0 0 300px;
+    flex: 0 0 300px;
 }
 
 @media (max-width: 960px) {
