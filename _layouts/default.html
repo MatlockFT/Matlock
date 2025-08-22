@@ -28,38 +28,47 @@
                 <hr>
                 <center>
                     <div id="audio-player">
-                        <p><font color="#FF0000"><blink>Click to start fight tunes!</blink></font></p>
+                        <p><font color="#FF0000"><blink>Click to unleash fight tunes!</blink></font></p>
                         <div class="audio-container">
-                            <audio id="player" autoplay controls>
+                            <audio id="player">
                                 <source src="/assets/facethepain.mp3" type="audio/mpeg">
                                 <source src="/assets/Original.mp3" type="audio/mpeg">
                                 <source src="/assets/DeathorGlory.mp3" type="audio/mpeg">
+                                <embed src="/assets/facethepain.mp3" autostart="true" loop="false" hidden="true">
                                 Your browser does not support the audio element.
                             </audio>
+                            <div class="audio-controls">
+                                <img src="/assets/play_button.gif" alt="Play" onclick="playAudio()" class="control-button">
+                                <img src="/assets/pause_button.gif" alt="Pause" onclick="pauseAudio()" class="control-button">
+                            </div>
+                            <select id="song-selector" onchange="changeSong()">
+                                <option value="/assets/facethepain.mp3">Face The Pain</option>
+                                <option value="/assets/Original.mp3">O.G.</option>
+                                <option value="/assets/DeathorGlory.mp3">Death or Glory</option>
+                            </select>
                         </div>
-                        <select id="song-selector" onchange="changeSong()">
-                            <option value="/assets/facethepain.mp3">Face The Pain</option>
-                            <option value="/assets/Original.mp3">O.G.</option>
-                            <option value="/assets/DeathorGlory.mp3">Death or Glory</option>
-                        </select>
-                        <p><font color="#FF0000">MATLOCK'S FIGHT TALK</font></p>
-                    </div>
-                    <script>
-                        function changeSong() {
-                            var selector = document.getElementById('song-selector');
+                        <script>
                             var player = document.getElementById('player');
-                            player.src = selector.value;
-                            player.play();
-                        }
-                        // Attempt to autoplay on page load
-                        window.addEventListener('load', function() {
-                            var player = document.getElementById('player');
-                            player.src = '/assets/facethepain.mp3'; // Explicitly set first song
-                            player.play().catch(function(error) {
-                                console.log("Autoplay blocked: ", error);
+                            function playAudio() {
+                                player.src = document.getElementById('song-selector').value;
+                                player.play();
+                            }
+                            function pauseAudio() {
+                                player.pause();
+                            }
+                            function changeSong() {
+                                player.src = document.getElementById('song-selector').value;
+                                player.play();
+                            }
+                            // Attempt to autoplay on page load
+                            window.addEventListener('load', function() {
+                                player.src = '/assets/facethepain.mp3';
+                                player.play().catch(function(error) {
+                                    console.log("Autoplay blocked: ", error);
+                                });
                             });
-                        });
-                    </script>
+                        </script>
+                    </div>
                 </center>
                 <hr>
                 <center>
