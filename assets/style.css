@@ -16,7 +16,7 @@ h1, h2 {
 
 a {
     color: #CC0000;
-    text-decoration: underline wavy;
+    text-decoration: underline; /* Changed from wavy to solid underline */
 }
 
 a:hover {
@@ -57,23 +57,20 @@ img {
 }
 
 audio {
-    width: 100%;
-    background: transparent;
-    filter: brightness(0.8) contrast(1.2);
+    display: none; /* Hide default audio controls */
 }
 
-audio::-webkit-media-controls-panel {
-    background-color: #000000;
-    color: #FF0000;
+.audio-controls {
+    text-align: center;
+    margin: 5px 0;
+}
+
+.control-button {
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    cursor: pointer;
     border: 2px solid #FF0000;
-    font-family: "Arial", sans-serif;
-}
-
-audio::-webkit-media-controls-play-button,
-audio::-webkit-media-controls-volume-slider,
-audio::-webkit-media-controls-current-time-display,
-audio::-webkit-media-controls-time-remaining-display {
-    filter: invert(20%) sepia(100%) saturate(500%) hue-rotate(360deg);
 }
 
 #audio-player {
