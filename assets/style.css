@@ -191,3 +191,86 @@ audio {
     font-family: "Impact", "Arial Black", sans-serif;
     text-shadow: 1px 1px #000000;
 }
+
+.chat-container {
+    background-color: #000000;
+    border: 4px double #FF0000;
+    padding: 10px;
+    box-shadow: 4px 4px 8px #CC0000;
+    background-image: url('/assets/stripes.gif');
+    background-repeat: repeat;
+    margin: 10px 0;
+    font-family: "Courier New", "Courier", monospace;
+}
+
+.chat-login {
+    margin-bottom: 10px;
+}
+
+#chat-username {
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 2px solid #FF0000;
+    padding: 5px;
+    font-family: "Courier New", "Courier", monospace;
+}
+
+#chat-login-button {
+    background-color: #000000;
+    border: 2px solid #FF0000;
+    color: #FF0000;
+    font-family: "Impact", "Arial Black", sans-serif;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#chat-login-button:hover {
+    background-color: #333333;
+    color: #FFFFFF;
+}
+
+#chat-messages {
+    height: 200px;
+    overflow-y: scroll;
+    background-color: #000000;
+    border: 2px solid #FF0000;
+    padding: 5px;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+#chat-input {
+    width: 80%;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 2px solid #FF0000;
+    padding: 5px;
+    font-family: "Courier New", "Courier", monospace;
+}
+
+#chat-send-button {
+    background-color: #000000;
+    border: 2px solid #FF0000;
+    color: #FF0000;
+    font-family: "Impact", "Arial Black", sans-serif;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#chat-send-button:hover {
+    background-color: #333333;
+    color: #FFFFFF;
+}
+
+.video-placeholder {
+    width: 100%;
+    max-width: 640px;
+    height: 360px;
+    margin: 20px auto;
+    border: 4px double #FF0000;
+    box-shadow: 4px 4px 8px #CC0000;
+    background-color: #000000;
+    background-image: url('/assets/stripes.gif');
+    background-repeat: repeat;
+}
