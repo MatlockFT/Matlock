@@ -104,7 +104,7 @@ audio {
     box-shadow: 3px 3px 6px #800000;
 }
 
-.blog-post h3 {
+.blog-post h2, .blog-post h3 {
     font-family: "Courier New", "Courier", monospace;
     color: #FFFFFF;
     text-align: left;
@@ -293,7 +293,7 @@ audio {
 }
 
 .chatroom-chat {
-    flex: 0 0 300px;
+    flex:0 0 300px;
 }
 
 @media (max-width: 960px) {
