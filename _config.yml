@@ -9,11 +9,12 @@ theme: null # You can change this to a different Jekyll theme or set to null for
 nav:
   - name: Home
     link: /
-  - name: Analysis
-    link: /analysis
+  - name: Fight Talk
+    link: /fighttalk
 
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+
 
 
