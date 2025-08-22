@@ -8,19 +8,19 @@ body {
 }
 
 h1, h2, h3 {
-    color: #FF0000;
+    color: #A00000;
     text-align: center;
-    text-shadow: 2px 2px #000000;
-    font-family: "Impact", "Arial Black", sans-serif;
+    text-shadow: 1px 1px #333333;
+    font-family: "Arial Black", sans-serif;
 }
 
 a {
-    color: #CC0000;
+    color: #A00000;
     text-decoration: underline;
 }
 
 a:hover {
-    color: #FF0000;
+    color: #CC0000;
     background-color: #333333;
 }
 
@@ -48,9 +48,9 @@ img {
 
 .audio-container {
     background-color: #000000;
-    border: 4px double #FF0000;
+    border: 4px double #A00000;
     padding: 8px;
-    box-shadow: 4px 4px 8px #CC0000;
+    box-shadow: 4px 4px 8px #800000;
     background-image: url('/assets/stripes.gif');
     background-repeat: repeat;
     margin-bottom: 5px;
@@ -70,14 +70,14 @@ audio {
     height: 40px;
     margin: 0 5px;
     cursor: pointer;
-    border: 2px solid #FF0000;
+    border: 2px solid #A00000;
 }
 
 #volume-slider {
     width: 80px;
     background-color: #000000;
-    accent-color: #FF0000;
-    border: 2px solid #FF0000;
+    accent-color: #A00000;
+    border: 2px solid #A00000;
     margin: 5px;
 }
 
@@ -89,7 +89,7 @@ audio {
     width: 100%;
     background-color: #000000;
     color: #FFFFFF;
-    border: 2px solid #FF0000;
+    border: 2px solid #A00000;
     font-family: "Arial", "Helvetica", sans-serif;
     padding: 5px;
 }
@@ -98,15 +98,15 @@ audio {
     font-family: "Courier New", "Courier", monospace;
     color: #FFFFFF;
     background-color: #000000;
-    border: 2px solid #FF0000;
+    border: 2px solid #A00000;
     padding: 10px;
     margin: 10px 0;
-    box-shadow: 3px 3px 6px #CC0000;
+    box-shadow: 3px 3px 6px #800000;
 }
 
 .blog-post h3 {
-    font-family: "Impact", "Arial Black", sans-serif;
-    color: #FF0000;
+    font-family: "Courier New", "Courier", monospace;
+    color: #FFFFFF;
     text-align: left;
 }
 
@@ -115,11 +115,16 @@ audio {
     line-height: 1.5;
 }
 
+.blog-post .post-date {
+    color: #FFFFFF;
+    font-size: 12px;
+}
+
 .slot-machine {
     background-color: #000000;
-    border: 4px double #FF0000;
+    border: 4px double #A00000;
     padding: 15px;
-    box-shadow: 4px 4px 8px #CC0000;
+    box-shadow: 4px 4px 8px #800000;
     text-align: center;
     width: 90%;
     max-width: 400px;
@@ -139,13 +144,13 @@ audio {
     width: 80px;
     height: 80px;
     background-color: #000000;
-    border: 2px solid #FF0000;
+    border: 2px solid #A00000;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 40px;
     color: #FFFFFF;
-    text-shadow: 1px 1px #CC0000;
+    text-shadow: 1px 1px #800000;
     image-rendering: pixelated;
 }
 
@@ -160,13 +165,13 @@ audio {
 
 .slot-button {
     background-color: #000000;
-    border: 2px solid #FF0000;
+    border: 2px solid #A00000;
     padding: 10px 20px;
     font-size: 16px;
-    font-family: "Impact", "Arial Black", sans-serif;
-    color: #FF0000;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
     cursor: pointer;
-    box-shadow: 2px 2px 4px #CC0000;
+    box-shadow: 2px 2px 4px #800000;
     background-image: url('/assets/spin_button.gif');
     background-size: cover;
     width: 100px;
@@ -187,16 +192,16 @@ audio {
 #result {
     margin-top: 15px;
     font-size: 20px;
-    color: #FF0000;
-    font-family: "Impact", "Arial Black", sans-serif;
-    text-shadow: 1px 1px #000000;
+    color: #A00000;
+    font-family: "Arial Black", sans-serif;
+    text-shadow: 1px 1px #333333;
 }
 
 .chat-container {
     background-color: #000000;
-    border: 4px double #FF0000;
+    border: 4px double #A00000;
     padding: 10px;
-    box-shadow: 4px 4px 8px #CC0000;
+    box-shadow: 4px 4px 8px #800000;
     background-image: url('/assets/stripes.gif');
     background-repeat: repeat;
     margin: 10px;
@@ -210,7 +215,7 @@ audio {
 #chat-username {
     background-color: #000000;
     color: #FFFFFF;
-    border: 2px solid #FF0000;
+    border: 2px solid #A00000;
     padding: 5px;
     font-family: "Courier New", "Courier", monospace;
     width: 90%;
@@ -218,9 +223,9 @@ audio {
 
 #chat-login-button {
     background-color: #000000;
-    border: 2px solid #FF0000;
-    color: #FF0000;
-    font-family: "Impact", "Arial Black", sans-serif;
+    border: 2px solid #A00000;
+    color: #A00000;
+    font-family: "Arial Black", sans-serif;
     padding: 5px 10px;
     cursor: pointer;
 }
@@ -234,7 +239,7 @@ audio {
     height: 300px;
     overflow-y: scroll;
     background-color: #000000;
-    border: 2px solid #FF0000;
+    border: 2px solid #A00000;
     padding: 5px;
     margin-bottom: 10px;
     color: #FFFFFF;
@@ -245,16 +250,16 @@ audio {
     width: 80%;
     background-color: #000000;
     color: #FFFFFF;
-    border: 2px solid #FF0000;
+    border: 2px solid #A00000;
     padding: 5px;
     font-family: "Courier New", "Courier", monospace;
 }
 
 #chat-send-button {
     background-color: #000000;
-    border: 2px solid #FF0000;
-    color: #FF0000;
-    font-family: "Impact", "Arial Black", sans-serif;
+    border: 2px solid #A00000;
+    color: #A00000;
+    font-family: "Arial Black", sans-serif;
     padding: 5px 10px;
     cursor: pointer;
 }
@@ -268,8 +273,8 @@ audio {
     width: 100%;
     max-width: 640px;
     height: 360px;
-    border: 4px double #FF0000;
-    box-shadow: 4px 4px 8px #CC0000;
+    border: 4px double #A00000;
+    box-shadow: 4px 4px 8px #800000;
     background-color: #000000;
     background-image: url('/assets/stripes.gif');
     background-repeat: repeat;
