@@ -130,18 +130,83 @@ audio {
     font-size: 12px;
 }
 
-.slot-machine {
+.guestbook-container {
+    font-family: "Courier New", "Courier", monospace;
+    color: #FFFFFF;
+    background-color: #000000;
+    border: 4px double #A00000;
+    padding: 10px;
+    margin: 10px auto;
+    box-shadow: 3px 3px 6px #800000;
+    background-image: url('/assets/stripes.gif');
+    background-repeat: repeat;
+    max-width: 400px;
+}
+
+.guestbook-container label {
+    display: block;
+    margin: 5px 0;
+}
+
+.guestbook-container input[type="text"],
+.guestbook-container input[type="email"],
+.guestbook-container textarea {
+    width: 100%;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 2px solid #A00000;
+    padding: 5px;
+    font-family: "Courier New", "Courier", monospace;
+    font-size: 14px;
+}
+
+.guestbook-container textarea {
+    resize: vertical;
+}
+
+.guestbook-container input[type="submit"] {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    color: #A00000;
+    font-family: "Arial Black", sans-serif;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.guestbook-container input[type="submit"]:hover {
+    background-color: #333333;
+    color: #FFFFFF;
+}
+
+.guestbook-container p {
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.slot-machine-container {
     background-color: #000000;
     border: 4px double #A00000;
     padding: 15px;
     box-shadow: 4px 4px 8px #800000;
     text-align: center;
     width: 90%;
-    max-width: 400px;
+    max-width: 500px;
     margin: 20px auto;
     font-family: "Courier New", "Courier", monospace;
     background-image: url('/assets/stripes.gif');
     background-repeat: repeat;
+}
+
+.slot-machine-container.win {
+    animation: flash-border 0.5s linear infinite;
+}
+
+@keyframes flash-border {
+    50% {
+        border-color: #CC0000;
+        box-shadow: 4px 4px 8px #CC0000;
+    }
 }
 
 .reels {
@@ -151,20 +216,20 @@ audio {
 }
 
 .reel {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     background-color: #000000;
     border: 2px solid #A00000;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 40px;
+    font-size: 50px;
     color: #FFFFFF;
     text-shadow: 1px 1px #800000;
     image-rendering: pixelated;
 }
 
-.spinning .reel {
+.reel.spinning {
     animation: spin 0.1s linear infinite;
 }
 
@@ -184,14 +249,16 @@ audio {
     box-shadow: 2px 2px 4px #800000;
     background-image: url('/assets/spin_button.gif');
     background-size: cover;
-    width: 100px;
-    height: 40px;
+    width: 120px;
+    height: 50px;
     text-align: center;
+    transition: transform 0.2s;
 }
 
 .slot-button:hover {
     background-color: #333333;
     color: #FFFFFF;
+    transform: scale(1.1);
 }
 
 .slot-button:disabled {
@@ -199,12 +266,28 @@ audio {
     cursor: not-allowed;
 }
 
-#result {
+#credits, #result {
     margin-top: 15px;
-    font-size: 20px;
+    font-size: 18px;
+    color: #FFFFFF;
+    font-family: "Courier New", "Courier", monospace;
+}
+
+#result.win {
     color: #A00000;
-    font-family: "Arial Black", sans-serif;
-    text-shadow: 1px 1px #333333;
+    animation: flash-text 0.5s linear infinite;
+}
+
+@keyframes flash-text {
+    50% {
+        color: #CC0000;
+    }
+}
+
+.slot-machine-container .marquee {
+    font-size: 16px;
+    color: #A00000;
+    margin-top: 10px;
 }
 
 .chat-container {
