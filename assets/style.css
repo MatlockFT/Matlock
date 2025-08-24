@@ -168,6 +168,10 @@ audio { display: none; }
     height: auto;
     opacity: 0;
     transition: opacity 0.5s ease-in;
+    pointer-events: none; /* Allow clicks through the pose */
+    background-color: rgba(0, 0, 0, 0.5); /* Slight transparency */
+    padding: 10px;
+    border: 2px solid #A00000;
 }
 .victory-pose.visible { opacity: 1; }
 
