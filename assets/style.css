@@ -85,6 +85,7 @@ audio { display: none; }
 }
 .reel img { max-width: 100%; max-height: 100%; }
 .reel.spinning { animation: spin-cycle 0.1s linear infinite; }
+.reel.win { box-shadow: 0 0 15px #FF4040; }
 @keyframes spin-cycle { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
 .reel::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
     background: linear-gradient(90deg, rgba(160, 0, 0, 0.3), transparent); animation: reel-light 1s infinite; }
@@ -92,6 +93,12 @@ audio { display: none; }
 .slot-machine-container.win { animation: neon-pulse 1s infinite alternate; }
 @keyframes neon-pulse { 0% { border-color: #A00000; box-shadow: 6px 6px 12px #800000; }
     100% { border-color: #FF4040; box-shadow: 6px 6px 12px #FF4040; } }
+.slot-machine-container.jackpot { animation: jackpot-explosion 1s ease-out; }
+@keyframes jackpot-explosion {
+    0% { transform: scale(1); box-shadow: 6px 6px 12px #FF4040; }
+    50% { transform: scale(1.1); box-shadow: 0 0 30px #FF00FF; }
+    100% { transform: scale(1); box-shadow: 6px 6px 12px #FF4040; }
+}
 
 .slot-machine-container .marquee { font-size: 18px; color: #A00000; padding: 5px; }
 #bet-amount { margin: 10px 0; background-color: #000000; color: #FFFFFF; border: 2px solid #A00000;
@@ -123,9 +130,17 @@ audio { display: none; }
 #gamble-button {
     background-color: #000000; border: 2px solid #A00000; padding: 5px 10px; font-size: 14px;
     font-family: "Arial Black", sans-serif; color: #A00000; cursor: pointer; margin-top: 10px;
+    opacity: 0; transition: opacity 0.5s ease-in;
 }
+#gamble-button.visible { opacity: 1; }
 #gamble-button:hover { background-color: #333333; color: #FF4040; }
 #gamble-button:disabled { opacity: 0.5; cursor: not-allowed; }
+#auto-spin {
+    background-color: #000000; border: 2px solid #A00000; padding: 5px 10px; font-size: 14px;
+    font-family: "Arial Black", sans-serif; color: #A00000; cursor: pointer; margin-top: 10px;
+}
+#auto-spin:hover { background-color: #333333; color: #FF4040; }
+#auto-spin:disabled { opacity: 0.5; cursor: not-allowed; }
 
 #sound-toggle {
     background-color: #000000; border: 2px solid #A00000; padding: 5px 10px; font-size: 14px;
