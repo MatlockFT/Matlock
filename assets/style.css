@@ -29,17 +29,15 @@ ul {
 }
 
 blink {
-    animation: blinker 1s linear infinite;
+    animation: blinker 0.7s linear infinite;
 }
 
 @keyframes blinker {
-    50% {
-        opacity: 0;
-    }
+    50% { opacity: 0; }
 }
 
 marquee {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 img {
@@ -56,81 +54,15 @@ img {
     margin-bottom: 5px;
 }
 
-audio {
-    display: none;
-}
+audio { display: none; }
 
-.audio-controls {
-    text-align: center;
-    margin: 5px 0;
-}
+.audio-controls { text-align: center; margin: 5px 0; }
+.control-button { width: 40px; height: 40px; margin: 0 5px; cursor: pointer; border: 2px solid #A00000; }
+#volume-slider { width: 80px; background-color: #000000; accent-color: #A00000; border: 2px solid #A00000; margin: 5px; }
+#audio-player { margin: 10px 0; }
+#song-selector { width: 100%; background-color: #000000; color: #FFFFFF; border: 2px solid #A00000; font-family: "Arial", "Helvetica", sans-serif; padding: 5px; }
 
-.control-button {
-    width: 40px;
-    height: 40px;
-    margin: 0 5px;
-    cursor: pointer;
-    border: 2px solid #A00000;
-}
-
-#volume-slider {
-    width: 80px;
-    background-color: #000000;
-    accent-color: #A00000;
-    border: 2px solid #A00000;
-    margin: 5px;
-}
-
-#audio-player {
-    margin: 10px 0;
-}
-
-#song-selector {
-    width: 100%;
-    background-color: #000000;
-    color: #FFFFFF;
-    border: 2px solid #A00000;
-    font-family: "Arial", "Helvetica", sans-serif;
-    padding: 5px;
-}
-
-.intro-container {
-    font-family: "Courier New", "Courier", monospace;
-    color: #FFFFFF;
-    background-color: #000000;
-    border: 2px solid #A00000;
-    padding: 10px;
-    margin: 10px 0;
-    box-shadow: 3px 3px 6px #800000;
-}
-
-.blog-post {
-    font-family: "Courier New", "Courier", monospace;
-    color: #FFFFFF;
-    background-color: #000000;
-    border: 2px solid #A00000;
-    padding: 10px;
-    margin: 10px 0;
-    box-shadow: 3px 3px 6px #800000;
-}
-
-.blog-post h2, .blog-post h3 {
-    font-family: "Courier New", "Courier", monospace;
-    color: #FFFFFF;
-    text-align: left;
-}
-
-.blog-post p {
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.blog-post .post-date {
-    color: #FFFFFF;
-    font-size: 12px;
-}
-
-.guestbook-container {
+.intro-container, .blog-post, .guestbook-container, .chat-container, .slot-machine-container {
     font-family: "Courier New", "Courier", monospace;
     color: #FFFFFF;
     background-color: #000000;
@@ -140,315 +72,94 @@ audio {
     box-shadow: 3px 3px 6px #800000;
     background-image: url('/assets/stripes.gif');
     background-repeat: repeat;
-    max-width: 400px;
 }
 
-.guestbook-container label {
-    display: block;
-    margin: 5px 0;
-}
+.intro-container { max-width: 600px; }
+.blog-post { max-width: 700px; }
+.guestbook-container { max-width: 400px; }
+.chat-container { max-width: 300px; }
+.slot-machine-container { max-width: 600px; position: relative; }
 
-.guestbook-container input[type="text"],
-.guestbook-container input[type="email"],
-.guestbook-container textarea {
-    width: 100%;
-    background-color: #000000;
-    color: #FFFFFF;
-    border: 2px solid #A00000;
-    padding: 5px;
-    font-family: "Courier New", "Courier", monospace;
-    font-size: 14px;
-}
-
-.guestbook-container textarea {
-    resize: vertical;
-}
-
-.guestbook-container input[type="submit"] {
-    background-color: #000000;
-    border: 2px solid #A00000;
-    color: #A00000;
-    font-family: "Arial Black", sans-serif;
-    padding: 5px 10px;
-    cursor: pointer;
-    margin-top: 5px;
-}
-
-.guestbook-container input[type="submit"]:hover {
-    background-color: #333333;
-    color: #FFFFFF;
-}
-
-.guestbook-container p {
-    font-size: 12px;
-    margin-top: 10px;
-}
-
-.slot-machine-container {
-    background: linear-gradient(45deg, #000000, #1a001a);
-    border: 6px double #A00000;
-    padding: 20px;
-    box-shadow: 6px 6px 12px #800000;
-    text-align: center;
-    width: 90%;
-    max-width: 600px;
-    margin: 20px auto;
-    font-family: "Courier New", "Courier", monospace;
-    position: relative;
-    overflow: hidden;
-}
-
-.slot-machine-container.win {
-    animation: neon-pulse 1s infinite alternate;
-}
-
-@keyframes neon-pulse {
-    0% { border-color: #A00000; box-shadow: 6px 6px 12px #800000; }
-    100% { border-color: #FF4040; box-shadow: 6px 6px 12px #FF4040; }
-}
-
+.slot-machine-container.win { animation: neon-pulse 1s infinite alternate; }
 .slot-machine-container .vegas-sign {
     font-family: "Arial Black", sans-serif;
     color: #FF00FF;
     font-size: 24px;
     text-align: center;
     margin-bottom: 10px;
+    text-shadow: 0 0 10px #FF00FF, 0 0 20px #FF4040, 0 0 30px #A00000;
     animation: blinker 0.7s linear infinite;
 }
-
-.reels {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 20px;
+.slot-machine-container .reels { display: flex; justify-content: space-around; margin-bottom: 20px; }
+.slot-machine-container .reel {
+    width: 120px; height: 120px; background: linear-gradient(45deg, #000000, #1a001a);
+    border: 4px solid #A00000; display: flex; justify-content: center; align-items: center;
+    position: relative; overflow: hidden;
 }
-
-.reel {
-    width: 120px;
-    height: 120px;
-    background-color: #000000;
-    border: 4px solid #A00000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 50px;
-    color: #FFFFFF;
-    text-shadow: 2px 2px #800000;
-    image-rendering: pixelated;
-    position: relative;
-    overflow: hidden;
-}
-
-.reel img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.reel.spinning {
-    animation: spin-ease 1.5s ease-out;
-}
-
-@keyframes spin-ease {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-240px); }
-}
-
-.slot-button {
-    background-color: #000000;
-    border: 4px solid #A00000;
-    padding: 15px 30px;
-    font-size: 20px;
-    font-family: "Arial Black", sans-serif;
-    color: #A00000;
-    cursor: pointer;
-    box-shadow: 4px 4px 8px #800000;
-    background-image: url('/assets/spin_button.gif');
-    background-size: cover;
-    width: 200px;
-    height: 70px;
-    text-align: center;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-}
-
-.slot-button:hover {
-    background-color: #333333;
-    color: #FF4040;
-    transform: scale(1.1);
-    box-shadow: 6px 6px 12px #FF4040;
-}
-
-.slot-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.slot-button::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(255, 0, 255, 0.3) 0%, transparent 70%);
-    top: -100%;
-    left: -100%;
-    transition: all 0.6s;
-}
-
-.slot-button:hover::after {
-    top: 0;
-    left: 0;
-}
-
-#credits, #result {
-    margin-top: 15px;
-    font-size: 18px;
-    color: #FFFFFF;
-    font-family: "Courier New", "Courier", monospace;
-}
-
-#result.win {
-    color: #FF4040;
-    animation: flash-text 0.5s linear infinite;
-}
-
-@keyframes flash-text {
-    50% {
-        color: #FF00FF;
-    }
-}
+.reel img { max-width: 100%; max-height: 100%; }
+.reel.spinning { animation: spin-ease 1.5s ease-out; }
+.reel::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, rgba(255, 0, 255, 0.3), transparent); animation: reel-light 1s infinite; }
+@keyframes reel-light { 0% { left: -100%; } 100% { left: 100%; } }
+@keyframes spin-ease { 0% { transform: translateY(0); } 100% { transform: translateY(-240px); } }
+@keyframes neon-pulse { 0% { border-color: #A00000; box-shadow: 6px 6px 12px #800000; }
+    100% { border-color: #FF4040; box-shadow: 6px 6px 12px #FF4040; } }
 
 .slot-machine-container .marquee {
-    font-size: 18px;
-    color: #FF00FF;
-    margin-top: 10px;
-    background: #000000;
-    padding: 5px;
+    font-size: 18px; color: #FF00FF; margin-top: 10px; background: #000000; padding: 5px;
 }
+
+#bet-amount { margin: 10px 0; background-color: #000000; color: #FFFFFF; border: 2px solid #A00000;
+    font-family: "Courier New", "Courier", monospace; padding: 5px; }
+.slot-button {
+    background-color: #000000; border: 4px solid #A00000; padding: 15px 30px; font-size: 20px;
+    font-family: "Arial Black", sans-serif; color: #A00000; cursor: pointer; box-shadow: 4px 4px 8px #800000;
+    background-image: url('/assets/spin_button.gif'); background-size: cover; width: 200px; height: 70px;
+    text-align: center; transition: all 0.3s; position: relative; overflow: hidden;
+}
+.slot-button:hover {
+    background-color: #333333; color: #FF4040; transform: scale(1.1); box-shadow: 6px 6px 12px #FF4040;
+}
+.slot-button:disabled { opacity: 0.5; cursor: not-allowed; }
+.slot-button::after {
+    content: ''; position: absolute; width: 100%; height: 100%;
+    background: radial-gradient(circle, rgba(255, 0, 255, 0.3) 0%, transparent 70%);
+    top: -100%; left: -100%; transition: all 0.6s;
+}
+.slot-button:hover::after { top: 0; left: 0; }
+
+#credits, #result { margin-top: 15px; font-size: 18px; color: #FFFFFF; }
+#result.win { color: #FF4040; animation: flash-text 0.5s linear infinite; }
+@keyframes flash-text { 50% { color: #FF00FF; } }
 
 .confetti {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: #FF4040;
-    opacity: 0.8;
+    position: absolute; width: 10px; height: 10px; opacity: 0.8;
     animation: fall 2s linear infinite;
 }
-
 @keyframes fall {
     0% { transform: translateY(-100vh); opacity: 1; }
     100% { transform: translateY(100vh); opacity: 0; }
 }
-
 .confetti:nth-child(2n) { background: #FF00FF; animation-delay: 0.5s; }
 .confetti:nth-child(3n) { background: #A00000; animation-delay: 1s; }
 
-.chat-container {
-    background-color: #000000;
-    border: 4px double #A00000;
-    padding: 10px;
-    box-shadow: 4px 4px 8px #800000;
-    background-image: url('/assets/stripes.gif');
-    background-repeat: repeat;
-    margin: 10px;
-    font-family: "Courier New", "Courier", monospace;
-}
-
-.chat-login {
-    margin-bottom: 10px;
-}
-
-#chat-username {
-    background-color: #000000;
-    color: #FFFFFF;
-    border: 2px solid #A00000;
-    padding: 5px;
-    font-family: "Courier New", "Courier", monospace;
-    width: 90%;
-}
-
-#chat-login-button {
-    background-color: #000000;
-    border: 2px solid #A00000;
-    color: #A00000;
-    font-family: "Arial Black", sans-serif;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-#chat-login-button:hover {
-    background-color: #333333;
-    color: #FFFFFF;
-}
-
-#chat-messages {
-    height: 300px;
-    overflow-y: scroll;
-    background-color: #000000;
-    border: 2px solid #A00000;
-    padding: 5px;
-    margin-bottom: 10px;
-    color: #FFFFFF;
-    font-size: 14px;
-}
-
-#chat-input {
-    width: 80%;
-    background-color: #000000;
-    color: #FFFFFF;
-    border: 2px solid #A00000;
-    padding: 5px;
-    font-family: "Courier New", "Courier", monospace;
-}
-
-#chat-send-button {
-    background-color: #000000;
-    border: 2px solid #A00000;
-    color: #A00000;
-    font-family: "Arial Black", sans-serif;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-#chat-send-button:hover {
-    background-color: #333333;
-    color: #FFFFFF;
-}
-
-.video-placeholder {
-    width: 100%;
-    max-width: 640px;
-    height: 360px;
-    border: 4px double #A00000;
-    box-shadow: 4px 4px 8px #800000;
-    background-color: #000000;
-    background-image: url('/assets/stripes.gif');
-    background-repeat: repeat;
-}
-
-.chatroom-layout {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px auto;
-    max-width: 1000px;
-}
-
-.chatroom-video {
-    flex: 0 0 640px;
-}
-
-.chatroom-chat {
-    flex: 0 0 300px;
-}
-
+.chat-login { margin-bottom: 10px; }
+#chat-username { background-color: #000000; color: #FFFFFF; border: 2px solid #A00000; padding: 5px;
+    font-family: "Courier New", "Courier", monospace; width: 90%; }
+#chat-login-button, #chat-send-button { background-color: #000000; border: 2px solid #A00000;
+    color: #A00000; font-family: "Arial Black", sans-serif; padding: 5px 10px; cursor: pointer; }
+#chat-login-button:hover, #chat-send-button:hover { background-color: #333333; color: #FFFFFF; }
+#chat-messages { height: 300px; overflow-y: scroll; background-color: #000000; border: 2px solid #A00000;
+    padding: 5px; margin-bottom: 10px; color: #FFFFFF; font-size: 14px; }
+#chat-input { width: 80%; background-color: #000000; color: #FFFFFF; border: 2px solid #A00000;
+    padding: 5px; font-family: "Courier New", "Courier", monospace; }
+.video-placeholder { width: 100%; max-width: 640px; height: 360px; border: 4px double #A00000;
+    box-shadow: 4px 4px 8px #800000; background-color: #000000; background-image: url('/assets/stripes.gif');
+    background-repeat: repeat; }
+.chatroom-layout { display: flex; justify-content: center; gap: 20px; margin: 20px auto; max-width: 1000px; }
+.chatroom-video { flex: 0 0 640px; }
+.chatroom-chat { flex: 0 0 300px; }
 @media (max-width: 960px) {
-    .chatroom-layout {
-        flex-direction: column;
-        align-items: center;
-    }
-    .chatroom-video, .chatroom-chat {
-        flex: 0 0 auto;
-        width: 100%;
-        max-width: 640px;
-    }
+    .chatroom-layout { flex-direction: column; align-items: center; }
+    .chatroom-video, .chatroom-chat { flex: 0 0 auto; width: 100%; max-width: 640px; }
 }
