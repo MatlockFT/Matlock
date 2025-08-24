@@ -1,12 +1,13 @@
 ---
 layout: default
-title: Spin Kick! Slot Machine
+title: Vegas Slots
 ---
 <center>
-    <h2>Spin Kick!</h2>
+    <h2>Vegas Slots!</h2>
+    <p><font color="#FFFFFF">Spin the Reels, Feel the Fight!</font></p>
 </center>
 <div class="slot-machine-container">
-    <div class="vegas-sign"><blink>SPIN KICK!</blink></div>
+    <div class="vegas-sign">SPIN KICK!</div>
     <div class="reels">
         <div class="reel" id="reel1"><img src="/assets/symbol1.png" alt="Symbol 1"></div>
         <div class="reel" id="reel2"><img src="/assets/symbol2.png" alt="Symbol 2"></div>
@@ -16,7 +17,9 @@ title: Spin Kick! Slot Machine
         <option value="10">Bet 10 Cash</option>
         <option value="20">Bet 20 Cash</option>
     </select>
-    <button class="slot-button" id="spin-button">Spin</button>
+    <div class="lever-container">
+        <div class="slot-lever" id="spin-lever"></div>
+    </div>
     <div id="cash">Cash: 100</div>
     <div id="result"></div>
     <marquee id="jackpot-marquee" style="display: none;">JACKPOT! YOU WIN BIG!</marquee>
@@ -42,7 +45,7 @@ title: Spin Kick! Slot Machine
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const reels = ['reel1', 'reel2', 'reel3'].map(id => document.getElementById(id));
-        const spinButton = document.getElementById('spin-button');
+        const spinLever = document.getElementById('spin-lever');
         const betAmount = document.getElementById('bet-amount');
         const cashDisplay = document.getElementById('cash');
         const resultDisplay = document.getElementById('result');
@@ -91,12 +94,12 @@ title: Spin Kick! Slot Machine
             soundToggle.textContent = isMuted ? 'Unmute Sound' : 'Toggle Sound';
         }
 
-        spinButton.addEventListener('click', async () => {
+        spinLever.addEventListener('click', async () => {
             const bet = parseInt(betAmount.value);
-            if (cash >= bet && !spinButton.disabled) {
+            if (cash >= bet && !spinLever.classList.contains('disabled')) {
                 cash -= bet;
                 updateCash();
-                spinButton.disabled = true;
+                spinLever.classList.add('disabled');
                 resultDisplay.textContent = '';
                 jackpotMarquee.style.display = 'none';
                 document.querySelector('.slot-machine-container').classList.remove('win');
@@ -110,8 +113,8 @@ title: Spin Kick! Slot Machine
                 }
 
                 await Promise.all(reels.map(spinReel));
+                spinLever.classList.remove('disabled');
 
-                spinButton.disabled = false;
                 const results = reels.map(reel => reel.querySelector('img').src);
                 if (results.every(src => src === results[0])) {
                     const multiplier = results[0].includes('symbol1') ? 15 : results[0].includes('symbol2') ? 5 : 3;
@@ -127,10 +130,9 @@ title: Spin Kick! Slot Machine
                     document.querySelector('.slot-machine-container').classList.add('win');
                 } else {
                     resultDisplay.textContent = 'Try Again!';
-                    // 1% chance for bonus spin
                     if (Math.random() < 0.01) {
                         resultDisplay.textContent = 'Bonus Spin Awarded!';
-                        setTimeout(() => spinButton.click(), 1000);
+                        setTimeout(() => spinLever.click(), 1000);
                     }
                 }
                 updateCash();
@@ -142,3 +144,10 @@ title: Spin Kick! Slot Machine
         soundToggle.addEventListener('click', toggleSound);
     });
 </script>
+<style>
+    .lever-container {
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+    }
+</style>
