@@ -229,3 +229,12 @@ audio { display: none; }
     background-color: #333333;
     color: #FF4040;
 }
+
+.video-container {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 3px 3px 6px #800000;
+    text-align: center;
+}
