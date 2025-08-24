@@ -23,6 +23,7 @@ title: Vegas Slots
     <div id="cash">Cash: 100</div>
     <div id="high-score">High Score: 0</div>
     <div id="result"></div>
+    <div id="jackpot-display">Progressive Jackpot: 0</div>
     <marquee id="jackpot-marquee" style="display: none;">JACKPOT! YOU WIN BIG!</marquee>
     <audio id="spin-sound1">
         <source src="/assets/slotpull1.m4a" type="audio/mp4">
@@ -32,8 +33,8 @@ title: Vegas Slots
         <source src="/assets/slotpull2.m4a" type="audio/mp4">
         <source src="/assets/slotpull2.mp3" type="audio/mpeg">
     </audio>
-    <audio id="reel-stop" src="/assets/reel_stop.mp3">
-        <source type="audio/mpeg">
+    <audio id="reel-stop">
+        <source src="/assets/reel_stop.mp3" type="audio/mpeg">
     </audio>
     <audio id="win-sound">
         <source src="/assets/win.m4a" type="audio/mp4">
@@ -43,7 +44,11 @@ title: Vegas Slots
         <source src="/assets/jackpot.m4a" type="audio/mp4">
         <source src="/assets/jackpot.mp3" type="audio/mpeg">
     </audio>
-    <button id="gamble-button" style="display: none;">Double or Nothing?</button>
+    <audio id="upgrade-sound">
+        <source src="/assets/upgrade.mp3" type="audio/mpeg">
+    </audio>
+    <button id="gamble-button" class="hidden">Double or Nothing?</button>
+    <button id="auto-spin">Auto-Spin (10)</button>
     <button id="sound-toggle">Toggle Sound</button>
 </div>
 <div id="confetti"></div>
@@ -55,24 +60,30 @@ title: Vegas Slots
         const cashDisplay = document.getElementById('cash');
         const highScoreDisplay = document.getElementById('high-score');
         const resultDisplay = document.getElementById('result');
+        const jackpotDisplay = document.getElementById('jackpot-display');
         const jackpotMarquee = document.getElementById('jackpot-marquee');
         const confettiContainer = document.getElementById('confetti');
         const gambleButton = document.getElementById('gamble-button');
+        const autoSpinButton = document.getElementById('auto-spin');
         const sounds = {
             spin1: document.getElementById('spin-sound1'),
             spin2: document.getElementById('spin-sound2'),
             reelStop: document.getElementById('reel-stop'),
             win: document.getElementById('win-sound'),
-            jackpot: document.getElementById('jackpot-sound')
+            jackpot: document.getElementById('jackpot-sound'),
+            upgrade: document.getElementById('upgrade-sound')
         };
         const soundToggle = document.getElementById('sound-toggle');
         let cash = 100;
         let highScore = 0;
         let isMuted = false;
         let currentWinnings = 0;
+        let progressiveJackpot = 0;
+        let autoSpinCount = 0;
 
         function updateCash() { cashDisplay.textContent = `Cash: ${cash}`; }
         function updateHighScore() { highScoreDisplay.textContent = `High Score: ${highScore}`; }
+        function updateJackpot() { jackpotDisplay.textContent = `Progressive Jackpot: ${Math.round(progressiveJackpot)}`; }
 
         async function spinReel(reel) {
             reel.classList.add('spinning');
@@ -115,18 +126,36 @@ title: Vegas Slots
                 resultDisplay.textContent = 'Gamble Lost! Better Luck Next Time!';
             }
             updateCash();
-            gambleButton.style.display = 'none';
+            gambleButton.classList.remove('visible');
+            gambleButton.disabled = true;
+        }
+
+        async function autoSpin() {
+            if (autoSpinCount < 10 && cash > 0) {
+                spinLever.click();
+                autoSpinCount++;
+                autoSpinButton.textContent = `Auto-Spin (${10 - autoSpinCount})`;
+                await new Promise(resolve => setTimeout(resolve, 2000)); // 2-second delay
+                autoSpin();
+            } else {
+                autoSpinCount = 0;
+                autoSpinButton.textContent = 'Auto-Spin (10)';
+                autoSpinButton.disabled = false;
+            }
         }
 
         spinLever.addEventListener('click', async () => {
             const bet = parseInt(betAmount.value);
             if (cash >= bet && !spinLever.classList.contains('disabled')) {
                 cash -= bet;
+                progressiveJackpot += bet * 0.01; // 1% to jackpot
+                updateJackpot();
                 updateCash();
                 spinLever.classList.add('disabled');
                 resultDisplay.textContent = '';
                 jackpotMarquee.style.display = 'none';
-                document.querySelector('.slot-machine-container').classList.remove('win');
+                document.querySelector('.slot-machine-container').classList.remove('win', 'jackpot');
+                reels.forEach(reel => reel.classList.remove('win'));
                 if (!isMuted) {
                     sounds.spin1.currentTime = 0;
                     sounds.spin1.play();
@@ -141,27 +170,47 @@ title: Vegas Slots
                 setTimeout(() => spinLever.classList.remove('released', 'disabled'), 500);
 
                 const results = reels.map(reel => reel.querySelector('img').src);
-                if (results.every(src => src === results[0])) {
+                const allMatch = results.every(src => src === results[0]);
+                if (allMatch) {
                     const multiplier = results[0].includes('symbol1') ? 15 : results[0].includes('symbol2') ? 5 : 3;
                     currentWinnings = bet * multiplier;
                     cash += currentWinnings;
                     resultDisplay.textContent = multiplier === 15 ? `JACKPOT! +${currentWinnings} Cash!` : `WIN! +${currentWinnings} Cash!`;
                     jackpotMarquee.style.display = multiplier === 15 ? 'block' : 'none';
+                    reels.forEach(reel => reel.classList.add('win'));
                     if (!isMuted) {
                         (multiplier === 15 ? sounds.jackpot : sounds.win).currentTime = 0;
                         (multiplier === 15 ? sounds.jackpot : sounds.win).play();
                     }
-                    if (multiplier === 15) createConfetti();
-                    document.querySelector('.slot-machine-container').classList.add('win');
+                    if (multiplier === 15) {
+                        createConfetti();
+                        document.querySelector('.slot-machine-container').classList.add('jackpot');
+                    }
                     if (currentWinnings > 0) {
-                        gambleButton.style.display = 'inline-block';
+                        gambleButton.classList.add('visible');
                         gambleButton.disabled = false;
                     }
                     highScore = Math.max(highScore, currentWinnings);
                     updateHighScore();
+                } else if (Math.random() < 0.005) { // 0.5% chance for progressive jackpot
+                    const jackpotWin = progressiveJackpot;
+                    cash += jackpotWin;
+                    progressiveJackpot = 0;
+                    resultDisplay.textContent = `PROGRESSIVE JACKPOT! +${jackpotWin} Cash!`;
+                    createConfetti();
+                    document.querySelector('.slot-machine-container').classList.add('jackpot');
+                    if (!isMuted) sounds.jackpot.currentTime = 0; sounds.jackpot.play();
+                    highScore = Math.max(highScore, jackpotWin);
+                    updateHighScore();
+                    updateJackpot();
                 } else {
                     resultDisplay.textContent = 'Try Again!';
-                    if (Math.random() < 0.01) {
+                    if (Math.random() < 0.05) { // 5% chance for symbol upgrade
+                        const randomReel = reels[Math.floor(Math.random() * reels.length)];
+                        randomReel.querySelector('img').src = '/assets/wild.png'; // Assume wild.png exists
+                        if (!isMuted) sounds.upgrade.currentTime = 0; sounds.upgrade.play();
+                        resultDisplay.textContent = 'Symbol Upgraded to Wild!';
+                    } else if (Math.random() < 0.01) {
                         resultDisplay.textContent = 'Bonus Spin Awarded!';
                         setTimeout(() => spinLever.click(), 1000);
                     }
@@ -174,7 +223,13 @@ title: Vegas Slots
 
         gambleButton.addEventListener('click', () => {
             gamble();
-            gambleButton.disabled = true;
+        });
+
+        autoSpinButton.addEventListener('click', () => {
+            if (!autoSpinButton.disabled && cash > 0) {
+                autoSpinButton.disabled = true;
+                autoSpin();
+            }
         });
 
         soundToggle.addEventListener('click', toggleSound);
@@ -186,4 +241,5 @@ title: Vegas Slots
         justify-content: center;
         margin: 10px 0;
     }
+    .hidden { display: none; }
 </style>
