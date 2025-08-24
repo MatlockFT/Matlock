@@ -83,10 +83,14 @@
                     <a href="https://matlockfighttalk-shop.fourthwall.com/"><img src="/assets/merch.png" alt="Merch" width="32" height="32"></a>
                 </div>
                 <center>
-                    <img src="/assets/horsemeat.mov">
-                        <button class="custom-button">HORSE MEAT</button>
-                    </a>
+                    <button class="custom-button" onclick="toggleVideo()">horse meat</button>
                 </center>
+                <div class="video-container" id="video-container" style="display: none;">
+                    <video controls id="horsemeat-video" width="100%">
+                        <source src="/assets/horsemeat.mp4" type="video/mp4">
+                        Your browser does not support the video tag. <a href="/assets/horsemeat.mp4">Download the video</a>.
+                    </video>
+                </div>
                 {{ content }}
             </td>
         </tr>
@@ -98,5 +102,19 @@
             </td>
         </tr>
     </table>
+    <script>
+        function toggleVideo() {
+            var videoContainer = document.getElementById('video-container');
+            var video = document.getElementById('horsemeat-video');
+            if (videoContainer.style.display === 'none') {
+                videoContainer.style.display = 'block';
+                video.play();
+            } else {
+                videoContainer.style.display = 'none';
+                video.pause();
+                video.currentTime = 0;
+            }
+        }
+    </script>
 </body>
 </html>
