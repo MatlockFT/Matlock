@@ -3,7 +3,8 @@ layout: default
 title: Vegas Slots
 ---
 <center>
-    <h2>SPIN KICK</h2>
+    <h2>Vegas Slots!</h2>
+    <p><font color="#FFFFFF">Spin the Reels, Feel the Fight!</font></p>
 </center>
 <div class="slot-machine-container">
     <div class="vegas-sign">SPIN KICK!</div>
@@ -117,7 +118,7 @@ title: Vegas Slots
         }
 
         function showVictoryPose() {
-            const poses = ['/assets/pose1.png', '/assets/pose2.png', '/assets/pose3.png']; // Assume these exist
+            const poses = ['/assets/pose1.png', '/assets/pose2.png', '/assets/pose3.png'];
             victoryPose.innerHTML = `<img src="${poses[Math.floor(Math.random() * poses.length)]}" alt="Victory Pose">`;
             victoryPose.classList.add('visible');
             setTimeout(() => victoryPose.classList.remove('visible'), 5000);
@@ -162,7 +163,7 @@ title: Vegas Slots
             if (cash >= bet && !spinButton.classList.contains('disabled')) {
                 cash -= bet;
                 progressiveJackpot += bet * 0.01;
-                if (Date.now() - lastBonusTime > 24 * 60 * 60 * 1000) { // 24 hours
+                if (Date.now() - lastBonusTime > 24 * 60 * 60 * 1000) {
                     cash += 50;
                     lastBonusTime = Date.now();
                     localStorage.setItem('lastBonusTime', lastBonusTime);
