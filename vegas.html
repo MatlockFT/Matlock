@@ -3,138 +3,94 @@ layout: default
 title: Vegas Slots
 ---
 <center>
-    <h2>MMA Knockout Slots!</h2>
-    <p><font color="#FFFFFF">Spin for a TKO! Bet, spin, and hit the jackpot! Match symbols for wins. Collect 5+ belts for bonus spins and jackpots!</font></p>
+    <h2>Vegas Slots!</h2>
+    <p><font color="#FFFFFF">Spin the Reels, Feel the Fight!</font></p>
 </center>
-
-<div class="slot-machine">
+<div class="slot-machine-container">
+    <div class="reels">
+        <div class="reel" id="reel1">🥊</div>
+        <div class="reel" id="reel2">🥊</div>
+        <div class="reel" id="reel3">🥊</div>
+    </div>
+    <button class="slot-button" id="spin-button">Spin</button>
     <div id="credits">Credits: 100</div>
-    <div class="reels" id="reels">
-        <div class="reel">👊</div>
-        <div class="reel">👊</div>
-        <div class="reel">👊</div>
-        <div class="reel">👊</div>
-        <div class="reel">👊</div>
-    </div>
-    <div class="controls">
-        <button class="slot-button" id="betButton">Bet 10</button>
-        <button class="slot-button" id="spinButton" disabled>Spin</button>
-    </div>
     <div id="result"></div>
+    <marquee id="jackpot-marquee" style="display: none;">JACKPOT! YOU WIN BIG!</marquee>
+    <audio id="spin-sound" src="/assets/spin.mp3"></audio>
+    <audio id="win-sound" src="/assets/win.mp3"></audio>
+    <audio id="jackpot-sound" src="/assets/jackpot.mp3"></audio>
 </div>
-
 <script>
-    // Customizable symbols - edit this array to change symbols
-    const symbols = ['👊', '🥊', '🏟️', '🥋', '🩸', '💪', '🏆']; // MMA-themed: fist, glove, cage, gi, blood, muscle, belt (special for jackpot/bonus)
+    document.addEventListener('DOMContentLoaded', () => {
+        const symbols = ['🥊', '🥋', '🏟️'];
+        const reel1 = document.getElementById('reel1');
+        const reel2 = document.getElementById('reel2');
+        const reel3 = document.getElementById('reel3');
+        const spinButton = document.getElementById('spin-button');
+        const creditsDisplay = document.getElementById('credits');
+        const resultDisplay = document.getElementById('result');
+        const jackpotMarquee = document.getElementById('jackpot-marquee');
+        const spinSound = document.getElementById('spin-sound');
+        const winSound = document.getElementById('win-sound');
+        const jackpotSound = document.getElementById('jackpot-sound');
+        let credits = 100;
 
-    const reels = document.querySelectorAll('.reel');
-    const reelsContainer = document.getElementById('reels');
-    const betButton = document.getElementById('betButton');
-    const spinButton = document.getElementById('spinButton');
-    const resultDisplay = document.getElementById('result');
-    const creditsDisplay = document.getElementById('credits');
-    // const spinSound = new Audio('/assets/spin.mp3'); // Uncomment and upload for sound
-
-    let credits = 100;
-    let bet = 0;
-    let bonusSpins = 0;
-
-    function getRandomInt(max) {
-        if (window.crypto && window.crypto.getRandomValues) {
-            const array = new Uint32Array(1);
-            window.crypto.getRandomValues(array);
-            return array[0] % max;
+        function updateCredits() {
+            creditsDisplay.textContent = `Credits: ${credits}`;
         }
-        return Math.floor(Math.random() * max);
-    }
 
-    function updateCredits() {
-        creditsDisplay.textContent = `Credits: ${credits}`;
-    }
-
-    function placeBet() {
-        if (credits >= 10) {
-            bet = 10;
-            credits -= bet;
-            updateCredits();
-            spinButton.disabled = false;
-            betButton.disabled = true;
-        } else {
-            resultDisplay.textContent = 'Not enough credits!';
+        function spinReel(reel, index) {
+            reel.classList.add('spinning');
+            let spinCount = 10 + Math.floor(Math.random() * 10);
+            let currentSpin = 0;
+            const interval = setInterval(() => {
+                reel.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                currentSpin++;
+                if (currentSpin >= spinCount) {
+                    clearInterval(interval);
+                    reel.classList.remove('spinning');
+                }
+            }, 100);
         }
-    }
 
-    function spinReels() {
-        spinButton.disabled = true;
-        resultDisplay.textContent = '';
-        reelsContainer.classList.add('spinning');
-        // spinSound.play(); // Uncomment for sound
+        spinButton.addEventListener('click', () => {
+            if (credits >= 10 && !spinButton.disabled) {
+                credits -= 10;
+                updateCredits();
+                spinButton.disabled = true;
+                resultDisplay.textContent = '';
+                jackpotMarquee.style.display = 'none';
+                spinSound.play();
+                document.querySelector('.slot-machine-container').classList.remove('win');
 
-        let spinCount = 0;
-        const maxSpins = 25; // Slightly longer for more fun
-        const spinInterval = setInterval(() => {
-            reels.forEach(reel => {
-                const randomIndex = getRandomInt(symbols.length);
-                reel.textContent = symbols[randomIndex];
-            });
-            spinCount++;
-            if (spinCount >= maxSpins) {
-                clearInterval(spinInterval);
-                endSpin();
+                spinReel(reel1, 0);
+                spinReel(reel2, 1);
+                spinReel(reel3, 2);
+
+                setTimeout(() => {
+                    spinButton.disabled = false;
+                    const results = [reel1.textContent, reel2.textContent, reel3.textContent];
+                    if (results[0] === results[1] && results[1] === results[2]) {
+                        if (results[0] === '🥊') {
+                            credits += 100;
+                            resultDisplay.textContent = 'JACKPOT! +100 Credits!';
+                            jackpotMarquee.style.display = 'block';
+                            jackpotSound.play();
+                            document.querySelector('.slot-machine-container').classList.add('win');
+                        } else {
+                            credits += 50;
+                            resultDisplay.textContent = 'WIN! +50 Credits!';
+                            winSound.play();
+                            document.querySelector('.slot-machine-container').classList.add('win');
+                        }
+                    } else {
+                        resultDisplay.textContent = 'Try Again!';
+                    }
+                    updateCredits();
+                }, 2000);
+            } else if (credits < 10) {
+                resultDisplay.textContent = 'Not enough credits!';
             }
-        }, 80); // Slower spin for visibility
-    }
-
-    function endSpin() {
-        reelsContainer.classList.remove('spinning');
-        const finalSymbols = Array.from(reels).map(reel => reel.textContent);
-        
-        // Count occurrences
-        const symbolCounts = {};
-        finalSymbols.forEach(sym => {
-            symbolCounts[sym] = (symbolCounts[sym] || 0) + 1;
         });
-
-        // Win conditions - more winning chances
-        let winAmount = 0;
-        let message = 'No Knockout...';
-        const maxCount = Math.max(...Object.values(symbolCounts));
-        const maxSymbol = Object.keys(symbolCounts).find(sym => symbolCounts[sym] === maxCount);
-
-        if (maxCount >= 3) {
-            winAmount = bet * maxCount; // e.g., 3 matches = 30, 4 = 40, 5 = 50
-            message = `Hit! ${maxCount} ${maxSymbol} - Win ${winAmount}!`;
-        }
-
-        // Special jackpot/bonus for belt (🏆) - like Lightning Link hold & spin
-        const beltCount = symbolCounts['🏆'] || 0;
-        if (beltCount >= 5) {
-            winAmount += bet * 10; // Jackpot bonus
-            bonusSpins = 3; // Free spins like hold & spin
-            message = `JACKPOT! ${beltCount} Belts - Win ${winAmount} + 3 Bonus Spins!`;
-        } else if (beltCount >= 3) {
-            winAmount += bet * 5; // Minor jackpot
-            message = `Mini Jackpot! ${beltCount} Belts - Win ${winAmount}!`;
-        }
-
-        credits += winAmount;
-        updateCredits();
-        resultDisplay.textContent = message;
-
-        bet = 0;
-        betButton.disabled = false;
-
-        // Handle bonus spins
-        if (bonusSpins > 0) {
-            bonusSpins--;
-            setTimeout(spinReels, 1000); // Auto-spin for bonus
-        } else {
-            spinButton.disabled = true;
-        }
-    }
-
-    betButton.addEventListener('click', placeBet);
-    spinButton.addEventListener('click', spinReels);
-
-    updateCredits(); // Initial display
+    });
 </script>
