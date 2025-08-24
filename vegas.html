@@ -9,7 +9,7 @@ title: Vegas Slots
 <div class="slot-machine-container">
     <div class="vegas-sign"><blink>VEGAS JACKPOT</blink></div>
     <div class="reels">
-        <div class="reel" id="reel1"><img src="/assets/danawhiteslot.png" alt="Symbol 1"></div>
+        <div class="reel" id="reel1"><img src="/assets/symbol1.png" alt="Symbol 1"></div>
         <div class="reel" id="reel2"><img src="/assets/symbol2.png" alt="Symbol 2"></div>
         <div class="reel" id="reel3"><img src="/assets/symbol3.png" alt="Symbol 3"></div>
     </div>
@@ -22,17 +22,19 @@ title: Vegas Slots
     <div id="result"></div>
     <marquee id="jackpot-marquee" style="display: none;">JACKPOT! YOU WIN BIG!</marquee>
     <audio id="spin-sound1">
-        <source src="/assets/slotpull1.m4a" type="audio/m4a">
+        <source src="/assets/slotpull1.m4a" type="audio/mp4">
+        <source src="/assets/slotpull1.mp3" type="audio/mpeg">
     </audio>
     <audio id="spin-sound2">
-        <source src="/assets/slotpull2.m4a" type="audio/m4a">
+        <source src="/assets/slotpull2.m4a" type="audio/mp4">
+        <source src="/assets/slotpull2.mp3" type="audio/mpeg">
     </audio>
     <audio id="win-sound">
-        <source src="/assets/win.m4a" type="audio/m4a">
+        <source src="/assets/win.m4a" type="audio/mp4">
         <source src="/assets/win.mp3" type="audio/mpeg">
     </audio>
     <audio id="jackpot-sound">
-        <source src="/assets/jackpot.m4a" type="audio/m4a">
+        <source src="/assets/jackpot.m4a" type="audio/mp4">
         <source src="/assets/jackpot.mp3" type="audio/mpeg">
     </audio>
 </div>
@@ -72,9 +74,10 @@ title: Vegas Slots
             for (let i = 0; i < 50; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
-                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.top = `-${Math.random() * 10}%`;
                 confetti.style.animationDuration = `${Math.random() * 2 + 1}s`;
-                confetti.style.background = ['#FF4040', '#FF00FF', '#A00000'][Math.floor(Math.random() * 3)];
+                confetti.style.backgroundColor = ['#FF4040', '#FF00FF', '#A00000'][Math.floor(Math.random() * 3)];
                 confettiContainer.appendChild(confetti);
             }
             setTimeout(() => confettiContainer.innerHTML = '', 3000);
@@ -89,18 +92,24 @@ title: Vegas Slots
                 resultDisplay.textContent = '';
                 jackpotMarquee.style.display = 'none';
                 document.querySelector('.slot-machine-container').classList.remove('win');
+                sounds.spin1.currentTime = 0;
                 sounds.spin1.play();
-                setTimeout(() => sounds.spin2.play(), 500);
+                setTimeout(() => {
+                    sounds.spin2.currentTime = 0;
+                    sounds.spin2.play();
+                }, 500);
 
                 await Promise.all(reels.map(spinReel));
 
                 spinButton.disabled = false;
                 const results = reels.map(reel => reel.querySelector('img').src);
                 if (results.every(src => src === results[0])) {
-                    const multiplier = results[0].includes('symbol1') ? 10 : 5;
-                    credits += bet * multiplier;
-                    resultDisplay.textContent = multiplier === 10 ? 'JACKPOT! +${bet * ${multiplier}} Credits!' : 'WIN! +${bet * ${multiplier}} Credits!';
+                    const multiplier = results[0].includes('symbol1') ? 10 : results[0].includes('symbol2') ? 5 : 3;
+                    const winnings = bet * multiplier;
+                    credits += winnings;
+                    resultDisplay.textContent = multiplier === 10 ? `JACKPOT! +${winnings} Credits!` : `WIN! +${winnings} Credits!`;
                     jackpotMarquee.style.display = multiplier === 10 ? 'block' : 'none';
+                    (multiplier === 10 ? sounds.jackpot : sounds.win).currentTime = 0;
                     (multiplier === 10 ? sounds.jackpot : sounds.win).play();
                     if (multiplier === 10) createConfetti();
                     document.querySelector('.slot-machine-container').classList.add('win');
