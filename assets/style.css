@@ -57,7 +57,13 @@ audio { display: none; }
     max-width: 600px;
     position: relative;
     overflow: hidden;
-    text-align: center; /* Center all inline content */
+    text-align: center;
+    animation: bg-pulse 3s infinite alternate;
+}
+@keyframes bg-pulse {
+    0% { background-color: #000000; }
+    50% { background-color: #1a001a; }
+    100% { background-color: #000000; }
 }
 
 .slot-machine-container .vegas-sign {
@@ -98,16 +104,28 @@ audio { display: none; }
     cursor: pointer;
     position: relative;
     transform-origin: bottom center;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease-out;
 }
 .slot-lever:active {
     transform: rotate(-45deg);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease-in;
 }
 .slot-lever.disabled { opacity: 0.5; cursor: not-allowed; }
-#cash, #result { margin: 10px 0; font-size: 20px; }
+.slot-lever.released { animation: lever-spring 0.5s ease-out; }
+@keyframes lever-spring {
+    0% { transform: rotate(-45deg); }
+    50% { transform: rotate(-30deg); }
+    100% { transform: rotate(0deg); }
+}
+#cash, #result, #high-score { margin: 10px 0; font-size: 20px; }
 #result.win { color: #FF4040; animation: flash-text 0.5s linear infinite; }
 @keyframes flash-text { 50% { color: #A00000; } }
+#gamble-button {
+    background-color: #000000; border: 2px solid #A00000; padding: 5px 10px; font-size: 14px;
+    font-family: "Arial Black", sans-serif; color: #A00000; cursor: pointer; margin-top: 10px;
+}
+#gamble-button:hover { background-color: #333333; color: #FF4040; }
+#gamble-button:disabled { opacity: 0.5; cursor: not-allowed; }
 
 #sound-toggle {
     background-color: #000000; border: 2px solid #A00000; padding: 5px 10px; font-size: 14px;
