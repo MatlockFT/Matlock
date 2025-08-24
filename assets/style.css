@@ -44,6 +44,23 @@ audio { display: none; }
 .guestbook-container { max-width: 400px; }
 .chat-container { max-width: 300px; }
 
+.social-banner {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 5px;
+    box-shadow: 2px 2px 4px #800000;
+}
+.social-banner a {
+    display: inline-block;
+}
+.social-banner img {
+    vertical-align: middle;
+}
+
 .slot-machine-container {
     font-family: "Courier New", "Courier", monospace;
     color: #FFFFFF;
@@ -104,7 +121,7 @@ audio { display: none; }
     font-size: 18px;
     color: #A00000;
     padding: 5px;
-    text-align: center; /* Center the marquee text */
+    text-align: center;
 }
 #bet-amount { margin: 10px 0; background-color: #000000; color: #FFFFFF; border: 2px solid #A00000;
     font-family: "Courier New", "Courier", monospace; padding: 5px; display: inline-block; }
