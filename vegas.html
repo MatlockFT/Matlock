@@ -21,6 +21,7 @@ title: Vegas Slots
         <div class="slot-lever" id="spin-lever"></div>
     </div>
     <div id="cash">Cash: 100</div>
+    <div id="high-score">High Score: 0</div>
     <div id="result"></div>
     <marquee id="jackpot-marquee" style="display: none;">JACKPOT! YOU WIN BIG!</marquee>
     <audio id="spin-sound1">
@@ -31,6 +32,9 @@ title: Vegas Slots
         <source src="/assets/slotpull2.m4a" type="audio/mp4">
         <source src="/assets/slotpull2.mp3" type="audio/mpeg">
     </audio>
+    <audio id="reel-stop" src="/assets/reel_stop.mp3">
+        <source type="audio/mpeg">
+    </audio>
     <audio id="win-sound">
         <source src="/assets/win.m4a" type="audio/mp4">
         <source src="/assets/win.mp3" type="audio/mpeg">
@@ -39,6 +43,7 @@ title: Vegas Slots
         <source src="/assets/jackpot.m4a" type="audio/mp4">
         <source src="/assets/jackpot.mp3" type="audio/mpeg">
     </audio>
+    <button id="gamble-button" style="display: none;">Double or Nothing?</button>
     <button id="sound-toggle">Toggle Sound</button>
 </div>
 <div id="confetti"></div>
@@ -48,20 +53,26 @@ title: Vegas Slots
         const spinLever = document.getElementById('spin-lever');
         const betAmount = document.getElementById('bet-amount');
         const cashDisplay = document.getElementById('cash');
+        const highScoreDisplay = document.getElementById('high-score');
         const resultDisplay = document.getElementById('result');
         const jackpotMarquee = document.getElementById('jackpot-marquee');
         const confettiContainer = document.getElementById('confetti');
+        const gambleButton = document.getElementById('gamble-button');
         const sounds = {
             spin1: document.getElementById('spin-sound1'),
             spin2: document.getElementById('spin-sound2'),
+            reelStop: document.getElementById('reel-stop'),
             win: document.getElementById('win-sound'),
             jackpot: document.getElementById('jackpot-sound')
         };
         const soundToggle = document.getElementById('sound-toggle');
         let cash = 100;
+        let highScore = 0;
         let isMuted = false;
+        let currentWinnings = 0;
 
         function updateCash() { cashDisplay.textContent = `Cash: ${cash}`; }
+        function updateHighScore() { highScoreDisplay.textContent = `High Score: ${highScore}`; }
 
         async function spinReel(reel) {
             reel.classList.add('spinning');
@@ -72,6 +83,7 @@ title: Vegas Slots
                 await new Promise(resolve => setTimeout(resolve, 100));
             }
             reel.classList.remove('spinning');
+            if (!isMuted) sounds.reelStop.currentTime = 0; sounds.reelStop.play();
         }
 
         function createConfetti() {
@@ -94,6 +106,18 @@ title: Vegas Slots
             soundToggle.textContent = isMuted ? 'Unmute Sound' : 'Toggle Sound';
         }
 
+        function gamble() {
+            if (Math.random() < 0.5) {
+                cash += currentWinnings;
+                resultDisplay.textContent = `Gamble Won! +${currentWinnings} Cash!`;
+            } else {
+                currentWinnings = 0;
+                resultDisplay.textContent = 'Gamble Lost! Better Luck Next Time!';
+            }
+            updateCash();
+            gambleButton.style.display = 'none';
+        }
+
         spinLever.addEventListener('click', async () => {
             const bet = parseInt(betAmount.value);
             if (cash >= bet && !spinLever.classList.contains('disabled')) {
@@ -113,14 +137,15 @@ title: Vegas Slots
                 }
 
                 await Promise.all(reels.map(spinReel));
-                spinLever.classList.remove('disabled');
+                spinLever.classList.add('released');
+                setTimeout(() => spinLever.classList.remove('released', 'disabled'), 500);
 
                 const results = reels.map(reel => reel.querySelector('img').src);
                 if (results.every(src => src === results[0])) {
                     const multiplier = results[0].includes('symbol1') ? 15 : results[0].includes('symbol2') ? 5 : 3;
-                    const winnings = bet * multiplier;
-                    cash += winnings;
-                    resultDisplay.textContent = multiplier === 15 ? `JACKPOT! +${winnings} Cash!` : `WIN! +${winnings} Cash!`;
+                    currentWinnings = bet * multiplier;
+                    cash += currentWinnings;
+                    resultDisplay.textContent = multiplier === 15 ? `JACKPOT! +${currentWinnings} Cash!` : `WIN! +${currentWinnings} Cash!`;
                     jackpotMarquee.style.display = multiplier === 15 ? 'block' : 'none';
                     if (!isMuted) {
                         (multiplier === 15 ? sounds.jackpot : sounds.win).currentTime = 0;
@@ -128,6 +153,12 @@ title: Vegas Slots
                     }
                     if (multiplier === 15) createConfetti();
                     document.querySelector('.slot-machine-container').classList.add('win');
+                    if (currentWinnings > 0) {
+                        gambleButton.style.display = 'inline-block';
+                        gambleButton.disabled = false;
+                    }
+                    highScore = Math.max(highScore, currentWinnings);
+                    updateHighScore();
                 } else {
                     resultDisplay.textContent = 'Try Again!';
                     if (Math.random() < 0.01) {
@@ -139,6 +170,11 @@ title: Vegas Slots
             } else if (cash < bet) {
                 resultDisplay.textContent = 'Not enough cash!';
             }
+        });
+
+        gambleButton.addEventListener('click', () => {
+            gamble();
+            gambleButton.disabled = true;
         });
 
         soundToggle.addEventListener('click', toggleSound);
