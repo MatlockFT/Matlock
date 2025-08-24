@@ -213,3 +213,19 @@ audio { display: none; }
     height: auto;
     margin: 10px 0;
 }
+
+.custom-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+}
+.custom-button:hover {
+    background-color: #333333;
+    color: #FF4040;
+}
