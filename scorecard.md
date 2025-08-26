@@ -28,7 +28,7 @@ title: MMA Judging Scorecard
             <button id="start-button" onclick="startRound()">Start Round</button>
             <button id="pause-button" onclick="pauseResumeRound()" disabled>Pause</button>
             <button id="reset-button" onclick="resetRound()" disabled>Reset Round</button>
-            <label><input type="checkbox" id="auto-advance"> Auto-Advance Rounds</label>
+            <button id="undo-button" onclick="undoScore()" disabled>Undo Last Score</button>
         </div>
 
         <div class="timer" id="timer">5:00</div>
@@ -59,12 +59,14 @@ title: MMA Judging Scorecard
     let timeLeft = 300; // 5 minutes in seconds
     let isPaused = false;
     let history = [];
+    let lastScore = null;
 
     function startRound() {
         if (!isScoringActive) {
             redScore = 0;
             blueScore = 0;
             timeLeft = 300;
+            lastScore = null;
             updateScores();
             updateProgress();
             document.getElementById('round-winner').textContent = '';
@@ -74,6 +76,8 @@ title: MMA Judging Scorecard
             document.getElementById('start-button').disabled = true;
             document.getElementById('pause-button').disabled = false;
             document.getElementById('reset-button').disabled = false;
+            document.getElementById('undo-button').disabled = false;
+            document.getElementById('round-select').disabled = true;
             timerInterval = setInterval(() => {
                 if (!isPaused) {
                     timeLeft--;
@@ -113,10 +117,22 @@ title: MMA Judging Scorecard
             redScore = 0;
             blueScore = 0;
             timeLeft = 300;
+            lastScore = null;
             updateScores();
             updateProgress();
             document.getElementById('round-winner').textContent = '';
         }
+    }
+
+    function undoScore() {
+        if (lastScore === 'red' && redScore > 0) {
+            redScore--;
+        } else if (lastScore === 'blue' && blueScore > 0) {
+            blueScore--;
+        }
+        lastScore = null;
+        updateScores();
+        document.getElementById('undo-button').disabled = true;
     }
 
     function endRound() {
@@ -128,6 +144,8 @@ title: MMA Judging Scorecard
         document.getElementById('pause-button').disabled = true;
         document.getElementById('pause-button').textContent = 'Pause';
         document.getElementById('reset-button').disabled = true;
+        document.getElementById('undo-button').disabled = true;
+        document.getElementById('round-select').disabled = false;
         let winner = '';
         if (redScore > blueScore) {
             winner = document.getElementById('red-fighter').value + ' wins the round!';
@@ -139,26 +157,23 @@ title: MMA Judging Scorecard
         history.push(`Round ${document.getElementById('round-select').value}: ${winner}`);
         document.getElementById('round-winner').textContent = winner;
         document.getElementById('history').textContent = history.join('\n');
-        if (document.getElementById('auto-advance').checked) {
-            let nextRound = parseInt(document.getElementById('round-select').value) + 1;
-            if (nextRound <= 5) {
-                document.getElementById('round-select').value = nextRound;
-                startRound();
-            }
-        }
     }
 
     function scoreRed() {
         if (isScoringActive && !isPaused) {
             redScore++;
+            lastScore = 'red';
             updateScores();
+            document.getElementById('undo-button').disabled = false;
         }
     }
 
     function scoreBlue() {
         if (isScoringActive && !isPaused) {
             blueScore++;
+            lastScore = 'blue';
             updateScores();
+            document.getElementById('undo-button').disabled = false;
         }
     }
 
