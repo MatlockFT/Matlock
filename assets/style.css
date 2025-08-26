@@ -170,6 +170,412 @@ audio { display: none; }
     overflow: hidden;
 }
 
+.slot-machine-container {
+    font-family: "Courier New", "Courier", monospace;
+    color: #FFFFFF;
+    background-color: #000000;
+    border: 4px double #A00000;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 3px 3px 6px #800000;
+    background-image: url('/assets/stripes.gif');
+    background-repeat: repeat;
+    max-width: 600px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    animation: bg-pulse 3s infinite alternate;
+}
+@keyframes bg-pulse {
+    0% { background-color: #000000; }
+    50% { background-color: #1a001a; }
+    100% { background-color: #000000; }
+}
+
+.slot-machine-container .vegas-sign {
+    font-family: "Arial Black", sans-serif;
+    font-size: 32px;
+    text-align: center;
+    background: linear-gradient(45deg, #FF4040, #FF00FF, #A00000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 5px #FF4040, 0 0 10px #FF00FF;
+}
+
+.slot-machine-container .reels {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+.slot-machine-container .reel {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(45deg, #000000, #1a001a);
+    border: 2px solid #A00000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.reel img { max-width: 100%; max-height: 100%; }
+.reel.spinning { animation: spin-cycle 0.1s linear infinite; }
+.reel.win { box-shadow: 0 0 15px #FF4040; }
+@keyframes spin-cycle { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+.reel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(160, 0, 0, 0.3), transparent);
+    animation: reel-light 1s infinite;
+}
+@keyframes reel-light { 0% { left: -100%; } 100% { left: 100%; } }
+.slot-machine-container.win { animation: neon-pulse 1s infinite alternate; }
+@keyframes neon-pulse {
+    0% { border-color: #A00000; box-shadow: 6px 6px 12px #800000; }
+    100% { border-color: #FF4040; box-shadow: 6px 6px 12px #FF4040; }
+}
+.slot-machine-container.jackpot { animation: jackpot-explosion 1s ease-out; }
+@keyframes jackpot-explosion {
+    0% { transform: scale(1); box-shadow: 6px 6px 12px #FF4040; }
+    50% { transform: scale(1.1); box-shadow: 0 0 30px #FF00FF; }
+    100% { transform: scale(1); box-shadow: 6px 6px 12px #FF4040; }
+}
+
+.slot-machine-container .marquee {
+    font-size: 18px;
+    color: #A00000;
+    padding: 5px;
+    text-align: center;
+}
+#bet-amount {
+    margin: 10px 0;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 2px solid #A00000;
+    font-family: "Courier New", "Courier", monospace;
+    padding: 5px;
+    display: inline-block;
+}
+.slot-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+.slot-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 10px #FF4040;
+    transition: all 0.2s ease;
+}
+.slot-button.disabled { opacity: 0.5; cursor: not-allowed; }
+#cash, #result, #high-score { margin: 10px 0; font-size: 20px; }
+#result.win { color: #FF4040; animation: flash-text 0.5s linear infinite; }
+@keyframes flash-text { 50% { color: #A00000; } }
+#gamble-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin-top: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+#gamble-button.visible { opacity: 1; }
+#gamble-button:hover { background-color: #333333; color: #FF4040; }
+#gamble-button:disabled { opacity: 0.5; cursor: not-allowed; }
+#auto-spin {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin-top: 10px;
+}
+#auto-spin:hover { background-color: #333333; color: #FF4040; }
+#auto-spin:disabled { opacity: 0.5; cursor: not-allowed; }
+
+#sound-toggle {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin-top: 10px;
+}
+#sound-toggle:hover { background-color: #333333; color: #FF4040; }
+
+.victory-pose {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border: 2px solid #A00000;
+}
+.victory-pose.visible { opacity: 1; }
+
+#confetti {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    opacity: 0.8;
+    animation: fall 2s linear forwards;
+}
+@keyframes fall {
+    to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+.confetti:nth-child(2n) { background: #FF00FF; animation-delay: 0.5s; }
+.confetti:nth-child(3n) { background: #A00000; animation-delay: 1s; }
+
+.chat-login { margin-bottom: 10px; }
+#chat-username {
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 2px solid #A00000;
+    padding: 5px;
+    font-family: "Courier New", "Courier", monospace;
+    width: 90%;
+}
+#chat-login-button, #chat-send-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    color: #A00000;
+    font-family: "Arial Black", sans-serif;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+#chat-login-button:hover, #chat-send-button:hover { background-color: #333333; color: #FFFFFF; }
+#chat-messages {
+    height: 300px;
+    overflow-y: scroll;
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 5px;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+#chat-input {
+    width: 80%;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 2px solid #A00000;
+    padding: 5px;
+    font-family: "Courier New", "Courier", monospace;
+}
+.video-placeholder {
+    width: 100%;
+    max-width: 640px;
+    height: 360px;
+    border: 4px double #A00000;
+    box-shadow: 4px 4px 8px #800000;
+    background-color: #000000;
+    background-image: url('/assets/stripes.gif');
+    background-repeat: repeat;
+}
+.chatroom-layout {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 1000px;
+}
+.chatroom-video { flex: 0 0 640px; }
+.chatroom-chat { flex: 0 0 300px; }
+@media (max-width: 960px) {
+    .chatroom-layout { flex-direction: column; align-items: center; }
+    .chatroom-video, .chatroom-chat { flex: 0 0 auto; width: 100%; max-width: 640px; }
+}
+
+.site-logo {
+    max-width: 100%;
+    max-height: 100px; /* Reduced from 200px */
+    height: auto;
+    margin: 5px 0;
+}
+
+.custom-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+}
+.custom-button:hover {
+    background-color: #333333;
+    color: #FF4040;
+}
+
+.video-container {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 3px 3px 6px #800000;
+    text-align: center;
+    max-height: 600px;
+    overflow: auto;
+}
+.video-container video {
+    width: 100%;
+    height: auto;
+}
+
+.scorecard-container .content {
+    padding: 20px;
+    display: grid;
+    grid-template-areas:
+        "fighters"
+        "round"
+        "buttons"
+        "timer"
+        "progress"
+        "scoring"
+        "scores"
+        "winner"
+        "history";
+    gap: 20px;
+    justify-items: center;
+    background: url('/assets/stripes.gif') repeat;
+}
+
+.scorecard-container .fighter-inputs {
+    grid-area: fighters;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+}
+
+.scorecard-container .fighter-red,
+.scorecard-container .fighter-blue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+}
+
+.scorecard-container .buttons {
+    grid-area: buttons;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.scorecard-container .timer {
+    grid-area: timer;
+    font-size: 52px;
+    color: #FF4040;
+    text-shadow: 2px 2px #800000;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 10px;
+    width: 80%;
+}
+
+.scorecard-container .progress-bar {
+    grid-area: progress;
+    width: 80%;
+    height: 15px;
+    background-color: #333333;
+    border: 2px solid #A00000;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.scorecard-container .progress {
+    height: 100%;
+    background: linear-gradient(90deg, #FF4040, #A00000, #FF4040);
+    width: 100%;
+    transition: width 1s linear;
+    border-radius: 10px;
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 #FF4040; }
+    100% { box-shadow: 0 0 15px #FF4040; }
+}
+
+.scorecard-container #scoring-area {
+    grid-area: scoring;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.scorecard-container .scores {
+    grid-area: scores;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.scorecard-container #round-winner {
+    grid-area: winner;
+    font-size: 20px;
+    margin: 10px;
+    color: #FF4040;
+    text-align: center;
+}
+
+.scorecard-container .history {
+    grid-area: history;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #FFFFFF;
+    max-height: 100px;
+    overflow-y: auto;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #A00000;
+    border-radius: 10px;
+    width: 80%;
+}
+
+.scorecard-container .banner-container {
+    max-height: 120px; /* Reduced from default layout height */
+    overflow: hidden;
+}
+
 .scorecard-container .corner {
     padding: 15px;
     color: white;
@@ -304,9 +710,1187 @@ audio { display: none; }
     transform: scale(1.05);
 }
 
+.slot-machine-container {
+    font-family: "Courier New", "Courier", monospace;
+    color: #FFFFFF;
+    background-color: #000000;
+    border: 4px double #A00000;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 3px 3px 6px #800000;
+    background-image: url('/assets/stripes.gif');
+    background-repeat: repeat;
+    max-width: 600px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    animation: bg-pulse 3s infinite alternate;
+}
+@keyframes bg-pulse {
+    0% { background-color: #000000; }
+    50% { background-color: #1a001a; }
+    100% { background-color: #000000; }
+}
+
+.slot-machine-container .vegas-sign {
+    font-family: "Arial Black", sans-serif;
+    font-size: 32px;
+    text-align: center;
+    background: linear-gradient(45deg, #FF4040, #FF00FF, #A00000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 5px #FF4040, 0 0 10px #FF00FF;
+}
+
+.slot-machine-container .reels {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+.slot-machine-container .reel {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(45deg, #000000, #1a001a);
+    border: 2px solid #A00000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.reel img { max-width: 100%; max-height: 100%; }
+.reel.spinning { animation: spin-cycle 0.1s linear infinite; }
+.reel.win { box-shadow: 0 0 15px #FF4040; }
+@keyframes spin-cycle { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+.reel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(160, 0, 0, 0.3), transparent);
+    animation: reel-light 1s infinite;
+}
+@keyframes reel-light { 0% { left: -100%; } 100% { left: 100%; } }
+.slot-machine-container.win { animation: neon-pulse 1s infinite alternate; }
+@keyframes neon-pulse {
+    0% { border-color: #A00000; box-shadow: 6px 6px 12px #800000; }
+    100% { border-color: #FF4040; box-shadow: 6px 6px 12px #FF4040; }
+}
+.slot-machine-container.jackpot { animation: jackpot-explosion 1s ease-out; }
+@keyframes jackpot-explosion {
+    0% { transform: scale(1); box-shadow: 6px 6px 12px #FF4040; }
+    50% { transform: scale(1.1); box-shadow: 0 0 30px #FF00FF; }
+    100% { transform: scale(1); box-shadow: 6px 6px 12px #FF4040; }
+}
+
+.slot-machine-container .marquee {
+    font-size: 18px;
+    color: #A00000;
+    padding: 5px;
+    text-align: center;
+}
+#bet-amount {
+    margin: 10px 0;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 2px solid #A00000;
+    font-family: "Courier New", "Courier", monospace;
+    padding: 5px;
+    display: inline-block;
+}
+.slot-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+.slot-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 10px #FF4040;
+    transition: all 0.2s ease;
+}
+.slot-button.disabled { opacity: 0.5; cursor: not-allowed; }
+#cash, #result, #high-score { margin: 10px 0; font-size: 20px; }
+#result.win { color: #FF4040; animation: flash-text 0.5s linear infinite; }
+@keyframes flash-text { 50% { color: #A00000; } }
+#gamble-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin-top: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+#gamble-button.visible { opacity: 1; }
+#gamble-button:hover { background-color: #333333; color: #FF4040; }
+#gamble-button:disabled { opacity: 0.5; cursor: not-allowed; }
+#auto-spin {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin-top: 10px;
+}
+#auto-spin:hover { background-color: #333333; color: #FF4040; }
+#auto-spin:disabled { opacity: 0.5; cursor: not-allowed; }
+
+#sound-toggle {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin-top: 10px;
+}
+#sound-toggle:hover { background-color: #333333; color: #FF4040; }
+
+.victory-pose {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border: 2px solid #A00000;
+}
+.victory-pose.visible { opacity: 1; }
+
+#confetti {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    opacity: 0.8;
+    animation: fall 2s linear forwards;
+}
+@keyframes fall {
+    to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+.confetti:nth-child(2n) { background: #FF00FF; animation-delay: 0.5s; }
+.confetti:nth-child(3n) { background: #A00000; animation-delay: 1s; }
+
+.chat-login { margin-bottom: 10px; }
+#chat-username {
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 2px solid #A00000;
+    padding: 5px;
+    font-family: "Courier New", "Courier", monospace;
+    width: 90%;
+}
+#chat-login-button, #chat-send-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    color: #A00000;
+    font-family: "Arial Black", sans-serif;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+#chat-login-button:hover, #chat-send-button:hover { background-color: #333333; color: #FFFFFF; }
+#chat-messages {
+    height: 300px;
+    overflow-y: scroll;
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 5px;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+#chat-input {
+    width: 80%;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 2px solid #A00000;
+    padding: 5px;
+    font-family: "Courier New", "Courier", monospace;
+}
+.video-placeholder {
+    width: 100%;
+    max-width: 640px;
+    height: 360px;
+    border: 4px double #A00000;
+    box-shadow: 4px 4px 8px #800000;
+    background-color: #000000;
+    background-image: url('/assets/stripes.gif');
+    background-repeat: repeat;
+}
+.chatroom-layout {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 1000px;
+}
+.chatroom-video { flex: 0 0 640px; }
+.chatroom-chat { flex: 0 0 300px; }
+@media (max-width: 960px) {
+    .chatroom-layout { flex-direction: column; align-items: center; }
+    .chatroom-video, .chatroom-chat { flex: 0 0 auto; width: 100%; max-width: 640px; }
+}
+
 .site-logo {
     max-width: 100%;
     max-height: 100px; /* Reduced from 200px */
     height: auto;
     margin: 5px 0;
 }
+
+.custom-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+}
+.custom-button:hover {
+    background-color: #333333;
+    color: #FF4040;
+}
+
+.video-container {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 3px 3px 6px #800000;
+    text-align: center;
+    max-height: 600px;
+    overflow: auto;
+}
+.video-container video {
+    width: 100%;
+    height: auto;
+}
+
+.scorecard-container .content {
+    padding: 20px;
+    display: grid;
+    grid-template-areas:
+        "fighters"
+        "round"
+        "buttons"
+        "timer"
+        "progress"
+        "scoring"
+        "scores"
+        "winner"
+        "history";
+    gap: 20px;
+    justify-items: center;
+    background: url('/assets/stripes.gif') repeat;
+}
+
+.scorecard-container .fighter-inputs {
+    grid-area: fighters;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+}
+
+.scorecard-container .fighter-red,
+.scorecard-container .fighter-blue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+}
+
+.scorecard-container .buttons {
+    grid-area: buttons;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.scorecard-container .timer {
+    grid-area: timer;
+    font-size: 52px;
+    color: #FF4040;
+    text-shadow: 2px 2px #800000;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 10px;
+    width: 80%;
+}
+
+.scorecard-container .progress-bar {
+    grid-area: progress;
+    width: 80%;
+    height: 15px;
+    background-color: #333333;
+    border: 2px solid #A00000;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.scorecard-container .progress {
+    height: 100%;
+    background: linear-gradient(90deg, #FF4040, #A00000, #FF4040);
+    width: 100%;
+    transition: width 1s linear;
+    border-radius: 10px;
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 #FF4040; }
+    100% { box-shadow: 0 0 15px #FF4040; }
+}
+
+.scorecard-container #scoring-area {
+    grid-area: scoring;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.scorecard-container .scores {
+    grid-area: scores;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.scorecard-container #round-winner {
+    grid-area: winner;
+    font-size: 20px;
+    margin: 10px;
+    color: #FF4040;
+    text-align: center;
+}
+
+.scorecard-container .history {
+    grid-area: history;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #FFFFFF;
+    max-height: 100px;
+    overflow-y: auto;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #A00000;
+    border-radius: 10px;
+    width: 80%;
+}
+
+.scorecard-container .corner {
+    padding: 15px;
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    transition: transform 0.2s, animation 0.5s;
+    box-shadow: 3px 3px 6px #800000;
+}
+
+.scorecard-container .corner:hover {
+    transform: scale(1.05);
+}
+
+.scorecard-container .corner:active {
+    animation: shake 0.5s;
+    box-shadow: 0 0 15px #FF4040;
+}
+
+@keyframes shake {
+    0% { transform: translate(0); }
+    25% { transform: translate(-5px); }
+    50% { transform: translate(5px); }
+    75% { transform: translate(-5px); }
+    100% { transform: translate(0); }
+}
+
+.scorecard-container .red {
+    background: linear-gradient(45deg, #ff3333, #cc0000);
+}
+
+.scorecard-container .blue {
+    background: linear-gradient(45deg, #3333ff, #0000cc);
+}
+
+.scorecard-container .score {
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 1px 1px #333333;
+    color: #FF4040;
+}
+
+.scorecard-container button {
+    padding: 12px 25px;
+    font-size: 20px;
+    background-color: #000000;
+    border: 2px solid #A00000;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.scorecard-container button:hover {
+    background-color: #333333;
+    color: #FF4040;
+    transform: scale(1.05);
+}
+
+.scorecard-container button:active {
+    box-shadow: 0 0 15px #FF4040;
+}
+
+.scorecard-container button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.scorecard-container .hidden {
+    display: none;
+}
+
+.scorecard-container input {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    background-color: #000000;
+    border: 2px solid #A00000;
+    color: #FFFFFF;
+    font-family: "Courier New", monospace;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.scorecard-container input:focus {
+    outline: none;
+    box-shadow: 0 0 10px #FF4040;
+}
+
+.scorecard-container select {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    background-color: #000000;
+    border: 2px solid #A00000;
+    color: #FFFFFF;
+    font-family: "Courier New", monospace;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.scorecard-container select:focus {
+    outline: none;
+    box-shadow: 0 0 10px #FF4040;
+}
+
+#round-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.popout-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin: 10px auto;
+    display: block;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    width: 200px;
+}
+
+.popout-button:hover {
+    background-color: #333333;
+    color: #FF4040;
+    transform: scale(1.05);
+}
+
+.slot-machine-container {
+    font-family: "Courier New", "Courier", monospace;
+    color: #FFFFFF;
+    background-color: #000000;
+    border: 4px double #A00000;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 3px 3px 6px #800000;
+    background-image: url('/assets/stripes.gif');
+    background-repeat: repeat;
+    max-width: 600px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    animation: bg-pulse 3s infinite alternate;
+}
+@keyframes bg-pulse {
+    0% { background-color: #000000; }
+    50% { background-color: #1a001a; }
+    100% { background-color: #000000; }
+}
+
+.slot-machine-container .vegas-sign {
+    font-family: "Arial Black", sans-serif;
+    font-size: 32px;
+    text-align: center;
+    background: linear-gradient(45deg, #FF4040, #FF00FF, #A00000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 5px #FF4040, 0 0 10px #FF00FF;
+}
+
+.slot-machine-container .reels {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+.slot-machine-container .reel {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(45deg, #000000, #1a001a);
+    border: 2px solid #A00000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.reel img { max-width: 100%; max-height: 100%; }
+.reel.spinning { animation: spin-cycle 0.1s linear infinite; }
+.reel.win { box-shadow: 0 0 15px #FF4040; }
+@keyframes spin-cycle { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+.reel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(160, 0, 0, 0.3), transparent);
+    animation: reel-light 1s infinite;
+}
+@keyframes reel-light { 0% { left: -100%; } 100% { left: 100%; } }
+.slot-machine-container.win { animation: neon-pulse 1s infinite alternate; }
+@keyframes neon-pulse {
+    0% { border-color: #A00000; box-shadow: 6px 6px 12px #800000; }
+    100% { border-color: #FF4040; box-shadow: 6px 6px 12px #FF4040; }
+}
+.slot-machine-container.jackpot { animation: jackpot-explosion 1s ease-out; }
+@keyframes jackpot-explosion {
+    0% { transform: scale(1); box-shadow: 6px 6px 12px #FF4040; }
+    50% { transform: scale(1.1); box-shadow: 0 0 30px #FF00FF; }
+    100% { transform: scale(1); box-shadow: 6px 6px 12px #FF4040; }
+}
+
+.slot-machine-container .marquee {
+    font-size: 18px;
+    color: #A00000;
+    padding: 5px;
+    text-align: center;
+}
+#bet-amount {
+    margin: 10px 0;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 2px solid #A00000;
+    font-family: "Courier New", "Courier", monospace;
+    padding: 5px;
+    display: inline-block;
+}
+.slot-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+.slot-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 10px #FF4040;
+    transition: all 0.2s ease;
+}
+.slot-button.disabled { opacity: 0.5; cursor: not-allowed; }
+#cash, #result, #high-score { margin: 10px 0; font-size: 20px; }
+#result.win { color: #FF4040; animation: flash-text 0.5s linear infinite; }
+@keyframes flash-text { 50% { color: #A00000; } }
+#gamble-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin-top: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+#gamble-button.visible { opacity: 1; }
+#gamble-button:hover { background-color: #333333; color: #FF4040; }
+#gamble-button:disabled { opacity: 0.5; cursor: not-allowed; }
+#auto-spin {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin-top: 10px;
+}
+#auto-spin:hover { background-color: #333333; color: #FF4040; }
+#auto-spin:disabled { opacity: 0.5; cursor: not-allowed; }
+
+#sound-toggle {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin-top: 10px;
+}
+#sound-toggle:hover { background-color: #333333; color: #FF4040; }
+
+.victory-pose {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border: 2px solid #A00000;
+}
+.victory-pose.visible { opacity: 1; }
+
+#confetti {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    opacity: 0.8;
+    animation: fall 2s linear forwards;
+}
+@keyframes fall {
+    to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+.confetti:nth-child(2n) { background: #FF00FF; animation-delay: 0.5s; }
+.confetti:nth-child(3n) { background: #A00000; animation-delay: 1s; }
+
+.chat-login { margin-bottom: 10px; }
+#chat-username {
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 2px solid #A00000;
+    padding: 5px;
+    font-family: "Courier New", "Courier", monospace;
+    width: 90%;
+}
+#chat-login-button, #chat-send-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    color: #A00000;
+    font-family: "Arial Black", sans-serif;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+#chat-login-button:hover, #chat-send-button:hover { background-color: #333333; color: #FFFFFF; }
+#chat-messages {
+    height: 300px;
+    overflow-y: scroll;
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 5px;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+#chat-input {
+    width: 80%;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 2px solid #A00000;
+    padding: 5px;
+    font-family: "Courier New", "Courier", monospace;
+}
+.video-placeholder {
+    width: 100%;
+    max-width: 640px;
+    height: 360px;
+    border: 4px double #A00000;
+    box-shadow: 4px 4px 8px #800000;
+    background-color: #000000;
+    background-image: url('/assets/stripes.gif');
+    background-repeat: repeat;
+}
+.chatroom-layout {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 1000px;
+}
+.chatroom-video { flex: 0 0 640px; }
+.chatroom-chat { flex: 0 0 300px; }
+@media (max-width: 960px) {
+    .chatroom-layout { flex-direction: column; align-items: center; }
+    .chatroom-video, .chatroom-chat { flex: 0 0 auto; width: 100%; max-width: 640px; }
+}
+
+.site-logo {
+    max-width: 100%;
+    max-height: 100px; /* Reduced from 200px */
+    height: auto;
+    margin: 5px 0;
+}
+
+.custom-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+}
+.custom-button:hover {
+    background-color: #333333;
+    color: #FF4040;
+}
+
+.video-container {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 3px 3px 6px #800000;
+    text-align: center;
+    max-height: 600px;
+    overflow: auto;
+}
+.video-container video {
+    width: 100%;
+    height: auto;
+}
+
+.scorecard-container .content {
+    padding: 20px;
+    display: grid;
+    grid-template-areas:
+        "fighters"
+        "round"
+        "buttons"
+        "timer"
+        "progress"
+        "scoring"
+        "scores"
+        "winner"
+        "history";
+    gap: 20px;
+    justify-items: center;
+    background: url('/assets/stripes.gif') repeat;
+}
+
+.scorecard-container .fighter-inputs {
+    grid-area: fighters;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+}
+
+.scorecard-container .fighter-red,
+.scorecard-container .fighter-blue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+}
+
+.scorecard-container .buttons {
+    grid-area: buttons;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.scorecard-container .timer {
+    grid-area: timer;
+    font-size: 52px;
+    color: #FF4040;
+    text-shadow: 2px 2px #800000;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 10px;
+    width: 80%;
+}
+
+.scorecard-container .progress-bar {
+    grid-area: progress;
+    width: 80%;
+    height: 15px;
+    background-color: #333333;
+    border: 2px solid #A00000;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.scorecard-container .progress {
+    height: 100%;
+    background: linear-gradient(90deg, #FF4040, #A00000, #FF4040);
+    width: 100%;
+    transition: width 1s linear;
+    border-radius: 10px;
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 #FF4040; }
+    100% { box-shadow: 0 0 15px #FF4040; }
+}
+
+.scorecard-container #scoring-area {
+    grid-area: scoring;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.scorecard-container .scores {
+    grid-area: scores;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.scorecard-container #round-winner {
+    grid-area: winner;
+    font-size: 20px;
+    margin: 10px;
+    color: #FF4040;
+    text-align: center;
+}
+
+.scorecard-container .history {
+    grid-area: history;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #FFFFFF;
+    max-height: 100px;
+    overflow-y: auto;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #A00000;
+    border-radius: 10px;
+    width: 80%;
+}
+
+.scorecard-container .corner {
+    padding: 15px;
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    transition: transform 0.2s, animation 0.5s;
+    box-shadow: 3px 3px 6px #800000;
+}
+
+.scorecard-container .corner:hover {
+    transform: scale(1.05);
+}
+
+.scorecard-container .corner:active {
+    animation: shake 0.5s;
+    box-shadow: 0 0 15px #FF4040;
+}
+
+@keyframes shake {
+    0% { transform: translate(0); }
+    25% { transform: translate(-5px); }
+    50% { transform: translate(5px); }
+    75% { transform: translate(-5px); }
+    100% { transform: translate(0); }
+}
+
+.scorecard-container .red {
+    background: linear-gradient(45deg, #ff3333, #cc0000);
+}
+
+.scorecard-container .blue {
+    background: linear-gradient(45deg, #3333ff, #0000cc);
+}
+
+.scorecard-container .score {
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 1px 1px #333333;
+    color: #FF4040;
+}
+
+.scorecard-container button {
+    padding: 12px 25px;
+    font-size: 20px;
+    background-color: #000000;
+    border: 2px solid #A00000;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.scorecard-container button:hover {
+    background-color: #333333;
+    color: #FF4040;
+    transform: scale(1.05);
+}
+
+.scorecard-container button:active {
+    box-shadow: 0 0 15px #FF4040;
+}
+
+.scorecard-container button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.scorecard-container .hidden {
+    display: none;
+}
+
+.scorecard-container input {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    background-color: #000000;
+    border: 2px solid #A00000;
+    color: #FFFFFF;
+    font-family: "Courier New", monospace;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.scorecard-container input:focus {
+    outline: none;
+    box-shadow: 0 0 10px #FF4040;
+}
+
+.scorecard-container select {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    background-color: #000000;
+    border: 2px solid #A00000;
+    color: #FFFFFF;
+    font-family: "Courier New", monospace;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.scorecard-container select:focus {
+    outline: none;
+    box-shadow: 0 0 10px #FF4040;
+}
+
+#round-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.popout-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin: 10px auto;
+    display: block;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    width: 200px;
+}
+
+.popout-button:hover {
+    background-color: #333333;
+    color: #FF4040;
+    transform: scale(1.05);
+}
+
+.slot-machine-container {
+    font-family: "Courier New", "Courier", monospace;
+    color: #FFFFFF;
+    background-color: #000000;
+    border: 4px double #A00000;
+    padding: 20px;
+    margin: 20px auto;
+    box-shadow: 3px 3px 6px #800000;
+    background-image: url('/assets/stripes.gif');
+    background-repeat: repeat;
+    max-width: 600px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    animation: bg-pulse 3s infinite alternate;
+}
+@keyframes bg-pulse {
+    0% { background-color: #000000; }
+    50% { background-color: #1a001a; }
+    100% { background-color: #000000; }
+}
+
+.slot-machine-container .vegas-sign {
+    font-family: "Arial Black", sans-serif;
+    font-size: 32px;
+    text-align: center;
+    background: linear-gradient(45deg, #FF4040, #FF00FF, #A00000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 5px #FF4040, 0 0 10px #FF00FF;
+}
+
+.slot-machine-container .reels {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+.slot-machine-container .reel {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(45deg, #000000, #1a001a);
+    border: 2px solid #A00000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.reel img { max-width: 100%; max-height: 100%; }
+.reel.spinning { animation: spin-cycle 0.1s linear infinite; }
+.reel.win { box-shadow: 0 0 15px #FF4040; }
+@keyframes spin-cycle { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+.reel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(160, 0, 0, 0.3), transparent);
+    animation: reel-light 1s infinite;
+}
+@keyframes reel-light { 0% { left: -100%; } 100% { left: 100%; } }
+.slot-machine-container.win { animation: neon-pulse 1s infinite alternate; }
+@keyframes neon-pulse {
+    0% { border-color: #A00000; box-shadow: 6px 6px 12px #800000; }
+    100% { border-color: #FF4040; box-shadow: 6px 6px 12px #FF4040; }
+}
+.slot-machine-container.jackpot { animation: jackpot-explosion 1s ease-out; }
+@keyframes jackpot-explosion {
+    0% { transform: scale(1); box-shadow: 6px 6px 12px #FF4040; }
+    50% { transform: scale(1.1); box-shadow: 0 0 30px #FF00FF; }
+    100% { transform: scale(1); box-shadow: 6px 6px 12px #FF4040; }
+}
+
+.slot-machine-container .marquee {
+    font-size: 18px;
+    color: #A00000;
+    padding: 5px;
+    text-align: center;
+}
+#bet-amount {
+    margin: 10px 0;
+    background-color: #000000;
+    color: #FFFFFF;
+    border: 2px solid #A00000;
+    font-family: "Courier New", "Courier", monospace;
+    padding: 5px;
+    display: inline-block;
+}
+.slot-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+.slot-button:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 10px #FF4040;
+    transition: all 0.2s ease;
+}
+.slot-button.disabled { opacity: 0.5; cursor: not-allowed; }
+#cash, #result, #high-score { margin: 10px 0; font-size: 20px; }
+#result.win { color: #FF4040; animation: flash-text 0.5s linear infinite; }
+@keyframes flash-text { 50% { color: #A00000; } }
+#gamble-button {
+    background-color: #000000;
+    border:
