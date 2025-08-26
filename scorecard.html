@@ -1,84 +1,197 @@
----
-layout: default
-title: MMA Judging Scorecard
----
-<div class="scorecard-container">
-    <div class="content">
-        <div class="fighter-inputs">
-            <div class="fighter-red">
-                <label for="red-fighter">Red Corner Fighter:</label>
-                <input type="text" id="red-fighter" placeholder="Red Corner" value="Red Corner">
-            </div>
-            <div class="fighter-blue">
-                <label for="blue-fighter">Blue Corner Fighter:</label>
-                <input type="text" id="blue-fighter" placeholder="Blue Corner" value="Blue Corner">
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMA Judging Scorecard</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+</head>
+<body>
+    <table width="100%" border="1" cellspacing="0" cellpadding="10" bgcolor="#000000" bordercolor="#A00000">
+        <tr>
+            <td colspan="2" align="center">
+                <img src="/assets/logo.png" alt="Matlock Fight Talk Logo" class="site-logo">
+                <marquee behavior="scroll" direction="left" scrollamount="5"><font color="#A00000">WELCOME TO THE END OF THE INTERNET</font></marquee>
+            </td>
+        </tr>
+        <tr>
+            <td width="20%" valign="top" bgcolor="#000000">
+                <h2>Navigation</h2>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/matlockpapers">The Matlock Papers</a></li>
+                    <li><a href="/vegas">Vegas Slots</a></li>
+                    <li><a href="/chatroom">Chatroom</a></li>
+                    <li><a href="/guestbook">Guestbook</a></li>
+                    <li><a href="/scorecard.html">Scorecard</a></li>
+                </ul>
+                <hr>
+                <center><img src="/assets/fist.gif" alt="Fist Icon" width="100" height="100"></center>
+                <hr>
+                <center>
+                    <div id="audio-player">
+                        <p><font color="#A00000"><blink>Click to unleash fight tunes!</blink></font></p>
+                        <div class="audio-container">
+                            <audio id="player">
+                                <source src="/assets/facethepain.mp3" type="audio/mpeg">
+                                <source src="/assets/Original.mp3" type="audio/mpeg">
+                                <source src="/assets/DeathorGlory.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                            <div class="audio-controls">
+                                <img src="/assets/play.gif" alt="Play" onclick="playAudio()" class="control-button">
+                                <img src="/assets/pause.gif" alt="Pause" onclick="pauseAudio()" class="control-button">
+                                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" onchange="setVolume()">
+                            </div>
+                            <select id="song-selector" onchange="changeSong()">
+                                <option value="/assets/facethepain.mp3">Face The Pain</option>
+                                <option value="/assets/Original.mp3">O.G.</option>
+                                <option value="/assets/DeathorGlory.mp3">Death or Glory</option>
+                            </select>
+                        </div>
+                        <script>
+                            var player = document.getElementById('player');
+                            function playAudio() {
+                                player.src = document.getElementById('song-selector').value;
+                                player.play();
+                            }
+                            function pauseAudio() {
+                                player.pause();
+                            }
+                            function changeSong() {
+                                player.src = document.getElementById('song-selector').value;
+                                player.play();
+                            }
+                            function setVolume() {
+                                player.volume = document.getElementById('volume-slider').value;
+                            }
+                        </script>
+                    </div>
+                </center>
+                <hr>
+                <center>
+                    <a href="https://aol.sentrybay.com/deploy/aol.php?licensor=netscape&uid=mbr_rusdeflnk00000002&ncid=mbr_rusdeflnk00000002">
+                        <img src="/assets/netscape.gif" alt="Get Netscape Now!" width="88" height="31">
+                    </a>
+                </center>
+            </td>
+            <td width="80%" valign="top">
+                <div class="social-banner">
+                    <a href="https://youtube.com/matlockfighttalk"><img src="/assets/youtube.png" alt="YouTube" width="32" height="32"></a>
+                    <a href="https://www.instagram.com/matlockfighttalk/"><img src="/assets/instagram.png" alt="Instagram" width="32" height="32"></a>
+                    <a href="https://x.com/MatlockKombat"><img src="/assets/x.png" alt="X" width="32" height="32"></a>
+                    <a href="https://matlockfighttalk-shop.fourthwall.com/"><img src="/assets/merch.png" alt="Merch" width="32" height="32"></a>
+                </div>
+                <center>
+                    <button class="custom-button" onclick="toggleVideo()">horse meat</button>
+                </center>
+                <div class="video-container" id="video-container" style="display: none;">
+                    <video controls id="horsemeat-video" width="100%">
+                        <source src="/assets/horsemeat.mp4" type="video/mp4">
+                        Your browser does not support the video tag. <a href="/assets/horsemeat.mp4">Download the video</a>.
+                    </video>
+                </div>
+                <div class="scorecard-container">
+                    <div class="content">
+                        <div class="fighter-inputs">
+                            <div class="fighter-red">
+                                <label for="red-fighter">Red Corner Fighter:</label>
+                                <input type="text" id="red-fighter" placeholder="Red Corner" value="Red Corner">
+                            </div>
+                            <div class="fighter-blue">
+                                <label for="blue-fighter">Blue Corner Fighter:</label>
+                                <input type="text" id="blue-fighter" placeholder="Blue Corner" value="Blue Corner">
+                            </div>
+                        </div>
+                        <select id="round-select">
+                            <option value="1">Round 1</option>
+                            <option value="2">Round 2</option>
+                            <option value="3">Round 3</option>
+                            <option value="4">Round 4</option>
+                            <option value="5">Round 5</option>
+                        </select>
+                        <div class="buttons">
+                            <button id="start-button" onclick="startRound()">Start Round</button>
+                            <button id="pause-button" onclick="pauseResumeRound()" disabled>Pause</button>
+                            <button id="reset-button" onclick="resetRound()" disabled>Reset Round</button>
+                            <button id="undo-button" onclick="undoScore()" disabled>Undo Last Score</button>
+                        </div>
+                        <div class="timer" id="timer">5:00</div>
+                        <div class="progress-bar">
+                            <div class="progress" id="progress"></div>
+                        </div>
+                        <div id="scoring-area" class="hidden">
+                            <button onclick="scoreRed()" class="red corner">Left - Red</button>
+                            <button onclick="scoreBlue()" class="blue corner">Right - Blue</button>
+                        </div>
+                        <div class="scores">
+                            <div class="score" id="red-score">Red Score: 0</div>
+                            <div class="score" id="blue-score">Blue Score: 0</div>
+                        </div>
+                        <div id="round-winner"></div>
+                        <div class="history" id="history"></div>
+                    </div>
+                    <button class="popout-button" onclick="popOutScorecard()">Pop Out Scorecard</button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center" bgcolor="#333333">
+                <font color="#FFFFFF">Copyright © 2025 MATLOCK'S FIGHT TALK. All rights reserved. | Visitor count: <img src="/assets/counter.gif" alt="Hit Counter"></font>
+                <br>
+                <marquee behavior="alternate"><font color="#A00000">Powered by Secret Juice</font></marquee>
+            </td>
+        </tr>
+    </table>
+    <script>
+        let redScore = 0;
+        let blueScore = 0;
+        let timerInterval;
+        let isScoringActive = false;
+        let timeLeft = 300; // 5 minutes in seconds
+        let isPaused = false;
+        let history = [];
+        let lastScore = null;
 
-        <select id="round-select">
-            <option value="1">Round 1</option>
-            <option value="2">Round 2</option>
-            <option value="3">Round 3</option>
-            <option value="4">Round 4</option>
-            <option value="5">Round 5</option>
-        </select>
+        function startRound() {
+            if (!isScoringActive) {
+                redScore = 0;
+                blueScore = 0;
+                timeLeft = 300;
+                lastScore = null;
+                updateScores();
+                updateProgress();
+                document.getElementById('round-winner').textContent = '';
+                document.getElementById('history').textContent = history.join('\n');
+                document.getElementById('scoring-area').classList.remove('hidden');
+                isScoringActive = true;
+                document.getElementById('start-button').disabled = true;
+                document.getElementById('pause-button').disabled = false;
+                document.getElementById('reset-button').disabled = false;
+                document.getElementById('undo-button').disabled = false;
+                timerInterval = setInterval(() => {
+                    if (!isPaused) {
+                        timeLeft--;
+                        updateProgress();
+                        let minutes = Math.floor(timeLeft / 60);
+                        let seconds = timeLeft % 60;
+                        document.getElementById('timer').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                        if (timeLeft <= 0) {
+                            endRound();
+                        }
+                    }
+                }, 1000);
+            }
+        }
 
-        <div class="buttons">
-            <button id="start-button" onclick="startRound()">Start Round</button>
-            <button id="pause-button" onclick="pauseResumeRound()" disabled>Pause</button>
-            <button id="reset-button" onclick="resetRound()" disabled>Reset Round</button>
-            <button id="undo-button" onclick="undoScore()" disabled>Undo Last Score</button>
-        </div>
-
-        <div class="timer" id="timer">5:00</div>
-        <div class="progress-bar">
-            <div class="progress" id="progress"></div>
-        </div>
-
-        <div id="scoring-area" class="hidden">
-            <button onclick="scoreRed()" class="red corner">Left - Red</button>
-            <button onclick="scoreBlue()" class="blue corner">Right - Blue</button>
-        </div>
-
-        <div class="scores">
-            <div class="score" id="red-score">Red Score: 0</div>
-            <div class="score" id="blue-score">Blue Score: 0</div>
-        </div>
-        <div id="round-winner"></div>
-        <div class="history" id="history"></div>
-    </div>
-    <button class="popout-button" onclick="popOutScorecard()">Pop Out Scorecard</button>
-</div>
-
-<script>
-    let redScore = 0;
-    let blueScore = 0;
-    let timerInterval;
-    let isScoringActive = false;
-    let timeLeft = 300; // 5 minutes in seconds
-    let isPaused = false;
-    let history = [];
-    let lastScore = null;
-
-    function startRound() {
-        if (!isScoringActive) {
-            redScore = 0;
-            blueScore = 0;
-            timeLeft = 300;
-            lastScore = null;
-            updateScores();
-            updateProgress();
-            document.getElementById('round-winner').textContent = '';
-            document.getElementById('history').textContent = history.join('\n');
-            document.getElementById('scoring-area').classList.remove('hidden');
-            isScoringActive = true;
-            document.getElementById('start-button').disabled = true;
-            document.getElementById('pause-button').disabled = false;
-            document.getElementById('reset-button').disabled = false;
-            document.getElementById('undo-button').disabled = false;
-            document.getElementById('round-select').disabled = true;
-            timerInterval = setInterval(() => {
-                if (!isPaused) {
+        function pauseResumeRound() {
+            isPaused = !isPaused;
+            document.getElementById('pause-button').textContent = isPaused ? 'Resume' : 'Pause';
+            if (isPaused) {
+                clearInterval(timerInterval);
+            } else if (isScoringActive) {
+                timerInterval = setInterval(() => {
                     timeLeft--;
                     updateProgress();
                     let minutes = Math.floor(timeLeft / 60);
@@ -87,120 +200,101 @@ title: MMA Judging Scorecard
                     if (timeLeft <= 0) {
                         endRound();
                     }
-                }
-            }, 1000);
-        }
-    }
-
-    function pauseResumeRound() {
-        isPaused = !isPaused;
-        document.getElementById('pause-button').textContent = isPaused ? 'Resume' : 'Pause';
-        if (isPaused) {
-            clearInterval(timerInterval);
-        } else if (isScoringActive) {
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                updateProgress();
-                let minutes = Math.floor(timeLeft / 60);
-                let seconds = timeLeft % 60;
-                document.getElementById('timer').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-                if (timeLeft <= 0) {
-                    endRound();
-                }
-            }, 1000);
-        }
-    }
-
-    function resetRound() {
-        if (isScoringActive && !isPaused) {
-            redScore = 0;
-            blueScore = 0;
-            timeLeft = 300;
-            lastScore = null;
-            updateScores();
-            updateProgress();
-            document.getElementById('round-winner').textContent = '';
-        }
-    }
-
-    function undoScore() {
-        if (lastScore === 'red' && redScore > 0) {
-            redScore--;
-        } else if (lastScore === 'blue' && blueScore > 0) {
-            blueScore--;
-        }
-        lastScore = null;
-        updateScores();
-        document.getElementById('undo-button').disabled = true;
-    }
-
-    function endRound() {
-        clearInterval(timerInterval);
-        document.getElementById('scoring-area').classList.add('hidden');
-        isScoringActive = false;
-        isPaused = false;
-        document.getElementById('start-button').disabled = false;
-        document.getElementById('pause-button').disabled = true;
-        document.getElementById('pause-button').textContent = 'Pause';
-        document.getElementById('reset-button').disabled = true;
-        document.getElementById('undo-button').disabled = true;
-        document.getElementById('round-select').disabled = false;
-        let scoreDiff = Math.abs(redScore - blueScore);
-        let score = scoreDiff > 5 ? '10-8' : '10-9';
-        let winner = '';
-        if (redScore > blueScore) {
-            winner = document.getElementById('red-fighter').value + ' wins the round ' + score + '!';
-        } else if (blueScore > redScore) {
-            winner = document.getElementById('blue-fighter').value + ' wins the round ' + score + '!';
-        } else {
-            winner = 'Round is a draw!';
-        }
-        history.push(`Round ${document.getElementById('round-select').value}: ${winner}`);
-        document.getElementById('round-winner').textContent = winner;
-        document.getElementById('history').textContent = history.join('\n');
-    }
-
-    function scoreRed() {
-        if (isScoringActive && !isPaused) {
-            redScore++;
-            lastScore = 'red';
-            updateScores();
-            document.getElementById('undo-button').disabled = false;
-        }
-    }
-
-    function scoreBlue() {
-        if (isScoringActive && !isPaused) {
-            blueScore++;
-            lastScore = 'blue';
-            updateScores();
-            document.getElementById('undo-button').disabled = false;
-        }
-    }
-
-    function updateScores() {
-        document.getElementById('red-score').textContent = `${document.getElementById('red-fighter').value} Score: ${redScore}`;
-        document.getElementById('blue-score').textContent = `${document.getElementById('blue-fighter').value} Score: ${blueScore}`;
-    }
-
-    function updateProgress() {
-        const progress = document.getElementById('progress');
-        const percentage = (timeLeft / 300) * 100;
-        progress.style.width = `${percentage}%`;
-    }
-
-    function popOutScorecard() {
-        const url = window.location.origin + '/scorecard';
-        window.open(url, 'MMA Scorecard', 'width=600,height=800,toolbar=no,menubar=no,scrollbars=yes,resizable=yes');
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (isScoringActive && !isPaused) {
-            if (e.key === 'ArrowLeft') {
-                scoreRed();
-            } else if (e.key === 'ArrowRight') {
-                scoreBlue();
+                }, 1000);
             }
         }
-    });
-</script>
+
+        function resetRound() {
+            if (isScoringActive && !isPaused) {
+                redScore = 0;
+                blueScore = 0;
+                timeLeft = 300;
+                lastScore = null;
+                updateScores();
+                updateProgress();
+                document.getElementById('round-winner').textContent = '';
+            }
+        }
+
+        function undoScore() {
+            if (lastScore === 'red' && redScore > 0) {
+                redScore--;
+            } else if (lastScore === 'blue' && blueScore > 0) {
+                blueScore--;
+            }
+            lastScore = null;
+            updateScores();
+            document.getElementById('undo-button').disabled = true;
+        }
+
+        function endRound() {
+            clearInterval(timerInterval);
+            document.getElementById('scoring-area').classList.add('hidden');
+            isScoringActive = false;
+            isPaused = false;
+            document.getElementById('start-button').disabled = false;
+            document.getElementById('pause-button').disabled = true;
+            document.getElementById('pause-button').textContent = 'Pause';
+            document.getElementById('reset-button').disabled = true;
+            document.getElementById('undo-button').disabled = true;
+            let scoreDiff = Math.abs(redScore - blueScore);
+            let score = scoreDiff >= 25 ? '10-8' : '10-9'; // Increased to 25 for rare 10-8
+            let winner = '';
+            if (redScore > blueScore) {
+                winner = document.getElementById('red-fighter').value + ' wins the round ' + score + '!';
+            } else if (blueScore > redScore) {
+                winner = document.getElementById('blue-fighter').value + ' wins the round ' + score + '!';
+            } else {
+                winner = 'Round is a draw!';
+            }
+            history.push(`Round ${document.getElementById('round-select').value}: ${winner}`);
+            document.getElementById('round-winner').textContent = winner;
+            document.getElementById('history').textContent = history.join('\n');
+        }
+
+        function scoreRed() {
+            if (isScoringActive && !isPaused) {
+                redScore++;
+                lastScore = 'red';
+                updateScores();
+                document.getElementById('undo-button').disabled = false;
+            }
+        }
+
+        function scoreBlue() {
+            if (isScoringActive && !isPaused) {
+                blueScore++;
+                lastScore = 'blue';
+                updateScores();
+                document.getElementById('undo-button').disabled = false;
+            }
+        }
+
+        function updateScores() {
+            document.getElementById('red-score').textContent = `${document.getElementById('red-fighter').value} Score: ${redScore}`;
+            document.getElementById('blue-score').textContent = `${document.getElementById('blue-fighter').value} Score: ${blueScore}`;
+        }
+
+        function updateProgress() {
+            const progress = document.getElementById('progress');
+            const percentage = (timeLeft / 300) * 100;
+            progress.style.width = `${percentage}%`;
+        }
+
+        function popOutScorecard() {
+            const url = window.location.origin + '/scorecard.html';
+            window.open(url, 'MMA Scorecard', 'width=600,height=800,toolbar=no,menubar=no,scrollbars=yes,resizable=yes');
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (isScoringActive && !isPaused) {
+                if (e.key === 'ArrowLeft') {
+                    scoreRed();
+                } else if (e.key === 'ArrowRight') {
+                    scoreBlue();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
