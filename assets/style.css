@@ -165,6 +165,11 @@ audio { display: none; }
     width: 80%;
 }
 
+.scorecard-container .banner-container {
+    max-height: 120px; /* Reduced from default layout height */
+    overflow: hidden;
+}
+
 .scorecard-container .corner {
     padding: 15px;
     color: white;
@@ -297,4 +302,11 @@ audio { display: none; }
     background-color: #333333;
     color: #FF4040;
     transform: scale(1.05);
+}
+
+.site-logo {
+    max-width: 100%;
+    max-height: 100px; /* Reduced from 200px */
+    height: auto;
+    margin: 5px 0;
 }
