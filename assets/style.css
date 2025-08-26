@@ -28,13 +28,13 @@ audio { display: none; }
 #audio-player { margin: 10px 0; }
 #song-selector { width: 100%; background-color: #000000; color: #FFFFFF; border: 2px solid #A00000; font-family: "Arial", "Helvetica", sans-serif; padding: 5px; }
 
-.intro-container, .blog-post, .guestbook-container, .chat-container {
+.intro-container, .blog-post, .guestbook-container, .chat-container, .scorecard-container {
     font-family: "Courier New", "Courier", monospace;
     color: #FFFFFF;
     background-color: #000000;
-    border: 2px solid #A00000;
-    padding: 10px;
-    margin: 10px auto;
+    border: 4px double #A00000;
+    padding: 20px;
+    margin: 20px auto;
     box-shadow: 3px 3px 6px #800000;
     background-image: url('/assets/stripes.gif');
     background-repeat: repeat;
@@ -43,6 +43,7 @@ audio { display: none; }
 .blog-post { max-width: 700px; }
 .guestbook-container { max-width: 400px; }
 .chat-container { max-width: 300px; }
+.scorecard-container { max-width: 600px; }
 
 .social-banner {
     display: flex;
@@ -237,4 +238,49 @@ audio { display: none; }
     margin: 10px 0;
     box-shadow: 3px 3px 6px #800000;
     text-align: center;
+    max-height: 600px;
+    overflow: auto;
+}
+.video-container video {
+    width: 100%;
+    height: auto;
+}
+
+.scorecard-container .corner {
+    padding: 10px;
+    margin: 10px;
+    color: white;
+    border-radius: 5px;
+}
+.scorecard-container .red {
+    background-color: red;
+}
+.scorecard-container .blue {
+    background-color: blue;
+}
+.scorecard-container .score {
+    font-size: 24px;
+    margin: 10px;
+}
+.scorecard-container .timer {
+    font-size: 48px;
+    margin: 20px;
+}
+.scorecard-container button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 18px;
+    background-color: #000000;
+    border: 2px solid #A00000;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.scorecard-container button:hover {
+    background-color: #333333;
+    color: #FF4040;
+}
+.scorecard-container .hidden {
+    display: none;
 }
