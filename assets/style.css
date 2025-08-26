@@ -28,7 +28,7 @@ audio { display: none; }
 #audio-player { margin: 10px 0; }
 #song-selector { width: 100%; background-color: #000000; color: #FFFFFF; border: 2px solid #A00000; font-family: "Arial", "Helvetica", sans-serif; padding: 5px; }
 
-.intro-container, .blog-post, .guestbook-container, .chat-container, .scorecard-container {
+.intro-container, .blog-post, .guestbook-container, .chat-container {
     font-family: "Courier New", "Courier", monospace;
     color: #FFFFFF;
     background-color: #000000;
@@ -43,7 +43,6 @@ audio { display: none; }
 .blog-post { max-width: 700px; }
 .guestbook-container { max-width: 400px; }
 .chat-container { max-width: 300px; }
-.scorecard-container { max-width: 600px; }
 
 .social-banner {
     display: flex;
@@ -246,41 +245,252 @@ audio { display: none; }
     height: auto;
 }
 
-.scorecard-container .corner {
+.scorecard-container {
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.scorecard-container .content {
+    padding: 20px;
+    display: grid;
+    grid-template-areas:
+        "fighters fighters"
+        "round round"
+        "buttons buttons"
+        "timer timer"
+        "progress progress"
+        "scoring scoring"
+        "scores scores"
+        "winner winner"
+        "history history";
+    gap: 15px;
+    background: url('/assets/stripes.gif') repeat;
+}
+
+.scorecard-container .fighter-inputs {
+    grid-area: fighters;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.scorecard-container .fighter-red,
+.scorecard-container .fighter-blue {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scorecard-container .buttons {
+    grid-area: buttons;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.scorecard-container .timer {
+    grid-area: timer;
+    font-size: 52px;
+    color: #FF4040;
+    text-shadow: 2px 2px #800000;
+    background: rgba(0, 0, 0, 0.7);
     padding: 10px;
-    margin: 10px;
-    color: white;
     border-radius: 5px;
 }
-.scorecard-container .red {
-    background-color: red;
+
+.scorecard-container .progress-bar {
+    grid-area: progress;
+    width: 80%;
+    height: 15px;
+    background-color: #333333;
+    border: 2px solid #A00000;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
 }
-.scorecard-container .blue {
-    background-color: blue;
+
+.scorecard-container .progress {
+    height: 100%;
+    background: linear-gradient(90deg, #FF4040, #A00000, #FF4040);
+    width: 100%;
+    transition: width 1s linear;
+    border-radius: 10px;
+    animation: pulse 2s infinite alternate;
 }
-.scorecard-container .score {
-    font-size: 24px;
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 #FF4040; }
+    100% { box-shadow: 0 0 15px #FF4040; }
+}
+
+.scorecard-container #scoring-area {
+    grid-area: scoring;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.scorecard-container .scores {
+    grid-area: scores;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.scorecard-container #round-winner {
+    grid-area: winner;
+    font-size: 20px;
     margin: 10px;
+    color: #FF4040;
 }
-.scorecard-container .timer {
-    font-size: 48px;
-    margin: 20px;
+
+.scorecard-container .history {
+    grid-area: history;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #FFFFFF;
+    max-height: 100px;
+    overflow-y: auto;
+    padding: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #A00000;
+    border-radius: 5px;
 }
-.scorecard-container button {
-    padding: 10px 20px;
-    margin: 10px;
+
+.scorecard-container .corner {
+    padding: 15px;
+    color: white;
+    border-radius: 8px;
     font-size: 18px;
+    transition: transform 0.2s, animation 0.5s;
+    box-shadow: 2px 2px 4px #800000;
+}
+
+.scorecard-container .corner:hover {
+    transform: scale(1.05);
+}
+
+.scorecard-container .corner:active {
+    animation: shake 0.5s;
+    box-shadow: 0 0 10px #FF4040;
+}
+
+@keyframes shake {
+    0% { transform: translate(0); }
+    25% { transform: translate(-5px); }
+    50% { transform: translate(5px); }
+    75% { transform: translate(-5px); }
+    100% { transform: translate(0); }
+}
+
+.scorecard-container .red {
+    background: linear-gradient(45deg, #ff3333, #cc0000);
+}
+
+.scorecard-container .blue {
+    background: linear-gradient(45deg, #3333ff, #0000cc);
+}
+
+.scorecard-container .score {
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 1px 1px #333333;
+    color: #FF4040;
+}
+
+.scorecard-container button {
+    padding: 12px 25px;
+    font-size: 20px;
     background-color: #000000;
     border: 2px solid #A00000;
     font-family: "Arial Black", sans-serif;
     color: #A00000;
     cursor: pointer;
+    border-radius: 8px;
     transition: all 0.3s ease;
 }
+
 .scorecard-container button:hover {
     background-color: #333333;
     color: #FF4040;
+    transform: scale(1.05);
 }
+
+.scorecard-container button:active {
+    box-shadow: 0 0 15px #FF4040;
+}
+
+.scorecard-container button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .scorecard-container .hidden {
     display: none;
+}
+
+.scorecard-container input {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    background-color: #000000;
+    border: 2px solid #A00000;
+    color: #FFFFFF;
+    font-family: "Courier New", monospace;
+    border-radius: 5px;
+}
+
+.scorecard-container input:focus {
+    outline: none;
+    box-shadow: 0 0 10px #FF4040;
+}
+
+.scorecard-container select {
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    background-color: #000000;
+    border: 2px solid #A00000;
+    color: #FFFFFF;
+    font-family: "Courier New", monospace;
+    border-radius: 5px;
+}
+
+.scorecard-container select:focus {
+    outline: none;
+    box-shadow: 0 0 10px #FF4040;
+}
+
+#round-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.popout-button {
+    background-color: #000000;
+    border: 2px solid #A00000;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: "Arial Black", sans-serif;
+    color: #A00000;
+    cursor: pointer;
+    margin: 10px auto;
+    display: block;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+.popout-button:hover {
+    background-color: #333333;
+    color: #FF4040;
+    transform: scale(1.05);
 }
