@@ -3,17 +3,16 @@ layout: default
 title: MMA Judging Scorecard
 ---
 <div class="scorecard-container">
-    <div class="header">
-        <h2>MMA Judging Scorecard</h2>
-    </div>
     <div class="content">
-        <div>
-            <label for="red-fighter">Red Corner Fighter:</label>
-            <input type="text" id="red-fighter" placeholder="Red Corner" value="Red Corner">
-        </div>
-        <div>
-            <label for="blue-fighter">Blue Corner Fighter:</label>
-            <input type="text" id="blue-fighter" placeholder="Blue Corner" value="Blue Corner">
+        <div class="fighter-inputs">
+            <div class="fighter-red">
+                <label for="red-fighter">Red Corner Fighter:</label>
+                <input type="text" id="red-fighter" placeholder="Red Corner" value="Red Corner">
+            </div>
+            <div class="fighter-blue">
+                <label for="blue-fighter">Blue Corner Fighter:</label>
+                <input type="text" id="blue-fighter" placeholder="Blue Corner" value="Blue Corner">
+            </div>
         </div>
 
         <select id="round-select">
@@ -24,7 +23,7 @@ title: MMA Judging Scorecard
             <option value="5">Round 5</option>
         </select>
 
-        <div>
+        <div class="buttons">
             <button id="start-button" onclick="startRound()">Start Round</button>
             <button id="pause-button" onclick="pauseResumeRound()" disabled>Pause</button>
             <button id="reset-button" onclick="resetRound()" disabled>Reset Round</button>
@@ -41,15 +40,16 @@ title: MMA Judging Scorecard
             <button onclick="scoreBlue()" class="blue corner">Right - Blue</button>
         </div>
 
-        <div class="score" id="red-score">Red Score: 0</div>
-        <div class="score" id="blue-score">Blue Score: 0</div>
-        <div class="history" id="history"></div>
+        <div class="scores">
+            <div class="score" id="red-score">Red Score: 0</div>
+            <div class="score" id="blue-score">Blue Score: 0</div>
+        </div>
         <div id="round-winner"></div>
-    </div>
-    <div class="footer">
-        <p>Judging powered by Matlock Fight Talk</p>
+        <div class="history" id="history"></div>
     </div>
 </div>
+
+<button onclick="popOutScorecard()">Pop Out Scorecard</button>
 
 <script>
     let redScore = 0;
@@ -70,7 +70,6 @@ title: MMA Judging Scorecard
             updateScores();
             updateProgress();
             document.getElementById('round-winner').textContent = '';
-            document.getElementById('history').textContent = history.join('\n');
             document.getElementById('scoring-area').classList.remove('hidden');
             isScoringActive = true;
             document.getElementById('start-button').disabled = true;
@@ -83,118 +82,4 @@ title: MMA Judging Scorecard
                     timeLeft--;
                     updateProgress();
                     let minutes = Math.floor(timeLeft / 60);
-                    let seconds = timeLeft % 60;
-                    document.getElementById('timer').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-                    if (timeLeft <= 0) {
-                        endRound();
-                    }
-                }
-            }, 1000);
-        }
-    }
-
-    function pauseResumeRound() {
-        isPaused = !isPaused;
-        document.getElementById('pause-button').textContent = isPaused ? 'Resume' : 'Pause';
-        if (isPaused) {
-            clearInterval(timerInterval);
-        } else if (isScoringActive) {
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                updateProgress();
-                let minutes = Math.floor(timeLeft / 60);
-                let seconds = timeLeft % 60;
-                document.getElementById('timer').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-                if (timeLeft <= 0) {
-                    endRound();
-                }
-            }, 1000);
-        }
-    }
-
-    function resetRound() {
-        if (isScoringActive && !isPaused) {
-            redScore = 0;
-            blueScore = 0;
-            timeLeft = 300;
-            lastScore = null;
-            updateScores();
-            updateProgress();
-            document.getElementById('round-winner').textContent = '';
-        }
-    }
-
-    function undoScore() {
-        if (lastScore === 'red' && redScore > 0) {
-            redScore--;
-        } else if (lastScore === 'blue' && blueScore > 0) {
-            blueScore--;
-        }
-        lastScore = null;
-        updateScores();
-        document.getElementById('undo-button').disabled = true;
-    }
-
-    function endRound() {
-        clearInterval(timerInterval);
-        document.getElementById('scoring-area').classList.add('hidden');
-        isScoringActive = false;
-        isPaused = false;
-        document.getElementById('start-button').disabled = false;
-        document.getElementById('pause-button').disabled = true;
-        document.getElementById('pause-button').textContent = 'Pause';
-        document.getElementById('reset-button').disabled = true;
-        document.getElementById('undo-button').disabled = true;
-        document.getElementById('round-select').disabled = false;
-        let winner = '';
-        if (redScore > blueScore) {
-            winner = document.getElementById('red-fighter').value + ' wins the round!';
-        } else if (blueScore > redScore) {
-            winner = document.getElementById('blue-fighter').value + ' wins the round!';
-        } else {
-            winner = 'Round is a draw!';
-        }
-        history.push(`Round ${document.getElementById('round-select').value}: ${winner}`);
-        document.getElementById('round-winner').textContent = winner;
-        document.getElementById('history').textContent = history.join('\n');
-    }
-
-    function scoreRed() {
-        if (isScoringActive && !isPaused) {
-            redScore++;
-            lastScore = 'red';
-            updateScores();
-            document.getElementById('undo-button').disabled = false;
-        }
-    }
-
-    function scoreBlue() {
-        if (isScoringActive && !isPaused) {
-            blueScore++;
-            lastScore = 'blue';
-            updateScores();
-            document.getElementById('undo-button').disabled = false;
-        }
-    }
-
-    function updateScores() {
-        document.getElementById('red-score').textContent = `${document.getElementById('red-fighter').value} Score: ${redScore}`;
-        document.getElementById('blue-score').textContent = `${document.getElementById('blue-fighter').value} Score: ${blueScore}`;
-    }
-
-    function updateProgress() {
-        const progress = document.getElementById('progress');
-        const percentage = (timeLeft / 300) * 100;
-        progress.style.width = `${percentage}%`;
-    }
-
-    document.addEventListener('keydown', (e) => {
-        if (isScoringActive && !isPaused) {
-            if (e.key === 'ArrowLeft') {
-                scoreRed();
-            } else if (e.key === 'ArrowRight') {
-                scoreBlue();
-            }
-        }
-    });
-</script>
+                    let seconds = time
