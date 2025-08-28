@@ -8,9 +8,9 @@
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
 </head>
 <body>
-    <table width="100%" border="1" cellspacing="0" cellpadding="5" bgcolor="#000000" bordercolor="#A00000">
+    <table width="100%" border="1" cellspacing="0" cellpadding="10" bgcolor="#000000" bordercolor="#A00000">
         <tr>
-            <td colspan="2" align="center" class="banner-container">
+            <td colspan="3" align="center">
                 <img src="/assets/logo.png" alt="Matlock Fight Talk Logo" class="site-logo">
                 <marquee behavior="scroll" direction="left" scrollamount="5"><font color="#A00000">WELCOME TO THE END OF THE INTERNET</font></marquee>
             </td>
@@ -24,7 +24,6 @@
                     <li><a href="/vegas">Vegas Slots</a></li>
                     <li><a href="/chatroom">Chatroom</a></li>
                     <li><a href="/guestbook">Guestbook</a></li>
-                    <li><a href="/scorecard">Scorecard</a></li>
                 </ul>
                 <hr>
                 <center><img src="/assets/fist.gif" alt="Fist Icon" width="100" height="100"></center>
@@ -76,46 +75,31 @@
                     </a>
                 </center>
             </td>
-            <td width="80%" valign="top">
-                <div class="social-banner">
-                    <a href="https://youtube.com/matlockfighttalk"><img src="/assets/youtube.png" alt="YouTube" width="32" height="32"></a>
-                    <a href="https://www.instagram.com/matlockfighttalk/"><img src="/assets/instagram.png" alt="Instagram" width="32" height="32"></a>
-                    <a href="https://x.com/MatlockKombat"><img src="/assets/x.png" alt="X" width="32" height="32"></a>
-                    <a href="https://matlockfighttalk-shop.fourthwall.com/"><img src="/assets/merch.png" alt="Merch" width="32" height="32"></a>
-                </div>
-                <center>
-                    <button class="custom-button" onclick="toggleVideo()">horse meat</button>
-                </center>
-                <div class="video-container" id="video-container" style="display: none;">
-                    <video controls id="horsemeat-video" width="100%">
-                        <source src="/assets/horsemeat.mp4" type="video/mp4">
-                        Your browser does not support the video tag. <a href="/assets/horsemeat.mp4">Download the video</a>.
-                    </video>
-                </div>
+            <td width="60%" valign="top">
                 {{ content }}
+            </td>
+            <td width="20%" valign="top" bgcolor="#000000" class="ad-sidebar">
+                <h2>Advertisement</h2>
+                <!-- Add your ad code here, e.g., an image, script, or link -->
+                <a href="https://example.com/ad-link">
+                    <img src="/assets/ad-banner.png" alt="Advertisement" width="100%" height="auto">
+                </a>
+                <!-- Or insert an ad script, e.g., from Google Adsense -->
+                <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+                <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins> -->
+                <!-- <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script> -->
             </td>
         </tr>
         <tr>
-            <td colspan="2" align="center" bgcolor="#333333">
+            <td colspan="3" align="center" bgcolor="#333333">
                 <font color="#FFFFFF">Copyright © 2025 MATLOCK'S FIGHT TALK. All rights reserved. | Visitor count: <img src="/assets/counter.gif" alt="Hit Counter"></font>
                 <br>
                 <marquee behavior="alternate"><font color="#A00000">Powered by Secret Juice</font></marquee>
             </td>
         </tr>
     </table>
-    <script>
-        function toggleVideo() {
-            var videoContainer = document.getElementById('video-container');
-            var video = document.getElementById('horsemeat-video');
-            if (videoContainer.style.display === 'none') {
-                videoContainer.style.display = 'block';
-                video.play();
-            } else {
-                videoContainer.style.display = 'none';
-                video.pause();
-                video.currentTime = 0;
-            }
-        }
-    </script>
 </body>
 </html>
+</xaiArtifact>
+
+#### `assets/style.css`
