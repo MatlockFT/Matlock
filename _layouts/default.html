@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} - Matlock Fight Talk{% else %}Matlock Fight Talk{% endif %}</title>
+    <meta name="description" content="{% if page.title == 'Picture Gallery' %}Explore stunning MMA photos from Matlock Fight Talk's gallery, featuring epic fight scenes and more.{% elsif page.title == 'Scorecard' %}Track MMA fights with Matlock Fight Talk's interactive scorecard tool.{% elsif page.title == 'Chatroom' %}Join the Matlock Fight Talk community in our live MMA chatroom.{% elsif page.title == 'Guestbook' %}Leave your comments on Matlock Fight Talk's guestbook.{% elsif page.title == 'Vegas Slots' %}Play MMA-themed slots at Matlock Fight Talk's Vegas section.{% elsif page.title == 'The Matlock Papers' %}Read exclusive MMA insights in The Matlock Papers.{% else %}Welcome to Matlock Fight Talk, your hub for MMA news and updates.{% endif %}">
     <link rel="stylesheet" href="/assets/style.css">
     <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
 </head>
@@ -41,8 +42,8 @@
                                 Your browser does not support the audio element.
                             </audio>
                             <div class="audio-controls">
-                                <img src="/assets/play.gif" alt="Play" onclick="playAudio()" class="control-button">
-                                <img src="/assets/pause.gif" alt="Pause" onclick="pauseAudio()" class="control-button">
+                                <img src="/assets/play.gif" alt="Play Button" onclick="playAudio()" class="control-button">
+                                <img src="/assets/pause.gif" alt="Pause Button" onclick="pauseAudio()" class="control-button">
                                 <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" onchange="setVolume()">
                             </div>
                             <select id="song-selector" onchange="changeSong()">
@@ -73,16 +74,16 @@
                 <hr>
                 <center>
                     <a href="https://aol.sentrybay.com/deploy/aol.php?licensor=netscape&uid=mbr_rusdeflnk00000002&ncid=mbr_rusdeflnk00000002">
-                        <img src="/assets/netscape.gif" alt="Get Netscape Now!" width="88" height="31">
+                        <img src="/assets/netscape.gif" alt="Get Netscape Now Banner" width="88" height="31">
                     </a>
                 </center>
             </td>
             <td width="80%" valign="top">
                 <div class="social-banner">
-                    <a href="https://youtube.com/matlockfighttalk"><img src="/assets/youtube.png" alt="YouTube" width="32" height="32"></a>
-                    <a href="https://www.instagram.com/matlockfighttalk/"><img src="/assets/instagram.png" alt="Instagram" width="32" height="32"></a>
-                    <a href="https://x.com/MatlockKombat"><img src="/assets/x.png" alt="X" width="32" height="32"></a>
-                    <a href="https://matlockfighttalk-shop.fourthwall.com/"><img src="/assets/merch.png" alt="Merch" width="32" height="32"></a>
+                    <a href="https://youtube.com/matlockfighttalk"><img src="/assets/youtube.png" alt="YouTube Link" width="32" height="32"></a>
+                    <a href="https://www.instagram.com/matlockfighttalk/"><img src="/assets/instagram.png" alt="Instagram Link" width="32" height="32"></a>
+                    <a href="https://x.com/MatlockKombat"><img src="/assets/x.png" alt="X Link" width="32" height="32"></a>
+                    <a href="https://matlockfighttalk-shop.fourthwall.com/"><img src="/assets/merch.png" alt="Merch Link" width="32" height="32"></a>
                 </div>
                 <center>
                     <button class="custom-button" onclick="toggleVideo()">horse meat</button>
@@ -93,12 +94,15 @@
                         Your browser does not support the video tag. <a href="/assets/horsemeat.mp4">Download the video</a>.
                     </video>
                 </div>
-                {{ content }}
+                <div class="intro-container">
+                    {{ content }}
+                    <p>Check out more at: <a href="/picture-gallery">Picture Gallery</a>, <a href="/scorecard">Scorecard</a>, or <a href="/matlockpapers">The Matlock Papers</a>.</p>
+                </div>
             </td>
         </tr>
         <tr>
             <td colspan="2" align="center" bgcolor="#333333">
-                <font color="#FFFFFF">Copyright © 2025 MATLOCK'S FIGHT TALK. All rights reserved. | Visitor count: <img src="/assets/counter.gif" alt="Hit Counter"></font>
+                <font color="#FFFFFF">Copyright © 2025 MATLOCK'S FIGHT TALK. All rights reserved. | Visitor count: <img src="/assets/counter.gif" alt="Visitor Counter" width="88" height="31"></font>
                 <br>
                 <marquee behavior="alternate"><font color="#A00000">Powered by Secret Juice</font></marquee>
             </td>
