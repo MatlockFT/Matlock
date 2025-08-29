@@ -7,8 +7,8 @@ title: Picture Gallery
     <h1>Picture Gallery</h1>
     <div class="gallery-grid">
         <div class="gallery-item">
-            <img src="/assets/gallery/image1.jpg" alt="Placeholder Image 1">
-            <p class="gallery-caption">Caption for Image 1</p>
+            <img src="/assets/gallery/image1.jpg" alt="Tito Ortiz">
+            <p class="gallery-caption">Tito Ortiz Pretending To Read</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image2.jpg" alt="Placeholder Image 2">
