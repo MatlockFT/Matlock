@@ -47,8 +47,8 @@ title: Picture Gallery
             <p class="gallery-caption">Daniel Henderson</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image11.jpg" alt="Placeholder Image 11">
-            <p class="gallery-caption">Caption for Image 11</p>
+            <img src="/assets/gallery/image11.jpg" alt="Joe Rogan">
+            <p class="gallery-caption">Joe Rogan In Black Belt Magazine 2002</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image12.jpg" alt="Placeholder Image 12">
