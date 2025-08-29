@@ -1,23 +1,24 @@
 title: "Matlock's Fight Talk"
-description: "Mixed Martial Arts"
+description: "Mixed Martial Arts opinions and UFC breakdowns. Nostalgia videos and contents as well as games! Personal trauma dump blog."
 baseurl: "" # If the site is in a subdirectory, specify it (e.g., "/blog")
 url: "https://matlockfighttalk.com" # Update with your actual GitHub Pages URL
-
 theme: null # You can change this to a different Jekyll theme or set to null for custom styles
-
 # Navigation Links
 nav:
   - name: Home
     link: /
-  - name: Vegas
+  - name: The Matlock Papers
+    link: /matlockpapers
+  - name: Vegas Slots
     link: /vegas
-  - name: Fight Talk
-    link: /fighttalk
-
+  - name: Chatroom
+    link: /chatroom
+  - name: Guestbook
+    link: /guestbook
+  - name: Scorecard
+    link: /scorecard
+  - name: Picture Gallery
+    link: /picture-gallery
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-
-
-
-
