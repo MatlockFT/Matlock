@@ -35,8 +35,8 @@ title: Picture Gallery
             <p class="gallery-caption">Matt Hughes</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image8.jpg" alt="Placeholder Image 8">
-            <p class="gallery-caption">Caption for Image 8</p>
+            <img src="/assets/gallery/image8.jpg" alt="Rampage Jackson">
+            <p class="gallery-caption">Rampage</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image9.jpg" alt="Placeholder Image 9">
