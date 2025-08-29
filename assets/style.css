@@ -1,18 +1,19 @@
 body {
     background-image: url('/assets/tiled_bg.gif');
     background-repeat: repeat;
-    font-family: "Arial", "Helvetica", sans-serif;
+    font-family: "Arial", "Helvetica", sans-serif";
     color: #FFFFFF;
     margin: 0;
     padding: 0;
     background-color: #1a001a; /* Fallback color if image fails */
+    cursor: url('/assets/custom-cursor.png'), auto; /* Custom cursor example */
 }
 
 h1, h2, h3 {
     color: #A00000;
     text-align: center;
     text-shadow: 1px 1px #333333;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
 }
 
 a { color: #A00000; text-decoration: underline; }
@@ -27,7 +28,7 @@ audio { display: none; }
 .control-button { width: 40px; height: 40px; margin: 0 5px; cursor: pointer; border: 2px solid #A00000; }
 #volume-slider { width: 80px; background-color: #000000; accent-color: #A00000; border: 2px solid #A00000; margin: 5px; }
 #audio-player { margin: 10px 0; }
-#song-selector { width: 100%; background-color: #000000; color: #FFFFFF; border: 2px solid #A00000; font-family: "Arial", "Helvetica", sans-serif; padding: 5px; }
+#song-selector { width: 100%; background-color: #000000; color: #FFFFFF; border: 2px solid #A00000; font-family: "Arial", "Helvetica", sans-serif"; padding: 5px; }
 
 .intro-container, .blog-post, .guestbook-container, .chat-container, .scorecard-container, .gallery-container {
     font-family: "Courier New", "Courier", monospace;
@@ -70,7 +71,7 @@ audio { display: none; }
 .gallery-caption {
     font-size: 14px;
     margin-top: 5px;
-    color: #FFFFFF; /* Changed from #A00000 to #FFFFFF for white text */
+    color: #FFFFFF; /* White text for readability */
 }
 
 .scorecard-container .content {
@@ -300,7 +301,7 @@ audio { display: none; }
     box-shadow: 0 0 10px #FF4040;
     transition: all 0.2s ease;
 }
-.slot-button.disabled { opacity: 0.5; cursor: not-allowed; }
+.slot-button.disabled { opacity: 0.5; cursor: pointer; }
 #cash, #result, #high-score { margin: 10px 0; font-size: 20px; }
 #result.win { color: #FF4040; animation: flash-text 0.5s linear infinite; }
 @keyframes flash-text { 50% { color: #A00000; } }
@@ -622,7 +623,7 @@ audio { display: none; }
 }
 
 .slot-machine-container .vegas-sign {
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     font-size: 32px;
     text-align: center;
     background: linear-gradient(45deg, #FF4040, #FF00FF, #A00000);
@@ -695,7 +696,7 @@ audio { display: none; }
     border: 2px solid #A00000;
     padding: 10px 20px;
     font-size: 18px;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     color: #A00000;
     cursor: pointer;
     margin-top: 10px;
@@ -706,7 +707,7 @@ audio { display: none; }
     box-shadow: 0 0 10px #FF4040;
     transition: all 0.2s ease;
 }
-.slot-button.disabled { opacity: 0.5; cursor: not-allowed; }
+.slot-button.disabled { opacity: 0.5; cursor: pointer; }
 #cash, #result, #high-score { margin: 10px 0; font-size: 20px; }
 #result.win { color: #FF4040; animation: flash-text 0.5s linear infinite; }
 @keyframes flash-text { 50% { color: #A00000; } }
@@ -715,7 +716,7 @@ audio { display: none; }
     border: 2px solid #A00000;
     padding: 5px 10px;
     font-size: 14px;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     color: #A00000;
     cursor: pointer;
     margin-top: 10px;
@@ -730,7 +731,7 @@ audio { display: none; }
     border: 2px solid #A00000;
     padding: 5px 10px;
     font-size: 14px;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     color: #A00000;
     cursor: pointer;
     margin-top: 10px;
@@ -743,7 +744,7 @@ audio { display: none; }
     border: 2px solid #A00000;
     padding: 5px 10px;
     font-size: 14px;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     color: #A00000;
     cursor: pointer;
     margin-top: 10px;
@@ -800,7 +801,7 @@ audio { display: none; }
     background-color: #000000;
     border: 2px solid #A00000;
     color: #A00000;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     padding: 5px 10px;
     cursor: pointer;
 }
@@ -859,7 +860,7 @@ audio { display: none; }
     border: 2px solid #A00000;
     padding: 10px 20px;
     font-size: 18px;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     color: #A00000;
     cursor: pointer;
     margin: 10px 0;
@@ -1028,7 +1029,7 @@ audio { display: none; }
 }
 
 .slot-machine-container .vegas-sign {
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     font-size: 32px;
     text-align: center;
     background: linear-gradient(45deg, #FF4040, #FF00FF, #A00000);
@@ -1101,7 +1102,7 @@ audio { display: none; }
     border: 2px solid #A00000;
     padding: 10px 20px;
     font-size: 18px;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     color: #A00000;
     cursor: pointer;
     margin-top: 10px;
@@ -1112,7 +1113,7 @@ audio { display: none; }
     box-shadow: 0 0 10px #FF4040;
     transition: all 0.2s ease;
 }
-.slot-button.disabled { opacity: 0.5; cursor: not-allowed; }
+.slot-button.disabled { opacity: 0.5; cursor: pointer; }
 #cash, #result, #high-score { margin: 10px 0; font-size: 20px; }
 #result.win { color: #FF4040; animation: flash-text 0.5s linear infinite; }
 @keyframes flash-text { 50% { color: #A00000; } }
@@ -1121,7 +1122,7 @@ audio { display: none; }
     border: 2px solid #A00000;
     padding: 5px 10px;
     font-size: 14px;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     color: #A00000;
     cursor: pointer;
     margin-top: 10px;
@@ -1136,7 +1137,7 @@ audio { display: none; }
     border: 2px solid #A00000;
     padding: 5px 10px;
     font-size: 14px;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     color: #A00000;
     cursor: pointer;
     margin-top: 10px;
@@ -1149,7 +1150,7 @@ audio { display: none; }
     border: 2px solid #A00000;
     padding: 5px 10px;
     font-size: 14px;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     color: #A00000;
     cursor: pointer;
     margin-top: 10px;
@@ -1206,7 +1207,7 @@ audio { display: none; }
     background-color: #000000;
     border: 2px solid #A00000;
     color: #A00000;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     padding: 5px 10px;
     cursor: pointer;
 }
@@ -1265,7 +1266,7 @@ audio { display: none; }
     border: 2px solid #A00000;
     padding: 10px 20px;
     font-size: 18px;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     color: #A00000;
     cursor: pointer;
     margin: 10px 0;
@@ -1434,7 +1435,7 @@ audio { display: none; }
 }
 
 .slot-machine-container .vegas-sign {
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     font-size: 32px;
     text-align: center;
     background: linear-gradient(45deg, #FF4040, #FF00FF, #A00000);
@@ -1507,7 +1508,7 @@ audio { display: none; }
     border: 2px solid #A00000;
     padding: 10px 20px;
     font-size: 18px;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     color: #A00000;
     cursor: pointer;
     margin-top: 10px;
@@ -1518,7 +1519,7 @@ audio { display: none; }
     box-shadow: 0 0 10px #FF4040;
     transition: all 0.2s ease;
 }
-.slot-button.disabled { opacity: 0.5; cursor: not-allowed; }
+.slot-button.disabled { opacity: 0.5; cursor: pointer; }
 #cash, #result, #high-score { margin: 10px 0; font-size: 20px; }
 #result.win { color: #FF4040; animation: flash-text 0.5s linear infinite; }
 @keyframes flash-text { 50% { color: #A00000; } }
@@ -1527,7 +1528,7 @@ audio { display: none; }
     border: 2px solid #A00000;
     padding: 5px 10px;
     font-size: 14px;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     color: #A00000;
     cursor: pointer;
     margin-top: 10px;
@@ -1542,7 +1543,7 @@ audio { display: none; }
     border: 2px solid #A00000;
     padding: 5px 10px;
     font-size: 14px;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     color: #A00000;
     cursor: pointer;
     margin-top: 10px;
@@ -1555,7 +1556,7 @@ audio { display: none; }
     border: 2px solid #A00000;
     padding: 5px 10px;
     font-size: 14px;
-    font-family: "Arial Black", sans-serif;
+    font-family: "Arial Black", sans-serif";
     color: #A00000;
     cursor: pointer;
     margin-top: 10px;
@@ -1609,30 +1610,4 @@ audio { display: none; }
     width: 90%;
 }
 #chat-login-button, #chat-send-button {
-    background-color: #000000;
-    border: 2px solid #A00000;
-    color: #A00000;
-    font-family: "Arial Black", sans-serif;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-#chat-login-button:hover, #chat-send-button:hover { background-color: #333333; color: #FFFFFF; }
-#chat-messages {
-    height: 300px;
-    overflow-y: scroll;
-    background-color: #000000;
-    border: 2px solid #A00000;
-    padding: 5px;
-    margin-bottom: 10px;
-    color: #FFFFFF;
-    font-size: 14px;
-}
-#chat-input {
-    width: 80%;
-    background-color: #000000;
-    color: #FFFFFF;
-    border: 2px solid #A00000;
-    padding: 5px;
-    font-family: "Courier New", "Courier", monospace;
-}
-.video-placeholder {
+    background-color: #
