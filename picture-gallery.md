@@ -51,8 +51,8 @@ title: Picture Gallery
             <p class="gallery-caption">Joe Rogan In Black Belt Magazine 2002</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image12.jpg" alt="Placeholder Image 12">
-            <p class="gallery-caption">Caption for Image 12</p>
+            <img src="/assets/gallery/image12.jpg" alt="Dana White's Favorite Sweater">
+            <p class="gallery-caption">Dana White (with hair) and wearing his favorite sweater</p>
         </div>
     </div>
 </div>
