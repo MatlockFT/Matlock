@@ -43,8 +43,8 @@ title: Picture Gallery
             <p class="gallery-caption">Chael Sonnen Next To A Bus</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image10.jpg" alt="Placeholder Image 10">
-            <p class="gallery-caption">Caption for Image 10</p>
+            <img src="/assets/gallery/image10.jpg" alt="H-Bomb">
+            <p class="gallery-caption">Daniel Henderson</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image11.jpg" alt="Placeholder Image 11">
