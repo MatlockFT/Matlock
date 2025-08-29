@@ -39,8 +39,8 @@ title: Picture Gallery
             <p class="gallery-caption">Rampage</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image9.jpg" alt="Placeholder Image 9">
-            <p class="gallery-caption">Caption for Image 9</p>
+            <img src="/assets/gallery/image9.jpg" alt="Chael Sonnen With A Horse">
+            <p class="gallery-caption">Chael Sonnen Next To A Bus</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image10.jpg" alt="Placeholder Image 10">
