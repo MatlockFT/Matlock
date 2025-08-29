@@ -11,28 +11,28 @@ title: Picture Gallery
             <p class="gallery-caption">Tito Ortiz Pretending To Read</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image2.jpg" alt="Placeholder Image 2">
-            <p class="gallery-caption">Caption for Image 2</p>
+            <img src="/assets/gallery/image2.jpg" alt="Fedor Emelianenko On A Horse">
+            <p class="gallery-caption">Fedor On A Horse</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image3.jpg" alt="Placeholder Image 3">
-            <p class="gallery-caption">Caption for Image 3</p>
+            <img src="/assets/gallery/image3.jpg" alt="Dana White Beer">
+            <p class="gallery-caption">Dana White Enjoying Some Brewskis</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image4.jpg" alt="Placeholder Image 4">
-            <p class="gallery-caption">Caption for Image 4</p>
+            <img src="/assets/gallery/image4.jpg" alt="Vitor Belfort">
+            <p class="gallery-caption">Vitor Belfort aka Victor Gracie</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image5.jpg" alt="Placeholder Image 5">
-            <p class="gallery-caption">Caption for Image 5</p>
+            <img src="/assets/gallery/image5.jpg" alt="Mirko Filipović">
+            <p class="gallery-caption">Mirko Filipović Playing Football</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image6.jpg" alt="Placeholder Image 6">
-            <p class="gallery-caption">Caption for Image 6</p>
+            <img src="/assets/gallery/image6.jpg" alt="Wanderlei Silva">
+            <p class="gallery-caption">The Axe Murderer</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image7.jpg" alt="Placeholder Image 7">
-            <p class="gallery-caption">Caption for Image 7</p>
+            <img src="/assets/gallery/image7.jpg" alt="Matt Hughes">
+            <p class="gallery-caption">Matt Hughes</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image8.jpg" alt="Placeholder Image 8">
