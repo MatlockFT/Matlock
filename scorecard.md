@@ -16,16 +16,16 @@ permalink: /scorecard
                 <input type="text" id="blue-fighter" placeholder="Blue Corner" value="Blue Corner">
             </div>
         </div>
+        <select id="duration-select">
+            <option value="300">5 Minutes</option>
+            <option value="180">3 Minutes</option>
+        </select>
         <select id="round-select">
             <option value="1">Round 1</option>
             <option value="2">Round 2</option>
             <option value="3">Round 3</option>
             <option value="4">Round 4</option>
             <option value="5">Round 5</option>
-        </select>
-        <select id="duration-select">
-            <option value="300">5 Minutes (UFC)</option>
-            <option value="180">3 Minutes (Amateur/Bellator)</option>
         </select>
         <div class="buttons">
             <button id="start-button" onclick="startRound()">Start Round</button>
