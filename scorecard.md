@@ -186,6 +186,26 @@ permalink: /scorecard
             endRound(forcedWinner); // Pass forced winner to override
         }
     }
+    function fightOver() {
+        if (isScoringActive) {
+            endRound(); // End current round if active
+        }
+        let redTotal = 0;
+        let blueTotal = 0;
+        history.forEach(entry => {
+            if (entry.includes('10-9 Red')) redTotal += 10, blueTotal += 9;
+            else if (entry.includes('10-9 Blue')) blueTotal += 10, redTotal += 9;
+            else if (entry.includes('10-8 Red')) redTotal += 10, blueTotal += 8;
+            else if (entry.includes('10-8 Blue')) blueTotal += 10, redTotal += 8;
+            else if (entry.includes('10-7 Red')) redTotal += 10, blueTotal += 7;
+            else if (entry.includes('10-7 Blue')) blueTotal += 10, redTotal += 7;
+            else if (entry.includes('draw')) redTotal += 10, blueTotal += 10;
+        });
+        const finalEntry = `Final: ${document.getElementById('red-fighter').value} ${redTotal} - ${blueTotal} ${document.getElementById('blue-fighter').value}`;
+        history.push(finalEntry);
+        document.getElementById('history').textContent = history.join('\n');
+        saveHistory();
+    }
     function endRound(forcedWinner = null) {
         clearInterval(timerInterval);
         document.getElementById('scoring-area').classList.add('hidden');
@@ -285,7 +305,7 @@ permalink: /scorecard
         document.getElementById('history').textContent = '';
     }
     function tallyScores() {
-        let tallyText = `Fight: ${document.getElementById('red-fighter').value} vs ${document.getElementById('blue-fighter').value}\n`;
+        let tallyText = `Fight: ${document.getElementById('red-fighter').value} vs ${document.getElementById('blue-fighter').value}\nEvent: ${document.getElementById('event-hashtag').value}\n`;
         tallyText += history.join('\n');
         navigator.clipboard.writeText(tallyText).then(() => alert('Tally copied to clipboard!')).catch(err => console.error('Clipboard error', err));
     }
@@ -306,27 +326,27 @@ permalink: /scorecard
     });
 </script>
 <style>
-    .scorecard-container { max-width: 800px; margin: 20px auto; padding: 20px; background-color: #121212 !important; background-image: none !important; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.5); color: #e0e0e0; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
-    .content { display: flex; flex-direction: column; gap: 15px; }
-    .fighter-inputs { display: flex; gap: 20px; justify-content: space-between; }
-    .fighter-red, .fighter-blue { flex: 1; }
-    select, input { width: 100%; padding: 8px; border: 1px solid #333; border-radius: 4px; background: #1e1e1e; color: #e0e0e0; font-family: 'Helvetica Neue', Arial, sans-serif; }
-    label { font-weight: bold; color: #e0e0e0; }
-    .buttons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-    button { padding: 10px 15px; background: #333; color: #e0e0e0; border: none; border-radius: 4px; cursor: pointer; transition: background 0.2s; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
-    button:hover { background: #444; }
-    button.disabled { opacity: 0.5; cursor: not-allowed; }
-    .timer { font-size: 48px; text-align: center; color: #e0e0e0; }
-    .progress-bar { height: 8px; background: #333; border-radius: 4px; overflow: hidden; }
-    .progress { height: 100%; background: linear-gradient(90deg, #4caf50, #2196f3); transition: width 0.5s; }
-    .scoring-area { display: flex; gap: 20px; justify-content: center; }
-    .scores { display: flex; gap: 20px; justify-content: center; font-size: 18px; color: #e0e0e0; }
-    .round-winner { text-align: center; font-weight: bold; color: #e0e0e0; margin: 10px 0; }
-    .history { white-space: pre-line; background: #1e1e1e; padding: 10px; border-radius: 4px; max-height: 200px; overflow-y: auto; color: #e0e0e0; font-family: 'Helvetica Neue', Arial, sans-serif; }
-    .popout-button { margin-top: 20px; width: 100%; }
-    .red.corner { background: #f44336; }
-    .blue.corner { background: #2196f3; }
-    .neutral { background: #9e9e9e; }
-    .small { font-size: 14px; padding: 5px 10px; }
-    .direct-score { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    #scorecard-box.scorecard-container { max-width: 800px; margin: 20px auto; padding: 20px; background-color: #121212 !important; background-image: none !important; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.5); color: #e0e0e0; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
+    #scorecard-box .content { display: flex; flex-direction: column; gap: 15px; }
+    #scorecard-box .fighter-hashtag { display: flex; gap: 20px; justify-content: space-between; align-items: center; }
+    #scorecard-box .fighter-red, #scorecard-box .fighter-blue, #scorecard-box .event-hashtag { flex: 1; min-width: 0; }
+    #scorecard-box select, #scorecard-box input { width: 100%; padding: 8px; border: 1px solid #333; border-radius: 4px; background: #1e1e1e !important; color: #e0e0e0; font-family: 'Helvetica Neue', Arial, sans-serif; }
+    #scorecard-box label { font-weight: bold; color: #e0e0e0; }
+    #scorecard-box .buttons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    #scorecard-box button { padding: 10px 15px; background: #333 !important; color: #e0e0e0; border: none; border-radius: 4px; cursor: pointer; transition: background 0.2s; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
+    #scorecard-box button:hover { background: #444 !important; }
+    #scorecard-box button.disabled { opacity: 0.5; cursor: not-allowed; }
+    #scorecard-box .timer { font-size: 48px; text-align: center; color: #e0e0e0; }
+    #scorecard-box .progress-bar { height: 8px; background: #333 !important; border-radius: 4px; overflow: hidden; }
+    #scorecard-box .progress { height: 100%; background: linear-gradient(90deg, #4caf50, #2196f3) !important; transition: width 0.5s; }
+    #scorecard-box .scoring-area { display: flex; gap: 20px; justify-content: center; }
+    #scorecard-box .scores { display: flex; gap: 20px; justify-content: center; font-size: 18px; color: #e0e0e0; }
+    #scorecard-box .round-winner { text-align: center; font-weight: bold; color: #e0e0e0; margin: 10px 0; }
+    #scorecard-box .history { white-space: pre-line; background: #1e1e1e !important; padding: 10px; border-radius: 4px; max-height: 200px; overflow-y: auto; color: #e0e0e0; font-family: 'Helvetica Neue', Arial, sans-serif; }
+    #scorecard-box .popout-button { margin-top: 20px; width: 100%; }
+    #scorecard-box .red.corner { background: #f44336 !important; }
+    #scorecard-box .blue.corner { background: #2196f3 !important; }
+    #scorecard-box .neutral { background: #9e9e9e !important; }
+    #scorecard-box .small { font-size: 14px; padding: 5px 10px; }
+    #scorecard-box .direct-score { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 </style>
