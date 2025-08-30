@@ -34,13 +34,26 @@ permalink: /scorecard
         <div class="buttons">
             <button id="start-button" onclick="startRound()">Start Round</button>
             <button id="pause-button" onclick="pauseResumeRound()" disabled>Pause</button>
-            <button id="reset-button" onclick="resetRound()" disabled>Reset Round Timer</button>
+            <button id="reset-button" onclick="resetRound()" disabled>Reset Round</button>
+            <button id="undo-button" onclick="undoScore()" disabled>Undo Last</button>
+            <button id="end-button" onclick="endRound()" disabled>End Round Early</button>
             <button id="fight-over-button" onclick="fightOver()">Fight Over (Tally Final)</button>
-            <button id="tally-button" onclick="tallyScores()">Tally Scores (Copy to Clipboard)</button>
+            <button id="clear-history" onclick="clearHistory()">Clear History</button>
         </div>
         <div class="timer" id="timer" aria-live="polite">5:00</div>
         <div class="progress-bar">
             <div class="progress" id="progress"></div>
+        </div>
+        <div id="scoring-area" class="hidden">
+            <button onclick="scoreRed()" class="red corner" aria-label="Score for Red (Left Arrow)">Left - Red</button>
+            <button onclick="scoreBlue()" class="blue corner" aria-label="Score for Blue (Right Arrow)">Right - Blue</button>
+        </div>
+        <div class="direct-score">
+            <button onclick="lockScore('10-9 Red')" class="red corner small" disabled>10-9 Red</button>
+            <button onclick="lockScore('10-8 Red')" class="red corner small" disabled>10-8 Red</button>
+            <button onclick="lockScore('Draw')" class="neutral small" disabled>Draw</button>
+            <button onclick="lockScore('10-8 Blue')" class="blue corner small" disabled>10-8 Blue</button>
+            <button onclick="lockScore('10-9 Blue')" class="blue corner small" disabled>10-9 Blue</button>
         </div>
         <div class="scores">
             <div class="score" id="red-score" aria-live="polite">Red Score: 0</div>
@@ -48,6 +61,7 @@ permalink: /scorecard
         </div>
         <div id="round-winner" aria-live="assertive"></div>
         <div class="history" id="history" aria-live="polite"></div>
+        <button id="tally-button" onclick="tallyScores()">Tally Scores (Copy to Clipboard)</button>
     </div>
     <button class="popout-button" onclick="popOutScorecard()">Pop Out Scorecard</button>
 </div>
@@ -65,13 +79,10 @@ permalink: /scorecard
 
     document.addEventListener('DOMContentLoaded', () => {
         history = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-        updateHistoryDisplay();
+        document.getElementById('history').textContent = history.join('\n');
         updateTimerFromDuration(); // Initial timer display from default duration
     });
 
-    function updateHistoryDisplay() {
-        document.getElementById('history').textContent = history.join('\n');
-    }
     function updateTimerFromDuration() {
         if (!isScoringActive) {
             maxTime = parseInt(document.getElementById('duration-select').value);
@@ -90,15 +101,20 @@ permalink: /scorecard
             updateProgress();
             updateTimerDisplay();
             document.getElementById('round-winner').textContent = '';
+            document.getElementById('scoring-area').classList.remove('hidden');
+            enableDirectScoreButtons(true);
             isScoringActive = true;
             document.getElementById('start-button').disabled = true;
             document.getElementById('pause-button').disabled = false;
             document.getElementById('reset-button').disabled = false;
+            document.getElementById('undo-button').disabled = false;
+            document.getElementById('end-button').disabled = false;
             timerInterval = setInterval(() => {
                 if (!isPaused) {
                     timeLeft--;
                     updateProgress();
                     updateTimerDisplay();
+                    if (timeLeft <= 30) flashTimer();
                     if (timeLeft <= 0) {
                         endRound();
                     }
@@ -117,6 +133,7 @@ permalink: /scorecard
                     timeLeft--;
                     updateProgress();
                     updateTimerDisplay();
+                    if (timeLeft <= 30) flashTimer();
                     if (timeLeft <= 0) {
                         endRound();
                     }
@@ -136,35 +153,74 @@ permalink: /scorecard
             document.getElementById('round-winner').textContent = '';
         }
     }
-    function endRound() {
+    function undoScore() {
+        if (lastScore === 'red' && redScore > 0) {
+            redScore--;
+        } else if (lastScore === 'blue' && blueScore > 0) {
+            blueScore--;
+        }
+        lastScore = null;
+        updateScores();
+        document.getElementById('undo-button').disabled = (redScore + blueScore === 0);
+    }
+    function lockScore(scoreType) {
+        if (isScoringActive && !isPaused) {
+            let forcedWinner = '';
+            switch (scoreType) {
+                case '10-9 Red':
+                    forcedWinner = document.getElementById('red-fighter').value + ' wins the round 10-9';
+                    break;
+                case '10-8 Red':
+                    forcedWinner = document.getElementById('red-fighter').value + ' wins the round 10-8';
+                    break;
+                case 'Draw':
+                    forcedWinner = 'Round is a draw';
+                    break;
+                case '10-8 Blue':
+                    forcedWinner = document.getElementById('blue-fighter').value + ' wins the round 10-8';
+                    break;
+                case '10-9 Blue':
+                    forcedWinner = document.getElementById('blue-fighter').value + ' wins the round 10-9';
+                    break;
+            }
+            endRound(forcedWinner); // Pass forced winner to override
+        }
+    }
+    function endRound(forcedWinner = null) {
         clearInterval(timerInterval);
+        document.getElementById('scoring-area').classList.add('hidden');
+        enableDirectScoreButtons(false);
         isScoringActive = false;
         isPaused = false;
         document.getElementById('start-button').disabled = false;
         document.getElementById('pause-button').disabled = true;
         document.getElementById('pause-button').textContent = 'Pause';
         document.getElementById('reset-button').disabled = true;
-        let scoreDiff = Math.abs(redScore - blueScore);
-        let score = '';
-        if (scoreDiff >= 30) {
-            score = '10-7';
-        } else if (scoreDiff >= 15) {
-            score = '10-8';
-        } else {
-            score = '10-9';
+        document.getElementById('undo-button').disabled = true;
+        document.getElementById('end-button').disabled = true;
+        let winner = forcedWinner;
+        if (!winner) {
+            let scoreDiff = Math.abs(redScore - blueScore);
+            let score = '';
+            if (scoreDiff >= 30) {
+                score = '10-7';
+            } else if (scoreDiff >= 15) {
+                score = '10-8';
+            } else {
+                score = '10-9';
+            }
+            if (redScore > blueScore) {
+                winner = document.getElementById('red-fighter').value + ' wins the round ' + score;
+            } else if (blueScore > redScore) {
+                winner = document.getElementById('blue-fighter').value + ' wins the round ' + score;
+            } else {
+                winner = 'Round is a draw';
+            }
         }
-        let winner = '';
-        if (redScore > blueScore) {
-            winner = document.getElementById('red-fighter').value + ' wins the round ' + score;
-        } else if (blueScore > redScore) {
-            winner = document.getElementById('blue-fighter').value + ' wins the round ' + score;
-        } else {
-            winner = 'Round is a draw';
-        }
-        document.getElementById('round-winner').textContent = winner;
         const roundEntry = `Round ${document.getElementById('round-select').value}: ${winner}`;
         history.push(roundEntry);
-        updateHistoryDisplay();
+        document.getElementById('round-winner').textContent = winner;
+        document.getElementById('history').textContent = history.join('\n');
         saveHistory();
         // Auto-increment round
         const roundSelect = document.getElementById('round-select');
@@ -172,26 +228,6 @@ permalink: /scorecard
         if (nextRound <= 5) {
             roundSelect.value = nextRound;
         }
-    }
-    function fightOver() {
-        if (isScoringActive) {
-            endRound(); // End current round if active
-        }
-        let redTotal = 0;
-        let blueTotal = 0;
-        history.forEach(entry => {
-            if (entry.includes('10-9') && entry.includes(document.getElementById('red-fighter').value)) redTotal += 10, blueTotal += 9;
-            else if (entry.includes('10-9') && entry.includes(document.getElementById('blue-fighter').value)) blueTotal += 10, redTotal += 9;
-            else if (entry.includes('10-8') && entry.includes(document.getElementById('red-fighter').value)) redTotal += 10, blueTotal += 8;
-            else if (entry.includes('10-8') && entry.includes(document.getElementById('blue-fighter').value)) blueTotal += 10, redTotal += 8;
-            else if (entry.includes('10-7') && entry.includes(document.getElementById('red-fighter').value)) redTotal += 10, blueTotal += 7;
-            else if (entry.includes('10-7') && entry.includes(document.getElementById('blue-fighter').value)) blueTotal += 10, redTotal += 7;
-            else if (entry.includes('draw')) redTotal += 10, blueTotal += 10;
-        });
-        const finalEntry = `Final: ${document.getElementById('red-fighter').value} ${redTotal} - ${blueTotal} ${document.getElementById('blue-fighter').value}`;
-        history.push(finalEntry);
-        updateHistoryDisplay();
-        saveHistory();
     }
     function scoreRed() {
         if (isScoringActive && !isPaused) {
@@ -246,7 +282,7 @@ permalink: /scorecard
     function clearHistory() {
         history = [];
         localStorage.removeItem(STORAGE_KEY);
-        updateHistoryDisplay();
+        document.getElementById('history').textContent = '';
     }
     function tallyScores() {
         let tallyText = `Fight: ${document.getElementById('red-fighter').value} vs ${document.getElementById('blue-fighter').value}\nEvent: ${document.getElementById('event-hashtag').value}\n`;
@@ -264,7 +300,7 @@ permalink: /scorecard
             } else if (e.key === 'ArrowRight') {
                 scoreBlue();
             } else if (e.key === 'd') {
-                endRound('Round is a draw');
+                lockScore('Draw');
             }
         }
     });
@@ -273,7 +309,8 @@ permalink: /scorecard
     #scorecard-box.scorecard-container { max-width: 800px; margin: 20px auto; padding: 20px; background-color: #121212 !important; background-image: none !important; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.5); color: #e0e0e0; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
     #scorecard-box .content { display: flex; flex-direction: column; gap: 15px; }
     #scorecard-box .fighter-hashtag { display: flex; gap: 20px; justify-content: space-between; align-items: flex-end; }
-    #scorecard-box .fighter-red, #scorecard-box .fighter-blue, #scorecard-box .event-hashtag { flex: 1; min-width: 150px; }
+    #scorecard-box .fighter-red, #scorecard-box .fighter-blue { flex: 2; }
+    #scorecard-box .event-hashtag { flex: 1; text-align: center; }
     #scorecard-box select, #scorecard-box input { width: 100%; padding: 8px; border: 1px solid #333; border-radius: 4px; background: #1e1e1e !important; color: #e0e0e0; font-family: 'Helvetica Neue', Arial, sans-serif; }
     #scorecard-box label { font-weight: bold; color: #e0e0e0; }
     #scorecard-box .buttons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
