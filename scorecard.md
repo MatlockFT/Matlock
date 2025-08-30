@@ -216,11 +216,11 @@ permalink: /scorecard
             if (redScore > blueScore) {
                 winner = document.getElementById('red-fighter').value + ' wins the round ' + score;
                 redRoundPoints = 10;
-                blueRoundPoints = 10 - int(score.split('-')[1]);
+                blueRoundPoints = parseInt(score.split('-')[1]);
             } else if (blueScore > redScore) {
                 winner = document.getElementById('blue-fighter').value + ' wins the round ' + score;
                 blueRoundPoints = 10;
-                redRoundPoints = 10 - int(score.split('-')[1]);
+                redRoundPoints = parseInt(score.split('-')[1]);
             } else {
                 winner = 'Round is a draw';
                 redRoundPoints = 10;
@@ -228,19 +228,19 @@ permalink: /scorecard
             }
         } else {
             // Parse forced winner for points
-            if ('Draw' in winner) {
+            if (winner.includes('draw')) {
                 redRoundPoints = 10;
                 blueRoundPoints = 10;
-            } else if ('10-9 Red' in winner) {
+            } else if (winner.includes('10-9') && winner.includes(document.getElementById('red-fighter').value)) {
                 redRoundPoints = 10;
                 blueRoundPoints = 9;
-            } else if ('10-8 Red' in winner) {
+            } else if (winner.includes('10-8') && winner.includes(document.getElementById('red-fighter').value)) {
                 redRoundPoints = 10;
                 blueRoundPoints = 8;
-            } else if ('10-9 Blue' in winner) {
+            } else if (winner.includes('10-9') && winner.includes(document.getElementById('blue-fighter').value)) {
                 blueRoundPoints = 10;
                 redRoundPoints = 9;
-            } else if ('10-8 Blue' in winner) {
+            } else if (winner.includes('10-8') && winner.includes(document.getElementById('blue-fighter').value)) {
                 blueRoundPoints = 10;
                 redRoundPoints = 8;
             }
@@ -320,6 +320,8 @@ permalink: /scorecard
     }
     function clearHistory() {
         history = [];
+        redCumulative = 0;
+        blueCumulative = 0;
         localStorage.removeItem(STORAGE_KEY);
         document.getElementById('history').textContent = '';
     }
