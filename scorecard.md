@@ -297,21 +297,23 @@ permalink: /scorecard
     .content { display: flex; flex-direction: column; gap: 15px; }
     .fighter-inputs { display: flex; gap: 20px; justify-content: space-between; }
     .fighter-red, .fighter-blue { flex: 1; }
-    select, input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: sans-serif; }
+    select, input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; border-radius: 4px; font-family: 'Helvetica Neue', Arial, sans-serif; }
+    label { font-weight: bold; font-family: 'Helvetica Neue', Arial, sans-serif; }
     .buttons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-    button { padding: 10px 15px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer; transition: background 0.2s; }
+    button { padding: 10px 15px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer; transition: background 0.2s; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
     button:hover { background: #555; }
     button.disabled { opacity: 0.5; cursor: not-allowed; }
-    .timer { font-size: 48px; text-align: center; color: #333; }
+    .timer { font-size: 48px; text-align: center; color: #333; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
     .progress-bar { height: 8px; background: #eee; border-radius: 4px; overflow: hidden; }
     .progress { height: 100%; background: linear-gradient(90deg, #4caf50, #2196f3); transition: width 0.5s; }
     .scoring-area { display: flex; gap: 20px; justify-content: center; }
-    .scores { display: flex; gap: 20px; justify-content: center; font-size: 18px; color: #333; }
-    .round-winner { text-align: center; font-weight: bold; color: #333; margin: 10px 0; }
-    .history { white-space: pre-line; background: #f9f9f9; padding: 10px; border-radius: 4px; max-height: 200px; overflow-y: auto; font-family: monospace; }
+    .scores { display: flex; gap: 20px; justify-content: center; font-size: 18px; color: #333; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
+    .round-winner { text-align: center; font-weight: bold; color: #333; margin: 10px 0; font-family: 'Helvetica Neue', Arial, sans-serif; }
+    .history { white-space: pre-line; background: #f9f9f9; padding: 10px; border-radius: 4px; max-height: 200px; overflow-y: auto; font-family: 'Helvetica Neue', Arial, sans-serif; }
     .popout-button { margin-top: 20px; width: 100%; }
     .red.corner { background: #f44336; }
     .blue.corner { background: #2196f3; }
     .neutral { background: #9e9e9e; }
     .small { font-size: 14px; padding: 5px 10px; }
+    .direct-score { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
 </style>
