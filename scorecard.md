@@ -6,6 +6,10 @@ permalink: /scorecard
 
 <div class="scorecard-container">
     <div class="content">
+        <select id="duration-select" onchange="updateTimerFromDuration()">
+            <option value="300">5 Minutes</option>
+            <option value="180">3 Minutes</option>
+        </select>
         <div class="fighter-inputs">
             <div class="fighter-red">
                 <label for="red-fighter">Red Corner Fighter:</label>
@@ -22,10 +26,6 @@ permalink: /scorecard
             <option value="3">Round 3</option>
             <option value="4">Round 4</option>
             <option value="5">Round 5</option>
-        </select>
-        <select id="duration-select" onchange="updateTimerFromDuration()">
-            <option value="300">5 Minutes</option>
-            <option value="180">3 Minutes</option>
         </select>
         <div class="buttons">
             <button id="start-button" onclick="startRound()">Start Round</button>
