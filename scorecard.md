@@ -16,16 +16,16 @@ permalink: /scorecard
                 <input type="text" id="blue-fighter" placeholder="Blue Corner" value="Blue Corner">
             </div>
         </div>
-        <select id="duration-select" onchange="updateTimerFromDuration()">
-            <option value="300">5 Minutes</option>
-            <option value="180">3 Minutes</option>
-        </select>
         <select id="round-select">
             <option value="1">Round 1</option>
             <option value="2">Round 2</option>
             <option value="3">Round 3</option>
             <option value="4">Round 4</option>
             <option value="5">Round 5</option>
+        </select>
+        <select id="duration-select" onchange="updateTimerFromDuration()">
+            <option value="300">5 Minutes</option>
+            <option value="180">3 Minutes</option>
         </select>
         <div class="buttons">
             <button id="start-button" onclick="startRound()">Start Round</button>
@@ -301,7 +301,7 @@ permalink: /scorecard
     });
 </script>
 <style>
-    .scorecard-container { max-width: 800px; margin: 20px auto; padding: 20px; background: #121212 !important; background-image: none !important; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.5); color: #e0e0e0; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
+    .scorecard-container { max-width: 800px; margin: 20px auto; padding: 20px; background-color: #121212 !important; background-image: none !important; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.5); color: #e0e0e0; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
     .content { display: flex; flex-direction: column; gap: 15px; }
     .fighter-inputs { display: flex; gap: 20px; justify-content: space-between; }
     .fighter-red, .fighter-blue { flex: 1; }
