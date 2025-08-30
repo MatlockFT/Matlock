@@ -27,9 +27,6 @@ permalink: /scorecard
             <option value="4">Round 4</option>
             <option value="5">Round 5</option>
         </select>
-        <div class="criteria-reminder" style="font-size: 12px; color: #FFFFFF; text-align: center; margin: 10px 0;">
-            <marquee>Score based on striking, grappling, aggression, octagon control</marquee>
-        </div>
         <div class="buttons">
             <button id="start-button" onclick="startRound()">Start Round</button>
             <button id="pause-button" onclick="pauseResumeRound()" disabled>Pause</button>
@@ -46,7 +43,7 @@ permalink: /scorecard
             <button onclick="scoreRed()" class="red corner" aria-label="Score for Red (Left Arrow)">Left - Red</button>
             <button onclick="scoreBlue()" class="blue corner" aria-label="Score for Blue (Right Arrow)">Right - Blue</button>
         </div>
-        <div class="direct-score" style="display: flex; justify-content: center; gap: 10px; margin: 10px 0;">
+        <div class="direct-score">
             <button onclick="lockScore('10-9 Red')" class="red corner small" disabled>10-9 Red</button>
             <button onclick="lockScore('10-8 Red')" class="red corner small" disabled>10-8 Red</button>
             <button onclick="lockScore('Draw')" class="neutral small" disabled>Draw</button>
@@ -57,10 +54,9 @@ permalink: /scorecard
             <div class="score" id="red-score" aria-live="polite">Red Score: 0</div>
             <div class="score" id="blue-score" aria-live="polite">Blue Score: 0</div>
         </div>
-        <marquee id="round-winner-marquee" style="display: none; color: #FF0000; font-weight: bold;"></marquee>
         <div id="round-winner" aria-live="assertive"></div>
         <div class="history" id="history" aria-live="polite"></div>
-        <button id="export-scores" onclick="exportScores()" style="margin-top: 10px;">Copy Scores to Clipboard</button>
+        <button id="tally-button" onclick="tallyScores()">Tally Scores (Copy to Clipboard)</button>
     </div>
     <button class="popout-button" onclick="popOutScorecard()">Pop Out Scorecard</button>
 </div>
@@ -92,7 +88,6 @@ permalink: /scorecard
             updateProgress();
             updateTimerDisplay();
             document.getElementById('round-winner').textContent = '';
-            document.getElementById('round-winner-marquee').style.display = 'none';
             document.getElementById('scoring-area').classList.remove('hidden');
             enableDirectScoreButtons(true);
             isScoringActive = true;
@@ -106,7 +101,7 @@ permalink: /scorecard
                     timeLeft--;
                     updateProgress();
                     updateTimerDisplay();
-                    if (timeLeft <= 30) flashTimer(); // Warning for last 30s
+                    if (timeLeft <= 30) flashTimer();
                     if (timeLeft <= 0) {
                         endRound();
                     }
@@ -143,7 +138,6 @@ permalink: /scorecard
             updateProgress();
             updateTimerDisplay();
             document.getElementById('round-winner').textContent = '';
-            document.getElementById('round-winner-marquee').style.display = 'none';
         }
     }
     function undoScore() {
@@ -161,19 +155,19 @@ permalink: /scorecard
             let forcedWinner = '';
             switch (scoreType) {
                 case '10-9 Red':
-                    forcedWinner = document.getElementById('red-fighter').value + ' wins the round 10-9!';
+                    forcedWinner = document.getElementById('red-fighter').value + ' wins the round 10-9';
                     break;
                 case '10-8 Red':
-                    forcedWinner = document.getElementById('red-fighter').value + ' wins the round 10-8!';
+                    forcedWinner = document.getElementById('red-fighter').value + ' wins the round 10-8';
                     break;
                 case 'Draw':
-                    forcedWinner = 'Round is a draw!';
+                    forcedWinner = 'Round is a draw';
                     break;
                 case '10-8 Blue':
-                    forcedWinner = document.getElementById('blue-fighter').value + ' wins the round 10-8!';
+                    forcedWinner = document.getElementById('blue-fighter').value + ' wins the round 10-8';
                     break;
                 case '10-9 Blue':
-                    forcedWinner = document.getElementById('blue-fighter').value + ' wins the round 10-9!';
+                    forcedWinner = document.getElementById('blue-fighter').value + ' wins the round 10-9';
                     break;
             }
             endRound(forcedWinner); // Pass forced winner to override
@@ -194,20 +188,25 @@ permalink: /scorecard
         let winner = forcedWinner;
         if (!winner) {
             let scoreDiff = Math.abs(redScore - blueScore);
-            let score = scoreDiff >= 25 ? '10-8' : '10-9';
-            if (redScore > blueScore) {
-                winner = document.getElementById('red-fighter').value + ' wins the round ' + score + '!';
-            } else if (blueScore > redScore) {
-                winner = document.getElementById('blue-fighter').value + ' wins the round ' + score + '!';
+            let score = '';
+            if (scoreDiff >= 30) {
+                score = '10-7';
+            } else if (scoreDiff >= 15) {
+                score = '10-8';
             } else {
-                winner = 'Round is a draw!';
+                score = '10-9';
+            }
+            if (redScore > blueScore) {
+                winner = document.getElementById('red-fighter').value + ' wins the round ' + score;
+            } else if (blueScore > redScore) {
+                winner = document.getElementById('blue-fighter').value + ' wins the round ' + score;
+            } else {
+                winner = 'Round is a draw';
             }
         }
         const roundEntry = `Round ${document.getElementById('round-select').value}: ${winner}`;
         history.push(roundEntry);
         document.getElementById('round-winner').textContent = winner;
-        document.getElementById('round-winner-marquee').textContent = winner;
-        document.getElementById('round-winner-marquee').style.display = 'block';
         document.getElementById('history').textContent = history.join('\n');
         saveHistory();
         // Auto-increment round
@@ -272,9 +271,10 @@ permalink: /scorecard
         localStorage.removeItem(STORAGE_KEY);
         document.getElementById('history').textContent = '';
     }
-    function exportScores() {
-        const scoresText = history.join('\n');
-        navigator.clipboard.writeText(scoresText).then(() => alert('Scores copied to clipboard!')).catch(err => console.error('Clipboard error', err));
+    function tallyScores() {
+        let tallyText = `Fight: ${document.getElementById('red-fighter').value} vs ${document.getElementById('blue-fighter').value}\n`;
+        tallyText += history.join('\n');
+        navigator.clipboard.writeText(tallyText).then(() => alert('Tally copied to clipboard!')).catch(err => console.error('Clipboard error', err));
     }
     function popOutScorecard() {
         const url = window.location.origin + '/scorecard';
@@ -293,6 +293,25 @@ permalink: /scorecard
     });
 </script>
 <style>
+    .scorecard-container { max-width: 800px; margin: 20px auto; padding: 20px; background: linear-gradient(#f0f0f0, #ffffff); border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .content { display: flex; flex-direction: column; gap: 15px; }
+    .fighter-inputs { display: flex; gap: 20px; justify-content: space-between; }
+    .fighter-red, .fighter-blue { flex: 1; }
+    select, input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-family: sans-serif; }
+    .buttons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    button { padding: 10px 15px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer; transition: background 0.2s; }
+    button:hover { background: #555; }
+    button.disabled { opacity: 0.5; cursor: not-allowed; }
+    .timer { font-size: 48px; text-align: center; color: #333; }
+    .progress-bar { height: 8px; background: #eee; border-radius: 4px; overflow: hidden; }
+    .progress { height: 100%; background: linear-gradient(90deg, #4caf50, #2196f3); transition: width 0.5s; }
+    .scoring-area { display: flex; gap: 20px; justify-content: center; }
+    .scores { display: flex; gap: 20px; justify-content: center; font-size: 18px; color: #333; }
+    .round-winner { text-align: center; font-weight: bold; color: #333; margin: 10px 0; }
+    .history { white-space: pre-line; background: #f9f9f9; padding: 10px; border-radius: 4px; max-height: 200px; overflow-y: auto; font-family: monospace; }
+    .popout-button { margin-top: 20px; width: 100%; }
+    .red.corner { background: #f44336; }
+    .blue.corner { background: #2196f3; }
+    .neutral { background: #9e9e9e; }
     .small { font-size: 14px; padding: 5px 10px; }
-    .neutral { background-color: #333333; color: #FFFFFF; border-color: #A00000; }
 </style>
