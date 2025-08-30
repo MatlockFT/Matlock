@@ -301,7 +301,7 @@ permalink: /scorecard
     });
 </script>
 <style>
-    .scorecard-container { max-width: 800px; margin: 20px auto; padding: 20px; background: #121212; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.5); color: #e0e0e0; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
+    .scorecard-container { max-width: 800px; margin: 20px auto; padding: 20px; background: #121212 !important; background-image: none !important; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.5); color: #e0e0e0; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
     .content { display: flex; flex-direction: column; gap: 15px; }
     .fighter-inputs { display: flex; gap: 20px; justify-content: space-between; }
     .fighter-red, .fighter-blue { flex: 1; }
