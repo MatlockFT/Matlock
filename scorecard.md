@@ -23,6 +23,10 @@ permalink: /scorecard
             <option value="4">Round 4</option>
             <option value="5">Round 5</option>
         </select>
+        <select id="duration-select">
+            <option value="300">5 Minutes (UFC)</option>
+            <option value="180">3 Minutes (Amateur/Bellator)</option>
+        </select>
         <div class="buttons">
             <button id="start-button" onclick="startRound()">Start Round</button>
             <button id="pause-button" onclick="pauseResumeRound()" disabled>Pause</button>
@@ -46,13 +50,13 @@ permalink: /scorecard
     </div>
     <button class="popout-button" onclick="popOutScorecard()">Pop Out Scorecard</button>
 </div>
-
 <script>
     let redScore = 0;
     let blueScore = 0;
     let timerInterval;
     let isScoringActive = false;
-    let timeLeft = 300; // 5 minutes in seconds
+    let timeLeft = 300; // Default to 5 minutes in seconds
+    let maxTime = 300; // Track the max for progress calculation
     let isPaused = false;
     let history = [];
     let lastScore = null;
@@ -60,10 +64,12 @@ permalink: /scorecard
         if (!isScoringActive) {
             redScore = 0;
             blueScore = 0;
-            timeLeft = 300;
+            maxTime = parseInt(document.getElementById('duration-select').value);
+            timeLeft = maxTime;
             lastScore = null;
             updateScores();
             updateProgress();
+            updateTimerDisplay(); // Initial display update
             document.getElementById('round-winner').textContent = '';
             document.getElementById('history').textContent = history.join('\n');
             document.getElementById('scoring-area').classList.remove('hidden');
@@ -76,9 +82,7 @@ permalink: /scorecard
                 if (!isPaused) {
                     timeLeft--;
                     updateProgress();
-                    let minutes = Math.floor(timeLeft / 60);
-                    let seconds = timeLeft % 60;
-                    document.getElementById('timer').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                    updateTimerDisplay();
                     if (timeLeft <= 0) {
                         endRound();
                     }
@@ -93,13 +97,13 @@ permalink: /scorecard
             clearInterval(timerInterval);
         } else if (isScoringActive) {
             timerInterval = setInterval(() => {
-                timeLeft--;
-                updateProgress();
-                let minutes = Math.floor(timeLeft / 60);
-                let seconds = timeLeft % 60;
-                document.getElementById('timer').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-                if (timeLeft <= 0) {
-                    endRound();
+                if (!isPaused) {
+                    timeLeft--;
+                    updateProgress();
+                    updateTimerDisplay();
+                    if (timeLeft <= 0) {
+                        endRound();
+                    }
                 }
             }, 1000);
         }
@@ -108,10 +112,11 @@ permalink: /scorecard
         if (isScoringActive && !isPaused) {
             redScore = 0;
             blueScore = 0;
-            timeLeft = 300;
+            timeLeft = maxTime;
             lastScore = null;
             updateScores();
             updateProgress();
+            updateTimerDisplay();
             document.getElementById('round-winner').textContent = '';
         }
     }
@@ -171,8 +176,13 @@ permalink: /scorecard
     }
     function updateProgress() {
         const progress = document.getElementById('progress');
-        const percentage = (timeLeft / 300) * 100;
+        const percentage = (timeLeft / maxTime) * 100;
         progress.style.width = `${percentage}%`;
+    }
+    function updateTimerDisplay() {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        document.getElementById('timer').textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     }
     function popOutScorecard() {
         const url = window.location.origin + '/scorecard';
