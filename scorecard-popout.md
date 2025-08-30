@@ -4,7 +4,6 @@ title: MMA Judging Scorecard Popout
 permalink: /scorecard-popout
 ---
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
