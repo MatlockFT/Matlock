@@ -16,7 +16,7 @@ permalink: /scorecard
                 <input type="text" id="blue-fighter" placeholder="Blue Corner" value="Blue Corner">
             </div>
         </div>
-        <select id="duration-select">
+        <select id="duration-select" onchange="updateTimerFromDuration()">
             <option value="300">5 Minutes</option>
             <option value="180">3 Minutes</option>
         </select>
@@ -75,8 +75,16 @@ permalink: /scorecard
     document.addEventListener('DOMContentLoaded', () => {
         history = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
         document.getElementById('history').textContent = history.join('\n');
+        updateTimerFromDuration(); // Initial timer display from default duration
     });
 
+    function updateTimerFromDuration() {
+        if (!isScoringActive) {
+            maxTime = parseInt(document.getElementById('duration-select').value);
+            timeLeft = maxTime;
+            updateTimerDisplay();
+        }
+    }
     function startRound() {
         if (!isScoringActive) {
             redScore = 0;
@@ -277,7 +285,7 @@ permalink: /scorecard
         navigator.clipboard.writeText(tallyText).then(() => alert('Tally copied to clipboard!')).catch(err => console.error('Clipboard error', err));
     }
     function popOutScorecard() {
-        const url = window.location.origin + '/scorecard';
+        const url = window.location.origin + '/scorecard-popout';
         window.open(url, 'MMA Scorecard', 'width=600,height=800,toolbar=no,menubar=no,scrollbars=yes,resizable=yes');
     }
     document.addEventListener('keydown', (e) => {
@@ -293,23 +301,23 @@ permalink: /scorecard
     });
 </script>
 <style>
-    .scorecard-container { max-width: 800px; margin: 20px auto; padding: 20px; background: linear-gradient(#f0f0f0, #ffffff); border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .scorecard-container { max-width: 800px; margin: 20px auto; padding: 20px; background: #121212; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.5); color: #e0e0e0; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
     .content { display: flex; flex-direction: column; gap: 15px; }
     .fighter-inputs { display: flex; gap: 20px; justify-content: space-between; }
     .fighter-red, .fighter-blue { flex: 1; }
-    select, input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; border-radius: 4px; font-family: 'Helvetica Neue', Arial, sans-serif; }
-    label { font-weight: bold; font-family: 'Helvetica Neue', Arial, sans-serif; }
+    select, input { width: 100%; padding: 8px; border: 1px solid #333; border-radius: 4px; background: #1e1e1e; color: #e0e0e0; font-family: 'Helvetica Neue', Arial, sans-serif; }
+    label { font-weight: bold; color: #e0e0e0; }
     .buttons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-    button { padding: 10px 15px; background: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer; transition: background 0.2s; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
-    button:hover { background: #555; }
+    button { padding: 10px 15px; background: #333; color: #e0e0e0; border: none; border-radius: 4px; cursor: pointer; transition: background 0.2s; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
+    button:hover { background: #444; }
     button.disabled { opacity: 0.5; cursor: not-allowed; }
-    .timer { font-size: 48px; text-align: center; color: #333; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
-    .progress-bar { height: 8px; background: #eee; border-radius: 4px; overflow: hidden; }
+    .timer { font-size: 48px; text-align: center; color: #e0e0e0; }
+    .progress-bar { height: 8px; background: #333; border-radius: 4px; overflow: hidden; }
     .progress { height: 100%; background: linear-gradient(90deg, #4caf50, #2196f3); transition: width 0.5s; }
     .scoring-area { display: flex; gap: 20px; justify-content: center; }
-    .scores { display: flex; gap: 20px; justify-content: center; font-size: 18px; color: #333; font-family: 'Helvetica Neue', Arial, sans-serif; font-weight: bold; }
-    .round-winner { text-align: center; font-weight: bold; color: #333; margin: 10px 0; font-family: 'Helvetica Neue', Arial, sans-serif; }
-    .history { white-space: pre-line; background: #f9f9f9; padding: 10px; border-radius: 4px; max-height: 200px; overflow-y: auto; font-family: 'Helvetica Neue', Arial, sans-serif; }
+    .scores { display: flex; gap: 20px; justify-content: center; font-size: 18px; color: #e0e0e0; }
+    .round-winner { text-align: center; font-weight: bold; color: #e0e0e0; margin: 10px 0; }
+    .history { white-space: pre-line; background: #1e1e1e; padding: 10px; border-radius: 4px; max-height: 200px; overflow-y: auto; color: #e0e0e0; font-family: 'Helvetica Neue', Arial, sans-serif; }
     .popout-button { margin-top: 20px; width: 100%; }
     .red.corner { background: #f44336; }
     .blue.corner { background: #2196f3; }
