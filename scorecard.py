@@ -1,1 +1,1 @@
-print("Scorecard.py loaded without pygame")
+print("Scorecard.py loaded")
