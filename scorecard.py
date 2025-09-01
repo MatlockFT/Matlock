@@ -1,2 +1,1 @@
-import pygame
-print("Scorecard.py loaded")
+print("Scorecard.py loaded without pygame")
