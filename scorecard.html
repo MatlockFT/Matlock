@@ -1,24 +1,432 @@
----
-     layout: default
-     title: Scorecard
-     ---
-     <div class="scorecard-container">
-         <div id="scorecard-canvas"></div>
-         <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
-         <script type="text/javascript">
-             let pyodide;
-             async function main() {
-                 pyodide = await loadPyodide();
-                 // Fetch and load scorecard.py
-                 const response = await pyodide.pyfetch('/scorecard.py');
-                 const content = await response.text();
-                 await pyodide.runPythonAsync(`
-with open('scorecard.py', 'w') as f:
-    f.write(\`${content}\`)
-import scorecard
-print("Scorecard imported successfully")
-                 `);
+<!DOCTYPE html>
+     <html lang="en">
+     <head>
+         <meta charset="UTF-8">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <title>Scorecard - Matlock Fight Talk</title>
+         <style>
+             canvas {
+                 border: 1px solid #A00000;
+                 background-color: #000000;
              }
-             main();
-         </script>
-     </div>
+             .scorecard-container {
+                 text-align: center;
+                 color: #F5F5F5;
+             }
+         </style>
+     </head>
+     <body>
+         <div class="scorecard-container">
+             <canvas id="scorecard-canvas" width="1200" height="900"></canvas>
+             <script>
+                 const canvas = document.getElementById('scorecard-canvas');
+                 const ctx = canvas.getContext('2d');
+
+                 // Initial state (mirroring your .py)
+                 let timerSeconds = 300;
+                 let timerRunning = false;
+                 let timerState = "start";
+                 let pausedTime = 0;
+                 let currentRound = 1;
+                 let redScore = 0;
+                 let blueScore = 0;
+                 let redIntervalScore = 0;
+                 let blueIntervalScore = 0;
+                 let intervalDuration = 10;
+                 let intervalTimer = 0;
+                 let intervals = [];
+                 let redName = "";
+                 let blueName = "";
+                 let eventName = "";
+                 let redNameInput = "";
+                 let blueNameInput = "";
+                 let eventNameInput = "#EVENT";
+                 let redNameLocked = false;
+                 let blueNameLocked = false;
+                 let eventNameLocked = false;
+                 let activeInput = null;
+                 let startTime = 0;
+                 let lastIntervalTime = 0;
+                 let roundLog = [];
+                 let cursorVisible = true;
+                 let cursorTimer = 0;
+                 let sidebarOpen = false;
+                 let sidebarX = -400;
+                 let progressWidth = 1100;
+                 let woodblockPlayed = false;
+
+                 // Colors (matching your .py)
+                 const BLACK = 'rgba(0, 0, 0, 0.7)';
+                 const WHITE = '#F5F5F5';
+                 const TRANSPARENT_WHITE = 'rgba(245, 245, 245, 0.5)';
+                 const RED = '#F6530F';
+                 const BLUE = '#1887C7';
+                 const GRAY = 'rgba(51, 51, 51, 0.7)';
+                 const LIGHT_GRAY = '#BBBBBB';
+                 const GREEN = '#00FF00';
+                 const TRANSPARENT_RED = 'rgba(246, 83, 15, 0.5)';
+                 const TRANSPARENT_BLUE = 'rgba(24, 135, 199, 0.5)';
+                 const TRANSPARENT_GRAY = 'rgba(255, 255, 255, 0.5)';
+                 const PROGRESS_START = '#00FFFF';
+                 const PROGRESS_MID = '#FF00FF';
+                 const PROGRESS_END = '#FFFF00';
+                 const PURPLE = 'rgba(128, 0, 128, 0.7)';
+                 const SHADE_WHITE = 'rgba(255, 255, 255, 0.1)';
+
+                 // UI positions (mirroring your .py)
+                 const redNameRect = { x: 50, y: 30, width: 320, height: 40 };
+                 const blueNameRect = { x: WIDTH - 370, y: 30, width: 320, height: 40 };
+                 const eventNameRect = { x: (370 + 830) / 2 - 160, y: 30, width: 320, height: 40 };
+                 const scoreRedRect = { x: 50, y: 100, width: 170, height: 45 };
+                 const scoreBlueRect = { x: WIDTH - 220, y: 100, width: 170, height: 45 };
+                 const logoRect = { x: 540, y: 84, width: 120, height: 32 };
+                 const timerRect = { x: WIDTH / 2 - 85, y: 170, width: 170, height: 50 };
+                 const roundLabelRect = { x: WIDTH / 2 - 50, y: 250, width: 100, height: 40 };
+                 const roundUpRect = { x: WIDTH / 2 + 90, y: 250, width: 40, height: 40 };
+                 const roundDownRect = { x: WIDTH / 2 - 140, y: 250, width: 40, height: 40 };
+                 const startButtonRect = { x: WIDTH / 2 - 190, y: 300, width: 170, height: 40 };
+                 const resetButtonRect = { x: WIDTH / 2 + 20, y: 300, width: 170, height: 40 };
+                 const progressRect = { x: 50, y: 350, width: WIDTH - 100, height: 10 };
+                 const graphRect = { x: 50, y: 360, width: WIDTH - 100, height: HEIGHT - 450 };
+                 const sidebarRect = { x: -400, y: 30, width: 400, height: HEIGHT - 80 };
+                 const arrowRect = { x: 0, y: HEIGHT / 2 - 20, width: 40, height: 40 };
+                 const copyButtonRect = { x: 110, y: sidebarRect.y + sidebarRect.height - 50, width: 180, height: 40 };
+
+                 // Draw functions
+                 function drawText(text, fontSize, color, x, y, center = false) {
+                     ctx.font = `${fontSize}px "Impact", Verdana, sans-serif`;
+                     ctx.fillStyle = color;
+                     ctx.textAlign = center ? 'center' : 'left';
+                     ctx.fillText(text.toUpperCase(), x, y);
+                 }
+
+                 function drawButton(text, rect, color, hover = false) {
+                     ctx.fillStyle = hover ? LIGHT_GRAY : color;
+                     ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
+                     ctx.strokeStyle = LIGHT_GRAY;
+                     ctx.lineWidth = 1;
+                     ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
+                     drawText(text, 14, WHITE, rect.x + rect.width / 2, rect.y + rect.height / 2, true);
+                 }
+
+                 function drawProgressBar() {
+                     ctx.fillStyle = PURPLE;
+                     ctx.fillRect(progressRect.x, progressRect.y, progressWidth, progressRect.height);
+                 }
+
+                 function drawGraph() {
+                     ctx.fillStyle = GRAY;
+                     ctx.fillRect(graphRect.x, graphRect.y, graphRect.width, graphRect.height);
+                     const intervalWidth = graphRect.width / (ROUND_TIME / intervalDuration);
+                     const maxHeight = graphRect.height - 30;
+                     intervals.forEach((interval, i) => {
+                         const x = graphRect.x + i * intervalWidth;
+                         let color, height;
+                         if (interval[0] > interval[1]) {
+                             color = RED;
+                             height = (interval[0] / (interval[0] + interval[1] + 1)) * maxHeight || 0;
+                         } else if (interval[1] > interval[0]) {
+                             color = BLUE;
+                             height = (interval[1] / (interval[0] + interval[1] + 1)) * maxHeight || 0;
+                         } else {
+                             color = TRANSPARENT_GRAY;
+                             height = maxHeight / 4;
+                         }
+                         ctx.fillStyle = color;
+                         ctx.fillRect(x, graphRect.y + graphRect.height - height, intervalWidth - 2, height);
+                     });
+                     if (len(intervals) * intervalDuration < ROUND_TIME) {
+                         const x = graphRect.x + len(intervals) * intervalWidth;
+                         let color, height;
+                         if (redIntervalScore > blueIntervalScore) {
+                             color = TRANSPARENT_RED;
+                             height = (redIntervalScore / (redIntervalScore + blueIntervalScore + 1)) * maxHeight || 0;
+                         } else if (blueIntervalScore > redIntervalScore) {
+                             color = TRANSPARENT_BLUE;
+                             height = (blueIntervalScore / (redIntervalScore + blueIntervalScore + 1)) * maxHeight || 0;
+                         } else {
+                             color = TRANSPARENT_GRAY;
+                             height = maxHeight / 4;
+                         }
+                         ctx.fillStyle = color;
+                         ctx.fillRect(x, graphRect.y + graphRect.height - height, intervalWidth - 2, height);
+                     }
+                     for (let i = ROUND_TIME; i >= 0; i -= 30) {
+                         const x = graphRect.x + (ROUND_TIME - i) * (graphRect.width / ROUND_TIME);
+                         ctx.beginPath();
+                         ctx.moveTo(x, graphRect.y + graphRect.height);
+                         ctx.lineTo(x, graphRect.y + graphRect.height - 10);
+                         ctx.strokeStyle = LIGHT_GRAY;
+                         ctx.stroke();
+                         if (i % 60 === 0) {
+                             drawText(`${Math.floor(i / 60)}:00`, 10, WHITE, x, graphRect.y + graphRect.height, true);
+                         }
+                     }
+                 }
+
+                 // Update loop
+                 function update() {
+                     const now = performance.now();
+                     if (timerRunning) {
+                         const elapsedTime = (now - startTime + pausedTime) / 1000;
+                         timerSeconds = Math.max(0, ROUND_TIME - elapsedTime);
+                         progressWidth = Math.floor(1100 * (timerSeconds / ROUND_TIME));
+                         if (timerSeconds <= 0) {
+                             timerRunning = false;
+                             timerState = "start";
+                             pausedTime = 0;
+                             intervals.push([redIntervalScore, blueIntervalScore]);
+                             roundLog.push(`ROUND ${currentRound}: ${redName || 'RED CORNER'} ${redIntervalScore}, ${blueName || 'BLUE CORNER'} ${blueIntervalScore}`);
+                             if (redIntervalScore > blueIntervalScore) {
+                                 roundLog.push(`${redName || 'RED CORNER'} WINS 10-9`);
+                                 redScore += 10; blueScore += 9;
+                             } else if (blueIntervalScore > redIntervalScore) {
+                                 roundLog.push(`${blueName || 'BLUE CORNER'} WINS 10-9`);
+                                 blueScore += 10; redScore += 9;
+                             } else {
+                                 roundLog.push("DRAW");
+                                 redScore += 10; blueScore += 10;
+                             }
+                             redIntervalScore = 0;
+                             blueIntervalScore = 0;
+                             currentRound++;
+                             if (currentRound > 5) currentRound = 5;
+                             intervals = [];
+                         }
+                         intervalTimer = elapsedTime % intervalDuration;
+                         if (intervalTimer < (elapsedTime - lastIntervalTime) && timerSeconds > 0) {
+                             lastIntervalTime = elapsedTime;
+                             intervals.push([redIntervalScore, blueIntervalScore]);
+                             redIntervalScore = 0;
+                             blueIntervalScore = 0;
+                             if (!woodblockPlayed) {
+                                 // Placeholder for sound (browser-compatible)
+                                 woodblockPlayed = true;
+                             } else {
+                                 woodblockPlayed = false;
+                             }
+                         }
+                     }
+                     cursorTimer++;
+                     if (cursorTimer >= 30) {
+                         cursorVisible = !cursorVisible;
+                         cursorTimer = 0;
+                     }
+                     sidebarX = -400 + (sidebarOpen ? 400 : 0);
+                 }
+
+                 // Handle input
+                 canvas.addEventListener('mousedown', (e) => {
+                     const rect = canvas.getBoundingClientRect();
+                     const x = e.clientX - rect.left;
+                     const y = e.clientY - rect.top;
+                     if (!redNameLocked && isInside(x, y, redNameRect)) activeInput = "red";
+                     else if (!blueNameLocked && isInside(x, y, blueNameRect)) activeInput = "blue";
+                     else if (!eventNameLocked && isInside(x, y, eventNameRect)) activeInput = "event";
+                     else if (isInside(x, y, roundUpRect)) currentRound = Math.min(5, currentRound + 1);
+                     else if (isInside(x, y, roundDownRect)) currentRound = Math.max(1, currentRound - 1);
+                     else if (isInside(x, y, startButtonRect)) {
+                         if (timerState === "start") {
+                             timerRunning = true;
+                             timerState = "pause";
+                             startTime = performance.now();
+                         } else if (timerState === "pause") {
+                             timerRunning = false;
+                             timerState = "resume";
+                             pausedTime += performance.now() - startTime;
+                         } else if (timerState === "resume") {
+                             timerRunning = true;
+                             timerState = "pause";
+                             startTime = performance.now();
+                         }
+                     } else if (isInside(x, y, resetButtonRect)) {
+                         timerSeconds = ROUND_TIME;
+                         timerRunning = false;
+                         timerState = "start";
+                         pausedTime = 0;
+                         currentRound = 1;
+                         redScore = 0;
+                         blueScore = 0;
+                         redIntervalScore = 0;
+                         blueIntervalScore = 0;
+                         intervalTimer = 0;
+                         intervals = [];
+                         roundLog = [];
+                         redName = "";
+                         blueName = "";
+                         eventName = "";
+                         redNameInput = "";
+                         blueNameInput = "";
+                         eventNameInput = "#EVENT";
+                         redNameLocked = false;
+                         blueNameLocked = false;
+                         eventNameLocked = false;
+                         activeInput = null;
+                         sidebarOpen = false;
+                         sidebarX = -400;
+                         progressWidth = 1100;
+                     } else if (isInside(x, y, arrowRect)) {
+                         sidebarOpen = !sidebarOpen;
+                     } else if (sidebarOpen && isInside(x, y, { ...copyButtonRect, x: sidebarX + copyButtonRect.x })) {
+                         navigator.clipboard.writeText(roundLog.join('\n'));
+                     }
+                 });
+
+                 document.addEventListener('keydown', (e) => {
+                     if (activeInput) {
+                         if (e.key === 'Enter') {
+                             if (activeInput === "red" && redNameInput) {
+                                 redName = redNameInput;
+                                 redNameLocked = true;
+                             } else if (activeInput === "blue" && blueNameInput) {
+                                 blueName = blueNameInput;
+                                 blueNameLocked = true;
+                             } else if (activeInput === "event" && eventNameInput) {
+                                 eventName = eventNameInput;
+                                 eventNameLocked = true;
+                             }
+                             activeInput = null;
+                         } else if (e.key === 'Backspace') {
+                             if (activeInput === "red") redNameInput = redNameInput.slice(0, -1);
+                             else if (activeInput === "blue") blueNameInput = blueNameInput.slice(0, -1);
+                             else if (activeInput === "event") eventNameInput = eventNameInput.slice(0, -1);
+                         } else if (/[a-zA-Z0-9\-_ ]/.test(e.key) && e.key.length === 1) {
+                             if (activeInput === "red" && redNameInput.length < 15) redNameInput += e.key;
+                             else if (activeInput === "blue" && blueNameInput.length < 15) blueNameInput += e.key;
+                             else if (activeInput === "event" && eventNameInput.length < 15) eventNameInput += e.key;
+                         }
+                     }
+                 });
+
+                 // Utility function
+                 function isInside(x, y, rect) {
+                     return x >= rect.x && x <= rect.x + rect.width && y >= rect.y && y <= rect.y + rect.height;
+                 }
+
+                 // Animation loop
+                 function animate() {
+                     update();
+                     ctx.fillStyle = BLACK;
+                     ctx.fillRect(0, 0, canvas.width, canvas.height);
+                     drawText(eventName || "#EVENT", 36, WHITE, canvas.width / 2, 50, true);
+                     ctx.fillStyle = GRAY;
+                     ctx.fillRect(redNameRect.x, redNameRect.y, redNameRect.width, redNameRect.height);
+                     ctx.strokeStyle = redNameLocked ? GREEN : LIGHT_GRAY;
+                     ctx.lineWidth = 1;
+                     ctx.strokeRect(redNameRect.x, redNameRect.y, redNameRect.width, redNameRect.height);
+                     ctx.fillStyle = GRAY;
+                     ctx.fillRect(blueNameRect.x, blueNameRect.y, blueNameRect.width, blueNameRect.height);
+                     ctx.strokeStyle = blueNameLocked ? GREEN : LIGHT_GRAY;
+                     ctx.strokeRect(blueNameRect.x, blueNameRect.y, blueNameRect.width, blueNameRect.height);
+                     ctx.fillStyle = GRAY;
+                     ctx.fillRect(eventNameRect.x, eventNameRect.y, eventNameRect.width, eventNameRect.height);
+                     ctx.strokeStyle = eventNameLocked ? GREEN : LIGHT_GRAY;
+                     ctx.strokeRect(eventNameRect.x, eventNameRect.y, eventNameRect.width, eventNameRect.height);
+                     drawText(activeInput === "red" ? redNameInput : redName || "RED CORNER", 28, redName || activeInput === "red" ? RED : TRANSPARENT_WHITE, redNameRect.x + 8, redNameRect.y + redNameRect.height / 2 + 10);
+                     const blueText = activeInput === "blue" ? blueNameInput : blueName || "BLUE CORNER";
+                     drawText(blueText, 28, blueName || activeInput === "blue" ? BLUE : TRANSPARENT_WHITE, blueNameRect.x + blueNameRect.width - 8, blueNameRect.y + blueNameRect.height / 2 + 10, false, 'right');
+                     const eventText = activeInput === "event" ? eventNameInput : eventName || "#EVENT";
+                     drawText(eventText, 28, eventName || activeInput === "event" ? WHITE : TRANSPARENT_WHITE, eventNameRect.x + eventNameRect.width / 2, eventNameRect.y + eventNameRect.height / 2 + 10, true);
+                     if (cursorVisible && activeInput) {
+                         let cursorX, cursorY;
+                         if (activeInput === "red") {
+                             cursorX = redNameRect.x + 8 + ctx.measureText(redNameInput.toUpperCase()).width;
+                             cursorY = redNameRect.y + redNameRect.height / 2 + 10;
+                         } else if (activeInput === "blue") {
+                             cursorX = blueNameRect.x + blueNameRect.width - 8 - ctx.measureText(blueNameInput.toUpperCase()).width;
+                             cursorY = blueNameRect.y + blueNameRect.height / 2 + 10;
+                         } else if (activeInput === "event") {
+                             cursorX = eventNameRect.x + eventNameRect.width / 2 - ctx.measureText(eventNameInput.toUpperCase()).width / 2;
+                             cursorY = eventNameRect.y + eventNameRect.height / 2 + 10;
+                         }
+                         ctx.beginPath();
+                         ctx.moveTo(cursorX, cursorY - 20);
+                         ctx.lineTo(cursorX, cursorY + 8);
+                         ctx.strokeStyle = WHITE;
+                         ctx.lineWidth = 2;
+                         ctx.stroke();
+                     }
+                     if (activeInput === "red") drawText("ENTER", 14, TRANSPARENT_WHITE, redNameRect.x + redNameRect.width - 50, redNameRect.y + redNameRect.height / 2 + 10, true);
+                     else if (activeInput === "blue") drawText("ENTER", 14, TRANSPARENT_WHITE, blueNameRect.x + blueNameRect.width - 50, blueNameRect.y + blueNameRect.height / 2 + 10, true);
+                     else if (activeInput === "event") drawText("ENTER", 14, TRANSPARENT_WHITE, eventNameRect.x + eventNameRect.width - 50, eventNameRect.y + eventNameRect.height / 2 + 10, true);
+                     const logoImg = new Image();
+                     logoImg.src = 'https://i.imgur.com/5a2L5z3.png';
+                     logoImg.onload = () => ctx.drawImage(logoImg, logoRect.x, logoRect.y, logoRect.width, logoRect.height);
+                     drawText(redScore, 36, RED, scoreRedRect.x, scoreRedRect.y + 30);
+                     drawText(blueScore, 36, BLUE, scoreBlueRect.x + scoreBlueRect.width, scoreBlueRect.y + 30, false, 'right');
+                     ctx.fillStyle = GRAY;
+                     ctx.fillRect(timerRect.x, timerRect.y, timerRect.width, timerRect.height);
+                     ctx.strokeStyle = timerRunning ? GREEN : LIGHT_GRAY;
+                     ctx.lineWidth = 1;
+                     ctx.strokeRect(timerRect.x, timerRect.y, timerRect.width, timerRect.height);
+                     drawText(`${Math.floor(timerSeconds / 60)}:${Math.floor(timerSeconds % 60).toString().padStart(2, '0')}`, 36, WHITE, timerRect.x + timerRect.width / 2, timerRect.y + timerRect.height / 2 + 10, true);
+                     drawText("ROUND", 14, WHITE, roundLabelRect.x + roundLabelRect.width / 2, roundLabelRect.y - 13, true);
+                     ctx.fillStyle = GRAY;
+                     ctx.fillRect(roundLabelRect.x, roundLabelRect.y, roundLabelRect.width, roundLabelRect.height);
+                     ctx.strokeStyle = LIGHT_GRAY;
+                     ctx.lineWidth = 1;
+                     ctx.strokeRect(roundLabelRect.x, roundLabelRect.y, roundLabelRect.width, roundLabelRect.height);
+                     drawText(currentRound, 28, WHITE, roundLabelRect.x + roundLabelRect.width / 2, roundLabelRect.y + roundLabelRect.height / 2 + 10, true);
+                     drawButton("−", roundDownRect, GRAY, isInside(mouseX, mouseY, roundDownRect));
+                     drawButton("+", roundUpRect, GRAY, isInside(mouseX, mouseY, roundUpRect));
+                     drawButton(timerState === "start" ? "START" : timerState === "pause" ? "PAUSE" : "RESUME", startButtonRect, GRAY, isInside(mouseX, mouseY, startButtonRect));
+                     drawButton("RESET", resetButtonRect, GRAY, isInside(mouseX, mouseY, resetButtonRect));
+                     drawProgressBar();
+                     drawGraph();
+                     ctx.fillStyle = BLACK;
+                     ctx.fillRect(sidebarX, sidebarRect.y, sidebarRect.width, sidebarRect.height);
+                     ctx.strokeStyle = LIGHT_GRAY;
+                     ctx.lineWidth = 1;
+                     ctx.strokeRect(sidebarX, sidebarRect.y, sidebarRect.width, sidebarRect.height);
+                     if (sidebarX <= -400) {
+                         ctx.fillStyle = SHADE_WHITE;
+                         ctx.fillRect(0, 0, 30, HEIGHT);
+                     }
+                     drawText(sidebarOpen ? "<" : ">", 28, isInside(mouseX, mouseY, arrowRect) ? LIGHT_GRAY : WHITE, arrowRect.x + arrowRect.width / 2, arrowRect.y + arrowRect.height / 2 + 10, true);
+                     if (sidebarOpen) {
+                         let y = sidebarRect.y + 10;
+                         drawText("SCORECARD", 14, WHITE, sidebarX + sidebarRect.width / 2, y, true);
+                         y += 30;
+                         roundLog.forEach(log => {
+                             const logFont = ctx.measureText(log.toUpperCase()).width > 380 ? 10 : 14;
+                             drawText(log, logFont, WHITE, sidebarX + 10, y);
+                             y += 20;
+                         });
+                         y += 30;
+                         let redPoints = 0, bluePoints = 0;
+                         roundLog.forEach(log => {
+                             if (log.includes(`${redName || 'RED CORNER'} WINS 10-9`)) { redPoints += 10; bluePoints += 9; }
+                             else if (log.includes(`${redName || 'RED CORNER'} WINS 10-8`)) { redPoints += 10; bluePoints += 8; }
+                             else if (log.includes(`${blueName || 'BLUE CORNER'} WINS 10-9`)) { bluePoints += 10; redPoints += 9; }
+                             else if (log.includes(`${blueName || 'BLUE CORNER'} WINS 10-8`)) { bluePoints += 10; redPoints += 8; }
+                             else if (log.includes("DRAW")) { redPoints += 10; bluePoints += 10; }
+                         });
+                         const decisionText = `DECISION: ${redName || 'RED CORNER'} ${redPoints}, ${blueName || 'BLUE CORNER'} ${bluePoints}`;
+                         const decisionFont = ctx.measureText(decisionText.toUpperCase()).width > 380 ? 10 : 14;
+                         drawText(decisionText, decisionFont, WHITE, sidebarX + sidebarRect.width / 2, y, true);
+                         if (currentRound === 5 && timerSeconds <= 0) {
+                             y += 30;
+                             if (redPoints > bluePoints) drawText(`${redName || 'RED CORNER'} WINS ${redPoints}-${bluePoints} UNANIMOUS DECISION!`, 14, RED, sidebarX + 10, y);
+                             else if (bluePoints > redPoints) drawText(`${blueName || 'BLUE CORNER'} WINS ${bluePoints}-${redPoints} UNANIMOUS DECISION!`, 14, BLUE, sidebarX + 10, y);
+                             else drawText("FIGHT ENDS IN A DRAW!", 14, WHITE, sidebarX + 10, y);
+                         }
+                         y = sidebarRect.y + sidebarRect.height - 50;
+                         drawButton("COPY TO CLIPBOARD", { ...copyButtonRect, x: sidebarX + copyButtonRect.x }, GRAY, isInside(mouseX, mouseY, { ...copyButtonRect, x: sidebarX + copyButtonRect.x }));
+                     }
+                     requestAnimationFrame(animate);
+                 }
+
+                 // Mouse position tracking
+                 let mouseX = 0, mouseY = 0;
+                 canvas.addEventListener('mousemove', (e) => {
+                     const rect = canvas.getBoundingClientRect();
+                     mouseX = e.clientX - rect.left;
+                     mouseY = e.clientY - rect.top;
+                 });
+
+                 // Start animation
+                 animate();
+             </script>
+         </div>
+     </body>
+     </html>
