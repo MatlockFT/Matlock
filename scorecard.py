@@ -1,1 +1,1 @@
-print("Scorecard.py loaded")
+print("scorecard.py loaded")
