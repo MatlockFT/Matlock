@@ -9,7 +9,13 @@
              let pyodide;
              async function main() {
                  pyodide = await loadPyodide();
+                 // Load the file explicitly
                  await pyodide.runPythonAsync(`
+from pyodide.http import pyfetch
+response = await pyfetch("/scorecard.py")
+content = await response.text()
+with open("scorecard.py", "w") as f:
+    f.write(content)
 import scorecard
 print("Scorecard imported successfully")
                  `);
