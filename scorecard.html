@@ -1,19 +1,19 @@
 ---
-  layout: default
-  title: Scorecard
-  ---
-  <div class="scorecard-container">
-      <div id="scorecard-canvas"></div>
-      <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
-      <script type="text/javascript">
-          let pyodide;
-          async function main() {
-              pyodide = await loadPyodide();
-              await pyodide.runPythonAsync(`
+     layout: default
+     title: Scorecard
+     ---
+     <div class="scorecard-container">
+         <div id="scorecard-canvas"></div>
+         <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+         <script type="text/javascript">
+             let pyodide;
+             async function main() {
+                 pyodide = await loadPyodide();
+                 await pyodide.runPythonAsync(`
 import scorecard
 print("Scorecard imported successfully")
-              `);
-          }
-          main();
-      </script>
-  </div>
+                 `);
+             }
+             main();
+         </script>
+     </div>
