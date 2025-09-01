@@ -11,10 +11,10 @@
               pyodide = await loadPyodide();
               await pyodide.loadPackage("micropip");
               await pyodide.runPythonAsync(`
-                  import micropip
-                  await micropip.install('pygame')
-                  with open('scorecard.py', 'w') as f:
-                      f.write('''import pygame
+import micropip
+await micropip.install('pygame')
+with open('scorecard.py', 'w') as f:
+    f.write('''import pygame
 import platform
 import math
 import numpy as np
