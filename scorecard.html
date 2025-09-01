@@ -25,7 +25,7 @@
               // Define constants (matching your .py)
               const WIDTH = 1200;
               const HEIGHT = 900;
-              const ROUND_TIME = 300; // Added to fix error
+              const ROUND_TIME = 300;
 
               // Initial state (mirroring your .py)
               let timerSeconds = ROUND_TIME;
@@ -169,7 +169,7 @@
                   }
               }
 
-              // Update loop
+              // Update loop with arrow key scoring
               function update() {
                   const now = performance.now();
                   if (timerRunning) {
@@ -205,7 +205,7 @@
                           redIntervalScore = 0;
                           blueIntervalScore = 0;
                           if (!woodblockPlayed) {
-                              // Placeholder for sound (browser-compatible)
+                              // Placeholder for sound
                               woodblockPlayed = true;
                           } else {
                               woodblockPlayed = false;
@@ -220,7 +220,7 @@
                   sidebarX = -400 + (sidebarOpen ? 400 : 0);
               }
 
-              // Handle input
+              // Handle input including arrow keys
               canvas.addEventListener('mousedown', (e) => {
                   const rect = canvas.getBoundingClientRect();
                   const x = e.clientX - rect.left;
@@ -300,6 +300,12 @@
                           else if (activeInput === "blue" && blueNameInput.length < 15) blueNameInput += e.key;
                           else if (activeInput === "event" && eventNameInput.length < 15) eventNameInput += e.key;
                       }
+                  } else if (timerRunning) { // Add scoring with arrow keys
+                      if (e.key === 'ArrowLeft') {
+                          redIntervalScore++;
+                      } else if (e.key === 'ArrowRight') {
+                          blueIntervalScore++;
+                      }
                   }
               });
 
@@ -313,7 +319,9 @@
                   update();
                   ctx.fillStyle = BLACK;
                   ctx.fillRect(0, 0, canvas.width, canvas.height);
-                  drawText(eventName || "#EVENT", 36, WHITE, canvas.width / 2, 50, true);
+                  if (!activeInput || activeInput !== "event") { // Fix duplicate text by only drawing when not editing
+                      drawText(eventName || "#EVENT", 36, WHITE, canvas.width / 2, 50, true);
+                  }
                   ctx.fillStyle = GRAY;
                   ctx.fillRect(redNameRect.x, redNameRect.y, redNameRect.width, redNameRect.height);
                   ctx.strokeStyle = redNameLocked ? GREEN : LIGHT_GRAY;
@@ -331,7 +339,9 @@
                   const blueText = activeInput === "blue" ? blueNameInput : blueName || "BLUE CORNER";
                   drawText(blueText, 28, blueName || activeInput === "blue" ? BLUE : TRANSPARENT_WHITE, blueNameRect.x + blueNameRect.width - 8, blueNameRect.y + blueNameRect.height / 2 + 10, false, 'right');
                   const eventText = activeInput === "event" ? eventNameInput : eventName || "#EVENT";
-                  drawText(eventText, 28, eventName || activeInput === "event" ? WHITE : TRANSPARENT_WHITE, eventNameRect.x + eventNameRect.width / 2, eventNameRect.y + eventNameRect.height / 2 + 10, true);
+                  if (activeInput !== "event") {
+                      drawText(eventText, 28, eventName || activeInput === "event" ? WHITE : TRANSPARENT_WHITE, eventNameRect.x + eventNameRect.width / 2, eventNameRect.y + eventNameRect.height / 2 + 10, true);
+                  }
                   if (cursorVisible && activeInput) {
                       let cursorX, cursorY;
                       if (activeInput === "red") {
@@ -357,8 +367,8 @@
                   const logoImg = new Image();
                   logoImg.src = 'https://i.imgur.com/5a2L5z3.png';
                   logoImg.onload = () => ctx.drawImage(logoImg, logoRect.x, logoRect.y, logoRect.width, logoRect.height);
-                  drawText(redScore, 36, RED, scoreRedRect.x, scoreRedRect.y + 30); // Converted to string
-                  drawText(blueScore, 36, BLUE, scoreBlueRect.x + scoreBlueRect.width, scoreBlueRect.y + 30, false, 'right'); // Converted to string
+                  drawText(redScore, 36, RED, scoreRedRect.x, scoreRedRect.y + 30);
+                  drawText(blueScore, 36, BLUE, scoreBlueRect.x + scoreBlueRect.width, scoreBlueRect.y + 30, false, 'right');
                   ctx.fillStyle = GRAY;
                   ctx.fillRect(timerRect.x, timerRect.y, timerRect.width, timerRect.height);
                   ctx.strokeStyle = timerRunning ? GREEN : LIGHT_GRAY;
@@ -371,7 +381,7 @@
                   ctx.strokeStyle = LIGHT_GRAY;
                   ctx.lineWidth = 1;
                   ctx.strokeRect(roundLabelRect.x, roundLabelRect.y, roundLabelRect.width, roundLabelRect.height);
-                  drawText(currentRound, 28, WHITE, roundLabelRect.x + roundLabelRect.width / 2, roundLabelRect.y + roundLabelRect.height / 2 + 10, true); // Converted to string
+                  drawText(currentRound, 28, WHITE, roundLabelRect.x + roundLabelRect.width / 2, roundLabelRect.y + roundLabelRect.height / 2 + 10, true);
                   drawButton("−", roundDownRect, GRAY, isInside(mouseX, mouseY, roundDownRect));
                   drawButton("+", roundUpRect, GRAY, isInside(mouseX, mouseY, roundUpRect));
                   drawButton(timerState === "start" ? "START" : timerState === "pause" ? "PAUSE" : "RESUME", startButtonRect, GRAY, isInside(mouseX, mouseY, startButtonRect));
