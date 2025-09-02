@@ -96,6 +96,7 @@
         let woodblockPlayed = false;
         let animationTime = 0;
         let needsRedraw = true;
+        let copyButtonHover = false;
 
         // UI elements
         const redNameRect = { x: 50, y: 30, width: 320, height: 40 };
@@ -122,11 +123,11 @@
             const img = new Image();
             img.src = 'logo.png';
             img.onload = () => {
-                console.log('Matlock\'s Scorecard v3.11 - logo.png loaded successfully');
+                console.log('Matlock\'s Scorecard v3.12 - logo.png loaded successfully');
                 resolve(img);
             };
             img.onerror = () => {
-                console.error('Matlock\'s Scorecard v3.11 - Failed to load logo.png');
+                console.error('Matlock\'s Scorecard v3.12 - Failed to load logo.png');
                 resolve(null);
             };
         });
@@ -209,7 +210,7 @@
         }
 
         function drawButton(text, rect, color, hover = false) {
-            ctx.fillStyle = hover ? LIGHT_GRAY : color;
+            ctx.fillStyle = hover ? (text === 'COPY TO CLIPBOARD' && copyButtonHover ? GREEN : LIGHT_GRAY) : color;
             ctx.fillRect(rect.x - (hover ? 1 : 0), rect.y - (hover ? 1 : 0), rect.width + (hover ? 2 : 0), rect.height + (hover ? 2 : 0));
             ctx.strokeStyle = LIGHT_GRAY;
             ctx.lineWidth = 1;
@@ -305,6 +306,7 @@
             sidebarX = -SIDEBAR_WIDTH;
             progressWidth = PROGRESS_WIDTH;
             woodblockPlayed = false;
+            copyButtonHover = false;
             document.getElementById('redNameInput').value = '';
             document.getElementById('blueNameInput').value = '';
             document.getElementById('eventNameInput').value = '#EVENT';
@@ -338,14 +340,29 @@
             let redPoints = 0, bluePoints = 0;
             for (let i = 0; i < roundLog.length; i++) {
                 const log = roundLog[i];
+                if (!log) continue;
                 const parts = log.split(':');
-                if (parts.length < 2) continue;
-                const roundNum = parts[0].split(' ')[1];
-                const scoresPart = parts[1].split(',')[0].split(' ').slice(1);
-                if (scoresPart.length < 2) continue;
+                if (parts.length < 2) {
+                    console.warn(`Matlock's Scorecard v3.12 - Invalid roundLog entry: ${log}`);
+                    continue;
+                }
+                const roundNumMatch = parts[0].match(/ROUND (\d+)/);
+                if (!roundNumMatch) {
+                    console.warn(`Matlock's Scorecard v3.12 - Invalid round number in: ${log}`);
+                    continue;
+                }
+                const roundNum = roundNumMatch[1];
+                const scoresPart = parts[1].split(',')[0].trim().split(' ');
+                if (scoresPart.length < 4) {
+                    console.warn(`Matlock's Scorecard v3.12 - Invalid scores format in: ${log}`);
+                    continue;
+                }
                 const redRoundScore = parseInt(scoresPart[1]);
-                const blueRoundScore = parseInt(parts[1].split(',')[1]?.split(' ')[1] || '0');
-                if (isNaN(redRoundScore) || isNaN(blueRoundScore)) continue;
+                const blueRoundScore = parseInt(parts[1].split(',')[1]?.trim().split(' ')[1] || '0');
+                if (isNaN(redRoundScore) || isNaN(blueRoundScore)) {
+                    console.warn(`Matlock's Scorecard v3.12 - Invalid score values in: ${log}`);
+                    continue;
+                }
                 let winner, score;
                 if (log.includes('DRAW')) {
                     winner = 'DRAW';
@@ -354,7 +371,10 @@
                     bluePoints += 10;
                 } else {
                     const winnerMatch = log.match(/, (.+?) WINS (.+)/);
-                    if (!winnerMatch) continue;
+                    if (!winnerMatch) {
+                        console.warn(`Matlock's Scorecard v3.12 - No winner found in: ${log}`);
+                        continue;
+                    }
                     winner = winnerMatch[1];
                     score = winnerMatch[2];
                     if (log.includes(`${redName || 'RED CORNER'} WINS`)) {
@@ -367,6 +387,22 @@
                 }
                 lines.push(`ROUND ${roundNum}: ${score} ${winner.toUpperCase()}`);
             }
+            if (!lines.length && (redScore > 0 || blueScore > 0)) {
+                const scoreDiff = Math.abs(redScore - blueScore);
+                const roundText = `ROUND ${currentRound}: ${redName || 'RED CORNER'} ${redScore}, ${blueName || 'BLUE CORNER'} ${blueScore}`;
+                let score, winner;
+                if (redScore === blueScore) {
+                    score = '10-10';
+                    winner = 'DRAW';
+                } else if (redScore > blueScore) {
+                    score = scoreDiff > 25 ? '10-8' : '10-9';
+                    winner = redName || 'RED CORNER';
+                } else {
+                    score = scoreDiff > 25 ? '10-8' : '10-9';
+                    winner = blueName || 'BLUE CORNER';
+                }
+                lines.push(`ROUND ${currentRound}: ${score} ${winner.toUpperCase()} ${eventName.toUpperCase() || '#EVENT'}`);
+            }
             if (lines.length > 1) {
                 if (currentRound < 5 && redPoints === bluePoints) {
                     lines.push(`TOTAL: ${redPoints}-${bluePoints} GOING INTO THE ${currentRound + 1}${currentRound + 1 === 1 ? 'ST' : currentRound + 1 === 2 ? 'ND' : currentRound + 1 === 3 ? 'RD' : 'TH'} ${eventName.toUpperCase() || '#EVENT'}`);
@@ -377,19 +413,30 @@
                     lines.push(totalLine + ` ${eventName.toUpperCase() || '#EVENT'}`);
                 }
             } else if (lines.length === 1) {
-                lines[0] += ` ${eventName.toUpperCase() || '#EVENT'}`;
+                lines[0] = lines[0].endsWith(eventName.toUpperCase() || '#EVENT') ? lines[0] : `${lines[0]} ${eventName.toUpperCase() || '#EVENT'}`;
             }
-            const text = lines.join('\n');
-            console.log(`Matlock's Scorecard v3.11 - Copied to clipboard: ${text}`);
+            const text = lines.length ? lines.join('\n') : 'No rounds completed yet.';
+            console.log(`Matlock's Scorecard v3.12 - Copying to clipboard: ${text}`);
             try {
                 await navigator.clipboard.writeText(text);
+                copyButtonHover = true;
+                setTimeout(() => { copyButtonHover = false; needsRedraw = true; }, 500);
             } catch (err) {
-                console.error('Matlock\'s Scorecard v3.11 - Clipboard access denied, using fallback:', err);
+                console.error('Matlock\'s Scorecard v3.12 - Clipboard access denied, using fallback:', err, 'Text:', text);
                 const textarea = document.createElement('textarea');
                 textarea.value = text;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
                 document.body.appendChild(textarea);
+                textarea.focus();
                 textarea.select();
-                document.execCommand('copy');
+                try {
+                    document.execCommand('copy');
+                    copyButtonHover = true;
+                    setTimeout(() => { copyButtonHover = false; needsRedraw = true; }, 500);
+                } catch (fallbackErr) {
+                    console.error('Matlock\'s Scorecard v3.12 - Fallback copy failed:', fallbackErr);
+                }
                 document.body.removeChild(textarea);
             }
         }
@@ -444,7 +491,7 @@
 
             // Check for clacker sound
             if (timerRunning && timerSeconds <= 10 && !woodblockPlayed) {
-                console.log('Matlock\'s Scorecard v3.11 - Playing woodblock_sound');
+                console.log('Matlock\'s Scorecard v3.12 - Playing woodblock_sound');
                 playSound(woodblockSound);
                 woodblockPlayed = true;
                 stateChanged = true;
@@ -466,8 +513,8 @@
                     stateChanged = true;
                 }
                 if (timerSeconds <= 0) {
-                    console.log(`Matlock's Scorecard v3.11 - Round ended: sidebar_open=${sidebarOpen}, sidebar_x=${sidebarX}`);
-                    console.log('Matlock\'s Scorecard v3.11 - Playing round_end_sound');
+                    console.log(`Matlock's Scorecard v3.12 - Round ended: sidebar_open=${sidebarOpen}, sidebar_x=${sidebarX}`);
+                    console.log('Matlock\'s Scorecard v3.12 - Playing round_end_sound');
                     playSound(roundEndSound);
                     if (redIntervalScore > 0 || blueIntervalScore > 0) {
                         intervals.push([redIntervalScore, blueIntervalScore]);
@@ -538,7 +585,7 @@
             if (eventNameLocked && activeInput !== 'event') {
                 drawText(eventName || '#EVENT', 28, WHITE, eventNameRect.x + eventNameRect.width / 2, eventNameRect.y + 5, true);
             } else if (activeInput !== 'event') {
-                drawText('#EVENT', 28, TRANSPARENT_WHITE, eventNameRect.x + eventNameRect.width / 2, redNameRect.y + 5, true);
+                drawText('#EVENT', 28, TRANSPARENT_WHITE, eventNameRect.x + eventNameRect.width / 2, eventNameRect.y + 5, true);
             }
             if (activeInput && cursorVisible) {
                 ctx.fillStyle = TRANSPARENT_WHITE;
@@ -610,6 +657,7 @@
                 y += 30;
                 let redPoints = 0, bluePoints = 0;
                 roundLog.forEach(log => {
+                    if (!log) return;
                     if (log.includes(`${redName || 'RED CORNER'} WINS 10-9`)) { redPoints += 10; bluePoints += 9; }
                     else if (log.includes(`${redName || 'RED CORNER'} WINS 10-8`)) { redPoints += 10; bluePoints += 8; }
                     else if (log.includes(`${blueName || 'BLUE CORNER'} WINS 10-9`)) { bluePoints += 10; redPoints += 9; }
@@ -677,13 +725,13 @@
                 cursorTimer = 0;
                 needsRedraw = true;
             } else if (x >= startButtonRect.x && x <= startButtonRect.x + startButtonRect.width && y >= startButtonRect.y && y <= startButtonRect.y + startButtonRect.height) {
-                console.log('Matlock\'s Scorecard v3.11 - Playing button_sound');
+                console.log('Matlock\'s Scorecard v3.12 - Playing button_sound');
                 playSound(buttonSound);
                 if (timerState === 'start') {
                     resetTimer();
                     timerRunning = true;
                     timerState = 'pause';
-                    console.log('Matlock\'s Scorecard v3.11 - Playing bell_sound');
+                    console.log('Matlock\'s Scorecard v3.12 - Playing bell_sound');
                     playSound(bellSound);
                 } else if (timerState === 'pause') {
                     timerRunning = false;
@@ -697,11 +745,11 @@
                 }
                 needsRedraw = true;
             } else if (x >= resetButtonRect.x && x <= resetButtonRect.x + resetButtonRect.width && y >= resetButtonRect.y && y <= resetButtonRect.y + resetButtonRect.height) {
-                console.log('Matlock\'s Scorecard v3.11 - Playing button_sound');
+                console.log('Matlock\'s Scorecard v3.12 - Playing button_sound');
                 playSound(buttonSound);
                 resetGame();
             } else if (x >= roundUpRect.x && x <= roundUpRect.x + roundUpRect.width && y >= roundUpRect.y && y <= roundUpRect.y + roundUpRect.height) {
-                console.log('Matlock\'s Scorecard v3.11 - Playing button_sound');
+                console.log('Matlock\'s Scorecard v3.12 - Playing button_sound');
                 playSound(buttonSound);
                 currentRound = Math.min(currentRound + 1, 5);
                 resetGraph();
@@ -710,7 +758,7 @@
                 woodblockPlayed = false;
                 needsRedraw = true;
             } else if (x >= roundDownRect.x && x <= roundDownRect.x + roundDownRect.width && y >= roundDownRect.y && y <= roundDownRect.y + roundDownRect.height) {
-                console.log('Matlock\'s Scorecard v3.11 - Playing button_sound');
+                console.log('Matlock\'s Scorecard v3.12 - Playing button_sound');
                 playSound(buttonSound);
                 currentRound = Math.max(currentRound - 1, 1);
                 resetGraph();
@@ -719,15 +767,15 @@
                 woodblockPlayed = false;
                 needsRedraw = true;
             } else if (x >= copyButtonRect.x + sidebarX && x <= copyButtonRect.x + sidebarX + copyButtonRect.width && y >= copyButtonRect.y + sidebarRect.y && y <= copyButtonRect.y + sidebarRect.y + copyButtonRect.height && sidebarOpen) {
-                console.log('Matlock\'s Scorecard v3.11 - Playing button_sound');
+                console.log('Matlock\'s Scorecard v3.12 - Playing button_sound');
                 playSound(buttonSound);
                 copyToClipboard();
                 needsRedraw = true;
             } else if (x >= arrowRect.x && x <= arrowRect.x + arrowRect.width && y >= arrowRect.y && y <= arrowRect.y + arrowRect.height) {
                 sidebarOpen = !sidebarOpen;
-                console.log('Matlock\'s Scorecard v3.11 - Playing arrow_sound');
+                console.log('Matlock\'s Scorecard v3.12 - Playing arrow_sound');
                 playSound(arrowSound);
-                console.log(`Matlock's Scorecard v3.11 - Sidebar toggled: sidebar_open=${sidebarOpen}, sidebar_x=${sidebarX}`);
+                console.log(`Matlock's Scorecard v3.12 - Sidebar toggled: sidebar_open=${sidebarOpen}, sidebar_x=${sidebarX}`);
                 animationTime = 0;
                 needsRedraw = true;
             } else {
@@ -767,19 +815,19 @@
                     if (activeInput === 'red') {
                         redName = sanitizeInput(redNameInput);
                         redNameLocked = true;
-                        console.log('Matlock\'s Scorecard v3.11 - Playing enter_sound');
+                        console.log('Matlock\'s Scorecard v3.12 - Playing enter_sound');
                         playSound(enterSound);
                         document.getElementById('redNameInput').classList.add('hidden');
                     } else if (activeInput === 'blue') {
                         blueName = sanitizeInput(blueNameInput);
                         blueNameLocked = true;
-                        console.log('Matlock\'s Scorecard v3.11 - Playing enter_sound');
+                        console.log('Matlock\'s Scorecard v3.12 - Playing enter_sound');
                         playSound(enterSound);
                         document.getElementById('blueNameInput').classList.add('hidden');
                     } else if (activeInput === 'event') {
                         eventName = eventNameInput;
                         eventNameLocked = true;
-                        console.log('Matlock\'s Scorecard v3.11 - Playing enter_sound');
+                        console.log('Matlock\'s Scorecard v3.12 - Playing enter_sound');
                         playSound(enterSound);
                         document.getElementById('eventNameInput').classList.add('hidden');
                     }
@@ -788,13 +836,13 @@
                 }
             } else if (e.key === ' ' && document.activeElement.tagName !== 'INPUT') {
                 e.preventDefault();
-                console.log('Matlock\'s Scorecard v3.11 - Playing button_sound');
+                console.log('Matlock\'s Scorecard v3.12 - Playing button_sound');
                 playSound(buttonSound);
                 if (timerState === 'start') {
                     resetTimer();
                     timerRunning = true;
                     timerState = 'pause';
-                    console.log('Matlock\'s Scorecard v3.11 - Playing bell_sound');
+                    console.log('Matlock\'s Scorecard v3.12 - Playing bell_sound');
                     playSound(bellSound);
                 } else if (timerState === 'pause') {
                     timerRunning = false;
@@ -811,13 +859,13 @@
                 if (e.key === 'ArrowLeft') {
                     redScore++;
                     redIntervalScore++;
-                    console.log('Matlock\'s Scorecard v3.11 - Playing arrow_key_sound');
+                    console.log('Matlock\'s Scorecard v3.12 - Playing arrow_key_sound');
                     playSound(arrowKeySound);
                     needsRedraw = true;
                 } else if (e.key === 'ArrowRight') {
                     blueScore++;
                     blueIntervalScore++;
-                    console.log('Matlock\'s Scorecard v3.11 - Playing arrow_key_sound');
+                    console.log('Matlock\'s Scorecard v3.12 - Playing arrow_key_sound');
                     playSound(arrowKeySound);
                     needsRedraw = true;
                 }
