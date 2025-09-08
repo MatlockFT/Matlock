@@ -412,4 +412,436 @@ permalink: /scorecard
             textarea.focus();
             textarea.select();
             try {
-                document.exec
+                document.execCommand('copy');
+                copyButtonHover = true;
+                setTimeout(() => { copyButtonHover = false; needsRedraw = true; }, 500);
+            } catch (fallbackErr) {
+                console.error('Matlock\'s Scorecard v3.14 - Fallback copy failed:', fallbackErr);
+            }
+            document.body.removeChild(textarea);
+        }
+    }
+    function setup() {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        resetTimer();
+        ctx.fillStyle = BLACK;
+        ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        setupAudio();
+        document.getElementById('redNameInput').classList.add('hidden');
+        document.getElementById('blueNameInput').classList.add('hidden');
+        document.getElementById('eventNameInput').classList.add('hidden');
+        loadLogo.then(img => {
+            logoImage = img;
+            needsRedraw = true;
+        });
+        requestAnimationFrame(updateLoop);
+    }
+    function updateLoop(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const delta = (timestamp - (lastFrameTime || timestamp)) / 1000;
+        lastFrameTime = timestamp;
+        let stateChanged = false;
+        // Update cursor blink
+        cursorTimer += delta;
+        if (cursorTimer >= 0.5) {
+            cursorVisible = !cursorVisible;
+            cursorTimer = 0;
+            stateChanged = true;
+        }
+        // Update sidebar animation
+        const targetX = sidebarOpen ? 0 : -SIDEBAR_WIDTH;
+        if (Math.abs(sidebarX - targetX) > 1) {
+            const speed = SIDEBAR_WIDTH / (ANIMATION_DURATION * FPS);
+            sidebarX = sidebarOpen ? Math.min(0, sidebarX + speed) : Math.max(-SIDEBAR_WIDTH, sidebarX - speed);
+            stateChanged = true;
+        } else {
+            sidebarX = targetX;
+        }
+        // Update progress bar
+        const targetWidth = (timerSeconds / ROUND_TIME) * progressRect.width;
+        if (Math.abs(progressWidth - targetWidth) > 0.1) {
+            progressWidth += (targetWidth - progressWidth) * 0.2;
+            stateChanged = true;
+        }
+        // Check for clacker sound
+        if (timerRunning && timerSeconds <= 10 && !woodblockPlayed) {
+            console.log('Matlock\'s Scorecard v3.14 - Playing woodblock_sound');
+            playSound(woodblockSound);
+            woodblockPlayed = true;
+            stateChanged = true;
+        }
+        // Update timer
+        if (timerRunning) {
+            const currentTime = performance.now();
+            const elapsed = (currentTime - startTime) / 1000;
+            timerSeconds = Math.max(ROUND_TIME - elapsed, 0);
+            const intervalElapsed = (currentTime - lastIntervalTime) / 1000;
+            intervalTimer = intervalElapsed;
+            if (intervalTimer >= INTERVAL_DURATION) {
+                intervals.push([redIntervalScore, blueIntervalScore]);
+                redIntervalScore = 0;
+                blueIntervalScore = 0;
+                lastIntervalTime = currentTime;
+                intervalTimer = 0;
+                stateChanged = true;
+            }
+            if (timerSeconds <= 0) {
+                console.log(`Matlock's Scorecard v3.14 - Round ended: sidebar_open=${sidebarOpen}, sidebar_x=${sidebarX}`);
+                console.log('Matlock\'s Scorecard v3.14 - Playing round_end_sound');
+                playSound(roundEndSound);
+                if (redIntervalScore > 0 || blueIntervalScore > 0) {
+                    intervals.push([redIntervalScore, blueIntervalScore]);
+                    redIntervalScore = 0;
+                    blueIntervalScore = 0;
+                }
+                timerRunning = false;
+                timerState = 'start';
+                sidebarOpen = true;
+                animationTime = 0;
+                const scoreDiff = Math.abs(redScore - blueScore);
+                const roundText = `ROUND ${currentRound}: ${redName || 'RED CORNER'} ${redScore}, ${blueName || 'BLUE CORNER'} ${blueScore}`;
+                if (redScore === blueScore) {
+                    roundLog.push(`${roundText}, DRAW`);
+                } else if (redScore > blueScore) {
+                    const score = scoreDiff > 25 ? '10-8' : '10-9';
+                    roundLog.push(`${roundText}, ${redName || 'RED CORNER'} WINS ${score}`);
+                } else {
+                    const score = scoreDiff > 25 ? '10-8' : '10-9';
+                    roundLog.push(`${roundText}, ${blueName || 'BLUE CORNER'} WINS ${score}`);
+                }
+                ctx.font = 'bold 14px GOBOLD, Impact, Verdana, sans-serif';
+                roundLogFontSizes.push(ctx.measureText(roundLog[roundLog.length - 1].toUpperCase()).width > 380 ? 10 : 14);
+                stateChanged = true;
+            }
+        }
+        needsRedraw = needsRedraw || stateChanged;
+        if (!needsRedraw) {
+            requestAnimationFrame(updateLoop);
+            return;
+        }
+        // Draw everything
+        ctx.fillStyle = BLACK;
+        ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        // Fighter names and event
+        ctx.fillStyle = GRAY;
+        ctx.fillRect(redNameRect.x, redNameRect.y, redNameRect.width, redNameRect.height);
+        ctx.strokeStyle = redNameLocked ? GREEN : LIGHT_GRAY;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(redNameRect.x, redNameRect.y, redNameRect.width, redNameRect.height);
+        ctx.fillStyle = GRAY;
+        ctx.fillRect(blueNameRect.x, blueNameRect.y, blueNameRect.width, blueNameRect.height);
+        ctx.strokeStyle = blueNameLocked ? GREEN : LIGHT_GRAY;
+        ctx.strokeRect(blueNameRect.x, blueNameRect.y, blueNameRect.width, blueNameRect.height);
+        ctx.fillStyle = GRAY;
+        ctx.fillRect(eventNameRect.x, eventNameRect.y, eventNameRect.width, eventNameRect.height);
+        ctx.strokeStyle = eventNameLocked ? GREEN : LIGHT_GRAY;
+        ctx.strokeRect(eventNameRect.x, eventNameRect.y, eventNameRect.width, eventNameRect.height);
+        if (redNameLocked && activeInput !== 'red') {
+            drawText(redName || 'RED CORNER', 28, RED, redNameRect.x + 8, redNameRect.y + 5, false);
+        } else if (activeInput !== 'red') {
+            drawText('RED CORNER', 28, TRANSPARENT_WHITE, redNameRect.x + 8, redNameRect.y + 5, false);
+        }
+        if (blueNameLocked && activeInput !== 'blue') {
+            const blueText = blueName || 'BLUE CORNER';
+            ctx.font = 'bold 28px GOBOLD, Impact, Verdana, sans-serif';
+            const blueTextWidth = ctx.measureText(blueText.toUpperCase()).width;
+            drawText(blueText, 28, BLUE, blueNameRect.x + blueNameRect.width - blueTextWidth - 8, blueNameRect.y + 5, false);
+        } else if (activeInput !== 'blue') {
+            const blueText = 'BLUE CORNER';
+            ctx.font = 'bold 28px GOBOLD, Impact, Verdana, sans-serif';
+            const blueTextWidth = ctx.measureText(blueText.toUpperCase()).width;
+            drawText(blueText, 28, TRANSPARENT_WHITE, blueNameRect.x + blueNameRect.width - blueTextWidth - 8, blueNameRect.y + 5, false);
+        }
+        if (eventNameLocked && activeInput !== 'event') {
+            drawText(eventName || '#EVENT', 28, WHITE, eventNameRect.x + eventNameRect.width / 2, eventNameRect.y + 5, true);
+        } else if (activeInput !== 'event') {
+            drawText('#EVENT', 28, TRANSPARENT_WHITE, eventNameRect.x + eventNameRect.width / 2, eventNameRect.y + 5, true);
+        }
+        if (activeInput && cursorVisible) {
+            ctx.fillStyle = TRANSPARENT_WHITE;
+            drawText('ENTER', 14, TRANSPARENT_WHITE, (activeInput === 'red' ? redNameRect.x + redNameRect.width : activeInput === 'blue' ? blueNameRect.x + blueNameRect.width : eventNameRect.x + eventNameRect.width) - 50, (activeInput === 'red' ? redNameRect.y : activeInput === 'blue' ? blueNameRect.y : eventNameRect.y) + 5, true);
+        }
+        // Draw logo
+        if (logoImage) {
+            ctx.drawImage(logoImage, logoRect.x, logoRect.y, logoRect.width, logoRect.height);
+        } else {
+            drawText("MATLOCK'S SCORECARD", 14, WHITE, logoRect.x + logoRect.width / 2, logoRect.y + logoRect.height / 2 - 7, true);
+        }
+        // Scores
+        drawText(`${redScore}`, 36, RED, redNameRect.x, scoreRedRect.y + 5);
+        ctx.font = 'bold 36px GOBOLD, Impact, Verdana, sans-serif';
+        const blueScoreWidth = ctx.measureText(`${blueScore}`.toUpperCase()).width;
+        drawText(`${blueScore}`, 36, BLUE, blueNameRect.x + blueNameRect.width - blueScoreWidth, scoreRedRect.y + 5);
+        // Timer
+        ctx.fillStyle = GRAY;
+        ctx.fillRect(timerRect.x, timerRect.y, timerRect.width, timerRect.height);
+        ctx.strokeStyle = timerRunning ? GREEN : LIGHT_GRAY;
+        ctx.strokeRect(timerRect.x, timerRect.y, timerRect.width, timerRect.height);
+        const minutes = Math.floor(timerSeconds / 60);
+        const seconds = Math.floor(timerSeconds % 60);
+        drawText(`${minutes}:${seconds.toString().padStart(2, '0')}`, 36, WHITE, timerRect.x + timerRect.width / 2, timerRect.y + 5, true);
+        // Round selector
+        drawText('ROUND', 14, WHITE, roundLabelRect.x + roundLabelRect.width / 2, roundLabelRect.y - 18, true);
+        ctx.fillStyle = GRAY;
+        ctx.fillRect(roundLabelRect.x, roundLabelRect.y, roundLabelRect.width, roundLabelRect.height);
+        ctx.strokeStyle = LIGHT_GRAY;
+        ctx.strokeRect(roundLabelRect.x, roundLabelRect.y, roundLabelRect.width, roundLabelRect.height);
+        drawText(`${currentRound}`, 28, WHITE, roundLabelRect.x + roundLabelRect.width / 2, roundLabelRect.y + 5, true);
+        drawButton('−', roundDownRect, GRAY, mouseX >= roundDownRect.x && mouseX <= roundDownRect.x + roundDownRect.width && mouseY >= roundLabelRect.y && mouseY <= roundLabelRect.y + roundLabelRect.height);
+        drawButton('+', roundUpRect, GRAY, mouseX >= roundUpRect.x && mouseX <= roundUpRect.x + roundUpRect.width && mouseY >= roundUpRect.y && mouseY <= roundUpRect.y + roundUpRect.height);
+        // Buttons
+        drawButton(timerState === 'start' ? 'START' : timerState === 'pause' ? 'PAUSE' : 'RESUME', startButtonRect, GRAY, mouseX >= startButtonRect.x && mouseX <= startButtonRect.x + startButtonRect.width && mouseY >= startButtonRect.y && mouseY <= startButtonRect.y + startButtonRect.height);
+        drawButton('RESET', resetButtonRect, GRAY, mouseX >= resetButtonRect.x && mouseX <= resetButtonRect.x + resetButtonRect.width && mouseY >= resetButtonRect.y && mouseY <= resetButtonRect.y + resetButtonRect.height);
+        // Progress bar
+        drawProgressBar();
+        // Graph
+        drawGraph();
+        // Sidebar
+        ctx.fillStyle = BLACK;
+        ctx.fillRect(sidebarX, sidebarRect.y, sidebarRect.width, sidebarRect.height);
+        ctx.strokeStyle = LIGHT_GRAY;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(sidebarX, sidebarRect.y, sidebarRect.width, sidebarRect.height);
+        if (sidebarX <= -SIDEBAR_WIDTH) {
+            ctx.fillStyle = SHADE_WHITE;
+            ctx.fillRect(0, 0, 30, CANVAS_HEIGHT);
+        }
+        const arrowText = sidebarOpen ? '<' : '>';
+        const arrowColor = mouseX >= arrowRect.x && mouseX <= arrowRect.x + arrowRect.width && mouseY >= arrowRect.y && mouseY <= arrowRect.y + arrowRect.height ? LIGHT_GRAY : WHITE;
+        drawText(arrowText, 28, arrowColor, arrowRect.x + arrowRect.width / 2, arrowRect.y + 5, true);
+        if (sidebarOpen) {
+            let y = sidebarRect.y + 5;
+            drawText('SCORECARD', 14, WHITE, sidebarX + sidebarRect.width / 2, y, true);
+            y += 30;
+            roundLog.forEach((log, i) => {
+                drawText(log, roundLogFontSizes[i] || 14, WHITE, sidebarX + 10, y + 5);
+                y += 20;
+            });
+            y += 30;
+            let redPoints = 0, bluePoints = 0;
+            roundLog.forEach(log => {
+                if (!log) return;
+                if (log.includes(`${redName || 'RED CORNER'} WINS 10-9`)) { redPoints += 10; bluePoints += 9; }
+                else if (log.includes(`${redName || 'RED CORNER'} WINS 10-8`)) { redPoints += 10; bluePoints += 8; }
+                else if (log.includes(`${blueName || 'BLUE CORNER'} WINS 10-9`)) { bluePoints += 10; redPoints += 9; }
+                else if (log.includes(`${blueName || 'BLUE CORNER'} WINS 10-8`)) { bluePoints += 10; redPoints += 8; }
+                else if (log.includes('DRAW')) { redPoints += 10; bluePoints += 10; }
+            });
+            const decisionText = `DECISION: ${redName || 'RED CORNER'} ${redPoints}, ${blueName || 'BLUE CORNER'} ${bluePoints}`;
+            ctx.font = `bold ${ctx.measureText(decisionText.toUpperCase()).width > 380 ? 10 : 14}px GOBOLD, Impact, Verdana, sans-serif`;
+            drawText(decisionText, ctx.font.includes('10px') ? 10 : 14, WHITE, sidebarX + sidebarRect.width / 2, y + 5, true);
+            if (currentRound === 5 && timerSeconds <= 0) {
+                y += 30;
+                if (redPoints > bluePoints) {
+                    drawText(`${redName || 'RED CORNER'} WINS ${redPoints}-${bluePoints} UNANIMOUS DECISION!`, 14, RED, sidebarX + 10, y + 5);
+                } else if (bluePoints > redPoints) {
+                    drawText(`${blueName || 'BLUE CORNER'} WINS ${bluePoints}-${redPoints} UNANIMOUS DECISION!`, 14, BLUE, sidebarX + 10, y + 5);
+                } else {
+                    drawText('FIGHT ENDS IN A DRAW!', 14, WHITE, sidebarX + 10, y + 5);
+                }
+            }
+            drawButton('COPY TO CLIPBOARD', { x: copyButtonRect.x + sidebarX, y: copyButtonRect.y + sidebarRect.y, width: copyButtonRect.width, height: copyButtonRect.height }, GRAY, mouseX >= copyButtonRect.x + sidebarX && mouseX <= copyButtonRect.x + sidebarX + copyButtonRect.width && mouseY >= copyButtonRect.y + sidebarRect.y && mouseY <= copyButtonRect.y + sidebarRect.y + copyButtonRect.height);
+        }
+        needsRedraw = false;
+        requestAnimationFrame(updateLoop);
+    }
+    let mouseX = 0, mouseY = 0, lastFrameTime = 0;
+    canvas.addEventListener('click', async e => {
+        if (!audioInitialized) {
+            await audioCtx.resume();
+            setupAudio();
+        }
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        if (x >= redNameRect.x && x <= redNameRect.x + redNameRect.width && y >= redNameRect.y && y <= redNameRect.y + redNameRect.height) {
+            activeInput = 'red';
+            document.getElementById('redNameInput').classList.remove('hidden');
+            document.getElementById('blueNameInput').classList.add('hidden');
+            document.getElementById('eventNameInput').classList.add('hidden');
+            document.getElementById('redNameInput').value = redName || redNameInput || '';
+            document.getElementById('redNameInput').focus();
+            cursorVisible = true;
+            cursorTimer = 0;
+            needsRedraw = true;
+        } else if (x >= blueNameRect.x && x <= blueNameRect.x + blueNameRect.width && y >= blueNameRect.y && y <= blueNameRect.y + blueNameRect.height) {
+            activeInput = 'blue';
+            document.getElementById('redNameInput').classList.add('hidden');
+            document.getElementById('blueNameInput').classList.remove('hidden');
+            document.getElementById('eventNameInput').classList.add('hidden');
+            document.getElementById('blueNameInput').value = blueName || blueNameInput || '';
+            document.getElementById('blueNameInput').focus();
+            cursorVisible = true;
+            cursorTimer = 0;
+            needsRedraw = true;
+        } else if (x >= eventNameRect.x && x <= eventNameRect.x + eventNameRect.width && y >= eventNameRect.y && y <= eventNameRect.y + redNameRect.height) {
+            activeInput = 'event';
+            document.getElementById('redNameInput').classList.add('hidden');
+            document.getElementById('blueNameInput').classList.add('hidden');
+            document.getElementById('eventNameInput').classList.remove('hidden');
+            document.getElementById('eventNameInput').value = eventName || eventNameInput || '#';
+            document.getElementById('eventNameInput').focus();
+            cursorVisible = true;
+            cursorTimer = 0;
+            needsRedraw = true;
+        } else if (x >= startButtonRect.x && x <= startButtonRect.x + startButtonRect.width && y >= startButtonRect.y && y <= startButtonRect.y + startButtonRect.height) {
+            console.log('Matlock\'s Scorecard v3.14 - Playing button_sound');
+            playSound(buttonSound);
+            if (timerState === 'start') {
+                resetTimer();
+                timerRunning = true;
+                timerState = 'pause';
+                console.log('Matlock\'s Scorecard v3.14 - Playing bell_sound');
+                playSound(bellSound);
+            } else if (timerState === 'pause') {
+                timerRunning = false;
+                pausedTime = timerSeconds;
+                timerState = 'resume';
+            } else if (timerState === 'resume') {
+                startTime = performance.now() - (ROUND_TIME - pausedTime) * 1000;
+                lastIntervalTime = performance.now() - (intervalTimer * 1000);
+                timerRunning = true;
+                timerState = 'pause';
+            }
+            needsRedraw = true;
+        } else if (x >= resetButtonRect.x && x <= resetButtonRect.x + resetButtonRect.width && y >= resetButtonRect.y && y <= resetButtonRect.y + resetButtonRect.height) {
+            console.log('Matlock\'s Scorecard v3.14 - Playing button_sound');
+            playSound(buttonSound);
+            resetGame();
+        } else if (x >= roundUpRect.x && x <= roundUpRect.x + roundUpRect.width && y >= roundUpRect.y && y <= roundUpRect.y + roundUpRect.height) {
+            console.log('Matlock\'s Scorecard v3.14 - Playing button_sound');
+            playSound(buttonSound);
+            currentRound = Math.min(currentRound + 1, 5);
+            resetGraph();
+            resetTimer();
+            redScore = blueScore = 0;
+            woodblockPlayed = false;
+            needsRedraw = true;
+        } else if (x >= roundDownRect.x && x <= roundDownRect.x + roundDownRect.width && y >= roundDownRect.y && y <= roundDownRect.y + roundDownRect.height) {
+            console.log('Matlock\'s Scorecard v3.14 - Playing button_sound');
+            playSound(buttonSound);
+            currentRound = Math.max(currentRound - 1, 1);
+            resetGraph();
+            resetTimer();
+            redScore = blueScore = 0;
+            woodblockPlayed = false;
+            needsRedraw = true;
+        } else if (x >= copyButtonRect.x + sidebarX && x <= copyButtonRect.x + sidebarX + copyButtonRect.width && y >= copyButtonRect.y + sidebarRect.y && y <= copyButtonRect.y + sidebarRect.y + copyButtonRect.height && sidebarOpen) {
+            console.log('Matlock\'s Scorecard v3.14 - Playing button_sound');
+            playSound(buttonSound);
+            copyToClipboard();
+            needsRedraw = true;
+        } else if (x >= arrowRect.x && x <= arrowRect.x + arrowRect.width && y >= arrowRect.y && y <= arrowRect.y + arrowRect.height) {
+            sidebarOpen = !sidebarOpen;
+            console.log('Matlock\'s Scorecard v3.14 - Playing arrow_sound');
+            playSound(arrowSound);
+            console.log(`Matlock\'s Scorecard v3.14 - Sidebar toggled: sidebar_open=${sidebarOpen}, sidebar_x=${sidebarX}`);
+            animationTime = 0;
+            needsRedraw = true;
+        } else {
+            activeInput = null;
+            document.getElementById('redNameInput').classList.add('hidden');
+            document.getElementById('blueNameInput').classList.add('hidden');
+            document.getElementById('eventNameInput').classList.add('hidden');
+            needsRedraw = true;
+        }
+    });
+    canvas.addEventListener('mousemove', e => {
+        const rect = canvas.getBoundingClientRect();
+        const newMouseX = e.clientX - rect.left;
+        const newMouseY = e.clientY - rect.top;
+        if (newMouseX !== mouseX || newMouseY !== mouseY) {
+            mouseX = newMouseX;
+            mouseY = newMouseY;
+            needsRedraw = true;
+        }
+    });
+    document.addEventListener('keydown', e => {
+        if (!audioInitialized) {
+            audioCtx.resume().then(() => setupAudio());
+        }
+        if (activeInput) {
+            if (e.key === 'Backspace') {
+                if (activeInput === 'red') redNameInput = redNameInput.slice(0, -1);
+                else if (activeInput === 'blue') blueNameInput = blueNameInput.slice(0, -1);
+                else if (activeInput === 'event') {
+                    eventNameInput = eventNameInput.slice(0, -1);
+                    if (!eventNameInput) eventNameInput = '#';
+                }
+                needsRedraw = true;
+            } else if (e.key === 'Enter') {
+                if (activeInput === 'red') {
+                    redName = sanitizeInput(redNameInput);
+                    redNameLocked = true;
+                    console.log('Matlock\'s Scorecard v3.14 - Playing enter_sound');
+                    playSound(enterSound);
+                    document.getElementById('redNameInput').classList.add('hidden');
+                } else if (activeInput === 'blue') {
+                    blueName = sanitizeInput(blueNameInput);
+                    blueNameLocked = true;
+                    console.log('Matlock\'s Scorecard v3.14 - Playing enter_sound');
+                    playSound(enterSound);
+                    document.getElementById('blueNameInput').classList.add('hidden');
+                } else if (activeInput === 'event') {
+                    eventName = eventNameInput;
+                    eventNameLocked = true;
+                    console.log('Matlock\'s Scorecard v3.14 - Playing enter_sound');
+                    playSound(enterSound);
+                    document.getElementById('eventNameInput').classList.add('hidden');
+                }
+                activeInput = null;
+                needsRedraw = true;
+            }
+        } else if (e.key === ' ' && document.activeElement.tagName !== 'INPUT') {
+            e.preventDefault();
+            console.log('Matlock\'s Scorecard v3.14 - Playing button_sound');
+            playSound(buttonSound);
+            if (timerState === 'start') {
+                resetTimer();
+                timerRunning = true;
+                timerState = 'pause';
+                console.log('Matlock\'s Scorecard v3.14 - Playing bell_sound');
+                playSound(bellSound);
+            } else if (timerState === 'pause') {
+                timerRunning = false;
+                pausedTime = timerSeconds;
+                timerState = 'resume';
+            } else if (timerState === 'resume') {
+                startTime = performance.now() - (ROUND_TIME - pausedTime) * 1000;
+                lastIntervalTime = performance.now() - (intervalTimer * 1000);
+                timerRunning = true;
+                timerState = 'pause';
+            }
+            needsRedraw = true;
+        } else if (timerRunning) {
+            if (e.key === 'ArrowLeft') {
+                redScore++;
+                redIntervalScore++;
+                console.log('Matlock\'s Scorecard v3.14 - Playing arrow_key_sound');
+                playSound(arrowKeySound);
+                needsRedraw = true;
+            } else if (e.key === 'ArrowRight') {
+                blueScore++;
+                blueIntervalScore++;
+                console.log('Matlock\'s Scorecard v3.14 - Playing arrow_key_sound');
+                playSound(arrowKeySound);
+                needsRedraw = true;
+            }
+        }
+    });
+    // Initialize inputs
+    document.getElementById('redNameInput').addEventListener('input', e => {
+        redNameInput = sanitizeInput(e.target.value);
+        needsRedraw = true;
+    });
+    document.getElementById('blueNameInput').addEventListener('input', e => {
+        blueNameInput = sanitizeInput(e.target.value);
+        needsRedraw = true;
+    });
+    document.getElementById('eventNameInput').addEventListener('input', e => {
+        if (e.target.value && !e.target.value.startsWith('#')) e.target.value = '#' + e.target.value;
+        eventNameInput = e.target.value;
+        needsRedraw = true;
+    });
+    setup();
+</script>
