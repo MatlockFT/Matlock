@@ -137,44 +137,27 @@ title: Picture Gallery
 </div>
 <style>
     .gallery-container {
-        max-width: 1200px;
+        max-width: 960px;
         margin: 0 auto;
-        padding: 20px;
+        padding: 10px; /* Reduced padding for tighter layout */
     }
     .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 20px;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Reduced min width for tighter fit */
+        gap: 10px; /* Reduced gap for tighter spacing */
     }
     .gallery-item {
         text-align: center;
-        position: relative;
-        overflow: hidden;
     }
     .gallery-item img {
         max-width: 100%;
         height: auto;
-        border: 2px solid #BBB;
-        position: relative;
-        z-index: 1;
-    }
-    .gallery-item::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.3); /* 70% opacity black overlay */
-        z-index: 2;
-        pointer-events: none; /* Ensures overlay doesn’t interfere with clicks */
+        border: 1px solid #BBB; /* Thinner border for neatness */
     }
     .gallery-caption {
-        margin: 5px 0 0;
+        margin: 3px 0 0; /* Reduced margin for tighter fit */
         font-family: 'GOBOLD', Impact, Verdana, sans-serif;
         color: #F5F5F5;
-        font-size: 16px;
-        position: relative;
-        z-index: 3;
+        font-size: 14px; /* Slightly smaller font for compactness */
     }
 </style>
