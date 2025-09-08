@@ -2,7 +2,6 @@
 layout: default
 title: Picture Gallery
 ---
-
 <div class="gallery-container">
     <h1>Picture Gallery</h1>
     <div class="gallery-grid">
@@ -54,5 +53,111 @@ title: Picture Gallery
             <img src="/assets/gallery/image12.jpg" alt="Dana White's Favorite Sweater">
             <p class="gallery-caption">Dana White (with hair) and wearing his favorite sweater</p>
         </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image13.jpg" alt="Placeholder 13">
+            <p class="gallery-caption">Placeholder 13</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image14.jpg" alt="Placeholder 14">
+            <p class="gallery-caption">Placeholder 14</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image15.jpg" alt="Placeholder 15">
+            <p class="gallery-caption">Placeholder 15</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image16.jpg" alt="Placeholder 16">
+            <p class="gallery-caption">Placeholder 16</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image17.jpg" alt="Placeholder 17">
+            <p class="gallery-caption">Placeholder 17</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image18.jpg" alt="Placeholder 18">
+            <p class="gallery-caption">Placeholder 18</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image19.jpg" alt="Placeholder 19">
+            <p class="gallery-caption">Placeholder 19</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image20.jpg" alt="Placeholder 20">
+            <p class="gallery-caption">Placeholder 20</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image21.jpg" alt="Placeholder 21">
+            <p class="gallery-caption">Placeholder 21</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image22.jpg" alt="Placeholder 22">
+            <p class="gallery-caption">Placeholder 22</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image23.jpg" alt="Placeholder 23">
+            <p class="gallery-caption">Placeholder 23</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image24.jpg" alt="Placeholder 24">
+            <p class="gallery-caption">Placeholder 24</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image25.jpg" alt="Placeholder 25">
+            <p class="gallery-caption">Placeholder 25</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image26.jpg" alt="Placeholder 26">
+            <p class="gallery-caption">Placeholder 26</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image27.jpg" alt="Placeholder 27">
+            <p class="gallery-caption">Placeholder 27</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image28.jpg" alt="Placeholder 28">
+            <p class="gallery-caption">Placeholder 28</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image29.jpg" alt="Placeholder 29">
+            <p class="gallery-caption">Placeholder 29</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image30.jpg" alt="Placeholder 30">
+            <p class="gallery-caption">Placeholder 30</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image31.jpg" alt="Placeholder 31">
+            <p class="gallery-caption">Placeholder 31</p>
+        </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image32.jpg" alt="Placeholder 32">
+            <p class="gallery-caption">Placeholder 32</p>
+        </div>
     </div>
 </div>
+<style>
+    .gallery-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+    }
+    .gallery-item {
+        text-align: center;
+    }
+    .gallery-item img {
+        max-width: 100%;
+        height: auto;
+        border: 2px solid #BBB;
+    }
+    .gallery-caption {
+        margin: 5px 0 0;
+        font-family: 'GOBOLD', Impact, Verdana, sans-serif;
+        color: #F5F5F5;
+        font-size: 16px;
+    }
+</style>
