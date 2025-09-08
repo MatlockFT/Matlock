@@ -3,7 +3,7 @@ layout: default
 title: Matlock's Scorecard
 permalink: /scorecard
 ---
-<canvas id="gameCanvas" width="960" height="900" style="position: relative; left: 241px;"></canvas>
+<canvas id="gameCanvas" width="960" height="900" style="position: relative; left: 200px;"></canvas>
 <input id="redNameInput" placeholder="RED CORNER" maxlength="20" class="hidden">
 <input id="blueNameInput" placeholder="BLUE CORNER" maxlength="20" class="hidden">
 <input id="eventNameInput" placeholder="#EVENT" maxlength="20" class="hidden">
@@ -24,9 +24,9 @@ permalink: /scorecard
         background-blend-mode: soft-light;
     }
     input::placeholder { color: rgba(245, 245, 245, 0.5); }
-    #redNameInput { left: 292px; top: 31px; width: 320px; height: 40px; } /* 241 + 51 */
-    #blueNameInput { left: 1072px; top: 31px; width: 320px; height: 40px; } /* 241 + 831 */
-    #eventNameInput { left: 682px; top: 31px; width: 320px; height: 40px; } /* 441 + 241 */
+    #redNameInput { left: 251px; top: 31px; width: 320px; height: 40px; } /* 200 + 51 */
+    #blueNameInput { left: 1031px; top: 31px; width: 320px; height: 40px; } /* 200 + 831 */
+    #eventNameInput { left: 641px; top: 31px; width: 320px; height: 40px; } /* 441 + 200 */
     .hidden { display: none; }
     @font-face {
         font-family: 'GOBOLD';
@@ -38,7 +38,7 @@ permalink: /scorecard
     const ctx = canvas.getContext('2d');
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     // Constants
-    const CANVAS_WIDTH = 960; // Reduced to fit 80% width
+    const CANVAS_WIDTH = 960; // Fits 80% content area
     const CANVAS_HEIGHT = 900;
     const FPS = 60;
     const ROUND_TIME = 300;
@@ -98,10 +98,10 @@ permalink: /scorecard
     let animationTime = 0;
     let needsRedraw = true;
     let copyButtonHover = false;
-    // UI elements (adjusted for 960px width)
+    // UI elements (adjusted for new left position)
     const redNameRect = { x: 50, y: 30, width: 320, height: 40 };
     const blueNameRect = { x: CANVAS_WIDTH - 370, y: 30, width: 320, height: 40 };
-    const eventNameRect = { x: (370 + 590) / 2 - 160, y: 30, width: 320, height: 40 }; // Adjusted for 960px
+    const eventNameRect = { x: (370 + 590) / 2 - 160, y: 30, width: 320, height: 40 }; // Centered within 960px
     const scoreRedRect = { x: 50, y: 100, width: 170, height: 45 };
     const scoreBlueRect = { x: CANVAS_WIDTH - 220, y: 100, width: 170, height: 45 };
     const logoRect = { x: 420, y: 130, width: 120, height: 32 }; // Centered within 960px
