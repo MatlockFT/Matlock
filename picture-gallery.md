@@ -148,16 +148,33 @@ title: Picture Gallery
     }
     .gallery-item {
         text-align: center;
+        position: relative;
+        overflow: hidden;
     }
     .gallery-item img {
         max-width: 100%;
         height: auto;
         border: 2px solid #BBB;
+        position: relative;
+        z-index: 1;
+    }
+    .gallery-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3); /* 70% opacity black overlay */
+        z-index: 2;
+        pointer-events: none; /* Ensures overlay doesn’t interfere with clicks */
     }
     .gallery-caption {
         margin: 5px 0 0;
         font-family: 'GOBOLD', Impact, Verdana, sans-serif;
         color: #F5F5F5;
         font-size: 16px;
+        position: relative;
+        z-index: 3;
     }
 </style>
