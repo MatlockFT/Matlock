@@ -1,9 +1,9 @@
 body {
     background-image: url('/assets/construction_paper_bg.jpg');
-    background-size: cover; /* Scale to cover the page */
+    background-size: 100% auto; /* Fit width, scale height proportionally */
     background-repeat: no-repeat;
-    background-position: center;
-    background-blend-mode: soft-light; /* Blend content over texture */
+    background-position: center top;
+    background-blend-mode: soft-light;
     font-family: "Arial", "Helvetica", sans-serif;
     color: #FFFFFF;
     margin: 0;
@@ -17,12 +17,12 @@ h1, h2, h3 {
     font-family: "Arial Black", sans-serif;
 }
 a { color: #A00000; text-decoration: underline; }
-a:hover { color: #CC0000; background-color: rgba(51, 51, 51, 0.5); } /* Semi-opaque hover */
+a:hover { color: #CC0000; background-color: rgba(51, 51, 51, 0.5); }
 ul { list-style-type: square; }
 marquee { font-size: 18px; }
 img { image-rendering: pixelated; }
 .audio-container { 
-    background-color: rgba(0, 0, 0, 0.3); /* Light black overlay */
+    background-color: rgba(0, 0, 0, 0.3);
     border: 4px double #A00000;
     padding: 8px;
     box-shadow: 4px 4px 8px #800000;
@@ -37,12 +37,12 @@ audio { display: none; }
 .intro-container, .blog-post, .guestbook-container, .chat-container, .scorecard-container, .gallery-container {
     font-family: "Courier New", "Courier", monospace;
     color: #FFFFFF;
-    background-color: rgba(0, 0, 0, 0.3); /* Semi-opaque black to blend with texture */
+    background-color: rgba(0, 0, 0, 0.3);
     border: 4px double #A00000;
     padding: 20px;
     margin: 20px auto;
     box-shadow: 3px 3px 6px #800000;
-    background-blend-mode: soft-light; /* Apply blend mode to containers */
+    background-blend-mode: soft-light;
 }
 .intro-container { max-width: 600px; }
 .blog-post { max-width: 700px; }
@@ -89,7 +89,7 @@ audio { display: none; }
         "history";
     gap: 20px;
     justify-items: center;
-    background: rgba(0, 0, 0, 0.3); /* Blend with texture */
+    background: rgba(0, 0, 0, 0.3);
     background-blend-mode: soft-light;
 }
 .scorecard-container .fighter-inputs {
