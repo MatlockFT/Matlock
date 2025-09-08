@@ -94,20 +94,20 @@ title: Picture Gallery
             <p class="gallery-caption">GENKI SUDO</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image23.jpg" alt="Placeholder 23">
-            <p class="gallery-caption">Placeholder 23</p>
+            <img src="/assets/gallery/image23.jpg" alt="Wandi">
+            <p class="gallery-caption">Wanderlei Silva</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image24.jpg" alt="Placeholder 24">
-            <p class="gallery-caption">Placeholder 24</p>
+            <img src="/assets/gallery/image24.jpg" alt="WE ARE ALL ONE">
+            <p class="gallery-caption">Genki Sudo - We Are All One</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image25.jpg" alt="Placeholder 25">
-            <p class="gallery-caption">Placeholder 25</p>
+            <img src="/assets/gallery/image25.jpg" alt="BIG NOG">
+            <p class="gallery-caption">MINOTAURO</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image26.jpg" alt="Placeholder 26">
-            <p class="gallery-caption">Placeholder 26</p>
+            <img src="/assets/gallery/image26.jpg" alt="THE FEW, THE PROUD">
+            <p class="gallery-caption">DANA WHITE</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image27.jpg" alt="Placeholder 27">
