@@ -21,18 +21,18 @@ permalink: /scorecard
         height: 540px; 
     }
     #gameCanvasContainer input {
-        position: absolute; 
+        position: absolute !important; 
         border: 1px solid #BBBBBB; 
         border-radius: 2px; 
         background: rgba(0, 0, 0, 0.7); 
         color: #F5F5F5; 
         font-family: GOBOLD, Impact, Verdana, sans-serif; 
         font-size: 20px; 
-        padding: 3px 0 1px 0; /* Adjusted padding to align text */
+        padding: 3px 0 1px 0; 
         line-height: 26px; 
         outline: none; 
         box-sizing: border-box;
-        z-index: 10;
+        z-index: 10 !important;
     }
     #gameCanvasContainer input::placeholder { color: rgba(245, 245, 245, 0.5); }
     .hidden { display: none; }
@@ -683,7 +683,7 @@ permalink: /scorecard
         if (mouseX >= redNameRect.x && mouseX <= redNameRect.x + redNameRect.width && mouseY >= redNameRect.y && mouseY <= redNameRect.y + redNameRect.height) {
             activeInput = 'red';
             redNameInput.style.left = `${redNameRect.x}px`;
-            redNameInput.style.top = `${redNameRect.y + 5}px`; // Added 5px offset
+            redNameInput.style.top = `${redNameRect.y + 10}px`; // Increased to 10px offset
             redNameInput.style.width = `${redNameRect.width}px`;
             redNameInput.style.height = `${redNameRect.height}px`;
             redNameInput.classList.remove('hidden');
@@ -691,11 +691,12 @@ permalink: /scorecard
             redNameInput.focus();
             e.preventDefault();
             playSound(buttonSound);
+            console.log(`Red input top set to: ${redNameInput.style.top}`); // Debug log
             needsRedraw = true;
         } else if (mouseX >= blueNameRect.x && mouseX <= blueNameRect.x + blueNameRect.width && mouseY >= blueNameRect.y && mouseY <= blueNameRect.y + blueNameRect.height) {
             activeInput = 'blue';
             blueNameInput.style.left = `${blueNameRect.x}px`;
-            blueNameInput.style.top = `${blueNameRect.y + 5}px`; // Added 5px offset
+            blueNameInput.style.top = `${blueNameRect.y + 10}px`; // Increased to 10px offset
             blueNameInput.style.width = `${blueNameRect.width}px`;
             blueNameInput.style.height = `${blueNameRect.height}px`;
             blueNameInput.classList.remove('hidden');
@@ -703,11 +704,12 @@ permalink: /scorecard
             blueNameInput.focus();
             e.preventDefault();
             playSound(buttonSound);
+            console.log(`Blue input top set to: ${blueNameInput.style.top}`); // Debug log
             needsRedraw = true;
         } else if (mouseX >= eventNameRect.x && mouseX <= eventNameRect.x + eventNameRect.width && mouseY >= eventNameRect.y && mouseY <= eventNameRect.y + eventNameRect.height) {
             activeInput = 'event';
             eventNameInput.style.left = `${eventNameRect.x}px`;
-            eventNameInput.style.top = `${eventNameRect.y + 5}px`; // Added 5px offset
+            eventNameInput.style.top = `${eventNameRect.y + 10}px`; // Increased to 10px offset
             eventNameInput.style.width = `${eventNameRect.width}px`;
             eventNameInput.style.height = `${eventNameRect.height}px`;
             eventNameInput.classList.remove('hidden');
@@ -715,6 +717,7 @@ permalink: /scorecard
             eventNameInput.focus();
             e.preventDefault();
             playSound(buttonSound);
+            console.log(`Event input top set to: ${eventNameInput.style.top}`); // Debug log
             needsRedraw = true;
         } else if (mouseX >= startButtonRect.x && mouseX <= startButtonRect.x + startButtonRect.width && mouseY >= startButtonRect.y && mouseY <= startButtonRect.y + startButtonRect.height) {
             playSound(buttonSound);
