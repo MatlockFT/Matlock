@@ -86,8 +86,8 @@ title: Picture Gallery
             <p class="gallery-caption">IS DANA WHITE AN ENEMY OR AN ALLY?</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image21.jpg" alt="Placeholder 21">
-            <p class="gallery-caption">Placeholder 21</p>
+            <img src="/assets/gallery/image21.jpg" alt="GRACIE, CHOI, LESNAR, MORTON">
+            <p class="gallery-caption">ROYCE GRACIE, HONGMAN CHOI, BROCK LESNAR, JOHNNIE MORTON</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image22.jpg" alt="Placeholder 22">
