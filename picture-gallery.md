@@ -115,19 +115,19 @@ title: Picture Gallery
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image28.jpg" alt="Placeholder 28">
-            <p class="gallery-caption">Placeholder 28</p>
+            <p class="gallery-caption">Dana White With Hitler</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image29.jpg" alt="Placeholder 29">
-            <p class="gallery-caption">Placeholder 29</p>
+            <img src="/assets/gallery/image29.jpg" alt="Don Frye">
+            <p class="gallery-caption">Americanr</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image30.jpg" alt="Placeholder 30">
-            <p class="gallery-caption">Placeholder 30</p>
+            <img src="/assets/gallery/image30.jpg" alt="Fedor Reading At His Level">
+            <p class="gallery-caption">Fedor Reading At His Level</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image31.jpg" alt="Placeholder 31">
-            <p class="gallery-caption">Placeholder 31</p>
+            <img src="/assets/gallery/image31.jpg" alt="CroCop">
+            <p class="gallery-caption">Right Leg Hospital</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image32.jpg" alt="Placeholder 32">
