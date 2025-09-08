@@ -74,8 +74,8 @@ title: Picture Gallery
             <p class="gallery-caption">JOSH BARNETT</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image18.jpg" alt="Placeholder 18">
-            <p class="gallery-caption">Placeholder 18</p>
+            <img src="/assets/gallery/image18.jpg" alt="WANDY AND FEDOR">
+            <p class="gallery-caption">WANDERLEI SILVA AND FEDOR</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image19.jpg" alt="Placeholder 19">
