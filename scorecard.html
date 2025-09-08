@@ -677,47 +677,48 @@ permalink: /scorecard
         }
         const rect = canvas.getBoundingClientRect();
         const containerRect = container.getBoundingClientRect();
-        mouseX = e.clientX - containerRect.left;
-        mouseY = e.clientY - containerRect.top;
+        const dpr = window.devicePixelRatio || 1;
+        mouseX = (e.clientX - containerRect.left) * dpr; // Normalize with dpr
+        mouseY = (e.clientY - containerRect.top) * dpr;  // Normalize with dpr
 
         if (mouseX >= redNameRect.x && mouseX <= redNameRect.x + redNameRect.width && mouseY >= redNameRect.y && mouseY <= redNameRect.y + redNameRect.height) {
             activeInput = 'red';
-            redNameInput.style.left = `${redNameRect.x}px`;
-            redNameInput.style.top = `${redNameRect.y + 20}px`; // Increased to 12px offset
-            redNameInput.style.width = `${redNameRect.width}px`;
-            redNameInput.style.height = `${redNameRect.height}px`;
+            redNameInput.style.left = `${redNameRect.x / dpr}px`;
+            redNameInput.style.top = `${(redNameRect.y + 20) / dpr}px`; // Your 20px offset
+            redNameInput.style.width = `${redNameRect.width / dpr}px`;
+            redNameInput.style.height = `${redNameRect.height / dpr}px`;
             redNameInput.classList.remove('hidden');
             redNameInput.value = redName || '';
             redNameInput.focus();
             e.preventDefault();
             playSound(buttonSound);
-            console.log(`Red input top set to: ${redNameInput.style.top}`); // Debug log
+            console.log(`Red input top set to: ${redNameInput.style.top}`);
             needsRedraw = true;
         } else if (mouseX >= blueNameRect.x && mouseX <= blueNameRect.x + blueNameRect.width && mouseY >= blueNameRect.y && mouseY <= blueNameRect.y + blueNameRect.height) {
             activeInput = 'blue';
-            blueNameInput.style.left = `${blueNameRect.x}px`;
-            blueNameInput.style.top = `${blueNameRect.y + 20}px`; // Increased to 12px offset
-            blueNameInput.style.width = `${blueNameRect.width}px`;
-            blueNameInput.style.height = `${blueNameRect.height}px`;
+            blueNameInput.style.left = `${blueNameRect.x / dpr}px`;
+            blueNameInput.style.top = `${(blueNameRect.y + 20) / dpr}px`; // Your 20px offset
+            blueNameInput.style.width = `${blueNameRect.width / dpr}px`;
+            blueNameInput.style.height = `${blueNameRect.height / dpr}px`;
             blueNameInput.classList.remove('hidden');
             blueNameInput.value = blueName || '';
             blueNameInput.focus();
             e.preventDefault();
             playSound(buttonSound);
-            console.log(`Blue input top set to: ${blueNameInput.style.top}`); // Debug log
+            console.log(`Blue input top set to: ${blueNameInput.style.top}`);
             needsRedraw = true;
         } else if (mouseX >= eventNameRect.x && mouseX <= eventNameRect.x + eventNameRect.width && mouseY >= eventNameRect.y && mouseY <= eventNameRect.y + eventNameRect.height) {
             activeInput = 'event';
-            eventNameInput.style.left = `${eventNameRect.x}px`;
-            eventNameInput.style.top = `${eventNameRect.y + 20}px`; // Increased to 12px offset
-            eventNameInput.style.width = `${eventNameRect.width}px`;
-            eventNameInput.style.height = `${eventNameRect.height}px`;
+            eventNameInput.style.left = `${eventNameRect.x / dpr}px`;
+            eventNameInput.style.top = `${(eventNameRect.y + 20) / dpr}px`; // Your 20px offset
+            eventNameInput.style.width = `${eventNameRect.width / dpr}px`;
+            eventNameInput.style.height = `${eventNameRect.height / dpr}px`;
             eventNameInput.classList.remove('hidden');
             eventNameInput.value = eventName || '';
             eventNameInput.focus();
             e.preventDefault();
             playSound(buttonSound);
-            console.log(`Event input top set to: ${eventNameInput.style.top}`); // Debug log
+            console.log(`Event input top set to: ${eventNameInput.style.top}`);
             needsRedraw = true;
         } else if (mouseX >= startButtonRect.x && mouseX <= startButtonRect.x + startButtonRect.width && mouseY >= startButtonRect.y && mouseY <= startButtonRect.y + startButtonRect.height) {
             playSound(buttonSound);
@@ -775,8 +776,9 @@ permalink: /scorecard
     });
     canvas.addEventListener('mousemove', (e) => {
         const containerRect = container.getBoundingClientRect();
-        const newMouseX = e.clientX - containerRect.left;
-        const newMouseY = e.clientY - containerRect.top;
+        const dpr = window.devicePixelRatio || 1;
+        const newMouseX = (e.clientX - containerRect.left) * dpr; // Normalize with dpr
+        const newMouseY = (e.clientY - containerRect.top) * dpr;  // Normalize with dpr
         if (newMouseX !== mouseX || newMouseY !== mouseY) {
             mouseX = newMouseX;
             mouseY = newMouseY;
