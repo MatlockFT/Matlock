@@ -1,838 +1,866 @@
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Matlock's Scorecard</title>
-    <link rel="icon" type="image/png" href="logo.png">
-    <style>
-        body { margin: 0; overflow: hidden; background: black; }
-        canvas { display: block; }
-        input {
-            position: absolute; border: 1px solid #BBBBBB; border-radius: 2px; background: rgba(51, 51, 51, 0.7);
-            color: #F5F5F5; font-family: GOBOLD, Impact, Verdana, sans-serif; font-size: 28px;
-            padding: 0; line-height: 40px; outline: none; box-sizing: border-box;
-        }
-        input::placeholder { color: rgba(245, 245, 245, 0.5); }
-        #redNameInput { left: 51px; top: 31px; width: 320px; height: 40px; }
-        #blueNameInput { left: 831px; top: 31px; width: 320px; height: 40px; }
-        #eventNameInput { left: 441px; top: 31px; width: 320px; height: 40px; }
-        .hidden { display: none; }
-        @font-face {
-            font-family: 'GOBOLD';
-            src: url('gobold.woff') format('woff');
-        }
-    </style>
+---
+layout: default
+title: Matlock's Scorecard
+permalink: /scorecard
+---
+<div style="text-align: center; padding: 20px 0; position: relative;" id="gameCanvasContainer">
+    <canvas id="gameCanvas"></canvas>
+    <input id="redNameInput" placeholder="RED CORNER" maxlength="20" class="hidden">
+    <input id="blueNameInput" placeholder="BLUE CORNER" maxlength="20" class="hidden">
+    <input id="eventNameInput" placeholder="#EVENT" maxlength="20" class="hidden">
+</div>
+<style>
+    #gameCanvasContainer {
+        position: relative;
+        width: 960px;
+        margin: 0 auto;
+    }
+    canvas { 
+        display: block; 
+        width: 960px; 
+        height: 540px; 
+    }
+    #gameCanvasContainer input {
+        position: absolute !important; 
+        border: 1px solid #BBBBBB; 
+        border-radius: 2px; 
+        background: rgba(0, 0, 0, 0.7); 
+        color: #F5F5F5; 
+        font-family: GOBOLD, Impact, Verdana, sans-serif; 
+        font-size: 20px; 
+        padding: 3px 0 1px 0; 
+        line-height: 26px; 
+        outline: none; 
+        box-sizing: border-box;
+        z-index: 10 !important;
+    }
+    #gameCanvasContainer input::placeholder { color: rgba(245, 245, 245, 0.5); }
+    .hidden { display: none; }
+    @font-face {
+        font-family: 'GOBOLD';
+        src: url('gobold.woff') format('woff');
+    }
+</style>
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const container = document.getElementById('gameCanvasContainer');
+    const redNameInput = document.getElementById('redNameInput');
+    const blueNameInput = document.getElementById('blueNameInput');
+    const eventNameInput = document.getElementById('eventNameInput');
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
+    // Set canvas resolution with device pixel ratio
+    function setCanvasResolution() {
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = 960 * dpr;
+        canvas.height = 540 * dpr;
+        ctx.scale(dpr, dpr);
+    }
+    setCanvasResolution();
+    window.addEventListener('resize', setCanvasResolution);
 
-    <canvas id="gameCanvas" width="1200" height="900"></canvas>
-    
-    
-    
-    <script>
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        // Constants
-        const CANVAS_WIDTH = 1200;
-        const CANVAS_HEIGHT = 900;
-        const FPS = 60;
-        const ROUND_TIME = 300;
-        const INTERVAL_DURATION = 10;
-        const SIDEBAR_WIDTH = 400;
-        const PROGRESS_WIDTH = 1100;
-        const ANIMATION_DURATION = 1.0;
-        // Colors
-        const BLACK = 'rgba(0, 0, 0, 0.7)';
-        const WHITE = '#F5F5F5';
-        const TRANSPARENT_WHITE = 'rgba(245, 245, 245, 0.5)';
-        const RED = '#F6530F';
-        const BLUE = '#1887C7';
-        const GRAY = 'rgba(51, 51, 51, 0.7)';
-        const LIGHT_GRAY = '#BBBBBB';
-        const GREEN = '#00FF00';
-        const TRANSPARENT_RED = 'rgba(246, 83, 15, 0.5)';
-        const TRANSPARENT_BLUE = 'rgba(24, 135, 199, 0.5)';
-        const TRANSPARENT_GRAY = 'rgba(255, 255, 255, 0.5)';
-        const PROGRESS_START = '#00FFFF';
-        const PROGRESS_MID = '#FF00FF';
-        const PROGRESS_END = '#FFFF00';
-        const PURPLE = 'rgba(128, 0, 128, 0.7)';
-        const SHADE_WHITE = 'rgba(255, 255, 255, 0.1)';
-        // Game variables
-        let timerSeconds = ROUND_TIME;
-        let timerRunning = false;
-        let timerState = 'start';
-        let pausedTime = 0;
-        let currentRound = 1;
-        let redScore = 0;
-        let blueScore = 0;
-        let redIntervalScore = 0;
-        let blueIntervalScore = 0;
-        let intervalTimer = 0;
-        let intervals = [];
-        let redName = '';
-        let blueName = '';
-        let eventName = '';
-        let redNameInput = '';
-        let blueNameInput = '';
-        let eventNameInput = '#EVENT';
-        let redNameLocked = false;
-        let blueNameLocked = false;
-        let eventNameLocked = false;
-        let activeInput = null;
-        let startTime = 0;
-        let lastIntervalTime = 0;
-        let roundLog = [];
-        let roundLogFontSizes = [];
-        let cursorVisible = true;
-        let cursorTimer = 0;
-        let sidebarOpen = false;
-        let sidebarX = -SIDEBAR_WIDTH;
-        let progressWidth = PROGRESS_WIDTH;
-        let woodblockPlayed = false;
-        let animationTime = 0;
-        let needsRedraw = true;
-        let copyButtonHover = false;
-        // UI elements
-        const redNameRect = { x: 50, y: 30, width: 320, height: 40 };
-        const blueNameRect = { x: CANVAS_WIDTH - 370, y: 30, width: 320, height: 40 };
-        const eventNameRect = { x: (370 + 830) / 2 - 160, y: 30, width: 320, height: 40 };
-        const scoreRedRect = { x: 50, y: 100, width: 170, height: 45 };
-        const scoreBlueRect = { x: CANVAS_WIDTH - 220, y: 100, width: 170, height: 45 };
-        const logoRect = { x: 540, y: 130, width: 120, height: 32 };
-        const timerRect = { x: CANVAS_WIDTH / 2 - 85, y: 170, width: 170, height: 50 };
-        const roundLabelRect = { x: CANVAS_WIDTH / 2 - 50, y: 250, width: 100, height: 40 };
-        const roundUpRect = { x: CANVAS_WIDTH / 2 + 90, y: 250, width: 40, height: 40 };
-        const roundDownRect = { x: CANVAS_WIDTH / 2 - 140, y: 250, width: 40, height: 40 };
-        const startButtonRect = { x: CANVAS_WIDTH / 2 - 190, y: 300, width: 170, height: 40 };
-        const resetButtonRect = { x: CANVAS_WIDTH / 2 + 20, y: 300, width: 170, height: 40 };
-        const progressRect = { x: 50, y: 350, width: CANVAS_WIDTH - 100, height: 10 };
-        const graphRect = { x: 50, y: 360, width: CANVAS_WIDTH - 100, height: CANVAS_HEIGHT - 450 };
-        const sidebarRect = { x: -SIDEBAR_WIDTH, y: 30, width: SIDEBAR_WIDTH, height: CANVAS_HEIGHT - 80 };
-        const arrowRect = { x: 0, y: CANVAS_HEIGHT / 2 - 20, width: 40, height: 40 };
-        const copyButtonRect = { x: 110, y: sidebarRect.height - 50, width: 180, height: 40 };
-        // Load logo (ignored per user request)
-        let logoImage = null;
-        const loadLogo = new Promise((resolve) => {
-            const img = new Image();
-            img.src = 'logo.png';
-            img.onload = () => {
-                console.log('Matlock\'s Scorecard v3.14 - logo.png loaded successfully');
-                resolve(img);
-            };
-            img.onerror = () => {
-                console.error('Matlock\'s Scorecard v3.14 - Failed to load logo.png');
-                resolve(null);
-            };
+    // Constants
+    const CANVAS_WIDTH = 960;
+    const CANVAS_HEIGHT = 540;
+    const FPS = 60;
+    const ROUND_TIME = 300;
+    const INTERVAL_DURATION = 10;
+    const SIDEBAR_WIDTH = 400;
+    const PROGRESS_WIDTH = 720;
+    const ANIMATION_DURATION = 1.0;
+    // Colors
+    const BLACK = 'rgba(0, 0, 0, 0.7)';
+    const WHITE = '#F5F5F5';
+    const TRANSPARENT_WHITE = 'rgba(245, 245, 245, 0.5)';
+    const RED = '#F6530F';
+    const BLUE = '#1887C7';
+    const GRAY = 'rgba(51, 51, 51, 0.7)';
+    const LIGHT_GRAY = '#BBBBBB';
+    const GREEN = '#00FF00';
+    const TRANSPARENT_RED = 'rgba(246, 83, 15, 0.5)';
+    const TRANSPARENT_BLUE = 'rgba(24, 135, 199, 0.5)';
+    const TRANSPARENT_GRAY = 'rgba(255, 255, 255, 0.5)';
+    const PROGRESS_START = '#00FFFF';
+    const PROGRESS_MID = '#FF00FF';
+    const PROGRESS_END = '#FFFF00';
+    const PURPLE = 'rgba(128, 0, 128, 0.7)';
+    const SHADE_WHITE = 'rgba(255, 255, 255, 0.1)';
+    // Game variables
+    let timerSeconds = ROUND_TIME;
+    let timerRunning = false;
+    let timerState = 'start';
+    let pausedTime = 0;
+    let currentRound = 1;
+    let redScore = 0;
+    let blueScore = 0;
+    let redIntervalScore = 0;
+    let blueIntervalScore = 0;
+    let intervalTimer = 0;
+    let intervals = [];
+    let redName = '';
+    let blueName = '';
+    let eventName = '';
+    let redNameLocked = false;
+    let blueNameLocked = false;
+    let eventNameLocked = false;
+    let activeInput = null;
+    let startTime = 0;
+    let lastIntervalTime = 0;
+    let roundLog = [];
+    let roundLogFontSizes = [];
+    let cursorVisible = true;
+    let cursorTimer = 0;
+    let sidebarOpen = false;
+    let sidebarX = -SIDEBAR_WIDTH;
+    let progressWidth = PROGRESS_WIDTH;
+    let woodblockPlayed = false;
+    let animationTime = 0;
+    let needsRedraw = true;
+    let copyButtonHover = false;
+    // UI elements
+    const redNameRect = { x: 50, y: 30, width: 320, height: 40 };
+    const blueNameRect = { x: 590, y: 30, width: 320, height: 40 };
+    const eventNameRect = { x: 320, y: 30, width: 320, height: 40 };
+    const scoreRedRect = { x: 50, y: 100, width: 170, height: 45 };
+    const scoreBlueRect = { x: 740, y: 100, width: 170, height: 45 };
+    const logoRect = { x: CANVAS_WIDTH / 2 - 60, y: 160, width: 120, height: 32 };
+    const timerRect = { x: CANVAS_WIDTH / 2 - 85, y: 220, width: 170, height: 50 };
+    const roundLabelRect = { x: CANVAS_WIDTH / 2 - 50, y: 280, width: 100, height: 40 };
+    const roundUpRect = { x: CANVAS_WIDTH / 2 + 90, y: 280, width: 40, height: 40 };
+    const roundDownRect = { x: CANVAS_WIDTH / 2 - 140, y: 280, width: 40, height: 40 };
+    const startButtonRect = { x: CANVAS_WIDTH / 2 - 190, y: 330, width: 170, height: 40 };
+    const resetButtonRect = { x: CANVAS_WIDTH / 2 + 20, y: 330, width: 170, height: 40 };
+    const progressRect = { x: 50, y: 380, width: CANVAS_WIDTH - 100, height: 10 };
+    const graphRect = { x: 50, y: 390, width: CANVAS_WIDTH - 100, height: CANVAS_HEIGHT - 450 };
+    const sidebarRect = { x: -SIDEBAR_WIDTH, y: 30, width: SIDEBAR_WIDTH, height: CANVAS_HEIGHT - 80 };
+    const arrowRect = { x: 0, y: CANVAS_HEIGHT / 2 - 20, width: 40, height: 40 };
+    const copyButtonRect = { x: 110, y: sidebarRect.height - 50, width: 180, height: 40 };
+    // Load logo
+    let logoImage = null;
+    const loadLogo = new Promise((resolve) => {
+        const img = new Image();
+        img.src = 'logo.png';
+        img.onload = () => {
+            console.log('Matlock\'s Scorecard v3.14 - logo.png loaded successfully');
+            resolve(img);
+        };
+        img.onerror = () => {
+            console.error('Matlock\'s Scorecard v3.14 - Failed to load logo.png');
+            resolve(null);
+        };
+    });
+    // Audio setup
+    let bellSound, woodblockSound, roundEndSound, buttonSound, enterSound, arrowSound, arrowKeySound;
+    let audioInitialized = false;
+    function generateSound(freq, duration, type = 'sine', amplitude = 1, noiseLevel = 0) {
+        const sampleRate = audioCtx.sampleRate;
+        const samples = Math.floor(sampleRate * duration);
+        const buffer = audioCtx.createBuffer(1, samples, sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < samples; i++) {
+            const t = i / sampleRate;
+            let value = type === 'sine' ? Math.sin(2 * Math.PI * freq * t) : 0;
+            if (noiseLevel > 0) value += (Math.random() * 2 - 1) * noiseLevel;
+            value *= amplitude * Math.exp(-t * (type === 'pulse' ? 10 : 4) / duration);
+            data[i] = value;
+        }
+        return buffer;
+    }
+    function playSound(buffer) {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.connect(audioCtx.destination);
+        source.start();
+    }
+    function setupAudio() {
+        bellSound = generateSound(800, 0.7, 'sine', 0.5);
+        bellSound.getChannelData(0).forEach((v, i, arr) => {
+            arr[i] += 0.5 * Math.sin(2 * Math.PI * 1200 * (i / audioCtx.sampleRate)) * Math.exp(-4 * (i / audioCtx.sampleRate) / 0.7);
         });
-        // Audio setup
-        let bellSound, woodblockSound, roundEndSound, buttonSound, enterSound, arrowSound, arrowKeySound;
-        let audioInitialized = false;
-        function generateSound(freq, duration, type = 'sine', amplitude = 1, noiseLevel = 0) {
-            const sampleRate = audioCtx.sampleRate;
-            const samples = Math.floor(sampleRate * duration);
-            const buffer = audioCtx.createBuffer(1, samples, sampleRate);
-            const data = buffer.getChannelData(0);
-            for (let i = 0; i < samples; i++) {
-                const t = i / sampleRate;
-                let value = type === 'sine' ? Math.sin(2 * Math.PI * freq * t) : 0;
-                if (noiseLevel > 0) value += (Math.random() * 2 - 1) * noiseLevel;
-                value *= amplitude * Math.exp(-t * (type === 'pulse' ? 10 : 4) / duration);
-                data[i] = value;
+        const pulseDuration = 0.05;
+        const spacing = 0.2;
+        const pulseSamples = Math.floor(audioCtx.sampleRate * pulseDuration);
+        const totalSamples = Math.floor(audioCtx.sampleRate * (pulseDuration * 3 + spacing * 2));
+        const clackerBuffer = audioCtx.createBuffer(1, totalSamples, audioCtx.sampleRate);
+        const clackerData = clackerBuffer.getChannelData(0);
+        for (let i = 0; i < 3; i++) {
+            const start = Math.floor(i * (pulseDuration + spacing) * audioCtx.sampleRate);
+            for (let j = 0; j < pulseSamples; j++) {
+                const t = j / audioCtx.sampleRate;
+                const sine = Math.sin(2 * Math.PI * 1000 * t) * 0.7;
+                const noise = (Math.random() * 2 - 1) * 0.3;
+                clackerData[start + j] = (sine + noise) * 0.5 * Math.exp(-10 * t / pulseDuration);
             }
-            return buffer;
         }
-        function playSound(buffer) {
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            const source = audioCtx.createBufferSource();
-            source.buffer = buffer;
-            source.connect(audioCtx.destination);
-            source.start();
+        woodblockSound = clackerBuffer;
+        roundEndSound = generateSound(600, 0.3, 'sine', 0.25);
+        roundEndSound.getChannelData(0).forEach((v, i, arr) => {
+            const t = i / audioCtx.sampleRate;
+            arr[i] *= Math.exp(-4 * (t / 0.3) ** 2);
+        });
+        buttonSound = generateSound(800, 0.2, 'sine', 0.25, 0.2);
+        enterSound = generateSound(1000, 0.25, 'sine', 0.25);
+        arrowSound = generateSound(1200, 0.2, 'sine', 0.25);
+        arrowKeySound = generateSound(1000, 0.1, 'sine', 0.125, 0.2);
+        audioInitialized = true;
+    }
+    function sanitizeInput(text) {
+        return text.toUpperCase().replace(/[<>&"']/g, '');
+    }
+    function drawText(text, fontSize, color, x, y, center = false) {
+        ctx.font = `bold ${fontSize}px GOBOLD, Impact, Verdana, sans-serif`;
+        ctx.fillStyle = color;
+        ctx.textBaseline = 'top';
+        if (center) {
+            ctx.textAlign = 'center';
+            ctx.fillText(text.toUpperCase(), x, y);
+        } else {
+            ctx.textAlign = 'left';
+            ctx.fillText(text.toUpperCase(), x, y);
         }
-        function setupAudio() {
-            bellSound = generateSound(800, 0.7, 'sine', 0.5);
-            bellSound.getChannelData(0).forEach((v, i, arr) => {
-                arr[i] += 0.5 * Math.sin(2 * Math.PI * 1200 * (i / audioCtx.sampleRate)) * Math.exp(-4 * (i / audioCtx.sampleRate) / 0.7);
-            });
-            const pulseDuration = 0.05;
-            const spacing = 0.2;
-            const pulseSamples = Math.floor(audioCtx.sampleRate * pulseDuration);
-            const totalSamples = Math.floor(audioCtx.sampleRate * (pulseDuration * 3 + spacing * 2));
-            const clackerBuffer = audioCtx.createBuffer(1, totalSamples, audioCtx.sampleRate);
-            const clackerData = clackerBuffer.getChannelData(0);
-            for (let i = 0; i < 3; i++) {
-                const start = Math.floor(i * (pulseDuration + spacing) * audioCtx.sampleRate);
-                for (let j = 0; j < pulseSamples; j++) {
-                    const t = j / audioCtx.sampleRate;
-                    const sine = Math.sin(2 * Math.PI * 1000 * t) * 0.7;
-                    const noise = (Math.random() * 2 - 1) * 0.3;
-                    clackerData[start + j] = (sine + noise) * 0.5 * Math.exp(-10 * t / pulseDuration);
-                }
-            }
-            woodblockSound = clackerBuffer;
-            roundEndSound = generateSound(600, 0.3, 'sine', 0.25);
-            roundEndSound.getChannelData(0).forEach((v, i, arr) => {
-                const t = i / audioCtx.sampleRate;
-                arr[i] *= Math.exp(-4 * (t / 0.3) ** 2);
-            });
-            buttonSound = generateSound(800, 0.2, 'sine', 0.25, 0.2);
-            enterSound = generateSound(1000, 0.25, 'sine', 0.25);
-            arrowSound = generateSound(1200, 0.2, 'sine', 0.25);
-            arrowKeySound = generateSound(1000, 0.1, 'sine', 0.125, 0.2);
-            audioInitialized = true;
+    }
+    function drawButton(text, rect, color, hover = false) {
+        ctx.fillStyle = hover ? (text === 'COPY TO CLIPBOARD' && copyButtonHover ? GREEN : LIGHT_GRAY) : color;
+        ctx.fillRect(rect.x - (hover ? 1 : 0), rect.y - (hover ? 1 : 0), rect.width + (hover ? 2 : 0), rect.height + (hover ? 2 : 0));
+        ctx.strokeStyle = LIGHT_GRAY;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(rect.x - (hover ? 1 : 0), rect.y - (hover ? 1 : 0), rect.width + (hover ? 2 : 0), rect.height + (hover ? 2 : 0));
+        drawText(text, 14, WHITE, rect.x + rect.width / 2, rect.y + rect.height / 2 - 7, true);
+    }
+    function drawProgressBar() {
+        ctx.fillStyle = PURPLE;
+        ctx.fillRect(progressRect.x, progressRect.y, progressRect.width, progressRect.height);
+        if (progressWidth > 0) {
+            const gradient = ctx.createLinearGradient(progressRect.x, 0, progressRect.x + progressRect.width, 0);
+            gradient.addColorStop(0, PROGRESS_START);
+            gradient.addColorStop(0.5, PROGRESS_MID);
+            gradient.addColorStop(1, PROGRESS_END);
+            ctx.fillStyle = gradient;
+            ctx.fillRect(progressRect.x, progressRect.y, progressWidth, progressRect.height);
         }
-        function sanitizeInput(text) {
-            return text.toUpperCase().replace(/[<>&"']/g, '');
-        }
-        function drawText(text, fontSize, color, x, y, center = false) {
-            ctx.font = `bold ${fontSize}px GOBOLD, Impact, Verdana, sans-serif`;
-            ctx.fillStyle = color;
-            ctx.textBaseline = 'top';
-            if (center) {
-                ctx.textAlign = 'center';
-                ctx.fillText(text.toUpperCase(), x, y);
+    }
+    function drawGraph() {
+        ctx.fillStyle = GRAY;
+        ctx.fillRect(graphRect.x, graphRect.y, graphRect.width, graphRect.height);
+        const intervalWidth = graphRect.width / (ROUND_TIME / INTERVAL_DURATION);
+        const maxHeight = graphRect.height - 30;
+        intervals.forEach((interval, i) => {
+            const [red, blue] = interval;
+            const x = graphRect.x + i * intervalWidth;
+            let color, height;
+            if (red > blue) {
+                color = RED;
+                height = red / (red + blue + 1) * maxHeight || 0;
+            } else if (blue > red) {
+                color = BLUE;
+                height = blue / (red + blue + 1) * maxHeight || 0;
             } else {
-                ctx.textAlign = 'left';
-                ctx.fillText(text.toUpperCase(), x, y);
+                color = TRANSPARENT_GRAY;
+                height = maxHeight / 4;
             }
-        }
-        function drawButton(text, rect, color, hover = false) {
-            ctx.fillStyle = hover ? (text === 'COPY TO CLIPBOARD' && copyButtonHover ? GREEN : LIGHT_GRAY) : color;
-            ctx.fillRect(rect.x - (hover ? 1 : 0), rect.y - (hover ? 1 : 0), rect.width + (hover ? 2 : 0), rect.height + (hover ? 2 : 0));
-            ctx.strokeStyle = LIGHT_GRAY;
-            ctx.lineWidth = 1;
-            ctx.strokeRect(rect.x - (hover ? 1 : 0), rect.y - (hover ? 1 : 0), rect.width + (hover ? 2 : 0), rect.height + (hover ? 2 : 0));
-            drawText(text, 14, WHITE, rect.x + rect.width / 2, rect.y + rect.height / 2 - 7, true);
-        }
-        function drawProgressBar() {
-            ctx.fillStyle = PURPLE;
-            ctx.fillRect(progressRect.x, progressRect.y, progressRect.width, progressRect.height);
-            if (progressWidth > 0) {
-                const gradient = ctx.createLinearGradient(progressRect.x, 0, progressRect.x + progressRect.width, 0);
-                gradient.addColorStop(0, PROGRESS_START);
-                gradient.addColorStop(0.5, PROGRESS_MID);
-                gradient.addColorStop(1, PROGRESS_END);
-                ctx.fillStyle = gradient;
-                ctx.fillRect(progressRect.x, progressRect.y, progressWidth, progressRect.height);
+            ctx.fillStyle = color;
+            ctx.fillRect(x, graphRect.y + graphRect.height - height, intervalWidth - 2, height);
+        });
+        if (intervals.length * INTERVAL_DURATION < ROUND_TIME) {
+            const x = graphRect.x + intervals.length * intervalWidth;
+            let color, height;
+            if (redIntervalScore > blueIntervalScore) {
+                color = TRANSPARENT_RED;
+                height = redIntervalScore / (redIntervalScore + blueIntervalScore + 1) * maxHeight || 0;
+            } else if (blueIntervalScore > redIntervalScore) {
+                color = TRANSPARENT_BLUE;
+                height = blueIntervalScore / (redIntervalScore + blueIntervalScore + 1) * maxHeight || 0;
+            } else {
+                color = TRANSPARENT_GRAY;
+                height = maxHeight / 4;
             }
+            ctx.fillStyle = color;
+            ctx.fillRect(x, graphRect.y + graphRect.height - height, intervalWidth - 2, height);
         }
-        function drawGraph() {
-            ctx.fillStyle = GRAY;
-            ctx.fillRect(graphRect.x, graphRect.y, graphRect.width, graphRect.height);
-            const intervalWidth = graphRect.width / (ROUND_TIME / INTERVAL_DURATION);
-            const maxHeight = graphRect.height - 30;
-            intervals.forEach((interval, i) => {
-                const [red, blue] = interval;
-                const x = graphRect.x + i * intervalWidth;
-                let color, height;
-                if (red > blue) {
-                    color = RED;
-                    height = red / (red + blue + 1) * maxHeight || 0;
-                } else if (blue > red) {
-                    color = BLUE;
-                    height = blue / (red + blue + 1) * maxHeight || 0;
-                } else {
-                    color = TRANSPARENT_GRAY;
-                    height = maxHeight / 4;
-                }
-                ctx.fillStyle = color;
-                ctx.fillRect(x, graphRect.y + graphRect.height - height, intervalWidth - 2, height);
-            });
-            if (intervals.length * INTERVAL_DURATION < ROUND_TIME) {
-                const x = graphRect.x + intervals.length * intervalWidth;
-                let color, height;
-                if (redIntervalScore > blueIntervalScore) {
-                    color = TRANSPARENT_RED;
-                    height = redIntervalScore / (redIntervalScore + blueIntervalScore + 1) * maxHeight || 0;
-                } else if (blueIntervalScore > redIntervalScore) {
-                    color = TRANSPARENT_BLUE;
-                    height = blueIntervalScore / (redIntervalScore + blueIntervalScore + 1) * maxHeight || 0;
-                } else {
-                    color = TRANSPARENT_GRAY;
-                    height = maxHeight / 4;
-                }
-                ctx.fillStyle = color;
-                ctx.fillRect(x, graphRect.y + graphRect.height - height, intervalWidth - 2, height);
+        for (let i = ROUND_TIME; i >= 0; i -= 30) {
+            const x = graphRect.x + (ROUND_TIME - i) * intervalWidth / INTERVAL_DURATION;
+            drawText(`${Math.floor(i/60)}:${(i%60).toString().padStart(2, '0')}`, 14, WHITE, x, graphRect.y + graphRect.height + 5);
+        }
+    }
+    function resetGame() {
+        timerSeconds = ROUND_TIME;
+        timerRunning = false;
+        timerState = 'start';
+        pausedTime = 0;
+        currentRound = 1;
+        redScore = 0;
+        blueScore = 0;
+        redIntervalScore = 0;
+        blueIntervalScore = 0;
+        intervalTimer = 0;
+        intervals = [];
+        redName = '';
+        blueName = '';
+        eventName = '';
+        redNameLocked = false;
+        blueNameLocked = false;
+        eventNameLocked = false;
+        startTime = 0;
+        lastIntervalTime = 0;
+        roundLog = [];
+        roundLogFontSizes = [];
+        cursorVisible = true;
+        cursorTimer = 0;
+        sidebarOpen = false;
+        sidebarX = -SIDEBAR_WIDTH;
+        progressWidth = PROGRESS_WIDTH;
+        woodblockPlayed = false;
+        animationTime = 0;
+        copyButtonHover = false;
+        redNameInput.value = '';
+        blueNameInput.value = '';
+        eventNameInput.value = '#EVENT';
+        redNameInput.classList.add('hidden');
+        blueNameInput.classList.add('hidden');
+        eventNameInput.classList.add('hidden');
+        needsRedraw = true;
+    }
+    function resetGraph() {
+        intervals = [];
+        redIntervalScore = 0;
+        blueIntervalScore = 0;
+        intervalTimer = 0;
+        needsRedraw = true;
+    }
+    function resetTimer() {
+        startTime = performance.now();
+        lastIntervalTime = startTime;
+        timerSeconds = ROUND_TIME;
+        pausedTime = 0;
+        progressWidth = PROGRESS_WIDTH;
+        woodblockPlayed = false;
+        needsRedraw = true;
+    }
+    async function copyToClipboard() {
+        console.log(`Matlock's Scorecard v3.14 - roundLog:`, roundLog);
+        const lines = [];
+        let redPoints = 0, bluePoints = 0;
+        for (let i = 0; i < roundLog.length; i++) {
+            const log = roundLog[i];
+            if (!log) {
+                console.warn(`Matlock's Scorecard v3.14 - Empty roundLog entry at index ${i}`);
+                continue;
             }
-            for (let i = ROUND_TIME; i >= 0; i -= 30) {
-                const x = graphRect.x + (ROUND_TIME - i) * intervalWidth / INTERVAL_DURATION;
-                drawText(`${Math.floor(i/60)}:${(i%60).toString().padStart(2, '0')}`, 14, WHITE, x, graphRect.y + graphRect.height + 5);
+            const parts = log.split(', ');
+            if (parts.length < 3) {
+                console.warn(`Matlock's Scorecard v3.14 - Invalid roundLog format: ${log}`);
+                continue;
             }
-        }
-        function resetGame() {
-            timerSeconds = ROUND_TIME;
-            timerRunning = false;
-            timerState = 'start';
-            pausedTime = 0;
-            currentRound = 1;
-            redScore = 0;
-            blueScore = 0;
-            redIntervalScore = 0;
-            blueIntervalScore = 0;
-            intervalTimer = 0;
-            intervals = [];
-            redName = '';
-            blueName = '';
-            eventName = '';
-            redNameLocked = false;
-            blueNameLocked = false;
-            eventNameLocked = false;
-            startTime = 0;
-            lastIntervalTime = 0;
-            roundLog = [];
-            roundLogFontSizes = [];
-            cursorVisible = true;
-            cursorTimer = 0;
-            sidebarOpen = false;
-            sidebarX = -SIDEBAR_WIDTH;
-            progressWidth = PROGRESS_WIDTH;
-            woodblockPlayed = false;
-            animationTime = 0;
-            copyButtonHover = false;
-            document.getElementById('redNameInput').value = '';
-            document.getElementById('blueNameInput').value = '';
-            document.getElementById('eventNameInput').value = '#EVENT';
-            document.getElementById('redNameInput').classList.add('hidden');
-            document.getElementById('blueNameInput').classList.add('hidden');
-            document.getElementById('eventNameInput').classList.add('hidden');
-            needsRedraw = true;
-        }
-        function resetGraph() {
-            intervals = [];
-            redIntervalScore = 0;
-            blueIntervalScore = 0;
-            intervalTimer = 0;
-            needsRedraw = true;
-        }
-        function resetTimer() {
-            startTime = performance.now();
-            lastIntervalTime = startTime;
-            timerSeconds = ROUND_TIME;
-            pausedTime = 0;
-            progressWidth = PROGRESS_WIDTH;
-            woodblockPlayed = false;
-            needsRedraw = true;
-        }
-        async function copyToClipboard() {
-            console.log(`Matlock's Scorecard v3.14 - roundLog:`, roundLog);
-            const lines = [];
-            let redPoints = 0, bluePoints = 0;
-            for (let i = 0; i < roundLog.length; i++) {
-                const log = roundLog[i];
-                if (!log) {
-                    console.warn(`Matlock's Scorecard v3.14 - Empty roundLog entry at index ${i}`);
+            const roundNumMatch = parts[0].match(/ROUND (\d+)/);
+            if (!roundNumMatch) {
+                console.warn(`Matlock's Scorecard v3.14 - Invalid round number in: ${log}`);
+                continue;
+            }
+            const roundNum = roundNumMatch[1];
+            let winner, score;
+            if (parts[2] === 'DRAW') {
+                winner = 'DRAW';
+                score = '10-10';
+                redPoints += 10;
+                bluePoints += 10;
+                lines.push(`ROUND ${roundNum}: ${score} ${winner}`);
+            } else if (parts[2].includes('WINS')) {
+                const winnerMatch = parts[2].match(/(.+?) WINS (.+)/);
+                if (!winnerMatch) {
+                    console.warn(`Matlock's Scorecard v3.14 - No winner found in: ${log}`);
                     continue;
                 }
-                const parts = log.split(', ');
-                if (parts.length < 3) {
-                    console.warn(`Matlock's Scorecard v3.14 - Invalid roundLog format: ${log}`);
-                    continue;
-                }
-                const roundNumMatch = parts[0].match(/ROUND (\d+)/);
-                if (!roundNumMatch) {
-                    console.warn(`Matlock's Scorecard v3.14 - Invalid round number in: ${log}`);
-                    continue;
-                }
-                const roundNum = roundNumMatch[1];
-                let winner, score;
-                if (parts[2] === 'DRAW') {
-                    winner = 'DRAW';
-                    score = '10-10';
+                winner = winnerMatch[1];
+                score = winnerMatch[2];
+                if (winner === (redName || 'RED CORNER')) {
                     redPoints += 10;
+                    bluePoints += score === '10-9' ? 9 : 8;
+                } else {
                     bluePoints += 10;
-                    lines.push(`ROUND ${roundNum}: ${score} ${winner}`);
-                } else if (parts[2].includes('WINS')) {
-                    const winnerMatch = parts[2].match(/(.+?) WINS (.+)/);
-                    if (!winnerMatch) {
-                        console.warn(`Matlock's Scorecard v3.14 - No winner found in: ${log}`);
-                        continue;
-                    }
-                    winner = winnerMatch[1];
-                    score = winnerMatch[2];
-                    if (winner === (redName || 'RED CORNER')) {
-                        redPoints += 10;
-                        bluePoints += score === '10-9' ? 9 : 8;
-                    } else {
-                        bluePoints += 10;
-                        redPoints += score === '10-9' ? 9 : 8;
-                    }
-                    lines.push(`ROUND ${roundNum}: ${score} ${winner.toUpperCase()}`);
-                } else {
-                    console.warn(`Matlock's Scorecard v3.14 - Invalid result in: ${log}`);
-                    continue;
+                    redPoints += score === '10-9' ? 9 : 8;
                 }
+                lines.push(`ROUND ${roundNum}: ${score} ${winner.toUpperCase()}`);
+            } else {
+                console.warn(`Matlock's Scorecard v3.14 - Invalid result in: ${log}`);
+                continue;
             }
-            if (!lines.length && (redScore > 0 || blueScore > 0)) {
-                const scoreDiff = Math.abs(redScore - blueScore);
-                let score, winner;
-                if (redScore === blueScore) {
-                    score = '10-10';
-                    winner = 'DRAW';
-                } else if (redScore > blueScore) {
-                    score = scoreDiff > 25 ? '10-8' : '10-9';
-                    winner = redName || 'RED CORNER';
-                } else {
-                    score = scoreDiff > 25 ? '10-8' : '10-9';
-                    winner = blueName || 'BLUE CORNER';
-                }
-                lines.push(`ROUND ${currentRound}: ${score} ${winner.toUpperCase()} ${eventName.toUpperCase() || '#EVENT'}`);
+        }
+        if (!lines.length && (redScore > 0 || blueScore > 0)) {
+            const scoreDiff = Math.abs(redScore - blueScore);
+            let score, winner;
+            if (redScore === blueScore) {
+                score = '10-10';
+                winner = 'DRAW';
+            } else if (redScore > blueScore) {
+                score = scoreDiff > 25 ? '10-8' : '10-9';
+                winner = redName || 'RED CORNER';
+            } else {
+                score = scoreDiff > 25 ? '10-8' : '10-9';
+                winner = blueName || 'BLUE CORNER';
             }
-            if (lines.length > 1) {
-                if (currentRound < 5 && redPoints === bluePoints) {
-                    lines.push(`TOTAL: ${redPoints}-${bluePoints} GOING INTO THE ${currentRound + 1}${currentRound + 1 === 1 ? 'ST' : currentRound + 1 === 2 ? 'ND' : currentRound + 1 === 3 ? 'RD' : 'TH'} ${eventName.toUpperCase() || '#EVENT'}`);
-                } else {
-                    const totalLine = redPoints >= bluePoints
-                        ? `TOTAL: ${(redName || 'RED CORNER').toUpperCase()} ${redPoints}, ${(blueName || 'BLUE CORNER').toUpperCase()} ${bluePoints}`
-                        : `TOTAL: ${(blueName || 'BLUE CORNER').toUpperCase()} ${bluePoints}, ${(redName || 'RED CORNER').toUpperCase()} ${redPoints}`;
-                    lines.push(totalLine + ` ${eventName.toUpperCase() || '#EVENT'}`);
-                }
-            } else if (lines.length === 1) {
-                lines[0] = lines[0].endsWith(eventName.toUpperCase() || '#EVENT') ? lines[0] : `${lines[0]} ${eventName.toUpperCase() || '#EVENT'}`;
+            lines.push(`ROUND ${currentRound}: ${score} ${winner.toUpperCase()} ${eventName.toUpperCase() || '#EVENT'}`);
+        }
+        if (lines.length > 1) {
+            if (currentRound < 5 && redPoints === bluePoints) {
+                lines.push(`TOTAL: ${redPoints}-${bluePoints} GOING INTO THE ${currentRound + 1}${currentRound + 1 === 1 ? 'ST' : currentRound + 1 === 2 ? 'ND' : currentRound + 1 === 3 ? 'RD' : 'TH'} ${eventName.toUpperCase() || '#EVENT'}`);
+            } else {
+                const totalLine = redPoints >= bluePoints
+                    ? `TOTAL: ${(redName || 'RED CORNER').toUpperCase()} ${redPoints}, ${(blueName || 'BLUE CORNER').toUpperCase()} ${bluePoints}`
+                    : `TOTAL: ${(blueName || 'BLUE CORNER').toUpperCase()} ${bluePoints}, ${(redName || 'RED CORNER').toUpperCase()} ${redPoints}`;
+                lines.push(totalLine + ` ${eventName.toUpperCase() || '#EVENT'}`);
             }
-            const text = lines.length ? lines.join('\n') : 'No rounds completed yet.';
-            console.log(`Matlock's Scorecard v3.14 - Copying to clipboard: ${text}`);
+        } else if (lines.length === 1) {
+            lines[0] = lines[0].endsWith(eventName.toUpperCase() || '#EVENT') ? lines[0] : `${lines[0]} ${eventName.toUpperCase() || '#EVENT'}`;
+        }
+        const text = lines.length ? lines.join('\n') : 'No rounds completed yet.';
+        console.log(`Matlock\'s Scorecard v3.14 - Copying to clipboard: ${text}`);
+        try {
+            await navigator.clipboard.writeText(text);
+            copyButtonHover = true;
+            setTimeout(() => { copyButtonHover = false; needsRedraw = true; }, 500);
+        } catch (err) {
+            console.error('Matlock\'s Scorecard v3.14 - Clipboard access denied, using fallback:', err, 'Text:', text);
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
             try {
-                await navigator.clipboard.writeText(text);
+                document.execCommand('copy');
                 copyButtonHover = true;
                 setTimeout(() => { copyButtonHover = false; needsRedraw = true; }, 500);
-            } catch (err) {
-                console.error('Matlock\'s Scorecard v3.14 - Clipboard access denied, using fallback:', err, 'Text:', text);
-                const textarea = document.createElement('textarea');
-                textarea.value = text;
-                textarea.style.position = 'fixed';
-                textarea.style.opacity = '0';
-                document.body.appendChild(textarea);
-                textarea.focus();
-                textarea.select();
-                try {
-                    document.execCommand('copy');
-                    copyButtonHover = true;
-                    setTimeout(() => { copyButtonHover = false; needsRedraw = true; }, 500);
-                } catch (fallbackErr) {
-                    console.error('Matlock\'s Scorecard v3.14 - Fallback copy failed:', fallbackErr);
-                }
-                document.body.removeChild(textarea);
+            } catch (fallbackErr) {
+                console.error('Matlock\'s Scorecard v3.14 - Fallback copy failed:', fallbackErr);
             }
+            document.body.removeChild(textarea);
         }
-        function setup() {
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            resetTimer();
-            ctx.fillStyle = BLACK;
-            ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-            setupAudio();
-            document.getElementById('redNameInput').classList.add('hidden');
-            document.getElementById('blueNameInput').classList.add('hidden');
-            document.getElementById('eventNameInput').classList.add('hidden');
-            loadLogo.then(img => {
-                logoImage = img;
-                needsRedraw = true;
-            });
-            requestAnimationFrame(updateLoop);
+    }
+    function setup() {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        resetTimer();
+        ctx.fillStyle = BLACK;
+        ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        setupAudio();
+        redNameInput.classList.add('hidden');
+        blueNameInput.classList.add('hidden');
+        eventNameInput.classList.add('hidden');
+        loadLogo.then(img => {
+            logoImage = img;
+            needsRedraw = true;
+        });
+        requestAnimationFrame(updateLoop);
+    }
+    function updateLoop(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const delta = (timestamp - (lastFrameTime || timestamp)) / 1000;
+        lastFrameTime = timestamp;
+        let stateChanged = false;
+        // Update cursor blink
+        cursorTimer += delta;
+        if (cursorTimer >= 0.5) {
+            cursorVisible = !cursorVisible;
+            cursorTimer = 0;
+            stateChanged = true;
         }
-        function updateLoop(timestamp) {
-            if (!startTime) startTime = timestamp;
-            const delta = (timestamp - (lastFrameTime || timestamp)) / 1000;
-            lastFrameTime = timestamp;
-            let stateChanged = false;
-            // Update cursor blink
-            cursorTimer += delta;
-            if (cursorTimer >= 0.5) {
-                cursorVisible = !cursorVisible;
-                cursorTimer = 0;
+        // Update sidebar animation
+        const targetX = sidebarOpen ? 0 : -SIDEBAR_WIDTH;
+        if (Math.abs(sidebarX - targetX) > 1) {
+            const speed = SIDEBAR_WIDTH / (ANIMATION_DURATION * FPS);
+            sidebarX = sidebarOpen ? Math.min(0, sidebarX + speed) : Math.max(-SIDEBAR_WIDTH, sidebarX - speed);
+            stateChanged = true;
+        } else {
+            sidebarX = targetX;
+        }
+        // Update progress bar
+        const targetWidth = (timerSeconds / ROUND_TIME) * progressRect.width;
+        if (Math.abs(progressWidth - targetWidth) > 0.1) {
+            progressWidth += (targetWidth - progressWidth) * 0.2;
+            stateChanged = true;
+        }
+        // Check for clacker sound
+        if (timerRunning && timerSeconds <= 10 && !woodblockPlayed) {
+            console.log('Matlock\'s Scorecard v3.14 - Playing woodblock_sound');
+            playSound(woodblockSound);
+            woodblockPlayed = true;
+            stateChanged = true;
+        }
+        // Update timer
+        if (timerRunning) {
+            const currentTime = performance.now();
+            const elapsed = (currentTime - startTime) / 1000;
+            timerSeconds = Math.max(ROUND_TIME - elapsed, 0);
+            const intervalElapsed = (currentTime - lastIntervalTime) / 1000;
+            intervalTimer = intervalElapsed;
+            if (intervalTimer >= INTERVAL_DURATION) {
+                intervals.push([redIntervalScore, blueIntervalScore]);
+                redIntervalScore = 0;
+                blueIntervalScore = 0;
+                lastIntervalTime = currentTime;
+                intervalTimer = 0;
                 stateChanged = true;
             }
-            // Update sidebar animation
-            const targetX = sidebarOpen ? 0 : -SIDEBAR_WIDTH;
-            if (Math.abs(sidebarX - targetX) > 1) {
-                const speed = SIDEBAR_WIDTH / (ANIMATION_DURATION * FPS);
-                sidebarX = sidebarOpen ? Math.min(0, sidebarX + speed) : Math.max(-SIDEBAR_WIDTH, sidebarX - speed);
-                stateChanged = true;
-            } else {
-                sidebarX = targetX;
-            }
-            // Update progress bar
-            const targetWidth = (timerSeconds / ROUND_TIME) * progressRect.width;
-            if (Math.abs(progressWidth - targetWidth) > 0.1) {
-                progressWidth += (targetWidth - progressWidth) * 0.2;
-                stateChanged = true;
-            }
-            // Check for clacker sound
-            if (timerRunning && timerSeconds <= 10 && !woodblockPlayed) {
-                console.log('Matlock\'s Scorecard v3.14 - Playing woodblock_sound');
-                playSound(woodblockSound);
-                woodblockPlayed = true;
-                stateChanged = true;
-            }
-            // Update timer
-            if (timerRunning) {
-                const currentTime = performance.now();
-                const elapsed = (currentTime - startTime) / 1000;
-                timerSeconds = Math.max(ROUND_TIME - elapsed, 0);
-                const intervalElapsed = (currentTime - lastIntervalTime) / 1000;
-                intervalTimer = intervalElapsed;
-                if (intervalTimer >= INTERVAL_DURATION) {
+            if (timerSeconds <= 0) {
+                console.log(`Matlock's Scorecard v3.14 - Round ended: sidebar_open=${sidebarOpen}, sidebar_x=${sidebarX}`);
+                console.log('Matlock\'s Scorecard v3.14 - Playing round_end_sound');
+                playSound(roundEndSound);
+                if (redIntervalScore > 0 || blueIntervalScore > 0) {
                     intervals.push([redIntervalScore, blueIntervalScore]);
                     redIntervalScore = 0;
                     blueIntervalScore = 0;
-                    lastIntervalTime = currentTime;
-                    intervalTimer = 0;
-                    stateChanged = true;
                 }
-                if (timerSeconds <= 0) {
-                    console.log(`Matlock's Scorecard v3.14 - Round ended: sidebar_open=${sidebarOpen}, sidebar_x=${sidebarX}`);
-                    console.log('Matlock\'s Scorecard v3.14 - Playing round_end_sound');
-                    playSound(roundEndSound);
-                    if (redIntervalScore > 0 || blueIntervalScore > 0) {
-                        intervals.push([redIntervalScore, blueIntervalScore]);
-                        redIntervalScore = 0;
-                        blueIntervalScore = 0;
-                    }
-                    timerRunning = false;
-                    timerState = 'start';
-                    sidebarOpen = true;
-                    animationTime = 0;
-                    const scoreDiff = Math.abs(redScore - blueScore);
-                    const roundText = `ROUND ${currentRound}: ${redName || 'RED CORNER'} ${redScore}, ${blueName || 'BLUE CORNER'} ${blueScore}`;
-                    if (redScore === blueScore) {
-                        roundLog.push(`${roundText}, DRAW`);
-                    } else if (redScore > blueScore) {
-                        const score = scoreDiff > 25 ? '10-8' : '10-9';
-                        roundLog.push(`${roundText}, ${redName || 'RED CORNER'} WINS ${score}`);
-                    } else {
-                        const score = scoreDiff > 25 ? '10-8' : '10-9';
-                        roundLog.push(`${roundText}, ${blueName || 'BLUE CORNER'} WINS ${score}`);
-                    }
-                    ctx.font = 'bold 14px GOBOLD, Impact, Verdana, sans-serif';
-                    roundLogFontSizes.push(ctx.measureText(roundLog[roundLog.length - 1].toUpperCase()).width > 380 ? 10 : 14);
-                    stateChanged = true;
+                timerRunning = false;
+                timerState = 'start';
+                sidebarOpen = true;
+                animationTime = 0;
+                const scoreDiff = Math.abs(redScore - blueScore);
+                const roundText = `ROUND ${currentRound}: ${redName || 'RED CORNER'} ${redScore}, ${blueName || 'BLUE CORNER'} ${blueScore}`;
+                if (redScore === blueScore) {
+                    roundLog.push(`${roundText}, DRAW`);
+                } else if (redScore > blueScore) {
+                    const score = scoreDiff > 25 ? '10-8' : '10-9';
+                    roundLog.push(`${roundText}, ${redName || 'RED CORNER'} WINS ${score}`);
+                } else {
+                    const score = scoreDiff > 25 ? '10-8' : '10-9';
+                    roundLog.push(`${roundText}, ${blueName || 'BLUE CORNER'} WINS ${score}`);
                 }
+                ctx.font = 'bold 14px GOBOLD, Impact, Verdana, sans-serif';
+                roundLogFontSizes.push(ctx.measureText(roundLog[roundLog.length - 1].toUpperCase()).width > 380 ? 10 : 14);
+                stateChanged = true;
             }
-            needsRedraw = needsRedraw || stateChanged;
-            if (!needsRedraw) {
-                requestAnimationFrame(updateLoop);
-                return;
-            }
-            // Draw everything
-            ctx.fillStyle = BLACK;
-            ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-            // Fighter names and event
-            ctx.fillStyle = GRAY;
-            ctx.fillRect(redNameRect.x, redNameRect.y, redNameRect.width, redNameRect.height);
-            ctx.strokeStyle = redNameLocked ? GREEN : LIGHT_GRAY;
-            ctx.lineWidth = 1;
-            ctx.strokeRect(redNameRect.x, redNameRect.y, redNameRect.width, redNameRect.height);
-            ctx.fillStyle = GRAY;
-            ctx.fillRect(blueNameRect.x, blueNameRect.y, blueNameRect.width, blueNameRect.height);
-            ctx.strokeStyle = blueNameLocked ? GREEN : LIGHT_GRAY;
-            ctx.lineWidth = 1;
-            ctx.strokeRect(blueNameRect.x, blueNameRect.y, blueNameRect.width, blueNameRect.height);
-            ctx.fillStyle = GRAY;
-            ctx.fillRect(eventNameRect.x, eventNameRect.y, eventNameRect.width, eventNameRect.height);
-            ctx.strokeStyle = eventNameLocked ? GREEN : LIGHT_GRAY;
-            ctx.lineWidth = 1;
-            ctx.strokeRect(eventNameRect.x, eventNameRect.y, eventNameRect.width, eventNameRect.height);
-            if (redNameLocked && !activeInput) {
-                drawText(redName || 'RED CORNER', 20, RED, redNameRect.x + 8, redNameRect.y + 5);
-            } else if (!activeInput) {
-                drawText('RED CORNER', 20, TRANSPARENT_WHITE, redNameRect.x + 8, redNameRect.y + 5);
-            }
-            if (blueNameLocked && !activeInput) {
-                const blueText = blueName || 'BLUE CORNER';
-                const blueTextWidth = ctx.measureText(blueText.toUpperCase()).width;
-                drawText(blueText, 20, BLUE, blueNameRect.x + blueNameRect.width - blueTextWidth - 8, blueNameRect.y + 5);
-            } else if (!activeInput) {
-                const blueText = 'BLUE CORNER';
-                const blueTextWidth = ctx.measureText(blueText.toUpperCase()).width;
-                drawText(blueText, 20, TRANSPARENT_WHITE, blueNameRect.x + blueNameRect.width - blueTextWidth - 8, blueNameRect.y + 5);
-            }
-            if (eventNameLocked && !activeInput) {
-                drawText(eventName || '#EVENT', 20, WHITE, eventNameRect.x + eventNameRect.width / 2, eventNameRect.y + 5, true);
-            } else if (!activeInput) {
-                drawText('#EVENT', 20, TRANSPARENT_WHITE, eventNameRect.x + eventNameRect.width / 2, eventNameRect.y + 5, true);
-            }
-            if (activeInput && cursorVisible) {
-                ctx.fillStyle = TRANSPARENT_WHITE;
-                drawText('ENTER', 10, TRANSPARENT_WHITE, (activeInput === 'red' ? redNameRect.x + redNameRect.width : activeInput === 'blue' ? blueNameRect.x + blueNameRect.width : eventNameRect.x + eventNameRect.width) - 50, (activeInput === 'red' ? redNameRect.y : activeInput === 'blue' ? blueNameRect.y : eventNameRect.y) + 5, true);
-            }
-            // Scores
-            ctx.fillStyle = GRAY;
-            ctx.fillRect(scoreRedRect.x, scoreRedRect.y, scoreRedRect.width, scoreRedRect.height);
-            ctx.strokeStyle = LIGHT_GRAY;
-            ctx.strokeRect(scoreRedRect.x, scoreRedRect.y, scoreRedRect.width, scoreRedRect.height);
-            ctx.fillStyle = GRAY;
-            ctx.fillRect(scoreBlueRect.x, scoreBlueRect.y, scoreBlueRect.width, scoreBlueRect.height);
-            ctx.strokeStyle = LIGHT_GRAY;
-            ctx.strokeRect(scoreBlueRect.x, scoreBlueRect.y, scoreBlueRect.width, scoreBlueRect.height);
-            drawText(`${redScore}`, 24, RED, scoreRedRect.x + 5, scoreRedRect.y + 5);
-            const blueScoreWidth = ctx.measureText(`${blueScore}`.toUpperCase()).width;
-            drawText(`${blueScore}`, 24, BLUE, scoreBlueRect.x + scoreBlueRect.width - blueScoreWidth - 5, scoreBlueRect.y + 5);
-            // Draw logo
-            if (logoImage) {
-                ctx.drawImage(logoImage, logoRect.x, logoRect.y, logoRect.width, logoRect.height);
-            } else {
-                drawText("MATLOCK'S SCORECARD", 10, WHITE, logoRect.x + logoRect.width / 2, logoRect.y + logoRect.height / 2 - 7, true);
-            }
-            // Timer
-            ctx.fillStyle = GRAY;
-            ctx.fillRect(timerRect.x, timerRect.y, timerRect.width, timerRect.height);
-            ctx.strokeStyle = timerRunning ? GREEN : LIGHT_GRAY;
-            ctx.strokeRect(timerRect.x, timerRect.y, timerRect.width, timerRect.height);
-            const minutes = Math.floor(timerSeconds / 60);
-            const seconds = Math.floor(timerSeconds % 60);
-            drawText(`${minutes}:${seconds.toString().padStart(2, '0')}`, 24, WHITE, timerRect.x + timerRect.width / 2, timerRect.y + 5, true);
-            // Round selector
-            drawText('ROUND', 10, WHITE, roundLabelRect.x + roundLabelRect.width / 2, roundLabelRect.y - 18, true);
-            ctx.fillStyle = GRAY;
-            ctx.fillRect(roundLabelRect.x, roundLabelRect.y, roundLabelRect.width, roundLabelRect.height);
-            ctx.strokeStyle = LIGHT_GRAY;
-            ctx.strokeRect(roundLabelRect.x, roundLabelRect.y, roundLabelRect.width, roundLabelRect.height);
-            drawText(`${currentRound}`, 20, WHITE, roundLabelRect.x + roundLabelRect.width / 2, roundLabelRect.y + 5, true);
-            drawButton('−', roundDownRect, GRAY, mouseX >= roundDownRect.x && mouseX <= roundDownRect.x + roundDownRect.width && mouseY >= roundDownRect.y && mouseY <= roundDownRect.y + roundDownRect.height);
-            drawButton('+', roundUpRect, GRAY, mouseX >= roundUpRect.x && mouseX <= roundUpRect.x + roundUpRect.width && mouseY >= roundUpRect.y && mouseY <= roundUpRect.y + roundUpRect.height);
-            // Buttons
-            drawButton(timerState === 'start' ? 'START' : timerState === 'pause' ? 'PAUSE' : 'RESUME', startButtonRect, GRAY, mouseX >= startButtonRect.x && mouseX <= startButtonRect.x + startButtonRect.width && mouseY >= startButtonRect.y && mouseY <= startButtonRect.y + startButtonRect.height);
-            drawButton('RESET', resetButtonRect, GRAY, mouseX >= resetButtonRect.x && mouseX <= resetButtonRect.x + resetButtonRect.width && mouseY >= resetButtonRect.y && mouseY <= resetButtonRect.y + resetButtonRect.height);
-            // Progress bar
-            drawProgressBar();
-            // Graph
-            drawGraph();
-            // Sidebar
-            ctx.fillStyle = BLACK;
-            ctx.fillRect(sidebarX, sidebarRect.y, sidebarRect.width, sidebarRect.height);
-            ctx.strokeStyle = LIGHT_GRAY;
-            ctx.lineWidth = 1;
-            ctx.strokeRect(sidebarX, sidebarRect.y, sidebarRect.width, sidebarRect.height);
-            if (sidebarX <= -SIDEBAR_WIDTH) {
-                ctx.fillStyle = SHADE_WHITE;
-                ctx.fillRect(0, 0, 30, CANVAS_HEIGHT);
-            }
-            const arrowText = sidebarOpen ? '<' : '>';
-            const arrowColor = mouseX >= arrowRect.x && mouseX <= arrowRect.x + arrowRect.width && mouseY >= arrowRect.y && mouseY <= arrowRect.y + arrowRect.height ? LIGHT_GRAY : WHITE;
-            drawText(arrowText, 20, arrowColor, arrowRect.x + arrowRect.width / 2, arrowRect.y + 5, true);
-            if (sidebarOpen) {
-                let y = sidebarRect.y + 5;
-                drawText('SCORECARD', 10, WHITE, sidebarX + sidebarRect.width / 2, y, true);
-                y += 30;
-                roundLog.forEach((log, i) => {
-                    drawText(log, roundLogFontSizes[i] || 10, WHITE, sidebarX + 10, y + 5);
-                    y += 20;
-                });
-                y += 30;
-                let redPoints = 0, bluePoints = 0;
-                roundLog.forEach(log => {
-                    if (!log) return;
-                    if (log.includes(`${redName || 'RED CORNER'} WINS 10-9`)) { redPoints += 10; bluePoints += 9; }
-                    else if (log.includes(`${redName || 'RED CORNER'} WINS 10-8`)) { redPoints += 10; bluePoints += 8; }
-                    else if (log.includes(`${blueName || 'BLUE CORNER'} WINS 10-9`)) { bluePoints += 10; redPoints += 9; }
-                    else if (log.includes(`${blueName || 'BLUE CORNER'} WINS 10-8`)) { bluePoints += 10; redPoints += 8; }
-                    else if (log.includes('DRAW')) { redPoints += 10; bluePoints += 10; }
-                });
-                const decisionText = `DECISION: ${redName || 'RED CORNER'} ${redPoints}, ${blueName || 'BLUE CORNER'} ${bluePoints}`;
-                ctx.font = `bold ${ctx.measureText(decisionText.toUpperCase()).width > 380 ? 8 : 10}px GOBOLD, Impact, Verdana, sans-serif`;
-                drawText(decisionText, ctx.font.includes('8px') ? 8 : 10, WHITE, sidebarX + sidebarRect.width / 2, y + 5, true);
-                if (currentRound === 5 && timerSeconds <= 0) {
-                    y += 30;
-                    if (redPoints > bluePoints) {
-                        drawText(`${redName || 'RED CORNER'} WINS ${redPoints}-${bluePoints} UNANIMOUS DECISION!`, 10, RED, sidebarX + 10, y + 5);
-                    } else if (bluePoints > redPoints) {
-                        drawText(`${blueName || 'BLUE CORNER'} WINS ${bluePoints}-${redPoints} UNANIMOUS DECISION!`, 10, BLUE, sidebarX + 10, y + 5);
-                    } else {
-                        drawText('FIGHT ENDS IN A DRAW!', 10, WHITE, sidebarX + 10, y + 5);
-                    }
-                }
-                drawButton('COPY TO CLIPBOARD', { x: copyButtonRect.x + sidebarX, y: copyButtonRect.y + sidebarRect.y, width: copyButtonRect.width, height: copyButtonRect.height }, GRAY, mouseX >= copyButtonRect.x + sidebarX && mouseX <= copyButtonRect.x + sidebarX + copyButtonRect.width && mouseY >= copyButtonRect.y + sidebarRect.y && mouseY <= copyButtonRect.y + sidebarRect.y + copyButtonRect.height);
-            }
-            needsRedraw = false;
-            requestAnimationFrame(updateLoop);
         }
-        let mouseX = 0, mouseY = 0, lastFrameTime = 0;
-        canvas.addEventListener('click', async (e) => {
-            if (!audioInitialized) {
-                await audioCtx.resume();
-                setupAudio();
+        needsRedraw = needsRedraw || stateChanged;
+        if (!needsRedraw) {
+            requestAnimationFrame(updateLoop);
+            return;
+        }
+        // Draw everything
+        ctx.fillStyle = BLACK;
+        ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        // Fighter names and event
+        ctx.fillStyle = GRAY;
+        ctx.fillRect(redNameRect.x, redNameRect.y, redNameRect.width, redNameRect.height);
+        ctx.strokeStyle = redNameLocked ? GREEN : LIGHT_GRAY;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(redNameRect.x, redNameRect.y, redNameRect.width, redNameRect.height);
+        ctx.fillStyle = GRAY;
+        ctx.fillRect(blueNameRect.x, blueNameRect.y, blueNameRect.width, blueNameRect.height);
+        ctx.strokeStyle = blueNameLocked ? GREEN : LIGHT_GRAY;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(blueNameRect.x, blueNameRect.y, blueNameRect.width, blueNameRect.height);
+        ctx.fillStyle = GRAY;
+        ctx.fillRect(eventNameRect.x, eventNameRect.y, eventNameRect.width, eventNameRect.height);
+        ctx.strokeStyle = eventNameLocked ? GREEN : LIGHT_GRAY;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(eventNameRect.x, eventNameRect.y, eventNameRect.width, eventNameRect.height);
+        if (redNameLocked && !activeInput) {
+            drawText(redName || 'RED CORNER', 20, RED, redNameRect.x + 8, redNameRect.y + 5);
+        } else if (!activeInput) {
+            drawText('RED CORNER', 20, TRANSPARENT_WHITE, redNameRect.x + 8, redNameRect.y + 5);
+        }
+        if (blueNameLocked && !activeInput) {
+            const blueText = blueName || 'BLUE CORNER';
+            const blueTextWidth = ctx.measureText(blueText.toUpperCase()).width;
+            drawText(blueText, 20, BLUE, blueNameRect.x + blueNameRect.width - blueTextWidth - 8, blueNameRect.y + 5);
+        } else if (!activeInput) {
+            const blueText = 'BLUE CORNER';
+            const blueTextWidth = ctx.measureText(blueText.toUpperCase()).width;
+            drawText(blueText, 20, TRANSPARENT_WHITE, blueNameRect.x + blueNameRect.width - blueTextWidth - 8, blueNameRect.y + 5);
+        }
+        if (eventNameLocked && !activeInput) {
+            drawText(eventName || '#EVENT', 20, WHITE, eventNameRect.x + eventNameRect.width / 2, eventNameRect.y + 5, true);
+        } else if (!activeInput) {
+            drawText('#EVENT', 20, TRANSPARENT_WHITE, eventNameRect.x + eventNameRect.width / 2, eventNameRect.y + 5, true);
+        }
+        if (activeInput && cursorVisible) {
+            ctx.fillStyle = TRANSPARENT_WHITE;
+            drawText('ENTER', 10, TRANSPARENT_WHITE, (activeInput === 'red' ? redNameRect.x + redNameRect.width : activeInput === 'blue' ? blueNameRect.x + blueNameRect.width : eventNameRect.x + eventNameRect.width) - 50, (activeInput === 'red' ? redNameRect.y : activeInput === 'blue' ? blueNameRect.y : eventNameRect.y) + 5, true);
+        }
+        // Scores
+        ctx.fillStyle = GRAY;
+        ctx.fillRect(scoreRedRect.x, scoreRedRect.y, scoreRedRect.width, scoreRedRect.height);
+        ctx.strokeStyle = LIGHT_GRAY;
+        ctx.strokeRect(scoreRedRect.x, scoreRedRect.y, scoreRedRect.width, scoreRedRect.height);
+        ctx.fillStyle = GRAY;
+        ctx.fillRect(scoreBlueRect.x, scoreBlueRect.y, scoreBlueRect.width, scoreBlueRect.height);
+        ctx.strokeStyle = LIGHT_GRAY;
+        ctx.strokeRect(scoreBlueRect.x, scoreBlueRect.y, scoreBlueRect.width, scoreBlueRect.height);
+        drawText(`${redScore}`, 24, RED, scoreRedRect.x + 5, scoreRedRect.y + 5);
+        const blueScoreWidth = ctx.measureText(`${blueScore}`.toUpperCase()).width;
+        drawText(`${blueScore}`, 24, BLUE, scoreBlueRect.x + scoreBlueRect.width - blueScoreWidth - 5, scoreBlueRect.y + 5);
+        // Draw logo
+        if (logoImage) {
+            ctx.drawImage(logoImage, logoRect.x, logoRect.y, logoRect.width, logoRect.height);
+        } else {
+            drawText("MATLOCK'S SCORECARD", 10, WHITE, logoRect.x + logoRect.width / 2, logoRect.y + logoRect.height / 2 - 7, true);
+        }
+        // Timer
+        ctx.fillStyle = GRAY;
+        ctx.fillRect(timerRect.x, timerRect.y, timerRect.width, timerRect.height);
+        ctx.strokeStyle = timerRunning ? GREEN : LIGHT_GRAY;
+        ctx.strokeRect(timerRect.x, timerRect.y, timerRect.width, timerRect.height);
+        const minutes = Math.floor(timerSeconds / 60);
+        const seconds = Math.floor(timerSeconds % 60);
+        drawText(`${minutes}:${seconds.toString().padStart(2, '0')}`, 24, WHITE, timerRect.x + timerRect.width / 2, timerRect.y + 5, true);
+        // Round selector
+        drawText('ROUND', 10, WHITE, roundLabelRect.x + roundLabelRect.width / 2, roundLabelRect.y - 18, true);
+        ctx.fillStyle = GRAY;
+        ctx.fillRect(roundLabelRect.x, roundLabelRect.y, roundLabelRect.width, roundLabelRect.height);
+        ctx.strokeStyle = LIGHT_GRAY;
+        ctx.strokeRect(roundLabelRect.x, roundLabelRect.y, roundLabelRect.width, roundLabelRect.height);
+        drawText(`${currentRound}`, 20, WHITE, roundLabelRect.x + roundLabelRect.width / 2, roundLabelRect.y + 5, true);
+        drawButton('−', roundDownRect, GRAY, mouseX >= roundDownRect.x && mouseX <= roundDownRect.x + roundDownRect.width && mouseY >= roundDownRect.y && mouseY <= roundDownRect.y + roundDownRect.height);
+        drawButton('+', roundUpRect, GRAY, mouseX >= roundUpRect.x && mouseX <= roundUpRect.x + roundUpRect.width && mouseY >= roundUpRect.y && mouseY <= roundUpRect.y + roundUpRect.height);
+        // Buttons
+        drawButton(timerState === 'start' ? 'START' : timerState === 'pause' ? 'PAUSE' : 'RESUME', startButtonRect, GRAY, mouseX >= startButtonRect.x && mouseX <= startButtonRect.x + startButtonRect.width && mouseY >= startButtonRect.y && mouseY <= startButtonRect.y + startButtonRect.height);
+        drawButton('RESET', resetButtonRect, GRAY, mouseX >= resetButtonRect.x && mouseX <= resetButtonRect.x + resetButtonRect.width && mouseY >= resetButtonRect.y && mouseY <= resetButtonRect.y + resetButtonRect.height);
+        // Progress bar
+        drawProgressBar();
+        // Graph
+        drawGraph();
+        // Sidebar
+        ctx.fillStyle = BLACK;
+        ctx.fillRect(sidebarX, sidebarRect.y, sidebarRect.width, sidebarRect.height);
+        ctx.strokeStyle = LIGHT_GRAY;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(sidebarX, sidebarRect.y, sidebarRect.width, sidebarRect.height);
+        if (sidebarX <= -SIDEBAR_WIDTH) {
+            ctx.fillStyle = SHADE_WHITE;
+            ctx.fillRect(0, 0, 30, CANVAS_HEIGHT);
+        }
+        const arrowText = sidebarOpen ? '<' : '>';
+        const arrowColor = mouseX >= arrowRect.x && mouseX <= arrowRect.x + arrowRect.width && mouseY >= arrowRect.y && mouseY <= arrowRect.y + arrowRect.height ? LIGHT_GRAY : WHITE;
+        drawText(arrowText, 20, arrowColor, arrowRect.x + arrowRect.width / 2, arrowRect.y + 5, true);
+        if (sidebarOpen) {
+            let y = sidebarRect.y + 5;
+            drawText('SCORECARD', 10, WHITE, sidebarX + sidebarRect.width / 2, y, true);
+            y += 30;
+            roundLog.forEach((log, i) => {
+                drawText(log, roundLogFontSizes[i] || 10, WHITE, sidebarX + 10, y + 5);
+                y += 20;
+            });
+            y += 30;
+            let redPoints = 0, bluePoints = 0;
+            roundLog.forEach(log => {
+                if (!log) return;
+                if (log.includes(`${redName || 'RED CORNER'} WINS 10-9`)) { redPoints += 10; bluePoints += 9; }
+                else if (log.includes(`${redName || 'RED CORNER'} WINS 10-8`)) { redPoints += 10; bluePoints += 8; }
+                else if (log.includes(`${blueName || 'BLUE CORNER'} WINS 10-9`)) { bluePoints += 10; redPoints += 9; }
+                else if (log.includes(`${blueName || 'BLUE CORNER'} WINS 10-8`)) { bluePoints += 10; redPoints += 8; }
+                else if (log.includes('DRAW')) { redPoints += 10; bluePoints += 10; }
+            });
+            const decisionText = `DECISION: ${redName || 'RED CORNER'} ${redPoints}, ${blueName || 'BLUE CORNER'} ${bluePoints}`;
+            ctx.font = `bold ${ctx.measureText(decisionText.toUpperCase()).width > 380 ? 8 : 10}px GOBOLD, Impact, Verdana, sans-serif`;
+            drawText(decisionText, ctx.font.includes('8px') ? 8 : 10, WHITE, sidebarX + sidebarRect.width / 2, y + 5, true);
+            if (currentRound === 5 && timerSeconds <= 0) {
+                y += 30;
+                if (redPoints > bluePoints) {
+                    drawText(`${redName || 'RED CORNER'} WINS ${redPoints}-${bluePoints} UNANIMOUS DECISION!`, 10, RED, sidebarX + 10, y + 5);
+                } else if (bluePoints > redPoints) {
+                    drawText(`${blueName || 'BLUE CORNER'} WINS ${bluePoints}-${redPoints} UNANIMOUS DECISION!`, 10, BLUE, sidebarX + 10, y + 5);
+                } else {
+                    drawText('FIGHT ENDS IN A DRAW!', 10, WHITE, sidebarX + 10, y + 5);
+                }
             }
-            const rect = canvas.getBoundingClientRect();
-            const containerRect = container.getBoundingClientRect();
-            mouseX = e.clientX - containerRect.left;
-            mouseY = e.clientY - containerRect.top;
-if (mouseX >= redNameRect.x && mouseX <= redNameRect.x + redNameRect.width && mouseY >= redNameRect.y && mouseY <= redNameRect.y + redNameRect.height) {
-activeInput = 'red';
-redNameInput.style.left = ${redNameRect.x}px;
-redNameInput.style.top = ${redNameRect.y + 20}px; // Your 20px offset
-redNameInput.style.width = ${redNameRect.width}px;
-redNameInput.style.height = ${redNameRect.height}px;
-redNameInput.classList.remove('hidden');
-redNameInput.value = redName || '';
-redNameInput.focus();
-e.preventDefault();
-playSound(buttonSound);
-console.log(Red input top set to: ${redNameInput.style.top});
-needsRedraw = true;
-} else if (mouseX >= blueNameRect.x && mouseX <= blueNameRect.x + blueNameRect.width && mouseY >= blueNameRect.y && mouseY <= blueNameRect.y + blueNameRect.height) {
-activeInput = 'blue';
-blueNameInput.style.left = ${blueNameRect.x}px;
-blueNameInput.style.top = ${blueNameRect.y + 20}px; // Your 20px offset
-blueNameInput.style.width = ${blueNameRect.width}px;
-blueNameInput.style.height = ${blueNameRect.height}px;
-blueNameInput.classList.remove('hidden');
-blueNameInput.value = blueName || '';
-blueNameInput.focus();
-e.preventDefault();
-playSound(buttonSound);
-console.log(Blue input top set to: ${blueNameInput.style.top});
-needsRedraw = true;
-} else if (mouseX >= eventNameRect.x && mouseX <= eventNameRect.x + eventNameRect.width && mouseY >= eventNameRect.y && mouseY <= eventNameRect.y + eventNameRect.height) {
-activeInput = 'event';
-eventNameInput.style.left = ${eventNameRect.x}px;
-eventNameInput.style.top = ${eventNameRect.y + 20}px; // Your 20px offset
-eventNameInput.style.width = ${eventNameRect.width}px;
-eventNameInput.style.height = ${eventNameRect.height}px;
-eventNameInput.classList.remove('hidden');
-eventNameInput.value = eventName || '';
-eventNameInput.focus();
-e.preventDefault();
-playSound(buttonSound);
-console.log(Event input top set to: ${eventNameInput.style.top});
-needsRedraw = true;
-} else if (mouseX >= startButtonRect.x && mouseX <= startButtonRect.x + startButtonRect.width && mouseY >= startButtonRect.y && mouseY <= startButtonRect.y + startButtonRect.height) {
-playSound(buttonSound);
-if (timerState === 'start') {
-resetTimer();
-timerRunning = true;
-timerState = 'pause';
-playSound(bellSound);
-} else if (timerState === 'pause') {
-timerRunning = false;
-pausedTime = timerSeconds;
-timerState = 'resume';
-} else if (timerState === 'resume') {
-startTime = performance.now() - (ROUND_TIME - pausedTime) * 1000;
-lastIntervalTime = performance.now() - (intervalTimer * 1000);
-timerRunning = true;
-timerState = 'pause';
-}
-needsRedraw = true;
-} else if (mouseX >= resetButtonRect.x && mouseX <= resetButtonRect.x + resetButtonRect.width && mouseY >= resetButtonRect.y && mouseY <= resetButtonRect.y + resetButtonRect.height) {
-playSound(buttonSound);
-resetGame();
-} else if (mouseX >= roundUpRect.x && mouseX <= roundUpRect.x + roundUpRect.width && mouseY >= roundUpRect.y && mouseY <= roundUpRect.y + roundUpRect.height) {
-playSound(buttonSound);
-currentRound = Math.min(currentRound + 1, 5);
-resetGraph();
-resetTimer();
-redScore = blueScore = 0;
-woodblockPlayed = false;
-needsRedraw = true;
-} else if (mouseX >= roundDownRect.x && mouseX <= roundDownRect.x + roundDownRect.width && mouseY >= roundDownRect.y && mouseY <= roundDownRect.y + roundDownRect.height) {
-playSound(buttonSound);
-currentRound = Math.max(currentRound - 1, 1);
-resetGraph();
-resetTimer();
-redScore = blueScore = 0;
-woodblockPlayed = false;
-needsRedraw = true;
-} else if (mouseX >= copyButtonRect.x + sidebarX && mouseX <= copyButtonRect.x + sidebarX + copyButtonRect.width && mouseY >= copyButtonRect.y + sidebarRect.y && mouseY <= copyButtonRect.y + sidebarRect.y + copyButtonRect.height && sidebarOpen) {
-playSound(buttonSound);
-copyToClipboard();
-needsRedraw = true;
-} else if (mouseX >= arrowRect.x && mouseX <= arrowRect.x + arrowRect.width && mouseY >= arrowRect.y && mouseY <= arrowRect.y + arrowRect.height) {
-sidebarOpen = !sidebarOpen;
-playSound(arrowSound);
-animationTime = 0;
-needsRedraw = true;
-} else if (activeInput) {
-redNameInput.classList.add('hidden');
-blueNameInput.classList.add('hidden');
-eventNameInput.classList.add('hidden');
-activeInput = null;
-needsRedraw = true;
-}
-});
-canvas.addEventListener('mousemove', (e) => {
-const containerRect = container.getBoundingClientRect();
-const newMouseX = e.clientX - containerRect.left;
-const newMouseY = e.clientY - containerRect.top;
-if (newMouseX !== mouseX || newMouseY !== mouseY) {
-mouseX = newMouseX;
-mouseY = newMouseY;
-needsRedraw = true;
-}
-});
-document.addEventListener('keydown', (e) => {
-if (!audioInitialized) {
-audioCtx.resume().then(() => setupAudio());
-}
-if (activeInput) {
-if (e.key === 'Backspace') {
-if (activeInput === 'red') redNameInput.value = redNameInput.value.slice(0, -1);
-else if (activeInput === 'blue') blueNameInput.value = blueNameInput.value.slice(0, -1);
-else if (activeInput === 'event') {
-eventNameInput.value = eventNameInput.value.slice(0, -1);
-if (!eventNameInput.value) eventNameInput.value = '#';
-}
-needsRedraw = true;
-} else if (e.key === 'Enter') {
-if (activeInput === 'red') {
-redName = sanitizeInput(redNameInput.value);
-redNameLocked = true;
-playSound(enterSound);
-} else if (activeInput === 'blue') {
-blueName = sanitizeInput(blueNameInput.value);
-blueNameLocked = true;
-playSound(enterSound);
-} else if (activeInput === 'event') {
-eventName = eventNameInput.value;
-eventNameLocked = true;
-playSound(enterSound);
-}
-redNameInput.classList.add('hidden');
-blueNameInput.classList.add('hidden');
-eventNameInput.classList.add('hidden');
-activeInput = null;
-needsRedraw = true;
-}
-} else if (e.key === ' ' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
-e.preventDefault();
-playSound(buttonSound);
-if (timerState === 'start') {
-resetTimer();
-timerRunning = true;
-timerState = 'pause';
-playSound(bellSound);
-} else if (timerState === 'pause') {
-timerRunning = false;
-pausedTime = timerSeconds;
-timerState = 'resume';
-} else if (timerState === 'resume') {
-startTime = performance.now() - (ROUND_TIME - pausedTime) * 1000;
-lastIntervalTime = performance.now() - (intervalTimer * 1000);
-timerRunning = true;
-timerState = 'pause';
-}
-needsRedraw = true;
-} else if (timerRunning) {
-if (e.key === 'ArrowLeft') {
-redScore++;
-redIntervalScore++;
-playSound(arrowKeySound);
-needsRedraw = true;
-} else if (e.key === 'ArrowRight') {
-blueScore++;
-blueIntervalScore++;
-playSound(arrowKeySound);
-needsRedraw = true;
-}
-}
-});
-// Initialize inputs
-[redNameInput, blueNameInput, eventNameInput].forEach(input => {
-input.addEventListener('input', (e) => {
-if (e.target === redNameInput) redName = sanitizeInput(e.target.value);
-else if (e.target === blueNameInput) blueName = sanitizeInput(e.target.value);
-else if (e.target === eventNameInput) {
-if (!e.target.value.startsWith('#')) e.target.value = '#' + e.target.value;
-eventName = e.target.value;
-}
-needsRedraw = true;
-});
-});
-setup();
+            drawButton('COPY TO CLIPBOARD', { x: copyButtonRect.x + sidebarX, y: copyButtonRect.y + sidebarRect.y, width: copyButtonRect.width, height: copyButtonRect.height }, GRAY, mouseX >= copyButtonRect.x + sidebarX && mouseX <= copyButtonRect.x + sidebarX + copyButtonRect.width && mouseY >= copyButtonRect.y + sidebarRect.y && mouseY <= copyButtonRect.y + sidebarRect.y + copyButtonRect.height);
+        }
+        needsRedraw = false;
+        requestAnimationFrame(updateLoop);
+    }
+    let mouseX = 0, mouseY = 0, lastFrameTime = 0;
+    canvas.addEventListener('click', async (e) => {
+        if (!audioInitialized) {
+            await audioCtx.resume();
+            setupAudio();
+        }
+        const rect = canvas.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        mouseX = e.clientX - containerRect.left;
+        mouseY = e.clientY - containerRect.top;
+
+        if (mouseX >= redNameRect.x && mouseX <= redNameRect.x + redNameRect.width && mouseY >= redNameRect.y && mouseY <= redNameRect.y + redNameRect.height) {
+            activeInput = 'red';
+            redNameInput.style.left = `${redNameRect.x}px`;
+            redNameInput.style.top = `${redNameRect.y + 20}px`; // Your 20px offset
+            redNameInput.style.width = `${redNameRect.width}px`;
+            redNameInput.style.height = `${redNameRect.height}px`;
+            redNameInput.classList.remove('hidden');
+            redNameInput.value = redName || '';
+            redNameInput.focus();
+            e.preventDefault();
+            playSound(buttonSound);
+            console.log(`Red input top set to: ${redNameInput.style.top}`);
+            needsRedraw = true;
+        } else if (mouseX >= blueNameRect.x && mouseX <= blueNameRect.x + blueNameRect.width && mouseY >= blueNameRect.y && mouseY <= blueNameRect.y + blueNameRect.height) {
+            activeInput = 'blue';
+            blueNameInput.style.left = `${blueNameRect.x}px`;
+            blueNameInput.style.top = `${blueNameRect.y + 20}px`; // Your 20px offset
+            blueNameInput.style.width = `${blueNameRect.width}px`;
+            blueNameInput.style.height = `${blueNameRect.height}px`;
+            blueNameInput.classList.remove('hidden');
+            blueNameInput.value = blueName || '';
+            blueNameInput.focus();
+            e.preventDefault();
+            playSound(buttonSound);
+            console.log(`Blue input top set to: ${blueNameInput.style.top}`);
+            needsRedraw = true;
+        } else if (mouseX >= eventNameRect.x && mouseX <= eventNameRect.x + eventNameRect.width && mouseY >= eventNameRect.y && mouseY <= eventNameRect.y + eventNameRect.height) {
+            activeInput = 'event';
+            eventNameInput.style.left = `${eventNameRect.x}px`;
+            eventNameInput.style.top = `${eventNameRect.y + 20}px`; // Your 20px offset
+            eventNameInput.style.width = `${eventNameRect.width}px`;
+            eventNameInput.style.height = `${eventNameRect.height}px`;
+            eventNameInput.classList.remove('hidden');
+            eventNameInput.value = eventName || '';
+            eventNameInput.focus();
+            e.preventDefault();
+            playSound(buttonSound);
+            console.log(`Event input top set to: ${eventNameInput.style.top}`);
+            needsRedraw = true;
+        } else if (mouseX >= startButtonRect.x && mouseX <= startButtonRect.x + startButtonRect.width && mouseY >= startButtonRect.y && mouseY <= startButtonRect.y + startButtonRect.height) {
+            playSound(buttonSound);
+            if (timerState === 'start') {
+                resetTimer();
+                timerRunning = true;
+                timerState = 'pause';
+                playSound(bellSound);
+            } else if (timerState === 'pause') {
+                timerRunning = false;
+                pausedTime = timerSeconds;
+                timerState = 'resume';
+            } else if (timerState === 'resume') {
+                startTime = performance.now() - (ROUND_TIME - pausedTime) * 1000;
+                lastIntervalTime = performance.now() - (intervalTimer * 1000);
+                timerRunning = true;
+                timerState = 'pause';
+            }
+            needsRedraw = true;
+        } else if (mouseX >= resetButtonRect.x && mouseX <= resetButtonRect.x + resetButtonRect.width && mouseY >= resetButtonRect.y && mouseY <= resetButtonRect.y + resetButtonRect.height) {
+            playSound(buttonSound);
+            resetGame();
+        } else if (mouseX >= roundUpRect.x && mouseX <= roundUpRect.x + roundUpRect.width && mouseY >= roundUpRect.y && mouseY <= roundUpRect.y + roundUpRect.height) {
+            playSound(buttonSound);
+            currentRound = Math.min(currentRound + 1, 5);
+            resetGraph();
+            resetTimer();
+            redScore = blueScore = 0;
+            woodblockPlayed = false;
+            needsRedraw = true;
+        } else if (mouseX >= roundDownRect.x && mouseX <= roundDownRect.x + roundDownRect.width && mouseY >= roundDownRect.y && mouseY <= roundDownRect.y + roundDownRect.height) {
+            playSound(buttonSound);
+            currentRound = Math.max(currentRound - 1, 1);
+            resetGraph();
+            resetTimer();
+            redScore = blueScore = 0;
+            woodblockPlayed = false;
+            needsRedraw = true;
+        } else if (mouseX >= copyButtonRect.x + sidebarX && mouseX <= copyButtonRect.x + sidebarX + copyButtonRect.width && mouseY >= copyButtonRect.y + sidebarRect.y && mouseY <= copyButtonRect.y + sidebarRect.y + copyButtonRect.height && sidebarOpen) {
+            playSound(buttonSound);
+            copyToClipboard();
+            needsRedraw = true;
+        } else if (mouseX >= arrowRect.x && mouseX <= arrowRect.x + arrowRect.width && mouseY >= arrowRect.y && mouseY <= arrowRect.y + arrowRect.height) {
+            sidebarOpen = !sidebarOpen;
+            playSound(arrowSound);
+            animationTime = 0;
+            needsRedraw = true;
+        } else if (activeInput) {
+            redNameInput.classList.add('hidden');
+            blueNameInput.classList.add('hidden');
+            eventNameInput.classList.add('hidden');
+            activeInput = null;
+            needsRedraw = true;
+        }
+    });
+    canvas.addEventListener('mousemove', (e) => {
+        const containerRect = container.getBoundingClientRect();
+        const newMouseX = e.clientX - containerRect.left;
+        const newMouseY = e.clientY - containerRect.top;
+        if (newMouseX !== mouseX || newMouseY !== mouseY) {
+            mouseX = newMouseX;
+            mouseY = newMouseY;
+            needsRedraw = true;
+        }
+    });
+    document.addEventListener('keydown', (e) => {
+        if (!audioInitialized) {
+            audioCtx.resume().then(() => setupAudio());
+        }
+        if (activeInput) {
+            if (e.key === 'Backspace') {
+                if (activeInput === 'red') redNameInput.value = redNameInput.value.slice(0, -1);
+                else if (activeInput === 'blue') blueNameInput.value = blueNameInput.value.slice(0, -1);
+                else if (activeInput === 'event') {
+                    eventNameInput.value = eventNameInput.value.slice(0, -1);
+                    if (!eventNameInput.value) eventNameInput.value = '#';
+                }
+                needsRedraw = true;
+            } else if (e.key === 'Enter') {
+                if (activeInput === 'red') {
+                    redName = sanitizeInput(redNameInput.value);
+                    redNameLocked = true;
+                    playSound(enterSound);
+                } else if (activeInput === 'blue') {
+                    blueName = sanitizeInput(blueNameInput.value);
+                    blueNameLocked = true;
+                    playSound(enterSound);
+                } else if (activeInput === 'event') {
+                    eventName = eventNameInput.value;
+                    eventNameLocked = true;
+                    playSound(enterSound);
+                }
+                redNameInput.classList.add('hidden');
+                blueNameInput.classList.add('hidden');
+                eventNameInput.classList.add('hidden');
+                activeInput = null;
+                needsRedraw = true;
+            }
+        } else if (e.key === ' ' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+            e.preventDefault();
+            playSound(buttonSound);
+            if (timerState === 'start') {
+                resetTimer();
+                timerRunning = true;
+                timerState = 'pause';
+                playSound(bellSound);
+            } else if (timerState === 'pause') {
+                timerRunning = false;
+                pausedTime = timerSeconds;
+                timerState = 'resume';
+            } else if (timerState === 'resume') {
+                startTime = performance.now() - (ROUND_TIME - pausedTime) * 1000;
+                lastIntervalTime = performance.now() - (intervalTimer * 1000);
+                timerRunning = true;
+                timerState = 'pause';
+            }
+            needsRedraw = true;
+        } else if (timerRunning) {
+            if (e.key === 'ArrowLeft') {
+                redScore++;
+                redIntervalScore++;
+                playSound(arrowKeySound);
+                needsRedraw = true;
+            } else if (e.key === 'ArrowRight') {
+                blueScore++;
+                blueIntervalScore++;
+                playSound(arrowKeySound);
+                needsRedraw = true;
+            }
+        }
+    });
+    // Initialize inputs
+    [redNameInput, blueNameInput, eventNameInput].forEach(input => {
+        input.addEventListener('input', (e) => {
+            if (e.target === redNameInput) redName = sanitizeInput(e.target.value);
+            else if (e.target === blueNameInput) blueName = sanitizeInput(e.target.value);
+            else if (e.target === eventNameInput) {
+                if (!e.target.value.startsWith('#')) e.target.value = '#' + e.target.value;
+                eventName = e.target.value;
+            }
+            needsRedraw = true;
+        });
+    });
+    setup();
 </script>
