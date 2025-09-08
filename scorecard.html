@@ -12,8 +12,8 @@ permalink: /scorecard
 <style>
     #gameCanvasContainer {
         position: relative;
-        width: 960px; /* Match canvas width */
-        margin: 0 auto; /* Ensure centered */
+        width: 960px;
+        margin: 0 auto;
     }
     canvas { 
         display: inline-block; 
@@ -35,9 +35,9 @@ permalink: /scorecard
         z-index: 10;
     }
     #gameCanvasContainer input::placeholder { color: rgba(245, 245, 245, 0.5); }
-    #redNameInput { left: 50px; top: 20px; width: 240px; height: 30px; }
-    #blueNameInput { left: 670px; top: 20px; width: 240px; height: 30px; }
-    #eventNameInput { left: 360px; top: 20px; width: 240px; height: 30px; }
+    #redNameInput { left: 50px; top: 22px; width: 240px; height: 30px; } /* Adjusted top */
+    #blueNameInput { left: 670px; top: 22px; width: 240px; height: 30px; } /* Adjusted top */
+    #eventNameInput { left: 360px; top: 22px; width: 240px; height: 30px; } /* Adjusted top */
     .hidden { display: none; }
     @font-face {
         font-family: 'GOBOLD';
@@ -409,7 +409,7 @@ permalink: /scorecard
             lines[0] = lines[0].endsWith(eventName.toUpperCase() || '#EVENT') ? lines[0] : `${lines[0]} ${eventName.toUpperCase() || '#EVENT'}`;
         }
         const text = lines.length ? lines.join('\n') : 'No rounds completed yet.';
-        console.log(`Matlock's Scorecard v3.14 - Copying to clipboard: ${text}`);
+        console.log(`Matlock\'s Scorecard v3.14 - Copying to clipboard: ${text}`);
         try {
             await navigator.clipboard.writeText(text);
             copyButtonHover = true;
@@ -665,8 +665,8 @@ permalink: /scorecard
         }
         const rect = canvas.getBoundingClientRect();
         const containerRect = container.getBoundingClientRect();
-        const x = e.clientX - containerRect.left; // Use container offset
-        const y = e.clientY - containerRect.top;  // Use container offset
+        const x = e.clientX - containerRect.left;
+        const y = e.clientY - containerRect.top;
         if (x >= redNameRect.x && x <= redNameRect.x + redNameRect.width && y >= redNameRect.y && y <= redNameRect.y + redNameRect.height) {
             activeInput = 'red';
             document.getElementById('redNameInput').classList.remove('hidden');
@@ -759,8 +759,8 @@ permalink: /scorecard
     canvas.addEventListener('mousemove', e => {
         const rect = canvas.getBoundingClientRect();
         const containerRect = container.getBoundingClientRect();
-        const newMouseX = e.clientX - containerRect.left; // Use container offset
-        const newMouseY = e.clientY - containerRect.top;  // Use container offset
+        const newMouseX = e.clientX - containerRect.left;
+        const newMouseY = e.clientY - containerRect.top;
         if (newMouseX !== mouseX || newMouseY !== mouseY) {
             mouseX = newMouseX;
             mouseY = newMouseY;
