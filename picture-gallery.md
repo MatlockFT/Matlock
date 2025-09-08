@@ -130,8 +130,8 @@ title: Picture Gallery
             <p class="gallery-caption">Right Leg Hospital</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image32.jpg" alt="Placeholder 32">
-            <p class="gallery-caption">Placeholder 32</p>
+            <img src="/assets/gallery/image32.jpg" alt="Coleman, Tyson, Fedor">
+            <p class="gallery-caption">Mark Coleman, Tyson, and Fedor</p>
         </div>
     </div>
 </div>
