@@ -110,8 +110,8 @@ title: Picture Gallery
             <p class="gallery-caption">DANA WHITE</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image27.jpg" alt="Placeholder 27">
-            <p class="gallery-caption">Placeholder 27</p>
+            <img src="/assets/gallery/image27.jpg" alt="Swagor">
+            <p class="gallery-caption">Fedor's Fit Goes Hard</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image28.jpg" alt="Placeholder 28">
