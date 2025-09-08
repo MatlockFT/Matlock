@@ -546,7 +546,7 @@ permalink: /scorecard
         ctx.lineWidth = 1;
         ctx.strokeRect(redNameRect.x, redNameRect.y, redNameRect.width, redNameRect.height);
         ctx.fillStyle = GRAY;
-        ctx.fillRect(blueNameRect.x, blueNameRect.y, blueNameRect.width, blueNameRect.height);
+        ctx.fillRect(blueNameRect.x, blueNameRect.y, blueNameRect.width, redNameRect.height); // Fixed height typo
         ctx.strokeStyle = blueNameLocked ? GREEN : LIGHT_GRAY;
         ctx.lineWidth = 1;
         ctx.strokeRect(blueNameRect.x, blueNameRect.y, blueNameRect.width, blueNameRect.height);
@@ -677,16 +677,15 @@ permalink: /scorecard
         }
         const rect = canvas.getBoundingClientRect();
         const containerRect = container.getBoundingClientRect();
-        const dpr = window.devicePixelRatio || 1;
-        mouseX = (e.clientX - containerRect.left) * dpr; // Normalize with dpr
-        mouseY = (e.clientY - containerRect.top) * dpr;  // Normalize with dpr
+        mouseX = e.clientX - containerRect.left; // Reverted to raw coordinates
+        mouseY = e.clientY - containerRect.top;  // Reverted to raw coordinates
 
-        if (mouseX >= redNameRect.x && mouseX <= redNameRect.x + redNameRect.width && mouseY >= redNameRect.y && mouseY <= redNameRect.y + redNameRect.height) {
+        if (mouseX >= redNameRect.x - 2 && mouseX <= redNameRect.x + redNameRect.width + 2 && mouseY >= redNameRect.y - 2 && mouseY <= redNameRect.y + redNameRect.height + 2) { // Expanded hit area
             activeInput = 'red';
-            redNameInput.style.left = `${redNameRect.x / dpr}px`;
-            redNameInput.style.top = `${(redNameRect.y + 20) / dpr}px`; // Your 20px offset
-            redNameInput.style.width = `${redNameRect.width / dpr}px`;
-            redNameInput.style.height = `${redNameRect.height / dpr}px`;
+            redNameInput.style.left = `${redNameRect.x}px`;
+            redNameInput.style.top = `${redNameRect.y + 20}px`; // Your 20px offset
+            redNameInput.style.width = `${redNameRect.width}px`;
+            redNameInput.style.height = `${redNameRect.height}px`;
             redNameInput.classList.remove('hidden');
             redNameInput.value = redName || '';
             redNameInput.focus();
@@ -694,12 +693,12 @@ permalink: /scorecard
             playSound(buttonSound);
             console.log(`Red input top set to: ${redNameInput.style.top}`);
             needsRedraw = true;
-        } else if (mouseX >= blueNameRect.x && mouseX <= blueNameRect.x + blueNameRect.width && mouseY >= blueNameRect.y && mouseY <= blueNameRect.y + blueNameRect.height) {
+        } else if (mouseX >= blueNameRect.x - 2 && mouseX <= blueNameRect.x + blueNameRect.width + 2 && mouseY >= blueNameRect.y - 2 && mouseY <= blueNameRect.y + blueNameRect.height + 2) { // Expanded hit area
             activeInput = 'blue';
-            blueNameInput.style.left = `${blueNameRect.x / dpr}px`;
-            blueNameInput.style.top = `${(blueNameRect.y + 20) / dpr}px`; // Your 20px offset
-            blueNameInput.style.width = `${blueNameRect.width / dpr}px`;
-            blueNameInput.style.height = `${blueNameRect.height / dpr}px`;
+            blueNameInput.style.left = `${blueNameRect.x}px`;
+            blueNameInput.style.top = `${blueNameRect.y + 20}px`; // Your 20px offset
+            blueNameInput.style.width = `${blueNameRect.width}px`;
+            blueNameInput.style.height = `${blueNameRect.height}px`;
             blueNameInput.classList.remove('hidden');
             blueNameInput.value = blueName || '';
             blueNameInput.focus();
@@ -707,12 +706,12 @@ permalink: /scorecard
             playSound(buttonSound);
             console.log(`Blue input top set to: ${blueNameInput.style.top}`);
             needsRedraw = true;
-        } else if (mouseX >= eventNameRect.x && mouseX <= eventNameRect.x + eventNameRect.width && mouseY >= eventNameRect.y && mouseY <= eventNameRect.y + eventNameRect.height) {
+        } else if (mouseX >= eventNameRect.x - 2 && mouseX <= eventNameRect.x + eventNameRect.width + 2 && mouseY >= eventNameRect.y - 2 && mouseY <= eventNameRect.y + eventNameRect.height + 2) { // Expanded hit area
             activeInput = 'event';
-            eventNameInput.style.left = `${eventNameRect.x / dpr}px`;
-            eventNameInput.style.top = `${(eventNameRect.y + 20) / dpr}px`; // Your 20px offset
-            eventNameInput.style.width = `${eventNameRect.width / dpr}px`;
-            eventNameInput.style.height = `${eventNameRect.height / dpr}px`;
+            eventNameInput.style.left = `${eventNameRect.x}px`;
+            eventNameInput.style.top = `${eventNameRect.y + 20}px`; // Your 20px offset
+            eventNameInput.style.width = `${eventNameRect.width}px`;
+            eventNameInput.style.height = `${eventNameRect.height}px`;
             eventNameInput.classList.remove('hidden');
             eventNameInput.value = eventName || '';
             eventNameInput.focus();
@@ -776,9 +775,8 @@ permalink: /scorecard
     });
     canvas.addEventListener('mousemove', (e) => {
         const containerRect = container.getBoundingClientRect();
-        const dpr = window.devicePixelRatio || 1;
-        const newMouseX = (e.clientX - containerRect.left) * dpr; // Normalize with dpr
-        const newMouseY = (e.clientY - containerRect.top) * dpr;  // Normalize with dpr
+        const newMouseX = e.clientX - containerRect.left; // Reverted to raw coordinates
+        const newMouseY = e.clientY - containerRect.top;  // Reverted to raw coordinates
         if (newMouseX !== mouseX || newMouseY !== mouseY) {
             mouseX = newMouseX;
             mouseY = newMouseY;
