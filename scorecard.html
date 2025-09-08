@@ -4,7 +4,7 @@ title: Matlock's Scorecard
 permalink: /scorecard
 ---
 <div style="text-align: center; padding: 20px 0; position: relative;" id="gameCanvasContainer">
-    <canvas id="gameCanvas" width="960" height="540"></canvas>
+    <canvas id="gameCanvas"></canvas>
     <input id="redNameInput" placeholder="RED CORNER" maxlength="20" class="hidden">
     <input id="blueNameInput" placeholder="BLUE CORNER" maxlength="20" class="hidden">
     <input id="eventNameInput" placeholder="#EVENT" maxlength="20" class="hidden">
@@ -17,8 +17,8 @@ permalink: /scorecard
     }
     canvas { 
         display: inline-block; 
-        max-width: 100%; 
-        height: auto; 
+        width: 960px; 
+        height: 540px; 
     }
     #gameCanvasContainer input {
         position: absolute; 
@@ -28,16 +28,16 @@ permalink: /scorecard
         color: #F5F5F5; 
         font-family: GOBOLD, Impact, Verdana, sans-serif; 
         font-size: 20px; 
-        padding: 0; 
-        line-height: 30px; 
+        padding: 0 0 2px 0; /* Added padding to align with text */
+        line-height: 28px; /* Adjusted for better alignment */
         outline: none; 
         box-sizing: border-box;
         z-index: 10;
     }
     #gameCanvasContainer input::placeholder { color: rgba(245, 245, 245, 0.5); }
-    #redNameInput { left: 50px; top: 22px; width: 240px; height: 30px; } /* Adjusted top */
-    #blueNameInput { left: 670px; top: 22px; width: 240px; height: 30px; } /* Adjusted top */
-    #eventNameInput { left: 360px; top: 22px; width: 240px; height: 30px; } /* Adjusted top */
+    #redNameInput { left: 50px; top: 23px; width: 240px; height: 30px; }
+    #blueNameInput { left: 670px; top: 23px; width: 240px; height: 30px; }
+    #eventNameInput { left: 360px; top: 23px; width: 240px; height: 30px; }
     .hidden { display: none; }
     @font-face {
         font-family: 'GOBOLD';
@@ -49,6 +49,17 @@ permalink: /scorecard
     const ctx = canvas.getContext('2d');
     const container = document.getElementById('gameCanvasContainer');
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    // Set canvas resolution with device pixel ratio
+    function setCanvasResolution() {
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = 960 * dpr;
+        canvas.height = 540 * dpr;
+        ctx.scale(dpr, dpr);
+    }
+    setCanvasResolution();
+    window.addEventListener('resize', setCanvasResolution);
+
     // Constants
     const CANVAS_WIDTH = 960;
     const CANVAS_HEIGHT = 540;
