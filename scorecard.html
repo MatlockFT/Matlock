@@ -683,7 +683,7 @@ permalink: /scorecard
         if (mouseX >= redNameRect.x && mouseX <= redNameRect.x + redNameRect.width && mouseY >= redNameRect.y && mouseY <= redNameRect.y + redNameRect.height) {
             activeInput = 'red';
             redNameInput.style.left = `${redNameRect.x}px`;
-            redNameInput.style.top = `${redNameRect.y + 12}px`; // Increased to 12px offset
+            redNameInput.style.top = `${redNameRect.y + 20}px`; // Increased to 12px offset
             redNameInput.style.width = `${redNameRect.width}px`;
             redNameInput.style.height = `${redNameRect.height}px`;
             redNameInput.classList.remove('hidden');
@@ -696,7 +696,7 @@ permalink: /scorecard
         } else if (mouseX >= blueNameRect.x && mouseX <= blueNameRect.x + blueNameRect.width && mouseY >= blueNameRect.y && mouseY <= blueNameRect.y + blueNameRect.height) {
             activeInput = 'blue';
             blueNameInput.style.left = `${blueNameRect.x}px`;
-            blueNameInput.style.top = `${blueNameRect.y + 12}px`; // Increased to 12px offset
+            blueNameInput.style.top = `${blueNameRect.y + 20}px`; // Increased to 12px offset
             blueNameInput.style.width = `${blueNameRect.width}px`;
             blueNameInput.style.height = `${blueNameRect.height}px`;
             blueNameInput.classList.remove('hidden');
@@ -709,7 +709,7 @@ permalink: /scorecard
         } else if (mouseX >= eventNameRect.x && mouseX <= eventNameRect.x + eventNameRect.width && mouseY >= eventNameRect.y && mouseY <= eventNameRect.y + eventNameRect.height) {
             activeInput = 'event';
             eventNameInput.style.left = `${eventNameRect.x}px`;
-            eventNameInput.style.top = `${eventNameRect.y + 12}px`; // Increased to 12px offset
+            eventNameInput.style.top = `${eventNameRect.y + 20}px`; // Increased to 12px offset
             eventNameInput.style.width = `${eventNameRect.width}px`;
             eventNameInput.style.height = `${eventNameRect.height}px`;
             eventNameInput.classList.remove('hidden');
