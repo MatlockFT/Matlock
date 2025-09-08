@@ -28,7 +28,7 @@ permalink: /scorecard
         color: #F5F5F5; 
         font-family: GOBOLD, Impact, Verdana, sans-serif; 
         font-size: 20px; 
-        padding: 2px 0; 
+        padding: 3px 0 1px 0; /* Adjusted padding to align text */
         line-height: 26px; 
         outline: none; 
         box-sizing: border-box;
@@ -683,7 +683,7 @@ permalink: /scorecard
         if (mouseX >= redNameRect.x && mouseX <= redNameRect.x + redNameRect.width && mouseY >= redNameRect.y && mouseY <= redNameRect.y + redNameRect.height) {
             activeInput = 'red';
             redNameInput.style.left = `${redNameRect.x}px`;
-            redNameInput.style.top = `${redNameRect.y}px`;
+            redNameInput.style.top = `${redNameRect.y + 5}px`; // Added 5px offset
             redNameInput.style.width = `${redNameRect.width}px`;
             redNameInput.style.height = `${redNameRect.height}px`;
             redNameInput.classList.remove('hidden');
@@ -695,7 +695,7 @@ permalink: /scorecard
         } else if (mouseX >= blueNameRect.x && mouseX <= blueNameRect.x + blueNameRect.width && mouseY >= blueNameRect.y && mouseY <= blueNameRect.y + blueNameRect.height) {
             activeInput = 'blue';
             blueNameInput.style.left = `${blueNameRect.x}px`;
-            blueNameInput.style.top = `${blueNameRect.y}px`;
+            blueNameInput.style.top = `${blueNameRect.y + 5}px`; // Added 5px offset
             blueNameInput.style.width = `${blueNameRect.width}px`;
             blueNameInput.style.height = `${blueNameRect.height}px`;
             blueNameInput.classList.remove('hidden');
@@ -707,7 +707,7 @@ permalink: /scorecard
         } else if (mouseX >= eventNameRect.x && mouseX <= eventNameRect.x + eventNameRect.width && mouseY >= eventNameRect.y && mouseY <= eventNameRect.y + eventNameRect.height) {
             activeInput = 'event';
             eventNameInput.style.left = `${eventNameRect.x}px`;
-            eventNameInput.style.top = `${eventNameRect.y}px`;
+            eventNameInput.style.top = `${eventNameRect.y + 5}px`; // Added 5px offset
             eventNameInput.style.width = `${eventNameRect.width}px`;
             eventNameInput.style.height = `${eventNameRect.height}px`;
             eventNameInput.classList.remove('hidden');
