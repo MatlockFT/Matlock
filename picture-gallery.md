@@ -139,12 +139,12 @@ title: Picture Gallery
     .gallery-container {
         max-width: 960px;
         margin: 0 auto;
-        padding: 10px; /* Reduced padding for tighter layout */
+        padding: 10px; /* Clean, minimal padding */
     }
     .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Reduced min width for tighter fit */
-        gap: 10px; /* Reduced gap for tighter spacing */
+        grid-template-columns: repeat(3, 1fr); /* Fixed 3 per line */
+        gap: 15px; /* Moderate gap for clean spacing */
     }
     .gallery-item {
         text-align: center;
@@ -152,12 +152,12 @@ title: Picture Gallery
     .gallery-item img {
         max-width: 100%;
         height: auto;
-        border: 1px solid #BBB; /* Thinner border for neatness */
+        border: 1px solid #BBB; /* Thin border for neatness */
     }
     .gallery-caption {
-        margin: 3px 0 0; /* Reduced margin for tighter fit */
+        margin: 5px 0 0; /* Small margin for clean text placement */
         font-family: 'GOBOLD', Impact, Verdana, sans-serif;
         color: #F5F5F5;
-        font-size: 14px; /* Slightly smaller font for compactness */
+        font-size: 14px; /* Compact font size */
     }
 </style>
