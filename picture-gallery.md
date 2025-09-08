@@ -90,8 +90,8 @@ title: Picture Gallery
             <p class="gallery-caption">ROYCE GRACIE, HONGMAN CHOI, BROCK LESNAR, JOHNNIE MORTON</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image22.jpg" alt="Placeholder 22">
-            <p class="gallery-caption">Placeholder 22</p>
+            <img src="/assets/gallery/image22.jpg" alt="GENKI SUDO">
+            <p class="gallery-caption">GENKI SUDO</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image23.jpg" alt="Placeholder 23">
