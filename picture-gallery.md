@@ -78,12 +78,12 @@ title: Picture Gallery
             <p class="gallery-caption">WANDERLEI SILVA AND FEDOR</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image19.jpg" alt="Placeholder 19">
-            <p class="gallery-caption">Placeholder 19</p>
+            <img src="/assets/gallery/image19.jpg" alt="">
+            <p class="gallery-caption">BOB SAPP</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image20.jpg" alt="Placeholder 20">
-            <p class="gallery-caption">Placeholder 20</p>
+            <p class="gallery-caption">IS DANA WHITE AN ENEMY OR AN ALLY?</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image21.jpg" alt="Placeholder 21">
