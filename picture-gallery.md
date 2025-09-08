@@ -54,16 +54,16 @@ title: Picture Gallery
             <p class="gallery-caption">Dana White (with hair) and wearing his favorite sweater</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image13.jpg" alt="Placeholder 13">
-            <p class="gallery-caption">Placeholder 13</p>
+            <img src="/assets/gallery/image13.jpg" alt="Dorks From Brazil">
+            <p class="gallery-caption">The Nogueira Brothers</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image14.jpg" alt="Placeholder 14">
-            <p class="gallery-caption">Placeholder 14</p>
+            <img src="/assets/gallery/image14.jpg" alt="Dorks From Brazil">
+            <p class="gallery-caption">The Nogueira Brothers</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image15.jpg" alt="Placeholder 15">
-            <p class="gallery-caption">Placeholder 15</p>
+            <img src="/assets/gallery/image15.jpg" alt="Dorks From Brazil">
+            <p class="gallery-caption">The Nogueira Brothers</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image16.jpg" alt="Placeholder 16">
