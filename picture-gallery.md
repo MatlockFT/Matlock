@@ -119,7 +119,7 @@ title: Picture Gallery
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image29.jpg" alt="Don Frye">
-            <p class="gallery-caption">Americanr</p>
+            <p class="gallery-caption">American</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image30.jpg" alt="Fedor Reading At His Level">
