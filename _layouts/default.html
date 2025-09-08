@@ -1,123 +1,123 @@
 <!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>{% if page.title %}{{ page.title }} - Matlock Fight Talk{% else %}Matlock Fight Talk{% endif %}</title>
-      <link rel="stylesheet" href="/assets/style.css">
-      <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
-      <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
-  </head>
-  <body>
-      <table width="100%" border="1" cellspacing="0" cellpadding="10" bgcolor="#000000" bordercolor="#A00000">
-          <tr>
-              <td colspan="2" align="center">
-                  <img src="/assets/logo.png" alt="Matlock Fight Talk Logo" class="site-logo">
-                  <marquee behavior="scroll" direction="left" scrollamount="5"><font color="#A00000">WELCOME TO THE END OF THE INTERNET</font></marquee>
-              </td>
-          </tr>
-          <tr>
-              <td width="20%" valign="top" bgcolor="#000000">
-                  <h2>Navigation</h2>
-                  <ul>
-                      <li><a href="/">Home</a></li>
-                      <li><a href="/matlockpapers">The Matlock Papers</a></li>
-                      <li><a href="/vegas">Vegas Slots</a></li>
-                      <li><a href="/chatroom">Chatroom</a></li>
-                      <li><a href="/guestbook">Guestbook</a></li>
-                      <li><a href="/scorecard">Scorecard</a></li>
-                      <li><a href="/picture-gallery">Picture Gallery</a></li>
-                  </ul>
-                  <hr>
-                  <center><img src="/assets/fist.gif" alt="Fist Icon" width="100" height="100"></center>
-                  <hr>
-                  <center>
-                      <div id="audio-player">
-                          <p><font color="#A00000"><blink>Click to unleash fight tunes!</blink></font></p>
-                          <div class="audio-container">
-                              <audio id="player">
-                                  <source src="/assets/facethepain.mp3" type="audio/mpeg">
-                                  <source src="/assets/Original.mp3" type="audio/mpeg">
-                                  <source src="/assets/DeathorGlory.mp3" type="audio/mpeg">
-                                  Your browser does not support the audio element.
-                              </audio>
-                              <div class="audio-controls">
-                                  <img src="/assets/play.gif" alt="Play" onclick="playAudio()" class="control-button">
-                                  <img src="/assets/pause.gif" alt="Pause" onclick="pauseAudio()" class="control-button">
-                                  <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" onchange="setVolume()">
-                              </div>
-                              <select id="song-selector" onchange="changeSong()">
-                                  <option value="/assets/facethepain.mp3">Face The Pain</option>
-                                  <option value="/assets/Original.mp3">O.G.</option>
-                                  <option value="/assets/DeathorGlory.mp3">Death or Glory</option>
-                              </select>
-                          </div>
-                          <script>
-                              var player = document.getElementById('player');
-                              function playAudio() {
-                                  player.src = document.getElementById('song-selector').value;
-                                  player.play();
-                              }
-                              function pauseAudio() {
-                                  player.pause();
-                              }
-                              function changeSong() {
-                                  player.src = document.getElementById('song-selector').value;
-                                  player.play();
-                              }
-                              function setVolume() {
-                                  player.volume = document.getElementById('volume-slider').value;
-                              }
-                          </script>
-                      </div>
-                  </center>
-                  <hr>
-                  <center>
-                      <a href="https://aol.sentrybay.com/deploy/aol.php?licensor=netscape&uid=mbr_rusdeflnk00000002&ncid=mbr_rusdeflnk00000002">
-                          <img src="/assets/netscape.gif" alt="Get Netscape Now!" width="88" height="31">
-                      </a>
-                  </center>
-              </td>
-              <td width="80%" valign="top">
-                  <div class="social-banner">
-                      <a href="https://youtube.com/matlockfighttalk"><img src="/assets/youtube.png" alt="YouTube" width="32" height="32"></a>
-                      <a href="https://www.instagram.com/matlockfighttalk/"><img src="/assets/instagram.png" alt="Instagram" width="32" height="32"></a>
-                      <a href="https://x.com/MatlockKombat"><img src="/assets/x.png" alt="X" width="32" height="32"></a>
-                      <a href="https://matlockfighttalk-shop.fourthwall.com/"><img src="/assets/merch.png" alt="Merch" width="32" height="32"></a>
-                  </div>
-                  <center>
-                      <button class="custom-button" onclick="toggleVideo()">horse meat</button>
-                  </center>
-                  <div class="video-container" id="video-container" style="display: none;">
-                      <video controls id="horsemeat-video" width="100%">
-                          <source src="/assets/horsemeat.mp4" type="video/mp4">
-                          Your browser does not support the video tag. <a href="/assets/horsemeat.mp4">Download the video</a>.
-                      </video>
-                  </div>
-                  {{ content }}
-              </td>
-          </tr>
-          <tr>
-              <td colspan="2" align="center" bgcolor="#333333">
-                  <font color="#FFFFFF">Copyright © 2025 MATLOCK'S FIGHT TALK. All rights reserved. | Visitor count: <img src="/assets/counter.gif" alt="Hit Counter" width="88" height="31"></font>
-                  <br>
-                  <marquee behavior="alternate"><font color="#A00000">Powered by Secret Juice</font></marquee>
-              </td>
-          </tr>
-      </table>
-      <script>
-          function toggleVideo() {
-              var videoContainer = document.getElementById('video-container');
-              var video = document.getElementById('horsemeat-video');
-              if (videoContainer.style.display === 'none') {
-                  videoContainer.style.display = 'block';
-                  video.play();
-              } else {
-                  videoContainer.style.display = 'none';
-                  video.pause();
-                  video.currentTime = 0;
-              }
-          }
-      </script>
-  </body>
-  </html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} - Matlock Fight Talk{% else %}Matlock Fight Talk{% endif %}</title>
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+</head>
+<body>
+    <table width="100%" border="1" cellspacing="0" cellpadding="10" bgcolor="transparent" bordercolor="#A00000">
+        <tr>
+            <td colspan="2" align="center">
+                <img src="/assets/logo.png" alt="Matlock Fight Talk Logo" class="site-logo">
+                <marquee behavior="scroll" direction="left" scrollamount="5"><font color="#A00000">WELCOME TO THE END OF THE INTERNET</font></marquee>
+            </td>
+        </tr>
+        <tr>
+            <td width="20%" valign="top" bgcolor="transparent">
+                <h2>Navigation</h2>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/matlockpapers">The Matlock Papers</a></li>
+                    <li><a href="/vegas">Vegas Slots</a></li>
+                    <li><a href="/chatroom">Chatroom</a></li>
+                    <li><a href="/guestbook">Guestbook</a></li>
+                    <li><a href="/scorecard">Scorecard</a></li>
+                    <li><a href="/picture-gallery">Picture Gallery</a></li>
+                </ul>
+                <hr>
+                <center><img src="/assets/fist.gif" alt="Fist Icon" width="100" height="100"></center>
+                <hr>
+                <center>
+                    <div id="audio-player">
+                        <p><font color="#A00000"><blink>Click to unleash fight tunes!</blink></font></p>
+                        <div class="audio-container">
+                            <audio id="player">
+                                <source src="/assets/facethepain.mp3" type="audio/mpeg">
+                                <source src="/assets/Original.mp3" type="audio/mpeg">
+                                <source src="/assets/DeathorGlory.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                            <div class="audio-controls">
+                                <img src="/assets/play.gif" alt="Play" onclick="playAudio()" class="control-button">
+                                <img src="/assets/pause.gif" alt="Pause" onclick="pauseAudio()" class="control-button">
+                                <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5" onchange="setVolume()">
+                            </div>
+                            <select id="song-selector" onchange="changeSong()">
+                                <option value="/assets/facethepain.mp3">Face The Pain</option>
+                                <option value="/assets/Original.mp3">O.G.</option>
+                                <option value="/assets/DeathorGlory.mp3">Death or Glory</option>
+                            </select>
+                        </div>
+                        <script>
+                            var player = document.getElementById('player');
+                            function playAudio() {
+                                player.src = document.getElementById('song-selector').value;
+                                player.play();
+                            }
+                            function pauseAudio() {
+                                player.pause();
+                            }
+                            function changeSong() {
+                                player.src = document.getElementById('song-selector').value;
+                                player.play();
+                            }
+                            function setVolume() {
+                                player.volume = document.getElementById('volume-slider').value;
+                            }
+                        </script>
+                    </div>
+                </center>
+                <hr>
+                <center>
+                    <a href="https://aol.sentrybay.com/deploy/aol.php?licensor=netscape&uid=mbr_rusdeflnk00000002&ncid=mbr_rusdeflnk00000002">
+                        <img src="/assets/netscape.gif" alt="Get Netscape Now!" width="88" height="31">
+                    </a>
+                </center>
+            </td>
+            <td width="80%" valign="top">
+                <div class="social-banner">
+                    <a href="https://youtube.com/matlockfighttalk"><img src="/assets/youtube.png" alt="YouTube" width="32" height="32"></a>
+                    <a href="https://www.instagram.com/matlockfighttalk/"><img src="/assets/instagram.png" alt="Instagram" width="32" height="32"></a>
+                    <a href="https://x.com/MatlockKombat"><img src="/assets/x.png" alt="X" width="32" height="32"></a>
+                    <a href="https://matlockfighttalk-shop.fourthwall.com/"><img src="/assets/merch.png" alt="Merch" width="32" height="32"></a>
+                </div>
+                <center>
+                    <button class="custom-button" onclick="toggleVideo()">horse meat</button>
+                </center>
+                <div class="video-container" id="video-container" style="display: none;">
+                    <video controls id="horsemeat-video" width="100%">
+                        <source src="/assets/horsemeat.mp4" type="video/mp4">
+                        Your browser does not support the video tag. <a href="/assets/horsemeat.mp4">Download the video</a>.
+                    </video>
+                </div>
+                {{ content }}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center" bgcolor="#333333">
+                <font color="#FFFFFF">Copyright © 2025 MATLOCK'S FIGHT TALK. All rights reserved. | Visitor count: <img src="/assets/counter.gif" alt="Hit Counter" width="88" height="31"></font>
+                <br>
+                <marquee behavior="alternate"><font color="#A00000">Powered by Secret Juice</font></marquee>
+            </td>
+        </tr>
+    </table>
+    <script>
+        function toggleVideo() {
+            var videoContainer = document.getElementById('video-container');
+            var video = document.getElementById('horsemeat-video');
+            if (videoContainer.style.display === 'none') {
+                videoContainer.style.display = 'block';
+                video.play();
+            } else {
+                videoContainer.style.display = 'none';
+                video.pause();
+                video.currentTime = 0;
+            }
+        }
+    </script>
+</body>
+</html>
