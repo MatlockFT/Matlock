@@ -66,12 +66,12 @@ title: Picture Gallery
             <p class="gallery-caption">The Nogueira Brothers</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image16.jpg" alt="Placeholder 16">
-            <p class="gallery-caption">Placeholder 16</p>
+            <img src="/assets/gallery/image16.jpg" alt="Sakuraba and Hard Gay">
+            <p class="gallery-caption">SAKURABA & HG (HARD GAY)</p>
         </div>
         <div class="gallery-item">
-            <img src="/assets/gallery/image17.jpg" alt="Placeholder 17">
-            <p class="gallery-caption">Placeholder 17</p>
+            <img src="/assets/gallery/image17.jpg" alt="JOSH BARNETT">
+            <p class="gallery-caption">JOSH BARNETT</p>
         </div>
         <div class="gallery-item">
             <img src="/assets/gallery/image18.jpg" alt="Placeholder 18">
