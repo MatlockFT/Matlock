@@ -10,6 +10,11 @@ permalink: /scorecard
     <input id="eventNameInput" placeholder="#EVENT" maxlength="20" class="hidden">
 </div>
 <style>
+    #gameCanvasContainer {
+        position: relative;
+        width: 960px; /* Match canvas width */
+        margin: 0 auto; /* Ensure centered */
+    }
     canvas { 
         display: inline-block; 
         max-width: 100%; 
@@ -19,7 +24,7 @@ permalink: /scorecard
         position: absolute; 
         border: 1px solid #BBBBBB; 
         border-radius: 2px; 
-        background: rgba(0, 0, 0, 0.7); /* Changed to solid black for contrast */
+        background: rgba(0, 0, 0, 0.7); 
         color: #F5F5F5; 
         font-family: GOBOLD, Impact, Verdana, sans-serif; 
         font-size: 20px; 
@@ -27,12 +32,12 @@ permalink: /scorecard
         line-height: 30px; 
         outline: none; 
         box-sizing: border-box;
-        z-index: 10; /* Ensure inputs are above canvas */
+        z-index: 10;
     }
     #gameCanvasContainer input::placeholder { color: rgba(245, 245, 245, 0.5); }
-    #redNameInput { left: 291px; top: 21px; width: 240px; height: 30px; }
-    #blueNameInput { left: 711px; top: 21px; width: 240px; height: 30px; }
-    #eventNameInput { left: 501px; top: 21px; width: 240px; height: 30px; }
+    #redNameInput { left: 50px; top: 20px; width: 240px; height: 30px; }
+    #blueNameInput { left: 670px; top: 20px; width: 240px; height: 30px; }
+    #eventNameInput { left: 360px; top: 20px; width: 240px; height: 30px; }
     .hidden { display: none; }
     @font-face {
         font-family: 'GOBOLD';
@@ -42,6 +47,7 @@ permalink: /scorecard
 <script>
     const canvas = document.getElementById('gameCanvas');
     const ctx = canvas.getContext('2d');
+    const container = document.getElementById('gameCanvasContainer');
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     // Constants
     const CANVAS_WIDTH = 960;
@@ -658,8 +664,9 @@ permalink: /scorecard
             setupAudio();
         }
         const rect = canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        const containerRect = container.getBoundingClientRect();
+        const x = e.clientX - containerRect.left; // Use container offset
+        const y = e.clientY - containerRect.top;  // Use container offset
         if (x >= redNameRect.x && x <= redNameRect.x + redNameRect.width && y >= redNameRect.y && y <= redNameRect.y + redNameRect.height) {
             activeInput = 'red';
             document.getElementById('redNameInput').classList.remove('hidden');
@@ -751,8 +758,9 @@ permalink: /scorecard
     });
     canvas.addEventListener('mousemove', e => {
         const rect = canvas.getBoundingClientRect();
-        const newMouseX = e.clientX - rect.left;
-        const newMouseY = e.clientY - rect.top;
+        const containerRect = container.getBoundingClientRect();
+        const newMouseX = e.clientX - containerRect.left; // Use container offset
+        const newMouseY = e.clientY - containerRect.top;  // Use container offset
         if (newMouseX !== mouseX || newMouseY !== mouseY) {
             mouseX = newMouseX;
             mouseY = newMouseY;
