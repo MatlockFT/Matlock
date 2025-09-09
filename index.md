@@ -9,7 +9,7 @@ layout: default
         <ul>
             <li><font color="#FFFFFF"><a href="/matlockpapers">THE MATLOCK PAPERS</a> - My personal MMA breakdowns and picks (some trauma dumping mixed in)</font></li>
             <li><font color="#FFFFFF"><a href="/vegas">Vegas Slots</a> - MMA Slot Machine</font></li>
-            <li><font color="#FFFFFF"><a href="/gallery">Picture Gallery</a> - Some of the best MMA photos taken</font></li>
+            <li><font color="#FFFFFF"><a href="/picture-gallery">Picture Gallery</a> - Some of the best MMA photos taken</font></li>
             <li><font color="#FFFFFF"><a href="/chatroom">Chatroom</a> - Fight companions and chatroom.</font></li>
         </ul>
         <p><font color="#FFFFFF">This is my love letter to the early days of the internet and MMA. Website constantly under construction which means frequent updates! - Matlock</font></p>
