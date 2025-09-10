@@ -133,6 +133,10 @@ title: Picture Gallery
             <img src="/assets/gallery/image32.jpg" alt="Coleman, Tyson, Fedor">
             <p class="gallery-caption">Mark Coleman, Tyson, and Fedor</p>
         </div>
+        <div class="gallery-item">
+            <img src="/assets/gallery/image33.jpg" alt="Fedor On A Rollercoaster">
+            <p class="gallery-caption">Fedor On A Rollercoaster</p>
+        </div>
     </div>
 </div>
 <style>
