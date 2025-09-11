@@ -46,8 +46,6 @@ permalink: /mma-yellowpages
                 <li><a href="https://neotropicathletics.com/">Neotropic Athletics</a></li>
                 <li><a href="https://matlockfighttalk-shop.fourthwall.com/">Matlock's Merch</a></li>
                 <li><a href="https://the-fight-site-shop.creator-spring.com/">The Fight Site Merch</a></li>
-                <li><a href="#">Ringside - Shop</a></li>
-                <li><a href="#">Tapout - Shop</a></li>
             </ul>
         </div>
     </div>
