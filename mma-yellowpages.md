@@ -12,7 +12,7 @@ permalink: /mma-yellowpages
         <div class="directory-section">
             <h2>Analysis</h2>
             <ul>
-                <li><a href="https://www.thefight-site.com/">The Fight Sight</a></li>
+                <li><a href="https://www.thefight-site.com/">The Fight Site</a></li>
                 <li><a href="https://www.fightprimer.com/">Jack Slack's The Fight Primer</a></li>
                 <li><a href="https://www.opennotegrappling.com/">William's Open Note Grappling</a></li>
                 <li><a href="https://phantompunchbreakdowns.substack.com/">Phantom Punch Breakdowns</a></li>
@@ -42,7 +42,7 @@ permalink: /mma-yellowpages
             <ul>
                 <li><a href="https://neotropicathletics.com/">Neotropic Athletics</a></li>
                 <li><a href="https://matlockfighttalk-shop.fourthwall.com/">Matlock's Merch</a></li>
-                <li><a href="#">Hayabusa - Shop</a></li>
+                <li><a href="https://the-fight-site-shop.creator-spring.com/">The Fight Site Merch</a></li>
                 <li><a href="#">Ringside - Shop</a></li>
                 <li><a href="#">Tapout - Shop</a></li>
             </ul>
