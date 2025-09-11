@@ -25,6 +25,7 @@ permalink: /mma-yellowpages
         <div class="directory-section">
             <h2>Useful Links</h2>
             <ul>
+               <li><a href="https://grabakahitman.com/">Grabaka's MMA Event Directory</a></li>
                 <li><a href="https://eel.is/GrappleMap/index.html">Grapple Map</a></li>
                 <li><a href="https://fightodds.io/">Fight Odds</a></li>
                 <li><a href="https://github.com/m4heshd/ufc-ripper">Fight Ripper</a></li>
@@ -35,9 +36,9 @@ permalink: /mma-yellowpages
             </ul>
         </div>
         <div class="directory-section">
-            <h2>Schedule</h2>
+            <h2>Video</h2>
             <ul>
-                <li><a href="https://grabakahitman.com/">Grabaka's MMA Event Directory</a></li>
+                <li><a href="">Pending</a></li>
             </ul>
         </div>
         <div class="directory-section">
