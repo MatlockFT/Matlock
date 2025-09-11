@@ -41,7 +41,7 @@ permalink: /mma-yellowpages
             <h2>Merchandise & Gear</h2>
             <ul>
                 <li><a href="https://neotropicathletics.com/">Neotropic Athletics</a></li>
-                <li><a href="#">Venum - Shop</a></li>
+                <li><a href="https://matlockfighttalk-shop.fourthwall.com/">Matlock's Merch</a></li>
                 <li><a href="#">Hayabusa - Shop</a></li>
                 <li><a href="#">Ringside - Shop</a></li>
                 <li><a href="#">Tapout - Shop</a></li>
