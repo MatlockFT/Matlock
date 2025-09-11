@@ -42,7 +42,7 @@ permalink: /mma-yellowpages
         <div class="directory-section">
             <h2>Merchandise & Gear</h2>
             <ul>
-                <li><a href="#">UFC Store - Shop</a></li>
+                <li><a href="https://neotropicathletics.com/">Neotropic Athletics</a></li>
                 <li><a href="#">Venum - Shop</a></li>
                 <li><a href="#">Hayabusa - Shop</a></li>
                 <li><a href="#">Ringside - Shop</a></li>
