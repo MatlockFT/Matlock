@@ -29,6 +29,7 @@ permalink: /mma-yellowpages
                 <li><a href="https://github.com/m4heshd/ufc-ripper">Fight Ripper</a></li>
                 <li><a href="https://phre2.github.io/dwcs-regional-tracker/">Regional Champions & DWCS Record Tracker</a></li>
                 <li><a href="tapology.com/rankings/ufc">Tapology Rankings</a></li>
+               <li><a href="https://watchmmafull.com/">Watch MMA Full</a></li>
             </ul>
         </div>
         <div class="directory-section">
