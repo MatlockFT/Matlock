@@ -16,7 +16,7 @@ permalink: /mma-yellowpages
                 <li><a href="https://www.fightprimer.com/">Jack Slack's The Fight Primer</a></li>
                 <li><a href="https://www.opennotegrappling.com/">Open Note Grappling</a></li>
                 <li><a href="https://phantompunchbreakdowns.substack.com/">Phantom Punch Breakdowns</a></li>
-                <li><a href="#">Mirko Filipović - Profile</a></li>
+                <li><a href="https://mixedmartialanalyst.com/">Dan Tom's Mixed Martial Analyst</a></li>
             </ul>
         </div>
         <div class="directory-section">
