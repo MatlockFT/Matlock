@@ -11,7 +11,7 @@ permalink: /mma-yellowpages
             <ul>
                 <li><a href="https://www.thefight-site.com/">The Fight Sight</a></li>
                 <li><a href="https://www.fightprimer.com/">Jack Slack's The Fight Primer</a></li>
-                <li><a href="#">Dana White - Profile</a></li>
+                <li><a href="https://www.opennotegrappling.com/">Open Note Grappling</a></li>
                 <li><a href="#">Vitor Belfort - Profile</a></li>
                 <li><a href="#">Mirko Filipović - Profile</a></li>
             </ul>
