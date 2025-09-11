@@ -21,9 +21,9 @@ permalink: /mma-yellowpages
             </ul>
         </div>
         <div class="directory-section">
-            <h2>Gyms & Training</h2>
+            <h2>Useful Links</h2>
             <ul>
-                <li><a href="#">American Top Team - Details</a></li>
+                <li><a href="https://eel.is/GrappleMap/index.html">Grapple Map</a></li>
                 <li><a href="#">Gracie Barra - Details</a></li>
                 <li><a href="#">Jackson Wink MMA - Details</a></li>
                 <li><a href="#">Team Quest - Details</a></li>
