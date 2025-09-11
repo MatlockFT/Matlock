@@ -19,7 +19,7 @@ permalink: /mma-yellowpages
                 <li><a href="https://mixedmartialanalyst.com/">Dan Tom's Mixed Martial Analyst</a></li>
                <li><a href="https://movementmartials.com/">Movement Martials</a></li>
                <li><a href="https://fightingarts.com/">Fighting Arts</a></li>
-               <li><a href-"https://www.mixingmartialarts.com/">Mixing Martial Arts</a></li>
+               <li><a href="https://www.mixingmartialarts.com/">Mixing Martial Arts</a></li>
             </ul>
         </div>
         <div class="directory-section">
