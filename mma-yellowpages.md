@@ -24,10 +24,10 @@ permalink: /mma-yellowpages
             <h2>Useful Links</h2>
             <ul>
                 <li><a href="https://eel.is/GrappleMap/index.html">Grapple Map</a></li>
-                <li><a href="#">Gracie Barra - Details</a></li>
-                <li><a href="#">Jackson Wink MMA - Details</a></li>
-                <li><a href="#">Team Quest - Details</a></li>
-                <li><a href="#">Xtreme Couture - Details</a></li>
+                <li><a href="https://fightodds.io/"></a>Fight Odds</li>
+                <li><a href="https://github.com/m4heshd/ufc-ripper"></a>Fight Ripper</li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
             </ul>
         </div>
         <div class="directory-section">
