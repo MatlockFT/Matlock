@@ -31,13 +31,9 @@ permalink: /mma-yellowpages
             </ul>
         </div>
         <div class="directory-section">
-            <h2>Events & Promotions</h2>
+            <h2>Schedule</h2>
             <ul>
-                <li><a href="#">UFC - Schedule</a></li>
-                <li><a href="#">Bellator - Schedule</a></li>
-                <li><a href="#">ONE Championship - Schedule</a></li>
-                <li><a href="#">PFL - Schedule</a></li>
-                <li><a href="#">RIZIN - Schedule</a></li>
+                <li><a href="https://grabakahitman.com/">Grabaka's MMA Event Directory</a></li>
             </ul>
         </div>
         <div class="directory-section">
