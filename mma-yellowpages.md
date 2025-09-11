@@ -18,6 +18,7 @@ permalink: /mma-yellowpages
                 <li><a href="https://phantompunchbreakdowns.substack.com/">Phantom Punch Breakdowns</a></li>
                 <li><a href="https://mixedmartialanalyst.com/">Dan Tom's Mixed Martial Analyst</a></li>
                <li><a href="https://movementmartials.com/">Movement Martials</a></li>
+               <li><a href="https://fightingarts.com/">Fighting Arts</a></li>
             </ul>
         </div>
         <div class="directory-section">
@@ -26,7 +27,7 @@ permalink: /mma-yellowpages
                 <li><a href="https://eel.is/GrappleMap/index.html">Grapple Map</a></li>
                 <li><a href="https://fightodds.io/">Fight Odds</a></li>
                 <li><a href="https://github.com/m4heshd/ufc-ripper">Fight Ripper</a></li>
-                <li><a href="#"></a></li>
+                <li><a href="https://phre2.github.io/dwcs-regional-tracker/">Regional Champions & DWCS Record Tracker</a></li>
                 <li><a href="#"></a></li>
             </ul>
         </div>
