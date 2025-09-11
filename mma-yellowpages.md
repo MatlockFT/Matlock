@@ -10,11 +10,11 @@ permalink: /mma-yellowpages
     <h1>MMA Yellow Pages</h1>
     <div class="yellowpages-directory">
         <div class="directory-section">
-            <h2>Websites</h2>
+            <h2>Analysis</h2>
             <ul>
                 <li><a href="https://www.thefight-site.com/">The Fight Sight</a></li>
                 <li><a href="https://www.fightprimer.com/">Jack Slack's The Fight Primer</a></li>
-                <li><a href="https://www.opennotegrappling.com/">Open Note Grappling</a></li>
+                <li><a href="https://www.opennotegrappling.com/">William's Open Note Grappling</a></li>
                 <li><a href="https://phantompunchbreakdowns.substack.com/">Phantom Punch Breakdowns</a></li>
                 <li><a href="https://mixedmartialanalyst.com/">Dan Tom's Mixed Martial Analyst</a></li>
             </ul>
