@@ -17,6 +17,7 @@ permalink: /mma-yellowpages
                 <li><a href="https://www.opennotegrappling.com/">William's Open Note Grappling</a></li>
                 <li><a href="https://phantompunchbreakdowns.substack.com/">Phantom Punch Breakdowns</a></li>
                 <li><a href="https://mixedmartialanalyst.com/">Dan Tom's Mixed Martial Analyst</a></li>
+               <li><a href="https://movementmartials.com/">Movement Martials</li>
             </ul>
         </div>
         <div class="directory-section">
