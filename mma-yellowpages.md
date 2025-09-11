@@ -24,8 +24,8 @@ permalink: /mma-yellowpages
             <h2>Useful Links</h2>
             <ul>
                 <li><a href="https://eel.is/GrappleMap/index.html">Grapple Map</a></li>
-                <li><a href="https://fightodds.io/"></a>Fight Odds</li>
-                <li><a href="https://github.com/m4heshd/ufc-ripper"></a>Fight Ripper</li>
+                <li><a href="https://fightodds.io/">Fight Odds</a></li>
+                <li><a href="https://github.com/m4heshd/ufc-ripper">Fight Ripper</a></li>
                 <li><a href="#"></a></li>
                 <li><a href="#"></a></li>
             </ul>
