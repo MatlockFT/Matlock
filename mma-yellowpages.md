@@ -7,9 +7,9 @@ permalink: /mma-yellowpages
     <h1>MMA Yellow Pages</h1>
     <div class="yellowpages-directory">
         <div class="directory-section">
-            <h2>Fighters</h2>
+            <h2>Websites</h2>
             <ul>
-                <li><a href="#">Tito Ortiz - Profile</a></li>
+                <li><a href="https://www.thefight-site.com/">The Fight Sight</a></li>
                 <li><a href="#">Fedor Emelianenko - Profile</a></li>
                 <li><a href="#">Dana White - Profile</a></li>
                 <li><a href="#">Vitor Belfort - Profile</a></li>
