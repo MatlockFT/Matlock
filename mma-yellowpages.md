@@ -10,7 +10,7 @@ permalink: /mma-yellowpages
             <h2>Websites</h2>
             <ul>
                 <li><a href="https://www.thefight-site.com/">The Fight Sight</a></li>
-                <li><a href="#">Fedor Emelianenko - Profile</a></li>
+                <li><a href="https://www.fightprimer.com/">Jack Slack's The Fight Primer</a></li>
                 <li><a href="#">Dana White - Profile</a></li>
                 <li><a href="#">Vitor Belfort - Profile</a></li>
                 <li><a href="#">Mirko Filipović - Profile</a></li>
