@@ -7,7 +7,7 @@ permalink: /mma-yellowpages
    <center><div class="gif-container">
         <img src="/assets/choke.gif" alt="Choke GIF" width="103" height="100">
     </div></center>
-    <h1>MMA Yellow Pages</h1>
+    <h1>MMA YELLOW PAGES</h1>
     <div class="yellowpages-directory">
         <div class="directory-section">
             <h2>Analysis</h2>
