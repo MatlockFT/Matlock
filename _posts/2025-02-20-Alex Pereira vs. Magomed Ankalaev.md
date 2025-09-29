@@ -1,6 +1,6 @@
 ---
 title: "Pereira vs. Ankalaev"
-date: 2025-09-28
+date: 2025-02-20
 ---
 
 UFC 313 delivers a matchup many fans have been clamoring for: Alex Pereira facing a "wrestler" in Magomed Ankalaev. With a name that phonetically echoes the relentless Dagestani wrestlers who charge their opponents and dominate them on the mat, Ankalaev might seem like that kind of fighter at first glance. However, that’s not quite the case, and he may not be the overwhelming, mat-mauling wrestler that casual to semi-knowledgeable fans might expect.
