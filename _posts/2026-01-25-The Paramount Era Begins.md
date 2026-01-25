@@ -37,7 +37,7 @@ Listen—MMA fans (especially UFC and betting fans) can be brutal and fickle. If
 
 **Okay—tons of advertising. My next takeaway: BLINK-182.**
 
-Travis Barker’s MMA involvement goes way back—part fandom, part business (Famous Stars and Straps sponsored fighters back in the day). But at UFC 324, Blink-182’s presence was *everywhere*: music, interviews, crowd shots, a package with Travis “playing drums in the octagon” (not live—video), and him sitting with Kourtney. It was a lot. Too much. Oh- And he mentioned UFC is Anti-Establishment? That is a wild statement because it hasn't been anti-establishment since the Fertittas purchased it. 
+Travis Barker’s MMA involvement goes way back—part fandom, part business (Famous Stars and Straps sponsored fighters back in the day). But at UFC 324, Blink-182’s presence was *everywhere*: music, interviews, crowd shots, a package with Travis “playing drums in the octagon” (not live—video), and constant coverage of him sitting with Kourtney. It was a lot. Too much.
 
 There was also a bunch of filler early in the broadcast because several fights fell out. It felt like they were preparing for a much longer run time filled with actual fights, not extended talking segments. Michael Johnson vs. Alexander Hernandez, Cam Smotherman, Harrison vs. Nunes—gone. That part didn’t bother me as much, but it clearly annoyed a lot of people. (To be fair, those people will complain about *anything*, including a genuinely good fight.)
 
@@ -127,3 +127,4 @@ Overall, I’d say about **40% of the card** was a genuinely good time.
 The rest? Welcome to the Paramount era—where the fights are sometimes the thing happening *between* the ads.
 
 </div>
+```
