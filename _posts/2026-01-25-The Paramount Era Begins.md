@@ -3,38 +3,51 @@ title: "The Paramount Era Begins"
 date: 2026-01-25
 ---
 
-UFC 324: GAETHJE VS. PIMBLETT. The Paramount era begins...  
-It could also be called "The Advertisement Era."
+<div style="line-height: 1.6;">
 
-I paid around $100 for the premium annual subscription for Paramount+. My girlfriend asked, “Are there going to be ads?” I laughed. I didn’t even need to read the fine print to know what was coming. I went for the higher tier because I don’t want to miss anything UFC-related that might end up behind a paywall, but I also assumed the broadcast would run advertisements no matter what tier I paid for.
+UFC 324: **Gaethje vs. Pimblett.** The Paramount era **begins**.
+
+It could also be called **“The Advertisement Era.”**
+
+I paid around $100 for the premium annual subscription to Paramount+. My girlfriend asked, “Are there going to be ads?” I laughed.
+
+Not because I’m some genius who read the fine print—because I *didn’t*. I just bought the higher tier so I wouldn’t miss anything UFC-related that might end up behind a paywall. But I laughed because I was pretty sure they’d run ads during the live broadcast no matter what tier I paid for.
 
 And guess what?
 
-A&nbsp;D&nbsp;V&nbsp;E&nbsp;R&nbsp;T&nbsp;I&nbsp;S&nbsp;E&nbsp;M&nbsp;E&nbsp;N&nbsp;T&nbsp;S&nbsp;&nbsp;E&nbsp;V&nbsp;E&nbsp;R&nbsp;Y&nbsp;W&nbsp;H&nbsp;E&nbsp;R&nbsp;E
+**A D V E R T I S E M E N T S   E V E R Y W H E R E**
 
-Ever since the Fertittas sold the UFC, the business side has leaned harder into monetizing every inch of the product. The standard stuff has been there for years: in-octagon ads, commentary reads, Buffer reads, and commercials between fights. What feels different now is the saturation. It’s your name on the canvas, the UFC prep point sponsored, branding on the commentators’ headsets, walkouts getting pushed aside, ads between rounds—and even when they *do* show the corners, an L-frame ad pops up while the corner audio might as well not exist.
+Ever since the Fertittas sold the UFC, the entire business has shifted toward monetizing *everything*. Sure, in-octagon ads have been a thing. Commentary does ad reads. Buffer does ad reads. There are the standard commercials between fights. But over time, the sponsorship creep has gotten ridiculous: your name on the canvas, sponsored “prep points,” sponsorship stickers on the commentators’ headphones—hell, instead of showing walkouts, they’ll cut to an ad. Ads between rounds. Ads even while the camera is *on the fighters*—and you still can’t hear the corner audio anyway.
 
-During this event, Ghostface from *Scream* was shown walking around behind fighters (Waldo Acosta specifically), and it rolled straight into a trailer for *Scream*. That tells you where this is headed. It’s a massive amount of advertising, and I don’t see it reversing.
+During this event, they literally had Ghostface from *Scream* wandering around behind fighters (Waldo Acosta, specifically), which then rolled straight into a *Scream* trailer. It was a massive amount of advertising, and I don’t see that changing.
 
-To me this was expected—maybe not across most of the main card like they did, but still expected. Paramount didn’t pay a small number for this partnership, and they’re going to monetize everything they can. Dana White was asked about it and said he’ll look into it and that he’s sure things will change, but this isn’t really up to Dana White. If anything shifts, my guess is it’ll be *how* the ads are delivered, not how many there are. Instead of cutting away and making you miss something, they’ll try to run ads side-by-side with the content you actually want. But if there’s a tug-of-war between walkout audio and ad audio, I’m betting the ad wins.
+Honestly, I expected it—maybe not *this much*, and not across *so much* of the main card. But Paramount paid an astronomical amount for this partnership, so of course they’re going to monetize everything they can.
 
-That’s why I’m calling it the advertisement era. We’re going to see how advertising is approached, evolves, and gets integrated into live sports without feeling completely intrusive. It’s going to feel like the Truman Show.
+Dana White got asked about the ad overload and said he’d “look into it” and that he’s sure things will change. But let’s be real: that’s not really up to Dana. If anything changes, my guess is it’ll be *how* the ads are integrated—less “cut away and miss the moment,” more “split-screen and keep the content on-screen.”
 
-As I’m writing this, I’m seeing that ads were trending on Twitter too. The line making the rounds was: “FANS SLAM ADS DURING UFC 324 DEBUT ON PARAMOUNT+”
+The big question is: whose audio wins? The ad, or the thing we’re actually trying to watch—walkouts, corners, in-cage atmosphere?
 
-Now, MMA fans (really UFC fans, and especially betting fans) are ultra shitty in general. They’re like 87% fairweather fans, and I’d believe that statistic even though I have zero data. But on this? The complaints are justified. I only saw a couple of bootlickers acting like it wasn’t annoying.
+My money’s on the ad.
 
-OK — so, the ads were insane. The next thing that stood out was “BLINK-182.”
+That’s why I’m calling this **The Advertisement Era**. We’re about to watch advertising get tested, evolved, and forced into live sports in every possible way—right up to the point where it starts to feel like *The Truman Show*.
 
-Travis Barker’s involvement with MMA goes back to genuine fandom, but it’s also been business for a long time—Famous Stars and Straps sponsored fighters back in the day. Fine. But the broadcast leaned into Blink-182 like they were part of the fight card: their music, Travis interviews, Travis “playing” drums in the octagon (not live—video), and plenty of crowd shots with Kourtney. It was a lot. Too much.
+While I’m writing this, I’m seeing ads trending on Twitter, too. The headline reads: **“FANS SLAM ADS DURING UFC 324 DEBUT ON PARAMOUNT+.”**
 
-There was also a bunch of filler early on because quite a few fights fell out, so they were clearly built for a longer run time—more fighting, less talking. Michael Johnson vs. Alexander Hernandez, Cam Smotherman, Harrison vs. Nunes. I didn’t mind it as much as some people did, but it definitely pissed off the fairweather crowd. Then again, those people will complain about literally everything, including a good fight.
+Listen—MMA fans (especially UFC and betting fans) can be brutal and fickle. If I said “87% are fairweather,” I have zero data… but I’d still believe it. That said: the complaints about ads are justified. I only saw a handful of “it’s fine, stop whining” takes, and those people are built different in the worst way.
 
-Dominick Cruz was inducted into the Hall of Fame, which he absolutely deserves. He was one of my favorite fighters when he was active—well, as active as he could be given the injuries. His style is still worth studying.
+**Okay—tons of advertising. My next takeaway: BLINK-182.**
 
-When the main card started, I’ll give them this: the promo package to kick off the new era was strong.
+Travis Barker’s MMA involvement goes way back—part fandom, part business (Famous Stars and Straps sponsored fighters back in the day). But at UFC 324, Blink-182’s presence was *everywhere*: music, interviews, crowd shots, a package with Travis “playing drums in the octagon” (not live—video), and constant coverage of him sitting with Kourtney. It was a lot. Too much.
 
-Anyways, let’s get to my picks and the fights.
+There was also a bunch of filler early in the broadcast because several fights fell out. It felt like they were preparing for a much longer run time filled with actual fights, not extended talking segments. Michael Johnson vs. Alexander Hernandez, Cam Smotherman, Harrison vs. Nunes—gone. That part didn’t bother me as much, but it clearly annoyed a lot of people. (To be fair, those people will complain about *anything*, including a genuinely good fight.)
+
+Dominick Cruz was inducted into the Hall of Fame, which is absolutely deserved. He was one of my favorites when he was active… or as active as he could be, given the injuries. Even now, he’s still a style I like to study.
+
+When the main card started, they *did* have a strong promo package to kick off the new era.
+
+Alright—let’s get to my picks and the fights.
+
+## My Picks (and Fight Ratings)
 
 | Fighter | Result | Fight rating |
 |---|:---:|:---:|
@@ -50,35 +63,67 @@ Anyways, let’s get to my picks and the fights.
 | Josh Hokit | ✅ | 5/10 |
 | Ty Miller | ✅ | 6/10 |
 
-7 right, 4 wrong. My K/D ratio is 1.75.
+**7 right, 4 wrong.** My K/D ratio is **1.75**.
 
-At the very last second I changed my pick from Natalia Silva to Rose Namajunas, and that happens to be the fight I disagreed with the scorecards on. I had Rose winning the first two rounds and Natalia clearly taking the third. I also see an argument for Andrey Pulyaev defeating Ateba Gautier, but I’d need to rewatch it—my dog was going insane and I missed chunks of the fight.
+At the very last second, I changed my pick from Natalia Silva to Rose Namajunas—and of course, that’s the fight where I disagreed with the scorecards. I had Rose winning the first two rounds, with Natalia clearly taking the third.
 
-Ty Miller impressed me with clean, straight punches. He had some trouble with a southpaw in Adam Fugitt, but he adjusted and did well. Fugitt performed better than I expected and landed some excellent kicks to the body.
+I can also see an argument for Andrey Pulyaev beating Ateba Gautier, but I’d need to rewatch it. My dog was losing his mind, and I missed chunks of that fight.
 
-Josh Hokit is a better fighter and a much better athlete than Denzel Freeman, and it showed. Freeman spent most of the fight covering up and barely answering back. He may have landed a couple shots, but he didn’t keep it going. Hokit’s power didn’t jump off the screen, but the pressure and volume did. As he gets more comfortable striking, he’ll see openings better. Right now it’s mostly pressure and output. He’ll need more composure eventually, otherwise someone is going to time him and snipe him.
+## Quick Notes on the Undercard
 
-I still despise the guy’s absolutely stupid WWE gimmick, which is basically him impersonating wrestlers and Chael Sonnen... verbatim. His only original move is saying one controversial thing. It’s stupid.
+I liked Ty Miller’s clean, straight punching. He had some difficulty dealing with the southpaw stance of Adam Fugitt, but he adjusted well. Fugitt performed better than I expected, and I thought his body kicks were excellent.
 
-Moving on to Arnold Allen. I really thought Arnold would win. Early on, his striking looked crisp and his movement made sense. But Jean’s power started landing, and Allen gassed out. Jean goes on and I don’t. He’s a bit of a donk—insane, maybe acoustic, emotional—but he’s fun to watch. If someone tried to do absurdist, stereotypical comedy on a Brazilian MMA fighter, you’d probably end up with Jean Silva.
+Josh Hokit is a better fighter—and a much better athlete—than Denzel Freeman. Freeman mostly shelled up, rarely countered, and didn’t have much of anything going. Hokit’s power didn’t look especially scary here, but as he gets more comfortable on the feet, he’ll start seeing openings sooner. Right now it’s mostly pressure and volume. Eventually, he’s going to need more composure, or someone’s going to time him and snipe him.
 
-Derrick Lewis and Waldo were a letdown. Waldo waited, capitalized on Derrick’s mistakes, and stayed patient. Derrick didn’t want to make too many mistakes, but he made them anyway. Waldo is good, not great. He moves OK. He’s a new name at heavyweight and he’ll be in interesting matchups, but I need to rewatch more of his fights before I know exactly how I feel about him.
+Also: I still hate the WWE-style gimmick. It’s basically cosplay with recycled lines—half wrestler impressions, half Chael Sonnen impressions—word-for-word.
 
-Sean O’Malley won a decision. Some people are calling it a robbery. I disagree. I can see it as controversial—meaning it could go either way—but I thought Sean won. It comes down to round one. O’Malley landed the cleaner strikes at a higher volume, and the damage on Song’s face backed that up. I’m not a “stats decide fights” guy, but in this case the numbers line up with what your eyes were already seeing. Song’s explosivity and power create big moments, but one or two bursts can’t outweigh cumulative work.
+## Arnold Allen
 
-Justin Gaethje vs. Paddy Pimblett was a tough one to pick for a few reasons:
+I really thought Arnold Allen would win. Early on, he had crisp striking and good movement, but Jean’s power started taking over, and Arnold faded as the fight went on.
 
-1. Both fighters get hit often.  
-2. Justin Gaethje is 37 in the lightweight division.  
-3. Paddy is younger but, skill-wise, not the better fighter.  
-4. ...It’s Gaethje. He could be the best fighter on planet earth and still lose cuz he is chaos.
+Jean Silva is… a character. Chaotic, emotional, a little unhinged—kind of like a walking stereotype of “Brazilian MMA chaos,” except it’s real. He’s ridiculous, but he’s fun to watch.
 
-Ultimately, I went with Gaethje because I trusted his cardio over five rounds, he’s the better overall fighter, and I didn’t think he’d get taken down and controlled. Still, there’s always the question with an older lightweight: does he look old, or does he look like himself?
+## Derrick Lewis vs. Waldo
 
-The only way I can describe this fight is that these two BEAT THE SHIT OUT OF EACH OTHER. People will complain about the eye poke and the nut shots... but even if those didn’t happen, Paddy was going to take damage regardless. They both took a beating, but Gaethje definitely put it on Paddy more. They both left something in the cage—especially Paddy.
+This one was a letdown. Waldo mostly waited, then capitalized when Derrick made mistakes. Derrick didn’t want to overextend, but he still did. Waldo looks good—not great. He moves okay, and he’s a new name in the heavyweight mix, which automatically means interesting matchups.
 
-Gaethje also did well to make the early rounds ugly and exhausting. He wasn’t super high-volume early; he let Paddy throw bombs and tried to make him pay for it. And credit where it’s due: Paddy didn’t slow down as much as I expected. The dude can really take a punch. I don’t know how his chin holds up after this kind of fight long-term, but in this one? He had a fucking chin. He took 25 minutes worth of absolute bombs.
+I need to rewatch more of his fights before I land on a real opinion.
 
-As entertaining as it was... I don’t see either of them beating Arman or Ilia. The main event delivered action, but it still missed the mark of “this is the true best in the world.” It was an interim title, which matters, but it’s not the same as a real division crown with the real king in the picture. That’s why I scored it a 9/10 in the moment, but if I’m being strict, an 8/10 is probably fairer. A 9 or 10 needs more than violence—it needs stakes, storyline, and elite skill all hitting at once.
+## O’Malley vs. Song
 
-Nonetheless. About 60% of the card was a good time.
+Sean O’Malley won a decision. Some people are saying Song Yadong got robbed. I disagree.
+
+I can see it being labeled “controversial” in the sense that it was close and could go either way, but I felt Sean won. To me, it comes down to Round 1: Sean landed the cleaner shots, at a higher volume, and the damage showed on Song’s face.
+
+I’m not a “stats decide fights” guy, but when the stats match what your eyes saw, they’re useful. In this case, they support the idea that O’Malley’s cleaner, more consistent work mattered more than a couple explosive moments. Song’s power and bursts sway people, but one or two big moments don’t automatically outweigh steady, accumulated damage.
+
+## Gaethje vs. Pimblett
+
+This was hard to pick for a few reasons:
+
+1. Both guys get hit a lot.  
+2. Gaethje is 37 at lightweight.  
+3. Paddy is younger, but skill-wise he’s not the better fighter.  
+4. It’s Gaethje—he could be the best fighter on Earth and still lose because chaos is part of the package.
+
+I ultimately picked Gaethje because I expected better cardio over five rounds, I thought he’d be the cleaner overall fighter, and I didn’t think he’d get stuck on his back.
+
+The only way to describe this fight is: **they beat the hell out of each other.**
+
+People want to complain about the eyepoke from Gaethje and the low blows, and yeah—those moments sucked. But even without them, Paddy was going to take serious damage in this fight. They both left something in the cage—especially Paddy.
+
+Gaethje fought smart early. He wasn’t throwing huge volume at first; he let Paddy spend energy launching bombs, then tried to drag him deeper. Credit to Paddy: he didn’t slow down as much as I expected, and the guy can take a punch. I have no idea how his chin holds up long-term after a fight like this, but tonight?
+
+He had a **chin**.
+
+He ate 25 minutes of absolute bombs.
+
+Even though it was entertaining, I don’t see either of them beating Arman or Ilia. As a main event, it delivered action—but it didn’t feel like the “best in the world vs. best in the world” kind of stakes. It was an interim title, and that matters. That’s why I scored it a **9/10**, but honestly, an **8/10** might be more fair. A 9 or 10 needs better stakes, a better storyline, and a higher overall skill ceiling.
+
+## Final Thoughts
+
+Overall, I’d say about **40% of the card** was a genuinely good time.
+
+The rest? Welcome to the Paramount era—where the fights are sometimes the thing happening *between* the ads.
+
+</div>
