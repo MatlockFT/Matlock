@@ -250,7 +250,7 @@ audio {
     font-size: 0.92rem;
     letter-spacing: 0.04em;
     cursor: pointer;
-    transition: transform 0.12s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    transition: transform 0.12s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
 
 .control-button:hover,
@@ -354,7 +354,6 @@ audio {
     margin-top: 0;
 }
 
-/* Shared content containers */
 .intro-container,
 .blog-post,
 .guestbook-container,
@@ -398,7 +397,6 @@ audio {
     max-width: 72ch;
 }
 
-/* Homepage */
 .homepage-intro {
     max-width: 900px;
     text-align: center;
@@ -450,7 +448,6 @@ audio {
     border: 0;
 }
 
-/* Blog layout */
 .blog-post-layout {
     max-width: 860px;
     padding: 24px;
@@ -537,7 +534,6 @@ audio {
     color: var(--muted);
 }
 
-/* Video */
 .video-container {
     background: var(--bg-panel);
     border: 2px solid var(--border);
@@ -568,7 +564,6 @@ audio {
     border-radius: 8px;
 }
 
-/* Chatroom */
 .chatroom-layout {
     display: flex;
     justify-content: center;
@@ -603,7 +598,6 @@ audio {
     font-family: var(--mono-font);
 }
 
-/* Scorecard */
 .scorecard-container {
     overflow: hidden;
     animation: fadeIn 0.6s ease-in;
@@ -727,7 +721,33 @@ audio {
     overflow: hidden;
 }
 
-/* Slot machine */
+.slot-page-header {
+    text-align: center;
+    max-width: 760px;
+}
+
+.slot-page-header p {
+    margin: 0;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-family: var(--mono-font);
+}
+
+.slot-rules-panel {
+    max-width: 760px;
+}
+
+.slot-rules-list {
+    margin: 0;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.slot-rules-list li + li {
+    margin-top: 8px;
+}
+
 .slot-machine-container {
     max-width: 700px;
     position: relative;
@@ -750,17 +770,32 @@ audio {
     text-shadow: 0 0 6px rgba(255, 64, 64, 0.22);
 }
 
+.slot-status-bar {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin: 18px 0;
+}
+
+.slot-status-bar > div {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+}
+
 .slot-machine-container .reels {
     display: flex;
     justify-content: center;
     gap: 14px;
     flex-wrap: wrap;
-    margin: 20px 0;
+    margin: 24px 0 18px;
 }
 
 .slot-machine-container .reel {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     background: rgba(0, 0, 0, 0.55);
     border: 2px solid var(--border);
     border-radius: 8px;
@@ -771,9 +806,10 @@ audio {
     overflow: hidden;
 }
 
-.reel img {
+.slot-machine-container .reel img {
     max-width: 100%;
     max-height: 100%;
+    object-fit: contain;
 }
 
 .reel.spinning {
@@ -809,15 +845,43 @@ audio {
     text-align: center;
 }
 
+.slot-controls {
+    max-width: 520px;
+    margin: 0 auto 12px;
+}
+
+.slot-button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.slot-result {
+    min-height: 2.2em;
+    margin-top: 12px;
+    font-size: 1.1rem;
+}
+
+.slot-result.win,
+#result.win {
+    color: var(--accent-hot);
+}
+
+.slot-result.loss {
+    color: var(--muted);
+}
+
 #cash,
 #result,
-#high-score {
+#high-score,
+#jackpot-display {
     margin: 10px 0;
     font-size: 1.1rem;
 }
 
 #result.win {
-    color: var(--accent-hot);
     animation: flash-text 0.5s linear infinite;
 }
 
@@ -832,9 +896,14 @@ audio {
 
 .slot-button.disabled,
 #gamble-button:disabled,
-#auto-spin:disabled {
+#auto-spin:disabled,
+#spin-button.disabled {
     opacity: 0.5;
     cursor: not-allowed;
+}
+
+.hidden {
+    display: none !important;
 }
 
 .victory-pose {
@@ -880,7 +949,6 @@ audio {
     animation-delay: 1s;
 }
 
-/* Footer */
 .site-footer {
     text-align: center;
     background: linear-gradient(to top, rgba(15, 15, 15, 0.96), rgba(50, 0, 0, 0.92));
@@ -906,7 +974,6 @@ audio {
     color: var(--accent-hot);
 }
 
-/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -956,7 +1023,6 @@ audio {
     }
 }
 
-/* Responsive */
 @media (max-width: 960px) {
     .chatroom-layout {
         flex-direction: column;
@@ -1007,6 +1073,17 @@ audio {
     .scorecard-container .fighter-red,
     .scorecard-container .fighter-blue {
         width: 100%;
+    }
+}
+
+@media (max-width: 700px) {
+    .slot-status-bar {
+        grid-template-columns: 1fr;
+    }
+
+    .slot-machine-container .reel {
+        width: 110px;
+        height: 110px;
     }
 }
 
