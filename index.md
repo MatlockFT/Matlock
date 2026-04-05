@@ -3,7 +3,7 @@ title: MATLOCK'S FIGHT TALK
 layout: default
 ---
 <left>
-    <h2>YOU'VE REACHED THE END OF THE INTERNET</h2>
+<center> <h2>YOU'VE REACHED THE END OF THE INTERNET</h2></center>
     <div class="intro-container">
             <li><font color="#FFFFFF"><a href="/matlockpapers">Fight Analysis</a> - My personal MMA breakdowns and picks (some trauma dumping mixed in)</font></li>
             <li><font color="#FFFFFF"><a href="/vegas">Vegas Slots</a> - MMA Slot Machine</font></li>
