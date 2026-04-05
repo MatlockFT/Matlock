@@ -398,6 +398,121 @@ audio {
     max-width: 72ch;
 }
 
+/* Homepage */
+.homepage-intro {
+    max-width: 900px;
+    text-align: center;
+}
+
+.homepage-intro h2 {
+    margin-bottom: 18px;
+}
+
+.homepage-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.homepage-nav-list li + li {
+    margin-top: 12px;
+}
+
+.homepage-nav-list a {
+    font-family: var(--display-font);
+}
+
+.homepage-feature {
+    max-width: 980px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.video-embed-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 12px auto 0;
+    aspect-ratio: 16 / 9;
+    background: rgba(0, 0, 0, 0.78);
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    box-shadow: var(--shadow-hard);
+    overflow: hidden;
+}
+
+.video-embed-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Blog layout */
+.blog-post-layout {
+    max-width: 860px;
+    padding: 24px;
+}
+
+.blog-post-header {
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid rgba(163, 0, 0, 0.45);
+}
+
+.blog-post-header h1 {
+    margin-bottom: 8px;
+    line-height: 1.1;
+}
+
+.post-date {
+    margin: 0;
+    color: var(--muted);
+    font-family: var(--mono-font);
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.blog-post-body > *:first-child {
+    margin-top: 0;
+}
+
+.blog-post-body p,
+.blog-post-body li {
+    max-width: 72ch;
+}
+
+.blog-post-body h2,
+.blog-post-body h3 {
+    margin-top: 1.75em;
+}
+
+.blog-post-body img {
+    display: block;
+    margin: 20px auto;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    box-shadow: var(--shadow-hard);
+}
+
+.blog-post-body blockquote {
+    margin: 20px 0;
+    padding: 14px 16px;
+    border-left: 4px solid var(--accent-hot);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--muted);
+}
+
+.blog-post-body hr {
+    border: 0;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 28px 0;
+}
+
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -926,5 +1041,14 @@ audio {
 
     .slot-machine-container .vegas-sign {
         font-size: 1.5rem;
+    }
+
+    .blog-post-layout {
+        padding: 18px;
+    }
+
+    .blog-post-header {
+        margin-bottom: 18px;
+        padding-bottom: 12px;
     }
 }
