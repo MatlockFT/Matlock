@@ -1,17 +1,17 @@
 :root {
     --bg: #070707;
     --bg-soft: rgba(0, 0, 0, 0.72);
-    --bg-panel: rgba(10, 10, 10, 0.82);
-    --bg-panel-soft: rgba(10, 10, 10, 0.62);
-    --border: #8f0000;
-    --border-bright: #c41717;
+    --bg-panel: rgba(8, 8, 8, 0.88);
+    --bg-panel-soft: rgba(10, 10, 10, 0.70);
+    --border: #a30000;
+    --border-bright: #d21d1d;
     --accent: #a00000;
     --accent-hot: #ff4040;
     --accent-faint: rgba(160, 0, 0, 0.15);
     --text: #f4f4f4;
     --muted: #d1d1d1;
-    --shadow-hard: 4px 4px 0 rgba(90, 0, 0, 0.45);
-    --shadow-glow: 0 0 18px rgba(196, 23, 23, 0.22);
+    --shadow-hard: 3px 3px 0 rgba(90, 0, 0, 0.38);
+    --shadow-glow: 0 0 18px rgba(196, 23, 23, 0.18);
     --radius: 10px;
     --radius-lg: 14px;
     --display-font: "Arial Black", Arial, sans-serif;
@@ -36,18 +36,19 @@ body {
     margin: 0;
     padding: 0;
     cursor: url('/assets/custom-cursor.png'), crosshair;
-    line-height: 1.55;
+    line-height: 1.6;
 }
 
 a {
-    color: #ff6d6d;
+    color: #ff8a8a;
     text-decoration: underline;
+    text-underline-offset: 2px;
     transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 a:hover {
     color: #ffffff;
-    background-color: rgba(140, 0, 0, 0.18);
+    background-color: rgba(140, 0, 0, 0.14);
 }
 
 img {
@@ -203,17 +204,13 @@ marquee {
     transform: translateX(2px);
 }
 
-.retro-gif,
-.retro-badge {
-    image-rendering: pixelated;
-}
-
 .audio-copy {
     font-family: var(--mono-font);
     color: var(--accent-hot);
     margin: 0 0 10px;
     text-transform: uppercase;
     font-size: 0.9rem;
+    text-align: center;
 }
 
 .audio-container {
@@ -309,10 +306,21 @@ audio {
     accent-color: var(--accent-hot);
 }
 
+.social-strip {
+    text-align: center;
+}
+
+.social-strip .panel-title {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .social-banner {
     display: flex;
     gap: 12px;
     align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -340,6 +348,10 @@ audio {
 
 .page-content {
     min-height: 300px;
+}
+
+.page-content > *:first-child {
+    margin-top: 0;
 }
 
 /* Shared content containers */
@@ -377,7 +389,13 @@ audio {
 .blog-post,
 .intro-container,
 .guestbook-container {
-    line-height: 1.7;
+    line-height: 1.75;
+}
+
+.blog-post p,
+.intro-container p,
+.guestbook-container p {
+    max-width: 72ch;
 }
 
 .gallery-grid {
@@ -859,6 +877,10 @@ audio {
     .sidebar,
     .content-area {
         padding: 10px;
+    }
+
+    .panel {
+        padding: 14px;
     }
 
     .scorecard-container .fighter-inputs {
