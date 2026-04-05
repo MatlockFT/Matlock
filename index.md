@@ -6,7 +6,7 @@ layout: default
 <section class="intro-container homepage-intro">
     <h2>YOU'VE REACHED THE END OF THE INTERNET</h2>
 
-    <ul class="homepage-nav-list">
+ <ul class="homepage-nav-list">
         <li>
             <a href="/matlockpapers">Fight Analysis</a> — My personal MMA breakdowns and picks, plus some trauma dumping mixed in.
         </li>
