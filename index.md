@@ -5,8 +5,6 @@ layout: default
 <left>
     <h2>YOU'VE REACHED THE END OF THE INTERNET</h2>
     <div class="intro-container">
-        <p><font color="#FFFFFF">It is incredible we've made it this far. Check out my fight stuff:</font></p>
-        <ul>
             <li><font color="#FFFFFF"><a href="/matlockpapers">Fight Analysis</a> - My personal MMA breakdowns and picks (some trauma dumping mixed in)</font></li>
             <li><font color="#FFFFFF"><a href="/vegas">Vegas Slots</a> - MMA Slot Machine</font></li>
             <li><font color="#FFFFFF"><a href="/picture-gallery">Picture Gallery</a> - Some of the best MMA photos taken</font></li>
