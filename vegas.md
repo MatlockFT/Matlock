@@ -6,7 +6,7 @@ permalink: /vegas
 
 <section class="slot-page-header intro-container">
     <h2>Vegas Slots!</h2>
-    <p>Spin the reels. Feel the fight.</p>
+    <p>As REEL as it gets!</p>
 </section>
 
 <section class="slot-rules-panel intro-container">
