@@ -30,3 +30,40 @@ This should be a war.
             allowfullscreen>
         </iframe>
 
+<h2>My UFC 327 Full Card Picks</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fighter</th>
+      <th>Prediction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Ulberg</td><td>Decision</td></tr>
+    <tr><td>Murzakanov</td><td>Round 2 Submission</td></tr>
+    <tr><td>Blaydes</td><td>Decision</td></tr>
+    <tr><td>Reyes</td><td>Round 2 KO/TKO</td></tr>
+    <tr><td>Swanson</td><td>Round 2 KO/TKO</td></tr>
+    <tr><td>Pico</td><td>Round 2 KO/TKO</td></tr>
+    <tr><td>Randy Brown</td><td>Round 2 Submission</td></tr>
+    <tr><td>Ribovics</td><td>Round 1 KO/TKO</td></tr>
+    <tr><td>Suarez</td><td>Decision</td></tr>
+    <tr><td>Padilla</td><td>Decision</td></tr>
+    <tr><td>Gastelum</td><td>Round 1 KO/TKO</td></tr>
+  </tbody>
+</table>
+
+<hr>
+
+<p>
+ Wow... if my picks are any indication of what might go down tomorrow, this card is gonna be insane. I also haven't checked the odds to see if I picked more favs or underdogs. 😂
+</p>
+
+<p>
+  <a href="https://verdictmma.com/profile/matlockfighttalk" target="_blank" rel="noopener noreferrer">
+    Follow me on Verdict
+  </a>
+</p>
+
+<p>Enjoy the fights!</p>
