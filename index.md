@@ -26,7 +26,7 @@ layout: default
     <div class="panel-title">Featured Video</div>
     <div class="video-embed-wrap">
         <iframe
-            src="https://www.youtube.com/embed/r-h3lO1V3VQ?si=EA4qYxGJhFHNZfyB"
+            src="https://www.youtube.com/embed/gsA-NfST0mU?si=gZl6XlxZ08rpqrBj"
             title="Featured YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerpolicy="strict-origin-when-cross-origin"
