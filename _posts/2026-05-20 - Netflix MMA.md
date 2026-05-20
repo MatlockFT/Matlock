@@ -1,5 +1,5 @@
 ---
-title: "NETFLIX MMA"
+title: "NETFLIX MMA: FIXED FIGHT"
 date: 2026-05-20
 ---
 
