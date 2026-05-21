@@ -141,7 +141,7 @@ date: 2026-05-16
 <p>So she comes back after a settlement with Disney, and essentially, what I think this is about is vindication.</p>
 
 <blockquote>
-  <p>“Look, I may have been beaten down by the system, but I am not broken. I am stronger than I’ve ever been. I stand by what I said and who I am. To prove that, I’ll get into the cage with one of the all-time greatest to ever do it in women’s MMA, stand before the media, and stake my claim. And by the way, if anyone is listening, I’d really like to act again or maybe even direct. Wink wink, Netflix. Wink wink.”</p>
+  <p>“Look, I may have been beaten down by the system, but I am not broken. I am stronger than I’ve ever been. I stand by what I said and who I am. To prove that, I’ll get into the cage with one of the all-time greatest to ever do it in women’s MMA, stand before the media, and stake my claim. And by the way, if anyone is listening, I’d really like to act again or maybe even direct. Wink wink, Netflix. Wink wink.” - Not a real Gina Carano quote but what I think she tells herself in her mind 😂</p>
 </blockquote>
 
 <p>So that’s what they did.</p>
