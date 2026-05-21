@@ -76,6 +76,8 @@ date: 2026-05-16
 
 <p>Well, I suppose that kind of makes sense.</p>
 
+<p>Had MVP and Netflix told the story of Ronda Rousey and Gina Carano more accurately, I don't think anyone would have been surprised by the outcome. This is a classic case of Y'all Must Have Forgot.</p>
+
 <h2>The “I Told You So” Reaction</h2>
 
 <p>What I find funny is the hardcore fans and media saying <strong>“I told you so”</strong> when the fight ended quickly and early. It’s like, who are you flexing to? Anyone who follows you already knew this.</p>
