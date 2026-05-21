@@ -52,7 +52,7 @@ date: 2026-05-16
 
 <p>And those who did? Come on, guys. It was a flash in the pan. It only lasted a couple of years, if that, but it happened during a time when MMA was gaining tons of momentum: 2008 and 2009.</p>
 
-<p>The rest know her from <em>The Mandalorian</em>. But she is attractive, so that makes up for a lot. It was her appeal in 2008, and it is still the appeal now.</p>
+<p>The rest know her from <em>The Mandalorian</em> or <em>Deadpool</em>. But she is attractive, so that makes up for a lot. It was her appeal in 2008, and it is still the appeal now.</p>
 
 <h2>Why People Thought It Was the UFC</h2>
 
