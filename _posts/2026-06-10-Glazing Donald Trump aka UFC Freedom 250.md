@@ -1,3 +1,8 @@
+---
+title: "Glazing Donald Trump aka UFC Freedom 250"
+date: 2026-06-10
+---
+
 <article>
   <header>
     <h1>UFC Freedom 250 at the White House: Full Card Preview and Predictions</h1>
