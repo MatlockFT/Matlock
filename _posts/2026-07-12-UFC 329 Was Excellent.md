@@ -7,8 +7,7 @@ Here are my thoughts I typed out in real-time as UFC 329: McGregor vs. Holloway 
 <h2>Takeaways</h2>
 
 <ul>
-  <li>Cody Durden: game but ass. The only pick on the card I felt was definitely a stretch but ya know, old dog, experienced, short noticed, coming off a underdog win. Maybe had some momentum.
-  Nope.</li>
+  <li>Cody Durden: game but ass. The only pick on the card I felt was definitely a stretch but ya know, old dog, experienced, short noticed, coming off an underdog win. Maybe had some momentum. Nope. </li>
 
   <li>Zachary Reese: flat-footed and flatlined.</li>
 
@@ -35,15 +34,15 @@ Here are my thoughts I typed out in real-time as UFC 329: McGregor vs. Holloway 
   </li>
 
   <li>
-    Elisha Ellison threw down with Gable Steveson. Steveson used teeps, good jabs, and heavy hands. He reacted well to getting punched and had a crazy sprawl. He may have also had a failed takedown attempt.
+    Elisha Ellison threw down with Gable Steveson. Steveson used teeps, good jabs, and heavy hands. He reacted well to getting punched and had a crazy sprawl. Very reactive and bites on feints although this is a minor criticism. I imagine he'll correct with experience. He may have also had a failed takedown attempt? Need to rewatch.
   </li>
 
   <li>
-    Whittaker looked sharp and reinvigorated at light heavyweight. I’ll need to rewatch it because the UFC was testing simulcasts, but Whittaker wins via third-round TKO. I’ll forever regret picking against him.
+    Whittaker looked sharp and reinvigorated at light heavyweight. I’ll need to rewatch it because the UFC was testing simulcasts, but Whittaker wins via third-round TKO. I’ll forever regret picking against him in this fight. Thought I had a good read but it felt sinful picking against Bob Knucks.
   </li>
 
   <li>
-    T. McKinney looked to take a dive at the end of the first round from what appeared to be a glancing body shot. The referee stepped in at literally the last second. King Green was otherwise getting his ass kicked.
+    T. McKinney looked to take a dive at the end of the first round from what appeared to be a glancing body shot. I say that mostly joking but I didn't get another angle of the body shot. The referee stepped in at literally the last second. King Green was otherwise getting his ass kicked.
   </li>
 
   <li>
@@ -62,8 +61,6 @@ Here are my thoughts I typed out in real-time as UFC 329: McGregor vs. Holloway 
     <p>
       Words cannot express how hilarious and satisfying this is. Conor McGregor appears to have blown out his knee with the very first flying switch kick he threw wildly out of range.
     </p>
-
-```
 <p>
   I noted during Buffer’s pre-fight formalities that both guys looked nervous. McGregor’s walkout also seemed unusually tame. Nonetheless, Max looked at the referee and told him that Conor was obviously injured, but he had to keep fighting anyway until Max mercifully allowed Conor to stand.
 </p>
