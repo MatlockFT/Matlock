@@ -9,7 +9,6 @@ date: 2026-07-15
       alt="Kamaru Usman and Dricus du Plessis"
     >
   </figure>
-
   <p>
     On Saturday, July 11, I watched Conor McGregor return after a five-year layoff,
     move up in weight, and face a younger former champion. The first kick Conor
