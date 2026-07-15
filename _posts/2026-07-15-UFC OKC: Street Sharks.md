@@ -72,6 +72,8 @@ date: 2026-07-15
     across the Octagon until he hopefully lands something.
   </p>
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/peEOxtPxJTA?si=KYD1dMAoSwayYkNr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
   <p>
     I figured that if Usman minded his p’s and q’s, he’d be able to beat him.
     Aside from things getting a little hairy in the final round, Usman didn’t have
