@@ -61,8 +61,8 @@ date: 2026-07-15
 
   <p>
     After a two-year layoff, Usman returned against Joaquin Buckley, who I thought
-    was not only a good comeback opponent but may also turn out to have been decent
-    preparation for Dricus du Plessis.
+    was a good comeback opponent. He also shares some similarities with DDP, although the comparisons are few and far between. Still, he is a better matchup than some of the other opponents he could have faced.
+
   </p>
 
   <p>
