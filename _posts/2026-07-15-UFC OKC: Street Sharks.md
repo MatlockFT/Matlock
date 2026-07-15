@@ -5,7 +5,7 @@ date: 2026-07-15
 
   <figure class="article-header-image">
     <img
-      src="/assets/DU PLESSIS VS USMAN 2.PNG"
+      src="/assets/ufcokcheader.png"
       alt="Kamaru Usman and Dricus du Plessis"
     >
   </figure>
