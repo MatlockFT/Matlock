@@ -84,8 +84,8 @@ date: 2026-07-15
   </p>
 
   <figure class="article-image">
-    <!-- Replace the image path below with your Street Sharks image. -->
-    <!-- <img src="images/ddp-street-shark.jpg" alt="Dricus du Plessis compared to a Street Shark"> -->
+   
+    <img src="assets/streetshark.jpeg" alt="Dricus du Plessis compared to a Street Shark">
     <figcaption>
       DDP the Street Shark. <em>Street Sharks</em> was a cartoon from the 1990s.
     </figcaption>
