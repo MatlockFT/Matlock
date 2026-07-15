@@ -85,7 +85,7 @@ date: 2026-07-15
 
   <figure class="article-image">
    
-    <img src="assets/streetshark.jpeg" alt="Dricus du Plessis compared to a Street Shark">
+    <img src="/assets/streetshark.jpeg" alt="Dricus du Plessis compared to a Street Shark">
     <figcaption>
       DDP the Street Shark. <em>Street Sharks</em> was a cartoon from the 1990s.
     </figcaption>
