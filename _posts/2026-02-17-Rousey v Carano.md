@@ -1,8 +1,7 @@
 ---
-title: "Ronda Rousey vs. Gina Carano"
+title: "NETFLIX MMA: Rousey vs. Carano PRE-CAP"
 date: 2026-02-17
 ---
-
 That’s right… **Ronda Rousey will fight Gina Carano on Netflix**, promoted by Most Valuable Promotions.
 
 ## My Initial Thoughts
@@ -26,6 +25,6 @@ Since this seems to be nostalgia-driven matchmaking, I wouldn’t be surprised t
 - Vitor Belfort  
 - Tyron Woodley  
 - Anderson Silva (though he appears focused on boxing)  
-- A Chael Sonnen vs. Anderson Silva rematch  
+- A Chael Sonnen vs. Anderson Silva rematch
 
 It’s a curious time in MMA.
