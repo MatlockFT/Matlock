@@ -30,8 +30,8 @@ For Ian Garry, it would be a incredible win for a contender although history wou
 
 
 | Category | Islam Makhachev | Ian Machado Garry |
-| -------------------------------- | --------------------- | ----------------- |
-| Status | Welterweight champion | No. 1 contender |
+| -------------------- | --------------- | ----------------- |
+| Status | WW champion | No. 1 contender |
 | Professional record | 28–1 | 17–1 |
 | Age | 34 | 28 |
 | Height | 5′10″ | 6′3″ |
@@ -39,12 +39,12 @@ For Ian Garry, it would be a incredible win for a contender although history wou
 | Stance | Southpaw | Orthodox |
 | Current win streak | 16 | 2 |
 | Average fight time | 11:01 | 14:45 |
-| Significant strikes landed/min | 2.45 | 4.78 |
-| Striking accuracy | 58% | 54% |
-| Significant strikes absorbed/min | 1.45 | 2.86 |
-| Takedowns landed per 15 min | 3.10 | 0.92 |
-| Takedown accuracy | 56% | 31% |
-| Takedown defence | 91% | 80% |
-| Submission attempts per 15 min | 1.0 | 0.37 |
+| SS landed/min | 2.45 | 4.78 |
+| Striking acc. | 58% | 54% |
+| SS absorbed/min | 1.45 | 2.86 |
+| TD landed per 15 min | 3.10 | 0.92 |
+| TD accuracy | 56% | 31% |
+| TD defense | 91% | 80% |
+| Sub. Attempts/15 min | 1.0 | 0.37 |
 
 
