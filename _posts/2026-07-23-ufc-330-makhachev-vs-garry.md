@@ -22,4 +22,29 @@ He has **already achieved** the following:
 - Champion in two UFC divisions.
 - A record tying 16-fight UFC winning streak.
 
-Islam’s GOAT case wouldn’t just be about how many title defenses he has. He dominated lightweight, which is probably the toughest division, then moved up, won the welterweight belt, and would be defending it against a top contender. Even with fewer defenses, that could still make his overall run more impressive than some of the other all time greats.
+Islam’s GOAT case wouldn’t just be about how many title defenses he has. He dominated lightweight, which is one of the toughest divisions, then moved up, won the welterweight belt, and would be defending it against a top contender. Even with fewer defenses, that could still make his overall run more impressive than some of the other all time greats.
+
+For Ian Garry, it would be a incredible win for a contender although history would look back on him defeating someone smaller than him. He would also be the second Irish UFC champion in history. 
+
+## Breakdown
+
+
+| Category | Islam Makhachev | Ian Machado Garry |
+| -------------------------------- | --------------------- | ----------------- |
+| Status | Welterweight champion | No. 1 contender |
+| Professional record | 28–1 | 17–1 |
+| Age | 34 | 28 |
+| Height | 5′10″ | 6′3″ |
+| Reach | 70″ | 74″ |
+| Stance | Southpaw | Orthodox |
+| Current win streak | 16 | 2 |
+| Average fight time | 11:01 | 14:45 |
+| Significant strikes landed/min | 2.45 | 4.78 |
+| Striking accuracy | 58% | 54% |
+| Significant strikes absorbed/min | 1.45 | 2.86 |
+| Takedowns landed per 15 min | 3.10 | 0.92 |
+| Takedown accuracy | 56% | 31% |
+| Takedown defence | 91% | 80% |
+| Submission attempts per 15 min | 1.0 | 0.37 |
+
+
