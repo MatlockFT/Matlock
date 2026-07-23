@@ -1,8 +1,7 @@
 ---
-title: "State of Heavyweight"
+title: "UFC VEGAS 114: State of Heavyweight"
 date: 2026-03-14
 ---
-
 UFC Vegas 114 just wrapped up and it is easily the best card of the year. Not even a numbered card. It's pretty rare to get a good card, but what's even more rare is a good heavyweight scrap.
 
 Steve Asplund is the most interesting heavyweight in MMA right now aside from Gable Steveson, and I'd argue Steve is just more interesting as a person. Fat guy loses weight and starts fighting. He body-shames himself, but in a fun way. In addition to having an interesting story and charisma, he is a fun action fighter, which is seriously lacking in this division. Tom Aspinall is probably the next best action fighter.
