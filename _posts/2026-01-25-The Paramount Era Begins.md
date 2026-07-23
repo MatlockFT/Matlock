@@ -1,8 +1,7 @@
 ---
-title: "The Paramount Era Begins"
+title: "UFC 324: The Paramount Era Begins"
 date: 2026-01-25
 ---
-
 UFC 324: GAETHJE VS. PIMBLETT. The Paramount era begins...
 
 It could also be called "The Advertisement Era."
@@ -43,8 +42,9 @@ When the main card started, they did a really good promo package to kick off the
 
 Anyway, let's get to my picks and the fights.
 
+
 | Fighter | Result | Fight rating |
-|---|:---:|:---:|
+| --------------- | ------ | ------------ |
 | Gaethje | ✅ | 9/10 |
 | O'Malley | ✅ | 7/10 |
 | Black Beast | ❌ | 5/10 |
@@ -56,6 +56,7 @@ Anyway, let's get to my picks and the fights.
 | Charles Johnson | ❌ | 5/10 |
 | Josh Hokit | ✅ | 5/10 |
 | Ty Miller | ✅ | 6/10 |
+
 
 7 right, 4 wrong. My K/D ratio is 1.75.
 
