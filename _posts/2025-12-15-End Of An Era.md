@@ -1,8 +1,7 @@
 ---
-title: "End of an Era"
+title: "Opinion: End of an Era"
 date: 2025-12-15
 ---
-
 I blinked, and it is now December. The end of the year, but also the end of an era, as the final fight aired on ESPN this past Saturday.
 
 Good riddance.
