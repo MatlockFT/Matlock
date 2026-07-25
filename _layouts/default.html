@@ -20,7 +20,7 @@
         >
     {% endif %}
 
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#080808">
 
     <link
         rel="stylesheet"
@@ -78,14 +78,13 @@
                             </a>
                         </div>
 
-                        <div class="header-marquee-wrap">
-                            <marquee
-                                behavior="scroll"
-                                direction="left"
-                                scrollamount="5"
-                            >
+                        <div
+                            class="header-marquee-wrap"
+                            aria-label="Welcome to the end of the internet"
+                        >
+                            <span class="header-marquee-text">
                                 WELCOME TO THE END OF THE INTERNET
-                            </marquee>
+                            </span>
                         </div>
                     </header>
                 </td>
@@ -105,7 +104,7 @@
                                         <li>
                                             <a
                                                 href="{{ item.link | relative_url }}"
-                                                {% if page.url == item.link %}
+                                                {% if page.url == item.link or page.url == item.link | append: "/" %}
                                                     aria-current="page"
                                                 {% endif %}
                                             >
@@ -174,7 +173,6 @@
                                         max="1"
                                         step="0.01"
                                         value="0.5"
-                                        aria-label="Audio volume"
                                     >
 
                                     <label
@@ -185,15 +183,21 @@
                                     </label>
 
                                     <select id="song-selector">
-                                        <option value="{{ '/assets/facethepain.mp3' | relative_url }}">
+                                        <option
+                                            value="{{ '/assets/facethepain.mp3' | relative_url }}"
+                                        >
                                             Face The Pain
                                         </option>
 
-                                        <option value="{{ '/assets/Original.mp3' | relative_url }}">
+                                        <option
+                                            value="{{ '/assets/Original.mp3' | relative_url }}"
+                                        >
                                             O.G.
                                         </option>
 
-                                        <option value="{{ '/assets/DeathorGlory.mp3' | relative_url }}">
+                                        <option
+                                            value="{{ '/assets/DeathorGlory.mp3' | relative_url }}"
+                                        >
                                             Death or Glory
                                         </option>
                                     </select>
@@ -228,7 +232,7 @@
 
                             <div class="social-banner">
                                 <a
-                                    href="https://youtube.com/@matlockfighttalk"
+                                    href="https://youtube.com/@mmamatlock"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Matlock's Fight Talk on YouTube"
@@ -243,7 +247,7 @@
                                 </a>
 
                                 <a
-                                    href="https://www.instagram.com/matlockfighttalk/"
+                                    href="https://www.instagram.com/mmamatlock/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Matlock's Fight Talk on Instagram"
@@ -258,7 +262,7 @@
                                 </a>
 
                                 <a
-                                    href="https://x.com/MatlockKombat"
+                                    href="https://x.com/mmamatlock"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Matlock's Fight Talk on X"
@@ -323,10 +327,13 @@
                             >
                         </div>
 
-                        <div class="footer-marquee">
-                            <marquee behavior="alternate">
+                        <div
+                            class="footer-marquee"
+                            aria-label="Powered by Secret Juice"
+                        >
+                            <span class="footer-marquee-text">
                                 Powered by Secret Juice
-                            </marquee>
+                            </span>
                         </div>
                     </footer>
                 </td>
