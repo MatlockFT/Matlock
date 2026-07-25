@@ -1,6 +1,6 @@
 media:
-  input: assets
-  output: /assets
+  input: assets/uploads
+  output: /assets/uploads
 
 content:
   - name: posts
@@ -8,22 +8,21 @@ content:
     type: collection
     path: _posts
     format: yaml-frontmatter
+    subfolders: false
 
     filename:
-      template: "{year}-{month}-{day}-{title}.md"
+      template: "{date}-{title}.md"
       field: false
 
     view:
       fields:
         - title
         - date
+        - published
+
       primary: title
-      sort:
-        - date
-        - title
-      default:
-        sort: date
-        order: desc
+      sort: date
+      order: desc
 
     fields:
       - name: layout
@@ -32,16 +31,90 @@ content:
         hidden: true
 
       - name: title
-        label: Title
+        label: Article Title
         type: string
         required: true
+        description: "Use a specific title that clearly identifies the fight, fighter, event, or topic."
+        options:
+          minlength: 10
+          maxlength: 80
+
+      - name: description
+        label: Search Description
+        type: text
+        required: true
+        description: "Write a unique summary for search results and social sharing. Explain exactly what the article covers."
+        options:
+          minlength: 70
+          maxlength: 180
 
       - name: date
         label: Publication Date
         type: date
         required: true
         options:
+          time: false
           format: yyyy-MM-dd
+
+      - name: last_modified_at
+        label: Last Updated
+        type: date
+        default: ""
+        description: "Set this when making a meaningful factual or editorial update."
+        options:
+          time: false
+          format: yyyy-MM-dd
+
+      - name: image
+        label: Search and Social Image
+        type: object
+        description: "Optional article-specific image. When empty, the site-wide social card is used."
+
+        fields:
+          - name: path
+            label: Image
+            type: image
+            required: true
+
+          - name: alt
+            label: Image Description
+            type: string
+            required: true
+            description: "Describe the image accurately for accessibility and social previews."
+
+          - name: width
+            label: Width
+            type: number
+            default: 1200
+
+          - name: height
+            label: Height
+            type: number
+            default: 630
+
+      - name: canonical_url
+        label: Original or Canonical URL
+        type: string
+        default: ""
+        description: "Leave empty for original articles. Use only when this content was first published at another URL."
+
+      - name: published
+        label: Published
+        type: boolean
+        default: true
+        description: "Turn this off to keep the article from being published."
+
+      - name: noindex
+        label: Hide From Search Engines
+        type: boolean
+        default: false
+        description: "Turn this on only when the page should not appear in search results."
+
+      - name: sitemap
+        label: Include in Sitemap
+        type: boolean
+        default: true
+        description: "Turn this off when the page is hidden from search engines."
 
       - name: body
         label: Article
