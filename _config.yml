@@ -1,37 +1,95 @@
 title: "Matlock's Fight Talk"
-description: "Mixed martial arts opinions, analysis, and fight breakdowns."
+tagline: "Independent MMA analysis and fight breakdowns"
+description: "Independent mixed martial arts analysis, technical fight breakdowns, predictions, commentary, and opinions from Matlock's Fight Talk."
 
 url: "https://matlockfighttalk.com"
 baseurl: ""
 
 lang: "en-US"
+locale: "en_US"
+
+logo: "/assets/logo.png"
+
+author:
+  name: "Matlock"
+  url: "https://matlockfighttalk.com/"
+  twitter: "MatlockKombat"
+
+twitter:
+  username: "MatlockKombat"
+  card: "summary_large_image"
+
+social:
+  name: "Matlock's Fight Talk"
+  links:
+    - "https://youtube.com/@matlockfighttalk"
+    - "https://www.instagram.com/matlockfighttalk/"
+    - "https://x.com/MatlockKombat"
 
 nav:
-  - name: Home
-    link: /
+  - name: "Home"
+    link: "/"
 
-  - name: The Matlock Papers
-    link: /matlockpapers
+  - name: "The Matlock Papers"
+    link: "/matlockpapers"
 
-  - name: MMA Yellow Pages
-    link: /mma-yellowpages
+  - name: "MMA Yellow Pages"
+    link: "/mma-yellowpages"
 
-  - name: Vegas Slots
-    link: /vegas
+  - name: "Vegas Slots"
+    link: "/vegas"
 
-  - name: Guestbook
-    link: /guestbook
+  - name: "Guestbook"
+    link: "/guestbook"
 
-  - name: Picture Gallery
-    link: /picture-gallery
+  - name: "Picture Gallery"
+    link: "/picture-gallery"
 
 defaults:
+  - scope:
+      path: ""
+    values:
+      image:
+        path: "/assets/social-card.jpg"
+        width: 1200
+        height: 630
+        alt: "Matlock's Fight Talk — MMA analysis and fight breakdowns"
+
+      # Keeps automatically generated fallback descriptions concise.
+      seo_description_max_words: 35
+
   - scope:
       path: ""
       type: posts
     values:
       layout: post
 
+      seo:
+        type: BlogPosting
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-sitemap
+
+feed:
+  path: feed.xml
+
+markdown: kramdown
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Uncomment these after verifying the site with the relevant service.
+#
+# webmaster_verifications:
+#   google: "PASTE_GOOGLE_VERIFICATION_CODE_HERE"
+#   bing: "PASTE_BING_VERIFICATION_CODE_HERE"
