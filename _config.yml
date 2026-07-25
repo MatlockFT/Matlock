@@ -13,18 +13,19 @@ logo: "/assets/logo.png"
 author:
   name: "Matlock"
   url: "https://matlockfighttalk.com/"
-  twitter: "MatlockKombat"
+  twitter: "mmamatlock"
 
 twitter:
-  username: "MatlockKombat"
+  username: "mmamatlock"
   card: "summary_large_image"
 
 social:
   name: "Matlock's Fight Talk"
   links:
-    - "https://youtube.com/@matlockfighttalk"
-    - "https://www.instagram.com/matlockfighttalk/"
-    - "https://x.com/MatlockKombat"
+    - "https://youtube.com/@mmamatlock"
+    - "https://www.instagram.com/mmamatlock/"
+    - "https://x.com/mmamatlock"
+    - "https://matlockfighttalk-shop.fourthwall.com/"
 
 nav:
   - name: "Home"
@@ -55,17 +56,18 @@ defaults:
         height: 630
         alt: "Matlock's Fight Talk — MMA analysis and fight breakdowns"
 
-      # Keeps automatically generated fallback descriptions concise.
-      seo_description_max_words: 35
-
   - scope:
       path: ""
       type: posts
     values:
       layout: post
-
       seo:
         type: BlogPosting
+
+permalink: /:year/:month/:day/:title.html
+
+future: false
+show_excerpts: true
 
 plugins:
   - jekyll-feed
@@ -83,13 +85,9 @@ kramdown:
 
 exclude:
   - README.md
+  - SECURITY.md
+  - LICENSE
   - Gemfile
   - Gemfile.lock
   - node_modules
   - vendor
-
-# Uncomment these after verifying the site with the relevant service.
-#
-# webmaster_verifications:
-#   google: "PASTE_GOOGLE_VERIFICATION_CODE_HERE"
-#   bing: "PASTE_BING_VERIFICATION_CODE_HERE"
