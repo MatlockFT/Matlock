@@ -75,14 +75,14 @@ layout: default
         {% endif %}
 
         <div class="post-meta">
-            {% if site.author.name %}
-                <span class="post-author">
-                    By {{ site.author.name }}
-                </span>
-            {% endif %}
+            <span class="post-author">
+                By {{ page.author | default: site.author.name }}
+            </span>
 
             {% if page.date %}
-                <span aria-hidden="true"> · </span>
+                <span class="post-meta-divider" aria-hidden="true">
+                    ·
+                </span>
 
                 <span class="post-date">
                     Published
@@ -94,7 +94,9 @@ layout: default
             {% endif %}
 
             {% if page.last_modified_at %}
-                <span aria-hidden="true"> · </span>
+                <span class="post-meta-divider" aria-hidden="true">
+                    ·
+                </span>
 
                 <span class="post-updated">
                     Updated
