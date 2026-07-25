@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ page.lang | default: site.lang | default: 'en-US' }}">
 <head>
     <meta charset="UTF-8">
 
@@ -8,19 +8,52 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>
-        {% if page.title %}
-            {{ page.title }} - Matlock Fight Talk
-        {% else %}
-            Matlock Fight Talk
-        {% endif %}
-    </title>
+    {% if page.noindex %}
+        <meta
+            name="robots"
+            content="noindex, nofollow"
+        >
+    {% else %}
+        <meta
+            name="robots"
+            content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        >
+    {% endif %}
 
-    <link rel="stylesheet" href="/assets/style.css">
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <meta name="theme-color" content="#000000">
+
+    <link
+        rel="stylesheet"
+        href="{{ '/assets/style.css' | relative_url }}"
+    >
+
+    <link
+        rel="icon"
+        type="image/x-icon"
+        href="{{ '/assets/favicon.ico' | relative_url }}"
+    >
+
+    <link
+        rel="preload"
+        href="{{ '/assets/logo.png' | relative_url }}"
+        as="image"
+    >
+
+    <link
+        rel="sitemap"
+        type="application/xml"
+        href="{{ '/sitemap.xml' | relative_url }}"
+    >
+
+    {% seo %}
+    {% feed_meta %}
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">
+        Skip to main content
+    </a>
+
     <div class="page-wrap">
         <table
             class="site-shell"
@@ -33,13 +66,14 @@
                     <header class="site-header">
                         <div class="logo-wrap">
                             <a
-                                href="/"
-                                aria-label="Matlock Fight Talk home"
+                                href="{{ '/' | relative_url }}"
+                                aria-label="{{ site.title | escape }} home"
                             >
                                 <img
-                                    src="/assets/logo.png"
-                                    alt="Matlock Fight Talk"
+                                    src="{{ '/assets/logo.png' | relative_url }}"
+                                    alt="{{ site.title | escape }}"
                                     class="site-logo"
+                                    fetchpriority="high"
                                 >
                             </a>
                         </div>
@@ -67,45 +101,30 @@
 
                             <nav aria-label="Main navigation">
                                 <ul class="nav-list">
-                                    <li>
-                                        <a href="/">Home</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="/matlockpapers">
-                                            Fight Analysis
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="/mma-yellowpages">
-                                            MMA Yellow Pages
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="/vegas">
-                                            Vegas Slots
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="/guestbook">
-                                            Guestbook
-                                        </a>
-                                    </li>
-
-                                    <li>
-                                        <a href="/picture-gallery">
-                                            Picture Gallery
-                                        </a>
-                                    </li>
+                                    {% for item in site.nav %}
+                                        <li>
+                                            <a
+                                                href="{{ item.link | relative_url }}"
+                                                {% if page.url == item.link %}
+                                                    aria-current="page"
+                                                {% endif %}
+                                            >
+                                                {{ item.name }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
                                 </ul>
                             </nav>
                         </section>
 
-                        <section class="panel audio-panel">
-                            <div class="panel-title">
+                        <section
+                            class="panel audio-panel"
+                            aria-labelledby="fight-tunes-title"
+                        >
+                            <div
+                                class="panel-title"
+                                id="fight-tunes-title"
+                            >
                                 Fight Tunes
                             </div>
 
@@ -117,7 +136,7 @@
                                 <div class="audio-container">
                                     <audio
                                         id="player"
-                                        preload="metadata"
+                                        preload="none"
                                     >
                                         Your browser does not support the
                                         audio element.
@@ -127,7 +146,7 @@
                                         <button
                                             type="button"
                                             class="control-button"
-                                            onclick="playAudio()"
+                                            id="play-button"
                                         >
                                             PLAY
                                         </button>
@@ -135,7 +154,7 @@
                                         <button
                                             type="button"
                                             class="control-button"
-                                            onclick="pauseAudio()"
+                                            id="pause-button"
                                         >
                                             PAUSE
                                         </button>
@@ -166,15 +185,15 @@
                                     </label>
 
                                     <select id="song-selector">
-                                        <option value="/assets/facethepain.mp3">
+                                        <option value="{{ '/assets/facethepain.mp3' | relative_url }}">
                                             Face The Pain
                                         </option>
 
-                                        <option value="/assets/Original.mp3">
+                                        <option value="{{ '/assets/Original.mp3' | relative_url }}">
                                             O.G.
                                         </option>
 
-                                        <option value="/assets/DeathorGlory.mp3">
+                                        <option value="{{ '/assets/DeathorGlory.mp3' | relative_url }}">
                                             Death or Glory
                                         </option>
                                     </select>
@@ -191,7 +210,11 @@
                 </td>
 
                 <td class="content-cell" valign="top">
-                    <main class="content-area">
+                    <main
+                        class="content-area"
+                        id="main-content"
+                        tabindex="-1"
+                    >
                         <section
                             class="social-strip panel"
                             aria-labelledby="social-links-title"
@@ -208,13 +231,14 @@
                                     href="https://youtube.com/@matlockfighttalk"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    aria-label="Matlock Fight Talk on YouTube"
+                                    aria-label="Matlock's Fight Talk on YouTube"
                                 >
                                     <img
-                                        src="/assets/youtube.png"
-                                        alt="YouTube"
+                                        src="{{ '/assets/youtube.png' | relative_url }}"
+                                        alt=""
                                         width="32"
                                         height="32"
+                                        decoding="async"
                                     >
                                 </a>
 
@@ -222,13 +246,14 @@
                                     href="https://www.instagram.com/matlockfighttalk/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    aria-label="Matlock Fight Talk on Instagram"
+                                    aria-label="Matlock's Fight Talk on Instagram"
                                 >
                                     <img
-                                        src="/assets/instagram.png"
-                                        alt="Instagram"
+                                        src="{{ '/assets/instagram.png' | relative_url }}"
+                                        alt=""
                                         width="32"
                                         height="32"
+                                        decoding="async"
                                     >
                                 </a>
 
@@ -236,13 +261,14 @@
                                     href="https://x.com/MatlockKombat"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    aria-label="Matlock Fight Talk on X"
+                                    aria-label="Matlock's Fight Talk on X"
                                 >
                                     <img
-                                        src="/assets/x.png"
-                                        alt="X"
+                                        src="{{ '/assets/x.png' | relative_url }}"
+                                        alt=""
                                         width="32"
                                         height="32"
+                                        decoding="async"
                                     >
                                 </a>
 
@@ -250,13 +276,14 @@
                                     href="https://matlockfighttalk-shop.fourthwall.com/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    aria-label="Matlock Fight Talk merchandise store"
+                                    aria-label="Matlock's Fight Talk merchandise store"
                                 >
                                     <img
-                                        src="/assets/merch.png"
-                                        alt="Merchandise"
+                                        src="{{ '/assets/merch.png' | relative_url }}"
+                                        alt=""
                                         width="32"
                                         height="32"
+                                        decoding="async"
                                     >
                                 </a>
                             </div>
@@ -274,7 +301,7 @@
                     <footer class="site-footer">
                         <div class="footer-main">
                             Copyright © {{ "now" | date: "%Y" }}
-                            MATLOCK'S FIGHT TALK. All rights reserved.
+                            {{ site.title | upcase }}. All rights reserved.
 
                             <span
                                 class="footer-divider"
@@ -286,12 +313,13 @@
                             Visitor count:
 
                             <img
-                                src="/assets/counter.gif"
+                                src="{{ '/assets/counter.gif' | relative_url }}"
                                 alt="Visitor counter"
                                 width="88"
                                 height="31"
                                 class="counter-badge"
                                 loading="lazy"
+                                decoding="async"
                             >
                         </div>
 
@@ -311,6 +339,8 @@
         const selector = document.getElementById("song-selector");
         const volumeSlider = document.getElementById("volume-slider");
         const audioStatus = document.getElementById("audio-status");
+        const playButton = document.getElementById("play-button");
+        const pauseButton = document.getElementById("pause-button");
 
         function updateAudioStatus(message) {
             audioStatus.textContent = message;
@@ -355,6 +385,8 @@
             player.volume = Number(volumeSlider.value);
         }
 
+        playButton.addEventListener("click", playAudio);
+        pauseButton.addEventListener("click", pauseAudio);
         selector.addEventListener("change", changeSong);
         volumeSlider.addEventListener("input", setVolume);
 
