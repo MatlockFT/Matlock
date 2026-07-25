@@ -1,371 +1,175 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+---
+layout: default
+---
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
+<article class="blog-post blog-post-layout">
+    <nav
+        class="breadcrumbs"
+        aria-label="Breadcrumb"
     >
-
-    <title>
-        {% if page.title %}
-            {{ page.title }} - Matlock Fight Talk
-        {% else %}
-            Matlock Fight Talk
-        {% endif %}
-    </title>
-
-    <link rel="stylesheet" href="/assets/style.css">
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
-</head>
-
-<body>
-    <div class="page-wrap">
-        <table
-            class="site-shell"
-            width="100%"
-            cellspacing="0"
-            cellpadding="0"
+        <ol
+            itemscope
+            itemtype="https://schema.org/BreadcrumbList"
         >
-            <tr>
-                <td colspan="2" class="site-header-cell">
-                    <header class="site-header">
-                        <div class="logo-wrap">
-                            <a
-                                href="/"
-                                aria-label="Matlock Fight Talk home"
-                            >
-                                <img
-                                    src="/assets/logo.png"
-                                    alt="Matlock Fight Talk"
-                                    class="site-logo"
-                                >
-                            </a>
-                        </div>
+            <li
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/ListItem"
+            >
+                <a
+                    itemprop="item"
+                    href="{{ '/' | relative_url }}"
+                >
+                    <span itemprop="name">
+                        Home
+                    </span>
+                </a>
 
-                        <div class="header-marquee-wrap">
-                            <marquee
-                                behavior="scroll"
-                                direction="left"
-                                scrollamount="5"
-                            >
-                                WELCOME TO THE END OF THE INTERNET
-                            </marquee>
-                        </div>
-                    </header>
-                </td>
-            </tr>
+                <meta itemprop="position" content="1">
+            </li>
 
-            <tr class="site-main-row">
-                <td class="sidebar-cell" valign="top">
-                    <aside class="sidebar">
-                        <section class="panel nav-panel">
-                            <div class="panel-title">
-                                Navigation
-                            </div>
+            <li
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/ListItem"
+            >
+                <a
+                    itemprop="item"
+                    href="{{ '/matlockpapers' | relative_url }}"
+                >
+                    <span itemprop="name">
+                        The Matlock Papers
+                    </span>
+                </a>
 
-                            <nav aria-label="Main navigation">
-                                <ul class="nav-list">
-                                    <li>
-                                        <a href="/">Home</a>
-                                    </li>
+                <meta itemprop="position" content="2">
+            </li>
 
-                                    <li>
-                                        <a href="/matlockpapers">
-                                            Fight Analysis
-                                        </a>
-                                    </li>
+            <li
+                itemprop="itemListElement"
+                itemscope
+                itemtype="https://schema.org/ListItem"
+                aria-current="page"
+            >
+                <span itemprop="name">
+                    {{ page.title }}
+                </span>
 
-                                    <li>
-                                        <a href="/mma-yellowpages">
-                                            MMA Yellow Pages
-                                        </a>
-                                    </li>
+                <meta
+                    itemprop="item"
+                    content="{{ page.url | absolute_url }}"
+                >
 
-                                    <li>
-                                        <a href="/vegas">
-                                            Vegas Slots
-                                        </a>
-                                    </li>
+                <meta itemprop="position" content="3">
+            </li>
+        </ol>
+    </nav>
 
-                                    <li>
-                                        <a href="/guestbook">
-                                            Guestbook
-                                        </a>
-                                    </li>
+    <header class="blog-post-header">
+        <h1>{{ page.title }}</h1>
 
-                                    <li>
-                                        <a href="/picture-gallery">
-                                            Picture Gallery
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </section>
+        {% if page.description %}
+            <p class="post-deck">
+                {{ page.description }}
+            </p>
+        {% endif %}
 
-                        <section class="panel audio-panel">
-                            <div class="panel-title">
-                                Fight Tunes
-                            </div>
+        <div class="post-meta">
+            {% if site.author.name %}
+                <span class="post-author">
+                    By {{ site.author.name }}
+                </span>
+            {% endif %}
 
-                            <div id="audio-player">
-                                <p class="audio-copy">
-                                    Click to unleash fight tunes
-                                </p>
+            {% if page.date %}
+                <span aria-hidden="true"> · </span>
 
-                                <div class="audio-container">
-                                    <audio
-                                        id="player"
-                                        preload="metadata"
-                                    >
-                                        Your browser does not support the
-                                        audio element.
-                                    </audio>
+                <span class="post-date">
+                    Published
 
-                                    <div class="audio-controls">
-                                        <button
-                                            type="button"
-                                            class="control-button"
-                                            onclick="playAudio()"
-                                        >
-                                            PLAY
-                                        </button>
+                    <time datetime="{{ page.date | date_to_xmlschema }}">
+                        {{ page.date | date: "%B %d, %Y" }}
+                    </time>
+                </span>
+            {% endif %}
 
-                                        <button
-                                            type="button"
-                                            class="control-button"
-                                            onclick="pauseAudio()"
-                                        >
-                                            PAUSE
-                                        </button>
-                                    </div>
+            {% if page.last_modified_at %}
+                <span aria-hidden="true"> · </span>
 
-                                    <label
-                                        for="volume-slider"
-                                        class="control-label"
-                                    >
-                                        Volume
-                                    </label>
+                <span class="post-updated">
+                    Updated
 
-                                    <input
-                                        type="range"
-                                        id="volume-slider"
-                                        min="0"
-                                        max="1"
-                                        step="0.01"
-                                        value="0.5"
-                                        aria-label="Audio volume"
-                                    >
+                    <time
+                        datetime="{{ page.last_modified_at | date_to_xmlschema }}"
+                    >
+                        {{ page.last_modified_at | date: "%B %d, %Y" }}
+                    </time>
+                </span>
+            {% endif %}
+        </div>
+    </header>
 
-                                    <label
-                                        for="song-selector"
-                                        class="control-label"
-                                    >
-                                        Track Select
-                                    </label>
-
-                                    <select id="song-selector">
-                                        <option value="/assets/facethepain.mp3">
-                                            Face The Pain
-                                        </option>
-
-                                        <option value="/assets/Original.mp3">
-                                            O.G.
-                                        </option>
-
-                                        <option value="/assets/DeathorGlory.mp3">
-                                            Death or Glory
-                                        </option>
-                                    </select>
-
-                                    <p
-                                        id="audio-status"
-                                        class="audio-status"
-                                        aria-live="polite"
-                                    ></p>
-                                </div>
-                            </div>
-                        </section>
-                    </aside>
-                </td>
-
-                <td class="content-cell" valign="top">
-                    <main class="content-area">
-                        <section
-                            class="social-strip panel"
-                            aria-labelledby="social-links-title"
-                        >
-                            <div
-                                class="panel-title"
-                                id="social-links-title"
-                            >
-                                Social Links
-                            </div>
-
-                            <div class="social-banner">
-                                <a
-                                    href="https://youtube.com/@matlockfighttalk"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Matlock Fight Talk on YouTube"
-                                >
-                                    <img
-                                        src="/assets/youtube.png"
-                                        alt="YouTube"
-                                        width="32"
-                                        height="32"
-                                    >
-                                </a>
-
-                                <a
-                                    href="https://www.instagram.com/matlockfighttalk/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Matlock Fight Talk on Instagram"
-                                >
-                                    <img
-                                        src="/assets/instagram.png"
-                                        alt="Instagram"
-                                        width="32"
-                                        height="32"
-                                    >
-                                </a>
-
-                                <a
-                                    href="https://x.com/MatlockKombat"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Matlock Fight Talk on X"
-                                >
-                                    <img
-                                        src="/assets/x.png"
-                                        alt="X"
-                                        width="32"
-                                        height="32"
-                                    >
-                                </a>
-
-                                <a
-                                    href="https://matlockfighttalk-shop.fourthwall.com/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Matlock Fight Talk merchandise store"
-                                >
-                                    <img
-                                        src="/assets/merch.png"
-                                        alt="Merchandise"
-                                        width="32"
-                                        height="32"
-                                    >
-                                </a>
-                            </div>
-                        </section>
-
-                        <section class="page-content">
-                            {{ content }}
-                        </section>
-                    </main>
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="2" class="site-footer-cell">
-                    <footer class="site-footer">
-                        <div class="footer-main">
-                            Copyright © {{ "now" | date: "%Y" }}
-                            MATLOCK'S FIGHT TALK. All rights reserved.
-
-                            <span
-                                class="footer-divider"
-                                aria-hidden="true"
-                            >
-                                |
-                            </span>
-
-                            Visitor count:
-
-                            <img
-                                src="/assets/counter.gif"
-                                alt="Visitor counter"
-                                width="88"
-                                height="31"
-                                class="counter-badge"
-                                loading="lazy"
-                            >
-                        </div>
-
-                        <div class="footer-marquee">
-                            <marquee behavior="alternate">
-                                Powered by Secret Juice
-                            </marquee>
-                        </div>
-                    </footer>
-                </td>
-            </tr>
-        </table>
+    <div class="blog-post-body">
+        {{ content }}
     </div>
 
-    <script>
-        const player = document.getElementById("player");
-        const selector = document.getElementById("song-selector");
-        const volumeSlider = document.getElementById("volume-slider");
-        const audioStatus = document.getElementById("audio-status");
+    {% if page.previous or page.next %}
+        <nav
+            class="post-navigation"
+            aria-label="Article navigation"
+        >
+            {% if page.previous %}
+                <div class="previous-post">
+                    <span class="post-navigation-label">
+                        Previous article
+                    </span>
 
-        function updateAudioStatus(message) {
-            audioStatus.textContent = message;
-        }
+                    <a href="{{ page.previous.url | relative_url }}">
+                        {{ page.previous.title }}
+                    </a>
+                </div>
+            {% endif %}
 
-        async function startAudioPlayback() {
-            try {
-                await player.play();
-                updateAudioStatus("");
-            } catch (error) {
-                console.error("Audio playback failed:", error);
+            {% if page.next %}
+                <div class="next-post">
+                    <span class="post-navigation-label">
+                        Next article
+                    </span>
 
-                updateAudioStatus(
-                    "Audio could not be played. Press PLAY to try again."
-                );
-            }
-        }
+                    <a href="{{ page.next.url | relative_url }}">
+                        {{ page.next.title }}
+                    </a>
+                </div>
+            {% endif %}
+        </nav>
+    {% endif %}
 
-        function playAudio() {
-            startAudioPlayback();
-        }
+    {% if site.related_posts.size > 0 %}
+        <aside
+            class="related-posts"
+            aria-labelledby="related-posts-title"
+        >
+            <h2 id="related-posts-title">
+                More Fight Analysis
+            </h2>
 
-        function pauseAudio() {
-            player.pause();
-            updateAudioStatus("");
-        }
+            <ul>
+                {% for related_post in site.related_posts limit: 3 %}
+                    <li>
+                        <a href="{{ related_post.url | relative_url }}">
+                            {{ related_post.title }}
+                        </a>
 
-        function changeSong() {
-            const wasPlaying = !player.paused;
-
-            player.src = selector.value;
-            player.load();
-
-            updateAudioStatus("");
-
-            if (wasPlaying) {
-                startAudioPlayback();
-            }
-        }
-
-        function setVolume() {
-            player.volume = Number(volumeSlider.value);
-        }
-
-        selector.addEventListener("change", changeSong);
-        volumeSlider.addEventListener("input", setVolume);
-
-        player.addEventListener("error", function () {
-            updateAudioStatus(
-                "This audio track could not be loaded."
-            );
-        });
-
-        player.src = selector.value;
-        setVolume();
-    </script>
-</body>
-</html>
+                        {% if related_post.date %}
+                            <time
+                                datetime="{{ related_post.date | date_to_xmlschema }}"
+                            >
+                                {{ related_post.date | date: "%B %d, %Y" }}
+                            </time>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </aside>
+    {% endif %}
+</article>
