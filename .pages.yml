@@ -1,48 +1,49 @@
 media:
   input: assets
   output: /assets
-  categories: [image]
-  rename: safe
-
-settings:
-  content:
-    merge: true
 
 content:
   - name: posts
-    label: Blog Posts
+    label: Fight Analysis
     type: collection
     path: _posts
     format: yaml-frontmatter
 
-    filename: "{date}-{title}.md"
+    filename:
+      template: "{year}-{month}-{day}-{title}.md"
+      field: false
 
     view:
-      fields: [title, date]
+      fields:
+        - title
+        - date
       primary: title
-      sort: [date, title]
-      search: [title, body]
+      sort:
+        - date
+        - title
       default:
         sort: date
         order: desc
 
     fields:
+      - name: layout
+        type: string
+        default: post
+        hidden: true
+
       - name: title
         label: Title
         type: string
         required: true
 
       - name: date
-        label: Publication date
+        label: Publication Date
         type: date
         required: true
         options:
-          format: "yyyy-MM-dd"
+          format: yyyy-MM-dd
 
       - name: body
         label: Article
         type: rich-text
         required: true
-        options:
-          format: markdown
-          switcher: true
