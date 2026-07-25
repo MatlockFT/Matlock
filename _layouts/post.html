@@ -32,7 +32,10 @@
                 <td colspan="2" class="site-header-cell">
                     <header class="site-header">
                         <div class="logo-wrap">
-                            <a href="/" aria-label="Matlock Fight Talk home">
+                            <a
+                                href="/"
+                                aria-label="Matlock Fight Talk home"
+                            >
                                 <img
                                     src="/assets/logo.png"
                                     alt="Matlock Fight Talk"
@@ -116,8 +119,8 @@
                                         id="player"
                                         preload="metadata"
                                     >
-                                        Your browser does not support the audio
-                                        element.
+                                        Your browser does not support the
+                                        audio element.
                                     </audio>
 
                                     <div class="audio-controls">
@@ -202,7 +205,7 @@
 
                             <div class="social-banner">
                                 <a
-                                    href="https://youtube.com/@mmamatlock"
+                                    href="https://youtube.com/@matlockfighttalk"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Matlock Fight Talk on YouTube"
@@ -216,7 +219,7 @@
                                 </a>
 
                                 <a
-                                    href="https://www.instagram.com/mmamatlock/"
+                                    href="https://www.instagram.com/matlockfighttalk/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Matlock Fight Talk on Instagram"
@@ -230,7 +233,7 @@
                                 </a>
 
                                 <a
-                                    href="https://x.com/mmamatlock"
+                                    href="https://x.com/MatlockKombat"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Matlock Fight Talk on X"
@@ -260,25 +263,7 @@
                         </section>
 
                         <section class="page-content">
-                            <article class="blog-post blog-post-layout">
-                                <header class="blog-post-header">
-                                    <h1>{{ page.title }}</h1>
-
-                                    {% if page.date %}
-                                        <p class="post-date">
-                                            <time
-                                                datetime="{{ page.date | date_to_xmlschema }}"
-                                            >
-                                                {{ page.date | date: "%B %d, %Y" }}
-                                            </time>
-                                        </p>
-                                    {% endif %}
-                                </header>
-
-                                <div class="blog-post-body">
-                                    {{ content }}
-                                </div>
-                            </article>
+                            {{ content }}
                         </section>
                     </main>
                 </td>
