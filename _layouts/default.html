@@ -32,11 +32,16 @@
                 <td colspan="2" class="site-header-cell">
                     <header class="site-header">
                         <div class="logo-wrap">
-                            <img
-                                src="/assets/logo.png"
-                                alt="Matlock Fight Talk"
-                                class="site-logo"
+                            <a
+                                href="/"
+                                aria-label="Matlock Fight Talk home"
                             >
+                                <img
+                                    src="/assets/logo.png"
+                                    alt="Matlock Fight Talk"
+                                    class="site-logo"
+                                >
+                            </a>
                         </div>
 
                         <div class="header-marquee-wrap">
@@ -60,41 +65,43 @@
                                 Navigation
                             </div>
 
-                            <ul class="nav-list">
-                                <li>
-                                    <a href="/">Home</a>
-                                </li>
+                            <nav aria-label="Main navigation">
+                                <ul class="nav-list">
+                                    <li>
+                                        <a href="/">Home</a>
+                                    </li>
 
-                                <li>
-                                    <a href="/matlockpapers">
-                                        Fight Analysis
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a href="/matlockpapers">
+                                            Fight Analysis
+                                        </a>
+                                    </li>
 
-                                <li>
-                                    <a href="/mma-yellowpages">
-                                        MMA Yellow Pages
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a href="/mma-yellowpages">
+                                            MMA Yellow Pages
+                                        </a>
+                                    </li>
 
-                                <li>
-                                    <a href="/vegas">
-                                        Vegas Slots
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a href="/vegas">
+                                            Vegas Slots
+                                        </a>
+                                    </li>
 
-                                <li>
-                                    <a href="/guestbook">
-                                        Guestbook
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a href="/guestbook">
+                                            Guestbook
+                                        </a>
+                                    </li>
 
-                                <li>
-                                    <a href="/picture-gallery">
-                                        Picture Gallery
-                                    </a>
-                                </li>
-                            </ul>
+                                    <li>
+                                        <a href="/picture-gallery">
+                                            Picture Gallery
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </section>
 
                         <section class="panel audio-panel">
@@ -148,6 +155,7 @@
                                         max="1"
                                         step="0.01"
                                         value="0.5"
+                                        aria-label="Audio volume"
                                     >
 
                                     <label
@@ -184,14 +192,20 @@
 
                 <td class="content-cell" valign="top">
                     <main class="content-area">
-                        <section class="social-strip panel">
-                            <div class="panel-title">
+                        <section
+                            class="social-strip panel"
+                            aria-labelledby="social-links-title"
+                        >
+                            <div
+                                class="panel-title"
+                                id="social-links-title"
+                            >
                                 Social Links
                             </div>
 
                             <div class="social-banner">
                                 <a
-                                    href="https://youtube.com/@mmamatlock"
+                                    href="https://youtube.com/@matlockfighttalk"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Matlock Fight Talk on YouTube"
@@ -205,7 +219,7 @@
                                 </a>
 
                                 <a
-                                    href="https://www.instagram.com/mmamatlock/"
+                                    href="https://www.instagram.com/matlockfighttalk/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Matlock Fight Talk on Instagram"
@@ -219,7 +233,7 @@
                                 </a>
 
                                 <a
-                                    href="https://x.com/mmamatlock"
+                                    href="https://x.com/MatlockKombat"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Matlock Fight Talk on X"
@@ -295,10 +309,8 @@
     <script>
         const player = document.getElementById("player");
         const selector = document.getElementById("song-selector");
-        const volumeSlider =
-            document.getElementById("volume-slider");
-        const audioStatus =
-            document.getElementById("audio-status");
+        const volumeSlider = document.getElementById("volume-slider");
+        const audioStatus = document.getElementById("audio-status");
 
         function updateAudioStatus(message) {
             audioStatus.textContent = message;
@@ -312,7 +324,7 @@
                 console.error("Audio playback failed:", error);
 
                 updateAudioStatus(
-                    "Audio could not be played. Try pressing PLAY again."
+                    "Audio could not be played. Press PLAY to try again."
                 );
             }
         }
