@@ -8,7 +8,7 @@ category: Breakdown
 author: MMA Matlock
 image:
   path: /assets/uploads/ufc-330-poster-3-makhachev.png
-  alt: UFC 330 Banner
+  alt: UFC 330 Makhachev vs Garry
 tags:
   - Islam Makhachev
   - Ian Garry
