@@ -1,6 +1,14 @@
 ---
+layout: post
 title: "UFC 330: Makhachev vs. Garry"
+description: "UFC 330: Makhachev vs. Machado Garry is an upcoming mixed martial
+  arts event produced by the Ultimate Fighting Championship that is scheduled to
+  take place on August 15, 2026, at t"
 date: 2026-07-23
+category: Breakdown
+author: MMA Matlock
+last_modified_at: 2026-07-26
+published: true
 ---
 ![](/assets/ufc-330-poster-3-makhachev.png)
 
