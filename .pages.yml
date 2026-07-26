@@ -4,11 +4,6 @@ media:
   rename: safe
   categories:
     - image
-  extensions:
-    - jpg
-    - jpeg
-    - png
-    - webp
 
 content:
   - name: posts
@@ -18,36 +13,19 @@ content:
     format: yaml-frontmatter
     subfolders: false
 
-    # Prevent accidental filename changes that could alter article URLs.
-    operations:
-      rename: false
-
-    # Use the selected publication date rather than the date on which
-    # the editor entry happens to be created.
-    filename: "{date}-{primary}.md"
+    filename:
+      template: "{year}-{month}-{day}-{primary}.md"
+      field: create
 
     view:
       primary: title
-
       fields:
         - title
         - date
         - category
         - published
-
-      sort:
-        - date
-        - title
-
-      search:
-        - title
-        - description
-        - category
-        - tags
-
-      default:
-        sort: date
-        order: desc
+      sort: date
+      order: desc
 
     fields:
       - name: layout
@@ -60,99 +38,93 @@ content:
         type: string
         required: true
         description: >-
-          Name the fighter, fight, event, or subject clearly.
-          Avoid vague titles that do not explain what the article covers.
+          Use a specific title that clearly names the fight, fighter,
+          event, or subject.
         options:
           minlength: 10
-          maxlength: 75
+          maxlength: 90
 
       - name: description
         label: Search and Social Description
         type: text
         required: true
         description: >-
-          Write a unique plain-text summary of the article. Include the
-          primary fighters, event, or topic naturally.
+          Write a unique summary explaining exactly what the article
+          covers. Include the main fighters, event, or subject naturally.
         options:
           minlength: 70
-          maxlength: 170
+          maxlength: 180
 
       - name: date
         label: Publication Date
         type: date
         required: true
-        description: >-
-          This date is used in the post filename, article metadata,
-          archive ordering, and public URL.
-        options:
-          format: "yyyy-MM-dd"
 
       - name: category
         label: Article Type
         type: select
         required: true
-        default: "MMA Breakdown"
+        default: "Breakdown"
         description: >-
-          Select the main type of coverage. This appears above the
-          article title.
+          Choose Breakdown for fight analysis, predictions, previews,
+          and technical discussion. Choose Opinion for commentary,
+          reactions, essays, and broader MMA topics.
         options:
           values:
-            - "MMA Breakdown"
-            - "MMA History"
+            - "Breakdown"
+            - "Opinion"
 
       - name: author
+        label: Author
         type: string
         default: "MMA Matlock"
         hidden: true
 
       - name: image
         label: Featured Image
-        type: image
+        type: object
         required: false
         description: >-
-          Optional article cover image. Landscape images around a
-          16:9 ratio work best on the homepage and archive cards.
-        options:
-          path: posts
-          categories:
-            - image
-          extensions:
-            - jpg
-            - jpeg
-            - png
-            - webp
-          rename: safe
+          Optional cover image and its accompanying information.
 
-      - name: image_alt
-        label: Featured Image Description
-        type: string
-        required: false
-        description: >-
-          Describe who or what appears in the image. Do not write
-          "image of" or repeat the article title without adding context.
-        options:
-          maxlength: 160
+        fields:
+          - name: path
+            label: Image File
+            type: image
+            required: false
+            description: >-
+              Landscape images with a 16:9 shape work best on the
+              homepage and breakdown archive.
 
-      - name: image_caption
-        label: Featured Image Caption
-        type: string
-        required: false
-        description: >-
-          Optional visible caption, attribution, or brief context
-          displayed beneath the featured image.
-        options:
-          maxlength: 220
+          - name: alt
+            label: Image Description
+            type: string
+            required: false
+            description: >-
+              Describe who or what appears in the image. Do not begin
+              with the words "image of."
+            options:
+              maxlength: 160
+
+          - name: caption
+            label: Image Caption
+            type: string
+            required: false
+            description: >-
+              Optional visible caption, attribution, or additional context.
+            options:
+              maxlength: 220
 
       - name: tags
         label: Fighters and Topics
         type: string
+        required: false
         list:
           max: 8
-        required: false
         description: >-
-          Add individual fighters, events, promotions, and major topics.
-          Use one item per entry, such as Islam Makhachev, UFC 330,
-          Wrestling, or Welterweight.
+          Add one fighter, event, promotion, division, or topic per item.
+          Examples include UFC 330, Islam Makhachev, Welterweight,
+          Wrestling, or Fight Prediction.
         options:
           maxlength: 50
 
@@ -160,20 +132,16 @@ content:
         label: Last Updated
         type: date
         required: false
-        default: ""
         description: >-
-          Leave blank for a new article. Set this only after making
-          a meaningful update to a published article.
-        options:
-          format: "yyyy-MM-dd"
+          Leave this blank for a new article. Set it only after making
+          a meaningful update to an existing article.
 
       - name: published
         label: Published
         type: boolean
         default: true
         description: >-
-          Turn this off to keep the post from appearing on the
-          public website.
+          Turn this off to keep the article from appearing publicly.
 
       - name: body
         label: Article
@@ -182,12 +150,3 @@ content:
         options:
           format: markdown
           switcher: true
-          path: posts
-          categories:
-            - image
-          extensions:
-            - jpg
-            - jpeg
-            - png
-            - webp
-          rename: safe
