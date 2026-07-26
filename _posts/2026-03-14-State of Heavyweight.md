@@ -7,6 +7,7 @@ date: 2026-03-14
 category: Opinion
 author: MMA Matlock
 image:
+  path: /assets/uploads/asplund-1.png
   alt: "Minnesota's Steve Asplund is a fun action fighter in an abysmal
     heavyweight division. "
 tags:
