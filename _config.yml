@@ -17,24 +17,27 @@ logo: "/assets/logo.png"
 author:
   name: "MMA Matlock"
   url: "https://matlockfighttalk.com/"
-  twitter: "mmamatlock"
+  twitter: "MMAMatlock"
 
 twitter:
-  username: "mmamatlock"
+  username: "MMAMatlock"
   card: "summary_large_image"
 
 social:
   name: "MMA Matlock"
   links:
-    - "https://youtube.com/@mmamatlock"
+    - "https://www.youtube.com/@MMAMatlock"
+    - "https://x.com/MMAMatlock"
     - "https://www.instagram.com/mmamatlock/"
-    - "https://x.com/mmamatlock"
+    - "https://www.threads.net/@MMAMatlock"
+    - "https://www.tiktok.com/@mmamatlock"
+    - "https://www.facebook.com/mmamatlock"
 
 adsense:
   client: "ca-pub-5948515643609166"
 
-  # Create a Display ad unit in AdSense and paste only its
-  # numeric data-ad-slot value between the quotation marks.
+  # Paste the numeric data-ad-slot value from your AdSense ad unit here.
+  # This is not the same as your publisher ID.
   banner_slot: ""
 
 nav:
@@ -85,7 +88,6 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-redirect-from
 
 feed:
   path: feed.xml
