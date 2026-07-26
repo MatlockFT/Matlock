@@ -1,6 +1,21 @@
 ---
-title: "NETFLIX MMA: Rousey vs. Carano PRE-CAP"
+layout: post
+title: NETFLIX MMA | Rousey vs. Carano Preview
+description: "In typical MMA fashion, a fight no one asked for is slated to take
+  place 15 years past their prime. "
 date: 2026-02-17
+category: Breakdown
+author: MMA Matlock
+image:
+  path: /assets/uploads/gina-carano.png
+  alt: "Gina Carano needs to fight Ronda Rousey in order to get her life back in
+    balance... and to launder her image. "
+tags:
+  - Gina Carano
+  - Ronda Rousey
+  - Netflix
+last_modified_at: 2026-07-26
+published: true
 ---
 That’s right… **Ronda Rousey will fight Gina Carano on Netflix**, promoted by Most Valuable Promotions.
 
