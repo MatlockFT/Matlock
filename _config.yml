@@ -1,6 +1,5 @@
 title: "MMA Matlock"
 legal_name: "MATLOCKSFIGHTTALK"
-
 tagline: "Independent MMA breakdowns and analysis"
 
 description: >-
@@ -30,7 +29,13 @@ social:
     - "https://youtube.com/@mmamatlock"
     - "https://www.instagram.com/mmamatlock/"
     - "https://x.com/mmamatlock"
-    - "https://matlockfighttalk-shop.fourthwall.com/"
+
+adsense:
+  client: "ca-pub-5948515643609166"
+
+  # Create a Display ad unit in AdSense and paste only its
+  # numeric data-ad-slot value between the quotation marks.
+  banner_slot: ""
 
 nav:
   - name: "Home"
@@ -50,6 +55,16 @@ nav:
 
   - name: "Picture Gallery"
     link: "/picture-gallery"
+
+footer_nav:
+  - name: "About"
+    link: "/about/"
+
+  - name: "Contact"
+    link: "/contact/"
+
+  - name: "Privacy"
+    link: "/privacy/"
 
 defaults:
   - scope:
