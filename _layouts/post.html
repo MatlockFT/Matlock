@@ -3,7 +3,7 @@ layout: default
 ---
 
 {% assign featured_image = nil %}
-{% assign featured_image_alt = page.title %}
+{% assign featured_image_alt = page.image_alt | default: page.title %}
 
 {% if page.image %}
     {% if page.image.path %}
@@ -32,9 +32,7 @@ layout: default
                     itemprop="item"
                     href="{{ '/' | relative_url }}"
                 >
-                    <span itemprop="name">
-                        Home
-                    </span>
+                    <span itemprop="name">Home</span>
                 </a>
 
                 <meta itemprop="position" content="1">
@@ -49,9 +47,7 @@ layout: default
                     itemprop="item"
                     href="{{ '/breakdowns/' | relative_url }}"
                 >
-                    <span itemprop="name">
-                        Breakdowns
-                    </span>
+                    <span itemprop="name">Breakdowns</span>
                 </a>
 
                 <meta itemprop="position" content="2">
@@ -82,9 +78,7 @@ layout: default
             MMA breakdown
         </p>
 
-        <h1>
-            {{ page.title }}
-        </h1>
+        <h1>{{ page.title }}</h1>
 
         {% if page.description %}
             <p class="post-description">
@@ -103,9 +97,7 @@ layout: default
                 <span>
                     Published
 
-                    <time
-                        datetime="{{ page.date | date_to_xmlschema }}"
-                    >
+                    <time datetime="{{ page.date | date_to_xmlschema }}">
                         {{ page.date | date: "%B %d, %Y" }}
                     </time>
                 </span>
@@ -128,7 +120,10 @@ layout: default
     </header>
 
     {% if featured_image %}
-        <figure class="post-featured-image" data-image-shell>
+        <figure
+            class="post-featured-image"
+            data-image-shell
+        >
             <img
                 src="{{ featured_image | relative_url }}"
                 alt="{{ featured_image_alt | escape }}"
@@ -153,7 +148,10 @@ layout: default
                     href="{{ page.previous.url | relative_url }}"
                 >
                     <span>Previous breakdown</span>
-                    <strong>{{ page.previous.title }}</strong>
+
+                    <strong>
+                        {{ page.previous.title }}
+                    </strong>
                 </a>
             {% endif %}
 
@@ -163,7 +161,10 @@ layout: default
                     href="{{ page.next.url | relative_url }}"
                 >
                     <span>Next breakdown</span>
-                    <strong>{{ page.next.title }}</strong>
+
+                    <strong>
+                        {{ page.next.title }}
+                    </strong>
                 </a>
             {% endif %}
         </nav>
