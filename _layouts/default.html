@@ -36,6 +36,14 @@
         as="image"
     >
 
+    {% if site.adsense.client and site.adsense.client != "" %}
+        <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense.client }}"
+            crossorigin="anonymous"
+        ></script>
+    {% endif %}
+
     {% seo %}
     {% feed_meta %}
 </head>
@@ -81,10 +89,11 @@
 
                 <ul class="navigation-list" id="navigation-list">
                     {% for item in site.nav %}
-                        {% assign item_with_slash = item.link | append: "/" %}
+                        {% assign item_without_slash = item.link | remove_last: "/" %}
+                        {% assign current_without_slash = page.url | remove_last: "/" %}
                         {% assign is_current = false %}
 
-                        {% if page.url == item.link or page.url == item_with_slash %}
+                        {% if current_without_slash == item_without_slash %}
                             {% assign is_current = true %}
                         {% endif %}
 
@@ -108,7 +117,11 @@
         </nav>
     </header>
 
-    <main class="site-main" id="main-content" tabindex="-1">
+    <main
+        class="site-main"
+        id="main-content"
+        tabindex="-1"
+    >
         {{ content }}
     </main>
 
@@ -128,12 +141,17 @@
                         predictions, and breakdowns.
                     </p>
 
-                    <a
-                        class="footer-breakdowns-link"
-                        href="{{ '/breakdowns/' | relative_url }}"
-                    >
-                        Browse all breakdowns
-                    </a>
+                    <nav aria-label="Footer navigation">
+                        <ul class="footer-navigation">
+                            {% for item in site.footer_nav %}
+                                <li>
+                                    <a href="{{ item.link | relative_url }}">
+                                        {{ item.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </nav>
                 </section>
 
                 <section
@@ -232,6 +250,7 @@
                                 height="36"
                                 loading="lazy"
                                 decoding="async"
+                                data-hide-on-error
                             >
 
                             <span>YouTube</span>
@@ -250,6 +269,7 @@
                                 height="36"
                                 loading="lazy"
                                 decoding="async"
+                                data-hide-on-error
                             >
 
                             <span>Instagram</span>
@@ -268,6 +288,7 @@
                                 height="36"
                                 loading="lazy"
                                 decoding="async"
+                                data-hide-on-error
                             >
 
                             <span>X</span>
@@ -276,7 +297,7 @@
                         <a
                             href="https://matlockfighttalk-shop.fourthwall.com/"
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel="noopener noreferrer sponsored"
                             aria-label="MMA Matlock merchandise store"
                         >
                             <img
@@ -286,6 +307,7 @@
                                 height="36"
                                 loading="lazy"
                                 decoding="async"
+                                data-hide-on-error
                             >
 
                             <span>Merch</span>
@@ -324,20 +346,22 @@
         const navigationList =
             document.getElementById("navigation-list");
 
-        navigationToggle.addEventListener("click", function () {
-            const isOpen =
-                navigationToggle.getAttribute("aria-expanded") === "true";
+        if (navigationToggle && navigationList) {
+            navigationToggle.addEventListener("click", function () {
+                const isOpen =
+                    navigationToggle.getAttribute("aria-expanded") === "true";
 
-            navigationToggle.setAttribute(
-                "aria-expanded",
-                String(!isOpen)
-            );
+                navigationToggle.setAttribute(
+                    "aria-expanded",
+                    String(!isOpen)
+                );
 
-            navigationList.classList.toggle(
-                "navigation-list--open",
-                !isOpen
-            );
-        });
+                navigationList.classList.toggle(
+                    "navigation-list--open",
+                    !isOpen
+                );
+            });
+        }
 
         const player = document.getElementById("player");
         const selector = document.getElementById("song-selector");
@@ -351,10 +375,16 @@
             document.getElementById("pause-button");
 
         function updateAudioStatus(message) {
-            audioStatus.textContent = message;
+            if (audioStatus) {
+                audioStatus.textContent = message;
+            }
         }
 
         async function startAudioPlayback() {
+            if (!player) {
+                return;
+            }
+
             try {
                 await player.play();
                 updateAudioStatus("");
@@ -368,11 +398,19 @@
         }
 
         function pauseAudio() {
+            if (!player) {
+                return;
+            }
+
             player.pause();
             updateAudioStatus("");
         }
 
         function changeSong() {
+            if (!player || !selector) {
+                return;
+            }
+
             const wasPlaying = !player.paused;
 
             player.src = selector.value;
@@ -385,37 +423,49 @@
         }
 
         function setVolume() {
+            if (!player || !volumeSlider) {
+                return;
+            }
+
             player.volume = Number(volumeSlider.value);
         }
 
-        playButton.addEventListener(
-            "click",
-            startAudioPlayback
-        );
-
-        pauseButton.addEventListener(
-            "click",
-            pauseAudio
-        );
-
-        selector.addEventListener(
-            "change",
-            changeSong
-        );
-
-        volumeSlider.addEventListener(
-            "input",
-            setVolume
-        );
-
-        player.addEventListener("error", function () {
-            updateAudioStatus(
-                "This audio track could not be loaded."
+        if (
+            player &&
+            selector &&
+            volumeSlider &&
+            playButton &&
+            pauseButton
+        ) {
+            playButton.addEventListener(
+                "click",
+                startAudioPlayback
             );
-        });
 
-        player.src = selector.value;
-        setVolume();
+            pauseButton.addEventListener(
+                "click",
+                pauseAudio
+            );
+
+            selector.addEventListener(
+                "change",
+                changeSong
+            );
+
+            volumeSlider.addEventListener(
+                "input",
+                setVolume
+            );
+
+            player.addEventListener("error", function () {
+                updateAudioStatus(
+                    "This audio track could not be loaded."
+                );
+            });
+
+            player.src = selector.value;
+            setVolume();
+        }
 
         function removeBrokenImage(image) {
             const imageShell =
