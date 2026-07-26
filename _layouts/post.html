@@ -2,79 +2,12 @@
 layout: default
 ---
 
-{% assign featured_image = nil %}
-{% assign featured_image_alt = page.image_alt | default: page.title %}
-
-{% if page.image %}
-    {% if page.image.path %}
-        {% assign featured_image = page.image.path %}
-
-        {% if page.image.alt %}
-            {% assign featured_image_alt = page.image.alt %}
-        {% endif %}
-    {% else %}
-        {% assign featured_image = page.image %}
-    {% endif %}
-{% endif %}
+{% assign featured_image = page.image.path | default: page.image %}
+{% assign featured_alt = page.image.alt | default: page.image_alt | default: page.title %}
 
 <article class="post-page">
-    <nav class="breadcrumbs" aria-label="Breadcrumb">
-        <ol
-            itemscope
-            itemtype="https://schema.org/BreadcrumbList"
-        >
-            <li
-                itemprop="itemListElement"
-                itemscope
-                itemtype="https://schema.org/ListItem"
-            >
-                <a
-                    itemprop="item"
-                    href="{{ '/' | relative_url }}"
-                >
-                    <span itemprop="name">Home</span>
-                </a>
-
-                <meta itemprop="position" content="1">
-            </li>
-
-            <li
-                itemprop="itemListElement"
-                itemscope
-                itemtype="https://schema.org/ListItem"
-            >
-                <a
-                    itemprop="item"
-                    href="{{ '/breakdowns/' | relative_url }}"
-                >
-                    <span itemprop="name">Breakdowns</span>
-                </a>
-
-                <meta itemprop="position" content="2">
-            </li>
-
-            <li
-                itemprop="itemListElement"
-                itemscope
-                itemtype="https://schema.org/ListItem"
-                aria-current="page"
-            >
-                <span itemprop="name">
-                    {{ page.title }}
-                </span>
-
-                <meta
-                    itemprop="item"
-                    content="{{ page.url | absolute_url }}"
-                >
-
-                <meta itemprop="position" content="3">
-            </li>
-        </ol>
-    </nav>
-
     <header class="post-header">
-        <p class="article-eyebrow">
+        <p class="eyebrow">
             MMA breakdown
         </p>
 
@@ -94,13 +27,9 @@ layout: default
             {% if page.date %}
                 <span aria-hidden="true">•</span>
 
-                <span>
-                    Published
-
-                    <time datetime="{{ page.date | date_to_xmlschema }}">
-                        {{ page.date | date: "%B %d, %Y" }}
-                    </time>
-                </span>
+                <time datetime="{{ page.date | date_to_xmlschema }}">
+                    {{ page.date | date: "%B %d, %Y" }}
+                </time>
             {% endif %}
 
             {% if page.last_modified_at %}
@@ -108,13 +37,13 @@ layout: default
 
                 <span>
                     Updated
-
-                    <time
-                        datetime="{{ page.last_modified_at | date_to_xmlschema }}"
-                    >
-                        {{ page.last_modified_at | date: "%B %d, %Y" }}
-                    </time>
                 </span>
+
+                <time
+                    datetime="{{ page.last_modified_at | date_to_xmlschema }}"
+                >
+                    {{ page.last_modified_at | date: "%B %d, %Y" }}
+                </time>
             {% endif %}
         </div>
     </header>
@@ -126,8 +55,8 @@ layout: default
         >
             <img
                 src="{{ featured_image | relative_url }}"
-                alt="{{ featured_image_alt | escape }}"
-                data-hide-on-error
+                alt="{{ featured_alt | escape }}"
+                data-hide-broken
                 fetchpriority="high"
             >
         </figure>
@@ -140,31 +69,25 @@ layout: default
     {% if page.previous or page.next %}
         <nav
             class="post-navigation"
-            aria-label="Breakdown navigation"
+            aria-label="Article navigation"
         >
             {% if page.previous %}
                 <a
-                    class="post-navigation-item"
+                    class="post-navigation-card"
                     href="{{ page.previous.url | relative_url }}"
                 >
                     <span>Previous breakdown</span>
-
-                    <strong>
-                        {{ page.previous.title }}
-                    </strong>
+                    <strong>{{ page.previous.title }}</strong>
                 </a>
             {% endif %}
 
             {% if page.next %}
                 <a
-                    class="post-navigation-item post-navigation-item--next"
+                    class="post-navigation-card post-navigation-next"
                     href="{{ page.next.url | relative_url }}"
                 >
                     <span>Next breakdown</span>
-
-                    <strong>
-                        {{ page.next.title }}
-                    </strong>
+                    <strong>{{ page.next.title }}</strong>
                 </a>
             {% endif %}
         </nav>
