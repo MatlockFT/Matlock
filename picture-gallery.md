@@ -1,167 +1,960 @@
 ---
 layout: default
 title: Picture Gallery
+description: "A collection of strange, funny, and memorable photographs from MMA history."
+permalink: /picture-gallery
 ---
-<div class="gallery-container">
-    <h1>Picture Gallery</h1>
-    <div class="gallery-grid">
-        <div class="gallery-item">
-            <img src="/assets/gallery/image1.jpg" alt="Tito Ortiz">
-            <p class="gallery-caption">Tito Ortiz Pretending To Read</p>
+
+<article class="mma-gallery-page">
+    <header class="mma-gallery-hero">
+        <div class="mma-gallery-hero-copy">
+            <p class="eyebrow">
+                The MMA Matlock Archives
+            </p>
+
+            <h1>Picture Gallery</h1>
+
+            <p>
+                Strange outfits, questionable poses, forgotten moments,
+                and other important photographs from MMA history.
+            </p>
         </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image2.jpg" alt="Fedor Emelianenko On A Horse">
-            <p class="gallery-caption">Fedor On A Horse</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image3.jpg" alt="Dana White Beer">
-            <p class="gallery-caption">Dana White Enjoying Some Brewskis</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image4.jpg" alt="Vitor Belfort">
-            <p class="gallery-caption">Vitor Belfort aka Victor Gracie</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image5.jpg" alt="Mirko Filipović">
-            <p class="gallery-caption">Mirko Filipović Playing Football</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image6.jpg" alt="Wanderlei Silva">
-            <p class="gallery-caption">The Axe Murderer</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image7.jpg" alt="Matt Hughes">
-            <p class="gallery-caption">Matt Hughes</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image8.jpg" alt="Rampage Jackson">
-            <p class="gallery-caption">Rampage</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image9.jpg" alt="Chael Sonnen With A Horse">
-            <p class="gallery-caption">Chael Sonnen Next To A Bus</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image10.jpg" alt="H-Bomb">
-            <p class="gallery-caption">Daniel Henderson</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image11.jpg" alt="Joe Rogan">
-            <p class="gallery-caption">Joe Rogan In Black Belt Magazine 2002</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image12.jpg" alt="Dana White's Favorite Sweater">
-            <p class="gallery-caption">Dana White (with hair) and wearing his favorite sweater</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image13.jpg" alt="Dorks From Brazil">
-            <p class="gallery-caption">The Nogueira Brothers</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image14.jpg" alt="Dorks From Brazil">
-            <p class="gallery-caption">The Nogueira Brothers</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image15.jpg" alt="Dorks From Brazil">
-            <p class="gallery-caption">The Nogueira Brothers</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image16.jpg" alt="Sakuraba and Hard Gay">
-            <p class="gallery-caption">SAKURABA & HG (HARD GAY)</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image17.jpg" alt="JOSH BARNETT">
-            <p class="gallery-caption">JOSH BARNETT</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image18.jpg" alt="WANDY AND FEDOR">
-            <p class="gallery-caption">WANDERLEI SILVA AND FEDOR</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image19.jpg" alt="">
-            <p class="gallery-caption">BOB SAPP</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image20.jpg" alt="Placeholder 20">
-            <p class="gallery-caption">IS DANA WHITE AN ENEMY OR AN ALLY?</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image21.jpg" alt="GRACIE, CHOI, LESNAR, MORTON">
-            <p class="gallery-caption">ROYCE GRACIE, HONGMAN CHOI, BROCK LESNAR, JOHNNIE MORTON</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image22.jpg" alt="GENKI SUDO">
-            <p class="gallery-caption">GENKI SUDO</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image23.jpg" alt="Wandi">
-            <p class="gallery-caption">Wanderlei Silva</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image24.jpg" alt="WE ARE ALL ONE">
-            <p class="gallery-caption">Genki Sudo - We Are All One</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image25.jpg" alt="BIG NOG">
-            <p class="gallery-caption">MINOTAURO</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image26.jpg" alt="THE FEW, THE PROUD">
-            <p class="gallery-caption">DANA WHITE</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image27.jpg" alt="Swagor">
-            <p class="gallery-caption">Fedor's Fit Goes Hard</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image28.jpg" alt="Placeholder 28">
-            <p class="gallery-caption">Dana White With Hitler</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image29.jpg" alt="Don Frye">
-            <p class="gallery-caption">American</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image30.jpg" alt="Fedor Reading At His Level">
-            <p class="gallery-caption">Fedor Reading At His Level</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image31.jpg" alt="CroCop">
-            <p class="gallery-caption">Right Leg Hospital</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image32.jpg" alt="Coleman, Tyson, Fedor">
-            <p class="gallery-caption">Mark Coleman, Tyson, and Fedor</p>
-        </div>
-        <div class="gallery-item">
-            <img src="/assets/gallery/image33.jpg" alt="Fedor On A Rollercoaster">
-            <p class="gallery-caption">Fedor On A Rollercoaster</p>
-        </div>
+
+        <aside class="mma-gallery-count">
+            <strong>33</strong>
+            <span>Archive photographs</span>
+        </aside>
+    </header>
+
+    <div class="mma-gallery-toolbar">
+        <p>
+            Select any photograph to enlarge it.
+        </p>
+
+        <button
+            class="mma-gallery-shuffle"
+            id="gallery-shuffle"
+            type="button"
+        >
+            Shuffle the wall
+        </button>
     </div>
+
+    <section
+        class="mma-gallery-grid"
+        id="gallery-grid"
+        aria-label="MMA picture gallery"
+    >
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Tito Ortiz Pretending To Read"
+            >
+                <img
+                    src="/assets/gallery/image1.jpg"
+                    alt="Tito Ortiz pretending to read"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>001</span>
+                <p>Tito Ortiz Pretending To Read</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Fedor On A Horse"
+            >
+                <img
+                    src="/assets/gallery/image2.jpg"
+                    alt="Fedor Emelianenko riding a horse"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>002</span>
+                <p>Fedor On A Horse</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Dana White Enjoying Some Brewskis"
+            >
+                <img
+                    src="/assets/gallery/image3.jpg"
+                    alt="Dana White holding beer"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>003</span>
+                <p>Dana White Enjoying Some Brewskis</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Vitor Belfort aka Victor Gracie"
+            >
+                <img
+                    src="/assets/gallery/image4.jpg"
+                    alt="Vitor Belfort"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>004</span>
+                <p>Vitor Belfort aka Victor Gracie</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Mirko Filipović Playing Football"
+            >
+                <img
+                    src="/assets/gallery/image5.jpg"
+                    alt="Mirko Filipović playing football"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>005</span>
+                <p>Mirko Filipović Playing Football</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge The Axe Murderer"
+            >
+                <img
+                    src="/assets/gallery/image6.jpg"
+                    alt="Wanderlei Silva"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>006</span>
+                <p>The Axe Murderer</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Matt Hughes"
+            >
+                <img
+                    src="/assets/gallery/image7.jpg"
+                    alt="Matt Hughes"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>007</span>
+                <p>Matt Hughes</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Rampage"
+            >
+                <img
+                    src="/assets/gallery/image8.jpg"
+                    alt="Quinton Rampage Jackson"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>008</span>
+                <p>Rampage</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Chael Sonnen Next To A Bus"
+            >
+                <img
+                    src="/assets/gallery/image9.jpg"
+                    alt="Chael Sonnen standing near a bus"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>009</span>
+                <p>Chael Sonnen Next To A Bus</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Daniel Henderson"
+            >
+                <img
+                    src="/assets/gallery/image10.jpg"
+                    alt="Dan Henderson"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>010</span>
+                <p>Daniel Henderson</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Joe Rogan In Black Belt Magazine 2002"
+            >
+                <img
+                    src="/assets/gallery/image11.jpg"
+                    alt="Joe Rogan in Black Belt Magazine in 2002"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>011</span>
+                <p>Joe Rogan In Black Belt Magazine, 2002</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Dana White With Hair And His Favorite Sweater"
+            >
+                <img
+                    src="/assets/gallery/image12.jpg"
+                    alt="Dana White with hair wearing a sweater"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>012</span>
+                <p>Dana White With Hair And His Favorite Sweater</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge The Nogueira Brothers"
+            >
+                <img
+                    src="/assets/gallery/image13.jpg"
+                    alt="The Nogueira brothers"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>013</span>
+                <p>The Nogueira Brothers</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge The Nogueira Brothers"
+            >
+                <img
+                    src="/assets/gallery/image14.jpg"
+                    alt="The Nogueira brothers"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>014</span>
+                <p>The Nogueira Brothers</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge The Nogueira Brothers"
+            >
+                <img
+                    src="/assets/gallery/image15.jpg"
+                    alt="The Nogueira brothers"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>015</span>
+                <p>The Nogueira Brothers</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Sakuraba And Hard Gay"
+            >
+                <img
+                    src="/assets/gallery/image16.jpg"
+                    alt="Kazushi Sakuraba with Hard Gay"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>016</span>
+                <p>Sakuraba &amp; HG (Hard Gay)</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Josh Barnett"
+            >
+                <img
+                    src="/assets/gallery/image17.jpg"
+                    alt="Josh Barnett"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>017</span>
+                <p>Josh Barnett</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Wanderlei Silva And Fedor"
+            >
+                <img
+                    src="/assets/gallery/image18.jpg"
+                    alt="Wanderlei Silva and Fedor Emelianenko"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>018</span>
+                <p>Wanderlei Silva And Fedor</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Bob Sapp"
+            >
+                <img
+                    src="/assets/gallery/image19.jpg"
+                    alt="Bob Sapp"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>019</span>
+                <p>Bob Sapp</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Is Dana White An Enemy Or An Ally"
+            >
+                <img
+                    src="/assets/gallery/image20.jpg"
+                    alt="Dana White photograph"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>020</span>
+                <p>Is Dana White An Enemy Or An Ally?</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Royce Gracie, Hongman Choi, Brock Lesnar, And Johnnie Morton"
+            >
+                <img
+                    src="/assets/gallery/image21.jpg"
+                    alt="Royce Gracie, Hongman Choi, Brock Lesnar, and Johnnie Morton"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>021</span>
+                <p>Royce Gracie, Hongman Choi, Brock Lesnar &amp; Johnnie Morton</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Genki Sudo"
+            >
+                <img
+                    src="/assets/gallery/image22.jpg"
+                    alt="Genki Sudo"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>022</span>
+                <p>Genki Sudo</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Wanderlei Silva"
+            >
+                <img
+                    src="/assets/gallery/image23.jpg"
+                    alt="Wanderlei Silva"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>023</span>
+                <p>Wanderlei Silva</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Genki Sudo We Are All One"
+            >
+                <img
+                    src="/assets/gallery/image24.jpg"
+                    alt="Genki Sudo We Are All One"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>024</span>
+                <p>Genki Sudo — We Are All One</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Minotauro"
+            >
+                <img
+                    src="/assets/gallery/image25.jpg"
+                    alt="Antonio Rodrigo Nogueira"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>025</span>
+                <p>Minotauro</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Dana White"
+            >
+                <img
+                    src="/assets/gallery/image26.jpg"
+                    alt="Dana White"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>026</span>
+                <p>Dana White</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Fedor's Fit Goes Hard"
+            >
+                <img
+                    src="/assets/gallery/image27.jpg"
+                    alt="Fedor Emelianenko wearing a memorable outfit"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>027</span>
+                <p>Fedor's Fit Goes Hard</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Dana White With Hitler"
+            >
+                <img
+                    src="/assets/gallery/image28.jpg"
+                    alt="Dana White image with Adolf Hitler"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>028</span>
+                <p>Dana White With Hitler</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge American"
+            >
+                <img
+                    src="/assets/gallery/image29.jpg"
+                    alt="Don Frye"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>029</span>
+                <p>American</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Fedor Reading At His Level"
+            >
+                <img
+                    src="/assets/gallery/image30.jpg"
+                    alt="Fedor Emelianenko reading"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>030</span>
+                <p>Fedor Reading At His Level</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Right Leg Hospital"
+            >
+                <img
+                    src="/assets/gallery/image31.jpg"
+                    alt="Mirko Cro Cop Filipović"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>031</span>
+                <p>Right Leg Hospital</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Mark Coleman, Mike Tyson, And Fedor"
+            >
+                <img
+                    src="/assets/gallery/image32.jpg"
+                    alt="Mark Coleman, Mike Tyson, and Fedor Emelianenko"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>032</span>
+                <p>Mark Coleman, Tyson, And Fedor</p>
+            </div>
+        </article>
+
+        <article class="mma-gallery-card">
+            <button
+                class="mma-gallery-image-button"
+                type="button"
+                aria-label="Enlarge Fedor On A Rollercoaster"
+            >
+                <img
+                    src="/assets/gallery/image33.jpg"
+                    alt="Fedor Emelianenko on a rollercoaster"
+                    loading="lazy"
+                    decoding="async"
+                >
+            </button>
+
+            <div class="mma-gallery-caption">
+                <span>033</span>
+                <p>Fedor On A Rollercoaster</p>
+            </div>
+        </article>
+    </section>
+</article>
+
+<div
+    class="mma-gallery-lightbox"
+    id="gallery-lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="gallery-lightbox-caption"
+    hidden
+>
+    <button
+        class="mma-gallery-lightbox-close"
+        id="gallery-lightbox-close"
+        type="button"
+        aria-label="Close enlarged photograph"
+    >
+        ×
+    </button>
+
+    <button
+        class="mma-gallery-lightbox-navigation mma-gallery-lightbox-previous"
+        id="gallery-lightbox-previous"
+        type="button"
+        aria-label="Previous photograph"
+    >
+        ‹
+    </button>
+
+    <figure class="mma-gallery-lightbox-content">
+        <div class="mma-gallery-lightbox-image-frame">
+            <img
+                id="gallery-lightbox-image"
+                src=""
+                alt=""
+            >
+        </div>
+
+        <figcaption>
+            <span id="gallery-lightbox-number"></span>
+
+            <strong id="gallery-lightbox-caption"></strong>
+        </figcaption>
+    </figure>
+
+    <button
+        class="mma-gallery-lightbox-navigation mma-gallery-lightbox-next"
+        id="gallery-lightbox-next"
+        type="button"
+        aria-label="Next photograph"
+    >
+        ›
+    </button>
 </div>
-<style>
-    .gallery-container {
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 10px; /* Clean, minimal padding */
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const gallery =
+        document.getElementById('gallery-grid');
+
+    const shuffleButton =
+        document.getElementById('gallery-shuffle');
+
+    const lightbox =
+        document.getElementById('gallery-lightbox');
+
+    const lightboxImage =
+        document.getElementById('gallery-lightbox-image');
+
+    const lightboxCaption =
+        document.getElementById('gallery-lightbox-caption');
+
+    const lightboxNumber =
+        document.getElementById('gallery-lightbox-number');
+
+    const closeButton =
+        document.getElementById('gallery-lightbox-close');
+
+    const previousButton =
+        document.getElementById('gallery-lightbox-previous');
+
+    const nextButton =
+        document.getElementById('gallery-lightbox-next');
+
+    let currentCard = null;
+    let previouslyFocusedElement = null;
+
+    function getCards() {
+        return Array.from(
+            gallery.querySelectorAll('.mma-gallery-card')
+        );
     }
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* Fixed 3 per line */
-        gap: 15px; /* Moderate gap for clean spacing */
+
+    function openLightbox(card) {
+        const image = card.querySelector('img');
+        const caption =
+            card.querySelector('.mma-gallery-caption p');
+        const number =
+            card.querySelector('.mma-gallery-caption span');
+
+        currentCard = card;
+        previouslyFocusedElement =
+            document.activeElement;
+
+        lightboxImage.src = image.src;
+        lightboxImage.alt = image.alt;
+        lightboxCaption.textContent =
+            caption.textContent;
+        lightboxNumber.textContent =
+            `Archive ${number.textContent}`;
+
+        lightbox.hidden = false;
+        document.body.classList.add(
+            'gallery-lightbox-open'
+        );
+
+        closeButton.focus();
     }
-    .gallery-item {
-        text-align: center;
+
+    function closeLightbox() {
+        lightbox.hidden = true;
+        lightboxImage.src = '';
+        currentCard = null;
+
+        document.body.classList.remove(
+            'gallery-lightbox-open'
+        );
+
+        if (previouslyFocusedElement) {
+            previouslyFocusedElement.focus();
+        }
     }
-    .gallery-item img {
-        max-width: 100%;
-        height: auto;
-        border: 1px solid #BBB; /* Thin border for neatness */
+
+    function moveLightbox(direction) {
+        const cards = getCards();
+        const currentIndex =
+            cards.indexOf(currentCard);
+
+        if (currentIndex === -1) {
+            return;
+        }
+
+        let nextIndex =
+            currentIndex + direction;
+
+        if (nextIndex < 0) {
+            nextIndex = cards.length - 1;
+        }
+
+        if (nextIndex >= cards.length) {
+            nextIndex = 0;
+        }
+
+        openLightbox(cards[nextIndex]);
     }
-    .gallery-caption {
-        margin: 5px 0 0; /* Small margin for clean text placement */
-        font-family: 'GOBOLD', Impact, Verdana, sans-serif;
-        color: #F5F5F5;
-        font-size: 14px; /* Compact font size */
-    }
-</style>
+
+    getCards().forEach(card => {
+        const imageButton =
+            card.querySelector(
+                '.mma-gallery-image-button'
+            );
+
+        const image =
+            card.querySelector('img');
+
+        imageButton.addEventListener(
+            'click',
+            () => openLightbox(card)
+        );
+
+        image.addEventListener('error', () => {
+            card.classList.add(
+                'mma-gallery-card--missing'
+            );
+
+            imageButton.disabled = true;
+        });
+    });
+
+    shuffleButton.addEventListener('click', () => {
+        const cards = getCards();
+
+        for (
+            let index = cards.length - 1;
+            index > 0;
+            index -= 1
+        ) {
+            const randomIndex =
+                Math.floor(
+                    Math.random() * (index + 1)
+                );
+
+            [
+                cards[index],
+                cards[randomIndex]
+            ] = [
+                cards[randomIndex],
+                cards[index]
+            ];
+        }
+
+        cards.forEach(card => {
+            gallery.appendChild(card);
+        });
+
+        shuffleButton.textContent =
+            'Wall shuffled';
+
+        window.setTimeout(() => {
+            shuffleButton.textContent =
+                'Shuffle the wall';
+        }, 1200);
+    });
+
+    closeButton.addEventListener(
+        'click',
+        closeLightbox
+    );
+
+    previousButton.addEventListener(
+        'click',
+        () => moveLightbox(-1)
+    );
+
+    nextButton.addEventListener(
+        'click',
+        () => moveLightbox(1)
+    );
+
+    lightbox.addEventListener('click', event => {
+        if (event.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    document.addEventListener('keydown', event => {
+        if (lightbox.hidden) {
+            return;
+        }
+
+        if (event.key === 'Escape') {
+            closeLightbox();
+        }
+
+        if (event.key === 'ArrowLeft') {
+            moveLightbox(-1);
+        }
+
+        if (event.key === 'ArrowRight') {
+            moveLightbox(1);
+        }
+    });
+});
+</script>
