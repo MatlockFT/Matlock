@@ -1,8 +1,21 @@
 ---
-title: "Pereira vs. Ankalaev"
+layout: post
+title: "UFC 313: Pereira vs. Ankalaev | Breakdown & Prediction"
+description: "An interesting matchup taking place in the light heavyweight
+  division between Pereira and Ankalaev for UFC 313's main event. "
 date: 2025-02-20
+category: Breakdown
+author: MMA Matlock
+image:
+  path: /assets/uploads/magomed.png
+  alt: Magomed Ankalaev looks to take the UFC Light Heavyweight title
+tags:
+  - Magomed Ankalaev
+  - Alex Pereira
+  - Light Heavyweight
+last_modified_at: 2026-07-26
+published: true
 ---
-
 UFC 313 delivers a matchup many fans have been clamoring for: Alex Pereira facing a "wrestler" in Magomed Ankalaev. With a name that phonetically echoes the relentless Dagestani wrestlers who charge their opponents and dominate them on the mat, Ankalaev might seem like that kind of fighter at first glance. However, that’s not quite the case, and he may not be the overwhelming, mat-mauling wrestler that casual to semi-knowledgeable fans might expect.
 
 Magomed is perfectly content kickboxing at mid-range. He primarily fights from a southpaw stance unless he’s up against another southpaw, in which case he switches to orthodox. His arsenal includes a rear-leg front kick (or teep), a solid jab, a sneaky-fast left straight, and effective inside body kicks. He also loves to test his opponent’s guard with a quick rear-leg head kick. As a pressure fighter, he engages just enough to bait his opponent into blitzing forward—and that’s where Magomed excels. When his opponent takes the bait and throws combinations while advancing, Magomed slides back out of range as the punches miss, then counters with a lead check right hook to the jaw followed by a left. Once those shots land and his opponent tries to reset, he’ll unleash that head kick. Rinse and repeat.
