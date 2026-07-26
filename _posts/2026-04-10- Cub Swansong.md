@@ -8,6 +8,11 @@ author: MMA Matlock
 image:
   path: /assets/uploads/ufc-327.jpg
   alt: Cub Swason's final UFC fight
+tags:
+  - Jiří Procházka
+  - Carlos Ulberg
+  - Cub Swanson
+  - UFC 327
 last_modified_at: 2026-07-26
 published: true
 ---
