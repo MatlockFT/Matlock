@@ -9,46 +9,30 @@ permalink: /
 
 <div class="homepage">
     {% if latest_post %}
-        {% assign latest_image = nil %}
-        {% assign latest_image_alt = latest_post.image_alt | default: latest_post.title %}
+        {% assign latest_image = latest_post.image.path | default: latest_post.image %}
+        {% assign latest_alt = latest_post.image.alt | default: latest_post.image_alt | default: latest_post.title %}
 
-        {% if latest_post.image %}
-            {% if latest_post.image.path %}
-                {% assign latest_image = latest_post.image.path %}
-
-                {% if latest_post.image.alt %}
-                    {% assign latest_image_alt = latest_post.image.alt %}
-                {% endif %}
-            {% else %}
-                {% assign latest_image = latest_post.image %}
-            {% endif %}
-        {% endif %}
-
-        <section
-            class="featured-section"
-            aria-labelledby="latest-breakdown-title"
-        >
+        <section class="featured-section">
             <article
-                class="featured-article{% if latest_image %} featured-article--with-image{% endif %}"
+                class="featured-article{% if latest_image %} featured-article-with-image{% endif %}"
             >
                 {% if latest_image %}
                     <a
-                        class="featured-media"
+                        class="featured-image"
                         href="{{ latest_post.url | relative_url }}"
-                        aria-label="Read {{ latest_post.title | escape }}"
                         data-image-shell
                     >
                         <img
                             src="{{ latest_image | relative_url }}"
-                            alt="{{ latest_image_alt | escape }}"
-                            data-hide-on-error
+                            alt="{{ latest_alt | escape }}"
+                            data-hide-broken
                             fetchpriority="high"
                         >
                     </a>
                 {% endif %}
 
                 <div class="featured-content">
-                    <p class="article-eyebrow">
+                    <p class="eyebrow">
                         Latest breakdown
                     </p>
 
@@ -60,20 +44,20 @@ permalink: /
                         </time>
                     </p>
 
-                    <h1 id="latest-breakdown-title">
+                    <h1>
                         <a href="{{ latest_post.url | relative_url }}">
                             {{ latest_post.title }}
                         </a>
                     </h1>
 
-                    <p class="featured-summary">
+                    <p class="featured-description">
                         {% if latest_post.description %}
                             {{ latest_post.description }}
                         {% else %}
                             {{ latest_post.excerpt
                                 | strip_html
                                 | normalize_whitespace
-                                | truncate: 260
+                                | truncate: 250
                             }}
                         {% endif %}
                     </p>
@@ -87,108 +71,76 @@ permalink: /
                 </div>
             </article>
         </section>
-    {% else %}
-        <section class="homepage-empty">
-            <h1>MMA Matlock</h1>
-
-            <p>
-                The first breakdown is coming soon.
-            </p>
-        </section>
     {% endif %}
 
     <aside class="banner-ad" aria-label="Advertisement">
-        <span class="banner-ad-label">
+        <span class="ad-label">
             Advertisement
         </span>
 
-        <div class="banner-ad-slot">
+        <div class="banner-ad-inner">
             {% if site.adsense.banner_slot and site.adsense.banner_slot != "" %}
                 <ins
-                    class="adsbygoogle mma-banner-ad"
+                    class="adsbygoogle responsive-ad"
                     data-ad-client="{{ site.adsense.client }}"
                     data-ad-slot="{{ site.adsense.banner_slot }}"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"
                 ></ins>
 
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             {% else %}
-                <div class="banner-ad-placeholder">
-                    <strong>Banner ad reserved</strong>
-
-                    <span>
-                        Add your AdSense slot ID in _config.yml
-                    </span>
-                </div>
+                <span class="ad-placeholder">
+                    Advertisement space
+                </span>
             {% endif %}
         </div>
     </aside>
 
     {% if site.posts.size > 1 %}
-        <section
-            class="recent-breakdowns"
-            aria-labelledby="recent-breakdowns-title"
-        >
-            <div class="section-header">
+        <section class="latest-section">
+            <header class="section-header">
                 <div>
-                    <p class="section-eyebrow">
+                    <p class="eyebrow">
                         Recent coverage
                     </p>
 
-                    <h2 id="recent-breakdowns-title">
+                    <h2>
                         Latest Breakdowns
                     </h2>
                 </div>
 
-                <a
-                    class="section-link"
-                    href="{{ '/breakdowns/' | relative_url }}"
-                >
+                <a href="{{ '/breakdowns/' | relative_url }}">
                     View all
                 </a>
-            </div>
+            </header>
 
             <div class="article-grid">
                 {% for post in site.posts offset: 1 limit: 6 %}
-                    {% assign post_image = nil %}
-                    {% assign post_image_alt = post.image_alt | default: post.title %}
-
-                    {% if post.image %}
-                        {% if post.image.path %}
-                            {% assign post_image = post.image.path %}
-
-                            {% if post.image.alt %}
-                                {% assign post_image_alt = post.image.alt %}
-                            {% endif %}
-                        {% else %}
-                            {% assign post_image = post.image %}
-                        {% endif %}
-                    {% endif %}
+                    {% assign post_image = post.image.path | default: post.image %}
+                    {% assign post_alt = post.image.alt | default: post.image_alt | default: post.title %}
 
                     <article class="article-card">
                         {% if post_image %}
                             <a
-                                class="article-card-media"
+                                class="article-card-image"
                                 href="{{ post.url | relative_url }}"
-                                aria-label="Read {{ post.title | escape }}"
                                 data-image-shell
                             >
                                 <img
                                     src="{{ post_image | relative_url }}"
-                                    alt="{{ post_image_alt | escape }}"
-                                    data-hide-on-error
+                                    alt="{{ post_alt | escape }}"
+                                    data-hide-broken
                                     loading="lazy"
-                                    decoding="async"
                                 >
                             </a>
                         {% endif %}
 
                         <div class="article-card-content">
                             <p class="article-date">
-                                <time
-                                    datetime="{{ post.date | date_to_xmlschema }}"
-                                >
+                                <time datetime="{{ post.date | date_to_xmlschema }}">
                                     {{ post.date | date: "%B %d, %Y" }}
                                 </time>
                             </p>
@@ -199,20 +151,20 @@ permalink: /
                                 </a>
                             </h3>
 
-                            <p class="article-card-summary">
+                            <p>
                                 {% if post.description %}
                                     {{ post.description }}
                                 {% else %}
                                     {{ post.excerpt
                                         | strip_html
                                         | normalize_whitespace
-                                        | truncate: 170
+                                        | truncate: 160
                                     }}
                                 {% endif %}
                             </p>
 
                             <a
-                                class="text-link"
+                                class="card-link"
                                 href="{{ post.url | relative_url }}"
                             >
                                 Read breakdown
