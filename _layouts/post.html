@@ -129,6 +129,95 @@ layout: default
     <div class="post-body">
         {{ content }}
     </div>
+    {% assign share_url = page.url | absolute_url %}
+{% assign share_title =
+    page.title
+    | append: " | "
+    | append: site.title
+%}
+
+<section
+    class="post-share"
+    aria-labelledby="post-share-title"
+    data-post-share
+    data-share-url="{{ share_url | escape }}"
+    data-share-title="{{ share_title | escape }}"
+>
+    <div class="post-share-heading">
+        <div>
+            <p class="eyebrow">
+                Share this article
+            </p>
+
+            <h2 id="post-share-title">
+                Pass It Along
+            </h2>
+        </div>
+
+        <p>
+            Share this breakdown or copy its direct link.
+        </p>
+    </div>
+
+    <div class="post-share-actions">
+        <button
+            class="post-share-button post-native-share"
+            type="button"
+            data-native-share
+            hidden
+        >
+            Share
+        </button>
+
+        <a
+            class="post-share-button"
+            href="https://x.com/intent/tweet?text={{ share_title | url_encode }}&url={{ share_url | url_encode }}&via={{ site.twitter.username | remove: '@' | url_encode }}"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            X
+        </a>
+
+        <a
+            class="post-share-button"
+            href="https://www.facebook.com/sharer/sharer.php?u={{ share_url | url_encode }}"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Facebook
+        </a>
+
+        <a
+            class="post-share-button"
+            href="https://www.reddit.com/submit?url={{ share_url | url_encode }}&title={{ share_title | url_encode }}"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Reddit
+        </a>
+
+        <a
+            class="post-share-button"
+            href="mailto:?subject={{ share_title | url_encode }}&body={{ share_url | url_encode }}"
+        >
+            Email
+        </a>
+
+        <button
+            class="post-share-button"
+            type="button"
+            data-copy-link
+        >
+            Copy link
+        </button>
+    </div>
+
+    <p
+        class="post-share-status"
+        data-share-status
+        aria-live="polite"
+    ></p>
+</section>
 
     <footer class="post-footer">
         {% if page.tags and page.tags.size > 0 %}
