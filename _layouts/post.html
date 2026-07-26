@@ -2,11 +2,23 @@
 layout: default
 ---
 
-<article class="blog-post blog-post-layout">
-    <nav
-        class="breadcrumbs"
-        aria-label="Breadcrumb"
-    >
+{% assign featured_image = nil %}
+{% assign featured_image_alt = page.title %}
+
+{% if page.image %}
+    {% if page.image.path %}
+        {% assign featured_image = page.image.path %}
+
+        {% if page.image.alt %}
+            {% assign featured_image_alt = page.image.alt %}
+        {% endif %}
+    {% else %}
+        {% assign featured_image = page.image %}
+    {% endif %}
+{% endif %}
+
+<article class="post-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
         <ol
             itemscope
             itemtype="https://schema.org/BreadcrumbList"
@@ -35,10 +47,10 @@ layout: default
             >
                 <a
                     itemprop="item"
-                    href="{{ '/matlockpapers' | relative_url }}"
+                    href="{{ '/breakdowns/' | relative_url }}"
                 >
                     <span itemprop="name">
-                        The Matlock Papers
+                        Breakdowns
                     </span>
                 </a>
 
@@ -65,40 +77,44 @@ layout: default
         </ol>
     </nav>
 
-    <header class="blog-post-header">
-        <h1>{{ page.title }}</h1>
+    <header class="post-header">
+        <p class="article-eyebrow">
+            MMA breakdown
+        </p>
+
+        <h1>
+            {{ page.title }}
+        </h1>
 
         {% if page.description %}
-            <p class="post-deck">
+            <p class="post-description">
                 {{ page.description }}
             </p>
         {% endif %}
 
         <div class="post-meta">
-            <span class="post-author">
+            <span>
                 By {{ page.author | default: site.author.name }}
             </span>
 
             {% if page.date %}
-                <span class="post-meta-divider" aria-hidden="true">
-                    ·
-                </span>
+                <span aria-hidden="true">•</span>
 
-                <span class="post-date">
+                <span>
                     Published
 
-                    <time datetime="{{ page.date | date_to_xmlschema }}">
+                    <time
+                        datetime="{{ page.date | date_to_xmlschema }}"
+                    >
                         {{ page.date | date: "%B %d, %Y" }}
                     </time>
                 </span>
             {% endif %}
 
             {% if page.last_modified_at %}
-                <span class="post-meta-divider" aria-hidden="true">
-                    ·
-                </span>
+                <span aria-hidden="true">•</span>
 
-                <span class="post-updated">
+                <span>
                     Updated
 
                     <time
@@ -111,67 +127,45 @@ layout: default
         </div>
     </header>
 
-    <div class="blog-post-body">
+    {% if featured_image %}
+        <figure class="post-featured-image" data-image-shell>
+            <img
+                src="{{ featured_image | relative_url }}"
+                alt="{{ featured_image_alt | escape }}"
+                data-hide-on-error
+                fetchpriority="high"
+            >
+        </figure>
+    {% endif %}
+
+    <div class="post-body">
         {{ content }}
     </div>
 
     {% if page.previous or page.next %}
         <nav
             class="post-navigation"
-            aria-label="Article navigation"
+            aria-label="Breakdown navigation"
         >
             {% if page.previous %}
-                <div class="previous-post">
-                    <span class="post-navigation-label">
-                        Previous article
-                    </span>
-
-                    <a href="{{ page.previous.url | relative_url }}">
-                        {{ page.previous.title }}
-                    </a>
-                </div>
+                <a
+                    class="post-navigation-item"
+                    href="{{ page.previous.url | relative_url }}"
+                >
+                    <span>Previous breakdown</span>
+                    <strong>{{ page.previous.title }}</strong>
+                </a>
             {% endif %}
 
             {% if page.next %}
-                <div class="next-post">
-                    <span class="post-navigation-label">
-                        Next article
-                    </span>
-
-                    <a href="{{ page.next.url | relative_url }}">
-                        {{ page.next.title }}
-                    </a>
-                </div>
+                <a
+                    class="post-navigation-item post-navigation-item--next"
+                    href="{{ page.next.url | relative_url }}"
+                >
+                    <span>Next breakdown</span>
+                    <strong>{{ page.next.title }}</strong>
+                </a>
             {% endif %}
         </nav>
-    {% endif %}
-
-    {% if site.related_posts.size > 0 %}
-        <aside
-            class="related-posts"
-            aria-labelledby="related-posts-title"
-        >
-            <h2 id="related-posts-title">
-                More Fight Analysis
-            </h2>
-
-            <ul>
-                {% for related_post in site.related_posts limit: 3 %}
-                    <li>
-                        <a href="{{ related_post.url | relative_url }}">
-                            {{ related_post.title }}
-                        </a>
-
-                        {% if related_post.date %}
-                            <time
-                                datetime="{{ related_post.date | date_to_xmlschema }}"
-                            >
-                                {{ related_post.date | date: "%B %d, %Y" }}
-                            </time>
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
-        </aside>
     {% endif %}
 </article>
