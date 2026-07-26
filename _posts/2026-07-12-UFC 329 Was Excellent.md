@@ -7,8 +7,9 @@ date: 2026-07-12
 category: Opinion
 author: MMA Matlock
 image:
-  path: /assets/uploads/conor.webp
-  alt: Conor McGregor collapsing to the canvas unable to stand on his leg.
+  path: /assets/uploads/mcgregor.png
+  alt: " Conor McGregor collapsing to the canvas unable to stand on his leg. It
+    was God's plan."
 tags:
   - UFC 329
   - Conor McGregor
