@@ -1,8 +1,9 @@
 ---
 layout: post
 title: UFC VEGAS 114 | The State of Heavyweight
-description: "The heavyweight division has some things to look forward to but
-  right now? It's terrible. "
+description: >
+  The heavyweight division has some promising things on the horizon, but right
+  now, it’s in terrible shape.
 date: 2026-03-14
 category: Opinion
 author: MMA Matlock
