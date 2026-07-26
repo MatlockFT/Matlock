@@ -55,11 +55,7 @@ For Ian Garry, capturing the title would be a monumental achievement, making him
 
 ### Striking
 
-Garry has the size, reach and volume advantage. He’ll look to stay long, use kicks and a lot of lateral movement, changing directs to keep Islam moving and not settlingo
-
-
-
-&nbsp;
+Garry has the size, reach and volume advantage. He’ll look to stay long, use kicks and a lot of lateral movement, changing directs to keep Islam moving and not settling.
 
 Islam is less active but more efficient, and his left hand becomes more dangerous because Garry has to worry about the takedown. 
 
