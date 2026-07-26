@@ -1,22 +1,17 @@
 ---
 layout: default
 title: "MMA Breakdowns"
-description: "Browse UFC and MMA technical breakdowns, fight predictions, event analysis, and opinions from MMA Matlock."
+description: "Browse UFC and MMA technical breakdowns, predictions, event analysis, and opinions from MMA Matlock."
 permalink: /breakdowns/
-redirect_from:
-  - /matlockpapers
-  - /matlockpapers/
 ---
 
 <section class="archive-page">
     <header class="archive-header">
-        <p class="section-eyebrow">
+        <p class="eyebrow">
             MMA Matlock
         </p>
 
-        <h1>
-            Breakdowns
-        </h1>
+        <h1>Breakdowns</h1>
 
         <p>
             UFC and MMA analysis, fight predictions, technical observations,
@@ -25,46 +20,30 @@ redirect_from:
     </header>
 
     {% if site.posts.size > 0 %}
-        <div class="article-grid article-grid--archive">
+        <div class="article-grid">
             {% for post in site.posts %}
-                {% assign post_image = nil %}
-                {% assign post_image_alt = post.title %}
-
-                {% if post.image %}
-                    {% if post.image.path %}
-                        {% assign post_image = post.image.path %}
-
-                        {% if post.image.alt %}
-                            {% assign post_image_alt = post.image.alt %}
-                        {% endif %}
-                    {% else %}
-                        {% assign post_image = post.image %}
-                    {% endif %}
-                {% endif %}
+                {% assign post_image = post.image.path | default: post.image %}
+                {% assign post_alt = post.image.alt | default: post.image_alt | default: post.title %}
 
                 <article class="article-card">
                     {% if post_image %}
                         <a
-                            class="article-card-media"
+                            class="article-card-image"
                             href="{{ post.url | relative_url }}"
-                            aria-label="Read {{ post.title | escape }}"
                             data-image-shell
                         >
                             <img
                                 src="{{ post_image | relative_url }}"
-                                alt="{{ post_image_alt | escape }}"
-                                data-hide-on-error
+                                alt="{{ post_alt | escape }}"
+                                data-hide-broken
                                 loading="lazy"
-                                decoding="async"
                             >
                         </a>
                     {% endif %}
 
                     <div class="article-card-content">
                         <p class="article-date">
-                            <time
-                                datetime="{{ post.date | date_to_xmlschema }}"
-                            >
+                            <time datetime="{{ post.date | date_to_xmlschema }}">
                                 {{ post.date | date: "%B %d, %Y" }}
                             </time>
                         </p>
@@ -75,20 +54,20 @@ redirect_from:
                             </a>
                         </h2>
 
-                        <p class="article-card-summary">
+                        <p>
                             {% if post.description %}
                                 {{ post.description }}
                             {% else %}
                                 {{ post.excerpt
                                     | strip_html
                                     | normalize_whitespace
-                                    | truncate: 180
+                                    | truncate: 170
                                 }}
                             {% endif %}
                         </p>
 
                         <a
-                            class="text-link"
+                            class="card-link"
                             href="{{ post.url | relative_url }}"
                         >
                             Read breakdown
@@ -98,8 +77,6 @@ redirect_from:
             {% endfor %}
         </div>
     {% else %}
-        <p>
-            No breakdowns have been published yet.
-        </p>
+        <p>No breakdowns have been published yet.</p>
     {% endif %}
 </section>
