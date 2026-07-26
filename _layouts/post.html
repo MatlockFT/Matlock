@@ -4,28 +4,77 @@ layout: default
 
 {% assign featured_image = page.image.path | default: page.image %}
 {% assign featured_alt = page.image.alt | default: page.image_alt | default: page.title %}
+{% assign featured_width = page.image.width %}
+{% assign featured_height = page.image.height %}
+{% assign featured_caption = page.image.caption | default: page.image_caption %}
 
-<article class="post-page">
+{% assign post_author = page.author.name | default: page.author | default: site.author.name %}
+
+<article
+    class="post-page"
+    aria-labelledby="post-title"
+>
+    <nav
+        class="post-breadcrumbs"
+        aria-label="Breadcrumb"
+    >
+        <ol>
+            <li>
+                <a href="{{ '/' | relative_url }}">
+                    Home
+                </a>
+            </li>
+
+            <li aria-hidden="true">
+                /
+            </li>
+
+            <li>
+                <a href="{{ '/breakdowns/' | relative_url }}">
+                    Breakdowns
+                </a>
+            </li>
+
+            <li aria-hidden="true">
+                /
+            </li>
+
+            <li aria-current="page">
+                {{ page.title }}
+            </li>
+        </ol>
+    </nav>
+
     <header class="post-header">
         <p class="eyebrow">
-            MMA breakdown
+            {% if page.category %}
+                {{ page.category }}
+            {% elsif page.categories and page.categories.size > 0 %}
+                {{ page.categories | first }}
+            {% else %}
+                MMA breakdown
+            {% endif %}
         </p>
 
-        <h1>{{ page.title }}</h1>
+        <h1 id="post-title">
+            {{ page.title }}
+        </h1>
 
         {% if page.description %}
             <p class="post-description">
-                {{ page.description }}
+                {{ page.description | strip_html }}
             </p>
         {% endif %}
 
         <div class="post-meta">
             <span>
-                By {{ page.author | default: site.author.name }}
+                By {{ post_author }}
             </span>
 
             {% if page.date %}
-                <span aria-hidden="true">•</span>
+                <span aria-hidden="true">
+                    •
+                </span>
 
                 <time datetime="{{ page.date | date_to_xmlschema }}">
                     {{ page.date | date: "%B %d, %Y" }}
@@ -33,7 +82,9 @@ layout: default
             {% endif %}
 
             {% if page.last_modified_at %}
-                <span aria-hidden="true">•</span>
+                <span aria-hidden="true">
+                    •
+                </span>
 
                 <span>
                     Updated
@@ -56,9 +107,22 @@ layout: default
             <img
                 src="{{ featured_image | relative_url }}"
                 alt="{{ featured_alt | escape }}"
+                {% if featured_width %}
+                    width="{{ featured_width }}"
+                {% endif %}
+                {% if featured_height %}
+                    height="{{ featured_height }}"
+                {% endif %}
                 data-hide-broken
                 fetchpriority="high"
+                decoding="async"
             >
+
+            {% if featured_caption %}
+                <figcaption>
+                    {{ featured_caption }}
+                </figcaption>
+            {% endif %}
         </figure>
     {% endif %}
 
@@ -66,18 +130,127 @@ layout: default
         {{ content }}
     </div>
 
+    <footer class="post-footer">
+        {% if page.tags and page.tags.size > 0 %}
+            <section
+                class="post-topics"
+                aria-labelledby="post-topics-title"
+            >
+                <h2 id="post-topics-title">
+                    Topics
+                </h2>
+
+                <ul>
+                    {% for tag in page.tags %}
+                        <li>
+                            {{ tag }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+        {% endif %}
+
+        <div class="post-archive-link">
+            <p>
+                Browse more original UFC and MMA analysis from MMA Matlock.
+            </p>
+
+            <a
+                class="primary-button"
+                href="{{ '/breakdowns/' | relative_url }}"
+            >
+                View all breakdowns
+            </a>
+        </div>
+    </footer>
+
+    {% if site.related_posts and site.related_posts.size > 0 %}
+        <section
+            class="related-breakdowns"
+            aria-labelledby="related-breakdowns-title"
+        >
+            <header class="section-header">
+                <div>
+                    <p class="eyebrow">
+                        Keep reading
+                    </p>
+
+                    <h2 id="related-breakdowns-title">
+                        Related Breakdowns
+                    </h2>
+                </div>
+
+                <a href="{{ '/breakdowns/' | relative_url }}">
+                    View all
+                </a>
+            </header>
+
+            <div class="article-grid">
+                {% for related_post in site.related_posts limit: 3 %}
+                    <article class="article-card">
+                        <div class="article-card-content">
+                            <p class="article-date">
+                                <time
+                                    datetime="{{ related_post.date | date_to_xmlschema }}"
+                                >
+                                    {{ related_post.date | date: "%B %d, %Y" }}
+                                </time>
+                            </p>
+
+                            <h3>
+                                <a href="{{ related_post.url | relative_url }}">
+                                    {{ related_post.title }}
+                                </a>
+                            </h3>
+
+                            {% if related_post.description %}
+                                <p>
+                                    {{ related_post.description
+                                        | strip_html
+                                        | truncate: 160
+                                    }}
+                                </p>
+                            {% elsif related_post.excerpt %}
+                                <p>
+                                    {{ related_post.excerpt
+                                        | strip_html
+                                        | normalize_whitespace
+                                        | truncate: 160
+                                    }}
+                                </p>
+                            {% endif %}
+
+                            <a
+                                class="card-link"
+                                href="{{ related_post.url | relative_url }}"
+                                aria-label="Read {{ related_post.title | escape }}"
+                            >
+                                Read breakdown
+                            </a>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+
     {% if page.previous or page.next %}
         <nav
             class="post-navigation"
-            aria-label="Article navigation"
+            aria-label="Previous and next breakdowns"
         >
             {% if page.previous %}
                 <a
                     class="post-navigation-card"
                     href="{{ page.previous.url | relative_url }}"
                 >
-                    <span>Previous breakdown</span>
-                    <strong>{{ page.previous.title }}</strong>
+                    <span>
+                        Older breakdown
+                    </span>
+
+                    <strong>
+                        {{ page.previous.title }}
+                    </strong>
                 </a>
             {% endif %}
 
@@ -86,8 +259,13 @@ layout: default
                     class="post-navigation-card post-navigation-next"
                     href="{{ page.next.url | relative_url }}"
                 >
-                    <span>Next breakdown</span>
-                    <strong>{{ page.next.title }}</strong>
+                    <span>
+                        Newer breakdown
+                    </span>
+
+                    <strong>
+                        {{ page.next.title }}
+                    </strong>
                 </a>
             {% endif %}
         </nav>
