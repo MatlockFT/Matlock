@@ -18,7 +18,7 @@ tags:
 last_modified_at: 2026-07-26
 published: true
 ---
-UFC Freedom 250 at the White House: Full Card Preview and Predictions
+# UFC Freedom 250 at the White House: Full Card Preview and Predictions
 
 UFC Freedom 250 takes place this Sunday at one of the most unusual venues in combat sports history: the White House lawn.
 
@@ -50,7 +50,7 @@ New viewers may also discover that MMA can look remarkably homoerotic at times. 
 
 With all the ceremony and political discussion out of the way, let us move to the subject that has received surprisingly little attention: the fights.
 
-Ilia Topuria vs. Justin Gaethje
+## Ilia Topuria vs. Justin Gaethje
 
 The main event features Ilia Topuria against Justin Gaethje in what is being promoted as a lightweight title-unification bout.
 
@@ -88,9 +88,9 @@ Topuria has reportedly predicted a first-round knockout. I believe he wins, but 
 
 This is an excellent main event, even though I still believe Arman Tsarukyan should be occupying this position.
 
-Prediction: Ilia Topuria by knockout in Round 2 or Round 3.
+**Prediction: Ilia Topuria by knockout in Round 2 or Round 3.**
 
-Alex Pereira vs. Ciryl Gane
+## Alex Pereira vs. Ciryl Gane
 
 In the co-main event, Alex “Poatan” Pereira moves to heavyweight to face Ciryl Gane for the interim heavyweight championship.
 
@@ -120,9 +120,9 @@ I expect Gane to accumulate damage and eventually land something devastating fro
 
 This may be the fight I am anticipating most, partly because Pereira’s walkout is one of the best in combat sports. Hearing Sepultura played at the White House would be undeniably cold.
 
-Prediction: Ciryl Gane by knockout or technical knockout in Round 3.
+**Prediction: Ciryl Gane by knockout or technical knockout in Round 3.**
 
-Sean O’Malley vs. Aiemann Zahabi
+## Sean O’Malley vs. Aiemann Zahabi
 
 Sean O’Malley enters his fight against Aiemann Zahabi as a substantial favorite.
 
@@ -138,9 +138,9 @@ Zahabi and his brother, Firas, are capable of constructing an effective game pla
 
 Ultimately, however, I expect O’Malley’s length, movement, and defensive awareness to carry him to a decision victory.
 
-Prediction: Sean O’Malley by decision.
+**Prediction: Sean O’Malley by decision.**
 
-Derrick Lewis vs. Josh Hokit
+## Derrick Lewis vs. Josh Hokit
 
 Donald Trump’s favorite fighter, Derrick Lewis, faces Josh Hokit, who may replace Lewis as Trump’s favorite fighter by the end of Sunday night.
 
@@ -162,9 +162,9 @@ The rear-naked choke may sound a little too homoerotic for all the new viewers, 
 
 I will go with the traditional option.
 
-Prediction: Josh Hokit by rear-naked choke in Round 1.
+**Prediction: Josh Hokit by rear-naked choke in Round 1.**
 
-Michael Chandler vs. Mauricio Ruffy
+## Michael Chandler vs. Mauricio Ruffy
 
 Michael Chandler wants to be Donald Trump’s favorite fighter, but he is not. He also wants to fight Conor McGregor, but apparently that is not happening either.
 
@@ -186,9 +186,9 @@ History suggests that he will eventually abandon the safest strategy and enter a
 
 Unless Chandler has substantially increased his dosage of American-made freedom supplements, I expect Ruffy to finish him.
 
-Prediction: Mauricio Ruffy by technical knockout in Round 2.
+**Prediction: Mauricio Ruffy by technical knockout in Round 2.**
 
-Bo Nickal vs. Kyle Daukaus
+## Bo Nickal vs. Kyle Daukaus
 
 The card also includes another candidate for Donald Trump’s favorite fighter: Bo Nickal.
 
@@ -226,9 +226,9 @@ This is one of the best and most logical matchups on the card. Picking the under
 
 I believe Daukaus can hurt Nickal on the feet, force a desperate wrestling exchange, and attack his neck during the transition.
 
-Prediction: Kyle Daukaus by submission in Round 2.
+**Prediction: Kyle Daukaus by submission in Round 2.**
 
-Diego Lopes vs. Steve Garcia
+## Diego Lopes vs. Steve Garcia
 
 The opening fight of the White House card features Diego Lopes against Steve Garcia.
 
@@ -260,9 +260,9 @@ I believe the fight reaches the scorecards, with damage serving as the deciding 
 
 Regardless of the result, this is an excellent matchup and an ideal way to start the event.
 
-Prediction: Diego Lopes by decision.
+**Prediction: Diego Lopes by decision.**
 
-Final Thoughts
+## Final Thoughts
 
 UFC Freedom 250 is unquestionably a historic event.
 
