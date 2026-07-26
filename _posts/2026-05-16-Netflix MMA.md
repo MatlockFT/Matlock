@@ -5,7 +5,7 @@ description: Anytime casual observers or first-titme MMA watchers tune into
   major fights, they tend to believe things are fake and fixed. No... sometimes
   its just that bad.
 date: 2026-05-16
-category: Breakdown
+category: Opinion
 author: MMA Matlock
 image:
   path: /assets/uploads/rondarousey.jpg
