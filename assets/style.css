@@ -5362,13 +5362,13 @@ select:focus-visible {
         width: 100%;
     }
 /* =========================================================
-   ARTICLE SHARING
+   ARTICLE SHARE PANEL
    ========================================================= */
 
 .post-share {
     width: min(100%, var(--reading-width));
     margin: 3rem auto 0;
-    padding: 1.35rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
     border: 1px solid var(--border);
     border-radius: var(--radius-medium);
     background:
@@ -5384,40 +5384,41 @@ select:focus-visible {
     display: flex;
     align-items: end;
     justify-content: space-between;
-    gap: 1.5rem;
-    margin-bottom: 1rem;
+    gap: 2rem;
+    margin-bottom: 1.25rem;
 }
 
 .post-share-heading h2 {
     margin: 0;
     color: #ffffff;
     font-family: "Gobold", Impact, sans-serif;
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
     line-height: 0.95;
     text-transform: uppercase;
 }
 
 .post-share-heading > p {
-    max-width: 320px;
+    max-width: 340px;
     margin: 0;
     color: var(--muted);
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     line-height: 1.5;
     text-align: right;
 }
 
 .post-share-actions {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 0.55rem;
 }
 
 .post-share-button {
     display: inline-flex;
-    min-height: 44px;
+    width: 100%;
+    min-height: 46px;
     align-items: center;
     justify-content: center;
-    padding: 0.6rem 0.85rem;
+    padding: 0.65rem 0.75rem;
     border: 1px solid var(--border-bright);
     border-radius: var(--radius-small);
     background: #0b0b0b;
@@ -5426,9 +5427,12 @@ select:focus-visible {
     font-size: 0.7rem;
     font-weight: 900;
     letter-spacing: 0.05em;
+    line-height: 1;
+    text-align: center;
     text-decoration: none;
     text-transform: uppercase;
     cursor: pointer;
+    appearance: none;
     transition:
         border-color 140ms ease,
         background-color 140ms ease,
@@ -5459,17 +5463,23 @@ select:focus-visible {
 
 .post-share-status {
     min-height: 1.2rem;
-    margin: 0.75rem 0 0;
+    margin: 0.8rem 0 0;
     color: var(--accent-soft);
     font-size: 0.72rem;
     font-weight: 800;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 850px) {
+    .post-share-actions {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
     .post-share-heading {
         align-items: start;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.55rem;
     }
 
     .post-share-heading > p {
@@ -5477,16 +5487,11 @@ select:focus-visible {
     }
 
     .post-share-actions {
-        display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .post-share-button {
-        width: 100%;
     }
 }
 
-@media (max-width: 390px) {
+@media (max-width: 380px) {
     .post-share-actions {
         grid-template-columns: 1fr;
     }
