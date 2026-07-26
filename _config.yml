@@ -1,6 +1,11 @@
-title: "Matlock's Fight Talk"
-tagline: "Independent MMA analysis and fight breakdowns"
-description: "Independent mixed martial arts analysis, technical fight breakdowns, predictions, commentary, and opinions from Matlock's Fight Talk."
+title: "MMA Matlock"
+legal_name: "MATLOCKSFIGHTTALK"
+
+tagline: "Independent MMA breakdowns and analysis"
+
+description: >-
+  Independent UFC and mixed martial arts breakdowns, technical analysis,
+  predictions, commentary, and opinions from MMA Matlock.
 
 url: "https://matlockfighttalk.com"
 baseurl: ""
@@ -11,7 +16,7 @@ locale: "en_US"
 logo: "/assets/logo.png"
 
 author:
-  name: "Matlock"
+  name: "MMA Matlock"
   url: "https://matlockfighttalk.com/"
   twitter: "mmamatlock"
 
@@ -20,7 +25,7 @@ twitter:
   card: "summary_large_image"
 
 social:
-  name: "Matlock's Fight Talk"
+  name: "MMA Matlock"
   links:
     - "https://youtube.com/@mmamatlock"
     - "https://www.instagram.com/mmamatlock/"
@@ -31,8 +36,8 @@ nav:
   - name: "Home"
     link: "/"
 
-  - name: "The Matlock Papers"
-    link: "/matlockpapers"
+  - name: "Breakdowns"
+    link: "/breakdowns/"
 
   - name: "MMA Yellow Pages"
     link: "/mma-yellowpages"
@@ -49,18 +54,10 @@ nav:
 defaults:
   - scope:
       path: ""
-    values:
-      image:
-        path: "/assets/social-card.jpg"
-        width: 1200
-        height: 630
-        alt: "Matlock's Fight Talk — MMA analysis and fight breakdowns"
-
-  - scope:
-      path: ""
       type: posts
     values:
       layout: post
+      author: "MMA Matlock"
       seo:
         type: BlogPosting
 
@@ -73,6 +70,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
+  - jekyll-redirect-from
 
 feed:
   path: feed.xml
