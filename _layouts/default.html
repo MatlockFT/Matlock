@@ -9,10 +9,7 @@
     >
 
     {% if page.noindex %}
-        <meta
-            name="robots"
-            content="noindex, nofollow"
-        >
+        <meta name="robots" content="noindex, nofollow">
     {% else %}
         <meta
             name="robots"
@@ -31,18 +28,6 @@
         rel="icon"
         type="image/x-icon"
         href="{{ '/assets/favicon.ico' | relative_url }}"
-    >
-
-    <link
-        rel="preload"
-        href="{{ '/assets/logo.png' | relative_url }}"
-        as="image"
-    >
-
-    <link
-        rel="sitemap"
-        type="application/xml"
-        href="{{ '/sitemap.xml' | relative_url }}"
     >
 
     {% seo %}
@@ -78,13 +63,14 @@
                             </a>
                         </div>
 
-                        <div
-                            class="header-marquee-wrap"
-                            aria-label="Welcome to the end of the internet"
-                        >
-                            <span class="header-marquee-text">
+                        <div class="header-marquee-wrap">
+                            <marquee
+                                behavior="scroll"
+                                direction="left"
+                                scrollamount="5"
+                            >
                                 WELCOME TO THE END OF THE INTERNET
-                            </span>
+                            </marquee>
                         </div>
                     </header>
                 </td>
@@ -101,10 +87,12 @@
                             <nav aria-label="Main navigation">
                                 <ul class="nav-list">
                                     {% for item in site.nav %}
+                                        {% assign item_with_slash = item.link | append: "/" %}
+
                                         <li>
                                             <a
                                                 href="{{ item.link | relative_url }}"
-                                                {% if page.url == item.link or page.url == item.link | append: "/" %}
+                                                {% if page.url == item.link or page.url == item_with_slash %}
                                                     aria-current="page"
                                                 {% endif %}
                                             >
@@ -137,8 +125,8 @@
                                         id="player"
                                         preload="none"
                                     >
-                                        Your browser does not support the
-                                        audio element.
+                                        Your browser does not support the audio
+                                        element.
                                     </audio>
 
                                     <div class="audio-controls">
@@ -219,16 +207,26 @@
                         id="main-content"
                         tabindex="-1"
                     >
+                        <section class="page-content">
+                            {{ content }}
+                        </section>
+                    </main>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" class="site-footer-cell">
+                    <footer class="site-footer">
                         <section
-                            class="social-strip panel"
-                            aria-labelledby="social-links-title"
+                            class="footer-socials"
+                            aria-labelledby="footer-social-title"
                         >
-                            <div
-                                class="panel-title"
-                                id="social-links-title"
+                            <h2
+                                class="footer-social-title"
+                                id="footer-social-title"
                             >
-                                Social Links
-                            </div>
+                                Follow Matlock
+                            </h2>
 
                             <div class="social-banner">
                                 <a
@@ -242,6 +240,7 @@
                                         alt=""
                                         width="32"
                                         height="32"
+                                        loading="lazy"
                                         decoding="async"
                                     >
                                 </a>
@@ -257,6 +256,7 @@
                                         alt=""
                                         width="32"
                                         height="32"
+                                        loading="lazy"
                                         decoding="async"
                                     >
                                 </a>
@@ -272,6 +272,7 @@
                                         alt=""
                                         width="32"
                                         height="32"
+                                        loading="lazy"
                                         decoding="async"
                                     >
                                 </a>
@@ -287,22 +288,13 @@
                                         alt=""
                                         width="32"
                                         height="32"
+                                        loading="lazy"
                                         decoding="async"
                                     >
                                 </a>
                             </div>
                         </section>
 
-                        <section class="page-content">
-                            {{ content }}
-                        </section>
-                    </main>
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="2" class="site-footer-cell">
-                    <footer class="site-footer">
                         <div class="footer-main">
                             Copyright © {{ "now" | date: "%Y" }}
                             {{ site.title | upcase }}. All rights reserved.
@@ -327,13 +319,10 @@
                             >
                         </div>
 
-                        <div
-                            class="footer-marquee"
-                            aria-label="Powered by Secret Juice"
-                        >
-                            <span class="footer-marquee-text">
+                        <div class="footer-marquee">
+                            <marquee behavior="alternate">
                                 Powered by Secret Juice
-                            </span>
+                            </marquee>
                         </div>
                     </footer>
                 </td>
@@ -366,10 +355,6 @@
             }
         }
 
-        function playAudio() {
-            startAudioPlayback();
-        }
-
         function pauseAudio() {
             player.pause();
             updateAudioStatus("");
@@ -380,7 +365,6 @@
 
             player.src = selector.value;
             player.load();
-
             updateAudioStatus("");
 
             if (wasPlaying) {
@@ -392,7 +376,7 @@
             player.volume = Number(volumeSlider.value);
         }
 
-        playButton.addEventListener("click", playAudio);
+        playButton.addEventListener("click", startAudioPlayback);
         pauseButton.addEventListener("click", pauseAudio);
         selector.addEventListener("change", changeSong);
         volumeSlider.addEventListener("input", setVolume);
