@@ -10,7 +10,7 @@ permalink: /
 <div class="homepage">
     {% if latest_post %}
         {% assign latest_image = nil %}
-        {% assign latest_image_alt = latest_post.title %}
+        {% assign latest_image_alt = latest_post.image_alt | default: latest_post.title %}
 
         {% if latest_post.image %}
             {% if latest_post.image.path %}
@@ -102,18 +102,26 @@ permalink: /
             Advertisement
         </span>
 
-        <div class="banner-ad-slot" id="homepage-banner-ad">
-            <!--
-                Replace the placeholder below with your banner-ad code.
+        <div class="banner-ad-slot">
+            {% if site.adsense.banner_slot and site.adsense.banner_slot != "" %}
+                <ins
+                    class="adsbygoogle mma-banner-ad"
+                    data-ad-client="{{ site.adsense.client }}"
+                    data-ad-slot="{{ site.adsense.banner_slot }}"
+                ></ins>
 
-                Recommended desktop size: 970 × 90
-                Common alternative: 728 × 90
-                The container automatically scales on smaller screens.
-            -->
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            {% else %}
+                <div class="banner-ad-placeholder">
+                    <strong>Banner ad reserved</strong>
 
-            <span class="banner-ad-placeholder">
-                Banner ad space
-            </span>
+                    <span>
+                        Add your AdSense slot ID in _config.yml
+                    </span>
+                </div>
+            {% endif %}
         </div>
     </aside>
 
@@ -144,7 +152,7 @@ permalink: /
             <div class="article-grid">
                 {% for post in site.posts offset: 1 limit: 6 %}
                     {% assign post_image = nil %}
-                    {% assign post_image_alt = post.title %}
+                    {% assign post_image_alt = post.image_alt | default: post.title %}
 
                     {% if post.image %}
                         {% if post.image.path %}
