@@ -1,10 +1,10 @@
 ---
 layout: post
-title: NETFLIX MMA | Rousey vs. Carano Preview
+title: NETFLIX MMA | Rousey vs. Carano Early Thoughts
 description: "In typical MMA fashion, a fight no one asked for is slated to take
   place 15 years past their prime. "
 date: 2026-02-17
-category: Breakdown
+category: Opinion
 author: MMA Matlock
 image:
   path: /assets/uploads/gina-carano.png
