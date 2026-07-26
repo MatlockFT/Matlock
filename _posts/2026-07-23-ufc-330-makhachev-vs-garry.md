@@ -7,6 +7,11 @@ description: "UFC 330: Makhachev vs. Machado Garry is an upcoming mixed martial
 date: 2026-07-23
 category: Breakdown
 author: MMA Matlock
+image:
+  path: /assets/uploads/ufc-330-poster-3-makhachev.png
+  alt: UFC 330 Banner
+tags:
+  - Islam Makhachev
 last_modified_at: 2026-07-26
 published: true
 ---
