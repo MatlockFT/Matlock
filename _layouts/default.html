@@ -9,7 +9,7 @@
     >
 
     {% if page.noindex %}
-        <meta name="robots" content="noindex, nofollow">
+        <meta name="robots" content="noindex, follow">
     {% else %}
         <meta
             name="robots"
@@ -18,6 +18,7 @@
     {% endif %}
 
     <meta name="theme-color" content="#080808">
+    <meta name="color-scheme" content="dark">
 
     <link
         rel="stylesheet"
@@ -34,9 +35,20 @@
         rel="preload"
         href="{{ '/assets/logo.png' | relative_url }}"
         as="image"
+        fetchpriority="high"
     >
 
-    {% if site.adsense.client and site.adsense.client != "" %}
+    {% if
+        site.adsense.client
+        and site.adsense.client != ""
+        and site.adsense.banner_slot
+        and site.adsense.banner_slot != ""
+    %}
+        <link
+            rel="preconnect"
+            href="https://pagead2.googlesyndication.com"
+        >
+
         <script
             async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense.client }}"
@@ -48,7 +60,7 @@
     {% feed_meta %}
 </head>
 
-<body>
+<body class="layout-{{ page.layout | default: 'default' }}">
     <a class="skip-link" href="#main-content">
         Skip to main content
     </a>
@@ -64,15 +76,20 @@
                     alt="MMA Matlock"
                     class="site-logo"
                     fetchpriority="high"
+                    decoding="async"
                 >
             </a>
         </div>
 
-        <nav class="site-navigation" aria-label="Main navigation">
+        <nav
+            class="site-navigation"
+            aria-label="Main navigation"
+        >
             <div class="navigation-inner">
                 <a
                     class="mobile-brand"
                     href="{{ '/' | relative_url }}"
+                    aria-label="MMA Matlock home"
                 >
                     MMA Matlock
                 </a>
@@ -83,6 +100,7 @@
                     type="button"
                     aria-expanded="false"
                     aria-controls="navigation-list"
+                    aria-label="Open main navigation"
                 >
                     Menu
                 </button>
@@ -91,14 +109,26 @@
                     class="navigation-list"
                     id="navigation-list"
                 >
+                    {% assign current_url = page.url | remove: "index.html" %}
+
                     {% for item in site.nav %}
                         {% assign active = false %}
+                        {% assign item_url = item.link | remove: "index.html" %}
+                        {% assign item_url_with_slash = item_url | append: "/" %}
 
-                        {% if page.url == item.link %}
+                        {% if current_url == item_url %}
+                            {% assign active = true %}
+                        {% elsif
+                            item_url != "/"
+                            and current_url == item_url_with_slash
+                        %}
                             {% assign active = true %}
                         {% endif %}
 
-                        {% if page.layout == "post" and item.name == "Breakdowns" %}
+                        {% if
+                            page.layout == "post"
+                            and item.name == "Breakdowns"
+                        %}
                             {% assign active = true %}
                         {% endif %}
 
@@ -133,15 +163,20 @@
                     <h2>MMA Matlock</h2>
 
                     <p>
-                        Independent MMA opinions, fight analysis,
-                        predictions, and breakdowns.
+                        Independent MMA archive videos, fight analysis,
+                        predictions, commentary, and breakdowns.
                     </p>
 
                     <nav aria-label="Footer navigation">
                         <ul class="footer-navigation">
                             {% for item in site.footer_nav %}
                                 <li>
-                                    <a href="{{ item.link | relative_url }}">
+                                    <a
+                                        href="{{ item.link | relative_url }}"
+                                        {% if page.url == item.link %}
+                                            aria-current="page"
+                                        {% endif %}
+                                    >
                                         {{ item.name }}
                                     </a>
                                 </li>
@@ -241,8 +276,11 @@
                                 alt=""
                                 width="32"
                                 height="32"
+                                loading="lazy"
+                                decoding="async"
                                 data-hide-broken
                             >
+
                             <span>YouTube</span>
                         </a>
 
@@ -256,8 +294,11 @@
                                 alt=""
                                 width="32"
                                 height="32"
+                                loading="lazy"
+                                decoding="async"
                                 data-hide-broken
                             >
+
                             <span>X</span>
                         </a>
 
@@ -271,23 +312,29 @@
                                 alt=""
                                 width="32"
                                 height="32"
+                                loading="lazy"
+                                decoding="async"
                                 data-hide-broken
                             >
+
                             <span>Instagram</span>
                         </a>
 
                         <a
                             href="https://matlockfighttalk-shop.fourthwall.com/"
                             target="_blank"
-                            rel="sponsored noopener noreferrer"
+                            rel="noopener noreferrer"
                         >
                             <img
                                 src="{{ '/assets/merch.png' | relative_url }}"
                                 alt=""
                                 width="32"
                                 height="32"
+                                loading="lazy"
+                                decoding="async"
                                 data-hide-broken
                             >
+
                             <span>Merch</span>
                         </a>
                     </div>
@@ -308,6 +355,9 @@
                         alt="Visitor counter"
                         width="88"
                         height="31"
+                        loading="lazy"
+                        decoding="async"
+                        data-hide-broken
                     >
                 </div>
             </div>
@@ -321,31 +371,78 @@
         const navigationList =
             document.getElementById("navigation-list");
 
+        function setNavigationState(isOpen, returnFocus) {
+            if (!navigationToggle || !navigationList) {
+                return;
+            }
+
+            navigationToggle.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
+            navigationToggle.setAttribute(
+                "aria-label",
+                isOpen
+                    ? "Close main navigation"
+                    : "Open main navigation"
+            );
+
+            navigationList.classList.toggle(
+                "navigation-list-open",
+                isOpen
+            );
+
+            if (returnFocus) {
+                navigationToggle.focus();
+            }
+        }
+
         if (navigationToggle && navigationList) {
             navigationToggle.addEventListener("click", function () {
                 const isOpen =
                     navigationToggle.getAttribute("aria-expanded") === "true";
 
-                navigationToggle.setAttribute(
-                    "aria-expanded",
-                    String(!isOpen)
-                );
+                setNavigationState(!isOpen, false);
+            });
 
-                navigationList.classList.toggle(
-                    "navigation-list-open",
-                    !isOpen
-                );
+            navigationList
+                .querySelectorAll("a")
+                .forEach(function (link) {
+                    link.addEventListener("click", function () {
+                        setNavigationState(false, false);
+                    });
+                });
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key !== "Escape") {
+                    return;
+                }
+
+                const isOpen =
+                    navigationToggle.getAttribute("aria-expanded") === "true";
+
+                if (isOpen) {
+                    setNavigationState(false, true);
+                }
             });
         }
 
-        const player = document.getElementById("player");
-        const selector = document.getElementById("song-selector");
+        const player =
+            document.getElementById("player");
+
+        const selector =
+            document.getElementById("song-selector");
+
         const volumeSlider =
             document.getElementById("volume-slider");
+
         const playButton =
             document.getElementById("play-button");
+
         const pauseButton =
             document.getElementById("pause-button");
+
         const audioStatus =
             document.getElementById("audio-status");
 
@@ -414,6 +511,10 @@
             pauseButton.addEventListener("click", pauseAudio);
             selector.addEventListener("change", changeSong);
             volumeSlider.addEventListener("input", setVolume);
+
+            player.addEventListener("error", function () {
+                setAudioStatus("The selected track could not be loaded.");
+            });
         }
 
         function removeBrokenImage(image) {
