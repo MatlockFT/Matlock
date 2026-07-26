@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en-US' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% if page.noindex %}
+        <meta name="robots" content="noindex, nofollow">
+    {% else %}
+        <meta
+            name="robots"
+            content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        >
+    {% endif %}
+
+    <meta name="theme-color" content="#080808">
+
+    <link
+        rel="stylesheet"
+        href="{{ '/assets/style.css' | relative_url }}"
+    >
+
+    <link
+        rel="icon"
+        type="image/x-icon"
+        href="{{ '/assets/favicon.ico' | relative_url }}"
+    >
+
+    {% if site.adsense.client and site.adsense.client != "" %}
+        <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense.client }}"
+            crossorigin="anonymous"
+        ></script>
+    {% endif %}
+
+    {% seo %}
+    {% feed_meta %}
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="logo-banner">
+            <a href="{{ '/' | relative_url }}" aria-label="MMA Matlock home">
+                <img
+                    class="site-logo"
+                    src="{{ '/assets/logo.png' | relative_url }}"
+                    alt="MMA Matlock"
+                    fetchpriority="high"
+                >
+            </a>
+        </div>
+
+        <nav class="site-nav" aria-label="Main navigation">
+            <div class="site-nav-inner">
+                <a class="nav-brand" href="{{ '/' | relative_url }}">
+                    MMA Matlock
+                </a>
+
+                <button
+                    class="nav-toggle"
+                    id="nav-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="nav-list"
+                >
+                    Menu
+                </button>
+
+                <ul class="nav-list" id="nav-list">
+                    {% for item in site.nav %}
+                        {% assign item_slash = item.link | append: "/" %}
+                        {% assign active = false %}
+
+                        {% if page.url == item.link or page.url == item_slash %}
+                            {% assign active = true %}
+                        {% endif %}
+
+                        {% if item.name == "Breakdowns" and page.layout == "post" %}
+                            {% assign active = true %}
+                        {% endif %}
+
+                        <li>
+                            <a
+                                href="{{ item.link | relative_url }}"
+                                {% if active %}aria-current="page"{% endif %}
+                            >
+                                {{ item.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="site-main" id="main-content" tabindex="-1">
+        {{ content }}
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <section class="footer-column">
+                    <h2>MMA Matlock</h2>
+                    <p>
+                        Independent MMA opinions, technical analysis,
+                        predictions, and fight breakdowns.
+                    </p>
+
+                    <ul class="footer-links">
+                        {% for item in site.footer_nav %}
+                            <li>
+                                <a href="{{ item.link | relative_url }}">
+                                    {{ item.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+
+                <section class="footer-column">
+                    <h2>Fight Tunes</h2>
+
+                    <audio id="audio-player" preload="none">
+                        Your browser does not support audio playback.
+                    </audio>
+
+                    <div class="audio-buttons">
+                        <button id="audio-play" type="button">Play</button>
+                        <button id="audio-pause" type="button">Pause</button>
+                    </div>
+
+                    <label for="track-select">Track</label>
+                    <select id="track-select">
+                        <option value="{{ '/assets/facethepain.mp3' | relative_url }}">
+                            Face The Pain
+                        </option>
+                        <option value="{{ '/assets/Original.mp3' | relative_url }}">
+                            O.G.
+                        </option>
+                        <option value="{{ '/assets/DeathorGlory.mp3' | relative_url }}">
+                            Death or Glory
+                        </option>
+                    </select>
+
+                    <label for="volume-control">Volume</label>
+                    <input
+                        id="volume-control"
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value="0.5"
+                    >
+
+                    <p id="audio-message" class="audio-message" aria-live="polite"></p>
+                </section>
+
+                <section class="footer-column">
+                    <h2>Follow</h2>
+
+                    <div class="footer-socials">
+                        <a href="https://www.youtube.com/@MMAMatlock" target="_blank" rel="me noopener noreferrer">
+                            YouTube
+                        </a>
+                        <a href="https://x.com/MMAMatlock" target="_blank" rel="me noopener noreferrer">
+                            X
+                        </a>
+                        <a href="https://www.instagram.com/mmamatlock/" target="_blank" rel="me noopener noreferrer">
+                            Instagram
+                        </a>
+                        <a href="https://www.threads.net/@MMAMatlock" target="_blank" rel="me noopener noreferrer">
+                            Threads
+                        </a>
+                        <a href="https://www.tiktok.com/@mmamatlock" target="_blank" rel="me noopener noreferrer">
+                            TikTok
+                        </a>
+                        <a href="https://www.facebook.com/mmamatlock" target="_blank" rel="me noopener noreferrer">
+                            Facebook
+                        </a>
+                        <a href="https://matlockfighttalk-shop.fourthwall.com/" target="_blank" rel="sponsored noopener noreferrer">
+                            Merch
+                        </a>
+                    </div>
+                </section>
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    Copyright © {{ "now" | date: "%Y" }}
+                    {{ site.legal_name | default: site.title }}.
+                </p>
+
+                <div class="visitor-count">
+                    <span>Visitor count</span>
+                    <img
+                        src="{{ '/assets/counter.gif' | relative_url }}"
+                        alt="Visitor counter"
+                        width="88"
+                        height="31"
+                        loading="lazy"
+                    >
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (() => {
+            const toggle = document.getElementById("nav-toggle");
+            const list = document.getElementById("nav-list");
+
+            if (toggle && list) {
+                toggle.addEventListener("click", () => {
+                    const open = toggle.getAttribute("aria-expanded") === "true";
+                    toggle.setAttribute("aria-expanded", String(!open));
+                    list.classList.toggle("is-open", !open);
+                });
+            }
+
+            const player = document.getElementById("audio-player");
+            const play = document.getElementById("audio-play");
+            const pause = document.getElementById("audio-pause");
+            const select = document.getElementById("track-select");
+            const volume = document.getElementById("volume-control");
+            const message = document.getElementById("audio-message");
+
+            const setMessage = (text) => {
+                if (message) message.textContent = text;
+            };
+
+            if (player && play && pause && select && volume) {
+                player.src = select.value;
+                player.volume = Number(volume.value);
+
+                play.addEventListener("click", async () => {
+                    try {
+                        await player.play();
+                        setMessage("");
+                    } catch (error) {
+                        console.error(error);
+                        setMessage("Audio could not be played.");
+                    }
+                });
+
+                pause.addEventListener("click", () => {
+                    player.pause();
+                    setMessage("");
+                });
+
+                select.addEventListener("change", async () => {
+                    const wasPlaying = !player.paused;
+                    player.src = select.value;
+                    player.load();
+
+                    if (wasPlaying) {
+                        try {
+                            await player.play();
+                        } catch (error) {
+                            console.error(error);
+                            setMessage("Audio could not be played.");
+                        }
+                    }
+                });
+
+                volume.addEventListener("input", () => {
+                    player.volume = Number(volume.value);
+                });
+            }
+
+            document
+                .querySelectorAll("[data-image-shell] img")
+                .forEach((image) => {
+                    const removeShell = () => {
+                        const shell = image.closest("[data-image-shell]");
+                        if (shell) shell.remove();
+                    };
+
+                    image.addEventListener("error", removeShell);
+
+                    if (image.complete && image.naturalWidth === 0) {
+                        removeShell();
+                    }
+                });
+        })();
+    </script>
+</body>
+</html>
