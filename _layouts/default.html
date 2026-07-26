@@ -17,7 +17,7 @@
         >
     {% endif %}
 
-    <meta name="theme-color" content="#080808">
+    <meta name="theme-color" content="#090909">
 
     <link
         rel="stylesheet"
@@ -30,6 +30,12 @@
         href="{{ '/assets/favicon.ico' | relative_url }}"
     >
 
+    <link
+        rel="preload"
+        href="{{ '/assets/logo.png' | relative_url }}"
+        as="image"
+    >
+
     {% seo %}
     {% feed_meta %}
 </head>
@@ -39,304 +45,310 @@
         Skip to main content
     </a>
 
-    <div class="page-wrap">
-        <table
-            class="site-shell"
-            width="100%"
-            cellspacing="0"
-            cellpadding="0"
-        >
-            <tr>
-                <td colspan="2" class="site-header-cell">
-                    <header class="site-header">
-                        <div class="logo-wrap">
+    <header class="site-header">
+        <div class="logo-banner">
+            <a
+                href="{{ '/' | relative_url }}"
+                aria-label="MMA Matlock home"
+            >
+                <img
+                    src="{{ '/assets/logo.png' | relative_url }}"
+                    alt="MMA Matlock"
+                    class="site-logo"
+                    fetchpriority="high"
+                >
+            </a>
+        </div>
+
+        <nav class="site-navigation" aria-label="Main navigation">
+            <div class="navigation-inner">
+                <a
+                    class="mobile-brand"
+                    href="{{ '/' | relative_url }}"
+                >
+                    MMA Matlock
+                </a>
+
+                <button
+                    class="navigation-toggle"
+                    id="navigation-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="navigation-list"
+                >
+                    Menu
+                </button>
+
+                <ul class="navigation-list" id="navigation-list">
+                    {% for item in site.nav %}
+                        {% assign item_with_slash = item.link | append: "/" %}
+                        {% assign is_current = false %}
+
+                        {% if page.url == item.link or page.url == item_with_slash %}
+                            {% assign is_current = true %}
+                        {% endif %}
+
+                        {% if item.name == "Breakdowns" and page.layout == "post" %}
+                            {% assign is_current = true %}
+                        {% endif %}
+
+                        <li>
                             <a
-                                href="{{ '/' | relative_url }}"
-                                aria-label="{{ site.title | escape }} home"
+                                href="{{ item.link | relative_url }}"
+                                {% if is_current %}
+                                    aria-current="page"
+                                {% endif %}
                             >
-                                <img
-                                    src="{{ '/assets/logo.png' | relative_url }}"
-                                    alt="{{ site.title | escape }}"
-                                    class="site-logo"
-                                    fetchpriority="high"
-                                >
+                                {{ item.name }}
                             </a>
-                        </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-                        <div class="header-marquee-wrap">
-                            <marquee
-                                behavior="scroll"
-                                direction="left"
-                                scrollamount="5"
-                            >
-                                WELCOME TO THE END OF THE INTERNET
-                            </marquee>
-                        </div>
-                    </header>
-                </td>
-            </tr>
+    <main class="site-main" id="main-content" tabindex="-1">
+        {{ content }}
+    </main>
 
-            <tr class="site-main-row">
-                <td class="sidebar-cell" valign="top">
-                    <aside class="sidebar">
-                        <section class="panel nav-panel">
-                            <div class="panel-title">
-                                Navigation
-                            </div>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-columns">
+                <section
+                    class="footer-section footer-about"
+                    aria-labelledby="footer-about-title"
+                >
+                    <h2 id="footer-about-title">
+                        MMA Matlock
+                    </h2>
 
-                            <nav aria-label="Main navigation">
-                                <ul class="nav-list">
-                                    {% for item in site.nav %}
-                                        {% assign item_with_slash = item.link | append: "/" %}
+                    <p>
+                        Independent MMA opinions, technical fight analysis,
+                        predictions, and breakdowns.
+                    </p>
 
-                                        <li>
-                                            <a
-                                                href="{{ item.link | relative_url }}"
-                                                {% if page.url == item.link or page.url == item_with_slash %}
-                                                    aria-current="page"
-                                                {% endif %}
-                                            >
-                                                {{ item.name }}
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </nav>
-                        </section>
-
-                        <section
-                            class="panel audio-panel"
-                            aria-labelledby="fight-tunes-title"
-                        >
-                            <div
-                                class="panel-title"
-                                id="fight-tunes-title"
-                            >
-                                Fight Tunes
-                            </div>
-
-                            <div id="audio-player">
-                                <p class="audio-copy">
-                                    Click to unleash fight tunes
-                                </p>
-
-                                <div class="audio-container">
-                                    <audio
-                                        id="player"
-                                        preload="none"
-                                    >
-                                        Your browser does not support the audio
-                                        element.
-                                    </audio>
-
-                                    <div class="audio-controls">
-                                        <button
-                                            type="button"
-                                            class="control-button"
-                                            id="play-button"
-                                        >
-                                            PLAY
-                                        </button>
-
-                                        <button
-                                            type="button"
-                                            class="control-button"
-                                            id="pause-button"
-                                        >
-                                            PAUSE
-                                        </button>
-                                    </div>
-
-                                    <label
-                                        for="volume-slider"
-                                        class="control-label"
-                                    >
-                                        Volume
-                                    </label>
-
-                                    <input
-                                        type="range"
-                                        id="volume-slider"
-                                        min="0"
-                                        max="1"
-                                        step="0.01"
-                                        value="0.5"
-                                    >
-
-                                    <label
-                                        for="song-selector"
-                                        class="control-label"
-                                    >
-                                        Track Select
-                                    </label>
-
-                                    <select id="song-selector">
-                                        <option
-                                            value="{{ '/assets/facethepain.mp3' | relative_url }}"
-                                        >
-                                            Face The Pain
-                                        </option>
-
-                                        <option
-                                            value="{{ '/assets/Original.mp3' | relative_url }}"
-                                        >
-                                            O.G.
-                                        </option>
-
-                                        <option
-                                            value="{{ '/assets/DeathorGlory.mp3' | relative_url }}"
-                                        >
-                                            Death or Glory
-                                        </option>
-                                    </select>
-
-                                    <p
-                                        id="audio-status"
-                                        class="audio-status"
-                                        aria-live="polite"
-                                    ></p>
-                                </div>
-                            </div>
-                        </section>
-                    </aside>
-                </td>
-
-                <td class="content-cell" valign="top">
-                    <main
-                        class="content-area"
-                        id="main-content"
-                        tabindex="-1"
+                    <a
+                        class="footer-breakdowns-link"
+                        href="{{ '/breakdowns/' | relative_url }}"
                     >
-                        <section class="page-content">
-                            {{ content }}
-                        </section>
-                    </main>
-                </td>
-            </tr>
+                        Browse all breakdowns
+                    </a>
+                </section>
 
-            <tr>
-                <td colspan="2" class="site-footer-cell">
-                    <footer class="site-footer">
-                        <section
-                            class="footer-socials"
-                            aria-labelledby="footer-social-title"
+                <section
+                    class="footer-section footer-audio"
+                    aria-labelledby="fight-tunes-title"
+                >
+                    <h2 id="fight-tunes-title">
+                        Fight Tunes
+                    </h2>
+
+                    <audio id="player" preload="none">
+                        Your browser does not support the audio element.
+                    </audio>
+
+                    <div class="audio-controls">
+                        <button
+                            type="button"
+                            class="audio-button"
+                            id="play-button"
                         >
-                            <h2
-                                class="footer-social-title"
-                                id="footer-social-title"
-                            >
-                                Follow Matlock
-                            </h2>
+                            Play
+                        </button>
 
-                            <div class="social-banner">
-                                <a
-                                    href="https://youtube.com/@mmamatlock"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Matlock's Fight Talk on YouTube"
-                                >
-                                    <img
-                                        src="{{ '/assets/youtube.png' | relative_url }}"
-                                        alt=""
-                                        width="32"
-                                        height="32"
-                                        loading="lazy"
-                                        decoding="async"
-                                    >
-                                </a>
+                        <button
+                            type="button"
+                            class="audio-button"
+                            id="pause-button"
+                        >
+                            Pause
+                        </button>
+                    </div>
 
-                                <a
-                                    href="https://www.instagram.com/mmamatlock/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Matlock's Fight Talk on Instagram"
-                                >
-                                    <img
-                                        src="{{ '/assets/instagram.png' | relative_url }}"
-                                        alt=""
-                                        width="32"
-                                        height="32"
-                                        loading="lazy"
-                                        decoding="async"
-                                    >
-                                </a>
+                    <label for="song-selector">
+                        Track
+                    </label>
 
-                                <a
-                                    href="https://x.com/mmamatlock"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Matlock's Fight Talk on X"
-                                >
-                                    <img
-                                        src="{{ '/assets/x.png' | relative_url }}"
-                                        alt=""
-                                        width="32"
-                                        height="32"
-                                        loading="lazy"
-                                        decoding="async"
-                                    >
-                                </a>
+                    <select id="song-selector">
+                        <option
+                            value="{{ '/assets/facethepain.mp3' | relative_url }}"
+                        >
+                            Face The Pain
+                        </option>
 
-                                <a
-                                    href="https://matlockfighttalk-shop.fourthwall.com/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    aria-label="Matlock's Fight Talk merchandise store"
-                                >
-                                    <img
-                                        src="{{ '/assets/merch.png' | relative_url }}"
-                                        alt=""
-                                        width="32"
-                                        height="32"
-                                        loading="lazy"
-                                        decoding="async"
-                                    >
-                                </a>
-                            </div>
-                        </section>
+                        <option
+                            value="{{ '/assets/Original.mp3' | relative_url }}"
+                        >
+                            O.G.
+                        </option>
 
-                        <div class="footer-main">
-                            Copyright © {{ "now" | date: "%Y" }}
-                            {{ site.title | upcase }}. All rights reserved.
+                        <option
+                            value="{{ '/assets/DeathorGlory.mp3' | relative_url }}"
+                        >
+                            Death or Glory
+                        </option>
+                    </select>
 
-                            <span
-                                class="footer-divider"
-                                aria-hidden="true"
-                            >
-                                |
-                            </span>
+                    <label for="volume-slider">
+                        Volume
+                    </label>
 
-                            Visitor count:
+                    <input
+                        type="range"
+                        id="volume-slider"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value="0.5"
+                    >
 
+                    <p
+                        id="audio-status"
+                        class="audio-status"
+                        aria-live="polite"
+                    ></p>
+                </section>
+
+                <section
+                    class="footer-section footer-socials"
+                    aria-labelledby="footer-social-title"
+                >
+                    <h2 id="footer-social-title">
+                        Follow MMA Matlock
+                    </h2>
+
+                    <div class="social-links">
+                        <a
+                            href="https://youtube.com/@mmamatlock"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="MMA Matlock on YouTube"
+                        >
                             <img
-                                src="{{ '/assets/counter.gif' | relative_url }}"
-                                alt="Visitor counter"
-                                width="88"
-                                height="31"
-                                class="counter-badge"
+                                src="{{ '/assets/youtube.png' | relative_url }}"
+                                alt=""
+                                width="36"
+                                height="36"
                                 loading="lazy"
                                 decoding="async"
                             >
-                        </div>
 
-                        <div class="footer-marquee">
-                            <marquee behavior="alternate">
-                                Powered by Secret Juice
-                            </marquee>
-                        </div>
-                    </footer>
-                </td>
-            </tr>
-        </table>
-    </div>
+                            <span>YouTube</span>
+                        </a>
+
+                        <a
+                            href="https://www.instagram.com/mmamatlock/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="MMA Matlock on Instagram"
+                        >
+                            <img
+                                src="{{ '/assets/instagram.png' | relative_url }}"
+                                alt=""
+                                width="36"
+                                height="36"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                            <span>Instagram</span>
+                        </a>
+
+                        <a
+                            href="https://x.com/mmamatlock"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="MMA Matlock on X"
+                        >
+                            <img
+                                src="{{ '/assets/x.png' | relative_url }}"
+                                alt=""
+                                width="36"
+                                height="36"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                            <span>X</span>
+                        </a>
+
+                        <a
+                            href="https://matlockfighttalk-shop.fourthwall.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="MMA Matlock merchandise store"
+                        >
+                            <img
+                                src="{{ '/assets/merch.png' | relative_url }}"
+                                alt=""
+                                width="36"
+                                height="36"
+                                loading="lazy"
+                                decoding="async"
+                            >
+
+                            <span>Merch</span>
+                        </a>
+                    </div>
+                </section>
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    Copyright © {{ "now" | date: "%Y" }}
+                    {{ site.legal_name | default: site.title }}.
+                    All rights reserved.
+                </p>
+
+                <div class="visitor-counter">
+                    <span>Visitor count</span>
+
+                    <img
+                        src="{{ '/assets/counter.gif' | relative_url }}"
+                        alt="Visitor counter"
+                        width="88"
+                        height="31"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
+        const navigationToggle =
+            document.getElementById("navigation-toggle");
+
+        const navigationList =
+            document.getElementById("navigation-list");
+
+        navigationToggle.addEventListener("click", function () {
+            const isOpen =
+                navigationToggle.getAttribute("aria-expanded") === "true";
+
+            navigationToggle.setAttribute(
+                "aria-expanded",
+                String(!isOpen)
+            );
+
+            navigationList.classList.toggle(
+                "navigation-list--open",
+                !isOpen
+            );
+        });
+
         const player = document.getElementById("player");
         const selector = document.getElementById("song-selector");
-        const volumeSlider = document.getElementById("volume-slider");
-        const audioStatus = document.getElementById("audio-status");
-        const playButton = document.getElementById("play-button");
-        const pauseButton = document.getElementById("pause-button");
+        const volumeSlider =
+            document.getElementById("volume-slider");
+        const audioStatus =
+            document.getElementById("audio-status");
+        const playButton =
+            document.getElementById("play-button");
+        const pauseButton =
+            document.getElementById("pause-button");
 
         function updateAudioStatus(message) {
             audioStatus.textContent = message;
@@ -350,7 +362,7 @@
                 console.error("Audio playback failed:", error);
 
                 updateAudioStatus(
-                    "Audio could not be played. Press PLAY to try again."
+                    "Audio could not be played. Press Play to try again."
                 );
             }
         }
@@ -376,10 +388,25 @@
             player.volume = Number(volumeSlider.value);
         }
 
-        playButton.addEventListener("click", startAudioPlayback);
-        pauseButton.addEventListener("click", pauseAudio);
-        selector.addEventListener("change", changeSong);
-        volumeSlider.addEventListener("input", setVolume);
+        playButton.addEventListener(
+            "click",
+            startAudioPlayback
+        );
+
+        pauseButton.addEventListener(
+            "click",
+            pauseAudio
+        );
+
+        selector.addEventListener(
+            "change",
+            changeSong
+        );
+
+        volumeSlider.addEventListener(
+            "input",
+            setVolume
+        );
 
         player.addEventListener("error", function () {
             updateAudioStatus(
@@ -389,6 +416,32 @@
 
         player.src = selector.value;
         setVolume();
+
+        function removeBrokenImage(image) {
+            const imageShell =
+                image.closest("[data-image-shell]");
+
+            if (imageShell) {
+                imageShell.remove();
+            } else {
+                image.remove();
+            }
+        }
+
+        document
+            .querySelectorAll("img[data-hide-on-error]")
+            .forEach(function (image) {
+                image.addEventListener("error", function () {
+                    removeBrokenImage(image);
+                });
+
+                if (
+                    image.complete &&
+                    image.naturalWidth === 0
+                ) {
+                    removeBrokenImage(image);
+                }
+            });
     </script>
 </body>
 </html>
