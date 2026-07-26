@@ -3829,3 +3829,495 @@ select:focus-visible {
         flex-direction: column;
     }
 }
+/* =========================================================
+   MMA PICTURE GALLERY
+   ========================================================= */
+
+.mma-gallery-page {
+    width: min(100%, 1160px);
+    margin: 0 auto;
+}
+
+.mma-gallery-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: 1.25rem;
+    padding: clamp(1.5rem, 5vw, 4rem);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-large);
+    background:
+        radial-gradient(
+            circle at 100% 0,
+            rgba(255, 74, 84, 0.2),
+            transparent 430px
+        ),
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.025),
+            transparent 55%
+        ),
+        var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.mma-gallery-hero h1 {
+    margin: 0 0 1rem;
+    color: var(--accent);
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: clamp(3.7rem, 9vw, 7.4rem);
+    line-height: 0.86;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+}
+
+.mma-gallery-hero-copy > p:last-child {
+    max-width: 760px;
+    margin: 0;
+    color: var(--text-soft);
+    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+}
+
+.mma-gallery-count {
+    display: flex;
+    min-width: 190px;
+    flex-direction: column;
+    padding: 1.15rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-medium);
+    background: rgba(0, 0, 0, 0.28);
+}
+
+.mma-gallery-count strong {
+    color: var(--accent);
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 0.85;
+}
+
+.mma-gallery-count span {
+    margin-top: 0.45rem;
+    color: var(--muted);
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* Toolbar */
+
+.mma-gallery-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-small);
+    background: #0d0d0d;
+}
+
+.mma-gallery-toolbar p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+.mma-gallery-shuffle {
+    flex: 0 0 auto;
+    min-height: 40px;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid var(--border-bright);
+    border-radius: var(--radius-small);
+    background: var(--surface-raised);
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.mma-gallery-shuffle:hover,
+.mma-gallery-shuffle:focus-visible {
+    border-color: var(--accent);
+    background: rgba(255, 74, 84, 0.1);
+}
+
+/* Masonry wall */
+
+.mma-gallery-grid {
+    columns: 3 280px;
+    column-gap: 1rem;
+}
+
+.mma-gallery-card {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 1rem;
+    break-inside: avoid;
+    overflow: hidden;
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    background: #111111;
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.3);
+    transform: rotate(-0.25deg);
+    transition:
+        transform 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.mma-gallery-card:nth-child(3n) {
+    transform: rotate(0.35deg);
+}
+
+.mma-gallery-card:nth-child(5n) {
+    transform: rotate(-0.5deg);
+}
+
+.mma-gallery-card:hover {
+    z-index: 2;
+    border-color: var(--accent);
+    box-shadow:
+        0 18px 38px rgba(0, 0, 0, 0.42),
+        0 0 0 1px rgba(255, 74, 84, 0.18);
+    transform: rotate(0) translateY(-4px);
+}
+
+.mma-gallery-image-button {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 8px;
+    overflow: hidden;
+    border: 0;
+    background: #050505;
+    cursor: zoom-in;
+}
+
+.mma-gallery-image-button::after {
+    position: absolute;
+    inset: 8px;
+    content: "";
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    pointer-events: none;
+}
+
+.mma-gallery-image-button img {
+    display: block;
+    width: 100%;
+    height: auto;
+    min-height: 160px;
+    background: #090909;
+    object-fit: cover;
+    filter:
+        contrast(1.04)
+        saturate(0.92);
+    transition:
+        filter 180ms ease,
+        transform 220ms ease;
+}
+
+.mma-gallery-image-button:hover img {
+    filter:
+        contrast(1.08)
+        saturate(1.05);
+    transform: scale(1.018);
+}
+
+.mma-gallery-caption {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.75rem;
+    align-items: start;
+    padding: 0.85rem 0.9rem;
+    border-top: 1px solid #383838;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 0.014) 0,
+            rgba(255, 255, 255, 0.014) 1px,
+            transparent 1px,
+            transparent 4px
+        ),
+        #181818;
+}
+
+.mma-gallery-caption > span {
+    color: var(--accent);
+    font-family: "Courier New", monospace;
+    font-size: 0.67rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+}
+
+.mma-gallery-caption p {
+    margin: 0;
+    color: #f1f1f1;
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.15;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+}
+
+.mma-gallery-card--missing {
+    min-height: 180px;
+    border-style: dashed;
+    opacity: 0.55;
+}
+
+.mma-gallery-card--missing .mma-gallery-image-button {
+    min-height: 130px;
+    cursor: default;
+}
+
+.mma-gallery-card--missing .mma-gallery-image-button::before {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    content: "IMAGE MISSING";
+    color: var(--muted);
+    font-family: "Courier New", monospace;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+}
+
+/* Lightbox */
+
+.gallery-lightbox-open {
+    overflow: hidden;
+}
+
+.mma-gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    grid-template-columns: 70px minmax(0, 1fr) 70px;
+    align-items: center;
+    padding: clamp(1rem, 3vw, 2rem);
+    background: rgba(0, 0, 0, 0.94);
+    backdrop-filter: blur(12px);
+}
+
+.mma-gallery-lightbox[hidden] {
+    display: none;
+}
+
+.mma-gallery-lightbox-content {
+    min-width: 0;
+    max-width: 1100px;
+    max-height: calc(100vh - 3rem);
+    margin: 0 auto;
+}
+
+.mma-gallery-lightbox-image-frame {
+    display: grid;
+    place-items: center;
+    min-height: 200px;
+    max-height: calc(100vh - 135px);
+    padding: clamp(0.5rem, 2vw, 1rem);
+    overflow: hidden;
+    border: 1px solid #444444;
+    background: #090909;
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.65);
+}
+
+.mma-gallery-lightbox-image-frame img {
+    display: block;
+    max-width: 100%;
+    max-height: calc(100vh - 165px);
+    object-fit: contain;
+}
+
+.mma-gallery-lightbox figcaption {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.9rem 0.2rem 0;
+}
+
+.mma-gallery-lightbox figcaption span {
+    flex: 0 0 auto;
+    color: var(--accent);
+    font-family: "Courier New", monospace;
+    font-size: 0.7rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.mma-gallery-lightbox figcaption strong {
+    color: #ffffff;
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: clamp(1rem, 3vw, 1.6rem);
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.mma-gallery-lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: 1px solid #555555;
+    border-radius: 50%;
+    background: #111111;
+    color: #ffffff;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.mma-gallery-lightbox-close:hover,
+.mma-gallery-lightbox-close:focus-visible {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #080808;
+}
+
+.mma-gallery-lightbox-navigation {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 74px;
+    padding: 0;
+    border: 1px solid #4b4b4b;
+    border-radius: var(--radius-small);
+    background: rgba(20, 20, 20, 0.88);
+    color: #ffffff;
+    font-size: 2.8rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.mma-gallery-lightbox-navigation:hover,
+.mma-gallery-lightbox-navigation:focus-visible {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #080808;
+}
+
+.mma-gallery-lightbox-previous {
+    justify-self: start;
+}
+
+.mma-gallery-lightbox-next {
+    justify-self: end;
+}
+
+/* Tablet */
+
+@media (max-width: 800px) {
+    .mma-gallery-hero {
+        grid-template-columns: 1fr;
+        align-items: start;
+    }
+
+    .mma-gallery-count {
+        min-width: 0;
+    }
+
+    .mma-gallery-lightbox {
+        grid-template-columns: 48px minmax(0, 1fr) 48px;
+        padding: 0.75rem;
+    }
+
+    .mma-gallery-lightbox-navigation {
+        width: 42px;
+        height: 62px;
+        font-size: 2.2rem;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 560px) {
+    .mma-gallery-hero {
+        padding: 1.25rem;
+    }
+
+    .mma-gallery-hero h1 {
+        font-size: clamp(3rem, 17vw, 5rem);
+    }
+
+    .mma-gallery-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .mma-gallery-shuffle {
+        width: 100%;
+    }
+
+    .mma-gallery-grid {
+        columns: 1;
+    }
+
+    .mma-gallery-card,
+    .mma-gallery-card:nth-child(3n),
+    .mma-gallery-card:nth-child(5n) {
+        transform: none;
+    }
+
+    .mma-gallery-lightbox {
+        display: block;
+        padding: 4.5rem 0.75rem 5rem;
+        overflow-y: auto;
+    }
+
+    .mma-gallery-lightbox-content {
+        max-height: none;
+    }
+
+    .mma-gallery-lightbox-image-frame {
+        max-height: none;
+    }
+
+    .mma-gallery-lightbox-image-frame img {
+        max-height: calc(100vh - 190px);
+    }
+
+    .mma-gallery-lightbox-navigation {
+        position: fixed;
+        bottom: 0.75rem;
+        width: calc(50% - 1.15rem);
+        height: 48px;
+    }
+
+    .mma-gallery-lightbox-previous {
+        left: 0.75rem;
+    }
+
+    .mma-gallery-lightbox-next {
+        right: 0.75rem;
+    }
+
+    .mma-gallery-lightbox figcaption {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mma-gallery-card,
+    .mma-gallery-image-button img {
+        transition: none;
+    }
+}
