@@ -1,18 +1,21 @@
 ---
 layout: post
 title: "UFC 330: Makhachev vs. Garry"
-description: "UFC 330: Makhachev vs. Machado Garry is taking place August 15,
-  2026. Card preview, picks, and breakdown. "
+description: "A technical breakdown of Islam Makhachev vs. Ian Machado Garry, including their striking, wrestling, physical advantages, statistics, and paths to victory."
 date: 2026-07-23
-category: Breakdown
-author: MMA Matlock
+category: "Breakdown"
+author: "MMA Matlock"
+published: true
+
 image:
-  path: /assets/uploads/ufc-330-poster-3-makhachev.png
-  alt: UFC 330 Makhachev vs. Garry
+  path: "/assets/ufc-330-poster-3-makhachev.png"
+  alt: "Islam Makhachev and Ian Machado Garry featured on the UFC 330 fight poster"
+
 tags:
-  - Islam Makhachev
-  - Ian Garry
-  - Breakdown
+  - "UFC 330"
+  - "Islam Makhachev"
+  - "Ian Machado Garry"
+  - "Welterweight"
 last_modified_at: 2026-07-26
 published: true
 ---
