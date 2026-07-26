@@ -23,7 +23,12 @@
         rel="stylesheet"
         href="{{ '/assets/style.css' | relative_url }}"
     >
-
+{% if page.custom_css %}
+    <link
+        rel="stylesheet"
+        href="{{ page.custom_css | relative_url }}"
+    >
+{% endif %}
     <link
         rel="icon"
         type="image/x-icon"
