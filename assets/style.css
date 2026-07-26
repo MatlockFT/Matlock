@@ -2033,3 +2033,156 @@ select:focus-visible {
         width: 100%;
     }
 }
+
+/* =========================================================
+   SIMPLE ABOUT PAGE
+   ========================================================= */
+
+.simple-about-page {
+    width: min(100%, 1040px);
+    margin: 0 auto;
+}
+
+.simple-about-hero {
+    margin-bottom: 4rem;
+    padding: clamp(1.75rem, 5vw, 4.5rem);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-large);
+    background:
+        radial-gradient(
+            circle at 100% 0,
+            rgba(255, 74, 84, 0.17),
+            transparent 420px
+        ),
+        var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.simple-about-hero h1 {
+    max-width: 850px;
+    margin: 0 0 1.25rem;
+    color: var(--accent);
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+}
+
+.simple-about-intro {
+    max-width: 780px;
+    margin: 0;
+    color: var(--text-soft);
+    font-size: clamp(1.08rem, 2vw, 1.35rem);
+    line-height: 1.65;
+}
+
+.simple-about-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.simple-about-work {
+    margin-bottom: 4rem;
+}
+
+.simple-about-heading {
+    margin-bottom: 1.5rem;
+}
+
+.simple-about-heading h2,
+.simple-about-background h2 {
+    margin: 0;
+    color: #ffffff;
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: clamp(2.4rem, 5vw, 4.25rem);
+    line-height: 0.96;
+    text-transform: uppercase;
+}
+
+.simple-about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.simple-about-card {
+    padding: clamp(1.4rem, 3vw, 2.25rem);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-medium);
+    background: var(--surface);
+}
+
+.simple-about-card h3 {
+    margin: 0 0 0.8rem;
+    color: var(--accent);
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.simple-about-card p {
+    margin: 0;
+    color: var(--text-soft);
+    line-height: 1.65;
+}
+
+.simple-about-background {
+    display: grid;
+    grid-template-columns:
+        minmax(260px, 0.8fr)
+        minmax(0, 1.2fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.simple-about-background-copy {
+    color: var(--text-soft);
+    font-size: 1.05rem;
+}
+
+.simple-about-background-copy p {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+}
+
+.simple-about-background-copy p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 760px) {
+    .simple-about-hero {
+        padding: 1.35rem;
+    }
+
+    .simple-about-hero h1 {
+        font-size: clamp(3rem, 16vw, 5rem);
+    }
+
+    .simple-about-grid,
+    .simple-about-background {
+        grid-template-columns: 1fr;
+    }
+
+    .simple-about-background {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .simple-about-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .simple-about-actions .primary-button,
+    .simple-about-actions .secondary-button {
+        width: 100%;
+    }
+}
