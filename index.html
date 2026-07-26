@@ -1,18 +1,57 @@
 ---
 layout: default
 title: "MMA Breakdowns, Analysis and Predictions"
-description: "The latest UFC and MMA breakdowns, predictions, technical analysis, and opinions from MMA Matlock."
+description: "Original UFC and MMA fight breakdowns, predictions, technical analysis, archive videos, and opinions from MMA Matlock."
 permalink: /
 ---
 
 {% assign latest_post = site.posts.first %}
 
 <div class="homepage">
+    <header
+        class="homepage-intro"
+        aria-labelledby="homepage-title"
+    >
+        <p class="eyebrow">
+            Independent MMA coverage
+        </p>
+
+        <h1 id="homepage-title">
+            MMA Breakdowns, Analysis and Predictions
+        </h1>
+
+        <p class="homepage-intro-description">
+            Original fight breakdowns, technical analysis, predictions,
+            MMA archive videos, and opinions from a longtime fan of the sport.
+        </p>
+
+        <div class="homepage-intro-actions">
+            <a
+                class="primary-button"
+                href="{{ '/breakdowns/' | relative_url }}"
+            >
+                Browse all breakdowns
+            </a>
+
+            <a
+                class="homepage-text-link"
+                href="{{ '/mma-yellowpages/' | relative_url }}"
+            >
+                Explore the MMA Yellow Pages
+            </a>
+        </div>
+    </header>
+
     {% if latest_post %}
         {% assign latest_image = latest_post.image.path | default: latest_post.image %}
         {% assign latest_alt = latest_post.image.alt | default: latest_post.image_alt | default: latest_post.title %}
+        {% assign latest_width = latest_post.image.width %}
+        {% assign latest_height = latest_post.image.height %}
 
-        <section class="featured-section">
+        <section
+            class="featured-section"
+            aria-labelledby="latest-breakdown-title"
+        >
             <article
                 class="featured-article{% if latest_image %} featured-article-with-image{% endif %}"
             >
@@ -20,13 +59,21 @@ permalink: /
                     <a
                         class="featured-image"
                         href="{{ latest_post.url | relative_url }}"
+                        aria-label="Read {{ latest_post.title | escape }}"
                         data-image-shell
                     >
                         <img
                             src="{{ latest_image | relative_url }}"
                             alt="{{ latest_alt | escape }}"
+                            {% if latest_width %}
+                                width="{{ latest_width }}"
+                            {% endif %}
+                            {% if latest_height %}
+                                height="{{ latest_height }}"
+                            {% endif %}
                             data-hide-broken
                             fetchpriority="high"
+                            decoding="async"
                         >
                     </a>
                 {% endif %}
@@ -44,27 +91,30 @@ permalink: /
                         </time>
                     </p>
 
-                    <h1>
+                    <h2 id="latest-breakdown-title">
                         <a href="{{ latest_post.url | relative_url }}">
                             {{ latest_post.title }}
                         </a>
-                    </h1>
+                    </h2>
 
-                    <p class="featured-description">
-                        {% if latest_post.description %}
-                            {{ latest_post.description }}
-                        {% else %}
+                    {% if latest_post.description %}
+                        <p class="featured-description">
+                            {{ latest_post.description | strip_html }}
+                        </p>
+                    {% elsif latest_post.excerpt %}
+                        <p class="featured-description">
                             {{ latest_post.excerpt
                                 | strip_html
                                 | normalize_whitespace
                                 | truncate: 250
                             }}
-                        {% endif %}
-                    </p>
+                        </p>
+                    {% endif %}
 
                     <a
                         class="primary-button"
                         href="{{ latest_post.url | relative_url }}"
+                        aria-label="Read {{ latest_post.title | escape }}"
                     >
                         Read the breakdown
                     </a>
@@ -73,13 +123,17 @@ permalink: /
         </section>
     {% endif %}
 
-    <aside class="banner-ad" aria-label="Advertisement">
-        <span class="ad-label">
-            Advertisement
-        </span>
+    {% if site.adsense.banner_slot and site.adsense.banner_slot != "" %}
+        <aside
+            class="banner-ad"
+            aria-label="Advertisement"
+            data-nosnippet
+        >
+            <span class="ad-label">
+                Advertisement
+            </span>
 
-        <div class="banner-ad-inner">
-            {% if site.adsense.banner_slot and site.adsense.banner_slot != "" %}
+            <div class="banner-ad-inner">
                 <ins
                     class="adsbygoogle responsive-ad"
                     data-ad-client="{{ site.adsense.client }}"
@@ -91,29 +145,28 @@ permalink: /
                 <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
-            {% else %}
-                <span class="ad-placeholder">
-                    Advertisement space
-                </span>
-            {% endif %}
-        </div>
-    </aside>
+            </div>
+        </aside>
+    {% endif %}
 
     {% if site.posts.size > 1 %}
-        <section class="latest-section">
+        <section
+            class="latest-section"
+            aria-labelledby="latest-breakdowns-title"
+        >
             <header class="section-header">
                 <div>
                     <p class="eyebrow">
                         Recent coverage
                     </p>
 
-                    <h2>
+                    <h2 id="latest-breakdowns-title">
                         Latest Breakdowns
                     </h2>
                 </div>
 
                 <a href="{{ '/breakdowns/' | relative_url }}">
-                    View all
+                    View all breakdowns
                 </a>
             </header>
 
@@ -121,51 +174,69 @@ permalink: /
                 {% for post in site.posts offset: 1 limit: 6 %}
                     {% assign post_image = post.image.path | default: post.image %}
                     {% assign post_alt = post.image.alt | default: post.image_alt | default: post.title %}
+                    {% assign post_width = post.image.width %}
+                    {% assign post_height = post.image.height %}
 
-                    <article class="article-card">
+                    <article
+                        class="article-card"
+                        aria-labelledby="homepage-post-{{ forloop.index }}-title"
+                    >
                         {% if post_image %}
                             <a
                                 class="article-card-image"
                                 href="{{ post.url | relative_url }}"
+                                aria-label="Read {{ post.title | escape }}"
                                 data-image-shell
                             >
                                 <img
                                     src="{{ post_image | relative_url }}"
                                     alt="{{ post_alt | escape }}"
+                                    {% if post_width %}
+                                        width="{{ post_width }}"
+                                    {% endif %}
+                                    {% if post_height %}
+                                        height="{{ post_height }}"
+                                    {% endif %}
                                     data-hide-broken
                                     loading="lazy"
+                                    decoding="async"
                                 >
                             </a>
                         {% endif %}
 
                         <div class="article-card-content">
                             <p class="article-date">
-                                <time datetime="{{ post.date | date_to_xmlschema }}">
+                                <time
+                                    datetime="{{ post.date | date_to_xmlschema }}"
+                                >
                                     {{ post.date | date: "%B %d, %Y" }}
                                 </time>
                             </p>
 
-                            <h3>
+                            <h3 id="homepage-post-{{ forloop.index }}-title">
                                 <a href="{{ post.url | relative_url }}">
                                     {{ post.title }}
                                 </a>
                             </h3>
 
-                            <p>
-                                {% if post.description %}
-                                    {{ post.description }}
-                                {% else %}
+                            {% if post.description %}
+                                <p>
+                                    {{ post.description | strip_html }}
+                                </p>
+                            {% elsif post.excerpt %}
+                                <p>
                                     {{ post.excerpt
                                         | strip_html
                                         | normalize_whitespace
                                         | truncate: 160
                                     }}
-                                {% endif %}
-                            </p>
+                                </p>
+                            {% endif %}
 
                             <a
                                 class="card-link"
                                 href="{{ post.url | relative_url }}"
+                                aria-label="Read {{ post.title | escape }}"
                             >
                                 Read breakdown
                             </a>
@@ -173,6 +244,15 @@ permalink: /
                     </article>
                 {% endfor %}
             </div>
+
+            <footer class="latest-section-footer">
+                <a
+                    class="primary-button"
+                    href="{{ '/breakdowns/' | relative_url }}"
+                >
+                    Browse the complete breakdown archive
+                </a>
+            </footer>
         </section>
     {% endif %}
 </div>
