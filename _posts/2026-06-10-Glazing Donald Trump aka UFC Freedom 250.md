@@ -12,6 +12,9 @@ image:
   alt: UFC White House Breakdown Image
 tags:
   - Ilia Topuria
+  - Justin Gaethje
+  - White House
+  - Donald Trump
 last_modified_at: 2026-07-26
 published: true
 ---
