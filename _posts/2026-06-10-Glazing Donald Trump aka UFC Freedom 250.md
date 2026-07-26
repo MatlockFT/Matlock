@@ -1,6 +1,19 @@
 ---
-title: "UFC Freedom 250: Glazing On Trump's B-Day"
+layout: post
+title: UFC Freedom 250 | Breakdown & Picks
+description: On what is being dubbed a celebration of America, the UFC holds a
+  fight night card on the White House lawn on Trump's birthday. I'm sure that's
+  all it is, right?
 date: 2026-06-10
+category: Breakdown
+author: MMA Matlock
+image:
+  path: /assets/uploads/whitehouse.jpg
+  alt: UFC White House Breakdown Image
+tags:
+  - Ilia Topuria
+last_modified_at: 2026-07-26
+published: true
 ---
 # UFC Freedom 250 at the White House: Full Card Preview and Predictions
 
@@ -618,3 +631,6 @@ With all the ceremony and political discussion out of the way, let us move to th
 ```
 
 ```
+
+```
+
