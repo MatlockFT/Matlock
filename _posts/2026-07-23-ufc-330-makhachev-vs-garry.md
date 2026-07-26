@@ -16,8 +16,6 @@ tags:
 last_modified_at: 2026-07-26
 published: true
 ---
-![](/assets/ufc-330-poster-3-makhachev.png)
-
 # Islam Makhachev vs. Ian Garry
 
 Islam Makhachev is scheduled to defend the UFC welterweight title against No. 1 contender Ian Machado Garry at UFC 330 on August 15, 2026.
@@ -63,11 +61,7 @@ Garry has the size, reach and volume advantage. He’ll look to stay long, use k
 
 Islam is less active but more efficient, and his left hand becomes more dangerous because Garry has to worry about the takedown. 
 
-![image.png](/assets/image-1.png)
-
 ### Grappling
 
 Clear advantage for Islam. His chain wrestling, trips and top control are on another level. Garry has solid takedown defence, but defending one attempt isn’t enough—Islam keeps linking attacks together until he gets the position he wants.
-
-![image.png](/assets/image-2.png)
 
