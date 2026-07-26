@@ -1,16 +1,18 @@
 title: "MMA Matlock"
 legal_name: "MATLOCKSFIGHTTALK"
-tagline: "Independent MMA breakdowns and analysis"
+tagline: "Independent MMA breakdowns, archive videos and analysis"
 
 description: >-
-  Independent UFC and mixed martial arts breakdowns, technical analysis,
-  predictions, commentary, and opinions from MMA Matlock.
+  Independent UFC and MMA fight breakdowns, technical analysis,
+  predictions, archive videos, commentary, and opinions from MMA Matlock.
 
 url: "https://matlockfighttalk.com"
 baseurl: ""
 
 lang: "en-US"
 locale: "en_US"
+
+email: "fighttalkmma@protonmail.com"
 
 logo: "/assets/logo.png"
 
@@ -23,6 +25,9 @@ twitter:
   username: "MMAMatlock"
   card: "summary_large_image"
 
+facebook:
+  publisher: "https://www.facebook.com/mmamatlock"
+
 social:
   name: "MMA Matlock"
   links:
@@ -32,12 +37,21 @@ social:
     - "https://www.threads.net/@MMAMatlock"
     - "https://www.tiktok.com/@mmamatlock"
     - "https://www.facebook.com/mmamatlock"
+    - "https://verdictmma.com/profile/matlockfighttalk"
+    - "https://open.spotify.com/show/5XJ0X1QqIvz4gL0cJ0D8kf"
+
+# Add verification tokens here after registering the site
+# with Google Search Console or Bing Webmaster Tools.
+#
+# webmaster_verifications:
+#   google: ""
+#   bing: ""
 
 adsense:
   client: "ca-pub-5948515643609166"
 
-  # Paste the numeric data-ad-slot value from your AdSense ad unit here.
-  # This is not the same as your publisher ID.
+  # Paste the numeric data-ad-slot value from your AdSense
+  # ad unit here. This is not the publisher ID.
   banner_slot: ""
 
 nav:
@@ -60,7 +74,7 @@ nav:
     link: "/picture-gallery"
 
   - name: "Media Kit"
-    link: "/media-kit"
+    link: "/media-kit/"
 
 footer_nav:
   - name: "About"
@@ -73,14 +87,21 @@ footer_nav:
     link: "/privacy/"
 
 defaults:
+  # Limit automatically generated description fallbacks.
+  # Explicit page and post descriptions still take priority.
+  - scope:
+      path: ""
+    values:
+      seo_description_max_words: 35
+
+  # Default settings for every post.
   - scope:
       path: ""
       type: posts
     values:
       layout: post
-      author: "MMA Matlock"
       seo:
-        type: BlogPosting
+        type: "BlogPosting"
 
 permalink: /:year/:month/:day/:title.html
 
@@ -93,7 +114,7 @@ plugins:
   - jekyll-sitemap
 
 feed:
-  path: feed.xml
+  path: "feed.xml"
 
 markdown: kramdown
 
