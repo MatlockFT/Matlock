@@ -12,6 +12,7 @@ image:
   alt: UFC 330 Banner
 tags:
   - Islam Makhachev
+  - Ian Garry
 last_modified_at: 2026-07-26
 published: true
 ---
