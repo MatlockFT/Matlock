@@ -9,6 +9,8 @@ author: MMA Matlock
 image:
   path: /assets/uploads/conor.webp
   alt: Conor McGregor collapsing to the canvas unable to stand on his leg.
+tags:
+  - UFC 329
 last_modified_at: 2026-07-26
 published: true
 ---
