@@ -10,6 +10,10 @@ author: MMA Matlock
 image:
   path: /assets/uploads/espn.png
   alt: ESPN + UFC Era comes to a close
+tags:
+  - ESPN
+  - Paramount
+  - UFC
 last_modified_at: 2026-07-26
 published: true
 ---
