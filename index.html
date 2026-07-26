@@ -1,105 +1,175 @@
 ---
 layout: default
-title: "MMA MATLOCK"
-description: "The latest MMA opinions, technical breakdowns, predictions, and UFC analysis from Matlock's Fight Talk."
+title: "MMA Breakdowns, Analysis and Predictions"
+description: "The latest UFC and MMA breakdowns, predictions, technical analysis, and opinions from MMA Matlock."
 permalink: /
 ---
 
+{% assign latest_post = site.posts.first %}
+
 <div class="homepage">
-    {% assign latest_post = site.posts.first %}
-
     {% if latest_post %}
-        {% assign latest_image = latest_post.image.path | default: latest_post.image %}
+        {% assign latest_image = nil %}
+        {% assign latest_image_alt = latest_post.title %}
 
-        <article class="latest-article">
-            <div class="latest-article-label">
-                Latest Fight Analysis
-            </div>
+        {% if latest_post.image %}
+            {% if latest_post.image.path %}
+                {% assign latest_image = latest_post.image.path %}
 
-            {% if latest_image %}
-                <a
-                    class="latest-article-image-link"
-                    href="{{ latest_post.url | relative_url }}"
-                    aria-label="Read {{ latest_post.title | escape }}"
-                >
-                    <img
-                        class="latest-article-image"
-                        src="{{ latest_image | relative_url }}"
-                        alt="{{ latest_post.image.alt | default: latest_post.title | escape }}"
-                        fetchpriority="high"
-                    >
-                </a>
+                {% if latest_post.image.alt %}
+                    {% assign latest_image_alt = latest_post.image.alt %}
+                {% endif %}
+            {% else %}
+                {% assign latest_image = latest_post.image %}
             {% endif %}
+        {% endif %}
 
-            <div class="latest-article-content">
-                <p class="latest-article-date">
-                    <time datetime="{{ latest_post.date | date_to_xmlschema }}">
-                        {{ latest_post.date | date: "%B %d, %Y" }}
-                    </time>
-                </p>
-
-                <h1 class="latest-article-title">
-                    <a href="{{ latest_post.url | relative_url }}">
-                        {{ latest_post.title }}
+        <section
+            class="featured-section"
+            aria-labelledby="latest-breakdown-title"
+        >
+            <article
+                class="featured-article{% if latest_image %} featured-article--with-image{% endif %}"
+            >
+                {% if latest_image %}
+                    <a
+                        class="featured-media"
+                        href="{{ latest_post.url | relative_url }}"
+                        aria-label="Read {{ latest_post.title | escape }}"
+                        data-image-shell
+                    >
+                        <img
+                            src="{{ latest_image | relative_url }}"
+                            alt="{{ latest_image_alt | escape }}"
+                            data-hide-on-error
+                            fetchpriority="high"
+                        >
                     </a>
-                </h1>
+                {% endif %}
 
-                <p class="latest-article-summary">
-                    {% if latest_post.description %}
-                        {{ latest_post.description }}
-                    {% else %}
-                        {{ latest_post.excerpt | strip_html | normalize_whitespace | truncate: 240 }}
-                    {% endif %}
-                </p>
+                <div class="featured-content">
+                    <p class="article-eyebrow">
+                        Latest breakdown
+                    </p>
 
-                <a
-                    class="latest-article-button"
-                    href="{{ latest_post.url | relative_url }}"
-                >
-                    Read the full breakdown
-                </a>
-            </div>
-        </article>
+                    <p class="article-date">
+                        <time
+                            datetime="{{ latest_post.date | date_to_xmlschema }}"
+                        >
+                            {{ latest_post.date | date: "%B %d, %Y" }}
+                        </time>
+                    </p>
+
+                    <h1 id="latest-breakdown-title">
+                        <a href="{{ latest_post.url | relative_url }}">
+                            {{ latest_post.title }}
+                        </a>
+                    </h1>
+
+                    <p class="featured-summary">
+                        {% if latest_post.description %}
+                            {{ latest_post.description }}
+                        {% else %}
+                            {{ latest_post.excerpt
+                                | strip_html
+                                | normalize_whitespace
+                                | truncate: 260
+                            }}
+                        {% endif %}
+                    </p>
+
+                    <a
+                        class="primary-button"
+                        href="{{ latest_post.url | relative_url }}"
+                    >
+                        Read the breakdown
+                    </a>
+                </div>
+            </article>
+        </section>
     {% else %}
         <section class="homepage-empty">
-            <h1>Matlock's Fight Talk</h1>
+            <h1>MMA Matlock</h1>
 
             <p>
-                Fight analysis is coming soon.
+                The first breakdown is coming soon.
             </p>
         </section>
     {% endif %}
 
+    <aside class="banner-ad" aria-label="Advertisement">
+        <span class="banner-ad-label">
+            Advertisement
+        </span>
+
+        <div class="banner-ad-slot" id="homepage-banner-ad">
+            <!--
+                Replace the placeholder below with your banner-ad code.
+
+                Recommended desktop size: 970 × 90
+                Common alternative: 728 × 90
+                The container automatically scales on smaller screens.
+            -->
+
+            <span class="banner-ad-placeholder">
+                Banner ad space
+            </span>
+        </div>
+    </aside>
+
     {% if site.posts.size > 1 %}
         <section
-            class="recent-articles"
-            aria-labelledby="recent-articles-title"
+            class="recent-breakdowns"
+            aria-labelledby="recent-breakdowns-title"
         >
-            <header class="section-heading">
-                <p class="section-kicker">
-                    The Matlock Papers
-                </p>
+            <div class="section-header">
+                <div>
+                    <p class="section-eyebrow">
+                        Recent coverage
+                    </p>
 
-                <h2 id="recent-articles-title">
-                    More Fight Analysis
-                </h2>
-            </header>
+                    <h2 id="recent-breakdowns-title">
+                        Latest Breakdowns
+                    </h2>
+                </div>
+
+                <a
+                    class="section-link"
+                    href="{{ '/breakdowns/' | relative_url }}"
+                >
+                    View all
+                </a>
+            </div>
 
             <div class="article-grid">
                 {% for post in site.posts offset: 1 limit: 6 %}
-                    {% assign post_image = post.image.path | default: post.image %}
+                    {% assign post_image = nil %}
+                    {% assign post_image_alt = post.title %}
+
+                    {% if post.image %}
+                        {% if post.image.path %}
+                            {% assign post_image = post.image.path %}
+
+                            {% if post.image.alt %}
+                                {% assign post_image_alt = post.image.alt %}
+                            {% endif %}
+                        {% else %}
+                            {% assign post_image = post.image %}
+                        {% endif %}
+                    {% endif %}
 
                     <article class="article-card">
                         {% if post_image %}
                             <a
-                                class="article-card-image-link"
+                                class="article-card-media"
                                 href="{{ post.url | relative_url }}"
                                 aria-label="Read {{ post.title | escape }}"
+                                data-image-shell
                             >
                                 <img
-                                    class="article-card-image"
                                     src="{{ post_image | relative_url }}"
-                                    alt="{{ post.image.alt | default: post.title | escape }}"
+                                    alt="{{ post_image_alt | escape }}"
+                                    data-hide-on-error
                                     loading="lazy"
                                     decoding="async"
                                 >
@@ -107,13 +177,15 @@ permalink: /
                         {% endif %}
 
                         <div class="article-card-content">
-                            <p class="article-card-date">
-                                <time datetime="{{ post.date | date_to_xmlschema }}">
+                            <p class="article-date">
+                                <time
+                                    datetime="{{ post.date | date_to_xmlschema }}"
+                                >
                                     {{ post.date | date: "%B %d, %Y" }}
                                 </time>
                             </p>
 
-                            <h3 class="article-card-title">
+                            <h3>
                                 <a href="{{ post.url | relative_url }}">
                                     {{ post.title }}
                                 </a>
@@ -123,25 +195,23 @@ permalink: /
                                 {% if post.description %}
                                     {{ post.description }}
                                 {% else %}
-                                    {{ post.excerpt | strip_html | normalize_whitespace | truncate: 150 }}
+                                    {{ post.excerpt
+                                        | strip_html
+                                        | normalize_whitespace
+                                        | truncate: 170
+                                    }}
                                 {% endif %}
                             </p>
 
                             <a
-                                class="article-card-link"
+                                class="text-link"
                                 href="{{ post.url | relative_url }}"
                             >
-                                Read article
+                                Read breakdown
                             </a>
                         </div>
                     </article>
                 {% endfor %}
-            </div>
-
-            <div class="all-articles-link">
-                <a href="{{ '/matlockpapers' | relative_url }}">
-                    View all fight analysis
-                </a>
             </div>
         </section>
     {% endif %}
