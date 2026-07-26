@@ -1,6 +1,20 @@
 ---
-title: "UFC 324: The Paramount Era Begins"
+layout: post
+title: "UFC 324: Gaethje vs. Pimblett Recap"
+description: The Paramount era of the UFC has begun. What is a PPV? Why are
+  there ads everywhere? What is going on?
 date: 2026-01-25
+category: Opinion
+author: MMA Matlock
+image:
+  path: /assets/uploads/dana-white.png
+  alt: "Dana White had always been the media attack dog. "
+tags:
+  - Paramount
+  - Justin Gaethje
+  - Paddy Pimblett
+last_modified_at: 2026-07-26
+published: true
 ---
 UFC 324: GAETHJE VS. PIMBLETT. The Paramount era begins...
 
