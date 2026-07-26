@@ -1,6 +1,17 @@
 ---
-title: "Opinion: End of an Era"
+layout: post
+title: END OF THE ESPN ERA
+description: End of the year, end of an era. We no longer have to suffer through
+  ESPN's technical difficulties... but that doesn't mean Paramount will be any
+  better.
 date: 2025-12-15
+category: Opinion
+author: MMA Matlock
+image:
+  path: /assets/uploads/espn.png
+  alt: ESPN + UFC Era comes to a close
+last_modified_at: 2026-07-26
+published: true
 ---
 I blinked, and it is now December. The end of the year, but also the end of an era, as the final fight aired on ESPN this past Saturday.
 
