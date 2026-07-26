@@ -10,6 +10,10 @@ layout: default
 
 {% assign post_author = page.author.name | default: page.author | default: site.author.name %}
 
+{% assign share_url = page.url | absolute_url %}
+{% assign share_title = page.title | append: " | " | append: site.title %}
+{% assign twitter_username = site.twitter.username | default: site.author.twitter | remove: "@" %}
+
 <article
     class="post-page"
     aria-labelledby="post-title"
@@ -52,7 +56,7 @@ layout: default
             {% elsif page.categories and page.categories.size > 0 %}
                 {{ page.categories | first }}
             {% else %}
-                MMA breakdown
+                Breakdown
             {% endif %}
         </p>
 
@@ -129,95 +133,89 @@ layout: default
     <div class="post-body">
         {{ content }}
     </div>
-    {% assign share_url = page.url | absolute_url %}
-{% assign share_title =
-    page.title
-    | append: " | "
-    | append: site.title
-%}
 
-<section
-    class="post-share"
-    aria-labelledby="post-share-title"
-    data-post-share
-    data-share-url="{{ share_url | escape }}"
-    data-share-title="{{ share_title | escape }}"
->
-    <div class="post-share-heading">
-        <div>
-            <p class="eyebrow">
-                Share this article
+    <section
+        class="post-share"
+        aria-labelledby="post-share-title"
+        data-post-share
+        data-share-url="{{ share_url | escape }}"
+        data-share-title="{{ share_title | escape }}"
+    >
+        <div class="post-share-heading">
+            <div>
+                <p class="eyebrow">
+                    Share this article
+                </p>
+
+                <h2 id="post-share-title">
+                    Pass It Along
+                </h2>
+            </div>
+
+            <p>
+                Share this article or copy its direct link.
             </p>
-
-            <h2 id="post-share-title">
-                Pass It Along
-            </h2>
         </div>
 
-        <p>
-            Share this breakdown or copy its direct link.
-        </p>
-    </div>
+        <div class="post-share-actions">
+            <button
+                class="post-share-button post-native-share"
+                type="button"
+                data-native-share
+                hidden
+            >
+                Share
+            </button>
 
-    <div class="post-share-actions">
-        <button
-            class="post-share-button post-native-share"
-            type="button"
-            data-native-share
-            hidden
-        >
-            Share
-        </button>
+            <a
+                class="post-share-button"
+                href="https://x.com/intent/tweet?text={{ share_title | url_encode }}&url={{ share_url | url_encode }}{% if twitter_username %}&via={{ twitter_username | url_encode }}{% endif %}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                X
+            </a>
 
-        <a
-            class="post-share-button"
-            href="https://x.com/intent/tweet?text={{ share_title | url_encode }}&url={{ share_url | url_encode }}&via={{ site.twitter.username | remove: '@' | url_encode }}"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            X
-        </a>
+            <a
+                class="post-share-button"
+                href="https://www.facebook.com/sharer/sharer.php?u={{ share_url | url_encode }}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Facebook
+            </a>
 
-        <a
-            class="post-share-button"
-            href="https://www.facebook.com/sharer/sharer.php?u={{ share_url | url_encode }}"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            Facebook
-        </a>
+            <a
+                class="post-share-button"
+                href="https://www.reddit.com/submit?url={{ share_url | url_encode }}&title={{ share_title | url_encode }}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Reddit
+            </a>
 
-        <a
-            class="post-share-button"
-            href="https://www.reddit.com/submit?url={{ share_url | url_encode }}&title={{ share_title | url_encode }}"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            Reddit
-        </a>
+            <a
+                class="post-share-button"
+                href="mailto:?subject={{ share_title | url_encode }}&body={{ share_url | url_encode }}"
+            >
+                Email
+            </a>
 
-        <a
-            class="post-share-button"
-            href="mailto:?subject={{ share_title | url_encode }}&body={{ share_url | url_encode }}"
-        >
-            Email
-        </a>
+            <button
+                class="post-share-button"
+                type="button"
+                data-copy-link
+            >
+                Copy link
+            </button>
+        </div>
 
-        <button
-            class="post-share-button"
-            type="button"
-            data-copy-link
-        >
-            Copy link
-        </button>
-    </div>
-
-    <p
-        class="post-share-status"
-        data-share-status
-        aria-live="polite"
-    ></p>
-</section>
+        <p
+            class="post-share-status"
+            data-share-status
+            aria-live="polite"
+        ></p>
+    </section>
 
     <footer class="post-footer">
         {% if page.tags and page.tags.size > 0 %}
@@ -276,7 +274,27 @@ layout: default
 
             <div class="article-grid">
                 {% for related_post in site.related_posts limit: 3 %}
+                    {% assign related_image = related_post.image.path | default: related_post.image %}
+                    {% assign related_alt = related_post.image.alt | default: related_post.image_alt | default: related_post.title %}
+
                     <article class="article-card">
+                        {% if related_image %}
+                            <a
+                                class="article-card-image"
+                                href="{{ related_post.url | relative_url }}"
+                                aria-label="Read {{ related_post.title | escape }}"
+                                data-image-shell
+                            >
+                                <img
+                                    src="{{ related_image | relative_url }}"
+                                    alt="{{ related_alt | escape }}"
+                                    loading="lazy"
+                                    decoding="async"
+                                    data-hide-broken
+                                >
+                            </a>
+                        {% endif %}
+
                         <div class="article-card-content">
                             <p class="article-date">
                                 <time
@@ -326,7 +344,7 @@ layout: default
     {% if page.previous or page.next %}
         <nav
             class="post-navigation"
-            aria-label="Previous and next breakdowns"
+            aria-label="Previous and next articles"
         >
             {% if page.previous %}
                 <a
@@ -334,7 +352,7 @@ layout: default
                     href="{{ page.previous.url | relative_url }}"
                 >
                     <span>
-                        Older breakdown
+                        Older article
                     </span>
 
                     <strong>
@@ -349,7 +367,7 @@ layout: default
                     href="{{ page.next.url | relative_url }}"
                 >
                     <span>
-                        Newer breakdown
+                        Newer article
                     </span>
 
                     <strong>
@@ -360,3 +378,128 @@ layout: default
         </nav>
     {% endif %}
 </article>
+
+<script>
+    (function () {
+        const shareSection =
+            document.querySelector("[data-post-share]");
+
+        if (!shareSection) {
+            return;
+        }
+
+        const shareUrl =
+            shareSection.getAttribute("data-share-url");
+
+        const shareTitle =
+            shareSection.getAttribute("data-share-title");
+
+        const nativeShareButton =
+            shareSection.querySelector("[data-native-share]");
+
+        const copyButton =
+            shareSection.querySelector("[data-copy-link]");
+
+        const shareStatus =
+            shareSection.querySelector("[data-share-status]");
+
+        let statusTimer;
+
+        function setShareStatus(message) {
+            if (!shareStatus) {
+                return;
+            }
+
+            window.clearTimeout(statusTimer);
+            shareStatus.textContent = message;
+
+            statusTimer = window.setTimeout(function () {
+                shareStatus.textContent = "";
+            }, 3000);
+        }
+
+        if (nativeShareButton && navigator.share) {
+            nativeShareButton.hidden = false;
+
+            nativeShareButton.addEventListener(
+                "click",
+                async function () {
+                    try {
+                        await navigator.share({
+                            title: shareTitle,
+                            url: shareUrl
+                        });
+                    } catch (error) {
+                        if (error.name !== "AbortError") {
+                            setShareStatus(
+                                "The share menu could not be opened."
+                            );
+                        }
+                    }
+                }
+            );
+        }
+
+        async function copyLink() {
+            try {
+                if (
+                    navigator.clipboard &&
+                    window.isSecureContext
+                ) {
+                    await navigator.clipboard.writeText(
+                        shareUrl
+                    );
+                } else {
+                    const temporaryField =
+                        document.createElement("textarea");
+
+                    temporaryField.value = shareUrl;
+                    temporaryField.setAttribute(
+                        "readonly",
+                        ""
+                    );
+
+                    temporaryField.style.position =
+                        "fixed";
+
+                    temporaryField.style.left =
+                        "-9999px";
+
+                    document.body.appendChild(
+                        temporaryField
+                    );
+
+                    temporaryField.select();
+                    temporaryField.setSelectionRange(
+                        0,
+                        temporaryField.value.length
+                    );
+
+                    const copied =
+                        document.execCommand("copy");
+
+                    temporaryField.remove();
+
+                    if (!copied) {
+                        throw new Error(
+                            "Copy command was unsuccessful."
+                        );
+                    }
+                }
+
+                setShareStatus("Link copied.");
+            } catch (error) {
+                setShareStatus(
+                    "The link could not be copied."
+                );
+            }
+        }
+
+        if (copyButton) {
+            copyButton.addEventListener(
+                "click",
+                copyLink
+            );
+        }
+    }());
+</script>
