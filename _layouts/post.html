@@ -14,9 +14,29 @@ layout: default
 {% assign share_title = page.title | append: " | " | append: site.title %}
 {% assign twitter_username = site.twitter.username | default: site.author.twitter | remove: "@" %}
 
+{% assign title_length = page.title | size %}
+{% assign title_class = "post-title" %}
+
+{% if title_length > 58 %}
+    {% assign title_class = title_class | append: " post-title-long" %}
+{% elsif title_length > 38 %}
+    {% assign title_class = title_class | append: " post-title-medium" %}
+{% endif %}
+
+{% assign article_text = content | strip_html | strip_newlines %}
+{% assign article_words = article_text | split: " " | size %}
+{% assign reading_minutes = article_words | plus: 199 | divided_by: 200 %}
+
+{% if reading_minutes < 1 %}
+    {% assign reading_minutes = 1 %}
+{% endif %}
+
+{% assign featured_position = page.image.position | default: page.image_position %}
+
 <article
     class="post-page"
     aria-labelledby="post-title"
+    data-title-length="{{ title_length }}"
 >
     <nav
         class="post-breadcrumbs"
@@ -60,7 +80,10 @@ layout: default
             {% endif %}
         </p>
 
-        <h1 id="post-title">
+        <h1
+            id="post-title"
+            class="{{ title_class }}"
+        >
             {{ page.title }}
         </h1>
 
@@ -100,6 +123,20 @@ layout: default
                     {{ page.last_modified_at | date: "%B %d, %Y" }}
                 </time>
             {% endif %}
+
+            <span
+                class="post-meta-separator"
+                aria-hidden="true"
+            >
+                •
+            </span>
+
+            <span
+                class="post-reading-time"
+                aria-label="Estimated reading time"
+            >
+                {{ reading_minutes }} min read
+            </span>
         </div>
     </header>
 
@@ -117,9 +154,14 @@ layout: default
                 {% if featured_height %}
                     height="{{ featured_height }}"
                 {% endif %}
-                data-hide-broken
+                {% if featured_position %}
+                    style="object-position: {{ featured_position | escape }};"
+                {% endif %}
+                sizes="(max-width: 760px) calc(100vw - 1.7rem), 1040px"
+                loading="eager"
                 fetchpriority="high"
                 decoding="async"
+                data-hide-broken
             >
 
             {% if featured_caption %}
@@ -130,7 +172,10 @@ layout: default
         </figure>
     {% endif %}
 
-    <div class="post-body">
+    <div
+        id="article-content"
+        class="post-body"
+    >
         {{ content }}
     </div>
 
@@ -140,6 +185,7 @@ layout: default
         data-post-share
         data-share-url="{{ share_url | escape }}"
         data-share-title="{{ share_title | escape }}"
+        data-share-text="{{ page.description | default: page.title | strip_html | escape }}"
     >
         <div class="post-share-heading">
             <div>
@@ -162,6 +208,7 @@ layout: default
                 class="post-share-button post-native-share"
                 type="button"
                 data-native-share
+                aria-label="Share {{ page.title | escape }}"
                 hidden
             >
                 Share
@@ -172,6 +219,7 @@ layout: default
                 href="https://x.com/intent/tweet?text={{ share_title | url_encode }}&url={{ share_url | url_encode }}{% if twitter_username %}&via={{ twitter_username | url_encode }}{% endif %}"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Share {{ page.title | escape }} on X"
             >
                 X
             </a>
@@ -181,6 +229,7 @@ layout: default
                 href="https://www.facebook.com/sharer/sharer.php?u={{ share_url | url_encode }}"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Share {{ page.title | escape }} on Facebook"
             >
                 Facebook
             </a>
@@ -190,6 +239,7 @@ layout: default
                 href="https://www.reddit.com/submit?url={{ share_url | url_encode }}&title={{ share_title | url_encode }}"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Share {{ page.title | escape }} on Reddit"
             >
                 Reddit
             </a>
@@ -197,6 +247,7 @@ layout: default
             <a
                 class="post-share-button"
                 href="mailto:?subject={{ share_title | url_encode }}&body={{ share_url | url_encode }}"
+                aria-label="Share {{ page.title | escape }} by email"
             >
                 Email
             </a>
@@ -205,6 +256,7 @@ layout: default
                 class="post-share-button"
                 type="button"
                 data-copy-link
+                aria-label="Copy the link to {{ page.title | escape }}"
             >
                 Copy link
             </button>
@@ -213,6 +265,7 @@ layout: default
         <p
             class="post-share-status"
             data-share-status
+            role="status"
             aria-live="polite"
         ></p>
     </section>
@@ -276,6 +329,9 @@ layout: default
                 {% for related_post in site.related_posts limit: 3 %}
                     {% assign related_image = related_post.image.path | default: related_post.image %}
                     {% assign related_alt = related_post.image.alt | default: related_post.image_alt | default: related_post.title %}
+                    {% assign related_width = related_post.image.width %}
+                    {% assign related_height = related_post.image.height %}
+                    {% assign related_position = related_post.image.position | default: related_post.image_position %}
 
                     <article class="article-card">
                         {% if related_image %}
@@ -288,6 +344,16 @@ layout: default
                                 <img
                                     src="{{ related_image | relative_url }}"
                                     alt="{{ related_alt | escape }}"
+                                    {% if related_width %}
+                                        width="{{ related_width }}"
+                                    {% endif %}
+                                    {% if related_height %}
+                                        height="{{ related_height }}"
+                                    {% endif %}
+                                    {% if related_position %}
+                                        style="object-position: {{ related_position | escape }};"
+                                    {% endif %}
+                                    sizes="(max-width: 760px) calc(100vw - 1.7rem), (max-width: 1000px) 50vw, 33vw"
                                     loading="lazy"
                                     decoding="async"
                                     data-hide-broken
@@ -394,6 +460,9 @@ layout: default
         const shareTitle =
             shareSection.getAttribute("data-share-title");
 
+        const shareText =
+            shareSection.getAttribute("data-share-text");
+
         const nativeShareButton =
             shareSection.querySelector("[data-native-share]");
 
@@ -427,6 +496,7 @@ layout: default
                     try {
                         await navigator.share({
                             title: shareTitle,
+                            text: shareText,
                             url: shareUrl
                         });
                     } catch (error) {
@@ -485,6 +555,21 @@ layout: default
                             "Copy command was unsuccessful."
                         );
                     }
+                }
+
+                const originalCopyLabel =
+                    copyButton ? copyButton.textContent : "";
+
+                if (copyButton) {
+                    copyButton.textContent = "Copied";
+                    copyButton.disabled = true;
+
+                    window.setTimeout(function () {
+                        copyButton.textContent =
+                            originalCopyLabel;
+
+                        copyButton.disabled = false;
+                    }, 1600);
                 }
 
                 setShareStatus("Link copied.");
