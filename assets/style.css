@@ -5675,3 +5675,694 @@ h3 {
         font-size: clamp(2rem, 9vw, 3rem);
     }
 }
+
+/* =========================================================
+   V15: MOBILE EXPERIENCE OVERHAUL
+   ========================================================= */
+
+/* Prevent accidental horizontal scrolling without breaking long links. */
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+textarea {
+    font: inherit;
+}
+
+.post-body a,
+.contact-address,
+.about-email-link,
+.privacy-email-card strong {
+    overflow-wrap: anywhere;
+}
+
+/* Keep normal headline words intact. */
+.featured-content h2,
+.post-header h1,
+.homepage-intro h1,
+.article-card h2,
+.article-card h3,
+.archive-header h1,
+.section-header h2,
+.contact-hero-main h1,
+.about-hero-copy h1,
+.privacy-hero h1,
+.simple-about-hero h1,
+.slot-page-hero h1 {
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+}
+
+/* Sticky navigation should not cover in-page headings. */
+.post-body h2,
+.post-body h3,
+.post-body h4,
+.privacy-content > section {
+    scroll-margin-top: 90px;
+}
+
+@media (max-width: 760px) {
+    /* Global rhythm and touch targets */
+
+    body {
+        font-size: 16px;
+        line-height: 1.62;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+        font-size: 16px;
+    }
+
+    .primary-button,
+    .secondary-button,
+    .navigation-toggle,
+    .navigation-list a,
+    .audio-buttons button,
+    .post-share-button {
+        min-height: 46px;
+    }
+
+    /* Header and mobile navigation */
+
+    .logo-banner {
+        padding: 0.55rem 0.75rem;
+    }
+
+    .site-logo {
+        max-height: 78px;
+    }
+
+    .site-navigation {
+        padding-top: env(safe-area-inset-top);
+    }
+
+    .navigation-inner {
+        width: min(calc(100% - 1.25rem), var(--content-width));
+        min-height: 56px;
+        padding: 0.45rem 0;
+    }
+
+    .mobile-brand {
+        font-size: 1.15rem;
+        line-height: 1;
+    }
+
+    .navigation-toggle {
+        min-width: 46px;
+        padding: 0.55rem 0.75rem;
+    }
+
+    .navigation-list {
+        max-height: calc(100dvh - 76px);
+        gap: 0.25rem;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        padding: 0.6rem 0 0.2rem;
+        border-top: 1px solid var(--border);
+        scrollbar-width: thin;
+    }
+
+    .navigation-list-open {
+        display: flex;
+        margin-top: 0.45rem;
+    }
+
+    .navigation-list a {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 0.85rem;
+        border-left-width: 3px;
+        border-radius: 0 var(--radius-small) var(--radius-small) 0;
+        font-size: 0.82rem;
+    }
+
+    /* Main page gutters */
+
+    .site-main {
+        width: 100%;
+        padding:
+            1rem
+            max(0.85rem, env(safe-area-inset-right))
+            3.5rem
+            max(0.85rem, env(safe-area-inset-left));
+    }
+
+    /* Homepage introduction */
+
+    .homepage-intro {
+        margin-bottom: 1rem;
+        padding: 1.1rem;
+        border-radius: var(--radius-medium);
+    }
+
+    .homepage-intro h1 {
+        margin-bottom: 0.75rem;
+        font-size: clamp(2.05rem, 9vw, 3.15rem);
+        line-height: 1.03;
+    }
+
+    .homepage-intro-description {
+        font-size: 1rem;
+        line-height: 1.55;
+    }
+
+    .homepage-intro-actions {
+        gap: 0.65rem;
+        margin-top: 1.25rem;
+    }
+
+    .homepage-intro-actions .primary-button,
+    .homepage-intro-actions .secondary-button,
+    .latest-section-footer .primary-button {
+        width: 100%;
+    }
+
+    /* Homepage featured article */
+
+    .featured-section {
+        margin-bottom: 1.5rem;
+    }
+
+    .featured-article {
+        border-radius: var(--radius-medium);
+        box-shadow: 0 14px 38px rgba(0, 0, 0, 0.28);
+    }
+
+    .featured-image,
+    .featured-image img {
+        width: 100%;
+        min-height: 0;
+        max-height: none;
+        aspect-ratio: 16 / 10;
+    }
+
+    .featured-content {
+        padding: 1.05rem;
+    }
+
+    .featured-content .eyebrow {
+        margin-bottom: 0.35rem;
+    }
+
+    .featured-content .article-date {
+        margin-bottom: 0.65rem;
+    }
+
+    .featured-content h2 {
+        margin-bottom: 0.85rem;
+        font-size: clamp(1.75rem, 7.6vw, 2.55rem);
+        line-height: 1.05;
+    }
+
+    .featured-description {
+        display: -webkit-box;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        font-size: 1rem;
+        line-height: 1.55;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+    }
+
+    .featured-content .primary-button {
+        width: 100%;
+    }
+
+    /* Section headings and archive header */
+
+    .section-header,
+    .contact-section-header {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.55rem;
+        margin-bottom: 1rem;
+    }
+
+    .section-header h2,
+    .archive-header h1 {
+        font-size: clamp(1.9rem, 8vw, 2.75rem);
+        line-height: 1.04;
+    }
+
+    .archive-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .archive-header > p:last-child {
+        margin-top: 0.7rem;
+        font-size: 1rem;
+        line-height: 1.55;
+    }
+
+    /* Breakdown cards */
+
+    .article-grid {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+    }
+
+    .article-card {
+        border-radius: 12px;
+    }
+
+    .article-card:hover {
+        transform: none;
+    }
+
+    .article-card-content {
+        padding: 1rem;
+    }
+
+    .article-card .article-date {
+        margin-bottom: 0.55rem;
+        font-size: 0.74rem;
+    }
+
+    .article-card h2,
+    .article-card h3 {
+        margin-bottom: 0.65rem;
+        font-size: clamp(1.4rem, 6.4vw, 1.9rem);
+        line-height: 1.09;
+    }
+
+    .article-card-content > p:not(.article-date) {
+        display: -webkit-box;
+        margin-bottom: 0.9rem;
+        overflow: hidden;
+        line-height: 1.55;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+    }
+
+    .card-link {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    /* Individual breakdown pages */
+
+    .post-page {
+        width: 100%;
+    }
+
+    .post-breadcrumbs {
+        margin-bottom: 0.85rem;
+        font-size: 0.62rem;
+        line-height: 1.4;
+    }
+
+    .post-breadcrumbs li[aria-current="page"] {
+        display: none;
+    }
+
+    .post-header {
+        margin-bottom: 1.25rem;
+    }
+
+    .post-header h1 {
+        margin-bottom: 0.85rem;
+        font-size: clamp(1.95rem, 8.5vw, 2.8rem);
+        line-height: 1.04;
+    }
+
+    .post-description {
+        margin-bottom: 0.9rem;
+        font-size: 1.02rem;
+        line-height: 1.55;
+    }
+
+    .post-meta {
+        gap: 0.25rem 0.5rem;
+        font-size: 0.7rem;
+        line-height: 1.45;
+    }
+
+    .post-featured-image {
+        margin-bottom: 1.5rem;
+        border-radius: 12px;
+    }
+
+    .post-featured-image img {
+        max-height: 430px;
+    }
+
+    .post-body {
+        width: 100%;
+        font-size: 1.05rem;
+        line-height: 1.75;
+    }
+
+    .post-body p,
+    .post-body ul,
+    .post-body ol,
+    .post-body blockquote {
+        margin-bottom: 1.25rem;
+    }
+
+    .post-body h2 {
+        margin: 2.25rem 0 0.8rem;
+        font-size: clamp(1.65rem, 7vw, 2.15rem);
+        line-height: 1.16;
+    }
+
+    .post-body h3 {
+        margin: 1.9rem 0 0.7rem;
+        font-size: clamp(1.3rem, 5.8vw, 1.65rem);
+        line-height: 1.2;
+    }
+
+    .post-body h4 {
+        font-size: 1.15rem;
+    }
+
+    .post-body blockquote {
+        padding: 0.9rem 1rem;
+    }
+
+    .post-body img {
+        margin: 1.5rem auto;
+        border-radius: 6px;
+    }
+
+    .post-body iframe,
+    .post-body video {
+        width: 100%;
+        height: auto;
+        margin: 1.5rem 0;
+        aspect-ratio: 16 / 9;
+        border-radius: 8px;
+    }
+
+    .post-body table {
+        -webkit-overflow-scrolling: touch;
+        font-size: 0.82rem;
+    }
+
+    .post-body th,
+    .post-body td {
+        min-width: 120px;
+        padding: 0.6rem;
+    }
+
+    /* Sharing, topics, related content, and next/previous links */
+
+    .post-share {
+        margin-top: 2rem;
+        padding: 1rem;
+    }
+
+    .post-share-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.45rem;
+        margin-bottom: 0.9rem;
+    }
+
+    .post-share-heading h2 {
+        font-size: 1.85rem;
+        line-height: 1;
+    }
+
+    .post-share-heading > p {
+        text-align: left;
+    }
+
+    .post-share-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+    }
+
+    .post-share-button {
+        min-height: 48px;
+        padding: 0.7rem 0.55rem;
+    }
+
+    .post-footer {
+        margin-top: 2rem;
+    }
+
+    .post-archive-link {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .post-archive-link .primary-button {
+        width: 100%;
+    }
+
+    .related-breakdowns {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+    }
+
+    .post-navigation {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+    }
+
+    .post-navigation-card {
+        min-height: 82px;
+        padding: 1rem;
+    }
+
+    .post-navigation-next {
+        text-align: left;
+    }
+
+    /* Contact, about, privacy, and simple content pages */
+
+    .contact-hero,
+    .about-hero {
+        gap: 0.85rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .contact-hero-main,
+    .about-hero-copy,
+    .privacy-hero,
+    .simple-about-hero {
+        min-height: 0;
+        padding: 1.1rem;
+        border-radius: var(--radius-medium);
+    }
+
+    .contact-hero-main h1,
+    .about-hero-copy h1,
+    .privacy-hero h1,
+    .simple-about-hero h1 {
+        margin-bottom: 0.8rem;
+        font-size: clamp(2.15rem, 9.5vw, 3.2rem);
+        line-height: 1.02;
+    }
+
+    .contact-description,
+    .about-hero-description,
+    .simple-about-intro,
+    .privacy-hero-copy > p:last-child {
+        font-size: 1rem;
+        line-height: 1.55;
+    }
+
+    .contact-actions,
+    .about-actions,
+    .simple-about-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+        margin-top: 1.25rem;
+    }
+
+    .contact-actions .primary-button,
+    .contact-actions .secondary-button,
+    .about-actions .primary-button,
+    .about-actions .secondary-button,
+    .simple-about-actions .primary-button,
+    .simple-about-actions .secondary-button {
+        width: 100%;
+    }
+
+    .about-mission,
+    .about-principles,
+    .about-contact-panel,
+    .simple-about-background {
+        gap: 1.25rem;
+        margin-bottom: 3rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .about-section-heading h2,
+    .about-coverage-header h2,
+    .about-principles h2,
+    .about-contact-panel h2,
+    .privacy-summary h2,
+    .privacy-content h2,
+    .simple-about-heading h2,
+    .simple-about-background h2 {
+        font-size: clamp(1.8rem, 7.5vw, 2.5rem);
+        line-height: 1.05;
+    }
+
+    .privacy-summary {
+        margin-bottom: 2.5rem;
+    }
+
+    .privacy-content > section {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    /* Vegas page */
+
+    .slot-page-hero {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding: 1.1rem;
+        border-radius: var(--radius-medium);
+    }
+
+    .slot-page-hero h1,
+    .slot-machine-top h2 {
+        font-size: clamp(2.1rem, 9vw, 3.1rem);
+        line-height: 1.02;
+    }
+
+    .slot-fun-notice {
+        min-width: 0;
+    }
+
+    .slot-section-header {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+        align-items: start;
+    }
+
+    .slot-section-header h2 {
+        font-size: clamp(1.8rem, 7.5vw, 2.5rem);
+    }
+
+    /* Footer */
+
+    .site-footer {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .footer-inner {
+        width: 100%;
+        padding:
+            2.25rem
+            max(0.85rem, env(safe-area-inset-right))
+            1.25rem
+            max(0.85rem, env(safe-area-inset-left));
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .footer-column h2 {
+        margin-bottom: 0.65rem;
+        font-size: 1.15rem;
+    }
+
+    .footer-socials {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.35rem;
+    }
+
+    .footer-socials a {
+        min-height: 44px;
+        padding: 0.4rem;
+    }
+
+    .footer-socials img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .footer-socials span {
+        font-size: 0.76rem;
+    }
+
+    .footer-audio select,
+    .audio-buttons button {
+        min-height: 46px;
+    }
+
+    .footer-bottom {
+        gap: 0.65rem;
+        margin-top: 2rem;
+        padding-top: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-main {
+        padding-right: max(0.7rem, env(safe-area-inset-right));
+        padding-left: max(0.7rem, env(safe-area-inset-left));
+    }
+
+    .homepage-intro h1 {
+        font-size: clamp(1.95rem, 8.8vw, 2.75rem);
+    }
+
+    .featured-content h2 {
+        font-size: clamp(1.65rem, 7.4vw, 2.3rem);
+    }
+
+    .post-header h1 {
+        font-size: clamp(1.85rem, 8.2vw, 2.55rem);
+    }
+
+    .article-card h2,
+    .article-card h3 {
+        font-size: clamp(1.35rem, 6.2vw, 1.75rem);
+    }
+
+    .post-body {
+        font-size: 1.02rem;
+    }
+
+    .post-share-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .platform-card {
+        grid-template-columns: 42px minmax(0, 1fr) auto;
+        gap: 0.75rem;
+        padding: 0.85rem;
+    }
+
+    .platform-icon {
+        width: 42px;
+        height: 42px;
+    }
+}
+
+@media (max-width: 360px) {
+    .post-share-actions,
+    .footer-socials {
+        grid-template-columns: 1fr;
+    }
+
+    .post-header h1,
+    .featured-content h2,
+    .homepage-intro h1 {
+        font-size: 1.8rem;
+    }
+}
