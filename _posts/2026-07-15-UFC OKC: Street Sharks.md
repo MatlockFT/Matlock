@@ -44,11 +44,11 @@ Fast-forward a little over a year, and now Usman is facing another athletic brui
 
 As mentioned earlier, Usman is now 39 years old, while DDP is 32. DDP is officially listed as only an inch taller, but I have a feeling he’s going to look noticeably bigger once they’re standing across from each other. He just seems to have a larger frame than Usman, although we probably won’t know for sure until the faceoff.
 
+### Fighter Comparison
 
-|  |  |  |
-| ------------------ | ---------------------- | ----------------- |
-| Fighter Comparison |  |  |
+
 | Category | Kamaru Usman | Dricus du Plessis |
+| ------------ | ---------------------- | ----------------- |
 | Nickname | The Nigerian Nightmare | Stillknocks |
 | Record | 21–4 | 23–3 |
 | Age | 39 | 32 |
@@ -59,11 +59,11 @@ As mentioned earlier, Usman is now 39 years old, while DDP is 32. DDP is officia
 | Weight Class | Middleweight | Middleweight |
 
 
+### UFC Statistics
 
-|  |  |  |
-| --------------------------------------- | ------------ | ----------------- |
-| UFC Statistics |  |  |
+
 | Statistic | Kamaru Usman | Dricus du Plessis |
+| --------------------------------------- | ------------ | ----------------- |
 | Significant strikes landed per minute | 4.16 | 5.18 |
 | Significant-strike accuracy | 51% | 48% |
 | Significant strikes absorbed per minute | 2.67 | 4.33 |
