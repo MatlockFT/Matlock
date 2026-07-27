@@ -318,14 +318,16 @@ select:focus-visible {
 }
 
 .featured-content h2 {
-    max-width: 900px;
+    max-width: 860px;
     margin: 0 0 1.25rem;
     font-family: "Gobold", Impact, sans-serif;
-    font-size: clamp(3rem, 7vw, 6.7rem);
-    line-height: 0.91;
-    letter-spacing: 0.005em;
+    font-size: clamp(2.55rem, 5.6vw, 5.35rem);
+    line-height: 0.96;
+    letter-spacing: 0.008em;
     text-transform: uppercase;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
+    word-break: normal;
+    text-wrap: balance;
 }
 
 .featured-content h2 a {
@@ -480,10 +482,13 @@ select:focus-visible {
 .article-card h3 {
     margin: 0 0 0.8rem;
     font-family: "Gobold", Impact, sans-serif;
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
-    line-height: 1;
+    font-size: clamp(1.55rem, 2.2vw, 2.1rem);
+    line-height: 1.06;
+    letter-spacing: 0.01em;
     text-transform: uppercase;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
+    word-break: normal;
+    text-wrap: balance;
 }
 
 .article-card h2 a,
@@ -542,13 +547,17 @@ select:focus-visible {
 }
 
 .post-header h1 {
+    max-width: 930px;
     margin: 0 0 1.2rem;
     color: var(--accent);
     font-family: "Gobold", Impact, sans-serif;
-    font-size: clamp(3.2rem, 8vw, 7.3rem);
-    line-height: 0.9;
+    font-size: clamp(2.75rem, 6.2vw, 5.8rem);
+    line-height: 0.96;
+    letter-spacing: 0.008em;
     text-transform: uppercase;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
+    word-break: normal;
+    text-wrap: balance;
 }
 
 .post-description {
@@ -1221,7 +1230,8 @@ select:focus-visible {
     }
 
     .featured-content h2 {
-        font-size: clamp(2.8rem, 15vw, 5rem);
+        font-size: clamp(2.15rem, 10vw, 3.65rem);
+        line-height: 0.98;
     }
 
     .section-header,
@@ -1236,7 +1246,14 @@ select:focus-visible {
     }
 
     .post-header h1 {
-        font-size: clamp(3rem, 15vw, 5.3rem);
+        font-size: clamp(2.35rem, 10.5vw, 3.9rem);
+        line-height: 0.98;
+    }
+
+    .article-card h2,
+    .article-card h3 {
+        font-size: clamp(1.65rem, 7.8vw, 2.35rem);
+        line-height: 1.07;
     }
 
     .post-navigation {
@@ -5146,10 +5163,13 @@ select:focus-visible {
     margin: 0 0 1rem;
     color: var(--accent);
     font-family: "Gobold", Impact, sans-serif;
-    font-size: clamp(3.5rem, 9vw, 7.5rem);
-    line-height: 0.86;
+    font-size: clamp(3rem, 7.5vw, 6.25rem);
+    line-height: 0.94;
+    letter-spacing: 0.006em;
     text-transform: uppercase;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
+    word-break: normal;
+    text-wrap: balance;
 }
 
 .homepage-intro-description {
@@ -5331,7 +5351,8 @@ select:focus-visible {
     }
 
     .homepage-intro h1 {
-        font-size: clamp(3rem, 17vw, 5rem);
+        font-size: clamp(2.5rem, 11vw, 4rem);
+        line-height: 0.96;
     }
 
     .homepage-intro-actions {
@@ -5496,5 +5517,161 @@ select:focus-visible {
 @media (max-width: 380px) {
     .post-share-actions {
         grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   TYPOGRAPHY BALANCE AND LONG-TITLE SAFETY
+   ========================================================= */
+
+h1,
+h2,
+h3 {
+    text-wrap: balance;
+}
+
+.post-description,
+.featured-description,
+.article-card-content > p:not(.article-date),
+.homepage-intro-description {
+    text-wrap: pretty;
+}
+
+@media (max-width: 480px) {
+    .post-header h1 {
+        font-size: clamp(2.2rem, 10vw, 3.35rem);
+    }
+
+    .featured-content h2 {
+        font-size: clamp(2rem, 9.5vw, 3.2rem);
+    }
+
+    .homepage-intro h1 {
+        font-size: clamp(2.3rem, 10.5vw, 3.55rem);
+    }
+}
+
+/* =========================================================
+   V14: RESTRAINED HEADLINE SCALE
+   ========================================================= */
+
+/*
+   Keep the Gobold identity, but prevent long breakdown titles from
+   dominating the viewport or splitting ordinary words.
+*/
+
+.featured-content h2 {
+    max-width: 780px;
+    font-size: clamp(2rem, 3.35vw, 3.65rem);
+    line-height: 1.02;
+    letter-spacing: 0.008em;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+    text-wrap: balance;
+}
+
+.post-header {
+    max-width: 900px;
+}
+
+.post-header h1 {
+    max-width: 880px;
+    font-size: clamp(2.35rem, 4.25vw, 4.55rem);
+    line-height: 1.01;
+    letter-spacing: 0.008em;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+    text-wrap: balance;
+}
+
+.homepage-intro h1 {
+    font-size: clamp(2.6rem, 5.2vw, 5rem);
+    line-height: 1;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+}
+
+.article-card h2,
+.article-card h3 {
+    font-size: clamp(1.4rem, 1.75vw, 1.9rem);
+    line-height: 1.08;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+}
+
+.section-header h2,
+.archive-header h1 {
+    font-size: clamp(2.1rem, 3.6vw, 3.55rem);
+    line-height: 1;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
+}
+
+.post-body h2 {
+    font-size: clamp(1.75rem, 3vw, 2.45rem);
+    line-height: 1.18;
+    text-wrap: balance;
+}
+
+.post-body h3 {
+    font-size: clamp(1.35rem, 2.35vw, 1.85rem);
+    line-height: 1.2;
+    text-wrap: balance;
+}
+
+@media (max-width: 1000px) {
+    .featured-content h2 {
+        font-size: clamp(2rem, 6.5vw, 3.35rem);
+    }
+
+    .post-header h1 {
+        font-size: clamp(2.25rem, 7vw, 4rem);
+    }
+}
+
+@media (max-width: 760px) {
+    .featured-content h2 {
+        font-size: clamp(1.9rem, 8.5vw, 2.9rem);
+        line-height: 1.04;
+    }
+
+    .post-header h1 {
+        font-size: clamp(2.05rem, 9vw, 3.25rem);
+        line-height: 1.04;
+    }
+
+    .homepage-intro h1 {
+        font-size: clamp(2.2rem, 9.5vw, 3.45rem);
+        line-height: 1.02;
+    }
+
+    .article-card h2,
+    .article-card h3 {
+        font-size: clamp(1.45rem, 6.8vw, 2rem);
+        line-height: 1.1;
+    }
+
+    .section-header h2,
+    .archive-header h1 {
+        font-size: clamp(2rem, 8.5vw, 3rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-content h2 {
+        font-size: clamp(1.8rem, 8vw, 2.55rem);
+    }
+
+    .post-header h1 {
+        font-size: clamp(1.95rem, 8.4vw, 2.85rem);
+    }
+
+    .homepage-intro h1 {
+        font-size: clamp(2rem, 9vw, 3rem);
     }
 }
