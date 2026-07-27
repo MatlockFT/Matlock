@@ -34,28 +34,13 @@ Personally, there isn’t much to take away from that fight other than Usman bec
 
 After a two-year layoff, Usman returned against Joaquin Buckley, who I thought was a good comeback opponent. He also shares some similarities with DDP, although the comparisons are few and far between. Still, he is a better matchup than some of the other opponents he could have faced.
 
-
-
 Despite Usman being around a +205 underdog and Buckley coming in at -263, I felt pretty comfortable taking Usman. The reason was simple: Buckley doesn’t seem to have any rhyme or reason to how he fights. He just throws bungalows across the Octagon until he hopefully lands something.
-
-
 
 I figured that if Usman minded his p’s and q’s, he’d be able to beat him. Aside from things getting a little hairy in the final round, Usman didn’t have much trouble with Buckley at all.
 
 I scored every round for Kamaru, as did a lot of media outlets. The judges gave Buckley the final round, which… fine. I’m cool with that.
 
 Fast-forward a little over a year, and now Usman is facing another athletic bruiser—one who is arguably even more awkward. I also like to call DDP a Street Shark on rollerblades.
-
-
-
-```
-<img src="assets/streetshark.jpeg" alt="Dricus du Plessis compared to a Street Shark">
-<figcaption>
-  DDP the Street Shark. <em>Street Sharks</em> was a cartoon from the 1990s.
-</figcaption>
-```
-
-
 
 As mentioned earlier, Usman is now 39 years old, while DDP is 32. DDP is officially listed as only an inch taller, but I have a feeling he’s going to look noticeably bigger once they’re standing across from each other. He just seems to have a larger frame than Usman, although we probably won’t know for sure until the faceoff.
 
