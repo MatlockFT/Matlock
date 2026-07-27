@@ -5,7 +5,7 @@
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     >
 
     {% if page.noindex %}
@@ -32,7 +32,7 @@
 
     <link
         rel="stylesheet"
-        href="{{ '/assets/style.css' | relative_url }}?v=14"
+        href="{{ '/assets/style.css' | relative_url }}?v=15"
     >
 
     <link
@@ -46,6 +46,14 @@
         href="{{ '/assets/logo.png' | relative_url }}"
         as="image"
         fetchpriority="high"
+    >
+
+    <link
+        rel="preload"
+        href="{{ '/Gobold%20Bold.woff' | relative_url }}"
+        as="font"
+        type="font/woff"
+        crossorigin
     >
 
     {% if site.adsense.client and site.adsense.client != "" and site.adsense.banner_slot and site.adsense.banner_slot != "" %}
@@ -63,6 +71,20 @@
 
     {% seo %}
     {% feed_meta %}
+
+    <noscript>
+        <style>
+            @media (max-width: 760px) {
+                .navigation-toggle {
+                    display: none !important;
+                }
+
+                .navigation-list {
+                    display: flex !important;
+                }
+            }
+        </style>
+    </noscript>
 </head>
 
 <body class="layout-{{ page.layout | default: 'default' }}">
@@ -83,6 +105,7 @@
                     src="{{ '/assets/logo.png' | relative_url }}"
                     alt="MMA Matlock"
                     class="site-logo"
+                    loading="eager"
                     fetchpriority="high"
                     decoding="async"
                 >
@@ -108,9 +131,12 @@
                     type="button"
                     aria-expanded="false"
                     aria-controls="navigation-list"
+                    aria-haspopup="true"
                     aria-label="Open main navigation"
                 >
-                    Menu
+                    <span aria-hidden="true">
+                        Menu
+                    </span>
                 </button>
 
                 {% assign current_url = page.url | default: "/" | remove: "index.html" %}
@@ -169,6 +195,7 @@
         class="site-main"
         id="main-content"
         tabindex="-1"
+        role="main"
     >
         {{ content }}
     </main>
@@ -239,6 +266,7 @@
                         <button
                             type="button"
                             id="play-button"
+                            aria-controls="player"
                         >
                             Play
                         </button>
@@ -246,6 +274,8 @@
                         <button
                             type="button"
                             id="pause-button"
+                            aria-controls="player"
+                            disabled
                         >
                             Pause
                         </button>
@@ -255,7 +285,10 @@
                         Track
                     </label>
 
-                    <select id="song-selector">
+                    <select
+                        id="song-selector"
+                        aria-controls="player"
+                    >
                         <option
                             value="{{ '/assets/facethepain.mp3' | relative_url }}"
                         >
@@ -286,11 +319,13 @@
                         max="1"
                         step="0.01"
                         value="0.5"
+                        aria-label="Fight Tunes volume"
                     >
 
                     <p
                         class="audio-status"
                         id="audio-status"
+                        role="status"
                         aria-live="polite"
                     ></p>
                 </section>
@@ -306,6 +341,7 @@
                     <div class="footer-socials">
                         <a
                             href="https://www.youtube.com/@MMAMatlock"
+                            aria-label="MMA Matlock on YouTube"
                             target="_blank"
                             rel="me noopener noreferrer"
                         >
@@ -326,6 +362,7 @@
 
                         <a
                             href="https://x.com/MMAMatlock"
+                            aria-label="MMA Matlock on X"
                             target="_blank"
                             rel="me noopener noreferrer"
                         >
@@ -346,6 +383,7 @@
 
                         <a
                             href="https://www.instagram.com/mmamatlock/"
+                            aria-label="MMA Matlock on Instagram"
                             target="_blank"
                             rel="me noopener noreferrer"
                         >
@@ -366,6 +404,7 @@
 
                         <a
                             href="https://matlockfighttalk-shop.fourthwall.com/"
+                            aria-label="MMA Matlock merchandise store"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -420,7 +459,43 @@
             const navigationList =
                 document.getElementById("navigation-list");
 
-            function setNavigationState(isOpen, returnFocus) {
+            let lockedScrollPosition = 0;
+
+            function lockPageScroll() {
+                lockedScrollPosition =
+                    window.scrollY || window.pageYOffset;
+
+                document.body.style.position = "fixed";
+                document.body.style.top =
+                    "-" + lockedScrollPosition + "px";
+
+                document.body.style.right = "0";
+                document.body.style.left = "0";
+                document.body.style.width = "100%";
+            }
+
+            function unlockPageScroll() {
+                const bodyWasLocked =
+                    document.body.style.position === "fixed";
+
+                document.body.style.position = "";
+                document.body.style.top = "";
+                document.body.style.right = "";
+                document.body.style.left = "";
+                document.body.style.width = "";
+
+                if (bodyWasLocked) {
+                    window.scrollTo(
+                        0,
+                        lockedScrollPosition
+                    );
+                }
+            }
+
+            function setNavigationState(
+                isOpen,
+                returnFocus
+            ) {
                 if (!navigationToggle || !navigationList) {
                     return;
                 }
@@ -442,6 +517,31 @@
                     isOpen
                 );
 
+                document.body.classList.toggle(
+                    "navigation-is-open",
+                    isOpen
+                );
+
+                if (
+                    isOpen &&
+                    window.innerWidth <= 760
+                ) {
+                    lockPageScroll();
+
+                    const firstNavigationLink =
+                        navigationList.querySelector("a");
+
+                    if (firstNavigationLink) {
+                        window.requestAnimationFrame(
+                            function () {
+                                firstNavigationLink.focus();
+                            }
+                        );
+                    }
+                } else {
+                    unlockPageScroll();
+                }
+
                 if (returnFocus) {
                     navigationToggle.focus();
                 }
@@ -456,7 +556,10 @@
                                 "aria-expanded"
                             ) === "true";
 
-                        setNavigationState(!isOpen, false);
+                        setNavigationState(
+                            !isOpen,
+                            false
+                        );
                     }
                 );
 
@@ -473,6 +576,35 @@
                             }
                         );
                     });
+
+                document.addEventListener(
+                    "click",
+                    function (event) {
+                        const isOpen =
+                            navigationToggle.getAttribute(
+                                "aria-expanded"
+                            ) === "true";
+
+                        if (!isOpen) {
+                            return;
+                        }
+
+                        const clickedInsideNavigation =
+                            navigationToggle.contains(
+                                event.target
+                            ) ||
+                            navigationList.contains(
+                                event.target
+                            );
+
+                        if (!clickedInsideNavigation) {
+                            setNavigationState(
+                                false,
+                                false
+                            );
+                        }
+                    }
+                );
 
                 document.addEventListener(
                     "keydown",
@@ -506,6 +638,11 @@
                         }
                     }
                 );
+
+                window.addEventListener(
+                    "pagehide",
+                    unlockPageScroll
+                );
             }
 
             const player =
@@ -532,6 +669,18 @@
                 }
             }
 
+            function updateAudioControls() {
+                if (!player || !playButton || !pauseButton) {
+                    return;
+                }
+
+                const isPlaying =
+                    !player.paused && !player.ended;
+
+                playButton.disabled = isPlaying;
+                pauseButton.disabled = !isPlaying;
+            }
+
             async function playAudio() {
                 if (!player) {
                     return;
@@ -540,12 +689,15 @@
                 try {
                     await player.play();
                     setAudioStatus("");
+                    updateAudioControls();
                 } catch (error) {
                     console.error(error);
 
                     setAudioStatus(
                         "Audio could not be played."
                     );
+
+                    updateAudioControls();
                 }
             }
 
@@ -555,6 +707,7 @@
                 }
 
                 player.pause();
+                updateAudioControls();
             }
 
             function changeSong() {
@@ -562,13 +715,24 @@
                     return;
                 }
 
-                const wasPlaying = !player.paused;
+                const wasPlaying =
+                    !player.paused && !player.ended;
 
                 player.src = selector.value;
                 player.load();
 
+                setAudioStatus(
+                    "Selected " +
+                    selector.options[
+                        selector.selectedIndex
+                    ].text +
+                    "."
+                );
+
                 if (wasPlaying) {
                     playAudio();
+                } else {
+                    updateAudioControls();
                 }
             }
 
@@ -590,6 +754,7 @@
             ) {
                 player.src = selector.value;
                 setVolume();
+                updateAudioControls();
 
                 playButton.addEventListener(
                     "click",
@@ -612,11 +777,31 @@
                 );
 
                 player.addEventListener(
+                    "play",
+                    updateAudioControls
+                );
+
+                player.addEventListener(
+                    "pause",
+                    updateAudioControls
+                );
+
+                player.addEventListener(
+                    "ended",
+                    function () {
+                        setAudioStatus("Track finished.");
+                        updateAudioControls();
+                    }
+                );
+
+                player.addEventListener(
                     "error",
                     function () {
                         setAudioStatus(
                             "The selected track could not be loaded."
                         );
+
+                        updateAudioControls();
                     }
                 );
             }
