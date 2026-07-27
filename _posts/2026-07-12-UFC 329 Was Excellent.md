@@ -38,12 +38,11 @@ Here are my thoughts I typed out in real-time as UFC 329: McGregor vs. Holloway 
 - Pimblett had one of the all-time best walkouts with this one and impressively submitted BSD in 52 seconds. BSD ran directly at Paddy and got into deep water he couldn’t swim out of. The D’Arce choke was nasty.
 - Words cannot express how hilarious and satisfying this is. Conor McGregor appears to have blown out his knee with the very first flying switch kick he threw wildly out of range.
 
-  I noted during Buffer’s pre-fight formalities that both guys looked nervous. McGregor’s walkout also seemed unusually tame. Nonetheless, Max looked at the referee and told him that Conor was obviously injured, but he had to keep fighting anyway until Max mercifully allowed Conor to stand.
+I noted during Buffer’s pre-fight formalities that both guys looked nervous. McGregor’s walkout also seemed unusually tame. Nonetheless, Max looked at the referee and told him that Conor was obviously injured, but he had to keep fighting anyway until Max mercifully allowed Conor to stand.
 
 Conor could not stand at all on his right leg, and the referee called it off. Many will likely view this as disappointing or anticlimactic, but I feel exactly the opposite. This is a hilarious, comical, and deserved outcome.
 
 I’m fine with being called a hater, but how can anyone truly feel bad, whether you like Conor or not? I thought of Chael Sonnen’s quote almost immediately after the contest:
 
-> “You’re only going to be alive for so long, so if you can compete in a sport — don’t forget, sports are for kids — and if you’re lucky enough to do that as an adult, you’re just that: lucky.
+> “You’re only going to be alive for so long, so if you can compete in a sport — don’t forget, sports are for kids — and if you’re lucky enough to do that as an adult, you’re just that: lucky. I will leave face down and embarrassed, the only way you should leave sports.”
 
-I will leave face down and embarrassed, the only way you should leave sports.”
