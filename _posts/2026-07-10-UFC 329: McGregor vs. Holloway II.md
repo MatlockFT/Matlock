@@ -12,6 +12,8 @@ image:
 last_modified_at: 2026-07-26
 published: true
 ---
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QX8-juZsEAs?si=yOKpsRS7ftxu8INZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 It has been a quiet fight week ahead of Conor McGregor’s return. Of course, the hype rarely reaches its peak until the weigh-ins or the day of the fight.
 
 McGregor is also no longer the young, up-and-coming prospect doing extraordinary amounts of media. If anything, he appears to be trying to rehabilitate his image—and he has taken the religious-grifter route.
