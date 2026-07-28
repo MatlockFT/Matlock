@@ -15,45 +15,19 @@ x_embed: true
     data-news-feed
     data-refresh-interval="300000"
 >
-    <header class="news-hero">
-        <div>
-            <p class="eyebrow">
-                Live MMA coverage
-            </p>
-
-            <h1>MMA News</h1>
-
-            <p class="news-hero-intro">
-                A continuously refreshed stream of fight announcements,
-                results, reporting, and conversation from the MMA Matlock
-                news list on X.
-            </p>
-        </div>
-
-        <div class="news-live-badge">
-            <span aria-hidden="true"></span>
-            Live wire
-        </div>
-    </header>
-
     <section
         class="news-feed-card"
         aria-labelledby="live-news-title"
     >
         <header class="news-feed-header">
             <div>
-                <p class="eyebrow">
-                    Latest updates
-                </p>
-
-                <h2 id="live-news-title">
-                    The MMA news wire
-                </h2>
+                <h1 id="live-news-title">
+                    MMA News
+                </h1>
 
                 <p class="news-feed-note">
-                    The feed is reloaded every five minutes while this page is
-                    open. X controls which public posts appear and when they
-                    become available.
+                    Updates from the MMA Matlock X list, reloaded every five
+                    minutes while this page is open.
                 </p>
             </div>
 
@@ -105,6 +79,33 @@ x_embed: true
                 href="https://x.com/MMAMATLOCK/lists/2081967792681849282?ref_src=twsrc%5Etfw"
             >
                 An X List by MMA Matlock
+            </a>
+        </div>
+
+        <div
+            class="news-embed-fallback"
+            data-news-fallback
+            hidden
+        >
+            <p class="eyebrow">
+                Live list available
+            </p>
+
+            <h3>Read the feed directly on X</h3>
+
+            <p>
+                X has not made posts from this public List available to its
+                website embed yet. This page will try again automatically
+                every five minutes.
+            </p>
+
+            <a
+                class="primary-button"
+                href="https://x.com/MMAMATLOCK/lists/2081967792681849282"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Open the live MMA list
             </a>
         </div>
 
