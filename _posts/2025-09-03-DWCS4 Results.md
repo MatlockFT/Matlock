@@ -8,6 +8,7 @@ category: Opinion
 author: MMA Matlock
 image:
   path: /assets/uploads/mcmillen.png
+  alt: Tommy McMillen featured for Dana White's Contender Series
 tags:
   - DWCS
   - Tommy McMillen

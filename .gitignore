@@ -35,3 +35,9 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Local build artifacts
+.bundle/
+node_modules/
+.jekyll-cache/
+_site/

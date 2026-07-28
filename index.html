@@ -54,8 +54,10 @@ permalink: /
     {% if latest_post %}
         {% assign latest_image = latest_post.image.path | default: latest_post.image %}
         {% assign latest_alt = latest_post.image.alt | default: latest_post.image_alt | default: latest_post.title %}
-        {% assign latest_width = latest_post.image.width %}
-        {% assign latest_height = latest_post.image.height %}
+        {% assign latest_responsive = site.data.responsive_images[latest_image] %}
+        {% assign latest_src = latest_responsive.src | default: latest_image %}
+        {% assign latest_width = latest_responsive.width | default: latest_post.image.width %}
+        {% assign latest_height = latest_responsive.height | default: latest_post.image.height %}
 
         <section
             class="featured-section"
@@ -72,7 +74,11 @@ permalink: /
                         data-image-shell
                     >
                         <img
-                            src="{{ latest_image | relative_url }}"
+                            src="{{ latest_src | relative_url }}"
+                            {% if latest_responsive.srcset %}
+                                srcset="{{ latest_responsive.srcset }}"
+                                sizes="(max-width: 760px) calc(100vw - 1.7rem), 58vw"
+                            {% endif %}
                             alt="{{ latest_alt | escape }}"
                             {% if latest_width %}
                                 width="{{ latest_width }}"
@@ -89,7 +95,7 @@ permalink: /
 
                 <div class="featured-content">
                     <p class="eyebrow">
-                        Latest breakdown
+                        Latest {{ latest_post.category | default: "article" | downcase }}
                     </p>
 
                     <p class="article-date">
@@ -125,14 +131,14 @@ permalink: /
                         href="{{ latest_post.url | relative_url }}"
                         aria-label="Read {{ latest_post.title | escape }}"
                     >
-                        Read the breakdown
+                        Read article
                     </a>
                 </div>
             </article>
         </section>
     {% endif %}
 
-    {% if site.adsense.banner_slot and site.adsense.banner_slot != "" %}
+    {% if site.adsense.consent_manager_enabled and site.adsense.banner_slot and site.adsense.banner_slot != "" %}
         <aside
             class="banner-ad"
             aria-label="Advertisement"
@@ -170,12 +176,12 @@ permalink: /
                     </p>
 
                     <h2 id="latest-breakdowns-title">
-                        Latest Breakdowns
+                        Latest Articles
                     </h2>
                 </div>
 
                 <a href="{{ '/breakdowns/' | relative_url }}">
-                    View all breakdowns
+                    View all articles
                 </a>
             </header>
 
@@ -183,8 +189,10 @@ permalink: /
                 {% for post in site.posts offset: 1 limit: 6 %}
                     {% assign post_image = post.image.path | default: post.image %}
                     {% assign post_alt = post.image.alt | default: post.image_alt | default: post.title %}
-                    {% assign post_width = post.image.width %}
-                    {% assign post_height = post.image.height %}
+                    {% assign post_responsive = site.data.responsive_images[post_image] %}
+                    {% assign post_src = post_responsive.small | default: post_image %}
+                    {% assign post_width = post_responsive.width | default: post.image.width %}
+                    {% assign post_height = post_responsive.height | default: post.image.height %}
 
                     <article
                         class="article-card"
@@ -198,7 +206,11 @@ permalink: /
                                 data-image-shell
                             >
                                 <img
-                                    src="{{ post_image | relative_url }}"
+                                    src="{{ post_src | relative_url }}"
+                                    {% if post_responsive.srcset %}
+                                        srcset="{{ post_responsive.srcset }}"
+                                        sizes="(max-width: 760px) calc(100vw - 1.7rem), 33vw"
+                                    {% endif %}
                                     alt="{{ post_alt | escape }}"
                                     {% if post_width %}
                                         width="{{ post_width }}"
@@ -247,7 +259,7 @@ permalink: /
                                 href="{{ post.url | relative_url }}"
                                 aria-label="Read {{ post.title | escape }}"
                             >
-                                Read breakdown
+                                Read article
                             </a>
                         </div>
                     </article>
@@ -259,7 +271,7 @@ permalink: /
                     class="primary-button"
                     href="{{ '/breakdowns/' | relative_url }}"
                 >
-                    Browse the complete breakdown archive
+                    Browse the complete article archive
                 </a>
             </footer>
         </section>

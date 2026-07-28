@@ -9,6 +9,7 @@ category: Breakdown
 author: MMA Matlock
 image:
   path: /assets/uploads/volk.png
+  alt: Alexander Volkanovski and Diego Lopes featured for UFC 314
 tags:
   - UFC 314
   - ALEX VOLKANOVSKI

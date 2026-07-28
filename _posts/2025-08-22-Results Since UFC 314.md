@@ -8,6 +8,7 @@ category: Opinion
 author: MMA Matlock
 image:
   path: /assets/uploads/volk-2.png
+  alt: Alexander Volkanovski celebrating after a UFC fight
 tags:
   - UFC
 last_modified_at: 2026-07-26

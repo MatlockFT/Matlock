@@ -1,0 +1,12 @@
+{
+  "name": "mma-matlock-site",
+  "private": true,
+  "scripts": {
+    "optimize:images": "node scripts/optimize-post-images.mjs",
+    "check:content": "node scripts/check-content.mjs",
+    "check:external": "node scripts/check-external-links.mjs _site/mma-yellowpages.html"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.3"
+  }
+}

@@ -18,14 +18,39 @@ The Fight Tape Notebook runs entirely in the browser. Its notebooks and observat
 
 ## Run locally
 
-Install Ruby and Bundler, then run:
+Install Ruby, Bundler, and Node.js, then run:
 
 ```sh
 bundle install
+npm ci
 bundle exec jekyll serve
 ```
 
 Open `http://localhost:4000`.
+
+## Publishing articles
+
+New articles created in Pages CMS begin as drafts. Keep `published: false`
+until the copy, description, and featured-image alt text are ready. Before
+publishing an article with a new featured image, regenerate and validate its
+responsive image variants:
+
+```sh
+npm run optimize:images
+npm run check:content
+```
+
+## Search visibility and advertising
+
+The site publishes an RSS feed at
+[matlockfighttalk.com/feed.xml](https://matlockfighttalk.com/feed.xml).
+Register the site with Google Search Console, then place the supplied
+verification token in `_config.yml`; verification tokens are account-specific
+and should never be guessed.
+
+AdSense stays disabled until both a banner slot and
+`consent_manager_enabled: true` are configured. Enable that setting only after
+a consent-management platform appropriate for the site's visitors is active.
 
 ## Links
 
