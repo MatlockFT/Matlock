@@ -1,0 +1,656 @@
+{
+  "version": 1,
+  "generatedAt": "2026-07-28T09:13:11.054Z",
+  "refreshIntervalMs": 300000,
+  "sourceCount": 10,
+  "sources": [
+    {
+      "name": "MMA Fighting",
+      "url": "https://www.mmafighting.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "ESPN MMA",
+      "url": "https://www.espn.com/mma/",
+      "storyCount": 20
+    },
+    {
+      "name": "UFC",
+      "url": "https://www.ufc.com/news",
+      "storyCount": 30
+    },
+    {
+      "name": "MMA Mania",
+      "url": "https://www.mmamania.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "Bloody Elbow",
+      "url": "https://bloodyelbow.com/",
+      "storyCount": 20
+    },
+    {
+      "name": "Cageside Press",
+      "url": "https://cagesidepress.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "LowKick MMA",
+      "url": "https://www.lowkickmma.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "ONE Championship",
+      "url": "https://www.onefc.com/news/",
+      "storyCount": 10
+    },
+    {
+      "name": "Combat Press",
+      "url": "https://combatpress.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "BJPENN.com",
+      "url": "https://www.bjpenn.com/",
+      "storyCount": 25
+    }
+  ],
+  "topStory": {
+    "id": "c9c37ca71cbc16ee",
+    "title": "What’s Next: UFC Abu Dhabi Winners",
+    "url": "https://cagesidepress.com/2026/07/27/whats-next-ufc-abu-dhabi-winners-3/",
+    "source": "Cageside Press",
+    "sourceUrl": "https://cagesidepress.com/",
+    "publishedAt": "2026-07-28T00:16:45.000Z",
+    "excerpt": "UFC Abu Dhabi took a big hit when its main event fell through less than two weeks before the card took place. Khalil Rountree Jr. was replaced by Bogdan Guskov, which took a lot of air out…",
+    "image": "",
+    "coverageCount": 2,
+    "relatedSources": [
+      "BJPENN.com"
+    ]
+  },
+  "stories": [
+    {
+      "id": "669d005a518719f8",
+      "title": "Davi Brandao Debuts At ONE Fight Night 46 Against Viet Anh Do On Aug 14",
+      "url": "https://cagesidepress.com/2026/07/28/davi-brandao-debuts-at-one-fight-night-46-against-viet-anh-do-on-aug-14/",
+      "source": "Cageside Press",
+      "sourceUrl": "https://cagesidepress.com/",
+      "publishedAt": "2026-07-28T09:00:54.000Z",
+      "excerpt": "Undefeated flyweight prospect Davi Brandao is officially set for his ONE Championship debut. Sources tell Cageside Press that the Brazilian standout will take on Viet Anh Do at ONE Fight…",
+      "image": "",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "2975f75c1caacbb5",
+      "title": "Fight By Fight Preview | UFC Belgrade",
+      "url": "https://www.ufc.com/news/fight-by-fight-preview-ufc-belgrade-serbia",
+      "source": "UFC",
+      "sourceUrl": "https://www.ufc.com/news",
+      "publishedAt": "2026-07-28T08:55:16.000Z",
+      "excerpt": "Setting The Table For Saturday’s Debut In Belgrade, Serbia Read the Full Article Here",
+      "image": "",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "414bbfeb1f9838ae",
+      "title": "‘This Is Business’ – Ramadan Ondash Plans To Turn Johan Ghazali Friendship Into ONE World Title Launchpad",
+      "url": "https://www.onefc.com/news/this-is-business-ramadan-ondash-plans-to-turn-johan-ghazali-friendship-into-one-world-title-launchpad/",
+      "source": "ONE Championship",
+      "sourceUrl": "https://www.onefc.com/news/",
+      "publishedAt": "2026-07-28T07:38:52.000Z",
+      "excerpt": "The 19-year-old expects a serious clash at The Inner Circle 24 on July 31.",
+      "image": "https://cdn.onefc.com/wp-content/uploads/2026/07/Johan-Ghazali-and-Ramadan-Ondash-face-off-at-The-Inner-Circle-23-on-July-242-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "e010c997beb62826",
+      "title": "Upset alert? UFC Belgrade’s Navajo Stirling was ‘off a massive bender’ when he got call to fight Jan Blachowicz",
+      "url": "https://www.mmamania.com/latest-news/460627/upset-alert-ufc-belgrades-navajo-stirling-was-off-a-massive-bender-when-he-got-call-to-fight-jan-blachowicz",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-07-28T07:00:00.000Z",
+      "excerpt": "Navajo Stirling will face the toughest test of his promising young career versus Jan Blachowicz. Stirling will take on the former Light Heavyweight champion this weekend (Sat., Aug. 1, 2026)…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/07/gettyimages-2282556885.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "37b14a4d871cb4a1",
+      "title": "Bogdan Guskov reacts to dreadful UFC Abu Dhabi loss: ‘Sorry to everyone who believed in me’",
+      "url": "https://www.mmamania.com/ufc-news/457643/bogdan-guskov-reacts-to-dreadful-ufc-abu-dhabi-loss-sorry-to-everyone-who-believed-in-me",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-07-28T03:59:00.000Z",
+      "excerpt": "Welcome to Midnight Mania! Let’s start the night off by taking a look back over the three biggest stories of Monday, July 27, 2026. Insomnia Bogdan Guskov and his camp need to come up with a…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/07/gettyimages-2286968402.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "5f48035f440f0ac2",
+      "title": "UFC Belgrade preview: Start time, full card and how to watch Uros Medic vs. Daniel Rodriguez",
+      "url": "https://bloodyelbow.com/2026/07/27/ufc-belgrade-preview-start-time-full-card-and-how-to-watch-uros-medic-vs-daniel-rodriguez/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-07-28T03:59:00.000Z",
+      "excerpt": "All the info you need to know ahead of fight night.",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2025/11/GettyImages-2245750691-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "6f5b1d45e2cbc335",
+      "title": "McGregor calls for 2027 'Last Dance' vs. Holloway",
+      "url": "https://www.espn.com/mma/story/_/id/49466378/conor-mcgregor-calls-2027-last-dance-vs-max-holloway",
+      "source": "ESPN MMA",
+      "sourceUrl": "https://www.espn.com/mma/",
+      "publishedAt": "2026-07-28T03:30:51.000Z",
+      "excerpt": "Conor McGregor called for the final fight of his UFC contract to take place during the promotion's International Fight Week next summer in Las Vegas.",
+      "image": "",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "53392a24dbbd8a32",
+      "title": "5 Explosive Fights To Make For Rodtang “The Iron Man” Jitmuangnon",
+      "url": "https://www.onefc.com/features/5-explosive-fights-to-make-for-rodtang-the-iron-man-jitmuangnon/",
+      "source": "ONE Championship",
+      "sourceUrl": "https://www.onefc.com/news/",
+      "publishedAt": "2026-07-28T02:29:44.000Z",
+      "excerpt": "From Aslamjon Ortikov to Yuki Yoza, these bouts would provide fight fans with non-stop entertainment.",
+      "image": "https://cdn.onefc.com/wp-content/uploads/2024/11/Rodtang-Jitmuangnon-Jacob-Smith-ONE-169-40-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "b441e3bc1d77f8bc",
+      "title": "Zuffa Boxing’s top stars now exempt from policy that UFC fighters and fans have long criticized",
+      "url": "https://bloodyelbow.com/2026/07/27/zuffa-boxings-top-stars-now-exempt-from-policy-that-ufc-fighters-and-fans-have-long-criticized/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-07-28T02:00:00.000Z",
+      "excerpt": "UFC fighters likely won’t be happy to see that Zuffa Boxing’s roster is receiving specialist outfitting treatment. Various UFC stars spoke out when Conor Benn’s ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/07/GettyImages-2287783634-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "64f491adea440588",
+      "title": "Joe Rogan messaged UFC colleagues about ‘John Pork’ Magomed Zaynukov following Abu Dhabi card",
+      "url": "https://bloodyelbow.com/2026/07/27/joe-rogan-messaged-ufc-colleagues-to-highlight-absolute-beast-abu-dhabi-winner-after-event/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-07-28T01:00:00.000Z",
+      "excerpt": "Joe Rogan took the time to watch Magomed Zaynukov’s UFC debut. Fans had to wait a long time to see Zaynukov step inside the Octagon ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2025/11/GettyImages-2230535677-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "5a38f7f50f5287b0",
+      "title": "UFC Paris’ Dan Hooker receiving ‘outrageous’ death threats from insane French fans",
+      "url": "https://www.mmamania.com/latest-news/460621/ufc-paris-dan-hooker-receiving-outrageous-death-threats-from-insane-french-fans",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-07-28T00:49:32.000Z",
+      "excerpt": "France does not like “The Hangman.” Ultimate Fighting Championship (UFC) Lightweight contender Dan Hooker returns to action in the main event of UFC Paris on Sat., Sept. 5, 2026, inside…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/07/gettyimages-2259322736.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 2,
+      "relatedSources": [
+        "Cageside Press"
+      ]
+    },
+    {
+      "id": "bc84575d51ab2bfe",
+      "title": "On To the Next One: Matches to make after UFC Abu Dhabi",
+      "url": "https://www.mmafighting.com/ufc/501701/on-to-the-next-one-matches-to-make-after-ufc-abu-dhabi",
+      "source": "MMA Fighting",
+      "sourceUrl": "https://www.mmafighting.com/",
+      "publishedAt": "2026-07-28T00:00:00.000Z",
+      "excerpt": "Magomed Ankalaev certainly has the résumé and credentials to be next in line to fight for the UFC light heavyweight title, but the former champ’s performance in the UFC Abu Dhabi main event…",
+      "image": "https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/07/gettyimages-2286963484.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "908399df41324d6e",
+      "title": "Jake Paul takes further shot at UFC boss Dana White after major boxing belts U-Turn",
+      "url": "https://bloodyelbow.com/2026/07/27/jake-paul-takes-further-shot-at-ufc-boss-dana-white-after-major-boxing-belts-u-turn/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-07-28T00:00:00.000Z",
+      "excerpt": "Jake Paul has reignited his war of words with Dana White after the UFC boss changed his tune on traditional boxing titles. Throughout the lead-up ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2025/12/GettyImages-2252289808-1-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "365b74cf0cbe4c4e",
+      "title": "BKFC President Explains Why He Believes Conor McGregor Isn’t Done Fighting Just Yet",
+      "url": "https://www.lowkickmma.com/bkfc-david-feldman-conor-mcgregor-fight-again/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-07-27T23:59:12.000Z",
+      "excerpt": "President of BKFC, David Feldman, recently explained why he thinks Conor McGregor will fight again. McGregor finally made his...",
+      "image": "https://www.lowkickmma.com/wp-content/uploads/2026/07/Conor-McGregor-and-David-Feldman.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "0dc13a3f4aef3c06",
+      "title": "Conor McGregor Preparing For ‘The Last Dance’, Sets Goal Of IFW 2027",
+      "url": "https://cagesidepress.com/2026/07/27/conor-mcgregor-preparing-for-the-last-dance-sets-goal-of-ifw-2027/",
+      "source": "Cageside Press",
+      "sourceUrl": "https://cagesidepress.com/",
+      "publishedAt": "2026-07-27T23:56:19.000Z",
+      "excerpt": "Conor McGregor isn’t done, and he’s calling his shot. The Irish superstar posted on his Instagram account a video of himself throwing kicks moments before walking out to the octagon for his…",
+      "image": "",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "05208fd9ed7a2c1f",
+      "title": "Highlights! Brick-fisted John Lineker loses GFN 1: ‘Israel vs. The World’ main event fight",
+      "url": "https://www.mmamania.com/latest-news/460604/highlights-brick-fisted-john-lineker-loses-gfn-1-israel-vs-the-world-main-event-fight",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-07-27T23:51:21.000Z",
+      "excerpt": "“The World” lost. Former ONE Championship Bantamweight champion and Ultimate Fighting Championship (UFC) veteran John Lineker suffered a unanimous decision loss to Ahavat Gordon in the main…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/07/John-Lineker.png?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "cf72555757837a1d",
+      "title": "Dan Hooker details ‘death threats’ received from Salahdine Parnasse’s fans since UFC Paris announcement",
+      "url": "https://www.bjpenn.com/mma-news/dan-hooker/dan-hooker-death-threats-salahdine-parnasse-fans-ufc-paris/",
+      "source": "BJPENN.com",
+      "sourceUrl": "https://www.bjpenn.com/",
+      "publishedAt": "2026-07-27T23:15:57.000Z",
+      "excerpt": "FAN THREATS",
+      "image": "",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "ec4a5de81457e502",
+      "title": "Ex-UFC contender dismisses retirement in statement on fourth KO loss since return from health scare",
+      "url": "https://bloodyelbow.com/2026/07/27/ex-ufc-contender-dismisses-retirement-in-statement-on-fourth-ko-loss-since-return-from-health-scare/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-07-27T23:00:00.000Z",
+      "excerpt": "Santiago Ponzinibbio isn’t backing down following another tough loss inside the Octagon. In 2021, Ponzinibbio was knocked out in devastating fashion after returning to the ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/07/GettyImages-1480897351-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "b25579ce486d7420",
+      "title": "One more? Conor McGregor teases ‘Last Dance’ after UFC 329 knee-shredding disaster",
+      "url": "https://www.mmamania.com/latest-news/460598/one-more-conor-mcgregor-teases-last-dance-after-ufc-329-disaster",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-07-27T22:38:57.000Z",
+      "excerpt": "Is the end coming? It has been just over two weeks since former Ultimate Fighting Championship (UFC) two-division champion Conor McGregor inally returned to competition against Max Holloway…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/07/gettyimages-2285713866.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "d2e606690e660c8a",
+      "title": "Darren Till set to headline BKFC 94 vs. star he openly refused to fight in UFC",
+      "url": "https://www.bjpenn.com/mma-news/darren-till/darren-till-headline-bkfc-94-vs-star-refused-fight-ufc/",
+      "source": "BJPENN.com",
+      "sourceUrl": "https://www.bjpenn.com/",
+      "publishedAt": "2026-07-27T22:11:12.000Z",
+      "excerpt": "BANGER",
+      "image": "",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "35930b9d42a3a976",
+      "title": "The Ultimate Insider: Behind the scenes of TUF 34, UFC hopefuls choose sleep over training",
+      "url": "https://www.mmafighting.com/ufc/501711/the-ultimate-insider-behind-the-scenes-of-tuf-34-ufc-hopefuls-choose-sleep-over-training",
+      "source": "MMA Fighting",
+      "sourceUrl": "https://www.mmafighting.com/",
+      "publishedAt": "2026-07-27T22:00:00.000Z",
+      "excerpt": "(We took a short vacation last week, but we’re back at it with your essential The Ultimate Fighter 34 coverage, so with the help of our guest-blogging contestant Xavier Franklin, let’s get…",
+      "image": "https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/06/gettyimages-2282087928.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "62e6b22827c3ca5e",
+      "title": "Islam Makhachev mocks Ian Machado Garry ahead of UFC 330: ‘I have to run a lot’",
+      "url": "https://bloodyelbow.com/2026/07/27/islam-makhachev-mocks-ian-machado-garry-ahead-of-ufc-330-i-have-to-run-a-lot/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-07-27T22:00:00.000Z",
+      "excerpt": "Islam Makhachev expects to be chasing Ian Machado Garry around the octagon when the pair meet next month in Philadelphia. Garry is known as one ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2025/11/GettyImages-2246587197-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "620dbd231c3d2c11",
+      "title": "PFL Washington D.C. Results: Jean Wins Welterweight Title; Xavier Scores Brutal KO",
+      "url": "https://combatpress.com/2026/07/pfl-washington-d-c-results-jean-wins-welterweight-title-xavier-scores-brutal-ko/",
+      "source": "Combat Press",
+      "sourceUrl": "https://combatpress.com/",
+      "publishedAt": "2026-07-27T21:59:00.000Z",
+      "excerpt": "Professional Fighters League delivered another action-packed night of championship-level mixed martial arts as PFL Washington D.C. took over CareFirst Arena with a card filled with dramatic…",
+      "image": "",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "1748f9b0a5f4ab9e",
+      "title": "Report: Arman Tsarukyan vs. Charles Oliveira 2 tops UFC 331 in LA",
+      "url": "https://www.mmamania.com/ufc-fight-announcements/460592/report-arman-tsarukyan-vs-charles-oliveira-2-tops-ufc-331-in-la",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-07-27T21:28:18.000Z",
+      "excerpt": "A big one is coming to the City of Angels. No. 2-ranked Ultimate Fighting Championship (UFC) Lightweight contender Arman Tsarukyan will reportedly rematch former UFC Lightweight champion and…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/07/gettyimages-2148462952.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "b1c231b66431be7b",
+      "title": "BKB 57 Results: Terrill, Vargas Brothers Score Knockouts at O2 Arena",
+      "url": "https://combatpress.com/2026/07/bkb-57-results-terrill-vargas-brothers-score-knockouts-at-o2-arena/",
+      "source": "Combat Press",
+      "sourceUrl": "https://combatpress.com/",
+      "publishedAt": "2026-07-27T20:59:00.000Z",
+      "excerpt": "BKB Bare Knuckle Boxing returned to the O2 Arena in London, England, on Saturday night with BKB 57, delivering another action-packed night of bare knuckle warfare highlighted by a series of…",
+      "image": "",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "b6b082ac379c3304",
+      "title": "Conor McGregor Vows To Reset ‘Generational Beating’ In “The Last Dance” During IFW 2027",
+      "url": "https://www.lowkickmma.com/conor-mcgregor-vows-to-reset-generational-beating-in-the-last-dance-during-ifw-2027/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-07-27T20:51:39.000Z",
+      "excerpt": "Former UFC double champion Conor McGregor has a date in mind for his last dance. After a five-year hiatus...",
+      "image": "https://www.lowkickmma.com/wp-content/uploads/2026/07/Quotes-Script-1-5.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "b5aca91ddb094064",
+      "title": "Conor McGregor calls Max Holloway trilogy ‘The last dance’ as he confirms Dana White’s recovery claims",
+      "url": "https://www.bjpenn.com/mma-news/conor-mcgregor/conor-mcgregor-max-holloway-trilogy-the-last-dance-dana-white-recovery-claims/",
+      "source": "BJPENN.com",
+      "sourceUrl": "https://www.bjpenn.com/",
+      "publishedAt": "2026-07-27T20:40:59.000Z",
+      "excerpt": "LAST DANCE",
+      "image": "",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "895ea3641e25e2e2",
+      "title": "UFC Belgrade officially down a fight as four-time headliner left without replacement opponent",
+      "url": "https://bloodyelbow.com/2026/07/27/ufc-belgrade-officially-down-a-fight-as-four-time-headliner-left-without-replacement-opponent/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-07-27T20:26:46.000Z",
+      "excerpt": "The UFC originally hoped to keep Johnny Walker on this weekend’s card. A new light heavyweight co-main event is just one of several changes that ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2025/08/GettyImages-2158768011-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "e9518d12ac8b8c7a",
+      "title": "Conor McGregor teases ‘last dance’ in UFC, reveals ideal event for possible final UFC fight",
+      "url": "https://www.mmafighting.com/ufc/501757/conor-mcgregor-teases-last-dance-in-ufc-reveals-ideal-event-for-possible-final-ufc-fight",
+      "source": "MMA Fighting",
+      "sourceUrl": "https://www.mmafighting.com/",
+      "publishedAt": "2026-07-27T20:22:03.000Z",
+      "excerpt": "Conor McGregor is plotting his final UFC fight after a freak knee injury that ended his comeback against Max Holloway at UFC 329. Throwing his first kick in the fight, McGregor blew out his…",
+      "image": "https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/07/gettyimages-2285712697.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "e4f9dec37ece3344",
+      "title": "Conor McGregor confirms his UFC ‘last dance’ with date announcement after UFC 329 injury",
+      "url": "https://bloodyelbow.com/2026/07/27/conor-mcgregor-confirms-his-ufc-last-dance-with-date-announcement-after-ufc-329-injury/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-07-27T20:10:44.000Z",
+      "excerpt": "Conor McGregor has confirmed that he will return to action on International Fight Week 2027 – exactly a year after his disaster comeback. Legendary two-weight ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/07/GettyImages-2285713834-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "973a92780bc68b72",
+      "title": "Shavkat Rakhmonov’s Physician Reveals Potential UFC Return Timeline",
+      "url": "https://www.lowkickmma.com/shavkat-rakhmonovs-physician-reveals-potential-ufc-return-timeline/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-07-27T20:07:02.000Z",
+      "excerpt": "There is good news for the UFC welterweight division and undefeated fighter Shavkat Rakhmonov’s fans. Rakhmonov’s physician has stated...",
+      "image": "https://www.lowkickmma.com/wp-content/uploads/2026/07/Quotes-Script-8.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "5f40f6ad06ae2675",
+      "title": "Claressa Shields says Cris ‘Cyborg’ Justino ‘quit in 4 rounds’ in latest boxing trash talk, Cyborg responds",
+      "url": "https://www.bjpenn.com/boxing-news/claressa-shields/claressa-shields-cris-cyborg-justino-quit-4-rounds-boxing-trash-talk/",
+      "source": "BJPENN.com",
+      "sourceUrl": "https://www.bjpenn.com/",
+      "publishedAt": "2026-07-27T20:06:01.000Z",
+      "excerpt": "BAD BLOOD",
+      "image": "",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "617d4f95cc1bef7e",
+      "title": "Salahdine Parnasse explains why he decided to sign with the UFC and headline UFC Paris against Dan Hooker",
+      "url": "https://www.bjpenn.com/mma-news/ufc/salahdine-parnasse-explains-why-he-decided-to-sign-with-the-ufc-and-headline-ufc-paris-against-dan-hooker/",
+      "source": "BJPENN.com",
+      "sourceUrl": "https://www.bjpenn.com/",
+      "publishedAt": "2026-07-27T20:02:56.000Z",
+      "excerpt": "Sign",
+      "image": "",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "08d0761b7e837c78",
+      "title": "Yuki Yoza sets his sights on a path back to bantamweight gold",
+      "url": "https://www.bjpenn.com/mma-news/yuki-yoza/yuki-yoza-sets-his-sights-on-a-path-back-to-bantamweight-gold/",
+      "source": "BJPENN.com",
+      "sourceUrl": "https://www.bjpenn.com/",
+      "publishedAt": "2026-07-27T20:00:19.000Z",
+      "excerpt": "Eyes on the belt",
+      "image": "",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "17b79f106f436054",
+      "title": "Dana White confirms interest in working with Gervonta ‘Tank’ Davis: ‘We’ve talked to them’",
+      "url": "https://www.mmafighting.com/boxing/501641/dana-white-confirms-interest-in-working-with-gervonta-tank-davis-weve-talked-to-them",
+      "source": "MMA Fighting",
+      "sourceUrl": "https://www.mmafighting.com/",
+      "publishedAt": "2026-07-27T20:00:00.000Z",
+      "excerpt": "Dana White promised that Zuffa Boxing would make the biggest and best fights possible and after signing Shakur Stevenson to a multi-fight deal, is it possible that Gervonta “Tank” Davis is a…",
+      "image": "https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/07/gettyimages-1484284840.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "fc188899e4045b70",
+      "title": "Sean Strickland expecting backlash from the UFC as he criticizes sponsor for dropping Dustin Poirier",
+      "url": "https://bloodyelbow.com/2026/07/27/sean-strickland-expecting-backlash-from-the-ufc-as-he-criticizes-sponsor-for-dropping-dustin-poirier/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-07-27T20:00:00.000Z",
+      "excerpt": "Sean Strickland shared details of his conversation with Dustin Poirier after his arrest. Earlier this month, Strickland’s initial reaction to Poirier’s public intoxication arrest resulted…",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/05/GettyImages-2275393607-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "3da3eb1c0d5867e1",
+      "title": "UFC Fight Night: Gamrot vs. Salkilld Brings Lightweight Collision to UFC APEX",
+      "url": "https://combatpress.com/2026/07/ufc-fight-night-gamrot-vs-salkilld-brings-lightweight-collision-to-ufc-apex/",
+      "source": "Combat Press",
+      "sourceUrl": "https://combatpress.com/",
+      "publishedAt": "2026-07-27T19:59:00.000Z",
+      "excerpt": "The UFC returns to the familiar confines of the UFC APEX in Las Vegas with a card built around opportunity, momentum, and the next wave of contenders looking to make their mark. UFC Fight…",
+      "image": "",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "a1868b959ea6ffd2",
+      "title": "How To Watch The Inner Circle 24 And ONE Friday Fights 164 Live On July 31",
+      "url": "https://www.onefc.com/news/how-to-watch-the-inner-circle-24-and-one-friday-fights-164-live-on-july-31/",
+      "source": "ONE Championship",
+      "sourceUrl": "https://www.onefc.com/news/",
+      "publishedAt": "2026-07-27T19:52:01.000Z",
+      "excerpt": "Find out how you can watch all the action anywhere in the world!",
+      "image": "https://cdn.onefc.com/wp-content/uploads/2026/07/Johan-Ghazali-and-Ramadan-Ondash-face-off-at-The-Inner-Circle-23-on-July-244-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "96d07520391932fb",
+      "title": "Khabib Nurmagomedov Hails Magomed Zaynukov’s ‘Great’ UFC Debut, But Points Out One Thing That ‘Wasn’t Okay’",
+      "url": "https://www.lowkickmma.com/khabib-nurmagomedov-magomed-zaynukov-message/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-07-27T19:36:55.000Z",
+      "excerpt": "Khabib Nurmagomedov was all praise following Magomed Zaynukov’s impressive debut at UFC Abu Dhabi, but still went on to...",
+      "image": "https://www.lowkickmma.com/wp-content/uploads/2026/07/Khabib-Nurmagomedov-and-Magomed-Zaynukov.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "910661568916850a",
+      "title": "‘I Proved That I Could’ – Aliff Reflects On The Night He Beat Sam-A And Became Malaysia’s First ONE World Champion",
+      "url": "https://www.onefc.com/news/i-proved-that-i-could-aliff-reflects-on-the-night-he-beat-sam-a-and-became-malaysias-first-one-world-champion/",
+      "source": "ONE Championship",
+      "sourceUrl": "https://www.onefc.com/news/",
+      "publishedAt": "2026-07-27T19:17:42.000Z",
+      "excerpt": "The new ONE Interim Strawweight Muay Thai World Champion recalls his magical evening at The Inner Circle 23.",
+      "image": "https://cdn.onefc.com/wp-content/uploads/2026/07/Aliff-Sor-Dechapan-defeats-Sam-A-Gaiyanghadao-a23t-The-Inner-Circle-23-on-July-24-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "b46e91949f0bdcda",
+      "title": "Khalil Rountree’s coach convinced him to avoid fighting Magomed Ankalaev injured: “He was going to do it”",
+      "url": "https://www.bjpenn.com/mma-news/ufc/khalil-rountrees-coach-convinced-him-to-avoid-fighting-magomed-ankalaev-injured-he-was-going-to-do-it/",
+      "source": "BJPENN.com",
+      "sourceUrl": "https://www.bjpenn.com/",
+      "publishedAt": "2026-07-27T19:08:32.000Z",
+      "excerpt": "Warrior",
+      "image": "",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "276e96aa50b7af5d",
+      "title": "Darren Till vs. Yoel Romero booked for BKFC event in Manchester",
+      "url": "https://www.mmafighting.com/bkfc/501729/darren-till-vs-yoel-romero-booked-for-bkfc-event-in-manchester",
+      "source": "MMA Fighting",
+      "sourceUrl": "https://www.mmafighting.com/",
+      "publishedAt": "2026-07-27T19:03:17.000Z",
+      "excerpt": "Darren Till has his second bare-knuckle fight scheduled, and this time, he’s taking on a former UFC title challenger in Yoel Romero as they headline the upcoming BKFC event in Manchester,…",
+      "image": "https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/05/LEE_BKFC90-127.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 2,
+      "relatedSources": [
+        "MMA Mania"
+      ]
+    },
+    {
+      "id": "5014c6e9e7054a2a",
+      "title": "Dan Hooker Is “Going to F*ck Everyone’s Night Up” After Being Bombarded With Death Threats Ahead of UFC Paris",
+      "url": "https://www.lowkickmma.com/dan-hooker-is-going-to-fck-everyones-night-up-after-being-bombarded-with-death-threats-ahead-of-ufc-paris/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-07-27T18:59:38.000Z",
+      "excerpt": "No. 12 UFC lightweight contender Dan Hooker has alleged that he is getting death threats from his upcoming opponent’s...",
+      "image": "https://www.lowkickmma.com/wp-content/uploads/2026/01/I-Get-Paid-to-Ruin-Peoples-Dreams-Dan-Hookers-Philosophy-Heading-into-UFC-325-Sydney.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "c5d747d2ccc262b6",
+      "title": "Darren Till booked to face ex-UFC boogeyman Yoel Romero seven years after initial callout",
+      "url": "https://bloodyelbow.com/2026/07/27/darren-till-booked-to-face-ex-ufc-boogeyman-yoel-romero-seven-years-after-initial-callout/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-07-27T18:53:57.000Z",
+      "excerpt": "Darren Till will face fellow former UFC middleweight Yoel Romero in a huge BKFC main event. In May, Till stopped Aaron Chalmers in his BKFC ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/05/Darren-Till-KO.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "6bf1a631d16f3353",
+      "title": "Michael Chandler urged to retire by renowned coach and UFC analyst: “It passed him up, and he’s got to accept that”",
+      "url": "https://www.bjpenn.com/mma-news/ufc/michael-chandler-urged-to-retire-by-renowned-coach-and-ufc-analyst-it-passed-him-up-and-hes-got-to-accept-that/",
+      "source": "BJPENN.com",
+      "sourceUrl": "https://www.bjpenn.com/",
+      "publishedAt": "2026-07-27T18:45:37.000Z",
+      "excerpt": "Bow Out Gracefully",
+      "image": "",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "3f9c629b0d9e2671",
+      "title": "Islam supports Ian Garry training with Charles Oliveira for UFC 330 — ‘Charles will teach him to tap fast’",
+      "url": "https://www.mmamania.com/ufc-news/460578/islam-ian-garry-training-charles-oliveira-ufc-330-charles-teach-him-tap-fast",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-07-27T18:41:49.000Z",
+      "excerpt": "UFC welterweight contender Ian Garry will try to dethrone reigning 170-pound titleholder and top pound-for-pound fighter Islam Makhachev when they collide in the UFC 330 main event next…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/07/gettyimages-1244154853.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 2,
+      "relatedSources": [
+        "BJPENN.com"
+      ]
+    },
+    {
+      "id": "4b7e9a3296a416d1",
+      "title": "UFC 333 Returns to Abu Dhabi at Etihad Arena on Oct. 24",
+      "url": "https://combatpress.com/2026/07/ufc-333-returns-to-abu-dhabi-at-etihad-arena-on-oct-24/",
+      "source": "Combat Press",
+      "sourceUrl": "https://combatpress.com/",
+      "publishedAt": "2026-07-27T18:29:00.000Z",
+      "excerpt": "UFC 333 Abu Dhabi is officially set to bring the Octagon back to Yas Island this fall as the Ultimate Fighting Championship returns to Etihad Arena on Saturday, Oct. 24. The world’s premier…",
+      "image": "",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "8a84758d38413529",
+      "title": "Dan Hooker reveals he’s been receiving ‘outrageous’ death threats after booking Salahdine Parnasse fight",
+      "url": "https://www.mmafighting.com/ufc/501720/dan-hooker-reveals-hes-been-receiving-outrageous-death-threats-after-booking-salahdine-parnasse-fight",
+      "source": "MMA Fighting",
+      "sourceUrl": "https://www.mmafighting.com/",
+      "publishedAt": "2026-07-27T18:00:00.000Z",
+      "excerpt": "Dan Hooker didn’t blink when the UFC came calling with an offer for his next fight where he’s steps into enemy territory to face highly touted prospect Salahdine Parnasse in his octagon…",
+      "image": "https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/07/gettyimages-2259322739.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    }
+  ]
+}

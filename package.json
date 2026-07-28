@@ -4,9 +4,12 @@
   "scripts": {
     "optimize:images": "node scripts/optimize-post-images.mjs",
     "check:content": "node scripts/check-content.mjs",
-    "check:external": "node scripts/check-external-links.mjs _site/mma-yellowpages.html"
+    "check:external": "node scripts/check-external-links.mjs _site/mma-yellowpages.html",
+    "check:news": "node scripts/check-news-data.mjs",
+    "update:news": "node scripts/build-news-feed.mjs"
   },
   "devDependencies": {
+    "fast-xml-parser": "^5.10.1",
     "sharp": "^0.35.3"
   }
 }
