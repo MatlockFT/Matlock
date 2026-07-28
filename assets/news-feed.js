@@ -10,7 +10,7 @@
     const refreshInterval =
         Number(newsPage.dataset.refreshInterval) || 5 * 60 * 1000;
     const listUrl =
-        "https://twitter.com/i/lists/2081967792681849282";
+        "https://x.com/MMAMATLOCK/lists/2081967792681849282?ref_src=twsrc%5Etfw";
     let lastRefreshTime = 0;
     let refreshTimer;
     let renderCheckTimer;
@@ -22,7 +22,7 @@
         link.dataset.dnt = "true";
         link.dataset.height = "900";
         link.href = listUrl;
-        link.textContent = "View the MMA Matlock news list on X";
+        link.textContent = "An X List by MMA Matlock";
 
         return link;
     }
@@ -119,7 +119,7 @@
 
             const script = document.createElement("script");
             script.id = "x-widgets-script";
-            script.src = "https://platform.twitter.com/widgets.js";
+            script.src = "https://platform.x.com/widgets.js";
             script.async = true;
             script.charset = "utf-8";
             script.addEventListener("error", stopLoading, { once: true });
