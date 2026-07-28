@@ -238,7 +238,8 @@
         const activeIndex = Math.max(0, cards.indexOf(activeCard));
 
         counter.textContent = cards.length
-            ? `${activeIndex + 1} / ${cards.length}`
+            ? `${activeIndex + 1} / ${cards.length}` +
+                (deckLayout.matches ? " · Swipe" : "")
             : "0 / 0";
         previousButton.disabled = activeIndex <= 0;
         nextButton.disabled =
