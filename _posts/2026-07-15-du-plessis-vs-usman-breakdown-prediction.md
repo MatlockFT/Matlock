@@ -5,6 +5,8 @@ description: "UFC Oklahoma City (UFC Fight Night: Du Plessis vs. Usman) took
   place on Saturday, July 18, 2026, at the Paycom Center in Oklahoma City."
 date: 2026-07-15
 permalink: /2026/07/15/du-plessis-vs-usman-breakdown-prediction.html
+redirect_from:
+  - /2026/07/15/UFC-OKC-Street-Sharks.html
 category: Breakdown
 author: MMA Matlock
 image:
