@@ -38,8 +38,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Reuse previous article preview images
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/${{ github.repository }}/releases/tags/mma-news-data" \
+            --jq '.body' > /tmp/mma-news-previous.json || true
+
       - name: Collect current MMA stories
-        run: npm run update:news -- --output /tmp/mma-news.json
+        run: >-
+          npm run update:news --
+          --output /tmp/mma-news.json
+          --previous /tmp/mma-news-previous.json
 
       - name: Validate generated news
         run: npm run check:news -- /tmp/mma-news.json
