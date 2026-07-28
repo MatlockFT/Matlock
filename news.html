@@ -1,121 +1,96 @@
 ---
 layout: default
 title: MMA News
-description: "Follow a live, continuously refreshed stream of MMA news and updates curated by MMA Matlock."
+description: "The latest MMA stories from trusted fight-news sources, refreshed throughout the day."
 permalink: /news/
 page_styles:
   - /assets/news.css
 page_scripts:
   - /assets/news-feed.js
-x_embed: true
 ---
 
 <article
     class="news-page"
     data-news-feed
+    data-feed-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/mma-news-data"
+    data-fallback-url="{{ '/assets/data/mma-news.json' | relative_url }}?v={{ site.asset_version }}"
     data-refresh-interval="300000"
 >
-    <section
-        class="news-feed-card"
-        aria-labelledby="live-news-title"
-    >
-        <header class="news-feed-header">
-            <div>
-                <h1 id="live-news-title">
-                    MMA News
-                </h1>
-
-                <p class="news-feed-note">
-                    Updates from the MMA Matlock X list, reloaded every five
-                    minutes while this page is open.
-                </p>
-            </div>
-
-            <div class="news-feed-actions">
-                <button
-                    class="secondary-button news-refresh-button"
-                    type="button"
-                    data-news-refresh
-                >
-                    Refresh feed
-                </button>
-
-                <a
-                    class="primary-button"
-                    href="https://x.com/MMAMATLOCK/lists/2081967792681849282"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Open on X
-                </a>
-            </div>
-        </header>
-
-        <div class="news-feed-status-row">
-            <p
-                class="news-feed-status"
-                data-news-status
-                aria-live="polite"
-            >
-                Loading live feed…
-            </p>
-
-            <p class="news-feed-timestamp">
-                <span>Last refreshed</span>
-                <time data-news-last-updated>—</time>
-            </p>
-        </div>
-
-        <div
-            class="news-timeline"
-            data-news-timeline
-            aria-busy="true"
-        >
-            <a
-                class="twitter-timeline"
-                data-theme="dark"
-                data-dnt="true"
-                data-height="900"
-                href="https://x.com/MMAMATLOCK/lists/2081967792681849282?ref_src=twsrc%5Etfw"
-            >
-                An X List by MMA Matlock
-            </a>
-        </div>
-
-        <div
-            class="news-embed-fallback"
-            data-news-fallback
-            hidden
-        >
-            <p class="eyebrow">
-                Live list available
-            </p>
-
-            <h3>Read the feed directly on X</h3>
+    <header class="news-page-header">
+        <div>
+            <h1>MMA News</h1>
 
             <p>
-                X has not made posts from this public List available to its
-                website embed yet. This page will try again automatically
-                every five minutes.
+                The newest reporting from trusted MMA outlets, collected in
+                one place.
             </p>
-
-            <a
-                class="primary-button"
-                href="https://x.com/MMAMATLOCK/lists/2081967792681849282"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                Open the live MMA list
-            </a>
         </div>
 
-        <noscript>
-            <p class="news-feed-fallback">
-                JavaScript is required for the embedded feed.
-                <a href="https://x.com/MMAMATLOCK/lists/2081967792681849282">
-                    Open the MMA news list directly on X.
-                </a>
-            </p>
-        </noscript>
+        <button
+            class="secondary-button news-refresh-button"
+            type="button"
+            data-news-refresh
+        >
+            Refresh
+        </button>
+    </header>
+
+    <div
+        class="news-feed-status"
+        data-news-status
+        data-state="loading"
+        aria-live="polite"
+    >
+        Loading the latest stories…
+    </div>
+
+    <section
+        class="news-top-section"
+        aria-label="Top story"
+    >
+        <p class="eyebrow">Top story</p>
+
+        <div
+            class="news-top-story news-loading-card"
+            data-news-top-story
+            aria-busy="true"
+        ></div>
     </section>
+
+    <section
+        class="news-latest-section"
+        aria-labelledby="news-latest-title"
+    >
+        <header class="news-section-heading">
+            <div>
+                <p class="eyebrow">Latest stories</p>
+
+                <h2 id="news-latest-title">
+                    Around the fight world
+                </h2>
+            </div>
+
+            <p data-news-source-summary>
+                Gathering sources…
+            </p>
+        </header>
+
+        <div
+            class="news-story-list"
+            data-news-story-list
+            aria-busy="true"
+        >
+            <div class="news-loading-row"></div>
+            <div class="news-loading-row"></div>
+            <div class="news-loading-row"></div>
+        </div>
+    </section>
+
+    <noscript>
+        <p class="news-noscript">
+            JavaScript is required to load the aggregated news feed. Visit the
+            <a href="/mma-yellowpages.html">MMA Yellow Pages</a>
+            for direct links to MMA news outlets.
+        </p>
+    </noscript>
 </article>

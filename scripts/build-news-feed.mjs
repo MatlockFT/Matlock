@@ -1,0 +1,566 @@
+import { createHash } from "node:crypto";
+import { mkdir, writeFile } from "node:fs/promises";
+import { dirname, resolve } from "node:path";
+import { XMLParser } from "fast-xml-parser";
+
+const FIVE_MINUTES = 5 * 60 * 1000;
+const MAX_STORY_AGE = 14 * 24 * 60 * 60 * 1000;
+const MAX_ITEMS = 48;
+const MINIMUM_HEALTHY_SOURCES = 4;
+const MINIMUM_STORIES = 20;
+
+const feeds = [
+    {
+        name: "MMA Fighting",
+        siteUrl: "https://www.mmafighting.com/",
+        feedUrl: "https://www.mmafighting.com/rss/current.xml",
+        priority: 10
+    },
+    {
+        name: "ESPN MMA",
+        siteUrl: "https://www.espn.com/mma/",
+        feedUrl: "https://www.espn.com/espn/rss/mma/news",
+        priority: 10
+    },
+    {
+        name: "UFC",
+        siteUrl: "https://www.ufc.com/news",
+        feedUrl: "https://www.ufc.com/rss/news",
+        priority: 9
+    },
+    {
+        name: "MMA Mania",
+        siteUrl: "https://www.mmamania.com/",
+        feedUrl: "https://www.mmamania.com/rss/current.xml",
+        priority: 9
+    },
+    {
+        name: "Bloody Elbow",
+        siteUrl: "https://bloodyelbow.com/",
+        feedUrl: "https://bloodyelbow.com/feed/",
+        priority: 8
+    },
+    {
+        name: "Cageside Press",
+        siteUrl: "https://cagesidepress.com/",
+        feedUrl: "https://cagesidepress.com/feed/",
+        priority: 8
+    },
+    {
+        name: "LowKick MMA",
+        siteUrl: "https://www.lowkickmma.com/",
+        feedUrl: "https://www.lowkickmma.com/feed/",
+        priority: 7
+    },
+    {
+        name: "ONE Championship",
+        siteUrl: "https://www.onefc.com/news/",
+        feedUrl: "https://www.onefc.com/feed/",
+        priority: 7
+    },
+    {
+        name: "Combat Press",
+        siteUrl: "https://combatpress.com/",
+        feedUrl: "https://combatpress.com/feed/",
+        priority: 6
+    },
+    {
+        name: "BJPENN.com",
+        siteUrl: "https://www.bjpenn.com/",
+        feedUrl: "https://www.bjpenn.com/feed/",
+        priority: 6
+    }
+];
+
+const parser = new XMLParser({
+    attributeNamePrefix: "@",
+    ignoreAttributes: false,
+    parseTagValue: false,
+    processEntities: true,
+    textNodeName: "#text",
+    trimValues: true
+});
+
+const stopWords = new Set([
+    "about",
+    "after",
+    "again",
+    "against",
+    "ahead",
+    "amid",
+    "and",
+    "are",
+    "at",
+    "before",
+    "but",
+    "by",
+    "for",
+    "from",
+    "has",
+    "have",
+    "his",
+    "how",
+    "into",
+    "its",
+    "mma",
+    "more",
+    "new",
+    "news",
+    "not",
+    "now",
+    "of",
+    "on",
+    "over",
+    "says",
+    "the",
+    "their",
+    "this",
+    "to",
+    "ufc",
+    "video",
+    "vs",
+    "with"
+]);
+
+function asArray(value) {
+    if (value === undefined || value === null) return [];
+    return Array.isArray(value) ? value : [value];
+}
+
+function textValue(value) {
+    if (typeof value === "string" || typeof value === "number") {
+        return String(value).trim();
+    }
+
+    if (Array.isArray(value)) {
+        return textValue(value[0]);
+    }
+
+    if (value && typeof value === "object") {
+        return textValue(value["#text"]);
+    }
+
+    return "";
+}
+
+function decodeEntities(value) {
+    return value
+        .replace(/&nbsp;/gi, " ")
+        .replace(/&amp;/gi, "&")
+        .replace(/&quot;/gi, '"')
+        .replace(/&#39;|&apos;/gi, "'")
+        .replace(/&lt;/gi, "<")
+        .replace(/&gt;/gi, ">")
+        .replace(/&#(\d+);/g, (_, code) =>
+            String.fromCodePoint(Number(code))
+        )
+        .replace(/&#x([\da-f]+);/gi, (_, code) =>
+            String.fromCodePoint(Number.parseInt(code, 16))
+        );
+}
+
+function plainText(value) {
+    return decodeEntities(textValue(value))
+        .replace(/<script[\s\S]*?<\/script>/gi, " ")
+        .replace(/<style[\s\S]*?<\/style>/gi, " ")
+        .replace(/<[^>]+>/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
+function truncate(value, maximumLength) {
+    if (value.length <= maximumLength) return value;
+
+    const shortened = value.slice(0, maximumLength + 1);
+    const lastSpace = shortened.lastIndexOf(" ");
+
+    return `${shortened.slice(0, Math.max(lastSpace, maximumLength - 24))}…`;
+}
+
+function safeUrl(value) {
+    const rawValue = decodeEntities(textValue(value))
+        .replace(/#0*38;/gi, "&");
+
+    try {
+        const url = new URL(rawValue);
+
+        if (!["http:", "https:"].includes(url.protocol)) return "";
+
+        [
+            "fbclid",
+            "gclid",
+            "ref",
+            "ref_src",
+            "utm_campaign",
+            "utm_content",
+            "utm_medium",
+            "utm_source",
+            "utm_term"
+        ].forEach(parameter => url.searchParams.delete(parameter));
+
+        return url.toString();
+    } catch {
+        return "";
+    }
+}
+
+function itemLink(item) {
+    for (const link of asArray(item.link)) {
+        if (typeof link === "string") {
+            const url = safeUrl(link);
+            if (url) return url;
+        }
+
+        if (
+            link &&
+            typeof link === "object" &&
+            (!link["@rel"] || link["@rel"] === "alternate")
+        ) {
+            const url = safeUrl(link["@href"] || link["#text"]);
+            if (url) return url;
+        }
+    }
+
+    return safeUrl(item.guid || item.id);
+}
+
+function imageCandidate(value) {
+    for (const entry of asArray(value)) {
+        if (typeof entry === "string") {
+            const url = safeUrl(entry);
+            if (url) return url;
+        }
+
+        if (entry && typeof entry === "object") {
+            const url = safeUrl(
+                entry["@url"] ||
+                entry["@href"] ||
+                entry.url ||
+                entry["#text"]
+            );
+
+            if (url) return url;
+        }
+    }
+
+    return "";
+}
+
+function itemImage(item) {
+    const candidates = [
+        item["media:content"],
+        item["media:thumbnail"],
+        item.enclosure,
+        item.image,
+        item["itunes:image"]
+    ];
+
+    for (const candidate of candidates) {
+        const image = imageCandidate(candidate);
+        if (image) return image;
+    }
+
+    const html = textValue(
+        item["content:encoded"] ||
+        item.content ||
+        item.description ||
+        item.summary
+    );
+    const imageMatch = html.match(
+        /<img[^>]+src=["'](https?:\/\/[^"']+)["']/i
+    );
+
+    return safeUrl(imageMatch?.[1]);
+}
+
+function itemDate(item) {
+    const candidates = [
+        item.pubDate,
+        item.published,
+        item.updated,
+        item["dc:date"],
+        item.date
+    ];
+
+    for (const candidate of candidates) {
+        const timestamp = Date.parse(textValue(candidate));
+
+        if (Number.isFinite(timestamp)) {
+            return new Date(timestamp).toISOString();
+        }
+    }
+
+    return "";
+}
+
+function itemExcerpt(item, title) {
+    const source = plainText(
+        item.description ||
+        item.summary ||
+        item["content:encoded"] ||
+        item.content
+    );
+
+    if (!source || source.toLowerCase() === title.toLowerCase()) return "";
+    return truncate(source, 190);
+}
+
+function feedItems(parsed) {
+    if (parsed?.rss?.channel?.item) {
+        return asArray(parsed.rss.channel.item);
+    }
+
+    if (parsed?.feed?.entry) {
+        return asArray(parsed.feed.entry);
+    }
+
+    if (parsed?.["rdf:RDF"]?.item) {
+        return asArray(parsed["rdf:RDF"].item);
+    }
+
+    return [];
+}
+
+async function fetchFeed(feed) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 15000);
+
+    try {
+        const response = await fetch(feed.feedUrl, {
+            headers: {
+                accept: "application/atom+xml, application/rss+xml, application/xml, text/xml;q=0.9, */*;q=0.5",
+                "user-agent": "MMA Matlock News Aggregator/1.0 (+https://matlockfighttalk.com/news/)"
+            },
+            redirect: "follow",
+            signal: controller.signal
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
+        const xml = await response.text();
+        const parsed = parser.parse(xml);
+        const cutoff = Date.now() - MAX_STORY_AGE;
+        const stories = feedItems(parsed)
+            .map((item, feedRank) => {
+                const title = plainText(item.title);
+                const url = itemLink(item);
+                const publishedAt = itemDate(item);
+                const timestamp = Date.parse(publishedAt);
+
+                if (
+                    !title ||
+                    !url ||
+                    !Number.isFinite(timestamp) ||
+                    timestamp < cutoff
+                ) {
+                    return null;
+                }
+
+                return {
+                    id: createHash("sha256").update(url).digest("hex").slice(0, 16),
+                    title: truncate(title, 160),
+                    url,
+                    source: feed.name,
+                    sourceUrl: feed.siteUrl,
+                    publishedAt,
+                    excerpt: itemExcerpt(item, title),
+                    image: itemImage(item),
+                    feedRank,
+                    sourcePriority: feed.priority
+                };
+            })
+            .filter(Boolean);
+
+        return {
+            feed,
+            stories
+        };
+    } finally {
+        clearTimeout(timeout);
+    }
+}
+
+function titleTokens(title) {
+    return new Set(
+        title
+            .toLowerCase()
+            .normalize("NFKD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-z0-9\s-]/g, " ")
+            .split(/[\s-]+/)
+            .filter(token =>
+                token.length >= 3 &&
+                !stopWords.has(token) &&
+                !/^\d+$/.test(token)
+            )
+    );
+}
+
+function titlesMatch(first, second) {
+    const firstTokens = titleTokens(first);
+    const secondTokens = titleTokens(second);
+
+    if (firstTokens.size === 0 || secondTokens.size === 0) return false;
+
+    const intersection = [...firstTokens].filter(token =>
+        secondTokens.has(token)
+    ).length;
+    const union = new Set([...firstTokens, ...secondTokens]).size;
+    const similarity = intersection / union;
+
+    return (
+        (intersection >= 4 && similarity >= 0.42) ||
+        (intersection >= 3 && similarity >= 0.58)
+    );
+}
+
+function clusterStories(stories) {
+    const clusters = [];
+
+    for (const story of stories) {
+        const matchingCluster = clusters.find(cluster =>
+            titlesMatch(cluster.representative.title, story.title)
+        );
+
+        if (matchingCluster) {
+            matchingCluster.stories.push(story);
+
+            if (
+                story.sourcePriority > matchingCluster.representative.sourcePriority ||
+                (
+                    story.sourcePriority === matchingCluster.representative.sourcePriority &&
+                    story.publishedAt > matchingCluster.representative.publishedAt
+                )
+            ) {
+                matchingCluster.representative = story;
+            }
+        } else {
+            clusters.push({
+                representative: story,
+                stories: [story]
+            });
+        }
+    }
+
+    return clusters;
+}
+
+function publicStory(cluster) {
+    const story = cluster.representative;
+    const relatedSources = [
+        ...new Set(cluster.stories.map(entry => entry.source))
+    ].filter(source => source !== story.source);
+
+    return {
+        id: story.id,
+        title: story.title,
+        url: story.url,
+        source: story.source,
+        sourceUrl: story.sourceUrl,
+        publishedAt: story.publishedAt,
+        excerpt: story.excerpt,
+        image: story.image,
+        coverageCount: relatedSources.length + 1,
+        relatedSources
+    };
+}
+
+function topStoryScore(cluster) {
+    const story = cluster.representative;
+    const ageHours =
+        Math.max(0, Date.now() - Date.parse(story.publishedAt)) / 3600000;
+    const freshness = Math.max(0, 72 - ageHours);
+    const coverage = (
+        new Set(cluster.stories.map(entry => entry.source)).size - 1
+    ) * 55;
+    const prominence = Math.max(0, 22 - story.feedRank * 2);
+
+    return freshness + coverage + prominence + story.sourcePriority;
+}
+
+function deduplicateUrls(stories) {
+    const seen = new Set();
+
+    return stories.filter(story => {
+        if (seen.has(story.url)) return false;
+        seen.add(story.url);
+        return true;
+    });
+}
+
+function outputPath() {
+    const outputIndex = process.argv.indexOf("--output");
+    const requested =
+        outputIndex >= 0 ? process.argv[outputIndex + 1] : null;
+
+    return resolve(requested || "assets/data/mma-news.json");
+}
+
+const results = await Promise.allSettled(feeds.map(fetchFeed));
+const successful = results
+    .filter(result => result.status === "fulfilled")
+    .map(result => result.value);
+const failed = results
+    .map((result, index) => ({ result, feed: feeds[index] }))
+    .filter(({ result }) => result.status === "rejected");
+
+for (const { result, feed } of failed) {
+    console.warn(`${feed.name}: ${result.reason?.message || "feed failed"}`);
+}
+
+const stories = deduplicateUrls(
+    successful
+        .flatMap(result => result.stories)
+        .sort((first, second) =>
+            second.publishedAt.localeCompare(first.publishedAt)
+        )
+);
+
+if (
+    successful.length < MINIMUM_HEALTHY_SOURCES ||
+    stories.length < MINIMUM_STORIES
+) {
+    throw new Error(
+        `News update stopped: ${successful.length} healthy sources and ${stories.length} usable stories`
+    );
+}
+
+const clusters = clusterStories(stories);
+const rankedClusters = [...clusters].sort(
+    (first, second) => topStoryScore(second) - topStoryScore(first)
+);
+const topCluster = rankedClusters[0];
+const topStory = publicStory(topCluster);
+const latest = clusters
+    .filter(cluster => cluster !== topCluster)
+    .sort((first, second) =>
+        second.representative.publishedAt.localeCompare(
+            first.representative.publishedAt
+        )
+    )
+    .slice(0, MAX_ITEMS)
+    .map(publicStory);
+
+const output = {
+    version: 1,
+    generatedAt: new Date().toISOString(),
+    refreshIntervalMs: FIVE_MINUTES,
+    sourceCount: successful.length,
+    sources: successful.map(({ feed, stories: sourceStories }) => ({
+        name: feed.name,
+        url: feed.siteUrl,
+        storyCount: sourceStories.length
+    })),
+    topStory,
+    stories: latest
+};
+
+const destination = outputPath();
+await mkdir(dirname(destination), { recursive: true });
+await writeFile(destination, `${JSON.stringify(output, null, 2)}\n`);
+
+console.log(
+    `Wrote ${latest.length + 1} stories from ${successful.length} sources to ${destination}`
+);

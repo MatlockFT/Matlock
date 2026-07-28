@@ -36,6 +36,11 @@ jobs:
         run: |
           node --check assets/site.js
           node --check assets/news-feed.js
+          node --check scripts/build-news-feed.mjs
+          node --check scripts/check-news-data.mjs
+
+      - name: Check bundled MMA news data
+        run: npm run check:news
 
       - name: Build site
         uses: actions/jekyll-build-pages@v1

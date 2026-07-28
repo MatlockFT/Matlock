@@ -1,0 +1,60 @@
+name: Update MMA news feed
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/update-news-feed.yml"
+      - "package.json"
+      - "package-lock.json"
+      - "scripts/build-news-feed.mjs"
+  schedule:
+    - cron: "2-57/5 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mma-news-feed
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Collect current MMA stories
+        run: npm run update:news -- --output /tmp/mma-news.json
+
+      - name: Validate generated news
+        run: npm run check:news -- /tmp/mma-news.json
+
+      - name: Publish the latest data snapshot
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view mma-news-data > /dev/null 2>&1; then
+            gh release edit mma-news-data \
+              --title "MMA News Data" \
+              --notes-file /tmp/mma-news.json
+          else
+            gh release create mma-news-data \
+              --title "MMA News Data" \
+              --notes-file /tmp/mma-news.json \
+              --prerelease
+          fi

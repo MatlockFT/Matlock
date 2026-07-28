@@ -42,18 +42,6 @@
         >
     {% endfor %}
 
-    {% if page.x_embed %}
-        <link
-            rel="preconnect"
-            href="https://platform.x.com"
-        >
-
-        <link
-            rel="preconnect"
-            href="https://syndication.twitter.com"
-        >
-    {% endif %}
-
     <link
         rel="stylesheet"
         href="{{ '/assets/style.css' | relative_url }}?v={{ site.asset_version }}"
