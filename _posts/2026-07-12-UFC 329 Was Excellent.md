@@ -8,7 +8,7 @@ category: Opinion
 author: MMA Matlock
 image:
   path: /assets/uploads/mcgregor.png
-  alt: " Conor McGregor collapsing to the canvas unable to stand on his leg. It
+  alt: "Conor McGregor collapsing to the canvas unable to stand on his leg. It
     was God's plan."
 tags:
   - UFC 329
@@ -45,4 +45,3 @@ Conor could not stand at all on his right leg, and the referee called it off. Ma
 I’m fine with being called a hater, but how can anyone truly feel bad, whether you like Conor or not? I thought of Chael Sonnen’s quote almost immediately after the contest:
 
 > “You’re only going to be alive for so long, so if you can compete in a sport — don’t forget, sports are for kids — and if you’re lucky enough to do that as an adult, you’re just that: lucky. I will leave face down and embarrassed, the only way you should leave sports.”
-

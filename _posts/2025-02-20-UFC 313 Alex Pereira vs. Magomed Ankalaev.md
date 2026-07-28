@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "UFC 313: Pereira vs. Ankalaev | Breakdown & Prediction"
-description: "An interesting matchup taking place in the light heavyweight
-  division between Pereira and Ankalaev for UFC 313's main event. "
+description: "A breakdown of Alex Pereira vs. Magomed Ankalaev in the UFC 313
+  light heavyweight main event."
 date: 2025-02-20
 category: Breakdown
 author: MMA Matlock
@@ -27,4 +27,3 @@ On paper, Ankalaev is still one of the better wrestlers Pereira—often called "
 What could make this fight particularly tough for Magomed is Poatan’s relentless jabs to both the body and head. Add in teeps and low calf kicks that force opponents to stumble forward into his devastating left hook, and Magomed could be in for a long night. Still, I believe Magomed has enough tools in his basic arsenal to make it a challenging fight for Alex. If he can weather Pereira’s persistent jab and long reach, mix in his own leg kicks, jabs, and check hooks, and incorporate some grappling, he could win rounds and potentially tire Poatan out in the later stages. Pereira does get hit—he uses his reach to thwart incoming punches, but this isn’t Khalil Rountree he’s facing. Alex needs to be extremely cautious about pressing forward with combinations, as Magomed’s counter game is sharp and reliable.
 
 If I had to pick, I’d say it’s either Poatan by knockout in the later rounds or a decision victory for Ankalaev. 
-

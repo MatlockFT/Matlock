@@ -2,7 +2,7 @@
 layout: post
 title: Prediction Results Since UFC 314
 description: "I've been busy so I'm providing an update since UFC 314 took
-  place. Let's take a look at my overall pick percentage. "
+  place. Let's take a look at my overall pick percentage."
 date: 2025-08-22
 category: Opinion
 author: MMA Matlock
@@ -13,7 +13,7 @@ tags:
 last_modified_at: 2026-07-26
 published: true
 ---
-I'm back! Life's been a whirlwind—moving, traveling, and redesigning this website from the ground up. Welcome to my content hub, where you'll find all my posts and updates. Feel free to sign the guestbook! 
+I'm back! Life's been a whirlwind—moving, traveling, and redesigning this website from the ground up. Welcome to my content hub, where you'll find all my posts and updates.
 
 As I write this, I'm gutted by the news that ESPN might acquire UFC Fight Pass. As a fan, I love Fight Pass despite its clunky archiving and outdated features. It's still leagues better than anything ESPN could churn out with their subpar tech. This feels like a punch to the gut. Sad day, sad news.
 

@@ -2,14 +2,14 @@
 layout: post
 title: NETFLIX MMA | Rousey vs. Carano Early Thoughts
 description: "In typical MMA fashion, a fight no one asked for is slated to take
-  place 15 years past their prime. "
+  place 15 years after either fighter's prime."
 date: 2026-02-17
 category: Opinion
 author: MMA Matlock
 image:
   path: /assets/uploads/gina-carano.png
   alt: "Gina Carano needs to fight Ronda Rousey in order to get her life back in
-    balance... and to launder her image. "
+    balance... and to launder her image."
 tags:
   - Gina Carano
   - Ronda Rousey

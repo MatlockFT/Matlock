@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "UFC 329: McGregor vs. Holloway II | Breakdown & Prediction"
-description: "Breakdown and Prediction for UFC 329, the return of Conor McGregor
-  against Max Holloway. A rematch that no one really cares about. "
+description: "A breakdown and prediction for UFC 329, featuring Conor McGregor's
+  return against Max Holloway in a rematch that no one really cares about."
 date: 2026-07-10
 category: Breakdown
 author: MMA Matlock

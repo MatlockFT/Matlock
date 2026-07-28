@@ -2,7 +2,7 @@
 layout: post
 title: "DWCS Week 4: Prediction Results"
 description: "A solid night of fights and some good bets cashed! We have some
-  quality talent to look forward to. "
+  quality talent to look forward to."
 date: 2025-09-03
 category: Opinion
 author: MMA Matlock
@@ -37,4 +37,4 @@ On [Verdict](https://verdictmma.com/profile/matlockfighttalk), I picked Mgoyan, 
 - JP Lebosnoyani: **Correct**
 
 An excellent Tuesday evening of fisticuffs—I give it an A- but Dana White didn't sign Chapolin which is insane. He looked to be the best fighter tonight.
-Now, we look forward to UFC Fight Night: Imavov vs. Borralho. 
+Now, we look forward to UFC Fight Night: Imavov vs. Borralho.

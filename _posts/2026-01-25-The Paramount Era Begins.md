@@ -8,7 +8,7 @@ category: Opinion
 author: MMA Matlock
 image:
   path: /assets/uploads/dana-white.png
-  alt: "Dana White had always been the media attack dog. "
+  alt: "Dana White had always been the media attack dog."
 tags:
   - Paramount
   - Justin Gaethje

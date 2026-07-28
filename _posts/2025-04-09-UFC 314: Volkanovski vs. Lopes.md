@@ -38,7 +38,7 @@ So, to align with my own moral fabric and put the best wishes for humanity out i
 
 ### Rodriguez vs. Pitbull
 
-Now that I'm at the bottom of the PPV card, I'm realizing its tall dudes vs. short dudes. I have trust issues with Yair but overall, I think he gets it done. Sometimes he finds a way to royally fuck up but I think Pitbull will have a tough time with the volume and varity. Not to say that Pitbull wont find a way to counter with straight punches because he can but if Sergio Pettis can get a victory over Pitbull, I would think Yair can, too. Don't ask me why that math works out in my head, it just does. 
+Now that I'm at the bottom of the PPV card, I'm realizing it’s tall dudes vs. short dudes. I have trust issues with Yair, but overall, I think he gets it done. Sometimes he finds a way to royally fuck up, but I think Pitbull will have a tough time with the volume and variety. Not to say that Pitbull won’t find a way to counter with straight punches, because he can, but if Sergio Pettis can get a victory over Pitbull, I would think Yair can, too. Don't ask me why that math works out in my head; it just does.
 
 *Yair Rodriguez via decision.* 
 
@@ -48,4 +48,3 @@ Here are my picks:
 I’m pumped for this card, even though I fully expect to get absolutely wrecked on these picks from top to bottom. Still, these matchups are close or just plain interesting, and I’m here for it.
 
 ---
-

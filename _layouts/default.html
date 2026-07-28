@@ -156,28 +156,36 @@
                 >
                     {% for item in site.nav %}
                         {% assign active = false %}
-                        {% assign item_url = item.link | remove: "index.html" %}
-                        {% assign item_url_normalized = item_url %}
+                        {% unless item.external %}
+                            {% assign item_url = item.link | remove: "index.html" %}
+                            {% assign item_url_normalized = item_url %}
 
-                        {% unless item_url_normalized == "/" %}
-                            {% assign item_last_character = item_url_normalized | slice: -1, 1 %}
+                            {% unless item_url_normalized == "/" %}
+                                {% assign item_last_character = item_url_normalized | slice: -1, 1 %}
 
-                            {% unless item_last_character == "/" %}
-                                {% assign item_url_normalized = item_url_normalized | append: "/" %}
+                                {% unless item_last_character == "/" %}
+                                    {% assign item_url_normalized = item_url_normalized | append: "/" %}
+                                {% endunless %}
                             {% endunless %}
+
+                            {% if current_url_normalized == item_url_normalized %}
+                                {% assign active = true %}
+                            {% endif %}
+
+                            {% if page.layout == "post" and item.name == "Breakdowns" %}
+                                {% assign active = true %}
+                            {% endif %}
                         {% endunless %}
-
-                        {% if current_url_normalized == item_url_normalized %}
-                            {% assign active = true %}
-                        {% endif %}
-
-                        {% if page.layout == "post" and item.name == "Breakdowns" %}
-                            {% assign active = true %}
-                        {% endif %}
 
                         <li>
                             <a
-                                href="{{ item.link | relative_url }}"
+                                {% if item.external %}
+                                    href="{{ item.link }}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                {% else %}
+                                    href="{{ item.link | relative_url }}"
+                                {% endif %}
                                 {% if active %}
                                     aria-current="page"
                                 {% endif %}
@@ -524,7 +532,7 @@
 
                 if (
                     isOpen &&
-                    window.innerWidth <= 760
+                    window.innerWidth <= 850
                 ) {
                     lockPageScroll();
 
@@ -630,7 +638,7 @@
                 window.addEventListener(
                     "resize",
                     function () {
-                        if (window.innerWidth > 760) {
+                        if (window.innerWidth > 850) {
                             setNavigationState(
                                 false,
                                 false
