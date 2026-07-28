@@ -6,15 +6,12 @@
 
 - Written MMA breakdowns, previews, recaps, and opinion pieces
 - The [MMA Yellow Pages](https://matlockfighttalk.com/mma-yellowpages), a curated directory of MMA websites, tools, and creators
-- The [Fight Tape Notebook](https://matlockfighttalk.com/fight-tape-notebook/), a browser-based tool for timestamped fight-study notes and exports
-- A media kit, picture gallery, Vegas-themed slots page, and supporting site pages
+- A media kit, picture gallery, and supporting site pages
 - Links to MMA Matlock videos and social channels
 
 ## How it works
 
 The site is built with [Jekyll](https://jekyllrb.com/) and published through GitHub Pages. Posts live in `_posts/`, shared layouts live in `_layouts/`, and styles, scripts, and images live in `assets/`.
-
-The Fight Tape Notebook runs entirely in the browser. Its notebooks and observations are stored locally and are not uploaded to MMA Matlock.
 
 ## Run locally
 

@@ -78,66 +78,6 @@
         window.addEventListener("pagehide", unlockPageScroll);
     }
 
-    const player = document.getElementById("player");
-    const selector = document.getElementById("song-selector");
-    const volumeSlider = document.getElementById("volume-slider");
-    const playButton = document.getElementById("play-button");
-    const pauseButton = document.getElementById("pause-button");
-    const audioStatus = document.getElementById("audio-status");
-
-    const setAudioStatus = message => {
-        if (audioStatus) audioStatus.textContent = message;
-    };
-
-    function updateAudioControls() {
-        if (!player || !playButton || !pauseButton) return;
-        const isPlaying = !player.paused && !player.ended;
-        playButton.disabled = isPlaying;
-        pauseButton.disabled = !isPlaying;
-    }
-
-    async function playAudio() {
-        if (!player) return;
-
-        try {
-            await player.play();
-            setAudioStatus("");
-        } catch (error) {
-            console.error(error);
-            setAudioStatus("Audio could not be played.");
-        }
-        updateAudioControls();
-    }
-
-    if (player && selector && volumeSlider && playButton && pauseButton) {
-        player.src = selector.value;
-        player.volume = Number(volumeSlider.value);
-        updateAudioControls();
-
-        playButton.addEventListener("click", playAudio);
-        pauseButton.addEventListener("click", () => player.pause());
-        selector.addEventListener("change", () => {
-            const wasPlaying = !player.paused && !player.ended;
-            player.src = selector.value;
-            player.load();
-            setAudioStatus(`Selected ${selector.selectedOptions[0].text}.`);
-            if (wasPlaying) playAudio();
-        });
-        volumeSlider.addEventListener("input", () => {
-            player.volume = Number(volumeSlider.value);
-        });
-        player.addEventListener("play", updateAudioControls);
-        player.addEventListener("pause", updateAudioControls);
-        player.addEventListener("ended", () => {
-            setAudioStatus("Track finished.");
-            updateAudioControls();
-        });
-        player.addEventListener("error", () => {
-            setAudioStatus("The selected track could not be loaded.");
-            updateAudioControls();
-        });
-    }
-
     document.querySelectorAll("[data-hide-broken]").forEach(image => {
         const removeBrokenImage = () => {
             const imageShell = image.closest("[data-image-shell]");

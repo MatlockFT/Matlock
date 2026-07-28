@@ -33,9 +33,7 @@ jobs:
         run: npm run check:content
 
       - name: Check browser scripts
-        run: |
-          node --check assets/site.js
-          node --check assets/fight-tape-notebook.js
+        run: node --check assets/site.js
 
       - name: Build site
         uses: actions/jekyll-build-pages@v1
