@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { XMLParser } from "fast-xml-parser";
 
@@ -8,6 +8,8 @@ const MAX_STORY_AGE = 14 * 24 * 60 * 60 * 1000;
 const MAX_ITEMS = 60;
 const MINIMUM_HEALTHY_SOURCES = 4;
 const MINIMUM_STORIES = 20;
+const ARTICLE_IMAGE_CONCURRENCY = 6;
+const ARTICLE_IMAGE_TIMEOUT = 12000;
 
 const feeds = [
     {
@@ -256,6 +258,171 @@ function safeUrl(value) {
     } catch {
         return "";
     }
+}
+
+function resolvedUrl(value, baseUrl) {
+    const rawValue = decodeEntities(String(value || "").trim());
+
+    try {
+        return safeUrl(new URL(rawValue, baseUrl).toString());
+    } catch {
+        return "";
+    }
+}
+
+function tagAttribute(tag, name) {
+    const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const match = tag.match(
+        new RegExp(
+            `(?:^|\\s)${escapedName}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s"'=<>]+))`,
+            "i"
+        )
+    );
+
+    return decodeEntities(match?.[1] || match?.[2] || match?.[3] || "");
+}
+
+function structuredArticleImage(value, baseUrl) {
+    const entries = Array.isArray(value) ? value : [value];
+
+    for (const entry of entries) {
+        if (typeof entry === "string") {
+            const url = resolvedUrl(entry, baseUrl);
+            if (url) return url;
+        }
+
+        if (entry && typeof entry === "object") {
+            const url = resolvedUrl(
+                entry.url || entry.contentUrl || entry["@id"],
+                baseUrl
+            );
+            if (url) return url;
+        }
+    }
+
+    return "";
+}
+
+function articleImageFromHtml(html, baseUrl) {
+    const imageKeys = new Set([
+        "og:image",
+        "og:image:secure_url",
+        "twitter:image",
+        "twitter:image:src"
+    ]);
+
+    for (const match of html.matchAll(/<meta\b[^>]*>/gi)) {
+        const tag = match[0];
+        const key = (
+            tagAttribute(tag, "property") ||
+            tagAttribute(tag, "name")
+        ).toLowerCase();
+
+        if (!imageKeys.has(key)) continue;
+
+        const url = resolvedUrl(tagAttribute(tag, "content"), baseUrl);
+        if (url) return url;
+    }
+
+    for (const match of html.matchAll(/<link\b[^>]*>/gi)) {
+        const tag = match[0];
+        const relationships = tagAttribute(tag, "rel")
+            .toLowerCase()
+            .split(/\s+/);
+
+        if (!relationships.includes("image_src")) continue;
+
+        const url = resolvedUrl(tagAttribute(tag, "href"), baseUrl);
+        if (url) return url;
+    }
+
+    for (
+        const match of html.matchAll(
+            /<script\b[^>]*type=["']application\/ld\+json[^"']*["'][^>]*>([\s\S]*?)<\/script>/gi
+        )
+    ) {
+        try {
+            const data = JSON.parse(decodeEntities(match[1]));
+            const roots = Array.isArray(data) ? data : [data];
+            const entries = roots.flatMap(root =>
+                Array.isArray(root?.["@graph"]) ? root["@graph"] : [root]
+            );
+
+            for (const entry of entries) {
+                const types = asArray(entry?.["@type"])
+                    .map(type => String(type).toLowerCase());
+
+                if (
+                    !types.some(type =>
+                        type === "article" ||
+                        type.endsWith("article") ||
+                        type === "news"
+                    )
+                ) {
+                    continue;
+                }
+
+                const url = structuredArticleImage(entry.image, baseUrl);
+                if (url) return url;
+            }
+        } catch {
+            // Some publishers include malformed or non-JSON data in this tag.
+        }
+    }
+
+    return "";
+}
+
+async function fetchArticleImage(story) {
+    const controller = new AbortController();
+    const timeout = setTimeout(
+        () => controller.abort(),
+        ARTICLE_IMAGE_TIMEOUT
+    );
+
+    try {
+        const response = await fetch(story.url, {
+            headers: {
+                accept: "text/html,application/xhtml+xml;q=0.9,*/*;q=0.5",
+                "user-agent": "MMA Matlock News Aggregator/1.0 (+https://matlockfighttalk.com/news/)"
+            },
+            redirect: "follow",
+            signal: controller.signal
+        });
+
+        if (!response.ok) return "";
+
+        const contentType = response.headers.get("content-type") || "";
+        if (contentType && !contentType.includes("html")) return "";
+
+        return articleImageFromHtml(await response.text(), response.url);
+    } catch {
+        return "";
+    } finally {
+        clearTimeout(timeout);
+    }
+}
+
+async function mapWithConcurrency(items, limit, worker) {
+    const results = new Array(items.length);
+    let nextIndex = 0;
+
+    async function run() {
+        while (nextIndex < items.length) {
+            const index = nextIndex;
+            nextIndex += 1;
+            results[index] = await worker(items[index], index);
+        }
+    }
+
+    await Promise.all(
+        Array.from(
+            { length: Math.min(limit, items.length) },
+            run
+        )
+    );
+
+    return results;
 }
 
 function itemLink(item) {
@@ -551,11 +718,63 @@ function deduplicateUrls(stories) {
 }
 
 function outputPath() {
-    const outputIndex = process.argv.indexOf("--output");
-    const requested =
-        outputIndex >= 0 ? process.argv[outputIndex + 1] : null;
+    return resolve(argumentValue("--output") || "assets/data/mma-news.json");
+}
 
-    return resolve(requested || "assets/data/mma-news.json");
+function argumentValue(name) {
+    const index = process.argv.indexOf(name);
+    return index >= 0 ? process.argv[index + 1] : "";
+}
+
+async function previousImageMap() {
+    const requested = argumentValue("--previous");
+    if (!requested) return new Map();
+
+    try {
+        const data = JSON.parse(await readFile(resolve(requested), "utf8"));
+        return new Map(
+            [data.topStory, ...asArray(data.stories)]
+                .filter(story => story?.url && story?.image)
+                .map(story => [safeUrl(story.url), safeUrl(story.image)])
+                .filter(([url, image]) => url && image)
+        );
+    } catch {
+        console.warn("Previous news snapshot unavailable; fetching missing previews");
+        return new Map();
+    }
+}
+
+async function enrichStoryImages(stories, previousImages) {
+    let reused = 0;
+
+    for (const story of stories) {
+        if (story.image) continue;
+
+        const previousImage = previousImages.get(safeUrl(story.url));
+        if (!previousImage) continue;
+
+        story.image = previousImage;
+        reused += 1;
+    }
+
+    const missing = stories.filter(story => !story.image);
+    const fetched = await mapWithConcurrency(
+        missing,
+        ARTICLE_IMAGE_CONCURRENCY,
+        fetchArticleImage
+    );
+    let discovered = 0;
+
+    fetched.forEach((image, index) => {
+        if (!image) return;
+        missing[index].image = image;
+        discovered += 1;
+    });
+
+    console.log(
+        `Article previews: ${reused} reused, ${discovered} discovered, ` +
+        `${missing.length - discovered} still using branded fallback`
+    );
 }
 
 const results = await Promise.allSettled(feeds.map(fetchFeed));
@@ -603,6 +822,8 @@ const latest = clusters
     )
     .slice(0, MAX_ITEMS)
     .map(publicStory);
+const publicStories = [topStory, ...latest];
+await enrichStoryImages(publicStories, await previousImageMap());
 
 const output = {
     version: 1,
