@@ -19,6 +19,14 @@
     let lastRefreshTime = 0;
     let refreshTimer;
     let scrollFrame;
+    let deckIndex = 0;
+    let deckAnimating = false;
+    let dragState = null;
+    let suppressClickUntil = 0;
+    const deckLayout = window.matchMedia("(max-width: 760px)");
+    const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    );
 
     function element(tagName, className, text) {
         const node = document.createElement(tagName);
@@ -203,6 +211,7 @@
         const cards = [...storyRail.querySelectorAll(".news-card")];
 
         if (cards.length === 0) return null;
+        if (deckLayout.matches) return cards[deckIndex] || cards[0];
 
         const scrollPadding =
             Number.parseFloat(
@@ -236,6 +245,101 @@
             cards.length === 0 || activeIndex >= cards.length - 1;
     }
 
+    function updateDeckState() {
+        const cards = [...storyRail.querySelectorAll(".news-card")];
+
+        if (!deckLayout.matches || cards.length === 0) return;
+
+        deckIndex = (
+            (deckIndex % cards.length) + cards.length
+        ) % cards.length;
+
+        cards.forEach((card, index) => {
+            const position = (
+                index - deckIndex + cards.length
+            ) % cards.length;
+            const isVisible = position < 3;
+            const isActive = position === 0;
+
+            card.dataset.deckPosition = isVisible
+                ? String(position)
+                : "hidden";
+            card.setAttribute("aria-hidden", String(!isActive));
+            card.inert = !isActive;
+        });
+
+        updateRailState();
+    }
+
+    function resetDeckCard(card) {
+        if (!card) return;
+
+        card.classList.remove(
+            "is-deck-dragging",
+            "is-deck-leaving-left",
+            "is-deck-leaving-right"
+        );
+        card.style.removeProperty("--deck-drag-x");
+        card.style.removeProperty("--deck-drag-rotation");
+    }
+
+    function animateDeck(direction) {
+        const cards = [...storyRail.querySelectorAll(".news-card")];
+        const activeCard = cards[deckIndex];
+
+        if (
+            !deckLayout.matches ||
+            !activeCard ||
+            cards.length < 2 ||
+            deckAnimating
+        ) {
+            return;
+        }
+
+        deckAnimating = true;
+        resetDeckCard(activeCard);
+        activeCard.classList.add(
+            direction > 0
+                ? "is-deck-leaving-left"
+                : "is-deck-leaving-right"
+        );
+
+        window.setTimeout(
+            () => {
+                resetDeckCard(activeCard);
+                deckIndex = (
+                    deckIndex + direction + cards.length
+                ) % cards.length;
+                deckAnimating = false;
+                updateDeckState();
+            },
+            reducedMotion.matches ? 0 : 320
+        );
+    }
+
+    function resetDeckLayout() {
+        const cards = [...storyRail.querySelectorAll(".news-card")];
+
+        cards.forEach(card => {
+            resetDeckCard(card);
+            delete card.dataset.deckPosition;
+            card.removeAttribute("aria-hidden");
+            card.inert = false;
+        });
+    }
+
+    function syncLayout() {
+        if (deckLayout.matches) {
+            updateDeckState();
+            return;
+        }
+
+        const cards = [...storyRail.querySelectorAll(".news-card")];
+        resetDeckLayout();
+        moveToCard(cards[deckIndex] || cards[0], "auto");
+        updateRailState();
+    }
+
     function storyOffset(card) {
         const scrollPadding =
             Number.parseFloat(
@@ -254,6 +358,15 @@
     function moveToCard(card, behavior = "smooth") {
         if (!card) return;
 
+        if (deckLayout.matches) {
+            const cards = [...storyRail.querySelectorAll(".news-card")];
+            const requestedIndex = cards.indexOf(card);
+
+            if (requestedIndex >= 0) deckIndex = requestedIndex;
+            updateDeckState();
+            return;
+        }
+
         storyRail.scrollTo({
             left: storyOffset(card),
             behavior
@@ -261,6 +374,11 @@
     }
 
     function moveBy(direction) {
+        if (deckLayout.matches) {
+            animateDeck(direction);
+            return;
+        }
+
         const cards = [...storyRail.querySelectorAll(".news-card")];
         const activeIndex = Math.max(0, cards.indexOf(currentCard()));
         const nextIndex = Math.min(
@@ -313,6 +431,10 @@
             )
             : null;
 
+        deckIndex = Math.max(
+            0,
+            cards.indexOf(preservedCard || cards[0])
+        );
         moveToCard(preservedCard || cards[0], "auto");
         updateRailState();
     }
@@ -406,7 +528,101 @@
         { passive: true }
     );
 
-    window.addEventListener("resize", updateRailState);
+    storyRail.addEventListener("pointerdown", event => {
+        if (
+            !deckLayout.matches ||
+            deckAnimating ||
+            event.pointerType === "mouse" && event.button !== 0
+        ) {
+            return;
+        }
+
+        const activeCard = currentCard();
+        if (!activeCard || !event.target.closest(".news-card")) return;
+
+        dragState = {
+            card: activeCard,
+            pointerId: event.pointerId,
+            startX: event.clientX,
+            startY: event.clientY,
+            startedAt: performance.now(),
+            deltaX: 0,
+            dragging: false
+        };
+        activeCard.setPointerCapture?.(event.pointerId);
+    });
+
+    storyRail.addEventListener("pointermove", event => {
+        if (!dragState || event.pointerId !== dragState.pointerId) return;
+
+        const deltaX = event.clientX - dragState.startX;
+        const deltaY = event.clientY - dragState.startY;
+
+        if (
+            !dragState.dragging &&
+            Math.abs(deltaY) > Math.abs(deltaX)
+        ) {
+            resetDeckCard(dragState.card);
+            dragState = null;
+            return;
+        }
+
+        if (Math.abs(deltaX) < 6 && !dragState.dragging) return;
+
+        dragState.dragging = true;
+        dragState.deltaX = deltaX;
+        dragState.card.classList.add("is-deck-dragging");
+        dragState.card.style.setProperty(
+            "--deck-drag-x",
+            `${deltaX}px`
+        );
+        dragState.card.style.setProperty(
+            "--deck-drag-rotation",
+            `${Math.max(-9, Math.min(9, deltaX / 24))}deg`
+        );
+    });
+
+    function finishDeckDrag(event) {
+        if (!dragState || event.pointerId !== dragState.pointerId) return;
+
+        const {
+            card,
+            deltaX,
+            dragging,
+            startedAt
+        } = dragState;
+        const velocity =
+            Math.abs(deltaX) /
+            Math.max(1, performance.now() - startedAt);
+        const shouldMove =
+            dragging && (Math.abs(deltaX) >= 70 || velocity >= 0.45);
+        dragState = null;
+
+        if (dragging) suppressClickUntil = Date.now() + 450;
+
+        if (shouldMove) {
+            resetDeckCard(card);
+            animateDeck(deltaX < 0 ? 1 : -1);
+        } else {
+            resetDeckCard(card);
+        }
+    }
+
+    storyRail.addEventListener("pointerup", finishDeckDrag);
+    storyRail.addEventListener("pointercancel", finishDeckDrag);
+    storyRail.addEventListener(
+        "click",
+        event => {
+            if (Date.now() < suppressClickUntil) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+        },
+        true
+    );
+
+    window.addEventListener("resize", syncLayout);
+    deckLayout.addEventListener?.("change", syncLayout);
 
     if (refreshButton) {
         refreshButton.addEventListener("click", refreshFeed);
