@@ -17,32 +17,13 @@ page_scripts:
     data-refresh-interval="300000"
 >
     <header class="news-page-header">
-        <div>
-            <h1>MMA News</h1>
+        <h1>MMA News</h1>
 
-            <p>
-                The newest reporting from trusted MMA outlets, collected in
-                one place.
-            </p>
-        </div>
-
-        <button
-            class="secondary-button news-refresh-button"
-            type="button"
-            data-news-refresh
-        >
-            Refresh
-        </button>
+        <p>
+            The newest reporting from trusted MMA outlets, collected in
+            one place.
+        </p>
     </header>
-
-    <div
-        class="news-feed-status"
-        data-news-status
-        data-state="loading"
-        aria-live="polite"
-    >
-        Loading the latest stories…
-    </div>
 
     <section
         class="news-top-section"
@@ -57,18 +38,33 @@ page_scripts:
         ></div>
     </section>
 
+    <div class="news-feed-controls">
+        <div
+            class="news-feed-status"
+            data-news-status
+            data-state="loading"
+            aria-live="polite"
+        >
+            Loading the latest stories…
+        </div>
+
+        <button
+            class="secondary-button news-refresh-button"
+            type="button"
+            data-news-refresh
+        >
+            Refresh stories
+        </button>
+    </div>
+
     <section
         class="news-latest-section"
         aria-labelledby="news-latest-title"
     >
         <header class="news-section-heading">
-            <div>
-                <p class="eyebrow">Latest stories</p>
-
-                <h2 id="news-latest-title">
-                    Around the fight world
-                </h2>
-            </div>
+            <h2 id="news-latest-title">
+                Latest News
+            </h2>
 
             <p data-news-source-summary>
                 Gathering sources…
