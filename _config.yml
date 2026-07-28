@@ -7,6 +7,7 @@ description: >-
 
 url: "https://matlockfighttalk.com"
 baseurl: ""
+asset_version: "16"
 
 lang: "en-US"
 locale: "en_US"
@@ -48,6 +49,7 @@ social:
 
 adsense:
   client: "ca-pub-5948515643609166"
+  consent_manager_enabled: false
 
   # Paste the numeric data-ad-slot value from your AdSense
   # ad unit here. This is not the publisher ID.
@@ -71,6 +73,9 @@ nav:
     external: true
 
 footer_nav:
+  - name: "RSS"
+    link: "/feed.xml"
+
   - name: "About"
     link: "/about/"
 

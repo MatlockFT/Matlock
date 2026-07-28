@@ -20,6 +20,23 @@ jobs:
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install JavaScript dependencies
+        run: npm ci
+
+      - name: Check article content and image metadata
+        run: npm run check:content
+
+      - name: Check browser scripts
+        run: |
+          node --check assets/site.js
+          node --check assets/fight-tape-notebook.js
+
       - name: Build site
         uses: actions/jekyll-build-pages@v1
 

@@ -21,7 +21,7 @@ permalink: /breakdowns/
     {% if site.posts.size > 0 %}
         <div class="archive-tools" data-archive-tools>
             <label>
-                <span>Search breakdowns</span>
+                <span>Search articles</span>
                 <input
                     type="search"
                     placeholder="Fighter, event, or topic"
@@ -62,7 +62,7 @@ permalink: /breakdowns/
                 aria-live="polite"
                 data-archive-status
             >
-                Showing all {{ site.posts.size }} breakdowns.
+                Showing all {{ site.posts.size }} articles.
             </p>
         </div>
 
@@ -70,6 +70,8 @@ permalink: /breakdowns/
             {% for post in site.posts %}
                 {% assign post_image = post.image.path | default: post.image %}
                 {% assign post_alt = post.image.alt | default: post.image_alt | default: post.title %}
+                {% assign post_responsive = site.data.responsive_images[post_image] %}
+                {% assign post_src = post_responsive.small | default: post_image %}
 
                 <article
                     class="article-card"
@@ -86,10 +88,19 @@ permalink: /breakdowns/
                             data-image-shell
                         >
                             <img
-                                src="{{ post_image | relative_url }}"
+                                src="{{ post_src | relative_url }}"
+                                {% if post_responsive.srcset %}
+                                    srcset="{{ post_responsive.srcset }}"
+                                    sizes="(max-width: 760px) calc(100vw - 1.7rem), 33vw"
+                                {% endif %}
+                                {% if post_responsive.width %}
+                                    width="{{ post_responsive.width }}"
+                                    height="{{ post_responsive.height }}"
+                                {% endif %}
                                 alt="{{ post_alt | escape }}"
                                 data-hide-broken
                                 loading="lazy"
+                                decoding="async"
                             >
                         </a>
                     {% endif %}
@@ -123,7 +134,7 @@ permalink: /breakdowns/
                             class="card-link"
                             href="{{ post.url | relative_url }}"
                         >
-                            Read breakdown
+                            Read article
                         </a>
                     </div>
                 </article>
@@ -131,10 +142,10 @@ permalink: /breakdowns/
         </div>
 
         <p class="archive-empty" hidden data-archive-empty>
-            No breakdowns match those filters.
+            No articles match those filters.
         </p>
     {% else %}
-        <p>No breakdowns have been published yet.</p>
+        <p>No articles have been published yet.</p>
     {% endif %}
 </section>
 
@@ -182,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const label =
-            visibleCount === 1 ? 'breakdown' : 'breakdowns';
+            visibleCount === 1 ? 'article' : 'articles';
 
         status.textContent =
             `Showing ${visibleCount} ${label}.`;
