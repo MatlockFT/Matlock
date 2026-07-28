@@ -7,7 +7,7 @@ description: >-
 
 url: "https://matlockfighttalk.com"
 baseurl: ""
-asset_version: "17"
+asset_version: "18"
 
 lang: "en-US"
 locale: "en_US"
@@ -61,6 +61,9 @@ nav:
 
   - name: "Breakdowns"
     link: "/breakdowns/"
+
+  - name: "News"
+    link: "/news/"
 
   - name: "MMA Yellow Pages"
     link: "/mma-yellowpages"

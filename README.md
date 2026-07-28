@@ -5,6 +5,7 @@
 ## What’s here
 
 - Written MMA breakdowns, previews, recaps, and opinion pieces
+- A [live MMA news feed](https://matlockfighttalk.com/news/) curated through MMA Matlock's X List
 - The [MMA Yellow Pages](https://matlockfighttalk.com/mma-yellowpages), a curated directory of MMA websites, tools, and creators
 - A media kit, picture gallery, and supporting site pages
 - Links to MMA Matlock videos and social channels

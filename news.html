@@ -1,0 +1,120 @@
+---
+layout: default
+title: MMA News
+description: "Follow a live, continuously refreshed stream of MMA news and updates curated by MMA Matlock."
+permalink: /news/
+page_styles:
+  - /assets/news.css
+page_scripts:
+  - /assets/news-feed.js
+x_embed: true
+---
+
+<article
+    class="news-page"
+    data-news-feed
+    data-refresh-interval="300000"
+>
+    <header class="news-hero">
+        <div>
+            <p class="eyebrow">
+                Live MMA coverage
+            </p>
+
+            <h1>MMA News</h1>
+
+            <p class="news-hero-intro">
+                A continuously refreshed stream of fight announcements,
+                results, reporting, and conversation from the MMA Matlock
+                news list on X.
+            </p>
+        </div>
+
+        <div class="news-live-badge">
+            <span aria-hidden="true"></span>
+            Live wire
+        </div>
+    </header>
+
+    <section
+        class="news-feed-card"
+        aria-labelledby="live-news-title"
+    >
+        <header class="news-feed-header">
+            <div>
+                <p class="eyebrow">
+                    Latest updates
+                </p>
+
+                <h2 id="live-news-title">
+                    The MMA news wire
+                </h2>
+
+                <p class="news-feed-note">
+                    The feed is reloaded every five minutes while this page is
+                    open. X controls which public posts appear and when they
+                    become available.
+                </p>
+            </div>
+
+            <div class="news-feed-actions">
+                <button
+                    class="secondary-button news-refresh-button"
+                    type="button"
+                    data-news-refresh
+                >
+                    Refresh feed
+                </button>
+
+                <a
+                    class="primary-button"
+                    href="https://x.com/i/lists/2081967792681849282"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Open on X
+                </a>
+            </div>
+        </header>
+
+        <div class="news-feed-status-row">
+            <p
+                class="news-feed-status"
+                data-news-status
+                aria-live="polite"
+            >
+                Loading live feed…
+            </p>
+
+            <p class="news-feed-timestamp">
+                <span>Last refreshed</span>
+                <time data-news-last-updated>—</time>
+            </p>
+        </div>
+
+        <div
+            class="news-timeline"
+            data-news-timeline
+            aria-busy="true"
+        >
+            <a
+                class="twitter-timeline"
+                data-theme="dark"
+                data-dnt="true"
+                data-height="900"
+                href="https://twitter.com/i/lists/2081967792681849282"
+            >
+                View the MMA Matlock news list on X
+            </a>
+        </div>
+
+        <noscript>
+            <p class="news-feed-fallback">
+                JavaScript is required for the embedded feed.
+                <a href="https://x.com/i/lists/2081967792681849282">
+                    Open the MMA news list directly on X.
+                </a>
+            </p>
+        </noscript>
+    </section>
+</article>
