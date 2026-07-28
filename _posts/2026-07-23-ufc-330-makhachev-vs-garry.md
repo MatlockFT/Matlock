@@ -15,21 +15,21 @@ tags:
   - Islam Makhachev
   - Ian Machado Garry
   - Welterweight
-last_modified_at: 2026-07-26
-published: false
+last_modified_at: 2026-07-28
+published: true
 ---
 # Islam Makhachev vs. Ian Garry
 
 Islam Makhachev is scheduled to defend the UFC welterweight title against No. 1 contender Ian Machado Garry at UFC 330 on August 15, 2026.
 
-If Makhachev wins there are a couple of notable achievements that would stand out amongst many:
+If Makhachev wins, a couple of notable achievements would stand out among many:
 
 - **Sole owner of the longest winning streak in UFC history.**
 - **First successful welterweight title defense and championship defenses in two divisions:** Makhachev became the 11th fighter to win UFC championships in two weight classes. Successfully defending the second belt would put him in the much smaller category of fighters who have defended championships in two divisions.
 
-Islam’s GOAT case wouldn’t just be about how many title defenses he has. He dominated lightweight, which is one of the toughest divisions, then moved up, won the welterweight belt, and would be defending it against a top contender. Even with fewer defenses, that could still make his overall run more impressive than some of the other all time greats.
+Islam’s GOAT case wouldn’t just be about how many title defenses he has. He dominated lightweight, one of the toughest divisions, then moved up, won the welterweight belt, and would be defending it against a top contender. Even with fewer defenses, that could still make his overall run more impressive than those of some other all-time greats.
 
-For Ian Garry, capturing the title would be a monumental achievement, making him only the second Irish champion in UFC history. However, critics might asterisk the victory since it came against a naturally smaller opponent. 
+For Ian Garry, capturing the title would be a monumental achievement, making him only the second Irish champion in UFC history. However, some critics might discount the victory because it came against a naturally smaller opponent.
 
 ## Breakdown
 
@@ -55,7 +55,7 @@ For Ian Garry, capturing the title would be a monumental achievement, making him
 
 ### Striking
 
-Garry has the size, reach and volume advantage. He’ll look to stay long, use kicks and a lot of lateral movement, changing directs to keep Islam moving and not settling.
+Garry has the size, reach, and volume advantages. He’ll look to stay long, use kicks and plenty of lateral movement, and change directions to keep Islam moving and prevent him from settling.
 
 Islam is less active but more efficient, and his left hand becomes more dangerous because Garry has to worry about the takedown. 
 
@@ -63,3 +63,12 @@ Islam is less active but more efficient, and his left hand becomes more dangerou
 
 Clear advantage for Islam. His chain wrestling, trips and top control are on another level. Garry has solid takedown defence, but defending one attempt isn’t enough—Islam keeps linking attacks together until he gets the position he wants.
 
+### Paths to Victory
+
+Garry’s best route is to control the distance, stay off the fence, and make Makhachev reset after every failed entry. His length and output matter most if he can keep the fight in open space and avoid long grappling exchanges.
+
+Makhachev’s route is more direct: pressure Garry toward the fence, use his striking to disguise level changes, and turn the fight into a chain-wrestling battle. He does not need every takedown attempt to work if each one forces Garry into the next position.
+
+### What Decides the Fight
+
+The key question is whether Garry can maintain his preferred range for five rounds. He has the physical tools to create difficult entries, but Makhachev’s ability to connect attacks makes a single defensive mistake costly. The fighter who controls where the exchanges happen will control the fight.

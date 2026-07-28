@@ -1,15 +1,15 @@
 ---
 layout: post
 title: NETFLIX MMA | FIXED FIGHT
-description: Anytime casual observers or first-titme MMA watchers tune into
+description: Anytime casual observers or first-time MMA watchers tune into
   major fights, they tend to believe things are fake and fixed. No... sometimes
-  its just that bad.
+  it’s just that bad.
 date: 2026-05-16
 category: Opinion
 author: MMA Matlock
 image:
   path: /assets/uploads/rondarousey.jpg
-  alt: "Ronda Rousey walking after victory "
+  alt: "Ronda Rousey walking after victory"
 tags:
   - Netflix
   - Ronda Rousey

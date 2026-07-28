@@ -19,12 +19,66 @@ permalink: /breakdowns/
     </header>
 
     {% if site.posts.size > 0 %}
-        <div class="article-grid">
+        <div class="archive-tools" data-archive-tools>
+            <label>
+                <span>Search breakdowns</span>
+                <input
+                    type="search"
+                    placeholder="Fighter, event, or topic"
+                    autocomplete="off"
+                    data-archive-search
+                >
+            </label>
+
+            <label>
+                <span>Type</span>
+                <select data-archive-category>
+                    <option value="">All types</option>
+                    {% assign archive_categories = site.posts | map: "category" | compact | uniq | sort %}
+                    {% for category in archive_categories %}
+                        <option value="{{ category | downcase | escape }}">
+                            {{ category }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </label>
+
+            <label>
+                <span>Year</span>
+                <select data-archive-year>
+                    <option value="">All years</option>
+                    {% assign archive_years = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+                    {% for year in archive_years %}
+                        <option value="{{ year.name }}">
+                            {{ year.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </label>
+
+            <p
+                class="archive-status"
+                role="status"
+                aria-live="polite"
+                data-archive-status
+            >
+                Showing all {{ site.posts.size }} breakdowns.
+            </p>
+        </div>
+
+        <div class="article-grid" data-archive-grid>
             {% for post in site.posts %}
                 {% assign post_image = post.image.path | default: post.image %}
                 {% assign post_alt = post.image.alt | default: post.image_alt | default: post.title %}
 
-                <article class="article-card">
+                <article
+                    class="article-card"
+                    data-archive-card
+                    data-title="{{ post.title | downcase | escape }}"
+                    data-category="{{ post.category | downcase | escape }}"
+                    data-year="{{ post.date | date: '%Y' }}"
+                    data-tags="{{ post.tags | join: ' ' | downcase | escape }}"
+                >
                     {% if post_image %}
                         <a
                             class="article-card-image"
@@ -75,7 +129,69 @@ permalink: /breakdowns/
                 </article>
             {% endfor %}
         </div>
+
+        <p class="archive-empty" hidden data-archive-empty>
+            No breakdowns match those filters.
+        </p>
     {% else %}
         <p>No breakdowns have been published yet.</p>
     {% endif %}
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const search = document.querySelector('[data-archive-search]');
+    const category = document.querySelector('[data-archive-category]');
+    const year = document.querySelector('[data-archive-year]');
+    const status = document.querySelector('[data-archive-status]');
+    const empty = document.querySelector('[data-archive-empty]');
+    const cards = Array.from(
+        document.querySelectorAll('[data-archive-card]')
+    );
+
+    if (!search || !category || !year || !status || !empty) {
+        return;
+    }
+
+    function filterArchive() {
+        const query = search.value.trim().toLowerCase();
+        const selectedCategory = category.value;
+        const selectedYear = year.value;
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+            const searchableText = [
+                card.dataset.title,
+                card.dataset.tags,
+                card.dataset.category,
+                card.dataset.year
+            ].join(' ');
+
+            const matches =
+                (!query || searchableText.includes(query)) &&
+                (!selectedCategory ||
+                    card.dataset.category === selectedCategory) &&
+                (!selectedYear ||
+                    card.dataset.year === selectedYear);
+
+            card.hidden = !matches;
+
+            if (matches) {
+                visibleCount += 1;
+            }
+        });
+
+        const label =
+            visibleCount === 1 ? 'breakdown' : 'breakdowns';
+
+        status.textContent =
+            `Showing ${visibleCount} ${label}.`;
+
+        empty.hidden = visibleCount !== 0;
+    }
+
+    search.addEventListener('input', filterArchive);
+    category.addEventListener('change', filterArchive);
+    year.addEventListener('change', filterArchive);
+});
+</script>

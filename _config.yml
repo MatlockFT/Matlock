@@ -60,27 +60,28 @@ nav:
   - name: "Breakdowns"
     link: "/breakdowns/"
 
+  - name: "Tape Notebook"
+    link: "/fight-tape-notebook/"
+
   - name: "MMA Yellow Pages"
     link: "/mma-yellowpages"
 
-  - name: "Vegas Slots"
-    link: "/vegas"
-
-  - name: "Guestbook"
-    link: "/guestbook"
-
-  - name: "Picture Gallery"
-    link: "/picture-gallery"
-
-  - name: "Media Kit"
-    link: "/media-kit/"
-  
-  - name: "Tape Notebook"
-    link: "/fight-tape-notebook/"
+  - name: "YouTube"
+    link: "https://www.youtube.com/@MMAMatlock"
+    external: true
 
 footer_nav:
   - name: "About"
     link: "/about/"
+
+  - name: "Picture Gallery"
+    link: "/picture-gallery"
+
+  - name: "Vegas Slots"
+    link: "/vegas"
+
+  - name: "Media Kit"
+    link: "/media-kit/"
 
   - name: "Contact"
     link: "/contact/"
