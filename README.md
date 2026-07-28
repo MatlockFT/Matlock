@@ -18,14 +18,14 @@ The Fight Tape Notebook runs entirely in the browser. Its notebooks and observat
 
 ## Run locally
 
-With Ruby and Bundler installed:
+Install Ruby and Bundler, then run:
 
 ```sh
 bundle install
 bundle exec jekyll serve
 ```
 
-Then open `http://localhost:4000`.
+Open `http://localhost:4000`.
 
 ## Links
 
@@ -33,6 +33,10 @@ Then open `http://localhost:4000`.
 - [YouTube](https://www.youtube.com/@MMAMatlock)
 - [X](https://x.com/MMAMatlock)
 - [Instagram](https://www.instagram.com/mmamatlock/)
+
+## License
+
+The website source code is available under the [MIT License](LICENSE). Original articles, images, audio, video, logos, and other editorial or brand assets are not covered by that license unless explicitly stated.
 
 ## About
 
