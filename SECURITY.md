@@ -1,21 +1,13 @@
 # Security Policy
 
-## Supported Versions
+## Reporting a vulnerability
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+Please report suspected security vulnerabilities privately by emailing
+[fighttalkmma@protonmail.com](mailto:fighttalkmma@protonmail.com).
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+Include a description of the issue, the affected page or file, steps to
+reproduce it, and any potential impact you observed. Please do not open a
+public GitHub issue for an unpatched vulnerability.
 
-## Reporting a Vulnerability
-
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+MMA Matlock is a small independent project. Reports will be reviewed as time
+allows, and confirmed issues will be prioritized according to their impact.
