@@ -16,7 +16,7 @@ tags:
   - Ian Machado Garry
   - Welterweight
 last_modified_at: 2026-07-28
-published: true
+published: false
 ---
 # Islam Makhachev vs. Ian Garry
 
