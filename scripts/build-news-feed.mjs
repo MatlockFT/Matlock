@@ -5,7 +5,7 @@ import { XMLParser } from "fast-xml-parser";
 
 const FIVE_MINUTES = 5 * 60 * 1000;
 const MAX_STORY_AGE = 14 * 24 * 60 * 60 * 1000;
-const MAX_ITEMS = 48;
+const MAX_ITEMS = 60;
 const MINIMUM_HEALTHY_SOURCES = 4;
 const MINIMUM_STORIES = 20;
 
@@ -20,6 +20,12 @@ const feeds = [
         name: "ESPN MMA",
         siteUrl: "https://www.espn.com/mma/",
         feedUrl: "https://www.espn.com/espn/rss/mma/news",
+        priority: 10
+    },
+    {
+        name: "Uncrowned",
+        siteUrl: "https://sports.yahoo.com/mma/",
+        feedUrl: "https://sports.yahoo.com/mma/rss/",
         priority: 10
     },
     {
@@ -69,6 +75,54 @@ const feeds = [
         siteUrl: "https://www.bjpenn.com/",
         feedUrl: "https://www.bjpenn.com/feed/",
         priority: 6
+    },
+    {
+        name: "The Fight Site",
+        siteUrl: "https://www.thefight-site.com/",
+        feedUrl: "https://www.thefight-site.com/home?format=rss",
+        priority: 8
+    },
+    {
+        name: "MMA Prospect Vault",
+        siteUrl: "https://mmaprospectvault.com/",
+        feedUrl: "https://mmaprospectvault.com/feed/",
+        priority: 7
+    },
+    {
+        name: "Phantom Punch",
+        siteUrl: "https://phantompunchbreakdowns.substack.com/",
+        feedUrl: "https://phantompunchbreakdowns.substack.com/feed",
+        priority: 6
+    },
+    {
+        name: "Movement Martials",
+        siteUrl: "https://movementmartials.com/",
+        feedUrl: "https://movementmartials.com/feed/",
+        priority: 6
+    },
+    {
+        name: "Mixing Martial Arts",
+        siteUrl: "https://www.mixingmartialarts.com/",
+        feedUrl: "https://www.mixingmartialarts.com/feed/",
+        priority: 6
+    },
+    {
+        name: "Cage Warriors",
+        siteUrl: "https://cagewarriors.com/",
+        feedUrl: "https://cagewarriors.com/feed/",
+        priority: 6
+    },
+    {
+        name: "Invicta FC",
+        siteUrl: "https://invictafc.com/",
+        feedUrl: "https://invictafc.com/feed/",
+        priority: 5
+    },
+    {
+        name: "Combate Global",
+        siteUrl: "https://combateglobal.com/",
+        feedUrl: "https://combateglobal.com/feed/",
+        priority: 5
     }
 ];
 
@@ -449,6 +503,12 @@ function clusterStories(stories) {
 
 function publicStory(cluster) {
     const story = cluster.representative;
+    const image = story.image ||
+        cluster.stories.find(entry => entry.image)?.image ||
+        "";
+    const excerpt = story.excerpt ||
+        cluster.stories.find(entry => entry.excerpt)?.excerpt ||
+        "";
     const relatedSources = [
         ...new Set(cluster.stories.map(entry => entry.source))
     ].filter(source => source !== story.source);
@@ -460,8 +520,8 @@ function publicStory(cluster) {
         source: story.source,
         sourceUrl: story.sourceUrl,
         publishedAt: story.publishedAt,
-        excerpt: story.excerpt,
-        image: story.image,
+        excerpt,
+        image,
         coverageCount: relatedSources.length + 1,
         relatedSources
     };
@@ -502,6 +562,7 @@ const results = await Promise.allSettled(feeds.map(fetchFeed));
 const successful = results
     .filter(result => result.status === "fulfilled")
     .map(result => result.value);
+const activeSources = successful.filter(result => result.stories.length > 0);
 const failed = results
     .map((result, index) => ({ result, feed: feeds[index] }))
     .filter(({ result }) => result.status === "rejected");
@@ -519,11 +580,11 @@ const stories = deduplicateUrls(
 );
 
 if (
-    successful.length < MINIMUM_HEALTHY_SOURCES ||
+    activeSources.length < MINIMUM_HEALTHY_SOURCES ||
     stories.length < MINIMUM_STORIES
 ) {
     throw new Error(
-        `News update stopped: ${successful.length} healthy sources and ${stories.length} usable stories`
+        `News update stopped: ${activeSources.length} active sources and ${stories.length} usable stories`
     );
 }
 
@@ -547,8 +608,8 @@ const output = {
     version: 1,
     generatedAt: new Date().toISOString(),
     refreshIntervalMs: FIVE_MINUTES,
-    sourceCount: successful.length,
-    sources: successful.map(({ feed, stories: sourceStories }) => ({
+    sourceCount: activeSources.length,
+    sources: activeSources.map(({ feed, stories: sourceStories }) => ({
         name: feed.name,
         url: feed.siteUrl,
         storyCount: sourceStories.length
@@ -562,5 +623,5 @@ await mkdir(dirname(destination), { recursive: true });
 await writeFile(destination, `${JSON.stringify(output, null, 2)}\n`);
 
 console.log(
-    `Wrote ${latest.length + 1} stories from ${successful.length} sources to ${destination}`
+    `Wrote ${latest.length + 1} stories from ${activeSources.length} sources to ${destination}`
 );

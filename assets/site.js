@@ -1,6 +1,19 @@
 (() => {
     const navigationToggle = document.getElementById("navigation-toggle");
     const navigationList = document.getElementById("navigation-list");
+    const navigationPanel = document.getElementById("navigation-panel");
+    const navigationClose = document.querySelector(
+        "[data-navigation-close]"
+    );
+    const navigationBackdrop = document.querySelector(
+        "[data-navigation-backdrop]"
+    );
+    const mobileNavigation = window.matchMedia("(max-width: 850px)");
+    const pageRegions = [
+        document.querySelector(".logo-banner"),
+        document.querySelector(".site-main"),
+        document.querySelector(".site-footer")
+    ].filter(Boolean);
     let lockedScrollPosition = 0;
 
     function unlockPageScroll() {
@@ -16,25 +29,40 @@
         }
     }
 
-    function setNavigationState(isOpen, returnFocus = false) {
-        if (!navigationToggle || !navigationList) return;
+    function setPageRegionsInert(isInert) {
+        pageRegions.forEach(region => {
+            region.inert = isInert;
+        });
+    }
+
+    function setNavigationState(requestedOpen, returnFocus = false) {
+        if (!navigationToggle || !navigationList || !navigationPanel) return;
+
+        const isOpen = requestedOpen && mobileNavigation.matches;
+        const panelIsHidden = mobileNavigation.matches && !isOpen;
 
         navigationToggle.setAttribute("aria-expanded", String(isOpen));
         navigationToggle.setAttribute(
             "aria-label",
             isOpen ? "Close main navigation" : "Open main navigation"
         );
+        navigationPanel.setAttribute(
+            "aria-hidden",
+            String(panelIsHidden)
+        );
+        navigationPanel.inert = panelIsHidden;
         navigationList.classList.toggle("navigation-list-open", isOpen);
         document.body.classList.toggle("navigation-is-open", isOpen);
+        setPageRegionsInert(isOpen);
 
-        if (isOpen && window.innerWidth <= 850) {
+        if (isOpen) {
             lockedScrollPosition = window.scrollY || window.pageYOffset;
             document.body.style.position = "fixed";
             document.body.style.top = `-${lockedScrollPosition}px`;
             document.body.style.right = "0";
             document.body.style.left = "0";
             document.body.style.width = "100%";
-            requestAnimationFrame(() => navigationList.querySelector("a")?.focus());
+            window.requestAnimationFrame(() => navigationClose?.focus());
         } else {
             unlockPageScroll();
         }
@@ -42,25 +70,55 @@
         if (returnFocus) navigationToggle.focus();
     }
 
-    if (navigationToggle && navigationList) {
+    function trapPanelFocus(event) {
+        if (
+            event.key !== "Tab" ||
+            navigationToggle?.getAttribute("aria-expanded") !== "true"
+        ) {
+            return;
+        }
+
+        const focusable = [
+            ...navigationPanel.querySelectorAll(
+                "a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])"
+            )
+        ].filter(node => !node.inert && node.offsetParent !== null);
+
+        if (focusable.length === 0) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (
+            !event.shiftKey &&
+            document.activeElement === last
+        ) {
+            event.preventDefault();
+            first.focus();
+        }
+    }
+
+    if (navigationToggle && navigationList && navigationPanel) {
         navigationToggle.addEventListener("click", () => {
             setNavigationState(
                 navigationToggle.getAttribute("aria-expanded") !== "true"
             );
         });
 
+        navigationClose?.addEventListener(
+            "click",
+            () => setNavigationState(false, true)
+        );
+        navigationBackdrop?.addEventListener(
+            "click",
+            () => setNavigationState(false, true)
+        );
+
         navigationList.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => setNavigationState(false));
-        });
-
-        document.addEventListener("click", event => {
-            if (
-                navigationToggle.getAttribute("aria-expanded") === "true" &&
-                !navigationToggle.contains(event.target) &&
-                !navigationList.contains(event.target)
-            ) {
-                setNavigationState(false);
-            }
         });
 
         document.addEventListener("keydown", event => {
@@ -69,13 +127,18 @@
                 navigationToggle.getAttribute("aria-expanded") === "true"
             ) {
                 setNavigationState(false, true);
+                return;
             }
+
+            trapPanelFocus(event);
         });
 
-        window.addEventListener("resize", () => {
-            if (window.innerWidth > 850) setNavigationState(false);
-        });
+        mobileNavigation.addEventListener(
+            "change",
+            () => setNavigationState(false)
+        );
         window.addEventListener("pagehide", unlockPageScroll);
+        setNavigationState(false);
     }
 
     document.querySelectorAll("[data-hide-broken]").forEach(image => {
