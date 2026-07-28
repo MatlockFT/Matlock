@@ -408,8 +408,7 @@ select:focus-visible {
 
 .section-header h2,
 .archive-header h1,
-.contact-section-header h2,
-.business-contact h2 {
+.contact-section-header h2 {
     margin: 0;
     font-family: "Gobold", Impact, sans-serif;
     font-size: clamp(2.5rem, 5vw, 4.6rem);
@@ -727,6 +726,14 @@ select:focus-visible {
     margin-bottom: 4rem;
 }
 
+.contact-hero-simple {
+    grid-template-columns: 1fr;
+}
+
+.contact-hero-simple .contact-hero-main {
+    min-height: 380px;
+}
+
 .contact-hero-main {
     display: flex;
     min-width: 0;
@@ -777,49 +784,6 @@ select:focus-visible {
     overflow-wrap: anywhere;
 }
 
-.contact-stats {
-    display: grid;
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 1.25rem;
-}
-
-.contact-stats a {
-    display: flex;
-    min-width: 0;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: clamp(1.4rem, 3vw, 2.2rem);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-large);
-    background: var(--surface-raised);
-    color: #ffffff;
-    text-decoration: none;
-    transition:
-        transform 150ms ease,
-        border-color 150ms ease;
-}
-
-.contact-stats a:hover {
-    border-color: var(--accent);
-    transform: translateY(-3px);
-}
-
-.contact-stats strong {
-    color: var(--accent);
-    font-family: "Gobold", Impact, sans-serif;
-    font-size: clamp(3rem, 6vw, 5.4rem);
-    line-height: 0.88;
-}
-
-.contact-stats span {
-    margin-top: 0.35rem;
-    color: var(--muted);
-    font-size: 0.7rem;
-    font-weight: 900;
-    letter-spacing: 0.09em;
-    text-transform: uppercase;
-}
-
 .contact-platform-section {
     margin-bottom: 4rem;
 }
@@ -830,11 +794,6 @@ select:focus-visible {
     gap: 2rem;
     align-items: end;
     margin-bottom: 1.5rem;
-}
-
-.contact-section-header > p {
-    margin: 0;
-    color: var(--muted);
 }
 
 .platform-grid {
@@ -881,11 +840,6 @@ select:focus-visible {
     font-family: "Gobold", Impact, sans-serif;
 }
 
-.spotify-card .platform-icon {
-    border-color: rgba(61, 221, 120, 0.5);
-    color: var(--green);
-}
-
 .platform-card > span:nth-child(2) {
     display: flex;
     min-width: 0;
@@ -906,12 +860,6 @@ select:focus-visible {
     overflow-wrap: anywhere;
 }
 
-.platform-card em {
-    color: var(--muted);
-    font-size: 0.8rem;
-    font-style: normal;
-}
-
 .platform-card b {
     color: var(--muted);
     font-size: 1.35rem;
@@ -919,36 +867,6 @@ select:focus-visible {
 
 .platform-card:hover b {
     color: var(--accent);
-}
-
-.business-contact {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 2rem;
-    align-items: center;
-    padding: clamp(1.5rem, 4vw, 3rem);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-large);
-    background:
-        linear-gradient(
-            120deg,
-            rgba(255, 74, 84, 0.09),
-            transparent 55%
-        ),
-        var(--surface);
-}
-
-.business-contact > div {
-    max-width: 720px;
-}
-
-.business-contact h2 {
-    margin-bottom: 0.8rem;
-}
-
-.business-contact p:last-child {
-    margin: 0;
-    color: var(--text-soft);
 }
 
 /* Footer */
@@ -967,8 +885,7 @@ select:focus-visible {
 .footer-grid {
     display: grid;
     grid-template-columns:
-        minmax(0, 1.15fr)
-        minmax(230px, 0.8fr)
+        minmax(0, 1.3fr)
         minmax(210px, 0.7fr);
     gap: 3rem;
 }
@@ -1005,61 +922,6 @@ select:focus-visible {
     letter-spacing: 0.04em;
     text-decoration: none;
     text-transform: uppercase;
-}
-
-.footer-audio {
-    display: grid;
-    align-content: start;
-    gap: 0.5rem;
-}
-
-.footer-audio label {
-    color: var(--muted);
-    font-size: 0.68rem;
-    font-weight: 900;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
-}
-
-.footer-audio select {
-    width: 100%;
-    min-height: 40px;
-    padding: 0.45rem;
-    border: 1px solid var(--border-bright);
-    border-radius: var(--radius-small);
-    background: var(--surface);
-    color: #ffffff;
-}
-
-.footer-audio input {
-    width: 100%;
-}
-
-.audio-buttons {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.audio-buttons button {
-    min-height: 40px;
-    padding: 0.5rem 0.9rem;
-    border: 1px solid var(--border-bright);
-    border-radius: var(--radius-small);
-    background: var(--surface);
-    color: #ffffff;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-.audio-buttons button:hover {
-    border-color: var(--accent);
-}
-
-.audio-status {
-    min-height: 1.2rem;
-    margin: 0;
-    color: var(--accent-soft);
-    font-size: 0.72rem;
 }
 
 .footer-socials {
@@ -1112,17 +974,6 @@ select:focus-visible {
     margin: 0;
 }
 
-.visitor-counter {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-}
-
-.visitor-counter img {
-    width: 88px;
-    height: 31px;
-}
-
 /* Tablet */
 
 @media (max-width: 1000px) {
@@ -1149,21 +1000,12 @@ select:focus-visible {
         min-height: 0;
     }
 
-    .contact-stats {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-template-rows: none;
-    }
-
-    .contact-stats a {
-        min-height: 185px;
-    }
-
     .footer-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .footer-about {
-        grid-column: 1 / -1;
+        grid-column: auto;
     }
 }
 
@@ -1272,28 +1114,6 @@ select:focus-visible {
         font-size: clamp(3.2rem, 18vw, 5rem);
     }
 
-    .contact-stats {
-        gap: 0.75rem;
-    }
-
-    .contact-stats a {
-        min-height: 145px;
-        padding: 1rem;
-    }
-
-    .contact-stats strong {
-        font-size: clamp(2.5rem, 13vw, 4rem);
-    }
-
-    .business-contact {
-        grid-template-columns: 1fr;
-        padding: 1.35rem;
-    }
-
-    .business-contact .primary-button {
-        justify-self: start;
-    }
-
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -1315,10 +1135,6 @@ select:focus-visible {
         width: min(calc(100% - 1rem), var(--content-width));
     }
 
-    .contact-stats {
-        grid-template-columns: 1fr;
-    }
-
     .platform-card {
         grid-template-columns: 46px minmax(0, 1fr) auto;
         padding: 1rem;
@@ -1330,9 +1146,6 @@ select:focus-visible {
         font-size: 0.85rem;
     }
 
-    .platform-card em {
-        display: none;
-    }
 }
 
 @media (prefers-reduced-motion: reduce) {

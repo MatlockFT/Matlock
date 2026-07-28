@@ -268,89 +268,6 @@
                 </section>
 
                 <section
-                    class="footer-column footer-audio"
-                    aria-labelledby="fight-tunes-title"
-                >
-                    <h2 id="fight-tunes-title">
-                        Fight Tunes
-                    </h2>
-
-                    <audio
-                        id="player"
-                        preload="none"
-                    >
-                        Your browser does not support audio.
-                    </audio>
-
-                    <div class="audio-buttons">
-                        <button
-                            type="button"
-                            id="play-button"
-                            aria-controls="player"
-                        >
-                            Play
-                        </button>
-
-                        <button
-                            type="button"
-                            id="pause-button"
-                            aria-controls="player"
-                            disabled
-                        >
-                            Pause
-                        </button>
-                    </div>
-
-                    <label for="song-selector">
-                        Track
-                    </label>
-
-                    <select
-                        id="song-selector"
-                        aria-controls="player"
-                    >
-                        <option
-                            value="{{ '/assets/facethepain.mp3' | relative_url }}"
-                        >
-                            Face The Pain
-                        </option>
-
-                        <option
-                            value="{{ '/assets/Original.mp3' | relative_url }}"
-                        >
-                            O.G.
-                        </option>
-
-                        <option
-                            value="{{ '/assets/DeathorGlory.mp3' | relative_url }}"
-                        >
-                            Death or Glory
-                        </option>
-                    </select>
-
-                    <label for="volume-slider">
-                        Volume
-                    </label>
-
-                    <input
-                        type="range"
-                        id="volume-slider"
-                        min="0"
-                        max="1"
-                        step="0.01"
-                        value="0.5"
-                        aria-label="Fight Tunes volume"
-                    >
-
-                    <p
-                        class="audio-status"
-                        id="audio-status"
-                        role="status"
-                        aria-live="polite"
-                    ></p>
-                </section>
-
-                <section
                     class="footer-column"
                     aria-labelledby="social-links-title"
                 >
@@ -452,21 +369,6 @@
                     {{ site.legal_name | default: site.title }}.
                 </p>
 
-                <div class="visitor-counter">
-                    <span>
-                        Visitor count
-                    </span>
-
-                    <img
-                        src="{{ '/assets/counter.gif' | relative_url }}"
-                        alt="Visitor counter"
-                        width="88"
-                        height="31"
-                        loading="lazy"
-                        decoding="async"
-                        data-hide-broken
-                    >
-                </div>
             </div>
         </div>
     </footer>

@@ -575,8 +575,7 @@ textarea {
 .contact-hero-main h1,
 .about-hero-copy h1,
 .privacy-hero h1,
-.simple-about-hero h1,
-.slot-page-hero h1 {
+.simple-about-hero h1 {
     overflow-wrap: normal;
     word-break: normal;
     hyphens: none;
@@ -609,7 +608,6 @@ textarea {
     .secondary-button,
     .navigation-toggle,
     .navigation-list a,
-    .audio-buttons button,
     .post-share-button {
         min-height: 46px;
     }
@@ -1091,36 +1089,6 @@ textarea {
         padding-bottom: 2rem;
     }
 
-    /* Vegas page */
-
-    .slot-page-hero {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        margin-bottom: 2rem;
-        padding: 1.1rem;
-        border-radius: var(--radius-medium);
-    }
-
-    .slot-page-hero h1,
-    .slot-machine-top h2 {
-        font-size: clamp(2.1rem, 9vw, 3.1rem);
-        line-height: 1.02;
-    }
-
-    .slot-fun-notice {
-        min-width: 0;
-    }
-
-    .slot-section-header {
-        grid-template-columns: 1fr;
-        gap: 0.6rem;
-        align-items: start;
-    }
-
-    .slot-section-header h2 {
-        font-size: clamp(1.8rem, 7.5vw, 2.5rem);
-    }
-
     /* Footer */
 
     .site-footer {
@@ -1163,11 +1131,6 @@ textarea {
 
     .footer-socials span {
         font-size: 0.76rem;
-    }
-
-    .footer-audio select,
-    .audio-buttons button {
-        min-height: 46px;
     }
 
     .footer-bottom {
