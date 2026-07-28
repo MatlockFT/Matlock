@@ -7,6 +7,7 @@
     const refreshButton = newsPage.querySelector("[data-news-refresh]");
     const status = newsPage.querySelector("[data-news-status]");
     const lastUpdated = newsPage.querySelector("[data-news-last-updated]");
+    const fallback = newsPage.querySelector("[data-news-fallback]");
     const refreshInterval =
         Number(newsPage.dataset.refreshInterval) || 5 * 60 * 1000;
     const listUrl =
@@ -34,10 +35,9 @@
         status.dataset.state = state;
     }
 
-    function setRefreshComplete() {
+    function updateRefreshTime() {
         const refreshedAt = new Date();
         lastRefreshTime = refreshedAt.getTime();
-        timeline?.setAttribute("aria-busy", "false");
 
         if (lastUpdated) {
             lastUpdated.dateTime = refreshedAt.toISOString();
@@ -46,18 +46,43 @@
                 minute: "2-digit"
             });
         }
+    }
+
+    function setRefreshComplete() {
+        updateRefreshTime();
+        timeline?.setAttribute("aria-busy", "false");
+        timeline?.removeAttribute("hidden");
+
+        if (fallback) fallback.hidden = true;
 
         setStatus("Live feed loaded", "ready");
 
         if (refreshButton) refreshButton.disabled = false;
     }
 
+    function setFeedUnavailable() {
+        updateRefreshTime();
+        timeline?.setAttribute("aria-busy", "false");
+        timeline?.setAttribute("hidden", "");
+
+        if (fallback) fallback.hidden = false;
+
+        setStatus(
+            "X embed unavailable — open the live list directly",
+            "error"
+        );
+
+        if (refreshButton) refreshButton.disabled = false;
+    }
+
     function waitForTimeline() {
         window.clearTimeout(renderCheckTimer);
-        let checksRemaining = 40;
+        let checksRemaining = 20;
 
         function check() {
-            if (timeline?.querySelector("iframe")) {
+            const frame = timeline?.querySelector("iframe");
+
+            if (frame && frame.getBoundingClientRect().height >= 100) {
                 setRefreshComplete();
                 return;
             }
@@ -65,13 +90,7 @@
             checksRemaining -= 1;
 
             if (checksRemaining <= 0) {
-                timeline?.setAttribute("aria-busy", "false");
-                setStatus(
-                    "Live embed unavailable — open the list on X",
-                    "error"
-                );
-
-                if (refreshButton) refreshButton.disabled = false;
+                setFeedUnavailable();
                 return;
             }
 
@@ -82,46 +101,29 @@
     }
 
     function loadXWidgets() {
-        if (window.twttr?.widgets) {
-            return Promise.resolve(window.twttr);
-        }
-
         return new Promise((resolve, reject) => {
             const existingScript = document.getElementById("x-widgets-script");
             const loadingTimeout = window.setTimeout(
                 () => reject(new Error("X embed timed out")),
                 10000
             );
-            const finishLoading = widgets => {
+            const finishLoading = () => {
                 window.clearTimeout(loadingTimeout);
-                resolve(widgets);
+                resolve();
             };
             const stopLoading = error => {
                 window.clearTimeout(loadingTimeout);
                 reject(error);
             };
 
-            window.twttr = window.twttr || {
-                _e: [],
-                ready(callback) {
-                    this._e.push(callback);
-                }
-            };
-
-            window.twttr.ready(finishLoading);
-
-            if (existingScript) {
-                existingScript.addEventListener("error", stopLoading, {
-                    once: true
-                });
-                return;
-            }
+            existingScript?.remove();
 
             const script = document.createElement("script");
             script.id = "x-widgets-script";
             script.src = "https://platform.x.com/widgets.js";
             script.async = true;
             script.charset = "utf-8";
+            script.addEventListener("load", finishLoading, { once: true });
             script.addEventListener("error", stopLoading, { once: true });
             document.head.append(script);
         });
@@ -130,23 +132,21 @@
     async function refreshFeed() {
         window.clearTimeout(renderCheckTimer);
         timeline?.setAttribute("aria-busy", "true");
+        timeline?.removeAttribute("hidden");
         timeline?.replaceChildren(timelineLink());
+
+        if (fallback) fallback.hidden = true;
+
         setStatus(lastRefreshTime ? "Refreshing live feed…" : "Loading live feed…");
 
         if (refreshButton) refreshButton.disabled = true;
 
         try {
-            const widgets = await loadXWidgets();
-            widgets.widgets.load(timeline);
+            await loadXWidgets();
+            window.twttr?.widgets?.load?.(timeline);
             waitForTimeline();
         } catch {
-            timeline?.setAttribute("aria-busy", "false");
-            setStatus(
-                "Live embed unavailable — open the list on X",
-                "error"
-            );
-
-            if (refreshButton) refreshButton.disabled = false;
+            setFeedUnavailable();
         }
     }
 
