@@ -338,33 +338,6 @@
     line-height: 1.4;
 }
 
-.yellow-pages-featured-listing {
-    background:
-        repeating-linear-gradient(
-            -45deg,
-            rgba(0, 0, 0, 0.035) 0,
-            rgba(0, 0, 0, 0.035) 5px,
-            transparent 5px,
-            transparent 10px
-        ),
-        var(--yp-paper-light);
-}
-
-.yellow-pages-featured-label {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    padding: 0.2rem 0.4rem;
-    border: 1px solid var(--yp-ink);
-    background: var(--yp-ink);
-    color: var(--yp-paper);
-    font-family: "Courier New", monospace;
-    font-size: 0.52rem;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
 .yellow-pages-wanted {
     margin: 1rem;
     padding: 1.5rem;
@@ -511,12 +484,6 @@
 
     .yellow-pages-list a {
         padding-right: 0.75rem;
-    }
-
-    .yellow-pages-featured-label {
-        position: static;
-        justify-self: start;
-        margin-top: 0.3rem;
     }
 
     .yellow-pages-footer {

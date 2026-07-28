@@ -33,7 +33,9 @@ jobs:
         run: npm run check:content
 
       - name: Check browser scripts
-        run: node --check assets/site.js
+        run: |
+          node --check assets/site.js
+          node --check assets/news-feed.js
 
       - name: Build site
         uses: actions/jekyll-build-pages@v1
