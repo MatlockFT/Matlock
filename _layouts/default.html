@@ -91,8 +91,27 @@
                     display: none !important;
                 }
 
+                .navigation-inner {
+                    flex-wrap: wrap !important;
+                }
+
                 .navigation-list {
                     display: flex !important;
+                }
+
+                .navigation-panel {
+                    position: static !important;
+                    width: 100% !important;
+                    height: auto !important;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    transform: none !important;
+                }
+
+                .navigation-panel-header,
+                .navigation-panel-footer,
+                .navigation-backdrop {
+                    display: none !important;
                 }
             }
         </style>
@@ -142,13 +161,17 @@
                     id="navigation-toggle"
                     type="button"
                     aria-expanded="false"
-                    aria-controls="navigation-list"
+                    aria-controls="navigation-panel"
                     aria-haspopup="true"
                     aria-label="Open main navigation"
                 >
-                    <span aria-hidden="true">
-                        Menu
+                    <span class="navigation-toggle-icon" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </span>
+
+                    <span class="navigation-toggle-label">Menu</span>
                 </button>
 
                 {% assign current_url = page.url | default: "/" | remove: "index.html" %}
@@ -162,11 +185,30 @@
                     {% endunless %}
                 {% endunless %}
 
-                <ul
-                    class="navigation-list"
-                    id="navigation-list"
+                <div
+                    class="navigation-panel"
+                    id="navigation-panel"
+                    aria-hidden="false"
                 >
-                    {% for item in site.nav %}
+                    <div class="navigation-panel-header">
+                        <span>Explore MMA Matlock</span>
+
+                        <button
+                            class="navigation-close"
+                            type="button"
+                            data-navigation-close
+                            aria-label="Close main navigation"
+                        >
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+
+                    <ul
+                        class="navigation-list"
+                        id="navigation-list"
+                    >
+                        {% for item in site.nav %}
                         {% assign active = false %}
                         {% unless item.external %}
                             {% assign item_url = item.link | remove: "index.html" %}
@@ -189,26 +231,40 @@
                             {% endif %}
                         {% endunless %}
 
-                        <li>
-                            <a
-                                {% if item.external %}
-                                    href="{{ item.link }}"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                {% else %}
-                                    href="{{ item.link | relative_url }}"
-                                {% endif %}
-                                {% if active %}
-                                    aria-current="page"
-                                {% endif %}
-                            >
-                                {{ item.name }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
+                            <li>
+                                <a
+                                    {% if item.external %}
+                                        href="{{ item.link }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    {% else %}
+                                        href="{{ item.link | relative_url }}"
+                                    {% endif %}
+                                    {% if active %}
+                                        aria-current="page"
+                                    {% endif %}
+                                >
+                                    <span>{{ item.name }}</span>
+                                    <span aria-hidden="true">↗</span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="navigation-panel-footer">
+                        Independent MMA media
+                    </div>
+                </div>
             </div>
         </nav>
+
+        <button
+            class="navigation-backdrop"
+            type="button"
+            data-navigation-backdrop
+            aria-label="Close main navigation"
+            tabindex="-1"
+        ></button>
     </header>
 
     <main

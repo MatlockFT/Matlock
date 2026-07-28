@@ -20,65 +20,85 @@ page_scripts:
         <h1>MMA News</h1>
 
         <p>
-            The newest reporting from trusted MMA outlets, collected in
-            one place.
+            Swipe through the newest reporting from trusted MMA outlets,
+            independent analysts, and fight promotions.
         </p>
     </header>
 
     <section
-        class="news-top-section"
-        aria-label="Top story"
+        class="news-deck"
+        aria-label="Top story and latest MMA news"
     >
-        <p class="eyebrow">Top story</p>
+        <div class="news-rail-shell">
+            <button
+                class="news-rail-button news-rail-button--previous"
+                type="button"
+                data-news-previous
+                aria-label="Show previous story"
+                disabled
+            >
+                <span aria-hidden="true">←</span>
+            </button>
 
-        <div
-            class="news-top-story news-loading-card"
-            data-news-top-story
-            aria-busy="true"
-        ></div>
-    </section>
+            <div
+                class="news-story-rail"
+                data-news-story-list
+                aria-busy="true"
+                aria-label="MMA news stories"
+                role="list"
+                tabindex="0"
+            >
+                <article class="news-loading-card" role="listitem"></article>
+                <article class="news-loading-card" role="listitem"></article>
+                <article class="news-loading-card" role="listitem"></article>
+            </div>
 
-    <div class="news-feed-controls">
-        <div
-            class="news-feed-status"
-            data-news-status
-            data-state="loading"
-            aria-live="polite"
-        >
-            Loading the latest stories…
+            <button
+                class="news-rail-button news-rail-button--next"
+                type="button"
+                data-news-next
+                aria-label="Show next story"
+            >
+                <span aria-hidden="true">→</span>
+            </button>
         </div>
 
-        <button
-            class="secondary-button news-refresh-button"
-            type="button"
-            data-news-refresh
-        >
-            Refresh stories
-        </button>
-    </div>
+        <div class="news-feed-controls">
+            <div class="news-feed-details">
+                <span
+                    class="news-card-counter"
+                    data-news-counter
+                    aria-live="polite"
+                >
+                    1 / …
+                </span>
 
-    <section
-        class="news-latest-section"
-        aria-labelledby="news-latest-title"
-    >
-        <header class="news-section-heading">
-            <h2 id="news-latest-title">
-                Latest News
-            </h2>
+                <span
+                    class="news-source-summary"
+                    data-news-source-summary
+                >
+                    Gathering sources…
+                </span>
+            </div>
 
-            <p data-news-source-summary>
-                Gathering sources…
-            </p>
-        </header>
+            <div class="news-feed-actions">
+                <div
+                    class="news-feed-status"
+                    data-news-status
+                    data-state="loading"
+                    aria-live="polite"
+                >
+                    Loading the latest stories…
+                </div>
 
-        <div
-            class="news-story-list"
-            data-news-story-list
-            aria-busy="true"
-        >
-            <div class="news-loading-row"></div>
-            <div class="news-loading-row"></div>
-            <div class="news-loading-row"></div>
+                <button
+                    class="secondary-button news-refresh-button"
+                    type="button"
+                    data-news-refresh
+                >
+                    Refresh stories
+                </button>
+            </div>
         </div>
     </section>
 
