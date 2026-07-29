@@ -1,8 +1,8 @@
 {
   "version": 1,
-  "generatedAt": "2026-07-29T03:49:15.180Z",
+  "generatedAt": "2026-07-29T03:59:54.018Z",
   "refreshIntervalMs": 300000,
-  "sourceCount": 15,
+  "sourceCount": 17,
   "sources": [
     {
       "name": "MMA Fighting",
@@ -27,7 +27,17 @@
     {
       "name": "TMZ Sports",
       "url": "https://www.tmz.com/categories/ufc/",
-      "storyCount": 7
+      "storyCount": 8
+    },
+    {
+      "name": "Sherdog",
+      "url": "https://www.sherdog.com/",
+      "storyCount": 50
+    },
+    {
+      "name": "MMAWeekly",
+      "url": "https://www.mmaweekly.com/",
+      "storyCount": 30
     },
     {
       "name": "MMA Mania",
@@ -60,11 +70,6 @@
       "storyCount": 10
     },
     {
-      "name": "BJPENN.com",
-      "url": "https://www.bjpenn.com/",
-      "storyCount": 25
-    },
-    {
       "name": "MMA Prospect Vault",
       "url": "https://mmaprospectvault.com/",
       "storyCount": 10
@@ -78,25 +83,66 @@
       "name": "Cage Warriors",
       "url": "https://cagewarriors.com/",
       "storyCount": 2
+    },
+    {
+      "name": "LFA",
+      "url": "https://www.lfa.com/",
+      "storyCount": 6
     }
   ],
   "topStory": {
-    "id": "1461fed127ded905",
-    "title": "Anthony Smith arrested on felony charges for domestic violence, terroristic threats, and false imprisonment",
-    "url": "https://www.mmafighting.com/ufc/501961/anthony-smith-arrested-on-felony-charges-for-domestic-violence-terroristic-threats-and-false-imprisonment",
-    "source": "MMA Fighting",
-    "sourceUrl": "https://www.mmafighting.com/",
-    "publishedAt": "2026-07-28T22:46:52.000Z",
-    "excerpt": "Anthony Smith has been arrested in Nebraska and faces multiple felony charges. Following an initial report by TMZ Sports, MMA Fighting’s Damon Martin confirmed with court records that Smith…",
-    "image": "https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/07/download.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+    "id": "2566d1c38f0cf658",
+    "title": "Ex-UFC fighter Smith arrested on 3 felony charges",
+    "url": "https://www.espn.com/mma/story/_/id/49475267/ex-ufc-fighter-anthony-smith-arrested-three-felony-charges",
+    "source": "ESPN MMA",
+    "sourceUrl": "https://www.espn.com/mma/",
+    "publishedAt": "2026-07-29T01:35:37.000Z",
+    "excerpt": "Former UFC fighter Anthony Smith, who challenged for the light heavyweight title in 2019, was arrested Monday night in Nebraska on charges of domestic violence causing serious bodily injury,…",
+    "image": "https://www.mmaweekly.com/.image/Mjk6MDAwMDAwMDAwMTE5NjM4/anthony-smith-mugshot-1600.jpg?profile=rss&x=48&y=43",
     "coverageCount": 4,
     "relatedSources": [
-      "BJPENN.com",
-      "LowKick MMA",
-      "TMZ Sports"
+      "Sherdog",
+      "Uncrowned",
+      "MMAWeekly"
     ]
   },
   "stories": [
+    {
+      "id": "d885bf1beb04e269",
+      "title": "Andrew Tate could still fight social media rival ‘Gypsy Crusader’ despite arrest in Miami",
+      "url": "https://bloodyelbow.com/2026/07/28/andrew-tate-could-still-fight-social-media-rival-gypsy-crusader-despite-arrest-in-miami/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-07-29T03:59:00.000Z",
+      "excerpt": "Andrew Tate has been told that there is still a fight out there for him if he can get through his latest legal case. Former ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/07/GettyImages-2270434194-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "e7501c5032b520d4",
+      "title": "Islam Makhachev gives two guys the Dagestani makeover",
+      "url": "https://www.sherdog.com/news/news/Islam-Makhachev-gives-two-guys-the-Dagestani-makeover-202116",
+      "source": "Sherdog",
+      "sourceUrl": "https://www.sherdog.com/",
+      "publishedAt": "2026-07-29T03:29:13.000Z",
+      "excerpt": "Islam Makhachev can do it all.",
+      "image": "https://www1-cdn.sherdog.com/_images/headers/20260729035525_edd.JPG",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "75e27ddf6142c970",
+      "title": "Why did Lewis Hamilton block Jon Jones? UFC icon reveals hunting dispute",
+      "url": "https://www.sherdog.com/news/news/Why-did-Lewis-Hamilton-block-Jon-Jones-UFC-icon-reveals-hunting-dispute-202115",
+      "source": "Sherdog",
+      "sourceUrl": "https://www.sherdog.com/",
+      "publishedAt": "2026-07-29T03:15:06.000Z",
+      "excerpt": "F1 star Lewis Hamilton was very disappointed with Jon Jones for an unexpected reason.",
+      "image": "https://www1-cdn.sherdog.com/_images/headers/20260729034717_Untitled1.PNG",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
     {
       "id": "7b53f7db09ebd00c",
       "title": "‘There Is No One Else Like Me’ — Elbek Alyshov Plans To Dismantle Enkh-Orgil Baatarkhuu At The Inner Circle 24",
@@ -158,18 +204,16 @@
       "relatedSources": []
     },
     {
-      "id": "2566d1c38f0cf658",
-      "title": "Ex-UFC fighter Smith arrested on 3 felony charges",
-      "url": "https://www.espn.com/mma/story/_/id/49475267/ex-ufc-fighter-anthony-smith-arrested-three-felony-charges",
-      "source": "ESPN MMA",
-      "sourceUrl": "https://www.espn.com/mma/",
-      "publishedAt": "2026-07-29T01:35:37.000Z",
-      "excerpt": "Former UFC fighter Anthony Smith, who challenged for the light heavyweight title in 2019, was arrested Monday night in Nebraska on charges of domestic violence causing serious bodily injury,…",
-      "image": "https://a2.espncdn.com/combiner/i?img=%2Fphoto%2F2026%2F0729%2Fr1694919_1296x729_16-9.jpg",
-      "coverageCount": 2,
-      "relatedSources": [
-        "Uncrowned"
-      ]
+      "id": "9ebcf6f30ee7b687",
+      "title": "Jon Jones defends legacy, says he never used steroids despite failed tests",
+      "url": "https://www.sherdog.com/news/news/Jon-Jones-defends-legacy-says-he-never-used-steroids-despite-failed-tests-202112",
+      "source": "Sherdog",
+      "sourceUrl": "https://www.sherdog.com/",
+      "publishedAt": "2026-07-29T01:47:47.000Z",
+      "excerpt": "Despite failing multiple drug tests, Jon Jones insists that he never used steroids.",
+      "image": "https://www1-cdn.sherdog.com/_images/headers/20260729015859_rfrf.JPEG",
+      "coverageCount": 1,
+      "relatedSources": []
     },
     {
       "id": "a53de0be7d49fe1c",
@@ -192,6 +236,18 @@
       "publishedAt": "2026-07-29T01:20:25.000Z",
       "excerpt": "UFC headliner Daniel Rodriguez spent much of the past year in a Mexican prison, and couldn't be happier with how things have turned around.",
       "image": "https://s.yimg.com/ny/api/res/1.2/dT.ovMkhiIKtc8ui5gg4zw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD02NzU7Y2Y9d2VicA--/https://media.zenfs.com/en/mma_junkie_usa_today_articles_344/2c212ebb274dc6c0591aabbcf17392de",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "06f7069bff99536c",
+      "title": "Paulo Costa says Magomed Ankalaev 'closer to getting cut than the title'",
+      "url": "https://www.sherdog.com/news/news/Paulo-Costa-says-Magomed-Ankalaev-closer-to-getting-cut-than-the-title-202113",
+      "source": "Sherdog",
+      "sourceUrl": "https://www.sherdog.com/",
+      "publishedAt": "2026-07-29T01:00:39.000Z",
+      "excerpt": "Paulo Costa wants to bring excitement back to the Ultimate Fighting Championship light heavyweight division.",
+      "image": "https://www1-cdn.sherdog.com/_images/headers/20260729025606_rfrf.JPEG",
       "coverageCount": 1,
       "relatedSources": []
     },
@@ -256,6 +312,18 @@
       "relatedSources": []
     },
     {
+      "id": "c49152695c06fd8f",
+      "title": "Jon Jones calls Dana White an 'asshole' but says UFC CEO changed his life",
+      "url": "https://www.sherdog.com/news/news/Jon-Jones-calls-Dana-White-an-asshole-but-says-UFC-CEO-changed-his-life-202114",
+      "source": "Sherdog",
+      "sourceUrl": "https://www.sherdog.com/",
+      "publishedAt": "2026-07-29T00:05:35.000Z",
+      "excerpt": "Jon Jones has mixed feelings about Dana White .",
+      "image": "https://www1-cdn.sherdog.com/_images/headers/20260729033331_ed.JPEG",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
       "id": "13d901d3ff342ad6",
       "title": "Bogdan Guskov releases first statement after lopsided loss to Magomed Ankalaev in UFC Abu Dhabi headliner",
       "url": "https://www.mmafighting.com/ufc/501698/bogdan-guskov-releases-first-statement-after-lopsided-loss-to-magomed-ankalaev-in-ufc-abu-dhabi-headliner",
@@ -267,7 +335,7 @@
       "coverageCount": 3,
       "relatedSources": [
         "Uncrowned",
-        "BJPENN.com"
+        "Sherdog"
       ]
     },
     {
@@ -291,8 +359,9 @@
       "publishedAt": "2026-07-28T23:38:57.000Z",
       "excerpt": "Welterweights are headed to the “Gateway to the North.” No. 9-ranked Ultimate Fighting Championship (UFC) Welterweight Joaquin Buckley will collide with Canada’s own Mike Malott in the main…",
       "image": "https://media.zenfs.com/en/sb_nation_articles_115/2f33d9a403eeae247374dd925c6aa529",
-      "coverageCount": 3,
+      "coverageCount": 4,
       "relatedSources": [
+        "Cageside Press",
         "MMA Mania",
         "MMA Fighting"
       ]
@@ -310,18 +379,6 @@
       "relatedSources": []
     },
     {
-      "id": "bc2639857397b1c1",
-      "title": "Mike Malott headlines UFC Edmonton card vs. welterweight KO artist",
-      "url": "https://www.bjpenn.com/mma-news/mike-malott/mike-malott-headlines-second-straight-ufc-edmonton-card/",
-      "source": "BJPENN.com",
-      "sourceUrl": "https://www.bjpenn.com/",
-      "publishedAt": "2026-07-28T23:14:50.000Z",
-      "excerpt": "BANGER",
-      "image": "https://www.bjpenn.com/wp-content/uploads/2026/07/MixCollage-28-Jul-2026-04-03-PM-4020.jpg",
-      "coverageCount": 1,
-      "relatedSources": []
-    },
-    {
       "id": "48b23062c831d7c7",
       "title": "Sean Strickland Recounts First Time Going To Jail And Yelling ‘Let’s Get A Sw*stika’ At A Prison Gang",
       "url": "https://www.lowkickmma.com/sean-strickland-jail-prison-gang-experience/",
@@ -330,18 +387,6 @@
       "publishedAt": "2026-07-28T23:07:07.000Z",
       "excerpt": "Sean Strickland recently opened up about the first time he went to jail. Despite a boatload of UFC fighters...",
       "image": "https://www.youtube.com/embed/Y7QK_R2hkEM",
-      "coverageCount": 1,
-      "relatedSources": []
-    },
-    {
-      "id": "a4ac93b0a038ff66",
-      "title": "Enkh-Orgil Baatarkhuu isn’t taking his first ONE World Title defense for granted",
-      "url": "https://www.bjpenn.com/mma-news/enkh-orgil-baatarkhuu/enkh-orgil-baatarkhuu-isnt-taking-his-first-one-world-title-defense-for-granted/",
-      "source": "BJPENN.com",
-      "sourceUrl": "https://www.bjpenn.com/",
-      "publishedAt": "2026-07-28T23:00:33.000Z",
-      "excerpt": "Belt on the line",
-      "image": "https://www.bjpenn.com/wp-content/uploads/2024/01/Enkh-Orgil-Baatarkhuu-Jhanlo-Mark-Sangiao-ONE-Fight-Night-13-46-1536x1024-1.jpg",
       "coverageCount": 1,
       "relatedSources": []
     },
@@ -370,6 +415,21 @@
       "relatedSources": []
     },
     {
+      "id": "1461fed127ded905",
+      "title": "Anthony Smith arrested on felony charges for domestic violence, terroristic threats, and false imprisonment",
+      "url": "https://www.mmafighting.com/ufc/501961/anthony-smith-arrested-on-felony-charges-for-domestic-violence-terroristic-threats-and-false-imprisonment",
+      "source": "MMA Fighting",
+      "sourceUrl": "https://www.mmafighting.com/",
+      "publishedAt": "2026-07-28T22:46:52.000Z",
+      "excerpt": "Anthony Smith has been arrested in Nebraska and faces multiple felony charges. Following an initial report by TMZ Sports, MMA Fighting’s Damon Martin confirmed with court records that Smith…",
+      "image": "https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/07/download.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 3,
+      "relatedSources": [
+        "LowKick MMA",
+        "TMZ Sports"
+      ]
+    },
+    {
       "id": "d6e0596f98c78491",
       "title": "Dan Hooker has a hilarious request for French fans sending him death threats before UFC Paris",
       "url": "https://sports.yahoo.com/mma/article/dan-hooker-has-a-hilarious-request-for-french-fans-sending-him-death-threats-before-ufc-paris-salahdine-parnasse-224639295.html",
@@ -390,18 +450,6 @@
       "publishedAt": "2026-07-28T22:38:29.000Z",
       "excerpt": "Former Ultimate Fighting Championship (UFC) Light Heavyweight title challenger-turned UFC desk analyst, Anthony Smith, was arrested Monday in Nebraska and booked on three felony charges,…",
       "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/07/gettyimages-2228085173.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
-      "coverageCount": 1,
-      "relatedSources": []
-    },
-    {
-      "id": "919bfd40044e331c",
-      "title": "Jon Jones says F1 superstar Lewis Hamilton attacked him in DMs for hunting pigs",
-      "url": "https://www.bjpenn.com/mma-news/ufc/jon-jones-f1-superstar-lewis-hamilton-attacked-him-helicopter-pig-hunt/",
-      "source": "BJPENN.com",
-      "sourceUrl": "https://www.bjpenn.com/",
-      "publishedAt": "2026-07-28T22:37:20.000Z",
-      "excerpt": "YIKES",
-      "image": "https://www.bjpenn.com/wp-content/uploads/2026/07/MixCollage-28-Jul-2026-03-09-PM-8783.jpg",
       "coverageCount": 1,
       "relatedSources": []
     },
@@ -506,10 +554,8 @@
       "publishedAt": "2026-07-28T21:09:18.000Z",
       "excerpt": "Michael Morales will weigh-in at UFC 330, in case something goes wrong with the scheduled main event.",
       "image": "https://s.yimg.com/ny/api/res/1.2/fLd9IuIl7CVVV4JuRdNbvQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://media.zenfs.com/en/mma_junkie_usa_today_articles_344/257731520b46bb52d62baccb9e0d39db",
-      "coverageCount": 2,
-      "relatedSources": [
-        "BJPENN.com"
-      ]
+      "coverageCount": 1,
+      "relatedSources": []
     },
     {
       "id": "73082c0b95c4a8dd",
@@ -558,18 +604,6 @@
       "publishedAt": "2026-07-28T20:27:24.000Z",
       "excerpt": "Dakota Ditcheva makes her return to the SmartCage against former Bellator Kickboxing Champion Denise Kielholtz as part of the upcoming PFL New York fight card on Friday night (July 31, 2026)…",
       "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/07/gettyimages-2157550083.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
-      "coverageCount": 1,
-      "relatedSources": []
-    },
-    {
-      "id": "fc57b897e77a190d",
-      "title": "Conor McGregor blames ‘dry ice’ for UFC 329 injury in latest bizarre post-fight comments",
-      "url": "https://www.bjpenn.com/mma-news/ufc/conor-mcgregor-blames-dry-ice-ufc-329-injury/",
-      "source": "BJPENN.com",
-      "sourceUrl": "https://www.bjpenn.com/",
-      "publishedAt": "2026-07-28T20:26:52.000Z",
-      "excerpt": "HUH?",
-      "image": "https://www.bjpenn.com/wp-content/uploads/2026/07/MixCollage-16-Jul-2026-01-48-PM-8521.jpg",
       "coverageCount": 1,
       "relatedSources": []
     },
@@ -654,10 +688,8 @@
       "publishedAt": "2026-07-28T19:30:32.000Z",
       "excerpt": "Navajo Stirling did not hesitate to fight Jan Blachowicz on short notice despite being in \"holiday mode.\"",
       "image": "https://s.yimg.com/ny/api/res/1.2/IrcJxyxW2HH_8IGVj60VkQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://media.zenfs.com/en/mma_junkie_usa_today_articles_344/459cbdd04f872c84129f4bfaa848103c",
-      "coverageCount": 2,
-      "relatedSources": [
-        "BJPENN.com"
-      ]
+      "coverageCount": 1,
+      "relatedSources": []
     },
     {
       "id": "2066bf0ce318ab17",
@@ -746,30 +778,6 @@
       "relatedSources": []
     },
     {
-      "id": "cacf4e235a0e99a2",
-      "title": "Jon Jones continues to shut down steroid accusations even in retirement: “That’s very well-documented”",
-      "url": "https://www.bjpenn.com/mma-news/ufc/jon-jones-continues-to-shut-down-steroid-accusations-even-in-retirement-thats-very-well-documented/",
-      "source": "BJPENN.com",
-      "sourceUrl": "https://www.bjpenn.com/",
-      "publishedAt": "2026-07-28T18:53:02.000Z",
-      "excerpt": "Denied",
-      "image": "https://www.bjpenn.com/wp-content/uploads/2026/07/Jon-Jones-looks-on-as-Gable-Steveson-enters-the-Octagon-for-his-debut-at-UFC-329.jpg",
-      "coverageCount": 1,
-      "relatedSources": []
-    },
-    {
-      "id": "351c705a395cd62b",
-      "title": "Jon Jones respects Daniel Cormier for honest reason he won’t make amends: “He actually doesn’t hate me”",
-      "url": "https://www.bjpenn.com/mma-news/ufc/jon-jones-respects-daniel-cormier-for-honest-reason-he-wont-make-amends-he-actually-doesnt-hate-me/",
-      "source": "BJPENN.com",
-      "sourceUrl": "https://www.bjpenn.com/",
-      "publishedAt": "2026-07-28T18:21:57.000Z",
-      "excerpt": "Respect",
-      "image": "https://www.bjpenn.com/wp-content/uploads/2026/07/Jon-Jones-claims-Daniel-Cormier-told-him-their-feud-is-too-lucrative-to-be-friendly.jpg",
-      "coverageCount": 1,
-      "relatedSources": []
-    },
-    {
       "id": "3d091b6ebd222622",
       "title": "Video: Ryan Garcia blasts Joe Hendry with guitar, sets up beatdown of Danhausen during odd episode of WWE Raw",
       "url": "https://www.mmafighting.com/boxing/501872/video-ryan-garcia-blasts-joe-hendry-with-guitar-sets-up-beatdown-of-danhausen-during-odd-episode-of-wwe-raw",
@@ -818,28 +826,26 @@
       "relatedSources": []
     },
     {
-      "id": "855ea1d71103a4e9",
-      "title": "Yoel Romero vs. Darren Till Booked for BKFC 94",
-      "url": "https://cagesidepress.com/2026/07/28/yoel-romero-vs-darren-till-booked-for-bkfc-94/",
-      "source": "Cageside Press",
-      "sourceUrl": "https://cagesidepress.com/",
-      "publishedAt": "2026-07-28T17:49:35.000Z",
-      "excerpt": "Two UFC veterans and fan faves will collide at BKFC 94 in Manchester, England later this year. During The Ariel Helwani Show on Monday, BKFC President David Feldman announced the pair’s…",
-      "image": "https://www.youtube.com/embed/Gwe0BzeP2qo",
-      "coverageCount": 2,
-      "relatedSources": [
-        "LowKick MMA"
-      ]
+      "id": "41e26876301aef28",
+      "title": "UFC Light Heavyweight Rankings: Evaluating the Top 10 Best 205-Pounders on Earth",
+      "url": "https://sports.yahoo.com/articles/ufc-light-heavyweight-rankings-latest-211654876.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-07-28T17:36:56.000Z",
+      "excerpt": "The UFC light heavyweight rankings showcase some of the very best 205-pound fighters in the world. The division has often […]",
+      "image": "https://media.zenfs.com/en/sportsnaut_articles_397/1724f6b06d765ed57cc3acd05ad08c34",
+      "coverageCount": 1,
+      "relatedSources": []
     },
     {
-      "id": "b09dccc7b78b90c8",
-      "title": "Jon Jones thinks Alex Pereira dream fight would’ve been one-sided: “My physical strength would’ve been too much”",
-      "url": "https://www.bjpenn.com/mma-news/jon-jones/jon-jones-thinks-alex-pereira-dream-fight-wouldve-been-one-sided-my-physical-strength-wouldve-been-too-much/",
-      "source": "BJPENN.com",
-      "sourceUrl": "https://www.bjpenn.com/",
-      "publishedAt": "2026-07-28T17:40:08.000Z",
-      "excerpt": "One-Sided?",
-      "image": "https://www.bjpenn.com/wp-content/uploads/2026/07/Jon-Jones-thinks-he-wouldve-submitted-Alex-Pereira-early-in-a-dream-fight.jpg",
+      "id": "f36c70f5f053f270",
+      "title": "Chris Weidman: Ian Machado Garry will be 'sh*tting his pants' vs. Islam Makhachev",
+      "url": "https://sports.yahoo.com/articles/chris-weidman-ian-machado-garry-170028619.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-07-28T17:00:28.000Z",
+      "excerpt": "Chris Weidman sees welterweight champion Islam Makhachev frustrating Ian Machado Garry at UFC 330.",
+      "image": "https://s.yimg.com/ny/api/res/1.2/WzbLUZ3vEV8vcRT1Vh2vXg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA7Y2Y9d2VicA--/https://media.zenfs.com/en/mma_junkie_usa_today_articles_344/ed2a597f34e775745b4179b07e15f433",
       "coverageCount": 1,
       "relatedSources": []
     }

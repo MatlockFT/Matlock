@@ -5,9 +5,6 @@
 
     const storyRail = newsPage.querySelector("[data-news-story-list]");
     const status = newsPage.querySelector("[data-news-status]");
-    const sourceSummary = newsPage.querySelector(
-        "[data-news-source-summary]"
-    );
     const counter = newsPage.querySelector("[data-news-counter]");
     const refreshButton = newsPage.querySelector("[data-news-refresh]");
     const previousButton = newsPage.querySelector("[data-news-previous]");
@@ -421,8 +418,6 @@
         const cards = stories.map(renderStory);
         storyRail.replaceChildren(...cards);
         storyRail.setAttribute("aria-busy", "false");
-        sourceSummary.textContent =
-            `${data.sourceCount} active sources · automatic updates`;
         setStatus(data, fallbackUsed);
         lastRefreshTime = Date.now();
 

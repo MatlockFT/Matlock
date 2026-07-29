@@ -45,6 +45,18 @@ const feeds = [
         includeExcerpt: false
     },
     {
+        name: "Sherdog",
+        siteUrl: "https://www.sherdog.com/",
+        feedUrl: "https://www.sherdog.com/rss/news.xml",
+        priority: 9
+    },
+    {
+        name: "MMAWeekly",
+        siteUrl: "https://www.mmaweekly.com/",
+        feedUrl: "https://www.mmaweekly.com/feed",
+        priority: 8
+    },
+    {
         name: "MMA Mania",
         siteUrl: "https://www.mmamania.com/",
         feedUrl: "https://www.mmamania.com/rss/current.xml",
@@ -78,12 +90,6 @@ const feeds = [
         name: "Combat Press",
         siteUrl: "https://combatpress.com/",
         feedUrl: "https://combatpress.com/feed/",
-        priority: 6
-    },
-    {
-        name: "BJPENN.com",
-        siteUrl: "https://www.bjpenn.com/",
-        feedUrl: "https://www.bjpenn.com/feed/",
         priority: 6
     },
     {
@@ -127,6 +133,12 @@ const feeds = [
         siteUrl: "https://invictafc.com/",
         feedUrl: "https://invictafc.com/feed/",
         priority: 5
+    },
+    {
+        name: "LFA",
+        siteUrl: "https://www.lfa.com/",
+        feedUrl: "https://www.lfa.com/feed/",
+        priority: 6
     },
     {
         name: "Combate Global",
@@ -189,7 +201,7 @@ const stopWords = new Set([
 const tmzMmaSignal =
     /\b(?:ufc|mma|mixed martial arts?|octagon|ultimate fighting championship)\b/i;
 const tmzExcludedTopic =
-    /\b(?:aew|baseball|basketball|bikini|boxer|boxing|football|gallery|golf|hotties?|mlb|nba|nfl|nhl|onlyfans|pro(?:fessional)? wrestling|soccer|super bowl|swimsuit|tennis|wwe)\b/i;
+    /\b(?:bikini|cheek of the week|gallery|hot bodies|hotties?|onlyfans|swimsuit)\b/i;
 
 function asArray(value) {
     if (value === undefined || value === null) return [];
