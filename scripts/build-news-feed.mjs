@@ -37,6 +37,14 @@ const feeds = [
         priority: 9
     },
     {
+        name: "TMZ Sports",
+        siteUrl: "https://www.tmz.com/categories/ufc/",
+        feedUrl: "https://www.tmz.com/category/ufc/rss.xml",
+        priority: 8,
+        filter: "tmz-ufc-only",
+        includeExcerpt: false
+    },
+    {
         name: "MMA Mania",
         siteUrl: "https://www.mmamania.com/",
         feedUrl: "https://www.mmamania.com/rss/current.xml",
@@ -177,6 +185,11 @@ const stopWords = new Set([
     "vs",
     "with"
 ]);
+
+const tmzMmaSignal =
+    /\b(?:ufc|mma|mixed martial arts?|octagon|ultimate fighting championship)\b/i;
+const tmzExcludedTopic =
+    /\b(?:aew|baseball|basketball|bikini|boxer|boxing|football|gallery|golf|hotties?|mlb|nba|nfl|nhl|onlyfans|pro(?:fessional)? wrestling|soccer|super bowl|swimsuit|tennis|wwe)\b/i;
 
 function asArray(value) {
     if (value === undefined || value === null) return [];
@@ -445,6 +458,26 @@ function itemLink(item) {
     return safeUrl(item.guid || item.id);
 }
 
+function itemMatchesFeed(feed, item) {
+    if (feed.filter !== "tmz-ufc-only") return true;
+
+    const title = plainText(item.title);
+    const url = itemLink(item);
+    const summary = plainText(
+        item.description ||
+        item.summary ||
+        item["content:encoded"] ||
+        item.content
+    );
+    const combined = `${title} ${url} ${summary}`;
+    const headlineAndUrl = `${title} ${url}`;
+
+    return (
+        tmzMmaSignal.test(combined) &&
+        !tmzExcludedTopic.test(headlineAndUrl)
+    );
+}
+
 function imageCandidate(value) {
     for (const entry of asArray(value)) {
         if (typeof entry === "string") {
@@ -564,6 +597,7 @@ async function fetchFeed(feed) {
         const parsed = parser.parse(xml);
         const cutoff = Date.now() - MAX_STORY_AGE;
         const stories = feedItems(parsed)
+            .filter(item => itemMatchesFeed(feed, item))
             .map((item, feedRank) => {
                 const title = plainText(item.title);
                 const url = itemLink(item);
@@ -586,7 +620,9 @@ async function fetchFeed(feed) {
                     source: feed.name,
                     sourceUrl: feed.siteUrl,
                     publishedAt,
-                    excerpt: itemExcerpt(item, title),
+                    excerpt: feed.includeExcerpt === false
+                        ? ""
+                        : itemExcerpt(item, title),
                     image: itemImage(item),
                     feedRank,
                     sourcePriority: feed.priority
