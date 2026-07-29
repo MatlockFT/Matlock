@@ -1,11 +1,11 @@
 # MMA Matlock
 
-[MMA Matlock](https://matlockfighttalk.com) is an independent, fan-run MMA website featuring fight breakdowns, technical analysis, predictions, archive videos, and commentary.
+[MMA Matlock](https://matlockfighttalk.com) is a fan-run MMA website featuring original fight breakdowns, predictions, edited classic MMA clips, and commentary.
 
 ## What’s here
 
 - Written MMA breakdowns, previews, recaps, and opinion pieces
-- A [live MMA news feed](https://matlockfighttalk.com/news/) curated through MMA Matlock's X List
+- A [live MMA news feed](https://matlockfighttalk.com/news/) aggregated from trusted MMA outlets and fight promotions
 - The [MMA Yellow Pages](https://matlockfighttalk.com/mma-yellowpages), a curated directory of MMA websites, tools, and creators
 - A media kit, picture gallery, and supporting site pages
 - Links to MMA Matlock videos and social channels
