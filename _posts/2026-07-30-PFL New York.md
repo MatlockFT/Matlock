@@ -36,6 +36,8 @@ Some are prospects in the strict sense. Others have already reached contender or
 
 AMRU MAGOMEDOV, unbeaten in ten starts, appears to be the best orthodox prospect on the program.
 
+
+
 The 27-year-old lightweight has disposed of eight opponents inside the distance and made a smashing PFL debut by halting Kolton Englund in only 37 seconds. That brief engagement did not tell us everything about Magomedov, but it told us plenty about his intentions.
 
 He comes forward, closes the distance rapidly and applies the familiar pressure-wrestling attack associated with the Nurmagomedov camp. Magomedov, however, is no mere takedown specialist. He handles himself capably on his feet, strikes with authority and appears comfortable carrying the attack wherever the fight may travel.
@@ -132,7 +134,7 @@ Darryl Walker has accepted the assignment on the revised card, making this more 
 
 That does not mean the bout is without interest.
 
-Against Walker, attention should be paid to Diakhaté’s balance, patience and punch selection. A young power hitter can often become wild when an opponent refuses to fall at once. The best prospects do not merely hit hard; they remain orderly while doing it.
+Against Walker, attention should be paid to Diakhaté’s balance, patience and punch selection. A young power hitter can often become wild when an opponent refuses to fall at once.
 
 Diakhaté possesses one of the more intriguing physical ceilings on the program. Before he can be regarded as a contender, however, he must meet opponents capable of testing his defense and forcing him beyond his first attack.
 
@@ -160,7 +162,7 @@ Should he defeat Stots in convincing fashion, the “prospect” label ought to 
 
 LEVAN KHABALAEV stands 6-foot-2, an unusual height for a lightweight, and has built his early record around quick finishes.
 
-His reach gives him obvious possibilities. A tall lightweight who can strike effectively at the end of his punches and kicks is a troublesome proposition. Height alone, however, has never won a championship.
+His reach gives him obvious possibilities. A tall lightweight who can strike effectively at the end of his punches and kicks is a troublesome proposition. 
 
 Chamy Delva is experienced enough to make Khabalaev answer several useful questions.
 
