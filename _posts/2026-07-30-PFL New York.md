@@ -29,7 +29,13 @@ Lightweight championship: Usman Nurmagomedov vs. Archie Colgan **(PICK: USMAN NU
 
 Women's flyweight: Dakota Ditcheva vs. Denise Kielholtz **(PICK: DAKOTA DITCHEVA)**
 
-Lightweight: Amru Magomedov vs. Angel Alvarez **(PICK: AMRU MAGOMEDOV)**
+Lightweight: Amru Magomedov vs. Angel Alvarez **(PICK: AMRU MAGOMEDOV) ✅**
+
+**R1:** Both meet center. SP vs. SP. Magomedov first to strike with leg kick. Magomedov now circling on the outside, working kicks at all levels here. Alvarez stumbles when he threw a punch and Magomedov kicks the leg out from under. He is relentless with the kicks. Alvarez takes a leap inside range and throws a combination but nothing lands. Teep from Magomedov that lands clean and pushes Alvarez back. Alvarez having a really tough time getting inside. Now they are clinched up after they crashed into each other. Alvarez pushes Magomedov against the cage. Some punches and knees land from both sides in the clinch. Back to center. Magomedov with the double collar tie and knees - very Makhachev-esque. Magomedov knocks Alvarez to the ground after another leg kick. These kicks are brutal. Alvarez back to his feet though, taking an occassional deep breath but still looks to be game. Magomedov looks to have kicked Alvarez right in the jellybeans. Break at 1:11 left in the round. Replay definitely shows the cup elevate -- ouch! Time in: Magomedov right back to the kicks. Almost landed a lead leg headkick. Alvarez still can't get into range, Magomedov making him pay with all these kicks. They clinch up, Alvarez presses Magomedov against the cage but he is not in control. Magomedov gets the double collar-tie and the bell rings. Dominate round for Magomedov. **10-9 Magomedov**
+
+**R2:** Let's see what Alvarez can do this round. His leg looks terrible. Magomedov throwing a jab and cross now alongside his kicks. They tie up, Alvarez misses a trip, pays for it. Back to getting picked apart with kicks. Magomedov takes a chance throwing a 1-2 and misses. These kicks are brutal. Alvarez barely can stand after a kick and almost drops to the mat, looking like McGregor, but he stays up. Magomedov kicks the leg again and he goes down. Magomedov follows him down, in side control, Alvarez got a single leg, on his knees, Magomedov punching the side of his head. Alvarez trying to get up without taking too much damage but Magomedov is Magomedov-ing. Magomedov is sitting on Alvarez's head and punching his face for a second. Alvarez is doing his best to cover up and move, actually pretty impressive but now Magomedov is in full mount. Elbows and punches are coming down. Alvarez doing his best to cover up but the ref has seen enough and calls it off. 
+
+**RESULT: AMRU MAGOMEDOV DEFEATS ANGEL ALVAREZ VIA TKO IN ROUND 2**
 
 Light heavyweight: Moustapha Diakhaté vs. Darryl Walker **(PICK: DARRYL WALKER) ❌**  
 *Jake Paul talks over Moustapha's entire walkout which would've been dope.* 
