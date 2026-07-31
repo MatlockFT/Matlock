@@ -39,7 +39,11 @@ Bantamweight: Raufeon Stots vs. Lazaro Dayron **(PICK: RAUFEON STOTS)**
 
 Bantamweight: Sean Gauci vs. Allan Begosso **(PICK: SEAN GAUCI)**
 
-**R1:** 
+**R1:** Gauci takes center. Begosso with a left hook that nearly lands, a nice jab. Good feints from Gauci but nothing thrown yet. Begosso with a 3 punch combo that doesn't land clean. Gauci with a great right over the top. Gauci tries for a TD against the cage that fails. Nice jab to the body and head from Gauci. Begosso is now committing to some leg kicks and then an elbow down the middle. This is tense. Begosso landing great leg kicks, Gauci's calf is red. He attempts for a takedown and gets it in the middle of the cage. Closed guard for Begosso. Begosso doing good work fromt he bottom landing strikes, wrapping up arms and controlling posture. Gauci is landing some shots and it looks like he got a clean elbow, too. Gauci tries to step into half guard, Begosso grabs for a heel hook, Gauci circles out into side control now. Very competitive first round thus far. Gauci throws about 6 elbows and landing several good ones. This top control might win him the round. He's trying for an arm triangle, abandons it, finishes with some ground and pound. Very competitive first round but I think Gauci more effective overall but Begosso is in this fight for sure. **10-9 Sean Gauci**
+
+**R2:** Gauci takes center again, Begosso backs up to the cage and committs to circling on the outside and throwing calf kicks again and again. Of course, Gauci takes the opportunity to try for a takedown against the cage. Doesn't get it. Right hand to the head, left to the body lands for Gauci, level changes and pins Begosso against the fence again. Knee to the body lands clean for Gauci, Elbow lands for Begosso on the break. Begosso tries for flying knee, I think he just wants some space because his back is to the fence. Begosso throwing bungalos right now, several combinations, they all land on Gauci's guard. Gauci level changes, double leg with some elevation and a takedown near center fo the cage. He's in half guard, throwin some punches, might try for arm triangle. Guaci stayin in this position, just working position and scoring punches. Good, professional work from Gauci on top here. Scoring, keeping position, staying active as Begosso trying to work his way out. Round ends. **20-18 Gauci**
+
+**R3:** 
 
 175-pound catchweight: Jonathan Piersma vs. Omar El Dafrawy **(PICK: JONATHAN PIERSMA) ❌**
 
