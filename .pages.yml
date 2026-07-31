@@ -99,7 +99,7 @@ content:
           - name: alt
             label: Image Description
             type: string
-            required: true
+            required: false
             description: >-
               Describe who or what appears in the image. Do not begin
               with the words "image of."
