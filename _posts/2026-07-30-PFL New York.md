@@ -78,6 +78,8 @@ NO fighter on the card has more to gain than Archie Colgan.
 
 Colgan enters the championship contest unbeaten in 13 professional bouts. A former collegiate wrestler, he has advanced behind physical strength, steady pressure and the ability to force opponents into exhausting grappling exchanges.
 
+![](/assets/uploads/archie.jpg)
+
 Those weapons have brought him to Usman Nurmagomedov.
 
 Now we shall learn whether they can carry him any farther.
