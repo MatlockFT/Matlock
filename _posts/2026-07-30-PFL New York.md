@@ -12,6 +12,9 @@ image:
   alt: "PFL NEW YORK "
 tags:
   - PFL
+  - AMRU MAGOMEDOV
+  - DAKOTA DITCHEVA
+  - ARCHIE COLGAN
 last_modified_at: 2026-07-30
 published: true
 ---
