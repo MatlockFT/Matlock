@@ -35,7 +35,7 @@ Light heavyweight: Moustapha Diakhaté vs. Darryl Walker **(PICK: DARRYL WALKER)
 
 ## **Preliminary card**
 
-Bantamweight: Raufeon Stots vs. Lazaro Dayron **(PICK: LAZARO DAYRON)**
+Bantamweight: Raufeon Stots vs. Lazaro Dayron **(PICK: LAZARO DAYRON) ✅**
 
 **R1:** Both take center. Southpaw for Stots. Trading inside leg kicks. Stots goes for headkick. Inside body kick for Stots. Dayron with a head kick of his own. Stots doing all the southpaw advantages. He's trying for the left straight now but Dayron slipping it. Dayron tried to sneak in a right hook, body kick from Stots though. Dayron lands a clean 1-2. 1-2 and grabs a single leg and abandons for Dayron, very nice. Slapping left hand from Stots lands top of the head of Dayron. Dayron lands another right hand clean. Jab gets through for Dayron. Stots reading and not throwing now. Dayron got him biting on feints. Long jab from Stots but not clean. Dayron with another right hand that lands. Another level change for a single from Dayron, abandons again. Showing a lot of looks. Stots lands clean, gets hit on the break, looks like an uppercut kinda lands for him, too. Dayron, jab lands. Snapping head kick from Dayron almost gets through. Jab from Stots, level change and takedown from Dayron. Stots gets up but eats a knee on the way up. **10-9 Dayron**
 
