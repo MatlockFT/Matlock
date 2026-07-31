@@ -20,7 +20,8 @@ published: true
 ---
 # NAMES TO WATCH AT PFL NEW YORK
 
-My picks are live on **Verdict**: [https://verdictmma.com/event/pfl-ny2026-nurmagomedov-vs-colgan](https://verdictmma.com/event/pfl-ny2026-nurmagomedov-vs-colgan)
+My picks are live on **Verdict**:   
+[https://verdictmma.com/event/pfl-ny2026-nurmagomedov-vs-colgan](https://verdictmma.com/event/pfl-ny2026-nurmagomedov-vs-colgan)
 
 ## **Main card**
 
