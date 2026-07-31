@@ -36,7 +36,7 @@ Some are prospects in the strict sense. Others have already reached contender or
 
 AMRU MAGOMEDOV, unbeaten in ten starts, appears to be the best orthodox prospect on the program.
 
-
+![AMRU MAGOMEDOV](/assets/uploads/magomedov.png)
 
 The 27-year-old lightweight has disposed of eight opponents inside the distance and made a smashing PFL debut by halting Kolton Englund in only 37 seconds. That brief engagement did not tell us everything about Magomedov, but it told us plenty about his intentions.
 
