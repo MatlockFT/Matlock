@@ -33,7 +33,7 @@ Lightweight: Amru Magomedov vs. Angel Alvarez **(PICK: AMRU MAGOMEDOV)**
 
 Light heavyweight: Moustapha Diakhaté vs. Darryl Walker **(PICK: DARRYL WALKER)**
 
-## **Preliminary card**
+## **Preliminary card (4/5 PICKS CORRECT)**
 
 Bantamweight: Raufeon Stots vs. Lazaro Dayron **(PICK: LAZARO DAYRON) ✅**
 
