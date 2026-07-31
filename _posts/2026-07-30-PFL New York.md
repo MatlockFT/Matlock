@@ -36,7 +36,7 @@ Some are prospects in the strict sense. Others have already reached contender or
 
 AMRU MAGOMEDOV, unbeaten in ten starts, appears to be the best orthodox prospect on the program.
 
-![AMRU MAGOMEDOV](/assets/uploads/magomedov.png)
+![AMRU MAGOMEDOV](/assets/uploads/magomedov.jpg)
 
 The 27-year-old lightweight has disposed of eight opponents inside the distance and made a smashing PFL debut by halting Kolton Englund in only 37 seconds. That brief engagement did not tell us everything about Magomedov, but it told us plenty about his intentions.
 
@@ -55,6 +55,8 @@ A decisive victory would mark Magomedov as genuine championship timber in the li
 DAKOTA DITCHEVA can hardly be called a prospect any longer.
 
 The undefeated English flyweight has won all 15 of her professional engagements, nine of them under the PFL banner, and has stopped 12 opponents. She has already captured tournament honors and defeated established international competition.
+
+![](/assets/uploads/dakota.jpg)
 
 What remains to be discovered is not whether Ditcheva belongs among the leading PFL fighters. She does.
 
