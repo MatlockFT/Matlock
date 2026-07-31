@@ -100,6 +100,8 @@ A victory would make him an internationally important lightweight champion overn
 
 TATIANA POSTARNAKOVA may be the most interesting young fighter on the preliminary card.
 
+![](/assets/uploads/tatiana-postarnakova.jpg)
+
 The 26-year-old flyweight has won all seven of her professional contests. Her opponent, Montana De La Rosa, brings a much less attractive record at 13-9-1, but those figures do not tell the whole story.
 
 De La Rosa has operated against stronger and more experienced competition. She is accustomed to clinches, takedown battles and prolonged scrambles—the very situations that often expose an unbeaten prospect.
@@ -113,6 +115,8 @@ A convincing triumph would move Postarnakova much closer to the leading PFL flyw
 ### Speed, Punches and One Big Question
 
 SEAN GAUCI has reeled off eight consecutive victories and carries an 11-1 record into his meeting with Allan Begosso.
+
+![](/assets/uploads/sean-gauci.jpg)
 
 Gauci is a quick bantamweight who likes to work in combinations. Once he finds the proper distance, he can increase his output rapidly and overwhelm an opponent before the latter has time to recover.
 
