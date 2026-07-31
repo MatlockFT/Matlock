@@ -31,7 +31,12 @@ Women's flyweight: Dakota Ditcheva vs. Denise Kielholtz **(PICK: DAKOTA DITCHEVA
 
 Lightweight: Amru Magomedov vs. Angel Alvarez **(PICK: AMRU MAGOMEDOV)**
 
-Light heavyweight: Moustapha Diakhaté vs. Darryl Walker **(PICK: DARRYL WALKER)**
+Light heavyweight: Moustapha Diakhaté vs. Darryl Walker **(PICK: DARRYL WALKER) ❌**  
+*Jake Paul talks over Moustapha's entire walkout which would've been dope.* 
+
+**R1:** Diakhate takes center immediately. Jab lands and wobbles Walker. Walker still alive. Walker lands knee on the inside. Diakhate caught a kick turns it into a takedown. Walker back to his feet. Walker throws a kick and it lands on Diakhate's head. These guys are crashing into each other this is wild. Takedown again for Diakhate. Half guard, landed elbow. Commentary reminds us Walker took this on very short notice. Walker recovers full guard for a moment but Diakhate. Diakhate landing damaging ground and pound, ref is forced to stop it.
+
+**RESULT: MOUSTAPHA DIAKHATE VIA ROUND 1 TKO**
 
 ## **Preliminary card (4/5 PICKS CORRECT)**
 
