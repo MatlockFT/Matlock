@@ -40,7 +40,9 @@ Bantamweight: Sean Gauci vs. Allan Begosso **(PICK: SEAN GAUCI)**
 
 175-pound catchweight: Jonathan Piersma vs. Omar El Dafrawy **(PICK: JONATHAN PIERSMA)**
 
-### ++Women's flyweight: Montana De La Rosa vs. Tatiana Postarnakova **(PICK: TATIANA POSTARNAKOVA)**++ <strong>✅</strong>
+**R1:** 
+
+Women's flyweight: Montana De La Rosa vs. Tatiana Postarnakova **(PICK: TATIANA POSTARNAKOVA) ✅**
 
 **R1:** DLR and Postarnakova testing range, standing center cage. DLR first to press forward with a combination, Postarnakova steps back with a couple counters. The most WMMA exchange ever. Stance switch head kick attempt from DLR. Lead hook lands from DLR, fake a takedown almost Edgar style. DLR tries for the lead high kick again from southpaw which glances off the head. Beautiful inside leg kick from DLR and she circles out. Postarnakova doesn't have much to offer, she tries for a slow turning side kick that doesn't land. Meanwhile, DLR throwing out the jab, landing inside leg kicks, circling out. Making herself a hard target. Postarnakova tries for a takedown finally but DLR able to thwart the attempt, they go against the cage, DLR tried for a head-and-arm throw, I think, but Postarnakova reverses it. Up to the feet, Postarnakova backpacks, and they're back to the ground with Postarnakova still on the back going for RNC attempts. Not a good position for DLR but the round is ending. **10-9 De La Rosa (it seems some media sources are scoring it for Postarnakova)**
 
@@ -53,7 +55,7 @@ Bantamweight: Sean Gauci vs. Allan Begosso **(PICK: SEAN GAUCI)**
 
 **RESULT: TATIANA POSTARNAKOVA WINS VIA SPLIT DEC OVER MONTANA DE LA ROSA**
 
-### ++Lightweight: Chamy Delva vs. Levan Khabalaev **(PICK: LEVAN KHABALAEV)**++ <strong>✅</strong>
+Lightweight: Chamy Delva vs. Levan Khabalaev **(PICK: LEVAN KHABALAEV) ✅**
 
 **R1:** Delva clinches early. Both against the cage as Devla is the aggressor. Khabalaev able to reverse position after a TD defense and Delva is against the cage. Devla committed to the bodylock. Khabalaev looks to have hurt Delva and he drops to the ground but is still holding that body lock. Delva lets go of body lock, Khabalaev lands another body shot that seriously hurts Delva. Khabalaev with ground and pound. Fight over. 
 
