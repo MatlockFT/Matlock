@@ -44,7 +44,9 @@ Women's flyweight: Montana De La Rosa vs. Tatiana Postarnakova **(PICK: TATIANA 
 
 Lightweight: Chamy Delva vs. Levan Khabalaev **(PICK: LEVAN KHABALAEV)**
 
-**R1:** Delva clinches early. Both against the cage as Devla is the aggressor. Khabalaev able to reverse position after a TD defense and Delva is against the cage. Devla committed to the bodylock. 
+**R1:** Delva clinches early. Both against the cage as Devla is the aggressor. Khabalaev able to reverse position after a TD defense and Delva is against the cage. Devla committed to the bodylock. Khabalaev looks to have hurt Delva and he drops to the ground but is still holding that body lock. Delva lets go of body lock, Khabalaev lands another body shot that seriously hurts Delva. Khabalaev with ground and pound. Fight over. 
+
+**RESULT: LEVAN KHABALAEV WINS VIA ROUND 1 TKO OVER CHAMY DELVA (Knee to the body followed by ground and pound)**
 
 ## Magomedov Heads a Strong List of Rising Talent; Colgan Faces His Supreme Test
 
