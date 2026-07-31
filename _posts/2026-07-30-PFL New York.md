@@ -41,7 +41,9 @@ Bantamweight: Sean Gauci vs. Allan Begosso **(PICK: SEAN GAUCI)**
 
 175-pound catchweight: Jonathan Piersma vs. Omar El Dafrawy **(PICK: JONATHAN PIERSMA)**
 
-**R1:** 
+**R1:** Immediate low single from Piersma. Taking shots but he is committed and gets it. In full guard. This is about what I expected so we should see Piersma stack and attack. Piersma may be cut open from an elbow, blood be dripping. Piersma on the back as El Dafrawy works his way to his feet. Back packing and Piersma looking for RNC's and face cranks. Finally, El Dafrawy shakes him off to the side and El Dafrawy is in full guard throwing. Good ground and pound from El Dafrawy and that's been the theme of this round. El Dafrawy with much more damaging activity while Piersma has been committed to grappling and position. No question El Dafrawy has done way more damage. Piersma getting eaten alive from the clinch to end the round. **10-9 Omar El Dafrawy**
+
+**R2:** Piersma blocks a kick, gets another low single takedown. Piersma will need to do damage or be completely dominate this round to catch back up. Piersma works his way to side control. Really trying for a crucifix... and he gets it. Piersma gets to the back now. RNC attempt here but El Dafrawy able to push it off. 2:20 left in the round. 
 
 Women's flyweight: Montana De La Rosa vs. Tatiana Postarnakova **(PICK: TATIANA POSTARNAKOVA) ✅**
 
