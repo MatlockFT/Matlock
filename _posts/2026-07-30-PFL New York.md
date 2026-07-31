@@ -42,7 +42,7 @@ Bantamweight: Sean Gauci vs. Allan Begosso **(PICK: SEAN GAUCI)**
 
 Women's flyweight: Montana De La Rosa vs. Tatiana Postarnakova **(PICK: TATIANA POSTARNAKOVA)**
 
-Lightweight: Chamy Delva vs. Levan Khabalaev **(PICK: LEVAN KHABALAEV)**
+Lightweight: Chamy Delva vs. Levan Khabalaev **(PICK: LEVAN KHABALAEV) ✅**
 
 **R1:** Delva clinches early. Both against the cage as Devla is the aggressor. Khabalaev able to reverse position after a TD defense and Delva is against the cage. Devla committed to the bodylock. Khabalaev looks to have hurt Delva and he drops to the ground but is still holding that body lock. Delva lets go of body lock, Khabalaev lands another body shot that seriously hurts Delva. Khabalaev with ground and pound. Fight over. 
 
