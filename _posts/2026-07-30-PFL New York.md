@@ -40,9 +40,17 @@ Bantamweight: Sean Gauci vs. Allan Begosso **(PICK: SEAN GAUCI)**
 
 175-pound catchweight: Jonathan Piersma vs. Omar El Dafrawy **(PICK: JONATHAN PIERSMA)**
 
-Women's flyweight: Montana De La Rosa vs. Tatiana Postarnakova **(PICK: TATIANA POSTARNAKOVA)**
+++Women's flyweight: Montana De La Rosa vs. Tatiana Postarnakova **(PICK: TATIANA POSTARNAKOVA)**++
 
-Lightweight: Chamy Delva vs. Levan Khabalaev **(PICK: LEVAN KHABALAEV) ✅**
+**R1:** DLR and Postarnakova testing range, standing center cage. DLR first to press forward with a combination, Postarnakova steps back with a couple counters. The most WMMA exchange ever. Stance switch head kick attempt from DLR. Lead hook lands from DLR, fake a takedown almost Edgar style. DLR tries for the lead high kick again from southpaw which glances off the head. Beautiful inside leg kick from DLR and she circles out. Postarnakova doesn't have much to offer, she tries for a slow turning side kick that doesn't land. Meanwhile, DLR throwing out the jab, landing inside leg kicks, circling out. Making herself a hard target. Postarnakova tries for a takedown finally but DLR able to thwart the attempt, they go against the cage, DLR tried for a head-and-arm throw, I think, but Postarnakova reverses it. Up to the feet, Postarnakova backpacks, and they're back to the ground with Postarnakova still on the back going for RNC attempts. Not a good position for DLR but the round is ending. **10-9 De La Rosa (it seems some media sources are scoring it for Postarnakova)**
+
+**R2:** DLR with an inside leg kick and a right hook up close that lands cleanly. Can tell it stunned Postarnakova, even just for a brief second. They're tied up against the cage again with DLR being the aggressor. Crowd is booing as they are kinda stalled against the cage which is strange because they were chanting USA a minute ago. DLR is in the better position with control and throwing knees. It would be wise for DLR to separate and get back to center but she is committed to pressing Postarnakova against the cage to get this to the mat. Very interesting choice as Postarnakova is looking for her neck. Postarnakova jumps the gilly. It's tight but not sure she has it... DLR seems OK. One wrong move and Postarnakova could adjust it but she instead lets go. DLR is now in a good position for some classic ground n pound. DLR has her own gilly attempt now, also looks tight but doesn't quite look fight ending. Scottish twister position but it doesn't look like much. Round comes to a close. Strange round. **10-9 De La Rosa (Seems most people may have it 19-19)**
+
+**R3:** 
+
+![image.png](/assets/uploads/image.png)
+
+++Lightweight: Chamy Delva vs. Levan Khabalaev **(PICK: LEVAN KHABALAEV) ✅**++
 
 **R1:** Delva clinches early. Both against the cage as Devla is the aggressor. Khabalaev able to reverse position after a TD defense and Delva is against the cage. Devla committed to the bodylock. Khabalaev looks to have hurt Delva and he drops to the ground but is still holding that body lock. Delva lets go of body lock, Khabalaev lands another body shot that seriously hurts Delva. Khabalaev with ground and pound. Fight over. 
 
