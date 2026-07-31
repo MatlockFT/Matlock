@@ -136,6 +136,8 @@ A sharp, disciplined victory should earn him a match with one of the better bant
 
 MOUSTAPHA DIAKHATÉ is undefeated, powerfully built and equipped with the sort of physical tools that immediately command attention in the light-heavyweight class.
 
+![](/assets/uploads/diakhate.jpg)
+
 He has size, strength and genuine hitting power. When he attacks with confidence, he can make an opponent’s evening a short and unpleasant one.
 
 Darryl Walker has accepted the assignment on the revised card, making this more of a showcase for Diakhaté than a complete examination of his ability.
@@ -154,6 +156,8 @@ LAZARO DAYRON is 33 years old, which is rather advanced for a fighter still bein
 
 His record, however, demands attention.
 
+![](/assets/uploads/dayron.jpg)
+
 Dayron is 10-0-1 and has used a strong wrestling attack to move toward the front of the PFL bantamweight picture. In his latest victory he completed seven takedowns, and he previously fought the difficult Danny Sabatello to a draw.
 
 His New York opponent, Raufeon Stots, is the best measuring stick on the undercard.
@@ -169,6 +173,8 @@ Should he defeat Stots in convincing fashion, the “prospect” label ought to 
 ### A Long Lightweight With Finishing Intent
 
 LEVAN KHABALAEV stands 6-foot-2, an unusual height for a lightweight, and has built his early record around quick finishes.
+
+![](/assets/uploads/levan-khabalaev.png)
 
 His reach gives him obvious possibilities. A tall lightweight who can strike effectively at the end of his punches and kicks is a troublesome proposition. 
 
