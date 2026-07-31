@@ -37,7 +37,7 @@ Light heavyweight: Moustapha Diakhaté vs. Darryl Walker **(PICK: DARRYL WALKER)
 
 Bantamweight: Raufeon Stots vs. Lazaro Dayron **(PICK: RAUFEON STOTS)**
 
-Bantamweight: Sean Gauci vs. Allan Begosso **(PICK: SEAN GAUCI)**
+Bantamweight: Sean Gauci vs. Allan Begosso **(PICK: SEAN GAUCI) ✅**
 
 **R1:** Gauci takes center. Begosso with a left hook that nearly lands, a nice jab. Good feints from Gauci but nothing thrown yet. Begosso with a 3 punch combo that doesn't land clean. Gauci with a great right over the top. Gauci tries for a TD against the cage that fails. Nice jab to the body and head from Gauci. Begosso is now committing to some leg kicks and then an elbow down the middle. This is tense. Begosso landing great leg kicks, Gauci's calf is red. He attempts for a takedown and gets it in the middle of the cage. Closed guard for Begosso. Begosso doing good work from the bottom landing strikes, wrapping up arms and controlling posture. Gauci is landing some shots and it looks like he got a clean elbow, too. Gauci tries to step into half guard, Begosso grabs for a heel hook, Gauci circles out into side control now. Very competitive first round thus far. Gauci throws about 6 elbows and landing several good ones. This top control might win him the round. He's trying for an arm triangle, abandons it, finishes with some ground and pound. Very competitive first round but I think Gauci more effective overall but Begosso is in this fight for sure. **10-9 Sean Gauci**
 
