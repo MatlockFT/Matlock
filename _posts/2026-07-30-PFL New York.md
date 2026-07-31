@@ -9,8 +9,11 @@ category: Breakdown
 author: MMA Matlock
 image:
   path: /assets/uploads/pfl-new-york-bananer.jpg
+  alt: "PFL NEW YORK "
+tags:
+  - PFL
 last_modified_at: 2026-07-30
-published: false
+published: true
 ---
 # NAMES TO WATCH AT PFL NEW YORK
 
