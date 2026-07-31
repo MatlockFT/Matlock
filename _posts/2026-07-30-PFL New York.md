@@ -40,7 +40,7 @@ Bantamweight: Sean Gauci vs. Allan Begosso **(PICK: SEAN GAUCI)**
 
 175-pound catchweight: Jonathan Piersma vs. Omar El Dafrawy **(PICK: JONATHAN PIERSMA)**
 
-++Women's flyweight: Montana De La Rosa vs. Tatiana Postarnakova **(PICK: TATIANA POSTARNAKOVA)**++
+++Women's flyweight: Montana De La Rosa vs. Tatiana Postarnakova **(PICK: TATIANA POSTARNAKOVA) ✅**++
 
 **R1:** DLR and Postarnakova testing range, standing center cage. DLR first to press forward with a combination, Postarnakova steps back with a couple counters. The most WMMA exchange ever. Stance switch head kick attempt from DLR. Lead hook lands from DLR, fake a takedown almost Edgar style. DLR tries for the lead high kick again from southpaw which glances off the head. Beautiful inside leg kick from DLR and she circles out. Postarnakova doesn't have much to offer, she tries for a slow turning side kick that doesn't land. Meanwhile, DLR throwing out the jab, landing inside leg kicks, circling out. Making herself a hard target. Postarnakova tries for a takedown finally but DLR able to thwart the attempt, they go against the cage, DLR tried for a head-and-arm throw, I think, but Postarnakova reverses it. Up to the feet, Postarnakova backpacks, and they're back to the ground with Postarnakova still on the back going for RNC attempts. Not a good position for DLR but the round is ending. **10-9 De La Rosa (it seems some media sources are scoring it for Postarnakova)**
 
@@ -48,7 +48,10 @@ Bantamweight: Sean Gauci vs. Allan Begosso **(PICK: SEAN GAUCI)**
 
 ![image.png](/assets/uploads/image.png)
 
-**R3:** DLR with the leg kick and right hand to start again. It's been working great. They are trading jabs and crosses. Pstarnakova lands a couple good shots, she fades back and lands another counter as DLR pressed forward. Head kick, more of a foot slap, across Postarnakova's face. Postarnakova goes for a takedown, DLR reverses and takes the back but Postarnakova rolls and she is nearly in top position. She is in a high half guard but now shes in guard, butterfly hooks for DLR. This is good for Postarnakova WHO I SNOW LANDING NASTY ELBOWS. Thudding! 
+**R3:** DLR with the leg kick and right hand to start again. It's been working great. They are trading jabs and crosses. Pstarnakova lands a couple good shots, she fades back and lands another counter as DLR pressed forward. Head kick, more of a foot slap, across Postarnakova's face. Postarnakova goes for a takedown, DLR reverses and takes the back but Postarnakova rolls and she is nearly in top position. She is in a high half guard but now shes in guard, butterfly hooks for DLR. This is good for Postarnakova WHO I SNOW LANDING NASTY ELBOWS. Thudding! DLR trapped on bottom, unable to find a way to escape and time is running out. DLR almost finds a moment to escape after a triangle attempt but Postarnakova is all over her. Postarnakova landing knees as DLR works her way to her feet. DLR now trying to get this to the ground? Both are exchanging knees and punches from the clinch.  
+**R3: 10-9 Postarnakova. 29-28 Montana De La Rosa** but I anticipate it'll be a split dec for Postarnakova.
+
+**RESULT: TATIANA POSTARNAKOVA WINS VIA SPLIT DEC OVER MONTANA DE LA ROSA**
 
 ++Lightweight: Chamy Delva vs. Levan Khabalaev **(PICK: LEVAN KHABALAEV) ✅**++
 
