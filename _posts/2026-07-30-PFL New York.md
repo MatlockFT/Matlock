@@ -20,6 +20,32 @@ published: true
 ---
 # NAMES TO WATCH AT PFL NEW YORK
 
+My picks are live on **Verdict**: [https://verdictmma.com/event/pfl-ny2026-nurmagomedov-vs-colgan](https://verdictmma.com/event/pfl-ny2026-nurmagomedov-vs-colgan)
+
+## **Main card**
+
+Lightweight championship: Usman Nurmagomedov vs. Archie Colgan **(PICK: USMAN NURMAGOMEDOV)**
+
+Women's flyweight: Dakota Ditcheva vs. Denise Kielholtz **(PICK: DAKOTA DITCHEVA)**
+
+Lightweight: Amru Magomedov vs. Angel Alvarez **(PICK: AMRU MAGOMEDOV)**
+
+Light heavyweight: Moustapha Diakhaté vs. Darryl Walker **(PICK: DARRYL WALKER)**
+
+## **Preliminary card**
+
+Bantamweight: Raufeon Stots vs. Lazaro Dayron **(PICK: RAUFEON STOTS)**
+
+Bantamweight: Sean Gauci vs. Allan Begosso **(PICK: SEAN GAUCI)**
+
+175-pound catchweight: Jonathan Piersma vs. Omar El Dafrawy **(PICK: JONATHAN PIERSMA)**
+
+Women's flyweight: Montana De La Rosa vs. Tatiana Postarnakova **(PICK: TATIANA POSTARNAKOVA)**
+
+Lightweight: Chamy Delva vs. Levan Khabalaev **(PICK: LEVAN KHABALAEV)**
+
+**R1:**
+
 ## Magomedov Heads a Strong List of Rising Talent; Colgan Faces His Supreme Test
 
 THE Professional Fighters League moves into New York on Friday, July 31, with nine bouts on the program and several ambitious young battlers seeking a place among the promotion’s top brass.
@@ -200,88 +226,4 @@ PFL New York may be headed by a championship contest, but the future of several 
 
 Keep an eye on the youngsters.
 
-One or two may not remain youngsters for long.
-
-My picks are live on **Verdict**: [https://verdictmma.com/event/pfl-ny2026-nurmagomedov-vs-colgan](https://verdictmma.com/event/pfl-ny2026-nurmagomedov-vs-colgan)
-
-## **Main card**
-
-Lightweight championship: Usman Nurmagomedov vs. Archie Colgan **(PICK: USMAN NURMAGOMEDOV)**
-
-**R1:**  
-
-**R2:**  
-
-**R3:**
-
-**R4:**
-
-**R5:**
-
-Women's flyweight: Dakota Ditcheva vs. Denise Kielholtz **(PICK: DAKOTA DITCHEVA)**
-
-**R1:**  
-
-**R2:**  
-
-**R3:**
-
-**R4:**
-
-**R5:**
-
-Lightweight: Amru Magomedov vs. Angel Alvarez **(PICK: AMRU MAGOMEDOV)**
-
-**R1:**  
-
-**R2:**  
-
-**R3:**
-
-Light heavyweight: Moustapha Diakhaté vs. Darryl Walker **(PICK: DARRYL WALKER)**
-
-**R1:**  
-
-**R2:**  
-
-**R3:**
-
-## **Preliminary card**
-
-Bantamweight: Raufeon Stots vs. Lazaro Dayron **(PICK: RAUFEON STOTS)**
-
-**R1:**  
-
-**R2:**  
-
-**R3:**
-
-Bantamweight: Sean Gauci vs. Allan Begosso **(PICK: SEAN GAUCI)**
-
-**R1:**  
-
-**R2:**  
-
-**R3:**
-
-175-pound catchweight: Jonathan Piersma vs. Omar El Dafrawy **(PICK: JONATHAN PIERSMA)**
-
-**R1:**  
-
-**R2:**  
-
-**R3:**
-
-Women's flyweight: Montana De La Rosa vs. Tatiana Postarnakova **(PICK: TATIANA POSTARNAKOVA)**
-
-**R1:**  
-
-**R2:**  
-
-**R3:**
-
-Lightweight: Chamy Delva vs. Levan Khabalaev **(PICK: LEVAN KHABALAEV)**
-
-**R1:**  
-**R2:**  
-**R3:**
+One or two may not remain youngsters for long.  
