@@ -7,6 +7,8 @@ description: Eight Fighters to Watch at PFL New York. Undefeated PFL Lightweight
 date: 2026-07-30
 category: Breakdown
 author: MMA Matlock
+image:
+  path: /assets/uploads/pfl-new-york-bananer.jpg
 last_modified_at: 2026-07-30
 published: false
 ---
