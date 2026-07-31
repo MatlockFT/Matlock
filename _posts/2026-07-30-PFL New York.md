@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "PFL New York: Nurmagomedov vs. Colgan | Preview"
+title: "PFL New York: Nurmagomedov vs. Colgan | Names To Watch"
 description: Eight Fighters to Watch at PFL New York. Undefeated PFL Lightweight
   Champion Usman Nurmagomedov Returns to Defend His Title Against Undefeated No.
   3-Ranked Contender Archie Colgan.
