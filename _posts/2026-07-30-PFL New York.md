@@ -44,7 +44,7 @@ Women's flyweight: Montana De La Rosa vs. Tatiana Postarnakova **(PICK: TATIANA 
 
 Lightweight: Chamy Delva vs. Levan Khabalaev **(PICK: LEVAN KHABALAEV)**
 
-**R1:**
+**R1:** Delva clinches early. Both against the cage as Devla is the aggressor. Khabalaev able to reverse position after a TD defense and Delva is against the cage. Devla committed to the bodylock. 
 
 ## Magomedov Heads a Strong List of Rising Talent; Colgan Faces His Supreme Test
 
