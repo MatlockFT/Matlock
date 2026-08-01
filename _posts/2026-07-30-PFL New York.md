@@ -23,13 +23,15 @@ published: true
 My picks are live on **Verdict**:   
 [https://verdictmma.com/event/pfl-ny2026-nurmagomedov-vs-colgan](https://verdictmma.com/event/pfl-ny2026-nurmagomedov-vs-colgan)
 
-## **Main card**
+## **Main card (3/4 PICKS CORRECT)**
 
-Lightweight championship: Usman Nurmagomedov vs. Archie Colgan **(PICK: USMAN NURMAGOMEDOV)**
+Lightweight championship: Usman Nurmagomedov vs. Archie Colgan **(PICK: USMAN NURMAGOMEDOV) ✅**
 
+**R1:** After a lackluster co-main, lets see what this one has to offer. Both meet in the center. Kicks often and frequent right away from Nurmagomedov. Colgan pressuring though with feints and jabs. Colgan just fired off a right hand that nearly landed. Keep an eye out for that but Nurmagomedov landed a couple of shots. Side kick to the body from the Russian. Inside leg kick. Outside leg kick. Jab lands. Colgan crashes forward but nothing comes of it, back to center, kicks firing off from the Russian again. Colgan's got a mouse under the left eye. Body shot from Colgan and slips. Front kick from Nurmagomedov is strong. Again. And Again. Red below the sternum of Colgan. Two more and a jab. Left hook from Colgan, knocks Nurmagomedov off balance. Back to the feet. Nurmagomedov lands.. was that a question mark kick!? He's wobbled, left hook drops him. Colgan gets back up, uppercuts, falls back down, another uppercut while he's on his knees. THE REF STOPS IT.
 
+**RESULT: USMAN NURMAGOMEDOV WINS VIA ROUND 1 KNOCKOUT**
 
-Women's flyweight: Dakota Ditcheva vs. Denise Kielholtz **(PICK: DAKOTA DITCHEVA)**
+Women's flyweight: Dakota Ditcheva vs. Denise Kielholtz **(PICK: DAKOTA DITCHEVA) ✅**
 
 **R1:** They meet in the center. Doing the leg kick dance at each other. Dakota with a jab, teep, right straight, outsidde kick to the thigh. Kielholtz landing these inside leg kicks sometiems when Dakota jabs. Pretty nice but its not going to be enough. Dakota is so much longer. Kielholtz committing to these leg kicks though. Camera operators are zooming in way too far in a couple of these corners and its makign me angry. Right hand lands for Dakota but Kielholtz ties her up, tries for a head and arm throw. Jack Slack is somewhere screaming into the void. Huge knee at the end of the round that lands for Dakota, looks like Kielholtz may have folded over but the camera work is atrocious. Competitive round but ultimately its **10-9 Dakota**
 
