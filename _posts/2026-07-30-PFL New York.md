@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "🔴LIVE: PFL New York: Nurmagomedov vs. Colgan | Names To Watch"
+title: "PFL New York: Nurmagomedov vs. Colgan | Names To Watch & Recap"
 description: Eight Fighters to Watch at PFL New York. Undefeated PFL Lightweight
   Champion Usman Nurmagomedov Returns to Defend His Title Against Undefeated No.
   3-Ranked Contender Archie Colgan.
@@ -20,7 +20,7 @@ published: true
 ---
 # NAMES TO WATCH AT PFL NEW YORK
 
-My picks are live on **Verdict**:   
+My picks are live on **Verdict**:  
 [https://verdictmma.com/event/pfl-ny2026-nurmagomedov-vs-colgan](https://verdictmma.com/event/pfl-ny2026-nurmagomedov-vs-colgan)
 
 **Post Event Recap:**
