@@ -27,7 +27,18 @@ My picks are live on **Verdict**:
 
 Lightweight championship: Usman Nurmagomedov vs. Archie Colgan **(PICK: USMAN NURMAGOMEDOV)**
 
+
+
 Women's flyweight: Dakota Ditcheva vs. Denise Kielholtz **(PICK: DAKOTA DITCHEVA)**
+
+**R1:** They meet in the center. Doing the leg kick dance at each other. Dakota with a jab, teep, right straight, outsidde kick to the thigh. Kielholtz landing these inside leg kicks sometiems when Dakota jabs. Pretty nice but its not going to be enough. Dakota is so much longer. Kielholtz committing to these leg kicks though. Camera operators are zooming in way too far in a couple of these corners and its makign me angry. Right hand lands for Dakota but Kielholtz ties her up, tries for a head and arm throw. Jack Slack is somewhere screaming into the void. Huge knee at the end of the round that lands for Dakota, looks like Kielholtz may have folded over but the camera work is atrocious. Competitive round but ultimately its **10-9 Dakota**
+
+**R2:** Body kicks immediately for Dakota and Kielholtz reacts. Dakota tries to close in and capitalize but Kielholtz ties her up, trips and gets her to the mat. Huge for Kielholtz but she can't maintain it, Dakota kicks out and back to the feet. Left straight lands for Dakota. Stance switch for Dakota, right hand from southpaw followed by left straight, they hit the cage, Dakota lands more shots and they break away back to the center. Now they're back to the cage as Kielholtz tries to grapple. They're now back to center again. Dakota throws a right and crashes into the clinch with Kielholtz, Dakota gets her to the ground and now she's throwing punches and elbows from halfguard. Kielholtz clamps down with an overhook to stop the shots. Dakota stands up, lands a head kick while Kielholtz lands an inside leg kick in an awkward exchange. Kielholtz still committed to these inside leg kicks whenever she can catch Dakota sitting down on her punches. Dakota lands several good shots and they're back to the ground with Dakota ontop, she's in side control trying to land some shots. **20-18 Dakota**
+
+**R3:** So far, not the dominate performance manywere expecting but Dakota is still winning. Inside leg kick from Kielholtz to start. Dakota front kicks Kielholtz's face. Head kick follow up. Kielholtz is tough, and LANDS A SPINNING ELBOW. Dakota eats it and doesn't look to be rattled at all. Stream cut out, not sure what happened for the last minute but we're 2:15 left int his round. Dakota in the clinch landing knees. The story of this fight so far is Dakota throwing kicks, then when she throws hands she crashes into the clinch where they both try to find their success. Kielholtz able to land kicks to the leg at range and some punches when they tie up. That is not going to be enough. Crowd is booing. Dakota happily picks Denise Kielholtz apart at range with the better strikes.  Not too surprising an outcome but MVP x PFL are expecting huge things with Dakota. As I wrote below, *Denise Kielholtz is no novice. She has an extensive background in kickboxing and judo and possesses enough experience to punish carelessness.*  
+**30-27 Dakota Ditcheva**
+
+**RESULT: DAKOTA DITCHEVA WINS VIA UNANIMOUS DECISION OVER DENISE KIELHOLTZ**
 
 Lightweight: Amru Magomedov vs. Angel Alvarez **(PICK: AMRU MAGOMEDOV) ✅**
 
