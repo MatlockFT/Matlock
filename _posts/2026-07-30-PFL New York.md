@@ -23,17 +23,19 @@ published: true
 My picks are live on **Verdict**:  
 [https://verdictmma.com/event/pfl-ny2026-nurmagomedov-vs-colgan](https://verdictmma.com/event/pfl-ny2026-nurmagomedov-vs-colgan)
 
-**Post Event Recap:**
+**Post-Event Recap**
 
-Fights: Not the most exciting night of fights but pretty competitive for the most part. The main event delivered while Dakota Ditcheva's performance may be viewed as lackluster by many. Certainly not a highlight reel performance.
+**Fights:** Not the most exciting night of fights, but they were pretty competitive for the most part. The main event delivered, while Dakota Ditcheva’s performance may be viewed as lackluster by many. It certainly wasn’t a highlight-reel performance.
 
-Production: Definitely not small show, regional-level production but some strange choices. Jake Paul was met with boo's at every opportunity the crowd got to do it. They kept dragging him out into interviews and being along side fighters post-fight. Not good. They held long-form interviews with the brass during fighter walkouts multiple times and it was irrelevant to the actual fighters coming out. 
+**Production:** Definitely not a small-show, regional-level production, but there were some strange choices. Jake Paul was met with boos at every opportunity the crowd got. They kept dragging him out for interviews and having him stand alongside fighters after their bouts. Not good.
 
-Pacing was really good and we're out by 7:50 PM CST. 
+They also held long-form interviews with the brass during fighter walkouts multiple times, and the interviews were irrelevant to the fighters who were actually coming out.
 
-The only other complaint I have is there were two camera ops that really had trouble framing the fighters because they were too far zoomed in. The shot they were going for is not uncommon in the gold standard UFC but you could tell they were either novice or unfamiliar with the sport. They also would do like an 80's close shot of a damaged leg and then slow zoom out to show the other fighters which might work in a product showcase but not in actual live sport. Pretty petty complaints from me but they are fair crticisms. 
+The pacing was really good, and we were out by 7:50 p.m. CST. My only other complaint is that two camera operators had trouble framing the fighters because they were zoomed in too far. The type of shot they were attempting is not uncommon in gold-standard UFC production, but you could tell they were either inexperienced or unfamiliar with the sport.
 
-I give this a 6/10 overall. 
+They would also use an ’80s-style close-up of a damaged leg and then slowly zoom out to reveal the other fighter. That might work in a product showcase, but not in a live sporting event.
+
+These are pretty petty complaints on my part, but I think they are fair criticisms. Overall, I give the event a 6/10.
 
 ## **Main card (3/4 PICKS CORRECT)**
 
