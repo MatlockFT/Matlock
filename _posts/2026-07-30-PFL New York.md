@@ -23,6 +23,18 @@ published: true
 My picks are live on **Verdict**:   
 [https://verdictmma.com/event/pfl-ny2026-nurmagomedov-vs-colgan](https://verdictmma.com/event/pfl-ny2026-nurmagomedov-vs-colgan)
 
+**Post Event Recap:**
+
+Fights: Not the most exciting night of fights but pretty competitive for the most part. The main event delivered while the Dakota Ditcheva's performance may be viewed as lackluster by many. Certainly not a highlight reel performance.
+
+Production: Definitely not small show, regional-level production but some strange choices. Jake Paul was met with boo's at every opportunity the crowd got to do it. They kept dragging him out into interviews and being along side fighters post-fight. Not good. They held long-form interviews with the brass during fighter walkouts multiple times and it was irrelevant to the actual fighters coming out. 
+
+Pacing was really good and we're out by 7:50 PM CST. 
+
+The only other complaint I have is there were two camera ops that really had trouble framing the fighters because they were too far zoomed in. The shot they were going for is not uncommon in the gold standard UFC but you could tell they were either novice or unfamiliar with the sport. They also would do like an 80's close shot of a damaged leg and then slow zoom out to show the other fighters which might work in a product showcase but not in actual live sport. Pretty petty complaints from me but they are fair crticisms. 
+
+I give this a 6/10 overall. 
+
 ## **Main card (3/4 PICKS CORRECT)**
 
 Lightweight championship: Usman Nurmagomedov vs. Archie Colgan **(PICK: USMAN NURMAGOMEDOV) ✅**
