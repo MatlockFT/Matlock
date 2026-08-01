@@ -25,7 +25,7 @@ My picks are live on **Verdict**:
 
 **Post Event Recap:**
 
-Fights: Not the most exciting night of fights but pretty competitive for the most part. The main event delivered while the Dakota Ditcheva's performance may be viewed as lackluster by many. Certainly not a highlight reel performance.
+Fights: Not the most exciting night of fights but pretty competitive for the most part. The main event delivered while Dakota Ditcheva's performance may be viewed as lackluster by many. Certainly not a highlight reel performance.
 
 Production: Definitely not small show, regional-level production but some strange choices. Jake Paul was met with boo's at every opportunity the crowd got to do it. They kept dragging him out into interviews and being along side fighters post-fight. Not good. They held long-form interviews with the brass during fighter walkouts multiple times and it was irrelevant to the actual fighters coming out. 
 
