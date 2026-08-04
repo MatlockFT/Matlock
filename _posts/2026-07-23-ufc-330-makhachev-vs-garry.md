@@ -20,7 +20,7 @@ published: true
 ---
 # Islam Makhachev vs. Ian Machado Garry
 
-UFC 330 takes place on August 15, 2026, at Xfinity Mobile Arena in Philadelphia. Welterweight champion Islam Makhachev will defend his title against No. 1 contender Ian Machado Garry.
+UFC 330 is scheduled for August 15, 2026, at Xfinity Mobile Arena in Philadelphia. Welterweight champion Islam Makhachev is set to defend his title against No. 1 contender Ian Machado Garry.
 
 ## Who controls the space?
 
@@ -60,6 +60,7 @@ Makhachev gives away five inches in height and four inches in reach. Garry is al
 | 5 | W — Alexander Volkanovski, unanimous decision | W — Geoff Neal, split decision |
 
 
+  
 Makhachev’s five-fight run includes two full championship decisions, two submissions and a first-round knockout. All five of Garry’s most recent fights reached the scorecards. His recent performances have been built around winning rounds through movement, distance control and steady output.
 
 ## Career UFC statistics
@@ -78,6 +79,8 @@ Makhachev’s five-fight run includes two full championship decisions, two submi
 | Average control time per UFC fight | 5:38 | 1:43 |
 | Control time as a share of total fight time | 51.2% | 11.6% |
 
+
+*Control averages and percentages were calculated from recorded UFC control time and total fight duration. Makhachev’s aggregate control time is also listed in the UFC record book.*
 
 The numbers describe two different kinds of fights.
 
@@ -129,7 +132,7 @@ Garry probably needs to hold the center in short stretches, score at range and l
 
 Makhachev does not have to beat Garry’s reach with his hands alone. Low kicks and body attacks can interrupt his movement, while level-change feints may make him pause, shift his weight or lower his hands. Any of those reactions could give Makhachev a moment to close the distance.
 
-That was clear against JDM. Makhachev used low kicks to disrupt his stance, then timed takedowns when JDM planted to punch or tried to reset. JDM had a three-inch reach advantage, but Makhachev rarely allowed him to settle into a comfortable striking rhythm. He completed four takedowns and held him to 18 significant strikes over five rounds.
+That was clear against JDM. Makhachev attacked his lead leg throughout the fight, then repeatedly timed his takedowns before JDM could settle into his boxing. JDM had a three-inch reach advantage, but Makhachev completed four takedowns, recorded 19:10 of control and held him to 18 significant strikes over five rounds.
 
 Garry presents a harder version of that problem because he is taller and can change direction suddenly rather than circling at one steady pace. Makhachev may only need to catch him during a direction change, after a kick or as he finishes the right hand. Those are the moments when Garry could be square, heavy on one leg or unable to move away immediately.
 
@@ -185,21 +188,21 @@ The first Volkanovski fight was less comfortable. Volkanovski outlanded Makhache
 
 Garry has also shown that he can remain dangerous after a difficult fight. He spent long periods dealing with Rakhmonov’s clinch pressure and wrestling, then took his back and threatened a choke in the fifth. It was probably Garry’s best position of the fight and came after four rounds in which he had been made to defend far more than usual.
 
-The Prates fight looked different. Garry still landed 28 significant strikes in the fifth, but his movement became less reliable as Prates kept pressing forward. He failed on six takedown attempts, gave up more than a minute of control and ended the fight absorbing heavy ground strikes. Garry later said he was not hurt. His coach, Diego Lima, said that he was and also spoke about continuing to improve his conditioning.
+The Prates fight looked different. Garry still landed 28 significant strikes in the fifth, but his movement became less reliable as Prates kept pressing forward. In that round, Garry went 0-for-6 on takedowns, gave up 1:01 of control and absorbed 12 significant ground strikes.
 
-That performance is not enough to say Garry has poor cardio. He remained active and kept trying to change the fight. One possible reading is that his movement and decision-making declined before his willingness to work did, which may matter more against Makhachev than a complete physical fade.
+Garry later said he was not hurt and remained conscious throughout the exchange. Whatever the case, his movement and choices became less reliable as the pressure increased. That performance is not enough to say he has poor cardio. He did not stop working, but his ability to move and make clean decisions may have declined before his willingness to fight did. Against Makhachev, that could matter more than a complete physical fade.
 
 If fatigue matters here, it may show up in small losses. Garry’s exits could become slower or easier to read. Makhachev’s entries could lose some of their timing, as they appeared to against Volkanovski. Both have produced strong fifth rounds, and both have had late moments where parts of their game became less reliable.
 
 ## What if Makhachev does not need the takedown?
 
-Javier Mendez has suggested that Makhachev may not need to take Garry down. It could be a bluff intended to keep Garry guessing, and there is not much direct evidence that Makhachev would choose to strike with someone like Garry for five rounds.
+Javier Mendez has said Makhachev may not even need to take Garry down. That could be deliberate misdirection, but his fuller point was that the camp would not know which route was available until it saw Garry’s timing in the cage.
 
-Mendez may mean that Makhachev does not need to force the takedown. The threat of wrestling can still affect Garry’s stance, his kicks and how freely he puts combinations together. A defended entry may still leave him in the clinch or moving toward the fence, which could be enough to keep him from settling into his preferred range.
+Makhachev may not need to force the takedown. The threat of wrestling can still affect Garry’s stance, his kicks and how freely he puts combinations together. A defended entry may leave him in the clinch or moving toward the fence, which could be enough to keep him from settling into his preferred range.
 
 That would allow Makhachev to strike without treating the fight as a pure kickboxing match. He could attack the lead leg, occupy Garry’s jab and work from the clinch while the possibility of the takedown continues to shape Garry’s reactions.
 
-There is still a risk in giving Garry too much time at range. He is longer, more active and comfortable building rounds through straight punches and kicks. Makhachev may not need to take him down, but he likely still wants Garry preparing for it.
+There is still a risk in giving Garry too much time at range. He is longer, faster and comfortable building rounds through straight punches and kicks. Makhachev may not need to take him down, but he probably still wants Garry preparing for it.
 
 ## What may decide it
 
@@ -215,10 +218,8 @@ Makhachev could spend much of the fight struggling to hold Garry down and still 
 
 Garry could defend most of the takedowns and still have a miserable night if he cannot break contact afterward. He may stay upright but spend long stretches carrying Makhachev’s weight, fighting hands and waiting for enough room to strike again. His better outcome is that those defenses become offense: a frame creates space for a right hand, a level change runs into a knee, or a clean exit forces Makhachev to cross the same distance again. If Garry can make enough of those moments count, the fight may begin to look much more like his kind of contest.
 
-I lean toward control time being the biggest factor in this fight. Garry is good at sticking and moving, but he is still hittable, including against shorter southpaws. Makhachev may not match his striking output, but I think the basics will be enough to create openings: the left hand, low kicks, pressure and the threat of the takedown.
+I lean toward Makhachev’s control shaping the fight, although the raw minutes alone will not win him rounds. The value will come from what he does in those positions: landing knees and short strikes, threatening submissions and keeping Garry from producing meaningful offense of his own.
 
-Garry’s reach is obvious, but his speed may be just as important. He can cover distance quickly and punish Makhachev before he gets settled, which is something I did not spend enough time on earlier in the article.
-
-I expect some back-and-forth from round to round, but Makhachev’s ability to turn brief openings into long stretches of control should make the difference. If he can add damage and submission threats from those positions, he should have enough to consistently win rounds.
+I expect some back-and-forth from round to round. Garry’s speed and direction changes give him real chances to make Makhachev miss, punish his entries and take parts of the fight back. Over five rounds, though, I trust Makhachev to turn more of his openings into sustained offense and force Garry to spend too much time defending.
 
 **Prediction: Islam Makhachev by decision.**
