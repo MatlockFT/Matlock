@@ -97,34 +97,37 @@ Garry’s reach is most useful in open space, where he can jab, kick and move be
 
 His height allows him to jab and kick while keeping his head farther away. It gives him a longer frame for posting on Makhachev’s shoulders, digging for underhooks and threatening knees when Makhachev changes levels.
 
-Makhachev has already beaten opponents with comparable or longer listed reaches. Charles Oliveira has a 74-inch reach, equal to Garry’s. Dan Hooker is listed with a 75-inch reach. Makhachev submitted both.
+Makhachev has already beaten opponents with comparable or longer reaches. Chucky Olives has a 74-inch reach, equal to Garry’s. Dan Hooker is listed with a 75-inch reach. Makhachev submitted both.
 
-Neither man, however, combined that reach with Garry’s 6'3" height, lateral movement and welterweight frame.
+Of course, neither of those guys are 6'3, are welterweights, or move like Ian Garry.
 
-Height may also become less useful once Garry reaches the fence. A tall, upright fighter can give Makhachev a long body to connect his hands around. Garry may have more space to build frames, but he may also have farther to travel when recovering his posture after a snap-down, trip or mat return.
+Height may also become less useful once Garry starts nearing the fence. Garry’s height may help him create space in the clinch, but once Makhachev breaks his posture, that same height can make it harder to stand tall and reset.
 
 The reach advantage matters most while Garry still has clear space behind him.
 
-## **Does Garry stay outside or hold the centre?**
+## Does Garry stay outside or hold the center?
 
-Garry probably does not want to live on the physical outside edge of the cage.
+Garry wants to fight at long range, but he probably does not want to spend much time near the outer edge of the Octagon.
 
-There is a difference between fighting at long range and fighting while backed up. The useful version of outside fighting happens near the centre: land the jab or kick, take a small angle and make the opponent turn.
+The black line is a warning. Once Garry moves beyond it, there is little room left to retreat. Makhachev can use the threat of strikes and level changes to keep him backing up, then close the remaining distance at the fence and start chaining positions together.
 
-The dangerous version involves taking three or four straight steps backwards until the fence removes the final step.
+The center gives Garry more room to defend. If Makhachev reaches his legs or upper body, Garry can sprawl, turn or circle away without immediately running into the cage. He also has more space to use his hands and forearms as frames, keeping Makhachev away from his hips and preventing him from getting chest-to-chest.
 
-Garry showed against Belal Muhammad that he can manage a pressure wrestler without simply running away. He defended all seven of Muhammad’s recorded takedown attempts, outlanded him 72–56 in significant strikes and landed 27 leg strikes.
+Those frames will be important. Garry can post on Makhachev’s shoulders, head or upper body, create separation and move off at an angle. If Makhachev gets past those frames and settles into the clinch, the extra space matters much less.
 
-Muhammad still produced 3:35 of control. That is an important detail. Stopping the recorded takedown does not always mean escaping the clinch or winning the positional exchange.  
-*(UFC Stats)*
+Being in the center does not make Garry safe. Makhachev took Jack Della Maddalena down in open space and controlled him for most of their fight. He attacked the lead leg, waited for JDM to plant his feet and entered before he could move away. The fence was not required to start the wrestling.
 
-Holding the centre would force Makhachev to cross more open space. Garry could meet him with a jab, front kick, right hand or knee. It would also give Garry two directions in which to exit.
+Della Maddalena also struggled to make Makhachev pay for closing the distance. The threat of the takedown limited his boxing, and when he did commit to combinations, Makhachev was often ready to wrestle as the exchange ended. Once Makhachev gained control, Della Maddalena could not create enough space to stand and reset.
 
-But holding the centre does not mean standing still. The longer Garry plants his feet, the easier it becomes for Makhachev to time a level change underneath a punch or kick.
+That is the limit of holding the center. It gives Garry more options, but he still has to recognize the entry, establish his frames and move before Makhachev settles into the position.
 
-The likely balance is for Garry to hold the centre in short spells, make Makhachev reset and then circle before the cage closes behind him.
+Dustin Poirier had some of his better moments against Makhachev when the fight remained in open space. Before their fight, Matt Brown said Poirier needed to “keep the center of the octagon.” Poirier later said that a striker who could stay off the fence and use his offense in the center could give Makhachev problems.
 
-Can he keep doing that for 25 minutes without his exits becoming slower, wider or easier to predict?
+Garry may still use the fence to help him stand if he is taken down near it. That is different from being driven there while Makhachev already controls his hips or upper body. In that situation, the fence is more likely to help Makhachev than Garry.
+
+Garry’s best approach may be to hold the center in short stretches, land at range and leave at an angle. He cannot stand still, but he also cannot keep giving ground in a straight line.
+
+Can he recognize the black line early enough to move before the fence becomes part of Makhachev’s attack? And when Makhachev does reach him, can Garry build his frames before one position turns into the next?
 
 ## **How Makhachev gets through the reach**
 
@@ -134,8 +137,7 @@ He attacks easier targets first. The lead leg does not move as far as the head. 
 
 Against Jack Della Maddalena, Makhachev mixed leg kicks with timed takedowns. He completed four takedowns and limited Della Maddalena to 18 significant strikes across five rounds.
 
-Della Maddalena had a three-inch reach advantage over Makhachev, although he was nowhere near as tall as Garry.  
-*(UFC Stats)*
+Della Maddalena had a three-inch reach advantage over Makhachev, although he was nowhere near as tall as Garry.
 
 Makhachev can also use Garry’s movement against him.
 
