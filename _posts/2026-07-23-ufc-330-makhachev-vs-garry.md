@@ -143,14 +143,12 @@ Dustin Poirier had some of his better moments against Makhachev when the fight r
   </a>.
 </p>
 
-<div style="position:relative; width:100%; padding-top:56.25%;">
-  <iframe
-    src="https://drive.google.com/file/d/1z6k8BM47_lPyHxqqfR7gyr1IVvEMSO0c/preview"
-    style="position:absolute; inset:0; width:100%; height:100%; border:0;"
-    allow="autoplay; fullscreen"
-    allowfullscreen>
-  </iframe>
-</div>
+<iframe
+  src="https://drive.google.com/file/d/1z6k8BM47_lPyHxqqfR7gyr1IVvEMSO0c/preview"
+  style="display:block; width:100%; aspect-ratio:16 / 9; border:0; margin:1.5em 0;"
+  allow="autoplay; fullscreen"
+  allowfullscreen>
+</iframe>
 
 <p>Poirier's coach, Mike Brown, offered the same advice after Round 1, saying, “You cannot back up to the wall. No matter what happens, you need to fight him right in the center. Whether he hits you or not, you cannot back up. That's how he took you down on the wall.”</p>
 
