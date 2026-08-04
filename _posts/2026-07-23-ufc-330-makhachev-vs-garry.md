@@ -202,7 +202,28 @@ Garry’s height could make the first contact harder to establish. His head sits
 
 Once Makhachev gets the tie, Garry’s height can work against him. Pulling the head forward breaks his posture and takes away the distance he needs for his straight punches and kicks. Garry then has to fight his way upright, and that effort may carry him backward toward the fence.
 
-<blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">Haven&#39;t seen much of Islam using double collar ties against taller opponents but they can be a great tool to stand up tall guys and shoot under or get body locks 👀</p>&mdash; Feño 🏴 (@fenoxsky) <a href="https://x.com/fenoxsky/status/2082954915144458387?ref_src=twsrc%5Etfw">July 30, 2026</a></blockquote> <script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+<div style="margin:1.5em 0;">
+  <blockquote
+    class="twitter-tweet"
+    data-dnt="true"
+    data-theme="dark">
+
+    <p lang="en" dir="ltr">
+      Haven&#39;t seen much of Islam using double collar ties against taller opponents but they can be a great tool to stand up tall guys and shoot under or get body locks 👀
+    </p>
+
+    &mdash; Feño 🏴 (@fenoxsky)
+    <a href="https://x.com/fenoxsky/status/2082954915144458387">
+      July 30, 2026
+    </a>
+  </blockquote>
+</div>
+
+<script
+  async
+  src="https://platform.x.com/widgets.js"
+  charset="utf-8">
+</script>
 
 In open space, Garry has room to work an arm inside, raise his posture and circle away. Near the cage, those exits narrow, and the collar tie can lead into knees, a body lock, a trip or a longer clinch exchange.
 
