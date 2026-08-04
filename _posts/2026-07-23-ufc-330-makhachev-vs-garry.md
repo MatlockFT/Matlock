@@ -30,7 +30,7 @@ Islam Makhachev is a wrestling-led control fighter who uses measured pressure, s
 
 Ian Machado Garry is a long-range striker whose game is built around keeping opponents at the end of his kicks and straight punches, then exiting range before they can return fire. Against Makhachev, his grappling is more likely to matter as a way to stay upright, escape the clinch and recover open space than as a form of offense.
 
-Garry’s challenge is to stop one position from becoming the next: hand fighting into the clinch, the clinch into a body lock, and the body lock into a trip or mat return.
+Garry’s challenge is to stop Islam from chaining one position to the next and spending most of the fight defending without mounting any significant offense.
 
 ## **Tale of the tape**
 
@@ -42,13 +42,12 @@ Garry’s challenge is to stop one position from becoming the next: hand fightin
 | Age | 34 | 28 |
 | Height | 5'10" | 6'3" |
 | Reach | 70" | 74" |
-| Listed stance | Southpaw | Orthodox |
+| Stance | Southpaw | Orthodox |
 | Last five fights | 5–0 | 4–1 |
 | Weight | 170 lb | 170 lb |
 
 
-Makhachev gives away five inches in height and four inches in reach. Garry is also six years younger. Makhachev, however, has the much deeper title-fight record and has won 16 consecutive UFC bouts.  
-*(UFC Stats)*
+Makhachev gives away five inches in height and four inches in reach. Garry is also six years younger. Makhachev, however, has the much deeper title-fight record and has won 16 consecutive bouts.
 
 ## **Recent form**
 
