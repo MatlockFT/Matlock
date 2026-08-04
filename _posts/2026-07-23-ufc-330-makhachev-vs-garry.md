@@ -113,11 +113,13 @@ Those cuts also create moments Makhachev could try to time. Garry has to shift h
 
 The center gives Garry more room to defend. If Makhachev reaches his legs or closes into the clinch, Garry can sprawl, turn or circle away without immediately running into the cage. He also has more room to frame on Makhachev’s shoulders or upper body, keep their hips apart and move off at an angle. Once Makhachev gets past those frames and settles into the clinch, the extra space matters much less.
 
-Jack Della Maddalena showed the limits of holding the center. Makhachev took him down in open space and controlled him for most of the fight. JDM had room around him, but Makhachev often reached him before he could use it. Once Makhachev gained control, JDM could not create enough space to stand and reset.
+Jack Della Maddalena showed the limits of holding the center. Makhachev took him down in open space and controlled him for most of the fight. 
 
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/y3815NgVOEYhxoXXjL" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/y3815NgVOEYhxoXXjL">via GIPHY</a></p>
+[via GIPHY](https://giphy.com/gifs/y3815NgVOEYhxoXXjL)
 
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/7FjedPi9AfXHuizK35" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/7FjedPi9AfXHuizK35">via GIPHY</a></p>
+JDM had room around him, but Makhachev often reached him before he could use it. Once Makhachev gained control, JDM could not create enough space to stand and reset.
+
+[via GIPHY](https://giphy.com/gifs/7FjedPi9AfXHuizK35)
 
 The center only helps if Garry acts before Makhachev settles into position. He still has to recognize the entry, establish his frames and move.
 
