@@ -26,9 +26,9 @@ published: true
 
 It is easy to describe this as a striker against a wrestler, but that leaves out much of what makes the fight interesting.
 
-Makhachev is a wrestling-led control fighter who uses measured pressure, striking and hand fighting to deny space and reach the clinch. He is comfortable letting one position lead into the next, even when the first attack does not produce a takedown.
+Makhachev is a wrestling-led control fighter who uses measured pressure, striking and hand fighting to deny space and get to the clinch. He is a master of chaining positions together even if his opponent denies the first attempt.
 
-Garry is a long-range striker whose game is built around keeping opponents at the end of his kicks and straight punches, then leaving before they can return. Against Makhachev, his grappling is more likely to matter as a way to stay upright, escape the clinch and recover open space than as a form of offense.
+Garry is a long-range striker whose game is built around keeping opponents at the end of his kicks and straight punches, then exiting before they can return fire. 
 
 Garry’s challenge is to stop Makhachev from chaining one position into the next. Otherwise, he could spend most of the fight defending instead of building meaningful offense of his own.
 
