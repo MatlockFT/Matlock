@@ -149,6 +149,17 @@ width="100%"></iframe>
   </iframe>
 </div>
 
+Poirier's coach, Mike Brown, offered the same advice after Round 1, saying, “You cannot back up to the wall. No matter what happens, you need to fight him right in the center. Whether he hits you or not, you cannot back up. That's how he took you down on the wall.”
+
+<div style="position:relative; width:100%; padding-top:56.25%;">
+  <iframe
+    src="https://drive.google.com/file/d/13esMcp50ZZZTI49tjfKcOqMQ1ZLsaadX/preview"
+    style="position:absolute; inset:0; width:100%; height:100%; border:0;"
+    allow="autoplay; fullscreen"
+    allowfullscreen>
+  </iframe>
+</div>
+
 Garry may still use the fence to help him stand if he is taken down near it. That is different from being driven there while Makhachev already controls his hips or upper body. In that situation, the fence is more likely to help Makhachev keep him in place.
 
 Garry probably needs to hold the center in short stretches, score at range and leave on an angle. He cannot stand still, but he also cannot keep giving ground in a straight line. The black line becomes dangerous when he notices it too late to change course.
