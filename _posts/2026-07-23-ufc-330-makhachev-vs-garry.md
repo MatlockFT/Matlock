@@ -125,7 +125,18 @@ JDM had room around him, but Makhachev often reached him before he could use it.
 
 The center only helps if Garry acts before Makhachev settles into position. He still has to recognize the entry, establish his frames and move.
 
-Dustin Poirier had some of his better moments against Makhachev when the fight remained in open space. Before their fight, [Matt Brown said Poirier needed to “keep the center of the octagon”](https://www.mmafighting.com/2024/6/1/24159905/matt-brown-explains-what-dustin-poirier-needs-to-do-to-beat-islam-makhachev-at-ufc-302).
+Dustin Poirier had some of his better moments against Makhachev when the fight remained in open space. 
+
+<div style="position:relative; width:100%; padding-top:56.25%;">
+  <iframe
+    src="https://drive.google.com/file/d/1jxlEWxSR_K3dUY1n5vPWX0pRP0M3Zl9w/preview"
+    style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
+    allow="autoplay; fullscreen"
+    allowfullscreen>
+  </iframe>
+</div>
+
+Before their fight, [Matt Brown said Poirier needed to “keep the center of the octagon”](https://www.mmafighting.com/2024/6/1/24159905/matt-brown-explains-what-dustin-poirier-needs-to-do-to-beat-islam-makhachev-at-ufc-302).
 
 Garry may still use the fence to help him stand if he is taken down near it. That is different from being driven there while Makhachev already controls his hips or upper body. In that situation, the fence is more likely to help Makhachev keep him in place.
 
