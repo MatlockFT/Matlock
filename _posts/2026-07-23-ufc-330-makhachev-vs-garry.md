@@ -181,7 +181,7 @@ Garry stands orthodox and Makhachev stands southpaw, which leaves both men facin
 
 Garry will want that angle for the right hand, but Makhachev can use the same battle to set up his left straight, his left kick and his entries into the clinch. Garry’s height also puts his right knee in a dangerous position whenever Makhachev steps forward or changes levels. A naked entry would put Makhachev directly on that line, so he may need to draw Garry’s attention elsewhere first.
 
-That is where the threat of wrestling begins to shape the striking. If Garry becomes too focused on stopping the takedown, he may lower his hands or hesitate long enough for Makhachev to bring the left kick upstairs, as he did in the second Volkanovski fight.
+That is where the threat of wrestling begins to shape the striking. If Garry becomes too focused on stopping the takedown and/or blocking the inside body kick, he may lower his hands or hesitate long enough for Makhachev to bring the left kick upstairs, as he did in the second Volkanovski fight.
 
 <iframe
   src="https://drive.google.com/file/d/12DtkU1ucyh8HJRsttYZmnAjQLiNIPVk7/preview"
