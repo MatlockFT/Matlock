@@ -204,3 +204,17 @@ Garry could defend most of Makhachev’s takedowns and still lose long stretches
 The moments after the first defense may matter most. If Garry can frame, separate and land on the exit, he can make Makhachev start again from range. If Makhachev stays attached, an entry that does not produce a takedown can still become fence pressure and control.
 
 Those exchanges may be brief on their own. Over five rounds, the fight could turn on whether Garry keeps ending them or Makhachev keeps turning them into minutes.
+
+## Plausible outcomes
+
+Makhachev could spend much of the fight struggling to hold Garry down and still remain in control of how it unfolds. If he can keep Garry reacting to level changes, backing toward the fence and fighting through clinches, he may win rounds without producing the kind of dominant ground performance people expect. The other possibility is that Garry keeps making him start over. If Makhachev cannot hold the clinch or make his entries count, he could find himself reaching from too far away and getting picked off as he tries to close the distance.
+
+Garry could defend most of the takedowns and still have a miserable night if he cannot break contact afterward. He may stay upright but spend long stretches carrying Makhachev’s weight, fighting hands and waiting for enough room to strike again. His better outcome is that those defenses become offense: a frame creates space for a right hand, a level change runs into a knee, or a clean exit forces Makhachev to cross the same distance again. If Garry can make enough of those moments count, the fight may begin to look much more like his kind of contest.
+
+I lean toward control time being the biggest factor in this fight. Garry is good at sticking and moving, but he is still hittable, including against shorter southpaws. Makhachev may not match his striking output, but I think the basics will be enough to create openings: the left hand, low kicks, pressure and the threat of the takedown.
+
+Garry’s reach is obvious, but his speed may be just as important. He can cover distance quickly and punish Makhachev before he gets settled, which is something I did not spend enough time on earlier in the article.
+
+I expect some back-and-forth from round to round, but Makhachev’s ability to turn brief openings into long stretches of control should make the difference. If he can add damage and submission threats from those positions, he should have enough to consistently win rounds.
+
+**Prediction: Islam Makhachev by decision.**
