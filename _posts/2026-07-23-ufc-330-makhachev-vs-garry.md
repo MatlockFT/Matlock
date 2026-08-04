@@ -229,6 +229,40 @@ In open space, Garry has room to work an arm inside, raise his posture and circl
 
 For Makhachev, the collar tie can turn open space into fence pressure.
 
+<div class="drive-video">
+  <iframe
+    src="https://drive.google.com/file/d/1RGONxB4U4x_CJhPWeO6Xm8PRBl1wrC1D/preview"
+    title="Embedded video"
+    loading="lazy"
+    allow="autoplay; fullscreen"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<style>
+  .drive-video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 1.5em 0;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .drive-video iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  @media (max-width: 600px) {
+    .drive-video {
+      border-radius: 4px;
+      margin: 1em 0;
+    }
+  }
+</style>
+
 ## Wrestling is more than the takedown
 
 Garry’s 80 percent takedown defense is a strong number. UFC opponents have completed only six of the 30 takedowns they have attempted against him. Fifteen of his 24 successful defenses came against Shavkat Rakhmonov and Belal Muhammad.
