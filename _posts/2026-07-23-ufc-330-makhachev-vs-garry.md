@@ -115,6 +115,10 @@ The center gives Garry more room to defend. If Makhachev reaches his legs or clo
 
 Jack Della Maddalena showed the limits of holding the center. Makhachev took him down in open space and controlled him for most of the fight. JDM had room around him, but Makhachev often reached him before he could use it. Once Makhachev gained control, JDM could not create enough space to stand and reset.
 
+<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/y3815NgVOEYhxoXXjL" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/y3815NgVOEYhxoXXjL">via GIPHY</a></p>
+
+<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/7FjedPi9AfXHuizK35" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/7FjedPi9AfXHuizK35">via GIPHY</a></p>
+
 The center only helps if Garry acts before Makhachev settles into position. He still has to recognize the entry, establish his frames and move.
 
 Dustin Poirier had some of his better moments against Makhachev when the fight remained in open space. Before their fight, [Matt Brown said Poirier needed to “keep the center of the octagon”](https://www.mmafighting.com/2024/6/1/24159905/matt-brown-explains-what-dustin-poirier-needs-to-do-to-beat-islam-makhachev-at-ufc-302).
