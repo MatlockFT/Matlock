@@ -125,23 +125,16 @@ JDM had room around him, but Makhachev often reached him before he could use it.
 
 The center only helps if Garry acts before Makhachev settles into position. He still has to recognize the entry, establish his frames and move.
 
-Dustin Poirier had some of his better moments against Makhachev when the fight remained in open space.
+<p>Dustin Poirier had some of his better moments against Makhachev when the fight remained in open space.</p>
 
-<div style="position:relative; width:100%; padding-top:56.25%;">
-  <iframe
-    src="https://drive.google.com/file/d/1jxlEWxSR_K3dUY1n5vPWX0pRP0M3Zl9w/preview"
-    style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
-    allow="autoplay; fullscreen"
-    allowfullscreen>
-  </iframe>
-</div>
+<iframe
+  src="https://drive.google.com/file/d/1jxlEWxSR_K3dUY1n5vPWX0pRP0M3Zl9w/preview"
+  style="display:block; width:100%; aspect-ratio:16 / 9; border:0; margin:1.5em 0;"
+  allow="autoplay; fullscreen"
+  allowfullscreen>
+</iframe>
 
-<p>
-  Before their fight,
-  <a href="https://www.mmafighting.com/2024/6/1/24159905/matt-brown-explains-what-dustin-poirier-needs-to-do-to-beat-islam-makhachev-at-ufc-302">
-    Matt Brown said Poirier needed to “keep the center of the octagon”
-  </a>.
-</p>
+<p style="display:block; margin:1em 0;">Before their fight, <a href="https://www.mmafighting.com/2024/6/1/24159905/matt-brown-explains-what-dustin-poirier-needs-to-do-to-beat-islam-makhachev-at-ufc-302" style="color:inherit; text-decoration:underline;">Matt Brown said Poirier needed to “keep the center of the octagon”</a>.</p>
 
 <iframe
   src="https://drive.google.com/file/d/1z6k8BM47_lPyHxqqfR7gyr1IVvEMSO0c/preview"
