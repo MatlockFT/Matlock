@@ -126,7 +126,6 @@ JDM had room around him, but Makhachev often reached him before he could use it.
 The center only helps if Garry acts before Makhachev settles into position. He still has to recognize the entry, establish his frames and move.
 
 Dustin Poirier had some of his better moments against Makhachev when the fight remained in open space. 
-
 <div style="position:relative; width:100%; padding-top:56.25%;">
   <iframe
     src="https://drive.google.com/file/d/1jxlEWxSR_K3dUY1n5vPWX0pRP0M3Zl9w/preview"
