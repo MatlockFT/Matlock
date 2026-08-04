@@ -107,6 +107,12 @@ Garry wants to fight at long range, but he probably does not want to spend much 
 
 The black line is a warning. Once Garry moves beyond it, there is little room left to retreat. Makhachev can use the threat of strikes and level changes to keep him backing up, then close the remaining distance at the fence and begin working through the clinch.
 
+The most important part of Garry’s movement may be how quickly he can change direction. Against Geoff Neal, he deliberately showed one exit before cutting back the other way, an approach he said was influenced by studying NFL wide receivers. The aim was to make Neal commit his feet in one direction before Garry moved in another.
+
+That could matter more against Makhachev than speed by itself. If Garry retreats along one line, Makhachev can keep following him toward the fence. A sharp change of direction may force Makhachev to turn and adjust his pressure, giving Garry a moment to recover the center or strike as Makhachev follows.
+
+There is some danger in making the cut. Garry has to shift his weight and place his feet underneath him before he can change direction. If Makhachev reads that moment, the movement intended to create an exit could instead give him the opening to attack the leg or close into the clinch.
+
 The center gives Garry more room to defend. If Makhachev gets to his legs or closes into the clinch, Garry can sprawl, turn or circle away without immediately running into the cage. He also has more room to frame on Makhachev’s shoulders or upper body, keep their hips apart and move off at an angle. If Makhachev gets past those frames and settles into the clinch, that extra space matters much less.
 
 Jack Della Maddalena showed the limits of this idea. Makhachev took him down in open space and controlled him for most of the fight. Low kicks disrupted JDM’s stance, and Makhachev often entered as he planted to punch or tried to reset. The center gave JDM more possible exits, but he rarely had the balance or time to use them.
@@ -127,7 +133,7 @@ Makhachev does not have to beat Garry’s reach with his hands alone. Low kicks 
 
 That was clear against JDM. Makhachev used low kicks to disrupt his stance, then timed takedowns when JDM planted to punch or tried to reset. JDM had a three-inch reach advantage, but Makhachev rarely allowed him to settle into a comfortable striking rhythm. He completed four takedowns and held him to 18 significant strikes over five rounds.
 
-Garry presents a harder version of that problem because he is taller and moves more. Makhachev may only need to catch him during a direction change, after a kick or as he finishes the right hand. Those are the moments when Garry could be square, heavy on one leg or unable to move away immediately.
+Garry presents a harder version of that problem because he is taller and can change direction suddenly rather than circling at one steady pace. Makhachev may only need to catch him during a direction change, after a kick or as he finishes the right hand. Those are the moments when Garry could be square, heavy on one leg or unable to move away immediately.
 
 Much of the work may happen before Makhachev ever reaches his hips: low kicks, hand fighting, pressure and timing.
 
