@@ -79,7 +79,7 @@ Makhachev’s five-fight run includes two full championship decisions, two submi
 | Control time as a share of total fight time | 51.2% | 11.6% |
 
 
-*Career rates come from the UFCStats profiles for [Makhachev](https://ufcstats.com/fighter-details/275aca31f61ba28c) and [Garry](https://ufcstats.com/fighter-details/442c9011034ae1fd). Control averages and percentages were calculated from recorded UFC control time and total fight duration. Makhachev’s aggregate control time is also listed in the [UFC record book](https://statleaders.ufc.com/?country=rus&fighter_status=0).*
+*Career rates come from the UFCStats profiles for Makhachev and Garry. Control averages and percentages were calculated from recorded UFC control time and total fight duration. Makhachev’s aggregate control time is also listed in the [UFC record book](https://statleaders.ufc.com/?country=rus&fighter_status=0).*
 
 The numbers describe two different kinds of fights.
 
@@ -93,7 +93,7 @@ Garry’s reach is most useful in open space, where he can jab, kick and move be
 
 His frame lets him attack from farther out and his long arms for posting on Makhachev’s shoulders, digging for underhooks and threatening knees when Makhachev changes levels.
 
-Makhachev has beaten longer opponents before. [Charles Oliveira](https://ufcstats.com/fight-details/523815acf1bb2420) has a listed reach of 74 inches, while [Dan Hooker](https://ufcstats.com/fight-details/5ad4c0eae7512878) is listed at 75. Makhachev submitted both, though neither was a 6'3" welterweight who moves like Garry.
+Makhachev has beaten longer opponents before. [Charles Oliveira](https://www.tapology.com/fightcenter/fighters/charles-oliveira-do-bronx) has a listed reach of 74 inches, while [Dan Hooker](https://www.tapology.com/fightcenter/fighters/18854-daniel-hooker) is listed at 75. Makhachev submitted both, though neither was a 6'3" welterweight who moves like Garry.
 
 Garry’s height may help him frame and create separation, but it can become awkward once Makhachev breaks his posture. Garry then has farther to travel before he is upright, balanced and ready to strike again.
 
