@@ -269,6 +269,16 @@ Garry’s 80 percent takedown defense is a strong number. UFC opponents have com
 
 The number still tells only part of the story. Rakhmonov went two for 10 on takedowns but controlled Garry for 11:41. 
 
+Muhammad failed on all seven of his attempts and still spent 3:35 in control. Garry often stayed on his feet, but that did not always get him out of the clinch or back into open space.
+
+That matters because Makhachev often does his best work after contact has already been made. He can stay on a single leg, move into a body lock, turn Garry toward the fence or keep working until another opening appears. Garry may stop the first attack and still lose a long stretch of the round trying to separate.
+
+Dustin Poirier showed how difficult that can become. He stopped several attempts, returned to his feet and made Makhachev work for almost five rounds. Makhachev still completed five takedowns and eventually submitted him with a D’Arce choke in the fifth. The defenses kept Poirier in the fight, but each escape required more work, and Makhachev kept finding another position to attack.
+
+Alexander Volkanovski made those exchanges harder for Makhachev. He stayed balanced through scrambles, fought the hands and often turned back into him. Even then, Makhachev completed four takedowns and recorded 7:37 of control in their first fight. Volkanovski showed that strong defensive grappling can slow Makhachev down without necessarily keeping him from taking large parts of a round.
+
+Garry has shown some of the same composure. He defended eight of Rakhmonov’s 10 takedown attempts and found his way to the back during a fifth-round scramble. That back take is useful evidence that he can remain calm when a position begins to break down. It is less useful as a reason to expect him to wrestle offensively against Makhachev.
+
 <div class="drive-video">
   <iframe
     src="https://drive.google.com/file/d/1eCtG5xhHT_sMgL9Xo36BbuYJSePiXsQ_/preview"
@@ -294,16 +304,6 @@ The number still tells only part of the story. Rakhmonov went two for 10 on take
     border: 0;
   }
 </style>
-
-Muhammad failed on all seven of his attempts and still spent 3:35 in control. Garry often stayed on his feet, but that did not always get him out of the clinch or back into open space.
-
-That matters because Makhachev often does his best work after contact has already been made. He can stay on a single leg, move into a body lock, turn Garry toward the fence or keep working until another opening appears. Garry may stop the first attack and still lose a long stretch of the round trying to separate.
-
-Dustin Poirier showed how difficult that can become. He stopped several attempts, returned to his feet and made Makhachev work for almost five rounds. Makhachev still completed five takedowns and eventually submitted him with a D’Arce choke in the fifth. The defenses kept Poirier in the fight, but each escape required more work, and Makhachev kept finding another position to attack.
-
-Alexander Volkanovski made those exchanges harder for Makhachev. He stayed balanced through scrambles, fought the hands and often turned back into him. Even then, Makhachev completed four takedowns and recorded 7:37 of control in their first fight. Volkanovski showed that strong defensive grappling can slow Makhachev down without necessarily keeping him from taking large parts of a round.
-
-Garry has shown some of the same composure. He defended eight of Rakhmonov’s 10 takedown attempts and found his way to the back during a fifth-round scramble. That back take is useful evidence that he can remain calm when a position begins to break down. It is less useful as a reason to expect him to wrestle offensively against Makhachev.
 
 Most of the time, Garry will probably want those scrambles to end with separation. A reversal or back take could still create offense, but staying attached also gives Makhachev time to rebuild control. Defending the takedown may be only one part of getting back to the fight Garry wants.
 
