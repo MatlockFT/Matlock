@@ -18,8 +18,6 @@ tags:
 last_modified_at: 2026-07-28
 published: true
 ---
-I kept the structure and factual claims from the v2 draft, but removed repetition, tightened the JDM material, fixed American English and hyphenation, removed the stray aside about eating a knee, and softened claims that were too absolute. This is an editorial pass rather than a new fact-check.
-
 # Islam Makhachev vs. Ian Machado Garry
 
 UFC 330 takes place on August 15, 2026, at Xfinity Mobile Arena in Philadelphia. Welterweight champion Islam Makhachev will defend his title against No. 1 contender Ian Machado Garry.
