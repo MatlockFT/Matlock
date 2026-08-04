@@ -136,7 +136,12 @@ Dustin Poirier had some of his better moments against Makhachev when the fight r
   </iframe>
 </div>
 
-<p>Before their fight, [Matt Brown said Poirier needed to “keep the center of the octagon”](https://www.mmafighting.com/2024/6/1/24159905/matt-brown-explains-what-dustin-poirier-needs-to-do-to-beat-islam-makhachev-at-ufc-302).</p>
+<p>
+  Before their fight,
+  <a href="https://www.mmafighting.com/2024/6/1/24159905/matt-brown-explains-what-dustin-poirier-needs-to-do-to-beat-islam-makhachev-at-ufc-302">
+    Matt Brown said Poirier needed to “keep the center of the octagon”
+  </a>.
+</p>
 
 <div style="position:relative; width:100%; padding-top:56.25%;">
   <iframe
