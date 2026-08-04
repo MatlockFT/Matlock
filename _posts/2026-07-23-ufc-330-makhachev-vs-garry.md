@@ -183,6 +183,13 @@ Garry will want that angle for the right hand, but Makhachev can use the same ba
 
 That is where the threat of wrestling begins to shape the striking. If Garry becomes too focused on stopping the takedown, he may lower his hands or hesitate long enough for Makhachev to bring the left kick upstairs, as he did in the second Volkanovski fight.
 
+<iframe
+  src="https://drive.google.com/file/d/12DtkU1ucyh8HJRsttYZmnAjQLiNIPVk7/preview"
+  style="display:block; width:100%; aspect-ratio:16 / 9; border:0; margin:1.5em 0;"
+  allow="autoplay; fullscreen"
+  allowfullscreen>
+</iframe>
+
 Makhachev can also occupy Garry’s lead hand by touching, pulling or knocking the jab aside. That can briefly shorten the reach gap and give him a clearer route to the body, the clinch or the left hand.
 
 ## The double collar tie
