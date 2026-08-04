@@ -85,15 +85,13 @@ The numbers describe two different kinds of fights.
 
 Garry lands almost twice as many significant strikes per minute, but he also absorbs almost twice as many. Makhachev’s lower striking output partly reflects how much time he spends clinching, controlling opponents and working on the ground.
 
-The control figures make that difference clearer. Makhachev has spent just over half of his UFC fight time in control, averaging 5:38 per appearance. Garry averages 1:43, and nearly 40 percent of his UFC control time came against Michael Page. Control is a regular part of Makhachev’s game. For Garry, it has depended more on the opponent and the circumstances of the fight.
-
-The striking figures should not be read as a simple measure of who is better on the feet. They show where each fighter normally spends his time and how he tends to win exchanges.
+The control stats make that difference clearer. Makhachev has spent just over half of his UFC fight time in control, averaging 5:38 per appearance. Garry averages 1:43, and nearly 40% of his UFC control time came against Michael Page. Control is a regular part of Makhachev’s game. For Garry, it has depended more on the opponent and the circumstances of the fight.
 
 ## What the measurements mean
 
 Garry’s reach is most useful in open space, where he can jab, kick and move before Makhachev reaches the clinch.
 
-His frame lets him attack from farther out and gives him long arms for posting on Makhachev’s shoulders, digging for underhooks and threatening knees when Makhachev changes levels.
+His frame lets him attack from farther out and his long arms for posting on Makhachev’s shoulders, digging for underhooks and threatening knees when Makhachev changes levels.
 
 Makhachev has beaten longer opponents before. [Charles Oliveira](https://ufcstats.com/fight-details/523815acf1bb2420) has a listed reach of 74 inches, while [Dan Hooker](https://ufcstats.com/fight-details/5ad4c0eae7512878) is listed at 75. Makhachev submitted both, though neither was a 6'3" welterweight who moves like Garry.
 
@@ -107,7 +105,7 @@ Garry wants to fight at long range, but he probably does not want to spend much 
 
 The black line is a warning. Once Garry moves beyond it, there is little room left to retreat. Makhachev can use the threat of strikes and level changes to keep him backing up, then close the remaining distance at the fence and begin working through the clinch.
 
-The most important part of Garry’s movement may be how quickly he changes direction. Against [Geoff Neal](https://www.mmafighting.com/2024/2/19/24077610/ian-machado-garry-studied-nfl-wide-receivers-to-evade-geoff-neals-power-at-ufc-298), he deliberately showed one exit before cutting back the other way, an approach he said was influenced by studying NFL wide receivers. He wanted Neal to commit his feet in one direction before Garry moved in another.
+The most important part of Garry’s movement may be how quickly he changes direction. Against [Geoff Neal](https://www.mmafighting.com/2024/2/19/24077610/ian-machado-garry-studied-nfl-wide-receivers-to-evade-geoff-neals-power-at-ufc-298), he deliberately showed one exit before cutting back the other way, [an approach he said was influenced by studying NFL wide receivers.](https://www.mmafighting.com/2024/2/19/24077610/ian-machado-garry-studied-nfl-wide-receivers-to-evade-geoff-neals-power-at-ufc-298) He wanted Neal to commit his feet in one direction before Garry moved in another.
 
 That could matter more against Makhachev than speed alone. If Garry retreats along one line, Makhachev can keep following him toward the fence. A sharp change of direction may force Makhachev to turn and adjust his pressure, giving Garry a moment to recover the center or strike as Makhachev follows.
 
@@ -115,7 +113,7 @@ Those cuts also create moments Makhachev could try to time. Garry has to shift h
 
 The center gives Garry more room to defend. If Makhachev reaches his legs or closes into the clinch, Garry can sprawl, turn or circle away without immediately running into the cage. He also has more room to frame on Makhachev’s shoulders or upper body, keep their hips apart and move off at an angle. Once Makhachev gets past those frames and settles into the clinch, the extra space matters much less.
 
-[Jack Della Maddalena showed the limits of holding the center](https://ufcstats.com/fight-details/856f6ee049373843). Makhachev took him down in open space and controlled him for most of the fight. JDM had room around him, but Makhachev often reached him before he could use it. Once Makhachev gained control, JDM could not create enough space to stand and reset.
+Jack Della Maddalena showed the limits of holding the center. Makhachev took him down in open space and controlled him for most of the fight. JDM had room around him, but Makhachev often reached him before he could use it. Once Makhachev gained control, JDM could not create enough space to stand and reset.
 
 The center only helps if Garry acts before Makhachev settles into position. He still has to recognize the entry, establish his frames and move.
 
@@ -131,7 +129,7 @@ Makhachev does not have to beat Garry’s reach with his hands alone. Low kicks 
 
 That was clear against JDM. Makhachev attacked his lead leg throughout the fight, then repeatedly timed his takedowns before JDM could settle into his boxing. JDM had a three-inch reach advantage, but Makhachev completed four takedowns, recorded 19:10 of control and held him to 18 significant strikes over five rounds.
 
-Garry presents a harder version of that problem because he is taller and can change direction suddenly instead of circling at one steady pace. Makhachev may only need to catch him during one of those changes, after a kick or as he finishes the right hand. Those are the moments when Garry could be square, heavy on one leg or unable to move away immediately.
+Garry may present a harder version of that problem because he is taller and can change direction suddenly instead of circling at one steady pace. Makhachev may only need to catch him during one of those changes, after a kick or as he finishes the right hand. Those are the moments when Garry could be square, heavy on one leg or unable to move away immediately.
 
 Much of the work may happen before Makhachev ever reaches his hips. The low kicks, hand fighting, pressure and feints are what create the entry.
 
@@ -141,7 +139,7 @@ Garry stands orthodox and Makhachev stands southpaw, which leaves both men facin
 
 Garry will want that angle for the right hand, but Makhachev can use the same battle to set up his left straight, his left kick and his entries into the clinch. Garry’s height also puts his right knee in a dangerous position whenever Makhachev steps forward or changes levels. A naked entry would put Makhachev directly on that line, so he may need to draw Garry’s attention elsewhere first.
 
-That is where the threat of wrestling begins to shape the striking. If Garry becomes too focused on stopping the takedown, he may lower his hands or hesitate long enough for Makhachev to bring the left kick upstairs, as he did in the [second Volkanovski fight](https://ufcstats.com/fight-details/0ea435ddf02deb60).
+That is where the threat of wrestling begins to shape the striking. If Garry becomes too focused on stopping the takedown, he may lower his hands or hesitate long enough for Makhachev to bring the left kick upstairs, as he did in the second Volkanovski fight.
 
 Makhachev can also occupy Garry’s lead hand by touching, pulling or knocking the jab aside. That can briefly shorten the reach gap and give him a clearer route to the body, the clinch or the left hand.
 
@@ -154,6 +152,8 @@ One way Makhachev has handled opponents entering on him is the double collar tie
 Garry’s height could make the first contact harder to establish. His head sits farther away, and if Makhachev reaches from too far out, Garry has room to frame, fire an uppercut or bring up a knee. Makhachev will likely need to hide the entry behind hand fighting, pressure or a level-change feint.
 
 Once Makhachev gets the tie, Garry’s height can work against him. Pulling the head forward breaks his posture and takes away the distance he needs for his straight punches and kicks. Garry then has to fight his way upright, and that effort may carry him backward toward the fence.
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Haven&#39;t seen much of Islam using double collar ties against taller opponents but they can be a great tool to stand up tall guys and shoot under or get body locks 👀</p>&mdash; Feño 🏴 (@fenoxsky) <a href="https://x.com/fenoxsky/status/2082954915144458387?ref_src=twsrc%5Etfw">July 30, 2026</a></blockquote> <script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
 
 In open space, Garry has room to work an arm inside, raise his posture and circle away. Near the cage, those exits narrow, and the collar tie can lead into knees, a body lock, a trip or a longer clinch exchange.
 
