@@ -62,44 +62,44 @@ Makhachev gives away five inches in height and four inches in reach. Garry is al
 | 5 | W — Alexander Volkanovski, unanimous decision | W — Geoff Neal, split decision |
 
 
-Makhachev’s five-fight run contains two full championship decisions, two submissions and a first-round knockout. All five of Garry’s most recent fights reached the scorecards.
+Makhachev’s five fight run contains two full championship decisions, two submissions and a first round KO. All five of Garry’s most recent fights reached the scorecards.
 
-That does not mean Garry cannot finish Makhachev. It does show that his recent route to victory has been based more on controlling rounds than ending fights.  
-*(UFC Stats)*
+All five of Garry’s most recent fights reached the scorecards. His recent performances have been built around winning rounds through movement, distance control and steady output.
 
-## **Career UFC statistics**
+## Career UFC statistics
 
 
-|  |  |  |
-| --------------------------------------- | ------------- | --------- |
 | **Statistic** | **Makhachev** | **Garry** |
+| ------------------------------------------- | ------------- | --------- |
 | Significant strikes landed per minute | 2.45 | 4.78 |
 | Significant striking accuracy | 58% | 54% |
 | Significant strikes absorbed per minute | 1.45 | 2.86 |
-| Significant strike defence | 61% | 52% |
+| Significant strike defense | 61% | 52% |
 | Takedowns landed per 15 minutes | 3.10 | 0.92 |
 | Takedown accuracy | 56% | 31% |
-| Takedown defence | 91% | 80% |
+| Takedown defense | 91% | 80% |
 | Submission attempts per 15 minutes | 1.0 | 0.4 |
+| Average control time per UFC fight | 5:38 | 1:43 |
+| Control time as a share of total fight time | 51.2% | 11.6% |
 
 
 The numbers describe two different kinds of fights.
 
-Garry lands almost twice as many significant strikes per minute, but he also absorbs almost twice as many. Makhachev’s lower striking output partly reflects the amount of time he spends clinching, controlling and working on the ground.
+Garry lands almost twice as many significant strikes per minute, but he also absorbs almost twice as many. Makhachev’s lower striking output partly reflects how much time he spends clinching, controlling opponents and working on the ground.
 
-The striking figures should not be read as a simple measure of who is better on the feet. They show how each man usually chooses to spend a fight.  
-*(UFC Stats)*
+The control figures make that difference clearer. Makhachev has spent just over half of his UFC fight time in control, averaging 5:38 per appearance. Garry averages 1:43, and a large portion of that came from his fight with Michael Page. Control is a regular part of Makhachev’s game. For Garry, it has been more dependent on the opponent and the circumstances of the fight.
+
+The striking figures should not be read as a simple measure of who is better on the feet. They show where each fighter normally spends his time and how he tends to win exchanges.
 
 ## **What the measurements mean**
 
-Garry’s reach advantage is real, but reach is not only about arm length.
+Garry’s reach is most useful in open space, where he can jab, kick and move before Makhachev reaches the clinch.
 
 His height allows him to jab and kick while keeping his head farther away. It gives him a longer frame for posting on Makhachev’s shoulders, digging for underhooks and threatening knees when Makhachev changes levels.
 
 Makhachev has already beaten opponents with comparable or longer listed reaches. Charles Oliveira has a 74-inch reach, equal to Garry’s. Dan Hooker is listed with a 75-inch reach. Makhachev submitted both.
 
-Neither man, however, combined that reach with Garry’s 6'3" height, lateral movement and welterweight frame.  
-*(UFC Stats)*
+Neither man, however, combined that reach with Garry’s 6'3" height, lateral movement and welterweight frame.
 
 Height may also become less useful once Garry reaches the fence. A tall, upright fighter can give Makhachev a long body to connect his hands around. Garry may have more space to build frames, but he may also have farther to travel when recovering his posture after a snap-down, trip or mat return.
 
