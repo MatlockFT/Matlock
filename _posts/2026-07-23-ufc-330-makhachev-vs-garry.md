@@ -117,11 +117,11 @@ Those frames will be important. Garry can post on Makhachev’s shoulders, head 
 
 Being in the center does not make Garry safe. Makhachev took Jack Della Maddalena down in open space and controlled him for most of their fight. He attacked the lead leg, waited for JDM to plant his feet and entered before he could move away. The fence was not required to start the wrestling.
 
-Della Maddalena also struggled to make Makhachev pay for closing the distance. The threat of the takedown limited his boxing, and when he did commit to combinations, Makhachev was often ready to wrestle as the exchange ended. Once Makhachev gained control, Della Maddalena could not create enough space to stand and reset.
+JDM also struggled to make Makhachev pay for closing the distance. The threat of the takedown limited his boxing, and when he did commit to combinations, Makhachev was often ready to wrestle as the exchange ended. Once Makhachev gained control, JDM could not create enough space to stand and reset.
 
 That is the limit of holding the center. It gives Garry more options, but he still has to recognize the entry, establish his frames and move before Makhachev settles into the position.
 
-Dustin Poirier had some of his better moments against Makhachev when the fight remained in open space. Before their fight, Matt Brown said Poirier needed to “keep the center of the octagon.” Poirier later said that a striker who could stay off the fence and use his offense in the center could give Makhachev problems.
+Dustin Poirier had some of his better moments against Makhachev when the fight remained in open space. *Before their fight, Matt Brown said Poirier needed to “keep the center of the octagon.” Poirier later said that a striker who could stay off the fence and use his offense in the center could give Makhachev problems.*
 
 Garry may still use the fence to help him stand if he is taken down near it. That is different from being driven there while Makhachev already controls his hips or upper body. In that situation, the fence is more likely to help Makhachev than Garry.
 
@@ -131,9 +131,7 @@ Can he recognize the black line early enough to move before the fence becomes pa
 
 ## **How Makhachev gets through the reach**
 
-Makhachev does not normally solve reach by chasing an opponent’s head with single punches.
-
-He attacks easier targets first. The lead leg does not move as far as the head. The body is harder to pull out of range. Kicks and level-change feints can shorten an opponent’s stance, bring the elbows down or make the feet pause.
+Low kicks can slow Garry’s movement, while level-change feints may make him pause, shift his weight or bring his hands down. Those reactions can give Makhachev a moment to enter the clinch or strike upstairs.
 
 Against Jack Della Maddalena, Makhachev mixed leg kicks with timed takedowns. He completed four takedowns and limited Della Maddalena to 18 significant strikes across five rounds.
 
