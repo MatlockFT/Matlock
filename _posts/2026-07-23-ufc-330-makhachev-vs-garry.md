@@ -4,7 +4,7 @@ title: "UFC 330: Makhachev vs. Garry"
 description: A technical breakdown of Islam Makhachev vs. Ian Machado Garry,
   including their striking, wrestling, physical advantages, statistics, and
   paths to victory.
-date: 2026-07-23
+date: 2026-08-04
 category: Breakdown
 author: MMA Matlock
 image:
