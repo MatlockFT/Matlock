@@ -267,7 +267,35 @@ For Makhachev, the collar tie can turn open space into fence pressure.
 
 Garry’s 80 percent takedown defense is a strong number. UFC opponents have completed only six of the 30 takedowns they have attempted against him. Fifteen of his 24 successful defenses came against Shavkat Rakhmonov and Belal Muhammad.
 
-The number still tells only part of the story. Rakhmonov went two for 10 on takedowns but controlled Garry for 11:41. Muhammad failed on all seven of his attempts and still spent 3:35 in control. Garry often stayed on his feet, but that did not always get him out of the clinch or back into open space.
+The number still tells only part of the story. Rakhmonov went two for 10 on takedowns but controlled Garry for 11:41. 
+
+<div class="drive-video">
+  <iframe
+    src="https://drive.google.com/file/d/1eCtG5xhHT_sMgL9Xo36BbuYJSePiXsQ_/preview"
+    title="Embedded video"
+    loading="lazy"
+    allow="autoplay; fullscreen"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<style>
+  .drive-video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 1.5em 0;
+    overflow: hidden;
+  }
+
+  .drive-video iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>
+
+Muhammad failed on all seven of his attempts and still spent 3:35 in control. Garry often stayed on his feet, but that did not always get him out of the clinch or back into open space.
 
 That matters because Makhachev often does his best work after contact has already been made. He can stay on a single leg, move into a body lock, turn Garry toward the fence or keep working until another opening appears. Garry may stop the first attack and still lose a long stretch of the round trying to separate.
 
