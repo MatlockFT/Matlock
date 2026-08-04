@@ -160,7 +160,16 @@ Garry probably needs to hold the center in short stretches, score at range and l
 
 Makhachev does not have to beat Garry’s reach with his hands alone. Low kicks and body attacks can interrupt his movement, while level-change feints may make him pause, shift his weight or lower his hands. Any of those reactions could give Makhachev a moment to close the distance.
 
-That was clear against JDM. Makhachev attacked his lead leg throughout the fight, then repeatedly timed his takedowns before JDM could settle into his boxing. JDM had a three-inch reach advantage, but Makhachev completed four takedowns, recorded 19:10 of control and held him to 18 significant strikes over five rounds.
+That was clear against JDM. Makhachev attacked his lead leg throughout the fight, then repeatedly timed his takedowns before JDM could settle into his boxing. 
+
+<iframe
+  src="https://drive.google.com/file/d/1KCJmpvFvuiUk_XE0lJMb63SE_hAqkRHv/preview"
+  style="display:block; width:100%; aspect-ratio:16 / 9; border:0; margin:1.5em 0;"
+  allow="autoplay; fullscreen"
+  allowfullscreen>
+</iframe>
+
+JDM had a three-inch reach advantage, but Makhachev completed four takedowns, recorded 19:10 of control and held him to 18 significant strikes over five rounds.
 
 Garry may present a harder version of that problem because he is taller and can change direction suddenly instead of circling at one steady pace. Makhachev may only need to catch him during one of those changes, after a kick or as he finishes the right hand. Those are the moments when Garry could be square, heavy on one leg or unable to move away immediately.
 
