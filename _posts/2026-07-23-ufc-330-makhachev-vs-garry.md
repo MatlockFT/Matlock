@@ -147,6 +147,8 @@ Makhachev does not have to beat Garry’s reach with his hands alone. Low kicks 
 
 That was clear against JDM. Makhachev attacked his lead leg throughout the fight, then repeatedly timed his takedowns before JDM could settle into his boxing. 
 
+[EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893277/ISLAM_KICK_TO_TAKEDOWN_szsqsw.mp4)
+
 JDM had a three-inch reach advantage, but Makhachev completed four takedowns, recorded 19:10 of control and held him to 18 significant strikes over five rounds.
 
 Garry may present a harder version of that problem because he is taller and can change direction suddenly instead of circling at one steady pace. Makhachev may only need to catch him during one of those changes, after a kick or as he finishes the right hand. Those are the moments when Garry could be square, heavy on one leg or unable to move away immediately.
