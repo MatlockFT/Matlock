@@ -1671,3 +1671,9 @@ textarea {
 .article-video-embed video {
     height: auto;
 }
+.article-video-embed img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 0;
+}
