@@ -1650,3 +1650,24 @@ textarea {
         transition: none !important;
     }
 }
+/* =========================================================
+   ARTICLE VIDEO EMBEDS
+   ========================================================= */
+
+.article-video-embed {
+    width: 100%;
+    margin: 1.75rem 0;
+}
+
+.article-video-embed iframe,
+.article-video-embed video {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    background: #000;
+}
+
+.article-video-embed video {
+    height: auto;
+}
