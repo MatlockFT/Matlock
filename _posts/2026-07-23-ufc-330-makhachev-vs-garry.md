@@ -107,7 +107,7 @@ That could matter more against Makhachev than speed alone. If Garry retreats alo
 
 Those cuts also create moments Makhachev could try to time. Garry has to shift his weight and bring his feet underneath him before changing direction. If Makhachev reads that movement, the exit could become an opening to attack the leg or get to the clinch.
 
-The center gives Garry more room to defend. If Makhachev reaches his legs or ties up, Garry can sprawl, turn or circle away without immediately running into the cage. He also has more room to frame on Makhachev’s shoulders or upper body, keep their hips apart and move off at an angle. Once Makhachev gets past those frames and settles into the clinch, the extra space matters much less.
+The center gives Garry more room to defend. If Makhachev reaches his legs or ties up, Garry can sprawl, turn or circle away without immediately running into the cage. He also has more room to frame on Makhachev’s shoulders or upper body, keep their hips apart, **COUNTER** and then move off at an angle. Once Makhachev gets past those frames and settles into the clinch, the extra space matters much less.
 
 [EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893278/Garry_Frame_azchaz.mp4)
 
