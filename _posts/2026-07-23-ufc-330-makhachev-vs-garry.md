@@ -107,7 +107,7 @@ The black line is a warning. Once Garry moves beyond it, there is little room le
 
 The most important part of Garry’s movement may be how quickly he changes direction. Against [Geoff Neal](https://www.tapology.com/fightcenter/fighters/20058-geoffrey-neal), he deliberately showed one exit before cutting back the other way, [an approach he said was influenced by studying NFL wide receivers.](https://www.mmafighting.com/2024/2/19/24077610/ian-machado-garry-studied-nfl-wide-receivers-to-evade-geoff-neals-power-at-ufc-298) He wanted Neal to commit his feet in one direction before Garry moved in another.
 
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/W6caQIoQg05y38vSK7" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/W6caQIoQg05y38vSK7">via GIPHY</a></p>
+[via GIPHY](https://giphy.com/gifs/W6caQIoQg05y38vSK7)
 
 That could matter more against Makhachev than speed alone. If Garry retreats along one line, Makhachev can keep following him toward the fence. A sharp change of direction may force Makhachev to turn and adjust his pressure, giving Garry a moment to recover the center or strike as Makhachev follows.
 
@@ -115,44 +115,29 @@ Those cuts also create moments Makhachev could try to time. Garry has to shift h
 
 The center gives Garry more room to defend. If Makhachev reaches his legs or closes into the clinch, Garry can sprawl, turn or circle away without immediately running into the cage. He also has more room to frame on Makhachev’s shoulders or upper body, keep their hips apart and move off at an angle. Once Makhachev gets past those frames and settles into the clinch, the extra space matters much less.
 
-<div style="width:100%;height:0;padding-bottom:57%;position:relative;"><iframe src="https://giphy.com/embed/S8d2dz04zobjYwrzvy" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/S8d2dz04zobjYwrzvy">via GIPHY</a></p>
+[via GIPHY](https://giphy.com/gifs/S8d2dz04zobjYwrzvy)
 
 Jack Della Maddalena showed the limits of holding the center. Makhachev took him down in open space and controlled him for most of the fight. 
 
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/y3815NgVOEYhxoXXjL" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/y3815NgVOEYhxoXXjL">via GIPHY</a></p>
+[via GIPHY](https://giphy.com/gifs/y3815NgVOEYhxoXXjL)
 
 JDM had room around him, but Makhachev often reached him before he could use it. Once Makhachev gained control, JDM could not create enough space to stand and reset.
 
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/7FjedPi9AfXHuizK35" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/7FjedPi9AfXHuizK35">via GIPHY</a></p>
+[via GIPHY](https://giphy.com/gifs/7FjedPi9AfXHuizK35)
 
 The center only helps if Garry acts before Makhachev settles into position. He still has to recognize the entry, establish his frames and move.
 
-<p>Dustin Poirier had some of his better moments against Makhachev when the fight remained in open space.</p>
+Dustin Poirier had some of his better moments against Makhachev when the fight remained in open space.
 
-<iframe
-  src="https://drive.google.com/file/d/1jxlEWxSR_K3dUY1n5vPWX0pRP0M3Zl9w/preview"
-  style="display:block; width:100%; aspect-ratio:16 / 9; border:0; margin:1.5em 0;"
-  allow="autoplay; fullscreen"
-  allowfullscreen>
-</iframe>
 
-<p style="display:block; margin:1em 0;">Before their fight, <a href="https://www.mmafighting.com/2024/6/1/24159905/matt-brown-explains-what-dustin-poirier-needs-to-do-to-beat-islam-makhachev-at-ufc-302" style="color:inherit; text-decoration:underline;">Matt Brown said Poirier needed to “keep the center of the octagon”</a>.</p>
 
-<iframe
-  src="https://drive.google.com/file/d/1z6k8BM47_lPyHxqqfR7gyr1IVvEMSO0c/preview"
-  style="display:block; width:100%; aspect-ratio:16 / 9; border:0; margin:1.5em 0;"
-  allow="autoplay; fullscreen"
-  allowfullscreen>
-</iframe>
+Before their fight, ++[Matt Brown said Poirier needed to “keep the center of the octagon”](https://www.mmafighting.com/2024/6/1/24159905/matt-brown-explains-what-dustin-poirier-needs-to-do-to-beat-islam-makhachev-at-ufc-302)++.
 
-<p>Poirier's coach, Mike Brown, offered the same advice after Round 1, saying, “You cannot back up to the wall. No matter what happens, you need to fight him right in the center. Whether he hits you or not, you cannot back up. That's how he took you down on the wall.”</p>
 
-<iframe
-  src="https://drive.google.com/file/d/13esMcp50ZZZTI49tjfKcOqMQ1ZLsaadX/preview"
-  style="display:block; width:100%; aspect-ratio:16 / 9; border:0; margin:1.5em 0;"
-  allow="autoplay; fullscreen"
-  allowfullscreen>
-</iframe>
+
+Poirier's coach, Mike Brown, offered the same advice after Round 1, saying, “You cannot back up to the wall. No matter what happens, you need to fight him right in the center. Whether he hits you or not, you cannot back up. That's how he took you down on the wall.”
+
+
 
 Garry may still use the fence to help him stand if he is taken down near it. That is different from being driven there while Makhachev already controls his hips or upper body. In that situation, the fence is more likely to help Makhachev keep him in place.
 
@@ -164,12 +149,7 @@ Makhachev does not have to beat Garry’s reach with his hands alone. Low kicks 
 
 That was clear against JDM. Makhachev attacked his lead leg throughout the fight, then repeatedly timed his takedowns before JDM could settle into his boxing. 
 
-<iframe
-  src="https://drive.google.com/file/d/1KCJmpvFvuiUk_XE0lJMb63SE_hAqkRHv/preview"
-  style="display:block; width:100%; aspect-ratio:16 / 9; border:0; margin:1.5em 0;"
-  allow="autoplay; fullscreen"
-  allowfullscreen>
-</iframe>
+
 
 JDM had a three-inch reach advantage, but Makhachev completed four takedowns, recorded 19:10 of control and held him to 18 significant strikes over five rounds.
 
@@ -185,12 +165,7 @@ Garry will want that angle for the right hand, but Makhachev can use the same ba
 
 That is where the threat of wrestling begins to shape the striking. If Garry becomes too focused on stopping the takedown and/or blocking the inside body kick, he may lower his hands or hesitate long enough for Makhachev to bring the left kick upstairs, as he did in the second Volkanovski fight.
 
-<iframe
-  src="https://drive.google.com/file/d/12DtkU1ucyh8HJRsttYZmnAjQLiNIPVk7/preview"
-  style="display:block; width:100%; aspect-ratio:16 / 9; border:0; margin:1.5em 0;"
-  allow="autoplay; fullscreen"
-  allowfullscreen>
-</iframe>
+
 
 Makhachev can also occupy Garry’s lead hand by touching, pulling or knocking the jab aside. That can briefly shorten the reach gap and give him a clearer route to the body, the clinch or the left hand.
 
@@ -202,68 +177,34 @@ One way Makhachev has handled opponents entering on him is the double collar tie
 
 Garry’s height could make the first contact harder to establish. His head sits farther away, and if Makhachev reaches from too far out, Garry has room to frame, fire an uppercut or bring up a knee. Makhachev will likely need to hide the entry behind hand fighting, pressure or a level-change feint.
 
+![image.png](/assets/uploads/image-4.png)
+
 Once Makhachev gets the tie, Garry’s height can work against him. Pulling the head forward breaks his posture and takes away the distance he needs for his straight punches and kicks. Garry then has to fight his way upright, and that effort may carry him backward toward the fence.
 
-<div style="margin:1.5em 0;">
-  <blockquote
-    class="twitter-tweet"
-    data-dnt="true"
-    data-theme="dark">
 
-    <p lang="en" dir="ltr">
-      Haven&#39;t seen much of Islam using double collar ties against taller opponents but they can be a great tool to stand up tall guys and shoot under or get body locks 👀
-    </p>
 
-    &mdash; Feño 🏴 (@fenoxsky)
-    <a href="https://x.com/fenoxsky/status/2082954915144458387">
-      July 30, 2026
-    </a>
-  </blockquote>
-</div>
+```
+<p lang="en" dir="ltr">
+  Haven&#39;t seen much of Islam using double collar ties against taller opponents but they can be a great tool to stand up tall guys and shoot under or get body locks 👀
+</p>
 
-<script
-  async
-  src="https://platform.x.com/widgets.js"
-  charset="utf-8">
-</script>
+&mdash; Feño 🏴 (@fenoxsky)
+<a href="https://x.com/fenoxsky/status/2082954915144458387">
+  July 30, 2026
+</a>
+```
+
+
+
+&nbsp;
 
 In open space, Garry has room to work an arm inside, raise his posture and circle away. Near the cage, those exits narrow, and the collar tie can lead into knees, a body lock, a trip or a longer clinch exchange.
 
 For Makhachev, the collar tie can turn open space into fence pressure.
 
-<div class="drive-video">
-  <iframe
-    src="https://drive.google.com/file/d/1RGONxB4U4x_CJhPWeO6Xm8PRBl1wrC1D/preview"
-    title="Embedded video"
-    loading="lazy"
-    allow="autoplay; fullscreen"
-    allowfullscreen>
-  </iframe>
-</div>
 
-<style>
-  .drive-video {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    margin: 1.5em 0;
-    overflow: hidden;
-    border-radius: 8px;
-  }
 
-  .drive-video iframe {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
-
-  @media (max-width: 600px) {
-    .drive-video {
-      border-radius: 4px;
-      margin: 1em 0;
-    }
-  }
-</style>
+&nbsp;
 
 ## Wrestling is more than the takedown
 
@@ -281,31 +222,9 @@ Alexander Volkanovski made those exchanges harder for Makhachev. He stayed balan
 
 Garry has shown some of the same composure. He defended eight of Rakhmonov’s 10 takedown attempts and found his way to the back during a fifth-round scramble. That back take is useful evidence that he can remain calm when a position begins to break down. It is less useful as a reason to expect him to wrestle offensively against Makhachev.
 
-<div class="drive-video">
-  <iframe
-    src="https://drive.google.com/file/d/1eCtG5xhHT_sMgL9Xo36BbuYJSePiXsQ_/preview"
-    title="Embedded video"
-    loading="lazy"
-    allow="autoplay; fullscreen"
-    allowfullscreen>
-  </iframe>
-</div>
 
-<style>
-  .drive-video {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    margin: 1.5em 0;
-    overflow: hidden;
-  }
 
-  .drive-video iframe {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
-</style>
+&nbsp;
 
 Most of the time, Garry will probably want those scrambles to end with separation. A reversal or back take could still create offense, but staying attached also gives Makhachev time to rebuild control. Defending the takedown may be only one part of getting back to the fight Garry wants.
 
@@ -319,15 +238,21 @@ The first Volkanovski fight was less comfortable. Volkanovski outlanded Makhache
 
 Garry has also shown that he can remain dangerous after a difficult fight. He spent long periods dealing with Rakhmonov’s clinch pressure and wrestling, then took his back and threatened a choke in the fifth. It was probably Garry’s best position of the fight and came after four rounds in which he had been made to defend far more than usual.
 
+![image.png](/assets/uploads/image-2.png)
+
 The Carlos Prates fight looked different. Garry still landed 28 significant strikes in the fifth, but his movement became less reliable as Prates kept pressing forward. In that round, Garry went 0-for-6 on takedowns, gave up 1:01 of control and absorbed 12 significant ground strikes.
 
 [Garry later said he was not hurt and remained conscious throughout the exchange](https://www.reuters.com/sports/ian-machado-garry-calls-ufc-welterweight-title-shot-fight-night-2025-04-27/). Whatever the case, his movement and choices became less reliable as the pressure increased. That performance is not enough to say he has poor cardio. He did not stop working, but his ability to move and make good decisions may have declined before his willingness to fight did. Against Makhachev, that may matter more than whether Garry visibly tires.
 
-Fatigue may show up in slower exits, later reactions and poorer decisions. Garry’s exits could become slower or easier to read. Makhachev’s entries could lose some of their timing, as they appeared to against Volkanovski. Neither man has to fall apart for the shape of the fight to change.
+Fatigue may show up in slower exits, later reactions and poorer decisions. Makhachev’s entries could lose some of their timing, as they appeared to against Volkanovski. Neither man has to fall apart for the shape of the fight to change.
 
 ## What if Makhachev does not need the takedown?
 
-[Javier Mendez has said Makhachev may not even need to take Garry down](https://www.mmanews.com/article/the-game-plan-nobody-expects-from-islam-makhachev-for-ian-machado-garry-fight). Most likely a bluff but I think what he's trying to say is they have several plans based off how Ian Garry approaches the fight. They need to make some reads before committing to anything specific. 
+[Javier Mendez has said Makhachev may not even need to take Garry down](https://www.mmanews.com/article/the-game-plan-nobody-expects-from-islam-makhachev-for-ian-machado-garry-fight). Most likely a bluff but I think what he's trying to say is they have several plans based off how Ian Garry approaches the fight. They need to make some reads before committing to anything specific. In fact, this sounds oddly familiar...
+
+
+
+&nbsp;
 
 A more practical reading is that Makhachev does not need to ***force*** the takedown. The ***threat*** of wrestling can still affect Garry’s stance, his kicks and how freely he puts combinations together. A defended entry may leave him in the clinch or moving toward the fence, which could be enough to keep him from settling into his preferred range.
 
@@ -340,6 +265,8 @@ There is still a risk in giving Garry too much time at range. He is longer, fast
 One version of this fight has Garry defending most of the takedowns and still losing long stretches in the clinch. He may stay upright but spend too much time carrying Makhachev’s weight, fighting hands and waiting for enough room to strike again. Makhachev would not need the dominant ground performance people expect. He would only need to keep Garry reacting, take away his resets and add enough knees, short strikes or submission threats to make the positions count.
 
 The fight looks different if Garry keeps making him start over. A clean frame could create room for the right hand, a level change could run into a knee, and a sudden change of direction could leave Makhachev turning while Garry is already exiting. If Garry can end enough of the clinch exchanges quickly, Makhachev may find himself reaching from too far away and getting picked off as he tries to close the distance.
+
+![image.png](/assets/uploads/image-3.png)
 
 That is why the moments after the first defense may matter more than the takedown count itself. If Garry separates and returns to range, he has won something useful from the exchange. If Makhachev stays attached, an unsuccessful takedown can still turn into a minute of fence pressure and offense.
 
