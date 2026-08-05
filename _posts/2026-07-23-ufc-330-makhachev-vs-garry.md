@@ -24,7 +24,7 @@ published: true
 
 ## Styles
 
-It is easy to describe this as a striker against a wrestler, but that leaves out much of what makes the fight interesting.
+Ahh... the classic wrestler vs. striker matchup. Of course, adjusted for 2026 standards of what striker vs wrestelr means. We've seen Garry grapple and he's got a sub under his belt. We've also seen Makhachev get some knockouts but we know what their specialties are. 
 
 Makhachev is a wrestling-led control fighter who uses measured pressure, striking and hand fighting to deny space and get to the clinch. He is a master of chaining positions together even if his opponent denies the first attempt.
 
@@ -46,7 +46,7 @@ Garry’s challenge is to stop Makhachev from chaining one position into the nex
 | Weight | 170 lb | 170 lb |
 
 
-Makhachev gives away five inches in height and four inches in reach. Garry is also six years younger. Makhachev has the much deeper title-fight record and has won 16 straight UFC fights.
+Makhachev gives away five inches in height and four inches in reach. **Garry is also six years younger.** Makhachev has the much deeper title-fight record and has won 16 straight UFC fights.
 
 
 | **Fight** | **Islam Makhachev** | **Ian Machado Garry** |
@@ -91,7 +91,7 @@ That reach lets him attack from farther out, while his long arms help him post o
 
 Makhachev has beaten longer opponents before. [Charles Oliveira](https://www.tapology.com/fightcenter/fighters/charles-oliveira-do-bronx) has a listed reach of 74 inches, while [Dan Hooker](https://www.tapology.com/fightcenter/fighters/18854-daniel-hooker) is listed at 75. Makhachev submitted both, though neither was a 6'3" welterweight who moves like Garry. 😂
 
-Garry’s height may help him frame and create separation. His reach advantage matters most while he still has clear space behind him.
+Garry’s height may help him create separation. His reach advantage matters most while he still has room to move behind him.
 
 ## Cage craft
 
@@ -237,22 +237,14 @@ The Carlos Prates fight looked different because Garry still landed 28 significa
 
 I interpret this as: Makhachev does not need to ***force*** the takedown. The ***threat*** of wrestling can still affect Garry’s reactions.
 
-Of course, there is still a risk in giving Garry too much time at range. He is longer, faster and comfortable building rounds through straight punches and kicks. Makhachev may not need to take him down the entire fight, but he'll definitely want Garry reacting to the feints. 
+Of course, there is still a risk in giving Garry too much time at range. He is longer, faster and comfortable building rounds through volume and accumulation. Makhachev may not need to take him down the entire fight, but he'll definitely want Garry reacting to the feints. 
 
 ## Pick & Prediction
 
-One version of this fight has Garry defending most of the takedowns and still losing long stretches in the clinch. He may stay upright but spend too much time carrying Makhachev’s weight, working out of positions, and trying to create enough separation to strike again. Makhachev maybe wouldn't need the dominant ground performance people expect. He would only need to keep Garry reacting, take away his resets and add enough knees, short strikes or submission threats to make those positions on the ground or against the cage count. (
+Personally, I find this fight so intriguing. 
 
-The fight looks different if Garry keeps making Makhachev reset. A clean post could create room for the right hand, Islam's level change could be met with a knee, and a sudden change of direction could leave Makhachev turning while Garry is already exiting. If Garry can stick and move without getting caught against the cagae, Makhachev may find himself reaching from too far away and getting picked off as he tries to close the distance. Perhaps Garry finds his own success in the clinch being the taller man? We've seen other opponents attack with uppercuts and body shots from the there so why not Ian Garry? Will Islam risk going to that position? I'm focusing on it a lot becaues he goes to it often. 
-
-I expect some back-and-forth from round to round. Garry’s speed and direction changes give him real chances to make Makhachev miss and punish his entries. With the right game plan, he can make Islam hestitant to enter range or enter range recklessly. And I haven't even touched on Garry's knee/thigh stomps!
-
-That is why I am surprised to see Garry priced as roughly a 3-to-1 underdog. I think the gap is wider than the matchup deserves. I would not be shocked if he hurt or even finished Makhachev.
-
-I still trust Makhachev to dictate where the fight takes place. I'm extremely curious to see their striking exchanges because I do agree with Dan Albert that this might be super awkward. I think attacking the lead leg, inside body kicks, level-change feints, cage cutting, and wrestling are going to work very well for Islam Makhachev. This is going to be an interesting fight.
-
-**Pick: Islam Makhachev by DEC. **  
-I reserve my right to change my pick prior to the fight but all official picks are recorded on [https://verdictmma.com/profile/mmamatlock](https://verdictmma.com/profile/mmamatlock)
+**Pick: Islam Makhachev by DEC.**  
+*I reserve my right to change my pick prior to the fight but all official picks are recorded on* [https://verdictmma.com/profile/mmamatlock](https://verdictmma.com/profile/mmamatlock)
 
 p.s.
 
