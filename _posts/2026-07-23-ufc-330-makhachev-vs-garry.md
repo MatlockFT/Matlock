@@ -123,7 +123,7 @@ Jack Della Maddalena showed the limits of holding the center. Makhachev took him
 
 JDM had room around him, but Makhachev often reached him before he could use it. Once Makhachev gained control, JDM could not create enough space to stand and reset.
 
-[EMBED GIPHY](https://giphy.com/gifs/7FjedPi9AfXHuizK35)
+[EMBED GIPHY](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXQ5cXNwb2Nkdzg5aG4yaTA1Z2gyNWR3bWg3MG03dWxiNDlra2pocSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7FjedPi9AfXHuizK35/giphy.gif)
 
 The center only helps if Garry acts before Makhachev settles into position. He still has to recognize the entry, establish his frames and move.
 
