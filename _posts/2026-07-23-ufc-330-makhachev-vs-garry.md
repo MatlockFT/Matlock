@@ -85,21 +85,19 @@ The control stats make that difference clearer. Makhachev has spent just over ha
 
 ## Height & Reach
 
-Garry’s reach is most useful in open space, where he can jab, kick and move before Makhachev reaches the clinch.
+Garry’s reach is most useful in open space, where he can jab, kick and move before Makhachev reaches a leg, hips, or the clinch. 
 
 That reach lets him attack from farther out and his long arms for posting on Makhachev’s shoulders, digging for underhooks and threatening knees when Makhachev changes levels.
 
-Makhachev has beaten longer opponents before. [Charles Oliveira](https://www.tapology.com/fightcenter/fighters/charles-oliveira-do-bronx) has a listed reach of 74 inches, while [Dan Hooker](https://www.tapology.com/fightcenter/fighters/18854-daniel-hooker) is listed at 75. Makhachev submitted both, though neither was a 6'3" welterweight who moves like Garry.
+Makhachev has beaten longer opponents before. [Charles Oliveira](https://www.tapology.com/fightcenter/fighters/charles-oliveira-do-bronx) has a listed reach of 74 inches, while [Dan Hooker](https://www.tapology.com/fightcenter/fighters/18854-daniel-hooker) is listed at 75. Makhachev submitted both, though neither was a 6'3" welterweight who moves like Garry. 😂
 
-Garry’s height may help him frame and create separation, but it can become awkward once Makhachev breaks his posture. Garry then has farther to travel before he is upright, balanced and ready to strike again.
-
-His reach advantage matters most while he still has clear space behind him.
+Garry’s height may help him frame and create separation. His reach advantage matters most while he still has clear space behind him.
 
 ## Cage craft
 
 Garry wants to fight at long range, but he probably does not want to spend much time near the outer edge of the Octagon.
 
-The black line is a warning. Once Garry moves beyond it, there is little room left to retreat. Makhachev can use the threat of strikes and level changes to keep him backing up, then close the remaining distance at the fence and begin working through the clinch.
+I’ll be keeping an eye on the [“warning track,” as some call it.](https://www.washingtonpost.com/news/sports/wp/2017/03/02/ufc-209-khabib-nurmagomedov-and-tony-ferguson-meet-in-an-epic-lightweight-clash/)  Once Garry moves beyond it, there is little room left to retreat. Makhachev can use the threat of strikes and level changes to keep him backing up, then close the remaining distance at the fence and begin working through the clinch.
 
 The most important part of Garry’s movement may be how quickly he changes direction. Against [Geoff Neal](https://www.tapology.com/fightcenter/fighters/20058-geoffrey-neal), he deliberately showed one exit before cutting back the other way, [an approach he said was influenced by studying NFL wide receivers.](https://www.mmafighting.com/2024/2/19/24077610/ian-machado-garry-studied-nfl-wide-receivers-to-evade-geoff-neals-power-at-ufc-298) He wanted Neal to commit his feet in one direction before Garry moved in another.
 
