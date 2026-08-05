@@ -113,7 +113,7 @@ That could matter more against Makhachev than speed alone. If Garry retreats alo
 
 Those cuts also create moments Makhachev could try to time. Garry has to shift his weight and bring his feet underneath him before changing direction. If Makhachev reads that movement, the exit could become an opening to attack the leg or close into the clinch.
 
-The center gives Garry more room to defend. If Makhachev reaches his legs or closes into the clinch, Garry can sprawl, turn or circle away without immediately running into the cage. **He also has more room to ++frame++ on Makhachev’s shoulders or upper body, keep their hips apart** and move off at an angle. Once Makhachev gets past those frames and settles into the clinch, the extra space matters much less.
+The center gives Garry more room to defend. If Makhachev reaches his legs or closes into the clinch, Garry can sprawl, turn or circle away without immediately running into the cage. He also has more room to frame on Makhachev’s shoulders or upper body, keep their hips apart and move off at an angle. Once Makhachev gets past those frames and settles into the clinch, the extra space matters much less.
 
 [EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893278/Garry_Frame_azchaz.mp4)
 
@@ -125,7 +125,7 @@ JDM had room around him, but Makhachev often reached him before he could use it.
 
 [EMBED GIPHY](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXQ5cXNwb2Nkdzg5aG4yaTA1Z2gyNWR3bWg3MG03dWxiNDlra2pocSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7FjedPi9AfXHuizK35/giphy.gif)
 
-The center only helps if Garry acts before Makhachev settles into position. He still has to recognize the entry, **establish his ++frames++ and move.**
+The center only helps if Garry acts before Makhachev settles into position. He still has to recognize the entry, establish his frames and move. For a more in depth understanding of takedown defense and frames, I highly recommend watching BJJ Scout's video on Conor McGregor.
 
 Dustin Poirier had some of his better moments against Makhachev when the fight remained in open space.
 
