@@ -231,7 +231,7 @@ Fatigue may show up in slower exits, later reactions and poorer decisions. Makha
 
 [Javier Mendez has said Makhachev may not even need to take Garry down](https://www.mmanews.com/article/the-game-plan-nobody-expects-from-islam-makhachev-for-ian-machado-garry-fight). Most likely a bluff but I think what he's trying to say is they have several plans based off how Ian Garry approaches the fight. They need to make some reads before committing to anything specific. In fact, this sounds oddly familiar...
 
-[EMBED VIDEO](https://youtu.be/T3ZmS5zxFEA?list=PLKb7D4fR_VOg2Nhy94-08Wz23jfg1BvLQ)
+[EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893278/Javier_Mendes_s8e5ah.mp4)
 
 A more practical reading is that Makhachev does not need to ***force*** the takedown. The ***threat*** of wrestling can still affect Garry’s stance, his kicks and how freely he puts combinations together. A defended entry may leave him in the clinch or moving toward the fence, which could be enough to keep him from settling into his preferred range.
 
