@@ -115,7 +115,7 @@ Those cuts also create moments Makhachev could try to time. Garry has to shift h
 
 The center gives Garry more room to defend. If Makhachev reaches his legs or closes into the clinch, Garry can sprawl, turn or circle away without immediately running into the cage. He also has more room to frame on Makhachev’s shoulders or upper body, keep their hips apart and move off at an angle. Once Makhachev gets past those frames and settles into the clinch, the extra space matters much less.
 
-[via GIPHY](https://giphy.com/gifs/S8d2dz04zobjYwrzvy)
+[EMBED GIPHY](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExNG1mYjFleTF6cjJhamZ4aDB3eG41d3hwbzZnamUxOTczeGhxMWw4MyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y3815NgVOEYhxoXXjL/giphy.gif)
 
 Jack Della Maddalena showed the limits of holding the center. Makhachev took him down in open space and controlled him for most of the fight. 
 
