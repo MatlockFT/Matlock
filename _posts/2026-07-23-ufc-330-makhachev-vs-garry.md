@@ -111,7 +111,7 @@ The center gives Garry more room to defend. If Makhachev reaches his legs or tie
 
 [EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893278/Garry_Frame_azchaz.mp4)
 
-Jack Della Maddalena showed the limits of holding the center. Makhachev took him down in open space and controlled him for most of the fight. 
+Jack Della Maddalena showed the limits of holding the center. Makhachev took him down in open space and controlled him for most of the fight. JDM offered no post/frame or countering in this example. He shells up and moves back in a straight line. Completely ill-prepared and its only the first round.
 
 [EMBED GIPHY](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExemttZTlubmttNWplYmRhcWF2YmRmazI4azNqemtjc2E5dmZhOWtuMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y3815NgVOEYhxoXXjL/giphy.gif)
 
