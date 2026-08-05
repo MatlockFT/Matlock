@@ -20,7 +20,7 @@ published: true
 ---
 # [Islam Makhachev](https://www.tapology.com/fightcenter/fighters/40148-islam-makhachev) vs. [Ian Machado Garry](https://www.tapology.com/fightcenter/fighters/171377-ian-garry)
 
-[UFC 330](https://www.tapology.com/fightcenter/events/142341-ufc-330) is scheduled for August 15, 2026, at Xfinity Mobile Arena in Philadelphia. Welterweight champion Islam Makhachev is set to defend his title against No. 1 contender Ian Machado Garry.
+[UFC 330](https://www.tapology.com/fightcenter/events/142341-ufc-330) is scheduled for August 15, 2026, at Xfinity Mobile Arena in Philadelphia. Welterweight champion Islam Makhachev is set to defend his title against No. 1 contender Ian Machado Garry. This article updates regularly with any new information up until fight night. 
 
 ## Styles
 
