@@ -125,7 +125,9 @@ JDM had room around him, but Makhachev often reached him before he could use it.
 
 [EMBED GIPHY](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXQ5cXNwb2Nkdzg5aG4yaTA1Z2gyNWR3bWg3MG03dWxiNDlra2pocSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7FjedPi9AfXHuizK35/giphy.gif)
 
-The center only helps if Garry acts before Makhachev settles into position. He still has to recognize the entry, establish his frames and move. For a more in depth understanding of takedown defense and frames, I highly recommend watching BJJ Scout's video on Conor McGregor.
+The center only helps if Garry acts before Makhachev settles into position. He still has to recognize the entry, establish his frames and move. For a more in depth understanding of takedown defense and frames, [I highly recommend watching BJJ Scout's video on Conor McGregor](https://youtu.be/T3ZmS5zxFEA?list=PLKb7D4fR_VOg2Nhy94-08Wz23jfg1BvLQ).
+
+![image.png](/assets/uploads/image-5.png)
 
 Dustin Poirier had some of his better moments against Makhachev when the fight remained in open space.
 
