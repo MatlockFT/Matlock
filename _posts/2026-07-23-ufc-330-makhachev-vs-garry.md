@@ -239,6 +239,14 @@ I interpret this as: Makhachev does not need to ***force*** the takedown. The **
 
 Of course, there is still a risk in giving Garry too much time at range. He is longer, faster and comfortable building rounds through volume and accumulation. Makhachev may not need to take him down the entire fight, but he'll definitely want Garry reacting to the feints. 
 
+For Ian Garry, its worth noting a few things he's done in preparation for Islam Makhachev:
+
+- He flew to Georgia to get some work in against southpaw wrestlers.
+- According to Diego Lima, Garry's MMA coach, he's had two months of opponent specific prep for Makhachev, this does not include his trip to Georgia. 
+- Training with Chucky Olives and Demian Maia. *"intensive camp specifically focused on the grappling exchanges they expect against Makhachev."*
+- From what I can gather he also traveled to Spain (Maia), did some work in England, and is finishing up sparring in Dublin. 
+- His cornermen for this fight [are reported to be](https://www.sherdog.com/news/news/Demian-Maia-reveals-what-makes-Ian-Garry-a-threat-to-Islam-Makhachev-202011): [Diego Lima](https://www.instagram.com/dhlimamma/?hl=en), [John Hathaway](https://www.instagram.com/johnhathaway_ufc), [Demian Maia](https://www.instagram.com/demianmaia), [Paulo Mauricio Strauch](https://www.instagram.com/mestrestrauchbjj/?hl=en)
+
 ## Pick & Prediction
 
 Personally, I find this fight so intriguing. I love a classic style matchup, and this one fits perfectly.
