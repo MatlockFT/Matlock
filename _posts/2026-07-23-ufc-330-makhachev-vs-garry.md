@@ -233,6 +233,8 @@ The Carlos Prates fight looked different. Garry still landed 28 significant stri
 
 [Garry later said he was not hurt and remained conscious throughout the exchange](https://www.reuters.com/sports/ian-machado-garry-calls-ufc-welterweight-title-shot-fight-night-2025-04-27/). Whatever the case, his movement and choices became less reliable as the pressure increased. That performance is not enough to say he has poor cardio. He did not stop working, but his ability to move and make good decisions may have declined before his willingness to fight did. Against Makhachev, that may matter more than whether Garry visibly tires.
 
+[EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785905125/PRATES_MACHADO_AGAIN_ejowta.mp4)
+
 Fatigue may show up in slower exits, later reactions and poorer decisions. Makhachev’s entries could lose some of their timing, as they appeared to against Volkanovski. Neither man has to fall apart for the shape of the fight to change.
 
 ## What if Makhachev does not need the takedown?
