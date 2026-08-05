@@ -161,6 +161,8 @@ Much of the work may happen before Makhachev ever reaches his hips. The low kick
 
 Garry stands orthodox and Makhachev stands southpaw, which leaves both men facing an open side. Garry’s right hand and right knee have a direct line toward Makhachev, while Makhachev’s left hand and left kick travel back through the same space. The position of their lead feet matters because whoever gets his foot to the outside has a cleaner lane for the rear hand and rear kick.
 
+[EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893278/Garry_Intercepting_Knee_hx0vzk.mp4)
+
 Garry will want that angle for the right hand, but Makhachev can use the same battle to set up his left straight, his left kick and his entries into the clinch. Garry’s height also puts his right knee in a dangerous position whenever Makhachev steps forward or changes levels. A naked entry would put Makhachev directly on that line, so he may need to draw Garry’s attention elsewhere first.
 
 That is where the threat of wrestling begins to shape the striking. If Garry becomes too focused on stopping the takedown and/or blocking the inside body kick, he may lower his hands or hesitate long enough for Makhachev to bring the left kick upstairs, as he did in the second Volkanovski fight. However, against Ian Garry a head kick seems much less likely because of his height. 
