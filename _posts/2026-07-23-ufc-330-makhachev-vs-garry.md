@@ -247,7 +247,7 @@ If I’m going directly off the general MMA fan vibes, Ian Garry is a disgusting
 
 I get where they’re coming from.
 
-Ian Garry does have that “thing” about him that rubs me the wrong way, but it’s mostly in the delivery of what he says. It comes off as a bit false and pretentious. For others, it’s his support of women and PETA. I’m not one of those guys, but I understand that fans are turned off by it because they just don’t see it as genuine. (Just to be clear, that is not my endorsement of PETA either because for all the legit good work they've done, they also done some terrible shit. Not an organization I would endorse.)
+Ian Garry does have that “thing” about him that rubs me the wrong way, but it’s mostly in the delivery of what he says. It comes off as a bit false and pretentious. For others, it’s his support of women and PETA. I’m not one of those guys, but I understand that fans are turned off by it because they just don’t see it as genuine.
 
 They believe Ian’s wife has a lot of influence over his public persona. We also have to keep in mind that an account appearing to belong to his brother allegedly called him out for being a false human, lying about his past, and presenting a fake version of himself. The account’s identity has not been definitively confirmed, so obviously, this is all still alleged.
 
