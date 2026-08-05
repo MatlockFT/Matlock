@@ -207,7 +207,7 @@ Alexander Volkanovski made those exchanges harder for Makhachev. He stayed balan
 
 Garry has shown some of the same composure. He defended eight of Rakhmonov’s 10 takedown attempts and found his way to the back during a fifth-round scramble. That back take is useful evidence that he can remain calm when a position begins to break down. It is less useful as a reason to expect him to wrestle offensively against Makhachev.
 
-
+[EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893281/Garry_Rakh_-_TD_defense_and_TD_yak7ft.mp4)
 
 Most of the time, Garry will probably want those scrambles to end with separation. A reversal or back take could still create offense, but staying attached also gives Makhachev time to rebuild control. Defending the takedown may be only one part of getting back to the fight Garry wants.
 
