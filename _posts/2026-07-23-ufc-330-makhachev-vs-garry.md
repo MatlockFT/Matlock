@@ -264,3 +264,7 @@ That is why I am surprised to see Garry priced as roughly a 3-to-1 underdog. I t
 I still trust Makhachev to dictate where the fight takes place. I'm extremely curious to see their striking exchanges because I do agree with Dan Albert that this might be super awkward. I think attacking the lead leg, inside body kicks, level-change feints, cage cutting, and wrestling are going to work very well for Islam Makhachev. This is going to be an interesting fight.
 
 **Prediction: Islam Makhachev by decision.**
+
+p.s.
+
+My side prediction is we may see a lot of eye pokes from Ian Garry. Not intentional ones but because he'll be looking to frame. This happened against Belal Muhammad but I anticipate it being much more prevelant in this fight. The real question is, will the ref take a point?
