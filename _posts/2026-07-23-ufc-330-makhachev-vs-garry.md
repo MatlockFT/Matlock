@@ -119,7 +119,7 @@ The center gives Garry more room to defend. If Makhachev reaches his legs or clo
 
 Jack Della Maddalena showed the limits of holding the center. Makhachev took him down in open space and controlled him for most of the fight. 
 
-[EMBED GIPHY](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExemttZTlubmttNWplYmRhcWF2YmRmazI4azNqemtjc2E5dmZhOWtuMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y3815NgVOEYhxoXXjL/giphy.gif)
+[EMBED GIPHY](https://giphy.com/gifs/y3815NgVOEYhxoXXjL)
 
 JDM had room around him, but Makhachev often reached him before he could use it. Once Makhachev gained control, JDM could not create enough space to stand and reset.
 
