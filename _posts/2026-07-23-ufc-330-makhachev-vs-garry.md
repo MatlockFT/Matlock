@@ -134,10 +134,7 @@ Dustin Poirier had some of his better moments against Makhachev when the fight r
 Before their fight, ++[Matt Brown said Poirier needed to “keep the center of the octagon”](https://www.mmafighting.com/2024/6/1/24159905/matt-brown-explains-what-dustin-poirier-needs-to-do-to-beat-islam-makhachev-at-ufc-302)++.
 
 
-
 Poirier's coach, Mike Brown, offered the same advice after Round 1, saying, “You cannot back up to the wall. No matter what happens, you need to fight him right in the center. Whether he hits you or not, you cannot back up. That's how he took you down on the wall.”
-
-
 
 Garry may still use the fence to help him stand if he is taken down near it. That is different from being driven there while Makhachev already controls his hips or upper body. In that situation, the fence is more likely to help Makhachev keep him in place.
 
@@ -149,8 +146,6 @@ Makhachev does not have to beat Garry’s reach with his hands alone. Low kicks 
 
 That was clear against JDM. Makhachev attacked his lead leg throughout the fight, then repeatedly timed his takedowns before JDM could settle into his boxing. 
 
-
-
 JDM had a three-inch reach advantage, but Makhachev completed four takedowns, recorded 19:10 of control and held him to 18 significant strikes over five rounds.
 
 Garry may present a harder version of that problem because he is taller and can change direction suddenly instead of circling at one steady pace. Makhachev may only need to catch him during one of those changes, after a kick or as he finishes the right hand. Those are the moments when Garry could be square, heavy on one leg or unable to move away immediately.
@@ -161,13 +156,9 @@ Much of the work may happen before Makhachev ever reaches his hips. The low kick
 
 Garry stands orthodox and Makhachev stands southpaw, which leaves both men facing an open side. Garry’s right hand and right knee have a direct line toward Makhachev, while Makhachev’s left hand and left kick travel back through the same space. The position of their lead feet matters because whoever gets his foot to the outside has a cleaner lane for the rear hand and rear kick.
 
-
-
 Garry will want that angle for the right hand, but Makhachev can use the same battle to set up his left straight, his left kick and his entries into the clinch. Garry’s height also puts his right knee in a dangerous position whenever Makhachev steps forward or changes levels. A naked entry would put Makhachev directly on that line, so he may need to draw Garry’s attention elsewhere first.
 
 That is where the threat of wrestling begins to shape the striking. If Garry becomes too focused on stopping the takedown and/or blocking the inside body kick, he may lower his hands or hesitate long enough for Makhachev to bring the left kick upstairs, as he did in the second Volkanovski fight. However, against Ian Garry a head kick seems much less likely because of his height. 
-
-
 
 Makhachev can also occupy Garry’s lead hand by touching, pulling or knocking the jab aside. That can briefly shorten the reach gap and give him a clearer route to the body, the clinch or the left hand.
 
@@ -182,10 +173,6 @@ Garry’s height could make the first contact harder to establish. His head sits
 ![image.png](/assets/uploads/image-4.png)
 
 Once Makhachev gets the tie, Garry’s height can work against him. Pulling the head forward breaks his posture and takes away the distance he needs for his straight punches and kicks. Garry then has to fight his way upright, and that effort may carry him backward toward the fence.
-
-> Haven't seen much of Islam using double collar ties against taller opponents but they can be a great tool to stand up tall guys and shoot under or get body locks 👀
->
-> — Feño 🏴 (@fenoxsky) [July 30, 2026](https://x.com/fenoxsky/status/2082954915144458387?ref_src=twsrc%5Etfw)
 
 In open space, Garry has room to work an arm inside, raise his posture and circle away. Near the cage, those exits narrow, and the collar tie can lead into knees, a body lock, a trip or a longer clinch exchange.
 
@@ -210,8 +197,6 @@ Alexander Volkanovski made those exchanges harder for Makhachev. He stayed balan
 Garry has shown some of the same composure. He defended eight of Rakhmonov’s 10 takedown attempts and found his way to the back during a fifth-round scramble. That back take is useful evidence that he can remain calm when a position begins to break down. It is less useful as a reason to expect him to wrestle offensively against Makhachev.
 
 
-
-&nbsp;
 
 Most of the time, Garry will probably want those scrambles to end with separation. A reversal or back take could still create offense, but staying attached also gives Makhachev time to rebuild control. Defending the takedown may be only one part of getting back to the fight Garry wants.
 
