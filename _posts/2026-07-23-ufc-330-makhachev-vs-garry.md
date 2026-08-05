@@ -167,6 +167,8 @@ Garry will want that angle for the right hand, but Makhachev can use the same ba
 
 That is where the threat of wrestling begins to shape the striking. If Garry becomes too focused on stopping the takedown and/or blocking the inside body kick, he may lower his hands or hesitate long enough for Makhachev to bring the left kick upstairs, as he did in the second Volkanovski fight. However, against Ian Garry a head kick seems much less likely because of his height. 
 
+[EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893283/Islam_vs._Volk_2_av91uy.mp4)
+
 Makhachev can also occupy Garry’s lead hand by touching, pulling or knocking the jab aside. That can briefly shorten the reach gap and give him a clearer route to the body, the clinch or the left hand.
 
 ## The double collar tie
