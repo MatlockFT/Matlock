@@ -161,6 +161,8 @@ Much of the work may happen before Makhachev ever reaches his hips. The low kick
 
 Garry stands orthodox and Makhachev stands southpaw, which leaves both men facing an open side. Garry’s right hand and right knee have a direct line toward Makhachev, while Makhachev’s left hand and left kick travel back through the same space. The position of their lead feet matters because whoever gets his foot to the outside has a cleaner lane for the rear hand and rear kick.
 
+
+
 Garry will want that angle for the right hand, but Makhachev can use the same battle to set up his left straight, his left kick and his entries into the clinch. Garry’s height also puts his right knee in a dangerous position whenever Makhachev steps forward or changes levels. A naked entry would put Makhachev directly on that line, so he may need to draw Garry’s attention elsewhere first.
 
 That is where the threat of wrestling begins to shape the striking. If Garry becomes too focused on stopping the takedown and/or blocking the inside body kick, he may lower his hands or hesitate long enough for Makhachev to bring the left kick upstairs, as he did in the second Volkanovski fight.
@@ -174,6 +176,16 @@ Makhachev can also occupy Garry’s lead hand by touching, pulling or knocking t
 One way Makhachev has handled opponents entering on him is the double collar tie. He has used it in open space to control the head, break posture and land knees. The opponent may pull away or give ground to recover his stance, allowing Makhachev to follow and move the exchange toward the cage.
 
 [That happened repeatedly against Volkanovski](https://www.fightprimer.com/returning-to-makhachev-vs-volkanovski-i-the-jack-slack-breakdown). Makhachev caught the double collar tie as Volkanovski came forward, then used it to land knees and interrupt his offense. Later in the fight, he used the tie to set up a trip that carried the exchange into his fence work.
+
+<iframe
+  src="https://player.cloudinary.com/embed/?cloud_name=pm84lfxg&public_id=Islam_Double_Collar_hy4qkl&profile=cld-looping"
+  width="640"
+  height="360" 
+  style="height: auto; width: 100%; aspect-ratio: 640 / 360;"
+  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+  allowfullscreen
+  frameborder="0"
+></iframe>
 
 Garry’s height could make the first contact harder to establish. His head sits farther away, and if Makhachev reaches from too far out, Garry has room to frame, fire an uppercut or bring up a knee. Makhachev will likely need to hide the entry behind hand fighting, pressure or a level-change feint.
 
