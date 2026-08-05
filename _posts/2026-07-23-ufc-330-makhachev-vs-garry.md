@@ -161,7 +161,15 @@ Much of the work may happen before Makhachev ever reaches his hips. The low kick
 
 Garry stands orthodox and Makhachev stands southpaw, which leaves both men facing an open side. Garry’s right hand and right knee have a direct line toward Makhachev, while Makhachev’s left hand and left kick travel back through the same space. The position of their lead feet matters because whoever gets his foot to the outside has a cleaner lane for the rear hand and rear kick.
 
-
+<iframe
+  src="https://player.cloudinary.com/embed/?cloud_name=pm84lfxg&public_id=Garry_Intercepting_Knee_hx0vzk&profile=cld-looping"
+  width="640"
+  height="360" 
+  style="height: auto; width: 100%; aspect-ratio: 640 / 360;"
+  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+  allowfullscreen
+  frameborder="0"
+></iframe>
 
 Garry will want that angle for the right hand, but Makhachev can use the same battle to set up his left straight, his left kick and his entries into the clinch. Garry’s height also puts his right knee in a dangerous position whenever Makhachev steps forward or changes levels. A naked entry would put Makhachev directly on that line, so he may need to draw Garry’s attention elsewhere first.
 
