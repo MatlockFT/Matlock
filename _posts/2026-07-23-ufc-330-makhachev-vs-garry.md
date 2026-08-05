@@ -259,8 +259,8 @@ I lean toward Makhachev’s control shaping the fight, although control time alo
 
 I expect some back-and-forth from round to round. Garry’s speed and direction changes give him real chances to make Makhachev miss, punish his entries and take parts of the fight back.
 
-That is why I am surprised to see Garry priced as roughly a 3-to-1 underdog. I think the gap is wider than the matchup deserves. Garry is unpopular with a large section of the fan base, but setting that aside, his movement, length and ability to punish entries give him a legitimate chance. I would not be shocked if he hurt or even finished Makhachev.
+That is why I am surprised to see Garry priced as roughly a 3-to-1 underdog. I think the gap is wider than the matchup deserves. Garry is unpopular with a large section of the fan base, but setting that aside, his movement, speed, footwork, length and ability to counter give him a legitimate chance. I would not be shocked if he hurt or even finished Makhachev.
 
-I still trust Makhachev to create more of the exchanges that last. Over five rounds, he is more likely to turn brief openings into sustained offense and force Garry to spend too much time defending.
+I still trust Makhachev to dictate where the fight takes place. I'm extremely curious to see their striking exchanges because I do agree with Dan Albert that this might be super awkward. I think attacking the lead leg, inside body kicks, level-change feints, cage cutting, and wrestling are going to work very well for Islam Makhachev. This is going to be an interesting fight.
 
 **Prediction: Islam Makhachev by decision.**
