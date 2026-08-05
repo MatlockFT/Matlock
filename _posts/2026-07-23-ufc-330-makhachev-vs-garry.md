@@ -241,10 +241,53 @@ Of course, there is still a risk in giving Garry too much time at range. He is l
 
 ## Pick & Prediction
 
-Personally, I find this fight so intriguing. 
+Personally, I find this fight so intriguing. I love a classic style matchup, and this one fits perfectly.
 
-**Pick: Islam Makhachev by DEC.**  
-*I reserve my right to change my pick prior to the fight but all official picks are recorded on* [https://verdictmma.com/profile/mmamatlock](https://verdictmma.com/profile/mmamatlock)
+If I’m going directly off the general MMA fan vibes, Ian Garry is a disgusting waste of a human being who doesn’t deserve to even stand near Islam Makhachev.
+
+I get where they’re coming from.
+
+Ian Garry does have that “thing” about him that rubs me the wrong way, but it’s mostly in the delivery of what he says. It comes off as a bit false and pretentious. For others, it’s his support of women and PETA. I’m not one of those guys, but I understand that fans are turned off by it because they just don’t see it as genuine. Just to be clear, that is not my endorsement of PETA either because for all the legit good work they've done, they also done some terrible shit. Not an organization I would endorse.
+
+They believe Ian’s wife has a lot of influence over his public persona. We also have to keep in mind that an account appearing to belong to his brother allegedly called him out for being a false human, lying about his past, and presenting a fake version of himself. The account’s identity has not been definitively confirmed, so obviously, this is all still alleged.
+
+This kind of drama is for casuals and is not at all interesting to me. Having someone who speaks well and has something intelligent to say is always a plus, but that is very, VERY rare in MMA in general.
+
+All this to say, I think this has a lot to do with fan predictions and probably even the betting lines.
+
+At the time of writing this, Ian Garry is nearly a 3-to-1 underdog on most books. Oddschecker has Garry at +290 and Makhachev at -340, while BestFightOdds shows Garry sitting between roughly +250 and +303 depending on the book. Polymarket currently gives Garry a 26% chance of winning, which converts to roughly +285 in American-odds terms.
+
+I’m not a betting expert, and I have no proven track record, but those odds seem crazy to me. I do like to reference them to see where people think this fight goes.
+
+At the time of writing, Polymarket has Fight Goes the Distance at 44% and End Inside the Distance at 56%. FanDuel has Makhachev by decision at +135 and Makhachev by submission at +210. Garry by decision is sitting at +450.
+
+I think it’s safe to say that Makhachev by decision or submission is the likely route this fight goes if we’re judging by the odds. Garry winning by TKO/KO is something I see as a very possible route to victory. Garry by decision at +450 on FanDuel is something I also believe is a very real possibility for Ian Garry!
+
+There is poison to pick from if you choose to do so.
+
+The reason I drill into posting and framing so much in this breakdown is because I think that is his first line of defense and his best opportunity to counter Islam Makhachev. It is similar but different from the path Conor McGregor tried to take with Khabib and other wrestlers.
+
+We saw glimpses of these tactics from Garry against Belal Muhammad.
+
+Garry reading entries and choosing to prioritise posting off the head and shoulder, extending that frame to keep the hips safe at the risk of the entry not even being a takedown, trusting in his chin and slips to then counter with combinations and exit out of range—that is the whole thing here.
+
+I have no question in my mind that Makhachev will be landing punches as well because Garry has been hit by every one of his shorter southpaw opponents in the past, but it’s up to Garry not to let Makhachev stack those punches on top of control time.
+
+Garry will need volume, and lots of it.
+
+I see both these guys battering each other’s lead leg. How dedicated will Garry be to the knee/thigh stomps he often goes to against someone like Makhachev?
+
+Garry had zero respect for Belal Muhammad’s wrestling abilities and stomped him freely throughout that entire fight. Belal officially completed zero takedowns, and Garry won by unanimous decision.
+
+Fascinating matchup, but for now, I’m rolling with the fighter who has a higher likelihood of dictating where this fight takes place: Islam Makhachev.
+
+However, as fight week progresses and I try to catch subtle hints of tactics, game plans, and, of course, both of their general health going into the fight, I may make a switch on my official pick.
+
+Betting-wise? I don’t see any reason not to lay down a couple of bones on the Ian Garry moneyline. In my eyes, close to 3-to-1 is pretty crazy.
+
+**Pick: Islam Makhachev by DEC.**
+
+*I reserve the right to change my pick prior to the fight, but all official picks are recorded on [Verdict MMA](https://verdictmma.com/profile/mmamatlock).*
 
 p.s.
 
