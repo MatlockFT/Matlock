@@ -16,7 +16,7 @@ tags:
   - Ian Machado Garry
   - Welterweight
 last_modified_at: 2026-08-04
-published: false
+published: true
 ---
 # [Islam Makhachev](https://www.tapology.com/fightcenter/fighters/40148-islam-makhachev) vs. [Ian Machado Garry](https://www.tapology.com/fightcenter/fighters/171377-ian-garry)
 
