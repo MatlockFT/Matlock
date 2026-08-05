@@ -598,3 +598,172 @@ layout: default
         }
     }());
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const article =
+            document.getElementById("article-content");
+
+        if (!article) {
+            return;
+        }
+
+        const embedLinks =
+            article.querySelectorAll("a");
+
+        embedLinks.forEach(function (link) {
+            if (
+                link.textContent.trim().toUpperCase() !==
+                "EMBED VIDEO"
+            ) {
+                return;
+            }
+
+            let url;
+
+            try {
+                url = new URL(link.href);
+            } catch (error) {
+                return;
+            }
+
+            let mediaElement = null;
+
+            /*
+             * YouTube
+             */
+            let youtubeId = null;
+
+            if (url.hostname === "youtu.be") {
+                youtubeId =
+                    url.pathname.replace(/^\/+/, "");
+            } else if (
+                url.hostname === "youtube.com" ||
+                url.hostname === "www.youtube.com"
+            ) {
+                youtubeId =
+                    url.searchParams.get("v");
+
+                if (
+                    !youtubeId &&
+                    url.pathname.startsWith("/embed/")
+                ) {
+                    youtubeId =
+                        url.pathname.split("/embed/")[1];
+                }
+            }
+
+            if (youtubeId) {
+                mediaElement =
+                    document.createElement("iframe");
+
+                mediaElement.src =
+                    "https://www.youtube-nocookie.com/embed/" +
+                    encodeURIComponent(youtubeId);
+
+                mediaElement.title =
+                    "Embedded YouTube video";
+
+                mediaElement.allow =
+                    "accelerometer; autoplay; clipboard-write; " +
+                    "encrypted-media; gyroscope; picture-in-picture; " +
+                    "web-share";
+
+                mediaElement.allowFullscreen = true;
+                mediaElement.loading = "lazy";
+            }
+
+            /*
+             * Vimeo
+             */
+            if (
+                !mediaElement &&
+                (
+                    url.hostname === "vimeo.com" ||
+                    url.hostname === "www.vimeo.com"
+                )
+            ) {
+                const pathParts =
+                    url.pathname.split("/").filter(Boolean);
+
+                const vimeoId =
+                    pathParts[pathParts.length - 1];
+
+                if (/^\d+$/.test(vimeoId)) {
+                    mediaElement =
+                        document.createElement("iframe");
+
+                    mediaElement.src =
+                        "https://player.vimeo.com/video/" +
+                        encodeURIComponent(vimeoId);
+
+                    mediaElement.title =
+                        "Embedded Vimeo video";
+
+                    mediaElement.allow =
+                        "autoplay; fullscreen; picture-in-picture";
+
+                    mediaElement.allowFullscreen = true;
+                    mediaElement.loading = "lazy";
+                }
+            }
+
+            /*
+             * Direct MP4, WebM, or Ogg file.
+             * This works well for Cloudinary video URLs.
+             */
+            if (
+                !mediaElement &&
+                /\.(mp4|webm|ogg)$/i.test(url.pathname)
+            ) {
+                mediaElement =
+                    document.createElement("video");
+
+                mediaElement.src = url.href;
+                mediaElement.controls = true;
+                mediaElement.playsInline = true;
+                mediaElement.preload = "metadata";
+            }
+
+            /*
+             * Cloudinary hosted player iframe.
+             */
+            if (
+                !mediaElement &&
+                url.hostname === "player.cloudinary.com"
+            ) {
+                mediaElement =
+                    document.createElement("iframe");
+
+                mediaElement.src = url.href;
+                mediaElement.title =
+                    "Embedded video";
+
+                mediaElement.allow =
+                    "autoplay; fullscreen; encrypted-media; picture-in-picture";
+
+                mediaElement.allowFullscreen = true;
+                mediaElement.loading = "lazy";
+            }
+
+            /*
+             * Unknown provider: leave the normal link in place.
+             */
+            if (!mediaElement) {
+                return;
+            }
+
+            const wrapper =
+                document.createElement("div");
+
+            wrapper.className =
+                "article-video-embed";
+
+            wrapper.appendChild(mediaElement);
+
+            const originalContainer =
+                link.closest("p") || link;
+
+            originalContainer.replaceWith(wrapper);
+        });
+    });
+</script>
