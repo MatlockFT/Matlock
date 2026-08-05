@@ -91,7 +91,7 @@ The control stats make that difference clearer. Makhachev has spent just over ha
 
 Garry’s reach is most useful in open space, where he can jab, kick and move before Makhachev reaches the clinch.
 
-His frame lets him attack from farther out and his long arms for posting on Makhachev’s shoulders, digging for underhooks and threatening knees when Makhachev changes levels.
+That reach lets him attack from farther out and his long arms for posting on Makhachev’s shoulders, digging for underhooks and threatening knees when Makhachev changes levels.
 
 Makhachev has beaten longer opponents before. [Charles Oliveira](https://www.tapology.com/fightcenter/fighters/charles-oliveira-do-bronx) has a listed reach of 74 inches, while [Dan Hooker](https://www.tapology.com/fightcenter/fighters/18854-daniel-hooker) is listed at 75. Makhachev submitted both, though neither was a 6'3" welterweight who moves like Garry.
 
