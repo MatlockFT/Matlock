@@ -251,9 +251,8 @@ That is why I am surprised to see Garry priced as roughly a 3-to-1 underdog. I t
 
 I still trust Makhachev to dictate where the fight takes place. I'm extremely curious to see their striking exchanges because I do agree with Dan Albert that this might be super awkward. I think attacking the lead leg, inside body kicks, level-change feints, cage cutting, and wrestling are going to work very well for Islam Makhachev. This is going to be an interesting fight.
 
-**Pick: Islam Makhachev by DEC. (I reserve my right to change my pick prior to the fight but all official picks are recorded on [https://verdictmma.com/profile/mmamatlock](https://verdictmma.com/profile/mmamatlock)**
-
-
+**Pick: Islam Makhachev by DEC. **  
+I reserve my right to change my pick prior to the fight but all official picks are recorded on [https://verdictmma.com/profile/mmamatlock](https://verdictmma.com/profile/mmamatlock)
 
 p.s.
 
