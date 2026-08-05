@@ -614,6 +614,60 @@ layout: default
             "EMBED X"
         ]);
 
+        /*
+         * Load the official X widget script once,
+         * then render embeds inside the supplied container.
+         */
+        function loadXWidgets(container) {
+            function renderXWidgets() {
+                if (
+                    window.twttr &&
+                    window.twttr.widgets
+                ) {
+                    window.twttr.widgets.load(container);
+                }
+            }
+
+            const existingScript =
+                document.querySelector(
+                    'script[src="https://platform.x.com/widgets.js"]'
+                );
+
+            if (existingScript) {
+                if (
+                    window.twttr &&
+                    window.twttr.widgets
+                ) {
+                    renderXWidgets();
+                } else {
+                    existingScript.addEventListener(
+                        "load",
+                        renderXWidgets,
+                        { once: true }
+                    );
+                }
+
+                return;
+            }
+
+            const script =
+                document.createElement("script");
+
+            script.src =
+                "https://platform.x.com/widgets.js";
+
+            script.async = true;
+            script.charset = "utf-8";
+
+            script.addEventListener(
+                "load",
+                renderXWidgets,
+                { once: true }
+            );
+
+            document.body.appendChild(script);
+        }
+
         const embedLinks =
             article.querySelectorAll("a");
 
@@ -634,68 +688,140 @@ layout: default
             }
 
             let mediaElement = null;
+            let embedType = null;
 
             /*
-             * YouTube
+             * X post.
              */
-            let youtubeId = null;
+            const isXHost = [
+                "x.com",
+                "www.x.com",
+                "twitter.com",
+                "www.twitter.com",
+                "mobile.twitter.com"
+            ].includes(url.hostname);
 
-            if (url.hostname === "youtu.be") {
-                youtubeId =
-                    url.pathname.replace(/^\/+/, "");
-            } else if (
-                url.hostname === "youtube.com" ||
-                url.hostname === "www.youtube.com"
+            if (
+                embedLabel === "EMBED X" &&
+                isXHost &&
+                /\/status\/\d+/.test(url.pathname)
             ) {
-                youtubeId =
-                    url.searchParams.get("v");
+                const cleanXUrl =
+                    "https://x.com" + url.pathname;
 
-                if (
-                    !youtubeId &&
-                    url.pathname.startsWith("/embed/")
+                mediaElement =
+                    document.createElement("blockquote");
+
+                mediaElement.className =
+                    "twitter-tweet";
+
+                mediaElement.setAttribute(
+                    "data-dnt",
+                    "true"
+                );
+
+                mediaElement.setAttribute(
+                    "data-theme",
+                    "dark"
+                );
+
+                const xLink =
+                    document.createElement("a");
+
+                xLink.href = cleanXUrl;
+                xLink.textContent =
+                    "View post on X";
+
+                mediaElement.appendChild(xLink);
+
+                embedType = "x";
+            }
+
+            /*
+             * YouTube.
+             */
+            if (!mediaElement) {
+                let youtubeId = null;
+
+                if (url.hostname === "youtu.be") {
+                    youtubeId =
+                        url.pathname
+                            .replace(/^\/+/, "")
+                            .split("/")[0];
+                } else if (
+                    url.hostname === "youtube.com" ||
+                    url.hostname === "www.youtube.com" ||
+                    url.hostname === "m.youtube.com"
                 ) {
                     youtubeId =
-                        url.pathname.split("/embed/")[1];
+                        url.searchParams.get("v");
+
+                    if (
+                        !youtubeId &&
+                        url.pathname.startsWith("/embed/")
+                    ) {
+                        youtubeId =
+                            url.pathname
+                                .split("/embed/")[1]
+                                .split("/")[0];
+                    }
+
+                    if (
+                        !youtubeId &&
+                        url.pathname.startsWith("/shorts/")
+                    ) {
+                        youtubeId =
+                            url.pathname
+                                .split("/shorts/")[1]
+                                .split("/")[0];
+                    }
+                }
+
+                if (youtubeId) {
+                    mediaElement =
+                        document.createElement("iframe");
+
+                    mediaElement.src =
+                        "https://www.youtube-nocookie.com/embed/" +
+                        encodeURIComponent(youtubeId);
+
+                    mediaElement.title =
+                        "Embedded YouTube video";
+
+                    mediaElement.allow =
+                        "accelerometer; autoplay; clipboard-write; " +
+                        "encrypted-media; gyroscope; picture-in-picture; " +
+                        "web-share";
+
+                    mediaElement.allowFullscreen = true;
+                    mediaElement.loading = "lazy";
+
+                    embedType = "video";
                 }
             }
 
-            if (youtubeId) {
-                mediaElement =
-                    document.createElement("iframe");
-
-                mediaElement.src =
-                    "https://www.youtube-nocookie.com/embed/" +
-                    encodeURIComponent(youtubeId);
-
-                mediaElement.title =
-                    "Embedded YouTube video";
-
-                mediaElement.allow =
-                    "accelerometer; autoplay; clipboard-write; " +
-                    "encrypted-media; gyroscope; picture-in-picture; " +
-                    "web-share";
-
-                mediaElement.allowFullscreen = true;
-                mediaElement.loading = "lazy";
-            }
-
             /*
-             * Vimeo
+             * Vimeo.
              */
             if (
                 !mediaElement &&
                 (
                     url.hostname === "vimeo.com" ||
-                    url.hostname === "www.vimeo.com"
+                    url.hostname === "www.vimeo.com" ||
+                    url.hostname === "player.vimeo.com"
                 )
             ) {
                 const pathParts =
-                    url.pathname.split("/").filter(Boolean);
+                    url.pathname
+                        .split("/")
+                        .filter(Boolean);
 
                 const vimeoId =
-                    pathParts[pathParts.length - 1];
+                    pathParts.find(function (part) {
+                        return /^\d+$/.test(part);
+                    });
 
-                if (/^\d+$/.test(vimeoId)) {
+                if (vimeoId) {
                     mediaElement =
                         document.createElement("iframe");
 
@@ -711,12 +837,14 @@ layout: default
 
                     mediaElement.allowFullscreen = true;
                     mediaElement.loading = "lazy";
+
+                    embedType = "video";
                 }
             }
 
             /*
              * Direct GIF or WebP image.
-             * This supports direct Giphy media URLs.
+             * Supports direct Giphy media URLs.
              */
             if (
                 !mediaElement &&
@@ -726,16 +854,19 @@ layout: default
                     document.createElement("img");
 
                 mediaElement.src = url.href;
+
                 mediaElement.alt =
                     "Embedded animated image";
 
                 mediaElement.loading = "lazy";
                 mediaElement.decoding = "async";
+
+                embedType = "image";
             }
 
             /*
-             * Direct MP4, WebM, or Ogg file.
-             * This works with Cloudinary video URLs.
+             * Direct MP4, WebM, or Ogg video.
+             * Supports Cloudinary video URLs.
              */
             if (
                 !mediaElement &&
@@ -748,6 +879,8 @@ layout: default
                 mediaElement.controls = true;
                 mediaElement.playsInline = true;
                 mediaElement.preload = "metadata";
+
+                embedType = "video";
             }
 
             /*
@@ -761,6 +894,7 @@ layout: default
                     document.createElement("iframe");
 
                 mediaElement.src = url.href;
+
                 mediaElement.title =
                     "Embedded video";
 
@@ -770,10 +904,12 @@ layout: default
 
                 mediaElement.allowFullscreen = true;
                 mediaElement.loading = "lazy";
+
+                embedType = "video";
             }
 
             /*
-             * Unknown provider: retain the normal link.
+             * Unknown provider: keep the original link.
              */
             if (!mediaElement) {
                 return;
@@ -785,12 +921,22 @@ layout: default
             wrapper.className =
                 "article-video-embed";
 
+            if (embedType) {
+                wrapper.classList.add(
+                    "article-" + embedType + "-embed"
+                );
+            }
+
             wrapper.appendChild(mediaElement);
 
             const originalContainer =
                 link.closest("p") || link;
 
             originalContainer.replaceWith(wrapper);
+
+            if (embedType === "x") {
+                loadXWidgets(wrapper);
+            }
         });
     });
 </script>
