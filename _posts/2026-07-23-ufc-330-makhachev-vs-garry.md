@@ -107,7 +107,7 @@ The black line is a warning. Once Garry moves beyond it, there is little room le
 
 The most important part of Garry’s movement may be how quickly he changes direction. Against [Geoff Neal](https://www.tapology.com/fightcenter/fighters/20058-geoffrey-neal), he deliberately showed one exit before cutting back the other way, [an approach he said was influenced by studying NFL wide receivers.](https://www.mmafighting.com/2024/2/19/24077610/ian-machado-garry-studied-nfl-wide-receivers-to-evade-geoff-neals-power-at-ufc-298) He wanted Neal to commit his feet in one direction before Garry moved in another.
 
-[via GIPHY](https://giphy.com/gifs/W6caQIoQg05y38vSK7)
+[EMBED GIPHY](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMHdhOG05dzNsd3hoeXI0dms0YmJ3ZWhnOW1wdTdjNzMxZjQ1eDZneiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/W6caQIoQg05y38vSK7/giphy.gif)
 
 That could matter more against Makhachev than speed alone. If Garry retreats along one line, Makhachev can keep following him toward the fence. A sharp change of direction may force Makhachev to turn and adjust his pressure, giving Garry a moment to recover the center or strike as Makhachev follows.
 
