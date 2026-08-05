@@ -201,7 +201,11 @@ Muhammad failed on all seven of his attempts and still spent 3:35 in control. Ga
 
 That matters because Makhachev often does his best work after contact has already been made. He can stay on a single leg, move into a body lock, turn Garry toward the fence or keep working until another opening appears. Garry may stop the first attack and still lose a long stretch of the round trying to separate.
 
-Dustin Poirier showed how difficult that can become. He stopped several attempts, returned to his feet and made Makhachev work for almost five rounds. Makhachev still completed five takedowns and eventually submitted him with a D’Arce choke in the fifth. The defenses kept Poirier in the fight, but each escape required more work, and Makhachev kept finding another position to attack.
+Dustin Poirier showed how difficult that can become. He stopped several attempts, returned to his feet and made Makhachev work for almost five rounds. 
+
+[EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893282/Poirier_Separate_2_x3wtiy.mp4)
+
+Makhachev still completed five takedowns and eventually submitted him with a D’Arce choke in the fifth. The defenses kept Poirier in the fight, but each escape required more work, and Makhachev kept finding another position to attack.
 
 Alexander Volkanovski made those exchanges harder for Makhachev. He stayed balanced through scrambles, fought the hands and often turned back into him. Even then, Makhachev completed four takedowns and recorded 7:37 of control in their first fight. Volkanovski showed that strong defensive grappling can slow Makhachev down without necessarily keeping him from taking large parts of a round.
 
