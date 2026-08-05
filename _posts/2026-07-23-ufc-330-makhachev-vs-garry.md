@@ -217,19 +217,17 @@ Both men have produced some of their best work late, and both have had late roun
 
 Makhachev submitted Poirier at 2:42 of the fifth after landing five takedowns and 88 significant strikes. Against JDM, he kept up a wrestling-heavy pace for the full 25 minutes and recorded 19:10 of control. The JDM fight matters here because it was Makhachev’s first UFC appearance at welterweight, and the move up did not appear to hurt his ability to maintain long stretches of control.
 
-The first Volkanovski fight was less comfortable. Volkanovski outlanded Makhachev 20–8 in the fifth, defended his late takedown attempts and finished the round striking from top position. Makhachev was still working, but his entries were having less success and Volkanovski was finding more room. Fatigue may have played a part, although the pace of the scrambles and Volkanovski’s adjustments are difficult to separate from it.
+The first Volkanovski fight wasn't like that. Volkanovski outlanded Makhachev 20–8 in the fifth, defended his late takedown attempts and finished the round striking from top position. Makhachev was still working, but his entries were having less success and Volkanovski was finding more room. Fatigue may have played a part, although the pace of the scrambles and Volkanovski’s adjustments are difficult to separate from it.
 
 Garry has also shown that he can remain dangerous after a difficult fight. He spent long periods dealing with Rakhmonov’s clinch pressure and wrestling, then took his back and threatened a choke in the fifth. It was probably Garry’s best position of the fight and came after four rounds in which he had been made to defend far more than usual.
 
 ![image.png](/assets/uploads/image-2.png)
 
-The Carlos Prates fight looked different. Garry still landed 28 significant strikes in the fifth, but his movement became less reliable as Prates kept pressing forward. In that round, Garry went 0-for-6 on takedowns, gave up 1:01 of control and absorbed 12 significant ground strikes.
+The Carlos Prates fight looked different because Garry still landed 28 significant strikes in the fifth, but his movement became less reliable as Prates kept pressing forward. In that round, Garry went 0-for-6 on takedowns, gave up 1:01 of control and absorbed 12 significant ground strikes.
 
-[Garry later said he was not hurt and remained conscious throughout the exchange](https://www.reuters.com/sports/ian-machado-garry-calls-ufc-welterweight-title-shot-fight-night-2025-04-27/). Whatever the case, his movement and choices became less reliable as the pressure increased. That performance is not enough to say he has poor cardio. He did not stop working, but his ability to move and make good decisions may have declined before his willingness to fight did. Against Makhachev, that may matter more than whether Garry visibly tires.
+[Garry later said he was not hurt and remained conscious throughout the exchange](https://www.reuters.com/sports/ian-machado-garry-calls-ufc-welterweight-title-shot-fight-night-2025-04-27/). Whatever the case, his movement and choices looked desparate in my opinion. That performance is not enough to say he has poor cardio. He did not stop working, but obviously his ability to move and make good decisions declined. The fifth round is gonna be interseting if they make it there. 
 
 [EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785905125/PRATES_MACHADO_AGAIN_ejowta.mp4)
-
-Fatigue may show up in slower exits, later reactions and poorer decisions. Makhachev’s entries could lose some of their timing, as they appeared to against Volkanovski. Neither man has to fall apart for the shape of the fight to change.
 
 ## Rumors & Reputations
 
@@ -237,27 +235,19 @@ Fatigue may show up in slower exits, later reactions and poorer decisions. Makha
 
 [EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893278/Javier_Mendes_s8e5ah.mp4)
 
-A more practical reading is that Makhachev does not need to ***force*** the takedown. The ***threat*** of wrestling can still affect Garry’s stance, his kicks and how freely he puts combinations together. A defended entry may leave him in the clinch or moving toward the fence, which could be enough to keep him from settling into his preferred range.
+I interpret this as: Makhachev does not need to ***force*** the takedown. The ***threat*** of wrestling can still affect Garry’s stance, his kicks and how freely he puts combinations together. A defended TD attempt may leave him in the clinch or moving toward the fence, which could be enough to keep him from settling at his range.
 
 That would allow Makhachev to strike without always striking at range. He could attack the lead leg, occupy Garry’s jab and work from the clinch while the possibility of the takedown continues to shape Garry’s reactions.
 
-There is still a risk in giving Garry too much time at range. He is longer, faster and comfortable building rounds through straight punches and kicks. Makhachev may not need to take him down, but he probably still wants Garry preparing for it.
+There is still a risk in giving Garry too much time at range. He is longer, faster and comfortable building rounds through straight punches and kicks. Makhachev may not need to take him down the entire fight, but he'll definitely want Garry reacting to the feints. 
 
 ## Pick & Prediction
 
-One version of this fight has Garry defending most of the takedowns and still losing long stretches in the clinch. He may stay upright but spend too much time carrying Makhachev’s weight, fighting hands and waiting for enough room to strike again. Makhachev would not need the dominant ground performance people expect. He would only need to keep Garry reacting, take away his resets and add enough knees, short strikes or submission threats to make those positions count.
+One version of this fight has Garry defending most of the takedowns and still losing long stretches in the clinch. He may stay upright but spend too much time carrying Makhachev’s weight, working out of positions, and trying to create enough separation to strike again. Makhachev maybe wouldn't need the dominant ground performance people expect. He would only need to keep Garry reacting, take away his resets and add enough knees short strikes or submission threats to make those positions on the ground or against the cage count.
 
-The fight looks different if Garry keeps making him start over. A clean frame could create room for the right hand, a level change could run into a knee, and a sudden change of direction could leave Makhachev turning while Garry is already exiting. If Garry can end enough of the clinch exchanges quickly, Makhachev may find himself reaching from too far away and getting picked off as he tries to close the distance.
+The fight looks different if Garry keeps making Makhachev reset. A clean post could create room for the right hand, Islam's level change could be met with a knee, and a sudden change of direction could leave Makhachev turning while Garry is already exiting. If Garry can end enough of the clinch exchanges quickly, Makhachev may find himself reaching from too far away and getting picked off as he tries to close the distance. Perhaps Garry finds his own success in the clinch being the taller man? We've seen other opponents attack with uppercuts and body shots from the there so why not Ian Garry? Will Islam risk going to that position? I'm focusing on it a lot becaues he goes to it a lot. 
 
-
-
-![image.png](/assets/uploads/image-3.png)
-
-That is why the moments after the first defense may matter more than the takedown count itself. If Garry separates and returns to range, he has gained something useful from the exchange. If Makhachev stays attached, an unsuccessful takedown can still become a minute of fence pressure and offense.
-
-I lean toward Makhachev’s control shaping the fight, although control time alone will not win him rounds unless Garry offers almost no offense, as Du Plessis did against Chimaev. The value will come from what Makhachev does in those positions and how much of Garry’s offense he prevents.
-
-I expect some back-and-forth from round to round. Garry’s speed and direction changes give him real chances to make Makhachev miss, punish his entries and take parts of the fight back.
+I expect some back-and-forth from round to round. Garry’s speed and direction changes give him real chances to make Makhachev miss and punish his entries. With the right game plan, he can make Islam hestitant to enter range or enter range recklessly. 
 
 That is why I am surprised to see Garry priced as roughly a 3-to-1 underdog. I think the gap is wider than the matchup deserves. Garry is unpopular with a large section of the fan base, but setting that aside, his movement, speed, footwork, length and ability to counter give him a legitimate chance. I would not be shocked if he hurt or even finished Makhachev.
 
