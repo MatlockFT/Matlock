@@ -131,7 +131,7 @@ Dustin Poirier had some of his better moments against Makhachev when the fight r
 
 
 
-Before their fight, ++[Matt Brown said Poirier needed to “keep the center of the octagon”](https://www.mmafighting.com/2024/6/1/24159905/matt-brown-explains-what-dustin-poirier-needs-to-do-to-beat-islam-makhachev-at-ufc-302)++.
+Before their fight, [Matt Brown said Poirier needed to “keep the center of the octagon”](https://www.mmafighting.com/2024/6/1/24159905/matt-brown-explains-what-dustin-poirier-needs-to-do-to-beat-islam-makhachev-at-ufc-302).
 
 Poirier's coach, Mike Brown, offered the same advice after Round 1, saying, “You cannot back up to the wall. No matter what happens, you need to fight him right in the center. Whether he hits you or not, you cannot back up. That's how he took you down on the wall.”
 
