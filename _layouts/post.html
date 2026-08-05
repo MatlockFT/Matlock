@@ -607,14 +607,20 @@ layout: default
             return;
         }
 
+        const supportedLabels = new Set([
+            "EMBED",
+            "EMBED VIDEO",
+            "EMBED GIPHY"
+        ]);
+
         const embedLinks =
             article.querySelectorAll("a");
 
         embedLinks.forEach(function (link) {
-            if (
-                link.textContent.trim().toUpperCase() !==
-                "EMBED VIDEO"
-            ) {
+            const embedLabel =
+                link.textContent.trim().toUpperCase();
+
+            if (!supportedLabels.has(embedLabel)) {
                 return;
             }
 
@@ -708,8 +714,27 @@ layout: default
             }
 
             /*
+             * Direct GIF or WebP image.
+             * This supports direct Giphy media URLs.
+             */
+            if (
+                !mediaElement &&
+                /\.(gif|webp)$/i.test(url.pathname)
+            ) {
+                mediaElement =
+                    document.createElement("img");
+
+                mediaElement.src = url.href;
+                mediaElement.alt =
+                    "Embedded animated image";
+
+                mediaElement.loading = "lazy";
+                mediaElement.decoding = "async";
+            }
+
+            /*
              * Direct MP4, WebM, or Ogg file.
-             * This works well for Cloudinary video URLs.
+             * This works with Cloudinary video URLs.
              */
             if (
                 !mediaElement &&
@@ -739,14 +764,15 @@ layout: default
                     "Embedded video";
 
                 mediaElement.allow =
-                    "autoplay; fullscreen; encrypted-media; picture-in-picture";
+                    "autoplay; fullscreen; encrypted-media; " +
+                    "picture-in-picture";
 
                 mediaElement.allowFullscreen = true;
                 mediaElement.loading = "lazy";
             }
 
             /*
-             * Unknown provider: leave the normal link in place.
+             * Unknown provider: retain the normal link.
              */
             if (!mediaElement) {
                 return;
