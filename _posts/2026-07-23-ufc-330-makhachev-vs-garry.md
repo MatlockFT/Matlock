@@ -203,11 +203,13 @@ Makhachev still completed five takedowns and eventually submitted him with a D�
 
 Alexander Volkanovski made those exchanges harder for Makhachev. He stayed balanced through scrambles, fought the hands and often turned back into him. Even then, Makhachev completed four takedowns and recorded 7:37 of control in their first fight. Volkanovski showed that strong defensive grappling can slow Makhachev down without necessarily keeping him from taking large parts of a round.
 
-Garry has shown some of the same composure. He defended eight of Rakhmonov’s 10 takedown attempts and found his way to the back during a fifth-round scramble. That back take is useful evidence that he can remain calm when a position begins to break down. It is less useful as a reason to expect him to wrestle offensively against Makhachev.
+Garry has shown some of the same composure. He defended eight of Rakhmonov’s 10 takedown attempts and found his way to the back during a fifth-round scramble. That back take is useful evidence that he can remain calm when a position begins to break down.
 
 [EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893281/Garry_Rakh_-_TD_defense_and_TD_yak7ft.mp4)
 
 Most of the time, Garry will probably want those scrambles to end with separation. A reversal or back take could still create offense, but staying attached also gives Makhachev time to rebuild control. Defending the takedown may be only one part of getting back to the fight Garry wants.
+
+[EMBED X](https://x.com/TypewritingDA/status/2084743555419939222?s=20)
 
 ## Conditioning
 
