@@ -235,11 +235,9 @@ The Carlos Prates fight looked different because Garry still landed 28 significa
 
 [EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893278/Javier_Mendes_s8e5ah.mp4)
 
-I interpret this as: Makhachev does not need to ***force*** the takedown. The ***threat*** of wrestling can still affect Garry’s stance, his kicks and how freely he puts combinations together. A defended TD attempt may leave him in the clinch or moving toward the fence, which could be enough to keep him from settling at his range.
+I interpret this as: Makhachev does not need to ***force*** the takedown. The ***threat*** of wrestling can still affect Garry’s reactions.
 
-That would allow Makhachev to strike without always striking at range. He could attack the lead leg, occupy Garry’s jab and work from the clinch while the possibility of the takedown continues to shape Garry’s reactions.
-
-There is still a risk in giving Garry too much time at range. He is longer, faster and comfortable building rounds through straight punches and kicks. Makhachev may not need to take him down the entire fight, but he'll definitely want Garry reacting to the feints. 
+Of course, there is still a risk in giving Garry too much time at range. He is longer, faster and comfortable building rounds through straight punches and kicks. Makhachev may not need to take him down the entire fight, but he'll definitely want Garry reacting to the feints. 
 
 ## Pick & Prediction
 
