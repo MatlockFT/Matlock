@@ -191,7 +191,7 @@ In open space, Garry has room to work an arm inside, raise his posture and circl
 
 For Makhachev, the collar tie can turn open space into fence pressure.
 
-
+[EMBED](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893284/Islam_Double_Collar_hy4qkl.mp4)
 
 ## Wrestling is more than the takedown
 
