@@ -167,7 +167,11 @@ One way Makhachev has handled opponents entering on him is the double collar tie
 
 [That happened repeatedly against Volkanovski](https://www.fightprimer.com/returning-to-makhachev-vs-volkanovski-i-the-jack-slack-breakdown). Makhachev caught the double collar tie as Volkanovski came forward, then used it to land knees and interrupt his offense. Later in the fight, he used the tie to set up a trip that carried the exchange into his fence work.
 
-Garry’s height could make the first contact harder to establish. His head sits farther away, and if Makhachev reaches from too far out, Garry has room to frame, fire an uppercut or bring up a knee. Makhachev will likely need to hide the entry behind hand fighting, pressure or a level-change feint.
+Garry’s height could make the first contact harder to establish. 
+
+[EMBED X](https://x.com/fenoxsky/status/2082954915144458387?s=20)
+
+His head sits farther away, and if Makhachev reaches from too far out, Garry has room to frame, fire an uppercut or bring up a knee. Makhachev will likely need to hide the entry behind hand fighting, pressure or a level-change feint.
 
 ![image.png](/assets/uploads/image-4.png)
 
