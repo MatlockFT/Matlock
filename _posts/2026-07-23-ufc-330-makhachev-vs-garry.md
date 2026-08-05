@@ -245,13 +245,15 @@ One version of this fight has Garry defending most of the takedowns and still lo
 
 The fight looks different if Garry keeps making Makhachev reset. A clean post could create room for the right hand, Islam's level change could be met with a knee, and a sudden change of direction could leave Makhachev turning while Garry is already exiting. If Garry can stick and move without getting caught against the cagae, Makhachev may find himself reaching from too far away and getting picked off as he tries to close the distance. Perhaps Garry finds his own success in the clinch being the taller man? We've seen other opponents attack with uppercuts and body shots from the there so why not Ian Garry? Will Islam risk going to that position? I'm focusing on it a lot becaues he goes to it often. 
 
-I expect some back-and-forth from round to round. Garry’s speed and direction changes give him real chances to make Makhachev miss and punish his entries. With the right game plan, he can make Islam hestitant to enter range or enter range recklessly. 
+I expect some back-and-forth from round to round. Garry’s speed and direction changes give him real chances to make Makhachev miss and punish his entries. With the right game plan, he can make Islam hestitant to enter range or enter range recklessly. And I haven't even touched on Garry's knee/thigh stomps!
 
-That is why I am surprised to see Garry priced as roughly a 3-to-1 underdog. I think the gap is wider than the matchup deserves. Garry is unpopular with a large section of the fan base. I would not be shocked if he hurt or even finished Makhachev.
+That is why I am surprised to see Garry priced as roughly a 3-to-1 underdog. I think the gap is wider than the matchup deserves. I would not be shocked if he hurt or even finished Makhachev.
 
 I still trust Makhachev to dictate where the fight takes place. I'm extremely curious to see their striking exchanges because I do agree with Dan Albert that this might be super awkward. I think attacking the lead leg, inside body kicks, level-change feints, cage cutting, and wrestling are going to work very well for Islam Makhachev. This is going to be an interesting fight.
 
-**Prediction: Islam Makhachev by decision.**
+**Pick: Islam Makhachev by DEC. (I reserve my right to change my pick prior to the fight but all official picks are recorded on [https://verdictmma.com/profile/mmamatlock](https://verdictmma.com/profile/mmamatlock)**
+
+
 
 p.s.
 
