@@ -149,15 +149,7 @@ Makhachev does not have to beat Garry’s reach with his hands alone. Low kicks 
 
 That was clear against JDM. Makhachev attacked his lead leg throughout the fight, then repeatedly timed his takedowns before JDM could settle into his boxing. 
 
-<iframe
-  src="https://player.cloudinary.com/embed/?cloud_name=pm84lfxg&public_id=ISLAM_KICK_TO_TAKEDOWN_szsqsw&profile=cld-looping"
-  width="640"
-  height="360" 
-  style="height: auto; width: 100%; aspect-ratio: 640 / 360;"
-  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-  allowfullscreen
-  frameborder="0"
-></iframe>
+
 
 JDM had a three-inch reach advantage, but Makhachev completed four takedowns, recorded 19:10 of control and held him to 18 significant strikes over five rounds.
 
@@ -169,29 +161,13 @@ Much of the work may happen before Makhachev ever reaches his hips. The low kick
 
 Garry stands orthodox and Makhachev stands southpaw, which leaves both men facing an open side. Garry’s right hand and right knee have a direct line toward Makhachev, while Makhachev’s left hand and left kick travel back through the same space. The position of their lead feet matters because whoever gets his foot to the outside has a cleaner lane for the rear hand and rear kick.
 
-<iframe
-  src="https://player.cloudinary.com/embed/?cloud_name=pm84lfxg&public_id=Garry_Intercepting_Knee_hx0vzk&profile=cld-looping"
-  width="640"
-  height="360" 
-  style="height: auto; width: 100%; aspect-ratio: 640 / 360;"
-  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-  allowfullscreen
-  frameborder="0"
-></iframe>
+
 
 Garry will want that angle for the right hand, but Makhachev can use the same battle to set up his left straight, his left kick and his entries into the clinch. Garry’s height also puts his right knee in a dangerous position whenever Makhachev steps forward or changes levels. A naked entry would put Makhachev directly on that line, so he may need to draw Garry’s attention elsewhere first.
 
-That is where the threat of wrestling begins to shape the striking. If Garry becomes too focused on stopping the takedown and/or blocking the inside body kick, he may lower his hands or hesitate long enough for Makhachev to bring the left kick upstairs, as he did in the second Volkanovski fight.
+That is where the threat of wrestling begins to shape the striking. If Garry becomes too focused on stopping the takedown and/or blocking the inside body kick, he may lower his hands or hesitate long enough for Makhachev to bring the left kick upstairs, as he did in the second Volkanovski fight. However, against Ian Garry a head kick seems much less likely because of his height. 
 
-<iframe
-  src="https://player.cloudinary.com/embed/?cloud_name=pm84lfxg&public_id=Islam_vs._Volk_2_av91uy&profile=cld-looping"
-  width="640"
-  height="360" 
-  style="height: auto; width: 100%; aspect-ratio: 640 / 360;"
-  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-  allowfullscreen
-  frameborder="0"
-></iframe>
+
 
 Makhachev can also occupy Garry’s lead hand by touching, pulling or knocking the jab aside. That can briefly shorten the reach gap and give him a clearer route to the body, the clinch or the left hand.
 
@@ -207,21 +183,14 @@ Garry’s height could make the first contact harder to establish. His head sits
 
 Once Makhachev gets the tie, Garry’s height can work against him. Pulling the head forward breaks his posture and takes away the distance he needs for his straight punches and kicks. Garry then has to fight his way upright, and that effort may carry him backward toward the fence.
 
-<blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">Haven&#39;t seen much of Islam using double collar ties against taller opponents but they can be a great tool to stand up tall guys and shoot under or get body locks 👀</p>&mdash; Feño 🏴 (@fenoxsky) <a href="https://x.com/fenoxsky/status/2082954915144458387?ref_src=twsrc%5Etfw">July 30, 2026</a></blockquote> <script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+> Haven't seen much of Islam using double collar ties against taller opponents but they can be a great tool to stand up tall guys and shoot under or get body locks 👀
+>
+> — Feño 🏴 (@fenoxsky) [July 30, 2026](https://x.com/fenoxsky/status/2082954915144458387?ref_src=twsrc%5Etfw)
 
 In open space, Garry has room to work an arm inside, raise his posture and circle away. Near the cage, those exits narrow, and the collar tie can lead into knees, a body lock, a trip or a longer clinch exchange.
 
 For Makhachev, the collar tie can turn open space into fence pressure.
 
-<iframe
-  src="https://player.cloudinary.com/embed/?cloud_name=pm84lfxg&public_id=Islam_Double_Collar_hy4qkl&profile=cld-looping"
-  width="640"
-  height="360" 
-  style="height: auto; width: 100%; aspect-ratio: 640 / 360;"
-  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-  allowfullscreen
-  frameborder="0"
-></iframe>
 
 
 ## Wrestling is more than the takedown
