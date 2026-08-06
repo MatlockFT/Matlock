@@ -19,12 +19,13 @@ jobs:
           node <<'NODE'
           const ORIGIN='https://www.ufc.com';
           const AJAX=`${ORIGIN}/views/ajax?_wrapper_format=drupal_ajax&filters%5B0%5D=status%3A23`;
-          const UA='Mozilla/5.0 (compatible; MMAMatlockRosterProbe/5.0; +https://matlockfighttalk.com/)';
+          const UA='Mozilla/5.0 (compatible; MMAMatlockRosterProbe/5.1; +https://matlockfighttalk.com/)';
 
           async function request(url,options={}){
             const r=await fetch(url,{redirect:'follow',...options,headers:{'user-agent':UA,accept:'text/html,application/json;q=0.9,*/*;q=0.8',...(options.headers||{})}});
-            if(!r.ok) throw new Error(`${r.status} ${url}`);
-            return r.text();
+            const text=await r.text();
+            if(!r.ok) throw new Error(`${r.status} ${url}: ${text.slice(0,300)}`);
+            return text;
           }
 
           function extractSlugs(text){
@@ -34,56 +35,58 @@ jobs:
             return [...out];
           }
 
+          function exposedCount(text){
+            const plain=text.replace(/\\u003C/g,'<').replace(/\\u003E/g,'>').replace(/<[^>]+>/g,' ').replace(/\\n/g,' ');
+            const hits=[...plain.matchAll(/\b(\d{2,5})\s+Athletes\b/gi)].map(m=>Number(m[1]));
+            return hits.length?hits[0]:null;
+          }
+
           async function page(n){
             const body=new URLSearchParams({
-              view_name:'all_athletes',view_display_id:'page',view_args:'',view_path:'/athletes/all',
-              view_base_path:'',pager_element:'0',gender:'All',page:String(n),_drupal_ajax:'1',
-              'ajax_page_state[theme]':'ufc','ajax_page_state[theme_token]':''
+              view_name:'all_athletes',view_display_id:'page',view_path:'/athletes/all',
+              pager_element:'0',gender:'All',page:String(n)
             });
             const text=await request(AJAX,{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded; charset=UTF-8','x-requested-with':'XMLHttpRequest',referer:`${ORIGIN}/athletes/all`},body});
-            const slugs=extractSlugs(text);
-            const countMatches=[...text.replace(/<[^>]+>/g,' ').matchAll(/(\d{2,5})\s+Athletes/gi)].map(m=>Number(m[1]));
-            return {n,slugs,text,count:countMatches[0]||null};
+            return {n,slugs:extractSlugs(text),text,count:exposedCount(text)};
           }
 
           const first=await page(0);
           console.log(`FIRST pageSlugs=${first.slugs.length} countHint=${first.count} bytes=${first.text.length}`);
           console.log('FIRST_SLUGS',JSON.stringify(first.slugs.slice(0,20)));
-          if(!first.slugs.length) console.log('FIRST_RESPONSE_SNIP',first.text.slice(0,12000));
+          if(!first.slugs.length){
+            const parsed=JSON.parse(first.text);
+            console.log('COMMANDS',JSON.stringify(parsed.map((x,i)=>({i,command:x.command||'',selector:x.selector||'',dataType:typeof x.data,dataSnippet:typeof x.data==='string'?x.data.slice(0,3000):x.data})),null,2));
+          }
 
           const all=new Set(first.slugs);
-          let emptyRun=0;
+          let emptyRun=first.slugs.length?0:1;
           for(let start=1;start<120 && emptyRun<3;start+=8){
             const batch=await Promise.all(Array.from({length:8},(_,i)=>start+i).filter(n=>n<120).map(page));
             for(const p of batch){
-              console.log(`PAGE ${p.n} slugs=${p.slugs.length}`);
               p.slugs.forEach(s=>all.add(s));
               emptyRun=p.slugs.length?0:emptyRun+1;
             }
           }
           const slugs=[...all];
           console.log(`UNIQUE_STATUS23=${slugs.length}`);
-          for(const slug of ['islam-makhachev','cameron-nelson','holly-holm','conor-mcgregor','jon-jones']){
-            console.log(`MEMBER ${slug}=${all.has(slug)}`);
-          }
+          for(const slug of ['islam-makhachev','cameron-nelson','holly-holm','conor-mcgregor','jon-jones']) console.log(`MEMBER ${slug}=${all.has(slug)}`);
 
-          function strip(html){return html.replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();}
+          function decodeEntities(s){return s.replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/&#039;|&#39;/g,"'").replace(/&quot;/g,'"');}
+          function strip(html){return decodeEntities(html.replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ')).replace(/\s+/g,' ').trim();}
           function visibleStatus(html){
             const text=strip(html);
             const m=text.match(/\bStatus\s+(Active|Not Fighting|Inactive|Retired)\b/i);
             return m?m[1]:'';
           }
 
-          const sampleIndexes=[0,Math.floor(slugs.length*.1),Math.floor(slugs.length*.25),Math.floor(slugs.length*.4),Math.floor(slugs.length*.55),Math.floor(slugs.length*.7),Math.floor(slugs.length*.85),slugs.length-1];
-          const sample=[...new Set(sampleIndexes.map(i=>slugs[i]).filter(Boolean)), 'islam-makhachev','cameron-nelson'].filter((v,i,a)=>a.indexOf(v)===i && all.has(v));
+          const sampleIndexes=[0,Math.floor(slugs.length*.12),Math.floor(slugs.length*.28),Math.floor(slugs.length*.44),Math.floor(slugs.length*.60),Math.floor(slugs.length*.76),Math.floor(slugs.length*.92),slugs.length-1];
+          const sample=[...new Set([...sampleIndexes.map(i=>slugs[i]).filter(Boolean),'islam-makhachev','cameron-nelson'])].filter(s=>all.has(s));
           for(const slug of sample){
             try{
               const html=await request(`${ORIGIN}/athlete/${slug}`);
               console.log(`PROFILE_STATUS ${slug}=${visibleStatus(html)||'UNKNOWN'}`);
-            }catch(e){console.log(`PROFILE_STATUS ${slug}=ERROR ${e.message}`);}
+            }catch(e){console.log(`PROFILE_STATUS ${slug}=ERROR`);}
           }
-          for(const slug of ['holly-holm']){
-            const html=await request(`${ORIGIN}/athlete/${slug}`);
-            console.log(`CONTROL_STATUS ${slug}=${visibleStatus(html)||'UNKNOWN'} member=${all.has(slug)}`);
-          }
+          const holly=await request(`${ORIGIN}/athlete/holly-holm`);
+          console.log(`CONTROL_STATUS holly-holm=${visibleStatus(holly)||'UNKNOWN'} member=${all.has('holly-holm')}`);
           NODE
