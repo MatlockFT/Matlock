@@ -1,0 +1,63 @@
+name: Test UFC Active tracker
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build Active baseline
+        run: |
+          node scripts/update-ufc-roster-v2.mjs \
+            --output-state /tmp/baseline.json \
+            --output-public /tmp/baseline-public.json
+
+      - name: Verify baseline and simulate one entrant
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const state = JSON.parse(fs.readFileSync('/tmp/baseline.json','utf8'));
+          const publicData = JSON.parse(fs.readFileSync('/tmp/baseline-public.json','utf8'));
+          const target = 'https://www.ufc.com/athlete/israel-adesanya';
+          if (state.version !== 3) throw new Error(`Expected state v3, got ${state.version}`);
+          if (!Array.isArray(state.activeProfiles) || state.activeProfiles.length < 500) throw new Error(`Active baseline too small: ${state.activeProfiles?.length}`);
+          if (!state.activeProfiles.includes(target)) throw new Error('Israel Adesanya missing from Active collection');
+          if ((publicData.additions || []).length !== 0) throw new Error('Baseline unexpectedly backfilled additions');
+          state.activeProfiles = state.activeProfiles.filter(url => url !== target);
+          fs.writeFileSync('/tmp/synthetic-previous.json', JSON.stringify(state, null, 2));
+          console.log(`BASELINE_OK active=${state.activeProfiles.length + 1} reported=${state.activeViewReportedCount}`);
+          NODE
+
+      - name: Run diff against synthetic previous snapshot
+        run: |
+          node scripts/update-ufc-roster-v2.mjs \
+            --state /tmp/synthetic-previous.json \
+            --output-state /tmp/second.json \
+            --output-public /tmp/second-public.json
+
+      - name: Verify detected addition
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const state = JSON.parse(fs.readFileSync('/tmp/second.json','utf8'));
+          const data = JSON.parse(fs.readFileSync('/tmp/second-public.json','utf8'));
+          const target = data.additions.find(item => item.url === 'https://www.ufc.com/athlete/israel-adesanya');
+          if (!target) throw new Error(`Synthetic entrant was not detected: ${JSON.stringify(data.additions)}`);
+          if (target.status !== 'Active') throw new Error(`Entrant status was ${target.status}`);
+          if (state.pendingActiveAdditions.length !== 0) throw new Error(`Unexpected pending candidates: ${state.pendingActiveAdditions.length}`);
+          console.log(`DETECTION_OK ${target.name} status=${target.status} activeProfiles=${state.activeProfiles.length}`);
+          NODE
