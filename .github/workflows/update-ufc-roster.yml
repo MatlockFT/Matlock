@@ -45,6 +45,8 @@ jobs:
             --dir /tmp/ufc-roster || true
 
       - name: Check UFC athlete database
+        id: collect
+        continue-on-error: true
         run: |
           node scripts/update-ufc-roster.mjs \
             --state /tmp/ufc-roster/ufc-roster-state.json \
@@ -52,6 +54,9 @@ jobs:
             --output-public /tmp/ufc-roster-latest.json
 
       - name: Publish roster data
+        id: publish
+        if: steps.collect.outcome == 'success'
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -69,3 +74,48 @@ jobs:
           gh release upload ufc-roster-data \
             /tmp/ufc-roster-state.json \
             --clobber
+
+      - name: Record first live-test result
+        if: always()
+        env:
+          COLLECT_OUTCOME: ${{ steps.collect.outcome }}
+          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
+        run: |
+          if [ -e .github/ufc-roster-bootstrap.json ]; then
+            exit 0
+          fi
+
+          node <<'NODE'
+          const fs = require('fs');
+          let profileCount = null;
+          let additionCount = null;
+          try {
+            const state = JSON.parse(fs.readFileSync('/tmp/ufc-roster-state.json', 'utf8'));
+            profileCount = Array.isArray(state.profiles) ? state.profiles.length : null;
+            additionCount = Array.isArray(state.additions) ? state.additions.length : null;
+          } catch {}
+          const result = {
+            checkedAt: new Date().toISOString(),
+            collect: process.env.COLLECT_OUTCOME || 'unknown',
+            publish: process.env.PUBLISH_OUTCOME || 'unknown',
+            profileCount,
+            additionCount
+          };
+          fs.writeFileSync('.github/ufc-roster-bootstrap.json', JSON.stringify(result, null, 2) + '\n');
+          NODE
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/ufc-roster-bootstrap.json
+          git commit -m "Record UFC roster tracker live test"
+          git push
+
+      - name: Fail when roster update failed
+        if: always()
+        env:
+          COLLECT_OUTCOME: ${{ steps.collect.outcome }}
+          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
+        run: |
+          if [ "$COLLECT_OUTCOME" != "success" ] || [ "$PUBLISH_OUTCOME" != "success" ]; then
+            exit 1
+          fi
