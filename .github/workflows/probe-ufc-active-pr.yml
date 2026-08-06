@@ -16,13 +16,13 @@ jobs:
     timeout-minutes: 8
 
     steps:
-      - name: Probe UFC athlete status filtering
+      - name: Brute force UFC status facet IDs
         run: |
           node <<'NODE'
           const ORIGIN = 'https://www.ufc.com';
           const ATHLETES = `${ORIGIN}/athletes/all`;
           const AJAX = `${ORIGIN}/views/ajax?_wrapper_format=drupal_ajax`;
-          const ua = 'Mozilla/5.0 (compatible; MMAMatlockRosterProbe/2.0; +https://matlockfighttalk.com/)';
+          const ua = 'Mozilla/5.0 (compatible; MMAMatlockRosterProbe/3.0; +https://matlockfighttalk.com/)';
 
           async function fetchText(url, options={}) {
             const r = await fetch(url, {
@@ -34,33 +34,21 @@ jobs:
                 ...(options.headers || {})
               }
             });
-            const text = await r.text();
-            return {status:r.status, url:r.url, text};
+            return { status: r.status, text: await r.text() };
           }
 
-          function normalize(raw) {
+          function decodeAjax(text) {
             try {
-              const u = new URL(raw.replaceAll('\\/','/'), ORIGIN);
-              if (!/^\/athlete\/[^/?#]+\/?$/.test(u.pathname)) return null;
-              return u.pathname.replace(/\/$/,'');
-            } catch { return null; }
-          }
-
-          function athletes(text) {
-            const out = new Set();
-            const pats = [
-              /href=["']([^"']*\/athlete\/[^"'?#/]+\/?(?:\?[^"']*)?)["']/gi,
-              /https?:\\?\/\\?\/(?:www\\?\.)?ufc\\?\.com\\?\/athlete\\?\/[^"'<>\\\s?]+/gi
-            ];
-            for (const p of pats) for (const m of text.matchAll(p)) {
-              const n = normalize(m[1] || m[0]);
-              if (n) out.add(n);
+              const parsed = JSON.parse(text);
+              if (!Array.isArray(parsed)) return text;
+              return parsed.map(cmd => typeof cmd?.data === 'string' ? cmd.data : '').join('\n');
+            } catch {
+              return text;
             }
-            return [...out].sort();
           }
 
-          function plain(text) {
-            return text
+          function athleteCount(text) {
+            const decoded = decodeAjax(text)
               .replace(/\\u003C/g,'<').replace(/\\u003E/g,'>')
               .replace(/\\u0026/g,'&').replace(/\\n/g,' ')
               .replace(/<script[\s\S]*?<\/script>/gi,' ')
@@ -68,101 +56,74 @@ jobs:
               .replace(/<[^>]+>/g,' ')
               .replace(/&nbsp;/g,' ').replace(/&amp;/g,'&')
               .replace(/\s+/g,' ');
+            const hits = [...decoded.matchAll(/\b(\d{2,5})\s+Athletes\b/gi)].map(m => Number(m[1]));
+            return hits.length ? hits[0] : null;
           }
 
-          function countHints(text) {
-            const p = plain(text);
-            return [...p.matchAll(/(?:showing\s+)?(\d{2,5})\s+athletes?/gi)].map(m=>Number(m[1]));
+          function athleteUrls(text) {
+            const decoded = decodeAjax(text)
+              .replace(/\\u002F/g,'/')
+              .replace(/\\\//g,'/');
+            const out = new Set();
+            for (const m of decoded.matchAll(/href=["'](?:https?:\/\/(?:www\.)?ufc\.com)?(\/athlete\/[^"'?#/]+)\/?["']/gi)) out.add(m[1]);
+            return [...out];
           }
 
-          function statusSnippets(text) {
-            const raw = text.replace(/\s+/g,' ');
-            const results = [];
-            for (const needle of ['status','active','filters','facet','field_status','fighter_status']) {
-              let from=0;
-              for (let i=0;i<5;i++) {
-                const idx=raw.toLowerCase().indexOf(needle,from);
-                if(idx<0) break;
-                results.push(raw.slice(Math.max(0,idx-220), Math.min(raw.length,idx+420)));
-                from=idx+needle.length;
-              }
-            }
-            return [...new Set(results)].slice(0,20);
-          }
-
-          const pageVariants = [
-            ['unfiltered',''],
-            ['filters0','?filters%5B0%5D=status%3A23'],
-            ['f0','?f%5B0%5D=status%3A23'],
-            ['status','?status=23'],
-            ['status_active','?status=active'],
-            ['field_status','?field_status=23'],
-            ['fighter_status','?fighter_status=23'],
-            ['field_fighter_status','?field_fighter_status=23'],
-            ['filters_status','?filters%5Bstatus%5D=23']
-          ];
-
-          const baseline = await fetchText(ATHLETES);
-          const baselineAth = athletes(baseline.text);
-          console.log(`PAGE BASELINE http=${baseline.status} urls=${baselineAth.length} bytes=${baseline.text.length} hints=${JSON.stringify(countHints(baseline.text))}`);
-          console.log('PAGE SOURCE STATUS/FILTER SNIPPETS');
-          for (const s of statusSnippets(baseline.text)) console.log('SNIP', s);
-
-          for (const [name,q] of pageVariants.slice(1)) {
-            const r=await fetchText(ATHLETES+q);
-            const a=athletes(r.text);
-            const same=a.join('\n')===baselineAth.join('\n');
-            console.log(`PAGE ${name} http=${r.status} urls=${a.length} same=${same} bytes=${r.text.length} hints=${JSON.stringify(countHints(r.text))} final=${r.url}`);
-            console.log(`PAGE ${name} sample=${JSON.stringify(a.slice(0,8))}`);
-          }
-
-          async function ajax(name, extraBody={}, query='') {
-            const body=new URLSearchParams({
-              view_name:'all_athletes', view_display_id:'page', view_path:'/athletes/all',
-              pager_element:'0', gender:'All', page:'0', ...extraBody
+          async function probe(id) {
+            const body = new URLSearchParams({
+              view_name: 'all_athletes',
+              view_display_id: 'page',
+              view_path: '/athletes/all',
+              pager_element: '0',
+              gender: 'All',
+              page: '0'
             });
-            const r=await fetchText(AJAX+query, {
-              method:'POST',
-              headers:{
+            const query = `&filters%5B0%5D=status%3A${id}`;
+            const r = await fetchText(AJAX + query, {
+              method: 'POST',
+              headers: {
                 'content-type':'application/x-www-form-urlencoded; charset=UTF-8',
-                'x-requested-with':'XMLHttpRequest', referer:ATHLETES
-              }, body
+                'x-requested-with':'XMLHttpRequest',
+                referer: ATHLETES
+              },
+              body
             });
-            const a=athletes(r.text);
-            console.log(`AJAX ${name} http=${r.status} urls=${a.length} bytes=${r.text.length} hints=${JSON.stringify(countHints(r.text))}`);
-            console.log(`AJAX ${name} sample=${JSON.stringify(a.slice(0,8))}`);
-            return a;
+            return {
+              id,
+              http: r.status,
+              count: athleteCount(r.text),
+              urls: athleteUrls(r.text)
+            };
           }
 
-          const ajaxBase=await ajax('unfiltered');
-          const tests=[
-            ['filters0-body', {'filters[0]':'status:23'}, ''],
-            ['f0-body', {'f[0]':'status:23'}, ''],
-            ['status23-body', {status:'23'}, ''],
-            ['statusActive-body', {status:'active'}, ''],
-            ['field_status-body', {field_status:'23'}, ''],
-            ['fighter_status-body', {fighter_status:'23'}, ''],
-            ['filters0-query', {}, '&filters%5B0%5D=status%3A23'],
-            ['f0-query', {}, '&f%5B0%5D=status%3A23'],
-            ['status23-query', {}, '&status=23'],
-            ['viewpath-filters0', {view_path:'/athletes/all?filters%5B0%5D=status%3A23'}, ''],
-            ['viewpath-f0', {view_path:'/athletes/all?f%5B0%5D=status%3A23'}, ''],
-            ['viewpath-status23', {view_path:'/athletes/all?status=23'}, '']
-          ];
-          for(const [name,body,q] of tests){
-            const a=await ajax(name,body,q);
-            console.log(`AJAX_COMPARE ${name} same=${a.join('\n')===ajaxBase.join('\n')}`);
+          const baselineBody = new URLSearchParams({
+            view_name:'all_athletes', view_display_id:'page', view_path:'/athletes/all',
+            pager_element:'0', gender:'All', page:'0'
+          });
+          const baseline = await fetchText(AJAX, {
+            method:'POST',
+            headers:{'content-type':'application/x-www-form-urlencoded; charset=UTF-8','x-requested-with':'XMLHttpRequest',referer:ATHLETES},
+            body: baselineBody
+          });
+          console.log(`BASELINE count=${athleteCount(baseline.text)} urls=${athleteUrls(baseline.text).length} bytes=${baseline.text.length}`);
+
+          const ids = Array.from({length: 60}, (_,i) => i + 1);
+          const results = [];
+          const concurrency = 8;
+          for (let i=0; i<ids.length; i+=concurrency) {
+            const batch = await Promise.all(ids.slice(i,i+concurrency).map(probe));
+            results.push(...batch);
           }
 
-          for (const slug of ['islam-makhachev','cameron-nelson','conor-mcgregor']) {
-            const r=await fetchText(`${ORIGIN}/athlete/${slug}`);
-            const p=plain(r.text);
-            console.log(`PROFILE ${slug} http=${r.status} bytes=${r.text.length}`);
-            for(const term of ['Active','Not Fighting','Status']){
-              const idx=p.indexOf(term);
-              if(idx>=0) console.log(`PROFILE_SNIP ${slug} ${term}:`, p.slice(Math.max(0,idx-300),idx+500));
-            }
-            const raw=r.text.replace(/\s+/g,' ');
-            for(const field of [...raw.matchAll(/field--name-[a-z0-9_-]*status[a-z0-9_-]*/gi)].slice(0,10)) console.log(`PROFILE_FIELD ${slug}: ${field[0]}`);
+          const interesting = results.filter(r => r.count !== null && r.count !== 3168);
+          for (const r of interesting) {
+            console.log(`STATUS_ID ${r.id} count=${r.count} urls=${r.urls.length} sample=${JSON.stringify(r.urls.slice(0,8))}`);
+          }
+
+          const exact = interesting.filter(r => r.count === 524);
+          console.log(`EXACT_524 ${JSON.stringify(exact.map(r => ({id:r.id,count:r.count,urls:r.urls.length,sample:r.urls.slice(0,12)})))}`);
+
+          if (!exact.length) {
+            console.log('NO_EXACT_524_IN_1_60');
           }
           NODE
