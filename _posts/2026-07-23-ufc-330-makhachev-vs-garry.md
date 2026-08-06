@@ -261,8 +261,6 @@ They believe Ian’s wife has a lot of influence over his public persona. We als
 
 This kind of drama is for casuals and is not at all interesting to me. Having someone who speaks well and has something intelligent to say is always a plus, but that is very, VERY rare in MMA in general.
 
-All this to say, I think this has a lot to do with fan predictions and probably even the betting lines.
-
 At the time of writing this, Ian Garry is nearly a 3-to-1 underdog on most books. Oddschecker has Garry at +290 and Makhachev at -340, while BestFightOdds shows Garry sitting between roughly +250 and +303 depending on the book. Polymarket currently gives Garry a 26% chance of winning, which converts to roughly +285 in American-odds terms.
 
 I’m not a betting expert, and I have no proven track record, but those odds seem crazy to me. I do like to reference them to see where people think this fight goes.
