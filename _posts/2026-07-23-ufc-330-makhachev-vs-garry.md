@@ -267,7 +267,7 @@ Garry reading entries and choosing to prioritise posting off the head and should
 
 I have no question in my mind that Makhachev will be landing punches as well because Garry has been hit by every one of his shorter southpaw opponents in the past, but it’s up to Garry not to let Makhachev stack those punches on top of control time.
 
-Garry will need volume, and lots of it.
+Garry will need sustained volume and the punches landed will need to be more impactful than they ever have before. 
 
 I see both these guys battering each other’s lead leg. How dedicated will Garry be to the knee/thigh stomps he often goes to against someone like Makhachev?
 
