@@ -1,4 +1,4 @@
-name: Probe UFC facet markup
+name: Probe UFC facet JavaScript
 
 on:
   pull_request:
@@ -11,62 +11,56 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
 
     steps:
-      - name: Inspect UFC athlete facet markup
+      - name: Inspect UFC JavaScript for facet loading
         run: |
           node <<'NODE'
-          const url = 'https://www.ufc.com/athletes/all';
-          const response = await fetch(url, {
-            headers: {
-              'user-agent': 'Mozilla/5.0 (compatible; MMAMatlockRosterProbe/4.0; +https://matlockfighttalk.com/)',
-              accept: 'text/html,*/*'
-            }
-          });
-          const html = await response.text();
-          console.log(`HTTP ${response.status} BYTES ${html.length}`);
+          const ORIGIN = 'https://www.ufc.com';
+          const PAGE = `${ORIGIN}/athletes/all`;
+          const UA = 'Mozilla/5.0 (compatible; MMAMatlockRosterProbe/4.1; +https://matlockfighttalk.com/)';
+
+          async function get(url) {
+            const r = await fetch(url, {headers:{'user-agent':UA,accept:'*/*'}});
+            return {status:r.status,text:await r.text(),url:r.url};
+          }
+
+          const page = await get(PAGE);
+          const scripts = [...page.text.matchAll(/<script[^>]+src=["']([^"']+)["']/gi)]
+            .map(m => new URL(m[1], ORIGIN).toString());
+          console.log(`PAGE ${page.status} scripts=${scripts.length}`);
+          console.log('SCRIPT_URLS', JSON.stringify(scripts));
 
           const needles = [
-            'By Collections',
-            '>Active<',
-            'Not Fighting',
-            'Retired',
-            'data-drupal-facet-item-value',
-            'facet-item',
+            'sidebar-first-inner-wrp',
+            'facets-block-ajax',
+            'facets_blocks',
+            'facet-filter',
+            'view_name',
+            'view_display_id',
+            'filters[',
             'status:',
-            'status%3A',
-            'facets-blks-wrp',
-            'drupalSettings',
-            'facets'
+            'all_athletes'
           ];
 
-          function contexts(needle, limit=20, before=500, after=1200) {
-            const lower = html.toLowerCase();
-            const n = needle.toLowerCase();
-            let pos = 0;
-            const out = [];
-            while (out.length < limit) {
-              const idx = lower.indexOf(n, pos);
-              if (idx < 0) break;
-              out.push(html.slice(Math.max(0, idx-before), Math.min(html.length, idx+after)).replace(/\s+/g,' '));
-              pos = idx + n.length;
+          for (const src of scripts) {
+            let js;
+            try { js = await get(src); } catch { continue; }
+            const lower = js.text.toLowerCase();
+            const hits = needles.filter(n => lower.includes(n.toLowerCase()));
+            if (!hits.length) continue;
+            console.log(`MATCHING_SCRIPT ${src} http=${js.status} bytes=${js.text.length} needles=${JSON.stringify(hits)}`);
+            for (const needle of hits) {
+              let pos=0, count=0;
+              while (count<8) {
+                const idx=lower.indexOf(needle.toLowerCase(),pos);
+                if(idx<0) break;
+                const ctx=js.text.slice(Math.max(0,idx-700),Math.min(js.text.length,idx+1800)).replace(/\s+/g,' ');
+                console.log(`JS_CTX ${needle} ${count+1}: ${ctx}`);
+                pos=idx+needle.length;
+                count++;
+              }
             }
-            return out;
           }
-
-          for (const needle of needles) {
-            const found = contexts(needle);
-            console.log(`NEEDLE ${needle} MATCHES ${found.length}`);
-            found.forEach((x,i) => console.log(`CTX ${needle} ${i+1}: ${x}`));
-          }
-
-          const hrefs = [...html.matchAll(/href=["']([^"']+)["']/gi)]
-            .map(m => m[1])
-            .filter(x => /filter|facet|status|collection/i.test(x));
-          console.log('RELEVANT_HREFS', JSON.stringify([...new Set(hrefs)].slice(0,200)));
-
-          const attrs = [...html.matchAll(/(?:data-[a-z0-9_-]+|name|value)=["']([^"']*(?:active|status|filter|facet|collection)[^"']*)["']/gi)]
-            .map(m => m[0]);
-          console.log('RELEVANT_ATTRS', JSON.stringify([...new Set(attrs)].slice(0,300)));
           NODE
