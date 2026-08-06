@@ -11,15 +11,6 @@ on:
       - "ufc-roster.html"
       - "assets/ufc-roster.js"
       - "assets/ufc-roster.css"
-  pull_request:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/update-ufc-roster.yml"
-      - "scripts/update-ufc-roster.mjs"
-      - "ufc-roster.html"
-      - "assets/ufc-roster.js"
-      - "assets/ufc-roster.css"
   schedule:
     - cron: "4-59/5 * * * *"
 
@@ -54,8 +45,6 @@ jobs:
             --dir /tmp/ufc-roster || true
 
       - name: Check UFC athlete database
-        id: collect
-        continue-on-error: true
         run: |
           node scripts/update-ufc-roster.mjs \
             --state /tmp/ufc-roster/ufc-roster-state.json \
@@ -63,9 +52,6 @@ jobs:
             --output-public /tmp/ufc-roster-latest.json
 
       - name: Publish roster data
-        id: publish
-        if: steps.collect.outcome == 'success' && github.event_name != 'pull_request'
-        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -83,56 +69,3 @@ jobs:
           gh release upload ufc-roster-data \
             /tmp/ufc-roster-state.json \
             --clobber
-
-      - name: Record first live-test result
-        if: always() && github.event_name != 'pull_request'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          COLLECT_OUTCOME: ${{ steps.collect.outcome }}
-          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
-        run: |
-          if gh api "repos/${GITHUB_REPOSITORY}/contents/.github/ufc-roster-bootstrap.json" > /dev/null 2>&1; then
-            exit 0
-          fi
-
-          node <<'NODE'
-          const fs = require('fs');
-          let profileCount = null;
-          let additionCount = null;
-          try {
-            const state = JSON.parse(fs.readFileSync('/tmp/ufc-roster-state.json', 'utf8'));
-            profileCount = Array.isArray(state.profiles) ? state.profiles.length : null;
-            additionCount = Array.isArray(state.additions) ? state.additions.length : null;
-          } catch {}
-          const result = {
-            checkedAt: new Date().toISOString(),
-            collect: process.env.COLLECT_OUTCOME || 'unknown',
-            publish: process.env.PUBLISH_OUTCOME || 'unknown',
-            profileCount,
-            additionCount
-          };
-          fs.writeFileSync('/tmp/ufc-roster-bootstrap.json', JSON.stringify(result, null, 2) + '\n');
-          NODE
-
-          CONTENT="$(base64 -w0 /tmp/ufc-roster-bootstrap.json)"
-          gh api \
-            --method PUT \
-            "repos/${GITHUB_REPOSITORY}/contents/.github/ufc-roster-bootstrap.json" \
-            -f message="Record UFC roster tracker live test" \
-            -f content="$CONTENT" \
-            -f branch="main"
-
-      - name: Fail when roster update failed
-        if: always()
-        env:
-          EVENT_NAME: ${{ github.event_name }}
-          COLLECT_OUTCOME: ${{ steps.collect.outcome }}
-          PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
-        run: |
-          if [ "$COLLECT_OUTCOME" != "success" ]; then
-            exit 1
-          fi
-
-          if [ "$EVENT_NAME" != "pull_request" ] && [ "$PUBLISH_OUTCOME" != "success" ]; then
-            exit 1
-          fi
