@@ -2,6 +2,9 @@ name: Update UFC roster tracker
 
 on:
   workflow_dispatch:
+  issues:
+    types:
+      - opened
   push:
     branches:
       - main
@@ -23,6 +26,7 @@ concurrency:
 
 jobs:
   update:
+    if: github.event_name != 'issues' || github.event.issue.title == 'Run UFC roster validation'
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
