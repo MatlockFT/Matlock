@@ -1,4 +1,4 @@
-name: Probe UFC Drupal settings
+name: Trace UFC Active filter in browser
 
 on:
   pull_request:
@@ -11,38 +11,95 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
 
     steps:
-      - name: Inspect UFC Drupal settings
+      - name: Trace real UFC browser requests
         run: |
-          node <<'NODE'
-          const PAGE='https://www.ufc.com/athletes/all';
-          const r=await fetch(PAGE,{headers:{'user-agent':'Mozilla/5.0 (compatible; MMAMatlockRosterProbe/4.2; +https://matlockfighttalk.com/)'}});
-          const html=await r.text();
-          const m=html.match(/<script[^>]*data-drupal-selector=["']drupal-settings-json["'][^>]*>([\s\S]*?)<\/script>/i);
-          if(!m){console.log('NO_DRUPAL_SETTINGS');process.exit(0);}
-          const settings=JSON.parse(m[1]);
-          console.log('TOP_KEYS',Object.keys(settings));
+          set -e
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$CHROME" ]; then
+            echo "NO_CHROME"
+            exit 1
+          fi
+          echo "CHROME=$CHROME"
+          "$CHROME" --headless=new --no-sandbox --disable-dev-shm-usage --disable-gpu --remote-debugging-port=9222 about:blank >/tmp/chrome.log 2>&1 &
+          CHROME_PID=$!
+          trap 'kill $CHROME_PID 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do
+            curl -sf http://127.0.0.1:9222/json/version >/dev/null && break
+            sleep 1
+          done
 
-          function walk(value,path=[]){
-            if(value===null||value===undefined)return;
-            if(Array.isArray(value)){
-              value.forEach((v,i)=>walk(v,[...path,String(i)]));
+          node <<'NODE'
+          const sleep = ms => new Promise(r => setTimeout(r, ms));
+          const base = 'http://127.0.0.1:9222';
+          const target = await (await fetch(`${base}/json/new?about:blank`, {method:'PUT'})).json();
+          const ws = new WebSocket(target.webSocketDebuggerUrl);
+          await new Promise((resolve,reject)=>{ws.onopen=resolve;ws.onerror=reject;});
+
+          let id = 0;
+          const pending = new Map();
+          const requests = [];
+          ws.onmessage = event => {
+            const msg = JSON.parse(event.data);
+            if (msg.id && pending.has(msg.id)) {
+              const {resolve,reject} = pending.get(msg.id);
+              pending.delete(msg.id);
+              msg.error ? reject(new Error(JSON.stringify(msg.error))) : resolve(msg.result);
               return;
             }
-            if(typeof value==='object'){
-              for(const [k,v] of Object.entries(value)){
-                const p=[...path,k];
-                if(/facet|view|ajax|filter|athlete|search/i.test(k)||/facet|view|ajax|filter|athlete|search/i.test(String(v))){
-                  let out;
-                  try{out=JSON.stringify(v);}catch{out=String(v);}
-                  if(out.length>5000)out=out.slice(0,5000)+'…';
-                  console.log('SETTING',p.join('.'),'=',out);
-                }
-                walk(v,p);
+            if (msg.method === 'Network.requestWillBeSent') {
+              const r = msg.params.request;
+              const type = msg.params.type || '';
+              requests.push({url:r.url, method:r.method, postData:r.postData || '', type});
+              if (/ufc\.com\/(?:views|facets|ajax|athletes)|filter|facet|search/i.test(r.url)) {
+                console.log('NET', JSON.stringify({method:r.method,type,url:r.url,postData:r.postData||''}));
               }
             }
+          };
+          function send(method, params={}) {
+            return new Promise((resolve,reject)=>{
+              const reqId = ++id;
+              pending.set(reqId,{resolve,reject});
+              ws.send(JSON.stringify({id:reqId,method,params}));
+            });
           }
-          walk(settings);
+
+          await send('Network.enable');
+          await send('Page.enable');
+          await send('Runtime.enable');
+          await send('Page.navigate',{url:'https://www.ufc.com/athletes/all'});
+          await sleep(12000);
+
+          async function evaluate(expression) {
+            const result = await send('Runtime.evaluate',{expression,returnByValue:true,awaitPromise:true});
+            return result?.result?.value;
+          }
+
+          console.log('TITLE', await evaluate('document.title'));
+          console.log('URL', await evaluate('location.href'));
+          console.log('BODY_HAS_ACTIVE', await evaluate("document.body.innerText.includes('Active')"));
+          console.log('FILTER_HTML', (await evaluate("document.querySelector('aside.l-page_filters, aside.l-page__sidebar-first')?.outerHTML || ''") || '').slice(0,30000));
+          console.log('ACTIVE_NODES', JSON.stringify(await evaluate(`Array.from(document.querySelectorAll('a,label,span,div,li,input')).filter(el => ((el.innerText || el.value || '').trim() === 'Active')).slice(0,20).map(el => ({tag:el.tagName,href:el.href||'',value:el.value||'',name:el.getAttribute('name')||'',cls:el.className||'',html:el.outerHTML.slice(0,3000)}))`)));
+
+          const before = requests.length;
+          const clicked = await evaluate(`(()=>{
+            const nodes=Array.from(document.querySelectorAll('a,label,span,div,li,input'));
+            const el=nodes.find(el => ((el.innerText || el.value || '').trim() === 'Active'));
+            if(!el)return 'NO_ACTIVE_NODE';
+            const target=el.closest('a,label') || el;
+            target.click();
+            return target.outerHTML.slice(0,5000);
+          })()`);
+          console.log('CLICKED_ACTIVE', clicked);
+          await sleep(8000);
+
+          for (const r of requests.slice(before)) {
+            if (/ufc\.com|filter|facet|search|view|ajax/i.test(r.url)) console.log('AFTER_CLICK_NET',JSON.stringify(r));
+          }
+          console.log('AFTER_CLICK_URL', await evaluate('location.href'));
+          console.log('AFTER_CLICK_TOTAL', await evaluate("document.querySelector('.althelete-total')?.innerText || ''"));
+          console.log('AFTER_CLICK_FIRST_ATHLETES', JSON.stringify(await evaluate(`Array.from(document.querySelectorAll('a[href*="/athlete/"]')).map(a=>a.href).filter((v,i,a)=>a.indexOf(v)===i).slice(0,20)`)));
+          ws.close();
           NODE
