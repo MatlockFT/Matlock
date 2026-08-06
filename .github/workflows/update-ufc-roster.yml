@@ -45,13 +45,59 @@ jobs:
             --dir /tmp/ufc-roster || true
 
       - name: Check UFC active roster
+        id: roster_check
+        shell: bash
         run: |
+          set +e
           node scripts/update-ufc-roster-v3.mjs \
             --state /tmp/ufc-roster/ufc-roster-state.json \
             --output-state /tmp/ufc-roster-state.json \
-            --output-public /tmp/ufc-roster-latest.json
+            --output-public /tmp/ufc-roster-latest.json \
+            2>&1 | tee /tmp/ufc-roster-run.log
+          code=${PIPESTATUS[0]}
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit "$code"
+
+      - name: Record one-time live validation
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CHECK_RESULT: ${{ steps.roster_check.outcome }}
+        shell: bash
+        run: |
+          if gh api "repos/${GITHUB_REPOSITORY}/contents/.github/ufc-active-live-validation.json" > /dev/null 2>&1; then
+            exit 0
+          fi
+
+          python - <<'PY'
+          import json, os, re
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          log = Path('/tmp/ufc-roster-run.log').read_text(errors='replace') if Path('/tmp/ufc-roster-run.log').exists() else ''
+          match = re.search(r'Validated active UFC roster: (\d+) fighters via (.+?) \((.+?)\)\.', log)
+          payload = {
+              'checkedAt': datetime.now(timezone.utc).isoformat(),
+              'outcome': os.environ.get('CHECK_RESULT', ''),
+              'validated': bool(match),
+              'activeCount': int(match.group(1)) if match else None,
+              'source': match.group(2) if match else None,
+              'mode': match.group(3) if match else None,
+              'tail': log.splitlines()[-80:],
+          }
+          Path('/tmp/ufc-active-live-validation.json').write_text(json.dumps(payload, indent=2) + '\n')
+          PY
+
+          content="$(base64 -w0 /tmp/ufc-active-live-validation.json)"
+          gh api \
+            --method PUT \
+            "repos/${GITHUB_REPOSITORY}/contents/.github/ufc-active-live-validation.json" \
+            -f message="Record live UFC active roster validation" \
+            -f content="$content" \
+            -f branch="main"
 
       - name: Publish roster data
+        if: steps.roster_check.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
