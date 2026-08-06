@@ -11,6 +11,15 @@ on:
       - "ufc-roster.html"
       - "assets/ufc-roster.js"
       - "assets/ufc-roster.css"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/update-ufc-roster.yml"
+      - "scripts/update-ufc-roster.mjs"
+      - "ufc-roster.html"
+      - "assets/ufc-roster.js"
+      - "assets/ufc-roster.css"
   schedule:
     - cron: "4-59/5 * * * *"
 
@@ -55,7 +64,7 @@ jobs:
 
       - name: Publish roster data
         id: publish
-        if: steps.collect.outcome == 'success'
+        if: steps.collect.outcome == 'success' && github.event_name != 'pull_request'
         continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
@@ -76,7 +85,7 @@ jobs:
             --clobber
 
       - name: Record first live-test result
-        if: always()
+        if: always() && github.event_name != 'pull_request'
         env:
           GH_TOKEN: ${{ github.token }}
           COLLECT_OUTCOME: ${{ steps.collect.outcome }}
@@ -116,9 +125,14 @@ jobs:
       - name: Fail when roster update failed
         if: always()
         env:
+          EVENT_NAME: ${{ github.event_name }}
           COLLECT_OUTCOME: ${{ steps.collect.outcome }}
           PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
         run: |
-          if [ "$COLLECT_OUTCOME" != "success" ] || [ "$PUBLISH_OUTCOME" != "success" ]; then
+          if [ "$COLLECT_OUTCOME" != "success" ]; then
+            exit 1
+          fi
+
+          if [ "$EVENT_NAME" != "pull_request" ] && [ "$PUBLISH_OUTCOME" != "success" ]; then
             exit 1
           fi
