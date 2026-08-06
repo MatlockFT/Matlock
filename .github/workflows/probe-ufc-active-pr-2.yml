@@ -1,0 +1,110 @@
+name: Probe UFC active roster endpoint v2
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      - name: Brute force UFC status facet IDs
+        run: |
+          node <<'NODE'
+          const ORIGIN = 'https://www.ufc.com';
+          const ATHLETES = `${ORIGIN}/athletes/all`;
+          const AJAX = `${ORIGIN}/views/ajax?_wrapper_format=drupal_ajax`;
+          const ua = 'Mozilla/5.0 (compatible; MMAMatlockRosterProbe/3.1; +https://matlockfighttalk.com/)';
+
+          async function fetchText(url, options={}) {
+            const r = await fetch(url, {
+              redirect: 'follow',
+              ...options,
+              headers: {
+                'user-agent': ua,
+                accept: 'text/html,application/json;q=0.9,*/*;q=0.8',
+                ...(options.headers || {})
+              }
+            });
+            return { status: r.status, text: await r.text() };
+          }
+
+          function decodeAjax(text) {
+            try {
+              const parsed = JSON.parse(text);
+              if (!Array.isArray(parsed)) return text;
+              return parsed.map(cmd => typeof cmd?.data === 'string' ? cmd.data : '').join('\n');
+            } catch {
+              return text;
+            }
+          }
+
+          function cleaned(text) {
+            return decodeAjax(text)
+              .replace(/\\u003C/g,'<').replace(/\\u003E/g,'>')
+              .replace(/\\u0026/g,'&').replace(/\\n/g,' ')
+              .replace(/<script[\s\S]*?<\/script>/gi,' ')
+              .replace(/<style[\s\S]*?<\/style>/gi,' ')
+              .replace(/<[^>]+>/g,' ')
+              .replace(/&nbsp;/g,' ').replace(/&amp;/g,'&')
+              .replace(/\s+/g,' ');
+          }
+
+          function athleteCount(text) {
+            const hits = [...cleaned(text).matchAll(/\b(\d{2,5})\s+Athletes\b/gi)].map(m => Number(m[1]));
+            return hits.length ? hits[0] : null;
+          }
+
+          function athleteUrls(text) {
+            const decoded = decodeAjax(text)
+              .replace(/\\u002F/g,'/')
+              .replace(/\\\//g,'/');
+            const out = new Set();
+            for (const m of decoded.matchAll(/href=["'](?:https?:\/\/(?:www\.)?ufc\.com)?(\/athlete\/[^"'?#/]+)\/?["']/gi)) out.add(m[1]);
+            return [...out];
+          }
+
+          async function ajax(query='') {
+            const body = new URLSearchParams({
+              view_name:'all_athletes', view_display_id:'page', view_path:'/athletes/all',
+              pager_element:'0', gender:'All', page:'0'
+            });
+            return fetchText(AJAX + query, {
+              method:'POST',
+              headers:{
+                'content-type':'application/x-www-form-urlencoded; charset=UTF-8',
+                'x-requested-with':'XMLHttpRequest', referer:ATHLETES
+              },
+              body
+            });
+          }
+
+          const baseline = await ajax();
+          const baseCount = athleteCount(baseline.text);
+          console.log(`BASELINE count=${baseCount} urls=${athleteUrls(baseline.text).length} bytes=${baseline.text.length}`);
+
+          async function probe(id) {
+            const r = await ajax(`&filters%5B0%5D=status%3A${id}`);
+            return { id, http:r.status, count:athleteCount(r.text), urls:athleteUrls(r.text) };
+          }
+
+          const ids = Array.from({length: 80}, (_,i) => i + 1);
+          const results = [];
+          for (let i=0; i<ids.length; i+=8) {
+            results.push(...await Promise.all(ids.slice(i,i+8).map(probe)));
+          }
+
+          const interesting = results.filter(r => r.count !== null && r.count !== baseCount);
+          for (const r of interesting) {
+            console.log(`STATUS_ID ${r.id} count=${r.count} urls=${r.urls.length} sample=${JSON.stringify(r.urls.slice(0,10))}`);
+          }
+
+          const exact = interesting.filter(r => r.count === 524);
+          console.log(`EXACT_524 ${JSON.stringify(exact.map(r => ({id:r.id,count:r.count,urls:r.urls.length,sample:r.urls.slice(0,12)})))}`);
+          NODE
