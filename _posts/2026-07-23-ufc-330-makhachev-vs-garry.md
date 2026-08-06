@@ -251,23 +251,11 @@ For Ian Garry, its worth noting a few things he's done in preparation for Islam 
 
 Personally, I find this fight so intriguing. I love a classic style matchup, and this one fits perfectly.
 
-If I’m going directly off the general MMA fan vibes, Ian Garry is a disgusting waste of a human being who doesn’t deserve to even stand near Islam Makhachev.
-
-I get where they’re coming from.
-
-Ian Garry does have that “thing” about him that rubs me the wrong way, but it’s mostly in the delivery of what he says. It comes off as a bit false and pretentious. For others, it’s his support of women and PETA. I’m not one of those guys, but I understand that fans are turned off by it because they just don’t see it as genuine.
-
-They believe Ian’s wife has a lot of influence over his public persona. We also have to keep in mind that an account appearing to belong to his brother allegedly called him out for being a false human, lying about his past, and presenting a fake version of himself. The account’s identity has not been definitively confirmed, so obviously, this is all still alleged.
-
-This kind of drama is for casuals and is not at all interesting to me. Having someone who speaks well and has something intelligent to say is always a plus, but that is very, VERY rare in MMA in general.
-
 At the time of writing this, Ian Garry is nearly a 3-to-1 underdog on most books. Oddschecker has Garry at +290 and Makhachev at -340, while BestFightOdds shows Garry sitting between roughly +250 and +303 depending on the book. Polymarket currently gives Garry a 26% chance of winning, which converts to roughly +285 in American-odds terms.
 
-I’m not a betting expert, and I have no proven track record, but those odds seem crazy to me. I do like to reference them to see where people think this fight goes.
+Polymarket has Fight Goes the Distance at 44% and End Inside the Distance at 56%. FanDuel has Makhachev by decision at +135 and Makhachev by submission at +210. Garry by decision is sitting at +450.
 
-At the time of writing, Polymarket has Fight Goes the Distance at 44% and End Inside the Distance at 56%. FanDuel has Makhachev by decision at +135 and Makhachev by submission at +210. Garry by decision is sitting at +450.
-
-I think it’s safe to say that Makhachev by decision or submission is the likely route this fight goes if we’re judging by the odds. Garry winning by TKO/KO is something I see as a very possible route to victory. Garry by decision at +450 on FanDuel is something I also believe is a very real possibility for Ian Garry!
+I think it’s safe to say that Makhachev by decision or submission is the likely route this fight goes if we’re judging by the odds. Garry by decision at +450 on FanDuel is a very real possibility for Ian Garry. Garry winning by TKO/KO is something I see as less likely but still a real possibility. 
 
 There is poison to pick from if you choose to do so.
 
@@ -289,7 +277,7 @@ Fascinating matchup, but for now, I’m rolling with the fighter who has a highe
 
 However, as fight week progresses and I try to catch subtle hints of tactics, game plans, and, of course, both of their general health going into the fight, I may make a switch on my official pick.
 
-Betting-wise? I don’t see any reason not to lay down a couple of bones on the Ian Garry moneyline. In my eyes, close to 3-to-1 is pretty crazy.
+Betting-wise? I don’t see any reason not to lay down a couple of bones on the Ian Garry moneyline. In my eyes, I see Garry as a 2-to-1 underdog so getting him at 3-to-1 seems like a good opportunity to take a small risk. 
 
 **Pick: Islam Makhachev by DEC.**
 
