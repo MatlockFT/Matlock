@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - ".github/workflows/update-ufc-roster.yml"
-      - "scripts/update-ufc-roster.mjs"
+      - "scripts/update-ufc-roster-v2.mjs"
       - "ufc-roster.html"
       - "assets/ufc-roster.js"
       - "assets/ufc-roster.css"
@@ -46,7 +46,7 @@ jobs:
 
       - name: Check UFC athlete database
         run: |
-          node scripts/update-ufc-roster.mjs \
+          node scripts/update-ufc-roster-v2.mjs \
             --state /tmp/ufc-roster/ufc-roster-state.json \
             --output-state /tmp/ufc-roster-state.json \
             --output-public /tmp/ufc-roster-latest.json
