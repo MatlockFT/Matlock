@@ -2,6 +2,15 @@ name: Update UFC roster tracker
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/update-ufc-roster.yml"
+      - "scripts/update-ufc-roster.mjs"
+      - "ufc-roster.html"
+      - "assets/ufc-roster.js"
+      - "assets/ufc-roster.css"
   schedule:
     - cron: "4-59/5 * * * *"
 
