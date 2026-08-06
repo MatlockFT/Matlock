@@ -1,0 +1,46 @@
+---
+layout: default
+title: Latest UFC Roster Additions
+description: "The latest UFC fighters detected on the promotion's athlete database, tracked from UFC.com."
+permalink: /ufc-roster/
+page_styles:
+  - /assets/ufc-roster.css
+page_scripts:
+  - /assets/ufc-roster.js
+---
+
+<article
+    class="ufc-roster-page"
+    data-ufc-roster
+    data-feed-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/ufc-roster-data"
+    data-refresh-interval="300000"
+>
+    <header class="ufc-roster-header">
+        <p class="ufc-roster-kicker">UFC DATABASE TRACKER</p>
+        <h1>Latest UFC Roster Additions</h1>
+        <p class="ufc-roster-intro">
+            The ten most recent UFC athlete profiles detected by MMA Matlock.
+            Detection time is when this tracker first found the fighter on UFC.com,
+            not necessarily when a contract was signed.
+        </p>
+    </header>
+
+    <div class="ufc-roster-meta">
+        <span data-roster-status>Loading the latest roster data…</span>
+        <button class="secondary-button" type="button" data-roster-refresh>
+            Refresh
+        </button>
+    </div>
+
+    <section class="ufc-roster-list" data-roster-list aria-live="polite" aria-busy="true">
+        <div class="ufc-roster-empty">Loading…</div>
+    </section>
+
+    <footer class="ufc-roster-note">
+        <p>
+            This is an independent tracker using publicly accessible UFC.com athlete data.
+            A newly detected UFC profile is evidence that the fighter has appeared in the UFC's web database;
+            it is not an official contract timestamp.
+        </p>
+    </footer>
+</article>
