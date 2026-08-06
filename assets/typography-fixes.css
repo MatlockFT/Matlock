@@ -9,6 +9,15 @@ h3 {
     line-height: 1.1 !important;
 }
 
+/* Header logo should render exactly as supplied, without CSS dimming. */
+.logo-banner,
+.logo-banner > a,
+.site-logo {
+    opacity: 1 !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
+}
+
 /* Large numeric/display values can wrap on narrow screens too. */
 .media-kit-stat strong,
 .media-kit-proof strong,
