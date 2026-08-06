@@ -86,14 +86,18 @@
             const empty = element(
                 "div",
                 "ufc-roster-empty",
-                "Tracking is active. No new UFC athlete profiles have been detected since this tracker started."
+                "Tracking is active. No new active-roster additions have been detected since this tracker started."
             );
             list.append(empty);
         } else {
             additions.forEach((fighter, index) => list.append(fighterCard(fighter, index)));
         }
 
-        status.textContent = `Last checked ${formatDate(data.generatedAt)}`;
+        const count = Number(data.activeCount);
+        const countText = Number.isFinite(count) && count > 0
+            ? ` · ${count.toLocaleString()} active fighters`
+            : "";
+        status.textContent = `Last checked ${formatDate(data.generatedAt)}${countText}`;
     }
 
     async function refresh() {
