@@ -1,0 +1,146 @@
+name: Probe UFC active roster filter
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/probe-ufc-active.yml"
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ufc-active-filter-probe
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Probe UFC Drupal filter variants
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh api "repos/${GITHUB_REPOSITORY}/contents/.github/ufc-active-probe.json" > /dev/null 2>&1; then
+            echo "Probe result already exists."
+            exit 0
+          fi
+
+          node <<'NODE'
+          const fs = require('fs');
+
+          const ORIGIN = 'https://www.ufc.com';
+          const AJAX = `${ORIGIN}/views/ajax?_wrapper_format=drupal_ajax`;
+          const ATHLETES = `${ORIGIN}/athletes/all`;
+          const ua = 'Mozilla/5.0 (compatible; MMAMatlockRosterMonitor/1.0; +https://matlockfighttalk.com/)';
+
+          function normalize(raw) {
+            try {
+              const url = new URL(raw.replaceAll('\\/', '/'), ORIGIN);
+              if (!/^\/athlete\/[^/?#]+\/?$/.test(url.pathname)) return null;
+              url.protocol = 'https:';
+              url.hostname = 'www.ufc.com';
+              url.search = '';
+              url.hash = '';
+              url.pathname = url.pathname.replace(/\/$/, '');
+              return url.toString();
+            } catch {
+              return null;
+            }
+          }
+
+          function extract(text) {
+            const found = new Set();
+            for (const match of text.matchAll(/(?:href=["']([^"']*\/athlete\/[^"'?#/]+)|https?:\\?\/\\?\/(?:www\\?\.)?ufc\\?\.com\\?\/athlete\\?\/[^"'<>\\\s?]+)/gi)) {
+              const url = normalize(match[1] || match[0]);
+              if (url) found.add(url);
+            }
+            return [...found].sort();
+          }
+
+          function exposedCount(text) {
+            const plain = text.replace(/\\u003C/g, '<').replace(/\\u003E/g, '>').replace(/<[^>]+>/g, ' ').replace(/\\n/g, ' ');
+            const matches = [...plain.matchAll(/\b(\d{2,5})\s+Athletes\b/gi)].map(m => Number(m[1]));
+            return matches.length ? Math.max(...matches) : null;
+          }
+
+          async function runVariant(name, extraBody = {}, extraQuery = '') {
+            const pages = [];
+            for (const page of [0, 1]) {
+              const body = new URLSearchParams({
+                view_name: 'all_athletes',
+                view_display_id: 'page',
+                view_path: '/athletes/all',
+                pager_element: '0',
+                gender: 'All',
+                page: String(page),
+                ...extraBody
+              });
+              const response = await fetch(`${AJAX}${extraQuery}`, {
+                method: 'POST',
+                redirect: 'follow',
+                headers: {
+                  'user-agent': ua,
+                  accept: 'application/json,text/html,*/*',
+                  'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                  'x-requested-with': 'XMLHttpRequest',
+                  referer: ATHLETES
+                },
+                body
+              });
+              const text = await response.text();
+              pages.push({
+                page,
+                http: response.status,
+                urls: extract(text),
+                exposedCount: exposedCount(text),
+                bytes: text.length
+              });
+            }
+            return { name, pages };
+          }
+
+          const variants = [];
+          variants.push(await runVariant('unfiltered'));
+          variants.push(await runVariant('form_filters_0', { 'filters[0]': 'status:23' }));
+          variants.push(await runVariant('form_status', { status: '23' }));
+          variants.push(await runVariant('view_path_query', { view_path: '/athletes/all?filters%5B0%5D=status%3A23' }));
+          variants.push(await runVariant('ajax_query_filter', {}, '&filters%5B0%5D=status%3A23'));
+
+          const baseline = variants[0].pages.map(p => p.urls.join('\n'));
+          const result = {
+            checkedAt: new Date().toISOString(),
+            variants: variants.map(v => ({
+              name: v.name,
+              pages: v.pages.map((p, i) => ({
+                page: p.page,
+                http: p.http,
+                urlCount: p.urls.length,
+                exposedCount: p.exposedCount,
+                bytes: p.bytes,
+                sameAsUnfiltered: v.name === 'unfiltered' ? true : p.urls.join('\n') === baseline[i],
+                sample: p.urls.slice(0, 12)
+              }))
+            }))
+          };
+
+          fs.writeFileSync('/tmp/ufc-active-probe.json', JSON.stringify(result, null, 2) + '\n');
+          console.log(JSON.stringify(result, null, 2));
+          NODE
+
+          CONTENT="$(base64 -w0 /tmp/ufc-active-probe.json)"
+          gh api \
+            --method PUT \
+            "repos/${GITHUB_REPOSITORY}/contents/.github/ufc-active-probe.json" \
+            -f message="Record UFC active filter probe" \
+            -f content="$CONTENT" \
+            -f branch="main"
