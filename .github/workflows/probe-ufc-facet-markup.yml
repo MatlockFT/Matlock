@@ -1,4 +1,4 @@
-name: Probe UFC facet JavaScript
+name: Probe UFC Drupal settings
 
 on:
   pull_request:
@@ -11,56 +11,38 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 5
 
     steps:
-      - name: Inspect UFC JavaScript for facet loading
+      - name: Inspect UFC Drupal settings
         run: |
           node <<'NODE'
-          const ORIGIN = 'https://www.ufc.com';
-          const PAGE = `${ORIGIN}/athletes/all`;
-          const UA = 'Mozilla/5.0 (compatible; MMAMatlockRosterProbe/4.1; +https://matlockfighttalk.com/)';
+          const PAGE='https://www.ufc.com/athletes/all';
+          const r=await fetch(PAGE,{headers:{'user-agent':'Mozilla/5.0 (compatible; MMAMatlockRosterProbe/4.2; +https://matlockfighttalk.com/)'}});
+          const html=await r.text();
+          const m=html.match(/<script[^>]*data-drupal-selector=["']drupal-settings-json["'][^>]*>([\s\S]*?)<\/script>/i);
+          if(!m){console.log('NO_DRUPAL_SETTINGS');process.exit(0);}
+          const settings=JSON.parse(m[1]);
+          console.log('TOP_KEYS',Object.keys(settings));
 
-          async function get(url) {
-            const r = await fetch(url, {headers:{'user-agent':UA,accept:'*/*'}});
-            return {status:r.status,text:await r.text(),url:r.url};
-          }
-
-          const page = await get(PAGE);
-          const scripts = [...page.text.matchAll(/<script[^>]+src=["']([^"']+)["']/gi)]
-            .map(m => new URL(m[1], ORIGIN).toString());
-          console.log(`PAGE ${page.status} scripts=${scripts.length}`);
-          console.log('SCRIPT_URLS', JSON.stringify(scripts));
-
-          const needles = [
-            'sidebar-first-inner-wrp',
-            'facets-block-ajax',
-            'facets_blocks',
-            'facet-filter',
-            'view_name',
-            'view_display_id',
-            'filters[',
-            'status:',
-            'all_athletes'
-          ];
-
-          for (const src of scripts) {
-            let js;
-            try { js = await get(src); } catch { continue; }
-            const lower = js.text.toLowerCase();
-            const hits = needles.filter(n => lower.includes(n.toLowerCase()));
-            if (!hits.length) continue;
-            console.log(`MATCHING_SCRIPT ${src} http=${js.status} bytes=${js.text.length} needles=${JSON.stringify(hits)}`);
-            for (const needle of hits) {
-              let pos=0, count=0;
-              while (count<8) {
-                const idx=lower.indexOf(needle.toLowerCase(),pos);
-                if(idx<0) break;
-                const ctx=js.text.slice(Math.max(0,idx-700),Math.min(js.text.length,idx+1800)).replace(/\s+/g,' ');
-                console.log(`JS_CTX ${needle} ${count+1}: ${ctx}`);
-                pos=idx+needle.length;
-                count++;
+          function walk(value,path=[]){
+            if(value===null||value===undefined)return;
+            if(Array.isArray(value)){
+              value.forEach((v,i)=>walk(v,[...path,String(i)]));
+              return;
+            }
+            if(typeof value==='object'){
+              for(const [k,v] of Object.entries(value)){
+                const p=[...path,k];
+                if(/facet|view|ajax|filter|athlete|search/i.test(k)||/facet|view|ajax|filter|athlete|search/i.test(String(v))){
+                  let out;
+                  try{out=JSON.stringify(v);}catch{out=String(v);}
+                  if(out.length>5000)out=out.slice(0,5000)+'…';
+                  console.log('SETTING',p.join('.'),'=',out);
+                }
+                walk(v,p);
               }
             }
           }
+          walk(settings);
           NODE
