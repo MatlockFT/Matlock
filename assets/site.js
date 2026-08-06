@@ -1,4 +1,9 @@
 (() => {
+    const typographyStylesheet = document.createElement("link");
+    typographyStylesheet.rel = "stylesheet";
+    typographyStylesheet.href = "/assets/typography-fixes.css?v=1";
+    document.head.append(typographyStylesheet);
+
     const navigationToggle = document.getElementById("navigation-toggle");
     const navigationList = document.getElementById("navigation-list");
     const navigationPanel = document.getElementById("navigation-panel");
