@@ -1,4 +1,4 @@
-name: Verify UFC status 23 collection
+name: Find UFC active pagination
 
 on:
   pull_request:
@@ -11,82 +11,38 @@ permissions:
 jobs:
   probe:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 5
 
     steps:
-      - name: Verify status 23 against UFC profile statuses
+      - name: Test UFC active roster pagination forms
         run: |
           node <<'NODE'
-          const ORIGIN='https://www.ufc.com';
-          const AJAX=`${ORIGIN}/views/ajax?_wrapper_format=drupal_ajax&filters%5B0%5D=status%3A23`;
-          const UA='Mozilla/5.0 (compatible; MMAMatlockRosterProbe/5.1; +https://matlockfighttalk.com/)';
-
-          async function request(url,options={}){
+          const O='https://www.ufc.com';
+          const UA='Mozilla/5.0 (compatible; MMAMatlockRosterProbe/5.2; +https://matlockfighttalk.com/)';
+          async function req(url,options={}){
             const r=await fetch(url,{redirect:'follow',...options,headers:{'user-agent':UA,accept:'text/html,application/json;q=0.9,*/*;q=0.8',...(options.headers||{})}});
-            const text=await r.text();
-            if(!r.ok) throw new Error(`${r.status} ${url}: ${text.slice(0,300)}`);
-            return text;
+            const t=await r.text();
+            return {status:r.status,text:t,url:r.url};
           }
+          function slugs(text){
+            const s=text.replaceAll('\\/','/').replaceAll('\\u002F','/');
+            return [...new Set([...s.matchAll(/\/athlete\/([a-z0-9][a-z0-9-]*)/gi)].map(m=>m[1].toLowerCase()))];
+          }
+          function count(text){
+            const s=text.replace(/\\u003C/g,'<').replace(/\\u003E/g,'>').replace(/<[^>]+>/g,' ').replace(/\\n/g,' ');
+            const m=s.match(/\b(\d{2,5})\s+Athletes\b/i); return m?Number(m[1]):null;
+          }
+          const filt='filters%5B0%5D=status%3A23';
+          for(const page of [0,1,2,3]){
+            const a=await req(`${O}/athletes/all?${filt}&page=${page}`);
+            console.log(`NORMAL page=${page} http=${a.status} count=${count(a.text)} slugs=${JSON.stringify(slugs(a.text).slice(0,15))}`);
 
-          function extractSlugs(text){
-            const normalized=text.replaceAll('\\/','/').replaceAll('\\u002F','/');
-            const out=new Set();
-            for(const m of normalized.matchAll(/\/athlete\/([a-z0-9][a-z0-9-]*)/gi)) out.add(m[1].toLowerCase());
-            return [...out];
-          }
+            const body=new URLSearchParams({view_name:'all_athletes',view_display_id:'page',view_path:'/athletes/all',pager_element:'0',gender:'All',page:String(page)});
+            const b=await req(`${O}/views/ajax?_wrapper_format=drupal_ajax&${filt}&page=${page}`,{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded; charset=UTF-8','x-requested-with':'XMLHttpRequest',referer:`${O}/athletes/all?${filt}`},body});
+            console.log(`AJAX_POST_QUERY_PAGE page=${page} http=${b.status} count=${count(b.text)} slugs=${JSON.stringify(slugs(b.text).slice(0,15))}`);
 
-          function exposedCount(text){
-            const plain=text.replace(/\\u003C/g,'<').replace(/\\u003E/g,'>').replace(/<[^>]+>/g,' ').replace(/\\n/g,' ');
-            const hits=[...plain.matchAll(/\b(\d{2,5})\s+Athletes\b/gi)].map(m=>Number(m[1]));
-            return hits.length?hits[0]:null;
+            const q=new URLSearchParams({_wrapper_format:'drupal_ajax','filters[0]':'status:23',page:String(page),view_name:'all_athletes',view_display_id:'page',view_path:'/athletes/all',pager_element:'0',gender:'All'});
+            const c=await req(`${O}/views/ajax?${q.toString()}`,{headers:{'x-requested-with':'XMLHttpRequest',referer:`${O}/athletes/all?${filt}`}});
+            console.log(`AJAX_GET page=${page} http=${c.status} count=${count(c.text)} slugs=${JSON.stringify(slugs(c.text).slice(0,15))}`);
           }
-
-          async function page(n){
-            const body=new URLSearchParams({
-              view_name:'all_athletes',view_display_id:'page',view_path:'/athletes/all',
-              pager_element:'0',gender:'All',page:String(n)
-            });
-            const text=await request(AJAX,{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded; charset=UTF-8','x-requested-with':'XMLHttpRequest',referer:`${ORIGIN}/athletes/all`},body});
-            return {n,slugs:extractSlugs(text),text,count:exposedCount(text)};
-          }
-
-          const first=await page(0);
-          console.log(`FIRST pageSlugs=${first.slugs.length} countHint=${first.count} bytes=${first.text.length}`);
-          console.log('FIRST_SLUGS',JSON.stringify(first.slugs.slice(0,20)));
-          if(!first.slugs.length){
-            const parsed=JSON.parse(first.text);
-            console.log('COMMANDS',JSON.stringify(parsed.map((x,i)=>({i,command:x.command||'',selector:x.selector||'',dataType:typeof x.data,dataSnippet:typeof x.data==='string'?x.data.slice(0,3000):x.data})),null,2));
-          }
-
-          const all=new Set(first.slugs);
-          let emptyRun=first.slugs.length?0:1;
-          for(let start=1;start<120 && emptyRun<3;start+=8){
-            const batch=await Promise.all(Array.from({length:8},(_,i)=>start+i).filter(n=>n<120).map(page));
-            for(const p of batch){
-              p.slugs.forEach(s=>all.add(s));
-              emptyRun=p.slugs.length?0:emptyRun+1;
-            }
-          }
-          const slugs=[...all];
-          console.log(`UNIQUE_STATUS23=${slugs.length}`);
-          for(const slug of ['islam-makhachev','cameron-nelson','holly-holm','conor-mcgregor','jon-jones']) console.log(`MEMBER ${slug}=${all.has(slug)}`);
-
-          function decodeEntities(s){return s.replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/&#039;|&#39;/g,"'").replace(/&quot;/g,'"');}
-          function strip(html){return decodeEntities(html.replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ')).replace(/\s+/g,' ').trim();}
-          function visibleStatus(html){
-            const text=strip(html);
-            const m=text.match(/\bStatus\s+(Active|Not Fighting|Inactive|Retired)\b/i);
-            return m?m[1]:'';
-          }
-
-          const sampleIndexes=[0,Math.floor(slugs.length*.12),Math.floor(slugs.length*.28),Math.floor(slugs.length*.44),Math.floor(slugs.length*.60),Math.floor(slugs.length*.76),Math.floor(slugs.length*.92),slugs.length-1];
-          const sample=[...new Set([...sampleIndexes.map(i=>slugs[i]).filter(Boolean),'islam-makhachev','cameron-nelson'])].filter(s=>all.has(s));
-          for(const slug of sample){
-            try{
-              const html=await request(`${ORIGIN}/athlete/${slug}`);
-              console.log(`PROFILE_STATUS ${slug}=${visibleStatus(html)||'UNKNOWN'}`);
-            }catch(e){console.log(`PROFILE_STATUS ${slug}=ERROR`);}
-          }
-          const holly=await request(`${ORIGIN}/athlete/holly-holm`);
-          console.log(`CONTROL_STATUS holly-holm=${visibleStatus(holly)||'UNKNOWN'} member=${all.has('holly-holm')}`);
           NODE
