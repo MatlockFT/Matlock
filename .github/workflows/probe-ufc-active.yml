@@ -30,8 +30,21 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          cleanup_probe_workflow() {
+            PROBE_SHA="$(gh api "repos/${GITHUB_REPOSITORY}/contents/.github/workflows/probe-ufc-active.yml" --jq '.sha' 2>/dev/null || true)"
+            if [ -n "$PROBE_SHA" ]; then
+              gh api \
+                --method DELETE \
+                "repos/${GITHUB_REPOSITORY}/contents/.github/workflows/probe-ufc-active.yml" \
+                -f message="Remove completed UFC active filter probe" \
+                -f sha="$PROBE_SHA" \
+                -f branch="main" || true
+            fi
+          }
+
           if gh api "repos/${GITHUB_REPOSITORY}/contents/.github/ufc-active-probe.json" > /dev/null 2>&1; then
-            echo "Probe result already exists."
+            echo "Probe result already exists. Cleaning up workflow."
+            cleanup_probe_workflow
             exit 0
           fi
 
@@ -144,3 +157,5 @@ jobs:
             -f message="Record UFC active filter probe" \
             -f content="$CONTENT" \
             -f branch="main"
+
+          cleanup_probe_workflow
