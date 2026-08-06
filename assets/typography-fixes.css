@@ -1,0 +1,62 @@
+/* =========================================================
+   TYPOGRAPHY SAFETY
+   Keep Gobold, but prevent multi-line display text from colliding.
+   ========================================================= */
+
+h1,
+h2,
+h3 {
+    line-height: 1.1 !important;
+}
+
+/* Large numeric/display values can wrap on narrow screens too. */
+.media-kit-stat strong,
+.media-kit-proof strong,
+.media-kit-platform-lead strong,
+.ufc-roster-rank {
+    line-height: 1 !important;
+}
+
+/* Breakdown articles use clean sans-serif body copy. */
+.post-body {
+    font-family: Arial, Helvetica, sans-serif !important;
+    line-height: 1.72;
+}
+
+.post-body h2,
+.post-body h3,
+.post-body h4 {
+    line-height: 1.2 !important;
+}
+
+/* Give the largest Gobold headlines a little extra breathing room. */
+.media-kit-hero h1,
+.media-kit-section-heading h2,
+.media-kit-panel h2,
+.media-kit-value > header h2,
+.ufc-roster-header h1,
+.news-page-header h1,
+.homepage-intro h1,
+.featured-content h2,
+.post-header h1,
+.archive-header h1,
+.section-header h2,
+.simple-about-hero h1,
+.simple-about-heading h2,
+.simple-about-background h2 {
+    line-height: 1.12 !important;
+}
+
+@media (max-width: 760px) {
+    h1,
+    h2,
+    h3 {
+        line-height: 1.12 !important;
+    }
+
+    .post-body h2,
+    .post-body h3,
+    .post-body h4 {
+        line-height: 1.22 !important;
+    }
+}
