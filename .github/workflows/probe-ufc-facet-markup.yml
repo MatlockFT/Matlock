@@ -1,4 +1,4 @@
-name: Find UFC active pagination
+name: Optimize UFC active feed
 
 on:
   pull_request:
@@ -14,35 +14,23 @@ jobs:
     timeout-minutes: 5
 
     steps:
-      - name: Test UFC active roster pagination forms
+      - name: Test UFC Drupal page-size controls
         run: |
           node <<'NODE'
           const O='https://www.ufc.com';
-          const UA='Mozilla/5.0 (compatible; MMAMatlockRosterProbe/5.2; +https://matlockfighttalk.com/)';
-          async function req(url,options={}){
-            const r=await fetch(url,{redirect:'follow',...options,headers:{'user-agent':UA,accept:'text/html,application/json;q=0.9,*/*;q=0.8',...(options.headers||{})}});
-            const t=await r.text();
-            return {status:r.status,text:t,url:r.url};
+          const UA='Mozilla/5.0 (compatible; MMAMatlockRosterProbe/5.3; +https://matlockfighttalk.com/)';
+          function slugs(text){const s=text.replaceAll('\\/','/').replaceAll('\\u002F','/');return [...new Set([...s.matchAll(/\/athlete\/([a-z0-9][a-z0-9-]*)/gi)].map(m=>m[1].toLowerCase()))];}
+          async function test(label,queryExtra={},bodyExtra={}){
+            const q=new URLSearchParams({_wrapper_format:'drupal_ajax','filters[0]':'status:23',page:'0',...queryExtra});
+            const body=new URLSearchParams({view_name:'all_athletes',view_display_id:'page',view_path:'/athletes/all',pager_element:'0',gender:'All',page:'0',...bodyExtra});
+            const r=await fetch(`${O}/views/ajax?${q}`,{method:'POST',headers:{'user-agent':UA,'content-type':'application/x-www-form-urlencoded; charset=UTF-8','x-requested-with':'XMLHttpRequest',referer:`${O}/athletes/all`},body});
+            const text=await r.text();
+            console.log(`${label} http=${r.status} bytes=${text.length} slugs=${slugs(text).length} first=${JSON.stringify(slugs(text).slice(0,5))} last=${JSON.stringify(slugs(text).slice(-5))}`);
           }
-          function slugs(text){
-            const s=text.replaceAll('\\/','/').replaceAll('\\u002F','/');
-            return [...new Set([...s.matchAll(/\/athlete\/([a-z0-9][a-z0-9-]*)/gi)].map(m=>m[1].toLowerCase()))];
+          await test('BASE');
+          for(const n of ['24','50','100','250','1000']){
+            await test(`BODY_items_per_page_${n}`,{}, {items_per_page:n});
+            await test(`QUERY_items_per_page_${n}`,{items_per_page:n}, {});
           }
-          function count(text){
-            const s=text.replace(/\\u003C/g,'<').replace(/\\u003E/g,'>').replace(/<[^>]+>/g,' ').replace(/\\n/g,' ');
-            const m=s.match(/\b(\d{2,5})\s+Athletes\b/i); return m?Number(m[1]):null;
-          }
-          const filt='filters%5B0%5D=status%3A23';
-          for(const page of [0,1,2,3]){
-            const a=await req(`${O}/athletes/all?${filt}&page=${page}`);
-            console.log(`NORMAL page=${page} http=${a.status} count=${count(a.text)} slugs=${JSON.stringify(slugs(a.text).slice(0,15))}`);
-
-            const body=new URLSearchParams({view_name:'all_athletes',view_display_id:'page',view_path:'/athletes/all',pager_element:'0',gender:'All',page:String(page)});
-            const b=await req(`${O}/views/ajax?_wrapper_format=drupal_ajax&${filt}&page=${page}`,{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded; charset=UTF-8','x-requested-with':'XMLHttpRequest',referer:`${O}/athletes/all?${filt}`},body});
-            console.log(`AJAX_POST_QUERY_PAGE page=${page} http=${b.status} count=${count(b.text)} slugs=${JSON.stringify(slugs(b.text).slice(0,15))}`);
-
-            const q=new URLSearchParams({_wrapper_format:'drupal_ajax','filters[0]':'status:23',page:String(page),view_name:'all_athletes',view_display_id:'page',view_path:'/athletes/all',pager_element:'0',gender:'All'});
-            const c=await req(`${O}/views/ajax?${q.toString()}`,{headers:{'x-requested-with':'XMLHttpRequest',referer:`${O}/athletes/all?${filt}`}});
-            console.log(`AJAX_GET page=${page} http=${c.status} count=${count(c.text)} slugs=${JSON.stringify(slugs(c.text).slice(0,15))}`);
-          }
+          for(const key of ['limit','page_size','per_page']) await test(`QUERY_${key}_1000`,{[key]:'1000'},{});
           NODE
