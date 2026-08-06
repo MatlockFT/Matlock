@@ -78,10 +78,11 @@ jobs:
       - name: Record first live-test result
         if: always()
         env:
+          GH_TOKEN: ${{ github.token }}
           COLLECT_OUTCOME: ${{ steps.collect.outcome }}
           PUBLISH_OUTCOME: ${{ steps.publish.outcome }}
         run: |
-          if [ -e .github/ufc-roster-bootstrap.json ]; then
+          if gh api "repos/${GITHUB_REPOSITORY}/contents/.github/ufc-roster-bootstrap.json" > /dev/null 2>&1; then
             exit 0
           fi
 
@@ -101,14 +102,16 @@ jobs:
             profileCount,
             additionCount
           };
-          fs.writeFileSync('.github/ufc-roster-bootstrap.json', JSON.stringify(result, null, 2) + '\n');
+          fs.writeFileSync('/tmp/ufc-roster-bootstrap.json', JSON.stringify(result, null, 2) + '\n');
           NODE
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .github/ufc-roster-bootstrap.json
-          git commit -m "Record UFC roster tracker live test"
-          git push
+          CONTENT="$(base64 -w0 /tmp/ufc-roster-bootstrap.json)"
+          gh api \
+            --method PUT \
+            "repos/${GITHUB_REPOSITORY}/contents/.github/ufc-roster-bootstrap.json" \
+            -f message="Record UFC roster tracker live test" \
+            -f content="$CONTENT" \
+            -f branch="main"
 
       - name: Fail when roster update failed
         if: always()
