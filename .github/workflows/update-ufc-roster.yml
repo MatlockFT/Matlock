@@ -1,0 +1,62 @@
+name: Update UFC roster tracker
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "4-59/5 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ufc-roster-tracker
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Download previous roster snapshot
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/ufc-roster
+          gh release download ufc-roster-data \
+            --pattern "ufc-roster-state.json" \
+            --dir /tmp/ufc-roster || true
+
+      - name: Check UFC athlete database
+        run: |
+          node scripts/update-ufc-roster.mjs \
+            --state /tmp/ufc-roster/ufc-roster-state.json \
+            --output-state /tmp/ufc-roster-state.json \
+            --output-public /tmp/ufc-roster-latest.json
+
+      - name: Publish roster data
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view ufc-roster-data > /dev/null 2>&1; then
+            gh release edit ufc-roster-data \
+              --title "UFC Roster Tracker Data" \
+              --notes-file /tmp/ufc-roster-latest.json
+          else
+            gh release create ufc-roster-data \
+              --title "UFC Roster Tracker Data" \
+              --notes-file /tmp/ufc-roster-latest.json \
+              --prerelease
+          fi
+
+          gh release upload ufc-roster-data \
+            /tmp/ufc-roster-state.json \
+            --clobber
