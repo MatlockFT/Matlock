@@ -86,6 +86,27 @@ jobs:
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           exit "$code"
 
+      - name: Preserve competition cross-check history
+        if: steps.roster_check.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ -s /tmp/ufc-roster/ufc-roster-state.json ]; then
+            jq -s '
+              .[0] as $new |
+              .[1] as $old |
+              $new
+              | .reactivations = ($new.reactivations // $old.reactivations // [])
+              | .backfillCompetitionChecks = ($new.backfillCompetitionChecks // $old.backfillCompetitionChecks // {})
+              | .competitionRuleVersion = ($new.competitionRuleVersion // $old.competitionRuleVersion // 0)
+            ' \
+              /tmp/ufc-roster-state.json \
+              /tmp/ufc-roster/ufc-roster-state.json \
+              > /tmp/ufc-roster-state-merged.json
+            mv /tmp/ufc-roster-state-merged.json /tmp/ufc-roster-state.json
+          fi
+
       - name: Cross-check prior UFC competition
         id: competition_check
         if: steps.roster_check.outcome == 'success'
