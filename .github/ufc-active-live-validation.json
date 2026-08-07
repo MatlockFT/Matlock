@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-08-07T01:29:19.417481+00:00",
+  "checkedAt": "2026-08-07T01:31:36.692900+00:00",
   "outcome": "success",
   "publishOutcome": "success",
   "validated": true,
@@ -8,11 +8,10 @@
   "mode": "status23-query-post",
   "tail": [
     "Collected 951 profile URLs from UFC's Active collection (view reports 952 athletes).",
-    "Active roster diff: +1 entered, -0 left.",
+    "Active roster diff: +0 entered, -0 left.",
     "Validated active UFC roster: 951 fighters via https://www.ufc.com/views/ajax (status23-query-post).",
     "UFC Active view reports 952 athlete records.",
-    "Detected 1 addition(s) and 0 removal(s) this run.",
-    "0 Active-roster candidate(s) awaiting profile confirmation.",
-    "+ Jose Ochoa \u2014 https://www.ufc.com/athlete/jose-ochoa"
+    "Detected 0 addition(s) and 0 removal(s) this run.",
+    "0 Active-roster candidate(s) awaiting profile confirmation."
   ]
 }
