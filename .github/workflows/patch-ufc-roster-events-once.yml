@@ -1,0 +1,139 @@
+name: Patch UFC roster events once
+
+on:
+  push:
+    paths:
+      - '.github/workflows/patch-ufc-roster-events-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Convert roster history to event history
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          path = Path('scripts/update-ufc-roster-v4.mjs')
+          text = path.read_text()
+
+          anchor = '''function uniqueByUrl(items, limit = 250) {
+              const seen = new Set();
+              return items
+                  .filter(item => {
+                      if (!item?.url || seen.has(item.url)) return false;
+                      seen.add(item.url);
+                      return true;
+                  })
+                  .slice(0, limit);
+          }
+          '''
+          addition = anchor + '''
+          function uniqueByEvent(items, limit = 250) {
+              const seen = new Set();
+              return items
+                  .filter(item => {
+                      if (!item?.url) return false;
+                      const key =
+                          item.eventId ||
+                          `${item.url}|${item.eventType || "legacy"}|${item.detectedAt || item.confirmedActiveAt || ""}`;
+                      if (seen.has(key)) return false;
+                      seen.add(key);
+                      return true;
+                  })
+                  .slice(0, limit);
+          }
+          '''
+          if anchor not in text:
+              raise SystemExit('uniqueByUrl anchor not found')
+          text = text.replace(anchor, addition, 1)
+
+          old = '''    const pendingUrls = new Set(pending.map(item => item.url));
+              const alreadyRecorded = new Set(additions.map(item => item.url));
+          '''
+          new = '''    const pendingUrls = new Set(pending.map(item => item.url));
+          '''
+          if old not in text:
+              raise SystemExit('alreadyRecorded anchor not found')
+          text = text.replace(old, new, 1)
+
+          old = '        if (pendingUrls.has(url) || alreadyRecorded.has(url)) continue;'
+          new = '        if (pendingUrls.has(url)) continue;'
+          if old not in text:
+              raise SystemExit('enteredActive guard not found')
+          text = text.replace(old, new, 1)
+
+          old = '        const removal = { ...details, detectedAt: now };'
+          new = '''        const removal = {
+                      ...details,
+                      eventId: `${url}|removed|${now}`,
+                      eventType: "removed",
+                      detectedAt: now
+                  };'''
+          if old not in text:
+              raise SystemExit('removal event anchor not found')
+          text = text.replace(old, new, 1)
+
+          old = '''            const addition = {
+                          ...details,
+                          detectedAt: candidate.firstDetectedAt || now,
+                          confirmedActiveAt: now
+                      };'''
+          new = '''            const detectedAt = candidate.firstDetectedAt || now;
+                      const addition = {
+                          ...details,
+                          eventId: `${candidate.url}|added|${detectedAt}`,
+                          eventType: "added",
+                          returning:
+                              additions.some(item => item.url === candidate.url) ||
+                              removals.some(item => item.url === candidate.url),
+                          detectedAt,
+                          confirmedActiveAt: now
+                      };'''
+          if old not in text:
+              raise SystemExit('addition event anchor not found')
+          text = text.replace(old, new, 1)
+
+          old = '''additions = uniqueByUrl(additions);
+          removals = uniqueByUrl(removals);'''
+          new = '''additions = uniqueByEvent(additions);
+          removals = uniqueByEvent(removals);'''
+          if old not in text:
+              raise SystemExit('event dedupe anchor not found')
+          text = text.replace(old, new, 1)
+
+          if text.count('version: 5,') != 2:
+              raise SystemExit(f'expected 2 version 5 markers, found {text.count("version: 5,")}')
+          text = text.replace('version: 5,', 'version: 6,')
+
+          old = '''        "Snapshots UFC.com's hidden Active athlete collection (status:23) and compares it with the previous verified snapshot. New entrants are published only after their UFC profile also reports Status: Active. Detection time is the first tracker run that observed the change, not a contract-signing timestamp.",'''
+          new = '''        "Snapshots UFC.com's hidden Active athlete collection (status:23) and compares it with the previous verified snapshot. New entrants, including returning fighters whose existing UFC profile re-enters the Active set, are published only after their UFC profile also reports Status: Active. Detection time is the first tracker run that observed the change, not a contract-signing timestamp.",'''
+          if old not in text:
+              raise SystemExit('methodology anchor not found')
+          text = text.replace(old, new, 1)
+
+          path.write_text(text)
+          PY
+
+          node --check scripts/update-ufc-roster-v4.mjs
+          grep -q 'function uniqueByEvent' scripts/update-ufc-roster-v4.mjs
+          grep -q 'returning:' scripts/update-ufc-roster-v4.mjs
+          grep -q 'version: 6' scripts/update-ufc-roster-v4.mjs
+
+      - name: Commit patch and remove one-shot workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/patch-ufc-roster-events-once.yml
+          git add scripts/update-ufc-roster-v4.mjs
+          git commit -m "Track UFC roster re-entry events"
+          git push
