@@ -12,6 +12,7 @@ on:
       - ".github/workflows/update-ufc-roster.yml"
       - "scripts/update-ufc-roster-v4.mjs"
       - "scripts/filter-ufc-roster-additions.mjs"
+      - "scripts/check-ufc-antidoping.mjs"
       - "ufc-roster.html"
       - "assets/ufc-roster.js"
       - "assets/ufc-roster.css"
@@ -119,9 +120,19 @@ jobs:
             --backfill assets/ufc-roster-backfill.json \
             2>&1 | tee -a /tmp/ufc-roster-run.log
 
+      - name: Cross-check UFC anti-doping test history
+        id: antidoping_check
+        if: steps.competition_check.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/check-ufc-antidoping.mjs \
+            --state /tmp/ufc-roster-state.json \
+            --previous /tmp/ufc-roster/ufc-roster-state.json
+
       - name: Publish roster data
         id: publish
-        if: steps.competition_check.outcome == 'success'
+        if: steps.antidoping_check.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -154,6 +165,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           CHECK_RESULT: ${{ steps.roster_check.outcome }}
           CROSSCHECK_RESULT: ${{ steps.competition_check.outcome }}
+          ANTIDOPING_RESULT: ${{ steps.antidoping_check.outcome }}
           PUBLISH_RESULT: ${{ steps.publish.outcome }}
         shell: bash
         run: |
@@ -167,16 +179,19 @@ jobs:
           match = re.search(r'Validated active UFC roster: (\d+) fighters via (.+?) \((.+?)\)\.', log)
           check_result = os.environ.get('CHECK_RESULT', '')
           crosscheck_result = os.environ.get('CROSSCHECK_RESULT', '')
+          antidoping_result = os.environ.get('ANTIDOPING_RESULT', '')
           publish_result = os.environ.get('PUBLISH_RESULT', '')
           payload = {
               'checkedAt': datetime.now(timezone.utc).isoformat(),
               'outcome': check_result,
               'crossCheckOutcome': crosscheck_result,
+              'antiDopingOutcome': antidoping_result,
               'publishOutcome': publish_result,
               'validated': (
                   bool(match)
                   and check_result == 'success'
                   and crosscheck_result == 'success'
+                  and antidoping_result == 'success'
                   and publish_result == 'success'
               ),
               'activeCount': int(match.group(1)) if match else None,
