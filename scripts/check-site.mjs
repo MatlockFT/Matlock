@@ -71,9 +71,17 @@ function resolveTarget(sourceFile, rawValue) {
         return null;
     }
 
-    let target = value.startsWith('/')
-        ? join(siteRoot, value)
-        : resolve(join(sourceFile, '..'), value);
+    // Resolve the target path relative to the site root for root-relative
+    // URLs (starting with '/') or relative to the source file for other URLs.
+    let target;
+
+    if (value.startsWith('/')) {
+        // Strip leading slashes so join() doesn't treat it as an absolute path
+        const rel = value.replace(/^\/+/, '');
+        target = join(siteRoot, rel);
+    } else {
+        target = resolve(join(sourceFile, '..'), value);
+    }
 
     target = normalize(target);
 
