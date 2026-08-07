@@ -62,17 +62,13 @@ jobs:
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           exit "$code"
 
-      - name: Record one-time live validation
-        if: always()
+      - name: Record live validation
+        if: always() && github.event_name != 'schedule'
         env:
           GH_TOKEN: ${{ github.token }}
           CHECK_RESULT: ${{ steps.roster_check.outcome }}
         shell: bash
         run: |
-          if gh api "repos/${GITHUB_REPOSITORY}/contents/.github/ufc-active-live-validation.json" > /dev/null 2>&1; then
-            exit 0
-          fi
-
           python - <<'PY'
           import json, os, re
           from datetime import datetime, timezone
@@ -83,7 +79,7 @@ jobs:
           payload = {
               'checkedAt': datetime.now(timezone.utc).isoformat(),
               'outcome': os.environ.get('CHECK_RESULT', ''),
-              'validated': bool(match),
+              'validated': bool(match) and os.environ.get('CHECK_RESULT') == 'success',
               'activeCount': int(match.group(1)) if match else None,
               'source': match.group(2) if match else None,
               'mode': match.group(3) if match else None,
@@ -93,12 +89,24 @@ jobs:
           PY
 
           content="$(base64 -w0 /tmp/ufc-active-live-validation.json)"
-          gh api \
-            --method PUT \
-            "repos/${GITHUB_REPOSITORY}/contents/.github/ufc-active-live-validation.json" \
-            -f message="Record live UFC active roster validation" \
-            -f content="$content" \
-            -f branch="main"
+          existing_sha="$(gh api "repos/${GITHUB_REPOSITORY}/contents/.github/ufc-active-live-validation.json?ref=main" --jq '.sha' 2>/dev/null || true)"
+
+          if [ -n "$existing_sha" ]; then
+            gh api \
+              --method PUT \
+              "repos/${GITHUB_REPOSITORY}/contents/.github/ufc-active-live-validation.json" \
+              -f message="Refresh live UFC active roster validation" \
+              -f content="$content" \
+              -f sha="$existing_sha" \
+              -f branch="main"
+          else
+            gh api \
+              --method PUT \
+              "repos/${GITHUB_REPOSITORY}/contents/.github/ufc-active-live-validation.json" \
+              -f message="Record live UFC active roster validation" \
+              -f content="$content" \
+              -f branch="main"
+          fi
 
       - name: Publish roster data
         if: steps.roster_check.outcome == 'success'
