@@ -1,10 +1,11 @@
 import fs from "node:fs/promises";
 
 const USER_AGENT =
-    "Mozilla/5.0 (compatible; MMAMatlockRosterCompetitionCheck/1.0; +https://matlockfighttalk.com/)";
+    "Mozilla/5.0 (compatible; MMAMatlockRosterCompetitionCheck/1.1; +https://matlockfighttalk.com/)";
 const REQUEST_ATTEMPTS = 3;
 const REQUEST_TIMEOUT_MS = 30000;
 const EVENT_HISTORY_LIMIT = 1000;
+const COMPETITION_RULE_VERSION = 2;
 
 function argument(name, fallback = "") {
     const index = process.argv.indexOf(name);
@@ -100,6 +101,24 @@ function parseDateLabel(value) {
     return Number.isNaN(parsed) ? "" : new Date(parsed).toISOString();
 }
 
+function parseSlashDate(value) {
+    const match = String(value || "").match(/^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/);
+    if (!match) return "";
+    const month = Number(match[1]);
+    const day = Number(match[2]);
+    let year = Number(match[3]);
+    if (year < 100) year += 2000;
+    const date = new Date(Date.UTC(year, month - 1, day));
+    if (
+        date.getUTCFullYear() !== year ||
+        date.getUTCMonth() !== month - 1 ||
+        date.getUTCDate() !== day
+    ) {
+        return "";
+    }
+    return date.toISOString();
+}
+
 function dayNumber(value) {
     const parsed = Date.parse(value || "");
     if (Number.isNaN(parsed)) return null;
@@ -110,14 +129,18 @@ function dayNumber(value) {
 function completedUfcResultEvidence(plain) {
     const resultVerb =
         "(?:won|lost|defeated|submitted|knocked out|stopped|was submitted|was knocked out)";
-    const date = "\\(\\s*\\d{1,2}\\/\\d{1,2}\\/\\d{2,4}\\s*\\)";
     const event =
         "(?:UFC\\s+\\d{1,3}|UFC\\s+Fight Night(?:\\s+[^()]*)?|UFC\\s+on\\s+(?:ESPN|ABC|FOX|FX|FUEL|Versus)(?:\\s+[^()]*)?)";
     const pattern = new RegExp(
-        `\\b(${event}\\s*${date}.{0,240}?\\b${resultVerb}\\b.{0,180})`,
+        `\\b(${event}\\s*\\(\\s*(\\d{1,2}\\/\\d{1,2}\\/\\d{2,4})\\s*\\).{0,240}?\\b${resultVerb}\\b.{0,180})`,
         "i"
     );
-    return firstMatch(plain, [pattern]);
+    const match = plain.match(pattern);
+    if (!match?.[1]) return null;
+    return {
+        text: match[1].trim(),
+        occurredAt: parseSlashDate(match[2])
+    };
 }
 
 function inspectProfileText(html) {
@@ -129,20 +152,27 @@ function inspectProfileText(html) {
     return {
         octagonDebut,
         octagonDebutAt: parseDateLabel(octagonDebut),
-        completedUfcResultEvidence: completedUfcResultEvidence(plain)
+        completedUfcResult: completedUfcResultEvidence(plain)
     };
 }
 
-function classifyCompetition(profile, observedAt) {
-    if (profile.completedUfcResultEvidence) {
+function classifyCompetition(profile, observedAt, { historical = false } = {}) {
+    const observedDay = dayNumber(observedAt);
+    const resultDay = dayNumber(profile.completedUfcResult?.occurredAt);
+
+    if (
+        profile.completedUfcResult &&
+        observedDay !== null &&
+        resultDay !== null &&
+        (resultDay < observedDay || (!historical && resultDay === observedDay))
+    ) {
         return {
             priorUfcCompetition: true,
-            evidence: profile.completedUfcResultEvidence.slice(0, 320)
+            evidence: profile.completedUfcResult.text.slice(0, 320)
         };
     }
 
     const debutDay = dayNumber(profile.octagonDebutAt);
-    const observedDay = dayNumber(observedAt);
     if (debutDay !== null && observedDay !== null && debutDay < observedDay) {
         return {
             priorUfcCompetition: true,
@@ -173,14 +203,14 @@ function uniqueByEvent(items, limit = EVENT_HISTORY_LIMIT) {
         .slice(0, limit);
 }
 
-async function inspectEntry(url, observedAt) {
+async function inspectEntry(url, observedAt, options = {}) {
     const normalizedUrl = normalizeUrl(url);
     if (!normalizedUrl) throw new Error(`Invalid UFC athlete URL: ${url}`);
     const html = await requestText(normalizedUrl);
     const profile = inspectProfileText(html);
     return {
         ...profile,
-        ...classifyCompetition(profile, observedAt)
+        ...classifyCompetition(profile, observedAt, options)
     };
 }
 
@@ -204,7 +234,8 @@ for (const addition of additions) {
     if (
         addition?.entryClass === "newcomer" &&
         addition?.competitionCheckedAt &&
-        addition?.priorUfcCompetition === false
+        addition?.priorUfcCompetition === false &&
+        addition?.competitionRuleVersion === COMPETITION_RULE_VERSION
     ) {
         retainedAdditions.push(addition);
         continue;
@@ -220,6 +251,7 @@ for (const addition of additions) {
             octagonDebut: check.octagonDebut || addition.octagonDebut || "",
             octagonDebutAt: check.octagonDebutAt || addition.octagonDebutAt || "",
             competitionCheckedAt: now,
+            competitionRuleVersion: COMPETITION_RULE_VERSION,
             competitionEvidence: check.evidence,
             priorUfcCompetition: check.priorUfcCompetition
         };
@@ -257,19 +289,34 @@ for (const addition of additions) {
 additions = uniqueByEvent(retainedAdditions);
 reactivations = uniqueByEvent(reactivations);
 
-const backfillChecks =
+const previousBackfillChecks =
     state.backfillCompetitionChecks && typeof state.backfillCompetitionChecks === "object"
-        ? { ...state.backfillCompetitionChecks }
+        ? state.backfillCompetitionChecks
         : {};
+const backfillChecks = {};
 
 for (const fighter of Array.isArray(backfill?.fighters) ? backfill.fighters : []) {
     const url = normalizeUrl(fighter?.url);
-    if (!url || backfillChecks[url]?.checkedAt) continue;
+    if (!url) continue;
+
+    const cached = previousBackfillChecks[url];
+    if (
+        cached?.checkedAt &&
+        cached?.competitionRuleVersion === COMPETITION_RULE_VERSION
+    ) {
+        backfillChecks[url] = cached;
+        continue;
+    }
 
     try {
-        const check = await inspectEntry(url, fighter.profilePublishedAt || now);
+        const check = await inspectEntry(
+            url,
+            fighter.profilePublishedAt || now,
+            { historical: true }
+        );
         backfillChecks[url] = {
             checkedAt: now,
+            competitionRuleVersion: COMPETITION_RULE_VERSION,
             eligible: !check.priorUfcCompetition,
             priorUfcCompetition: check.priorUfcCompetition,
             octagonDebut: check.octagonDebut,
@@ -282,6 +329,7 @@ for (const fighter of Array.isArray(backfill?.fighters) ? backfill.fighters : []
     } catch (error) {
         backfillChecks[url] = {
             checkedAt: "",
+            competitionRuleVersion: COMPETITION_RULE_VERSION,
             eligible: false,
             error: error.message
         };
@@ -296,6 +344,7 @@ const verifiedPublicAdditions = additions
         item =>
             item?.entryClass === "newcomer" &&
             item?.competitionCheckedAt &&
+            item?.competitionRuleVersion === COMPETITION_RULE_VERSION &&
             item?.priorUfcCompetition === false
     )
     .slice(0, 10);
@@ -326,12 +375,14 @@ state.version = Math.max(Number(state.version || 0), 8);
 state.additions = additions;
 state.reactivations = reactivations;
 state.backfillCompetitionChecks = backfillChecks;
+state.competitionRuleVersion = COMPETITION_RULE_VERSION;
 
 publicData.version = Math.max(Number(publicData.version || 0), 8);
 publicData.additions = verifiedPublicAdditions;
 publicData.reactivations = reactivations.slice(0, 10);
+publicData.competitionRuleVersion = COMPETITION_RULE_VERSION;
 publicData.methodology =
-    "Compares UFC.com's hidden Active athlete collection between verified snapshots. Before an entrant appears in Roll Call, the tracker cross-checks the UFC profile for prior UFC competition using completed UFC fight-history text and the Octagon Debut field. Fighters with evidence of prior UFC competition are classified as reactivations and omitted from recent additions. Detection time is when this tracker first observed the roster-list change, not a contract-signing timestamp.";
+    "Compares UFC.com's hidden Active athlete collection between verified snapshots. Before an entrant appears in Roll Call, the tracker cross-checks the UFC profile for prior UFC competition using completed UFC fight-history text and the Octagon Debut field. Fighters with evidence of prior UFC competition before the observed roster entry are classified as reactivations and omitted from recent additions. Detection time is when this tracker first observed the roster-list change, not a contract-signing timestamp.";
 
 await fs.writeFile(statePath, `${JSON.stringify(state, null, 2)}\n`);
 await fs.writeFile(publicPath, `${JSON.stringify(publicData, null, 2)}\n`);
