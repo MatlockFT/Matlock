@@ -69,16 +69,25 @@
 
     <style>
         .logo-banner {
-            padding-top: 0.45rem;
-            padding-bottom: 0.45rem;
+            padding: 0.2rem 1rem;
         }
 
         .site-logo {
-            width: min(88vw, 760px);
+            width: min(64vw, 260px);
             height: auto;
             max-width: 100%;
             max-height: none;
             object-fit: contain;
+        }
+
+        @media (max-width: 760px) {
+            .logo-banner {
+                padding: 0.2rem 0.75rem;
+            }
+
+            .site-logo {
+                width: min(62vw, 220px);
+            }
         }
     </style>
 
