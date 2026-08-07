@@ -7,7 +7,7 @@ description: >-
 
 url: "https://matlockfighttalk.com"
 baseurl: ""
-asset_version: "30"
+asset_version: "31"
 
 lang: "en-US"
 locale: "en_US"
@@ -64,6 +64,9 @@ nav:
 
   - name: "News"
     link: "/news/"
+
+  - name: "Upcoming Events"
+    link: "/upcoming-events/"
 
   - name: "UFC Roster"
     link: "/ufc-roster/"
