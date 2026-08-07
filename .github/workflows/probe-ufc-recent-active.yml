@@ -1,0 +1,128 @@
+name: Probe recent UFC Active profiles
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Rank recent Active profiles from UFC data
+        shell: bash
+        run: |
+          node <<'NODE'
+          const O='https://www.ufc.com';
+          const UA='Mozilla/5.0 (compatible; MMAMatlockRosterProbe/6.0; +https://matlockfighttalk.com/)';
+          const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+
+          function normalize(value){
+            try{
+              const u=new URL(value,O);
+              if(!/^\/athlete\/[^/?#]+\/?$/.test(u.pathname)) return null;
+              u.protocol='https:';u.hostname='www.ufc.com';u.search='';u.hash='';u.pathname=u.pathname.replace(/\/$/,'');
+              return u.toString();
+            }catch{return null;}
+          }
+          function decode(s=''){return s.replaceAll('\\/','/').replace(/\\u002f/gi,'/').replace(/\\u0026/gi,'&').replace(/&amp;/g,'&');}
+          function urls(text){
+            const s=decode(text);const out=new Set();
+            for(const m of s.matchAll(/(?:https?:\/\/(?:www\.)?ufc\.com)?(\/athlete\/[a-z0-9][a-z0-9-]*)(?=[/?#"'<>\s\\]|$)/gi)){
+              const u=normalize(m[1]); if(u) out.add(u);
+            }
+            return out;
+          }
+          async function req(url,options={}){
+            const r=await fetch(url,{redirect:'follow',...options,headers:{'user-agent':UA,accept:'text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8',...(options.headers||{})}});
+            const text=await r.text();
+            if(!r.ok) throw new Error(`${r.status} ${url}: ${text.slice(0,200)}`);
+            return {r,text};
+          }
+          function reported(text){
+            const s=text.replace(/\\u003c/gi,'<').replace(/\\u003e/gi,'>').replace(/<[^>]+>/g,' ').replace(/\\n/g,' ');
+            const m=s.match(/\b(\d{2,5})\s+Athletes\b/i);return m?Number(m[1]):null;
+          }
+          async function activePage(page){
+            const q=new URL(`${O}/views/ajax?_wrapper_format=drupal_ajax`);
+            q.searchParams.set('filters[0]','status:23');q.searchParams.set('page',String(page));
+            const body=new URLSearchParams({view_name:'all_athletes',view_display_id:'page',view_path:'/athletes/all',pager_element:'0',gender:'All',page:String(page)});
+            const {text}=await req(q.toString(),{method:'POST',headers:{'content-type':'application/x-www-form-urlencoded; charset=UTF-8','x-requested-with':'XMLHttpRequest',referer:`${O}/athletes/all?filters%5B0%5D=status%3A23`},body});
+            return {page,set:urls(text),count:reported(text)};
+          }
+
+          const first=await activePage(0);const active=new Set(first.set);let empty=0;
+          for(let start=1;start<160;start+=8){
+            const batch=await Promise.all(Array.from({length:8},(_,i)=>start+i).map(activePage));
+            for(const p of batch){
+              if(!p.set.size) empty++; else {empty=0; for(const u of p.set) active.add(u);}
+            }
+            if(first.count && active.size>=first.count) break;
+            if(empty>=3) break;
+          }
+          console.log(`ACTIVE collected=${active.size} reported=${first.count}`);
+
+          const sitemapDates=new Map();
+          const queue=[`${O}/sitemap.xml`,`${O}/sitemap_index.xml`];
+          const seen=new Set();
+          while(queue.length && seen.size<120){
+            const target=queue.shift();if(seen.has(target))continue;seen.add(target);
+            let text;try{text=(await req(target)).text;}catch(e){console.log('SITEMAP_FAIL',target,e.message);continue;}
+            const entries=[...text.matchAll(/<url>\s*<loc>([\s\S]*?)<\/loc>([\s\S]*?)<\/url>/gi)];
+            for(const e of entries){
+              const loc=e[1].replace(/&amp;/g,'&').trim();
+              const lm=e[2].match(/<lastmod>([\s\S]*?)<\/lastmod>/i)?.[1]?.trim()||'';
+              const u=normalize(loc);if(u) sitemapDates.set(u,lm);
+            }
+            for(const m of text.matchAll(/<sitemap>\s*<loc>([\s\S]*?)<\/loc>[\s\S]*?<\/sitemap>/gi)){
+              const loc=m[1].replace(/&amp;/g,'&').trim();if(/^https?:\/\//.test(loc)&&!seen.has(loc))queue.push(loc);
+            }
+            if(!entries.length){
+              for(const m of text.matchAll(/<loc>([\s\S]*?)<\/loc>/gi)){
+                const loc=m[1].replace(/&amp;/g,'&').trim();
+                const u=normalize(loc);if(u&&!sitemapDates.has(u)) sitemapDates.set(u,'');
+                else if(/sitemap/i.test(loc)&&/^https?:\/\//.test(loc)&&!seen.has(loc))queue.push(loc);
+              }
+            }
+          }
+          console.log(`SITEMAPS checked=${seen.size} athleteDates=${sitemapDates.size}`);
+
+          const ranked=[...active].map(url=>({url,lastmod:sitemapDates.get(url)||''})).sort((a,b)=>String(b.lastmod).localeCompare(String(a.lastmod)));
+          console.log('TOP_SITEMAP_ACTIVE',JSON.stringify(ranked.slice(0,40),null,2));
+
+          function meta(html,key){
+            const esc=key.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+            return html.match(new RegExp(`<meta[^>]+(?:property|name)=["']${esc}["'][^>]+content=["']([^"']+)["']`,'i'))?.[1]||'';
+          }
+          function strip(html){return html.replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]+>/g,' ').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();}
+          function jsonDates(html){
+            const out=[];
+            for(const m of html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)){
+              try{
+                const j=JSON.parse(m[1]);
+                const walk=v=>{if(!v)return;if(Array.isArray(v))return v.forEach(walk);if(typeof v==='object'){if(v.datePublished||v.dateModified)out.push({datePublished:v.datePublished||'',dateModified:v.dateModified||'',type:v['@type']||''});Object.values(v).forEach(walk);}};walk(j);
+              }catch{}
+            }
+            return out;
+          }
+          async function inspect(item){
+            try{
+              const {r,text}=await req(item.url);
+              const plain=strip(text);
+              const status=plain.match(/\bStatus\s+(Active|Not Fighting|Inactive|Retired)\b/i)?.[1]||'';
+              const title=(meta(text,'og:title')||'').replace(/\s*\|\s*UFC.*$/i,'').replace(/\s*-\s*UFC.*$/i,'').trim();
+              const nid=text.match(/data-history-node-id=["'](\d+)["']/i)?.[1]||text.match(/["']nid["']\s*:\s*["']?(\d+)/i)?.[1]||'';
+              return {...item,name:title,status,nid,lastModifiedHeader:r.headers.get('last-modified')||'',articlePublished:meta(text,'article:published_time'),articleModified:meta(text,'article:modified_time'),jsonDates:jsonDates(text).slice(0,5)};
+            }catch(e){return {...item,error:e.message};}
+          }
+          const inspected=[];
+          for(let i=0;i<Math.min(50,ranked.length);i+=5){
+            inspected.push(...await Promise.all(ranked.slice(i,i+5).map(inspect)));
+            await sleep(100);
+          }
+          console.log('INSPECTED_RECENT_ACTIVE',JSON.stringify(inspected,null,2));
+          NODE
