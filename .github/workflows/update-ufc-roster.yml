@@ -11,6 +11,7 @@ on:
     paths:
       - ".github/workflows/update-ufc-roster.yml"
       - "scripts/update-ufc-roster-v4.mjs"
+      - "scripts/filter-ufc-roster-additions.mjs"
       - "ufc-roster.html"
       - "assets/ufc-roster.js"
       - "assets/ufc-roster.css"
@@ -85,9 +86,21 @@ jobs:
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           exit "$code"
 
+      - name: Cross-check prior UFC competition
+        id: competition_check
+        if: steps.roster_check.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/filter-ufc-roster-additions.mjs \
+            --state /tmp/ufc-roster-state.json \
+            --public /tmp/ufc-roster-latest.json \
+            --backfill assets/ufc-roster-backfill.json \
+            2>&1 | tee -a /tmp/ufc-roster-run.log
+
       - name: Publish roster data
         id: publish
-        if: steps.roster_check.outcome == 'success'
+        if: steps.competition_check.outcome == 'success'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -119,6 +132,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           CHECK_RESULT: ${{ steps.roster_check.outcome }}
+          CROSSCHECK_RESULT: ${{ steps.competition_check.outcome }}
           PUBLISH_RESULT: ${{ steps.publish.outcome }}
         shell: bash
         run: |
@@ -131,12 +145,19 @@ jobs:
           log = Path('/tmp/ufc-roster-run.log').read_text(errors='replace') if Path('/tmp/ufc-roster-run.log').exists() else ''
           match = re.search(r'Validated active UFC roster: (\d+) fighters via (.+?) \((.+?)\)\.', log)
           check_result = os.environ.get('CHECK_RESULT', '')
+          crosscheck_result = os.environ.get('CROSSCHECK_RESULT', '')
           publish_result = os.environ.get('PUBLISH_RESULT', '')
           payload = {
               'checkedAt': datetime.now(timezone.utc).isoformat(),
               'outcome': check_result,
+              'crossCheckOutcome': crosscheck_result,
               'publishOutcome': publish_result,
-              'validated': bool(match) and check_result == 'success' and publish_result == 'success',
+              'validated': (
+                  bool(match)
+                  and check_result == 'success'
+                  and crosscheck_result == 'success'
+                  and publish_result == 'success'
+              ),
               'activeCount': int(match.group(1)) if match else None,
               'source': match.group(2) if match else None,
               'mode': match.group(3) if match else None,
