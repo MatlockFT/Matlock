@@ -285,6 +285,21 @@ function uniqueByUrl(items, limit = 250) {
         .slice(0, limit);
 }
 
+function uniqueByEvent(items, limit = 250) {
+    const seen = new Set();
+    return items
+        .filter(item => {
+            if (!item?.url) return false;
+            const key =
+                item.eventId ||
+                `${item.url}|${item.eventType || "legacy"}|${item.detectedAt || item.confirmedActiveAt || ""}`;
+            if (seen.has(key)) return false;
+            seen.add(key);
+            return true;
+        })
+        .slice(0, limit);
+}
+
 const previous = await readState();
 const activeSnapshot = await collectActiveProfiles();
 const now = new Date().toISOString();
@@ -328,10 +343,9 @@ if (hasActiveBaseline) {
     }
 
     const pendingUrls = new Set(pending.map(item => item.url));
-    const alreadyRecorded = new Set(additions.map(item => item.url));
 
     for (const url of enteredActive) {
-        if (pendingUrls.has(url) || alreadyRecorded.has(url)) continue;
+        if (pendingUrls.has(url)) continue;
         pending.push({
             url,
             firstDetectedAt: now,
@@ -350,7 +364,12 @@ if (hasActiveBaseline) {
             const slug = new URL(url).pathname.split("/").filter(Boolean).at(-1);
             details = { name: slug.replaceAll("-", " "), slug, url };
         }
-        const removal = { ...details, detectedAt: now };
+        const removal = {
+            ...details,
+            eventId: `${url}|removed|${now}`,
+            eventType: "removed",
+            detectedAt: now
+        };
         removals.unshift(removal);
         newlyRemoved.push(removal);
     }
@@ -384,9 +403,15 @@ for (const candidate of toCheck) {
         const details = await fighterDetails(candidate.url);
 
         if (details.status === "Active") {
+            const detectedAt = candidate.firstDetectedAt || now;
             const addition = {
                 ...details,
-                detectedAt: candidate.firstDetectedAt || now,
+                eventId: `${candidate.url}|added|${detectedAt}`,
+                eventType: "added",
+                returning:
+                    additions.some(item => item.url === candidate.url) ||
+                    removals.some(item => item.url === candidate.url),
+                detectedAt,
                 confirmedActiveAt: now
             };
             additions.unshift(addition);
@@ -413,13 +438,13 @@ for (const candidate of toCheck) {
     }
 }
 
-additions = uniqueByUrl(additions);
-removals = uniqueByUrl(removals);
+additions = uniqueByEvent(additions);
+removals = uniqueByEvent(removals);
 pending = uniqueByUrl(remainingPending);
 
 const trackingStartedAt = collectorMatches ? previous?.trackingStartedAt || now : now;
 const state = {
-    version: 5,
+    version: 6,
     collectorId: COLLECTOR_ID,
     checkedAt: now,
     trackingStartedAt,
@@ -435,7 +460,7 @@ const state = {
 };
 
 const publicData = {
-    version: 5,
+    version: 6,
     collectorId: COLLECTOR_ID,
     generatedAt: now,
     trackingStartedAt,
@@ -444,7 +469,7 @@ const publicData = {
     activeRosterSource: `${UFC_ORIGIN}/views/ajax`,
     activeRosterMode: "status23-query-post",
     methodology:
-        "Snapshots UFC.com's hidden Active athlete collection (status:23) and compares it with the previous verified snapshot. New entrants are published only after their UFC profile also reports Status: Active. Detection time is the first tracker run that observed the change, not a contract-signing timestamp.",
+        "Snapshots UFC.com's hidden Active athlete collection (status:23) and compares it with the previous verified snapshot. New entrants, including returning fighters whose existing UFC profile re-enters the Active set, are published only after their UFC profile also reports Status: Active. Detection time is the first tracker run that observed the change, not a contract-signing timestamp.",
     additions: additions.slice(0, 10),
     removals: removals.slice(0, 10),
     changesThisRun: {
