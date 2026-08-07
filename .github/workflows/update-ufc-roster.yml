@@ -13,6 +13,7 @@ on:
       - "scripts/update-ufc-roster-v4.mjs"
       - "scripts/filter-ufc-roster-additions.mjs"
       - "scripts/check-ufc-event-cards.mjs"
+      - "scripts/normalize-ufc-roster-events.mjs"
       - "scripts/check-ufc-antidoping.mjs"
       - "ufc-roster.html"
       - "assets/ufc-roster.js"
@@ -121,6 +122,16 @@ jobs:
             --previous /tmp/ufc-roster/ufc-roster-state.json \
             2>&1 | tee -a /tmp/ufc-roster-run.log
 
+      - name: Normalize newcomer confirmation paths
+        if: steps.event_card_check.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/normalize-ufc-roster-events.mjs \
+            --state /tmp/ufc-roster-state.json \
+            --public /tmp/ufc-roster-latest.json \
+            2>&1 | tee -a /tmp/ufc-roster-run.log
+
       - name: Cross-check prior UFC competition
         id: competition_check
         if: steps.event_card_check.outcome == 'success'
@@ -133,9 +144,21 @@ jobs:
             --backfill assets/ufc-roster-backfill.json \
             2>&1 | tee -a /tmp/ufc-roster-run.log
 
+      - name: Finalize newcomer confirmation paths
+        id: finalize_check
+        if: steps.competition_check.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/normalize-ufc-roster-events.mjs \
+            --state /tmp/ufc-roster-state.json \
+            --public /tmp/ufc-roster-latest.json \
+            --finalize-public \
+            2>&1 | tee -a /tmp/ufc-roster-run.log
+
       - name: Cross-check UFC anti-doping test history
         id: antidoping_check
-        if: steps.competition_check.outcome == 'success'
+        if: steps.finalize_check.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
@@ -179,6 +202,7 @@ jobs:
           CHECK_RESULT: ${{ steps.roster_check.outcome }}
           EVENT_CARD_RESULT: ${{ steps.event_card_check.outcome }}
           CROSSCHECK_RESULT: ${{ steps.competition_check.outcome }}
+          FINALIZE_RESULT: ${{ steps.finalize_check.outcome }}
           ANTIDOPING_RESULT: ${{ steps.antidoping_check.outcome }}
           PUBLISH_RESULT: ${{ steps.publish.outcome }}
         shell: bash
@@ -194,6 +218,7 @@ jobs:
           check_result = os.environ.get('CHECK_RESULT', '')
           event_card_result = os.environ.get('EVENT_CARD_RESULT', '')
           crosscheck_result = os.environ.get('CROSSCHECK_RESULT', '')
+          finalize_result = os.environ.get('FINALIZE_RESULT', '')
           antidoping_result = os.environ.get('ANTIDOPING_RESULT', '')
           publish_result = os.environ.get('PUBLISH_RESULT', '')
           payload = {
@@ -201,6 +226,7 @@ jobs:
               'outcome': check_result,
               'eventCardOutcome': event_card_result,
               'crossCheckOutcome': crosscheck_result,
+              'finalizeOutcome': finalize_result,
               'antiDopingOutcome': antidoping_result,
               'publishOutcome': publish_result,
               'validated': (
@@ -208,6 +234,7 @@ jobs:
                   and check_result == 'success'
                   and event_card_result == 'success'
                   and crosscheck_result == 'success'
+                  and finalize_result == 'success'
                   and antidoping_result == 'success'
                   and publish_result == 'success'
               ),
