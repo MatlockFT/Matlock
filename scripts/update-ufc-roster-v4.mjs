@@ -6,12 +6,20 @@ const AJAX_URL = `${UFC_ORIGIN}/views/ajax?_wrapper_format=drupal_ajax`;
 const ACTIVE_FILTER = "status:23";
 const COLLECTOR_ID = "ufc-status23-drupal-post-v1";
 const USER_AGENT =
-    "Mozilla/5.0 (compatible; MMAMatlockRosterMonitor/5.0; +https://matlockfighttalk.com/)";
+    "Mozilla/5.0 (compatible; MMAMatlockRosterMonitor/7.0; +https://matlockfighttalk.com/)";
+
 const PAGE_CONCURRENCY = 6;
 const MAX_PAGES = 160;
 const MIN_ACTIVE_PROFILES = 500;
-const PENDING_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;
 const PENDING_CHECK_LIMIT = 40;
+const EVENT_HISTORY_LIMIT = 1000;
+const REQUEST_ATTEMPTS = 3;
+const REQUEST_TIMEOUT_MS = 30000;
+const MAX_REPORTED_GAP = 20;
+const MAX_COUNT_CHANGE_FRACTION = 0.03;
+const MIN_MAX_COUNT_CHANGE = 25;
+const MAX_EVENT_CHANGE_FRACTION = 0.04;
+const MIN_MAX_EVENT_CHANGE = 30;
 
 function argument(name, fallback = "") {
     const index = process.argv.indexOf(name);
@@ -21,6 +29,11 @@ function argument(name, fallback = "") {
 const statePath = argument("--state");
 const outputStatePath = argument("--output-state", "/tmp/ufc-roster-state.json");
 const outputPublicPath = argument("--output-public", "/tmp/ufc-roster-latest.json");
+const backfillPath = argument("--backfill", "assets/ufc-roster-backfill.json");
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 function normalizeUrl(value) {
     try {
@@ -88,22 +101,37 @@ function extractReportedAthleteCount(text) {
 }
 
 async function request(url, options = {}) {
-    const response = await fetch(url, {
-        redirect: "follow",
-        ...options,
-        headers: {
-            "user-agent": USER_AGENT,
-            accept: "text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8",
-            ...(options.headers || {})
-        }
-    });
+    let lastError;
 
-    if (!response.ok) {
-        const preview = (await response.text()).slice(0, 300).replace(/\s+/g, " ");
-        throw new Error(`${response.status} ${response.statusText} for ${url}: ${preview}`);
+    for (let attempt = 1; attempt <= REQUEST_ATTEMPTS; attempt += 1) {
+        try {
+            const response = await fetch(url, {
+                redirect: "follow",
+                ...options,
+                signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+                headers: {
+                    "user-agent": USER_AGENT,
+                    accept: "text/html,application/xhtml+xml,application/json;q=0.9,*/*;q=0.8",
+                    ...(options.headers || {})
+                }
+            });
+
+            if (response.ok) return response;
+
+            const preview = (await response.text()).slice(0, 300).replace(/\s+/g, " ");
+            lastError = new Error(
+                `${response.status} ${response.statusText} for ${url}: ${preview}`
+            );
+        } catch (error) {
+            lastError = error;
+        }
+
+        if (attempt < REQUEST_ATTEMPTS) {
+            await sleep(750 * attempt);
+        }
     }
 
-    return response;
+    throw lastError || new Error(`Request failed for ${url}`);
 }
 
 async function fetchActivePage(page) {
@@ -177,10 +205,13 @@ async function collectActiveProfiles() {
         );
     }
 
-    if (reportedCount && collected.size < reportedCount * 0.9) {
-        throw new Error(
-            `UFC Active view reports ${reportedCount} athletes but only ${collected.size} profile URLs were collected.`
-        );
+    if (reportedCount) {
+        const gap = reportedCount - collected.size;
+        if (gap > MAX_REPORTED_GAP) {
+            throw new Error(
+                `UFC Active view reports ${reportedCount} athletes but only ${collected.size} profile URLs were collected (gap ${gap}); refusing to publish.`
+            );
+        }
     }
 
     console.log(
@@ -195,12 +226,19 @@ async function collectActiveProfiles() {
 }
 
 function textFromMeta(html, property) {
-    const escaped = property.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const pattern = new RegExp(
-        `<meta[^>]+(?:property|name)=["']${escaped}["'][^>]+content=["']([^"']+)["'][^>]*>`,
-        "i"
-    );
-    return decodeHtml(html.match(pattern)?.[1] || "").trim();
+    for (const tag of html.matchAll(/<meta\b[^>]*>/gi)) {
+        const attributes = {};
+        for (const attribute of tag[0].matchAll(/([:\w-]+)\s*=\s*(["'])(.*?)\2/gi)) {
+            attributes[attribute[1].toLowerCase()] = decodeHtml(attribute[3]);
+        }
+        if (
+            (attributes.property || attributes.name || "").toLowerCase() ===
+            property.toLowerCase()
+        ) {
+            return (attributes.content || "").trim();
+        }
+    }
+    return "";
 }
 
 function normalizeStatus(value = "") {
@@ -267,10 +305,28 @@ async function fighterDetails(url) {
 
 async function readState() {
     if (!statePath) return null;
+
     try {
-        return JSON.parse(await fs.readFile(statePath, "utf8"));
-    } catch {
-        return null;
+        const raw = await fs.readFile(statePath, "utf8");
+        return JSON.parse(raw);
+    } catch (error) {
+        if (error?.code === "ENOENT") return null;
+        throw new Error(`Previous roster state is unreadable or invalid JSON: ${error.message}`);
+    }
+}
+
+async function readBackfillUrls() {
+    if (!backfillPath) return [];
+
+    try {
+        const raw = await fs.readFile(backfillPath, "utf8");
+        const parsed = JSON.parse(raw);
+        return (Array.isArray(parsed?.fighters) ? parsed.fighters : [])
+            .map(item => normalizeUrl(item?.url))
+            .filter(Boolean);
+    } catch (error) {
+        console.warn(`Could not read backfill file ${backfillPath}: ${error.message}`);
+        return [];
     }
 }
 
@@ -285,7 +341,7 @@ function uniqueByUrl(items, limit = 250) {
         .slice(0, limit);
 }
 
-function uniqueByEvent(items, limit = 250) {
+function uniqueByEvent(items, limit = EVENT_HISTORY_LIMIT) {
     const seen = new Set();
     return items
         .filter(item => {
@@ -303,7 +359,6 @@ function uniqueByEvent(items, limit = 250) {
 const previous = await readState();
 const activeSnapshot = await collectActiveProfiles();
 const now = new Date().toISOString();
-const nowMs = Date.now();
 const activeProfiles = [...activeSnapshot.urls].sort();
 const currentActiveSet = new Set(activeProfiles);
 
@@ -321,6 +376,11 @@ let pending =
     collectorMatches && Array.isArray(previous?.pendingActiveAdditions)
         ? previous.pendingActiveAdditions
         : [];
+const seenProfileUrls = new Set(
+    collectorMatches && Array.isArray(previous?.seenProfileUrls)
+        ? previous.seenProfileUrls
+        : [...additions, ...removals].map(item => item?.url).filter(Boolean)
+);
 const newlyConfirmed = [];
 const newlyRemoved = [];
 
@@ -329,13 +389,24 @@ if (hasActiveBaseline) {
     const enteredActive = activeProfiles.filter(url => !previousActiveSet.has(url));
     const leftActive = previousActiveProfiles.filter(url => !currentActiveSet.has(url));
 
-    const maximumExpectedChange = Math.max(
-        100,
-        Math.ceil(previousActiveProfiles.length * 0.2)
+    const countDelta = activeProfiles.length - previousActiveProfiles.length;
+    const maximumExpectedCountChange = Math.max(
+        MIN_MAX_COUNT_CHANGE,
+        Math.ceil(previousActiveProfiles.length * MAX_COUNT_CHANGE_FRACTION)
+    );
+    if (Math.abs(countDelta) > maximumExpectedCountChange) {
+        throw new Error(
+            `UFC Active profile count changed too sharply in one check (${previousActiveProfiles.length} -> ${activeProfiles.length}); refusing to publish.`
+        );
+    }
+
+    const maximumExpectedEventChange = Math.max(
+        MIN_MAX_EVENT_CHANGE,
+        Math.ceil(previousActiveProfiles.length * MAX_EVENT_CHANGE_FRACTION)
     );
     if (
-        enteredActive.length > maximumExpectedChange ||
-        leftActive.length > maximumExpectedChange
+        enteredActive.length > maximumExpectedEventChange ||
+        leftActive.length > maximumExpectedEventChange
     ) {
         throw new Error(
             `UFC Active collection changed too sharply in one check (+${enteredActive.length}/-${leftActive.length}); refusing to publish until the feed stabilizes.`
@@ -372,6 +443,7 @@ if (hasActiveBaseline) {
         };
         removals.unshift(removal);
         newlyRemoved.push(removal);
+        seenProfileUrls.add(url);
     }
 
     console.log(
@@ -385,12 +457,10 @@ if (hasActiveBaseline) {
     );
 }
 
-pending = uniqueByUrl(pending)
-    .filter(item => currentActiveSet.has(item.url))
-    .filter(item => {
-        const firstDetected = Date.parse(item.firstDetectedAt || now);
-        return Number.isNaN(firstDetected) || nowMs - firstDetected <= PENDING_MAX_AGE_MS;
-    });
+// Keep an unconfirmed entrant for as long as UFC keeps it in the Active set.
+// Expiring it by age would permanently lose the event because it would already
+// be present in the next baseline and would never look newly-added again.
+pending = uniqueByUrl(pending).filter(item => currentActiveSet.has(item.url));
 
 const toCheck = [...pending]
     .sort((a, b) => Date.parse(a.lastCheckedAt || 0) - Date.parse(b.lastCheckedAt || 0))
@@ -408,14 +478,13 @@ for (const candidate of toCheck) {
                 ...details,
                 eventId: `${candidate.url}|added|${detectedAt}`,
                 eventType: "added",
-                returning:
-                    additions.some(item => item.url === candidate.url) ||
-                    removals.some(item => item.url === candidate.url),
+                returning: seenProfileUrls.has(candidate.url),
                 detectedAt,
                 confirmedActiveAt: now
             };
             additions.unshift(addition);
             newlyConfirmed.push(addition);
+            seenProfileUrls.add(candidate.url);
             continue;
         }
 
@@ -443,8 +512,11 @@ removals = uniqueByEvent(removals);
 pending = uniqueByUrl(remainingPending);
 
 const trackingStartedAt = collectorMatches ? previous?.trackingStartedAt || now : now;
+const backfillUrls = await readBackfillUrls();
+const activeBackfillUrls = backfillUrls.filter(url => currentActiveSet.has(url));
+
 const state = {
-    version: 6,
+    version: 7,
     collectorId: COLLECTOR_ID,
     checkedAt: now,
     trackingStartedAt,
@@ -454,13 +526,14 @@ const state = {
     activeProfiles,
     activeRosterSource: `${UFC_ORIGIN}/views/ajax`,
     activeRosterMode: "status23-query-post",
+    seenProfileUrls: [...seenProfileUrls].sort(),
     additions,
     removals,
     pendingActiveAdditions: pending
 };
 
 const publicData = {
-    version: 6,
+    version: 7,
     collectorId: COLLECTOR_ID,
     generatedAt: now,
     trackingStartedAt,
@@ -468,6 +541,7 @@ const publicData = {
     activeViewReportedCount: activeSnapshot.reportedCount,
     activeRosterSource: `${UFC_ORIGIN}/views/ajax`,
     activeRosterMode: "status23-query-post",
+    activeBackfillUrls,
     methodology:
         "Snapshots UFC.com's hidden Active athlete collection (status:23) and compares it with the previous verified snapshot. New entrants, including returning fighters whose existing UFC profile re-enters the Active set, are published only after their UFC profile also reports Status: Active. Detection time is the first tracker run that observed the change, not a contract-signing timestamp.",
     additions: additions.slice(0, 10),
