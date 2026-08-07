@@ -56,10 +56,6 @@
         body.prepend(heading);
         body.append(detected);
 
-        if (fighter.initialBackfill) {
-            body.append(element("span", "ufc-roster-status-pill", "Initial backfill"));
-        }
-
         if (fighter.status) {
             body.append(element("span", "ufc-roster-status-pill", `UFC status: ${fighter.status}`));
         }
@@ -113,11 +109,7 @@
             additions.forEach((fighter, index) => list.append(fighterCard(fighter, index)));
         }
 
-        const count = Number(data.activeCount);
-        const countText = Number.isFinite(count) && count > 0
-            ? ` · ${count.toLocaleString()} active fighters`
-            : "";
-        status.textContent = `Last checked ${formatDate(data.generatedAt)}${countText}`;
+        status.textContent = `Last checked ${formatDate(data.generatedAt)}`;
     }
 
     async function loadBackfill() {
