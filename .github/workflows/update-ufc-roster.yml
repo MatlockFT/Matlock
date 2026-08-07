@@ -12,6 +12,7 @@ on:
       - ".github/workflows/update-ufc-roster.yml"
       - "scripts/update-ufc-roster-v4.mjs"
       - "scripts/filter-ufc-roster-additions.mjs"
+      - "scripts/check-ufc-event-cards.mjs"
       - "scripts/check-ufc-antidoping.mjs"
       - "ufc-roster.html"
       - "assets/ufc-roster.js"
@@ -108,9 +109,21 @@ jobs:
             mv /tmp/ufc-roster-state-merged.json /tmp/ufc-roster-state.json
           fi
 
+      - name: Cross-check official UFC event cards
+        id: event_card_check
+        if: steps.roster_check.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/check-ufc-event-cards.mjs \
+            --state /tmp/ufc-roster-state.json \
+            --public /tmp/ufc-roster-latest.json \
+            --previous /tmp/ufc-roster/ufc-roster-state.json \
+            2>&1 | tee -a /tmp/ufc-roster-run.log
+
       - name: Cross-check prior UFC competition
         id: competition_check
-        if: steps.roster_check.outcome == 'success'
+        if: steps.event_card_check.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
@@ -164,6 +177,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           CHECK_RESULT: ${{ steps.roster_check.outcome }}
+          EVENT_CARD_RESULT: ${{ steps.event_card_check.outcome }}
           CROSSCHECK_RESULT: ${{ steps.competition_check.outcome }}
           ANTIDOPING_RESULT: ${{ steps.antidoping_check.outcome }}
           PUBLISH_RESULT: ${{ steps.publish.outcome }}
@@ -178,18 +192,21 @@ jobs:
           log = Path('/tmp/ufc-roster-run.log').read_text(errors='replace') if Path('/tmp/ufc-roster-run.log').exists() else ''
           match = re.search(r'Validated active UFC roster: (\d+) fighters via (.+?) \((.+?)\)\.', log)
           check_result = os.environ.get('CHECK_RESULT', '')
+          event_card_result = os.environ.get('EVENT_CARD_RESULT', '')
           crosscheck_result = os.environ.get('CROSSCHECK_RESULT', '')
           antidoping_result = os.environ.get('ANTIDOPING_RESULT', '')
           publish_result = os.environ.get('PUBLISH_RESULT', '')
           payload = {
               'checkedAt': datetime.now(timezone.utc).isoformat(),
               'outcome': check_result,
+              'eventCardOutcome': event_card_result,
               'crossCheckOutcome': crosscheck_result,
               'antiDopingOutcome': antidoping_result,
               'publishOutcome': publish_result,
               'validated': (
                   bool(match)
                   and check_result == 'success'
+                  and event_card_result == 'success'
                   and crosscheck_result == 'success'
                   and antidoping_result == 'success'
                   and publish_result == 'success'
