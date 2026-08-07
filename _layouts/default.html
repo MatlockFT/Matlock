@@ -59,12 +59,11 @@
         href="{{ '/assets/favicon.ico' | relative_url }}"
     >
 
-    <!-- preload the preferred WebP header logo -->
     <link
         rel="preload"
-        href="{{ '/assets/logo-header-final-1280.webp' | relative_url }}"
+        href="{{ '/assets/header-image.png' | relative_url }}"
         as="image"
-        type="image/webp"
+        type="image/png"
         fetchpriority="high"
     >
 
@@ -152,23 +151,14 @@
     <header class="site-header">
         <div class="logo-banner">
             <a href="{{ '/' | relative_url }}" aria-label="MMA Matlock home">
-                <picture>
-                    <source
-                        type="image/webp"
-                        srcset="{{ '/assets/logo-header-final-640.webp' | relative_url }} 640w, {{ '/assets/logo-header-final-1280.webp' | relative_url }} 1280w"
-                        sizes="(max-width: 760px) 88vw, 760px"
-                    >
-                    <img
-                        src="{{ '/assets/logo-header-final-1280.png' | relative_url }}"
-                        srcset="{{ '/assets/logo-header-final-640.png' | relative_url }} 640w, {{ '/assets/logo-header-final-1280.png' | relative_url }} 1280w"
-                        sizes="(max-width: 760px) 88vw, 760px"
-                        alt="MMA Matlock"
-                        class="site-logo"
-                        loading="eager"
-                        fetchpriority="high"
-                        decoding="async"
-                    >
-                </picture>
+                <img
+                    src="{{ '/assets/header-image.png' | relative_url }}"
+                    alt="MMA Matlock"
+                    class="site-logo"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                >
             </a>
         </div>
 
