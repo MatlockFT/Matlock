@@ -1,13 +1,13 @@
 {
-  "checkedAt": "2026-08-07T00:19:08.786964+00:00",
-  "outcome": "success",
-  "validated": true,
+  "checkedAt": "2026-08-07T00:35:45.629513+00:00",
+  "outcome": "cancelled",
+  "validated": false,
   "activeCount": 950,
   "source": "https://www.ufc.com/views/ajax",
   "mode": "status23-query-post",
   "tail": [
     "Collected 950 profile URLs from UFC's Active collection (view reports 952 athletes).",
-    "Collector changed to the verified UFC Active feed. Establishing a fresh baseline without backfilling changes.",
+    "Active roster diff: +0 entered, -0 left.",
     "Validated active UFC roster: 950 fighters via https://www.ufc.com/views/ajax (status23-query-post).",
     "UFC Active view reports 952 athlete records.",
     "Detected 0 addition(s) and 0 removal(s) this run.",
