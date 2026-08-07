@@ -49,15 +49,21 @@
 
     <link
         rel="icon"
+        type="image/svg+xml"
+        href="{{ '/assets/favicon-matlock-v2.svg' | relative_url }}"
+    >
+
+    <link
+        rel="alternate icon"
         type="image/x-icon"
-        href="{{ '/assets/favicon-matlock.ico' | relative_url }}"
+        href="{{ '/assets/favicon.ico' | relative_url }}"
     >
 
     <link
         rel="preload"
-        href="{{ '/assets/logo-header.webp' | relative_url }}"
+        href="{{ '/assets/logo-header-v2.svg' | relative_url }}"
         as="image"
-        type="image/webp"
+        type="image/svg+xml"
         fetchpriority="high"
     >
 
@@ -68,8 +74,8 @@
         }
 
         .site-logo {
-            width: auto;
-            height: clamp(110px, 14vw, 150px);
+            width: min(88vw, 420px);
+            height: auto;
             max-width: 100%;
             max-height: none;
             object-fit: contain;
@@ -149,7 +155,7 @@
                 aria-label="MMA Matlock home"
             >
                 <img
-                    src="{{ '/assets/logo-header.webp' | relative_url }}"
+                    src="{{ '/assets/logo-header-v2.svg' | relative_url }}"
                     alt="MMA Matlock"
                     class="site-logo"
                     loading="eager"
