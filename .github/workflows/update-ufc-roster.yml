@@ -14,6 +14,7 @@ on:
       - "ufc-roster.html"
       - "assets/ufc-roster.js"
       - "assets/ufc-roster.css"
+      - "assets/ufc-roster-backfill.json"
   schedule:
     - cron: "4-59/15 * * * *"
 
@@ -26,7 +27,9 @@ concurrency:
 
 jobs:
   update:
-    if: github.event_name != 'issues' || github.event.issue.title == 'Run UFC roster validation'
+    if: >-
+      github.event_name != 'issues' ||
+      (github.event.issue.title == 'Run UFC roster validation' && github.actor == github.repository_owner)
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -40,13 +43,32 @@ jobs:
           node-version: 22
 
       - name: Download previous roster snapshot
+        id: previous_state
         env:
           GH_TOKEN: ${{ github.token }}
+        shell: bash
         run: |
+          set -euo pipefail
           mkdir -p /tmp/ufc-roster
-          gh release download ufc-roster-data \
-            --pattern "ufc-roster-state.json" \
-            --dir /tmp/ufc-roster || true
+
+          if gh release view ufc-roster-data > /dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            gh release download ufc-roster-data \
+              --pattern "ufc-roster-state.json" \
+              --dir /tmp/ufc-roster \
+              --clobber
+
+            test -s /tmp/ufc-roster/ufc-roster-state.json
+            jq -e '
+              type == "object" and
+              (.collectorId | type == "string") and
+              (.activeProfiles | type == "array") and
+              (.activeProfiles | length >= 500)
+            ' /tmp/ufc-roster/ufc-roster-state.json > /dev/null
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "No prior roster-data release exists; this run will establish the first baseline."
+          fi
 
       - name: Check UFC active roster
         id: roster_check
@@ -55,6 +77,7 @@ jobs:
           set +e
           node scripts/update-ufc-roster-v4.mjs \
             --state /tmp/ufc-roster/ufc-roster-state.json \
+            --backfill assets/ufc-roster-backfill.json \
             --output-state /tmp/ufc-roster-state.json \
             --output-public /tmp/ufc-roster-latest.json \
             2>&1 | tee /tmp/ufc-roster-run.log
@@ -62,13 +85,44 @@ jobs:
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           exit "$code"
 
+      - name: Publish roster data
+        id: publish
+        if: steps.roster_check.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if gh release view ufc-roster-data > /dev/null 2>&1; then
+            gh release edit ufc-roster-data \
+              --title "UFC Roster Tracker Data" \
+              --notes-file /tmp/ufc-roster-latest.json
+          else
+            gh release create ufc-roster-data \
+              --title "UFC Roster Tracker Data" \
+              --notes-file /tmp/ufc-roster-latest.json \
+              --prerelease
+          fi
+
+          gh release upload ufc-roster-data \
+            /tmp/ufc-roster-state.json \
+            /tmp/ufc-roster-latest.json \
+            --clobber
+
       - name: Record live validation
-        if: always() && github.event_name != 'schedule'
+        if: >-
+          always() &&
+          !cancelled() &&
+          github.event_name != 'schedule' &&
+          steps.roster_check.outcome != 'skipped'
         env:
           GH_TOKEN: ${{ github.token }}
           CHECK_RESULT: ${{ steps.roster_check.outcome }}
+          PUBLISH_RESULT: ${{ steps.publish.outcome }}
         shell: bash
         run: |
+          set -euo pipefail
           python - <<'PY'
           import json, os, re
           from datetime import datetime, timezone
@@ -76,10 +130,13 @@ jobs:
 
           log = Path('/tmp/ufc-roster-run.log').read_text(errors='replace') if Path('/tmp/ufc-roster-run.log').exists() else ''
           match = re.search(r'Validated active UFC roster: (\d+) fighters via (.+?) \((.+?)\)\.', log)
+          check_result = os.environ.get('CHECK_RESULT', '')
+          publish_result = os.environ.get('PUBLISH_RESULT', '')
           payload = {
               'checkedAt': datetime.now(timezone.utc).isoformat(),
-              'outcome': os.environ.get('CHECK_RESULT', ''),
-              'validated': bool(match) and os.environ.get('CHECK_RESULT') == 'success',
+              'outcome': check_result,
+              'publishOutcome': publish_result,
+              'validated': bool(match) and check_result == 'success' and publish_result == 'success',
               'activeCount': int(match.group(1)) if match else None,
               'source': match.group(2) if match else None,
               'mode': match.group(3) if match else None,
@@ -107,23 +164,3 @@ jobs:
               -f content="$content" \
               -f branch="main"
           fi
-
-      - name: Publish roster data
-        if: steps.roster_check.outcome == 'success'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          if gh release view ufc-roster-data > /dev/null 2>&1; then
-            gh release edit ufc-roster-data \
-              --title "UFC Roster Tracker Data" \
-              --notes-file /tmp/ufc-roster-latest.json
-          else
-            gh release create ufc-roster-data \
-              --title "UFC Roster Tracker Data" \
-              --notes-file /tmp/ufc-roster-latest.json \
-              --prerelease
-          fi
-
-          gh release upload ufc-roster-data \
-            /tmp/ufc-roster-state.json \
-            --clobber
