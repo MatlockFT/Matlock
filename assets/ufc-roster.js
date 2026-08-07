@@ -85,11 +85,17 @@
     function combinedAdditions(data, backfill) {
         const live = Array.isArray(data.additions) ? data.additions : [];
         const seen = new Set(live.map(item => item?.url).filter(Boolean));
+        const activeBackfillUrls = Array.isArray(data.activeBackfillUrls)
+            ? new Set(data.activeBackfillUrls)
+            : null;
+
         const filler = (Array.isArray(backfill) ? backfill : []).filter(item => {
             if (!item?.url || seen.has(item.url)) return false;
+            if (activeBackfillUrls && !activeBackfillUrls.has(item.url)) return false;
             seen.add(item.url);
             return true;
         });
+
         return [...live, ...filler].slice(0, 10);
     }
 
