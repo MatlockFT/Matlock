@@ -6,6 +6,7 @@
     const status = page.querySelector("[data-roster-status]");
     const refreshButton = page.querySelector("[data-roster-refresh]");
     const feedUrl = page.dataset.feedUrl;
+    const backfillUrl = page.dataset.backfillUrl;
     const refreshInterval = Number(page.dataset.refreshInterval) || 300000;
 
     function element(tag, className, text) {
@@ -43,13 +44,21 @@
             .join(" · ");
         if (details) body.append(element("p", "ufc-roster-details", details));
 
+        const dateLabel = fighter.initialBackfill ? "UFC profile published" : "First detected";
+        const dateValue = fighter.initialBackfill
+            ? fighter.profilePublishedAt
+            : fighter.detectedAt;
         const detected = element(
             "p",
             "ufc-roster-detected",
-            `First detected: ${formatDate(fighter.detectedAt)}`
+            `${dateLabel}: ${formatDate(dateValue)}`
         );
         body.prepend(heading);
         body.append(detected);
+
+        if (fighter.initialBackfill) {
+            body.append(element("span", "ufc-roster-status-pill", "Initial backfill"));
+        }
 
         if (fighter.status) {
             body.append(element("span", "ufc-roster-status-pill", `UFC status: ${fighter.status}`));
@@ -77,8 +86,19 @@
         return article;
     }
 
-    function render(data) {
-        const additions = Array.isArray(data.additions) ? data.additions.slice(0, 10) : [];
+    function combinedAdditions(data, backfill) {
+        const live = Array.isArray(data.additions) ? data.additions : [];
+        const seen = new Set(live.map(item => item?.url).filter(Boolean));
+        const filler = (Array.isArray(backfill) ? backfill : []).filter(item => {
+            if (!item?.url || seen.has(item.url)) return false;
+            seen.add(item.url);
+            return true;
+        });
+        return [...live, ...filler].slice(0, 10);
+    }
+
+    function render(data, backfill = []) {
+        const additions = combinedAdditions(data, backfill);
         list.replaceChildren();
         list.setAttribute("aria-busy", "false");
 
@@ -100,6 +120,21 @@
         status.textContent = `Last checked ${formatDate(data.generatedAt)}${countText}`;
     }
 
+    async function loadBackfill() {
+        if (!backfillUrl) return [];
+        try {
+            const response = await fetch(backfillUrl, {
+                cache: "no-store",
+                headers: { accept: "application/json" }
+            });
+            if (!response.ok) return [];
+            const data = await response.json();
+            return Array.isArray(data.fighters) ? data.fighters : [];
+        } catch {
+            return [];
+        }
+    }
+
     async function refresh() {
         status.textContent = "Checking UFC roster data…";
         if (refreshButton) refreshButton.disabled = true;
@@ -117,7 +152,9 @@
             if (!data.generatedAt || !Array.isArray(data.additions)) {
                 throw new Error("Roster data is incomplete");
             }
-            render(data);
+
+            const backfill = data.additions.length < 10 ? await loadBackfill() : [];
+            render(data, backfill);
         } catch {
             list.setAttribute("aria-busy", "false");
             list.replaceChildren(
