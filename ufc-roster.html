@@ -13,6 +13,7 @@ page_scripts:
     class="ufc-roster-page"
     data-ufc-roster
     data-feed-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/ufc-roster-data"
+    data-backfill-url="{{ '/assets/ufc-roster-backfill.json' | relative_url }}"
     data-refresh-interval="300000"
 >
     <header class="ufc-roster-header">
@@ -40,7 +41,10 @@ page_scripts:
         <p>
             This is an independent tracker using publicly accessible UFC.com athlete data.
             It tracks changes to the UFC active-athlete set; “First detected” is a
-            website-database timestamp, not an official UFC contract timestamp.
+            website-database timestamp, not an official UFC contract timestamp. Until ten
+            live tracker additions accumulate, empty slots are filled with an initial
+            backfill ranked by UFC profile publication date. A profile publication date is
+            not necessarily the date a fighter joined or became active on the UFC roster.
         </p>
     </footer>
 </article>
