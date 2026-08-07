@@ -1,17 +1,17 @@
 .upcoming-events-page {
-    width: min(100%, 960px);
+    width: min(100%, 760px);
     margin: 0 auto;
 }
 
 .upcoming-events-header {
-    margin: 0 0 1.25rem;
+    margin: 0 0 0.85rem;
 }
 
 .upcoming-events-kicker {
-    margin: 0 0 0.3rem;
+    margin: 0 0 0.2rem;
     color: #bdbdbd;
     font-family: "Courier New", monospace;
-    font-size: 0.68rem;
+    font-size: 0.6rem;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -21,39 +21,39 @@
     margin: 0;
     color: #ffffff;
     font-family: "Gobold", Impact, sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: clamp(2rem, 4.4vw, 3.45rem);
     line-height: 0.92;
     letter-spacing: 0.01em;
     text-transform: uppercase;
 }
 
 .upcoming-events-header > p:last-child {
-    max-width: 620px;
-    margin: 0.55rem 0 0;
+    max-width: 540px;
+    margin: 0.38rem 0 0;
     color: #bcbcbc;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .upcoming-events-list {
     display: grid;
-    gap: 1.75rem;
+    gap: 1.1rem;
 }
 
 .upcoming-event-card {
     overflow: hidden;
-    border: 1px solid #f2f2f2;
+    border: 1px solid #ededed;
     border-radius: 2px;
     background: #080808;
     color: #ffffff;
-    box-shadow: 0 16px 42px rgba(0, 0, 0, 0.24);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
 }
 
 .event-card-header {
     display: grid;
-    grid-template-columns: minmax(0, 1.55fr) minmax(215px, 0.45fr);
-    gap: 1.2rem;
+    grid-template-columns: minmax(0, 1.65fr) minmax(175px, 0.35fr);
+    gap: 0.8rem;
     align-items: end;
-    padding: clamp(0.9rem, 2.2vw, 1.35rem);
+    padding: clamp(0.58rem, 1.4vw, 0.82rem);
     border-bottom: 1px solid #ffffff;
     background: #000000;
 }
@@ -67,19 +67,19 @@
 }
 
 .event-promotion {
-    margin: 0 0 0.25rem;
+    margin: 0 0 0.16rem;
     color: #c8c8c8;
-    font-size: 0.66rem;
+    font-size: 0.55rem;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
 }
 
 .event-card-heading h2 {
-    max-width: 700px;
+    max-width: 560px;
     margin: 0;
     font-family: "Gobold", Impact, sans-serif;
-    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-size: clamp(1.82rem, 4.2vw, 3rem);
     line-height: 0.9;
     letter-spacing: 0.008em;
     text-transform: uppercase;
@@ -87,24 +87,24 @@
 }
 
 .event-date {
-    margin: 0.6rem 0 0;
+    margin: 0.36rem 0 0;
     color: #ffffff;
-    font-size: 0.72rem;
+    font-size: 0.6rem;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
 }
 
 .event-card-meta {
-    padding-left: 0.9rem;
-    border-left: 1px solid #4c4c4c;
+    padding-left: 0.62rem;
+    border-left: 1px solid #3f3f3f;
 }
 
 .event-card-meta p {
-    margin: 0 0 0.18rem;
+    margin: 0 0 0.1rem;
     color: #cecece;
-    font-size: 0.64rem;
-    line-height: 1.3;
+    font-size: 0.51rem;
+    line-height: 1.2;
 }
 
 .event-card-meta strong {
@@ -113,11 +113,11 @@
 
 .event-card-meta a {
     display: inline-block;
-    margin-top: 0.35rem;
+    margin-top: 0.22rem;
     color: #ffffff;
-    font-size: 0.62rem;
+    font-size: 0.5rem;
     font-weight: 700;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
     text-decoration: underline;
     text-transform: uppercase;
 }
@@ -128,7 +128,7 @@
 }
 
 .event-card-section {
-    padding: clamp(0.7rem, 1.8vw, 1rem);
+    padding: clamp(0.44rem, 1.1vw, 0.62rem);
 }
 
 .event-card-section + .event-card-section {
@@ -139,16 +139,16 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    gap: 1rem;
-    margin: 0 0 0.55rem;
-    padding-bottom: 0.35rem;
-    border-bottom: 1px solid #454545;
+    gap: 0.6rem;
+    margin: 0 0 0.3rem;
+    padding-bottom: 0.22rem;
+    border-bottom: 1px solid #3d3d3d;
 }
 
 .event-card-section-heading h3 {
     margin: 0;
     font-family: "Gobold", Impact, sans-serif;
-    font-size: clamp(1.35rem, 2.5vw, 1.95rem);
+    font-size: clamp(1.05rem, 2vw, 1.45rem);
     line-height: 1;
     text-transform: uppercase;
 }
@@ -156,22 +156,21 @@
 .event-card-section-heading span {
     color: #d3d3d3;
     font-family: "Courier New", monospace;
-    font-size: 0.6rem;
+    font-size: 0.49rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
 }
 
 .featured-bouts,
-.main-card-bouts,
-.prelim-bouts {
+.main-card-bouts {
     display: grid;
-    gap: 0.5rem;
+    gap: 0.3rem;
 }
 
 .featured-bouts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
 }
 
 .main-card-bouts {
@@ -179,32 +178,39 @@
 }
 
 .prelim-bouts {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.prelim-bouts .bout-card {
+    flex: 0 0 calc((100% - 1.2rem) / 5);
 }
 
 .bout-card {
     min-width: 0;
     overflow: hidden;
-    border: 1px solid #444444;
+    border: 1px solid #3f3f3f;
     background: #0d0d0d;
 }
 
 .bout-card-featured {
-    border-color: #e8e8e8;
+    border-color: #e4e4e4;
 }
 
 .bout-label {
     display: flex;
-    min-height: 23px;
+    min-height: 18px;
     align-items: center;
-    gap: 0.38rem;
-    padding: 0.22rem 0.4rem;
-    border-bottom: 1px solid #444444;
+    gap: 0.26rem;
+    padding: 0.16rem 0.3rem;
+    border-bottom: 1px solid #3f3f3f;
     color: #d8d8d8;
     font-family: "Courier New", monospace;
-    font-size: 0.5rem;
+    font-size: 0.44rem;
     font-weight: 700;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
 }
 
@@ -219,27 +225,28 @@
 
 .fighter {
     min-width: 0;
+    position: relative;
 }
 
 .fighter + .fighter {
-    border-left: 1px solid #444444;
+    border-left: 1px solid #3f3f3f;
 }
 
 .fighter-photo {
     position: relative;
     display: grid;
-    aspect-ratio: 1 / 1.02;
+    aspect-ratio: 1 / 0.82;
     place-items: center;
     overflow: hidden;
     isolation: isolate;
     background:
-        linear-gradient(rgba(8, 8, 8, 0.08), rgba(8, 8, 8, 0.08)),
+        linear-gradient(rgba(8, 8, 8, 0.05), rgba(8, 8, 8, 0.05)),
         url('/assets/fighter-grunge.svg') center / cover,
         #111111;
 }
 
 .bout-card-featured .fighter-photo {
-    aspect-ratio: 1 / 1.05;
+    aspect-ratio: 1 / 0.88;
 }
 
 .fighter-photo::before {
@@ -247,8 +254,8 @@
     inset: 0;
     z-index: 0;
     background:
-        radial-gradient(circle at 50% 34%, rgba(255, 255, 255, 0.14), transparent 42%),
-        linear-gradient(145deg, rgba(255, 255, 255, 0.04), transparent 45%);
+        radial-gradient(circle at 50% 32%, rgba(255, 255, 255, 0.12), transparent 42%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent 45%);
     content: "";
     pointer-events: none;
 }
@@ -257,8 +264,8 @@
     position: absolute;
     inset: auto 0 0;
     z-index: 2;
-    height: 22%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.52), transparent);
+    height: 18%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.46), transparent);
     content: "";
     pointer-events: none;
 }
@@ -267,17 +274,18 @@
     position: relative;
     z-index: 1;
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 118%;
+    height: 118%;
+    max-width: none;
     object-fit: contain;
     object-position: 50% 100%;
-    transform: scale(1.2);
-    transform-origin: 50% 100%;
+    transform: translateY(1.5%);
     filter: grayscale(1) contrast(1.1);
 }
 
 .bout-card-featured .fighter-photo img {
-    transform: scale(1.24);
+    width: 122%;
+    height: 122%;
 }
 
 .fighter-fallback {
@@ -286,156 +294,177 @@
     z-index: 1;
     display: grid;
     place-items: center;
-    color: #d0d0d0;
-    font-family: "Gobold", Impact, sans-serif;
-    font-size: clamp(1.35rem, 3vw, 2.6rem);
-    letter-spacing: 0.04em;
+    color: transparent;
+    font-size: 0;
 }
 
 .photo-missing .fighter-fallback {
     background:
-        linear-gradient(145deg, transparent 48%, #242424 49%, #242424 51%, transparent 52%),
-        url('/assets/fighter-grunge.svg') center / cover,
-        #111111;
+        url('/assets/fighter-silhouette.svg') center 78% / 70% auto no-repeat;
+    opacity: 0.82;
 }
 
 .fighter-name {
     display: flex;
-    min-height: 2.4rem;
+    min-height: 2rem;
     align-items: center;
     justify-content: center;
     margin: 0;
-    padding: 0.32rem 0.22rem;
-    border-top: 1px solid #444444;
+    padding: 0.22rem 0.16rem;
+    border-top: 1px solid #3f3f3f;
     color: #ffffff;
     font-family: "Gobold", Impact, sans-serif;
-    font-size: clamp(0.7rem, 1vw, 0.88rem);
-    line-height: 1.01;
+    font-size: clamp(0.6rem, 0.92vw, 0.78rem);
+    line-height: 1;
     text-align: center;
     text-transform: uppercase;
     overflow-wrap: anywhere;
 }
 
 .bout-card-featured .fighter-name {
-    min-height: 2.6rem;
-    font-size: clamp(0.82rem, 1.2vw, 1rem);
+    min-height: 2.15rem;
+    font-size: clamp(0.72rem, 1.06vw, 0.9rem);
 }
 
 .bout-footer {
     position: relative;
     display: flex;
-    min-height: 24px;
+    min-height: 20px;
     align-items: center;
     justify-content: center;
-    padding: 0.22rem 1.55rem;
+    padding: 0.15rem 1.25rem;
     border-top: 1px solid #ffffff;
     background: #ffffff;
     color: #000000;
     font-family: "Courier New", monospace;
-    font-size: 0.48rem;
+    font-size: 0.41rem;
     font-weight: 700;
-    letter-spacing: 0.04em;
-    line-height: 1.1;
+    letter-spacing: 0.035em;
+    line-height: 1.05;
     text-align: center;
     text-transform: uppercase;
 }
 
 .bout-footer strong {
     position: absolute;
-    right: 0.4rem;
+    right: 0.32rem;
     font-family: "Gobold", Impact, sans-serif;
-    font-size: 0.68rem;
+    font-size: 0.58rem;
     letter-spacing: 0;
 }
 
 .event-card-note {
-    padding: 0.5rem clamp(0.7rem, 1.8vw, 1rem);
-    border-top: 1px solid #444444;
+    padding: 0.38rem clamp(0.44rem, 1.1vw, 0.62rem);
+    border-top: 1px solid #3f3f3f;
     background: #050505;
 }
 
 .event-card-note p {
     margin: 0;
-    color: #919191;
-    font-size: 0.56rem;
-    letter-spacing: 0.03em;
+    color: #8f8f8f;
+    font-size: 0.49rem;
+    letter-spacing: 0.025em;
 }
 
-@media (max-width: 980px) {
+/* Ready for the pick interaction: selected fighters can use this class later. */
+.fighter.is-pick {
+    z-index: 3;
+    outline: 2px solid #35d05b;
+    outline-offset: -2px;
+}
+
+@media (max-width: 800px) {
     .upcoming-events-page {
-        width: min(100%, 900px);
+        width: min(100%, 720px);
     }
 
-    .prelim-bouts {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+    .prelim-bouts .bout-card {
+        flex-basis: calc((100% - 0.9rem) / 4);
     }
 }
 
-@media (max-width: 820px) {
+@media (max-width: 680px) {
     .event-card-header {
         grid-template-columns: 1fr;
-        gap: 0.8rem;
+        gap: 0.6rem;
     }
 
     .event-card-meta {
-        padding: 0.7rem 0 0;
-        border-top: 1px solid #444444;
+        padding: 0.55rem 0 0;
+        border-top: 1px solid #3f3f3f;
         border-left: 0;
     }
 
-    .main-card-bouts,
-    .prelim-bouts {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 620px) {
-    .upcoming-events-header h1 {
-        font-size: clamp(2.5rem, 13vw, 4.2rem);
-    }
-
-    .event-card-heading h2 {
-        font-size: clamp(2.2rem, 13vw, 4.4rem);
-    }
-
-    .featured-bouts,
-    .main-card-bouts,
-    .prelim-bouts {
+    .main-card-bouts {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .event-card-section-heading {
-        align-items: flex-end;
+    .main-card-bouts .bout-card:last-child {
+        grid-column: 1 / -1;
+        width: calc((100% - 0.3rem) / 2);
+        justify-self: center;
+    }
+
+    .prelim-bouts .bout-card {
+        flex-basis: calc((100% - 0.6rem) / 3);
     }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 520px) {
+    .featured-bouts,
+    .main-card-bouts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .prelim-bouts .bout-card {
+        flex-basis: calc((100% - 0.3rem) / 2);
+    }
+
+    .upcoming-events-header h1 {
+        font-size: clamp(2rem, 12vw, 3.5rem);
+    }
+
+    .event-card-heading h2 {
+        font-size: clamp(1.85rem, 11vw, 3.3rem);
+    }
+}
+
+@media (max-width: 390px) {
     .event-card-header,
     .event-card-section,
     .event-card-note {
-        padding-left: 0.6rem;
-        padding-right: 0.6rem;
+        padding-left: 0.42rem;
+        padding-right: 0.42rem;
     }
 
     .featured-bouts,
-    .main-card-bouts,
-    .prelim-bouts {
+    .main-card-bouts {
         grid-template-columns: 1fr;
+    }
+
+    .main-card-bouts .bout-card:last-child {
+        grid-column: auto;
+        width: auto;
+    }
+
+    .prelim-bouts .bout-card {
+        flex-basis: 100%;
     }
 
     .fighter-photo,
     .bout-card-featured .fighter-photo {
-        aspect-ratio: 1 / 0.88;
+        aspect-ratio: 1 / 0.72;
     }
 
     .fighter-photo img,
     .bout-card-featured .fighter-photo img {
-        transform: scale(1.18);
+        width: 108%;
+        height: 108%;
     }
 
     .fighter-name,
     .bout-card-featured .fighter-name {
-        min-height: 2.8rem;
-        font-size: clamp(0.96rem, 4.8vw, 1.2rem);
+        min-height: 2.5rem;
+        font-size: clamp(0.9rem, 4.7vw, 1.1rem);
     }
 }
