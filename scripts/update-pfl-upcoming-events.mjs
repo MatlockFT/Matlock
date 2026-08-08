@@ -114,7 +114,8 @@ if(!events.length){console.log('No usable future PFL cards; leaving PFL cards un
 
 const {start,end}=listBounds(original);const inner=original.slice(start,end);
 const cardRe=/<section\b[^>]*class=["'][^"']*\bupcoming-event-card\b[^"']*["'][^>]*>[\s\S]*?<\/section>/gi;
-const existing=[...inner.matchAll(cardRe)].map(m=>m[0]);
+const existing=[...inner.matchAll(cardRe)].map(m=>m[0]),oldCount=existing.filter(isPfl).length;
+if(events.length<Math.max(1,oldCount-2))throw new Error(`Parsed ${events.length} PFL events, below safety floor for ${oldCount} existing PFL cards.`);
 const cards=[...existing.filter(c=>!isPfl(c)),...events.map(card)].map(html=>({html,date:cardDate(html)})).sort((a,b)=>a.date.localeCompare(b.date));
 const disclaimer=(inner.match(/<div\b[^>]*class=["'][^"']*event-card-disclaimer[^"']*["'][^>]*>[\s\S]*$/i)||[])[0]||'';
 const updatedInner=`\n${cards.map(c=>c.html).join('\n')}${disclaimer?`\n${disclaimer}`:''}\n`;
