@@ -80,13 +80,18 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json _data/ufc_events.json; then
+
+          changed="$(git status --porcelain -- upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json _data/ufc_events.json || true)"
+          if [ -z "$changed" ]; then
             echo "No MMA card or portrait changes."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A -- upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json _data/ufc_events.json
+          git add -- upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json
+          if git ls-files --error-unmatch _data/ufc_events.json >/dev/null 2>&1 || [ -e _data/ufc_events.json ]; then
+            git add -A -- _data/ufc_events.json
+          fi
           git commit -m "Refresh upcoming MMA cards and portraits"
           git push origin HEAD:main
