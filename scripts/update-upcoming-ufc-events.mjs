@@ -172,28 +172,41 @@ function eventMarkup(e, photos) {
 
 function listBounds(html) {
   const open = html.match(/<div\b[^>]*class=["'][^"']*\bupcoming-events-list\b[^"']*["'][^>]*>/i);
-  if (!open || open.index == null) throw new Error('Could not locate .upcoming-events-list');
+  if (!open || open.index == null) throw new Error('Could not find upcoming-events-list');
   const start = open.index + open[0].length, re = /<div\b[^>]*>|<\/div\s*>/gi; re.lastIndex = start; let depth = 1;
   for (let m; (m = re.exec(html)); ) { depth += /^<div\b/i.test(m[0]) ? 1 : -1; if (depth === 0) return { start, end: m.index }; }
-  throw new Error('Could not find end of .upcoming-events-list');
+  throw new Error('Could not find end of upcoming-events-list');
 }
+
 function removeOldDataLoop(inner) {
-  const startRe = /\{%-?\s*for\s+event\s+in\s+site\.data\.ufc_events\.events\s*-?%\}/i;
-  const start = inner.search(startRe); if (start < 0) return inner;
-  const tags = /\{%-?\s*(for\b[^%]*|endfor)\s*-?%\}/gi; tags.lastIndex = start; let depth = 0;
-  for (let m; (m = tags.exec(inner)); ) {
-    if (/^for\b/i.test(m[1])) depth += 1; else depth -= 1;
-    if (depth === 0) return inner.slice(0, start) + inner.slice(tags.lastIndex).replace(/^\s+/, '\n');
+  const tagRe = /\{%\s*(for|endfor)\b([^%]*)%\}/gi;
+  const tags = [...inner.matchAll(tagRe)];
+  const startIndex = tags.findIndex(m => m[1].toLowerCase() === 'for' && /event\s+in\s+site\.data\.ufc_events\.events/i.test(m[2]));
+  if (startIndex < 0) return inner;
+  let depth = 0;
+  for (let i = startIndex; i < tags.length; i += 1) {
+    depth += tags[i][1].toLowerCase() === 'for' ? 1 : -1;
+    if (depth === 0) return inner.slice(0, tags[startIndex].index) + inner.slice(tags[i].index + tags[i][0].length);
   }
-  throw new Error('Found legacy UFC data loop but could not find its matching endfor.');
+  return inner;
 }
-function cardDate(card) { return (card.match(/<time\s+datetime=["'](\d{4}-\d{2}-\d{2})["']/i) || [])[1] || '9999-12-31'; }
-function isUfc(card) { return /data-auto-promotion=["']ufc["']/i.test(card) || /<p\s+class=["']event-promotion["']>\s*(?:UFC(?:\s+(?:Fight\s+Night|\d+|Noche))?|Noche\s+UFC)\s*<\/p>/i.test(card); }
+
+const cardDate = c => (c.match(/<time\s+datetime=["'](\d{4}-\d{2}-\d{2})["']/i) || [])[1] || '9999-12-31';
+const isUfc = c => /data-auto-promotion=["']ufc["']/i.test(c) || /<p\s+class=["']event-promotion["']>\s*(?:UFC(?:\s+(?:\d+|Fight Night|Noche))?|Noche UFC)\s*<\/p>/i.test(c);
 
 const original = await fs.readFile(TARGET, 'utf8');
 const photos = existingPortraits(original);
-const urls = eventUrls(await get(EVENTS_URL));
-if (!urls.length) throw new Error('No UFC event URLs found; refusing to change the site.');
+let urls = [];
+try {
+  urls = eventUrls(await get(EVENTS_URL));
+} catch (error) {
+  console.warn(`UFC events page unavailable; preserving existing UFC cards: ${error.message}`);
+  process.exit(0);
+}
+if (!urls.length) {
+  console.warn('No UFC event URLs found; preserving existing UFC cards.');
+  process.exit(0);
+}
 
 const events = [];
 for (const url of urls) {
@@ -206,14 +219,20 @@ for (const url of urls) {
 }
 events.sort((a, b) => a.date - b.date);
 const seen = new Set(), unique = events.filter(e => !seen.has(e.url) && seen.add(e.url));
-if (!unique.length) throw new Error('Parsed zero usable future UFC events; refusing to change the site.');
+if (!unique.length) {
+  console.warn('Parsed zero usable future UFC events; preserving existing UFC cards.');
+  process.exit(0);
+}
 
 const { start, end } = listBounds(original);
 let inner = removeOldDataLoop(original.slice(start, end));
 const cardRe = /<section\b[^>]*class=["'][^"']*\bupcoming-event-card\b[^"']*["'][^>]*>[\s\S]*?<\/section>/gi;
 const existingCards = [...inner.matchAll(cardRe)].map(m => m[0]);
 const oldUfcCount = existingCards.filter(isUfc).length;
-if (unique.length < Math.max(1, oldUfcCount - 2)) throw new Error(`Parsed ${unique.length} UFC events, below safety floor for ${oldUfcCount} existing UFC cards.`);
+if (unique.length < Math.max(1, oldUfcCount - 2)) {
+  console.warn(`Parsed ${unique.length} UFC event(s), below safety floor for ${oldUfcCount} existing UFC cards; preserving existing UFC cards.`);
+  process.exit(0);
+}
 
 const cards = [...existingCards.filter(c => !isUfc(c)), ...unique.map(e => eventMarkup(e, photos))].map(html => ({ html, date: cardDate(html) })).sort((a, b) => a.date.localeCompare(b.date));
 const disclaimer = (inner.match(/<div\b[^>]*class=["'][^"']*event-card-disclaimer[^"']*["'][^>]*>[\s\S]*$/i) || [])[0] || '';
