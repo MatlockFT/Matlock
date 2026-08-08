@@ -32,16 +32,22 @@ jobs:
       - name: Check article content and image metadata
         run: npm run check:content
 
-      - name: Check browser scripts
+      - name: Check browser and data scripts
         run: |
           node --check assets/site.js
           node --check assets/news-feed.js
           node --check scripts/build-news-feed.mjs
           node --check scripts/check-news-data.mjs
+          node --check scripts/upcoming-events-data.mjs
+          node --check scripts/update-upcoming-ufc-events.mjs
+          node --check scripts/update-pfl-upcoming-events.mjs
+          node --check scripts/update-rizin-upcoming-events.mjs
+          node --check scripts/resolve-espn-fighter-portraits.mjs
+          node --check scripts/enrich-fighter-portraits.mjs
           node --check scripts/validate-upcoming-events.mjs
 
-      - name: Check Upcoming Events source integrity
-        run: node scripts/validate-upcoming-events.mjs upcoming-events.html upcoming-events.html
+      - name: Check Upcoming Events data and renderer
+        run: node scripts/validate-upcoming-events.mjs
 
       - name: Check bundled MMA news data
         run: npm run check:news
