@@ -44,13 +44,13 @@ export async function loadPortraitCache() {
 
 export function portraitFor(name, previousEvents = [], cache = {}) {
   const key = norm(name);
+  const hit = cache[key];
+  if (hit?.url && !trackingUrl.test(hit.url)) return { image: hit.url, image_source: hit.source || '', image_framing: hit.framing || '' };
   for (const event of previousEvents) for (const section of event.sections || []) for (const bout of section.bouts || []) for (const fighter of bout.fighters || []) {
     if (norm(fighter.name) === key && fighter.image && !trackingUrl.test(fighter.image)) {
       return { image: fighter.image, image_source: fighter.image_source || '', image_framing: fighter.image_framing || '' };
     }
   }
-  const hit = cache[key];
-  if (hit?.url && !trackingUrl.test(hit.url)) return { image: hit.url, image_source: hit.source || '', image_framing: hit.framing || '' };
   return { image: '', image_source: '', image_framing: '' };
 }
 
