@@ -2,19 +2,6 @@ name: Update upcoming MMA events
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/update-upcoming-ufc-events.yml"
-      - "scripts/update-upcoming-ufc-events.mjs"
-      - "scripts/update-pfl-upcoming-events.mjs"
-      - "scripts/update-rizin-upcoming-events.mjs"
-      - "scripts/resolve-espn-fighter-portraits.mjs"
-      - "scripts/enrich-fighter-portraits.mjs"
-      - "scripts/publish-fighter-portraits.mjs"
-  schedule:
-    - cron: "7,22,37,52 * * * *"
 
 permissions:
   contents: write
@@ -56,8 +43,6 @@ jobs:
       - name: Read PFL event cards
         run: node scripts/update-pfl-upcoming-events.mjs
 
-      # Temporarily paused after RIZIN profile pages exposed analytics images as <img> tags.
-      # Keep the last known-good RIZIN card in the page/data until the source parser is hardened.
       - name: Read RIZIN event cards
         if: ${{ false }}
         run: node scripts/update-rizin-upcoming-events.mjs
@@ -71,25 +56,15 @@ jobs:
       - name: Publish fighter portrait cache
         run: node scripts/publish-fighter-portraits.mjs
 
-      - name: Retire legacy UFC event data
-        shell: bash
-        run: |
-          set -euo pipefail
-          if ! grep -q 'site\.data\.ufc_events' upcoming-events.html; then
-            rm -f _data/ufc_events.json
-          fi
-
       - name: Commit event and portrait changes
         shell: bash
         run: |
           set -euo pipefail
-
           changed="$(git status --porcelain -- upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json _data/ufc_events.json || true)"
           if [ -z "$changed" ]; then
             echo "No MMA card or portrait changes."
             exit 0
           fi
-
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json
