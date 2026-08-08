@@ -38,6 +38,10 @@ jobs:
           node --check assets/news-feed.js
           node --check scripts/build-news-feed.mjs
           node --check scripts/check-news-data.mjs
+          node --check scripts/validate-upcoming-events.mjs
+
+      - name: Check Upcoming Events source integrity
+        run: node scripts/validate-upcoming-events.mjs upcoming-events.html upcoming-events.html
 
       - name: Check bundled MMA news data
         run: npm run check:news
