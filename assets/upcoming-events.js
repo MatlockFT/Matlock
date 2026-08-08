@@ -18,6 +18,43 @@
         .prediction-button:disabled{cursor:wait;opacity:.58}
         .event-card-disclaimer{margin:.42rem 0 0!important;padding:.08rem .15rem 0!important;border:0!important;background:transparent!important}
         .event-card-disclaimer p{margin:0!important;color:#777!important;font:400 .52rem "Courier New",monospace!important;line-height:1.35;text-align:center}
+
+        /* 90s photocopied-zine fighter treatment: noisy, scratched, dirty rather than soft grunge. */
+        .fighter-photo{
+            background:
+                radial-gradient(circle at 1px 1px,rgba(255,255,255,.13) 0 .55px,transparent .8px) 0 0/4px 4px,
+                radial-gradient(circle at 2px 2px,rgba(0,0,0,.58) 0 .65px,transparent .9px) 0 0/5px 5px,
+                linear-gradient(106deg,transparent 0 14%,rgba(255,255,255,.08) 14.2% 14.5%,transparent 14.8% 39%,rgba(0,0,0,.32) 39.4% 40.2%,transparent 40.7% 73%,rgba(255,255,255,.05) 73.3% 73.8%,transparent 74.2% 100%),
+                radial-gradient(ellipse at 79% 24%,rgba(255,255,255,.08),transparent 25%),
+                radial-gradient(ellipse at 18% 72%,rgba(0,0,0,.42),transparent 31%),
+                url('/assets/fighter-grunge.svg') center/cover,
+                #0b0b0b!important;
+        }
+        .fighter-photo::before{
+            z-index:3!important;
+            background:
+                repeating-linear-gradient(176deg,transparent 0 8px,rgba(255,255,255,.055) 9px,transparent 10px 21px),
+                repeating-linear-gradient(96deg,transparent 0 31px,rgba(255,255,255,.09) 32px 32.8px,transparent 34px 67px),
+                linear-gradient(82deg,transparent 0 11%,rgba(0,0,0,.30) 11.4% 12.3%,transparent 12.8% 61%,rgba(255,255,255,.075) 61.3% 61.8%,transparent 62.2% 100%),
+                radial-gradient(circle at 8% 17%,rgba(255,255,255,.11) 0 1px,transparent 1.5px) 0 0/11px 13px!important;
+            opacity:.58!important;
+            pointer-events:none;
+        }
+        .fighter-photo::after{
+            position:absolute!important;
+            inset:0!important;
+            z-index:4!important;
+            height:auto!important;
+            background:
+                linear-gradient(118deg,transparent 0 24%,rgba(255,255,255,.10) 24.2% 24.5%,transparent 24.8% 53%,rgba(0,0,0,.25) 53.4% 54%,transparent 54.4% 100%),
+                repeating-linear-gradient(183deg,transparent 0 14px,rgba(0,0,0,.10) 15px 16px,transparent 17px 33px),
+                radial-gradient(circle at center,transparent 52%,rgba(0,0,0,.22) 100%)!important;
+            opacity:.52;
+            content:"";
+            pointer-events:none;
+        }
+        .fighter-photo img[data-fighter-photo]{filter:grayscale(1) contrast(1.32) brightness(.9)!important}
+
         .upcoming-event-card.is-exporting .fighter:hover::after,.upcoming-event-card.is-exporting .fighter:focus-visible::after{border-color:transparent}
         .upcoming-event-card.is-exporting .fighter.${PICK}::after{border-color:#37e66b}
         .fighter-photo .export-portrait-canvas{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none}
@@ -128,6 +165,88 @@
         image.src = src;
     });
 
+    const hashSeed = text => {
+        let hash = 2166136261;
+        for (let i = 0; i < text.length; i += 1) {
+            hash ^= text.charCodeAt(i);
+            hash = Math.imul(hash, 16777619);
+        }
+        return hash >>> 0;
+    };
+
+    const seededRandom = initialSeed => {
+        let seed = initialSeed >>> 0;
+        return () => {
+            seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+            return seed / 4294967296;
+        };
+    };
+
+    const distressPortrait = (ctx, width, height, seedText) => {
+        const rand = seededRandom(hashSeed(seedText || "fighter"));
+        const specks = Math.max(260, Math.round(width * height * 0.055));
+
+        ctx.save();
+        ctx.filter = "none";
+        ctx.globalCompositeOperation = "source-over";
+
+        // Fine copier grain and dry-ink flecks.
+        for (let i = 0; i < specks; i += 1) {
+            const x = rand() * width;
+            const y = rand() * height;
+            const size = 0.25 + rand() * 1.15;
+            const alpha = 0.025 + rand() * 0.07;
+            ctx.fillStyle = rand() > 0.47
+                ? `rgba(255,255,255,${alpha})`
+                : `rgba(0,0,0,${alpha * 1.35})`;
+            ctx.fillRect(x, y, size, size);
+        }
+
+        // Uneven copier drag across the portrait.
+        for (let i = 0; i < 11; i += 1) {
+            const y = rand() * height;
+            const thickness = 0.35 + rand() * 1.25;
+            const alpha = 0.018 + rand() * 0.045;
+            ctx.fillStyle = rand() > 0.55
+                ? `rgba(255,255,255,${alpha})`
+                : `rgba(0,0,0,${alpha * 1.4})`;
+            ctx.fillRect(0, y, width, thickness);
+        }
+
+        // Random scratches — sparse enough to keep faces readable.
+        ctx.lineCap = "round";
+        const scratchCount = Math.max(7, Math.round(width / 13));
+        for (let i = 0; i < scratchCount; i += 1) {
+            const x1 = rand() * width;
+            const y1 = rand() * height;
+            const length = 8 + rand() * Math.min(42, height * 0.42);
+            const drift = -12 + rand() * 24;
+
+            ctx.beginPath();
+            ctx.strokeStyle = rand() > 0.42
+                ? `rgba(255,255,255,${0.055 + rand() * 0.075})`
+                : `rgba(0,0,0,${0.08 + rand() * 0.09})`;
+            ctx.lineWidth = 0.35 + rand() * 1.05;
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x1 + drift, Math.min(height, y1 + length));
+            ctx.stroke();
+        }
+
+        // A few heavier damaged spots, like toner dropout.
+        for (let i = 0; i < 8; i += 1) {
+            const x = rand() * width;
+            const y = rand() * height;
+            const w = 1.2 + rand() * 4;
+            const h = 0.5 + rand() * 2.2;
+            ctx.fillStyle = rand() > 0.5
+                ? `rgba(255,255,255,${0.045 + rand() * 0.055})`
+                : `rgba(0,0,0,${0.10 + rand() * 0.08})`;
+            ctx.fillRect(x, y, w, h);
+        }
+
+        ctx.restore();
+    };
+
     const rasterizePortraits = async card => {
         const cleanups = [];
         const images = [...card.querySelectorAll("img[data-fighter-photo]")];
@@ -167,7 +286,7 @@
             ctx.scale(rasterScale, rasterScale);
             ctx.imageSmoothingEnabled = true;
             ctx.imageSmoothingQuality = "high";
-            ctx.filter = "grayscale(1) contrast(1.1)";
+            ctx.filter = "grayscale(1) contrast(1.32) brightness(.9)";
 
             const sourceWidth = source.naturalWidth || source.width;
             const sourceHeight = source.naturalHeight || source.height;
@@ -178,6 +297,8 @@
             const drawY = (imageRect.top - frameRect.top) + (imageRect.height - drawHeight);
 
             ctx.drawImage(source, drawX, drawY, drawWidth, drawHeight);
+            distressPortrait(ctx, frameRect.width, frameRect.height, fighterName(frame.closest(".fighter")));
+
             frame.appendChild(canvas);
             cleanups.push(() => canvas.remove());
         }));
@@ -195,8 +316,7 @@
             const html2canvas = await loadExporter();
             if (document.fonts?.ready) await document.fonts.ready;
 
-            // Bake the live on-screen portrait crop into temporary canvases first.
-            // html2canvas then captures ordinary pixels instead of CSS-transformed images.
+            // Bake the live crop plus zine distress into temporary portrait canvases.
             clearPortraitCanvases = await rasterizePortraits(card);
             card.classList.add("is-exporting");
             await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
