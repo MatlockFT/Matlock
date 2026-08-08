@@ -158,6 +158,15 @@
 
     const upcomingEventsList = document.querySelector(".upcoming-events-list");
     if (upcomingEventsList) {
+        const cards = [...upcomingEventsList.querySelectorAll(":scope > .upcoming-event-card")];
+        cards
+            .sort((a, b) => {
+                const aDate = a.querySelector("time[datetime]")?.getAttribute("datetime") || "9999-12-31";
+                const bDate = b.querySelector("time[datetime]")?.getAttribute("datetime") || "9999-12-31";
+                return aDate.localeCompare(bDate);
+            })
+            .forEach(card => upcomingEventsList.appendChild(card));
+
         const normalizeFighterName = value => (value || "")
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
