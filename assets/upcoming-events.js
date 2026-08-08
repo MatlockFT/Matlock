@@ -13,7 +13,11 @@
         .prediction-status{width:100%;margin:0;color:#aaa;font:700 .62rem "Courier New",monospace;letter-spacing:.05em;text-align:center;text-transform:uppercase}
         .prediction-button{appearance:none;border:1px solid #fff;border-radius:0;padding:.55rem .8rem;background:#fff;color:#000;cursor:pointer;font:700 .64rem "Courier New",monospace;letter-spacing:.04em;line-height:1;text-transform:uppercase}
         .prediction-button:hover,.prediction-button:focus-visible{background:#ddd}
+        .prediction-button-clear{border-color:#686868;background:transparent;color:#fff}
+        .prediction-button-clear:hover,.prediction-button-clear:focus-visible{border-color:#fff;background:#151515;color:#fff}
         .prediction-button:disabled{cursor:wait;opacity:.58}
+        .event-card-disclaimer{margin:.42rem 0 0!important;padding:.08rem .15rem 0!important;border:0!important;background:transparent!important}
+        .event-card-disclaimer p{margin:0!important;color:#777!important;font:400 .52rem "Courier New",monospace!important;line-height:1.35;text-align:center}
         .upcoming-event-card.is-exporting .fighter:hover::after,.upcoming-event-card.is-exporting .fighter:focus-visible::after{border-color:transparent}
         .upcoming-event-card.is-exporting .fighter.${PICK}::after{border-color:#37e66b}
     `;
@@ -65,6 +69,19 @@
         if (!wasPicked) { fighter.classList.add(PICK); fighter.setAttribute("aria-pressed", "true"); }
         save(card);
         updateStatus(card, status);
+    };
+
+    const clearPicks = (card, status, button) => {
+        card.querySelectorAll(`.fighter.${PICK}`).forEach(fighter => {
+            fighter.classList.remove(PICK);
+            fighter.setAttribute("aria-pressed", "false");
+        });
+        try { localStorage.removeItem(storeKey(card)); } catch {}
+        updateStatus(card, status);
+
+        const label = button.textContent;
+        button.textContent = "Picks Cleared";
+        setTimeout(() => { button.textContent = label; }, 1200);
     };
 
     const loadExporter = () => window.html2canvas ? Promise.resolve(window.html2canvas) : new Promise((resolve, reject) => {
@@ -142,18 +159,34 @@
     };
 
     document.querySelectorAll(".upcoming-event-card").forEach(card => {
+        const disclaimer = card.querySelector(".event-card-note");
+        if (disclaimer) {
+            disclaimer.classList.add("event-card-disclaimer");
+            card.insertAdjacentElement("afterend", disclaimer);
+        }
+
         const actions = document.createElement("div");
         actions.className = "prediction-actions";
+
         const status = document.createElement("p");
         status.className = "prediction-status";
         status.setAttribute("aria-live", "polite");
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "prediction-button";
-        button.textContent = "Download Picks as JPEG";
-        actions.append(status, button);
+
+        const downloadButton = document.createElement("button");
+        downloadButton.type = "button";
+        downloadButton.className = "prediction-button";
+        downloadButton.textContent = "Download Picks as JPEG";
+
+        const clearButton = document.createElement("button");
+        clearButton.type = "button";
+        clearButton.className = "prediction-button prediction-button-clear";
+        clearButton.textContent = "Clear Picks";
+
+        actions.append(status, downloadButton, clearButton);
         card.insertAdjacentElement("afterend", actions);
-        button.addEventListener("click", () => download(card, button));
+
+        downloadButton.addEventListener("click", () => download(card, downloadButton));
+        clearButton.addEventListener("click", () => clearPicks(card, status, clearButton));
 
         card.querySelectorAll(".bout-card .fighter").forEach(fighter => {
             fighter.setAttribute("role", "button");
