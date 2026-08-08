@@ -1,114 +1,1720 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-08T04:36:00Z",
+  "generated_at": "2026-08-08T04:55:07.505Z",
   "events": [
     {
-      "id": "pfl-charlotte-2026-08-07",
-      "promotion_key": "pfl",
-      "promotion": "PFL",
-      "title": "Charlotte",
-      "date": "2026-08-07",
-      "date_label": "Friday · August 7, 2026",
-      "venue": "Bojangles Coliseum · Charlotte, North Carolina",
-      "broadcast": "ESPN App · ESPN",
-      "official_url": "https://pflmma.com/event/pfl-charlotte",
+      "id": "ufc-fight-night-august-08-2026-2026-08-08",
+      "promotion_key": "ufc",
+      "promotion": "UFC Fight Night",
+      "title": "Gamrot vs Salkilld",
+      "date": "2026-08-08",
+      "date_label": "Saturday · August 8, 2026",
+      "venue": "Meta APEX · Las Vegas, Nevada",
+      "broadcast": "Paramount+",
+      "official_url": "https://www.ufc.com/event/ufc-fight-night-august-08-2026",
       "updated_label": "August 7, 2026",
       "sections": [
         {
           "kind": "main",
           "title": "Main Card",
-          "time": "10:00 PM ET",
+          "time": "8:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Lightweight",
+              "fighters": [
+                {
+                  "name": "Mateusz Gamrot",
+                  "initials": "MG",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/3068125.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Quillan Salkilld",
+                  "initials": "QS",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5157667.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Lightweight",
+              "fighters": [
+                {
+                  "name": "Diego Ferreira",
+                  "initials": "DF",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/3026133.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Billy Quarantillo",
+                  "initials": "BQ",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/3900088.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Featherweight",
+              "fighters": [
+                {
+                  "name": "Darren Elkins",
+                  "initials": "DE",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/2504168.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Yadier del Valle",
+                  "initials": "YDV",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5213179.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Women's Strawweight",
+              "fighters": [
+                {
+                  "name": "Amanda Lemos",
+                  "initials": "AL",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4233196.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Alexia Thainara",
+                  "initials": "AT",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5075992.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Welterweight",
+              "fighters": [
+                {
+                  "name": "Ty Miller",
+                  "initials": "TM",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5290957.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Billy Ray Goff",
+                  "initials": "BRG",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4706975.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "5:00 PM ET",
+          "bouts": [
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Heavyweight",
+              "fighters": [
+                {
+                  "name": "Steven Asplund",
+                  "initials": "SA",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5239615.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Guilherme Pat",
+                  "initials": "GP",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5282610.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "Light Heavyweight",
+              "fighters": [
+                {
+                  "name": "Diyar Nurgozhay",
+                  "initials": "DN",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5213352.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Bruno Lopes",
+                  "initials": "BL",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4691323.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "Heavyweight",
+              "fighters": [
+                {
+                  "name": "Louie Sutherland",
+                  "initials": "LS",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5080572.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Jose Montanha da Silva",
+                  "initials": "JMDS",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "Lightweight",
+              "fighters": [
+                {
+                  "name": "Manoel Sousa",
+                  "initials": "MS",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5085291.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Richie Miranda",
+                  "initials": "RM",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5092208.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "Featherweight",
+              "fighters": [
+                {
+                  "name": "Miles Johns",
+                  "initials": "MJ",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4010864.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Gianni Vazquez",
+                  "initials": "GV",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4887310.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 11,
+              "label": "",
+              "weight_class": "Women's Flyweight",
+              "fighters": [
+                {
+                  "name": "Juliana Miller",
+                  "initials": "JM",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4912582.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Ravena Oliveira",
+                  "initials": "RO",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5159959.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 12,
+              "label": "",
+              "weight_class": "Women's Strawweight",
+              "fighters": [
+                {
+                  "name": "GiGi Canuto",
+                  "initials": "GC",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5097909.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Carol Foro",
+                  "initials": "CF",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5278269.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rizin-rizin-54-2026-08-11",
+      "promotion_key": "rizin",
+      "promotion": "RIZIN",
+      "title": "RIZIN.54",
+      "date": "2026-08-11",
+      "date_label": "Tuesday · August 11, 2026",
+      "venue": "TOYOTA ARENA TOKYO",
+      "broadcast": "RIZIN 100 CLUB · RIZIN LIVE · ABEMA · U-NEXT · Sky PerfecTV",
+      "official_url": "https://jp.rizinff.com/_ct/17833730",
+      "updated_label": "August 7, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Fight Card",
+          "time": "1:00 AM EDT · 14:00 JST",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Kleber Koike",
+                  "initials": "KK",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/08/07/7b27250af1cffbc7876b79ad11e1b2a57c0dfc42_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Kyoma Akimoto",
+                  "initials": "KA",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/11/26/bb96e1680f7327e2037610e6c49739ca9d373c15_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "",
+              "weight_class": "61.0 kg",
+              "fighters": [
+                {
+                  "name": "Shoko Sato",
+                  "initials": "SS",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/08/26/b417e641d3596eae441f508962fd2058b1740d5c_normal.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Patchy Mix",
+                  "initials": "PM",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/01/29/863b9e2f6fa5e1fac171562d376805dbb97cb924_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "57.0 kg",
+              "fighters": [
+                {
+                  "name": "Yuki Ito",
+                  "initials": "YI",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2022/05/31/bf7481e33c93b549bd12f8097b1768dba737e1ea_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Alibek Gadzhammatov",
+                  "initials": "AG",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/10/07/224ebd3158742d09afe47a3ea992212165cf543d_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "120.0 kg",
+              "fighters": [
+                {
+                  "name": "Mikio Ueda",
+                  "initials": "MU",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/03/02/33ba3f25315ee6a21aaf083ef9b35a70321385d2_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "King Edokpolo",
+                  "initials": "KE",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/11/16/5fcbb7810e5e392bd0ffd3f8d166d6ef170a59c4_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "120.0 kg",
+              "fighters": [
+                {
+                  "name": "スダリオ剛",
+                  "initials": "ス",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2020/12/01/ed7bf7a5023ade5510ece765c67142964c51a880_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Ryo Sakai",
+                  "initials": "RS",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2020/01/24/3337b667212356683e93dac5255ab0b5ffbf69a7_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Kazumasa Majima",
+                  "initials": "KM",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2021/07/21/e41dccd8bc5ed5cc493c2c6e87ceedaf9aabe87b_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Koji Takeda",
+                  "initials": "KT",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2021/05/10/92f593d84b6ef581f42f0b17cbd7469b4bd07f17_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "61.0 kg",
+              "fighters": [
+                {
+                  "name": "Joji Goto",
+                  "initials": "JG",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/08/25/d15fabc13357443d05152861d2332b0b5aab2de3_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Azizbek Temirov",
+                  "initials": "AT",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/03/03/e8815d01c705b2d1827ac68205792602aa5fe111_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "57.0 kg",
+              "fighters": [
+                {
+                  "name": "Joe Hiramoto",
+                  "initials": "JH",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/12/10/550b01bc5c7e3f052428a05eccd634d8c1ff2865_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "JOLLY",
+                  "initials": "J",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/11/20/a5c75a823b6375520af0c1ed13c6332257315bf5_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "69.0 kg",
+              "fighters": [
+                {
+                  "name": "Naoki",
+                  "initials": "N",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/07/09/be7ad9489a211b84db214f2f57eeb7188e33e845_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Issa Hosokawa",
+                  "initials": "IH",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/12/22/e60650476b843559fc24bb2f027b1a0e13a99f64_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Arata Mizuno",
+                  "initials": "AM",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2020/12/01/ed7bf7a5023ade5510ece765c67142964c51a880_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Kaiwen Li",
+                  "initials": "KL",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/03/30/e8d8d516fc9a31e7d92a1ee7e808125a239f6151_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-330-2026-08-15",
+      "promotion_key": "ufc",
+      "promotion": "UFC 330",
+      "title": "Makhachev vs Machado Garry",
+      "date": "2026-08-15",
+      "date_label": "Saturday · August 15, 2026",
+      "venue": "Xfinity Mobile Arena · Philadelphia, Pennsylvania",
+      "broadcast": "Paramount+",
+      "official_url": "https://www.ufc.com/event/ufc-330",
+      "updated_label": "August 7, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Main Card",
+          "time": "9:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Welterweight Title",
+              "fighters": [
+                {
+                  "name": "Islam Makhachev",
+                  "initials": "IM",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/3332412.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Ian Machado Garry",
+                  "initials": "IMG",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4738092.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Women's Strawweight Title",
+              "fighters": [
+                {
+                  "name": "Mackenzie Dern",
+                  "initials": "MD",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4021217.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Gillian Robertson",
+                  "initials": "GR",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4089026.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Lightweight",
+              "fighters": [
+                {
+                  "name": "Edson Barboza",
+                  "initials": "EB",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/2526299.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Esteban Ribovics",
+                  "initials": "ER",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5074131.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Middleweight",
+              "fighters": [
+                {
+                  "name": "Mansur Abdul-Malik",
+                  "initials": "MA",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5211221.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Dustin Stoltzfus",
+                  "initials": "DS",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4685871.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Flyweight",
+              "fighters": [
+                {
+                  "name": "Charles Johnson",
+                  "initials": "CJ",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4375156.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Jose Ochoa",
+                  "initials": "JO",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5213200.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "7:00 PM ET",
+          "bouts": [
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Middleweight",
+              "fighters": [
+                {
+                  "name": "Vicente Luque",
+                  "initials": "VL",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/3045887.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Tresean Gore",
+                  "initials": "TG",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4815999.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "Lightweight",
+              "fighters": [
+                {
+                  "name": "Jalin Turner",
+                  "initials": "JT",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4339490.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Kauê Fernandes",
+                  "initials": "KF",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5172124.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "Welterweight",
+              "fighters": [
+                {
+                  "name": "Joel Alvarez",
+                  "initials": "JA",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4411888.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Chidi Njokuani",
+                  "initials": "CN",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/2959422.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "Welterweight",
+              "fighters": [
+                {
+                  "name": "Neil Magny",
+                  "initials": "NM",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/3001914.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Ramiz Brahimaj",
+                  "initials": "RB",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4297311.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "early",
+          "title": "Early Prelims",
+          "time": "5:00 PM ET",
+          "bouts": [
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "Light Heavyweight",
+              "fighters": [
+                {
+                  "name": "Lucas Fernando",
+                  "initials": "LF",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5119021.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Rafael Tobias",
+                  "initials": "RT",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5308871.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 11,
+              "label": "",
+              "weight_class": "Middleweight",
+              "fighters": [
+                {
+                  "name": "Donte Johnson",
+                  "initials": "DJ",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5302831.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Eric McConico",
+                  "initials": "EM",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/2478987.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 12,
+              "label": "",
+              "weight_class": "Welterweight",
+              "fighters": [
+                {
+                  "name": "Myktybek Orolbai",
+                  "initials": "MO",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5050129.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Jeremiah Wells",
+                  "initials": "JW",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/3970873.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pfl-tampa-2026-08-22",
+      "promotion_key": "pfl",
+      "promotion": "PFL",
+      "title": "Tampa",
+      "date": "2026-08-22",
+      "date_label": "Saturday · August 22, 2026",
+      "venue": "Venue TBA",
+      "broadcast": "ESPN",
+      "official_url": "https://pflmma.com/event/pfl-tampa",
+      "updated_label": "August 7, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Main Card",
+          "time": "9:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Women's Featherweight Title",
+              "fighters": [
+                {
+                  "name": "Cris Cyborg",
+                  "initials": "CC",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/2354564.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Ketlen Vieira",
+                  "initials": "KV",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4039865.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Lightweight",
+              "fighters": [
+                {
+                  "name": "Gadzhi Rabadanov",
+                  "initials": "GR",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4423241.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Jakub Kaszuba",
+                  "initials": "JK",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5127822.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Early Card",
+          "time": "5:30 PM ET",
+          "bouts": []
+        }
+      ]
+    },
+    {
+      "id": "ufc-fight-night-sacramento-2026-08-22",
+      "promotion_key": "ufc",
+      "promotion": "UFC Fight Night",
+      "title": "Hernandez vs Rodrigues",
+      "date": "2026-08-22",
+      "date_label": "Saturday · August 22, 2026",
+      "venue": "Golden 1 Center · Sacramento, California",
+      "broadcast": "Paramount+",
+      "official_url": "https://www.ufc.com/event/ufc-fight-night-august-22-2026",
+      "updated_label": "August 7, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Main Card",
+          "time": "8:00 PM ET",
           "bouts": [
             {
               "order": 1,
               "label": "Main Event",
               "weight_class": "Middleweight",
               "fighters": [
-                {"name":"Bryan Battle","initials":"BB","image":"https://a.espncdn.com/i/headshots/mma/players/full/4815998.png","image_source":"espn","image_framing":"standard"},
-                {"name":"Dalton Rosta","initials":"DR","image":"https://a.espncdn.com/i/headshots/mma/players/full/4744150.png","image_source":"espn","image_framing":"standard"}
+                {
+                  "name": "Anthony Hernandez",
+                  "initials": "AH",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4290956.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Gregory Rodrigues",
+                  "initials": "GR",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4690541.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
               ]
             },
-            {"order":2,"label":"Co-Main Event","weight_class":"Light Heavyweight","fighters":[{"name":"Dovlet Yagshimuradov","initials":"DY","image":"https://a.espncdn.com/i/headshots/mma/players/full/4018603.png","image_source":"espn","image_framing":"standard"},{"name":"Simeon Powell","initials":"SP","image":"https://a.espncdn.com/i/headshots/mma/players/full/4915658.png","image_source":"espn","image_framing":"standard"}]},
-            {"order":3,"label":"","weight_class":"Middleweight","fighters":[{"name":"Josh Silveira","initials":"JS","image":"https://a.espncdn.com/i/headshots/mma/players/full/4821018.png","image_source":"espn","image_framing":"standard"},{"name":"Aaron Jeffery","initials":"AJ","image":"https://a.espncdn.com/i/headshots/mma/players/full/4255574.png","image_source":"espn","image_framing":"standard"}]},
-            {"order":4,"label":"","weight_class":"Bantamweight","fighters":[{"name":"Lewis McGrillen","initials":"LM","image":"https://a.espncdn.com/i/headshots/mma/players/full/5137435.png","image_source":"espn","image_framing":"standard"},{"name":"Brandon Lewis","initials":"BL","image":"https://a.espncdn.com/i/headshots/mma/players/full/4875507.png","image_source":"espn","image_framing":"standard"}]},
-            {"order":5,"label":"","weight_class":"Middleweight","fighters":[{"name":"Josh Fremd","initials":"JF","image":"https://a.espncdn.com/i/headshots/mma/players/full/4523403.png","image_source":"espn","image_framing":"standard"},{"name":"Jhony Gregory","initials":"JG","image":"https://a.espncdn.com/i/headshots/mma/players/full/5074270.png","image_source":"espn","image_framing":"standard"}]}
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Light Heavyweight",
+              "fighters": [
+                {
+                  "name": "Roman Dolidze",
+                  "initials": "RD",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4411508.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Reinier de Ridder",
+                  "initials": "RDR",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4423880.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Heavyweight",
+              "fighters": [
+                {
+                  "name": "Serghei Spivac",
+                  "initials": "SS",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4421246.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Vitor Petrino",
+                  "initials": "VP",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5060483.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Heavyweight",
+              "fighters": [
+                {
+                  "name": "Kennedy Nzechukwu",
+                  "initials": "KN",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4245094.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Shamil Gaziev",
+                  "initials": "SG",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5145498.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Lightweight",
+              "fighters": [
+                {
+                  "name": "Kody Steele",
+                  "initials": "KS",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5212351.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Gauge Young",
+                  "initials": "GY",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5085318.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            }
           ]
         },
         {
-          "kind":"prelims","title":"Early Card","time":"6:30 PM ET","bouts":[
-            {"order":6,"label":"","weight_class":"Heavyweight","fighters":[{"name":"Denis Goltsov","initials":"DG","image":"https://a.espncdn.com/i/headshots/mma/players/full/3024604.png","image_source":"espn","image_framing":"standard"},{"name":"Hasan Mezhiev","initials":"HM","image":"https://a.espncdn.com/i/headshots/mma/players/full/4921188.png","image_source":"espn","image_framing":"standard"}]},
-            {"order":7,"label":"","weight_class":"Featherweight","fighters":[{"name":"Cheyden Leialoha","initials":"CL","image":"https://a.espncdn.com/i/headshots/mma/players/full/4237014.png","image_source":"espn","image_framing":"standard"},{"name":"Robbie Ring","initials":"RR","image":"https://a.espncdn.com/i/headshots/mma/players/full/5147245.png","image_source":"espn","image_framing":"standard"}]},
-            {"order":8,"label":"","weight_class":"Women's Flyweight","fighters":[{"name":"Cheyanne Bowers","initials":"CB","image":"https://a.espncdn.com/i/headshots/mma/players/full/5121863.png","image_source":"espn","image_framing":"standard"},{"name":"Elora Dana","initials":"ED","image":"https://a.espncdn.com/i/headshots/mma/players/full/5268875.png","image_source":"espn","image_framing":"standard"}]},
-            {"order":9,"label":"","weight_class":"Lightweight","fighters":[{"name":"Michael Boylan","initials":"MB","image":"https://www.sherdog.com/image_crop/200/300/_images/fighter/17860428617648b7e843ab4f8911bd8cd9e753d8a6-1-1.png","image_source":"external","image_framing":"safe"},{"name":"Landry Ward","initials":"LW","image":"https://a.espncdn.com/i/headshots/mma/players/full/5172392.png","image_source":"espn","image_framing":"standard"}]},
-            {"order":10,"label":"","weight_class":"Light Heavyweight","fighters":[{"name":"Valentin Moldavsky","initials":"VM","image":"https://a.espncdn.com/i/headshots/mma/players/full/4076780.png","image_source":"espn","image_framing":"standard"},{"name":"Bruno Cappelozza","initials":"BC","image":"https://a.espncdn.com/i/headshots/mma/players/full/3949930.png","image_source":"espn","image_framing":"standard"}]},
-            {"order":11,"label":"","weight_class":"Catchweight (160 lbs)","fighters":[{"name":"Jonathan Martin","initials":"JM","image":"https://a.espncdn.com/i/headshots/mma/players/full/5250466.png","image_source":"espn","image_framing":"standard"},{"name":"Wilson Lopshire","initials":"WL","image":"https://www.sherdog.com/image_crop/200/300/_images/fighter/1785642227Wilson_Lopshire.png","image_source":"external","image_framing":"safe"}]},
-            {"order":12,"label":"","weight_class":"Heavyweight","fighters":[{"name":"Eduardo Neves","initials":"EN","image":"https://a.espncdn.com/i/headshots/mma/players/full/5053878.png","image_source":"espn","image_framing":"standard"},{"name":"Maxwell Djantou Nana","initials":"MDN","image":"https://a.espncdn.com/i/headshots/mma/players/full/5219953.png","image_source":"espn","image_framing":"standard"}]},
-            {"order":13,"label":"","weight_class":"Welterweight","fighters":[{"name":"Trukon Carson","initials":"TC","image":"https://bkfc-cdn.gigcasters.com/a/881f5d0d-02d9-493b-b7ba-bced0210f9d9/39d1e984-6f40-4d73-a661-ad11c69477db/1751477633/o/TRUKON_CARSON_400x533.png?1751477633=","image_source":"external","image_framing":"safe"},{"name":"Trey Waters","initials":"TW","image":"https://a.espncdn.com/i/headshots/mma/players/full/5092403.png","image_source":"espn","image_framing":"standard"}]}
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "5:00 PM ET",
+          "bouts": [
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Women's Strawweight",
+              "fighters": [
+                {
+                  "name": "Carli Judice",
+                  "initials": "CJ",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5172179.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Jeisla Chaves",
+                  "initials": "JC",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5308769.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "Middleweight",
+              "fighters": [
+                {
+                  "name": "Wes Schultz",
+                  "initials": "WS",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5057023.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Jackson McVey",
+                  "initials": "JM",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5291733.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "Women's Strawweight",
+              "fighters": [
+                {
+                  "name": "Shanelle Dyer",
+                  "initials": "SD",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5157674.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Elise Reed",
+                  "initials": "ER",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4836482.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            }
           ]
         }
       ]
     },
     {
-      "id":"ufc-fight-night-august-08-2026-2026-08-08","promotion_key":"ufc","promotion":"UFC Fight Night","title":"Gamrot vs Salkilld","date":"2026-08-08","date_label":"Saturday · August 8, 2026","venue":"Meta APEX · Las Vegas, Nevada","broadcast":"Paramount+","official_url":"https://www.ufc.com/event/ufc-fight-night-august-08-2026","updated_label":"August 7, 2026",
-      "sections":[
-        {"kind":"main","title":"Main Card","time":"8:00 PM ET","bouts":[
-          {"order":1,"label":"Main Event","weight_class":"Lightweight","fighters":[{"name":"Mateusz Gamrot","initials":"MG","image":"https://a.espncdn.com/i/headshots/mma/players/full/3068125.png","image_source":"espn","image_framing":"standard"},{"name":"Quillan Salkilld","initials":"QS","image":"https://a.espncdn.com/i/headshots/mma/players/full/5157667.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":2,"label":"Co-Main Event","weight_class":"Lightweight","fighters":[{"name":"Diego Ferreira","initials":"DF","image":"https://a.espncdn.com/i/headshots/mma/players/full/3026133.png","image_source":"espn","image_framing":"standard"},{"name":"Billy Quarantillo","initials":"BQ","image":"https://a.espncdn.com/i/headshots/mma/players/full/3900088.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":3,"label":"","weight_class":"Featherweight","fighters":[{"name":"Darren Elkins","initials":"DE","image":"https://a.espncdn.com/i/headshots/mma/players/full/2504168.png","image_source":"espn","image_framing":"standard"},{"name":"Yadier del Valle","initials":"YDV","image":"https://a.espncdn.com/i/headshots/mma/players/full/5213179.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":4,"label":"","weight_class":"Women's Strawweight","fighters":[{"name":"Amanda Lemos","initials":"AL","image":"https://a.espncdn.com/i/headshots/mma/players/full/4233196.png","image_source":"espn","image_framing":"standard"},{"name":"Alexia Thainara","initials":"AT","image":"https://a.espncdn.com/i/headshots/mma/players/full/5075992.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":5,"label":"","weight_class":"Welterweight","fighters":[{"name":"Ty Miller","initials":"TM","image":"https://a.espncdn.com/i/headshots/mma/players/full/5290957.png","image_source":"espn","image_framing":"standard"},{"name":"Billy Ray Goff","initials":"BRG","image":"https://a.espncdn.com/i/headshots/mma/players/full/4706975.png","image_source":"espn","image_framing":"standard"}]}
-        ]},
-        {"kind":"prelims","title":"Prelims","time":"5:00 PM ET","bouts":[
-          {"order":6,"label":"","weight_class":"Heavyweight","fighters":[{"name":"Steven Asplund","initials":"SA","image":"https://a.espncdn.com/i/headshots/mma/players/full/5239615.png","image_source":"espn","image_framing":"standard"},{"name":"Guilherme Pat","initials":"GP","image":"https://a.espncdn.com/i/headshots/mma/players/full/5282610.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":7,"label":"","weight_class":"Light Heavyweight","fighters":[{"name":"Diyar Nurgozhay","initials":"DN","image":"https://a.espncdn.com/i/headshots/mma/players/full/5213352.png","image_source":"espn","image_framing":"standard"},{"name":"Bruno Lopes","initials":"BL","image":"https://a.espncdn.com/i/headshots/mma/players/full/4691323.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":8,"label":"","weight_class":"Heavyweight","fighters":[{"name":"Louie Sutherland","initials":"LS","image":"https://a.espncdn.com/i/headshots/mma/players/full/5080572.png","image_source":"espn","image_framing":"standard"},{"name":"Jose Montanha da Silva","initials":"JMDS","image":"","image_source":"","image_framing":""}]},
-          {"order":9,"label":"","weight_class":"Lightweight","fighters":[{"name":"Manoel Sousa","initials":"MS","image":"https://a.espncdn.com/i/headshots/mma/players/full/5085291.png","image_source":"espn","image_framing":"standard"},{"name":"Richie Miranda","initials":"RM","image":"https://a.espncdn.com/i/headshots/mma/players/full/5092208.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":10,"label":"","weight_class":"Featherweight","fighters":[{"name":"Miles Johns","initials":"MJ","image":"https://a.espncdn.com/i/headshots/mma/players/full/4010864.png","image_source":"espn","image_framing":"standard"},{"name":"Gianni Vazquez","initials":"GV","image":"https://a.espncdn.com/i/headshots/mma/players/full/4887310.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":11,"label":"","weight_class":"Women's Flyweight","fighters":[{"name":"Juliana Miller","initials":"JM","image":"https://a.espncdn.com/i/headshots/mma/players/full/4912582.png","image_source":"espn","image_framing":"standard"},{"name":"Ravena Oliveira","initials":"RO","image":"https://a.espncdn.com/i/headshots/mma/players/full/5159959.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":12,"label":"","weight_class":"Women's Strawweight","fighters":[{"name":"GiGi Canuto","initials":"GC","image":"https://a.espncdn.com/i/headshots/mma/players/full/5097909.png","image_source":"espn","image_framing":"standard"},{"name":"Carol Foro","initials":"CF","image":"https://a.espncdn.com/i/headshots/mma/players/full/5278269.png","image_source":"espn","image_framing":"standard"}]}
-        ]}
+      "id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
+      "promotion_key": "rizin",
+      "promotion": "RIZIN",
+      "title": "ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り",
+      "date": "2026-09-10",
+      "date_label": "Thursday · September 10, 2026",
+      "venue": "京セラドーム大阪",
+      "broadcast": "RIZIN 100 CLUB",
+      "official_url": "https://jp.rizinff.com/_ct/17834937",
+      "updated_label": "August 7, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Fight Card",
+          "time": "3:00 AM EDT · 16:00 JST",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Razhabali Shaidulloev",
+                  "initials": "RS",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/05/07/bee7540df7d5ea4a115a8c2694d1aeaca454b46f_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "AJ McKee",
+                  "initials": "AM",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2022/10/26/936f8a367cdc934159751986b85dedb94dae87de_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "",
+              "weight_class": "71.0 kg",
+              "fighters": [
+                {
+                  "name": "Mikuru Asakura",
+                  "initials": "MA",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/05/24/5bd5a5ff98d12967709d9a95387d60a2342e7235_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Shinya Aoki",
+                  "initials": "SA",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2017/02/28/51550c31f4ed8dbc7e8483a50beaeb8ebe92e6eb.png",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "71.0 kg",
+              "fighters": [
+                {
+                  "name": "Roberto Satoshi Souza",
+                  "initials": "RSS",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/01/15/6b8325af30ff7329c3cab4c64b6b2ea5cfe4a7f9_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Shunta Nomura",
+                  "initials": "SN",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/01/30/b9dcae7203fa6eaed123a429332f3663534638c3_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Karshyga Dautbek",
+                  "initials": "KD",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2018/10/29/4b70792bda469b3051114e4bf7ea64130ed4c2e9_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Ren Hiramoto",
+                  "initials": "RH",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/05/24/39084a8d1660342c806986c626cb3cf483c2588a_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Yutaka Saito",
+                  "initials": "YS",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2021/10/27/c1de0df17c25dd8db14b6896a0a6c7c68d3df693_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "YA-MAN",
+                  "initials": "Y",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/12/17/8b4e138e0ef8c56a2816da9c35e679ee3c1d59b8_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Vugar Karamov",
+                  "initials": "VK",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/11/04/c819ff554b788615276974e307835eb91a75ca8f_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Ryo Takagi",
+                  "initials": "RT",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/02/02/6bef6bf97e74307d6353a44299cd54563d27e16d_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "49.0 kg",
+              "fighters": [
+                {
+                  "name": "RENA",
+                  "initials": "R",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2018/05/31/cd6a56341d0c87d7cbbea47596b40904de29a791_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Natasha Kuziutina",
+                  "initials": "NK",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/02/12/f9dd2dc7a4135ed124bd8c861114913eb048d480_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "59.0 kg",
+              "fighters": [
+                {
+                  "name": "Daichi Tomizawa",
+                  "initials": "DT",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/12/10/3121ad371cceecd3d370ba30867e86519a043e37_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Don't mind Kawabata",
+                  "initials": "DMK",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/07/20/9b1b654132d103aa669e54561f642cef7d7333f4_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        }
       ]
     },
     {
-      "id":"rizin-54-2026-08-11","promotion_key":"rizin","promotion":"RIZIN","title":"RIZIN.54","date":"2026-08-11","date_label":"Tuesday · August 11, 2026","venue":"TOYOTA ARENA TOKYO · Tokyo, Japan","broadcast":"RIZIN 100 CLUB · RIZIN LIVE · ABEMA · U-NEXT · Sky PerfecTV","official_url":"https://jp.rizinff.com/_ct/17833730","updated_label":"August 7, 2026",
-      "sections":[{"kind":"main","title":"Fight Card","time":"1:00 AM ET · 2:00 PM JST","bouts":[
-        {"order":1,"label":"Main Event","weight_class":"66.0 kg","fighters":[{"name":"Kleber Koike","initials":"KK","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/08/07/7b27250af1cffbc7876b79ad11e1b2a57c0dfc42_xlarge.jpg","image_source":"rizin","image_framing":"safe"},{"name":"Kyoma Akimoto","initials":"KA","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/11/26/bb96e1680f7327e2037610e6c49739ca9d373c15_large.jpg","image_source":"rizin","image_framing":"safe"}]},
-        {"order":2,"label":"","weight_class":"61.0 kg","fighters":[{"name":"Shoko Sato","initials":"SS","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/08/26/b417e641d3596eae441f508962fd2058b1740d5c_normal.jpg","image_source":"rizin","image_framing":"safe"},{"name":"Patchy Mix","initials":"PM","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/01/29/863b9e2f6fa5e1fac171562d376805dbb97cb924_large.jpg","image_source":"rizin","image_framing":"safe"}]},
-        {"order":3,"label":"","weight_class":"61.0 kg","fighters":[{"name":"Joji Goto","initials":"JG","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/08/25/d15fabc13357443d05152861d2332b0b5aab2de3_large.jpg","image_source":"rizin","image_framing":"safe"},{"name":"Azizbek Temirov","initials":"AT","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/03/03/e8815d01c705b2d1827ac68205792602aa5fe111_large.jpg","image_source":"rizin","image_framing":"safe"}]},
-        {"order":4,"label":"","weight_class":"57.0 kg","fighters":[{"name":"Yuki Ito","initials":"YI","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2022/05/31/bf7481e33c93b549bd12f8097b1768dba737e1ea_large.jpg","image_source":"rizin","image_framing":"safe"},{"name":"Alibek Gadzhimatov","initials":"AG","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/10/07/224ebd3158742d09afe47a3ea992212165cf543d_large.jpg","image_source":"rizin","image_framing":"safe"}]},
-        {"order":5,"label":"","weight_class":"66.0 kg","fighters":[{"name":"Kazumasa Majima","initials":"KM","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2021/07/21/e41dccd8bc5ed5cc493c2c6e87ceedaf9aabe87b_large.jpg","image_source":"rizin","image_framing":"safe"},{"name":"Koji Takeda","initials":"KT","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2021/05/10/92f593d84b6ef581f42f0b17cbd7469b4bd07f17_large.jpg","image_source":"rizin","image_framing":"safe"}]},
-        {"order":6,"label":"","weight_class":"49.0 kg","fighters":[{"name":"Kate Lotus","initials":"KL","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/06/09/dfde208da27ed7f24bd0cd0c31a9327672b1e71d_large.jpg","image_source":"rizin","image_framing":"safe"},{"name":"NOEL","initials":"N","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/06/07/11bb943e5bbb8cfa8e1278692f116d77c84f036b_large.jpg","image_source":"rizin","image_framing":"safe"}]},
-        {"order":7,"label":"","weight_class":"66.0 kg","fighters":[{"name":"Arata Mizuno","initials":"AM","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/06/23/e082e9d4c25b33e4e1552199c8a507cd541385a0_xlarge.jpg","image_source":"rizin","image_framing":"safe"},{"name":"Kaiwen Li","initials":"KL","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/03/30/e8d8d516fc9a31e7d92a1ee7e808125a239f6151_large.jpg","image_source":"rizin","image_framing":"safe"}]},
-        {"order":8,"label":"","weight_class":"69.0 kg","fighters":[{"name":"Naoki","initials":"N","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/07/09/be7ad9489a211b84db214f2f57eeb7188e33e845_large.jpg","image_source":"rizin","image_framing":"safe"},{"name":"Issa Hosokawa","initials":"IH","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/12/22/e60650476b843559fc24bb2f027b1a0e13a99f64_large.jpg","image_source":"rizin","image_framing":"safe"}]},
-        {"order":9,"label":"","weight_class":"57.0 kg","fighters":[{"name":"Joe Hiramoto","initials":"JH","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/12/10/550b01bc5c7e3f052428a05eccd634d8c1ff2865_large.jpg","image_source":"rizin","image_framing":"safe"},{"name":"JOLLY","initials":"J","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/11/20/a5c75a823b6375520af0c1ed13c6332257315bf5_large.jpg","image_source":"rizin","image_framing":"safe"}]},
-        {"order":10,"label":"","weight_class":"120.0 kg","fighters":[{"name":"Mikio Ueda","initials":"MU","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/03/02/33ba3f25315ee6a21aaf083ef9b35a70321385d2_large.jpg","image_source":"rizin","image_framing":"safe"},{"name":"Ed Polo King","initials":"EPK","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/11/16/5fcbb7810e5e392bd0ffd3f8d166d6ef170a59c4_large.jpg","image_source":"rizin","image_framing":"safe"}]},
-        {"order":11,"label":"","weight_class":"120.0 kg","fighters":[{"name":"Tsuyoshi Sudario","initials":"TS","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2022/06/23/b07ad367177d61410a30a7d59f524ee610f296cf_large.jpg","image_source":"rizin","image_framing":"safe"},{"name":"Ryo Sakai","initials":"RS","image":"https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2020/01/24/3337b667212356683e93dac5255ab0b5ffbf69a7_xlarge.jpg","image_source":"rizin","image_framing":"safe"}]}
-      ]}]
-    },
-    {
-      "id":"ufc-330-2026-08-15","promotion_key":"ufc","promotion":"UFC 330","title":"Makhachev vs Machado Garry","date":"2026-08-15","date_label":"Saturday · August 15, 2026","venue":"Xfinity Mobile Arena · Philadelphia, Pennsylvania","broadcast":"Paramount+","official_url":"https://www.ufc.com/event/ufc-330","updated_label":"August 7, 2026",
-      "sections":[
-        {"kind":"main","title":"Main Card","time":"9:00 PM ET","bouts":[
-          {"order":1,"label":"Main Event","weight_class":"Welterweight Title","fighters":[{"name":"Islam Makhachev","initials":"IM","image":"https://a.espncdn.com/i/headshots/mma/players/full/3332412.png","image_source":"espn","image_framing":"standard"},{"name":"Ian Machado Garry","initials":"IMG","image":"https://a.espncdn.com/i/headshots/mma/players/full/4738092.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":2,"label":"Co-Main Event","weight_class":"Women's Strawweight Title","fighters":[{"name":"Mackenzie Dern","initials":"MD","image":"https://a.espncdn.com/i/headshots/mma/players/full/4021217.png","image_source":"espn","image_framing":"standard"},{"name":"Gillian Robertson","initials":"GR","image":"https://a.espncdn.com/i/headshots/mma/players/full/4089026.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":3,"label":"","weight_class":"Lightweight","fighters":[{"name":"Edson Barboza","initials":"EB","image":"https://a.espncdn.com/i/headshots/mma/players/full/2526299.png","image_source":"espn","image_framing":"standard"},{"name":"Esteban Ribovics","initials":"ER","image":"https://a.espncdn.com/i/headshots/mma/players/full/5074131.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":4,"label":"","weight_class":"Middleweight","fighters":[{"name":"Mansur Abdul-Malik","initials":"MA","image":"https://a.espncdn.com/i/headshots/mma/players/full/5211221.png","image_source":"espn","image_framing":"standard"},{"name":"Dustin Stoltzfus","initials":"DS","image":"https://a.espncdn.com/i/headshots/mma/players/full/4685871.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":5,"label":"","weight_class":"Flyweight","fighters":[{"name":"Charles Johnson","initials":"CJ","image":"https://a.espncdn.com/i/headshots/mma/players/full/4375156.png","image_source":"espn","image_framing":"standard"},{"name":"Jose Ochoa","initials":"JO","image":"https://a.espncdn.com/i/headshots/mma/players/full/5213200.png","image_source":"espn","image_framing":"standard"}]}
-        ]},
-        {"kind":"prelims","title":"Prelims","time":"7:00 PM ET","bouts":[
-          {"order":6,"label":"","weight_class":"Middleweight","fighters":[{"name":"Vicente Luque","initials":"VL","image":"https://a.espncdn.com/i/headshots/mma/players/full/3045887.png","image_source":"espn","image_framing":"standard"},{"name":"Tresean Gore","initials":"TG","image":"https://a.espncdn.com/i/headshots/mma/players/full/4815999.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":7,"label":"","weight_class":"Lightweight","fighters":[{"name":"Jalin Turner","initials":"JT","image":"https://a.espncdn.com/i/headshots/mma/players/full/4339490.png","image_source":"espn","image_framing":"standard"},{"name":"Kauê Fernandes","initials":"KF","image":"https://a.espncdn.com/i/headshots/mma/players/full/5172124.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":8,"label":"","weight_class":"Welterweight","fighters":[{"name":"Joel Alvarez","initials":"JA","image":"https://a.espncdn.com/i/headshots/mma/players/full/4411888.png","image_source":"espn","image_framing":"standard"},{"name":"Chidi Njokuani","initials":"CN","image":"https://a.espncdn.com/i/headshots/mma/players/full/2959422.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":9,"label":"","weight_class":"Welterweight","fighters":[{"name":"Neil Magny","initials":"NM","image":"https://a.espncdn.com/i/headshots/mma/players/full/3001914.png","image_source":"espn","image_framing":"standard"},{"name":"Ramiz Brahimaj","initials":"RB","image":"https://a.espncdn.com/i/headshots/mma/players/full/4297311.png","image_source":"espn","image_framing":"standard"}]}
-        ]},
-        {"kind":"early","title":"Early Prelims","time":"5:00 PM ET","bouts":[
-          {"order":10,"label":"","weight_class":"Light Heavyweight","fighters":[{"name":"Lucas Fernando","initials":"LF","image":"https://a.espncdn.com/i/headshots/mma/players/full/5119021.png","image_source":"espn","image_framing":"standard"},{"name":"Rafael Tobias","initials":"RT","image":"https://a.espncdn.com/i/headshots/mma/players/full/5308871.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":11,"label":"","weight_class":"Middleweight","fighters":[{"name":"Donte Johnson","initials":"DJ","image":"https://a.espncdn.com/i/headshots/mma/players/full/5302831.png","image_source":"espn","image_framing":"standard"},{"name":"Eric McConico","initials":"EM","image":"https://a.espncdn.com/i/headshots/mma/players/full/2478987.png","image_source":"espn","image_framing":"standard"}]},
-          {"order":12,"label":"","weight_class":"Welterweight","fighters":[{"name":"Myktybek Orolbai","initials":"MO","image":"https://a.espncdn.com/i/headshots/mma/players/full/5050129.png","image_source":"espn","image_framing":"standard"},{"name":"Jeremiah Wells","initials":"JW","image":"https://a.espncdn.com/i/headshots/mma/players/full/3970873.png","image_source":"espn","image_framing":"standard"}]}
-        ]}
+      "id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "promotion_key": "rizin",
+      "promotion": "RIZIN",
+      "title": "RIZIN LANDMARK 16 in NAGASAKI",
+      "date": "2026-10-03",
+      "date_label": "Saturday · October 3, 2026",
+      "venue": "長崎スタジアムシティ HAPPINESS ARENA",
+      "broadcast": "RIZIN 100 CLUB",
+      "official_url": "https://jp.rizinff.com/_ct/17852438",
+      "updated_label": "August 7, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Fight Card",
+          "time": "1:00 AM EDT · 14:00 JST",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Kleber Koike",
+                  "initials": "KK",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/08/07/7b27250af1cffbc7876b79ad11e1b2a57c0dfc42_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Kyoma Akimoto",
+                  "initials": "KA",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/11/26/bb96e1680f7327e2037610e6c49739ca9d373c15_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "",
+              "weight_class": "61.0 kg",
+              "fighters": [
+                {
+                  "name": "Shoko Sato",
+                  "initials": "SS",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/08/26/b417e641d3596eae441f508962fd2058b1740d5c_normal.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Patchy Mix",
+                  "initials": "PM",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/01/29/863b9e2f6fa5e1fac171562d376805dbb97cb924_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "57.0 kg",
+              "fighters": [
+                {
+                  "name": "Yuki Ito",
+                  "initials": "YI",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2022/05/31/bf7481e33c93b549bd12f8097b1768dba737e1ea_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Alibek Gadzhammatov",
+                  "initials": "AG",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/10/07/224ebd3158742d09afe47a3ea992212165cf543d_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "120.0 kg",
+              "fighters": [
+                {
+                  "name": "Mikio Ueda",
+                  "initials": "MU",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/03/02/33ba3f25315ee6a21aaf083ef9b35a70321385d2_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "King Edokpolo",
+                  "initials": "KE",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/11/16/5fcbb7810e5e392bd0ffd3f8d166d6ef170a59c4_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "120.0 kg",
+              "fighters": [
+                {
+                  "name": "スダリオ剛",
+                  "initials": "ス",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2020/12/01/ed7bf7a5023ade5510ece765c67142964c51a880_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Ryo Sakai",
+                  "initials": "RS",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2020/01/24/3337b667212356683e93dac5255ab0b5ffbf69a7_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Kazumasa Majima",
+                  "initials": "KM",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2021/07/21/e41dccd8bc5ed5cc493c2c6e87ceedaf9aabe87b_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Koji Takeda",
+                  "initials": "KT",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2021/05/10/92f593d84b6ef581f42f0b17cbd7469b4bd07f17_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "61.0 kg",
+              "fighters": [
+                {
+                  "name": "Joji Goto",
+                  "initials": "JG",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/08/25/d15fabc13357443d05152861d2332b0b5aab2de3_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Azizbek Temirov",
+                  "initials": "AT",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/03/03/e8815d01c705b2d1827ac68205792602aa5fe111_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "57.0 kg",
+              "fighters": [
+                {
+                  "name": "Joe Hiramoto",
+                  "initials": "JH",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/12/10/550b01bc5c7e3f052428a05eccd634d8c1ff2865_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "JOLLY",
+                  "initials": "J",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/11/20/a5c75a823b6375520af0c1ed13c6332257315bf5_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "69.0 kg",
+              "fighters": [
+                {
+                  "name": "Naoki",
+                  "initials": "N",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/07/09/be7ad9489a211b84db214f2f57eeb7188e33e845_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Issa Hosokawa",
+                  "initials": "IH",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/12/22/e60650476b843559fc24bb2f027b1a0e13a99f64_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Arata Mizuno",
+                  "initials": "AM",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2020/12/01/ed7bf7a5023ade5510ece765c67142964c51a880_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Kaiwen Li",
+                  "initials": "KL",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/03/30/e8d8d516fc9a31e7d92a1ee7e808125a239f6151_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        }
       ]
     },
-    {"id":"pfl-tampa-2026-08-22","promotion_key":"pfl","promotion":"PFL","title":"Tampa","date":"2026-08-22","date_label":"Saturday · August 22, 2026","venue":"Benchmark International Arena · Tampa, Florida","broadcast":"ESPN","official_url":"https://pflmma.com/event/pfl-tampa","updated_label":"August 7, 2026","sections":[{"kind":"main","title":"Main Card","time":"10:00 PM ET","bouts":[{"order":1,"label":"Main Event","weight_class":"Women's Featherweight Title","fighters":[{"name":"Cris Cyborg","initials":"CC","image":"https://a.espncdn.com/i/headshots/mma/players/full/2354564.png","image_source":"espn","image_framing":"standard"},{"name":"Ketlen Vieira","initials":"KV","image":"https://a.espncdn.com/i/headshots/mma/players/full/4039865.png","image_source":"espn","image_framing":"standard"}]},{"order":2,"label":"Co-Main Event","weight_class":"Lightweight","fighters":[{"name":"Gadzhi Rabadanov","initials":"GR","image":"https://a.espncdn.com/i/headshots/mma/players/full/4423241.png","image_source":"espn","image_framing":"standard"},{"name":"Jakub Kaszuba","initials":"JK","image":"https://a.espncdn.com/i/headshots/mma/players/full/5127822.png","image_source":"espn","image_framing":"standard"}]}]},{"kind":"prelims","title":"Early Card","time":"7:00 PM ET","bouts":[]}]},
-    {"id":"ufc-fight-night-sacramento-2026-08-22","promotion_key":"ufc","promotion":"UFC Fight Night","title":"Hernandez vs Rodrigues","date":"2026-08-22","date_label":"Saturday · August 22, 2026","venue":"Golden 1 Center · Sacramento, California","broadcast":"Paramount+","official_url":"https://www.ufc.com/event/ufc-fight-night-august-22-2026","updated_label":"August 7, 2026","sections":[{"kind":"main","title":"Main Card","time":"8:00 PM ET","bouts":[{"order":1,"label":"Main Event","weight_class":"Middleweight","fighters":[{"name":"Anthony Hernandez","initials":"AH","image":"https://a.espncdn.com/i/headshots/mma/players/full/4290956.png","image_source":"espn","image_framing":"standard"},{"name":"Gregory Rodrigues","initials":"GR","image":"https://a.espncdn.com/i/headshots/mma/players/full/4690541.png","image_source":"espn","image_framing":"standard"}]},{"order":2,"label":"Co-Main Event","weight_class":"Light Heavyweight","fighters":[{"name":"Roman Dolidze","initials":"RD","image":"https://a.espncdn.com/i/headshots/mma/players/full/4411508.png","image_source":"espn","image_framing":"standard"},{"name":"Reinier de Ridder","initials":"RDR","image":"https://a.espncdn.com/i/headshots/mma/players/full/4423880.png","image_source":"espn","image_framing":"standard"}]},{"order":3,"label":"","weight_class":"Heavyweight","fighters":[{"name":"Serghei Spivac","initials":"SS","image":"https://a.espncdn.com/i/headshots/mma/players/full/4421246.png","image_source":"espn","image_framing":"standard"},{"name":"Vitor Petrino","initials":"VP","image":"https://a.espncdn.com/i/headshots/mma/players/full/5060483.png","image_source":"espn","image_framing":"standard"}]},{"order":4,"label":"","weight_class":"Heavyweight","fighters":[{"name":"Kennedy Nzechukwu","initials":"KN","image":"https://a.espncdn.com/i/headshots/mma/players/full/4245094.png","image_source":"espn","image_framing":"standard"},{"name":"Shamil Gaziev","initials":"SG","image":"https://a.espncdn.com/i/headshots/mma/players/full/5145498.png","image_source":"espn","image_framing":"standard"}]},{"order":5,"label":"","weight_class":"Lightweight","fighters":[{"name":"Kody Steele","initials":"KS","image":"https://a.espncdn.com/i/headshots/mma/players/full/5212351.png","image_source":"espn","image_framing":"standard"},{"name":"Gauge Young","initials":"GY","image":"https://a.espncdn.com/i/headshots/mma/players/full/5085318.png","image_source":"espn","image_framing":"standard"}]}]},{"kind":"prelims","title":"Prelims","time":"5:00 PM ET","bouts":[{"order":6,"label":"","weight_class":"Women's Strawweight","fighters":[{"name":"Carli Judice","initials":"CJ","image":"https://a.espncdn.com/i/headshots/mma/players/full/5172179.png","image_source":"espn","image_framing":"standard"},{"name":"Jeisla Chaves","initials":"JC","image":"https://a.espncdn.com/i/headshots/mma/players/full/5308769.png","image_source":"espn","image_framing":"standard"}]},{"order":7,"label":"","weight_class":"Middleweight","fighters":[{"name":"Wes Schultz","initials":"WS","image":"https://a.espncdn.com/i/headshots/mma/players/full/5057023.png","image_source":"espn","image_framing":"standard"},{"name":"Jackson McVey","initials":"JM","image":"https://a.espncdn.com/i/headshots/mma/players/full/5291733.png","image_source":"espn","image_framing":"standard"}]},{"order":8,"label":"","weight_class":"Women's Strawweight","fighters":[{"name":"Shanelle Dyer","initials":"SD","image":"https://a.espncdn.com/i/headshots/mma/players/full/5157674.png","image_source":"espn","image_framing":"standard"},{"name":"Elise Reed","initials":"ER","image":"https://a.espncdn.com/i/headshots/mma/players/full/4836482.png","image_source":"espn","image_framing":"standard"}]}]}]}
+    {
+      "id": "rizin-rizin-landmark-17-in-chiba-2026-11-08",
+      "promotion_key": "rizin",
+      "promotion": "RIZIN",
+      "title": "RIZIN LANDMARK 17 in CHIBA",
+      "date": "2026-11-08",
+      "date_label": "Sunday · November 8, 2026",
+      "venue": "LaLa arena TOKYO-BAY",
+      "broadcast": "RIZIN 100 CLUB",
+      "official_url": "https://jp.rizinff.com/_ct/17852466",
+      "updated_label": "August 7, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Fight Card",
+          "time": "Time TBA",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Kleber Koike",
+                  "initials": "KK",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/08/07/7b27250af1cffbc7876b79ad11e1b2a57c0dfc42_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Kyoma Akimoto",
+                  "initials": "KA",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/11/26/bb96e1680f7327e2037610e6c49739ca9d373c15_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "",
+              "weight_class": "61.0 kg",
+              "fighters": [
+                {
+                  "name": "Shoko Sato",
+                  "initials": "SS",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/08/26/b417e641d3596eae441f508962fd2058b1740d5c_normal.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Patchy Mix",
+                  "initials": "PM",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/01/29/863b9e2f6fa5e1fac171562d376805dbb97cb924_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "57.0 kg",
+              "fighters": [
+                {
+                  "name": "Yuki Ito",
+                  "initials": "YI",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2022/05/31/bf7481e33c93b549bd12f8097b1768dba737e1ea_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Alibek Gadzhammatov",
+                  "initials": "AG",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/10/07/224ebd3158742d09afe47a3ea992212165cf543d_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "120.0 kg",
+              "fighters": [
+                {
+                  "name": "Mikio Ueda",
+                  "initials": "MU",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/03/02/33ba3f25315ee6a21aaf083ef9b35a70321385d2_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "King Edokpolo",
+                  "initials": "KE",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/11/16/5fcbb7810e5e392bd0ffd3f8d166d6ef170a59c4_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "120.0 kg",
+              "fighters": [
+                {
+                  "name": "スダリオ剛",
+                  "initials": "ス",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2020/12/01/ed7bf7a5023ade5510ece765c67142964c51a880_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Ryo Sakai",
+                  "initials": "RS",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2020/01/24/3337b667212356683e93dac5255ab0b5ffbf69a7_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Kazumasa Majima",
+                  "initials": "KM",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2021/07/21/e41dccd8bc5ed5cc493c2c6e87ceedaf9aabe87b_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Koji Takeda",
+                  "initials": "KT",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2021/05/10/92f593d84b6ef581f42f0b17cbd7469b4bd07f17_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "61.0 kg",
+              "fighters": [
+                {
+                  "name": "Joji Goto",
+                  "initials": "JG",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/08/25/d15fabc13357443d05152861d2332b0b5aab2de3_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Azizbek Temirov",
+                  "initials": "AT",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/03/03/e8815d01c705b2d1827ac68205792602aa5fe111_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "57.0 kg",
+              "fighters": [
+                {
+                  "name": "Joe Hiramoto",
+                  "initials": "JH",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/12/10/550b01bc5c7e3f052428a05eccd634d8c1ff2865_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "JOLLY",
+                  "initials": "J",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/11/20/a5c75a823b6375520af0c1ed13c6332257315bf5_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "69.0 kg",
+              "fighters": [
+                {
+                  "name": "Naoki",
+                  "initials": "N",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/07/09/be7ad9489a211b84db214f2f57eeb7188e33e845_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Issa Hosokawa",
+                  "initials": "IH",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/12/22/e60650476b843559fc24bb2f027b1a0e13a99f64_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Arata Mizuno",
+                  "initials": "AM",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2020/12/01/ed7bf7a5023ade5510ece765c67142964c51a880_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Kaiwen Li",
+                  "initials": "KL",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/03/30/e8d8d516fc9a31e7d92a1ee7e808125a239f6151_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   ]
 }
