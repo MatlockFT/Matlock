@@ -9,6 +9,7 @@ on:
       - ".github/workflows/update-upcoming-ufc-events.yml"
       - "scripts/update-upcoming-events.mjs"
       - "scripts/update-pfl-upcoming-events.mjs"
+      - "scripts/update-rizin-upcoming-events.mjs"
       - "scripts/insert-current-pfl-charlotte.mjs"
       - "scripts/resolve-espn-fighter-portraits.mjs"
       - "scripts/enrich-fighter-portraits.mjs"
@@ -32,7 +33,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
 
     steps:
       - name: Check out repository
@@ -50,6 +51,9 @@ jobs:
 
       - name: Read PFL event cards
         run: node scripts/update-pfl-upcoming-events.mjs
+
+      - name: Read RIZIN event cards
+        run: node scripts/update-rizin-upcoming-events.mjs
 
       - name: Ensure current PFL Charlotte card
         run: node scripts/insert-current-pfl-charlotte.mjs
