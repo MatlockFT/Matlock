@@ -9,12 +9,116 @@ page_scripts:
   - /assets/upcoming-events.js
 ---
 
+<style>
+  .recent-card-changes {
+    margin: 0 0 1rem;
+    border: 1px solid #3f3f3f;
+    background: #080808;
+    color: #fff;
+  }
+  .recent-card-changes-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: .7rem;
+    padding: .48rem .58rem;
+    border-bottom: 1px solid #3f3f3f;
+    background: #050505;
+  }
+  .recent-card-changes-header h2 {
+    margin: 0;
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: clamp(.95rem, 2vw, 1.25rem);
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .recent-card-changes-header span {
+    color: #8f8f8f;
+    font-family: "Courier New", monospace;
+    font-size: .45rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .recent-card-changes-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .recent-card-change {
+    display: grid;
+    grid-template-columns: 5.1rem minmax(0, 1fr);
+    gap: .5rem;
+    padding: .4rem .58rem;
+  }
+  .recent-card-change + .recent-card-change {
+    border-top: 1px solid #252525;
+  }
+  .recent-card-change-meta {
+    color: #9d9d9d;
+    font-family: "Courier New", monospace;
+    font-size: .43rem;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .recent-card-change-summary {
+    margin: 0;
+    color: #d8d8d8;
+    font-family: "Courier New", monospace;
+    font-size: .56rem;
+    line-height: 1.35;
+  }
+  .recent-card-change-summary a {
+    color: #fff;
+    text-decoration: none;
+  }
+  .recent-card-change-summary a:hover,
+  .recent-card-change-summary a:focus-visible {
+    text-decoration: underline;
+  }
+  @media (max-width: 520px) {
+    .recent-card-change {
+      grid-template-columns: 1fr;
+      gap: .16rem;
+    }
+  }
+</style>
+
 <article class="upcoming-events-page">
   <header class="upcoming-events-header">
     <p class="upcoming-events-kicker">Fight Calendar</p>
     <h1>Upcoming Events</h1>
     <p>Next event first. Bouts are shown in current card order.</p>
   </header>
+
+  {% assign recent_changes = site.data.upcoming_events_changes.changes %}
+  {% if recent_changes and recent_changes.size > 0 %}
+    <section class="recent-card-changes" aria-labelledby="recent-card-changes-title">
+      <header class="recent-card-changes-header">
+        <h2 id="recent-card-changes-title">Recent Card Changes</h2>
+        <span>Latest updates</span>
+      </header>
+      <ol class="recent-card-changes-list">
+        {% for change in recent_changes limit:8 %}
+          <li class="recent-card-change">
+            <div class="recent-card-change-meta">
+              <div>{{ change.promotion }}</div>
+              <time datetime="{{ change.at }}">{{ change.at | date: "%b %-d · %-I:%M %p" }}</time>
+            </div>
+            <p class="recent-card-change-summary">
+              {% if change.type == 'event_removed' %}
+                {{ change.summary }}
+              {% else %}
+                <a href="#{{ change.event_id }}-title">{{ change.summary }}</a>
+              {% endif %}
+            </p>
+          </li>
+        {% endfor %}
+      </ol>
+    </section>
+  {% endif %}
 
   <div class="upcoming-events-list">
     {% for event in site.data.upcoming_events.events %}
