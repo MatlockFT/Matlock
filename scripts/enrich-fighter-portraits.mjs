@@ -79,8 +79,8 @@ async function resolveFromPfl(name,eventHtml='') {
 }
 function sourceFor(url) {
   if (/espncdn\.com/i.test(url)) return 'espn';
-  if (/pflmma\.com|pfl-cdn|cloudfront/i.test(url)) return 'pfl';
   if (/rizin|d1uzk9o9cg136f\.cloudfront\.net/i.test(url)) return 'rizin';
+  if (/pflmma\.com|pfl-cdn/i.test(url)) return 'pfl';
   return 'external';
 }
 const framingFor = source => source==='espn' ? 'standard' : 'safe';
