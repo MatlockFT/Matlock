@@ -10,6 +10,7 @@ on:
       - "scripts/update-upcoming-events.mjs"
       - "scripts/update-pfl-upcoming-events.mjs"
       - "scripts/insert-current-pfl-charlotte.mjs"
+      - "scripts/resolve-espn-fighter-portraits.mjs"
       - "scripts/enrich-fighter-portraits.mjs"
       - "scripts/publish-fighter-portraits.mjs"
       - "_data/fighter_portraits.json"
@@ -49,6 +50,9 @@ jobs:
 
       - name: Ensure current PFL Charlotte card
         run: node scripts/insert-current-pfl-charlotte.mjs
+
+      - name: Resolve ESPN portraits by fighter name
+        run: node scripts/resolve-espn-fighter-portraits.mjs
 
       - name: Resolve and frame fighter portraits
         run: node scripts/enrich-fighter-portraits.mjs
