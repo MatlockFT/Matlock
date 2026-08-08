@@ -78,6 +78,33 @@ page_scripts:
   .recent-card-change-summary a:focus-visible {
     text-decoration: underline;
   }
+
+  /* Matte black griptape / dusty chalkboard portrait surface. */
+  .fighter-photo {
+    background:
+      radial-gradient(circle at 18% 24%, rgba(255,255,255,.055) 0 .7px, transparent .9px) 0 0 / 4px 4px,
+      radial-gradient(circle at 74% 63%, rgba(255,255,255,.035) 0 .65px, transparent .85px) 1px 2px / 5px 5px,
+      radial-gradient(ellipse at 35% 28%, rgba(255,255,255,.055), transparent 34%),
+      radial-gradient(ellipse at 78% 74%, rgba(255,255,255,.025), transparent 38%),
+      linear-gradient(176deg, #151515 0%, #0d0d0d 52%, #090909 100%);
+  }
+
+  .fighter-photo::before {
+    background:
+      repeating-linear-gradient(174deg, transparent 0 18px, rgba(255,255,255,.018) 19px, transparent 20px 37px),
+      linear-gradient(103deg, transparent 0 31%, rgba(255,255,255,.025) 31.4% 31.8%, transparent 32.2% 68%, rgba(255,255,255,.015) 68.3% 68.6%, transparent 69%),
+      radial-gradient(ellipse at 14% 78%, rgba(210,210,210,.045), transparent 24%),
+      radial-gradient(ellipse at 86% 18%, rgba(210,210,210,.03), transparent 21%);
+    opacity: .78;
+  }
+
+  .fighter-photo::after {
+    height: 24%;
+    background:
+      radial-gradient(ellipse at 38% 100%, rgba(220,220,220,.045), transparent 43%),
+      linear-gradient(to top, rgba(0,0,0,.46), transparent);
+  }
+
   @media (max-width: 520px) {
     .recent-card-change {
       grid-template-columns: 1fr;
