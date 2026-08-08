@@ -2,7 +2,7 @@ import { dateLabel, fighter, loadData, loadPortraitCache, mergePromotion, portra
 
 const SCHEDULE='https://jp.rizinff.com/_ct/17813466';
 const ORIGIN='https://jp.rizinff.com';
-const UA='Mozilla/5.0 (compatible; MMAMatlockRizinUpdater/3.2; +https://matlockfighttalk.com/)';
+const UA='Mozilla/5.0 (compatible; MMAMatlockRizinUpdater/3.3; +https://matlockfighttalk.com/)';
 const MAX_DAYS=240;
 const TRUSTED_IMAGE=/^https:\/\/d1uzk9o9cg136f\.cloudfront\.net\//i;
 
@@ -36,7 +36,25 @@ function startTime(html,date){const m=text(html).match(/(?:／|\s)(\d{1,2}):(\d{
 function eventTitle(html){const h=(html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)||[])[1]||'';return text(h).replace(/\s*大会情報[／/]チケット.*$/,'').replace(/^超RIZIN/i,'Super RIZIN').trim()||'RIZIN Event';}
 function venue(html){const m=html.match(/<h3\b[^>]*>\s*会場\s*<\/h3>[\s\S]{0,900}?<a\b[^>]*>([\s\S]*?)<\/a>/i);if(m)return text(m[1]);const f=text(html).match(/会場\s+([^。]{2,80}?)(?=\s+(?:アクセス|電車|バス|主催|Google|〒))/);return f?f[1].trim():'Venue TBA';}
 function broadcast(html){const p=text(html),names=['RIZIN 100 CLUB','RIZIN LIVE','ABEMA','U-NEXT','スカパー！','Sky PerfecTV'];return [...new Set(names.filter(n=>p.includes(n)).map(n=>n==='スカパー！'?'Sky PerfecTV':n))].join(' · ')||'RIZIN PPV';}
-const cardUrls=html=>{const cut=html.indexOf('大会関連情報');const primary=cut>0?html.slice(0,cut):html;return links(primary,/対戦カード/).filter(u=>/_ct\/\d+/.test(u));};
+function cardUrls(html,eventUrl){
+  const related=html.search(/<h2\b[^>]*>\s*大会関連情報\s*<\/h2>/i);
+  const primary=related>=0?html.slice(0,related):html;
+  const out=[];
+  const current=new URL(eventUrl,ORIGIN);
+  current.search='';current.hash='';
+  for(const m of primary.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)){
+    if(!/対戦カード/.test(text(m[2])))continue;
+    const raw=decode((m[1].match(/href=["']([^"']+)["']/i)||[])[1]||'').trim();
+    if(!raw||raw.startsWith('#'))continue;
+    try{
+      const u=new URL(raw,ORIGIN);u.search='';u.hash='';
+      if(!/_ct\/\d+/.test(u.pathname))continue;
+      if(u.origin===current.origin&&u.pathname===current.pathname)continue;
+      out.push(u.toString());
+    }catch{}
+  }
+  return [...new Set(out)];
+}
 function eventIdentity(title=''){
   const normalized=String(title).replace(/超RIZIN/gi,'Super RIZIN');
   let m=normalized.match(/RIZIN\s*LANDMARK\s*(\d+)/i);if(m)return{type:'landmark',number:m[1]};
@@ -88,7 +106,7 @@ for(const url of eventUrls){
   try{
     const page=await get(url),date=eventDate(page);if(!date)continue;const days=(Date.UTC(date.year,date.month-1,date.day,12)-Date.now())/86400000;if(days<-1||days>MAX_DAYS)continue;
     const title=eventTitle(page);let ch='',matchedCardUrl='';
-    for(const cu of cardUrls(page)){
+    for(const cu of cardUrls(page,url)){
       try{const candidate=await get(cu);if(cardMatchesEvent(candidate,title)){ch=candidate;matchedCardUrl=cu;break;}}catch{}
     }
     if(!ch){console.warn(`RIZIN skip ${url}: no event-matching published fight card found`);continue;}
