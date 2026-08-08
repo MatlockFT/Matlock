@@ -36,6 +36,10 @@ jobs:
           node --check scripts/resolve-espn-fighter-portraits.mjs
           node --check scripts/enrich-fighter-portraits.mjs
           node --check scripts/publish-fighter-portraits.mjs
+          node --check scripts/validate-upcoming-events.mjs
+
+      - name: Snapshot current Events page
+        run: cp upcoming-events.html /tmp/upcoming-events.before.html
 
       - name: Read UFC event cards
         run: node scripts/update-upcoming-ufc-events.mjs
@@ -56,11 +60,20 @@ jobs:
       - name: Publish fighter portrait cache
         run: node scripts/publish-fighter-portraits.mjs
 
+      - name: Validate candidate Events page
+        id: validate_events
+        shell: bash
+        run: node scripts/validate-upcoming-events.mjs /tmp/upcoming-events.before.html upcoming-events.html
+
+      - name: Restore Events page after validation failure
+        if: ${{ failure() && steps.validate_events.outcome == 'failure' }}
+        run: cp /tmp/upcoming-events.before.html upcoming-events.html
+
       - name: Commit event and portrait changes
         shell: bash
         run: |
           set -euo pipefail
-          changed="$(git status --porcelain -- upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json _data/ufc_events.json || true)"
+          changed="$(git status --porcelain -- upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json || true)"
           if [ -z "$changed" ]; then
             echo "No MMA card or portrait changes."
             exit 0
@@ -68,8 +81,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json
-          if git ls-files --error-unmatch _data/ufc_events.json >/dev/null 2>&1 || [ -e _data/ufc_events.json ]; then
-            git add -A -- _data/ufc_events.json
-          fi
           git commit -m "Refresh upcoming MMA cards and portraits"
           git push origin HEAD:main
