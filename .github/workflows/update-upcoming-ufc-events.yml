@@ -56,7 +56,10 @@ jobs:
       - name: Read PFL event cards
         run: node scripts/update-pfl-upcoming-events.mjs
 
+      # Temporarily paused after RIZIN profile pages exposed analytics images as <img> tags.
+      # Keep the last known-good RIZIN card in the page/data until the source parser is hardened.
       - name: Read RIZIN event cards
+        if: ${{ false }}
         run: node scripts/update-rizin-upcoming-events.mjs
 
       - name: Resolve ESPN portraits by fighter name
