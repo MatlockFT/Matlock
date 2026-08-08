@@ -260,36 +260,35 @@
 
         upcomingEventsList.querySelectorAll("img[data-fighter-photo]").forEach(preparePortrait);
 
-        // upcoming-events.js injects its legacy zine background with !important after
-        // the static page CSS loads. Apply the final portrait surface after the window
-        // load event so the intended gripboard/chalkboard treatment wins both on-screen
-        // and when html2canvas captures the card for JPEG export.
+        // upcoming-events.js injects legacy portrait styling after the static CSS.
+        // Apply the final background after load so this remains the winning rule.
         window.addEventListener("load", () => {
             const portraitStyle = document.createElement("style");
-            portraitStyle.dataset.portraitBackground = "gripboard-v2";
+            portraitStyle.dataset.portraitBackground = "black-griptape-v3";
             portraitStyle.textContent = `
                 body .upcoming-events-page .upcoming-event-card .fighter-photo {
-                    background:
-                        linear-gradient(rgba(5,5,5,.08), rgba(0,0,0,.18)),
-                        url('/assets/fighter-gripboard.svg') center / cover no-repeat,
-                        #090909 !important;
+                    background: #010101 !important;
                 }
 
                 body .upcoming-events-page .upcoming-event-card .fighter-photo::before {
                     z-index: 0 !important;
                     background:
-                        radial-gradient(ellipse at 22% 31%, rgba(225,225,225,.045), transparent 31%),
-                        radial-gradient(ellipse at 77% 72%, rgba(205,205,205,.028), transparent 36%),
-                        linear-gradient(166deg, transparent 0 29%, rgba(235,235,235,.018) 29.4% 29.8%, transparent 30.2% 72%, rgba(220,220,220,.014) 72.4% 72.8%, transparent 73.2%) !important;
-                    opacity: .68 !important;
+                        linear-gradient(164deg, transparent 0 18%, rgba(255,255,255,.05) 18.25% 18.45%, transparent 18.75% 67%, rgba(255,255,255,.035) 67.25% 67.45%, transparent 67.8%),
+                        radial-gradient(ellipse at 19% 27%, rgba(255,255,255,.07), transparent 30%),
+                        radial-gradient(ellipse at 82% 74%, rgba(255,255,255,.05), transparent 33%),
+                        url('/assets/fighter-gripboard.svg') center / cover no-repeat !important;
+                    opacity: .13 !important;
+                    mix-blend-mode: screen !important;
                 }
 
                 body .upcoming-events-page .upcoming-event-card .fighter-photo::after {
                     position: absolute !important;
-                    inset: auto 0 0 !important;
+                    inset: 0 !important;
                     z-index: 2 !important;
-                    height: 22% !important;
-                    background: linear-gradient(to top, rgba(0,0,0,.42), transparent) !important;
+                    height: auto !important;
+                    background:
+                        radial-gradient(ellipse at center, transparent 48%, rgba(0,0,0,.34) 100%),
+                        linear-gradient(to top, rgba(0,0,0,.62), transparent 26%) !important;
                     opacity: 1 !important;
                 }
             `;
