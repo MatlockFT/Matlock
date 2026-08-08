@@ -68,17 +68,25 @@ jobs:
       - name: Publish fighter portrait cache
         run: node scripts/publish-fighter-portraits.mjs
 
+      - name: Retire legacy UFC event data
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! grep -q 'site\.data\.ufc_events' upcoming-events.html; then
+            rm -f _data/ufc_events.json
+          fi
+
       - name: Commit event and portrait changes
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json; then
+          if git diff --quiet -- upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json _data/ufc_events.json; then
             echo "No MMA card or portrait changes."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json
+          git add -A -- upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json _data/ufc_events.json
           git commit -m "Refresh upcoming MMA cards and portraits"
           git push origin HEAD:main
