@@ -93,8 +93,7 @@ export async function mergePromotion(promotionKey, candidateEvents, { maxEventDr
     console.warn(`${promotionKey.toUpperCase()}: no valid current candidate events; preserving existing data.`);
     return false;
   }
-  const allowedEventDrop = promotionKey === 'rizin' ? Math.max(maxEventDrop, 2) : maxEventDrop;
-  if (current.length && candidates.length < Math.max(1, current.length - allowedEventDrop)) {
+  if (current.length && candidates.length < Math.max(1, current.length - maxEventDrop)) {
     console.warn(`${promotionKey.toUpperCase()}: candidate event count ${candidates.length} is below safety floor for ${current.length}; preserving existing data.`);
     return false;
   }
