@@ -17,9 +17,6 @@ function easternClock(now = new Date()) {
   return { date: `${parts.year}-${parts.month}-${parts.day}`, hour: Number(parts.hour) };
 }
 
-// Keep an event through the overnight hours after its listed date. This avoids
-// removing late-running cards at midnight while still clearing yesterday's
-// events from an Upcoming Events page by the following morning.
 export function eventIsCurrent(event, now = new Date()) {
   if (!event?.date) return false;
   const clock = easternClock(now);
@@ -96,7 +93,8 @@ export async function mergePromotion(promotionKey, candidateEvents, { maxEventDr
     console.warn(`${promotionKey.toUpperCase()}: no valid current candidate events; preserving existing data.`);
     return false;
   }
-  if (current.length && candidates.length < Math.max(1, current.length - maxEventDrop)) {
+  const allowedEventDrop = promotionKey === 'rizin' ? Math.max(maxEventDrop, 2) : maxEventDrop;
+  if (current.length && candidates.length < Math.max(1, current.length - allowedEventDrop)) {
     console.warn(`${promotionKey.toUpperCase()}: candidate event count ${candidates.length} is below safety floor for ${current.length}; preserving existing data.`);
     return false;
   }
