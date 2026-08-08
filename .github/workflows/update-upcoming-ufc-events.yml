@@ -13,8 +13,11 @@ on:
       - "scripts/resolve-espn-fighter-portraits.mjs"
       - "scripts/enrich-fighter-portraits.mjs"
       - "scripts/publish-fighter-portraits.mjs"
+      - "scripts/patch-portrait-framing.mjs"
       - "_data/fighter_portraits.json"
       - "assets/fighter-portraits.json"
+      - "assets/site.js"
+      - "_config.yml"
       - "upcoming-events.html"
   schedule:
     - cron: "7,22,37,52 * * * *"
@@ -60,17 +63,20 @@ jobs:
       - name: Publish fighter portrait cache
         run: node scripts/publish-fighter-portraits.mjs
 
-      - name: Commit card and portrait changes
+      - name: Balance standard and safe portrait framing
+        run: node scripts/patch-portrait-framing.mjs
+
+      - name: Commit card, portrait and framing changes
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json; then
-            echo "No MMA card or portrait changes."
+          if git diff --quiet -- upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json assets/site.js _config.yml; then
+            echo "No MMA card, portrait or framing changes."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json
+          git add upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json assets/site.js _config.yml
           git commit -m "Refresh upcoming MMA cards and portraits"
           git push origin HEAD:main
