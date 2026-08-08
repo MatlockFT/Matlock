@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 
 const path = 'assets/site.js';
+const configPath = '_config.yml';
 const original = await fs.readFile(path, 'utf8');
 
 const before = `        const applyPortraitFraming = image => {
@@ -59,4 +60,9 @@ if (!original.includes(before)) {
 }
 
 await fs.writeFile(path, original.replace(before, after));
-console.log('Updated portrait framing rules.');
+
+const config = await fs.readFile(configPath, 'utf8');
+const bumped = config.replace(/asset_version:\s*"(\d+)"/, (_, value) => `asset_version: "${Number(value) + 1}"`);
+if (bumped !== config) await fs.writeFile(configPath, bumped);
+
+console.log('Updated portrait framing rules and bumped asset version.');
