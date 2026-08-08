@@ -155,4 +155,81 @@
         image.addEventListener("error", removeBrokenImage);
         if (image.complete && image.naturalWidth === 0) removeBrokenImage();
     });
+
+    const upcomingEventsList = document.querySelector(".upcoming-events-list");
+    if (upcomingEventsList) {
+        const normalizeFighterName = value => (value || "")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()
+            .replace(/\b(jr|sr|ii|iii|iv)\b/g, "")
+            .replace(/[^a-z0-9]+/g, " ")
+            .trim();
+
+        const applyPortraitFraming = image => {
+            if (!image?.naturalWidth || !image?.naturalHeight) return;
+            const ratio = image.naturalWidth / image.naturalHeight;
+            const framing = image.dataset.portraitFraming || "standard";
+            const unusual = ratio < 0.62 || ratio > 1.35;
+
+            if (framing === "safe" || unusual) {
+                image.style.objectFit = "contain";
+                image.style.objectPosition = "50% 12%";
+                image.style.transform = unusual ? "scale(1.02)" : "scale(1.08)";
+                image.style.transformOrigin = "50% 18%";
+            }
+        };
+
+        const preparePortrait = image => {
+            const frame = image.closest(".fighter-photo");
+            if (!frame) return;
+            const fail = () => {
+                frame.classList.add("photo-missing");
+                image.remove();
+            };
+            const ready = () => {
+                frame.classList.remove("photo-missing");
+                applyPortraitFraming(image);
+            };
+            image.addEventListener("load", ready, { once: true });
+            image.addEventListener("error", fail, { once: true });
+            if (image.complete) {
+                if (image.naturalWidth > 0) ready();
+                else fail();
+            }
+        };
+
+        fetch("/assets/fighter-portraits.json", { cache: "no-cache" })
+            .then(response => response.ok ? response.json() : Promise.reject())
+            .then(portraits => {
+                upcomingEventsList.querySelectorAll(".fighter").forEach(fighter => {
+                    const name = fighter.querySelector(".fighter-name")?.textContent?.trim();
+                    const key = normalizeFighterName(name);
+                    const hit = portraits[key];
+                    const frame = fighter.querySelector(".fighter-photo");
+                    if (!hit?.url || !frame) return;
+
+                    let image = frame.querySelector("img[data-fighter-photo]");
+                    if (!image) {
+                        image = document.createElement("img");
+                        image.setAttribute("data-fighter-photo", "");
+                        image.alt = name || "Fighter portrait";
+                        image.loading = fighter.closest(".bout-card-featured") ? "eager" : "lazy";
+                        image.decoding = "async";
+                        image.referrerPolicy = "no-referrer";
+                        frame.appendChild(image);
+                    }
+
+                    if (!image.src || frame.classList.contains("photo-missing")) {
+                        image.src = hit.url;
+                    }
+                    image.dataset.portraitSource = hit.source || "cache";
+                    image.dataset.portraitFraming = hit.framing || "standard";
+                    preparePortrait(image);
+                });
+            })
+            .catch(() => {});
+
+        upcomingEventsList.querySelectorAll("img[data-fighter-photo]").forEach(preparePortrait);
+    }
 })();
