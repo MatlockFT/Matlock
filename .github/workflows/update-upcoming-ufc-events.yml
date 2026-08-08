@@ -8,6 +8,7 @@ on:
     paths:
       - ".github/workflows/update-upcoming-ufc-events.yml"
       - "scripts/update-upcoming-events.mjs"
+      - "scripts/update-pfl-upcoming-events.mjs"
       - "upcoming-events.html"
   schedule:
     - cron: "7,22,37,52 * * * *"
@@ -35,8 +36,11 @@ jobs:
         with:
           node-version: 22
 
-      - name: Read UFC and PFL event cards
-        run: node scripts/update-upcoming-events.mjs
+      - name: Read UFC event cards
+        run: node scripts/update-upcoming-ufc-events.mjs
+
+      - name: Read PFL event cards
+        run: node scripts/update-pfl-upcoming-events.mjs
 
       - name: Commit card changes
         shell: bash
