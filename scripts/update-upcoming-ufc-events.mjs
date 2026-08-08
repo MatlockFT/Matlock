@@ -188,7 +188,7 @@ function removeOldDataLoop(inner) {
   throw new Error('Found legacy UFC data loop but could not find its matching endfor.');
 }
 function cardDate(card) { return (card.match(/<time\s+datetime=["'](\d{4}-\d{2}-\d{2})["']/i) || [])[1] || '9999-12-31'; }
-function isUfc(card) { return /data-auto-promotion=["']ufc["']/i.test(card) || /<p\s+class=["']event-promotion["']>\s*(?:UFC|Noche UFC|UFC Noche)/i.test(card); }
+function isUfc(card) { return /data-auto-promotion=["']ufc["']/i.test(card) || /<p\s+class=["']event-promotion["']>\s*(?:UFC(?:\s+(?:Fight\s+Night|\d+|Noche))?|Noche\s+UFC)\s*<\/p>/i.test(card); }
 
 const original = await fs.readFile(TARGET, 'utf8');
 const photos = existingPortraits(original);
