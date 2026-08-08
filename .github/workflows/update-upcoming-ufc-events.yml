@@ -10,7 +10,6 @@ on:
       - "scripts/update-upcoming-ufc-events.mjs"
       - "scripts/update-pfl-upcoming-events.mjs"
       - "scripts/update-rizin-upcoming-events.mjs"
-      - "scripts/insert-current-pfl-charlotte.mjs"
       - "scripts/resolve-espn-fighter-portraits.mjs"
       - "scripts/enrich-fighter-portraits.mjs"
       - "scripts/publish-fighter-portraits.mjs"
@@ -40,6 +39,17 @@ jobs:
         with:
           node-version: 22
 
+      - name: Validate updater syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check scripts/update-upcoming-ufc-events.mjs
+          node --check scripts/update-pfl-upcoming-events.mjs
+          node --check scripts/update-rizin-upcoming-events.mjs
+          node --check scripts/resolve-espn-fighter-portraits.mjs
+          node --check scripts/enrich-fighter-portraits.mjs
+          node --check scripts/publish-fighter-portraits.mjs
+
       - name: Read UFC event cards
         run: node scripts/update-upcoming-ufc-events.mjs
 
@@ -48,9 +58,6 @@ jobs:
 
       - name: Read RIZIN event cards
         run: node scripts/update-rizin-upcoming-events.mjs
-
-      - name: Ensure current PFL Charlotte card
-        run: node scripts/insert-current-pfl-charlotte.mjs
 
       - name: Resolve ESPN portraits by fighter name
         run: node scripts/resolve-espn-fighter-portraits.mjs
