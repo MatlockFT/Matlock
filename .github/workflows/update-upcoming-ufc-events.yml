@@ -2,6 +2,21 @@ name: Update upcoming MMA events
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/update-upcoming-ufc-events.yml"
+      - "scripts/upcoming-events-data.mjs"
+      - "scripts/update-upcoming-ufc-events.mjs"
+      - "scripts/update-pfl-upcoming-events.mjs"
+      - "scripts/update-rizin-upcoming-events.mjs"
+      - "scripts/resolve-espn-fighter-portraits.mjs"
+      - "scripts/enrich-fighter-portraits.mjs"
+      - "scripts/publish-fighter-portraits.mjs"
+      - "scripts/validate-upcoming-events.mjs"
+  schedule:
+    - cron: "7,22,37,52 * * * *"
 
 permissions:
   contents: write
