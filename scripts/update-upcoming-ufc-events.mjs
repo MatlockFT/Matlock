@@ -178,23 +178,15 @@ function listBounds(html) {
   throw new Error('Could not find end of upcoming-events-list');
 }
 
-function removeOldDataLoop(inner) {
-  const tagRe = /\{%\s*(for|endfor)\b([^%]*)%\}/gi;
-  const tags = [...inner.matchAll(tagRe)];
-  const startIndex = tags.findIndex(m => m[1].toLowerCase() === 'for' && /event\s+in\s+site\.data\.ufc_events\.events/i.test(m[2]));
-  if (startIndex < 0) return inner;
-  let depth = 0;
-  for (let i = startIndex; i < tags.length; i += 1) {
-    depth += tags[i][1].toLowerCase() === 'for' ? 1 : -1;
-    if (depth === 0) return inner.slice(0, tags[startIndex].index) + inner.slice(tags[i].index + tags[i][0].length);
-  }
-  return inner;
-}
-
 const cardDate = c => (c.match(/<time\s+datetime=["'](\d{4}-\d{2}-\d{2})["']/i) || [])[1] || '9999-12-31';
 const isUfc = c => /data-auto-promotion=["']ufc["']/i.test(c) || /<p\s+class=["']event-promotion["']>\s*(?:UFC(?:\s+(?:\d+|Fight Night|Noche))?|Noche UFC)\s*<\/p>/i.test(c);
 
 const original = await fs.readFile(TARGET, 'utf8');
+if (/\{%\s*for\s+event\s+in\s+site\.data\.ufc_events\.events\s*%\}/i.test(original)) {
+  console.warn('Legacy UFC Liquid loop is still present; UFC writer is intentionally read-only until that migration is replaced safely.');
+  process.exit(0);
+}
+
 const photos = existingPortraits(original);
 let urls = [];
 try {
@@ -225,7 +217,7 @@ if (!unique.length) {
 }
 
 const { start, end } = listBounds(original);
-let inner = removeOldDataLoop(original.slice(start, end));
+const inner = original.slice(start, end);
 const cardRe = /<section\b[^>]*class=["'][^"']*\bupcoming-event-card\b[^"']*["'][^>]*>[\s\S]*?<\/section>/gi;
 const existingCards = [...inner.matchAll(cardRe)].map(m => m[0]);
 const oldUfcCount = existingCards.filter(isUfc).length;
