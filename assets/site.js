@@ -2,7 +2,7 @@
     const typographyStylesheet = document.createElement("link");
     typographyStylesheet.rel = "stylesheet";
     typographyStylesheet.href = "/assets/typography-fixes.css?v=1";
-    document.head.append(typographyStylesheet);
+    document.head.appendChild(typographyStylesheet);
 
     const navigationToggle = document.getElementById("navigation-toggle");
     const navigationList = document.getElementById("navigation-list");
@@ -168,16 +168,35 @@
 
         const applyPortraitFraming = image => {
             if (!image?.naturalWidth || !image?.naturalHeight) return;
+
             const ratio = image.naturalWidth / image.naturalHeight;
             const framing = image.dataset.portraitFraming || "standard";
-            const unusual = ratio < 0.62 || ratio > 1.35;
+            const source = image.dataset.portraitSource || "";
+            const src = image.currentSrc || image.src || "";
+            const standardEspn = source === "espn" || /a\.espncdn\.com\/i\/headshots\/mma\/players\/full\//i.test(src);
 
-            if (framing === "safe" || unusual) {
+            const restoreStandardCrop = () => {
+                image.style.removeProperty("object-fit");
+                image.style.removeProperty("object-position");
+                image.style.removeProperty("transform");
+                image.style.removeProperty("transform-origin");
+            };
+
+            if (framing === "standard" && standardEspn) {
+                restoreStandardCrop();
+                return;
+            }
+
+            const extremeRatio = ratio < 0.46 || ratio > 1.75;
+            if (framing === "safe" || extremeRatio) {
                 image.style.objectFit = "contain";
                 image.style.objectPosition = "50% 12%";
-                image.style.transform = unusual ? "scale(1.02)" : "scale(1.08)";
+                image.style.transform = extremeRatio ? "scale(1.02)" : "scale(1.08)";
                 image.style.transformOrigin = "50% 18%";
+                return;
             }
+
+            restoreStandardCrop();
         };
 
         const preparePortrait = image => {
