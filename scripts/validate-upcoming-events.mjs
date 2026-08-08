@@ -15,13 +15,19 @@ function eventKey(e){return`${e.promotion_key}|${e.official_url||e.id}`;}
 function validateData(data,label){
   if(!data||!Array.isArray(data.events)){failures.push(`${label}: events must be an array.`);return;}
   if(data.schema_version!==1)failures.push(`${label}: unsupported schema_version ${data.schema_version}.`);
-  const ids=new Set(),keys=new Set();
+  const ids=new Set(),keys=new Set(),cardSources=new Map();
   for(const event of data.events){
     if(!event||!event.id||!event.title||!/^20\d{2}-\d{2}-\d{2}$/.test(event.date||''))failures.push(`${label}: event missing id/title/date.`);
     if(!/^(ufc|pfl|rizin)$/.test(event.promotion_key||''))failures.push(`${label}: ${event.id||'event'} has invalid promotion_key.`);
     if(ids.has(event.id))failures.push(`${label}: duplicate event id ${event.id}.`);ids.add(event.id);
     const key=eventKey(event);if(keys.has(key))failures.push(`${label}: duplicate promotion/source event ${key}.`);keys.add(key);
     if(!event.official_url||!/^https?:\/\//i.test(event.official_url))failures.push(`${label}: ${event.id} missing official URL.`);
+    if(event.source_card_url){
+      const sourceKey=`${event.promotion_key}|${event.source_card_url}`;
+      const prior=cardSources.get(sourceKey);
+      if(prior&&prior!==event.id)failures.push(`${label}: ${event.id} reuses fight-card source ${event.source_card_url} already assigned to ${prior}.`);
+      else cardSources.set(sourceKey,event.id);
+    }
     if(!Array.isArray(event.sections)||!event.sections.length){failures.push(`${label}: ${event.id} has no sections.`);continue;}
     const bouts=event.sections.flatMap(s=>s.bouts||[]);if(!bouts.length)failures.push(`${label}: ${event.id} has no bouts.`);
     const orders=new Set();
