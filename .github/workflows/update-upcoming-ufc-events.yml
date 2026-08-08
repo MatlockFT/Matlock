@@ -1,0 +1,54 @@
+name: Update upcoming UFC events
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/update-upcoming-ufc-events.yml"
+      - "scripts/update-upcoming-ufc-events.mjs"
+      - "upcoming-events.html"
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: upcoming-ufc-events
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Read official UFC event cards
+        run: node scripts/update-upcoming-ufc-events.mjs
+
+      - name: Commit card changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- upcoming-events.html; then
+            echo "No UFC card changes."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add upcoming-events.html
+          git commit -m "Refresh upcoming UFC event cards"
+          git push origin HEAD:main
