@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 const TARGET = 'upcoming-events.html';
 const CACHE_PATH = '_data/fighter_portraits.json';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockPortraitResolver/2.0; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockPortraitResolver/2.1; +https://matlockfighttalk.com/)';
 const TIMEOUT = 8000;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -12,6 +12,7 @@ const norm = (s='') => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLower
 const slug = s => norm(s).replace(/\s+/g,'-');
 const esc = (s='') => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const imageChecks = new Map();
+const badImageUrl = url => /(?:piwik|analytics|tracking|pixel|beacon|acs01\.rvlvr\.co|\/collect(?:\?|$)|google-analytics|googletagmanager)/i.test(String(url||''));
 
 async function fetchText(url) {
   let last;
@@ -27,14 +28,16 @@ async function fetchText(url) {
 }
 
 async function usableImage(url) {
-  if (!/^https?:\/\//i.test(url||'')) return false;
+  if (!/^https?:\/\//i.test(url||'') || badImageUrl(url)) return false;
   if (imageChecks.has(url)) return imageChecks.get(url);
   const check=(async()=>{
     try {
       let r=await fetch(url,{method:'HEAD',redirect:'follow',signal:AbortSignal.timeout(TIMEOUT),headers:{'user-agent':UA,accept:'image/*,*/*;q=0.8'}});
+      if (badImageUrl(r.url)) return false;
       if (!r.ok || !(r.headers.get('content-type')||'').toLowerCase().startsWith('image/')) {
         r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(TIMEOUT),headers:{'user-agent':UA,accept:'image/*,*/*;q=0.8',range:'bytes=0-2047'}});
       }
+      if (badImageUrl(r.url)) return false;
       if (!r.ok && r.status!==206) return false;
       const type=(r.headers.get('content-type')||'').toLowerCase();
       return type.startsWith('image/') || /\.(png|jpe?g|webp)(?:\?|$)/i.test(r.url);
@@ -51,10 +54,11 @@ function attrs(tag) {
 }
 function imageCandidates(html,name) {
   const n=norm(name), s=slug(name), out=[];
+  if (!n) return out;
   for (const m of html.matchAll(/<img\b[^>]*>/gi)) {
     const a=attrs(m[0]);
     const src=a.src||a['data-src']||a['data-lazy-src']||a.srcset?.split(',')[0]?.trim()?.split(/\s+/)[0]||'';
-    if (!src) continue;
+    if (!src || badImageUrl(src)) continue;
     const alt=norm(a.alt||''); let score=0;
     if (alt===n) score+=120; else if (alt && (alt.includes(n)||n.includes(alt))) score+=90;
     if (/fighter\s*(image|headshot|photo)/i.test(a.alt||'')) score+=45;
@@ -64,7 +68,7 @@ function imageCandidates(html,name) {
     if (score>20) try { out.push({url:new URL(src,'https://pflmma.com').toString(),score}); } catch {}
   }
   const og=(html.match(/<meta\b[^>]*(?:property|name)=["']og:image["'][^>]*content=["']([^"']+)["'][^>]*>/i)||[])[1];
-  if (og) out.push({url:decode(og),score:25});
+  if (og && !badImageUrl(og)) out.push({url:decode(og),score:25});
   return out.sort((a,b)=>b.score-a.score);
 }
 async function resolveFromPfl(name,eventHtml='') {
@@ -87,6 +91,9 @@ const framingFor = source => source==='espn' ? 'standard' : 'safe';
 
 const original=await fs.readFile(TARGET,'utf8');
 let cache={}; try { cache=JSON.parse(await fs.readFile(CACHE_PATH,'utf8')); } catch {}
+for (const [key,value] of Object.entries(cache)) {
+  if (!norm(key) || !value?.url || badImageUrl(value.url)) delete cache[key];
+}
 
 const pflNames=new Set();
 const eventPages=[];
@@ -115,7 +122,7 @@ for (const f of fighters) {
     const url=await resolveFromPfl(f.name,page?.html||'');
     if (url) { const source=sourceFor(url); hit={url,source,framing:framingFor(source)}; }
   }
-  if (hit) cache[key]=hit;
+  if (hit && key) cache[key]=hit;
   resolved.set(key,hit);
 }
 
