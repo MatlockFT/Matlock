@@ -110,12 +110,23 @@ async function fighterInfo(cardHtml,jpName,cache){
   return {name:jpName,image:''};
 }
 function parseFights(cardHtml){
-  const matches=[...cardHtml.matchAll(/<h2\b[^>]*>\s*第(\d+)試合[／/]\s*([^<]+?)\s+vs\.?\s+([^<]+?)\s*<\/h2>/gi)];
-  return matches.map((m,i)=>{
-    const end=matches[i+1]?.index??cardHtml.length; const chunk=cardHtml.slice(m.index,end);
+  const numbered=[...cardHtml.matchAll(/<h2\b[^>]*>\s*第(\d+)試合[／/]\s*([^<]+?)\s+vs\.?\s+([^<]+?)\s*<\/h2>/gi)];
+  if(numbered.length){
+    return numbered.map((m,i)=>{
+      const end=numbered[i+1]?.index??cardHtml.length; const chunk=cardHtml.slice(m.index,end);
+      const kg=(strip(chunk).match(/（\s*([0-9.]+)kg\s*）/)||[])[1]||'';
+      return {fightNo:+m[1],jp1:strip(m[2]),jp2:strip(m[3]),weight:kg?`${kg} kg`:'RIZIN MMA'};
+    }).sort((a,b)=>b.fightNo-a.fightNo);
+  }
+
+  // Current RIZIN card pages publish bouts as plain matchup H2s in card order,
+  // e.g. <h2>クレベル・コイケ vs. 秋元強真</h2>, with the weight immediately below.
+  const plain=[...cardHtml.matchAll(/<h2\b[^>]*>\s*([^<]{1,100}?)\s+vs\.?\s+([^<]{1,100}?)\s*<\/h2>/gi)];
+  return plain.map((m,i)=>{
+    const end=plain[i+1]?.index??cardHtml.length; const chunk=cardHtml.slice(m.index,end);
     const kg=(strip(chunk).match(/（\s*([0-9.]+)kg\s*）/)||[])[1]||'';
-    return {fightNo:+m[1],jp1:strip(m[2]),jp2:strip(m[3]),weight:kg?`${kg} kg`:'RIZIN MMA'};
-  }).sort((a,b)=>b.fightNo-a.fightNo);
+    return {fightNo:i+1,jp1:strip(m[1]),jp2:strip(m[2]),weight:kg?`${kg} kg`:'RIZIN MMA'};
+  });
 }
 function fighterMarkup(f,eager){
   const photo=f.image?`<div class="fighter-photo"><span class="fighter-fallback" aria-hidden="true">${esc(initials(f.name))}</span><img data-fighter-photo data-portrait-source="rizin" data-portrait-framing="safe" src="${esc(f.image)}" alt="${esc(f.name)}" loading="${eager?'eager':'lazy'}" decoding="async" referrerpolicy="no-referrer"></div>`:`<div class="fighter-photo photo-missing"><span class="fighter-fallback" aria-hidden="true">${esc(initials(f.name))}</span></div>`;
