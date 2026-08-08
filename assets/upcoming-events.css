@@ -274,18 +274,18 @@
     position: relative;
     z-index: 1;
     display: block;
-    width: 176%;
-    height: 176%;
+    width: 100%;
+    height: 100%;
     max-width: none;
     object-fit: contain;
     object-position: 50% 100%;
-    transform: translateY(2%);
+    transform: scale(1.40);
+    transform-origin: 50% 100%;
     filter: grayscale(1) contrast(1.1);
 }
 
 .bout-card-featured .fighter-photo img {
-    width: 184%;
-    height: 184%;
+    transform: scale(1.46);
 }
 
 .fighter-fallback {
@@ -456,8 +456,10 @@
 
     .fighter-photo img,
     .bout-card-featured .fighter-photo img {
-        width: 138%;
-        height: 138%;
+        width: 100%;
+        height: 100%;
+        transform: scale(1.28);
+        transform-origin: 50% 100%;
     }
 
     .fighter-name,
