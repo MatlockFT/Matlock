@@ -9,6 +9,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 const decode = (s='') => s.replace(/&#x([0-9a-f]+);/gi,(_,x)=>String.fromCodePoint(parseInt(x,16))).replace(/&#(\d+);/g,(_,x)=>String.fromCodePoint(+x)).replace(/&nbsp;/gi,' ').replace(/&amp;/gi,'&').replace(/&quot;/gi,'"').replace(/&#039;|&#39;|&apos;/gi,"'").replace(/&lt;/gi,'<').replace(/&gt;/gi,'>');
 const strip = (s='') => decode(s.replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]*>/g,' ')).replace(/\s+/g,' ').trim();
 const esc = (s='') => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const reEsc = (s='') => String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const norm = (s='') => s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\b(jr|sr|ii|iii|iv)\b/g,'').replace(/[^a-z0-9]+/g,' ').trim();
 const initials = name => name.split(/\s+/).filter(Boolean).slice(0,3).map(x=>x[0]).join('').toUpperCase() || '?';
 
@@ -50,8 +51,7 @@ function parseStart(html,date){
   const hour=+m[1],min=+m[2];
   const utc=new Date(Date.UTC(date.year,date.month-1,date.day,hour-9,min));
   const et=new Intl.DateTimeFormat('en-US',{hour:'numeric',minute:'2-digit',timeZone:'America/New_York',timeZoneName:'short'}).format(utc);
-  const jst=`${hour}:${String(min).padStart(2,'0')} JST`;
-  return {jst,et};
+  return {jst:`${hour}:${String(min).padStart(2,'0')} JST`,et};
 }
 function eventTitle(html){
   const h=(html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)||[])[1]||'';
@@ -93,10 +93,10 @@ function imageFromProfile(html,jpName){
 }
 function englishFromProfile(html,jpName){
   const p=strip(html);
-  const i=p.indexOf(jpName); if(i<0)return jpName;
-  const tail=p.slice(i+jpName.length,i+jpName.length+180);
-  const m=tail.match(/^\s*([A-Za-z][A-Za-z0-9À-ÿ.'’\- ]{1,70}?)(?=\s+(?:出身地|生年月日|身長|リーチ|体重|所属|国籍))/);
-  return m?m[1].trim():jpName;
+  const direct=p.match(new RegExp(`${reEsc(jpName)}\\s+([A-Za-z][A-Za-z0-9À-ÿ.'’\\- ]{1,70}?)(?=\\s+(?:出身地|生年月日|身長|リーチ|体重|所属|国籍))`));
+  if(direct)return direct[1].trim();
+  const labelled=p.match(new RegExp(`名前[:：]?\\s*(?:\\|\\s*)?${reEsc(jpName)}\\s+([A-Za-z][A-Za-z0-9À-ÿ.'’\\- ]{1,70})`));
+  return labelled?labelled[1].trim():jpName;
 }
 async function fighterInfo(cardHtml,jpName,cache){
   const url=profileUrl(cardHtml,jpName);
@@ -133,7 +133,6 @@ function cardMarkup(e){
 let cache={}; try{cache=JSON.parse(await fs.readFile(CACHE_PATH,'utf8'));}catch{}
 const scheduleHtml=await get(SCHEDULE);
 let eventUrls=hrefs(scheduleHtml,/大会情報[／/]チケット/);
-// Current known pages are safety seeds only; discovery remains schedule-driven.
 for(const u of ['https://jp.rizinff.com/_ct/17833730'])if(!eventUrls.includes(u))eventUrls.push(u);
 const events=[];
 for(const url of eventUrls){
@@ -160,9 +159,6 @@ for(let m;(m=divRe.exec(original));){if(/^<div\b/i.test(m[0]))depth++;else depth
 if(listEnd<0)throw new Error('Could not find end of upcoming events list.');
 let inner=original.slice(listStart,listEnd);
 inner=inner.replace(/<section\b[^>]*data-auto-promotion=["']rizin["'][^>]*>[\s\S]*?<\/section>\s*/gi,'');
-const generated=events.sort((a,b)=>isoDay(a.date).localeCompare(isoDay(b.date))).map(cardMarkup).join('\n');
-// Insert RIZIN cards before the first future card whose date is later; otherwise before the disclaimer/end.
-let pos=inner.length;
 for(const e of events.sort((a,b)=>isoDay(a.date).localeCompare(isoDay(b.date)))){
   const date=isoDay(e.date); let insertAt=inner.length;
   for(const m of inner.matchAll(/<section\b[^>]*class=["'][^"']*upcoming-event-card[^"']*["'][^>]*>[\s\S]*?<time\s+datetime=["'](\d{4}-\d{2}-\d{2})["']/gi)){
