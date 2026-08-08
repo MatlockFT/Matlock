@@ -3,7 +3,7 @@ import { dateLabel, fighter, loadData, loadPortraitCache, mergePromotion, portra
 const ORIGIN = 'https://pflmma.com';
 const EVENTS_URL = `${ORIGIN}/events`;
 const ESPN = 'https://site.api.espn.com/apis/site/v2/sports/mma/pfl/scoreboard';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockPFLUpdater/3.1; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockPFLUpdater/3.2; +https://matlockfighttalk.com/)';
 const MAX_DAYS = 240;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -40,6 +40,13 @@ function discover(html) {
   return [...set];
 }
 
+function eventTitle(page,url) {
+  const headings=[...page.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/gi)].map(m=>text(m[1])).filter(v=>/^PFL\s+/i.test(v));
+  const slug=new URL(url).pathname.split('/').filter(Boolean).at(-1)?.replace(/^pfl-/i,'').replace(/-/g,' ')||'';
+  const match=headings.find(v=>norm(v.replace(/^PFL\s+/i,''))===norm(slug));
+  return match||headings[0]||`PFL ${slug}`.trim();
+}
+
 function weight(note='') {
   const m=note.match(/\b(Women'?s\s+(?:Strawweight|Flyweight|Bantamweight|Featherweight)|Light Heavyweight|Heavyweight|Middleweight|Welterweight|Lightweight|Featherweight|Bantamweight|Flyweight|Catchweight)\b/i);
   return m ? m[1].replace(/women'?s/i,"Women's") + (/title|championship/i.test(note)?' Title':'') : 'Weight class TBA';
@@ -61,7 +68,7 @@ async function espnBouts(date) {
   } catch { return []; }
 }
 
-function fallbackBouts(url,page) {
+function fallbackBouts(url) {
   if(!/\/event\/pfl-tampa\/?$/i.test(url)) return [];
   return [
     {division:"Women's Featherweight Title",fighters:[{name:'Cris Cyborg',image:''},{name:'Ketlen Vieira',image:''}]},
@@ -70,30 +77,27 @@ function fallbackBouts(url,page) {
 }
 
 function venueFromIndex(eventsHtml,eventName) {
-  const wanted=reEsc(eventName);
-  for(const m of eventsHtml.matchAll(new RegExp(`>\\s*(?:PFL\\s+)?${wanted}\\s*<`,'gi'))) {
-    const chunk=text(eventsHtml.slice(m.index,Math.min(eventsHtml.length,m.index+900)));
-    const after=chunk.replace(new RegExp(`^\\s*(?:PFL\\s+)?${wanted}\\s*`,'i'),'');
+  const plain=text(eventsHtml), wanted=reEsc(eventName), rx=new RegExp(`(?:PFL\\s+)?${wanted}`,'ig');
+  for(const m of plain.matchAll(rx)) {
+    const after=plain.slice(m.index+m[0].length,m.index+m[0].length+180).trim();
     const candidate=after.split(/\s+(?:MATCHUPS|BUY TICKETS|EVENT DETAILS|REGISTER INTEREST|VIEW RESULTS)\b/i)[0].trim();
-    if(saneVenue(candidate) && !/^(?:Sat|Sun|Mon|Tue|Wed|Thu|Fri)\b/i.test(candidate) && !/\b(?:Early Card|Main Card)\b/i.test(candidate)) return candidate;
+    if(!saneVenue(candidate))continue;
+    if(/^(?:d\s*:\s*h|Sat|Sun|Mon|Tue|Wed|Thu|Fri)\b/i.test(candidate))continue;
+    if(/\b(?:Early Card|Main Card|EVENT INFO|WHERE TO WATCH)\b/i.test(candidate))continue;
+    return candidate;
   }
-  const plain=text(eventsHtml);
-  const rx=new RegExp(`(?:PFL\\s+)?${wanted}\\s+([^]{3,120}?)(?=\\s+(?:MATCHUPS|BUY TICKETS|EVENT DETAILS|REGISTER INTEREST|VIEW RESULTS))`,'ig');
-  for(const m of plain.matchAll(rx)) if(saneVenue(m[1])&&!/\b(?:Early Card|Main Card)\b/i.test(m[1])) return m[1].trim();
   return 'Venue TBA';
 }
 
 async function build(url,eventsHtml) {
-  const page=await get(url), plain=text(page);
-  const title=(plain.match(/\bPFL\s+[A-Z][A-Za-z .'-]{2,50}\b/)||[])[0]||'PFL Event';
+  const page=await get(url), plain=text(page), title=eventTitle(page,url);
   const date=parseDate((plain.match(/\b(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-z]*\.?\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2}(?:,?\s+\d{4})?/i)||[])[0]||(plain.match(/\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2}(?:,?\s+\d{4})?/i)||[])[0]);
   if(!date)return null; const days=(date-Date.now())/86400000; if(days<-1||days>MAX_DAYS)return null;
-  // Event-page labels are authoritative for current start times.
   const main=((plain.match(/Main Card\s+(\d{1,2}(?::\d{2})?\s*[AP]M\s*ET)/i)||[])[1]||'').toUpperCase();
   const early=((plain.match(/Early Card\s+(\d{1,2}(?::\d{2})?\s*[AP]M\s*ET)/i)||[])[1]||'').toUpperCase();
   const eventName=title.replace(/^PFL\s*/i,'').trim();
   const venue=venueFromIndex(eventsHtml,eventName);
-  let card=await espnBouts(date); if(!card.length)card=fallbackBouts(url,page); card=card.filter(b=>b.fighters?.length===2&&b.fighters.every(f=>saneName(f.name))); if(!card.length)return null;
+  let card=await espnBouts(date); if(!card.length)card=fallbackBouts(url); card=card.filter(b=>b.fighters?.length===2&&b.fighters.every(f=>saneName(f.name))); if(!card.length)return null;
   if(venue==='Venue TBA'&&card.length===1)return null;
   return{url,title,date,venue,main,early,bouts:card};
 }
