@@ -261,10 +261,11 @@
         upcomingEventsList.querySelectorAll("img[data-fighter-photo]").forEach(preparePortrait);
 
         // upcoming-events.js injects legacy portrait styling after the static CSS.
-        // Apply the final background after load so this remains the winning rule.
-        window.addEventListener("load", () => {
+        // Apply the final background as soon as all deferred scripts have run so the
+        // intended griptape treatment wins without waiting for portrait images to load.
+        document.addEventListener("DOMContentLoaded", () => {
             const portraitStyle = document.createElement("style");
-            portraitStyle.dataset.portraitBackground = "black-griptape-v3";
+            portraitStyle.dataset.portraitBackground = "black-griptape-v4";
             portraitStyle.textContent = `
                 body .upcoming-events-page .upcoming-event-card .fighter-photo {
                     background: #010101 !important;
@@ -273,11 +274,11 @@
                 body .upcoming-events-page .upcoming-event-card .fighter-photo::before {
                     z-index: 0 !important;
                     background:
-                        linear-gradient(164deg, transparent 0 18%, rgba(255,255,255,.05) 18.25% 18.45%, transparent 18.75% 67%, rgba(255,255,255,.035) 67.25% 67.45%, transparent 67.8%),
-                        radial-gradient(ellipse at 19% 27%, rgba(255,255,255,.07), transparent 30%),
-                        radial-gradient(ellipse at 82% 74%, rgba(255,255,255,.05), transparent 33%),
-                        url('/assets/fighter-gripboard.svg') center / cover no-repeat !important;
-                    opacity: .13 !important;
+                        linear-gradient(164deg, transparent 0 18%, rgba(255,255,255,.065) 18.25% 18.45%, transparent 18.75% 67%, rgba(255,255,255,.05) 67.25% 67.45%, transparent 67.8%),
+                        radial-gradient(ellipse at 19% 27%, rgba(255,255,255,.08), transparent 30%),
+                        radial-gradient(ellipse at 82% 74%, rgba(255,255,255,.06), transparent 33%),
+                        url('/assets/fighter-gripboard.svg?v=3') center / cover no-repeat !important;
+                    opacity: .18 !important;
                     mix-blend-mode: screen !important;
                 }
 
