@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 const TARGET = 'upcoming-events.html';
 const CACHE_PATH = '_data/fighter_portraits.json';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockPortraitResolver/1.1; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockPortraitResolver/2.0; +https://matlockfighttalk.com/)';
 const TIMEOUT = 8000;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -17,11 +17,11 @@ async function fetchText(url) {
   let last;
   for (let i=0;i<2;i++) {
     try {
-      const r = await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(TIMEOUT),headers:{'user-agent':UA,accept:'text/html,application/xhtml+xml,*/*'}});
+      const r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(TIMEOUT),headers:{'user-agent':UA,accept:'text/html,application/xhtml+xml,*/*'}});
       if (r.ok) return await r.text();
-      last = new Error(`${r.status} ${url}`);
+      last=new Error(`${r.status} ${url}`);
     } catch (e) { last=e; }
-    await sleep(250);
+    if (i===0) await sleep(250);
   }
   throw last;
 }
@@ -49,65 +49,55 @@ function attrs(tag) {
   for (const m of tag.matchAll(/([:\w-]+)\s*=\s*(["'])(.*?)\2/gi)) out[m[1].toLowerCase()]=decode(m[3]);
   return out;
 }
-
 function imageCandidates(html,name) {
-  const n=norm(name); const s=slug(name); const out=[];
+  const n=norm(name), s=slug(name), out=[];
   for (const m of html.matchAll(/<img\b[^>]*>/gi)) {
     const a=attrs(m[0]);
     const src=a.src||a['data-src']||a['data-lazy-src']||a.srcset?.split(',')[0]?.trim()?.split(/\s+/)[0]||'';
     if (!src) continue;
     const alt=norm(a.alt||''); let score=0;
-    if (alt===n) score+=120;
-    else if (alt && (alt.includes(n)||n.includes(alt))) score+=90;
+    if (alt===n) score+=120; else if (alt && (alt.includes(n)||n.includes(alt))) score+=90;
     if (/fighter\s*(image|headshot|photo)/i.test(a.alt||'')) score+=45;
     if (norm(src).includes(n) || src.toLowerCase().includes(s)) score+=45;
     if (/pflmma\.com|pfl-cdn|cloudfront/i.test(src)) score+=15;
     if (/logo|flag|icon|banner|sponsor|placeholder|background/i.test(`${a.alt||''} ${src}`)) score-=120;
-    if (score>20) {
-      try { out.push({url:new URL(src,'https://pflmma.com').toString(),score}); } catch {}
-    }
+    if (score>20) try { out.push({url:new URL(src,'https://pflmma.com').toString(),score}); } catch {}
   }
   const og=(html.match(/<meta\b[^>]*(?:property|name)=["']og:image["'][^>]*content=["']([^"']+)["'][^>]*>/i)||[])[1];
   if (og) out.push({url:decode(og),score:25});
   return out.sort((a,b)=>b.score-a.score);
 }
-
 async function resolveFromPfl(name,eventHtml='') {
-  const seen=new Set(); const pages=[];
+  const seen=new Set(), pages=[];
   if (eventHtml) pages.push(eventHtml);
-  for (const path of [`/all-fighter/${slug(name)}`,`/regular-fighter/${slug(name)}`]) {
-    try { pages.push(await fetchText(`https://pflmma.com${path}`)); } catch {}
-  }
-  for (const page of pages) {
-    for (const c of imageCandidates(page,name)) {
-      if (seen.has(c.url)) continue;
-      seen.add(c.url);
-      if (await usableImage(c.url)) return c.url;
-    }
+  for (const path of [`/all-fighter/${slug(name)}`,`/regular-fighter/${slug(name)}`]) try { pages.push(await fetchText(`https://pflmma.com${path}`)); } catch {}
+  for (const page of pages) for (const c of imageCandidates(page,name)) {
+    if (seen.has(c.url)) continue; seen.add(c.url);
+    if (await usableImage(c.url)) return c.url;
   }
   return '';
 }
-
 function sourceFor(url) {
   if (/espncdn\.com/i.test(url)) return 'espn';
   if (/pflmma\.com|pfl-cdn|cloudfront/i.test(url)) return 'pfl';
+  if (/rizin|d1uzk9o9cg136f\.cloudfront\.net/i.test(url)) return 'rizin';
   return 'external';
 }
-function framingFor(source) { return source==='espn' ? 'standard' : 'safe'; }
-function initialStyle(framing) {
-  return framing==='safe' ? 'object-fit:contain;object-position:50% 10%;transform:scale(1.06);transform-origin:50% 16%;' : '';
-}
-const adaptiveOnload = "const r=this.naturalWidth/Math.max(1,this.naturalHeight);if(r<.72||r>1.18){this.style.objectFit='contain';this.style.objectPosition='50% 8%';this.style.transform='scale(1.02)';this.style.transformOrigin='50% 12%';}else if(this.dataset.portraitFraming==='safe'){this.style.objectFit='contain';this.style.objectPosition='50% 10%';this.style.transform='scale(1.06)';this.style.transformOrigin='50% 16%';}";
+const framingFor = source => source==='espn' ? 'standard' : 'safe';
 
-const original = await fs.readFile(TARGET,'utf8');
-let cache={};
-try { cache=JSON.parse(await fs.readFile(CACHE_PATH,'utf8')); } catch {}
+const original=await fs.readFile(TARGET,'utf8');
+let cache={}; try { cache=JSON.parse(await fs.readFile(CACHE_PATH,'utf8')); } catch {}
 
+const pflNames=new Set();
 const eventPages=[];
-for (const m of original.matchAll(/<section\b[^>]*class=["'][^"']*upcoming-event-card[^"']*["'][^>]*>[\s\S]*?<a\b[^>]*href=["']([^"']+)["'][^>]*>Official event page/gi)) {
-  const url=decode(m[1]);
-  if (!/pflmma\.com/i.test(url)) continue;
-  try { eventPages.push({url,html:await fetchText(url)}); } catch {}
+for (const m of original.matchAll(/<section\b[^>]*class=["'][^"']*upcoming-event-card[^"']*["'][^>]*>[\s\S]*?<\/section>/gi)) {
+  const card=m[0];
+  if (!/<p\s+class=["']event-promotion["']>\s*PFL\s*<\/p>/i.test(card)) continue;
+  for (const n of card.matchAll(/<p\s+class=["']fighter-name["']>([\s\S]*?)<\/p>/gi)) {
+    const key=norm(text(n[1])); if (key) pflNames.add(key);
+  }
+  const url=decode((card.match(/<a\b[^>]*href=["']([^"']+)["'][^>]*>Official event page/i)||[])[1]||'');
+  if (url && /pflmma\.com/i.test(url)) try { eventPages.push({url,html:await fetchText(url)}); } catch {}
 }
 
 const fighters=[...original.matchAll(/<div class=["']fighter["']>([\s\S]*?)<p class=["']fighter-name["']>(.*?)<\/p>\s*<\/div>/gi)].map(m=>({inner:m[1],name:text(m[2])}));
@@ -115,34 +105,25 @@ const resolved=new Map();
 for (const f of fighters) {
   const key=norm(f.name); if (!key || resolved.has(key)) continue;
   const current=decode((f.inner.match(/<img\b[^>]*data-fighter-photo[^>]*src=["']([^"']+)["']/i)||[])[1]||'');
-  let url='',source='',framing='';
+  let hit=null;
   if (current && await usableImage(current)) {
-    url=current; source=sourceFor(url); framing=framingFor(source);
+    const source=sourceFor(current); hit={url:current,source,framing:framingFor(source)};
+  } else if (cache[key]?.url && await usableImage(cache[key].url)) {
+    hit={url:cache[key].url,source:cache[key].source||sourceFor(cache[key].url),framing:cache[key].framing||framingFor(cache[key].source||sourceFor(cache[key].url))};
+  } else if (pflNames.has(key)) {
+    const page=eventPages.find(e=>norm(text(e.html)).includes(key));
+    const url=await resolveFromPfl(f.name,page?.html||'');
+    if (url) { const source=sourceFor(url); hit={url,source,framing:framingFor(source)}; }
   }
-  if (!url && cache[key]?.url && await usableImage(cache[key].url)) {
-    url=cache[key].url; source=cache[key].source||sourceFor(url); framing=cache[key].framing||framingFor(source);
-  }
-  if (!url) {
-    let eventHtml='';
-    const match=eventPages.find(e=>norm(text(e.html)).includes(key));
-    if (match) eventHtml=match.html;
-    url=await resolveFromPfl(f.name,eventHtml);
-    if (url) { source=sourceFor(url); framing=framingFor(source); }
-  }
-  if (url) {
-    cache[key]={url,source,framing};
-    resolved.set(key,{url,source,framing});
-  } else {
-    delete cache[key];
-    resolved.set(key,null);
-  }
+  if (hit) cache[key]=hit;
+  resolved.set(key,hit);
 }
 
 const updated=original.replace(/<div class=["']fighter["']>([\s\S]*?)<p class=["']fighter-name["']>(.*?)<\/p>\s*<\/div>/gi,(full,inner,nameHtml)=>{
-  const name=text(nameHtml); const hit=resolved.get(norm(name)); if (!hit) return full;
-  const style=initialStyle(hit.framing);
-  const photo=`<div class="fighter-photo"><span class="fighter-fallback" aria-hidden="true"></span><img data-fighter-photo data-portrait-source="${esc(hit.source)}" data-portrait-framing="${esc(hit.framing)}" src="${esc(hit.url)}" alt="${esc(name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" onload="${adaptiveOnload}"${style?` style="${style}"`:''}></div>`;
-  const replaced=inner.replace(/<div class=["']fighter-photo[^"']*["'][^>]*>[\s\S]*?<\/div>/i,photo);
+  const name=text(nameHtml), hit=resolved.get(norm(name)); if (!hit) return full;
+  const fallback=text((inner.match(/<span\b[^>]*class=["']fighter-fallback["'][^>]*>([\s\S]*?)<\/span>/i)||[])[1]||'');
+  const photo=`<div class="fighter-photo"><span class="fighter-fallback" aria-hidden="true">${esc(fallback)}</span><img data-fighter-photo data-portrait-source="${esc(hit.source)}" data-portrait-framing="${esc(hit.framing)}" src="${esc(hit.url)}" alt="${esc(name)}" loading="lazy" decoding="async" referrerpolicy="no-referrer"></div>`;
+  const replaced=/<div class=["']fighter-photo[^"']*["'][^>]*>[\s\S]*?<\/div>/i.test(inner) ? inner.replace(/<div class=["']fighter-photo[^"']*["'][^>]*>[\s\S]*?<\/div>/i,photo) : photo+inner;
   return `<div class="fighter">${replaced}<p class="fighter-name">${nameHtml}</p></div>`;
 });
 
