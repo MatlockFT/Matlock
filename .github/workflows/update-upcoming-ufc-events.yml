@@ -13,7 +13,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
 
     steps:
       - name: Check out repository
@@ -30,6 +30,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          node --check scripts/upcoming-events-data.mjs
           node --check scripts/update-upcoming-ufc-events.mjs
           node --check scripts/update-pfl-upcoming-events.mjs
           node --check scripts/update-rizin-upcoming-events.mjs
@@ -38,48 +39,41 @@ jobs:
           node --check scripts/publish-fighter-portraits.mjs
           node --check scripts/validate-upcoming-events.mjs
 
-      - name: Snapshot current Events page
-        run: cp upcoming-events.html /tmp/upcoming-events.before.html
+      - name: Snapshot current event data
+        run: cp _data/upcoming_events.json /tmp/upcoming-events.before.json
 
-      - name: Read UFC event cards
+      - name: Read UFC event data
         run: node scripts/update-upcoming-ufc-events.mjs
 
-      - name: Read PFL event cards
+      - name: Read PFL event data
         run: node scripts/update-pfl-upcoming-events.mjs
 
-      - name: Read RIZIN event cards
-        if: ${{ false }}
+      - name: Read RIZIN event data
         run: node scripts/update-rizin-upcoming-events.mjs
 
       - name: Resolve ESPN portraits by fighter name
         run: node scripts/resolve-espn-fighter-portraits.mjs
 
-      - name: Resolve and frame fighter portraits
+      - name: Resolve remaining fighter portraits
         run: node scripts/enrich-fighter-portraits.mjs
+
+      - name: Validate merged event data
+        run: node scripts/validate-upcoming-events.mjs /tmp/upcoming-events.before.json _data/upcoming_events.json upcoming-events.html
 
       - name: Publish fighter portrait cache
         run: node scripts/publish-fighter-portraits.mjs
-
-      - name: Validate candidate Events page
-        id: validate_events
-        shell: bash
-        run: node scripts/validate-upcoming-events.mjs /tmp/upcoming-events.before.html upcoming-events.html
-
-      - name: Restore Events page after validation failure
-        if: ${{ failure() && steps.validate_events.outcome == 'failure' }}
-        run: cp /tmp/upcoming-events.before.html upcoming-events.html
 
       - name: Commit event and portrait changes
         shell: bash
         run: |
           set -euo pipefail
-          changed="$(git status --porcelain -- upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json || true)"
+          changed="$(git status --porcelain -- _data/upcoming_events.json _data/fighter_portraits.json assets/fighter-portraits.json || true)"
           if [ -z "$changed" ]; then
-            echo "No MMA card or portrait changes."
+            echo "No MMA event or portrait changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- upcoming-events.html _data/fighter_portraits.json assets/fighter-portraits.json
-          git commit -m "Refresh upcoming MMA cards and portraits"
+          git add -- _data/upcoming_events.json _data/fighter_portraits.json assets/fighter-portraits.json
+          git commit -m "Refresh upcoming MMA event data"
           git push origin HEAD:main
