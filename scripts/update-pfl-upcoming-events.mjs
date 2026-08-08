@@ -3,7 +3,7 @@ import { dateLabel, fighter, loadData, loadPortraitCache, mergePromotion, portra
 const ORIGIN = 'https://pflmma.com';
 const EVENTS_URL = `${ORIGIN}/events`;
 const ESPN = 'https://site.api.espn.com/apis/site/v2/sports/mma/pfl/scoreboard';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockPFLUpdater/3.0; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockPFLUpdater/3.1; +https://matlockfighttalk.com/)';
 const MAX_DAYS = 240;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -11,6 +11,7 @@ const decode = (s='') => s.replace(/&#x([0-9a-f]+);/gi,(_,x)=>String.fromCodePoi
 const text = (s='') => decode(s.replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]*>/g,' ')).replace(/\s+/g,' ').trim();
 const norm = (s='') => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
 const slugify = s => norm(s).replace(/\s+/g,'-');
+const reEsc = s => String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const BAD_TEXT = /\b(?:main card|early card|event info|where to watch|matchups?|buy tickets?|register interest|view results?|hours?|minutes?|seconds?)\b/i;
 const saneName = name => { const n=String(name||'').replace(/\s+/g,' ').trim(); return n.length>=2 && n.length<=60 && !BAD_TEXT.test(n) && !/\d{1,2}:\d{2}/.test(n); };
 const saneVenue = value => { const v=String(value||'').replace(/\s+/g,' ').trim(); return v.length>=3 && v.length<=120 && !BAD_TEXT.test(v) && !/^d\s*:\s*h\s*:/i.test(v); };
@@ -68,16 +69,30 @@ function fallbackBouts(url,page) {
   ];
 }
 
+function venueFromIndex(eventsHtml,eventName) {
+  const wanted=reEsc(eventName);
+  for(const m of eventsHtml.matchAll(new RegExp(`>\\s*(?:PFL\\s+)?${wanted}\\s*<`,'gi'))) {
+    const chunk=text(eventsHtml.slice(m.index,Math.min(eventsHtml.length,m.index+900)));
+    const after=chunk.replace(new RegExp(`^\\s*(?:PFL\\s+)?${wanted}\\s*`,'i'),'');
+    const candidate=after.split(/\s+(?:MATCHUPS|BUY TICKETS|EVENT DETAILS|REGISTER INTEREST|VIEW RESULTS)\b/i)[0].trim();
+    if(saneVenue(candidate) && !/^(?:Sat|Sun|Mon|Tue|Wed|Thu|Fri)\b/i.test(candidate) && !/\b(?:Early Card|Main Card)\b/i.test(candidate)) return candidate;
+  }
+  const plain=text(eventsHtml);
+  const rx=new RegExp(`(?:PFL\\s+)?${wanted}\\s+([^]{3,120}?)(?=\\s+(?:MATCHUPS|BUY TICKETS|EVENT DETAILS|REGISTER INTEREST|VIEW RESULTS))`,'ig');
+  for(const m of plain.matchAll(rx)) if(saneVenue(m[1])&&!/\b(?:Early Card|Main Card)\b/i.test(m[1])) return m[1].trim();
+  return 'Venue TBA';
+}
+
 async function build(url,eventsHtml) {
   const page=await get(url), plain=text(page);
   const title=(plain.match(/\bPFL\s+[A-Z][A-Za-z .'-]{2,50}\b/)||[])[0]||'PFL Event';
   const date=parseDate((plain.match(/\b(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-z]*\.?\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2}(?:,?\s+\d{4})?/i)||[])[0]||(plain.match(/\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2}(?:,?\s+\d{4})?/i)||[])[0]);
   if(!date)return null; const days=(date-Date.now())/86400000; if(days<-1||days>MAX_DAYS)return null;
+  // Event-page labels are authoritative for current start times.
   const main=((plain.match(/Main Card\s+(\d{1,2}(?::\d{2})?\s*[AP]M\s*ET)/i)||[])[1]||'').toUpperCase();
   const early=((plain.match(/Early Card\s+(\d{1,2}(?::\d{2})?\s*[AP]M\s*ET)/i)||[])[1]||'').toUpperCase();
-  let venue='Venue TBA', eventName=title.replace(/^PFL\s*/i,'').trim(), around=text(eventsHtml);
-  const lm=around.match(new RegExp(`PFL\\s+${eventName.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}\\s+([^|]{3,100}?)(?=\\s+(?:MATCHUPS|BUY TICKETS|EVENT DETAILS|REGISTER INTEREST|VIEW RESULTS|$))`,'i'));
-  if(lm&&saneVenue(lm[1]))venue=lm[1].trim();
+  const eventName=title.replace(/^PFL\s*/i,'').trim();
+  const venue=venueFromIndex(eventsHtml,eventName);
   let card=await espnBouts(date); if(!card.length)card=fallbackBouts(url,page); card=card.filter(b=>b.fighters?.length===2&&b.fighters.every(f=>saneName(f.name))); if(!card.length)return null;
   if(venue==='Venue TBA'&&card.length===1)return null;
   return{url,title,date,venue,main,early,bouts:card};
