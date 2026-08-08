@@ -10,6 +10,26 @@ export const initials = name => String(name || '').split(/\s+/).filter(Boolean).
 export const updatedLabel = () => new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', month: 'long', day: 'numeric', year: 'numeric' }).format(new Date());
 export const dateLabel = iso => new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }).format(new Date(`${iso}T12:00:00Z`)).replace(/^(\w+), /, '$1 · ');
 
+function easternClock(now = new Date()) {
+  const parts = Object.fromEntries(new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', hourCycle: 'h23'
+  }).formatToParts(now).filter(p => p.type !== 'literal').map(p => [p.type, p.value]));
+  return { date: `${parts.year}-${parts.month}-${parts.day}`, hour: Number(parts.hour) };
+}
+
+// Keep an event through the overnight hours after its listed date. This avoids
+// removing late-running cards at midnight while still clearing yesterday's
+// events from an Upcoming Events page by the following morning.
+export function eventIsCurrent(event, now = new Date()) {
+  if (!event?.date) return false;
+  const clock = easternClock(now);
+  if (event.date >= clock.date) return true;
+  const eventDay = new Date(`${event.date}T12:00:00Z`);
+  const today = new Date(`${clock.date}T12:00:00Z`);
+  const daysOld = Math.round((today - eventDay) / 86400000);
+  return daysOld === 1 && clock.hour < 6;
+}
+
 export async function loadData() {
   try {
     const data = JSON.parse(await fs.readFile(DATA_PATH, 'utf8'));
@@ -70,10 +90,10 @@ export function validateEvent(event) {
 
 export async function mergePromotion(promotionKey, candidateEvents, { maxEventDrop = 1, maxBoutDrop = 3 } = {}) {
   const data = await loadData();
-  const current = data.events.filter(e => e.promotion_key === promotionKey);
-  const candidates = candidateEvents.map(validateEvent).sort((a, b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id));
+  const current = data.events.filter(e => e.promotion_key === promotionKey && eventIsCurrent(e));
+  const candidates = candidateEvents.map(validateEvent).filter(eventIsCurrent).sort((a, b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id));
   if (!candidates.length) {
-    console.warn(`${promotionKey.toUpperCase()}: no valid candidate events; preserving existing data.`);
+    console.warn(`${promotionKey.toUpperCase()}: no valid current candidate events; preserving existing data.`);
     return false;
   }
   if (current.length && candidates.length < Math.max(1, current.length - maxEventDrop)) {
@@ -90,7 +110,7 @@ export async function mergePromotion(promotionKey, candidateEvents, { maxEventDr
       return false;
     }
   }
-  const merged = [...data.events.filter(e => e.promotion_key !== promotionKey), ...candidates]
+  const merged = [...data.events.filter(e => e.promotion_key !== promotionKey && eventIsCurrent(e)), ...candidates]
     .sort((a, b) => a.date.localeCompare(b.date) || a.promotion_key.localeCompare(b.promotion_key) || a.id.localeCompare(b.id));
   merged.forEach(validateEvent);
   const next = { schema_version: 1, generated_at: new Date().toISOString(), events: merged };
