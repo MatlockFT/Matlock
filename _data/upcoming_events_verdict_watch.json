@@ -9,39 +9,39 @@
       "promotion": "dwcs",
       "date": "2026-08-11",
       "title": "Season 10 · Week 1",
-      "status": "event_matched_card_unreadable",
+      "status": "matched",
       "verdict_event_id": "1951",
       "verdict_url": "https://verdictmma.com/event/1951",
       "verdict_date": "2026-08-11",
       "local_fight_count": 5,
       "verdict_fight_count": null,
-      "confirmed_local_bouts": null
+      "confirmed_local_bouts": 4
     },
     {
       "event_id": "rizin-rizin-54-2026-08-11",
       "promotion": "rizin",
       "date": "2026-08-11",
       "title": "RIZIN.54",
-      "status": "event_matched_card_unreadable",
+      "status": "matched",
       "verdict_event_id": "1950",
       "verdict_url": "https://verdictmma.com/event/1950",
       "verdict_date": "2026-08-11",
       "local_fight_count": 10,
       "verdict_fight_count": null,
-      "confirmed_local_bouts": null
+      "confirmed_local_bouts": 9
     },
     {
       "event_id": "ufc-330-2026-08-15",
       "promotion": "ufc",
       "date": "2026-08-15",
       "title": "Makhachev vs Machado Garry",
-      "status": "event_matched_card_unreadable",
+      "status": "matched",
       "verdict_event_id": "1909",
       "verdict_url": "https://verdictmma.com/event/1909",
       "verdict_date": "2026-08-15",
       "local_fight_count": 12,
-      "verdict_fight_count": null,
-      "confirmed_local_bouts": null
+      "verdict_fight_count": 12,
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "pfl-tampa-2026-08-22",
@@ -56,13 +56,13 @@
       "promotion": "ufc",
       "date": "2026-08-22",
       "title": "Hernandez vs Rodrigues",
-      "status": "event_matched_card_unreadable",
+      "status": "matched",
       "verdict_event_id": "1915",
       "verdict_url": "https://verdictmma.com/event/1915",
       "verdict_date": "2026-08-22",
       "local_fight_count": 8,
-      "verdict_fight_count": null,
-      "confirmed_local_bouts": null
+      "verdict_fight_count": 8,
+      "confirmed_local_bouts": 8
     },
     {
       "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
@@ -73,5 +73,26 @@
       "local_fight_count": 8
     }
   ],
-  "discrepancies": []
+  "discrepancies": [
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "dwcs-season-10-week-1-2026-08-11",
+      "verdict_event_id": "1951",
+      "order": 1,
+      "fighters": [
+        "Anthony Wint",
+        "Matthew Adams"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-54-2026-08-11",
+      "verdict_event_id": "1950",
+      "order": 8,
+      "fighters": [
+        "Joe Hiramoto",
+        "JOLLY"
+      ]
+    }
+  ]
 }
