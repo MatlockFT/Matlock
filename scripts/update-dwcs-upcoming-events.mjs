@@ -1,8 +1,9 @@
 import { dateLabel, eventIsCurrent, fighter, loadData, loadPortraitCache, mergePromotion, portraitFor, updatedLabel } from './upcoming-events-data.mjs';
 
-const SHERDOG_ORG = 'https://www.sherdog.com/organizations/Dana-Whites-Contender-Series-12411';
+const SHERDOG = 'https://www.sherdog.com';
+const SHERDOG_ORG = `${SHERDOG}/organizations/Dana-Whites-Contender-Series-12411`;
 const UFC_DWCS = 'https://www.ufc.com/dwcs';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockDWCSUpdater/1.0; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockDWCSUpdater/1.1; +https://matlockfighttalk.com/)';
 const SEASON = 10;
 const FIRST_DATE = new Date('2026-08-11T12:00:00Z');
 
@@ -22,6 +23,7 @@ const saneName = name => {
   return value.length >= 2 && value.length <= 70 && !/unknown fighter|fight card|main event|subscribe|latest news/i.test(value);
 };
 const normalizeWeight = value => String(value || '').replace(/women'?s/i, "Women's").replace(/\s+/g, ' ').trim();
+const trackingImage = /(?:google-analytics|googletagmanager|doubleclick|analytics|tracking|pixel|beacon|\/collect(?:[/?]|$)|\/track(?:[/?]|$)|logo|sprite|placeholder)/i;
 
 async function get(url) {
   let lastError;
@@ -56,7 +58,7 @@ function discoverSeasonEvents(html) {
     const week = Number(match[2]);
     if (!Number.isInteger(week) || week < 1 || week > 10) continue;
     try {
-      const url = new URL(match[1], 'https://www.sherdog.com');
+      const url = new URL(match[1], SHERDOG);
       url.search = '';
       url.hash = '';
       found.set(week, url.toString());
@@ -69,39 +71,79 @@ function parseCard(page) {
   const cardStart = page.search(/class=["'][^"']*fight_card[^"']*["']/i);
   const region = page.slice(cardStart >= 0 ? cardStart : Math.max(0, page.search(/FIGHT CARD/i)));
 
-  const names = [];
+  const fighters = [];
   const seen = new Set();
-  const fighterLink = /<a\b[^>]*href=["'][^"']*\/fighter\/[^"']+["'][^>]*>([\s\S]*?)<\/a>/gi;
+  const fighterLink = /<a\b[^>]*href=["']([^"']*\/fighter\/[^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
   for (const match of region.matchAll(fighterLink)) {
-    const name = text(match[1]);
+    const name = text(match[2]);
     const key = name.toLowerCase();
     if (!saneName(name) || seen.has(key)) continue;
     seen.add(key);
-    names.push(name);
-    if (names.length >= 10) break;
+    let profileUrl = '';
+    try { profileUrl = new URL(match[1], SHERDOG).toString(); } catch {}
+    fighters.push({ name, profileUrl });
+    if (fighters.length >= 10) break;
   }
 
   const plain = text(region);
   const weightRx = /\b(Women'?s\s+(?:Strawweight|Flyweight|Bantamweight|Featherweight)|Light Heavyweight|Heavyweight|Middleweight|Welterweight|Lightweight|Featherweight|Bantamweight|Flyweight|Strawweight|Catchweight)\b/gi;
   const weights = [...plain.matchAll(weightRx)].map(match => normalizeWeight(match[1]));
 
-  const pairCount = Math.min(5, Math.floor(names.length / 2), weights.length);
+  const pairCount = Math.min(5, Math.floor(fighters.length / 2), weights.length);
   const bouts = [];
   for (let i = 0; i < pairCount; i += 1) {
-    const left = names[i * 2];
-    const right = names[(i * 2) + 1];
-    if (!saneName(left) || !saneName(right)) continue;
+    const left = fighters[i * 2];
+    const right = fighters[(i * 2) + 1];
+    if (!saneName(left?.name) || !saneName(right?.name)) continue;
     bouts.push({ division: weights[i] || 'Weight class TBA', fighters: [left, right] });
   }
   return bouts;
 }
 
+function profileImage(page) {
+  const candidates = [];
+  for (const rx of [
+    /<meta\b[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i,
+    /<meta\b[^>]*content=["']([^"']+)["'][^>]*property=["']og:image["']/i,
+    /<meta\b[^>]*name=["']twitter:image(?::src)?["'][^>]*content=["']([^"']+)["']/i,
+    /<meta\b[^>]*content=["']([^"']+)["'][^>]*name=["']twitter:image(?::src)?["']/i,
+    /<img\b[^>]*class=["'][^"']*(?:profile_image|fighter)[^"']*["'][^>]*src=["']([^"']+)["']/i,
+    /<img\b[^>]*src=["']([^"']+)["'][^>]*class=["'][^"']*(?:profile_image|fighter)[^"']*["']/i
+  ]) {
+    const hit = page.match(rx)?.[1];
+    if (hit) candidates.push(decode(hit));
+  }
+  for (const candidate of candidates) {
+    try {
+      const url = new URL(candidate, SHERDOG).toString();
+      if (/^https?:\/\//i.test(url) && !trackingImage.test(url)) return url;
+    } catch {}
+  }
+  return '';
+}
+
+async function resolveProfilePortraits(card) {
+  const resolved = new Map();
+  const fighters = card.flatMap(bout => bout.fighters || []);
+  for (const entry of fighters) {
+    if (!entry?.profileUrl || resolved.has(entry.name)) continue;
+    try {
+      const image = profileImage(await get(entry.profileUrl));
+      if (image) resolved.set(entry.name, { image, image_source: 'sherdog', image_framing: 'safe' });
+    } catch (error) {
+      console.warn(`DWCS portrait unavailable for ${entry.name}: ${error.message}`);
+    }
+    await sleep(120);
+  }
+  return resolved;
+}
+
 const WEEK_ONE_FALLBACK = [
-  { division: 'Heavyweight', fighters: ['Anthony Wint', 'Matthew Adams'] },
-  { division: 'Lightweight', fighters: ['Fabrizio Escarrega', 'Abe Alsaghir'] },
-  { division: 'Flyweight', fighters: ['Mridul Saikia', 'Bilal Hasan'] },
-  { division: 'Featherweight', fighters: ['Ananias Mulumba', 'Tom Pagliarulo'] },
-  { division: 'Middleweight', fighters: ['Joseph Kropschot', 'Jonathan Kunneman'] }
+  { division: 'Heavyweight', fighters: [{ name: 'Anthony Wint', profileUrl: '' }, { name: 'Matthew Adams', profileUrl: '' }] },
+  { division: 'Lightweight', fighters: [{ name: 'Fabrizio Escarrega', profileUrl: '' }, { name: 'Abe Alsaghir', profileUrl: '' }] },
+  { division: 'Flyweight', fighters: [{ name: 'Mridul Saikia', profileUrl: '' }, { name: 'Bilal Hasan', profileUrl: '' }] },
+  { division: 'Featherweight', fighters: [{ name: 'Ananias Mulumba', profileUrl: '' }, { name: 'Tom Pagliarulo', profileUrl: '' }] },
+  { division: 'Middleweight', fighters: [{ name: 'Joseph Kropschot', profileUrl: '' }, { name: 'Jonathan Kunneman', profileUrl: '' }] }
 ];
 
 const data = await loadData();
@@ -133,17 +175,23 @@ try {
 } catch (error) {
   console.warn(`DWCS Week ${next.week} card unavailable: ${error.message}`);
 }
-if (next.week === 1 && card.length < 5) card = WEEK_ONE_FALLBACK;
+const parsedCard = card.length >= 5;
+if (next.week === 1 && !parsedCard) card = WEEK_ONE_FALLBACK;
 if (!card.length) {
   console.warn(`DWCS Week ${next.week}: no usable bouts; preserving existing DWCS data.`);
   process.exit(0);
 }
 
+const profilePortraits = parsedCard ? await resolveProfilePortraits(card) : new Map();
 const bouts = card.map((bout, index) => ({
   order: index + 1,
   label: index === 0 ? 'Main Event' : index === 1 ? 'Co-Main Event' : '',
   weight_class: bout.division,
-  fighters: bout.fighters.map(name => fighter(name, portraitFor(name, previous, cache)))
+  fighters: bout.fighters.map(entry => {
+    const name = typeof entry === 'string' ? entry : entry.name;
+    const portrait = profilePortraits.get(name) || portraitFor(name, previous, cache);
+    return fighter(name, portrait);
+  })
 }));
 
 const event = {
