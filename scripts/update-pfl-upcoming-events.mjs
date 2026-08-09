@@ -4,7 +4,7 @@ const ORIGIN = 'https://pflmma.com';
 const EVENTS_URL = `${ORIGIN}/events`;
 const HOME_URL = `${ORIGIN}/`;
 const ESPN = 'https://site.api.espn.com/apis/site/v2/sports/mma/pfl/scoreboard';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockPFLUpdater/3.3; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockPFLUpdater/3.4; +https://matlockfighttalk.com/)';
 const MAX_DAYS = 240;
 const MAIN_CARD_SIZE = 5;
 
@@ -82,8 +82,9 @@ function homepageBouts(homeHtml,date,url) {
   if(!block)return [];
 
   const division="PFL Women's Featherweight World Title|Women's Featherweight World Title|Women's Strawweight|Women's Flyweight|Women's Bantamweight|Women's Featherweight|Light Heavyweight|Heavyweight|Middleweight|Welterweight|Lightweight|Featherweight|Bantamweight|Flyweight|Catchweight";
-  const namePart="[A-Za-zÀ-ÖØ-öø-ÿ.'’_-]+(?:\\s+[A-Za-zÀ-ÖØ-öø-ÿ.'’_-]+){0,2}";
-  const rx=new RegExp(`(${namePart})\\s+vs\\s+(${namePart})\\s+(${division})(?=\\s|$)`,'gi');
+  // Parse sequentially and non-greedily. A greedy fighter-name pattern can absorb
+  // division words from the following text (for example "Dunlap Light").
+  const rx=new RegExp(`(.+?)\\s+vs\\s+(.+?)\\s+(${division})(?=\\s|$)`,'gi');
   const out=[],seen=new Set();
   for(const m of block.matchAll(rx)) {
     const a=expandOfficialName(m[1],url), b=expandOfficialName(m[2],url), div=weight(m[3]);
