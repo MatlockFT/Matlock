@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import { DATA_PATH, norm } from './upcoming-events-data.mjs';
 
 const CACHE_PATH='_data/fighter_portraits.json';
-const UA='Mozilla/5.0 (compatible; MMAMatlockPortraitResolver/3.1; +https://matlockfighttalk.com/)';
+const UA='Mozilla/5.0 (compatible; MMAMatlockPortraitResolver/3.2; +https://matlockfighttalk.com/)';
 const TIMEOUT=8000;
 const tracking=/(?:piwik|matomo|google-analytics|googletagmanager|doubleclick|analytics|tracking|pixel|beacon|\/collect(?:[/?]|$)|\/track(?:[/?]|$))/i;
 const badPortrait=/(?:\/articles?\/|\/news\/|\/galleries?\/|\/thumbnails?\/|(?:^|[\/_-])(?:banner|sponsor|poster|promo|placeholder)(?:[\/_-]|$))/i;
@@ -27,6 +27,8 @@ function pflImageCandidates(html,name){
     let url;try{url=new URL(raw,'https://pflmma.com').toString();}catch{continue;}
     if(!pflAssetHost.test(url))continue;
     let score=0;
+    // The profile bodyshot belongs to the requested fighter. Headshots lower on
+    // the page can belong to opponents, so bodyshots are deliberately preferred.
     if(/\/fighters\/bodyshots\//i.test(url))score+=500;
     else if(/\/fighters\/headshots\//i.test(url))score+=350;
     else continue;
@@ -38,9 +40,13 @@ function pflImageCandidates(html,name){
   return out.sort((a,b)=>b.score-a.score);
 }
 async function resolveFromPfl(name){
-  const paths=[];
-  for(const s of slugCandidates(name))for(const prefix of ['/fighter/','/all-fighter/','/regular-fighter/','/wt-fighter/'])paths.push(`${prefix}${s}`);
-  for(const path of paths)try{const page=await fetchText(`https://pflmma.com${path}`);for(const candidate of pflImageCandidates(page,name))if(await usableImage(candidate.url))return candidate.url;}catch{}
+  // PFL's /fighter/<slug> route redirects to the correct all-fighter,
+  // regular-fighter or wt-fighter profile. Using that canonical redirect avoids
+  // probing four separate routes for every fighter.
+  for(const s of slugCandidates(name))try{
+    const page=await fetchText(`https://pflmma.com/fighter/${s}`);
+    for(const candidate of pflImageCandidates(page,name))if(await usableImage(candidate.url))return candidate.url;
+  }catch{}
   return'';
 }
 function sourceFor(url){if(/espncdn\.com/i.test(url))return'espn';if(/d1uzk9o9cg136f\.cloudfront\.net|rizin/i.test(url))return'rizin';if(pflAssetHost.test(url))return'pfl';if(/sherdog\.com/i.test(url))return'sherdog';return'external';}
