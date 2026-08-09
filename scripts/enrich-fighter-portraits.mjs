@@ -20,7 +20,14 @@ const decode=(s='')=>s.replace(/&#x([0-9a-f]+);/gi,(_,x)=>String.fromCodePoint(p
 function attrs(tag){const out={};for(const m of tag.matchAll(/([:\w-]+)\s*=\s*(["'])(.*?)\2/gi))out[m[1].toLowerCase()]=decode(m[3]);return out;}
 function plainText(html=''){return decode(String(html).replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]*>/g,' ')).replace(/\s+/g,' ').trim();}
 function slug(name){return norm(name).replace(/\s+/g,'-');}
-function slugCandidates(name){const base=slug(name),set=new Set([base]);set.add(base.replace(/-(de|da|do|dos|das)-/g,'-$1'));return [...set].filter(Boolean);}
+function slugCandidates(name){
+  const base=slug(name),set=new Set([base]);
+  // PFL sometimes collapses surname particles into the following surname in its URL,
+  // e.g. Gino van Steenis -> /fighter/gino-vansteenis.
+  set.add(base.replace(/-(de|da|do|dos|das)-/g,'-$1'));
+  set.add(base.replace(/-(van|von)-/g,'-$1'));
+  return [...set].filter(Boolean);
+}
 function pflImageCandidates(html,name){
   const requested=norm(name),page=norm(plainText(html));
   const tokens=requested.split(/\s+/).filter(Boolean);
