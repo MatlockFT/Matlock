@@ -111,6 +111,17 @@ for(const {person,promotion} of fighters){
   const key=norm(person.name);if(!key)continue;
 
   if(promotion==='pfl'){
+    // Once a PFL bodyshot has been identity-checked on a previous run, keep it.
+    // Re-fetching the fighter profile every 15 minutes adds latency and creates
+    // unnecessary opportunities for a transient PFL response to disturb good data.
+    if(person.image_source==='pfl'&&pflBodyshot.test(person.image||'')&&await usableImage(person.image)){
+      if(!cache[key]?.url||badPortrait.test(cache[key].url)){
+        cache[key]={url:person.image,source:'pfl',framing:'safe'};
+        changedCache=true;
+      }
+      continue;
+    }
+
     const official=await resolveFromPfl(person.name);
     if(official){
       const hit={url:official,source:'pfl',framing:'safe'};
