@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-09T05:26:00.148Z",
+  "generated_at": "2026-08-09T05:28:44.820Z",
   "events": [
     {
       "id": "ufc-fight-night-august-08-2026-2026-08-08",
@@ -986,6 +986,69 @@
                   "image_framing": "standard"
                 }
               ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Bantamweight",
+              "fighters": [
+                {
+                  "name": "Gustavo Oliveira",
+                  "initials": "GO",
+                  "image": "https://pflmma-prod.s3.amazonaws.com/articles/thumbnails/0739ee5908fde3d55958b5b519c9b05a-1-1.jpg",
+                  "image_source": "external",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Marcirley Alves",
+                  "initials": "MA",
+                  "image": "https://pflmma-prod.s3.amazonaws.com/articles/thumbnails/0c1a07aae01356a57ab7b05db30300dc-1-1.png",
+                  "image_source": "external",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Light Heavyweight",
+              "fighters": [
+                {
+                  "name": "Luke Trainer",
+                  "initials": "LT",
+                  "image": "https://pflmma-prod.s3.amazonaws.com/articles/thumbnails/9ec56eec5e97de15ad4a375914210a38-1.png",
+                  "image_source": "external",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Roland Dunlap",
+                  "initials": "RD",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/2425.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Bantamweight",
+              "fighters": [
+                {
+                  "name": "Magomed Magomedov",
+                  "initials": "MM",
+                  "image": "https://pflmma-prod.s3.amazonaws.com/articles/thumbnails/a1d8171b774f9a002e928eb05c5a430a-1.png",
+                  "image_source": "external",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Daniel Marcos",
+                  "initials": "DM",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/1717.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
             }
           ]
         },
@@ -993,7 +1056,155 @@
           "kind": "prelims",
           "title": "Early Card",
           "time": "5:30 PM ET",
-          "bouts": []
+          "bouts": [
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Women's Flyweight",
+              "fighters": [
+                {
+                  "name": "Taila Santos",
+                  "initials": "TS",
+                  "image": "https://pflmma-prod.s3.amazonaws.com/videos/thumbnails/fec6e5accc5ac2f8cfcaf33331e7a2d6-1.jpg",
+                  "image_source": "external",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Sabrinna de Sousa",
+                  "initials": "SDS",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "Bantamweight",
+              "fighters": [
+                {
+                  "name": "Movsar Ibragimov",
+                  "initials": "MI",
+                  "image": "https://pflmma-prod.s3.amazonaws.com/articles/thumbnails/b2a5dd6dbc3219fca1847d9b55e68651-1.jpg",
+                  "image_source": "external",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Javid Basharat",
+                  "initials": "JB",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "Lightweight",
+              "fighters": [
+                {
+                  "name": "Dakota Bush",
+                  "initials": "DB",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Morquez Forest",
+                  "initials": "MF",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "Lightweight",
+              "fighters": [
+                {
+                  "name": "Natan Schulte",
+                  "initials": "NS",
+                  "image": "https://pflmma-prod.s3.amazonaws.com/articles/thumbnails/35515fdeebf9dbe02f97d2f675e3e405.png",
+                  "image_source": "external",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Makkasharip Zaynukov",
+                  "initials": "MZ",
+                  "image": "https://pflmma-prod.s3.amazonaws.com/articles/thumbnails/cef2b6de4cb558f7cc750783d5c2f73c-1-1.png",
+                  "image_source": "external",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "Lightweight",
+              "fighters": [
+                {
+                  "name": "Gino van Steenis",
+                  "initials": "GVS",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Robert Watley",
+                  "initials": "RW",
+                  "image": "https://pflmma-prod.s3.amazonaws.com/articles/thumbnails/de33189e472d705cff8648bb1aaebe02-1-1.png",
+                  "image_source": "external",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 11,
+              "label": "",
+              "weight_class": "Welterweight",
+              "fighters": [
+                {
+                  "name": "Florim Zendeli",
+                  "initials": "FZ",
+                  "image": "https://pflmma-prod.s3.amazonaws.com/articles/thumbnails/a16f6254d9bd9f2d2639d4d0bbba1355-2-1.png",
+                  "image_source": "external",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Omran Chaaban",
+                  "initials": "OC",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 12,
+              "label": "",
+              "weight_class": "Welterweight",
+              "fighters": [
+                {
+                  "name": "Eoin Sheridan",
+                  "initials": "ES",
+                  "image": "https://pflmma-prod.s3.amazonaws.com/articles/thumbnails/01ebd0ed0580933029c4d9c2472cfa48-1.png",
+                  "image_source": "external",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "James Vake",
+                  "initials": "JV",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            }
+          ]
         }
       ]
     },
