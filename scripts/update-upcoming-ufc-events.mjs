@@ -2,9 +2,10 @@ import { dateLabel, fighter, loadData, loadPortraitCache, mergePromotion, portra
 
 const ORIGIN = 'https://www.ufc.com';
 const EVENTS_URL = `${ORIGIN}/events`;
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockUpcomingEvents/4.0; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockUpcomingEvents/4.1; +https://matlockfighttalk.com/)';
 const MAX_DAYS = 240;
 const MAX_PAGES = 24;
+const EVENT_MAX_HOURS = 8;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const decode = (s = '') => s.replace(/&#x([0-9a-f]+);/gi, (_, x) => String.fromCodePoint(parseInt(x, 16))).replace(/&#(\d+);/g, (_, x) => String.fromCodePoint(+x)).replace(/&nbsp;/gi, ' ').replace(/&amp;/gi, '&').replace(/&quot;/gi, '"').replace(/&#039;|&#39;|&apos;/gi, "'").replace(/&lt;/gi, '<').replace(/&gt;/gi, '>');
@@ -47,10 +48,24 @@ function jsonLd(html) {
   return out;
 }
 
-function eventDate(html, url) {
-  for (const x of jsonLd(html)) if (x?.startDate && !Number.isNaN(Date.parse(x.startDate))) return new Date(x.startDate);
+function rawStartDate(html) {
+  for (const x of jsonLd(html)) if (typeof x?.startDate === 'string' && !Number.isNaN(Date.parse(x.startDate))) return x.startDate;
   const e = html.match(/["']startDate["']\s*:\s*["']([^"']+)["']/i);
-  if (e?.[1] && !Number.isNaN(Date.parse(decode(e[1])))) return new Date(decode(e[1]));
+  return e?.[1] && !Number.isNaN(Date.parse(decode(e[1]))) ? decode(e[1]) : '';
+}
+
+function exactEventStart(html) {
+  const raw = rawStartDate(html);
+  // Only use a timestamp for expiration when UFC supplied both a clock time and
+  // an explicit UTC offset. A bare date still goes through the old safe fallback.
+  if (!/T\d{2}:\d{2}/i.test(raw) || !/(?:Z|[+-]\d{2}:?\d{2})$/i.test(raw)) return null;
+  const date = new Date(raw);
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
+function eventDate(html, url) {
+  const raw = rawStartDate(html);
+  if (raw) return new Date(raw);
   const s = new URL(url).pathname.match(/(january|february|march|april|may|june|july|august|september|october|november|december)-(\d{1,2})-(\d{4})/i);
   return s ? new Date(`${s[1]} ${s[2]}, ${s[3]} 12:00:00 UTC`) : null;
 }
@@ -125,7 +140,18 @@ for (const url of urls) {
     const html = await get(url), date = eventDate(html, url); if (!date) continue;
     const delta = (date - Date.now()) / 86400000; if (delta < -1 || delta > MAX_DAYS) continue;
     const card = bouts(html); if (!card.length) continue;
-    rawEvents.push({ url, date, title: title(html, url), location: location(html), times: times(html), broadcast: broadcast(html), bouts: card });
+    const exactStart = exactEventStart(html);
+    rawEvents.push({
+      url,
+      date,
+      startsAt: exactStart?.toISOString() || '',
+      expiresAt: exactStart ? new Date(exactStart.getTime() + EVENT_MAX_HOURS * 3600000).toISOString() : '',
+      title: title(html, url),
+      location: location(html),
+      times: times(html),
+      broadcast: broadcast(html),
+      bouts: card
+    });
   } catch (e) { console.warn(`UFC skip ${url}: ${e.message}`); }
 }
 const seen = new Set(), unique = rawEvents.sort((a, b) => a.date - b.date).filter(e => !seen.has(e.url) && seen.add(e.url));
@@ -143,7 +169,21 @@ const candidates = unique.map(e => {
       fighters: b.fighters.map(x => fighter(x.name, portraitFor(x.name, previous, cache)))
     })) });
   }
-  return { id: `${slugify(parts.promotion)}-${date}-${slugify(parts.matchup)}`, promotion_key: 'ufc', promotion: parts.promotion, title: parts.matchup, date, date_label: dateLabel(date), venue: e.location, broadcast: e.broadcast, official_url: e.url, updated_label: updatedLabel(), sections };
+  return {
+    id: `${slugify(parts.promotion)}-${date}-${slugify(parts.matchup)}`,
+    promotion_key: 'ufc',
+    promotion: parts.promotion,
+    title: parts.matchup,
+    date,
+    date_label: dateLabel(date),
+    starts_at: e.startsAt,
+    expires_at: e.expiresAt,
+    venue: e.location,
+    broadcast: e.broadcast,
+    official_url: e.url,
+    updated_label: updatedLabel(),
+    sections
+  };
 });
 
 await mergePromotion('ufc', candidates, { maxEventDrop: 1, maxBoutDrop: 3 });
