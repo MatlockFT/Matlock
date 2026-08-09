@@ -7,6 +7,8 @@ const TIMEOUT=8000;
 const tracking=/(?:piwik|matomo|google-analytics|googletagmanager|doubleclick|analytics|tracking|pixel|beacon|\/collect(?:[/?]|$)|\/track(?:[/?]|$))/i;
 const badPortrait=/(?:\/articles?\/|\/news\/|\/galleries?\/|\/thumbnails?\/|\/fighters\/(?:bodyshots|headshots)\/default-(?:male|female)\.(?:png|jpe?g|webp)(?:\?|$)|(?:^|[\/_-])(?:banner|sponsor|poster|promo|placeholder)(?:[\/_-]|$))/i;
 const pflAssetHost=/(?:pflmma\.com|pfl-cdn|pflmma-prod\.s3(?:\.us-east-1)?\.amazonaws\.com)/i;
+const pflBodyshot=/\/fighters\/bodyshots\//i;
+const pflHeadshot=/\/fighters\/headshots\//i;
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const browserHeaders={
   'user-agent':UA,
@@ -22,41 +24,45 @@ function plainText(html=''){return decode(String(html).replace(/<script[\s\S]*?<
 function slug(name){return norm(name).replace(/\s+/g,'-');}
 function slugCandidates(name){
   const base=slug(name),set=new Set([base]);
-  // PFL sometimes collapses surname particles into the following surname in its URL,
-  // e.g. Gino van Steenis -> /fighter/gino-vansteenis.
   set.add(base.replace(/-(de|da|do|dos|das)-/g,'-$1'));
   set.add(base.replace(/-(van|von)-/g,'-$1'));
   return [...set].filter(Boolean);
 }
+function profileMatches(html,name){
+  const requested=norm(name);
+  const title=decode((html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)||[])[1]||'').replace(/\s+/g,' ').trim();
+  const og=decode((html.match(/<meta\b[^>]*(?:property|name)=["']og:title["'][^>]*content=["']([^"']+)["'][^>]*>/i)||[])[1]||'').replace(/\s+/g,' ').trim();
+  for(const value of [title,og]){
+    const n=norm(value.split('|')[0]);
+    if(n===requested||n.startsWith(`${requested} `))return true;
+  }
+  return false;
+}
 function pflImageCandidates(html,name){
-  const requested=norm(name),page=norm(plainText(html));
-  const tokens=requested.split(/\s+/).filter(Boolean);
-  if(tokens.length&&!tokens.every(token=>page.includes(token)))return[];
-  const out=[];
+  const requested=norm(name),out=[];
   for(const m of html.matchAll(/<img\b[^>]*>/gi)){
     const a=attrs(m[0]),raw=a.src||a['data-src']||a['data-lazy-src']||a.srcset?.split(',')[0]?.trim()?.split(/\s+/)[0]||'';
     if(!raw||tracking.test(raw)||badPortrait.test(raw))continue;
     let url;try{url=new URL(raw,'https://pflmma.com').toString();}catch{continue;}
     if(!pflAssetHost.test(url))continue;
-    let score=0;
-    // The profile bodyshot belongs to the requested fighter. Headshots lower on
-    // the page can belong to opponents, so bodyshots are deliberately preferred.
-    if(/\/fighters\/bodyshots\//i.test(url))score+=500;
-    else if(/\/fighters\/headshots\//i.test(url))score+=350;
-    else continue;
     const alt=norm(a.alt||'');
-    if(alt===requested)score+=150;else if(alt&&(alt.includes(requested)||requested.includes(alt)))score+=90;
-    if(/flag|logo|icon|banner|sponsor|placeholder|background/i.test(`${a.alt||''} ${url}`))score-=600;
+    let score=0;
+    // On a verified fighter profile, the dedicated bodyshot is the profile owner.
+    // Matchup headshots can belong to either fighter, so accept a headshot only
+    // when PFL explicitly labels that image with the requested fighter's name.
+    if(pflBodyshot.test(url))score=1000;
+    else if(pflHeadshot.test(url)&&alt&&(alt===requested||alt.includes(requested)||requested.includes(alt)))score=700;
+    else continue;
+    if(alt===requested)score+=250;
+    if(/flag|logo|icon|banner|sponsor|placeholder|background/i.test(`${a.alt||''} ${url}`))score-=1200;
     if(score>0)out.push({url,score});
   }
   return out.sort((a,b)=>b.score-a.score);
 }
 async function resolveFromPfl(name){
-  // PFL's /fighter/<slug> route redirects to the correct all-fighter,
-  // regular-fighter or wt-fighter profile. Using that canonical redirect avoids
-  // probing four separate routes for every fighter.
   for(const s of slugCandidates(name))try{
     const page=await fetchText(`https://pflmma.com/fighter/${s}`);
+    if(!profileMatches(page,name))continue;
     for(const candidate of pflImageCandidates(page,name))if(await usableImage(candidate.url))return candidate.url;
   }catch{}
   return'';
@@ -67,14 +73,35 @@ const framingFor=source=>source==='espn'?'standard':'safe';
 const data=JSON.parse(await fs.readFile(DATA_PATH,'utf8'));
 let cache={};try{cache=JSON.parse(await fs.readFile(CACHE_PATH,'utf8'));}catch{}
 delete cache[''];
-const fighters=[];for(const event of data.events||[])for(const section of event.sections||[])for(const bout of section.bouts||[])for(const person of bout.fighters||[])fighters.push({person,promotion:event.promotion_key});
+const fighters=[];for(const event of data.events||[])for(const section of event.sections||[])for(const bout of section.bouts||[])for(const person of bout.fighters||[])fighters.push({person,promotion:event.promotion_key,eventId:event.id});
 
 let changedData=false,changedCache=false;
+
+// A single portrait URL cannot represent two different fighters on the same PFL
+// card. Clear every ambiguous assignment and let verified PFL/ESPN resolution
+// rebuild those portraits instead of guessing which side is correct.
+const pflUrls=new Map();
+for(const item of fighters){
+  const {person,promotion,eventId}=item;
+  if(promotion!=='pfl'||!person.image||person.image_source!=='pfl')continue;
+  const key=`${eventId}|${person.image}`;
+  if(!pflUrls.has(key))pflUrls.set(key,[]);
+  pflUrls.get(key).push(person);
+}
+for(const people of pflUrls.values()){
+  const names=new Set(people.map(person=>norm(person.name)).filter(Boolean));
+  if(names.size<2)continue;
+  for(const person of people){
+    const key=norm(person.name),badUrl=person.image;
+    person.image='';person.image_source='';person.image_framing='';changedData=true;
+    if(cache[key]?.url===badUrl){delete cache[key];changedCache=true;}
+    console.warn(`Cleared duplicate PFL portrait assignment for ${person.name}.`);
+  }
+}
+
 for(const {person,promotion} of fighters){
   const key=norm(person.name);if(!key)continue;
 
-  // PFL cards should use PFL's own fighter assets whenever they are available.
-  // This intentionally replaces ESPN/external/article images instead of preserving them.
   if(promotion==='pfl'){
     const official=await resolveFromPfl(person.name);
     if(official){
@@ -82,6 +109,15 @@ for(const {person,promotion} of fighters){
       if(cache[key]?.url!==hit.url||cache[key]?.source!=='pfl'||cache[key]?.framing!=='safe'){cache[key]=hit;changedCache=true;}
       if(person.image!==hit.url||person.image_source!=='pfl'||person.image_framing!=='safe'){person.image=hit.url;person.image_source='pfl';person.image_framing='safe';changedData=true;}
       continue;
+    }
+
+    // Headshots pulled from matchup modules are unsafe unless PFL explicitly
+    // names the image. Remove old unverified assignments created by the previous
+    // resolver so a known-good ESPN/Sherdog portrait can be restored downstream.
+    if(person.image_source==='pfl'&&pflHeadshot.test(person.image||'')){
+      const badUrl=person.image;
+      person.image='';person.image_source='';person.image_framing='';changedData=true;
+      if(cache[key]?.url===badUrl){delete cache[key];changedCache=true;}
     }
   }
 
