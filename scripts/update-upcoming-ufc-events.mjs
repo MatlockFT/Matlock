@@ -3,42 +3,113 @@ import { dateLabel, fighter, loadData, loadPortraitCache, mergePromotion, portra
 const ORIGIN = 'https://www.ufc.com';
 const EVENTS_URL = `${ORIGIN}/events`;
 const TICKETS_URL = `${ORIGIN}/tickets`;
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockUpcomingEvents/4.2; +https://matlockfighttalk.com/)';
+const ESPN_SCOREBOARD = 'https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockUpcomingEvents/4.3; +https://matlockfighttalk.com/)';
 const MAX_DAYS = 240;
-const MAX_PAGES = 24;
+const DISCOVERY_DAYS = 100;
+const MAX_PAGES = 40;
 const EVENT_MAX_HOURS = 5;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const decode = (s = '') => s.replace(/&#x([0-9a-f]+);/gi, (_, x) => String.fromCodePoint(parseInt(x, 16))).replace(/&#(\d+);/g, (_, x) => String.fromCodePoint(+x)).replace(/&nbsp;/gi, ' ').replace(/&amp;/gi, '&').replace(/&quot;/gi, '"').replace(/&#039;|&#39;|&apos;/gi, "'").replace(/&lt;/gi, '<').replace(/&gt;/gi, '>');
-const text = (s = '') => decode(s.replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ').trim();
+const text = (s = '') => decode(String(s).replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ').trim();
 const slugify = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const ymd = d => `${d.getUTCFullYear()}${String(d.getUTCMonth() + 1).padStart(2, '0')}${String(d.getUTCDate()).padStart(2, '0')}`;
+const monthNames = ['january','february','march','april','may','june','july','august','september','october','november','december'];
 
-async function get(url) {
+async function request(url, asJson = false) {
   let last;
   for (let i = 1; i <= 3; i++) {
     try {
-      const r = await fetch(url, { redirect: 'follow', signal: AbortSignal.timeout(30000), headers: { 'user-agent': UA, accept: 'text/html,*/*' } });
-      if (r.ok) return await r.text();
+      const r = await fetch(url, {
+        redirect: 'follow',
+        signal: AbortSignal.timeout(30000),
+        headers: { 'user-agent': UA, accept: asJson ? 'application/json,*/*' : 'text/html,*/*' }
+      });
+      if (r.ok) return asJson ? r.json() : r.text();
       last = new Error(`${r.status} ${r.statusText} for ${url}`);
     } catch (e) { last = e; }
     if (i < 3) await sleep(700 * i);
   }
   throw last || new Error(`Request failed for ${url}`);
 }
+const get = url => request(url, false);
+const getJson = url => request(url, true);
+
+function canonicalEventUrl(raw) {
+  try {
+    const u = new URL(raw, ORIGIN);
+    if (!/(?:^|\.)ufc\.com$/i.test(u.hostname)) return '';
+    if (!/^\/event\/(?:ufc-|noche-ufc|ufc-noche)/i.test(u.pathname)) return '';
+    if (/contender|dwcs|ultimate-fighter|road-to-ufc|fight-pass/i.test(u.pathname)) return '';
+    u.protocol = 'https:';
+    u.hostname = 'www.ufc.com';
+    u.search = '';
+    u.hash = '';
+    u.pathname = u.pathname.replace(/\/$/, '');
+    return u.toString();
+  } catch { return ''; }
+}
 
 function eventUrls(html) {
   const out = new Set(), src = decode(html).replaceAll('\\/', '/');
   for (const m of src.matchAll(/(?:href\s*=\s*["'])?((?:https?:\/\/(?:[a-z0-9-]+\.)?ufc\.com)?\/event\/[a-z0-9][a-z0-9-]*)(?=[?#["'<>\s\\]|$)/gi)) {
+    const url = canonicalEventUrl(m[1]);
+    if (url) out.add(url);
+  }
+  return [...out];
+}
+
+function fightNightDateUrls(date) {
+  const dates = new Set();
+  if (!Number.isNaN(date.getTime())) {
+    // ESPN timestamps can represent the same international event on a different
+    // UTC/US calendar day. Probe the surrounding dates, then require the UFC
+    // page itself to validate before anything is accepted.
+    for (const delta of [-1, 0, 1]) {
+      const d = new Date(date.getTime() + delta * 86400000);
+      dates.add(`${monthNames[d.getUTCMonth()]}-${String(d.getUTCDate()).padStart(2, '0')}-${d.getUTCFullYear()}`);
+    }
     try {
-      const u = new URL(m[1], ORIGIN);
-      if (!/(?:^|\.)ufc\.com$/i.test(u.hostname)) continue;
-      if (!/^\/event\/(?:ufc-|noche-ufc|ufc-noche)/i.test(u.pathname)) continue;
-      if (/contender|dwcs|ultimate-fighter|road-to-ufc|fight-pass/i.test(u.pathname)) continue;
-      u.protocol = 'https:'; u.hostname = 'www.ufc.com'; u.search = ''; u.hash = ''; u.pathname = u.pathname.replace(/\/$/, '');
-      out.add(u.toString());
+      const parts = Object.fromEntries(new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit'
+      }).formatToParts(date).filter(p => p.type !== 'literal').map(p => [p.type, p.value]));
+      dates.add(`${monthNames[Number(parts.month) - 1]}-${parts.day}-${parts.year}`);
     } catch {}
   }
-  return [...out].slice(0, MAX_PAGES);
+  return [...dates].flatMap(stamp => [
+    `${ORIGIN}/event/ufc-fight-night-${stamp}`,
+    `${ORIGIN}/event/noche-ufc-${stamp}`,
+    `${ORIGIN}/event/ufc-noche-${stamp}`
+  ]).map(canonicalEventUrl).filter(Boolean);
+}
+
+function espnCandidateUrls(event) {
+  const name = String(event?.name || event?.shortName || event?.season?.slug || '').trim();
+  const out = new Set();
+  const numbered = name.match(/\bUFC\s+(\d{3,4})\b/i);
+  if (numbered) out.add(canonicalEventUrl(`${ORIGIN}/event/ufc-${numbered[1]}`));
+
+  const date = new Date(event?.date || event?.competitions?.[0]?.date || '');
+  if (/UFC\s+(?:Fight\s+Night|on\s+ESPN)|Noche\s+UFC|UFC\s+Noche/i.test(name) || !numbered) {
+    for (const url of fightNightDateUrls(date)) out.add(url);
+  }
+  return [...out].filter(Boolean);
+}
+
+async function espnDiscoveryUrls() {
+  const start = new Date(Date.now() - 86400000);
+  const end = new Date(Date.now() + DISCOVERY_DAYS * 86400000);
+  try {
+    const json = await getJson(`${ESPN_SCOREBOARD}?dates=${ymd(start)}-${ymd(end)}&limit=100`);
+    const events = Array.isArray(json?.events) ? json.events : [];
+    const urls = [...new Set(events.flatMap(espnCandidateUrls))];
+    console.log(`ESPN UFC discovery found ${events.length} event(s) and ${urls.length} candidate UFC URL(s).`);
+    return urls;
+  } catch (error) {
+    console.warn(`ESPN UFC discovery unavailable: ${error.message}`);
+    return [];
+  }
 }
 
 function jsonLd(html) {
@@ -57,8 +128,6 @@ function rawStartDate(html) {
 
 function exactEventStart(html) {
   const raw = rawStartDate(html);
-  // Only use a timestamp for expiration when UFC supplied both a clock time and
-  // an explicit UTC offset. A bare date still goes through the ET-time fallback.
   if (!/T\d{2}:\d{2}/i.test(raw) || !/(?:Z|[+-]\d{2}:?\d{2})$/i.test(raw)) return null;
   const date = new Date(raw);
   return Number.isNaN(date.getTime()) ? null : date;
@@ -131,12 +200,13 @@ function bouts(html) {
 const isoDay = d => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
 
 const data = await loadData(), cache = await loadPortraitCache(), previous = data.events.filter(e => e.promotion_key === 'ufc');
-const discoveryPages = [];
+const discovered = new Set();
 for (const url of [EVENTS_URL, TICKETS_URL]) {
-  try { discoveryPages.push(await get(url)); }
+  try { for (const eventUrl of eventUrls(await get(url))) discovered.add(eventUrl); }
   catch (error) { console.warn(`UFC discovery source unavailable ${url}: ${error.message}`); }
 }
-const urls = [...new Set(discoveryPages.flatMap(eventUrls))];
+for (const eventUrl of await espnDiscoveryUrls()) discovered.add(eventUrl);
+const urls = [...discovered].slice(0, MAX_PAGES);
 if (!urls.length) { console.warn('No UFC event URLs found; preserving existing UFC data.'); process.exit(0); }
 
 const rawEvents = [];
