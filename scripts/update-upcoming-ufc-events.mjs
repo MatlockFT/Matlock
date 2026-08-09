@@ -5,7 +5,7 @@ const EVENTS_URL = `${ORIGIN}/events`;
 const UA = 'Mozilla/5.0 (compatible; MMAMatlockUpcomingEvents/4.1; +https://matlockfighttalk.com/)';
 const MAX_DAYS = 240;
 const MAX_PAGES = 24;
-const EVENT_MAX_HOURS = 8;
+const EVENT_MAX_HOURS = 5;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const decode = (s = '') => s.replace(/&#x([0-9a-f]+);/gi, (_, x) => String.fromCodePoint(parseInt(x, 16))).replace(/&#(\d+);/g, (_, x) => String.fromCodePoint(+x)).replace(/&nbsp;/gi, ' ').replace(/&amp;/gi, '&').replace(/&quot;/gi, '"').replace(/&#039;|&#39;|&apos;/gi, "'").replace(/&lt;/gi, '<').replace(/&gt;/gi, '>');
