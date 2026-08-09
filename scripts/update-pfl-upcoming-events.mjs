@@ -4,7 +4,7 @@ const ORIGIN = 'https://pflmma.com';
 const EVENTS_URL = `${ORIGIN}/events`;
 const HOME_URL = `${ORIGIN}/`;
 const ESPN = 'https://site.api.espn.com/apis/site/v2/sports/mma/pfl/scoreboard';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockPFLUpdater/3.4; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockPFLUpdater/3.5; +https://matlockfighttalk.com/)';
 const MAX_DAYS = 240;
 const MAIN_CARD_SIZE = 5;
 
@@ -82,8 +82,6 @@ function homepageBouts(homeHtml,date,url) {
   if(!block)return [];
 
   const division="PFL Women's Featherweight World Title|Women's Featherweight World Title|Women's Strawweight|Women's Flyweight|Women's Bantamweight|Women's Featherweight|Light Heavyweight|Heavyweight|Middleweight|Welterweight|Lightweight|Featherweight|Bantamweight|Flyweight|Catchweight";
-  // Parse sequentially and non-greedily. A greedy fighter-name pattern can absorb
-  // division words from the following text (for example "Dunlap Light").
   const rx=new RegExp(`(.+?)\\s+vs\\s+(.+?)\\s+(${division})(?=\\s|$)`,'gi');
   const out=[],seen=new Set();
   for(const m of block.matchAll(rx)) {
@@ -115,9 +113,22 @@ async function espnBouts(date) {
 
 function fallbackBouts(url) {
   if(!/\/event\/pfl-tampa\/?$/i.test(url)) return [];
+  // Protected copy of the current official PFL homepage lineup. The live PFL
+  // homepage parser remains first priority; this prevents source-delivery issues
+  // from collapsing Tampa back to only the two ESPN-listed fights.
   return [
     {division:"Women's Featherweight Title",fighters:[{name:'Cris Cyborg',image:''},{name:'Ketlen Vieira',image:''}]},
-    {division:'Lightweight',fighters:[{name:'Gadzhi Rabadanov',image:''},{name:'Jakub Kaszuba',image:''}]}
+    {division:'Lightweight',fighters:[{name:'Gadzhi Rabadanov',image:''},{name:'Jakub Kaszuba',image:''}]},
+    {division:'Bantamweight',fighters:[{name:'Gustavo Oliveira',image:''},{name:'Marcirley Alves',image:''}]},
+    {division:'Light Heavyweight',fighters:[{name:'Luke Trainer',image:''},{name:'Roland Dunlap',image:''}]},
+    {division:'Bantamweight',fighters:[{name:'Magomed Magomedov',image:''},{name:'Daniel Marcos',image:''}]},
+    {division:"Women's Flyweight",fighters:[{name:'Taila Santos',image:''},{name:'Sabrinna de Sousa',image:''}]},
+    {division:'Bantamweight',fighters:[{name:'Movsar Ibragimov',image:''},{name:'Javid Basharat',image:''}]},
+    {division:'Lightweight',fighters:[{name:'Dakota Bush',image:''},{name:'Morquez Forest',image:''}]},
+    {division:'Lightweight',fighters:[{name:'Natan Schulte',image:''},{name:'Makkasharip Zaynukov',image:''}]},
+    {division:'Lightweight',fighters:[{name:'Gino van Steenis',image:''},{name:'Robert Watley',image:''}]},
+    {division:'Welterweight',fighters:[{name:'Florim Zendeli',image:''},{name:'Omran Chaaban',image:''}]},
+    {division:'Welterweight',fighters:[{name:'Eoin Sheridan',image:''},{name:'James Vake',image:''}]}
   ];
 }
 
@@ -145,11 +156,11 @@ async function build(url,eventsHtml,homeHtml) {
   const official=homepageBouts(homeHtml,date,url);
   const espn=await espnBouts(date);
   let card=official.length>espn.length?official:espn;
-  if(!card.length)card=fallbackBouts(url);
+  if(card.length < 3)card=fallbackBouts(url);
   card=card.filter(b=>b.fighters?.length===2&&b.fighters.every(f=>saneName(f.name)));
   if(!card.length)return null;
   if(venue==='Venue TBA'&&card.length===1)return null;
-  return{url,title,date,venue,main,early,bouts:card,cardSource:official.length>espn.length?'pfl-home':'espn'};
+  return{url,title,date,venue,main,early,bouts:card,cardSource:official.length>espn.length?'pfl-home':card.length>espn.length?'fallback':'espn'};
 }
 
 const data=await loadData(),cache=await loadPortraitCache(),previous=data.events.filter(e=>e.promotion_key==='pfl');
