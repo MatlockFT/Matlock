@@ -2,15 +2,20 @@ import fs from 'node:fs/promises';
 import { DATA_PATH, norm } from './upcoming-events-data.mjs';
 
 const CACHE_PATH='_data/fighter_portraits.json';
-const UA='Mozilla/5.0 (compatible; MMAMatlockPortraitResolver/3.2; +https://matlockfighttalk.com/)';
+const UA='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36';
 const TIMEOUT=8000;
 const tracking=/(?:piwik|matomo|google-analytics|googletagmanager|doubleclick|analytics|tracking|pixel|beacon|\/collect(?:[/?]|$)|\/track(?:[/?]|$))/i;
 const badPortrait=/(?:\/articles?\/|\/news\/|\/galleries?\/|\/thumbnails?\/|(?:^|[\/_-])(?:banner|sponsor|poster|promo|placeholder)(?:[\/_-]|$))/i;
 const pflAssetHost=/(?:pflmma\.com|pfl-cdn|pflmma-prod\.s3(?:\.us-east-1)?\.amazonaws\.com)/i;
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+const browserHeaders={
+  'user-agent':UA,
+  'accept-language':'en-US,en;q=0.9',
+  'cache-control':'no-cache'
+};
 
-async function fetchText(url){let last;for(let i=0;i<2;i++){try{const r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(TIMEOUT),headers:{'user-agent':UA,accept:'text/html,application/xhtml+xml,*/*'}});if(r.ok)return await r.text();last=new Error(`${r.status} ${url}`);}catch(e){last=e;}if(i===0)await sleep(250);}throw last;}
-async function usableImage(url){if(!/^https?:\/\//i.test(url||'')||tracking.test(url)||badPortrait.test(url))return false;try{let r=await fetch(url,{method:'HEAD',redirect:'follow',signal:AbortSignal.timeout(TIMEOUT),headers:{'user-agent':UA,accept:'image/*,*/*;q=0.8'}});if(!r.ok||!(r.headers.get('content-type')||'').toLowerCase().startsWith('image/'))r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(TIMEOUT),headers:{'user-agent':UA,accept:'image/*,*/*;q=0.8',range:'bytes=0-2047'}});if(!r.ok&&r.status!==206)return false;const type=(r.headers.get('content-type')||'').toLowerCase();return type.startsWith('image/')||/\.(png|jpe?g|webp)(?:\?|$)/i.test(r.url);}catch{return false;}}
+async function fetchText(url){let last;for(let i=0;i<2;i++){try{const r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(TIMEOUT),headers:{...browserHeaders,accept:'text/html,application/xhtml+xml,*/*'}});if(r.ok)return await r.text();last=new Error(`${r.status} ${url}`);}catch(e){last=e;}if(i===0)await sleep(250);}throw last;}
+async function usableImage(url){if(!/^https?:\/\//i.test(url||'')||tracking.test(url)||badPortrait.test(url))return false;try{let r=await fetch(url,{method:'HEAD',redirect:'follow',signal:AbortSignal.timeout(TIMEOUT),headers:{...browserHeaders,accept:'image/*,*/*;q=0.8'}});if(!r.ok||!(r.headers.get('content-type')||'').toLowerCase().startsWith('image/'))r=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(TIMEOUT),headers:{...browserHeaders,accept:'image/*,*/*;q=0.8',range:'bytes=0-2047'}});if(!r.ok&&r.status!==206)return false;const type=(r.headers.get('content-type')||'').toLowerCase();return type.startsWith('image/')||/\.(png|jpe?g|webp)(?:\?|$)/i.test(r.url);}catch{return false;}}
 const decode=(s='')=>s.replace(/&#x([0-9a-f]+);/gi,(_,x)=>String.fromCodePoint(parseInt(x,16))).replace(/&#(\d+);/g,(_,x)=>String.fromCodePoint(+x)).replace(/&nbsp;/gi,' ').replace(/&amp;/gi,'&').replace(/&quot;/gi,'"').replace(/&#039;|&#39;|&apos;/gi,"'").replace(/&lt;/gi,'<').replace(/&gt;/gi,'>');
 function attrs(tag){const out={};for(const m of tag.matchAll(/([:\w-]+)\s*=\s*(["'])(.*?)\2/gi))out[m[1].toLowerCase()]=decode(m[3]);return out;}
 function plainText(html=''){return decode(String(html).replace(/<script[\s\S]*?<\/script>/gi,' ').replace(/<style[\s\S]*?<\/style>/gi,' ').replace(/<[^>]*>/g,' ')).replace(/\s+/g,' ').trim();}
