@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-09T06:23:27.820Z",
+  "generated_at": "2026-08-09T06:35:10.478Z",
   "changes": [
+    {
+      "id": "2026-08-09T06:35:10.478Z|pfl-tampa-2026-08-22|portrait_changed|1",
+      "at": "2026-08-09T06:35:10.478Z",
+      "type": "portrait_changed",
+      "event_id": "pfl-tampa-2026-08-22",
+      "promotion": "PFL",
+      "event_title": "Tampa",
+      "event_date": "2026-08-22",
+      "summary": "Daniel Marcos portrait source changed.",
+      "details": {
+        "fighter": "Daniel Marcos",
+        "from_source": "pfl",
+        "to_source": "espn"
+      }
+    },
     {
       "id": "2026-08-09T06:23:27.820Z|pfl-tampa-2026-08-22|portrait_added|1",
       "at": "2026-08-09T06:23:27.820Z",
