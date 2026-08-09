@@ -75,11 +75,11 @@ jobs:
       - name: Read RIZIN event data
         run: node scripts/update-rizin-upcoming-events.mjs
 
-      - name: Resolve ESPN portraits by fighter name
-        run: node scripts/resolve-espn-fighter-portraits.mjs
-
-      - name: Resolve remaining fighter portraits
+      - name: Resolve verified promotion portraits
         run: node scripts/enrich-fighter-portraits.mjs
+
+      - name: Fill remaining portraits from ESPN
+        run: node scripts/resolve-espn-fighter-portraits.mjs
 
       - name: Validate merged event data
         run: node scripts/validate-upcoming-events.mjs /tmp/upcoming-events.before.json _data/upcoming_events.json upcoming-events.html
