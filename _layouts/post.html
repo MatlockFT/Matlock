@@ -97,7 +97,7 @@ layout: default
 
         <div class="post-meta">
             <span>
-                By {{ post_author }}
+                By <a href="{{ '/about/' | relative_url }}">{{ post_author }}</a>
             </span>
 
             {% if page.date %}
