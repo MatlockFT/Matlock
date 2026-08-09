@@ -18,7 +18,7 @@ logo: "/assets/logo-header-final.png"
 
 author:
   name: "MMA Matlock"
-  url: "https://matlockfighttalk.com/"
+  url: "https://matlockfighttalk.com/about/"
   twitter: "MMAMatlock"
 
 twitter:
@@ -102,12 +102,13 @@ footer_nav:
 
 
 defaults:
-  # Limit automatically generated description fallbacks.
-  # Explicit page and post descriptions still take priority.
+  # Limit automatically generated description fallbacks and keep ads off
+  # non-editorial utility pages unless they are explicitly opted in.
   - scope:
       path: ""
     values:
       seo_description_max_words: 35
+      ads: false
 
   # Default settings for every post.
   - scope:
@@ -115,6 +116,7 @@ defaults:
       type: posts
     values:
       layout: post
+      ads: true
       seo:
         type: "BlogPosting"
 
