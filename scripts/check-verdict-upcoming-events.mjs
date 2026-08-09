@@ -107,19 +107,6 @@ function matchVerdictEvent(event, verdictEvents) {
     .sort((a, b) => b.score - a.score)[0]?.candidate || null;
 }
 
-function fightAnchors(html, verdictEventId) {
-  const byFight = new Map();
-  const rx = new RegExp(`<a\\b[^>]*href=["'](?:https?:\\/\\/verdictmma\\.com)?\\/event\\/${verdictEventId}\\/fight\\/(\\d+)[^"']*["'][^>]*>([\\s\\S]*?)<\\/a>`, 'gi');
-  for (const match of html.matchAll(rx)) {
-    const fightId = match[1];
-    const label = text(match[2]);
-    if (!label) continue;
-    const current = byFight.get(fightId);
-    if (!current || label.length > current.length) byFight.set(fightId, label);
-  }
-  return [...byFight.entries()].sort((a, b) => Number(a[0]) - Number(b[0])).map(([id, label]) => ({ id, label }));
-}
-
 function fighterAppears(label, name) {
   const haystack = norm(label);
   const wanted = norm(name);
@@ -130,6 +117,29 @@ function fighterAppears(label, name) {
   const first = parts[0];
   const last = parts.at(-1);
   return haystack.includes(last) && (first.length < 3 || haystack.includes(first));
+}
+
+function verdictCardFromHtml(html, localBouts) {
+  const plain = text(html);
+  const countMatch = plain.match(/\bAll\s+(\d+)\s+Main\s+\d+(?:\s+Prelims\s+\d+)?\b/i)
+    || plain.match(/\bAll\s+(\d+)\b/i);
+  const remoteCount = countMatch ? Number(countMatch[1]) : null;
+  const confirmed = [];
+  const missing = [];
+
+  for (const bout of localBouts) {
+    const hit = fighterAppears(plain, bout.fighters[0]) && fighterAppears(plain, bout.fighters[1]);
+    (hit ? confirmed : missing).push(bout);
+  }
+
+  // A current Verdict event page is usable if it exposes its card count or confirms
+  // at least one of our local matchups. We don't require per-fight hyperlinks.
+  return {
+    readable: Number.isFinite(remoteCount) || confirmed.length > 0,
+    remoteCount,
+    confirmed,
+    missing
+  };
 }
 
 const data = JSON.parse(await fs.readFile(DATA_PATH, 'utf8'));
@@ -167,36 +177,25 @@ for (const event of currentEvents) {
     continue;
   }
 
-  let remoteFights = [];
-  let cardReadable = false;
+  let card = { readable: false, remoteCount: null, confirmed: [], missing: [] };
   try {
-    const eventHtml = await get(match.url);
-    remoteFights = fightAnchors(eventHtml, match.id);
-    cardReadable = remoteFights.length > 0;
+    card = verdictCardFromHtml(await get(match.url), localBouts);
   } catch (error) {
     console.warn(`Verdict watchdog: could not read ${match.url}: ${error.message}`);
   }
 
-  let confirmed = 0;
-  const missingLocalBouts = [];
-  if (cardReadable) {
-    for (const bout of localBouts) {
-      const hit = remoteFights.some(remote => fighterAppears(remote.label, bout.fighters[0]) && fighterAppears(remote.label, bout.fighters[1]));
-      if (hit) confirmed += 1;
-      else missingLocalBouts.push({ order: bout.order, fighters: bout.fighters });
-    }
-
-    if (remoteFights.length !== localBouts.length) {
+  if (card.readable) {
+    if (Number.isFinite(card.remoteCount) && card.remoteCount !== localBouts.length) {
       discrepancies.push({
         type: 'bout_count_mismatch',
         event_id: event.id,
         verdict_event_id: match.id,
         local_fight_count: localBouts.length,
-        verdict_fight_count: remoteFights.length
+        verdict_fight_count: card.remoteCount
       });
     }
 
-    for (const bout of missingLocalBouts) {
+    for (const bout of card.missing) {
       discrepancies.push({
         type: 'local_bout_not_found_on_verdict',
         event_id: event.id,
@@ -222,13 +221,13 @@ for (const event of currentEvents) {
     promotion: event.promotion_key,
     date: event.date,
     title: event.title,
-    status: cardReadable ? 'matched' : 'event_matched_card_unreadable',
+    status: card.readable ? 'matched' : 'event_matched_card_unreadable',
     verdict_event_id: match.id,
     verdict_url: match.url,
     verdict_date: match.date,
     local_fight_count: localBouts.length,
-    verdict_fight_count: cardReadable ? remoteFights.length : null,
-    confirmed_local_bouts: cardReadable ? confirmed : null
+    verdict_fight_count: card.readable ? card.remoteCount : null,
+    confirmed_local_bouts: card.readable ? card.confirmed.length : null
   });
 }
 
