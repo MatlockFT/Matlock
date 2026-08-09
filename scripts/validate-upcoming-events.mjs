@@ -18,7 +18,7 @@ function validateData(data,label){
   const ids=new Set(),keys=new Set(),cardSources=new Map();
   for(const event of data.events){
     if(!event||!event.id||!event.title||!/^20\d{2}-\d{2}-\d{2}$/.test(event.date||''))failures.push(`${label}: event missing id/title/date.`);
-    if(!/^(ufc|pfl|rizin)$/.test(event.promotion_key||''))failures.push(`${label}: ${event.id||'event'} has invalid promotion_key.`);
+    if(!/^(ufc|dwcs|pfl|rizin)$/.test(event.promotion_key||''))failures.push(`${label}: ${event.id||'event'} has invalid promotion_key.`);
     if(ids.has(event.id))failures.push(`${label}: duplicate event id ${event.id}.`);ids.add(event.id);
     const key=eventKey(event);if(keys.has(key))failures.push(`${label}: duplicate promotion/source event ${key}.`);keys.add(key);
     if(!event.official_url||!/^https?:\/\//i.test(event.official_url))failures.push(`${label}: ${event.id} missing official URL.`);
