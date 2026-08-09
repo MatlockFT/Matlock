@@ -14,6 +14,7 @@ on:
       - "scripts/update-rizin-upcoming-events.mjs"
       - "scripts/resolve-espn-fighter-portraits.mjs"
       - "scripts/enrich-fighter-portraits.mjs"
+      - "scripts/check-verdict-upcoming-events.mjs"
       - "scripts/publish-fighter-portraits.mjs"
       - "scripts/validate-upcoming-events.mjs"
       - "scripts/diff-upcoming-events.mjs"
@@ -54,6 +55,7 @@ jobs:
           node --check scripts/update-rizin-upcoming-events.mjs
           node --check scripts/resolve-espn-fighter-portraits.mjs
           node --check scripts/enrich-fighter-portraits.mjs
+          node --check scripts/check-verdict-upcoming-events.mjs
           node --check scripts/publish-fighter-portraits.mjs
           node --check scripts/validate-upcoming-events.mjs
           node --check scripts/diff-upcoming-events.mjs
@@ -82,6 +84,9 @@ jobs:
       - name: Validate merged event data
         run: node scripts/validate-upcoming-events.mjs /tmp/upcoming-events.before.json _data/upcoming_events.json upcoming-events.html
 
+      - name: Compare cards with Verdict MMA
+        run: node scripts/check-verdict-upcoming-events.mjs
+
       - name: Record meaningful event changes
         run: node scripts/diff-upcoming-events.mjs /tmp/upcoming-events.before.json _data/upcoming_events.json _data/upcoming_events_changes.json
 
@@ -92,13 +97,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          meaningful="$(git status --porcelain -- _data/upcoming_events_changes.json _data/fighter_portraits.json assets/fighter-portraits.json || true)"
+          meaningful="$(git status --porcelain -- _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json || true)"
           if [ -z "$meaningful" ]; then
-            echo "No meaningful MMA event or portrait changes. Timestamp-only refresh discarded."
+            echo "No meaningful MMA event, watchdog, or portrait changes. Timestamp-only refresh discarded."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- _data/upcoming_events.json _data/upcoming_events_changes.json _data/fighter_portraits.json assets/fighter-portraits.json
+          git add -- _data/upcoming_events.json _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json
           git commit -m "Refresh upcoming MMA event data"
           git push origin HEAD:main
