@@ -23,7 +23,8 @@ function frontmatterFor(file) {
 
     return {
         markdown,
-        yaml: match[1]
+        yaml: match[1],
+        body: markdown.slice(match[0].length).trim()
     };
 }
 
@@ -35,6 +36,19 @@ function scalar(yaml, field) {
     return match
         ? match[1].replace(/^['"]|['"]$/g, '')
         : '';
+}
+
+function approximateWordCount(markdown) {
+    return markdown
+        .replace(/```[\s\S]*?```/g, ' ')
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
+        .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+        .replace(/https?:\/\/\S+/g, ' ')
+        .replace(/[#>*_`~|\-]+/g, ' ')
+        .split(/\s+/)
+        .filter(Boolean)
+        .length;
 }
 
 const manifest = existsSync(manifestPath)
@@ -66,6 +80,8 @@ for (const filename of readdirSync(postsDirectory).filter(
     }
 
     const published = scalar(frontmatter.yaml, 'published');
+    const title = scalar(frontmatter.yaml, 'title');
+    const description = scalar(frontmatter.yaml, 'description');
 
     if (!['true', 'false'].includes(published)) {
         failures.push(
@@ -123,6 +139,72 @@ for (const filename of readdirSync(postsDirectory).filter(
             failures.push(`${filename}: possible typo “${label}”`);
         }
     }
+
+    if (published !== 'true') {
+        continue;
+    }
+
+    const wordCount = approximateWordCount(frontmatter.body);
+
+    if (wordCount < 300) {
+        warnings.push(
+            `${filename}: published article is only about ${wordCount} words; review whether it provides enough original value`
+        );
+    }
+
+    if (title.length > 80) {
+        warnings.push(
+            `${filename}: title is ${title.length} characters; consider shortening it for readability`
+        );
+    }
+
+    if (description.length < 70) {
+        warnings.push(
+            `${filename}: description is only ${description.length} characters; make it more descriptive`
+        );
+    }
+
+    if (description.length > 180) {
+        warnings.push(
+            `${filename}: description is ${description.length} characters; consider tightening it`
+        );
+    }
+
+    if (/^#\s+\S/m.test(frontmatter.body)) {
+        warnings.push(
+            `${filename}: body contains an H1; the post layout already supplies the page H1`
+        );
+    }
+
+    if (/\b(?:TODO|TBD|lorem ipsum)\b/i.test(frontmatter.body)) {
+        warnings.push(
+            `${filename}: possible unfinished placeholder text found`
+        );
+    }
+
+    const genericAltPattern =
+        /!\[(?:image(?:\.png)?|img|photo|screenshot)?\]\([^)]+\)/gi;
+
+    if (genericAltPattern.test(frontmatter.body)) {
+        warnings.push(
+            `${filename}: one or more inline images use generic alt text`
+        );
+    }
+
+    const commonQualityTypos = [
+        [/\bwrestelr\b/i, 'wrestelr'],
+        [/\bprevelant\b/i, 'prevelant'],
+        [/\bdesparate\b/i, 'desparate'],
+        [/\binterseting\b/i, 'interseting'],
+        [/\bits worth noting\b/i, 'its worth noting'],
+        [/\bprioritise\b/i, 'prioritise (American English: prioritize)']
+    ];
+
+    for (const [pattern, label] of commonQualityTypos) {
+        if (pattern.test(frontmatter.body)) {
+            warnings.push(`${filename}: review “${label}”`);
+        }
+    }
 }
 
 const generatedDirectory = join(root, 'assets', 'generated', 'posts');
@@ -162,4 +244,6 @@ if (failures.length > 0) {
     process.exit(1);
 }
 
-console.log('Content frontmatter, draft defaults, and images are valid.');
+console.log(
+    `Content checks passed with ${warnings.length} editorial warning${warnings.length === 1 ? '' : 's'}.`
+);
