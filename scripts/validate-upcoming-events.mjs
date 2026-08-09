@@ -23,6 +23,10 @@ function validateData(data,label){
     if(ids.has(event.id))failures.push(`${label}: duplicate event id ${event.id}.`);ids.add(event.id);
     const key=eventKey(event);if(keys.has(key))failures.push(`${label}: duplicate promotion/source event ${key}.`);keys.add(key);
     if(!event.official_url||!/^https?:\/\//i.test(event.official_url))failures.push(`${label}: ${event.id} missing official URL.`);
+    for(const field of ['starts_at','expires_at']){
+      if(event[field]&&Number.isNaN(Date.parse(event[field])))failures.push(`${label}: ${event.id} has invalid ${field}.`);
+    }
+    if(event.starts_at&&event.expires_at&&!Number.isNaN(Date.parse(event.starts_at))&&!Number.isNaN(Date.parse(event.expires_at))&&Date.parse(event.expires_at)<=Date.parse(event.starts_at))failures.push(`${label}: ${event.id} expires before it starts.`);
     if(event.source_card_url){
       const sourceKey=`${event.promotion_key}|${event.source_card_url}`;
       const prior=cardSources.get(sourceKey);
