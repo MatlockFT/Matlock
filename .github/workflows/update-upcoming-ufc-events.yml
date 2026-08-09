@@ -18,6 +18,7 @@ on:
       - "scripts/publish-fighter-portraits.mjs"
       - "scripts/validate-upcoming-events.mjs"
       - "scripts/diff-upcoming-events.mjs"
+      - "scripts/probe-pfl-tampa-assets.mjs"
   schedule:
     - cron: "7,22,37,52 * * * *"
 
@@ -59,6 +60,7 @@ jobs:
           node --check scripts/publish-fighter-portraits.mjs
           node --check scripts/validate-upcoming-events.mjs
           node --check scripts/diff-upcoming-events.mjs
+          node --check scripts/probe-pfl-tampa-assets.mjs
 
       - name: Snapshot current event data
         run: cp _data/upcoming_events.json /tmp/upcoming-events.before.json
@@ -71,6 +73,9 @@ jobs:
 
       - name: Read PFL event data
         run: node scripts/update-pfl-upcoming-events.mjs
+
+      - name: Probe PFL Tampa assets
+        run: node scripts/probe-pfl-tampa-assets.mjs
 
       - name: Read RIZIN event data
         run: node scripts/update-rizin-upcoming-events.mjs
@@ -97,13 +102,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          meaningful="$(git status --porcelain -- _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json || true)"
+          meaningful="$(git status --porcelain -- _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json _data/pfl_tampa_asset_probe.json || true)"
           if [ -z "$meaningful" ]; then
-            echo "No meaningful MMA event, watchdog, or portrait changes. Timestamp-only refresh discarded."
+            echo "No meaningful MMA event, watchdog, portrait, or probe changes. Timestamp-only refresh discarded."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- _data/upcoming_events.json _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json
+          git add -- _data/upcoming_events.json _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json _data/pfl_tampa_asset_probe.json
           git commit -m "Refresh upcoming MMA event data"
           git push origin HEAD:main
