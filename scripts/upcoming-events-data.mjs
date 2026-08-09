@@ -19,6 +19,16 @@ function easternClock(now = new Date()) {
 
 export function eventIsCurrent(event, now = new Date()) {
   if (!event?.date) return false;
+
+  // Prefer an absolute expiration instant whenever a promotion supplies a
+  // trustworthy event timestamp. This makes international cards timezone-safe:
+  // the same UTC instant works for Perth, London, Abu Dhabi, Las Vegas, etc.
+  if (event.expires_at) {
+    const expires = Date.parse(event.expires_at);
+    if (!Number.isNaN(expires)) return now.getTime() < expires;
+  }
+
+  // Conservative fallback for sources where we only know the calendar date.
   const clock = easternClock(now);
   if (event.date >= clock.date) return true;
   const eventDay = new Date(`${event.date}T12:00:00Z`);
@@ -71,6 +81,10 @@ function validateFighter(f, context) {
 export function validateEvent(event) {
   if (!event || !/^(ufc|dwcs|pfl|rizin)$/.test(event.promotion_key || '')) throw new Error('invalid promotion key');
   if (!event.id || !event.title || !/^20\d{2}-\d{2}-\d{2}$/.test(event.date || '')) throw new Error(`${event?.promotion_key || 'event'}: missing id/title/date`);
+  for (const field of ['starts_at', 'expires_at']) {
+    if (event[field] && Number.isNaN(Date.parse(event[field]))) throw new Error(`${event.id}: invalid ${field}`);
+  }
+  if (event.starts_at && event.expires_at && Date.parse(event.expires_at) <= Date.parse(event.starts_at)) throw new Error(`${event.id}: expires_at must follow starts_at`);
   if (!Array.isArray(event.sections) || !event.sections.length) throw new Error(`${event.id}: no sections`);
   const bouts = event.sections.flatMap(s => s.bouts || []);
   if (!bouts.length) throw new Error(`${event.id}: no bouts`);
