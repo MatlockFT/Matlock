@@ -9,6 +9,7 @@ on:
       - ".github/workflows/update-upcoming-ufc-events.yml"
       - "scripts/upcoming-events-data.mjs"
       - "scripts/update-upcoming-ufc-events.mjs"
+      - "scripts/update-dwcs-upcoming-events.mjs"
       - "scripts/update-pfl-upcoming-events.mjs"
       - "scripts/update-rizin-upcoming-events.mjs"
       - "scripts/resolve-espn-fighter-portraits.mjs"
@@ -48,6 +49,7 @@ jobs:
           set -euo pipefail
           node --check scripts/upcoming-events-data.mjs
           node --check scripts/update-upcoming-ufc-events.mjs
+          node --check scripts/update-dwcs-upcoming-events.mjs
           node --check scripts/update-pfl-upcoming-events.mjs
           node --check scripts/update-rizin-upcoming-events.mjs
           node --check scripts/resolve-espn-fighter-portraits.mjs
@@ -61,6 +63,9 @@ jobs:
 
       - name: Read UFC event data
         run: node scripts/update-upcoming-ufc-events.mjs
+
+      - name: Read DWCS event data
+        run: node scripts/update-dwcs-upcoming-events.mjs
 
       - name: Read PFL event data
         run: node scripts/update-pfl-upcoming-events.mjs
