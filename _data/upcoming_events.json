@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-08T05:14:21.058Z",
+  "generated_at": "2026-08-09T05:19:26.919Z",
   "events": [
     {
       "id": "ufc-fight-night-august-08-2026-2026-08-08",
@@ -283,6 +283,133 @@
       ]
     },
     {
+      "id": "dwcs-season-10-week-1-2026-08-11",
+      "promotion_key": "dwcs",
+      "promotion": "DWCS",
+      "title": "Season 10 · Week 1",
+      "date": "2026-08-11",
+      "date_label": "Tuesday · August 11, 2026",
+      "venue": "Meta APEX · Las Vegas, Nevada",
+      "broadcast": "Paramount+",
+      "official_url": "https://www.ufc.com/dwcs#season-10-week-1",
+      "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-1-112637",
+      "updated_label": "August 9, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Fight Card",
+          "time": "8:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Heavyweight",
+              "fighters": [
+                {
+                  "name": "Anthony Wint",
+                  "initials": "AW",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Matthew Adams",
+                  "initials": "MA",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Lightweight",
+              "fighters": [
+                {
+                  "name": "Fabrizio Escarrega",
+                  "initials": "FE",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Abe Alsaghir",
+                  "initials": "AA",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Flyweight",
+              "fighters": [
+                {
+                  "name": "Mridul Saikia",
+                  "initials": "MS",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Bilal Hasan",
+                  "initials": "BH",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Featherweight",
+              "fighters": [
+                {
+                  "name": "Ananias Mulumba",
+                  "initials": "AM",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Tom Pagliarulo",
+                  "initials": "TP",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Middleweight",
+              "fighters": [
+                {
+                  "name": "Joseph Kropschot",
+                  "initials": "JK",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Jonathan Kunneman",
+                  "initials": "JK",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "rizin-rizin-54-2026-08-11",
       "promotion_key": "rizin",
       "promotion": "RIZIN",
@@ -292,7 +419,7 @@
       "venue": "TOYOTA ARENA TOKYO",
       "broadcast": "RIZIN 100 CLUB · RIZIN LIVE · ABEMA · U-NEXT · Sky PerfecTV",
       "official_url": "https://jp.rizinff.com/_ct/17833730",
-      "updated_label": "August 8, 2026",
+      "updated_label": "August 9, 2026",
       "sections": [
         {
           "kind": "main",
@@ -811,7 +938,7 @@
       "venue": "Benchmark International Arena, Tampa, FL",
       "broadcast": "ESPN",
       "official_url": "https://pflmma.com/event/pfl-tampa",
-      "updated_label": "August 8, 2026",
+      "updated_label": "August 9, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1076,7 +1203,7 @@
       "venue": "京セラドーム大阪",
       "broadcast": "RIZIN 100 CLUB",
       "official_url": "https://jp.rizinff.com/_ct/17834937",
-      "updated_label": "August 8, 2026",
+      "updated_label": "August 9, 2026",
       "sections": [
         {
           "kind": "main",
