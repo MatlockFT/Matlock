@@ -2,8 +2,9 @@ import fs from 'node:fs/promises';
 import { DATA_PATH, norm } from './upcoming-events-data.mjs';
 
 const CACHE_PATH = '_data/fighter_portraits.json';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockPortraitResolver/2.2; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockPortraitResolver/2.3; +https://matlockfighttalk.com/)';
 const TIMEOUT = 20000;
+const SHERDOG = 'https://www.sherdog.com';
 const tracking=/(?:piwik|matomo|analytics|tracking|pixel|beacon)/i;
 const badPortrait=/(?:\/articles?\/|\/news\/|\/galleries?\/|\/thumbnails?\/|\/fighters\/(?:bodyshots|headshots)\/default-(?:male|female)\.(?:png|jpe?g|webp)(?:\?|$)|(?:^|[\/_-])(?:banner|sponsor|poster|promo|placeholder)(?:[\/_-]|$))/i;
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -15,6 +16,13 @@ const ESPN_ID_HINTS = new Map([
   ['ketlen vieira','4039865'],
   ['javid basharat','4867357'],
   ['morquez forest','5271265']
+]);
+
+// Last-resort profile hints are used only when a fighter is still blank after
+// verified promotion imagery and ESPN resolution. The Sherdog page title must
+// match the fighter and the extracted URL must be an actual fighter image.
+const SHERDOG_PROFILE_HINTS = new Map([
+  ['morquez forest','https://www.sherdog.com/fighter/Morquez-Forest-392364']
 ]);
 
 async function get(url, asJson=false) {
@@ -33,6 +41,14 @@ async function get(url, asJson=false) {
 async function imageWorks(url) {
   if(!url||tracking.test(url)||badPortrait.test(url))return false;
   try{const response=await fetch(url,{redirect:'follow',signal:AbortSignal.timeout(TIMEOUT),headers:{'user-agent':UA,accept:'image/*,*/*;q=0.8'}});return response.ok&&((response.headers.get('content-type')||'').startsWith('image/')||/\.(png|jpe?g|webp)(?:\?|$)/i.test(response.url));}catch{return false;}
+}
+
+function decodeHtml(value=''){
+  return String(value)
+    .replace(/&#x([0-9a-f]+);/gi,(_,x)=>String.fromCodePoint(parseInt(x,16)))
+    .replace(/&#(\d+);/g,(_,x)=>String.fromCodePoint(Number(x)))
+    .replace(/&amp;/gi,'&').replace(/&quot;/gi,'"').replace(/&#039;|&#39;|&apos;/gi,"'")
+    .replace(/&lt;/gi,'<').replace(/&gt;/gi,'>');
 }
 
 function collectMatchingIds(node,wanted,found=new Set()) {
@@ -102,13 +118,53 @@ async function espnIdByName(name) {
   return '';
 }
 
+function sherdogProfileMatches(page,name){
+  const wanted=norm(name);
+  const title=norm(decodeHtml((page.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)||[])[1]||''));
+  if(!title||!wanted)return false;
+  return title===wanted||title.startsWith(`${wanted} `)||title.includes(`${wanted} mma`);
+}
+
+function sherdogProfileImage(page){
+  const candidates=[];
+  for(const rx of [
+    /<meta\b[^>]*property=["']og:image["'][^>]*content=["']([^"']+)["']/i,
+    /<meta\b[^>]*content=["']([^"']+)["'][^>]*property=["']og:image["']/i,
+    /<meta\b[^>]*name=["']twitter:image(?::src)?["'][^>]*content=["']([^"']+)["']/i,
+    /<img\b[^>]*class=["'][^"']*(?:profile_image|fighter)[^"']*["'][^>]*src=["']([^"']+)["']/i,
+    /<img\b[^>]*src=["']([^"']+)["'][^>]*class=["'][^"']*(?:profile_image|fighter)[^"']*["']/i
+  ]){
+    const hit=page.match(rx)?.[1];
+    if(hit)candidates.push(decodeHtml(hit));
+  }
+  for(const candidate of candidates){
+    try{
+      const url=new URL(candidate,SHERDOG).toString();
+      if(/(?:\/image_crop\/[^/]+\/[^/]+\/_images\/fighter\/|\/_images\/fighter\/)/i.test(url)&&!tracking.test(url)&&!badPortrait.test(url))return url;
+    }catch{}
+  }
+  return '';
+}
+
+async function sherdogPortraitByName(name){
+  const wanted=norm(name),profile=SHERDOG_PROFILE_HINTS.get(wanted);
+  if(!profile)return '';
+  try{
+    const page=await get(profile);
+    if(!sherdogProfileMatches(page,name))return '';
+    const image=sherdogProfileImage(page);
+    if(image&&await imageWorks(image))return image;
+  }catch{}
+  return '';
+}
+
 const data=JSON.parse(await fs.readFile(DATA_PATH,'utf8'));
 let cache={};try{cache=JSON.parse(await fs.readFile(CACHE_PATH,'utf8'));}catch{}
 delete cache[''];
 const fighters=[];
 for(const event of data.events||[])for(const section of event.sections||[])for(const bout of section.bouts||[])for(const person of bout.fighters||[])fighters.push(person);
 
-let added=0,applied=0,cleaned=0,cacheCleaned=0;
+let added=0,applied=0,cleaned=0,cacheCleaned=0,sherdogAdded=0;
 for(const person of fighters){
   if(person.image&&badPortrait.test(person.image)){
     person.image='';person.image_source='';person.image_framing='';cleaned++;
@@ -122,8 +178,12 @@ for(const [key,name] of byName){
   if(cache[key]?.url)continue;
   const existing=fighters.find(f=>norm(f.name)===key&&f.image&&!tracking.test(f.image)&&!badPortrait.test(f.image));
   if(existing){cache[key]={url:existing.image,source:existing.image_source||'external',framing:existing.image_framing||'safe'};continue;}
-  const id=await espnIdByName(name);if(!id)continue;
-  cache[key]={url:`https://a.espncdn.com/i/headshots/mma/players/full/${id}.png`,source:'espn',framing:'standard'};added++;console.log(`Resolved ESPN portrait: ${name} -> ${id}`);
+
+  const id=await espnIdByName(name);
+  if(id){cache[key]={url:`https://a.espncdn.com/i/headshots/mma/players/full/${id}.png`,source:'espn',framing:'standard'};added++;console.log(`Resolved ESPN portrait: ${name} -> ${id}`);continue;}
+
+  const sherdog=await sherdogPortraitByName(name);
+  if(sherdog){cache[key]={url:sherdog,source:'sherdog',framing:'safe'};sherdogAdded++;console.log(`Resolved Sherdog fallback portrait: ${name}`);}
 }
 
 for(const person of fighters){
@@ -133,4 +193,4 @@ for(const person of fighters){
 
 await fs.writeFile(CACHE_PATH,JSON.stringify(Object.fromEntries(Object.entries(cache).sort(([a],[b])=>a.localeCompare(b))),null,2)+'\n');
 if(applied||cleaned)await fs.writeFile(DATA_PATH,JSON.stringify(data,null,2)+'\n');
-console.log(`ESPN name lookup added ${added} portrait(s); applied ${applied} cached portrait(s); removed ${cleaned} bad event portrait(s) and ${cacheCleaned} bad cache entr${cacheCleaned===1?'y':'ies'}.`);
+console.log(`Fallback portrait lookup added ${added} ESPN and ${sherdogAdded} Sherdog portrait(s); applied ${applied}; removed ${cleaned} bad event portrait(s) and ${cacheCleaned} bad cache entr${cacheCleaned===1?'y':'ies'}.`);
