@@ -2,11 +2,20 @@ import fs from 'node:fs/promises';
 import { DATA_PATH, norm } from './upcoming-events-data.mjs';
 
 const CACHE_PATH = '_data/fighter_portraits.json';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockPortraitResolver/2.1; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockPortraitResolver/2.2; +https://matlockfighttalk.com/)';
 const TIMEOUT = 20000;
 const tracking=/(?:piwik|matomo|analytics|tracking|pixel|beacon)/i;
 const badPortrait=/(?:\/articles?\/|\/news\/|\/galleries?\/|\/thumbnails?\/|\/fighters\/(?:bodyshots|headshots)\/default-(?:male|female)\.(?:png|jpe?g|webp)(?:\?|$)|(?:^|[\/_-])(?:banner|sponsor|poster|promo|placeholder)(?:[\/_-]|$))/i;
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+// These are verified ESPN athlete IDs for fighters whose search results have
+// historically been inconsistent in ESPN's search API. They are hints only;
+// the portrait URL still has to resolve successfully before it is used.
+const ESPN_ID_HINTS = new Map([
+  ['ketlen vieira','4039865'],
+  ['javid basharat','4867357'],
+  ['morquez forest','5271265']
+]);
 
 async function get(url, asJson=false) {
   let last;
@@ -29,17 +38,66 @@ async function imageWorks(url) {
 function collectMatchingIds(node,wanted,found=new Set()) {
   if(!node||typeof node!=='object')return found;
   if(Array.isArray(node)){for(const value of node)collectMatchingIds(value,wanted,found);return found;}
-  const name=norm(node.displayName||node.fullName||node.name||node.shortName||node.title||''),id=String(node.id||node.uid||'').match(/\d{4,}/)?.[0];
+  const name=norm(node.displayName||node.fullName||node.name||node.shortName||node.title||''),id=String(node.id||node.uid||'').match(/\d{4,}/g)?.at(-1);
   if(id&&name&&(name===wanted||name.includes(wanted)||wanted.includes(name)))found.add(id);
   for(const value of Object.values(node))collectMatchingIds(value,wanted,found);
   return found;
 }
 
+function collectCandidateIds(node,found=new Set()) {
+  if(!node||typeof node!=='object')return found;
+  if(Array.isArray(node)){for(const value of node)collectCandidateIds(value,found);return found;}
+  for(const [key,value] of Object.entries(node)){
+    if(/(?:^|_)(?:id|uid)$/i.test(key)||/athlete.*id/i.test(key)){
+      for(const id of String(value??'').match(/\d{4,}/g)||[])found.add(id);
+    }
+    if(value&&typeof value==='object')collectCandidateIds(value,found);
+  }
+  return found;
+}
+
+async function athleteNameCheck(id,wanted) {
+  try{
+    const json=await get(`https://site.api.espn.com/apis/site/v2/sports/mma/ufc/athletes/${id}`,true);
+    const athlete=json?.athlete||json;
+    const name=norm(athlete?.displayName||athlete?.fullName||athlete?.name||athlete?.shortName||'');
+    if(!name)return null;
+    return name===wanted||name.includes(wanted)||wanted.includes(name);
+  }catch{return null;}
+}
+
+async function usableEspnId(id,wanted,{requireName=false}={}) {
+  if(!id)return false;
+  const portrait=`https://a.espncdn.com/i/headshots/mma/players/full/${id}.png`;
+  if(!(await imageWorks(portrait)))return false;
+  const matches=await athleteNameCheck(id,wanted);
+  if(matches===false)return false;
+  if(requireName&&matches!==true)return false;
+  return true;
+}
+
 async function espnIdByName(name) {
   const wanted=norm(name),query=encodeURIComponent(name);
+
+  const hinted=ESPN_ID_HINTS.get(wanted);
+  if(hinted&&await usableEspnId(hinted,wanted))return hinted;
+
   try{
     const json=await get(`https://site.web.api.espn.com/apis/search/v2?region=us&lang=en&query=${query}&limit=20`,true);
-    for(const id of collectMatchingIds(json,wanted)){const portrait=`https://a.espncdn.com/i/headshots/mma/players/full/${id}.png`;if(await imageWorks(portrait))return id;}
+    const strong=[...collectMatchingIds(json,wanted)];
+    for(const id of strong)if(await usableEspnId(id,wanted))return id;
+
+    // ESPN occasionally places the athlete name and athlete ID in neighboring
+    // objects instead of the same object. As a fallback, inspect candidate IDs
+    // from the search response but require ESPN's athlete endpoint to confirm
+    // the exact fighter identity before accepting one.
+    const strongSet=new Set(strong);
+    let checked=0;
+    for(const id of collectCandidateIds(json)){
+      if(strongSet.has(id))continue;
+      if(++checked>30)break;
+      if(await usableEspnId(id,wanted,{requireName:true}))return id;
+    }
   }catch{}
   return '';
 }
