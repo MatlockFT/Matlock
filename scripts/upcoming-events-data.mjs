@@ -17,6 +17,37 @@ function easternClock(now = new Date()) {
   return { date: `${parts.year}-${parts.month}-${parts.day}`, hour: Number(parts.hour) };
 }
 
+function easternOffsetForDate(isoDate) {
+  try {
+    const anchor = new Date(`${isoDate}T12:00:00Z`);
+    const label = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/New_York', timeZoneName: 'shortOffset'
+    }).formatToParts(anchor).find(part => part.type === 'timeZoneName')?.value || '';
+    const match = label.match(/GMT([+-])(\d{1,2})(?::(\d{2}))?/i);
+    if (!match) return '';
+    const sign = match[1];
+    const hours = String(Number(match[2])).padStart(2, '0');
+    const minutes = String(Number(match[3] || 0)).padStart(2, '0');
+    return `${sign}${hours}:${minutes}`;
+  } catch { return ''; }
+}
+
+function ufcExpirationFromCard(event) {
+  if (event?.promotion_key !== 'ufc' || !event?.date) return NaN;
+  const main = (event.sections || []).find(section => section.kind === 'main');
+  const match = String(main?.time || '').match(/(\d{1,2})(?::(\d{2}))?\s*([AP]M)\s*ET\b/i);
+  if (!match) return NaN;
+
+  let hour = Number(match[1]) % 12;
+  if (match[3].toUpperCase() === 'PM') hour += 12;
+  const minute = Number(match[2] || 0);
+  const offset = easternOffsetForDate(event.date);
+  if (!offset) return NaN;
+
+  const start = Date.parse(`${event.date}T${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:00${offset}`);
+  return Number.isNaN(start) ? NaN : start + (5 * 3600000);
+}
+
 export function eventIsCurrent(event, now = new Date()) {
   if (!event?.date) return false;
 
@@ -27,6 +58,13 @@ export function eventIsCurrent(event, now = new Date()) {
     const expires = Date.parse(event.expires_at);
     if (!Number.isNaN(expires)) return now.getTime() < expires;
   }
+
+  // UFC publishes its Main Card clock in Eastern Time even for international
+  // events. If the raw source timestamp lacks a trustworthy UTC offset, derive
+  // an absolute end window from that published ET time instead of guessing from
+  // the country or venue. Five hours is a deliberately generous main-card cap.
+  const ufcExpires = ufcExpirationFromCard(event);
+  if (!Number.isNaN(ufcExpires)) return now.getTime() < ufcExpires;
 
   // Conservative fallback for sources where we only know the calendar date.
   const clock = easternClock(now);
