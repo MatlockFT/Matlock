@@ -69,7 +69,7 @@ function validateFighter(f, context) {
 }
 
 export function validateEvent(event) {
-  if (!event || !/^(ufc|pfl|rizin)$/.test(event.promotion_key || '')) throw new Error('invalid promotion key');
+  if (!event || !/^(ufc|dwcs|pfl|rizin)$/.test(event.promotion_key || '')) throw new Error('invalid promotion key');
   if (!event.id || !event.title || !/^20\d{2}-\d{2}-\d{2}$/.test(event.date || '')) throw new Error(`${event?.promotion_key || 'event'}: missing id/title/date`);
   if (!Array.isArray(event.sections) || !event.sections.length) throw new Error(`${event.id}: no sections`);
   const bouts = event.sections.flatMap(s => s.bouts || []);
