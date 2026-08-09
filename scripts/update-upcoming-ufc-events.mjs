@@ -2,7 +2,8 @@ import { dateLabel, fighter, loadData, loadPortraitCache, mergePromotion, portra
 
 const ORIGIN = 'https://www.ufc.com';
 const EVENTS_URL = `${ORIGIN}/events`;
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockUpcomingEvents/4.1; +https://matlockfighttalk.com/)';
+const TICKETS_URL = `${ORIGIN}/tickets`;
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockUpcomingEvents/4.2; +https://matlockfighttalk.com/)';
 const MAX_DAYS = 240;
 const MAX_PAGES = 24;
 const EVENT_MAX_HOURS = 5;
@@ -27,10 +28,10 @@ async function get(url) {
 
 function eventUrls(html) {
   const out = new Set(), src = decode(html).replaceAll('\\/', '/');
-  for (const m of src.matchAll(/(?:href\s*=\s*["'])?((?:https?:\/\/(?:www\.)?ufc\.com)?\/event\/[a-z0-9][a-z0-9-]*)(?=[?#["'<>\s\\]|$)/gi)) {
+  for (const m of src.matchAll(/(?:href\s*=\s*["'])?((?:https?:\/\/(?:[a-z0-9-]+\.)?ufc\.com)?\/event\/[a-z0-9][a-z0-9-]*)(?=[?#["'<>\s\\]|$)/gi)) {
     try {
       const u = new URL(m[1], ORIGIN);
-      if (!/^(?:www\.)?ufc\.com$/i.test(u.hostname)) continue;
+      if (!/(?:^|\.)ufc\.com$/i.test(u.hostname)) continue;
       if (!/^\/event\/(?:ufc-|noche-ufc|ufc-noche)/i.test(u.pathname)) continue;
       if (/contender|dwcs|ultimate-fighter|road-to-ufc|fight-pass/i.test(u.pathname)) continue;
       u.protocol = 'https:'; u.hostname = 'www.ufc.com'; u.search = ''; u.hash = ''; u.pathname = u.pathname.replace(/\/$/, '');
@@ -57,7 +58,7 @@ function rawStartDate(html) {
 function exactEventStart(html) {
   const raw = rawStartDate(html);
   // Only use a timestamp for expiration when UFC supplied both a clock time and
-  // an explicit UTC offset. A bare date still goes through the old safe fallback.
+  // an explicit UTC offset. A bare date still goes through the ET-time fallback.
   if (!/T\d{2}:\d{2}/i.test(raw) || !/(?:Z|[+-]\d{2}:?\d{2})$/i.test(raw)) return null;
   const date = new Date(raw);
   return Number.isNaN(date.getTime()) ? null : date;
@@ -130,8 +131,12 @@ function bouts(html) {
 const isoDay = d => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
 
 const data = await loadData(), cache = await loadPortraitCache(), previous = data.events.filter(e => e.promotion_key === 'ufc');
-let urls = [];
-try { urls = eventUrls(await get(EVENTS_URL)); } catch (error) { console.warn(`UFC events page unavailable: ${error.message}`); process.exit(0); }
+const discoveryPages = [];
+for (const url of [EVENTS_URL, TICKETS_URL]) {
+  try { discoveryPages.push(await get(url)); }
+  catch (error) { console.warn(`UFC discovery source unavailable ${url}: ${error.message}`); }
+}
+const urls = [...new Set(discoveryPages.flatMap(eventUrls))];
 if (!urls.length) { console.warn('No UFC event URLs found; preserving existing UFC data.'); process.exit(0); }
 
 const rawEvents = [];
