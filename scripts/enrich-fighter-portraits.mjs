@@ -9,6 +9,7 @@ const badPortrait=/(?:\/articles?\/|\/news\/|\/galleries?\/|\/thumbnails?\/|\/fi
 const pflAssetHost=/(?:pflmma\.com|pfl-cdn|pflmma-prod\.s3(?:\.us-east-1)?\.amazonaws\.com)/i;
 const pflBodyshot=/\/fighters\/bodyshots\//i;
 const pflHeadshot=/\/fighters\/headshots\//i;
+const pflProfileRoutes=['fighter','wt-fighter'];
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const browserHeaders={
   'user-agent':UA,
@@ -67,8 +68,8 @@ function pflImageCandidates(html,name){
   return headshots.sort((a,b)=>b.score-a.score);
 }
 async function resolveFromPfl(name){
-  for(const s of slugCandidates(name))try{
-    const page=await fetchText(`https://pflmma.com/fighter/${s}`);
+  for(const s of slugCandidates(name))for(const route of pflProfileRoutes)try{
+    const page=await fetchText(`https://pflmma.com/${route}/${s}`);
     if(!profileMatches(page,name))continue;
     for(const candidate of pflImageCandidates(page,name))if(await usableImage(candidate.url))return candidate.url;
   }catch{}
