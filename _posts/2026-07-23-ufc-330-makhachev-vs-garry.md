@@ -15,25 +15,22 @@ tags:
   - Islam Makhachev
   - Ian Machado Garry
   - Welterweight
-last_modified_at: 2026-08-05
+last_modified_at: 2026-08-09
 published: true
 ---
-# [Islam Makhachev](https://www.tapology.com/fightcenter/fighters/40148-islam-makhachev) vs. [Ian Machado Garry](https://www.tapology.com/fightcenter/fighters/171377-ian-garry)
-
-[UFC 330](https://www.tapology.com/fightcenter/events/142341-ufc-330) is scheduled for August 15, 2026, at Xfinity Mobile Arena in Philadelphia. Welterweight champion Islam Makhachev is set to defend his title against No. 1 contender Ian Machado Garry. This article updates regularly with any new information up until fight night. 
+[UFC 330](https://www.tapology.com/fightcenter/events/142341-ufc-330) is scheduled for August 15, 2026, at Xfinity Mobile Arena in Philadelphia. Welterweight champion [Islam Makhachev](https://www.tapology.com/fightcenter/fighters/40148-islam-makhachev) is set to defend his title against No. 1 contender [Ian Machado Garry](https://www.tapology.com/fightcenter/fighters/171377-ian-garry). This article updates regularly with any new information up until fight night.
 
 ## Styles
 
-Ahh... the classic wrestler vs. striker matchup. Of course, adjusted for 2026 standards of what striker vs wrestelr means. We've seen Garry grapple and he's got a sub under his belt. We've also seen Makhachev get some knockouts but we know what their specialties are. 
+Ahh... the classic wrestler vs. striker matchup. Of course, adjusted for 2026 standards of what striker vs. wrestler means. We've seen Garry grapple and he's got a sub under his belt. We've also seen Makhachev get some knockouts but we know what their specialties are.
 
 Makhachev is a wrestling-led control fighter who uses measured pressure, striking and hand fighting to deny space and get to the clinch. He is a master of chaining positions together even if his opponent denies the first attempt.
 
-Garry is a long-range striker whose game is built around keeping opponents at the end of his kicks and straight punches, then exiting before they can return fire. 
+Garry is a long-range striker whose game is built around keeping opponents at the end of his kicks and straight punches, then exiting before they can return fire.
 
 Garry’s challenge is to stop Makhachev from chaining one position into the next. Otherwise, he could spend most of the fight defending instead of building meaningful offense of his own.
 
 ## Tale of the Tape
-
 
 | **Attribute** | **Islam Makhachev** | **Ian Machado Garry** |
 | ---------------- | ------------------- | --------------------- |
@@ -45,9 +42,7 @@ Garry’s challenge is to stop Makhachev from chaining one position into the nex
 | Last five fights | 5–0 | 4–1 |
 | Weight | 170 lb | 170 lb |
 
-
 Makhachev gives away five inches in height and four inches in reach. **Garry is also six years younger.** Makhachev has the much deeper title-fight record and has won 16 straight UFC fights.
-
 
 | **Fight** | **Islam Makhachev** | **Ian Machado Garry** |
 | ----------- | -------------------------------------------------------- | ----------------------------------------- |
@@ -57,9 +52,7 @@ Makhachev gives away five inches in height and four inches in reach. **Garry is 
 | 4 | W — Alexander Volkanovski, head-kick stoppage, round one | W — Michael Page, unanimous decision |
 | 5 | W — Alexander Volkanovski, unanimous decision | W — Geoff Neal, split decision |
 
-
 Makhachev’s five-fight run includes two full championship decisions, two submissions and a first-round knockout. All five of Garry’s most recent fights reached the scorecards. His recent performances have been built around winning rounds through movement, distance control and steady output.
-
 
 | **Statistic** | **Makhachev** | **Garry** |
 | ------------------------------------------- | ------------- | --------- |
@@ -74,7 +67,6 @@ Makhachev’s five-fight run includes two full championship decisions, two submi
 | Average control time per UFC fight | 5:38 | 1:43 |
 | Control time as a share of total fight time | 51.2% | 11.6% |
 
-
 *Career rates come from the UFCStats profiles for Makhachev and Garry. Control averages and percentages were calculated from recorded UFC control time and total fight duration. Makhachev’s aggregate control time is also listed in the [UFC record book](https://statleaders.ufc.com/?country=rus&fighter_status=0).*
 
 The numbers describe two different kinds of fights.
@@ -85,7 +77,7 @@ The control stats make that difference clearer. Makhachev has spent just over ha
 
 ## Height & Reach
 
-Garry’s reach is most useful in open space, where he can jab, kick and move before Makhachev reaches a leg, hips, or the clinch. 
+Garry’s reach is most useful in open space, where he can jab, kick and move before Makhachev reaches a leg, hips, or the clinch.
 
 That reach lets him attack from farther out, while his long arms help him post on Makhachev’s shoulders, dig for underhooks and threaten knees when Makhachev changes levels.
 
@@ -97,7 +89,7 @@ Garry’s height may help him create separation. His reach advantage matters mos
 
 Garry wants to fight at long range, but he probably does not want to spend much time near the outer edge of the Octagon.
 
-I’ll be keeping an eye on the [“warning track,” as some call it.](https://www.washingtonpost.com/news/sports/wp/2017/03/02/ufc-209-khabib-nurmagomedov-and-tony-ferguson-meet-in-an-epic-lightweight-clash/)  Once Garry moves beyond it, there is little room left to retreat. Makhachev can use the threat of strikes and level changes to keep him backing up, then close the remaining distance at the fence. 
+I’ll be keeping an eye on the [“warning track,” as some call it.](https://www.washingtonpost.com/news/sports/wp/2017/03/02/ufc-209-khabib-nurmagomedov-and-tony-ferguson-meet-in-an-epic-lightweight-clash/) Once Garry moves beyond it, there is little room left to retreat. Makhachev can use the threat of strikes and level changes to keep him backing up, then close the remaining distance at the fence.
 
 The most important part of Garry’s movement may be how quickly he changes direction. Against [Geoff Neal](https://www.tapology.com/fightcenter/fighters/20058-geoffrey-neal), he deliberately showed one exit before cutting back the other way, [an approach he said was influenced by studying NFL wide receivers.](https://www.mmafighting.com/2024/2/19/24077610/ian-machado-garry-studied-nfl-wide-receivers-to-evade-geoff-neals-power-at-ufc-298) He wanted Neal to commit his feet in one direction before Garry moved in another.
 
@@ -111,7 +103,7 @@ The center gives Garry more room to defend. If Makhachev reaches his legs or tie
 
 [EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893278/Garry_Frame_azchaz.mp4)
 
-Jack Della Maddalena showed the limits of holding the center. Makhachev took him down in open space and controlled him for most of the fight. JDM offered no post/frame, counter, angle, sprawl or anything in this example. He shells up and moves back in a straight line. Completely ill-prepared and its only the first round.
+Jack Della Maddalena showed the limits of holding the center. Makhachev took him down in open space and controlled him for most of the fight. JDM offered no post/frame, counter, angle, sprawl or anything in this example. He shells up and moves back in a straight line. Completely ill-prepared and it's only the first round.
 
 [EMBED GIPHY](https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExemttZTlubmttNWplYmRhcWF2YmRmazI4azNqemtjc2E5dmZhOWtuMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/y3815NgVOEYhxoXXjL/giphy.gif)
 
@@ -119,7 +111,7 @@ JDM had room around him, but Makhachev often reached him before he could use it.
 
 [EMBED GIPHY](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXQ5cXNwb2Nkdzg5aG4yaTA1Z2gyNWR3bWg3MG03dWxiNDlra2pocSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7FjedPi9AfXHuizK35/giphy.gif)
 
-The center only helps if Garry acts before Makhachev closes distance. He still has to recognize the entry, establish his frames and move. For a more in depth understanding of takedown defense and frames, [I highly recommend watching BJJ Scout's video on Conor McGregor](https://youtu.be/T3ZmS5zxFEA?list=PLKb7D4fR_VOg2Nhy94-08Wz23jfg1BvLQ).
+The center only helps if Garry acts before Makhachev closes distance. He still has to recognize the entry, establish his frames and move. For a more in-depth understanding of takedown defense and frames, [I highly recommend watching BJJ Scout's video on Conor McGregor](https://youtu.be/T3ZmS5zxFEA?list=PLKb7D4fR_VOg2Nhy94-08Wz23jfg1BvLQ).
 
 ![image.png](/assets/uploads/image-5.png)
 
@@ -141,7 +133,7 @@ Garry probably needs to hold the center in short stretches, score at range and l
 
 Makhachev does not have to beat Garry’s reach with his hands alone. Low kicks and body attacks can interrupt his movement, while level-change feints may make him pause, shift his weight or lower his hands. Any of those reactions could give Makhachev a moment to close the distance.
 
-That was clear against JDM. Makhachev attacked his lead leg throughout the fight, then repeatedly timed his takedowns before JDM could settle into his boxing. 
+That was clear against JDM. Makhachev attacked his lead leg throughout the fight, then repeatedly timed his takedowns before JDM could settle into his boxing.
 
 [EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893277/ISLAM_KICK_TO_TAKEDOWN_szsqsw.mp4)
 
@@ -171,7 +163,7 @@ One way Makhachev has handled opponents entering on him is the double collar tie
 
 [That happened repeatedly against Volkanovski](https://www.fightprimer.com/returning-to-makhachev-vs-volkanovski-i-the-jack-slack-breakdown). Makhachev caught the double collar tie as Volkanovski came forward, then used it to land knees and interrupt his offense. Later in the fight, he used the tie to set up a trip that carried the exchange into his fence work.
 
-Garry’s height could make this difficult. 
+Garry’s height could make this difficult.
 
 [EMBED X](https://x.com/fenoxsky/status/2082954915144458387?s=20)
 
@@ -181,7 +173,7 @@ His head sits farther away, and if Makhachev reaches from too far out, Garry has
 
 Once Makhachev gets the tie, Garry’s height can work against him. Pulling the head forward breaks his posture and takes away the distance he needs for his straight punches and kicks. Garry then has to fight his way upright, and that effort may carry him backward toward the fence. As Feño explains in our exchange above, the clinch can lead to other positions.
 
-In open space, Garry has room to work an arm inside, raise his posture and circle away but near the cage, those exits narrow. 
+In open space, Garry has room to work an arm inside, raise his posture and circle away, but near the cage, those exits narrow.
 
 [EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893284/Islam_Double_Collar_hy4qkl.mp4)
 
@@ -189,13 +181,13 @@ In open space, Garry has room to work an arm inside, raise his posture and circl
 
 Garry’s 80 percent takedown defense is a strong number. UFC opponents have completed only six of the 30 takedowns they have attempted against him. Fifteen of his 24 successful defenses came against Shavkat Rakhmonov and Belal Muhammad.
 
-The number still tells only part of the story. Rakhmonov went two for 10 on takedowns but controlled Garry for 11:41. 
+The number still tells only part of the story. Rakhmonov went two for 10 on takedowns but controlled Garry for 11:41.
 
 Muhammad failed on all seven of his attempts and still spent 3:35 in control. Garry often stayed on his feet, but that did not always get him out of the clinch or back into open space.
 
 That matters because Makhachev often does his best work after contact has already been made. He can stay on a single leg, move into a body lock, turn Garry toward the fence or keep working until another opening appears. Garry may stop the first attack and still lose a long stretch of the round trying to separate.
 
-Dustin Poirier showed how difficult that can become. He stopped several attempts, returned to his feet and made Makhachev work for almost five rounds. 
+Dustin Poirier showed how difficult that can become. He stopped several attempts, returned to his feet and made Makhachev work for almost five rounds.
 
 [EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785893282/Poirier_Separate_2_x3wtiy.mp4)
 
@@ -225,7 +217,7 @@ Garry has also shown that he can remain dangerous after a difficult fight. He sp
 
 The Carlos Prates fight looked different because Garry still landed 28 significant strikes in the fifth, but his movement became less reliable as Prates kept pressing forward. In that round, Garry went 0-for-6 on takedowns, gave up 1:01 of control and absorbed 12 significant ground strikes.
 
-[Garry later said he was not hurt and remained conscious throughout the exchange](https://www.reuters.com/sports/ian-machado-garry-calls-ufc-welterweight-title-shot-fight-night-2025-04-27/). Whatever the case, his movement and choices looked desparate in my opinion. That performance is not enough to say he has poor cardio. He did not stop working, but obviously his ability to move and make good decisions declined. The fifth round is gonna be interseting if they make it there. 
+[Garry later said he was not hurt and remained conscious throughout the exchange](https://www.reuters.com/sports/ian-machado-garry-calls-ufc-welterweight-title-shot-fight-night-2025-04-27/). Whatever the case, his movement and choices looked desperate in my opinion. That performance is not enough to say he has poor cardio. He did not stop working, but obviously his ability to move and make good decisions declined. The fifth round is gonna be interesting if they make it there.
 
 [EMBED VIDEO](https://res.cloudinary.com/pm84lfxg/video/upload/v1785905125/PRATES_MACHADO_AGAIN_ejowta.mp4)
 
@@ -237,14 +229,14 @@ The Carlos Prates fight looked different because Garry still landed 28 significa
 
 I interpret this as: Makhachev does not need to ***force*** the takedown. The ***threat*** of wrestling can still affect Garry’s reactions.
 
-Of course, there is still a risk in giving Garry too much time at range. He is longer, faster and comfortable building rounds through volume and accumulation. Makhachev may not need to take him down the entire fight, but he'll definitely want Garry reacting to the feints. 
+Of course, there is still a risk in giving Garry too much time at range. He is longer, faster and comfortable building rounds through volume and accumulation. Makhachev may not need to take him down the entire fight, but he'll definitely want Garry reacting to the feints.
 
-For Ian Garry, its worth noting a few things he's done in preparation for Islam Makhachev:
+For Ian Garry, it's worth noting a few things he's done in preparation for Islam Makhachev:
 
 - He flew to Georgia to get some work in against southpaw wrestlers.
-- According to Diego Lima, Garry's MMA coach, he's had two months of opponent specific prep for Makhachev, this does not include his trip to Georgia. 
+- According to Diego Lima, Garry's MMA coach, he's had two months of opponent-specific prep for Makhachev; this does not include his trip to Georgia.
 - Training with Chucky Olives and Demian Maia. *"intensive camp specifically focused on the grappling exchanges they expect against Makhachev."*
-- From what I can gather he also traveled to Spain (Maia), did some work in England, and is finishing up sparring in Dublin. 
+- From what I can gather he also traveled to Spain (Maia), did some work in England, and is finishing up sparring in Dublin.
 - His cornermen for this fight [are reported to be](https://www.sherdog.com/news/news/Demian-Maia-reveals-what-makes-Ian-Garry-a-threat-to-Islam-Makhachev-202011): [Diego Lima](https://www.instagram.com/dhlimamma/?hl=en), [John Hathaway](https://www.instagram.com/johnhathaway_ufc), [Demian Maia](https://www.instagram.com/demianmaia), [Paulo Mauricio Strauch](https://www.instagram.com/mestrestrauchbjj/?hl=en)
 
 ## Pick & Prediction
@@ -255,7 +247,7 @@ At the time of writing this, Ian Garry is nearly a 3-to-1 underdog on most books
 
 Polymarket has Fight Goes the Distance at 44% and End Inside the Distance at 56%. FanDuel has Makhachev by decision at +135 and Makhachev by submission at +210. Garry by decision is sitting at +450.
 
-I think it’s safe to say that Makhachev by decision or submission is the likely route this fight goes if we’re judging by the odds. Garry by decision at +450 on FanDuel is a very real possibility for Ian Garry. Garry winning by TKO/KO is something I see as less likely but still a real possibility. 
+I think it’s safe to say that Makhachev by decision or submission is the likely route this fight goes if we’re judging by the odds. Garry by decision at +450 on FanDuel is a very real possibility for Ian Garry. Garry winning by TKO/KO is something I see as less likely but still a real possibility.
 
 There is poison to pick from if you choose to do so.
 
@@ -263,11 +255,11 @@ The reason I drill into posting and framing so much in this breakdown is because
 
 We saw glimpses of these tactics from Garry against Belal Muhammad.
 
-Garry reading entries and choosing to prioritise posting off the head and shoulder, extending that frame to keep the hips safe at the risk of the entry not even being a takedown, trusting in his chin and slips to then counter with combinations and exit out of range—that is the whole thing here.
+Garry reading entries and choosing to prioritize posting off the head and shoulder, extending that frame to keep the hips safe at the risk of the entry not even being a takedown, trusting in his chin and slips to then counter with combinations and exit out of range—that is the whole thing here.
 
 I have no question in my mind that Makhachev will be landing punches as well because Garry has been hit by every one of his shorter southpaw opponents in the past, but it’s up to Garry not to let Makhachev stack those punches on top of control time.
 
-Garry will need sustained volume and the punches landed will need to be more impactful than they ever have before. 
+Garry will need sustained volume and the punches landed will need to be more impactful than they ever have before.
 
 I see both these guys battering each other’s lead leg. How dedicated will Garry be to the knee/thigh stomps he often goes to against someone like Makhachev?
 
@@ -277,7 +269,7 @@ Fascinating matchup, but for now, I’m rolling with the fighter who has a highe
 
 However, as fight week progresses and I try to catch subtle hints of tactics, game plans, and, of course, both of their general health going into the fight, I may make a switch on my official pick.
 
-Betting-wise? I don’t see any reason not to lay down a couple of bones on the Ian Garry moneyline. In my eyes, I see Garry as a 2-to-1 underdog so getting him at 3-to-1 seems like a good opportunity to take a small risk. 
+Betting-wise? I don’t see any reason not to lay down a couple of bones on the Ian Garry moneyline. In my eyes, I see Garry as a 2-to-1 underdog so getting him at 3-to-1 seems like a good opportunity to take a small risk.
 
 **Pick: Islam Makhachev by DEC.**
 
@@ -285,4 +277,4 @@ Betting-wise? I don’t see any reason not to lay down a couple of bones on the 
 
 p.s.
 
-My side prediction is we may see a lot of eye pokes from Ian Garry. Not intentional ones but because he'll be looking to frame. This happened against Belal Muhammad but I anticipate it being much more prevelant in this fight. The real question is, will the ref take a point?
+My side prediction is we may see a lot of eye pokes from Ian Garry. Not intentional ones but because he'll be looking to frame. This happened against Belal Muhammad but I anticipate it being much more prevalent in this fight. The real question is, will the ref take a point?
