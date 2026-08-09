@@ -2,9 +2,11 @@ import { dateLabel, fighter, loadData, loadPortraitCache, mergePromotion, portra
 
 const ORIGIN = 'https://pflmma.com';
 const EVENTS_URL = `${ORIGIN}/events`;
+const HOME_URL = `${ORIGIN}/`;
 const ESPN = 'https://site.api.espn.com/apis/site/v2/sports/mma/pfl/scoreboard';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockPFLUpdater/3.2; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockPFLUpdater/3.3; +https://matlockfighttalk.com/)';
 const MAX_DAYS = 240;
+const MAIN_CARD_SIZE = 5;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const decode = (s='') => s.replace(/&#x([0-9a-f]+);/gi,(_,x)=>String.fromCodePoint(parseInt(x,16))).replace(/&#(\d+);/g,(_,x)=>String.fromCodePoint(+x)).replace(/&nbsp;/gi,' ').replace(/&amp;/gi,'&').replace(/&quot;/gi,'"').replace(/&#039;|&#39;|&apos;/gi,"'").replace(/&lt;/gi,'<').replace(/&gt;/gi,'>');
@@ -15,6 +17,15 @@ const reEsc = s => String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const BAD_TEXT = /\b(?:main card|early card|event info|where to watch|matchups?|buy tickets?|register interest|view results?|hours?|minutes?|seconds?)\b/i;
 const saneName = name => { const n=String(name||'').replace(/\s+/g,' ').trim(); return n.length>=2 && n.length<=60 && !BAD_TEXT.test(n) && !/\d{1,2}:\d{2}/.test(n); };
 const saneVenue = value => { const v=String(value||'').replace(/\s+/g,' ').trim(); return v.length>=3 && v.length<=120 && !BAD_TEXT.test(v) && !/^d\s*:\s*h\s*:/i.test(v); };
+
+const TAMPA_NAMES = new Map(Object.entries({
+  cyborg:'Cris Cyborg', vieira:'Ketlen Vieira', rabadanov:'Gadzhi Rabadanov', kaszuba:'Jakub Kaszuba',
+  oliveira:'Gustavo Oliveira', alves:'Marcirley Alves', trainer:'Luke Trainer', dunlap:'Roland Dunlap',
+  magomedov:'Magomed Magomedov', marcos:'Daniel Marcos', santos:'Taila Santos', 'de sousa':'Sabrinna de Sousa',
+  ibragimov:'Movsar Ibragimov', basharat:'Javid Basharat', bush:'Dakota Bush', forest:'Morquez Forest',
+  schulte:'Natan Schulte', zaynukov:'Makkasharip Zaynukov', 'van steenis':'Gino van Steenis', watley:'Robert Watley',
+  zendeli:'Florim Zendeli', chaaban:'Omran Chaaban', sheridan:'Eoin Sheridan', vake:'James Vake'
+}));
 
 async function get(url,json=false) {
   let last;
@@ -49,7 +60,40 @@ function eventTitle(page,url) {
 
 function weight(note='') {
   const m=note.match(/\b(Women'?s\s+(?:Strawweight|Flyweight|Bantamweight|Featherweight)|Light Heavyweight|Heavyweight|Middleweight|Welterweight|Lightweight|Featherweight|Bantamweight|Flyweight|Catchweight)\b/i);
-  return m ? m[1].replace(/women'?s/i,"Women's") + (/title|championship/i.test(note)?' Title':'') : 'Weight class TBA';
+  return m ? m[1].replace(/women'?s/i,"Women's") + (/title|championship|world title/i.test(note)?' Title':'') : 'Weight class TBA';
+}
+
+function expandOfficialName(name,url) {
+  const clean=String(name||'').replace(/\s+/g,' ').trim();
+  if(/\/event\/pfl-tampa\/?$/i.test(url)) return TAMPA_NAMES.get(norm(clean)) || clean;
+  return clean;
+}
+
+function homepageBouts(homeHtml,date,url) {
+  const plain=text(homeHtml);
+  const marker=plain.match(/Upcoming Event\s+((?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-z]*\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\s+\d{1,2})\s+\d{1,2}(?::\d{2})?\s*[AP]M\s*[A-Z]{2,4}/i);
+  if(!marker)return [];
+  const homeDate=parseDate(marker[1]);
+  if(!homeDate||isoDay(homeDate)!==isoDay(date))return [];
+
+  const start=plain.indexOf(marker[0])+marker[0].length;
+  let block=plain.slice(start,start+5000);
+  block=block.split(/\b(?:BUY TICKETS|VIEW MATCHUPS)\b/i)[0].trim();
+  if(!block)return [];
+
+  const division="PFL Women's Featherweight World Title|Women's Featherweight World Title|Women's Strawweight|Women's Flyweight|Women's Bantamweight|Women's Featherweight|Light Heavyweight|Heavyweight|Middleweight|Welterweight|Lightweight|Featherweight|Bantamweight|Flyweight|Catchweight";
+  const namePart="[A-Za-zÀ-ÖØ-öø-ÿ.'’_-]+(?:\\s+[A-Za-zÀ-ÖØ-öø-ÿ.'’_-]+){0,2}";
+  const rx=new RegExp(`(${namePart})\\s+vs\\s+(${namePart})\\s+(${division})(?=\\s|$)`,'gi');
+  const out=[],seen=new Set();
+  for(const m of block.matchAll(rx)) {
+    const a=expandOfficialName(m[1],url), b=expandOfficialName(m[2],url), div=weight(m[3]);
+    if(!saneName(a)||!saneName(b))continue;
+    const key=[norm(a),norm(b),norm(div)].join('|');
+    if(seen.has(key))continue;
+    seen.add(key);
+    out.push({division:div,fighters:[{name:a,image:''},{name:b,image:''}]});
+  }
+  return out;
 }
 
 async function espnBouts(date) {
@@ -89,7 +133,7 @@ function venueFromIndex(eventsHtml,eventName) {
   return 'Venue TBA';
 }
 
-async function build(url,eventsHtml) {
+async function build(url,eventsHtml,homeHtml) {
   const page=await get(url), plain=text(page), title=eventTitle(page,url);
   const date=parseDate((plain.match(/\b(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)[a-z]*\.?\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2}(?:,?\s+\d{4})?/i)||[])[0]||(plain.match(/\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2}(?:,?\s+\d{4})?/i)||[])[0]);
   if(!date)return null; const days=(date-Date.now())/86400000; if(days<-1||days>MAX_DAYS)return null;
@@ -97,22 +141,32 @@ async function build(url,eventsHtml) {
   const early=((plain.match(/Early Card\s+(\d{1,2}(?::\d{2})?\s*[AP]M\s*ET)/i)||[])[1]||'').toUpperCase();
   const eventName=title.replace(/^PFL\s*/i,'').trim();
   const venue=venueFromIndex(eventsHtml,eventName);
-  let card=await espnBouts(date); if(!card.length)card=fallbackBouts(url); card=card.filter(b=>b.fighters?.length===2&&b.fighters.every(f=>saneName(f.name))); if(!card.length)return null;
+  const official=homepageBouts(homeHtml,date,url);
+  const espn=await espnBouts(date);
+  let card=official.length>espn.length?official:espn;
+  if(!card.length)card=fallbackBouts(url);
+  card=card.filter(b=>b.fighters?.length===2&&b.fighters.every(f=>saneName(f.name)));
+  if(!card.length)return null;
   if(venue==='Venue TBA'&&card.length===1)return null;
-  return{url,title,date,venue,main,early,bouts:card};
+  return{url,title,date,venue,main,early,bouts:card,cardSource:official.length>espn.length?'pfl-home':'espn'};
 }
 
 const data=await loadData(),cache=await loadPortraitCache(),previous=data.events.filter(e=>e.promotion_key==='pfl');
-let eventsHtml; try{eventsHtml=await get(EVENTS_URL);}catch(error){console.warn(`PFL events page unavailable: ${error.message}`);process.exit(0);}
+let eventsHtml,homeHtml;
+try{eventsHtml=await get(EVENTS_URL);}catch(error){console.warn(`PFL events page unavailable: ${error.message}`);process.exit(0);}
+try{homeHtml=await get(HOME_URL);}catch(error){console.warn(`PFL homepage unavailable: ${error.message}`);homeHtml='';}
 const urls=discover(eventsHtml); if(!urls.includes('https://pflmma.com/event/pfl-tampa'))urls.push('https://pflmma.com/event/pfl-tampa');
-const built=[]; for(const url of urls)try{const e=await build(url,eventsHtml);if(e)built.push(e);}catch(error){console.warn(`PFL skip ${url}: ${error.message}`);}
+const built=[]; for(const url of urls)try{const e=await build(url,eventsHtml,homeHtml);if(e)built.push(e);}catch(error){console.warn(`PFL skip ${url}: ${error.message}`);}
 if(!built.length){console.warn('No usable PFL events; preserving existing PFL data.');process.exit(0);}
 
 const candidates=built.map(e=>{
   const date=isoDay(e.date),name=e.title.replace(/^PFL\s*/i,'').trim()||'Fight Card';
-  const bouts=e.bouts.map((b,i)=>({order:i+1,label:i===0?'Main Event':i===1?'Co-Main Event':'',weight_class:b.division,fighters:b.fighters.map(x=>fighter(x.name,x.image?{image:x.image,image_source:'espn',image_framing:'standard'}:portraitFor(x.name,previous,cache)))}));
-  const sections=[{kind:'main',title:'Main Card',time:e.main||'Time TBA',bouts}];
-  if(e.early)sections.push({kind:'prelims',title:'Early Card',time:e.early,bouts:[]});
+  const allBouts=e.bouts.map((b,i)=>({order:i+1,label:i===0?'Main Event':i===1?'Co-Main Event':'',weight_class:b.division,fighters:b.fighters.map(x=>fighter(x.name,x.image?{image:x.image,image_source:'espn',image_framing:'standard'}:portraitFor(x.name,previous,cache)))}));
+  const split=e.early&&allBouts.length>MAIN_CARD_SIZE?MAIN_CARD_SIZE:allBouts.length;
+  const mainBouts=allBouts.slice(0,split);
+  const earlyBouts=allBouts.slice(split).map(b=>({...b,label:''}));
+  const sections=[{kind:'main',title:'Main Card',time:e.main||'Time TBA',bouts:mainBouts}];
+  if(e.early)sections.push({kind:'prelims',title:'Early Card',time:e.early,bouts:earlyBouts});
   return{id:`pfl-${slugify(name)}-${date}`,promotion_key:'pfl',promotion:'PFL',title:name,date,date_label:dateLabel(date),venue:e.venue,broadcast:'ESPN',official_url:e.url,updated_label:updatedLabel(),sections};
 });
 
