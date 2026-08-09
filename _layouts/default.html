@@ -99,7 +99,7 @@
         crossorigin
     >
 
-    {% if site.adsense.consent_manager_enabled and site.adsense.client and site.adsense.client != "" and site.adsense.banner_slot and site.adsense.banner_slot != "" %}
+    {% if page.ads and site.adsense.consent_manager_enabled and site.adsense.client and site.adsense.client != "" and site.adsense.banner_slot and site.adsense.banner_slot != "" %}
         <link
             rel="preconnect"
             href="https://pagead2.googlesyndication.com"
