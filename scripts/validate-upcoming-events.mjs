@@ -5,6 +5,7 @@ const dataPath=process.argv[3]||'_data/upcoming_events.json';
 const templatePath=process.argv[4]||'upcoming-events.html';
 const failures=[];
 const tracking=/(?:piwik|matomo|google-analytics|googletagmanager|doubleclick|analytics|tracking|pixel|beacon|acs01\.rvlvr\.co|\/collect(?:[/?]|$)|\/track(?:[/?]|$))/i;
+const badPflPortrait=/(?:\/articles?\/|\/news\/|\/videos?\/thumbnails?\/|\/thumbnails?\/|\/fighters\/(?:bodyshots|headshots)\/default-(?:male|female)\.(?:png|jpe?g|webp)(?:\?|$))/i;
 const banned=/\b(EVENT INFO|WHERE TO WATCH|BUY TICKETS|MATCHUPS|MAIN CARD SATURDAY|EARLY CARD SATURDAY|d\s*:\s*h\s*:\s*m\s*:\s*s)\b/i;
 const today=new Date().toISOString().slice(0,10);
 
@@ -30,7 +31,7 @@ function validateData(data,label){
     }
     if(!Array.isArray(event.sections)||!event.sections.length){failures.push(`${label}: ${event.id} has no sections.`);continue;}
     const bouts=event.sections.flatMap(s=>s.bouts||[]);if(!bouts.length)failures.push(`${label}: ${event.id} has no bouts.`);
-    const orders=new Set();
+    const orders=new Set(),portraitOwners=new Map();
     for(const section of event.sections){
       if(!section.title||!section.kind)failures.push(`${label}: ${event.id} has malformed section.`);
       for(const bout of section.bouts||[]){
@@ -41,6 +42,12 @@ function validateData(data,label){
           const name=String(fighter?.name||'').trim();
           if(!name||name.length>80||banned.test(name))failures.push(`${label}: ${event.id} has suspicious fighter name "${name}".`);
           if(fighter?.image&&(!/^https?:\/\//i.test(fighter.image)||tracking.test(fighter.image)))failures.push(`${label}: ${event.id} has invalid portrait for ${name}.`);
+          if(event.promotion_key==='pfl'&&fighter?.image&&badPflPortrait.test(fighter.image))failures.push(`${label}: ${event.id} has non-fighter PFL portrait for ${name}.`);
+          if(fighter?.image){
+            const priorOwner=portraitOwners.get(fighter.image);
+            if(priorOwner&&priorOwner!==name)failures.push(`${label}: ${event.id} assigns the same portrait to ${priorOwner} and ${name}.`);
+            else portraitOwners.set(fighter.image,name);
+          }
           if(fighter?.image_framing&&!/^(standard|safe)$/.test(fighter.image_framing))failures.push(`${label}: ${event.id} has invalid framing for ${name}.`);
         }
       }
