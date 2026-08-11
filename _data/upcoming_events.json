@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-11T03:58:18.687Z",
+  "generated_at": "2026-08-11T07:42:08.374Z",
   "events": [
     {
       "id": "dwcs-season-10-week-1-2026-08-11",
@@ -13,7 +13,7 @@
       "broadcast": "Paramount+",
       "official_url": "https://www.ufc.com/dwcs#season-10-week-1",
       "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-1-112637",
-      "updated_label": "August 10, 2026",
+      "updated_label": "August 11, 2026",
       "sections": [
         {
           "kind": "main",
@@ -139,7 +139,7 @@
       "venue": "TOYOTA ARENA TOKYO",
       "broadcast": "RIZIN 100 CLUB · RIZIN LIVE · ABEMA · U-NEXT · Sky PerfecTV",
       "official_url": "https://jp.rizinff.com/_ct/17833730",
-      "updated_label": "August 10, 2026",
+      "updated_label": "August 11, 2026",
       "sections": [
         {
           "kind": "main",
@@ -658,7 +658,7 @@
       "venue": "Benchmark International Arena, Tampa, FL",
       "broadcast": "ESPN",
       "official_url": "https://pflmma.com/event/pfl-tampa",
-      "updated_label": "August 10, 2026",
+      "updated_label": "August 11, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1134,7 +1134,7 @@
       "venue": "京セラドーム大阪",
       "broadcast": "RIZIN 100 CLUB",
       "official_url": "https://jp.rizinff.com/_ct/17834937",
-      "updated_label": "August 10, 2026",
+      "updated_label": "August 11, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1313,6 +1313,91 @@
         }
       ],
       "source_card_url": "https://jp.rizinff.com/_ct/17853585"
+    },
+    {
+      "id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "promotion_key": "rizin",
+      "promotion": "RIZIN",
+      "title": "RIZIN LANDMARK 16 in NAGASAKI",
+      "date": "2026-10-03",
+      "date_label": "Saturday · October 3, 2026",
+      "venue": "長崎スタジアムシティ HAPPINESS ARENA",
+      "broadcast": "RIZIN 100 CLUB",
+      "official_url": "https://jp.rizinff.com/_ct/17852438",
+      "updated_label": "August 11, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Fight Card",
+          "time": "1:00 AM EDT · 14:00 JST",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "71.0 kg",
+              "fighters": [
+                {
+                  "name": "Yoshinori Horie",
+                  "initials": "YH",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/08/26/0b99cba42eb00523ea602e8c04ddccc09dc5e0da_normal.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Sho Patrick Usami",
+                  "initials": "SPU",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2022/11/25/fe300576252c69e672ac9a821873ad4d394fedef_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Viktor Kolesnik",
+                  "initials": "VK",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/08/25/5d2a2e14047f32f0af2b900d88aa315272b169ac_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Koyomi Matsushima",
+                  "initials": "KM",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/10/03/f01bef1405abadd4c8c2fe40141dd496cc9c3a07_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "61.0 kg",
+              "fighters": [
+                {
+                  "name": "Ryusei Ashizawa",
+                  "initials": "RA",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/11/10/d0828e2391cee10dca0eaec72985497ba866231b_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Seiya Inoue",
+                  "initials": "SI",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/04/15/a61361df0c7ab929cf364be77823a6326f539bb3_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_card_url": "https://jp.rizinff.com/_ct/17857720"
     }
   ]
 }
