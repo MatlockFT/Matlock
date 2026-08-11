@@ -1,7 +1,55 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-09T07:44:42.384Z",
+  "generated_at": "2026-08-11T03:58:44.083Z",
   "changes": [
+    {
+      "id": "2026-08-11T03:58:44.083Z|rizin-rizin-54-2026-08-11|bout_moved|1",
+      "at": "2026-08-11T03:58:44.083Z",
+      "type": "bout_moved",
+      "event_id": "rizin-rizin-54-2026-08-11",
+      "promotion": "RIZIN",
+      "event_title": "RIZIN.54",
+      "event_date": "2026-08-11",
+      "summary": "Mikio Ueda vs King Edokpolo moved on RIZIN.54.",
+      "details": {
+        "from_order": 4,
+        "to_order": 3,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
+    {
+      "id": "2026-08-11T03:58:44.083Z|rizin-rizin-54-2026-08-11|bout_moved|2",
+      "at": "2026-08-11T03:58:44.083Z",
+      "type": "bout_moved",
+      "event_id": "rizin-rizin-54-2026-08-11",
+      "promotion": "RIZIN",
+      "event_title": "RIZIN.54",
+      "event_date": "2026-08-11",
+      "summary": "Tsuyoshi Sudario vs Ryo Sakai moved on RIZIN.54.",
+      "details": {
+        "from_order": 5,
+        "to_order": 4,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
+    {
+      "id": "2026-08-11T03:58:44.083Z|rizin-rizin-54-2026-08-11|bout_moved|3",
+      "at": "2026-08-11T03:58:44.083Z",
+      "type": "bout_moved",
+      "event_id": "rizin-rizin-54-2026-08-11",
+      "promotion": "RIZIN",
+      "event_title": "RIZIN.54",
+      "event_date": "2026-08-11",
+      "summary": "Yuki Ito vs Alibek Gadzhammatov moved on RIZIN.54.",
+      "details": {
+        "from_order": 3,
+        "to_order": 5,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
     {
       "id": "2026-08-09T07:44:42.384Z|ufc-fight-night-august-08-2026-2026-08-08|event_removed|1",
       "at": "2026-08-09T07:44:42.384Z",
