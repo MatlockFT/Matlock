@@ -11,6 +11,8 @@ on:
     paths:
       - ".github/workflows/update-ufc-roster.yml"
       - "scripts/update-ufc-roster-v4.mjs"
+      - "scripts/promote-ufc-active-entries.mjs"
+      - "scripts/check-ufc-profile-directory.mjs"
       - "scripts/filter-ufc-roster-additions.mjs"
       - "scripts/check-ufc-event-cards.mjs"
       - "scripts/normalize-ufc-roster-events.mjs"
@@ -110,9 +112,33 @@ jobs:
             mv /tmp/ufc-roster-state-merged.json /tmp/ufc-roster-state.json
           fi
 
+      - name: Promote UFC Active entries immediately
+        id: active_entry_check
+        if: steps.roster_check.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/promote-ufc-active-entries.mjs \
+            --state /tmp/ufc-roster-state.json \
+            --public /tmp/ufc-roster-latest.json \
+            2>&1 | tee -a /tmp/ufc-roster-run.log
+
+      - name: Check unfiltered UFC profile directory
+        id: profile_directory_check
+        if: steps.active_entry_check.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/check-ufc-profile-directory.mjs \
+            --state /tmp/ufc-roster-state.json \
+            --public /tmp/ufc-roster-latest.json \
+            --previous /tmp/ufc-roster/ufc-roster-state.json \
+            2>&1 | tee -a /tmp/ufc-roster-run.log
+
       - name: Cross-check official UFC event cards
         id: event_card_check
-        if: steps.roster_check.outcome == 'success'
+        if: steps.active_entry_check.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
@@ -200,6 +226,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           CHECK_RESULT: ${{ steps.roster_check.outcome }}
+          ACTIVE_ENTRY_RESULT: ${{ steps.active_entry_check.outcome }}
+          PROFILE_DIRECTORY_RESULT: ${{ steps.profile_directory_check.outcome }}
           EVENT_CARD_RESULT: ${{ steps.event_card_check.outcome }}
           CROSSCHECK_RESULT: ${{ steps.competition_check.outcome }}
           FINALIZE_RESULT: ${{ steps.finalize_check.outcome }}
@@ -216,6 +244,8 @@ jobs:
           log = Path('/tmp/ufc-roster-run.log').read_text(errors='replace') if Path('/tmp/ufc-roster-run.log').exists() else ''
           match = re.search(r'Validated active UFC roster: (\d+) fighters via (.+?) \((.+?)\)\.', log)
           check_result = os.environ.get('CHECK_RESULT', '')
+          active_entry_result = os.environ.get('ACTIVE_ENTRY_RESULT', '')
+          profile_directory_result = os.environ.get('PROFILE_DIRECTORY_RESULT', '')
           event_card_result = os.environ.get('EVENT_CARD_RESULT', '')
           crosscheck_result = os.environ.get('CROSSCHECK_RESULT', '')
           finalize_result = os.environ.get('FINALIZE_RESULT', '')
@@ -224,6 +254,8 @@ jobs:
           payload = {
               'checkedAt': datetime.now(timezone.utc).isoformat(),
               'outcome': check_result,
+              'activeEntryOutcome': active_entry_result,
+              'profileDirectoryOutcome': profile_directory_result,
               'eventCardOutcome': event_card_result,
               'crossCheckOutcome': crosscheck_result,
               'finalizeOutcome': finalize_result,
@@ -232,6 +264,7 @@ jobs:
               'validated': (
                   bool(match)
                   and check_result == 'success'
+                  and active_entry_result == 'success'
                   and event_card_result == 'success'
                   and crosscheck_result == 'success'
                   and finalize_result == 'success'
