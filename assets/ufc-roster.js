@@ -9,6 +9,18 @@
     const backfillUrl = page.dataset.backfillUrl;
     const refreshInterval = Number(page.dataset.refreshInterval) || 300000;
 
+    const GENERIC_FIGHTER_NAMES = new Set([
+        "search results",
+        "search",
+        "athletes",
+        "all athletes",
+        "ufc",
+        "page not found",
+        "not found",
+        "access denied",
+        "error"
+    ]);
+
     function element(tag, className, text) {
         const node = document.createElement(tag);
         if (className) node.className = className;
@@ -28,12 +40,49 @@
         });
     }
 
+    function fighterSlug(fighter) {
+        if (fighter?.slug) return String(fighter.slug);
+
+        try {
+            return new URL(fighter?.url || "", window.location.href)
+                .pathname
+                .split("/")
+                .filter(Boolean)
+                .at(-1) || "";
+        } catch {
+            return "";
+        }
+    }
+
+    function nameFromSlug(slug) {
+        return String(slug || "")
+            .split("-")
+            .filter(Boolean)
+            .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+            .join(" ");
+    }
+
+    function fighterDisplayName(fighter) {
+        const candidate = String(fighter?.name || "")
+            .replace(/\s+/g, " ")
+            .trim();
+
+        if (
+            candidate &&
+            !GENERIC_FIGHTER_NAMES.has(candidate.toLowerCase())
+        ) {
+            return candidate;
+        }
+
+        return nameFromSlug(fighterSlug(fighter)) || "Unknown fighter";
+    }
+
     function fighterCard(fighter, index) {
         const article = element("article", "ufc-roster-card");
         const rank = element("div", "ufc-roster-rank", String(index + 1).padStart(2, "0"));
         const body = element("div", "ufc-roster-card-body");
         const heading = element("h2", "ufc-roster-name");
-        const link = element("a", "", fighter.name || "Unknown fighter");
+        const link = element("a", "", fighterDisplayName(fighter));
         link.href = fighter.url;
         link.target = "_blank";
         link.rel = "noopener noreferrer";
