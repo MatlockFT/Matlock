@@ -19,6 +19,10 @@ permalink: /breakdowns/
     </header>
 
     {% if site.posts.size > 0 %}
+        {% assign pinned_posts = site.posts | where_exp: "post", "post.pinned == true" %}
+        {% assign regular_posts = site.posts | where_exp: "post", "post.pinned != true" %}
+        {% assign archive_posts = pinned_posts | concat: regular_posts %}
+
         <div class="archive-tools" data-archive-tools>
             <label>
                 <span>Search articles</span>
@@ -67,7 +71,7 @@ permalink: /breakdowns/
         </div>
 
         <div class="article-grid" data-archive-grid>
-            {% for post in site.posts %}
+            {% for post in archive_posts %}
                 {% assign post_image = post.image.path | default: post.image %}
                 {% assign post_alt = post.image.alt | default: post.image_alt | default: post.title %}
                 {% assign post_responsive = site.data.responsive_images[post_image] %}
