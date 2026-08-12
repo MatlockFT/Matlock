@@ -1,6 +1,8 @@
 {
-  "checkedAt": "2026-08-12T02:08:01.703858+00:00",
+  "checkedAt": "2026-08-12T02:35:48.946646+00:00",
   "outcome": "success",
+  "activeEntryOutcome": "success",
+  "profileDirectoryOutcome": "success",
   "eventCardOutcome": "success",
   "crossCheckOutcome": "success",
   "finalizeOutcome": "success",
@@ -18,6 +20,8 @@
     "UFC Active view reports 951 athlete records.",
     "Detected 0 addition(s) and 0 removal(s) this run.",
     "1 Active-roster candidate(s) awaiting profile confirmation.",
+    "Promoted 0 UFC Active-collection entrant(s) without waiting for profile Status: Active.",
+    "UFC profile-directory sensor unavailable; preserved prior profile baseline: UFC directory reports 3168 athletes but only 2418 profile URLs were collected (gap 750).",
     "Official UFC event-card cross-check: 5 event(s), 90 athlete slots, 0 first-time UFC newcomer(s) confirmed this run.",
     "Normalized UFC roster event history; removed 0 duplicate newcomer event(s).",
     "Competition cross-check complete: 6 verified newcomer addition(s), 2 reactivation event(s), 0 newly reclassified this run.",
