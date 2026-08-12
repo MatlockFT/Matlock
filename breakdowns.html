@@ -111,6 +111,14 @@ permalink: /breakdowns/
 
                     <div class="article-card-content">
                         <p class="article-date">
+                            {% if post.pinned == true %}
+                                <span
+                                    class="article-pin"
+                                    role="img"
+                                    aria-label="Pinned to top"
+                                    title="Pinned to top"
+                                >📌</span>
+                            {% endif %}
                             <time datetime="{{ post.date | date_to_xmlschema }}">
                                 {{ post.date | date: "%B %d, %Y" }}
                             </time>
