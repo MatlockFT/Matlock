@@ -9,9 +9,61 @@ const statePath = argument("--state", "/tmp/ufc-roster-state.json");
 const publicPath = argument("--public", "/tmp/ufc-roster-latest.json");
 const finalizePublic = process.argv.includes("--finalize-public");
 
+const GENERIC_FIGHTER_NAMES = new Set([
+    "search results",
+    "search",
+    "athletes",
+    "all athletes",
+    "ufc",
+    "page not found",
+    "not found",
+    "access denied",
+    "error"
+]);
+
 function timestamp(value) {
     const parsed = Date.parse(value || "");
     return Number.isNaN(parsed) ? Number.POSITIVE_INFINITY : parsed;
+}
+
+function slugFromItem(item) {
+    if (item?.slug) return String(item.slug);
+
+    try {
+        return new URL(item?.url || "")
+            .pathname
+            .split("/")
+            .filter(Boolean)
+            .at(-1) || "";
+    } catch {
+        return "";
+    }
+}
+
+function nameFromSlug(slug) {
+    return String(slug || "")
+        .split("-")
+        .filter(Boolean)
+        .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(" ");
+}
+
+function sanitizeFighterName(item) {
+    if (!item || typeof item !== "object") return item;
+
+    const candidate = String(item.name || "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    if (
+        candidate &&
+        !GENERIC_FIGHTER_NAMES.has(candidate.toLowerCase())
+    ) {
+        return item;
+    }
+
+    const fallback = nameFromSlug(slugFromItem(item));
+    return fallback ? { ...item, name: fallback } : item;
 }
 
 function rank(item) {
@@ -58,7 +110,9 @@ function dedupeAdditions(items) {
 const state = JSON.parse(await fs.readFile(statePath, "utf8"));
 const publicData = JSON.parse(await fs.readFile(publicPath, "utf8"));
 const before = Array.isArray(state.additions) ? state.additions.length : 0;
-state.additions = dedupeAdditions(state.additions);
+const normalizedAdditions = (Array.isArray(state.additions) ? state.additions : [])
+    .map(sanitizeFighterName);
+state.additions = dedupeAdditions(normalizedAdditions);
 const removedDuplicates = before - state.additions.length;
 state.version = Math.max(Number(state.version || 0), 9);
 
