@@ -23,6 +23,7 @@ content:
         - title
         - date
         - category
+        - pinned
         - published
       sort: date
       order: desc
@@ -135,6 +136,15 @@ content:
         description: >-
           Leave this blank for a new article. Set it only after making
           a meaningful update to an existing article.
+
+      - name: pinned
+        label: Pin to top of Breakdowns
+        type: boolean
+        default: false
+        description: >-
+          Keep this article above newer posts on the Breakdowns page.
+          If more than one article is pinned, pinned articles stay in
+          newest-to-oldest order.
 
       - name: published
         label: Published
