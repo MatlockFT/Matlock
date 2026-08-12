@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-12T10:17:36.612Z",
+  "generated_at": "2026-08-12T12:03:25.502Z",
   "changes": [
+    {
+      "id": "2026-08-12T12:03:25.502Z|rizin-rizin-54-2026-08-11|event_removed|1",
+      "at": "2026-08-12T12:03:25.502Z",
+      "type": "event_removed",
+      "event_id": "rizin-rizin-54-2026-08-11",
+      "promotion": "RIZIN",
+      "event_title": "RIZIN.54",
+      "event_date": "2026-08-11",
+      "summary": "RIZIN RIZIN.54 removed from Upcoming Events.",
+      "details": {
+        "bout_count": 10,
+        "venue": "TOYOTA ARENA TOKYO",
+        "date": "2026-08-11"
+      }
+    },
     {
       "id": "2026-08-12T10:17:36.612Z|dwcs-season-10-week-2-2026-08-18|event_added|1",
       "at": "2026-08-12T10:17:36.612Z",
