@@ -16,6 +16,7 @@ tags:
   - Ian Machado Garry
   - Welterweight
 last_modified_at: 2026-08-09
+pinned: true
 published: true
 ---
 [UFC 330](https://www.tapology.com/fightcenter/events/142341-ufc-330) is scheduled for August 15, 2026, at Xfinity Mobile Arena in Philadelphia. Welterweight champion [Islam Makhachev](https://www.tapology.com/fightcenter/fighters/40148-islam-makhachev) is set to defend his title against No. 1 contender [Ian Machado Garry](https://www.tapology.com/fightcenter/fighters/171377-ian-garry). This article updates regularly with any new information up until fight night.
@@ -32,6 +33,7 @@ Garry’s challenge is to stop Makhachev from chaining one position into the nex
 
 ## Tale of the Tape
 
+
 | **Attribute** | **Islam Makhachev** | **Ian Machado Garry** |
 | ---------------- | ------------------- | --------------------- |
 | Record | 28–1 | 17–1 |
@@ -42,7 +44,9 @@ Garry’s challenge is to stop Makhachev from chaining one position into the nex
 | Last five fights | 5–0 | 4–1 |
 | Weight | 170 lb | 170 lb |
 
+
 Makhachev gives away five inches in height and four inches in reach. **Garry is also six years younger.** Makhachev has the much deeper title-fight record and has won 16 straight UFC fights.
+
 
 | **Fight** | **Islam Makhachev** | **Ian Machado Garry** |
 | ----------- | -------------------------------------------------------- | ----------------------------------------- |
@@ -52,7 +56,9 @@ Makhachev gives away five inches in height and four inches in reach. **Garry is 
 | 4 | W — Alexander Volkanovski, head-kick stoppage, round one | W — Michael Page, unanimous decision |
 | 5 | W — Alexander Volkanovski, unanimous decision | W — Geoff Neal, split decision |
 
+
 Makhachev’s five-fight run includes two full championship decisions, two submissions and a first-round knockout. All five of Garry’s most recent fights reached the scorecards. His recent performances have been built around winning rounds through movement, distance control and steady output.
+
 
 | **Statistic** | **Makhachev** | **Garry** |
 | ------------------------------------------- | ------------- | --------- |
@@ -66,6 +72,7 @@ Makhachev’s five-fight run includes two full championship decisions, two submi
 | Submission attempts per 15 minutes | 1.0 | 0.4 |
 | Average control time per UFC fight | 5:38 | 1:43 |
 | Control time as a share of total fight time | 51.2% | 11.6% |
+
 
 *Career rates come from the UFCStats profiles for Makhachev and Garry. Control averages and percentages were calculated from recorded UFC control time and total fight duration. Makhachev’s aggregate control time is also listed in the [UFC record book](https://statleaders.ufc.com/?country=rus&fighter_status=0).*
 
