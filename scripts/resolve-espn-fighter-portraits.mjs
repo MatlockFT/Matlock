@@ -2,8 +2,9 @@ import fs from 'node:fs/promises';
 import { DATA_PATH, norm } from './upcoming-events-data.mjs';
 
 const CACHE_PATH = '_data/fighter_portraits.json';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockPortraitResolver/2.3; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockPortraitResolver/2.4; +https://matlockfighttalk.com/)';
 const TIMEOUT = 20000;
+const LOOKUP_HORIZON_DAYS = 21;
 const SHERDOG = 'https://www.sherdog.com';
 const tracking=/(?:piwik|matomo|analytics|tracking|pixel|beacon)/i;
 const badPortrait=/(?:\/articles?\/|\/news\/|\/galleries?\/|\/thumbnails?\/|\/fighters\/(?:bodyshots|headshots)\/default-(?:male|female)\.(?:png|jpe?g|webp)(?:\?|$)|(?:^|[\/_-])(?:banner|sponsor|poster|promo|placeholder)(?:[\/_-]|$))/i;
@@ -158,11 +159,27 @@ async function sherdogPortraitByName(name){
   return '';
 }
 
+function eventNeedsPortraitLookup(event, now=Date.now()) {
+  if(!/^20\d{2}-\d{2}-\d{2}$/.test(event?.date||''))return false;
+  const eventTime=Date.parse(`${event.date}T12:00:00Z`);
+  if(Number.isNaN(eventTime))return false;
+  const ageDays=(eventTime-now)/86400000;
+  return ageDays>=-1&&ageDays<=LOOKUP_HORIZON_DAYS;
+}
+
 const data=JSON.parse(await fs.readFile(DATA_PATH,'utf8'));
 let cache={};try{cache=JSON.parse(await fs.readFile(CACHE_PATH,'utf8'));}catch{}
 delete cache[''];
 const fighters=[];
-for(const event of data.events||[])for(const section of event.sections||[])for(const bout of section.bouts||[])for(const person of bout.fighters||[])fighters.push(person);
+const lookupByName=new Map();
+for(const event of data.events||[]){
+  const shouldLookup=eventNeedsPortraitLookup(event);
+  for(const section of event.sections||[])for(const bout of section.bouts||[])for(const person of bout.fighters||[]){
+    fighters.push(person);
+    const key=norm(person.name);
+    if(shouldLookup&&key&&!lookupByName.has(key))lookupByName.set(key,person.name);
+  }
+}
 
 let added=0,applied=0,cleaned=0,cacheCleaned=0,sherdogAdded=0;
 for(const person of fighters){
@@ -171,9 +188,7 @@ for(const person of fighters){
   }
 }
 
-const byName=new Map();
-for(const person of fighters){const key=norm(person.name);if(key&&!byName.has(key))byName.set(key,person.name);}
-for(const [key,name] of byName){
+for(const [key,name] of lookupByName){
   if(cache[key]?.url&&badPortrait.test(cache[key].url)){delete cache[key];cacheCleaned++;}
   if(cache[key]?.url)continue;
   const existing=fighters.find(f=>norm(f.name)===key&&f.image&&!tracking.test(f.image)&&!badPortrait.test(f.image));
@@ -193,4 +208,4 @@ for(const person of fighters){
 
 await fs.writeFile(CACHE_PATH,JSON.stringify(Object.fromEntries(Object.entries(cache).sort(([a],[b])=>a.localeCompare(b))),null,2)+'\n');
 if(applied||cleaned)await fs.writeFile(DATA_PATH,JSON.stringify(data,null,2)+'\n');
-console.log(`Fallback portrait lookup added ${added} ESPN and ${sherdogAdded} Sherdog portrait(s); applied ${applied}; removed ${cleaned} bad event portrait(s) and ${cacheCleaned} bad cache entr${cacheCleaned===1?'y':'ies'}.`);
+console.log(`Fallback portrait lookup checked ${lookupByName.size} near-term fighter(s) within ${LOOKUP_HORIZON_DAYS} days; added ${added} ESPN and ${sherdogAdded} Sherdog portrait(s); applied ${applied}; removed ${cleaned} bad event portrait(s) and ${cacheCleaned} bad cache entr${cacheCleaned===1?'y':'ies'}.`);
