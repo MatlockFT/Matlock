@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import { DATA_PATH, norm } from './upcoming-events-data.mjs';
 
 const CACHE_PATH = '_data/fighter_portraits.json';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockPortraitResolver/2.5; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockPortraitResolver/2.6; +https://matlockfighttalk.com/)';
 const TIMEOUT = 16000;
 const SHERDOG = 'https://www.sherdog.com';
 const tracking=/(?:piwik|matomo|analytics|tracking|pixel|beacon)/i;
@@ -16,7 +16,18 @@ const ESPN_ID_HINTS = new Map([
 ]);
 
 const SHERDOG_PROFILE_HINTS = new Map([
-  ['morquez forest','https://www.sherdog.com/fighter/Morquez-Forest-392364']
+  ['morquez forest','https://www.sherdog.com/fighter/Morquez-Forest-392364'],
+  ['aoriqileng','https://www.sherdog.com/fighter/Qileng-Aori-222519'],
+  ['sumudaerji','https://www.sherdog.com/fighter/Su-Mudaerji-228263'],
+  ['fares ziam','https://www.sherdog.com/fighter/Fares-Ziam-184241'],
+  ['jj aldrich','https://www.sherdog.com/fighter/JJ-Aldrich-75565']
+]);
+
+const SHERDOG_NAME_ALIASES = new Map([
+  ['aoriqileng','qileng aori'],
+  ['sumudaerji','su mudaerji'],
+  ['fares ziam','fares ziam'],
+  ['jj aldrich','j j aldrich']
 ]);
 
 async function get(url, asJson=false) {
@@ -120,7 +131,9 @@ async function espnIdByName(name) {
 }
 
 function sherdogProfileMatches(page,name){
-  const wanted=norm(name),tokens=wanted.split(/\s+/).filter(Boolean);
+  const requested=norm(name);
+  const wanted=SHERDOG_NAME_ALIASES.get(requested)||requested;
+  const tokens=wanted.split(/\s+/).filter(Boolean);
   const title=norm(decodeHtml((page.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)||[])[1]||''));
   if(!title||!wanted)return false;
   if(title===wanted||title.startsWith(`${wanted} `)||title.includes(`${wanted} mma`))return true;
@@ -149,7 +162,9 @@ function sherdogProfileImage(page){
 }
 
 function sherdogSearchProfiles(page,name){
-  const wanted=norm(name),tokens=wanted.split(/\s+/).filter(Boolean),hits=[];
+  const requested=norm(name);
+  const wanted=SHERDOG_NAME_ALIASES.get(requested)||requested;
+  const tokens=wanted.split(/\s+/).filter(Boolean),hits=[];
   const seen=new Set();
   for(const row of page.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)){
     const html=row[1],rowText=norm(stripHtml(html));
@@ -167,12 +182,13 @@ function sherdogSearchProfiles(page,name){
 }
 
 async function sherdogPortraitByName(name){
-  const wanted=norm(name),profiles=[];
-  const hinted=SHERDOG_PROFILE_HINTS.get(wanted);
+  const requested=norm(name),profiles=[];
+  const hinted=SHERDOG_PROFILE_HINTS.get(requested);
   if(hinted)profiles.push(hinted);
 
   try{
-    const search=await get(`${SHERDOG}/stats/fightfinder?SearchTxt=${encodeURIComponent(name)}`);
+    const query=SHERDOG_NAME_ALIASES.get(requested)||name;
+    const search=await get(`${SHERDOG}/stats/fightfinder?SearchTxt=${encodeURIComponent(query)}`);
     profiles.push(...sherdogSearchProfiles(search,name));
   }catch{}
 
