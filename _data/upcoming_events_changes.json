@@ -1,7 +1,1029 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-14T23:12:16.561Z",
+  "generated_at": "2026-08-14T23:26:31.381Z",
   "changes": [
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-330-2026-08-15|portrait_added|1",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "Eduardo Chapolin portrait added.",
+      "details": {
+        "fighter": "Eduardo Chapolin",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|pfl-tampa-2026-08-22|portrait_added|2",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "pfl-tampa-2026-08-22",
+      "promotion": "PFL",
+      "event_title": "Tampa",
+      "event_date": "2026-08-22",
+      "summary": "Morquez Forest portrait added.",
+      "details": {
+        "fighter": "Morquez Forest",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|3",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Umar Nurmagomedov portrait added.",
+      "details": {
+        "fighter": "Umar Nurmagomedov",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|4",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Song Yadong portrait added.",
+      "details": {
+        "fighter": "Song Yadong",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|5",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Yan Xiaonan portrait added.",
+      "details": {
+        "fighter": "Yan Xiaonan",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|6",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Denise Gomes portrait added.",
+      "details": {
+        "fighter": "Denise Gomes",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|7",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Kai Asakura portrait added.",
+      "details": {
+        "fighter": "Kai Asakura",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|8",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Alex Perez portrait added.",
+      "details": {
+        "fighter": "Alex Perez",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|9",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Liu Ce portrait added.",
+      "details": {
+        "fighter": "Liu Ce",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|10",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Junior Tafa portrait added.",
+      "details": {
+        "fighter": "Junior Tafa",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|11",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Namsrai Batbayar portrait added.",
+      "details": {
+        "fighter": "Namsrai Batbayar",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|12",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Jack Jenkins portrait added.",
+      "details": {
+        "fighter": "Jack Jenkins",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|13",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Sean Woodson portrait added.",
+      "details": {
+        "fighter": "Sean Woodson",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|14",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Rei Tsuruya portrait added.",
+      "details": {
+        "fighter": "Rei Tsuruya",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|15",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Kevin Borjas portrait added.",
+      "details": {
+        "fighter": "Kevin Borjas",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|16",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Xiong Jingnan portrait added.",
+      "details": {
+        "fighter": "Xiong Jingnan",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|17",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Julia Polastri portrait added.",
+      "details": {
+        "fighter": "Julia Polastri",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|18",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Dan Hooker portrait added.",
+      "details": {
+        "fighter": "Dan Hooker",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|19",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Salahdine Parnasse portrait added.",
+      "details": {
+        "fighter": "Salahdine Parnasse",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|20",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Axel Sola portrait added.",
+      "details": {
+        "fighter": "Axel Sola",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|21",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Michael Venom Page portrait added.",
+      "details": {
+        "fighter": "Michael Venom Page",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|22",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Nursulton Ruziboev portrait added.",
+      "details": {
+        "fighter": "Nursulton Ruziboev",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|23",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Morgan Charriere portrait added.",
+      "details": {
+        "fighter": "Morgan Charriere",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|24",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Felipe Lima portrait added.",
+      "details": {
+        "fighter": "Felipe Lima",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|25",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Losene Keita portrait added.",
+      "details": {
+        "fighter": "Losene Keita",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|26",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Muhammad Naimov portrait added.",
+      "details": {
+        "fighter": "Muhammad Naimov",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|27",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Mario Pinto portrait added.",
+      "details": {
+        "fighter": "Mario Pinto",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|28",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Ryan Spann portrait added.",
+      "details": {
+        "fighter": "Ryan Spann",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|29",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Kurtis Campbell portrait added.",
+      "details": {
+        "fighter": "Kurtis Campbell",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|30",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Trevor Peek portrait added.",
+      "details": {
+        "fighter": "Trevor Peek",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|31",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Oumar Sy portrait added.",
+      "details": {
+        "fighter": "Oumar Sy",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|32",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Modestas Bukauskas portrait added.",
+      "details": {
+        "fighter": "Modestas Bukauskas",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|33",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Nathaniel Wood portrait added.",
+      "details": {
+        "fighter": "Nathaniel Wood",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|34",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Mairon Santos portrait added.",
+      "details": {
+        "fighter": "Mairon Santos",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|35",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Nora Cornolle portrait added.",
+      "details": {
+        "fighter": "Nora Cornolle",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|36",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Klaudia Sygula portrait added.",
+      "details": {
+        "fighter": "Klaudia Sygula",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|37",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Matthieu Letho Duclos portrait added.",
+      "details": {
+        "fighter": "Matthieu Letho Duclos",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|38",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Luis Felipe Dias portrait added.",
+      "details": {
+        "fighter": "Luis Felipe Dias",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|39",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Yair Rodriguez portrait added.",
+      "details": {
+        "fighter": "Yair Rodriguez",
+        "source": "espn"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|40",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Jean Silva portrait added.",
+      "details": {
+        "fighter": "Jean Silva",
+        "source": "espn"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|41",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Brandon Moreno portrait added.",
+      "details": {
+        "fighter": "Brandon Moreno",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|42",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Joseph Morales portrait added.",
+      "details": {
+        "fighter": "Joseph Morales",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|43",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Tommy McMillen portrait added.",
+      "details": {
+        "fighter": "Tommy McMillen",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|44",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Marwan Rahiki portrait added.",
+      "details": {
+        "fighter": "Marwan Rahiki",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|45",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Manon Fiorot portrait added.",
+      "details": {
+        "fighter": "Manon Fiorot",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|46",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Alexa Grasso portrait added.",
+      "details": {
+        "fighter": "Alexa Grasso",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|47",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Waldo Cortes Acosta portrait added.",
+      "details": {
+        "fighter": "Waldo Cortes Acosta",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|48",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Curtis Blaydes portrait added.",
+      "details": {
+        "fighter": "Curtis Blaydes",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|49",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "David Martinez portrait added.",
+      "details": {
+        "fighter": "David Martinez",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|50",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Dan Ige portrait added.",
+      "details": {
+        "fighter": "Dan Ige",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|51",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Tim Elliott portrait added.",
+      "details": {
+        "fighter": "Tim Elliott",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|52",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Edgar Chairez portrait added.",
+      "details": {
+        "fighter": "Edgar Chairez",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|53",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Ignacio Bahamondes portrait added.",
+      "details": {
+        "fighter": "Ignacio Bahamondes",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|54",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Muslim Salikhov portrait added.",
+      "details": {
+        "fighter": "Muslim Salikhov",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|55",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Kelvin Gastelum portrait added.",
+      "details": {
+        "fighter": "Kelvin Gastelum",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|56",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Yousri Belgaroui portrait added.",
+      "details": {
+        "fighter": "Yousri Belgaroui",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|57",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Regina Tarin portrait added.",
+      "details": {
+        "fighter": "Regina Tarin",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|58",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Joaquin Buckley portrait added.",
+      "details": {
+        "fighter": "Joaquin Buckley",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|59",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Mike Malott portrait added.",
+      "details": {
+        "fighter": "Mike Malott",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|60",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Erin Blanchfield portrait added.",
+      "details": {
+        "fighter": "Erin Blanchfield",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|61",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Jasmine Jasudavicius portrait added.",
+      "details": {
+        "fighter": "Jasmine Jasudavicius",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|62",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Marc-Andre Barriault portrait added.",
+      "details": {
+        "fighter": "Marc-Andre Barriault",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|63",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Kyle Daukaus portrait added.",
+      "details": {
+        "fighter": "Kyle Daukaus",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|64",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Jamey-Lyn Horth portrait added.",
+      "details": {
+        "fighter": "Jamey-Lyn Horth",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|65",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Katlyn Cerminara portrait added.",
+      "details": {
+        "fighter": "Katlyn Cerminara",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|66",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Tanner Boser portrait added.",
+      "details": {
+        "fighter": "Tanner Boser",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|67",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Jhonata Diniz portrait added.",
+      "details": {
+        "fighter": "Jhonata Diniz",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|68",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Mandel Nallo portrait added.",
+      "details": {
+        "fighter": "Mandel Nallo",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|69",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Nate Landwehr portrait added.",
+      "details": {
+        "fighter": "Nate Landwehr",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|70",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Melissa Croden portrait added.",
+      "details": {
+        "fighter": "Melissa Croden",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|71",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Chelsea Chandler portrait added.",
+      "details": {
+        "fighter": "Chelsea Chandler",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|72",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Louis Jourdain portrait added.",
+      "details": {
+        "fighter": "Louis Jourdain",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|73",
+      "at": "2026-08-14T23:26:31.381Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Timmy Cuamba portrait added.",
+      "details": {
+        "fighter": "Timmy Cuamba",
+        "source": "sherdog"
+      }
+    },
     {
       "id": "2026-08-14T23:12:16.561Z|ufc-330-2026-08-15|title_changed|1",
       "at": "2026-08-14T23:12:16.561Z",
