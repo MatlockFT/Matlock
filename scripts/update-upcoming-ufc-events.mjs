@@ -4,7 +4,7 @@ const ORIGIN = 'https://www.ufc.com';
 const EVENTS_URL = `${ORIGIN}/events`;
 const TICKETS_URL = `${ORIGIN}/tickets`;
 const ESPN_SCOREBOARD = 'https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockUpcomingEvents/4.4; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockUpcomingEvents/4.5; +https://matlockfighttalk.com/)';
 const MAX_DAYS = 240;
 const DISCOVERY_DAYS = 100;
 const MAX_PAGES = 40;
@@ -16,6 +16,7 @@ const text = (s = '') => decode(String(s).replace(/<script[\s\S]*?<\/script>/gi,
 const slugify = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const ymd = d => `${d.getUTCFullYear()}${String(d.getUTCMonth() + 1).padStart(2, '0')}${String(d.getUTCDate()).padStart(2, '0')}`;
 const monthNames = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+const monthNumber = new Map(monthNames.flatMap((name, index) => [[name, index], [name.slice(0, 3), index]]));
 
 async function request(url, asJson = false) {
   let last;
@@ -130,11 +131,36 @@ function exactEventStart(html) {
   return Number.isNaN(date.getTime()) ? null : date;
 }
 
-function eventDate(html, url) {
+function visibleEventDate(html) {
+  const timeAttr = html.match(/<time\b[^>]*datetime=["']([^"']+)["']/i)?.[1] || '';
+  if (timeAttr && !Number.isNaN(Date.parse(timeAttr))) return new Date(timeAttr);
+
+  const plain = text(html);
+  const match = plain.match(/\b(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)(?:day)?[,]?\s+(Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+(\d{1,2})(?:,?\s+(20\d{2}))?\s*(?:\/|at|\b)/i);
+  if (!match) return null;
+  const month = monthNumber.get(match[1].toLowerCase().slice(0, 3));
+  const day = Number(match[2]);
+  if (!Number.isInteger(month) || !Number.isInteger(day)) return null;
+
+  if (match[3]) return new Date(Date.UTC(Number(match[3]), month, day, 12));
+  const now = new Date();
+  const years = [now.getUTCFullYear() - 1, now.getUTCFullYear(), now.getUTCFullYear() + 1];
+  const options = years.map(year => new Date(Date.UTC(year, month, day, 12)))
+    .map(date => ({ date, delta: (date.getTime() - now.getTime()) / 86400000 }))
+    .filter(item => item.delta >= -2 && item.delta <= MAX_DAYS + 2)
+    .sort((a, b) => Math.abs(a.delta) - Math.abs(b.delta));
+  return options[0]?.date || null;
+}
+
+function eventDate(html, url, fallbackIso = '') {
   const raw = rawStartDate(html);
   if (raw) return new Date(raw);
+  const visible = visibleEventDate(html);
+  if (visible) return visible;
   const s = new URL(url).pathname.match(/(january|february|march|april|may|june|july|august|september|october|november|december)-(\d{1,2})-(\d{4})/i);
-  return s ? new Date(`${s[1]} ${s[2]}, ${s[3]} 12:00:00 UTC`) : null;
+  if (s) return new Date(`${s[1]} ${s[2]}, ${s[3]} 12:00:00 UTC`);
+  if (/^20\d{2}-\d{2}-\d{2}$/.test(fallbackIso)) return new Date(`${fallbackIso}T12:00:00Z`);
+  return null;
 }
 
 function title(html, url) {
@@ -241,7 +267,8 @@ function parserDiagnostics(html) {
 const isoDay = d => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
 
 const data = await loadData(), cache = await loadPortraitCache(), previous = data.events.filter(e => e.promotion_key === 'ufc');
-const discovered = new Set(previous.map(event => canonicalEventUrl(event.official_url)).filter(Boolean));
+const previousByUrl = new Map(previous.map(event => [canonicalEventUrl(event.official_url), event]).filter(([url]) => Boolean(url)));
+const discovered = new Set(previousByUrl.keys());
 for (const url of [EVENTS_URL, TICKETS_URL]) {
   try { for (const eventUrl of eventUrls(await get(url))) discovered.add(eventUrl); }
   catch (error) { console.warn(`UFC discovery source unavailable ${url}: ${error.message}`); }
@@ -254,7 +281,9 @@ if (!urls.length) { console.warn('No UFC event URLs found; preserving existing U
 const rawEvents = [];
 for (const url of urls) {
   try {
-    const html = await get(url), date = eventDate(html, url); if (!date) continue;
+    const html = await get(url);
+    const date = eventDate(html, url, previousByUrl.get(url)?.date || '');
+    if (!date) { console.warn(`UFC could not resolve an event date for ${url}.`); continue; }
     const delta = (date - Date.now()) / 86400000; if (delta < -1 || delta > MAX_DAYS) continue;
     const card = bouts(html);
     if (!card.length) {
