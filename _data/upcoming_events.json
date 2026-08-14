@@ -1,16 +1,18 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-14T21:06:20.927Z",
+  "generated_at": "2026-08-14T23:04:53.104Z",
   "events": [
     {
-      "id": "ufc-330-2026-08-15",
+      "id": "ufc-330-2026-08-15-fight-card",
       "promotion_key": "ufc",
       "promotion": "UFC 330",
-      "title": "Makhachev vs Machado Garry",
+      "title": "Fight Card",
       "date": "2026-08-15",
       "date_label": "Saturday · August 15, 2026",
-      "venue": "Xfinity Mobile Arena · Philadelphia, Pennsylvania",
-      "broadcast": "Paramount+",
+      "starts_at": "",
+      "expires_at": "",
+      "venue": "Venue TBA",
+      "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-330",
       "updated_label": "August 14, 2026",
       "sections": [
@@ -22,7 +24,7 @@
             {
               "order": 1,
               "label": "Main Event",
-              "weight_class": "Welterweight Title",
+              "weight_class": "Welterweight Title Bout",
               "fighters": [
                 {
                   "name": "Islam Makhachev",
@@ -43,7 +45,7 @@
             {
               "order": 2,
               "label": "Co-Main Event",
-              "weight_class": "Women's Strawweight Title",
+              "weight_class": "Women's Strawweight Title Bout",
               "fighters": [
                 {
                   "name": "Mackenzie Dern",
@@ -64,19 +66,19 @@
             {
               "order": 3,
               "label": "",
-              "weight_class": "Lightweight",
+              "weight_class": "Lightweight Bout",
               "fighters": [
                 {
-                  "name": "Edson Barboza",
-                  "initials": "EB",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/2526299.png",
+                  "name": "Jalin Turner",
+                  "initials": "JT",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4339490.png",
                   "image_source": "espn",
                   "image_framing": "standard"
                 },
                 {
-                  "name": "Esteban Ribovics",
-                  "initials": "ER",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5074131.png",
+                  "name": "Kauê Fernandes",
+                  "initials": "KF",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5172124.png",
                   "image_source": "espn",
                   "image_framing": "standard"
                 }
@@ -85,7 +87,7 @@
             {
               "order": 4,
               "label": "",
-              "weight_class": "Middleweight",
+              "weight_class": "Middleweight Bout",
               "fighters": [
                 {
                   "name": "Mansur Abdul-Malik",
@@ -106,7 +108,56 @@
             {
               "order": 5,
               "label": "",
-              "weight_class": "Catchweight",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Edson Barboza",
+                  "initials": "EB",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/2526299.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Esteban Ribovics",
+                  "initials": "ER",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5074131.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "5:30 PM ET",
+          "bouts": [
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
+                  "name": "Chidi Njokuani",
+                  "initials": "CN",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/2959422.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Joel Álvarez",
+                  "initials": "JÁ",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4411888.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "Catchweight Bout",
               "fighters": [
                 {
                   "name": "Charles Johnson",
@@ -123,130 +174,11 @@
                   "image_framing": ""
                 }
               ]
-            }
-          ]
-        },
-        {
-          "kind": "prelims",
-          "title": "Prelims",
-          "time": "7:00 PM ET",
-          "bouts": [
-            {
-              "order": 6,
-              "label": "",
-              "weight_class": "Middleweight",
-              "fighters": [
-                {
-                  "name": "Vicente Luque",
-                  "initials": "VL",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/3045887.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Tresean Gore",
-                  "initials": "TG",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4815999.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 7,
-              "label": "",
-              "weight_class": "Lightweight",
-              "fighters": [
-                {
-                  "name": "Jalin Turner",
-                  "initials": "JT",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4339490.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Kauê Fernandes",
-                  "initials": "KF",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5172124.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
             },
             {
               "order": 8,
               "label": "",
-              "weight_class": "Welterweight",
-              "fighters": [
-                {
-                  "name": "Joel Alvarez",
-                  "initials": "JA",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4411888.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Chidi Njokuani",
-                  "initials": "CN",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/2959422.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 9,
-              "label": "",
-              "weight_class": "Welterweight",
-              "fighters": [
-                {
-                  "name": "Neil Magny",
-                  "initials": "NM",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/3001914.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Ramiz Brahimaj",
-                  "initials": "RB",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4297311.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "kind": "early",
-          "title": "Early Prelims",
-          "time": "5:00 PM ET",
-          "bouts": [
-            {
-              "order": 10,
-              "label": "",
-              "weight_class": "Light Heavyweight",
-              "fighters": [
-                {
-                  "name": "Lucas Fernando",
-                  "initials": "LF",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5119021.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Rafael Tobias",
-                  "initials": "RT",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5308871.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 11,
-              "label": "",
-              "weight_class": "Middleweight",
+              "weight_class": "Middleweight Bout",
               "fighters": [
                 {
                   "name": "Donte Johnson",
@@ -265,21 +197,91 @@
               ]
             },
             {
-              "order": 12,
+              "order": 9,
               "label": "",
-              "weight_class": "Welterweight",
+              "weight_class": "Middleweight Bout",
               "fighters": [
                 {
-                  "name": "Myktybek Orolbai",
-                  "initials": "MO",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5050129.png",
+                  "name": "Vicente Luque",
+                  "initials": "VL",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/3045887.png",
                   "image_source": "espn",
                   "image_framing": "standard"
                 },
                 {
+                  "name": "Tresean Gore",
+                  "initials": "TG",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4815999.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "early",
+          "title": "Early Prelims",
+          "time": "5:30 PM ET",
+          "bouts": [
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "Light Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Rafael Tobias",
+                  "initials": "RT",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5308871.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Lucas Fernando",
+                  "initials": "LF",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5119021.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 11,
+              "label": "",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
+                  "name": "Neil Magny",
+                  "initials": "NM",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/3001914.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Ramiz Brahimaj",
+                  "initials": "RB",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4297311.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 12,
+              "label": "",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
                   "name": "Jeremiah Wells",
                   "initials": "JW",
                   "image": "https://a.espncdn.com/i/headshots/mma/players/full/3970873.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Myktybek Orolbai",
+                  "initials": "MO",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5050129.png",
                   "image_source": "espn",
                   "image_framing": "standard"
                 }
@@ -697,16 +699,18 @@
       ]
     },
     {
-      "id": "ufc-fight-night-sacramento-2026-08-22",
+      "id": "ufc-fight-night-2026-08-22-fight-card",
       "promotion_key": "ufc",
       "promotion": "UFC Fight Night",
-      "title": "Hernandez vs Rodrigues",
+      "title": "Fight Card",
       "date": "2026-08-22",
       "date_label": "Saturday · August 22, 2026",
-      "venue": "Golden 1 Center · Sacramento, California",
-      "broadcast": "Paramount+",
+      "starts_at": "",
+      "expires_at": "",
+      "venue": "Venue TBA",
+      "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-august-22-2026",
-      "updated_label": "August 7, 2026",
+      "updated_label": "August 14, 2026",
       "sections": [
         {
           "kind": "main",
@@ -716,7 +720,7 @@
             {
               "order": 1,
               "label": "Main Event",
-              "weight_class": "Middleweight",
+              "weight_class": "Middleweight Bout",
               "fighters": [
                 {
                   "name": "Anthony Hernandez",
@@ -737,28 +741,7 @@
             {
               "order": 2,
               "label": "Co-Main Event",
-              "weight_class": "Light Heavyweight",
-              "fighters": [
-                {
-                  "name": "Roman Dolidze",
-                  "initials": "RD",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4411508.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Reinier de Ridder",
-                  "initials": "RDR",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4423880.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 3,
-              "label": "",
-              "weight_class": "Heavyweight",
+              "weight_class": "Heavyweight Bout",
               "fighters": [
                 {
                   "name": "Serghei Spivac",
@@ -777,9 +760,58 @@
               ]
             },
             {
+              "order": 3,
+              "label": "",
+              "weight_class": "Light Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Reinier de Ridder",
+                  "initials": "RDR",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4423880.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Roman Dolidze",
+                  "initials": "RD",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4411508.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
               "order": 4,
               "label": "",
-              "weight_class": "Heavyweight",
+              "weight_class": "Women's Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Carli Judice",
+                  "initials": "CJ",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5172179.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Jeisla Chaves",
+                  "initials": "JC",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5308769.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "5:00 PM ET",
+          "bouts": [
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Heavyweight Bout",
               "fighters": [
                 {
                   "name": "Kennedy Nzechukwu",
@@ -798,58 +830,9 @@
               ]
             },
             {
-              "order": 5,
-              "label": "",
-              "weight_class": "Lightweight",
-              "fighters": [
-                {
-                  "name": "Kody Steele",
-                  "initials": "KS",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5212351.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Gauge Young",
-                  "initials": "GY",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5085318.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "kind": "prelims",
-          "title": "Prelims",
-          "time": "5:00 PM ET",
-          "bouts": [
-            {
               "order": 6,
               "label": "",
-              "weight_class": "Women's Strawweight",
-              "fighters": [
-                {
-                  "name": "Carli Judice",
-                  "initials": "CJ",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5172179.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Jeisla Chaves",
-                  "initials": "JC",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5308769.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 7,
-              "label": "",
-              "weight_class": "Middleweight",
+              "weight_class": "Middleweight Bout",
               "fighters": [
                 {
                   "name": "Wes Schultz",
@@ -868,9 +851,30 @@
               ]
             },
             {
+              "order": 7,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Kody Steele",
+                  "initials": "KS",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5212351.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Gauge Young",
+                  "initials": "GY",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5085318.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
               "order": 8,
               "label": "",
-              "weight_class": "Women's Strawweight",
+              "weight_class": "Women's Strawweight Bout",
               "fighters": [
                 {
                   "name": "Shanelle Dyer",
@@ -885,6 +889,486 @@
                   "image": "https://a.espncdn.com/i/headshots/mma/players/full/4836482.png",
                   "image_source": "espn",
                   "image_framing": "standard"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion_key": "ufc",
+      "promotion": "UFC Fight Night",
+      "title": "Fight Card",
+      "date": "2026-08-29",
+      "date_label": "Saturday · August 29, 2026",
+      "starts_at": "",
+      "expires_at": "",
+      "venue": "Venue TBA",
+      "broadcast": "Paramount+ · UFC Fight Pass",
+      "official_url": "https://www.ufc.com/event/ufc-fight-night-august-29-2026",
+      "updated_label": "August 14, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Main Card",
+          "time": "6:00 AM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Umar Nurmagomedov",
+                  "initials": "UN",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Song Yadong",
+                  "initials": "SY",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Women's Strawweight Bout",
+              "fighters": [
+                {
+                  "name": "Yan Xiaonan",
+                  "initials": "YX",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Denise Gomes",
+                  "initials": "DG",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Aoriqileng",
+                  "initials": "A",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Kai Asakura",
+                  "initials": "KA",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Alex Perez",
+                  "initials": "AP",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Sumudaerji",
+                  "initials": "S",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Light Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Liu Ce",
+                  "initials": "LC",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Junior Tafa",
+                  "initials": "JT",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Namsrai Batbayar",
+                  "initials": "NB",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Andre Lima",
+                  "initials": "AL",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5483.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "3:00 AM ET",
+          "bouts": [
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Jack Jenkins",
+                  "initials": "JJ",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Sean Woodson",
+                  "initials": "SW",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Rei Tsuruya",
+                  "initials": "RT",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Kevin Borjas",
+                  "initials": "KB",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "Women's Strawweight Bout",
+              "fighters": [
+                {
+                  "name": "Xiong Jingnan",
+                  "initials": "XJ",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Julia Polastri",
+                  "initials": "JP",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion_key": "ufc",
+      "promotion": "UFC Fight Night",
+      "title": "Fight Card",
+      "date": "2026-09-05",
+      "date_label": "Saturday · September 5, 2026",
+      "starts_at": "",
+      "expires_at": "",
+      "venue": "Venue TBA",
+      "broadcast": "Paramount+ · UFC Fight Pass",
+      "official_url": "https://www.ufc.com/event/ufc-fight-night-september-05-2026",
+      "updated_label": "August 14, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Main Card",
+          "time": "3:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Dan Hooker",
+                  "initials": "DH",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Salahdine Parnasse",
+                  "initials": "SP",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Farès Ziam",
+                  "initials": "FZ",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Axel Sola",
+                  "initials": "AS",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Michael Venom Page",
+                  "initials": "MVP",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Nursulton Ruziboev",
+                  "initials": "NR",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Morgan Charriere",
+                  "initials": "MC",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Felipe Lima",
+                  "initials": "FL",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Losene Keita",
+                  "initials": "LK",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Muhammad Naimov",
+                  "initials": "MN",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "12:00 PM ET",
+          "bouts": [
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Mario Pinto",
+                  "initials": "MP",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Ryan Spann",
+                  "initials": "RS",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Kurtis Campbell",
+                  "initials": "KC",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Trevor Peek",
+                  "initials": "TP",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "Light Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Oumar Sy",
+                  "initials": "OS",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Modestas Bukauskas",
+                  "initials": "MB",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Nathaniel Wood",
+                  "initials": "NW",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Mairon Santos",
+                  "initials": "MS",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "Women's Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Nora Cornolle",
+                  "initials": "NC",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Klaudia Sygula",
+                  "initials": "KS",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 11,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Matthieu Letho Duclos",
+                  "initials": "MLD",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Luis Felipe Dias",
+                  "initials": "LFD",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
                 }
               ]
             }
@@ -1083,6 +1567,246 @@
       "source_card_url": "https://jp.rizinff.com/_ct/17853585"
     },
     {
+      "id": "noche-ufc-2026-09-12-fight-card",
+      "promotion_key": "ufc",
+      "promotion": "Noche UFC",
+      "title": "Fight Card",
+      "date": "2026-09-12",
+      "date_label": "Saturday · September 12, 2026",
+      "starts_at": "",
+      "expires_at": "",
+      "venue": "Venue TBA",
+      "broadcast": "Paramount+ · UFC Fight Pass",
+      "official_url": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+      "updated_label": "August 14, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Main Card",
+          "time": "5:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Yair Rodriguez",
+                  "initials": "YR",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Jean Silva",
+                  "initials": "JS",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Brandon Moreno",
+                  "initials": "BM",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Joseph Morales",
+                  "initials": "JM",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Tommy McMillen",
+                  "initials": "TM",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Marwan Rahiki",
+                  "initials": "MR",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Women's Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Manon Fiorot",
+                  "initials": "MF",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Alexa Grasso",
+                  "initials": "AG",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Waldo Cortes Acosta",
+                  "initials": "WCA",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Curtis Blaydes",
+                  "initials": "CB",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "David Martinez",
+                  "initials": "DM",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Dan Ige",
+                  "initials": "DI",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "2:00 PM ET",
+          "bouts": [
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Tim Elliott",
+                  "initials": "TE",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Edgar Chairez",
+                  "initials": "EC",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
+                  "name": "Ignacio Bahamondes",
+                  "initials": "IB",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Muslim Salikhov",
+                  "initials": "MS",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Kelvin Gastelum",
+                  "initials": "KG",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Yousri Belgaroui",
+                  "initials": "YB",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "Women's Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "JJ Aldrich",
+                  "initials": "JA",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Regina Tarin",
+                  "initials": "RT",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
       "promotion_key": "rizin",
       "promotion": "RIZIN",
@@ -1166,6 +1890,197 @@
         }
       ],
       "source_card_url": "https://jp.rizinff.com/_ct/17857720"
+    },
+    {
+      "id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion_key": "ufc",
+      "promotion": "UFC Fight Night",
+      "title": "Fight Card",
+      "date": "2026-10-17",
+      "date_label": "Saturday · October 17, 2026",
+      "starts_at": "",
+      "expires_at": "",
+      "venue": "Venue TBA",
+      "broadcast": "Paramount+ · UFC Fight Pass",
+      "official_url": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+      "updated_label": "August 14, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Main Card",
+          "time": "8:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
+                  "name": "Joaquin Buckley",
+                  "initials": "JB",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Mike Malott",
+                  "initials": "MM",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Women's Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Erin Blanchfield",
+                  "initials": "EB",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Jasmine Jasudavicius",
+                  "initials": "JJ",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Marc-Andre Barriault",
+                  "initials": "MB",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Kyle Daukaus",
+                  "initials": "KD",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Women's Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Jamey-Lyn Horth",
+                  "initials": "JH",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Katlyn Cerminara",
+                  "initials": "KC",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Tanner Boser",
+                  "initials": "TB",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Jhonata Diniz",
+                  "initials": "JD",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Mandel Nallo",
+                  "initials": "MN",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Nate Landwehr",
+                  "initials": "NL",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "Women's Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Melissa Croden",
+                  "initials": "MC",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Chelsea Chandler",
+                  "initials": "CC",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Louis Jourdain",
+                  "initials": "LJ",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Timmy Cuamba",
+                  "initials": "TC",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 }

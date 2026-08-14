@@ -1,7 +1,669 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-14T21:06:43.408Z",
+  "generated_at": "2026-08-14T23:06:23.025Z",
   "changes": [
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-29-fight-card|event_added|1",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "event_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-29",
+      "summary": "UFC Fight Night Fight Card added to Upcoming Events.",
+      "details": {
+        "bout_count": 9,
+        "venue": "Venue TBA",
+        "date": "2026-08-29"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-09-05-fight-card|event_added|2",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "event_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-09-05",
+      "summary": "UFC Fight Night Fight Card added to Upcoming Events.",
+      "details": {
+        "bout_count": 11,
+        "venue": "Venue TBA",
+        "date": "2026-09-05"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|noche-ufc-2026-09-12-fight-card|event_added|3",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "event_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Fight Card",
+      "event_date": "2026-09-12",
+      "summary": "Noche UFC Fight Card added to Upcoming Events.",
+      "details": {
+        "bout_count": 10,
+        "venue": "Venue TBA",
+        "date": "2026-09-12"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-10-17-fight-card|event_added|4",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "event_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-10-17",
+      "summary": "UFC Fight Night Fight Card added to Upcoming Events.",
+      "details": {
+        "bout_count": 8,
+        "venue": "Venue TBA",
+        "date": "2026-10-17"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|title_changed|5",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "title_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "UFC 330 Fight Card: title changed.",
+      "details": {
+        "from": "Makhachev vs Machado Garry",
+        "to": "Fight Card"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|venue_changed|6",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "venue_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "UFC 330 Fight Card: venue changed.",
+      "details": {
+        "from": "Xfinity Mobile Arena · Philadelphia, Pennsylvania",
+        "to": "Venue TBA"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|broadcast_changed|7",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "broadcast_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "UFC 330 Fight Card: broadcast changed.",
+      "details": {
+        "from": "Paramount+",
+        "to": "Paramount+ · UFC Fight Pass"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|start_time_changed|8",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "start_time_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "UFC 330 Fight Card: Prelims start time changed.",
+      "details": {
+        "section": "Prelims",
+        "from": "7:00 PM ET",
+        "to": "5:30 PM ET"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|start_time_changed|9",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "start_time_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "UFC 330 Fight Card: Early Prelims start time changed.",
+      "details": {
+        "section": "Early Prelims",
+        "from": "5:00 PM ET",
+        "to": "5:30 PM ET"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_weight_changed|10",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Islam Makhachev vs Ian Machado Garry weight/class changed.",
+      "details": {
+        "from": "Welterweight Title",
+        "to": "Welterweight Title Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_weight_changed|11",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Mackenzie Dern vs Gillian Robertson weight/class changed.",
+      "details": {
+        "from": "Women's Strawweight Title",
+        "to": "Women's Strawweight Title Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_moved|12",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Jalin Turner vs Kauê Fernandes moved on Fight Card.",
+      "details": {
+        "from_order": 7,
+        "to_order": 3,
+        "from_section": "Prelims",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_weight_changed|13",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Jalin Turner vs Kauê Fernandes weight/class changed.",
+      "details": {
+        "from": "Lightweight",
+        "to": "Lightweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_weight_changed|14",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Mansur Abdul-Malik vs Dustin Stoltzfus weight/class changed.",
+      "details": {
+        "from": "Middleweight",
+        "to": "Middleweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_moved|15",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Edson Barboza vs Esteban Ribovics moved on Fight Card.",
+      "details": {
+        "from_order": 3,
+        "to_order": 5,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_weight_changed|16",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Edson Barboza vs Esteban Ribovics weight/class changed.",
+      "details": {
+        "from": "Lightweight",
+        "to": "Lightweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_moved|17",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Chidi Njokuani vs Joel Álvarez moved on Fight Card.",
+      "details": {
+        "from_order": 8,
+        "to_order": 6,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_weight_changed|18",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Chidi Njokuani vs Joel Álvarez weight/class changed.",
+      "details": {
+        "from": "Welterweight",
+        "to": "Welterweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_moved|19",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Charles Johnson vs Eduardo Chapolin moved on Fight Card.",
+      "details": {
+        "from_order": 5,
+        "to_order": 7,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_weight_changed|20",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Charles Johnson vs Eduardo Chapolin weight/class changed.",
+      "details": {
+        "from": "Catchweight",
+        "to": "Catchweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_moved|21",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Donte Johnson vs Eric McConico moved on Fight Card.",
+      "details": {
+        "from_order": 11,
+        "to_order": 8,
+        "from_section": "Early Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_weight_changed|22",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Donte Johnson vs Eric McConico weight/class changed.",
+      "details": {
+        "from": "Middleweight",
+        "to": "Middleweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_moved|23",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Vicente Luque vs Tresean Gore moved on Fight Card.",
+      "details": {
+        "from_order": 6,
+        "to_order": 9,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_weight_changed|24",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Vicente Luque vs Tresean Gore weight/class changed.",
+      "details": {
+        "from": "Middleweight",
+        "to": "Middleweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_weight_changed|25",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Rafael Tobias vs Lucas Fernando weight/class changed.",
+      "details": {
+        "from": "Light Heavyweight",
+        "to": "Light Heavyweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_moved|26",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Neil Magny vs Ramiz Brahimaj moved on Fight Card.",
+      "details": {
+        "from_order": 9,
+        "to_order": 11,
+        "from_section": "Prelims",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_weight_changed|27",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Neil Magny vs Ramiz Brahimaj weight/class changed.",
+      "details": {
+        "from": "Welterweight",
+        "to": "Welterweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-330-2026-08-15-fight-card|bout_weight_changed|28",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-330-2026-08-15-fight-card",
+      "promotion": "UFC 330",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-15",
+      "summary": "Jeremiah Wells vs Myktybek Orolbai weight/class changed.",
+      "details": {
+        "from": "Welterweight",
+        "to": "Welterweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|title_changed|29",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "title_changed",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "UFC Fight Night Fight Card: title changed.",
+      "details": {
+        "from": "Hernandez vs Rodrigues",
+        "to": "Fight Card"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|venue_changed|30",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "venue_changed",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "UFC Fight Night Fight Card: venue changed.",
+      "details": {
+        "from": "Golden 1 Center · Sacramento, California",
+        "to": "Venue TBA"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|broadcast_changed|31",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "broadcast_changed",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "UFC Fight Night Fight Card: broadcast changed.",
+      "details": {
+        "from": "Paramount+",
+        "to": "Paramount+ · UFC Fight Pass"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|bout_weight_changed|32",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "Anthony Hernandez vs Gregory Rodrigues weight/class changed.",
+      "details": {
+        "from": "Middleweight",
+        "to": "Middleweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|bout_moved|33",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "Serghei Spivac vs Vitor Petrino moved on Fight Card.",
+      "details": {
+        "from_order": 3,
+        "to_order": 2,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|bout_weight_changed|34",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "Serghei Spivac vs Vitor Petrino weight/class changed.",
+      "details": {
+        "from": "Heavyweight",
+        "to": "Heavyweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|bout_moved|35",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "Reinier de Ridder vs Roman Dolidze moved on Fight Card.",
+      "details": {
+        "from_order": 2,
+        "to_order": 3,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|bout_weight_changed|36",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "Reinier de Ridder vs Roman Dolidze weight/class changed.",
+      "details": {
+        "from": "Light Heavyweight",
+        "to": "Light Heavyweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|bout_moved|37",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "Carli Judice vs Jeisla Chaves moved on Fight Card.",
+      "details": {
+        "from_order": 6,
+        "to_order": 4,
+        "from_section": "Prelims",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|bout_weight_changed|38",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "Carli Judice vs Jeisla Chaves weight/class changed.",
+      "details": {
+        "from": "Women's Strawweight",
+        "to": "Women's Flyweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|bout_moved|39",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "Kennedy Nzechukwu vs Shamil Gaziev moved on Fight Card.",
+      "details": {
+        "from_order": 4,
+        "to_order": 5,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|bout_weight_changed|40",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "Kennedy Nzechukwu vs Shamil Gaziev weight/class changed.",
+      "details": {
+        "from": "Heavyweight",
+        "to": "Heavyweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|bout_moved|41",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "Wes Schultz vs Jackson McVey moved on Fight Card.",
+      "details": {
+        "from_order": 7,
+        "to_order": 6,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|bout_weight_changed|42",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "Wes Schultz vs Jackson McVey weight/class changed.",
+      "details": {
+        "from": "Middleweight",
+        "to": "Middleweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|bout_moved|43",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "Kody Steele vs Gauge Young moved on Fight Card.",
+      "details": {
+        "from_order": 5,
+        "to_order": 7,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|bout_weight_changed|44",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "Kody Steele vs Gauge Young weight/class changed.",
+      "details": {
+        "from": "Lightweight",
+        "to": "Lightweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-22-fight-card|bout_weight_changed|45",
+      "at": "2026-08-14T23:06:23.025Z",
+      "type": "bout_weight_changed",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Fight Card",
+      "event_date": "2026-08-22",
+      "summary": "Shanelle Dyer vs Elise Reed weight/class changed.",
+      "details": {
+        "from": "Women's Strawweight",
+        "to": "Women's Strawweight Bout"
+      }
+    },
     {
       "id": "2026-08-14T21:06:43.408Z|ufc-330-2026-08-15|bout_changed|1",
       "at": "2026-08-14T21:06:43.408Z",

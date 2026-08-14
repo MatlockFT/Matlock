@@ -5,10 +5,10 @@
   "mode": "read-only-watchdog",
   "coverage": [
     {
-      "event_id": "ufc-330-2026-08-15",
+      "event_id": "ufc-330-2026-08-15-fight-card",
       "promotion": "ufc",
       "date": "2026-08-15",
-      "title": "Makhachev vs Machado Garry",
+      "title": "Fight Card",
       "status": "matched",
       "verdict_event_id": "1909",
       "verdict_url": "https://verdictmma.com/event/1909",
@@ -39,10 +39,10 @@
       "local_fight_count": 12
     },
     {
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
+      "event_id": "ufc-fight-night-2026-08-22-fight-card",
       "promotion": "ufc",
       "date": "2026-08-22",
-      "title": "Hernandez vs Rodrigues",
+      "title": "Fight Card",
       "status": "matched",
       "verdict_event_id": "1915",
       "verdict_url": "https://verdictmma.com/event/1915",
@@ -50,6 +50,32 @@
       "local_fight_count": 8,
       "verdict_fight_count": 8,
       "confirmed_local_bouts": 8
+    },
+    {
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "ufc",
+      "date": "2026-08-29",
+      "title": "Fight Card",
+      "status": "matched",
+      "verdict_event_id": "1919",
+      "verdict_url": "https://verdictmma.com/event/1919",
+      "verdict_date": "2026-08-29",
+      "local_fight_count": 9,
+      "verdict_fight_count": null,
+      "confirmed_local_bouts": 6
+    },
+    {
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "ufc",
+      "date": "2026-09-05",
+      "title": "Fight Card",
+      "status": "matched",
+      "verdict_event_id": "1905",
+      "verdict_url": "https://verdictmma.com/event/1905",
+      "verdict_date": "2026-09-05",
+      "local_fight_count": 11,
+      "verdict_fight_count": null,
+      "confirmed_local_bouts": 3
     },
     {
       "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
@@ -60,13 +86,140 @@
       "local_fight_count": 8
     },
     {
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "ufc",
+      "date": "2026-09-12",
+      "title": "Fight Card",
+      "status": "coverage_gap",
+      "local_fight_count": 10
+    },
+    {
       "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
       "promotion": "rizin",
       "date": "2026-10-03",
       "title": "RIZIN LANDMARK 16 in NAGASAKI",
       "status": "coverage_gap",
       "local_fight_count": 3
+    },
+    {
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "ufc",
+      "date": "2026-10-17",
+      "title": "Fight Card",
+      "status": "coverage_gap",
+      "local_fight_count": 8
     }
   ],
-  "discrepancies": []
+  "discrepancies": [
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "verdict_event_id": "1919",
+      "order": 7,
+      "fighters": [
+        "Jack Jenkins",
+        "Sean Woodson"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "verdict_event_id": "1919",
+      "order": 8,
+      "fighters": [
+        "Rei Tsuruya",
+        "Kevin Borjas"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "verdict_event_id": "1919",
+      "order": 9,
+      "fighters": [
+        "Xiong Jingnan",
+        "Julia Polastri"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "verdict_event_id": "1905",
+      "order": 10,
+      "fighters": [
+        "Nora Cornolle",
+        "Klaudia Sygula"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "verdict_event_id": "1905",
+      "order": 11,
+      "fighters": [
+        "Matthieu Letho Duclos",
+        "Luis Felipe Dias"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "verdict_event_id": "1905",
+      "order": 2,
+      "fighters": [
+        "Farès Ziam",
+        "Axel Sola"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "verdict_event_id": "1905",
+      "order": 5,
+      "fighters": [
+        "Losene Keita",
+        "Muhammad Naimov"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "verdict_event_id": "1905",
+      "order": 6,
+      "fighters": [
+        "Mario Pinto",
+        "Ryan Spann"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "verdict_event_id": "1905",
+      "order": 7,
+      "fighters": [
+        "Kurtis Campbell",
+        "Trevor Peek"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "verdict_event_id": "1905",
+      "order": 8,
+      "fighters": [
+        "Oumar Sy",
+        "Modestas Bukauskas"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "verdict_event_id": "1905",
+      "order": 9,
+      "fighters": [
+        "Nathaniel Wood",
+        "Mairon Santos"
+      ]
+    }
+  ]
 }
