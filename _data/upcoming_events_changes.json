@@ -1,7 +1,149 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-14T23:06:23.025Z",
+  "generated_at": "2026-08-14T23:12:16.561Z",
   "changes": [
+    {
+      "id": "2026-08-14T23:12:16.561Z|ufc-330-2026-08-15|title_changed|1",
+      "at": "2026-08-14T23:12:16.561Z",
+      "type": "title_changed",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "UFC 330 Makhachev vs Machado Garry: title changed.",
+      "details": {
+        "from": "Fight Card",
+        "to": "Makhachev vs Machado Garry"
+      }
+    },
+    {
+      "id": "2026-08-14T23:12:16.561Z|ufc-330-2026-08-15|venue_changed|2",
+      "at": "2026-08-14T23:12:16.561Z",
+      "type": "venue_changed",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "UFC 330 Makhachev vs Machado Garry: venue changed.",
+      "details": {
+        "from": "Venue TBA",
+        "to": "Xfinity Mobile Arena · Philadelphia, Pennsylvania"
+      }
+    },
+    {
+      "id": "2026-08-14T23:12:16.561Z|ufc-330-2026-08-15|start_time_changed|3",
+      "at": "2026-08-14T23:12:16.561Z",
+      "type": "start_time_changed",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "UFC 330 Makhachev vs Machado Garry: Prelims start time changed.",
+      "details": {
+        "section": "Prelims",
+        "from": "5:30 PM ET",
+        "to": "7:00 PM ET"
+      }
+    },
+    {
+      "id": "2026-08-14T23:12:16.561Z|ufc-330-2026-08-15|start_time_changed|4",
+      "at": "2026-08-14T23:12:16.561Z",
+      "type": "start_time_changed",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "UFC 330 Makhachev vs Machado Garry: Early Prelims start time changed.",
+      "details": {
+        "section": "Early Prelims",
+        "from": "5:30 PM ET",
+        "to": "5:00 PM ET"
+      }
+    },
+    {
+      "id": "2026-08-14T23:12:16.561Z|ufc-fight-night-sacramento-2026-08-22|title_changed|5",
+      "at": "2026-08-14T23:12:16.561Z",
+      "type": "title_changed",
+      "event_id": "ufc-fight-night-sacramento-2026-08-22",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hernandez vs Rodrigues",
+      "event_date": "2026-08-22",
+      "summary": "UFC Fight Night Hernandez vs Rodrigues: title changed.",
+      "details": {
+        "from": "Fight Card",
+        "to": "Hernandez vs Rodrigues"
+      }
+    },
+    {
+      "id": "2026-08-14T23:12:16.561Z|ufc-fight-night-sacramento-2026-08-22|venue_changed|6",
+      "at": "2026-08-14T23:12:16.561Z",
+      "type": "venue_changed",
+      "event_id": "ufc-fight-night-sacramento-2026-08-22",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hernandez vs Rodrigues",
+      "event_date": "2026-08-22",
+      "summary": "UFC Fight Night Hernandez vs Rodrigues: venue changed.",
+      "details": {
+        "from": "Venue TBA",
+        "to": "Golden 1 Center · Sacramento, California"
+      }
+    },
+    {
+      "id": "2026-08-14T23:12:16.561Z|ufc-fight-night-2026-08-29-fight-card|title_changed|7",
+      "at": "2026-08-14T23:12:16.561Z",
+      "type": "title_changed",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "UFC Fight Night Nurmagomedov vs Yadong: title changed.",
+      "details": {
+        "from": "Fight Card",
+        "to": "Nurmagomedov vs Yadong"
+      }
+    },
+    {
+      "id": "2026-08-14T23:12:16.561Z|ufc-fight-night-2026-09-05-fight-card|title_changed|8",
+      "at": "2026-08-14T23:12:16.561Z",
+      "type": "title_changed",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "UFC Fight Night Hooker vs Parnasse: title changed.",
+      "details": {
+        "from": "Fight Card",
+        "to": "Hooker vs Parnasse"
+      }
+    },
+    {
+      "id": "2026-08-14T23:12:16.561Z|noche-ufc-2026-09-12-fight-card|title_changed|9",
+      "at": "2026-08-14T23:12:16.561Z",
+      "type": "title_changed",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Noche UFC Rodriguez vs Silva: title changed.",
+      "details": {
+        "from": "Fight Card",
+        "to": "Rodriguez vs Silva"
+      }
+    },
+    {
+      "id": "2026-08-14T23:12:16.561Z|ufc-fight-night-2026-10-17-fight-card|title_changed|10",
+      "at": "2026-08-14T23:12:16.561Z",
+      "type": "title_changed",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "UFC Fight Night Buckley vs Malott: title changed.",
+      "details": {
+        "from": "Fight Card",
+        "to": "Buckley vs Malott"
+      }
+    },
     {
       "id": "2026-08-14T23:06:23.025Z|ufc-fight-night-2026-08-29-fight-card|event_added|1",
       "at": "2026-08-14T23:06:23.025Z",
