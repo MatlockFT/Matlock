@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "overrides": [
+    {
+      "event_id": "ufc-330-2026-08-15",
+      "expires_after": "2026-08-16",
+      "bout_order": 5,
+      "expected_fighters": [
+        "Charles Johnson",
+        "Jose Ochoa"
+      ],
+      "weight_class": "Catchweight",
+      "fighters": [
+        "Charles Johnson",
+        "Eduardo Chapolin"
+      ],
+      "verified_at": "2026-08-14",
+      "verification_note": "Late replacement confirmed by current Tapology/Verdict card data."
+    }
+  ]
+}
