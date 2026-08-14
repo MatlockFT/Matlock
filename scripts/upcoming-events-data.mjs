@@ -151,8 +151,23 @@ export async function mergePromotion(promotionKey, candidateEvents, { maxEventDr
       return false;
     }
   }
-  const merged = [...data.events.filter(e => e.promotion_key !== promotionKey && eventIsCurrent(e)), ...candidates]
-    .sort((a, b) => a.date.localeCompare(b.date) || a.promotion_key.localeCompare(b.promotion_key) || a.id.localeCompare(b.id));
+
+  const candidateUrls = new Set(candidates.map(event => event.official_url).filter(Boolean));
+  const candidateDates = new Set(candidates.map(event => event.date));
+  const preservedCurrent = current.filter(event => {
+    if (candidateUrls.has(event.official_url)) return false;
+    if (candidateDates.has(event.date)) return false;
+    return true;
+  });
+  if (preservedCurrent.length) {
+    console.warn(`${promotionKey.toUpperCase()}: preserving ${preservedCurrent.length} current event(s) missing from this source refresh.`);
+  }
+
+  const merged = [
+    ...data.events.filter(e => e.promotion_key !== promotionKey && eventIsCurrent(e)),
+    ...preservedCurrent,
+    ...candidates
+  ].sort((a, b) => a.date.localeCompare(b.date) || a.promotion_key.localeCompare(b.promotion_key) || a.id.localeCompare(b.id));
   merged.forEach(validateEvent);
   const next = { schema_version: 1, generated_at: new Date().toISOString(), events: merged };
   const temp = `${DATA_PATH}.tmp`;
