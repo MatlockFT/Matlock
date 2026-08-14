@@ -7,11 +7,13 @@ on:
       - main
     paths:
       - ".github/workflows/update-upcoming-ufc-events.yml"
+      - "_data/upcoming_events_overrides.json"
       - "scripts/upcoming-events-data.mjs"
       - "scripts/update-upcoming-ufc-events.mjs"
       - "scripts/update-dwcs-upcoming-events.mjs"
       - "scripts/update-pfl-upcoming-events.mjs"
       - "scripts/update-rizin-upcoming-events.mjs"
+      - "scripts/apply-upcoming-event-overrides.mjs"
       - "scripts/resolve-espn-fighter-portraits.mjs"
       - "scripts/enrich-fighter-portraits.mjs"
       - "scripts/check-verdict-upcoming-events.mjs"
@@ -53,6 +55,7 @@ jobs:
           node --check scripts/update-dwcs-upcoming-events.mjs
           node --check scripts/update-pfl-upcoming-events.mjs
           node --check scripts/update-rizin-upcoming-events.mjs
+          node --check scripts/apply-upcoming-event-overrides.mjs
           node --check scripts/resolve-espn-fighter-portraits.mjs
           node --check scripts/enrich-fighter-portraits.mjs
           node --check scripts/check-verdict-upcoming-events.mjs
@@ -65,6 +68,9 @@ jobs:
 
       - name: Read UFC event data
         run: node scripts/update-upcoming-ufc-events.mjs
+
+      - name: Apply verified late card changes
+        run: node scripts/apply-upcoming-event-overrides.mjs
 
       - name: Read DWCS event data
         run: node scripts/update-dwcs-upcoming-events.mjs
