@@ -15,7 +15,7 @@
       "verdict_date": "2026-08-15",
       "local_fight_count": 12,
       "verdict_fight_count": 12,
-      "confirmed_local_bouts": 11
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "dwcs-season-10-week-2-2026-08-18",
@@ -68,16 +68,5 @@
       "local_fight_count": 3
     }
   ],
-  "discrepancies": [
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-330-2026-08-15",
-      "verdict_event_id": "1909",
-      "order": 5,
-      "fighters": [
-        "Charles Johnson",
-        "Jose Ochoa"
-      ]
-    }
-  ]
+  "discrepancies": []
 }
