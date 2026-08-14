@@ -10,6 +10,7 @@ on:
       - "_data/upcoming_events_overrides.json"
       - "scripts/upcoming-events-data.mjs"
       - "scripts/update-upcoming-ufc-events.mjs"
+      - "scripts/normalize-upcoming-ufc-events.mjs"
       - "scripts/update-dwcs-upcoming-events.mjs"
       - "scripts/update-pfl-upcoming-events.mjs"
       - "scripts/update-rizin-upcoming-events.mjs"
@@ -52,6 +53,7 @@ jobs:
           set -euo pipefail
           node --check scripts/upcoming-events-data.mjs
           node --check scripts/update-upcoming-ufc-events.mjs
+          node --check scripts/normalize-upcoming-ufc-events.mjs
           node --check scripts/update-dwcs-upcoming-events.mjs
           node --check scripts/update-pfl-upcoming-events.mjs
           node --check scripts/update-rizin-upcoming-events.mjs
@@ -68,6 +70,9 @@ jobs:
 
       - name: Read UFC event data
         run: node scripts/update-upcoming-ufc-events.mjs
+
+      - name: Normalize UFC event metadata
+        run: node scripts/normalize-upcoming-ufc-events.mjs
 
       - name: Apply verified late card changes
         run: node scripts/apply-upcoming-event-overrides.mjs
