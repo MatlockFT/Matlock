@@ -51,22 +51,14 @@ function ufcExpirationFromCard(event) {
 export function eventIsCurrent(event, now = new Date()) {
   if (!event?.date) return false;
 
-  // Prefer an absolute expiration instant whenever a promotion supplies a
-  // trustworthy event timestamp. This makes international cards timezone-safe:
-  // the same UTC instant works for Perth, London, Abu Dhabi, Las Vegas, etc.
   if (event.expires_at) {
     const expires = Date.parse(event.expires_at);
     if (!Number.isNaN(expires)) return now.getTime() < expires;
   }
 
-  // UFC publishes its Main Card clock in Eastern Time even for international
-  // events. If the raw source timestamp lacks a trustworthy UTC offset, derive
-  // an absolute end window from that published ET time instead of guessing from
-  // the country or venue. Five hours is a deliberately generous main-card cap.
   const ufcExpires = ufcExpirationFromCard(event);
   if (!Number.isNaN(ufcExpires)) return now.getTime() < ufcExpires;
 
-  // Conservative fallback for sources where we only know the calendar date.
   const clock = easternClock(now);
   if (event.date >= clock.date) return true;
   const eventDay = new Date(`${event.date}T12:00:00Z`);
@@ -140,7 +132,7 @@ export function validateEvent(event) {
 export async function mergePromotion(promotionKey, candidateEvents, { maxEventDrop = 1, maxBoutDrop = 3 } = {}) {
   const data = await loadData();
   const current = data.events.filter(e => e.promotion_key === promotionKey && eventIsCurrent(e));
-  const candidates = candidateEvents.map(validateEvent).filter(eventIsCurrent).sort((a, b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id));
+  const candidates = candidateEvents.map(validateEvent).filter(event => eventIsCurrent(event)).sort((a, b) => a.date.localeCompare(b.date) || a.id.localeCompare(b.id));
   if (!candidates.length) {
     console.warn(`${promotionKey.toUpperCase()}: no valid current candidate events; preserving existing data.`);
     return false;
