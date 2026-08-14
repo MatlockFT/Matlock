@@ -4,7 +4,7 @@ const ORIGIN = 'https://www.ufc.com';
 const EVENTS_URL = `${ORIGIN}/events`;
 const TICKETS_URL = `${ORIGIN}/tickets`;
 const ESPN_SCOREBOARD = 'https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockUpcomingEvents/4.3; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockUpcomingEvents/4.4; +https://matlockfighttalk.com/)';
 const MAX_DAYS = 240;
 const DISCOVERY_DAYS = 100;
 const MAX_PAGES = 40;
@@ -63,9 +63,6 @@ function eventUrls(html) {
 function fightNightDateUrls(date) {
   const dates = new Set();
   if (!Number.isNaN(date.getTime())) {
-    // ESPN timestamps can represent the same international event on a different
-    // UTC/US calendar day. Probe the surrounding dates, then require the UFC
-    // page itself to validate before anything is accepted.
     for (const delta of [-1, 0, 1]) {
       const d = new Date(date.getTime() + delta * 86400000);
       dates.add(`${monthNames[d.getUTCMonth()]}-${String(d.getUTCDate()).padStart(2, '0')}-${d.getUTCFullYear()}`);
@@ -176,37 +173,82 @@ function broadcast(html) {
   return ['Paramount+', 'ESPN+', 'ESPN', 'ABC', 'CBS', 'ESPN2', 'UFC Fight Pass'].filter(x => p.includes(x.toLowerCase())).slice(0, 3).join(' · ') || 'Broadcast TBA';
 }
 
-function bouts(html) {
+function sectionMarkers(src) {
   const markers = [];
-  for (const m of html.matchAll(/<(?:h2|h3|div|span|p)\b[^>]*>([\s\S]{0,220}?)<\/(?:h2|h3|div|span|p)>/gi)) {
+  for (const m of src.matchAll(/<(?:h1|h2|h3|h4|div|span|p|li|button)\b[^>]*>([\s\S]{0,260}?)<\/(?:h1|h2|h3|h4|div|span|p|li|button)>/gi)) {
     const t = text(m[1]), section = /^Early Prelims?$/i.test(t) ? 'early' : /^Prelims?$/i.test(t) ? 'prelims' : /^Main Card$/i.test(t) ? 'main' : null;
     if (section) markers.push({ i: m.index, section });
   }
-  const starts = [...html.matchAll(/<div\b[^>]*class=["'][^"']*\bc-listing-fight__content\b[^"']*["'][^>]*>/gi)].map(m => m.index), out = [];
-  for (let n = 0; n < starts.length; n++) {
-    const start = starts[n], chunk = html.slice(start, starts[n + 1] ?? html.length), fighters = [];
-    for (const m of chunk.matchAll(/<a\b[^>]*href=["'](\/athlete\/[a-z0-9][a-z0-9-]*\/?)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
-      const name = text(m[2]); if (!name || name.length > 70) continue;
-      const href = new URL(m[1], ORIGIN).toString(); if (!fighters.some(f => f.href === href)) fighters.push({ name, href }); if (fighters.length === 2) break;
-    }
-    if (fighters.length !== 2) continue;
-    let section = 'main'; for (const mk of markers) { if (mk.i > start) break; section = mk.section; }
-    const division = text((chunk.match(/class=["'][^"']*c-listing-fight__class-text[^"']*["'][^>]*>([\s\S]*?)<\//i) || [])[1] || '') || 'Weight class TBA';
-    out.push({ section, division, fighters });
+  return markers;
+}
+
+function athleteLinks(chunk) {
+  const fighters = [];
+  const rx = /<a\b[^>]*href=["']((?:https?:\/\/(?:www\.)?ufc\.com)?\/athlete\/[a-z0-9][a-z0-9-]*\/?)["'][^>]*>([\s\S]*?)<\/a>/gi;
+  for (const m of chunk.matchAll(rx)) {
+    const name = text(m[2]);
+    if (!name || name.length > 70) continue;
+    let href;
+    try { href = new URL(m[1], ORIGIN).toString(); } catch { continue; }
+    if (!fighters.some(f => f.href === href)) fighters.push({ name, href });
+    if (fighters.length === 2) break;
   }
-  return out;
+  return fighters;
+}
+
+function wrapperStarts(src) {
+  const content = [...src.matchAll(/<[a-z][a-z0-9:-]*\b[^>]*class=["'][^"']*\bc-listing-fight__content\b[^"']*["'][^>]*>/gi)].map(m => m.index);
+  if (content.length) return content;
+  return [...src.matchAll(/<[a-z][a-z0-9:-]*\b[^>]*class=["'][^"']*(?:^|\s)c-listing-fight(?:\s|$)[^"']*["'][^>]*>/gi)].map(m => m.index);
+}
+
+function divisionFrom(chunk) {
+  const patterns = [
+    /class=["'][^"']*c-listing-fight__class-text[^"']*["'][^>]*>([\s\S]*?)<\//i,
+    /class=["'][^"']*(?:weight-class|fight-class|bout-class)[^"']*["'][^>]*>([\s\S]*?)<\//i
+  ];
+  for (const rx of patterns) {
+    const hit = text((chunk.match(rx) || [])[1] || '');
+    if (hit) return hit;
+  }
+  return 'Weight class TBA';
+}
+
+function bouts(html) {
+  const src = decode(html).replaceAll('\\/', '/');
+  const markers = sectionMarkers(src);
+  const starts = wrapperStarts(src);
+  const out = [];
+  for (let n = 0; n < starts.length; n++) {
+    const start = starts[n], chunk = src.slice(start, starts[n + 1] ?? src.length), fighters = athleteLinks(chunk);
+    if (fighters.length !== 2) continue;
+    let section = 'main';
+    for (const mk of markers) { if (mk.i > start) break; section = mk.section; }
+    const key = fighters.map(f => f.href).sort().join('|');
+    if (out.some(b => b.key === key)) continue;
+    out.push({ key, section, division: divisionFrom(chunk), fighters });
+  }
+  return out.map(({ key, ...bout }) => bout);
+}
+
+function parserDiagnostics(html) {
+  const src = decode(html).replaceAll('\\/', '/');
+  const wrappers = wrapperStarts(src).length;
+  const athleteAnchors = [...src.matchAll(/href=["'](?:https?:\/\/(?:www\.)?ufc\.com)?\/athlete\//gi)].length;
+  return { wrappers, athleteAnchors };
 }
 
 const isoDay = d => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
 
 const data = await loadData(), cache = await loadPortraitCache(), previous = data.events.filter(e => e.promotion_key === 'ufc');
-const discovered = new Set();
+const discovered = new Set(previous.map(event => canonicalEventUrl(event.official_url)).filter(Boolean));
 for (const url of [EVENTS_URL, TICKETS_URL]) {
   try { for (const eventUrl of eventUrls(await get(url))) discovered.add(eventUrl); }
   catch (error) { console.warn(`UFC discovery source unavailable ${url}: ${error.message}`); }
 }
 for (const eventUrl of await espnDiscoveryUrls()) discovered.add(eventUrl);
 const urls = [...discovered].slice(0, MAX_PAGES);
+console.log(`UFC discovery produced ${urls.length} candidate event URL(s).`);
 if (!urls.length) { console.warn('No UFC event URLs found; preserving existing UFC data.'); process.exit(0); }
 
 const rawEvents = [];
@@ -214,7 +256,13 @@ for (const url of urls) {
   try {
     const html = await get(url), date = eventDate(html, url); if (!date) continue;
     const delta = (date - Date.now()) / 86400000; if (delta < -1 || delta > MAX_DAYS) continue;
-    const card = bouts(html); if (!card.length) continue;
+    const card = bouts(html);
+    if (!card.length) {
+      const diag = parserDiagnostics(html);
+      console.warn(`UFC card parser found 0 bouts for ${url}; wrappers=${diag.wrappers}, athlete_links=${diag.athleteAnchors}.`);
+      continue;
+    }
+    console.log(`UFC parsed ${card.length} bout(s) from ${url}.`);
     const exactStart = exactEventStart(html);
     rawEvents.push({
       url,
