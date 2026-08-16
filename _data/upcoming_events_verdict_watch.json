@@ -35,8 +35,8 @@
       "verdict_url": "https://verdictmma.com/event/1915",
       "verdict_date": "2026-08-22",
       "local_fight_count": 13,
-      "verdict_fight_count": 8,
-      "confirmed_local_bouts": 7
+      "verdict_fight_count": 13,
+      "confirmed_local_bouts": 13
     },
     {
       "event_id": "ufc-fight-night-2026-08-29-fight-card",
@@ -186,73 +186,6 @@
       "fighters": [
         "Nathaniel Wood",
         "Mairon Santos"
-      ]
-    },
-    {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "verdict_event_id": "1915",
-      "local_fight_count": 13,
-      "verdict_fight_count": 8
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "verdict_event_id": "1915",
-      "order": 10,
-      "fighters": [
-        "Marcio Barbosa",
-        "Ryan Kuse"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "verdict_event_id": "1915",
-      "order": 11,
-      "fighters": [
-        "Gauge Young",
-        "Stan Dorsainvil"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "verdict_event_id": "1915",
-      "order": 4,
-      "fighters": [
-        "MarQuel Mederos",
-        "Mason Jones"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "verdict_event_id": "1915",
-      "order": 6,
-      "fighters": [
-        "Terrance Chatman",
-        "Anthony Wint"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "verdict_event_id": "1915",
-      "order": 7,
-      "fighters": [
-        "Jamall Emmers",
-        "Lerryan Douglas"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "verdict_event_id": "1915",
-      "order": 9,
-      "fighters": [
-        "Chris Padilla",
-        "Nasrat Haqparast"
       ]
     }
   ]
