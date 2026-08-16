@@ -13,9 +13,9 @@
       "verdict_event_id": "1909",
       "verdict_url": "https://verdictmma.com/event/1909",
       "verdict_date": "2026-08-15",
-      "local_fight_count": 11,
+      "local_fight_count": 12,
       "verdict_fight_count": 12,
-      "confirmed_local_bouts": 11
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "dwcs-season-10-week-2-2026-08-18",
@@ -111,13 +111,6 @@
     }
   ],
   "discrepancies": [
-    {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-330-2026-08-15",
-      "verdict_event_id": "1909",
-      "local_fight_count": 11,
-      "verdict_fight_count": 12
-    },
     {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-08-29-fight-card",

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-16T02:49:44.714Z",
+  "generated_at": "2026-08-16T03:36:09.389Z",
   "events": [
     {
       "id": "ufc-330-2026-08-15",
@@ -87,6 +87,27 @@
             {
               "order": 4,
               "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Mansur Abdul-Malik",
+                  "initials": "MA",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5211221.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Dustin Stoltzfus",
+                  "initials": "DS",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4685871.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
                 {
@@ -113,7 +134,7 @@
           "time": "7:00 PM ET",
           "bouts": [
             {
-              "order": 5,
+              "order": 6,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -134,7 +155,7 @@
               ]
             },
             {
-              "order": 6,
+              "order": 7,
               "label": "",
               "weight_class": "Catchweight Bout",
               "fighters": [
@@ -155,7 +176,7 @@
               ]
             },
             {
-              "order": 7,
+              "order": 8,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -176,7 +197,7 @@
               ]
             },
             {
-              "order": 8,
+              "order": 9,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -204,7 +225,7 @@
           "time": "5:00 PM ET",
           "bouts": [
             {
-              "order": 9,
+              "order": 10,
               "label": "",
               "weight_class": "Light Heavyweight Bout",
               "fighters": [
@@ -225,7 +246,7 @@
               ]
             },
             {
-              "order": 10,
+              "order": 11,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -246,7 +267,7 @@
               ]
             },
             {
-              "order": 11,
+              "order": 12,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [

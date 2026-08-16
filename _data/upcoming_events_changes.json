@@ -1,7 +1,150 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-16T02:50:18.617Z",
+  "generated_at": "2026-08-16T03:36:42.761Z",
   "changes": [
+    {
+      "id": "2026-08-16T03:36:42.761Z|ufc-330-2026-08-15|bout_moved|1",
+      "at": "2026-08-16T03:36:42.761Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "Edson Barboza vs Esteban Ribovics moved on Makhachev vs Machado Garry.",
+      "details": {
+        "from_order": 4,
+        "to_order": 5,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-08-16T03:36:42.761Z|ufc-330-2026-08-15|bout_moved|2",
+      "at": "2026-08-16T03:36:42.761Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "Chidi Njokuani vs Joel Álvarez moved on Makhachev vs Machado Garry.",
+      "details": {
+        "from_order": 5,
+        "to_order": 6,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-16T03:36:42.761Z|ufc-330-2026-08-15|bout_moved|3",
+      "at": "2026-08-16T03:36:42.761Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "Charles Johnson vs Eduardo Chapolin moved on Makhachev vs Machado Garry.",
+      "details": {
+        "from_order": 6,
+        "to_order": 7,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-16T03:36:42.761Z|ufc-330-2026-08-15|bout_moved|4",
+      "at": "2026-08-16T03:36:42.761Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "Donte Johnson vs Eric McConico moved on Makhachev vs Machado Garry.",
+      "details": {
+        "from_order": 7,
+        "to_order": 8,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-16T03:36:42.761Z|ufc-330-2026-08-15|bout_moved|5",
+      "at": "2026-08-16T03:36:42.761Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "Vicente Luque vs Tresean Gore moved on Makhachev vs Machado Garry.",
+      "details": {
+        "from_order": 8,
+        "to_order": 9,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-16T03:36:42.761Z|ufc-330-2026-08-15|bout_moved|6",
+      "at": "2026-08-16T03:36:42.761Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "Rafael Tobias vs Lucas Fernando moved on Makhachev vs Machado Garry.",
+      "details": {
+        "from_order": 9,
+        "to_order": 10,
+        "from_section": "Early Prelims",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-08-16T03:36:42.761Z|ufc-330-2026-08-15|bout_moved|7",
+      "at": "2026-08-16T03:36:42.761Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "Neil Magny vs Ramiz Brahimaj moved on Makhachev vs Machado Garry.",
+      "details": {
+        "from_order": 10,
+        "to_order": 11,
+        "from_section": "Early Prelims",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-08-16T03:36:42.761Z|ufc-330-2026-08-15|bout_moved|8",
+      "at": "2026-08-16T03:36:42.761Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "Jeremiah Wells vs Myktybek Orolbai moved on Makhachev vs Machado Garry.",
+      "details": {
+        "from_order": 11,
+        "to_order": 12,
+        "from_section": "Early Prelims",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-08-16T03:36:42.761Z|ufc-330-2026-08-15|bout_added|9",
+      "at": "2026-08-16T03:36:42.761Z",
+      "type": "bout_added",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "Mansur Abdul-Malik vs Dustin Stoltzfus added to Makhachev vs Machado Garry.",
+      "details": {
+        "order": 4,
+        "section": "Main Card",
+        "weight_class": "Middleweight Bout"
+      }
+    },
     {
       "id": "2026-08-16T02:50:18.617Z|ufc-330-2026-08-15|bout_moved|1",
       "at": "2026-08-16T02:50:18.617Z",
