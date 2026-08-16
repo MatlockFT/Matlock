@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-16T07:39:59.167Z",
+  "generated_at": "2026-08-16T19:38:33.301Z",
   "events": [
     {
       "id": "dwcs-season-10-week-2-2026-08-18",
@@ -1882,6 +1882,134 @@
                   "name": "Timmy Cuamba",
                   "initials": "TC",
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1691817557Timothy_Cuamba.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-333-2026-10-24-fight-card",
+      "promotion_key": "ufc",
+      "promotion": "UFC 333",
+      "title": "Volkanovski vs Evloev",
+      "date": "2026-10-24",
+      "date_label": "Saturday · October 24, 2026",
+      "starts_at": "",
+      "expires_at": "",
+      "venue": "Venue TBA",
+      "broadcast": "Paramount+ · UFC Fight Pass",
+      "official_url": "https://www.ufc.com/event/ufc-333",
+      "updated_label": "August 16, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Main Card",
+          "time": "2:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Featherweight Title Bout",
+              "fighters": [
+                {
+                  "name": "Alexander Volkanovski",
+                  "initials": "AV",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220325081549_Alexander_Volkanovski_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Movsar Evloev",
+                  "initials": "ME",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220401041327_Movsar_Evloev_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Bantamweight Title Bout",
+              "fighters": [
+                {
+                  "name": "Petr Yan",
+                  "initials": "PY",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220331083224_Petr_Yan_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Merab Dvalishvili",
+                  "initials": "MD",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220401042827_Merab_Dvalishvili_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Lone’er Kavanagh",
+                  "initials": "LK",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1722112277loneerkavanagh.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Ramazan Temirov",
+                  "initials": "RT",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Light Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Azamat Murzakanov",
+                  "initials": "AM",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220930114859_Azamat_Murzakanov_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Dominick Reyes",
+                  "initials": "DR",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220325095932_Dominick_Reyes_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Grant Dawson",
+                  "initials": "GD",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220401085739_Grant_Dawson_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Nurullo Aliev",
+                  "initials": "NA",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220915113942_Nurullo_Aliev.JPG",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }

@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-16T06:55:17.280Z",
+  "generated_at": "2026-08-16T19:39:53.214Z",
   "changes": [
+    {
+      "id": "2026-08-16T19:39:53.214Z|ufc-333-2026-10-24-fight-card|event_added|1",
+      "at": "2026-08-16T19:39:53.214Z",
+      "type": "event_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "UFC 333 Volkanovski vs Evloev added to Upcoming Events.",
+      "details": {
+        "bout_count": 5,
+        "venue": "Venue TBA",
+        "date": "2026-10-24"
+      }
+    },
     {
       "id": "2026-08-16T06:55:17.280Z|ufc-330-2026-08-15|event_removed|1",
       "at": "2026-08-16T06:55:17.280Z",
