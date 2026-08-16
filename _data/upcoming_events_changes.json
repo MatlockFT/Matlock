@@ -1,7 +1,69 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-16T01:53:54.188Z",
+  "generated_at": "2026-08-16T02:50:18.617Z",
   "changes": [
+    {
+      "id": "2026-08-16T02:50:18.617Z|ufc-330-2026-08-15|bout_moved|1",
+      "at": "2026-08-16T02:50:18.617Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "Edson Barboza vs Esteban Ribovics moved on Makhachev vs Machado Garry.",
+      "details": {
+        "from_order": 5,
+        "to_order": 4,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-08-16T02:50:18.617Z|ufc-330-2026-08-15|bout_moved|2",
+      "at": "2026-08-16T02:50:18.617Z",
+      "type": "bout_moved",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "Chidi Njokuani vs Joel Álvarez moved on Makhachev vs Machado Garry.",
+      "details": {
+        "from_order": 6,
+        "to_order": 5,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-16T02:50:18.617Z|ufc-330-2026-08-15|bout_added|3",
+      "at": "2026-08-16T02:50:18.617Z",
+      "type": "bout_added",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "Charles Johnson vs Eduardo Chapolin added to Makhachev vs Machado Garry.",
+      "details": {
+        "order": 6,
+        "section": "Prelims",
+        "weight_class": "Catchweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-16T02:50:18.617Z|ufc-330-2026-08-15|bout_removed|4",
+      "at": "2026-08-16T02:50:18.617Z",
+      "type": "bout_removed",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "Mansur Abdul-Malik vs Dustin Stoltzfus removed from Makhachev vs Machado Garry.",
+      "details": {
+        "order": 4,
+        "section": "Main Card",
+        "weight_class": "Middleweight Bout"
+      }
+    },
     {
       "id": "2026-08-16T01:53:54.188Z|ufc-330-2026-08-15|bout_moved|1",
       "at": "2026-08-16T01:53:54.188Z",

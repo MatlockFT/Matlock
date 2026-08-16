@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-16T01:53:17.172Z",
+  "generated_at": "2026-08-16T02:49:44.714Z",
   "events": [
     {
       "id": "ufc-330-2026-08-15",
@@ -87,27 +87,6 @@
             {
               "order": 4,
               "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Mansur Abdul-Malik",
-                  "initials": "MA",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5211221.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Dustin Stoltzfus",
-                  "initials": "DS",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4685871.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
                 {
@@ -134,7 +113,7 @@
           "time": "7:00 PM ET",
           "bouts": [
             {
-              "order": 6,
+              "order": 5,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -151,6 +130,27 @@
                   "image": "https://a.espncdn.com/i/headshots/mma/players/full/4411888.png",
                   "image_source": "espn",
                   "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Catchweight Bout",
+              "fighters": [
+                {
+                  "name": "Charles Johnson",
+                  "initials": "CJ",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4375156.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Eduardo Chapolin",
+                  "initials": "EC",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732775352henrique.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
                 }
               ]
             },
