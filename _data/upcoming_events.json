@@ -1,296 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-16T04:18:46.249Z",
+  "generated_at": "2026-08-16T06:54:44.734Z",
   "events": [
-    {
-      "id": "ufc-330-2026-08-15",
-      "promotion_key": "ufc",
-      "promotion": "UFC 330",
-      "title": "Makhachev vs Machado Garry",
-      "date": "2026-08-15",
-      "date_label": "Saturday · August 15, 2026",
-      "starts_at": "",
-      "expires_at": "",
-      "venue": "Xfinity Mobile Arena · Philadelphia, Pennsylvania",
-      "broadcast": "Paramount+ · UFC Fight Pass",
-      "official_url": "https://www.ufc.com/event/ufc-330",
-      "updated_label": "August 15, 2026",
-      "sections": [
-        {
-          "kind": "main",
-          "title": "Main Card",
-          "time": "9:00 PM ET",
-          "bouts": [
-            {
-              "order": 1,
-              "label": "Main Event",
-              "weight_class": "Welterweight Title Bout",
-              "fighters": [
-                {
-                  "name": "Islam Makhachev",
-                  "initials": "IM",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/3332412.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Ian Machado Garry",
-                  "initials": "IMG",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4738092.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Women's Strawweight Title Bout",
-              "fighters": [
-                {
-                  "name": "Mackenzie Dern",
-                  "initials": "MD",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4021217.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Gillian Robertson",
-                  "initials": "GR",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4089026.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 3,
-              "label": "",
-              "weight_class": "Lightweight Bout",
-              "fighters": [
-                {
-                  "name": "Jalin Turner",
-                  "initials": "JT",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4339490.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Kauê Fernandes",
-                  "initials": "KF",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5172124.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 4,
-              "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Mansur Abdul-Malik",
-                  "initials": "MA",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5211221.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Dustin Stoltzfus",
-                  "initials": "DS",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4685871.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
-              "weight_class": "Lightweight Bout",
-              "fighters": [
-                {
-                  "name": "Edson Barboza",
-                  "initials": "EB",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/2526299.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Esteban Ribovics",
-                  "initials": "ER",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5074131.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "kind": "prelims",
-          "title": "Prelims",
-          "time": "7:00 PM ET",
-          "bouts": [
-            {
-              "order": 6,
-              "label": "",
-              "weight_class": "Welterweight Bout",
-              "fighters": [
-                {
-                  "name": "Chidi Njokuani",
-                  "initials": "CN",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/2959422.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Joel Álvarez",
-                  "initials": "JÁ",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4411888.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 7,
-              "label": "",
-              "weight_class": "Catchweight Bout",
-              "fighters": [
-                {
-                  "name": "Charles Johnson",
-                  "initials": "CJ",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4375156.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Eduardo Chapolin",
-                  "initials": "EC",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732775352henrique.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 8,
-              "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Donte Johnson",
-                  "initials": "DJ",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5302831.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Eric McConico",
-                  "initials": "EM",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/2478987.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 9,
-              "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Vicente Luque",
-                  "initials": "VL",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/3045887.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Tresean Gore",
-                  "initials": "TG",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4815999.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "kind": "early",
-          "title": "Early Prelims",
-          "time": "5:00 PM ET",
-          "bouts": [
-            {
-              "order": 10,
-              "label": "",
-              "weight_class": "Light Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Rafael Tobias",
-                  "initials": "RT",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5308871.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Lucas Fernando",
-                  "initials": "LF",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5119021.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 11,
-              "label": "",
-              "weight_class": "Welterweight Bout",
-              "fighters": [
-                {
-                  "name": "Neil Magny",
-                  "initials": "NM",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/3001914.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Ramiz Brahimaj",
-                  "initials": "RB",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4297311.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 12,
-              "label": "",
-              "weight_class": "Welterweight Bout",
-              "fighters": [
-                {
-                  "name": "Jeremiah Wells",
-                  "initials": "JW",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/3970873.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Myktybek Orolbai",
-                  "initials": "MO",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5050129.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
     {
       "id": "dwcs-season-10-week-2-2026-08-18",
       "promotion_key": "dwcs",
@@ -302,7 +13,7 @@
       "broadcast": "Paramount+",
       "official_url": "https://www.ufc.com/dwcs#season-10-week-2",
       "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-2-112629",
-      "updated_label": "August 15, 2026",
+      "updated_label": "August 16, 2026",
       "sections": [
         {
           "kind": "main",
@@ -428,7 +139,7 @@
       "venue": "Benchmark International Arena, Tampa, FL",
       "broadcast": "ESPN",
       "official_url": "https://pflmma.com/event/pfl-tampa",
-      "updated_label": "August 15, 2026",
+      "updated_label": "August 16, 2026",
       "sections": [
         {
           "kind": "main",
@@ -710,7 +421,7 @@
       "venue": "Golden 1 Center · Sacramento, California",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-august-22-2026",
-      "updated_label": "August 15, 2026",
+      "updated_label": "August 16, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1006,7 +717,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-august-29-2026",
-      "updated_label": "August 15, 2026",
+      "updated_label": "August 16, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1225,7 +936,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-september-05-2026",
-      "updated_label": "August 15, 2026",
+      "updated_label": "August 16, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1484,7 +1195,7 @@
       "venue": "京セラドーム大阪",
       "broadcast": "RIZIN 100 CLUB",
       "official_url": "https://jp.rizinff.com/_ct/17834937",
-      "updated_label": "August 15, 2026",
+      "updated_label": "August 16, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1676,7 +1387,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
-      "updated_label": "August 15, 2026",
+      "updated_label": "August 16, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1914,7 +1625,7 @@
       "venue": "長崎スタジアムシティ HAPPINESS ARENA",
       "broadcast": "RIZIN 100 CLUB",
       "official_url": "https://jp.rizinff.com/_ct/17852438",
-      "updated_label": "August 15, 2026",
+      "updated_label": "August 16, 2026",
       "sections": [
         {
           "kind": "main",
@@ -2001,7 +1712,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-      "updated_label": "August 15, 2026",
+      "updated_label": "August 16, 2026",
       "sections": [
         {
           "kind": "main",

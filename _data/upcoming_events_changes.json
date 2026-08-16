@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-16T03:36:42.761Z",
+  "generated_at": "2026-08-16T06:55:17.280Z",
   "changes": [
+    {
+      "id": "2026-08-16T06:55:17.280Z|ufc-330-2026-08-15|event_removed|1",
+      "at": "2026-08-16T06:55:17.280Z",
+      "type": "event_removed",
+      "event_id": "ufc-330-2026-08-15",
+      "promotion": "UFC 330",
+      "event_title": "Makhachev vs Machado Garry",
+      "event_date": "2026-08-15",
+      "summary": "UFC 330 Makhachev vs Machado Garry removed from Upcoming Events.",
+      "details": {
+        "bout_count": 12,
+        "venue": "Xfinity Mobile Arena · Philadelphia, Pennsylvania",
+        "date": "2026-08-15"
+      }
+    },
     {
       "id": "2026-08-16T03:36:42.761Z|ufc-330-2026-08-15|bout_moved|1",
       "at": "2026-08-16T03:36:42.761Z",
