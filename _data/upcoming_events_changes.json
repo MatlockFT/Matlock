@@ -1,7 +1,21 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-17T21:15:22.730Z",
+  "generated_at": "2026-08-17T21:20:33.411Z",
   "changes": [
+    {
+      "id": "2026-08-17T21:20:33.411Z|ufc-333-2026-10-24-fight-card|portrait_added|1",
+      "at": "2026-08-17T21:20:33.411Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Ramazan Temirov portrait added.",
+      "details": {
+        "fighter": "Ramazan Temirov",
+        "source": "ufc"
+      }
+    },
     {
       "id": "2026-08-17T21:15:22.730Z|ufc-333-2026-10-24-fight-card|bout_moved|1",
       "at": "2026-08-17T21:15:22.730Z",
