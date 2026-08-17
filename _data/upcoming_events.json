@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-17T18:16:48.963Z",
+  "generated_at": "2026-08-17T21:08:51.958Z",
   "events": [
     {
       "id": "dwcs-season-10-week-2-2026-08-18",
@@ -532,7 +532,14 @@
                   "image_framing": "standard"
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "5:00 PM ET",
+          "bouts": [
             {
               "order": 6,
               "label": "",
@@ -553,37 +560,9 @@
                   "image_framing": "standard"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "kind": "prelims",
-          "title": "Prelims",
-          "time": "5:00 PM ET",
-          "bouts": [
-            {
-              "order": 7,
-              "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Wes Schultz",
-                  "initials": "WS",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5057023.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Jackson McVey",
-                  "initials": "JM",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5291733.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
             },
             {
-              "order": 8,
+              "order": 7,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
@@ -604,7 +583,7 @@
               ]
             },
             {
-              "order": 9,
+              "order": 8,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
@@ -625,7 +604,7 @@
               ]
             },
             {
-              "order": 10,
+              "order": 9,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -646,28 +625,28 @@
               ]
             },
             {
-              "order": 11,
+              "order": 10,
               "label": "",
-              "weight_class": "Women's Strawweight Bout",
+              "weight_class": "Middleweight Bout",
               "fighters": [
                 {
-                  "name": "Shanelle Dyer",
-                  "initials": "SD",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5157674.png",
+                  "name": "Wes Schultz",
+                  "initials": "WS",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5057023.png",
                   "image_source": "espn",
                   "image_framing": "standard"
                 },
                 {
-                  "name": "Elise Reed",
-                  "initials": "ER",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4836482.png",
+                  "name": "Jackson McVey",
+                  "initials": "JM",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5291733.png",
                   "image_source": "espn",
                   "image_framing": "standard"
                 }
               ]
             },
             {
-              "order": 12,
+              "order": 11,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -684,6 +663,27 @@
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1643926850Ryan_Kuse.jpg",
                   "image_source": "sherdog",
                   "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 12,
+              "label": "",
+              "weight_class": "Women's Strawweight Bout",
+              "fighters": [
+                {
+                  "name": "Shanelle Dyer",
+                  "initials": "SD",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5157674.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Elise Reed",
+                  "initials": "ER",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4836482.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
                 }
               ]
             },

@@ -15,6 +15,10 @@
       "verdict_date": "2026-08-18",
       "local_fight_count": 5,
       "verdict_fight_count": null,
+      "local_main_count": 5,
+      "verdict_main_count": null,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": null,
       "confirmed_local_bouts": 5
     },
     {
@@ -23,7 +27,9 @@
       "date": "2026-08-22",
       "title": "Tampa",
       "status": "coverage_gap",
-      "local_fight_count": 12
+      "local_fight_count": 12,
+      "local_main_count": 5,
+      "local_prelim_count": 7
     },
     {
       "event_id": "ufc-fight-night-sacramento-2026-08-22",
@@ -36,6 +42,10 @@
       "verdict_date": "2026-08-22",
       "local_fight_count": 13,
       "verdict_fight_count": 13,
+      "local_main_count": 5,
+      "verdict_main_count": 5,
+      "local_prelim_count": 8,
+      "verdict_prelim_count": 8,
       "confirmed_local_bouts": 13
     },
     {
@@ -49,6 +59,10 @@
       "verdict_date": "2026-08-29",
       "local_fight_count": 9,
       "verdict_fight_count": 9,
+      "local_main_count": 6,
+      "verdict_main_count": 6,
+      "local_prelim_count": 3,
+      "verdict_prelim_count": 3,
       "confirmed_local_bouts": 9
     },
     {
@@ -62,6 +76,10 @@
       "verdict_date": "2026-09-05",
       "local_fight_count": 11,
       "verdict_fight_count": 11,
+      "local_main_count": 5,
+      "verdict_main_count": 5,
+      "local_prelim_count": 6,
+      "verdict_prelim_count": 6,
       "confirmed_local_bouts": 11
     },
     {
@@ -70,7 +88,9 @@
       "date": "2026-09-10",
       "title": "ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り",
       "status": "coverage_gap",
-      "local_fight_count": 9
+      "local_fight_count": 9,
+      "local_main_count": 9,
+      "local_prelim_count": 0
     },
     {
       "event_id": "noche-ufc-2026-09-12-fight-card",
@@ -83,6 +103,10 @@
       "verdict_date": "2026-09-12",
       "local_fight_count": 10,
       "verdict_fight_count": 10,
+      "local_main_count": 6,
+      "verdict_main_count": 6,
+      "local_prelim_count": 4,
+      "verdict_prelim_count": 4,
       "confirmed_local_bouts": 10
     },
     {
@@ -91,7 +115,9 @@
       "date": "2026-10-03",
       "title": "RIZIN LANDMARK 16 in NAGASAKI",
       "status": "coverage_gap",
-      "local_fight_count": 3
+      "local_fight_count": 3,
+      "local_main_count": 3,
+      "local_prelim_count": 0
     },
     {
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
@@ -104,6 +130,10 @@
       "verdict_date": "2026-10-17",
       "local_fight_count": 8,
       "verdict_fight_count": null,
+      "local_main_count": 8,
+      "verdict_main_count": null,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": null,
       "confirmed_local_bouts": 5
     },
     {
@@ -117,6 +147,10 @@
       "verdict_date": "2026-10-24",
       "local_fight_count": 5,
       "verdict_fight_count": 9,
+      "local_main_count": 5,
+      "verdict_main_count": 5,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": 4,
       "confirmed_local_bouts": 5
     }
   ],
@@ -127,6 +161,15 @@
       "verdict_event_id": "1955",
       "local_fight_count": 5,
       "verdict_fight_count": 9
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "verdict_event_id": "1955",
+      "local_main_count": 5,
+      "verdict_main_count": 5,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": 4
     },
     {
       "type": "local_bout_not_found_on_verdict",
