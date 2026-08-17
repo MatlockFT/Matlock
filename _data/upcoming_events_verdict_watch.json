@@ -48,8 +48,8 @@
       "verdict_url": "https://verdictmma.com/event/1919",
       "verdict_date": "2026-08-29",
       "local_fight_count": 9,
-      "verdict_fight_count": null,
-      "confirmed_local_bouts": 6
+      "verdict_fight_count": 9,
+      "confirmed_local_bouts": 9
     },
     {
       "event_id": "ufc-fight-night-2026-09-05-fight-card",
@@ -61,8 +61,8 @@
       "verdict_url": "https://verdictmma.com/event/1905",
       "verdict_date": "2026-09-05",
       "local_fight_count": 11,
-      "verdict_fight_count": null,
-      "confirmed_local_bouts": 5
+      "verdict_fight_count": 11,
+      "confirmed_local_bouts": 11
     },
     {
       "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
@@ -105,96 +105,5 @@
       "local_fight_count": 5
     }
   ],
-  "discrepancies": [
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "verdict_event_id": "1919",
-      "order": 7,
-      "fighters": [
-        "Jack Jenkins",
-        "Sean Woodson"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "verdict_event_id": "1919",
-      "order": 8,
-      "fighters": [
-        "Rei Tsuruya",
-        "Kevin Borjas"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "verdict_event_id": "1919",
-      "order": 9,
-      "fighters": [
-        "Xiong Jingnan",
-        "Julia Polastri"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "verdict_event_id": "1905",
-      "order": 10,
-      "fighters": [
-        "Nora Cornolle",
-        "Klaudia Sygula"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "verdict_event_id": "1905",
-      "order": 11,
-      "fighters": [
-        "Matthieu Letho Duclos",
-        "Luis Felipe Dias"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "verdict_event_id": "1905",
-      "order": 6,
-      "fighters": [
-        "Mario Pinto",
-        "Ryan Spann"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "verdict_event_id": "1905",
-      "order": 7,
-      "fighters": [
-        "Kurtis Campbell",
-        "Trevor Peek"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "verdict_event_id": "1905",
-      "order": 8,
-      "fighters": [
-        "Oumar Sy",
-        "Modestas Bukauskas"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "verdict_event_id": "1905",
-      "order": 9,
-      "fighters": [
-        "Nathaniel Wood",
-        "Mairon Santos"
-      ]
-    }
-  ]
+  "discrepancies": []
 }
