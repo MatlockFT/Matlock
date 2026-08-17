@@ -77,8 +77,13 @@
       "promotion": "ufc",
       "date": "2026-09-12",
       "title": "Rodriguez vs Silva",
-      "status": "coverage_gap",
-      "local_fight_count": 10
+      "status": "matched",
+      "verdict_event_id": "1938",
+      "verdict_url": "https://verdictmma.com/event/1938",
+      "verdict_date": "2026-09-12",
+      "local_fight_count": 10,
+      "verdict_fight_count": 10,
+      "confirmed_local_bouts": 10
     },
     {
       "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
@@ -93,8 +98,13 @@
       "promotion": "ufc",
       "date": "2026-10-17",
       "title": "Buckley vs Malott",
-      "status": "coverage_gap",
-      "local_fight_count": 8
+      "status": "matched",
+      "verdict_event_id": "1936",
+      "verdict_url": "https://verdictmma.com/event/1936",
+      "verdict_date": "2026-10-17",
+      "local_fight_count": 8,
+      "verdict_fight_count": null,
+      "confirmed_local_bouts": 5
     },
     {
       "event_id": "ufc-333-2026-10-24-fight-card",
@@ -117,6 +127,36 @@
       "verdict_event_id": "1955",
       "local_fight_count": 5,
       "verdict_fight_count": 9
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "verdict_event_id": "1936",
+      "order": 4,
+      "fighters": [
+        "Jamey-Lyn Horth",
+        "Katlyn Cerminara"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "verdict_event_id": "1936",
+      "order": 7,
+      "fighters": [
+        "Melissa Croden",
+        "Chelsea Chandler"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "verdict_event_id": "1936",
+      "order": 8,
+      "fighters": [
+        "Louis Jourdain",
+        "Timmy Cuamba"
+      ]
     }
   ]
 }

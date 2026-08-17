@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-17T17:48:51.909Z",
+  "generated_at": "2026-08-17T18:16:48.963Z",
   "events": [
     {
       "id": "dwcs-season-10-week-2-2026-08-18",
@@ -539,48 +539,6 @@
               "weight_class": "Heavyweight Bout",
               "fighters": [
                 {
-                  "name": "Terrance Chatman",
-                  "initials": "TC",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250221092354_Terrance_Chatman.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Anthony Wint",
-                  "initials": "AW",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20260315113334_Anthony_Wint.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 7,
-              "label": "",
-              "weight_class": "Featherweight Bout",
-              "fighters": [
-                {
-                  "name": "Jamall Emmers",
-                  "initials": "JE",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20160604093035_1DX_3280.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Lerryan Douglas",
-                  "initials": "LD",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732666722lerryan.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 8,
-              "label": "",
-              "weight_class": "Heavyweight Bout",
-              "fighters": [
-                {
                   "name": "Kennedy Nzechukwu",
                   "initials": "KN",
                   "image": "https://a.espncdn.com/i/headshots/mma/players/full/4245094.png",
@@ -595,72 +553,16 @@
                   "image_framing": "standard"
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "5:00 PM ET",
+          "bouts": [
             {
-              "order": 9,
-              "label": "",
-              "weight_class": "Lightweight Bout",
-              "fighters": [
-                {
-                  "name": "Chris Padilla",
-                  "initials": "CP",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20231022050650_5Q1A7997.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Nasrat Haqparast",
-                  "initials": "NH",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221208063355_Nasrat_Haqparast_ff.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 10,
-              "label": "",
-              "weight_class": "Featherweight Bout",
-              "fighters": [
-                {
-                  "name": "Marcio Barbosa",
-                  "initials": "MB",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732668646tico.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Ryan Kuse",
-                  "initials": "RK",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1643926850Ryan_Kuse.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 11,
-              "label": "",
-              "weight_class": "Lightweight Bout",
-              "fighters": [
-                {
-                  "name": "Gauge Young",
-                  "initials": "GY",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5085318.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Stan Dorsainvil",
-                  "initials": "SD",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732900312IMG_3144.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 12,
+              "order": 7,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -681,7 +583,70 @@
               ]
             },
             {
-              "order": 13,
+              "order": 8,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Chris Padilla",
+                  "initials": "CP",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20231022050650_5Q1A7997.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Nasrat Haqparast",
+                  "initials": "NH",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221208063355_Nasrat_Haqparast_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Gauge Young",
+                  "initials": "GY",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5085318.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                },
+                {
+                  "name": "Stan Dorsainvil",
+                  "initials": "SD",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732900312IMG_3144.jpeg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Jamall Emmers",
+                  "initials": "JE",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20160604093035_1DX_3280.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Lerryan Douglas",
+                  "initials": "LD",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732666722lerryan.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 11,
               "label": "",
               "weight_class": "Women's Strawweight Bout",
               "fighters": [
@@ -698,6 +663,48 @@
                   "image": "https://a.espncdn.com/i/headshots/mma/players/full/4836482.png",
                   "image_source": "espn",
                   "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 12,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Marcio Barbosa",
+                  "initials": "MB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732668646tico.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Ryan Kuse",
+                  "initials": "RK",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1643926850Ryan_Kuse.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 13,
+              "label": "",
+              "weight_class": "Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Terrance Chatman",
+                  "initials": "TC",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250221092354_Terrance_Chatman.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Anthony Wint",
+                  "initials": "AW",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20260315113334_Anthony_Wint.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
                 }
               ]
             }
