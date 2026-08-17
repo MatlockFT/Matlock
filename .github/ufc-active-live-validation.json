@@ -1,6 +1,7 @@
 {
-  "checkedAt": "2026-08-12T02:38:29.056703+00:00",
+  "checkedAt": "2026-08-17T21:06:13.238632+00:00",
   "outcome": "success",
+  "fallbackOutcome": "skipped",
   "activeEntryOutcome": "success",
   "profileDirectoryOutcome": "success",
   "eventCardOutcome": "success",
@@ -9,22 +10,21 @@
   "antiDopingOutcome": "success",
   "publishOutcome": "success",
   "validated": true,
-  "activeCount": 950,
+  "activeCount": 953,
   "source": "https://www.ufc.com/views/ajax",
   "mode": "status23-query-post",
   "tail": [
-    "Collected 950 profile URLs from UFC's Active collection (view reports 951 athletes).",
+    "Collected 953 profile URLs from UFC's Active collection (view reports 953 athletes).",
     "Active roster diff: +0 entered, -0 left.",
-    "Validated active UFC roster: 950 fighters via https://www.ufc.com/views/ajax (status23-query-post).",
-    "UFC Active view reports 951 athlete records.",
+    "Validated active UFC roster: 953 fighters via https://www.ufc.com/views/ajax (status23-query-post).",
+    "UFC Active view reports 953 athlete records.",
     "Detected 0 addition(s) and 0 removal(s) this run.",
     "0 Active-roster candidate(s) awaiting profile confirmation.",
     "Promoted 0 UFC Active-collection entrant(s) without waiting for profile Status: Active.",
-    "Established UFC profile-directory baseline with 3164 profiles; no historical discoveries emitted.",
-    "UFC profile-directory sensor: 3164 profiles, 0 new profile(s) this run.",
-    "Official UFC event-card cross-check: 5 event(s), 90 athlete slots, 0 first-time UFC newcomer(s) confirmed this run.",
+    "UFC profile-directory sensor: 3171 profiles, 0 new profile(s) this run.",
+    "Official UFC event-card cross-check: 5 event(s), 102 athlete slots, 0 first-time UFC newcomer(s) confirmed this run.",
     "Normalized UFC roster event history; removed 0 duplicate newcomer event(s).",
-    "Competition cross-check complete: 6 verified newcomer addition(s), 2 reactivation event(s), 0 newly reclassified this run.",
+    "Competition cross-check complete: 10 verified newcomer addition(s), 2 reactivation event(s), 0 newly reclassified this run.",
     "Finalized UFC roster event history; removed 0 duplicate newcomer event(s)."
   ]
 }
