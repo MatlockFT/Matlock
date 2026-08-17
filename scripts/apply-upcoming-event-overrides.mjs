@@ -26,6 +26,72 @@ function sameNames(actual = [], expected = []) {
   return actual.every((name, index) => norm(name) === norm(expected[index]));
 }
 
+function boutKey(names = []) {
+  return names.map(name => norm(name)).filter(Boolean).sort().join('|');
+}
+
+function currentBoutKey(bout) {
+  return boutKey((bout?.fighters || []).map(item => item?.name));
+}
+
+function applyCardLayoutOverride(event, override) {
+  const sequence = Array.isArray(override?.bout_sequence) ? override.bout_sequence : [];
+  if (!sequence.length) return false;
+
+  const mainCount = Number(override.main_count);
+  if (!Number.isInteger(mainCount) || mainCount < 1 || mainCount > sequence.length) {
+    console.warn(`Layout override skipped: ${override.event_id} has invalid main_count.`);
+    return false;
+  }
+
+  const mainSection = (event.sections || []).find(section => section.kind === 'main');
+  const prelimSection = (event.sections || []).find(section => section.kind === 'prelims');
+  if (!mainSection || (mainCount < sequence.length && !prelimSection)) {
+    console.warn(`Layout override skipped: ${override.event_id} is missing a main/prelim section.`);
+    return false;
+  }
+
+  const allBouts = (event.sections || []).flatMap(section => section.bouts || []);
+  const byKey = new Map();
+  for (const bout of allBouts) {
+    const key = currentBoutKey(bout);
+    if (!key || byKey.has(key)) {
+      console.warn(`Layout override skipped: ${override.event_id} has duplicate or invalid bout identities.`);
+      return false;
+    }
+    byKey.set(key, bout);
+  }
+
+  const targetKeys = sequence.map(pair => boutKey(Array.isArray(pair) ? pair : []));
+  if (targetKeys.some(key => !key || !byKey.has(key)) || new Set(targetKeys).size !== targetKeys.length) {
+    console.warn(`Layout override skipped: ${override.event_id} no longer matches the verified bout sequence.`);
+    return false;
+  }
+
+  if (targetKeys.length !== allBouts.length) {
+    console.warn(`Layout override skipped: ${override.event_id} bout count changed since verification.`);
+    return false;
+  }
+
+  const currentKeys = allBouts.map(currentBoutKey);
+  const currentMainCount = (mainSection.bouts || []).length;
+  const alreadyApplied = currentMainCount === mainCount
+    && currentKeys.length === targetKeys.length
+    && currentKeys.every((key, index) => key === targetKeys[index]);
+  if (alreadyApplied) return false;
+
+  const ordered = targetKeys.map(key => byKey.get(key));
+  ordered.forEach((bout, index) => {
+    bout.order = index + 1;
+    bout.label = index === 0 ? 'Main Event' : index === 1 ? 'Co-Main Event' : '';
+  });
+
+  mainSection.bouts = ordered.slice(0, mainCount);
+  if (prelimSection) prelimSection.bouts = ordered.slice(mainCount);
+  event.updated_label = updatedLabel();
+  return true;
+}
+
 const today = new Intl.DateTimeFormat('en-CA', {
   timeZone: 'America/Chicago',
   year: 'numeric',
@@ -39,11 +105,15 @@ const overrides = await loadOverrides();
 let applied = 0;
 
 for (const override of overrides) {
-  if (!override?.event_id || !Number.isInteger(override?.bout_order)) continue;
+  if (!override?.event_id) continue;
   if (override.expires_after && today > override.expires_after) continue;
 
   const event = (data.events || []).find(item => item.id === override.event_id);
   if (!event) continue;
+
+  if (applyCardLayoutOverride(event, override)) applied += 1;
+
+  if (!Number.isInteger(override?.bout_order)) continue;
 
   const bout = (event.sections || [])
     .flatMap(section => section.bouts || [])
