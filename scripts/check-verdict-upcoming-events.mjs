@@ -85,6 +85,16 @@ function localBoutList(event) {
   })).filter(bout => bout.fighters.length === 2);
 }
 
+function localSectionCounts(event) {
+  const main = (event.sections || [])
+    .filter(section => section.kind === 'main')
+    .reduce((total, section) => total + (section.bouts || []).length, 0);
+  const prelims = (event.sections || [])
+    .filter(section => section.kind !== 'main')
+    .reduce((total, section) => total + (section.bouts || []).length, 0);
+  return { main, prelims };
+}
+
 function titleScore(event, verdict) {
   const local = norm(`${event.promotion || ''} ${event.title || ''}`);
   const remote = norm(verdict.label);
@@ -121,9 +131,11 @@ function fighterAppears(label, name) {
 
 function verdictCardFromHtml(html, localBouts) {
   const plain = text(html);
-  const countMatch = plain.match(/\bAll\s+(\d+)\s+Main\s+\d+(?:\s+Prelims\s+\d+)?\b/i)
-    || plain.match(/\bAll\s+(\d+)\b/i);
+  const sectionMatch = plain.match(/\bAll\s+(\d+)\s+Main\s+(\d+)(?:\s+Prelims\s+(\d+))?\b/i);
+  const countMatch = sectionMatch || plain.match(/\bAll\s+(\d+)\b/i);
   const remoteCount = countMatch ? Number(countMatch[1]) : null;
+  const remoteMainCount = sectionMatch ? Number(sectionMatch[2]) : null;
+  const remotePrelimCount = sectionMatch && sectionMatch[3] !== undefined ? Number(sectionMatch[3]) : null;
   const confirmed = [];
   const missing = [];
 
@@ -137,6 +149,8 @@ function verdictCardFromHtml(html, localBouts) {
   return {
     readable: Number.isFinite(remoteCount) || confirmed.length > 0,
     remoteCount,
+    remoteMainCount,
+    remotePrelimCount,
     confirmed,
     missing
   };
@@ -164,6 +178,7 @@ const discrepancies = [];
 
 for (const event of currentEvents) {
   const localBouts = localBoutList(event);
+  const localSections = localSectionCounts(event);
   const match = matchVerdictEvent(event, verdictEvents);
   if (!match) {
     coverage.push({
@@ -172,12 +187,21 @@ for (const event of currentEvents) {
       date: event.date,
       title: event.title,
       status: 'coverage_gap',
-      local_fight_count: localBouts.length
+      local_fight_count: localBouts.length,
+      local_main_count: localSections.main,
+      local_prelim_count: localSections.prelims
     });
     continue;
   }
 
-  let card = { readable: false, remoteCount: null, confirmed: [], missing: [] };
+  let card = {
+    readable: false,
+    remoteCount: null,
+    remoteMainCount: null,
+    remotePrelimCount: null,
+    confirmed: [],
+    missing: []
+  };
   try {
     card = verdictCardFromHtml(await get(match.url), localBouts);
   } catch (error) {
@@ -192,6 +216,22 @@ for (const event of currentEvents) {
         verdict_event_id: match.id,
         local_fight_count: localBouts.length,
         verdict_fight_count: card.remoteCount
+      });
+    }
+
+    if (
+      Number.isFinite(card.remoteMainCount)
+      && Number.isFinite(card.remotePrelimCount)
+      && (card.remoteMainCount !== localSections.main || card.remotePrelimCount !== localSections.prelims)
+    ) {
+      discrepancies.push({
+        type: 'section_count_mismatch',
+        event_id: event.id,
+        verdict_event_id: match.id,
+        local_main_count: localSections.main,
+        verdict_main_count: card.remoteMainCount,
+        local_prelim_count: localSections.prelims,
+        verdict_prelim_count: card.remotePrelimCount
       });
     }
 
@@ -227,6 +267,10 @@ for (const event of currentEvents) {
     verdict_date: match.date,
     local_fight_count: localBouts.length,
     verdict_fight_count: card.readable ? card.remoteCount : null,
+    local_main_count: localSections.main,
+    verdict_main_count: card.readable ? card.remoteMainCount : null,
+    local_prelim_count: localSections.prelims,
+    verdict_prelim_count: card.readable ? card.remotePrelimCount : null,
     confirmed_local_bouts: card.readable ? card.confirmed.length : null
   });
 }
