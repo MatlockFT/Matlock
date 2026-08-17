@@ -61,10 +61,12 @@ jobs:
             echo "exists=true" >> "$GITHUB_OUTPUT"
             gh release download ufc-roster-data \
               --pattern "ufc-roster-state.json" \
+              --pattern "ufc-roster-latest.json" \
               --dir /tmp/ufc-roster \
               --clobber
 
             test -s /tmp/ufc-roster/ufc-roster-state.json
+            test -s /tmp/ufc-roster/ufc-roster-latest.json
             jq -e '
               type == "object" and
               (.collectorId | type == "string") and
@@ -78,6 +80,7 @@ jobs:
 
       - name: Check UFC active roster
         id: roster_check
+        continue-on-error: true
         shell: bash
         run: |
           set +e
@@ -90,6 +93,48 @@ jobs:
           code=${PIPESTATUS[0]}
           echo "exit_code=$code" >> "$GITHUB_OUTPUT"
           exit "$code"
+
+      - name: Fall back to last verified active-roster snapshot
+        id: roster_fallback
+        if: steps.roster_check.outcome == 'failure'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s /tmp/ufc-roster/ufc-roster-state.json
+          test -s /tmp/ufc-roster/ufc-roster-latest.json
+          cp /tmp/ufc-roster/ufc-roster-state.json /tmp/ufc-roster-state.json
+          cp /tmp/ufc-roster/ufc-roster-latest.json /tmp/ufc-roster-latest.json
+
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          now = datetime.now(timezone.utc).isoformat()
+          state_path = Path('/tmp/ufc-roster-state.json')
+          public_path = Path('/tmp/ufc-roster-latest.json')
+          state = json.loads(state_path.read_text())
+          public = json.loads(public_path.read_text())
+          last_verified = state.get('checkedAt') or public.get('generatedAt') or ''
+          message = 'Primary UFC Active collection unavailable; continuing from the last verified snapshot while secondary roster sensors run.'
+
+          state['activeSourceDegraded'] = True
+          state['activeSourceLastVerifiedAt'] = last_verified
+          state['activeSourceFallbackAt'] = now
+          state['activeSourceError'] = message
+
+          public['generatedAt'] = now
+          public['activeSourceDegraded'] = True
+          public['activeSourceLastVerifiedAt'] = last_verified
+          public['activeSourceFallbackAt'] = now
+          public['activeSourceError'] = message
+          public['changesThisRun'] = {'added': 0, 'removed': 0}
+
+          state_path.write_text(json.dumps(state, indent=2) + '\n')
+          public_path.write_text(json.dumps(public, indent=2) + '\n')
+          PY
+
+          echo "Primary UFC Active source failed; reused the last verified snapshot and will continue secondary roster checks." | tee -a /tmp/ufc-roster-run.log
 
       - name: Preserve competition cross-check history
         if: steps.roster_check.outcome == 'success'
@@ -114,7 +159,7 @@ jobs:
 
       - name: Promote UFC Active entries immediately
         id: active_entry_check
-        if: steps.roster_check.outcome == 'success'
+        if: steps.roster_check.outcome == 'success' || steps.roster_fallback.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
@@ -226,6 +271,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           CHECK_RESULT: ${{ steps.roster_check.outcome }}
+          FALLBACK_RESULT: ${{ steps.roster_fallback.outcome }}
           ACTIVE_ENTRY_RESULT: ${{ steps.active_entry_check.outcome }}
           PROFILE_DIRECTORY_RESULT: ${{ steps.profile_directory_check.outcome }}
           EVENT_CARD_RESULT: ${{ steps.event_card_check.outcome }}
@@ -244,6 +290,7 @@ jobs:
           log = Path('/tmp/ufc-roster-run.log').read_text(errors='replace') if Path('/tmp/ufc-roster-run.log').exists() else ''
           match = re.search(r'Validated active UFC roster: (\d+) fighters via (.+?) \((.+?)\)\.', log)
           check_result = os.environ.get('CHECK_RESULT', '')
+          fallback_result = os.environ.get('FALLBACK_RESULT', '')
           active_entry_result = os.environ.get('ACTIVE_ENTRY_RESULT', '')
           profile_directory_result = os.environ.get('PROFILE_DIRECTORY_RESULT', '')
           event_card_result = os.environ.get('EVENT_CARD_RESULT', '')
@@ -254,6 +301,7 @@ jobs:
           payload = {
               'checkedAt': datetime.now(timezone.utc).isoformat(),
               'outcome': check_result,
+              'fallbackOutcome': fallback_result,
               'activeEntryOutcome': active_entry_result,
               'profileDirectoryOutcome': profile_directory_result,
               'eventCardOutcome': event_card_result,
