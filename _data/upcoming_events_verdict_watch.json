@@ -101,9 +101,22 @@
       "promotion": "ufc",
       "date": "2026-10-24",
       "title": "Volkanovski vs Evloev",
-      "status": "coverage_gap",
-      "local_fight_count": 5
+      "status": "matched",
+      "verdict_event_id": "1955",
+      "verdict_url": "https://verdictmma.com/event/1955",
+      "verdict_date": "2026-10-24",
+      "local_fight_count": 5,
+      "verdict_fight_count": 9,
+      "confirmed_local_bouts": 5
     }
   ],
-  "discrepancies": []
+  "discrepancies": [
+    {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "verdict_event_id": "1955",
+      "local_fight_count": 5,
+      "verdict_fight_count": 9
+    }
+  ]
 }
