@@ -9,6 +9,14 @@ const tracking=/(?:piwik|matomo|analytics|tracking|pixel|beacon)/i;
 const badPortrait=/(?:\/articles?\/|\/news\/|\/galleries?\/|\/thumbnails?\/|\/fighters\/(?:bodyshots|headshots)\/default-(?:male|female)\.(?:png|jpe?g|webp)(?:\?|$)|(?:^|[\/_-])(?:banner|sponsor|poster|promo|placeholder)(?:[\/_-]|$))/i;
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+const VERIFIED_PORTRAIT_HINTS = new Map([
+  ['ramazan temirov', {
+    url: 'https://www.ufc.com/images/styles/athlete_bio_full_body/s3/2024-11/TEMIROV_RAMAZAN_L_10-12.png?itok=WmQP_Yk4',
+    source: 'ufc',
+    framing: 'safe'
+  }]
+]);
+
 const ESPN_ID_HINTS = new Map([
   ['ketlen vieira','4039865'],
   ['javid basharat','4867357'],
@@ -217,7 +225,7 @@ for(const event of data.events||[]){
   }
 }
 
-let added=0,applied=0,cleaned=0,cacheCleaned=0,sherdogAdded=0,unresolved=0;
+let added=0,applied=0,cleaned=0,cacheCleaned=0,sherdogAdded=0,verifiedAdded=0,unresolved=0;
 for(const person of fighters){
   if(person.image&&badPortrait.test(person.image)){
     person.image='';person.image_source='';person.image_framing='';cleaned++;
@@ -230,6 +238,14 @@ for(const [key,name] of lookupByName){
 
   const existing=fighters.find(f=>norm(f.name)===key&&f.image&&!tracking.test(f.image)&&!badPortrait.test(f.image));
   if(existing){cache[key]={url:existing.image,source:existing.image_source||'external',framing:existing.image_framing||'safe'};continue;}
+
+  const verified=VERIFIED_PORTRAIT_HINTS.get(key);
+  if(verified?.url&&await imageWorks(verified.url)){
+    cache[key]={url:verified.url,source:verified.source||'external',framing:verified.framing||'safe'};
+    verifiedAdded++;
+    console.log(`Resolved verified portrait: ${name}`);
+    continue;
+  }
 
   const id=await espnIdByName(name);
   if(id){cache[key]={url:`https://a.espncdn.com/i/headshots/mma/players/full/${id}.png`,source:'espn',framing:'standard'};added++;console.log(`Resolved ESPN portrait: ${name} -> ${id}`);continue;}
@@ -250,4 +266,4 @@ for(const person of fighters){
 
 await fs.writeFile(CACHE_PATH,JSON.stringify(Object.fromEntries(Object.entries(cache).sort(([a],[b])=>a.localeCompare(b))),null,2)+'\n');
 if(applied||cleaned)await fs.writeFile(DATA_PATH,JSON.stringify(data,null,2)+'\n');
-console.log(`Fallback portrait lookup targeted ${lookupByName.size} currently blank fighter(s); added ${added} ESPN and ${sherdogAdded} Sherdog portrait(s); applied ${applied}; unresolved ${unresolved}; removed ${cleaned} bad event portrait(s) and ${cacheCleaned} bad cache entr${cacheCleaned===1?'y':'ies'}.`);
+console.log(`Fallback portrait lookup targeted ${lookupByName.size} currently blank fighter(s); added ${verifiedAdded} verified, ${added} ESPN and ${sherdogAdded} Sherdog portrait(s); applied ${applied}; unresolved ${unresolved}; removed ${cleaned} bad event portrait(s) and ${cacheCleaned} bad cache entr${cacheCleaned===1?'y':'ies'}.`);
