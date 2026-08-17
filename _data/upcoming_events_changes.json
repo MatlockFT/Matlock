@@ -1,7 +1,99 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-17T21:09:29.813Z",
+  "generated_at": "2026-08-17T21:15:22.730Z",
   "changes": [
+    {
+      "id": "2026-08-17T21:15:22.730Z|ufc-333-2026-10-24-fight-card|bout_moved|1",
+      "at": "2026-08-17T21:15:22.730Z",
+      "type": "bout_moved",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Azamat Murzakanov vs Dominick Reyes moved on Volkanovski vs Evloev.",
+      "details": {
+        "from_order": 4,
+        "to_order": 6,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-17T21:15:22.730Z|ufc-333-2026-10-24-fight-card|bout_moved|2",
+      "at": "2026-08-17T21:15:22.730Z",
+      "type": "bout_moved",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Grant Dawson vs Nurullo Aliev moved on Volkanovski vs Evloev.",
+      "details": {
+        "from_order": 5,
+        "to_order": 9,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-17T21:15:22.730Z|ufc-333-2026-10-24-fight-card|bout_added|3",
+      "at": "2026-08-17T21:15:22.730Z",
+      "type": "bout_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Alexander Volkov vs Rizvan Kuniev added to Volkanovski vs Evloev.",
+      "details": {
+        "order": 4,
+        "section": "Main Card",
+        "weight_class": "Heavyweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-17T21:15:22.730Z|ufc-333-2026-10-24-fight-card|bout_added|4",
+      "at": "2026-08-17T21:15:22.730Z",
+      "type": "bout_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Arnold Allen vs Aaron Pico added to Volkanovski vs Evloev.",
+      "details": {
+        "order": 5,
+        "section": "Main Card",
+        "weight_class": "Featherweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-17T21:15:22.730Z|ufc-333-2026-10-24-fight-card|bout_added|5",
+      "at": "2026-08-17T21:15:22.730Z",
+      "type": "bout_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Abus Magomedov vs Cam Rowston added to Volkanovski vs Evloev.",
+      "details": {
+        "order": 7,
+        "section": "Prelims",
+        "weight_class": "Middleweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-17T21:15:22.730Z|ufc-333-2026-10-24-fight-card|bout_added|6",
+      "at": "2026-08-17T21:15:22.730Z",
+      "type": "bout_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Nikita Krylov vs Abdul Rakhman Yakhyaev added to Volkanovski vs Evloev.",
+      "details": {
+        "order": 8,
+        "section": "Prelims",
+        "weight_class": "Light Heavyweight Bout"
+      }
+    },
     {
       "id": "2026-08-17T21:09:29.813Z|ufc-fight-night-sacramento-2026-08-22|bout_moved|1",
       "at": "2026-08-17T21:09:29.813Z",

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-17T21:08:51.958Z",
+  "generated_at": "2026-08-17T21:14:04.149Z",
   "events": [
     {
       "id": "dwcs-season-10-week-2-2026-08-18",
@@ -2004,6 +2004,55 @@
             {
               "order": 4,
               "label": "",
+              "weight_class": "Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Alexander Volkov",
+                  "initials": "AV",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220325081825_Alexander_Volkov_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Rizvan Kuniev",
+                  "initials": "RK",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1500570103IMG_3512.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Arnold Allen",
+                  "initials": "AA",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220401040708_Arnold_Allen_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Aaron Pico",
+                  "initials": "AP",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20170625125438_1DX_2307.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "",
+          "bouts": [
+            {
+              "order": 6,
+              "label": "",
               "weight_class": "Light Heavyweight Bout",
               "fighters": [
                 {
@@ -2023,7 +2072,49 @@
               ]
             },
             {
-              "order": 5,
+              "order": 7,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Abus Magomedov",
+                  "initials": "AM",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20170427041839_unnamed.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Cam Rowston",
+                  "initials": "CR",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1691817794Cameron_Rowston.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "Light Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Nikita Krylov",
+                  "initials": "NK",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220922053614_Nikita_Krylov_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Abdul Rakhman Yakhyaev",
+                  "initials": "ARY",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1727275428yahyaev.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 9,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
