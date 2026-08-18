@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-17T21:19:50.438Z",
+  "generated_at": "2026-08-18T10:15:09.761Z",
   "events": [
     {
       "id": "dwcs-season-10-week-2-2026-08-18",
@@ -13,7 +13,7 @@
       "broadcast": "Paramount+",
       "official_url": "https://www.ufc.com/dwcs#season-10-week-2",
       "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-2-112629",
-      "updated_label": "August 17, 2026",
+      "updated_label": "August 18, 2026",
       "sections": [
         {
           "kind": "main",
@@ -23,6 +23,48 @@
             {
               "order": 1,
               "label": "Main Event",
+              "weight_class": "Welterweight",
+              "fighters": [
+                {
+                  "name": "Namo Fazil",
+                  "initials": "NF",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1706237758Namo_Fazil-hero-1200x1165-1.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Kaik Brito",
+                  "initials": "KB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1733553091brito.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Middleweight",
+              "fighters": [
+                {
+                  "name": "Douglas Henrique Rodrigues",
+                  "initials": "DHR",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1762361625douglasrodrigues.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Trent Miller",
+                  "initials": "TM",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250522110317_Trent_Miller.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
               "weight_class": "Lightweight",
               "fighters": [
                 {
@@ -42,28 +84,7 @@
               ]
             },
             {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Featherweight",
-              "fighters": [
-                {
-                  "name": "Taner Trembley",
-                  "initials": "TT",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1744909896tanertrembley.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Roman Puga",
-                  "initials": "RP",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20241201124453_RX3_6477.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 3,
+              "order": 4,
               "label": "",
               "weight_class": "Light Heavyweight",
               "fighters": [
@@ -84,42 +105,21 @@
               ]
             },
             {
-              "order": 4,
-              "label": "",
-              "weight_class": "Middleweight",
-              "fighters": [
-                {
-                  "name": "Douglas Henrique Rodrigues",
-                  "initials": "DHR",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1762361625douglasrodrigues.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Trent Miller",
-                  "initials": "TM",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250522110317_Trent_Miller.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
               "order": 5,
               "label": "",
-              "weight_class": "Welterweight",
+              "weight_class": "Featherweight",
               "fighters": [
                 {
-                  "name": "Namo Fazil",
-                  "initials": "NF",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1706237758Namo_Fazil-hero-1200x1165-1.jpg",
+                  "name": "Taner Trembley",
+                  "initials": "TT",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1744909896tanertrembley.jpg",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 },
                 {
-                  "name": "Kaik Brito",
-                  "initials": "KB",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1733553091brito.png",
+                  "name": "Roman Puga",
+                  "initials": "RP",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20241201124453_RX3_6477.JPG",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
@@ -139,7 +139,7 @@
       "venue": "Benchmark International Arena, Tampa, FL",
       "broadcast": "ESPN",
       "official_url": "https://pflmma.com/event/pfl-tampa",
-      "updated_label": "August 17, 2026",
+      "updated_label": "August 18, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1202,7 +1202,7 @@
       "venue": "京セラドーム大阪",
       "broadcast": "RIZIN 100 CLUB · RIZIN LIVE · ABEMA · Sky PerfecTV",
       "official_url": "https://jp.rizinff.com/_ct/17834937",
-      "updated_label": "August 17, 2026",
+      "updated_label": "August 18, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1653,7 +1653,7 @@
       "venue": "長崎スタジアムシティ HAPPINESS ARENA",
       "broadcast": "RIZIN 100 CLUB",
       "official_url": "https://jp.rizinff.com/_ct/17852438",
-      "updated_label": "August 17, 2026",
+      "updated_label": "August 18, 2026",
       "sections": [
         {
           "kind": "main",
