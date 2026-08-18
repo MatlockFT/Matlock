@@ -82,10 +82,36 @@ for (const filename of readdirSync(postsDirectory).filter(
     const published = scalar(frontmatter.yaml, 'published');
     const title = scalar(frontmatter.yaml, 'title');
     const description = scalar(frontmatter.yaml, 'description');
+    const listingVisibility = scalar(frontmatter.yaml, 'listing_visibility');
+    const publishAt = scalar(frontmatter.yaml, 'publish_at');
 
     if (!['true', 'false'].includes(published)) {
         failures.push(
             `${filename}: published must be explicitly true or false`
+        );
+    }
+
+    if (
+        listingVisibility &&
+        ![
+            'normal',
+            'hide-home',
+            'hide-breakdowns',
+            'direct-only'
+        ].includes(listingVisibility)
+    ) {
+        failures.push(
+            `${filename}: listing_visibility has an unsupported value`
+        );
+    }
+
+    if (publishAt && Number.isNaN(Date.parse(publishAt))) {
+        failures.push(`${filename}: publish_at must be a valid date and time`);
+    }
+
+    if (publishAt && published === 'true') {
+        warnings.push(
+            `${filename}: publish_at is set but the article is already published`
         );
     }
 

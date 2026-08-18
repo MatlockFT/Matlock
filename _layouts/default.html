@@ -8,7 +8,7 @@
         content="width=device-width, initial-scale=1.0, viewport-fit=cover"
     >
 
-    {% if page.noindex %}
+    {% if page.noindex or page.listing_visibility == "direct-only" %}
         <meta
             name="robots"
             content="noindex, follow"
