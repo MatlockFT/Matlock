@@ -177,6 +177,27 @@ layout: default
         </figure>
     {% endif %}
 
+    {% if page.spoiler_warning %}
+        <aside class="article-notice article-spoiler-notice" role="note">
+            <strong>Spoiler warning</strong>
+            <p>{{ page.spoiler_message | default: "This article discusses fight results and may contain spoilers." }}</p>
+        </aside>
+    {% endif %}
+
+    {% if page.update_note %}
+        <aside class="article-notice article-update-note" role="note">
+            <strong>Update note</strong>
+            <p>{{ page.update_note }}</p>
+        </aside>
+    {% endif %}
+
+    {% if page.show_toc %}
+        <nav class="article-toc" aria-labelledby="article-toc-title" data-article-toc hidden>
+            <strong id="article-toc-title">In this article</strong>
+            <ol data-article-toc-list></ol>
+        </nav>
+    {% endif %}
+
     <div
         id="article-content"
         class="post-body"
@@ -309,7 +330,13 @@ layout: default
         </div>
     </footer>
 
-    {% if site.related_posts and site.related_posts.size > 0 %}
+    {% assign visible_related_posts = "" | split: "" %}
+    {% for candidate in site.related_posts %}
+        {% unless candidate.listing_visibility == "direct-only" %}
+            {% assign visible_related_posts = visible_related_posts | push: candidate %}
+        {% endunless %}
+    {% endfor %}
+    {% if visible_related_posts.size > 0 %}
         <section
             class="related-breakdowns"
             aria-labelledby="related-breakdowns-title"
@@ -331,7 +358,7 @@ layout: default
             </header>
 
             <div class="article-grid">
-                {% for related_post in site.related_posts limit: 3 %}
+                {% for related_post in visible_related_posts limit: 3 %}
                     {% assign related_image = related_post.image.path | default: related_post.image %}
                     {% assign related_alt = related_post.image.alt | default: related_post.image_alt | default: related_post.title %}
                     {% assign related_responsive = site.data.responsive_images[related_image] %}
@@ -454,6 +481,10 @@ layout: default
         </nav>
     {% endif %}
 </article>
+
+{% if page.show_toc %}
+    <script src="{{ '/assets/article-toc.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
+{% endif %}
 
 <script>
     (function () {
