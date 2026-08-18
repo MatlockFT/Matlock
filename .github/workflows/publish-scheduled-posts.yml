@@ -1,0 +1,47 @@
+/opt/homebrew/Library/Homebrew/cmd/shellenv.sh: line 18: /bin/ps: Operation not permitted
+name: Publish scheduled articles
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scheduled-article-publishing
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Publish due articles
+        run: npm run publish:scheduled
+
+      - name: Commit published articles
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- _posts; then
+            echo "No scheduled articles are due."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- _posts
+          git commit -m "Publish scheduled articles"
+          git pull --rebase origin main
+          git push origin HEAD:main

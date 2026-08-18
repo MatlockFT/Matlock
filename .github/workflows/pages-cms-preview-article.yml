@@ -1,0 +1,39 @@
+/opt/homebrew/Library/Homebrew/cmd/shellenv.sh: line 18: /bin/ps: Operation not permitted
+name: Preview Pages CMS article
+
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: Pages CMS payload as JSON
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out current branch
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Build draft preview
+        run: bundle exec jekyll build --unpublished --future --destination _site-preview
+
+      - name: Upload preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: article-preview
+          path: _site-preview
+          retention-days: 3
+
+      - name: Explain preview access
+        run: echo "Download the article-preview artifact from this workflow run and open index.html or the article path locally." >> "$GITHUB_STEP_SUMMARY"
