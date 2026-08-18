@@ -35,6 +35,7 @@ jobs:
       - name: Check browser and data scripts
         run: |
           node --check assets/site.js
+          node --check assets/article-toc.js
           node --check assets/news-feed.js
           node --check scripts/build-news-feed.mjs
           node --check scripts/check-news-data.mjs
@@ -45,6 +46,7 @@ jobs:
           node --check scripts/resolve-espn-fighter-portraits.mjs
           node --check scripts/enrich-fighter-portraits.mjs
           node --check scripts/validate-upcoming-events.mjs
+          node --check scripts/publish-scheduled-posts.mjs
 
       - name: Check Upcoming Events data and renderer
         run: node scripts/validate-upcoming-events.mjs
