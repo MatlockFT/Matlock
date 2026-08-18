@@ -1,4 +1,3 @@
-/opt/homebrew/Library/Homebrew/cmd/shellenv.sh: line 18: /bin/ps: Operation not permitted
 (function () {
     const navigation = document.querySelector('[data-article-toc]');
     const list = navigation?.querySelector('[data-article-toc-list]');
