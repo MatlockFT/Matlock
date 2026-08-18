@@ -6,7 +6,8 @@
     "check:content": "node scripts/check-content.mjs",
     "check:external": "node scripts/check-external-links.mjs _site/mma-yellowpages.html",
     "check:news": "node scripts/check-news-data.mjs",
-    "update:news": "node scripts/build-news-feed.mjs"
+    "update:news": "node scripts/build-news-feed.mjs",
+    "publish:scheduled": "node scripts/publish-scheduled-posts.mjs"
   },
   "devDependencies": {
     "fast-xml-parser": "^5.10.1",
