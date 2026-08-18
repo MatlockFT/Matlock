@@ -4,6 +4,15 @@ media:
   rename: safe
   categories:
     - image
+  actions:
+    - name: optimize-images
+      label: Optimize uploaded images
+      workflow: pages-cms-optimize-images.yml
+      ref: current
+      confirm:
+        title: Optimize uploaded images?
+        message: This creates lightweight responsive copies for article cards and cover images.
+        button: Optimize images
 
 content:
   - name: posts
@@ -24,9 +33,29 @@ content:
         - date
         - category
         - pinned
+        - pin_priority
         - published
-      sort: date
-      order: desc
+      sort:
+        - date
+        - title
+      default:
+        sort: date
+        order: desc
+
+    actions:
+      - name: preview-article
+        label: Build article preview
+        scope: entry
+        workflow: pages-cms-preview-article.yml
+        ref: current
+        confirm: false
+
+      - name: validate-article
+        label: Validate article
+        scope: entry
+        workflow: pages-cms-validate-article.yml
+        ref: current
+        confirm: false
 
     fields:
       - name: layout
@@ -133,9 +162,28 @@ content:
         label: Last Updated
         type: date
         required: false
+        default: ""
         description: >-
           Leave this blank for a new article. Set it only after making
           a meaningful update to an existing article.
+
+      - name: update_note
+        label: What Changed
+        type: text
+        required: false
+        description: >-
+          Optional note shown near the top of an updated article. Briefly
+          explain the correction, addition, or other meaningful change.
+        options:
+          maxlength: 300
+
+      - name: show_toc
+        label: Show Table of Contents
+        type: boolean
+        default: false
+        description: >-
+          Build a linked contents box when the article has at least two
+          section headings.
 
       - name: pinned
         label: Pin to top of Breakdowns
@@ -143,8 +191,71 @@ content:
         default: false
         description: >-
           Keep this article above newer posts on the Breakdowns page.
-          If more than one article is pinned, pinned articles stay in
-          newest-to-oldest order.
+          Pinning can expire automatically. Higher-priority pins appear first.
+
+      - name: pin_priority
+        label: Pin Priority
+        type: number
+        default: 0
+        description: >-
+          Used only when pinned. Higher numbers appear first; use 0 for
+          ordinary pinned articles.
+        options:
+          min: 0
+          max: 100
+
+      - name: pin_until
+        label: Keep Pinned Until
+        type: date
+        required: false
+        default: ""
+        description: >-
+          Optional. The article returns to chronological order after this day.
+
+      - name: listing_visibility
+        label: Listing Visibility
+        type: select
+        required: true
+        default: normal
+        description: >-
+          Choose where this article can appear. Direct-link only keeps the URL
+          working but removes the article from site listings and search indexing.
+        options:
+          values:
+            - name: normal
+              label: Normal
+            - name: hide-home
+              label: Hide from homepage
+            - name: hide-breakdowns
+              label: Hide from Breakdowns
+            - name: direct-only
+              label: Direct-link only
+
+      - name: publish_at
+        label: Scheduled Publication
+        type: date
+        required: false
+        default: ""
+        description: >-
+          Optional. Leave Published off and choose a date and time. Scheduled
+          articles are checked every 15 minutes.
+        options:
+          time: true
+          format: "yyyy-MM-dd'T'HH:mm:ssxxx"
+
+      - name: spoiler_warning
+        label: Show Spoiler Warning
+        type: boolean
+        default: false
+
+      - name: spoiler_message
+        label: Spoiler Warning Text
+        type: string
+        required: false
+        description: >-
+          Optional custom wording. If blank, the site uses a standard warning.
+        options:
+          maxlength: 180
 
       - name: published
         label: Published
