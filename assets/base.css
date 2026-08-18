@@ -592,6 +592,52 @@ select:focus-visible {
     object-fit: cover;
 }
 
+.article-notice,
+.article-toc {
+    width: min(100%, var(--reading-width));
+    margin: 0 auto 1.5rem;
+    padding: 1rem 1.15rem;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-small);
+    background: rgba(255, 74, 84, 0.07);
+}
+
+.article-notice strong,
+.article-toc > strong {
+    color: #fff;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.article-notice p {
+    margin: 0.35rem 0 0;
+    color: var(--text-soft);
+}
+
+.article-spoiler-notice {
+    border-left-color: #f6c945;
+    background: rgba(246, 201, 69, 0.08);
+}
+
+.article-toc ol {
+    margin: 0.7rem 0 0;
+    padding-left: 1.2rem;
+}
+
+.article-toc li + li {
+    margin-top: 0.35rem;
+}
+
+.article-toc li[data-level="3"] {
+    margin-left: 1rem;
+}
+
+.article-toc a {
+    color: var(--text-soft);
+}
+
 .post-body {
     width: min(100%, var(--reading-width));
     margin: 0 auto;
