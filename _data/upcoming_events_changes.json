@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-19T15:41:29.314Z",
+  "generated_at": "2026-08-19T22:36:40.408Z",
   "changes": [
+    {
+      "id": "2026-08-19T22:36:40.408Z|ufc-fight-night-2026-09-05-fight-card|bout_added|1",
+      "at": "2026-08-19T22:36:40.408Z",
+      "type": "bout_added",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Delphine Benouaich vs Sofia Montenegro added to Hooker vs Parnasse.",
+      "details": {
+        "order": 12,
+        "section": "Prelims",
+        "weight_class": "Women's Strawweight Bout"
+      }
+    },
     {
       "id": "2026-08-19T15:41:29.314Z|ufc-fight-night-2026-08-29-fight-card|bout_moved|1",
       "at": "2026-08-19T15:41:29.314Z",
