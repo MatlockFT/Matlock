@@ -57,9 +57,9 @@
       "verdict_event_id": "1919",
       "verdict_url": "https://verdictmma.com/event/1919",
       "verdict_date": "2026-08-29",
-      "local_fight_count": 9,
+      "local_fight_count": 10,
       "verdict_fight_count": 9,
-      "local_main_count": 5,
+      "local_main_count": 6,
       "verdict_main_count": 6,
       "local_prelim_count": 4,
       "verdict_prelim_count": 3,
@@ -183,10 +183,27 @@
   ],
   "discrepancies": [
     {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "verdict_event_id": "1919",
+      "local_fight_count": 10,
+      "verdict_fight_count": 9
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "verdict_event_id": "1919",
+      "order": 6,
+      "fighters": [
+        "Bilal Hasan",
+        "Nilson Rojas"
+      ]
+    },
+    {
       "type": "section_count_mismatch",
       "event_id": "ufc-fight-night-2026-08-29-fight-card",
       "verdict_event_id": "1919",
-      "local_main_count": 5,
+      "local_main_count": 6,
       "verdict_main_count": 6,
       "local_prelim_count": 4,
       "verdict_prelim_count": 3

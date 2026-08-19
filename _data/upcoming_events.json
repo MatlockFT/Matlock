@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-19T10:38:27.866Z",
+  "generated_at": "2026-08-19T15:40:43.073Z",
   "events": [
     {
       "id": "pfl-tampa-2026-08-22",
@@ -835,6 +835,27 @@
                   "image_framing": "safe"
                 }
               ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Bilal Hasan",
+                  "initials": "BH",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1749486832bilalhasan.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Nilson Rojas",
+                  "initials": "NR",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1784787309Nilson_Rojas.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
             }
           ]
         },
@@ -844,7 +865,7 @@
           "time": "3:00 AM ET",
           "bouts": [
             {
-              "order": 6,
+              "order": 7,
               "label": "",
               "weight_class": "Flyweight Bout",
               "fighters": [
@@ -861,27 +882,6 @@
                   "image": "https://a.espncdn.com/i/headshots/mma/players/full/5483.png",
                   "image_source": "espn",
                   "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 7,
-              "label": "",
-              "weight_class": "Featherweight Bout",
-              "fighters": [
-                {
-                  "name": "Jack Jenkins",
-                  "initials": "JJ",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220828025238_Jack_Jenkins.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Sean Woodson",
-                  "initials": "SW",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20230622024125_Sean_Woodson_ff.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
                 }
               ]
             },
@@ -908,6 +908,27 @@
             },
             {
               "order": 9,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Jack Jenkins",
+                  "initials": "JJ",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220828025238_Jack_Jenkins.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Sean Woodson",
+                  "initials": "SW",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20230622024125_Sean_Woodson_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 10,
               "label": "",
               "weight_class": "Women's Strawweight Bout",
               "fighters": [
