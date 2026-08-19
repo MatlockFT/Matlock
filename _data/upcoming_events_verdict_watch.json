@@ -9,10 +9,17 @@
       "promotion": "pfl",
       "date": "2026-08-22",
       "title": "Tampa",
-      "status": "coverage_gap",
+      "status": "matched",
+      "verdict_event_id": "1961",
+      "verdict_url": "https://verdictmma.com/event/1961",
+      "verdict_date": "2026-08-22",
       "local_fight_count": 12,
+      "verdict_fight_count": 12,
       "local_main_count": 5,
-      "local_prelim_count": 7
+      "verdict_main_count": 5,
+      "local_prelim_count": 7,
+      "verdict_prelim_count": 7,
+      "confirmed_local_bouts": 10
     },
     {
       "event_id": "ufc-fight-night-sacramento-2026-08-22",
@@ -182,6 +189,26 @@
     }
   ],
   "discrepancies": [
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "pfl-tampa-2026-08-22",
+      "verdict_event_id": "1961",
+      "order": 2,
+      "fighters": [
+        "Gadzhi Rabadanov",
+        "Jakub Kaszuba"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "pfl-tampa-2026-08-22",
+      "verdict_event_id": "1961",
+      "order": 3,
+      "fighters": [
+        "Gustavo Oliveira",
+        "Marcirley Alves"
+      ]
+    },
     {
       "type": "bout_count_mismatch",
       "event_id": "ufc-fight-night-2026-08-29-fight-card",
