@@ -1,7 +1,68 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-18T10:15:52.674Z",
+  "generated_at": "2026-08-19T02:08:25.427Z",
   "changes": [
+    {
+      "id": "2026-08-19T02:08:25.427Z|ufc-fight-night-2026-09-26-fight-card|event_added|1",
+      "at": "2026-08-19T02:08:25.427Z",
+      "type": "event_added",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "UFC Fight Night Jr. vs Barcelos added to Upcoming Events.",
+      "details": {
+        "bout_count": 1,
+        "venue": "Venue TBA",
+        "date": "2026-09-26"
+      }
+    },
+    {
+      "id": "2026-08-19T02:08:25.427Z|ufc-332-2026-10-03-fight-card|event_added|2",
+      "at": "2026-08-19T02:08:25.427Z",
+      "type": "event_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "UFC 332 Figueiredo vs Talbott added to Upcoming Events.",
+      "details": {
+        "bout_count": 7,
+        "venue": "Venue TBA",
+        "date": "2026-10-03"
+      }
+    },
+    {
+      "id": "2026-08-19T02:08:25.427Z|ufc-fight-night-2026-08-29-fight-card|bout_moved|3",
+      "at": "2026-08-19T02:08:25.427Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Namsrai Batbayar vs Andre Lima moved on Nurmagomedov vs Yadong.",
+      "details": {
+        "from_order": 6,
+        "to_order": 6,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-19T02:08:25.427Z|ufc-fight-night-2026-10-17-fight-card|bout_added|4",
+      "at": "2026-08-19T02:08:25.427Z",
+      "type": "bout_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Julien Leblanc vs Gilbert Urbina added to Buckley vs Malott.",
+      "details": {
+        "order": 9,
+        "section": "Main Card",
+        "weight_class": "Middleweight Bout"
+      }
+    },
     {
       "id": "2026-08-18T10:15:52.674Z|dwcs-season-10-week-2-2026-08-18|bout_moved|1",
       "at": "2026-08-18T10:15:52.674Z",

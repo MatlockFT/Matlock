@@ -59,9 +59,9 @@
       "verdict_date": "2026-08-29",
       "local_fight_count": 9,
       "verdict_fight_count": 9,
-      "local_main_count": 6,
+      "local_main_count": 5,
       "verdict_main_count": 6,
-      "local_prelim_count": 3,
+      "local_prelim_count": 4,
       "verdict_prelim_count": 3,
       "confirmed_local_bouts": 9
     },
@@ -110,6 +110,23 @@
       "confirmed_local_bouts": 10
     },
     {
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "ufc",
+      "date": "2026-09-26",
+      "title": "Jr. vs Barcelos",
+      "status": "matched",
+      "verdict_event_id": "1959",
+      "verdict_url": "https://verdictmma.com/event/1959",
+      "verdict_date": "2026-09-26",
+      "local_fight_count": 1,
+      "verdict_fight_count": null,
+      "local_main_count": 1,
+      "verdict_main_count": null,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": null,
+      "confirmed_local_bouts": 1
+    },
+    {
       "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
       "promotion": "rizin",
       "date": "2026-10-03",
@@ -117,6 +134,16 @@
       "status": "coverage_gap",
       "local_fight_count": 3,
       "local_main_count": 3,
+      "local_prelim_count": 0
+    },
+    {
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "ufc",
+      "date": "2026-10-03",
+      "title": "Figueiredo vs Talbott",
+      "status": "coverage_gap",
+      "local_fight_count": 7,
+      "local_main_count": 7,
       "local_prelim_count": 0
     },
     {
@@ -128,9 +155,9 @@
       "verdict_event_id": "1936",
       "verdict_url": "https://verdictmma.com/event/1936",
       "verdict_date": "2026-10-17",
-      "local_fight_count": 8,
+      "local_fight_count": 9,
       "verdict_fight_count": null,
-      "local_main_count": 8,
+      "local_main_count": 9,
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
@@ -155,6 +182,15 @@
     }
   ],
   "discrepancies": [
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "verdict_event_id": "1919",
+      "local_main_count": 5,
+      "verdict_main_count": 6,
+      "local_prelim_count": 4,
+      "verdict_prelim_count": 3
+    },
     {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
@@ -183,6 +219,16 @@
       "fighters": [
         "Louis Jourdain",
         "Timmy Cuamba"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "verdict_event_id": "1936",
+      "order": 9,
+      "fighters": [
+        "Julien Leblanc",
+        "Gilbert Urbina"
       ]
     }
   ]
