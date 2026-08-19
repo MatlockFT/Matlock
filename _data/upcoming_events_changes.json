@@ -1,7 +1,37 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-19T02:08:25.427Z",
+  "generated_at": "2026-08-19T10:39:13.278Z",
   "changes": [
+    {
+      "id": "2026-08-19T10:39:13.278Z|dwcs-season-10-week-3-2026-08-25|event_added|1",
+      "at": "2026-08-19T10:39:13.278Z",
+      "type": "event_added",
+      "event_id": "dwcs-season-10-week-3-2026-08-25",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 3",
+      "event_date": "2026-08-25",
+      "summary": "DWCS Season 10 · Week 3 added to Upcoming Events.",
+      "details": {
+        "bout_count": 5,
+        "venue": "Meta APEX · Las Vegas, Nevada",
+        "date": "2026-08-25"
+      }
+    },
+    {
+      "id": "2026-08-19T10:39:13.278Z|dwcs-season-10-week-2-2026-08-18|event_removed|2",
+      "at": "2026-08-19T10:39:13.278Z",
+      "type": "event_removed",
+      "event_id": "dwcs-season-10-week-2-2026-08-18",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 2",
+      "event_date": "2026-08-18",
+      "summary": "DWCS Season 10 · Week 2 removed from Upcoming Events.",
+      "details": {
+        "bout_count": 5,
+        "venue": "Meta APEX · Las Vegas, Nevada",
+        "date": "2026-08-18"
+      }
+    },
     {
       "id": "2026-08-19T02:08:25.427Z|ufc-fight-night-2026-09-26-fight-card|event_added|1",
       "at": "2026-08-19T02:08:25.427Z",

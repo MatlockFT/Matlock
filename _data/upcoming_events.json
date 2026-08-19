@@ -1,134 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-19T04:47:05.119Z",
+  "generated_at": "2026-08-19T10:38:27.866Z",
   "events": [
-    {
-      "id": "dwcs-season-10-week-2-2026-08-18",
-      "promotion_key": "dwcs",
-      "promotion": "DWCS",
-      "title": "Season 10 · Week 2",
-      "date": "2026-08-18",
-      "date_label": "Tuesday · August 18, 2026",
-      "venue": "Meta APEX · Las Vegas, Nevada",
-      "broadcast": "Paramount+",
-      "official_url": "https://www.ufc.com/dwcs#season-10-week-2",
-      "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-2-112629",
-      "updated_label": "August 18, 2026",
-      "sections": [
-        {
-          "kind": "main",
-          "title": "Fight Card",
-          "time": "8:00 PM ET",
-          "bouts": [
-            {
-              "order": 1,
-              "label": "Main Event",
-              "weight_class": "Welterweight",
-              "fighters": [
-                {
-                  "name": "Kaik Brito",
-                  "initials": "KB",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1733553091brito.png",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Namo Fazil",
-                  "initials": "NF",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1706237758Namo_Fazil-hero-1200x1165-1.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Middleweight",
-              "fighters": [
-                {
-                  "name": "Trent Miller",
-                  "initials": "TM",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250522110317_Trent_Miller.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Douglas Henrique Rodrigues",
-                  "initials": "DHR",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1762361625douglasrodrigues.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 3,
-              "label": "",
-              "weight_class": "Lightweight",
-              "fighters": [
-                {
-                  "name": "Cristian Perez",
-                  "initials": "CP",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1693075036Snapinsta.app_361807624_983253436354360_1787069878807646479_n_1080.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Logan Paxton",
-                  "initials": "LP",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1632450260Logan_Paxton.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 4,
-              "label": "",
-              "weight_class": "Light Heavyweight",
-              "fighters": [
-                {
-                  "name": "Alik Lorenz",
-                  "initials": "AL",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1734536259lorenz.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Mahamed Aly",
-                  "initials": "MA",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1754681880mahamedaly.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
-              "weight_class": "Featherweight",
-              "fighters": [
-                {
-                  "name": "Roman Puga",
-                  "initials": "RP",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20241201124453_RX3_6477.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Taner Trembley",
-                  "initials": "TT",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1744909896tanertrembley.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
     {
       "id": "pfl-tampa-2026-08-22",
       "promotion_key": "pfl",
@@ -139,7 +12,7 @@
       "venue": "Benchmark International Arena, Tampa, FL",
       "broadcast": "ESPN",
       "official_url": "https://pflmma.com/event/pfl-tampa",
-      "updated_label": "August 18, 2026",
+      "updated_label": "August 19, 2026",
       "sections": [
         {
           "kind": "main",
@@ -421,7 +294,7 @@
       "venue": "Golden 1 Center · Sacramento, California",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-august-22-2026",
-      "updated_label": "August 18, 2026",
+      "updated_label": "August 19, 2026",
       "sections": [
         {
           "kind": "main",
@@ -713,6 +586,133 @@
       ]
     },
     {
+      "id": "dwcs-season-10-week-3-2026-08-25",
+      "promotion_key": "dwcs",
+      "promotion": "DWCS",
+      "title": "Season 10 · Week 3",
+      "date": "2026-08-25",
+      "date_label": "Tuesday · August 25, 2026",
+      "venue": "Meta APEX · Las Vegas, Nevada",
+      "broadcast": "Paramount+",
+      "official_url": "https://www.ufc.com/dwcs#season-10-week-3",
+      "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-3-112628",
+      "updated_label": "August 19, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Fight Card",
+          "time": "8:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Bantamweight",
+              "fighters": [
+                {
+                  "name": "Bella Mir",
+                  "initials": "BM",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250727070809_Bella_Mir.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Alex Apodaca",
+                  "initials": "AA",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20260725012459_Alex_Apodaca.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Heavyweight",
+              "fighters": [
+                {
+                  "name": "Mario Piazzon",
+                  "initials": "MP",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1682374237e4b95ad0-efbe-4795-89c8-00d210089198.jpeg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Guilherme Uriel",
+                  "initials": "GU",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1724756252eeee.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Welterweight",
+              "fighters": [
+                {
+                  "name": "Sean Clancy Jr.",
+                  "initials": "SCJ",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732379692sean.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Gary Balletto Jr.",
+                  "initials": "GBJ",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/152308123810455092_948218908571385_6897623768572752228_n.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Welterweight",
+              "fighters": [
+                {
+                  "name": "Alexis Miranda",
+                  "initials": "AM",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1669661792Alexis_Miranda.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Ronald Humphrey",
+                  "initials": "RH",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1767666310ronaldhumphrey.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Middleweight",
+              "fighters": [
+                {
+                  "name": "Nick Galanti",
+                  "initials": "NG",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1778698445nickgalanti.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Carlos Petruzzella",
+                  "initials": "CP",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1731596822petruzzella.jpeg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "ufc-fight-night-2026-08-29-fight-card",
       "promotion_key": "ufc",
       "promotion": "UFC Fight Night",
@@ -724,7 +724,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-august-29-2026",
-      "updated_label": "August 18, 2026",
+      "updated_label": "August 19, 2026",
       "sections": [
         {
           "kind": "main",
@@ -943,7 +943,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-september-05-2026",
-      "updated_label": "August 18, 2026",
+      "updated_label": "August 19, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1202,7 +1202,7 @@
       "venue": "京セラドーム大阪",
       "broadcast": "RIZIN 100 CLUB · RIZIN LIVE · ABEMA · Sky PerfecTV",
       "official_url": "https://jp.rizinff.com/_ct/17834937",
-      "updated_label": "August 18, 2026",
+      "updated_label": "August 19, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1415,7 +1415,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
-      "updated_label": "August 18, 2026",
+      "updated_label": "August 19, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1655,7 +1655,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
-      "updated_label": "August 18, 2026",
+      "updated_label": "August 19, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1697,7 +1697,7 @@
       "venue": "長崎スタジアムシティ HAPPINESS ARENA",
       "broadcast": "RIZIN 100 CLUB",
       "official_url": "https://jp.rizinff.com/_ct/17852438",
-      "updated_label": "August 18, 2026",
+      "updated_label": "August 19, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1784,7 +1784,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-332",
-      "updated_label": "August 18, 2026",
+      "updated_label": "August 19, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1954,7 +1954,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-      "updated_label": "August 18, 2026",
+      "updated_label": "August 19, 2026",
       "sections": [
         {
           "kind": "main",
@@ -2166,7 +2166,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-333",
-      "updated_label": "August 18, 2026",
+      "updated_label": "August 19, 2026",
       "sections": [
         {
           "kind": "main",
