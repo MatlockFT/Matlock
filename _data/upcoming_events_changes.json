@@ -1,7 +1,84 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-19T22:36:40.408Z",
+  "generated_at": "2026-08-20T23:12:49.316Z",
   "changes": [
+    {
+      "id": "2026-08-20T23:12:49.316Z|ufc-fight-night-2026-08-29-fight-card|bout_moved|1",
+      "at": "2026-08-20T23:12:49.316Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Jack Jenkins vs Sean Woodson moved on Nurmagomedov vs Yadong.",
+      "details": {
+        "from_order": 9,
+        "to_order": 10,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-20T23:12:49.316Z|ufc-fight-night-2026-08-29-fight-card|bout_moved|2",
+      "at": "2026-08-20T23:12:49.316Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Xiong Jingnan vs Julia Polastri moved on Nurmagomedov vs Yadong.",
+      "details": {
+        "from_order": 10,
+        "to_order": 12,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-20T23:12:49.316Z|ufc-fight-night-2026-08-29-fight-card|bout_added|3",
+      "at": "2026-08-20T23:12:49.316Z",
+      "type": "bout_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Xiao Long vs Francesco Nuzzi added to Nurmagomedov vs Yadong.",
+      "details": {
+        "order": 9,
+        "section": "Prelims",
+        "weight_class": "Bantamweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-20T23:12:49.316Z|ufc-fight-night-2026-08-29-fight-card|bout_added|4",
+      "at": "2026-08-20T23:12:49.316Z",
+      "type": "bout_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Lawrence Lui vs Hector de Sousa Santiago added to Nurmagomedov vs Yadong.",
+      "details": {
+        "order": 11,
+        "section": "Prelims",
+        "weight_class": "Bantamweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-20T23:12:49.316Z|ufc-fight-night-2026-08-29-fight-card|bout_added|5",
+      "at": "2026-08-20T23:12:49.316Z",
+      "type": "bout_added",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Ding Meng vs Cameron Nelson added to Nurmagomedov vs Yadong.",
+      "details": {
+        "order": 13,
+        "section": "Prelims",
+        "weight_class": "Welterweight Bout"
+      }
+    },
     {
       "id": "2026-08-19T22:36:40.408Z|ufc-fight-night-2026-09-05-fight-card|bout_added|1",
       "at": "2026-08-19T22:36:40.408Z",

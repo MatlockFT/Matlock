@@ -64,11 +64,11 @@
       "verdict_event_id": "1919",
       "verdict_url": "https://verdictmma.com/event/1919",
       "verdict_date": "2026-08-29",
-      "local_fight_count": 10,
+      "local_fight_count": 13,
       "verdict_fight_count": 9,
       "local_main_count": 6,
       "verdict_main_count": 6,
-      "local_prelim_count": 4,
+      "local_prelim_count": 7,
       "verdict_prelim_count": 3,
       "confirmed_local_bouts": 9
     },
@@ -82,12 +82,12 @@
       "verdict_url": "https://verdictmma.com/event/1905",
       "verdict_date": "2026-09-05",
       "local_fight_count": 12,
-      "verdict_fight_count": 11,
+      "verdict_fight_count": 12,
       "local_main_count": 5,
       "verdict_main_count": 5,
       "local_prelim_count": 7,
-      "verdict_prelim_count": 6,
-      "confirmed_local_bouts": 11
+      "verdict_prelim_count": 7,
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
@@ -213,8 +213,28 @@
       "type": "bout_count_mismatch",
       "event_id": "ufc-fight-night-2026-08-29-fight-card",
       "verdict_event_id": "1919",
-      "local_fight_count": 10,
+      "local_fight_count": 13,
       "verdict_fight_count": 9
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "verdict_event_id": "1919",
+      "order": 11,
+      "fighters": [
+        "Lawrence Lui",
+        "Hector de Sousa Santiago"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "verdict_event_id": "1919",
+      "order": 13,
+      "fighters": [
+        "Ding Meng",
+        "Cameron Nelson"
+      ]
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -227,39 +247,23 @@
       ]
     },
     {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "verdict_event_id": "1919",
+      "order": 9,
+      "fighters": [
+        "Xiao Long",
+        "Francesco Nuzzi"
+      ]
+    },
+    {
       "type": "section_count_mismatch",
       "event_id": "ufc-fight-night-2026-08-29-fight-card",
       "verdict_event_id": "1919",
       "local_main_count": 6,
       "verdict_main_count": 6,
-      "local_prelim_count": 4,
-      "verdict_prelim_count": 3
-    },
-    {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "verdict_event_id": "1905",
-      "local_fight_count": 12,
-      "verdict_fight_count": 11
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "verdict_event_id": "1905",
-      "order": 12,
-      "fighters": [
-        "Delphine Benouaich",
-        "Sofia Montenegro"
-      ]
-    },
-    {
-      "type": "section_count_mismatch",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "verdict_event_id": "1905",
-      "local_main_count": 5,
-      "verdict_main_count": 5,
       "local_prelim_count": 7,
-      "verdict_prelim_count": 6
+      "verdict_prelim_count": 3
     },
     {
       "type": "local_bout_not_found_on_verdict",
