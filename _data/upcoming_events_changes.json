@@ -1,7 +1,51 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-20T23:12:49.316Z",
+  "generated_at": "2026-08-20T23:45:42.176Z",
   "changes": [
+    {
+      "id": "2026-08-20T23:45:42.176Z|ufc-fight-night-2026-08-29-fight-card|bout_changed|1",
+      "at": "2026-08-20T23:45:42.176Z",
+      "type": "bout_changed",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Lawrence Lui vs Hector de Sousa Santiago changed to Lawrence Lui vs Hector Santiago on Nurmagomedov vs Yadong.",
+      "details": {
+        "order": 11,
+        "section": "Prelims",
+        "from": [
+          "Lawrence Lui",
+          "Hector de Sousa Santiago"
+        ],
+        "to": [
+          "Lawrence Lui",
+          "Hector Santiago"
+        ]
+      }
+    },
+    {
+      "id": "2026-08-20T23:45:42.176Z|ufc-fight-night-2026-08-29-fight-card|bout_changed|2",
+      "at": "2026-08-20T23:45:42.176Z",
+      "type": "bout_changed",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Ding Meng vs Cameron Nelson changed to Ding Meng vs Cam Nelson on Nurmagomedov vs Yadong.",
+      "details": {
+        "order": 13,
+        "section": "Prelims",
+        "from": [
+          "Ding Meng",
+          "Cameron Nelson"
+        ],
+        "to": [
+          "Ding Meng",
+          "Cam Nelson"
+        ]
+      }
+    },
     {
       "id": "2026-08-20T23:12:49.316Z|ufc-fight-night-2026-08-29-fight-card|bout_moved|1",
       "at": "2026-08-20T23:12:49.316Z",
