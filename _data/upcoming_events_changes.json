@@ -1,7 +1,959 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-21T16:21:35.713Z",
+  "generated_at": "2026-08-21T17:06:30.624Z",
   "changes": [
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|1",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Joseph Morales portrait added.",
+      "details": {
+        "fighter": "Joseph Morales",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|2",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Tommy McMillen portrait added.",
+      "details": {
+        "fighter": "Tommy McMillen",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|3",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Marwan Rahiki portrait added.",
+      "details": {
+        "fighter": "Marwan Rahiki",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|4",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Manon Fiorot portrait added.",
+      "details": {
+        "fighter": "Manon Fiorot",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|5",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Alexa Grasso portrait added.",
+      "details": {
+        "fighter": "Alexa Grasso",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|6",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Waldo Cortes Acosta portrait added.",
+      "details": {
+        "fighter": "Waldo Cortes Acosta",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|7",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Curtis Blaydes portrait added.",
+      "details": {
+        "fighter": "Curtis Blaydes",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|8",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "David Martinez portrait added.",
+      "details": {
+        "fighter": "David Martinez",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|9",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Dan Ige portrait added.",
+      "details": {
+        "fighter": "Dan Ige",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|10",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Tim Elliott portrait added.",
+      "details": {
+        "fighter": "Tim Elliott",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|11",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Edgar Chairez portrait added.",
+      "details": {
+        "fighter": "Edgar Chairez",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|12",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Ignacio Bahamondes portrait added.",
+      "details": {
+        "fighter": "Ignacio Bahamondes",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|13",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Muslim Salikhov portrait added.",
+      "details": {
+        "fighter": "Muslim Salikhov",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|14",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Kelvin Gastelum portrait added.",
+      "details": {
+        "fighter": "Kelvin Gastelum",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|15",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Yousri Belgaroui portrait added.",
+      "details": {
+        "fighter": "Yousri Belgaroui",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|16",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "JJ Aldrich portrait added.",
+      "details": {
+        "fighter": "JJ Aldrich",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|noche-ufc-2026-09-12-fight-card|portrait_added|17",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Regina Tarin portrait added.",
+      "details": {
+        "fighter": "Regina Tarin",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-09-26-fight-card|portrait_added|18",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Raul Rosas Jr. portrait added.",
+      "details": {
+        "fighter": "Raul Rosas Jr.",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-09-26-fight-card|portrait_added|19",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Raoni Barcelos portrait added.",
+      "details": {
+        "fighter": "Raoni Barcelos",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-332-2026-10-03-fight-card|portrait_added|20",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "Deiveson Figueiredo portrait added.",
+      "details": {
+        "fighter": "Deiveson Figueiredo",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-332-2026-10-03-fight-card|portrait_added|21",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "Payton Talbott portrait added.",
+      "details": {
+        "fighter": "Payton Talbott",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-332-2026-10-03-fight-card|portrait_added|22",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "Johnny Walker portrait added.",
+      "details": {
+        "fighter": "Johnny Walker",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-332-2026-10-03-fight-card|portrait_added|23",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "Mick Parkin portrait added.",
+      "details": {
+        "fighter": "Mick Parkin",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-332-2026-10-03-fight-card|portrait_added|24",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "Marvin Vettori portrait added.",
+      "details": {
+        "fighter": "Marvin Vettori",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-332-2026-10-03-fight-card|portrait_added|25",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "Ismail Naurdiev portrait added.",
+      "details": {
+        "fighter": "Ismail Naurdiev",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-332-2026-10-03-fight-card|portrait_added|26",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "Ateba Gautier portrait added.",
+      "details": {
+        "fighter": "Ateba Gautier",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-332-2026-10-03-fight-card|portrait_added|27",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "Roman Kopylov portrait added.",
+      "details": {
+        "fighter": "Roman Kopylov",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-332-2026-10-03-fight-card|portrait_added|28",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "Imanol Rodriguez portrait added.",
+      "details": {
+        "fighter": "Imanol Rodriguez",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-332-2026-10-03-fight-card|portrait_added|29",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "Alden Coria portrait added.",
+      "details": {
+        "fighter": "Alden Coria",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-332-2026-10-03-fight-card|portrait_added|30",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "Damian Pinas portrait added.",
+      "details": {
+        "fighter": "Damian Pinas",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-332-2026-10-03-fight-card|portrait_added|31",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "Andrey Pulyaev portrait added.",
+      "details": {
+        "fighter": "Andrey Pulyaev",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-332-2026-10-03-fight-card|portrait_added|32",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "Court McGee portrait added.",
+      "details": {
+        "fighter": "Court McGee",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-332-2026-10-03-fight-card|portrait_added|33",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "Eric Nolan portrait added.",
+      "details": {
+        "fighter": "Eric Nolan",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|34",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Joaquin Buckley portrait added.",
+      "details": {
+        "fighter": "Joaquin Buckley",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|35",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Mike Malott portrait added.",
+      "details": {
+        "fighter": "Mike Malott",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|36",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Erin Blanchfield portrait added.",
+      "details": {
+        "fighter": "Erin Blanchfield",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|37",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Jasmine Jasudavicius portrait added.",
+      "details": {
+        "fighter": "Jasmine Jasudavicius",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|38",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Marc-Andre Barriault portrait added.",
+      "details": {
+        "fighter": "Marc-Andre Barriault",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|39",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Kyle Daukaus portrait added.",
+      "details": {
+        "fighter": "Kyle Daukaus",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|40",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Jamey-Lyn Horth portrait added.",
+      "details": {
+        "fighter": "Jamey-Lyn Horth",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|41",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Katlyn Cerminara portrait added.",
+      "details": {
+        "fighter": "Katlyn Cerminara",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|42",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Tanner Boser portrait added.",
+      "details": {
+        "fighter": "Tanner Boser",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|43",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Jhonata Diniz portrait added.",
+      "details": {
+        "fighter": "Jhonata Diniz",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|44",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Mandel Nallo portrait added.",
+      "details": {
+        "fighter": "Mandel Nallo",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|45",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Nate Landwehr portrait added.",
+      "details": {
+        "fighter": "Nate Landwehr",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|46",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Melissa Croden portrait added.",
+      "details": {
+        "fighter": "Melissa Croden",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|47",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Chelsea Chandler portrait added.",
+      "details": {
+        "fighter": "Chelsea Chandler",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|48",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Louis Jourdain portrait added.",
+      "details": {
+        "fighter": "Louis Jourdain",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|49",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Timmy Cuamba portrait added.",
+      "details": {
+        "fighter": "Timmy Cuamba",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|50",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Julien Leblanc portrait added.",
+      "details": {
+        "fighter": "Julien Leblanc",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-fight-night-2026-10-17-fight-card|portrait_added|51",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Gilbert Urbina portrait added.",
+      "details": {
+        "fighter": "Gilbert Urbina",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|52",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Alexander Volkanovski portrait added.",
+      "details": {
+        "fighter": "Alexander Volkanovski",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|53",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Movsar Evloev portrait added.",
+      "details": {
+        "fighter": "Movsar Evloev",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|54",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Petr Yan portrait added.",
+      "details": {
+        "fighter": "Petr Yan",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|55",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Merab Dvalishvili portrait added.",
+      "details": {
+        "fighter": "Merab Dvalishvili",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|56",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Lone’er Kavanagh portrait added.",
+      "details": {
+        "fighter": "Lone’er Kavanagh",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|57",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Alexander Volkov portrait added.",
+      "details": {
+        "fighter": "Alexander Volkov",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|58",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Rizvan Kuniev portrait added.",
+      "details": {
+        "fighter": "Rizvan Kuniev",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|59",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Arnold Allen portrait added.",
+      "details": {
+        "fighter": "Arnold Allen",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|60",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Aaron Pico portrait added.",
+      "details": {
+        "fighter": "Aaron Pico",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|61",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Azamat Murzakanov portrait added.",
+      "details": {
+        "fighter": "Azamat Murzakanov",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|62",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Dominick Reyes portrait added.",
+      "details": {
+        "fighter": "Dominick Reyes",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|63",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Abus Magomedov portrait added.",
+      "details": {
+        "fighter": "Abus Magomedov",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|64",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Cam Rowston portrait added.",
+      "details": {
+        "fighter": "Cam Rowston",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|65",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Nikita Krylov portrait added.",
+      "details": {
+        "fighter": "Nikita Krylov",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|66",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Abdul Rakhman Yakhyaev portrait added.",
+      "details": {
+        "fighter": "Abdul Rakhman Yakhyaev",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|67",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Grant Dawson portrait added.",
+      "details": {
+        "fighter": "Grant Dawson",
+        "source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-08-21T17:06:30.624Z|ufc-333-2026-10-24-fight-card|portrait_added|68",
+      "at": "2026-08-21T17:06:30.624Z",
+      "type": "portrait_added",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "Nurullo Aliev portrait added.",
+      "details": {
+        "fighter": "Nurullo Aliev",
+        "source": "sherdog"
+      }
+    },
     {
       "id": "2026-08-21T16:21:35.713Z|ufc-fight-night-2026-08-29-fight-card|bout_moved|1",
       "at": "2026-08-21T16:21:35.713Z",
@@ -3450,620 +4402,6 @@
         "fighter": "Ketlen Vieira",
         "from_source": "espn",
         "to_source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_changed|3",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_changed",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Gadzhi Rabadanov portrait source changed.",
-      "details": {
-        "fighter": "Gadzhi Rabadanov",
-        "from_source": "espn",
-        "to_source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_changed|4",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_changed",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Jakub Kaszuba portrait source changed.",
-      "details": {
-        "fighter": "Jakub Kaszuba",
-        "from_source": "espn",
-        "to_source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_changed|5",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_changed",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Gustavo Oliveira portrait source changed.",
-      "details": {
-        "fighter": "Gustavo Oliveira",
-        "from_source": "external",
-        "to_source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_changed|6",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_changed",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Marcirley Alves portrait source changed.",
-      "details": {
-        "fighter": "Marcirley Alves",
-        "from_source": "external",
-        "to_source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_changed|7",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_changed",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Luke Trainer portrait source changed.",
-      "details": {
-        "fighter": "Luke Trainer",
-        "from_source": "external",
-        "to_source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_changed|8",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_changed",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Roland Dunlap portrait source changed.",
-      "details": {
-        "fighter": "Roland Dunlap",
-        "from_source": "espn",
-        "to_source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_changed|9",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_changed",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Magomed Magomedov portrait source changed.",
-      "details": {
-        "fighter": "Magomed Magomedov",
-        "from_source": "external",
-        "to_source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_changed|10",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_changed",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Daniel Marcos portrait source changed.",
-      "details": {
-        "fighter": "Daniel Marcos",
-        "from_source": "espn",
-        "to_source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_changed|11",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_changed",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Taila Santos portrait source changed.",
-      "details": {
-        "fighter": "Taila Santos",
-        "from_source": "external",
-        "to_source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_added|12",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Sabrinna de Sousa portrait added.",
-      "details": {
-        "fighter": "Sabrinna de Sousa",
-        "source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_changed|13",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_changed",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Movsar Ibragimov portrait source changed.",
-      "details": {
-        "fighter": "Movsar Ibragimov",
-        "from_source": "external",
-        "to_source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_added|14",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Javid Basharat portrait added.",
-      "details": {
-        "fighter": "Javid Basharat",
-        "source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_added|15",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Dakota Bush portrait added.",
-      "details": {
-        "fighter": "Dakota Bush",
-        "source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_added|16",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Morquez Forest portrait added.",
-      "details": {
-        "fighter": "Morquez Forest",
-        "source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_changed|17",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_changed",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Natan Schulte portrait source changed.",
-      "details": {
-        "fighter": "Natan Schulte",
-        "from_source": "external",
-        "to_source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_changed|18",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_changed",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Makkasharip Zaynukov portrait source changed.",
-      "details": {
-        "fighter": "Makkasharip Zaynukov",
-        "from_source": "external",
-        "to_source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_changed|19",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_changed",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Robert Watley portrait source changed.",
-      "details": {
-        "fighter": "Robert Watley",
-        "from_source": "external",
-        "to_source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_changed|20",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_changed",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Florim Zendeli portrait source changed.",
-      "details": {
-        "fighter": "Florim Zendeli",
-        "from_source": "external",
-        "to_source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_added|21",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Omran Chaaban portrait added.",
-      "details": {
-        "fighter": "Omran Chaaban",
-        "source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_changed|22",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_changed",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Eoin Sheridan portrait source changed.",
-      "details": {
-        "fighter": "Eoin Sheridan",
-        "from_source": "external",
-        "to_source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:48:32.990Z|pfl-tampa-2026-08-22|portrait_added|23",
-      "at": "2026-08-09T05:48:32.990Z",
-      "type": "portrait_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "James Vake portrait added.",
-      "details": {
-        "fighter": "James Vake",
-        "source": "pfl"
-      }
-    },
-    {
-      "id": "2026-08-09T05:29:00.830Z|pfl-tampa-2026-08-22|bout_added|1",
-      "at": "2026-08-09T05:29:00.830Z",
-      "type": "bout_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Gustavo Oliveira vs Marcirley Alves added to Tampa.",
-      "details": {
-        "order": 3,
-        "section": "Main Card",
-        "weight_class": "Bantamweight"
-      }
-    },
-    {
-      "id": "2026-08-09T05:29:00.830Z|pfl-tampa-2026-08-22|bout_added|2",
-      "at": "2026-08-09T05:29:00.830Z",
-      "type": "bout_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Luke Trainer vs Roland Dunlap added to Tampa.",
-      "details": {
-        "order": 4,
-        "section": "Main Card",
-        "weight_class": "Light Heavyweight"
-      }
-    },
-    {
-      "id": "2026-08-09T05:29:00.830Z|pfl-tampa-2026-08-22|bout_added|3",
-      "at": "2026-08-09T05:29:00.830Z",
-      "type": "bout_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Magomed Magomedov vs Daniel Marcos added to Tampa.",
-      "details": {
-        "order": 5,
-        "section": "Main Card",
-        "weight_class": "Bantamweight"
-      }
-    },
-    {
-      "id": "2026-08-09T05:29:00.830Z|pfl-tampa-2026-08-22|bout_added|4",
-      "at": "2026-08-09T05:29:00.830Z",
-      "type": "bout_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Taila Santos vs Sabrinna de Sousa added to Tampa.",
-      "details": {
-        "order": 6,
-        "section": "Early Card",
-        "weight_class": "Women's Flyweight"
-      }
-    },
-    {
-      "id": "2026-08-09T05:29:00.830Z|pfl-tampa-2026-08-22|bout_added|5",
-      "at": "2026-08-09T05:29:00.830Z",
-      "type": "bout_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Movsar Ibragimov vs Javid Basharat added to Tampa.",
-      "details": {
-        "order": 7,
-        "section": "Early Card",
-        "weight_class": "Bantamweight"
-      }
-    },
-    {
-      "id": "2026-08-09T05:29:00.830Z|pfl-tampa-2026-08-22|bout_added|6",
-      "at": "2026-08-09T05:29:00.830Z",
-      "type": "bout_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Dakota Bush vs Morquez Forest added to Tampa.",
-      "details": {
-        "order": 8,
-        "section": "Early Card",
-        "weight_class": "Lightweight"
-      }
-    },
-    {
-      "id": "2026-08-09T05:29:00.830Z|pfl-tampa-2026-08-22|bout_added|7",
-      "at": "2026-08-09T05:29:00.830Z",
-      "type": "bout_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Natan Schulte vs Makkasharip Zaynukov added to Tampa.",
-      "details": {
-        "order": 9,
-        "section": "Early Card",
-        "weight_class": "Lightweight"
-      }
-    },
-    {
-      "id": "2026-08-09T05:29:00.830Z|pfl-tampa-2026-08-22|bout_added|8",
-      "at": "2026-08-09T05:29:00.830Z",
-      "type": "bout_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Gino van Steenis vs Robert Watley added to Tampa.",
-      "details": {
-        "order": 10,
-        "section": "Early Card",
-        "weight_class": "Lightweight"
-      }
-    },
-    {
-      "id": "2026-08-09T05:29:00.830Z|pfl-tampa-2026-08-22|bout_added|9",
-      "at": "2026-08-09T05:29:00.830Z",
-      "type": "bout_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Florim Zendeli vs Omran Chaaban added to Tampa.",
-      "details": {
-        "order": 11,
-        "section": "Early Card",
-        "weight_class": "Welterweight"
-      }
-    },
-    {
-      "id": "2026-08-09T05:29:00.830Z|pfl-tampa-2026-08-22|bout_added|10",
-      "at": "2026-08-09T05:29:00.830Z",
-      "type": "bout_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Eoin Sheridan vs James Vake added to Tampa.",
-      "details": {
-        "order": 12,
-        "section": "Early Card",
-        "weight_class": "Welterweight"
-      }
-    },
-    {
-      "id": "2026-08-09T05:26:07.514Z|dwcs-season-10-week-1-2026-08-11|portrait_added|1",
-      "at": "2026-08-09T05:26:07.514Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-1-2026-08-11",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 1",
-      "event_date": "2026-08-11",
-      "summary": "Anthony Wint portrait added.",
-      "details": {
-        "fighter": "Anthony Wint",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-09T05:26:07.514Z|dwcs-season-10-week-1-2026-08-11|portrait_added|2",
-      "at": "2026-08-09T05:26:07.514Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-1-2026-08-11",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 1",
-      "event_date": "2026-08-11",
-      "summary": "Matthew Adams portrait added.",
-      "details": {
-        "fighter": "Matthew Adams",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-09T05:26:07.514Z|dwcs-season-10-week-1-2026-08-11|portrait_added|3",
-      "at": "2026-08-09T05:26:07.514Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-1-2026-08-11",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 1",
-      "event_date": "2026-08-11",
-      "summary": "Fabrizio Escarrega portrait added.",
-      "details": {
-        "fighter": "Fabrizio Escarrega",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-09T05:26:07.514Z|dwcs-season-10-week-1-2026-08-11|portrait_added|4",
-      "at": "2026-08-09T05:26:07.514Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-1-2026-08-11",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 1",
-      "event_date": "2026-08-11",
-      "summary": "Abe Alsaghir portrait added.",
-      "details": {
-        "fighter": "Abe Alsaghir",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-09T05:26:07.514Z|dwcs-season-10-week-1-2026-08-11|portrait_added|5",
-      "at": "2026-08-09T05:26:07.514Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-1-2026-08-11",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 1",
-      "event_date": "2026-08-11",
-      "summary": "Mridul Saikia portrait added.",
-      "details": {
-        "fighter": "Mridul Saikia",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-09T05:26:07.514Z|dwcs-season-10-week-1-2026-08-11|portrait_added|6",
-      "at": "2026-08-09T05:26:07.514Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-1-2026-08-11",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 1",
-      "event_date": "2026-08-11",
-      "summary": "Bilal Hasan portrait added.",
-      "details": {
-        "fighter": "Bilal Hasan",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-09T05:26:07.514Z|dwcs-season-10-week-1-2026-08-11|portrait_added|7",
-      "at": "2026-08-09T05:26:07.514Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-1-2026-08-11",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 1",
-      "event_date": "2026-08-11",
-      "summary": "Ananias Mulumba portrait added.",
-      "details": {
-        "fighter": "Ananias Mulumba",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-09T05:26:07.514Z|dwcs-season-10-week-1-2026-08-11|portrait_added|8",
-      "at": "2026-08-09T05:26:07.514Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-1-2026-08-11",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 1",
-      "event_date": "2026-08-11",
-      "summary": "Tom Pagliarulo portrait added.",
-      "details": {
-        "fighter": "Tom Pagliarulo",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-09T05:26:07.514Z|dwcs-season-10-week-1-2026-08-11|portrait_added|9",
-      "at": "2026-08-09T05:26:07.514Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-1-2026-08-11",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 1",
-      "event_date": "2026-08-11",
-      "summary": "Joseph Kropschot portrait added.",
-      "details": {
-        "fighter": "Joseph Kropschot",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-09T05:26:07.514Z|dwcs-season-10-week-1-2026-08-11|portrait_added|10",
-      "at": "2026-08-09T05:26:07.514Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-1-2026-08-11",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 1",
-      "event_date": "2026-08-11",
-      "summary": "Jonathan Kunneman portrait added.",
-      "details": {
-        "fighter": "Jonathan Kunneman",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-09T05:19:41.987Z|dwcs-season-10-week-1-2026-08-11|event_added|1",
-      "at": "2026-08-09T05:19:41.987Z",
-      "type": "event_added",
-      "event_id": "dwcs-season-10-week-1-2026-08-11",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 1",
-      "event_date": "2026-08-11",
-      "summary": "DWCS Season 10 · Week 1 added to Upcoming Events.",
-      "details": {
-        "bout_count": 5,
-        "venue": "Meta APEX · Las Vegas, Nevada",
-        "date": "2026-08-11"
       }
     }
   ]
