@@ -108,11 +108,11 @@
       "verdict_event_id": "1938",
       "verdict_url": "https://verdictmma.com/event/1938",
       "verdict_date": "2026-09-12",
-      "local_fight_count": 10,
+      "local_fight_count": 12,
       "verdict_fight_count": 10,
       "local_main_count": 6,
       "verdict_main_count": 6,
-      "local_prelim_count": 4,
+      "local_prelim_count": 6,
       "verdict_prelim_count": 4,
       "confirmed_local_bouts": 10
     },
@@ -189,6 +189,42 @@
     }
   ],
   "discrepancies": [
+    {
+      "type": "bout_count_mismatch",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "verdict_event_id": "1938",
+      "local_fight_count": 12,
+      "verdict_fight_count": 10
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "verdict_event_id": "1938",
+      "order": 10,
+      "fighters": [
+        "Ramiro Jimenez",
+        "Rodrigo Vera"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "verdict_event_id": "1938",
+      "order": 11,
+      "fighters": [
+        "Rafa Garcia",
+        "Rongzhu"
+      ]
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "verdict_event_id": "1938",
+      "local_main_count": 6,
+      "verdict_main_count": 6,
+      "local_prelim_count": 6,
+      "verdict_prelim_count": 4
+    },
     {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "pfl-tampa-2026-08-22",

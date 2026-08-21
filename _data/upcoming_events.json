@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-21T17:38:50.519Z",
+  "generated_at": "2026-08-21T20:10:06.234Z",
   "events": [
     {
       "id": "pfl-tampa-2026-08-22",
@@ -1725,6 +1725,48 @@
             },
             {
               "order": 10,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Ramiro Jimenez",
+                  "initials": "RJ",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20230826093659_Snapinsta_app_348448068_1888505934867286_3125584825925031656_n_1080.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Rodrigo Vera",
+                  "initials": "RV",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1747341231rodrigovera.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 11,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Rafa Garcia",
+                  "initials": "RG",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220807091759_Rafa_Garcia.PNG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Rongzhu",
+                  "initials": "R",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 12,
               "label": "",
               "weight_class": "Women's Flyweight Bout",
               "fighters": [

@@ -1,7 +1,53 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-21T17:42:35.697Z",
+  "generated_at": "2026-08-21T20:11:12.110Z",
   "changes": [
+    {
+      "id": "2026-08-21T20:11:12.110Z|noche-ufc-2026-09-12-fight-card|bout_moved|1",
+      "at": "2026-08-21T20:11:12.110Z",
+      "type": "bout_moved",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "JJ Aldrich vs Regina Tarin moved on Rodriguez vs Silva.",
+      "details": {
+        "from_order": 10,
+        "to_order": 12,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-21T20:11:12.110Z|noche-ufc-2026-09-12-fight-card|bout_added|2",
+      "at": "2026-08-21T20:11:12.110Z",
+      "type": "bout_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Ramiro Jimenez vs Rodrigo Vera added to Rodriguez vs Silva.",
+      "details": {
+        "order": 10,
+        "section": "Prelims",
+        "weight_class": "Featherweight Bout"
+      }
+    },
+    {
+      "id": "2026-08-21T20:11:12.110Z|noche-ufc-2026-09-12-fight-card|bout_added|3",
+      "at": "2026-08-21T20:11:12.110Z",
+      "type": "bout_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Rodriguez vs Silva",
+      "event_date": "2026-09-12",
+      "summary": "Rafa Garcia vs Rongzhu added to Rodriguez vs Silva.",
+      "details": {
+        "order": 11,
+        "section": "Prelims",
+        "weight_class": "Lightweight Bout"
+      }
+    },
     {
       "id": "2026-08-21T17:42:35.697Z|pfl-tampa-2026-08-22|portrait_added|1",
       "at": "2026-08-21T17:42:35.697Z",
@@ -4300,49 +4346,6 @@
       "details": {
         "fighter": "Timmy Cuamba",
         "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:12:16.561Z|ufc-330-2026-08-15|title_changed|1",
-      "at": "2026-08-14T23:12:16.561Z",
-      "type": "title_changed",
-      "event_id": "ufc-330-2026-08-15",
-      "promotion": "UFC 330",
-      "event_title": "Makhachev vs Machado Garry",
-      "event_date": "2026-08-15",
-      "summary": "UFC 330 Makhachev vs Machado Garry: title changed.",
-      "details": {
-        "from": "Fight Card",
-        "to": "Makhachev vs Machado Garry"
-      }
-    },
-    {
-      "id": "2026-08-14T23:12:16.561Z|ufc-330-2026-08-15|venue_changed|2",
-      "at": "2026-08-14T23:12:16.561Z",
-      "type": "venue_changed",
-      "event_id": "ufc-330-2026-08-15",
-      "promotion": "UFC 330",
-      "event_title": "Makhachev vs Machado Garry",
-      "event_date": "2026-08-15",
-      "summary": "UFC 330 Makhachev vs Machado Garry: venue changed.",
-      "details": {
-        "from": "Venue TBA",
-        "to": "Xfinity Mobile Arena · Philadelphia, Pennsylvania"
-      }
-    },
-    {
-      "id": "2026-08-14T23:12:16.561Z|ufc-330-2026-08-15|start_time_changed|3",
-      "at": "2026-08-14T23:12:16.561Z",
-      "type": "start_time_changed",
-      "event_id": "ufc-330-2026-08-15",
-      "promotion": "UFC 330",
-      "event_title": "Makhachev vs Machado Garry",
-      "event_date": "2026-08-15",
-      "summary": "UFC 330 Makhachev vs Machado Garry: Prelims start time changed.",
-      "details": {
-        "section": "Prelims",
-        "from": "5:30 PM ET",
-        "to": "7:00 PM ET"
       }
     }
   ]
