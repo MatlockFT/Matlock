@@ -1,7 +1,39 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-20T23:45:42.176Z",
+  "generated_at": "2026-08-21T16:21:35.713Z",
   "changes": [
+    {
+      "id": "2026-08-21T16:21:35.713Z|ufc-fight-night-2026-08-29-fight-card|bout_moved|1",
+      "at": "2026-08-21T16:21:35.713Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Jack Jenkins vs Sean Woodson moved on Nurmagomedov vs Yadong.",
+      "details": {
+        "from_order": 10,
+        "to_order": 9,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-21T16:21:35.713Z|ufc-fight-night-2026-08-29-fight-card|bout_moved|2",
+      "at": "2026-08-21T16:21:35.713Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Xiao Long vs Francesco Nuzzi moved on Nurmagomedov vs Yadong.",
+      "details": {
+        "from_order": 9,
+        "to_order": 10,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
     {
       "id": "2026-08-20T23:45:42.176Z|ufc-fight-night-2026-08-29-fight-card|bout_changed|1",
       "at": "2026-08-20T23:45:42.176Z",
