@@ -65,12 +65,12 @@
       "verdict_url": "https://verdictmma.com/event/1919",
       "verdict_date": "2026-08-29",
       "local_fight_count": 13,
-      "verdict_fight_count": 9,
+      "verdict_fight_count": 10,
       "local_main_count": 6,
-      "verdict_main_count": 6,
+      "verdict_main_count": 7,
       "local_prelim_count": 7,
       "verdict_prelim_count": 3,
-      "confirmed_local_bouts": 9
+      "confirmed_local_bouts": 10
     },
     {
       "event_id": "ufc-fight-night-2026-09-05-fight-card",
@@ -214,7 +214,7 @@
       "event_id": "ufc-fight-night-2026-08-29-fight-card",
       "verdict_event_id": "1919",
       "local_fight_count": 13,
-      "verdict_fight_count": 9
+      "verdict_fight_count": 10
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -240,16 +240,6 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-08-29-fight-card",
       "verdict_event_id": "1919",
-      "order": 6,
-      "fighters": [
-        "Bilal Hasan",
-        "Nilson Rojas"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "verdict_event_id": "1919",
       "order": 9,
       "fighters": [
         "Xiao Long",
@@ -261,7 +251,7 @@
       "event_id": "ufc-fight-night-2026-08-29-fight-card",
       "verdict_event_id": "1919",
       "local_main_count": 6,
-      "verdict_main_count": 6,
+      "verdict_main_count": 7,
       "local_prelim_count": 7,
       "verdict_prelim_count": 3
     },
