@@ -33,9 +33,9 @@
       "local_fight_count": 13,
       "verdict_fight_count": 13,
       "local_main_count": 5,
-      "verdict_main_count": 5,
+      "verdict_main_count": 6,
       "local_prelim_count": 8,
-      "verdict_prelim_count": 8,
+      "verdict_prelim_count": 7,
       "confirmed_local_bouts": 13
     },
     {
@@ -294,6 +294,15 @@
         "Julien Leblanc",
         "Gilbert Urbina"
       ]
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-fight-night-sacramento-2026-08-22",
+      "verdict_event_id": "1915",
+      "local_main_count": 5,
+      "verdict_main_count": 6,
+      "local_prelim_count": 8,
+      "verdict_prelim_count": 7
     }
   ]
 }
