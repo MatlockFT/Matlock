@@ -65,12 +65,12 @@
       "verdict_url": "https://verdictmma.com/event/1919",
       "verdict_date": "2026-08-29",
       "local_fight_count": 13,
-      "verdict_fight_count": 10,
+      "verdict_fight_count": 13,
       "local_main_count": 6,
       "verdict_main_count": 6,
       "local_prelim_count": 7,
-      "verdict_prelim_count": 4,
-      "confirmed_local_bouts": 10
+      "verdict_prelim_count": 7,
+      "confirmed_local_bouts": 13
     },
     {
       "event_id": "ufc-fight-night-2026-09-05-fight-card",
@@ -109,12 +109,12 @@
       "verdict_url": "https://verdictmma.com/event/1938",
       "verdict_date": "2026-09-12",
       "local_fight_count": 12,
-      "verdict_fight_count": 10,
+      "verdict_fight_count": 12,
       "local_main_count": 6,
       "verdict_main_count": 6,
       "local_prelim_count": 6,
-      "verdict_prelim_count": 4,
-      "confirmed_local_bouts": 10
+      "verdict_prelim_count": 6,
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "ufc-fight-night-2026-09-26-fight-card",
@@ -190,42 +190,6 @@
   ],
   "discrepancies": [
     {
-      "type": "bout_count_mismatch",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "verdict_event_id": "1938",
-      "local_fight_count": 12,
-      "verdict_fight_count": 10
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "verdict_event_id": "1938",
-      "order": 10,
-      "fighters": [
-        "Ramiro Jimenez",
-        "Rodrigo Vera"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "verdict_event_id": "1938",
-      "order": 11,
-      "fighters": [
-        "Rafa Garcia",
-        "Rongzhu"
-      ]
-    },
-    {
-      "type": "section_count_mismatch",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "verdict_event_id": "1938",
-      "local_main_count": 6,
-      "verdict_main_count": 6,
-      "local_prelim_count": 6,
-      "verdict_prelim_count": 4
-    },
-    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "pfl-tampa-2026-08-22",
       "verdict_event_id": "1961",
@@ -244,52 +208,6 @@
         "Gustavo Oliveira",
         "Marcirley Alves"
       ]
-    },
-    {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "verdict_event_id": "1919",
-      "local_fight_count": 13,
-      "verdict_fight_count": 10
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "verdict_event_id": "1919",
-      "order": 10,
-      "fighters": [
-        "Xiao Long",
-        "Francesco Nuzzi"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "verdict_event_id": "1919",
-      "order": 11,
-      "fighters": [
-        "Lawrence Lui",
-        "Hector Santiago"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "verdict_event_id": "1919",
-      "order": 13,
-      "fighters": [
-        "Ding Meng",
-        "Cam Nelson"
-      ]
-    },
-    {
-      "type": "section_count_mismatch",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "verdict_event_id": "1919",
-      "local_main_count": 6,
-      "verdict_main_count": 6,
-      "local_prelim_count": 7,
-      "verdict_prelim_count": 4
     },
     {
       "type": "local_bout_not_found_on_verdict",
