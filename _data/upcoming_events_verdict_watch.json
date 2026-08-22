@@ -30,13 +30,13 @@
       "verdict_event_id": "1915",
       "verdict_url": "https://verdictmma.com/event/1915",
       "verdict_date": "2026-08-22",
-      "local_fight_count": 13,
+      "local_fight_count": 12,
       "verdict_fight_count": 13,
-      "local_main_count": 5,
+      "local_main_count": 6,
       "verdict_main_count": 6,
-      "local_prelim_count": 8,
+      "local_prelim_count": 6,
       "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 13
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "dwcs-season-10-week-3-2026-08-25",
@@ -276,12 +276,19 @@
       ]
     },
     {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-fight-night-sacramento-2026-08-22",
+      "verdict_event_id": "1915",
+      "local_fight_count": 12,
+      "verdict_fight_count": 13
+    },
+    {
       "type": "section_count_mismatch",
       "event_id": "ufc-fight-night-sacramento-2026-08-22",
       "verdict_event_id": "1915",
-      "local_main_count": 5,
+      "local_main_count": 6,
       "verdict_main_count": 6,
-      "local_prelim_count": 8,
+      "local_prelim_count": 6,
       "verdict_prelim_count": 7
     }
   ]
