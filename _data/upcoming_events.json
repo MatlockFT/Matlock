@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-23T04:06:10.738Z",
+  "generated_at": "2026-08-23T05:16:58.109Z",
   "events": [
     {
       "id": "pfl-tampa-2026-08-22",
@@ -12,7 +12,7 @@
       "venue": "Benchmark International Arena, Tampa, FL",
       "broadcast": "ESPN",
       "official_url": "https://pflmma.com/event/pfl-tampa",
-      "updated_label": "August 22, 2026",
+      "updated_label": "August 23, 2026",
       "sections": [
         {
           "kind": "main",
@@ -283,309 +283,6 @@
       ]
     },
     {
-      "id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion_key": "ufc",
-      "promotion": "UFC Fight Night",
-      "title": "Hernandez vs Rodrigues",
-      "date": "2026-08-22",
-      "date_label": "Saturday · August 22, 2026",
-      "starts_at": "",
-      "expires_at": "",
-      "venue": "Golden 1 Center · Sacramento, California",
-      "broadcast": "Paramount+ · UFC Fight Pass",
-      "official_url": "https://www.ufc.com/event/ufc-fight-night-august-22-2026",
-      "updated_label": "August 22, 2026",
-      "sections": [
-        {
-          "kind": "main",
-          "title": "Main Card",
-          "time": "8:00 PM ET",
-          "bouts": [
-            {
-              "order": 1,
-              "label": "Main Event",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Anthony Hernandez",
-                  "initials": "AH",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4290956.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Gregory Rodrigues",
-                  "initials": "GR",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4690541.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Serghei Spivac",
-                  "initials": "SS",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4421246.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Vitor Petrino",
-                  "initials": "VP",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5060483.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 3,
-              "label": "",
-              "weight_class": "Light Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Reinier de Ridder",
-                  "initials": "RDR",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4423880.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Roman Dolidze",
-                  "initials": "RD",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4411508.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 4,
-              "label": "",
-              "weight_class": "Lightweight Bout",
-              "fighters": [
-                {
-                  "name": "MarQuel Mederos",
-                  "initials": "MM",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20230914060718_Marquel_Mederos.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Mason Jones",
-                  "initials": "MJ",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221001013742_Mason_Jones_ff.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
-              "weight_class": "Women's Flyweight Bout",
-              "fighters": [
-                {
-                  "name": "Carli Judice",
-                  "initials": "CJ",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5172179.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Jeisla Chaves",
-                  "initials": "JC",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5308769.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "kind": "prelims",
-          "title": "Prelims",
-          "time": "5:00 PM ET",
-          "bouts": [
-            {
-              "order": 6,
-              "label": "",
-              "weight_class": "Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Kennedy Nzechukwu",
-                  "initials": "KN",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4245094.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Shamil Gaziev",
-                  "initials": "SG",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5145498.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 7,
-              "label": "",
-              "weight_class": "Lightweight Bout",
-              "fighters": [
-                {
-                  "name": "Chris Padilla",
-                  "initials": "CP",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20231022050650_5Q1A7997.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Nasrat Haqparast",
-                  "initials": "NH",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221208063355_Nasrat_Haqparast_ff.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 8,
-              "label": "",
-              "weight_class": "Lightweight Bout",
-              "fighters": [
-                {
-                  "name": "Gauge Young",
-                  "initials": "GY",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5085318.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Stan Dorsainvil",
-                  "initials": "SD",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732900312IMG_3144.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 9,
-              "label": "",
-              "weight_class": "Featherweight Bout",
-              "fighters": [
-                {
-                  "name": "Jamall Emmers",
-                  "initials": "JE",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20160604093035_1DX_3280.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Lerryan Douglas",
-                  "initials": "LD",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732666722lerryan.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 10,
-              "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Wes Schultz",
-                  "initials": "WS",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5057023.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Jackson McVey",
-                  "initials": "JM",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5291733.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 11,
-              "label": "",
-              "weight_class": "Featherweight Bout",
-              "fighters": [
-                {
-                  "name": "Marcio Barbosa",
-                  "initials": "MB",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732668646tico.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Ryan Kuse",
-                  "initials": "RK",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1643926850Ryan_Kuse.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 12,
-              "label": "",
-              "weight_class": "Women's Strawweight Bout",
-              "fighters": [
-                {
-                  "name": "Shanelle Dyer",
-                  "initials": "SD",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5157674.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
-                  "name": "Elise Reed",
-                  "initials": "ER",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/4836482.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 13,
-              "label": "",
-              "weight_class": "Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Anthony Wint",
-                  "initials": "AW",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20260315113334_Anthony_Wint.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Terrance Chatman",
-                  "initials": "TC",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250221092354_Terrance_Chatman.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
       "id": "dwcs-season-10-week-3-2026-08-25",
       "promotion_key": "dwcs",
       "promotion": "DWCS",
@@ -596,7 +293,7 @@
       "broadcast": "Paramount+",
       "official_url": "https://www.ufc.com/dwcs#season-10-week-3",
       "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-3-112628",
-      "updated_label": "August 22, 2026",
+      "updated_label": "August 23, 2026",
       "sections": [
         {
           "kind": "main",
@@ -724,7 +421,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-august-29-2026",
-      "updated_label": "August 22, 2026",
+      "updated_label": "August 23, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1027,7 +724,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-september-05-2026",
-      "updated_label": "August 22, 2026",
+      "updated_label": "August 23, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1307,7 +1004,7 @@
       "venue": "京セラドーム大阪",
       "broadcast": "RIZIN 100 CLUB · RIZIN LIVE · ABEMA · Sky PerfecTV",
       "official_url": "https://jp.rizinff.com/_ct/17834937",
-      "updated_label": "August 22, 2026",
+      "updated_label": "August 23, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1520,7 +1217,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
-      "updated_label": "August 22, 2026",
+      "updated_label": "August 23, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1802,7 +1499,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
-      "updated_label": "August 22, 2026",
+      "updated_label": "August 23, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1844,7 +1541,7 @@
       "venue": "長崎スタジアムシティ HAPPINESS ARENA",
       "broadcast": "RIZIN 100 CLUB",
       "official_url": "https://jp.rizinff.com/_ct/17852438",
-      "updated_label": "August 22, 2026",
+      "updated_label": "August 23, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1931,7 +1628,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-332",
-      "updated_label": "August 22, 2026",
+      "updated_label": "August 23, 2026",
       "sections": [
         {
           "kind": "main",
@@ -2101,7 +1798,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-      "updated_label": "August 22, 2026",
+      "updated_label": "August 23, 2026",
       "sections": [
         {
           "kind": "main",
@@ -2313,7 +2010,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-333",
-      "updated_label": "August 22, 2026",
+      "updated_label": "August 23, 2026",
       "sections": [
         {
           "kind": "main",

@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-23T01:56:22.203Z",
+  "generated_at": "2026-08-23T05:17:36.813Z",
   "changes": [
+    {
+      "id": "2026-08-23T05:17:36.813Z|ufc-fight-night-sacramento-2026-08-22|event_removed|1",
+      "at": "2026-08-23T05:17:36.813Z",
+      "type": "event_removed",
+      "event_id": "ufc-fight-night-sacramento-2026-08-22",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hernandez vs Rodrigues",
+      "event_date": "2026-08-22",
+      "summary": "UFC Fight Night Hernandez vs Rodrigues removed from Upcoming Events.",
+      "details": {
+        "bout_count": 13,
+        "venue": "Golden 1 Center · Sacramento, California",
+        "date": "2026-08-22"
+      }
+    },
     {
       "id": "2026-08-23T01:56:22.203Z|ufc-fight-night-sacramento-2026-08-22|bout_moved|1",
       "at": "2026-08-23T01:56:22.203Z",
@@ -4383,20 +4398,6 @@
       "summary": "Marwan Rahiki portrait added.",
       "details": {
         "fighter": "Marwan Rahiki",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|45",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Rodriguez vs Silva",
-      "event_date": "2026-09-12",
-      "summary": "Manon Fiorot portrait added.",
-      "details": {
-        "fighter": "Manon Fiorot",
         "source": "sherdog"
       }
     }
