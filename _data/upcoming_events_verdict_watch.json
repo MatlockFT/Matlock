@@ -5,40 +5,6 @@
   "mode": "read-only-watchdog",
   "coverage": [
     {
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "pfl",
-      "date": "2026-08-22",
-      "title": "Tampa",
-      "status": "matched",
-      "verdict_event_id": "1961",
-      "verdict_url": "https://verdictmma.com/event/1961",
-      "verdict_date": "2026-08-22",
-      "local_fight_count": 12,
-      "verdict_fight_count": 11,
-      "local_main_count": 5,
-      "verdict_main_count": 5,
-      "local_prelim_count": 7,
-      "verdict_prelim_count": 6,
-      "confirmed_local_bouts": 9
-    },
-    {
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "ufc",
-      "date": "2026-08-22",
-      "title": "Hernandez vs Rodrigues",
-      "status": "matched",
-      "verdict_event_id": "1915",
-      "verdict_url": "https://verdictmma.com/event/1915",
-      "verdict_date": "2026-08-22",
-      "local_fight_count": 13,
-      "verdict_fight_count": 13,
-      "local_main_count": 5,
-      "verdict_main_count": 6,
-      "local_prelim_count": 8,
-      "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 13
-    },
-    {
       "event_id": "dwcs-season-10-week-3-2026-08-25",
       "promotion": "dwcs",
       "date": "2026-08-25",
@@ -46,7 +12,7 @@
       "status": "matched",
       "verdict_event_id": "1928",
       "verdict_url": "https://verdictmma.com/event/1928",
-      "verdict_date": "2026-08-25",
+      "verdict_date": "2026-08-26",
       "local_fight_count": 5,
       "verdict_fight_count": null,
       "local_main_count": 5,
@@ -190,50 +156,11 @@
   ],
   "discrepancies": [
     {
-      "type": "bout_count_mismatch",
-      "event_id": "pfl-tampa-2026-08-22",
-      "verdict_event_id": "1961",
-      "local_fight_count": 12,
-      "verdict_fight_count": 11
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "pfl-tampa-2026-08-22",
-      "verdict_event_id": "1961",
-      "order": 11,
-      "fighters": [
-        "Florim Zendeli",
-        "Omran Chaaban"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "pfl-tampa-2026-08-22",
-      "verdict_event_id": "1961",
-      "order": 2,
-      "fighters": [
-        "Gadzhi Rabadanov",
-        "Jakub Kaszuba"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "pfl-tampa-2026-08-22",
-      "verdict_event_id": "1961",
-      "order": 3,
-      "fighters": [
-        "Gustavo Oliveira",
-        "Marcirley Alves"
-      ]
-    },
-    {
-      "type": "section_count_mismatch",
-      "event_id": "pfl-tampa-2026-08-22",
-      "verdict_event_id": "1961",
-      "local_main_count": 5,
-      "verdict_main_count": 5,
-      "local_prelim_count": 7,
-      "verdict_prelim_count": 6
+      "type": "date_mismatch",
+      "event_id": "dwcs-season-10-week-3-2026-08-25",
+      "verdict_event_id": "1928",
+      "local_date": "2026-08-25",
+      "verdict_date": "2026-08-26"
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -274,15 +201,6 @@
         "Julien Leblanc",
         "Gilbert Urbina"
       ]
-    },
-    {
-      "type": "section_count_mismatch",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "verdict_event_id": "1915",
-      "local_main_count": 5,
-      "verdict_main_count": 6,
-      "local_prelim_count": 8,
-      "verdict_prelim_count": 7
     }
   ]
 }
