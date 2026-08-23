@@ -1,7 +1,118 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-22T23:09:52.796Z",
+  "generated_at": "2026-08-23T01:56:22.203Z",
   "changes": [
+    {
+      "id": "2026-08-23T01:56:22.203Z|ufc-fight-night-sacramento-2026-08-22|bout_moved|1",
+      "at": "2026-08-23T01:56:22.203Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-sacramento-2026-08-22",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hernandez vs Rodrigues",
+      "event_date": "2026-08-22",
+      "summary": "Kennedy Nzechukwu vs Shamil Gaziev moved on Hernandez vs Rodrigues.",
+      "details": {
+        "from_order": 8,
+        "to_order": 6,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-23T01:56:22.203Z|ufc-fight-night-sacramento-2026-08-22|bout_moved|2",
+      "at": "2026-08-23T01:56:22.203Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-sacramento-2026-08-22",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hernandez vs Rodrigues",
+      "event_date": "2026-08-22",
+      "summary": "Gauge Young vs Stan Dorsainvil moved on Hernandez vs Rodrigues.",
+      "details": {
+        "from_order": 10,
+        "to_order": 8,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-23T01:56:22.203Z|ufc-fight-night-sacramento-2026-08-22|bout_moved|3",
+      "at": "2026-08-23T01:56:22.203Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-sacramento-2026-08-22",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hernandez vs Rodrigues",
+      "event_date": "2026-08-22",
+      "summary": "Jamall Emmers vs Lerryan Douglas moved on Hernandez vs Rodrigues.",
+      "details": {
+        "from_order": 7,
+        "to_order": 9,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-23T01:56:22.203Z|ufc-fight-night-sacramento-2026-08-22|bout_moved|4",
+      "at": "2026-08-23T01:56:22.203Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-sacramento-2026-08-22",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hernandez vs Rodrigues",
+      "event_date": "2026-08-22",
+      "summary": "Wes Schultz vs Jackson McVey moved on Hernandez vs Rodrigues.",
+      "details": {
+        "from_order": 11,
+        "to_order": 10,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-23T01:56:22.203Z|ufc-fight-night-sacramento-2026-08-22|bout_moved|5",
+      "at": "2026-08-23T01:56:22.203Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-sacramento-2026-08-22",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hernandez vs Rodrigues",
+      "event_date": "2026-08-22",
+      "summary": "Marcio Barbosa vs Ryan Kuse moved on Hernandez vs Rodrigues.",
+      "details": {
+        "from_order": 9,
+        "to_order": 11,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-23T01:56:22.203Z|ufc-fight-night-sacramento-2026-08-22|bout_moved|6",
+      "at": "2026-08-23T01:56:22.203Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-sacramento-2026-08-22",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hernandez vs Rodrigues",
+      "event_date": "2026-08-22",
+      "summary": "Anthony Wint vs Terrance Chatman moved on Hernandez vs Rodrigues.",
+      "details": {
+        "from_order": 6,
+        "to_order": 13,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-23T01:56:22.203Z|ufc-fight-night-sacramento-2026-08-22|bout_added|7",
+      "at": "2026-08-23T01:56:22.203Z",
+      "type": "bout_added",
+      "event_id": "ufc-fight-night-sacramento-2026-08-22",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hernandez vs Rodrigues",
+      "event_date": "2026-08-22",
+      "summary": "Chris Padilla vs Nasrat Haqparast added to Hernandez vs Rodrigues.",
+      "details": {
+        "order": 7,
+        "section": "Prelims",
+        "weight_class": "Lightweight Bout"
+      }
+    },
     {
       "id": "2026-08-22T23:09:52.796Z|ufc-fight-night-sacramento-2026-08-22|bout_moved|1",
       "at": "2026-08-22T23:09:52.796Z",
@@ -4286,104 +4397,6 @@
       "summary": "Manon Fiorot portrait added.",
       "details": {
         "fighter": "Manon Fiorot",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|46",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Rodriguez vs Silva",
-      "event_date": "2026-09-12",
-      "summary": "Alexa Grasso portrait added.",
-      "details": {
-        "fighter": "Alexa Grasso",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|47",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Rodriguez vs Silva",
-      "event_date": "2026-09-12",
-      "summary": "Waldo Cortes Acosta portrait added.",
-      "details": {
-        "fighter": "Waldo Cortes Acosta",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|48",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Rodriguez vs Silva",
-      "event_date": "2026-09-12",
-      "summary": "Curtis Blaydes portrait added.",
-      "details": {
-        "fighter": "Curtis Blaydes",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|49",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Rodriguez vs Silva",
-      "event_date": "2026-09-12",
-      "summary": "David Martinez portrait added.",
-      "details": {
-        "fighter": "David Martinez",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|50",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Rodriguez vs Silva",
-      "event_date": "2026-09-12",
-      "summary": "Dan Ige portrait added.",
-      "details": {
-        "fighter": "Dan Ige",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|51",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Rodriguez vs Silva",
-      "event_date": "2026-09-12",
-      "summary": "Tim Elliott portrait added.",
-      "details": {
-        "fighter": "Tim Elliott",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|52",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Rodriguez vs Silva",
-      "event_date": "2026-09-12",
-      "summary": "Edgar Chairez portrait added.",
-      "details": {
-        "fighter": "Edgar Chairez",
         "source": "sherdog"
       }
     }
