@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-23T05:17:36.813Z",
+  "generated_at": "2026-08-23T10:04:17.698Z",
   "changes": [
+    {
+      "id": "2026-08-23T10:04:17.698Z|pfl-tampa-2026-08-22|event_removed|1",
+      "at": "2026-08-23T10:04:17.698Z",
+      "type": "event_removed",
+      "event_id": "pfl-tampa-2026-08-22",
+      "promotion": "PFL",
+      "event_title": "Tampa",
+      "event_date": "2026-08-22",
+      "summary": "PFL Tampa removed from Upcoming Events.",
+      "details": {
+        "bout_count": 12,
+        "venue": "Benchmark International Arena, Tampa, FL",
+        "date": "2026-08-22"
+      }
+    },
     {
       "id": "2026-08-23T05:17:36.813Z|ufc-fight-night-sacramento-2026-08-22|event_removed|1",
       "at": "2026-08-23T05:17:36.813Z",
@@ -4384,20 +4399,6 @@
       "summary": "Tommy McMillen portrait added.",
       "details": {
         "fighter": "Tommy McMillen",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|44",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Rodriguez vs Silva",
-      "event_date": "2026-09-12",
-      "summary": "Marwan Rahiki portrait added.",
-      "details": {
-        "fighter": "Marwan Rahiki",
         "source": "sherdog"
       }
     }
