@@ -12,7 +12,7 @@
       "status": "matched",
       "verdict_event_id": "1928",
       "verdict_url": "https://verdictmma.com/event/1928",
-      "verdict_date": "2026-08-26",
+      "verdict_date": "2026-08-25",
       "local_fight_count": 5,
       "verdict_fight_count": null,
       "local_main_count": 5,
@@ -155,13 +155,6 @@
     }
   ],
   "discrepancies": [
-    {
-      "type": "date_mismatch",
-      "event_id": "dwcs-season-10-week-3-2026-08-25",
-      "verdict_event_id": "1928",
-      "local_date": "2026-08-25",
-      "verdict_date": "2026-08-26"
-    },
     {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-08-29-fight-card",
