@@ -1,7 +1,29 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-23T10:04:17.698Z",
+  "generated_at": "2026-08-24T19:39:25.117Z",
   "changes": [
+    {
+      "id": "2026-08-24T19:39:25.117Z|ufc-fight-night-2026-08-29-fight-card|bout_changed|1",
+      "at": "2026-08-24T19:39:25.117Z",
+      "type": "bout_changed",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Liu Ce vs Junior Tafa changed to Liu Ce vs Levi Rodrigues Jr. on Nurmagomedov vs Yadong.",
+      "details": {
+        "order": 5,
+        "section": "Main Card",
+        "from": [
+          "Liu Ce",
+          "Junior Tafa"
+        ],
+        "to": [
+          "Liu Ce",
+          "Levi Rodrigues Jr."
+        ]
+      }
+    },
     {
       "id": "2026-08-23T10:04:17.698Z|pfl-tampa-2026-08-22|event_removed|1",
       "at": "2026-08-23T10:04:17.698Z",
@@ -4385,20 +4407,6 @@
       "summary": "Joseph Morales portrait added.",
       "details": {
         "fighter": "Joseph Morales",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|43",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Rodriguez vs Silva",
-      "event_date": "2026-09-12",
-      "summary": "Tommy McMillen portrait added.",
-      "details": {
-        "fighter": "Tommy McMillen",
         "source": "sherdog"
       }
     }
