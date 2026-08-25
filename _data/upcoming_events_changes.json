@@ -1,7 +1,54 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-25T19:41:22.780Z",
+  "generated_at": "2026-08-25T22:39:18.790Z",
   "changes": [
+    {
+      "id": "2026-08-25T22:39:18.790Z|ufc-fight-night-2026-08-29-fight-card|bout_moved|1",
+      "at": "2026-08-25T22:39:18.790Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Xiong Jingnan vs Julia Polastri moved on Nurmagomedov vs Yadong.",
+      "details": {
+        "from_order": 12,
+        "to_order": 11,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-25T22:39:18.790Z|ufc-fight-night-2026-08-29-fight-card|bout_moved|2",
+      "at": "2026-08-25T22:39:18.790Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Ding Meng vs Cam Nelson moved on Nurmagomedov vs Yadong.",
+      "details": {
+        "from_order": 13,
+        "to_order": 12,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-08-25T22:39:18.790Z|ufc-fight-night-2026-08-29-fight-card|bout_removed|3",
+      "at": "2026-08-25T22:39:18.790Z",
+      "type": "bout_removed",
+      "event_id": "ufc-fight-night-2026-08-29-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Nurmagomedov vs Yadong",
+      "event_date": "2026-08-29",
+      "summary": "Lawrence Lui vs Hector Santiago removed from Nurmagomedov vs Yadong.",
+      "details": {
+        "order": 11,
+        "section": "Prelims",
+        "weight_class": "Bantamweight Bout"
+      }
+    },
     {
       "id": "2026-08-25T19:41:22.780Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|1",
       "at": "2026-08-25T19:41:22.780Z",
@@ -4396,48 +4443,6 @@
       "summary": "Ryan Spann portrait added.",
       "details": {
         "fighter": "Ryan Spann",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|29",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Kurtis Campbell portrait added.",
-      "details": {
-        "fighter": "Kurtis Campbell",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|30",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Trevor Peek portrait added.",
-      "details": {
-        "fighter": "Trevor Peek",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|31",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Oumar Sy portrait added.",
-      "details": {
-        "fighter": "Oumar Sy",
         "source": "sherdog"
       }
     }
