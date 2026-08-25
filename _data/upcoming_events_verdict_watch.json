@@ -47,11 +47,11 @@
       "verdict_event_id": "1905",
       "verdict_url": "https://verdictmma.com/event/1905",
       "verdict_date": "2026-09-05",
-      "local_fight_count": 12,
+      "local_fight_count": 13,
       "verdict_fight_count": 12,
-      "local_main_count": 5,
+      "local_main_count": 13,
       "verdict_main_count": 5,
-      "local_prelim_count": 7,
+      "local_prelim_count": 0,
       "verdict_prelim_count": 7,
       "confirmed_local_bouts": 12
     },
@@ -80,7 +80,7 @@
       "verdict_main_count": 6,
       "local_prelim_count": 6,
       "verdict_prelim_count": 6,
-      "confirmed_local_bouts": 11
+      "confirmed_local_bouts": 10
     },
     {
       "event_id": "ufc-fight-night-2026-09-26-fight-card",
@@ -166,6 +166,16 @@
       ]
     },
     {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "verdict_event_id": "1938",
+      "order": 9,
+      "fighters": [
+        "Yousri Belgaroui",
+        "Djorden Santos"
+      ]
+    },
+    {
       "type": "bout_count_mismatch",
       "event_id": "ufc-fight-night-2026-08-29-fight-card",
       "verdict_event_id": "1919",
@@ -179,6 +189,32 @@
       "local_main_count": 6,
       "verdict_main_count": 7,
       "local_prelim_count": 7,
+      "verdict_prelim_count": 7
+    },
+    {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "verdict_event_id": "1905",
+      "local_fight_count": 13,
+      "verdict_fight_count": 12
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "verdict_event_id": "1905",
+      "order": 10,
+      "fighters": [
+        "Michael Aljarouj",
+        "Fabia Sintes"
+      ]
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "verdict_event_id": "1905",
+      "local_main_count": 13,
+      "verdict_main_count": 5,
+      "local_prelim_count": 0,
       "verdict_prelim_count": 7
     },
     {
