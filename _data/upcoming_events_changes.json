@@ -1,7 +1,43 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-24T19:39:25.117Z",
+  "generated_at": "2026-08-25T02:07:38.582Z",
   "changes": [
+    {
+      "id": "2026-08-25T02:07:38.582Z|noche-ufc-2026-09-12-fight-card|title_changed|1",
+      "at": "2026-08-25T02:07:38.582Z",
+      "type": "title_changed",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "Noche UFC Silva vs Delgado: title changed.",
+      "details": {
+        "from": "Rodriguez vs Silva",
+        "to": "Silva vs Delgado"
+      }
+    },
+    {
+      "id": "2026-08-25T02:07:38.582Z|noche-ufc-2026-09-12-fight-card|bout_changed|2",
+      "at": "2026-08-25T02:07:38.582Z",
+      "type": "bout_changed",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "Yair Rodriguez vs Jean Silva changed to Jean Silva vs Jose Miguel Delgado on Silva vs Delgado.",
+      "details": {
+        "order": 1,
+        "section": "Main Card",
+        "from": [
+          "Yair Rodriguez",
+          "Jean Silva"
+        ],
+        "to": [
+          "Jean Silva",
+          "Jose Miguel Delgado"
+        ]
+      }
+    },
     {
       "id": "2026-08-24T19:39:25.117Z|ufc-fight-night-2026-08-29-fight-card|bout_changed|1",
       "at": "2026-08-24T19:39:25.117Z",
@@ -4380,34 +4416,6 @@
       "details": {
         "fighter": "Jean Silva",
         "source": "espn"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|41",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Rodriguez vs Silva",
-      "event_date": "2026-09-12",
-      "summary": "Brandon Moreno portrait added.",
-      "details": {
-        "fighter": "Brandon Moreno",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|noche-ufc-2026-09-12-fight-card|portrait_added|42",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Rodriguez vs Silva",
-      "event_date": "2026-09-12",
-      "summary": "Joseph Morales portrait added.",
-      "details": {
-        "fighter": "Joseph Morales",
-        "source": "sherdog"
       }
     }
   ]

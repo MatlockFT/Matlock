@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-24T20:13:04.394Z",
+  "generated_at": "2026-08-25T02:06:52.618Z",
   "events": [
     {
       "id": "dwcs-season-10-week-3-2026-08-25",
@@ -929,7 +929,7 @@
       "id": "noche-ufc-2026-09-12-fight-card",
       "promotion_key": "ufc",
       "promotion": "Noche UFC",
-      "title": "Rodriguez vs Silva",
+      "title": "Silva vs Delgado",
       "date": "2026-09-12",
       "date_label": "Saturday · September 12, 2026",
       "starts_at": "",
@@ -950,18 +950,18 @@
               "weight_class": "Featherweight Bout",
               "fighters": [
                 {
-                  "name": "Yair Rodriguez",
-                  "initials": "YR",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/3498.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                },
-                {
                   "name": "Jean Silva",
                   "initials": "JS",
                   "image": "https://a.espncdn.com/i/headshots/mma/players/full/3151.png",
                   "image_source": "espn",
                   "image_framing": "standard"
+                },
+                {
+                  "name": "Jose Miguel Delgado",
+                  "initials": "JMD",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
                 }
               ]
             },
