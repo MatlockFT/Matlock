@@ -30,13 +30,13 @@
       "verdict_event_id": "1919",
       "verdict_url": "https://verdictmma.com/event/1919",
       "verdict_date": "2026-08-29",
-      "local_fight_count": 12,
+      "local_fight_count": 13,
       "verdict_fight_count": 14,
       "local_main_count": 6,
       "verdict_main_count": 7,
-      "local_prelim_count": 6,
+      "local_prelim_count": 7,
       "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 12
+      "confirmed_local_bouts": 13
     },
     {
       "event_id": "ufc-fight-night-2026-09-05-fight-card",
@@ -152,6 +152,16 @@
       "local_prelim_count": 4,
       "verdict_prelim_count": 4,
       "confirmed_local_bouts": 9
+    },
+    {
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion": "ufc",
+      "date": "2026-11-07",
+      "title": "Bonfim vs Brady",
+      "status": "coverage_gap",
+      "local_fight_count": 1,
+      "local_main_count": 1,
+      "local_prelim_count": 0
     }
   ],
   "discrepancies": [
@@ -185,7 +195,7 @@
       "type": "bout_count_mismatch",
       "event_id": "ufc-fight-night-2026-08-29-fight-card",
       "verdict_event_id": "1919",
-      "local_fight_count": 12,
+      "local_fight_count": 13,
       "verdict_fight_count": 14
     },
     {
@@ -194,7 +204,7 @@
       "verdict_event_id": "1919",
       "local_main_count": 6,
       "verdict_main_count": 7,
-      "local_prelim_count": 6,
+      "local_prelim_count": 7,
       "verdict_prelim_count": 7
     },
     {

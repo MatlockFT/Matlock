@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-25T23:11:58.090Z",
+  "generated_at": "2026-08-25T23:42:57.131Z",
   "events": [
     {
       "id": "dwcs-season-10-week-3-2026-08-25",
@@ -368,6 +368,27 @@
             {
               "order": 11,
               "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Lawrence Lui",
+                  "initials": "LL",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250514064414_Lawrence_Lui.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Hector Santiago",
+                  "initials": "HS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732775034santiago.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 12,
+              "label": "",
               "weight_class": "Women's Strawweight Bout",
               "fighters": [
                 {
@@ -387,7 +408,7 @@
               ]
             },
             {
-              "order": 12,
+              "order": 13,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -1921,6 +1942,50 @@
                   "name": "Nurullo Aliev",
                   "initials": "NA",
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220915113942_Nurullo_Aliev.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-fight-night-2026-11-07-fight-card",
+      "promotion_key": "ufc",
+      "promotion": "UFC Fight Night",
+      "title": "Bonfim vs Brady",
+      "date": "2026-11-07",
+      "date_label": "Saturday · November 7, 2026",
+      "starts_at": "",
+      "expires_at": "",
+      "venue": "Venue TBA",
+      "broadcast": "Paramount+ · UFC Fight Pass",
+      "official_url": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+      "updated_label": "August 25, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Main Card",
+          "time": "5:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
+                  "name": "Gabriel Bonfim",
+                  "initials": "GB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220929075630_Gabriel_Bonfim_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Sean Brady",
+                  "initials": "SB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220401032224_Sean_Brady_ff.JPG",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
