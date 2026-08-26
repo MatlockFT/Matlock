@@ -47,9 +47,9 @@
       "verdict_event_id": "1905",
       "verdict_url": "https://verdictmma.com/event/1905",
       "verdict_date": "2026-09-05",
-      "local_fight_count": 13,
+      "local_fight_count": 14,
       "verdict_fight_count": 12,
-      "local_main_count": 13,
+      "local_main_count": 14,
       "verdict_main_count": 5,
       "local_prelim_count": 0,
       "verdict_prelim_count": 7,
@@ -91,9 +91,9 @@
       "verdict_event_id": "1959",
       "verdict_url": "https://verdictmma.com/event/1959",
       "verdict_date": "2026-09-26",
-      "local_fight_count": 1,
+      "local_fight_count": 11,
       "verdict_fight_count": null,
-      "local_main_count": 1,
+      "local_main_count": 11,
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
@@ -211,27 +211,137 @@
       "type": "bout_count_mismatch",
       "event_id": "ufc-fight-night-2026-09-05-fight-card",
       "verdict_event_id": "1905",
-      "local_fight_count": 13,
+      "local_fight_count": 14,
       "verdict_fight_count": 12
     },
     {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-09-05-fight-card",
       "verdict_event_id": "1905",
-      "order": 10,
+      "order": 11,
       "fighters": [
         "Michael Aljarouj",
         "Fabia Sintes"
       ]
     },
     {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "verdict_event_id": "1905",
+      "order": 4,
+      "fighters": [
+        "Daniil Donchenko",
+        "Punahele Soriano"
+      ]
+    },
+    {
       "type": "section_count_mismatch",
       "event_id": "ufc-fight-night-2026-09-05-fight-card",
       "verdict_event_id": "1905",
-      "local_main_count": 13,
+      "local_main_count": 14,
       "verdict_main_count": 5,
       "local_prelim_count": 0,
       "verdict_prelim_count": 7
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 10,
+      "fighters": [
+        "Norma Dumont",
+        "Ailin Perez"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 11,
+      "fighters": [
+        "Vanessa Demopoulos",
+        "Yazmin Jauregui"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 2,
+      "fighters": [
+        "Melissa Amaya",
+        "Valesca Machado"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 3,
+      "fighters": [
+        "Mehemmedeli Osmanli",
+        "Ilimbek Akylbek Uulu"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 4,
+      "fighters": [
+        "Montel Jackson",
+        "Ricky Simon"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 5,
+      "fighters": [
+        "Rodolfo Bellato",
+        "Christian Edwards"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 6,
+      "fighters": [
+        "Rodolfo Vieira",
+        "Robert Bryczek"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 7,
+      "fighters": [
+        "Brady Hiestand",
+        "Rinya Nakamura"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 8,
+      "fighters": [
+        "John Castaneda",
+        "Alatengheili"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 9,
+      "fighters": [
+        "Josiah Harrell",
+        "Elves Brener"
+      ]
     },
     {
       "type": "local_bout_not_found_on_verdict",

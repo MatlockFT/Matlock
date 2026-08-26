@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-26T10:22:36.246Z",
+  "generated_at": "2026-08-26T22:18:43.876Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-08-29-fight-card",
@@ -517,6 +517,27 @@
             {
               "order": 4,
               "label": "",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
+                  "name": "Daniil Donchenko",
+                  "initials": "DD",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250908111541_daniildonchenko.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Punahele Soriano",
+                  "initials": "PS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220922042147_Punahele_Soriano_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
                 {
@@ -536,7 +557,7 @@
               ]
             },
             {
-              "order": 5,
+              "order": 6,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -557,7 +578,7 @@
               ]
             },
             {
-              "order": 6,
+              "order": 7,
               "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
@@ -578,7 +599,7 @@
               ]
             },
             {
-              "order": 7,
+              "order": 8,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -599,7 +620,7 @@
               ]
             },
             {
-              "order": 8,
+              "order": 9,
               "label": "",
               "weight_class": "Light Heavyweight Bout",
               "fighters": [
@@ -620,7 +641,7 @@
               ]
             },
             {
-              "order": 9,
+              "order": 10,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -641,7 +662,7 @@
               ]
             },
             {
-              "order": 10,
+              "order": 11,
               "label": "",
               "weight_class": "Flyweight Bout",
               "fighters": [
@@ -662,7 +683,7 @@
               ]
             },
             {
-              "order": 11,
+              "order": 12,
               "label": "",
               "weight_class": "Women's Bantamweight Bout",
               "fighters": [
@@ -683,7 +704,7 @@
               ]
             },
             {
-              "order": 12,
+              "order": 13,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -704,7 +725,7 @@
               ]
             },
             {
-              "order": 13,
+              "order": 14,
               "label": "",
               "weight_class": "Women's Strawweight Bout",
               "fighters": [
@@ -1256,6 +1277,216 @@
                   "name": "Raoni Barcelos",
                   "initials": "RB",
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220922033319_Raoni_Barcelos_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Women's Strawweight Bout",
+              "fighters": [
+                {
+                  "name": "Melissa Amaya",
+                  "initials": "MA",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20240529063154_Melissa_Amaya.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Valesca Machado",
+                  "initials": "VM",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221116023743_Valesca_Machado.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Mehemmedeli Osmanli",
+                  "initials": "MO",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Ilimbek Akylbek Uulu",
+                  "initials": "IAU",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1632627936Ilimbek-Akylbek-Uulu.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Montel Jackson",
+                  "initials": "MJ",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220929054859_Montel_Jackson_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Ricky Simon",
+                  "initials": "RS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220401045723_Ricky_Simon_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Light Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Rodolfo Bellato",
+                  "initials": "RB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220711030658_Rodolfo_Bellato.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Christian Edwards",
+                  "initials": "CE",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1581902100Christian_Edwards.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Rodolfo Vieira",
+                  "initials": "RV",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220929063127_Rodolfo_Vieira_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Robert Bryczek",
+                  "initials": "RB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1579651132Robert_Bryczek.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Brady Hiestand",
+                  "initials": "BH",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220929062916_Brady_Hiestand_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Rinya Nakamura",
+                  "initials": "RN",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220930101521_Rinya_Nakamura.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "John Castaneda",
+                  "initials": "JC",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220922033527_John_Castaneda_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Alatengheili",
+                  "initials": "A",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Josiah Harrell",
+                  "initials": "JH",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20230702052420_Josiah_Harrell.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Elves Brener",
+                  "initials": "EB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20240502022918_Elves_Brener_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "Women's Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Norma Dumont",
+                  "initials": "ND",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220401051143_Norma_Dumont_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Ailin Perez",
+                  "initials": "AP",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221118044118_Ailin_Perez_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 11,
+              "label": "",
+              "weight_class": "Women's Strawweight Bout",
+              "fighters": [
+                {
+                  "name": "Vanessa Demopoulos",
+                  "initials": "VD",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220922072043_Vanessa_Demopoulos_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Yazmin Jauregui",
+                  "initials": "YJ",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220529032346_Yasmin_Jauregui.JPG",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
