@@ -1,7 +1,37 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-25T23:43:52.333Z",
+  "generated_at": "2026-08-26T10:23:12.035Z",
   "changes": [
+    {
+      "id": "2026-08-26T10:23:12.035Z|dwcs-season-10-week-4-2026-09-01|event_added|1",
+      "at": "2026-08-26T10:23:12.035Z",
+      "type": "event_added",
+      "event_id": "dwcs-season-10-week-4-2026-09-01",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 4",
+      "event_date": "2026-09-01",
+      "summary": "DWCS Season 10 · Week 4 added to Upcoming Events.",
+      "details": {
+        "bout_count": 5,
+        "venue": "Meta APEX · Las Vegas, Nevada",
+        "date": "2026-09-01"
+      }
+    },
+    {
+      "id": "2026-08-26T10:23:12.035Z|dwcs-season-10-week-3-2026-08-25|event_removed|2",
+      "at": "2026-08-26T10:23:12.035Z",
+      "type": "event_removed",
+      "event_id": "dwcs-season-10-week-3-2026-08-25",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 3",
+      "event_date": "2026-08-25",
+      "summary": "DWCS Season 10 · Week 3 removed from Upcoming Events.",
+      "details": {
+        "bout_count": 5,
+        "venue": "Meta APEX · Las Vegas, Nevada",
+        "date": "2026-08-25"
+      }
+    },
     {
       "id": "2026-08-25T23:43:52.333Z|ufc-fight-night-2026-11-07-fight-card|event_added|1",
       "at": "2026-08-25T23:43:52.333Z",
@@ -4421,34 +4451,6 @@
       "summary": "Nursulton Ruziboev portrait added.",
       "details": {
         "fighter": "Nursulton Ruziboev",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|23",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Morgan Charriere portrait added.",
-      "details": {
-        "fighter": "Morgan Charriere",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-14T23:26:31.381Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|24",
-      "at": "2026-08-14T23:26:31.381Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Felipe Lima portrait added.",
-      "details": {
-        "fighter": "Felipe Lima",
         "source": "sherdog"
       }
     }

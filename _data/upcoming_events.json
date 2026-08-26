@@ -1,134 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-26T04:00:22.517Z",
+  "generated_at": "2026-08-26T10:22:36.246Z",
   "events": [
-    {
-      "id": "dwcs-season-10-week-3-2026-08-25",
-      "promotion_key": "dwcs",
-      "promotion": "DWCS",
-      "title": "Season 10 · Week 3",
-      "date": "2026-08-25",
-      "date_label": "Tuesday · August 25, 2026",
-      "venue": "Meta APEX · Las Vegas, Nevada",
-      "broadcast": "Paramount+",
-      "official_url": "https://www.ufc.com/dwcs#season-10-week-3",
-      "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-3-112628",
-      "updated_label": "August 25, 2026",
-      "sections": [
-        {
-          "kind": "main",
-          "title": "Fight Card",
-          "time": "8:00 PM ET",
-          "bouts": [
-            {
-              "order": 1,
-              "label": "Main Event",
-              "weight_class": "Bantamweight",
-              "fighters": [
-                {
-                  "name": "Alex Apodaca",
-                  "initials": "AA",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20260725012459_Alex_Apodaca.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Bella Mir",
-                  "initials": "BM",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250727070809_Bella_Mir.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Heavyweight",
-              "fighters": [
-                {
-                  "name": "Guilherme Uriel",
-                  "initials": "GU",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1724756252eeee.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Mario Piazzon",
-                  "initials": "MP",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1682374237e4b95ad0-efbe-4795-89c8-00d210089198.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 3,
-              "label": "",
-              "weight_class": "Welterweight",
-              "fighters": [
-                {
-                  "name": "Sean Clancy Jr.",
-                  "initials": "SCJ",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732379692sean.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Gary Balletto Jr.",
-                  "initials": "GBJ",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/152308123810455092_948218908571385_6897623768572752228_n.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 4,
-              "label": "",
-              "weight_class": "Welterweight",
-              "fighters": [
-                {
-                  "name": "Ronald Humphrey",
-                  "initials": "RH",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1767666310ronaldhumphrey.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Alexis Miranda",
-                  "initials": "AM",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1669661792Alexis_Miranda.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
-              "weight_class": "Middleweight",
-              "fighters": [
-                {
-                  "name": "Nick Galanti",
-                  "initials": "NG",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1778698445nickgalanti.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Carlos Petruzzella",
-                  "initials": "CP",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1731596822petruzzella.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
     {
       "id": "ufc-fight-night-2026-08-29-fight-card",
       "promotion_key": "ufc",
@@ -141,7 +14,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-august-29-2026",
-      "updated_label": "August 25, 2026",
+      "updated_label": "August 26, 2026",
       "sections": [
         {
           "kind": "main",
@@ -433,6 +306,133 @@
       ]
     },
     {
+      "id": "dwcs-season-10-week-4-2026-09-01",
+      "promotion_key": "dwcs",
+      "promotion": "DWCS",
+      "title": "Season 10 · Week 4",
+      "date": "2026-09-01",
+      "date_label": "Tuesday · September 1, 2026",
+      "venue": "Meta APEX · Las Vegas, Nevada",
+      "broadcast": "Paramount+",
+      "official_url": "https://www.ufc.com/dwcs#season-10-week-4",
+      "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-4-112630",
+      "updated_label": "August 26, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Fight Card",
+          "time": "8:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Welterweight",
+              "fighters": [
+                {
+                  "name": "Adam Darby",
+                  "initials": "AD",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1668971631316135732_5949278895092228_1379751046776683864_n.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Patrick Rivera",
+                  "initials": "PR",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221014033824_Patrick_Rivera.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Middleweight",
+              "fighters": [
+                {
+                  "name": "Brandon Holmes",
+                  "initials": "BH",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250525015208_Brandon_Holmes.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Modestino Rodrigues",
+                  "initials": "MR",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1737636324modestino.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Lightweight",
+              "fighters": [
+                {
+                  "name": "Liam McCracken",
+                  "initials": "LM",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1677192218Liam_McCracken.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Silvestre Sanchez",
+                  "initials": "SS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732822797sanchez.jpeg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Heavyweight",
+              "fighters": [
+                {
+                  "name": "Charlie Cleveland",
+                  "initials": "CC",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1768763386IMG_3624.jpeg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Gabriel Lourenco",
+                  "initials": "GL",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1763588310gabrielourenco.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Lightweight",
+              "fighters": [
+                {
+                  "name": "Adam Livingston",
+                  "initials": "AL",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732767989livingston.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Hunter Smith",
+                  "initials": "HS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250718104134_Hunter_Smith.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "ufc-fight-night-2026-09-05-fight-card",
       "promotion_key": "ufc",
       "promotion": "UFC Fight Night",
@@ -444,7 +444,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-september-05-2026",
-      "updated_label": "August 25, 2026",
+      "updated_label": "August 26, 2026",
       "sections": [
         {
           "kind": "main",
@@ -738,7 +738,7 @@
       "venue": "京セラドーム大阪",
       "broadcast": "RIZIN 100 CLUB · RIZIN LIVE · ABEMA · Sky PerfecTV",
       "official_url": "https://jp.rizinff.com/_ct/17834937",
-      "updated_label": "August 25, 2026",
+      "updated_label": "August 26, 2026",
       "sections": [
         {
           "kind": "main",
@@ -951,7 +951,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
-      "updated_label": "August 25, 2026",
+      "updated_label": "August 26, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1233,7 +1233,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
-      "updated_label": "August 25, 2026",
+      "updated_label": "August 26, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1275,7 +1275,7 @@
       "venue": "長崎スタジアムシティ HAPPINESS ARENA",
       "broadcast": "RIZIN 100 CLUB",
       "official_url": "https://jp.rizinff.com/_ct/17852438",
-      "updated_label": "August 25, 2026",
+      "updated_label": "August 26, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1362,7 +1362,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-332",
-      "updated_label": "August 25, 2026",
+      "updated_label": "August 26, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1532,7 +1532,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-      "updated_label": "August 25, 2026",
+      "updated_label": "August 26, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1744,7 +1744,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-333",
-      "updated_label": "August 25, 2026",
+      "updated_label": "August 26, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1963,7 +1963,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-      "updated_label": "August 25, 2026",
+      "updated_label": "August 26, 2026",
       "sections": [
         {
           "kind": "main",
