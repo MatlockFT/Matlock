@@ -48,12 +48,12 @@
       "verdict_url": "https://verdictmma.com/event/1905",
       "verdict_date": "2026-09-05",
       "local_fight_count": 14,
-      "verdict_fight_count": 12,
+      "verdict_fight_count": 14,
       "local_main_count": 14,
-      "verdict_main_count": 5,
+      "verdict_main_count": 6,
       "local_prelim_count": 0,
-      "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 12
+      "verdict_prelim_count": 8,
+      "confirmed_local_bouts": 14
     },
     {
       "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
@@ -75,12 +75,12 @@
       "verdict_url": "https://verdictmma.com/event/1938",
       "verdict_date": "2026-09-12",
       "local_fight_count": 12,
-      "verdict_fight_count": 14,
+      "verdict_fight_count": 15,
       "local_main_count": 6,
-      "verdict_main_count": 6,
+      "verdict_main_count": 7,
       "local_prelim_count": 6,
       "verdict_prelim_count": 8,
-      "confirmed_local_bouts": 11
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "ufc-fight-night-2026-09-26-fight-card",
@@ -97,7 +97,7 @@
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
-      "confirmed_local_bouts": 1
+      "confirmed_local_bouts": 5
     },
     {
       "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
@@ -170,62 +170,25 @@
       "event_id": "noche-ufc-2026-09-12-fight-card",
       "verdict_event_id": "1938",
       "local_fight_count": 12,
-      "verdict_fight_count": 14
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "verdict_event_id": "1938",
-      "order": 1,
-      "fighters": [
-        "Jean Silva",
-        "Jose Miguel Delgado"
-      ]
+      "verdict_fight_count": 15
     },
     {
       "type": "section_count_mismatch",
       "event_id": "noche-ufc-2026-09-12-fight-card",
       "verdict_event_id": "1938",
       "local_main_count": 6,
-      "verdict_main_count": 6,
+      "verdict_main_count": 7,
       "local_prelim_count": 6,
       "verdict_prelim_count": 8
-    },
-    {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "verdict_event_id": "1905",
-      "local_fight_count": 14,
-      "verdict_fight_count": 12
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "verdict_event_id": "1905",
-      "order": 11,
-      "fighters": [
-        "Michael Aljarouj",
-        "Fabia Sintes"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "verdict_event_id": "1905",
-      "order": 4,
-      "fighters": [
-        "Daniil Donchenko",
-        "Punahele Soriano"
-      ]
     },
     {
       "type": "section_count_mismatch",
       "event_id": "ufc-fight-night-2026-09-05-fight-card",
       "verdict_event_id": "1905",
       "local_main_count": 14,
-      "verdict_main_count": 5,
+      "verdict_main_count": 6,
       "local_prelim_count": 0,
-      "verdict_prelim_count": 7
+      "verdict_prelim_count": 8
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -245,46 +208,6 @@
       "fighters": [
         "Vanessa Demopoulos",
         "Yazmin Jauregui"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "verdict_event_id": "1959",
-      "order": 2,
-      "fighters": [
-        "Melissa Amaya",
-        "Valesca Machado"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "verdict_event_id": "1959",
-      "order": 3,
-      "fighters": [
-        "Mehemmedeli Osmanli",
-        "Ilimbek Akylbek Uulu"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "verdict_event_id": "1959",
-      "order": 4,
-      "fighters": [
-        "Montel Jackson",
-        "Ricky Simon"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "verdict_event_id": "1959",
-      "order": 5,
-      "fighters": [
-        "Rodolfo Bellato",
-        "Christian Edwards"
       ]
     },
     {
