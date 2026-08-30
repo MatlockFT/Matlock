@@ -5,7 +5,7 @@ export const DATA_PATH = '_data/upcoming_events.json';
 const suspiciousText = /\b(?:EVENT INFO|WHERE TO WATCH|BUY TICKETS|MATCHUPS|MAIN CARD|EARLY CARD|PRELIMS?|REGISTER INTEREST|VIEW RESULTS|d\s*:\s*h\s*:\s*m\s*:\s*s)\b/i;
 const trackingUrl = /(?:piwik|matomo|google-analytics|googletagmanager|doubleclick|analytics|tracking|pixel|beacon|\/collect(?:[/?]|$)|\/track(?:[/?]|$))/i;
 
-export const norm = (s = '') => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\b(jr|sr|ii|iii|iv)\b/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+export const norm = (s = '') => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/\b(jr|sr|ii|iii|iv)\b/g, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
 export const initials = name => String(name || '').split(/\s+/).filter(Boolean).slice(0, 3).map(x => x[0]).join('').toUpperCase() || '?';
 export const updatedLabel = () => new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', month: 'long', day: 'numeric', year: 'numeric' }).format(new Date());
 export const dateLabel = iso => new Intl.DateTimeFormat('en-US', { timeZone: 'UTC', weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }).format(new Date(`${iso}T12:00:00Z`)).replace(/^(\w+), /, '$1 · ');
