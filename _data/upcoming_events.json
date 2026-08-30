@@ -1,310 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-28T07:08:22.723Z",
+  "generated_at": "2026-08-30T08:18:28.080Z",
   "events": [
-    {
-      "id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion_key": "ufc",
-      "promotion": "UFC Fight Night",
-      "title": "Nurmagomedov vs Yadong",
-      "date": "2026-08-29",
-      "date_label": "Saturday · August 29, 2026",
-      "starts_at": "",
-      "expires_at": "",
-      "venue": "Venue TBA",
-      "broadcast": "Paramount+ · UFC Fight Pass",
-      "official_url": "https://www.ufc.com/event/ufc-fight-night-august-29-2026",
-      "updated_label": "August 28, 2026",
-      "sections": [
-        {
-          "kind": "main",
-          "title": "Main Card",
-          "time": "6:00 AM ET",
-          "bouts": [
-            {
-              "order": 1,
-              "label": "Main Event",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Umar Nurmagomedov",
-                  "initials": "UN",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220401061902_Umar_Nurmagomedov_ff.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Song Yadong",
-                  "initials": "SY",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220401043317_Yadong_Song_ff.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Women's Strawweight Bout",
-              "fighters": [
-                {
-                  "name": "Yan Xiaonan",
-                  "initials": "YX",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220331090732_Xiaonan_Yan_ff.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Denise Gomes",
-                  "initials": "DG",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220917065630_gomes.PNG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 3,
-              "label": "",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Aoriqileng",
-                  "initials": "A",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1482198172aori.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Kai Asakura",
-                  "initials": "KA",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20231231090241_Kai_Asakura.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 4,
-              "label": "",
-              "weight_class": "Flyweight Bout",
-              "fighters": [
-                {
-                  "name": "Alex Perez",
-                  "initials": "AP",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220325080934_Alex_Perez_ff.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Sumudaerji",
-                  "initials": "S",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1579199969Su_Mudaerji.png",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
-              "weight_class": "Light Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Liu Ce",
-                  "initials": "LC",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20241013100658_Ce_Liu.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Levi Rodrigues Jr.",
-                  "initials": "LRJ",
-                  "image": "",
-                  "image_source": "",
-                  "image_framing": ""
-                }
-              ]
-            },
-            {
-              "order": 6,
-              "label": "",
-              "weight_class": "Flyweight Bout",
-              "fighters": [
-                {
-                  "name": "Bilal Hasan",
-                  "initials": "BH",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1749486832bilalhasan.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Nilson Rojas",
-                  "initials": "NR",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1784787309Nilson_Rojas.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "kind": "prelims",
-          "title": "Prelims",
-          "time": "3:00 AM ET",
-          "bouts": [
-            {
-              "order": 7,
-              "label": "",
-              "weight_class": "Flyweight Bout",
-              "fighters": [
-                {
-                  "name": "Namsrai Batbayar",
-                  "initials": "NB",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250822114940_Namsrai_Batbayar.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Andre Lima",
-                  "initials": "AL",
-                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5483.png",
-                  "image_source": "espn",
-                  "image_framing": "standard"
-                }
-              ]
-            },
-            {
-              "order": 8,
-              "label": "",
-              "weight_class": "Flyweight Bout",
-              "fighters": [
-                {
-                  "name": "Rei Tsuruya",
-                  "initials": "RT",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20240625120122_Rei_Tsuruya_ff.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Kevin Borjas",
-                  "initials": "KB",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1768921669kevinborjas.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 9,
-              "label": "",
-              "weight_class": "Featherweight Bout",
-              "fighters": [
-                {
-                  "name": "Jack Jenkins",
-                  "initials": "JJ",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220828025238_Jack_Jenkins.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Sean Woodson",
-                  "initials": "SW",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20230622024125_Sean_Woodson_ff.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 10,
-              "label": "",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Xiao Long",
-                  "initials": "XL",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1493892114xiao.png",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Francesco Nuzzi",
-                  "initials": "FN",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1616691566Schermata_2021-03-25_alle_17.59.10.png",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 11,
-              "label": "",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Lawrence Lui",
-                  "initials": "LL",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250514064414_Lawrence_Lui.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Hector Santiago",
-                  "initials": "HS",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732775034santiago.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 12,
-              "label": "",
-              "weight_class": "Women's Strawweight Bout",
-              "fighters": [
-                {
-                  "name": "Xiong Jingnan",
-                  "initials": "XJ",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1500917573Jingnan_Xiong.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Julia Polastri",
-                  "initials": "JP",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1779568632juliapolastri.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 13,
-              "label": "",
-              "weight_class": "Welterweight Bout",
-              "fighters": [
-                {
-                  "name": "Ding Meng",
-                  "initials": "DM",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20231126054849_Meng_Ding.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Cam Nelson",
-                  "initials": "CN",
-                  "image": "",
-                  "image_source": "",
-                  "image_framing": ""
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
     {
       "id": "dwcs-season-10-week-4-2026-09-01",
       "promotion_key": "dwcs",
@@ -316,7 +13,7 @@
       "broadcast": "Paramount+",
       "official_url": "https://www.ufc.com/dwcs#season-10-week-4",
       "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-4-112630",
-      "updated_label": "August 28, 2026",
+      "updated_label": "August 30, 2026",
       "sections": [
         {
           "kind": "main",
@@ -444,7 +141,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-september-05-2026",
-      "updated_label": "August 28, 2026",
+      "updated_label": "August 30, 2026",
       "sections": [
         {
           "kind": "main",
@@ -759,7 +456,7 @@
       "venue": "京セラドーム大阪",
       "broadcast": "RIZIN 100 CLUB · RIZIN LIVE · ABEMA · Sky PerfecTV",
       "official_url": "https://jp.rizinff.com/_ct/17834937",
-      "updated_label": "August 28, 2026",
+      "updated_label": "August 30, 2026",
       "sections": [
         {
           "kind": "main",
@@ -916,27 +613,6 @@
             {
               "order": 8,
               "label": "",
-              "weight_class": "59.0 kg",
-              "fighters": [
-                {
-                  "name": "Daichi Tomizawa",
-                  "initials": "DT",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/12/10/3121ad371cceecd3d370ba30867e86519a043e37_large.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Don't mind Kawabata",
-                  "initials": "DMK",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/07/20/9b1b654132d103aa669e54561f642cef7d7333f4_xlarge.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 9,
-              "label": "",
               "weight_class": "71.0 kg",
               "fighters": [
                 {
@@ -952,6 +628,27 @@
                   "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/04/15/ffd0143fefa3a4ed527223c20128ed66780b63d9_large.jpg",
                   "image_source": "rizin",
                   "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "59.0 kg",
+              "fighters": [
+                {
+                  "name": "【試合中止】冨澤大智",
+                  "initials": "【",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "ドンマイ川端",
+                  "initials": "ド",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
                 }
               ]
             }
@@ -972,7 +669,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
-      "updated_label": "August 28, 2026",
+      "updated_label": "August 30, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1254,7 +951,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
-      "updated_label": "August 28, 2026",
+      "updated_label": "August 30, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1506,7 +1203,7 @@
       "venue": "長崎スタジアムシティ HAPPINESS ARENA",
       "broadcast": "RIZIN 100 CLUB",
       "official_url": "https://jp.rizinff.com/_ct/17852438",
-      "updated_label": "August 28, 2026",
+      "updated_label": "August 30, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1575,6 +1272,237 @@
                   "image_framing": "safe"
                 }
               ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "49.0 kg",
+              "fighters": [
+                {
+                  "name": "Kate Lotus",
+                  "initials": "KL",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/06/09/dfde208da27ed7f24bd0cd0c31a9327672b1e71d_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "NOEL",
+                  "initials": "N",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/06/07/11bb943e5bbb8cfa8e1278692f116d77c84f036b_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Ryan Cafaro",
+                  "initials": "RC",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/03/30/636375c2a410e6421f99fc72d23f064959a64de4_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Hyuma Yasui",
+                  "initials": "HY",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/12/22/e333fb4619cc37f102781d4c42a895bbbe67e345_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 6,
+              "label": "",
+              "weight_class": "57.0 kg",
+              "fighters": [
+                {
+                  "name": "Hinotori",
+                  "initials": "H",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/02/27/0132527d3d1ff01f2e9a692baa9dad195214dd6f_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Masatoshi Ueda",
+                  "initials": "MU",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/01/17/db2ec5b6e2b2dadb6e32db423b5c32078c62a70a_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 7,
+              "label": "",
+              "weight_class": "57.0 kg",
+              "fighters": [
+                {
+                  "name": "杉山廣平",
+                  "initials": "杉",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Kaito Oda",
+                  "initials": "KO",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/08/28/6126759a540c1a8a456b8ae2f87ec185e4e61db5_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "120.0 kg",
+              "fighters": [
+                {
+                  "name": "荒東“怪獣キラー”英貴",
+                  "initials": "荒",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/08/30/c42995b4e9b2d264127cbb226d2e6cbd7d7199f7_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Ken Hasegawa",
+                  "initials": "KH",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2017/02/28/cae2ccc10d0f8ce5b0417d6fe347b8b0fd4dc44d.png",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "61.0 kg",
+              "fighters": [
+                {
+                  "name": "アラン“ヒロ”ヤマニハ",
+                  "initials": "ア",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2021/07/19/6a397fe51df863a4c743f33966c8c109be631a42_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Seigo Yamamoto",
+                  "initials": "SY",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/10/10/d65b19d25d649a52e315569a97d4860de889714a_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "120.0 kg",
+              "fighters": [
+                {
+                  "name": "Mac Papalii",
+                  "initials": "MP",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/08/28/c993a91e92ef87d0417ebe380851252f3c3b740b_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Alboury Ndiaye",
+                  "initials": "AN",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2020/12/01/ed7bf7a5023ade5510ece765c67142964c51a880_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 11,
+              "label": "",
+              "weight_class": "71.0 kg",
+              "fighters": [
+                {
+                  "name": "OPENING FIGHT 大木良太",
+                  "initials": "OF大",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Hunt Rangers",
+                  "initials": "HR",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/08/28/f6e17548bdce5dad025f9e9b45fb89597af60743_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 12,
+              "label": "",
+              "weight_class": "57.0 kg",
+              "fighters": [
+                {
+                  "name": "OPENING FIGHT 今村流星",
+                  "initials": "OF今",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Reon Uemura",
+                  "initials": "RU",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/08/28/526d00cc2295a913d58b4ede13ba4377ad1f31d1_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 13,
+              "label": "",
+              "weight_class": "100.0 kg",
+              "fighters": [
+                {
+                  "name": "OPENING FIGHT 森孝太郎",
+                  "initials": "OF森",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Yuki",
+                  "initials": "Y",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/08/28/0191914ac028943df1d71ab509fabf0864760729_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 14,
+              "label": "",
+              "weight_class": "65.0 kg",
+              "fighters": [
+                {
+                  "name": "OPENING FIGHT KAKERU",
+                  "initials": "OFK",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Ayuto",
+                  "initials": "A",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/08/28/ff68094f39113a5debaf4c3fb4ae2ea82d304130_xlarge.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
             }
           ]
         }
@@ -1593,7 +1521,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-332",
-      "updated_label": "August 28, 2026",
+      "updated_label": "August 30, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1763,7 +1691,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-      "updated_label": "August 28, 2026",
+      "updated_label": "August 30, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1975,7 +1903,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-333",
-      "updated_label": "August 28, 2026",
+      "updated_label": "August 30, 2026",
       "sections": [
         {
           "kind": "main",
@@ -2194,7 +2122,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-      "updated_label": "August 28, 2026",
+      "updated_label": "August 30, 2026",
       "sections": [
         {
           "kind": "main",

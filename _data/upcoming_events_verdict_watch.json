@@ -5,23 +5,6 @@
   "mode": "read-only-watchdog",
   "coverage": [
     {
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "ufc",
-      "date": "2026-08-29",
-      "title": "Nurmagomedov vs Yadong",
-      "status": "matched",
-      "verdict_event_id": "1919",
-      "verdict_url": "https://verdictmma.com/event/1919",
-      "verdict_date": "2026-08-29",
-      "local_fight_count": 13,
-      "verdict_fight_count": 13,
-      "local_main_count": 6,
-      "verdict_main_count": 6,
-      "local_prelim_count": 7,
-      "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 13
-    },
-    {
       "event_id": "dwcs-season-10-week-4-2026-09-01",
       "promotion": "dwcs",
       "date": "2026-09-01",
@@ -60,10 +43,17 @@
       "promotion": "rizin",
       "date": "2026-09-10",
       "title": "ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り",
-      "status": "coverage_gap",
+      "status": "matched",
+      "verdict_event_id": "1964",
+      "verdict_url": "https://verdictmma.com/event/1964",
+      "verdict_date": "2026-09-10",
       "local_fight_count": 9,
+      "verdict_fight_count": null,
       "local_main_count": 9,
-      "local_prelim_count": 0
+      "verdict_main_count": null,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": null,
+      "confirmed_local_bouts": 6
     },
     {
       "event_id": "noche-ufc-2026-09-12-fight-card",
@@ -75,11 +65,11 @@
       "verdict_url": "https://verdictmma.com/event/1938",
       "verdict_date": "2026-09-12",
       "local_fight_count": 12,
-      "verdict_fight_count": 15,
+      "verdict_fight_count": 12,
       "local_main_count": 6,
-      "verdict_main_count": 7,
+      "verdict_main_count": 6,
       "local_prelim_count": 6,
-      "verdict_prelim_count": 8,
+      "verdict_prelim_count": 6,
       "confirmed_local_bouts": 12
     },
     {
@@ -105,8 +95,8 @@
       "date": "2026-10-03",
       "title": "RIZIN LANDMARK 16 in NAGASAKI",
       "status": "coverage_gap",
-      "local_fight_count": 3,
-      "local_main_count": 3,
+      "local_fight_count": 14,
+      "local_main_count": 14,
       "local_prelim_count": 0
     },
     {
@@ -166,20 +156,34 @@
   ],
   "discrepancies": [
     {
-      "type": "bout_count_mismatch",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "verdict_event_id": "1938",
-      "local_fight_count": 12,
-      "verdict_fight_count": 15
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
+      "verdict_event_id": "1964",
+      "order": 5,
+      "fighters": [
+        "Yutaka Saito",
+        "YA-MAN"
+      ]
     },
     {
-      "type": "section_count_mismatch",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "verdict_event_id": "1938",
-      "local_main_count": 6,
-      "verdict_main_count": 7,
-      "local_prelim_count": 6,
-      "verdict_prelim_count": 8
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
+      "verdict_event_id": "1964",
+      "order": 8,
+      "fighters": [
+        "“ブラックパンサー”ベイノア",
+        "Hide Meison Usami"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
+      "verdict_event_id": "1964",
+      "order": 9,
+      "fighters": [
+        "【試合中止】冨澤大智",
+        "ドンマイ川端"
+      ]
     },
     {
       "type": "section_count_mismatch",
