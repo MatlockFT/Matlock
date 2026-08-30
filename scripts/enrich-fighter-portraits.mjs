@@ -160,6 +160,30 @@ for(const {person,promotion} of fighters){
   if(hit){person.image=hit.url;person.image_source=hit.source||sourceFor(hit.url);person.image_framing=hit.framing||framingFor(person.image_source);changedData=true;}
 }
 
+// Any promotion can occasionally expose an ambiguous or mislabeled image. Never
+// let one bad portrait stop the entire event refresh: if two different fighters
+// on the same event resolve to the exact same image, clear that image from every
+// conflicting fighter and remove the matching cache entries. The UI will fall
+// back to its normal blank/initials state until a later run finds a verified image.
+const eventPortraits=new Map();
+for(const {person,eventId} of fighters){
+  const name=norm(person.name),url=person.image;
+  if(!name||!url)continue;
+  const key=`${eventId}|${url}`;
+  if(!eventPortraits.has(key))eventPortraits.set(key,[]);
+  eventPortraits.get(key).push(person);
+}
+for(const people of eventPortraits.values()){
+  const names=new Set(people.map(person=>norm(person.name)).filter(Boolean));
+  if(names.size<2)continue;
+  for(const person of people){
+    const key=norm(person.name),badUrl=person.image;
+    person.image='';person.image_source='';person.image_framing='';changedData=true;
+    if(cache[key]?.url===badUrl){delete cache[key];changedCache=true;}
+    console.warn(`Cleared ambiguous duplicate portrait assignment for ${person.name}.`);
+  }
+}
+
 if(changedCache)await fs.writeFile(CACHE_PATH,JSON.stringify(Object.fromEntries(Object.entries(cache).sort(([a],[b])=>a.localeCompare(b))),null,2)+'\n');
 if(changedData)await fs.writeFile(DATA_PATH,JSON.stringify(data,null,2)+'\n');
 console.log(`Portrait enrichment complete. Data changed: ${changedData}; cache changed: ${changedCache}.`);
