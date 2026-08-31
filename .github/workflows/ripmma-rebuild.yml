@@ -1,0 +1,125 @@
+name: RIP MMA Windows Rebuild
+
+on:
+  push:
+    branches:
+      - ripmma-rebuild-20260830
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - name: Checkout temporary build branch
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Clone pinned UFC Ripper 4.0.1 base
+        run: |
+          git clone https://github.com/m4heshd/ufc-ripper.git work
+          Set-Location work
+          git checkout 7e208ae
+
+      - name: Reassemble and verify RIP MMA patch
+        run: |
+          $parts = Get-ChildItem "$env:GITHUB_WORKSPACE\ripmma\patch.b64.*" | Sort-Object Name
+          if ($parts.Count -ne 7) { throw "Expected 7 patch chunks; found $($parts.Count)" }
+          $b64 = ($parts | ForEach-Object { (Get-Content $_.FullName -Raw).Trim() }) -join ''
+          $bytes = [Convert]::FromBase64String($b64)
+          $patch = "$env:RUNNER_TEMP\ripmma_patch.py"
+          [IO.File]::WriteAllBytes($patch, $bytes)
+          $hash = (Get-FileHash $patch -Algorithm SHA256).Hash.ToLower()
+          Write-Host "Patch SHA256: $hash"
+          if ($hash -ne '51004803feeaeccbf1673b85a77f21a31c0e62535223fc0feb9db48ef1e4a523') {
+            throw "RIP MMA patch checksum mismatch"
+          }
+          python -m py_compile $patch
+          python $patch "$env:GITHUB_WORKSPACE\work"
+
+      - name: Install UFC Ripper dependencies
+        run: |
+          Set-Location "$env:GITHUB_WORKSPACE\work"
+          npm install
+
+      - name: Build RIP MMA backend for Windows
+        run: |
+          Set-Location "$env:GITHUB_WORKSPACE\work"
+          npm run build:backend:win32
+          $backend = Get-ChildItem "$env:GITHUB_WORKSPACE\work\target" -Recurse -Filter 'ufc-ripper.exe' -File | Where-Object { $_.FullName -match '\\dist\\' } | Select-Object -First 1
+          if (-not $backend) { throw 'Could not locate rebuilt Windows backend.' }
+          $runtime = "$env:GITHUB_WORKSPACE\work\desktop\src-tauri\resources\runtime"
+          New-Item -ItemType Directory -Path $runtime -Force | Out-Null
+          Copy-Item $backend.FullName "$runtime\rip-mma-core.exe" -Force
+          Write-Host "Backend: $($backend.FullName)"
+
+      - name: Bundle yt-dlp and FFmpeg
+        run: |
+          $bin = "$env:GITHUB_WORKSPACE\work\desktop\src-tauri\resources\runtime\bin"
+          New-Item -ItemType Directory -Path $bin -Force | Out-Null
+          try {
+            Invoke-WebRequest 'https://github.com/yt-dlp/yt-dlp/releases/download/2026.07.04/yt-dlp.exe' -OutFile "$bin\yt-dlp.exe"
+          } catch {
+            Invoke-WebRequest 'https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe' -OutFile "$bin\yt-dlp.exe"
+          }
+          $ffzip = "$env:RUNNER_TEMP\ffmpeg.zip"
+          $ffdir = "$env:RUNNER_TEMP\ffmpeg"
+          Invoke-WebRequest 'https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip' -OutFile $ffzip
+          Expand-Archive $ffzip -DestinationPath $ffdir -Force
+          $ffmpeg = Get-ChildItem $ffdir -Recurse -Filter 'ffmpeg.exe' -File | Select-Object -First 1
+          $ffprobe = Get-ChildItem $ffdir -Recurse -Filter 'ffprobe.exe' -File | Select-Object -First 1
+          if (-not $ffmpeg -or -not $ffprobe) { throw 'FFmpeg tools were not found in downloaded archive.' }
+          Copy-Item $ffmpeg.FullName "$bin\ffmpeg.exe" -Force
+          Copy-Item $ffprobe.FullName "$bin\ffprobe.exe" -Force
+          & "$bin\yt-dlp.exe" --version
+          & "$bin\ffmpeg.exe" -version | Select-Object -First 1
+
+      - name: Prepare RIP MMA desktop wrapper
+        run: |
+          Set-Location "$env:GITHUB_WORKSPACE\work\desktop"
+          npm install
+          Add-Type -AssemblyName System.Drawing
+          $bmp = New-Object System.Drawing.Bitmap 512,512
+          $g = [System.Drawing.Graphics]::FromImage($bmp)
+          $g.Clear([System.Drawing.Color]::Black)
+          $font = New-Object System.Drawing.Font 'Arial',62,[System.Drawing.FontStyle]::Bold
+          $brush = [System.Drawing.Brushes]::White
+          $fmt = New-Object System.Drawing.StringFormat
+          $fmt.Alignment = [System.Drawing.StringAlignment]::Center
+          $fmt.LineAlignment = [System.Drawing.StringAlignment]::Center
+          $g.DrawString('RIP MMA',$font,$brush,(New-Object System.Drawing.RectangleF 0,0,512,512),$fmt)
+          $iconSource = "$env:RUNNER_TEMP\ripmma-icon.png"
+          $bmp.Save($iconSource,[System.Drawing.Imaging.ImageFormat]::Png)
+          $g.Dispose(); $bmp.Dispose(); $font.Dispose(); $fmt.Dispose()
+          npx tauri icon $iconSource
+
+      - name: Build Windows NSIS installer
+        run: |
+          Set-Location "$env:GITHUB_WORKSPACE\work\desktop"
+          npm run tauri -- build --bundles nsis
+          $installer = Get-ChildItem "$env:GITHUB_WORKSPACE\work\desktop\src-tauri\target\release\bundle\nsis" -Filter '*.exe' -File | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+          if (-not $installer) { throw 'Tauri build completed without an NSIS installer.' }
+          $out = "$env:GITHUB_WORKSPACE\out"
+          New-Item -ItemType Directory -Path $out -Force | Out-Null
+          Copy-Item $installer.FullName "$out\RIP MMA 1.0 Setup.exe" -Force
+          Get-Item "$out\RIP MMA 1.0 Setup.exe" | Select-Object FullName,Length,LastWriteTime
+          Get-FileHash "$out\RIP MMA 1.0 Setup.exe" -Algorithm SHA256
+
+      - name: Upload RIP MMA installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: rip-mma-windows-installer
+          path: out/RIP MMA 1.0 Setup.exe
+          if-no-files-found: error
