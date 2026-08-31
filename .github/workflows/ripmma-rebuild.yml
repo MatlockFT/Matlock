@@ -51,16 +51,28 @@ jobs:
             throw "Stored RIP MMA patch checksum mismatch"
           }
 
-          # Correct one UFC Ripper 4.0.1 frontend export-order assumption in the recovered patch.
+          # Correct exact UFC Ripper 4.0.1 markup/order assumptions in the recovered patch.
           $text = Get-Content $patch -Raw
+
           $old = "fws = req_replace(fws, '''        searchVODs,\n        verifyURL,''', '''        searchVODs,\n        searchYouTube,\n        verifyURL,''', 'frontend youtube export')"
           $new = "fws = req_replace(fws, '''        searchVODs,\n        clearDLQ,''', '''        searchVODs,\n        searchYouTube,\n        clearDLQ,''', 'frontend youtube export')"
-          if (-not $text.Contains($old)) { throw 'Recovered patch hotfix target not found.' }
-          [IO.File]::WriteAllText($patch, $text.Replace($old, $new), [Text.UTF8Encoding]::new($false))
+          if (-not $text.Contains($old)) { throw 'Recovered patch export hotfix target not found.' }
+          $text = $text.Replace($old, $new)
 
+          $oldResults = "fp_block='''        </BlockVODCard>\n      </div>'''"
+          $newResults = "fp_block='''        ></BlockVODCard>\n      </div>'''"
+          if (-not $text.Contains($oldResults)) { throw 'Recovered patch results hotfix target not found.' }
+          $text = $text.Replace($oldResults, $newResults)
+
+          $oldYouTube = "youtube_block='''        </BlockVODCard>\n\n        <template"
+          $newYouTube = "youtube_block='''        ></BlockVODCard>\n\n        <template"
+          if (-not $text.Contains($oldYouTube)) { throw 'Recovered patch YouTube block hotfix target not found.' }
+          $text = $text.Replace($oldYouTube, $newYouTube)
+
+          [IO.File]::WriteAllText($patch, $text, [Text.UTF8Encoding]::new($false))
           $patchedHash = (Get-FileHash $patch -Algorithm SHA256).Hash.ToLower()
           Write-Host "Corrected patch SHA256: $patchedHash"
-          if ($patchedHash -ne 'f3ae9a443d213380998162783475cb8f46cc94e3873c4c311e9f5a3f5ee0d521') {
+          if ($patchedHash -ne '03c299f4f369df0604ee87462ed5fe6767ebc78114eb865acf22916720949487') {
             throw "Corrected RIP MMA patch checksum mismatch"
           }
           python -m py_compile $patch
