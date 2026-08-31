@@ -119,6 +119,7 @@ jobs:
         run: |
           Set-Location "$env:GITHUB_WORKSPACE\work\desktop"
           npm install
+          Add-Content -Path 'src-tauri\Cargo.toml' -Value "`n[workspace]`n"
           Add-Type -AssemblyName System.Drawing
           $bmp = [System.Drawing.Bitmap]::new(512, 512)
           $g = [System.Drawing.Graphics]::FromImage($bmp)
