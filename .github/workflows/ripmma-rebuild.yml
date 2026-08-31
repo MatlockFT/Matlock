@@ -44,10 +44,24 @@ jobs:
           $output = [IO.File]::Create($patch)
           $gz.CopyTo($output)
           $output.Close(); $gz.Close(); $input.Close()
-          $hash = (Get-FileHash $patch -Algorithm SHA256).Hash.ToLower()
-          Write-Host "Patch SHA256: $hash"
-          if ($hash -ne '51004803feeaeccbf1673b85a77f21a31c0e62535223fc0feb9db48ef1e4a523') {
-            throw "RIP MMA patch checksum mismatch"
+
+          $sourceHash = (Get-FileHash $patch -Algorithm SHA256).Hash.ToLower()
+          Write-Host "Stored patch SHA256: $sourceHash"
+          if ($sourceHash -ne '51004803feeaeccbf1673b85a77f21a31c0e62535223fc0feb9db48ef1e4a523') {
+            throw "Stored RIP MMA patch checksum mismatch"
+          }
+
+          # Correct one UFC Ripper 4.0.1 frontend export-order assumption in the recovered patch.
+          $text = Get-Content $patch -Raw
+          $old = "fws = req_replace(fws, '''        searchVODs,\n        verifyURL,''', '''        searchVODs,\n        searchYouTube,\n        verifyURL,''', 'frontend youtube export')"
+          $new = "fws = req_replace(fws, '''        searchVODs,\n        clearDLQ,''', '''        searchVODs,\n        searchYouTube,\n        clearDLQ,''', 'frontend youtube export')"
+          if (-not $text.Contains($old)) { throw 'Recovered patch hotfix target not found.' }
+          [IO.File]::WriteAllText($patch, $text.Replace($old, $new), [Text.UTF8Encoding]::new($false))
+
+          $patchedHash = (Get-FileHash $patch -Algorithm SHA256).Hash.ToLower()
+          Write-Host "Corrected patch SHA256: $patchedHash"
+          if ($patchedHash -ne 'f3ae9a443d213380998162783475cb8f46cc94e3873c4c311e9f5a3f5ee0d521') {
+            throw "Corrected RIP MMA patch checksum mismatch"
           }
           python -m py_compile $patch
           python $patch "$env:GITHUB_WORKSPACE\work"
