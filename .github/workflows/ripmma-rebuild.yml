@@ -120,17 +120,18 @@ jobs:
           Set-Location "$env:GITHUB_WORKSPACE\work\desktop"
           npm install
           Add-Type -AssemblyName System.Drawing
-          $bmp = New-Object System.Drawing.Bitmap 512,512
+          $bmp = [System.Drawing.Bitmap]::new(512, 512)
           $g = [System.Drawing.Graphics]::FromImage($bmp)
           $g.Clear([System.Drawing.Color]::Black)
-          $font = New-Object System.Drawing.Font 'Arial',62,[System.Drawing.FontStyle]::Bold
+          $font = [System.Drawing.Font]::new('Arial', [single]62, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
           $brush = [System.Drawing.Brushes]::White
-          $fmt = New-Object System.Drawing.StringFormat
+          $fmt = [System.Drawing.StringFormat]::new()
           $fmt.Alignment = [System.Drawing.StringAlignment]::Center
           $fmt.LineAlignment = [System.Drawing.StringAlignment]::Center
-          $g.DrawString('RIP MMA',$font,$brush,(New-Object System.Drawing.RectangleF 0,0,512,512),$fmt)
+          $rect = [System.Drawing.RectangleF]::new([single]0, [single]0, [single]512, [single]512)
+          $g.DrawString('RIP MMA', $font, $brush, $rect, $fmt)
           $iconSource = "$env:RUNNER_TEMP\ripmma-icon.png"
-          $bmp.Save($iconSource,[System.Drawing.Imaging.ImageFormat]::Png)
+          $bmp.Save($iconSource, [System.Drawing.Imaging.ImageFormat]::Png)
           $g.Dispose(); $bmp.Dispose(); $font.Dispose(); $fmt.Dispose()
           npx tauri icon $iconSource
 
