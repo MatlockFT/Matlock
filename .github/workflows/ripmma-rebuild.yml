@@ -16,14 +16,6 @@ jobs:
         shell: pwsh
 
     steps:
-      - name: Checkout temporary build branch
-        uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            ripmma
-            .github/workflows/ripmma-rebuild.yml
-          sparse-checkout-cone-mode: false
-
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -34,13 +26,21 @@ jobs:
 
       - name: Clone pinned UFC Ripper 4.0.1 base
         run: |
+          Set-Location $env:GITHUB_WORKSPACE
           git clone https://github.com/m4heshd/ufc-ripper.git work
           Set-Location work
           git checkout 7e208ae
 
-      - name: Reassemble and verify RIP MMA patch
+      - name: Download, reassemble and verify RIP MMA patch
         run: |
-          $parts = Get-ChildItem "$env:GITHUB_WORKSPACE\ripmma\patch.b64.*" | Sort-Object Name
+          $partsDir = "$env:RUNNER_TEMP\ripmma-parts"
+          New-Item -ItemType Directory -Path $partsDir -Force | Out-Null
+          0..6 | ForEach-Object {
+            $n = $_.ToString('00')
+            $url = "https://raw.githubusercontent.com/MatlockFT/Matlock/ripmma-rebuild-20260830/ripmma/patch.b64.$n"
+            Invoke-WebRequest $url -OutFile "$partsDir\patch.b64.$n"
+          }
+          $parts = Get-ChildItem "$partsDir\patch.b64.*" | Sort-Object Name
           if ($parts.Count -ne 7) { throw "Expected 7 patch chunks; found $($parts.Count)" }
           $b64 = ($parts | ForEach-Object { (Get-Content $_.FullName -Raw).Trim() }) -join ''
           $bytes = [Convert]::FromBase64String($b64)
