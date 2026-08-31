@@ -31,21 +31,19 @@ jobs:
           Set-Location work
           git checkout 7e208ae
 
-      - name: Download, reassemble and verify RIP MMA patch
+      - name: Download and verify RIP MMA patch
         run: |
-          $partsDir = "$env:RUNNER_TEMP\ripmma-parts"
-          New-Item -ItemType Directory -Path $partsDir -Force | Out-Null
-          0..6 | ForEach-Object {
-            $n = $_.ToString('00')
-            $url = "https://raw.githubusercontent.com/MatlockFT/Matlock/ripmma-rebuild-20260830/ripmma/patch.b64.$n"
-            Invoke-WebRequest $url -OutFile "$partsDir\patch.b64.$n"
-          }
-          $parts = Get-ChildItem "$partsDir\patch.b64.*" | Sort-Object Name
-          if ($parts.Count -ne 7) { throw "Expected 7 patch chunks; found $($parts.Count)" }
-          $b64 = ($parts | ForEach-Object { (Get-Content $_.FullName -Raw).Trim() }) -join ''
-          $bytes = [Convert]::FromBase64String($b64)
+          $payload = "$env:RUNNER_TEMP\ripmma_patch.gz.b64"
+          $gzip = "$env:RUNNER_TEMP\ripmma_patch.py.gz"
           $patch = "$env:RUNNER_TEMP\ripmma_patch.py"
-          [IO.File]::WriteAllBytes($patch, $bytes)
+          Invoke-WebRequest 'https://raw.githubusercontent.com/MatlockFT/Matlock/ripmma-rebuild-20260830/ripmma/patch.gzip.b64' -OutFile $payload
+          $encoded = (Get-Content $payload -Raw).Trim()
+          [IO.File]::WriteAllBytes($gzip, [Convert]::FromBase64String($encoded))
+          $input = [IO.File]::OpenRead($gzip)
+          $gz = [IO.Compression.GzipStream]::new($input, [IO.Compression.CompressionMode]::Decompress)
+          $output = [IO.File]::Create($patch)
+          $gz.CopyTo($output)
+          $output.Close(); $gz.Close(); $input.Close()
           $hash = (Get-FileHash $patch -Algorithm SHA256).Hash.ToLower()
           Write-Host "Patch SHA256: $hash"
           if ($hash -ne '51004803feeaeccbf1673b85a77f21a31c0e62535223fc0feb9db48ef1e4a523') {
