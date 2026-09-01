@@ -1,7 +1,55 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-01T21:20:00.349Z",
+  "generated_at": "2026-09-01T23:24:15.995Z",
   "changes": [
+    {
+      "id": "2026-09-01T23:24:15.995Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|1",
+      "at": "2026-09-01T23:24:15.995Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Losene Keita vs Muhammad Naimov moved on Hooker vs Parnasse.",
+      "details": {
+        "from_order": 6,
+        "to_order": 5,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-01T23:24:15.995Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|2",
+      "at": "2026-09-01T23:24:15.995Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Morgan Charriere vs Felipe Lima moved on Hooker vs Parnasse.",
+      "details": {
+        "from_order": 7,
+        "to_order": 6,
+        "from_section": "Prelims",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-01T23:24:15.995Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|3",
+      "at": "2026-09-01T23:24:15.995Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Kurtis Campbell vs Trevor Peek moved on Hooker vs Parnasse.",
+      "details": {
+        "from_order": 5,
+        "to_order": 7,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
     {
       "id": "2026-09-01T21:20:00.349Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|1",
       "at": "2026-09-01T21:20:00.349Z",
@@ -4450,54 +4498,6 @@
       "details": {
         "from_order": 5,
         "to_order": 6,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-08-16T03:36:42.761Z|ufc-330-2026-08-15|bout_moved|3",
-      "at": "2026-08-16T03:36:42.761Z",
-      "type": "bout_moved",
-      "event_id": "ufc-330-2026-08-15",
-      "promotion": "UFC 330",
-      "event_title": "Makhachev vs Machado Garry",
-      "event_date": "2026-08-15",
-      "summary": "Charles Johnson vs Eduardo Chapolin moved on Makhachev vs Machado Garry.",
-      "details": {
-        "from_order": 6,
-        "to_order": 7,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-08-16T03:36:42.761Z|ufc-330-2026-08-15|bout_moved|4",
-      "at": "2026-08-16T03:36:42.761Z",
-      "type": "bout_moved",
-      "event_id": "ufc-330-2026-08-15",
-      "promotion": "UFC 330",
-      "event_title": "Makhachev vs Machado Garry",
-      "event_date": "2026-08-15",
-      "summary": "Donte Johnson vs Eric McConico moved on Makhachev vs Machado Garry.",
-      "details": {
-        "from_order": 7,
-        "to_order": 8,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-08-16T03:36:42.761Z|ufc-330-2026-08-15|bout_moved|5",
-      "at": "2026-08-16T03:36:42.761Z",
-      "type": "bout_moved",
-      "event_id": "ufc-330-2026-08-15",
-      "promotion": "UFC 330",
-      "event_title": "Makhachev vs Machado Garry",
-      "event_date": "2026-08-15",
-      "summary": "Vicente Luque vs Tresean Gore moved on Makhachev vs Machado Garry.",
-      "details": {
-        "from_order": 8,
-        "to_order": 9,
         "from_section": "Prelims",
         "to_section": "Prelims"
       }

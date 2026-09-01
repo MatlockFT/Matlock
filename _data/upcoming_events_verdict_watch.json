@@ -31,12 +31,12 @@
       "verdict_url": "https://verdictmma.com/event/1905",
       "verdict_date": "2026-09-05",
       "local_fight_count": 14,
-      "verdict_fight_count": 13,
+      "verdict_fight_count": 12,
       "local_main_count": 6,
-      "verdict_main_count": 6,
+      "verdict_main_count": 5,
       "local_prelim_count": 8,
       "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 13
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
@@ -210,16 +210,26 @@
       "event_id": "ufc-fight-night-2026-09-05-fight-card",
       "verdict_event_id": "1905",
       "local_fight_count": 14,
-      "verdict_fight_count": 13
+      "verdict_fight_count": 12
     },
     {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-09-05-fight-card",
       "verdict_event_id": "1905",
-      "order": 10,
+      "order": 6,
       "fighters": [
-        "Nathaniel Wood",
-        "Pavel Andrusca"
+        "Morgan Charriere",
+        "Felipe Lima"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "verdict_event_id": "1905",
+      "order": 7,
+      "fighters": [
+        "Kurtis Campbell",
+        "Trevor Peek"
       ]
     },
     {
@@ -227,7 +237,7 @@
       "event_id": "ufc-fight-night-2026-09-05-fight-card",
       "verdict_event_id": "1905",
       "local_main_count": 6,
-      "verdict_main_count": 6,
+      "verdict_main_count": 5,
       "local_prelim_count": 8,
       "verdict_prelim_count": 7
     },
