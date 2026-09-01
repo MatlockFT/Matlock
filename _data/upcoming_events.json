@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-01T05:35:04.165Z",
+  "generated_at": "2026-09-01T18:37:43.749Z",
   "events": [
     {
       "id": "dwcs-season-10-week-4-2026-09-01",
@@ -357,9 +357,9 @@
                   "image_framing": "safe"
                 },
                 {
-                  "name": "Mairon Santos",
-                  "initials": "MS",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1643409507Mairon_Santos.jpg",
+                  "name": "Pavel Andrusca",
+                  "initials": "PA",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1749063336pavelandrusca.jpg",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
@@ -413,8 +413,8 @@
               "weight_class": "Middleweight Bout",
               "fighters": [
                 {
-                  "name": "Matthieu Letho Duclos",
-                  "initials": "MLD",
+                  "name": "Matthieu Duclos",
+                  "initials": "MD",
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1734923755duclos.jpeg",
                   "image_source": "sherdog",
                   "image_framing": "safe"
@@ -1687,6 +1687,50 @@
       ]
     },
     {
+      "id": "ufc-fight-night-2026-10-10-fight-card",
+      "promotion_key": "ufc",
+      "promotion": "UFC Fight Night",
+      "title": "Allen vs Duncan",
+      "date": "2026-10-10",
+      "date_label": "Saturday · October 10, 2026",
+      "starts_at": "",
+      "expires_at": "",
+      "venue": "Venue TBA",
+      "broadcast": "Paramount+ · UFC Fight Pass",
+      "official_url": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+      "updated_label": "September 1, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Main Card",
+          "time": "8:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Brendan Allen",
+                  "initials": "BA",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220401031417_Brendan_Allen_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Christian Leroy Duncan",
+                  "initials": "CLD",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1616157858161507255_4086664408020362_8311949316348907989_o.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "ufc-fight-night-2026-10-17-fight-card",
       "promotion_key": "ufc",
       "promotion": "UFC Fight Night",
@@ -2108,6 +2152,71 @@
                   "name": "Nurullo Aliev",
                   "initials": "NA",
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220915113942_Nurullo_Aliev.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-fight-night-2026-10-31-fight-card",
+      "promotion_key": "ufc",
+      "promotion": "UFC Fight Night",
+      "title": "Szabova vs Lisboa",
+      "date": "2026-10-31",
+      "date_label": "Saturday · October 31, 2026",
+      "starts_at": "",
+      "expires_at": "",
+      "venue": "Venue TBA",
+      "broadcast": "Paramount+ · UFC Fight Pass",
+      "official_url": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+      "updated_label": "September 1, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Main Card",
+          "time": "8:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Women's Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Lucia Szabova",
+                  "initials": "LS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1740237747luciaszabova.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Tainara Lisboa",
+                  "initials": "TL",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20230421093740_WhatsApp_Image_20230419_at_3_25_18_PM.JPEG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Nick Klein",
+                  "initials": "NK",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220506125943_Nick_Klein.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Joseph Kropschot",
+                  "initials": "JK",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1746799894josephkropschot.jpg",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }

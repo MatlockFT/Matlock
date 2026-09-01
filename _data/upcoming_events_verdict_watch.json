@@ -31,12 +31,12 @@
       "verdict_url": "https://verdictmma.com/event/1905",
       "verdict_date": "2026-09-05",
       "local_fight_count": 14,
-      "verdict_fight_count": 14,
+      "verdict_fight_count": 13,
       "local_main_count": 6,
       "verdict_main_count": 6,
       "local_prelim_count": 8,
-      "verdict_prelim_count": 8,
-      "confirmed_local_bouts": 14
+      "verdict_prelim_count": 7,
+      "confirmed_local_bouts": 13
     },
     {
       "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
@@ -110,6 +110,16 @@
       "local_prelim_count": 0
     },
     {
+      "event_id": "ufc-fight-night-2026-10-10-fight-card",
+      "promotion": "ufc",
+      "date": "2026-10-10",
+      "title": "Allen vs Duncan",
+      "status": "coverage_gap",
+      "local_fight_count": 1,
+      "local_main_count": 1,
+      "local_prelim_count": 0
+    },
+    {
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
       "promotion": "ufc",
       "date": "2026-10-17",
@@ -142,6 +152,16 @@
       "local_prelim_count": 4,
       "verdict_prelim_count": 4,
       "confirmed_local_bouts": 9
+    },
+    {
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "promotion": "ufc",
+      "date": "2026-10-31",
+      "title": "Szabova vs Lisboa",
+      "status": "coverage_gap",
+      "local_fight_count": 2,
+      "local_main_count": 2,
+      "local_prelim_count": 0
     },
     {
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
@@ -184,6 +204,32 @@
         "【試合中止】冨澤大智",
         "ドンマイ川端"
       ]
+    },
+    {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "verdict_event_id": "1905",
+      "local_fight_count": 14,
+      "verdict_fight_count": 13
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "verdict_event_id": "1905",
+      "order": 10,
+      "fighters": [
+        "Nathaniel Wood",
+        "Pavel Andrusca"
+      ]
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "verdict_event_id": "1905",
+      "local_main_count": 6,
+      "verdict_main_count": 6,
+      "local_prelim_count": 8,
+      "verdict_prelim_count": 7
     },
     {
       "type": "local_bout_not_found_on_verdict",
