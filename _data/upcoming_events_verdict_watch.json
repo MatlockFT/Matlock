@@ -9,7 +9,7 @@
       "promotion": "dwcs",
       "date": "2026-09-01",
       "title": "Season 10 · Week 4",
-      "status": "event_matched_card_unreadable",
+      "status": "matched",
       "verdict_event_id": "1929",
       "verdict_url": "https://verdictmma.com/event/1929",
       "verdict_date": "2026-09-01",
@@ -19,31 +19,31 @@
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
-      "confirmed_local_bouts": null
+      "confirmed_local_bouts": 5
     },
     {
       "event_id": "ufc-fight-night-2026-09-05-fight-card",
       "promotion": "ufc",
       "date": "2026-09-05",
       "title": "Hooker vs Parnasse",
-      "status": "event_matched_card_unreadable",
+      "status": "matched",
       "verdict_event_id": "1905",
       "verdict_url": "https://verdictmma.com/event/1905",
       "verdict_date": "2026-09-05",
       "local_fight_count": 14,
-      "verdict_fight_count": null,
+      "verdict_fight_count": 14,
       "local_main_count": 6,
-      "verdict_main_count": null,
+      "verdict_main_count": 6,
       "local_prelim_count": 8,
-      "verdict_prelim_count": null,
-      "confirmed_local_bouts": null
+      "verdict_prelim_count": 8,
+      "confirmed_local_bouts": 14
     },
     {
       "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
       "promotion": "rizin",
       "date": "2026-09-10",
       "title": "ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り",
-      "status": "event_matched_card_unreadable",
+      "status": "matched",
       "verdict_event_id": "1964",
       "verdict_url": "https://verdictmma.com/event/1964",
       "verdict_date": "2026-09-10",
@@ -53,31 +53,31 @@
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
-      "confirmed_local_bouts": null
+      "confirmed_local_bouts": 6
     },
     {
       "event_id": "noche-ufc-2026-09-12-fight-card",
       "promotion": "ufc",
       "date": "2026-09-12",
       "title": "Silva vs Delgado",
-      "status": "event_matched_card_unreadable",
+      "status": "matched",
       "verdict_event_id": "1938",
       "verdict_url": "https://verdictmma.com/event/1938",
       "verdict_date": "2026-09-12",
       "local_fight_count": 12,
-      "verdict_fight_count": null,
+      "verdict_fight_count": 12,
       "local_main_count": 6,
-      "verdict_main_count": null,
+      "verdict_main_count": 6,
       "local_prelim_count": 6,
-      "verdict_prelim_count": null,
-      "confirmed_local_bouts": null
+      "verdict_prelim_count": 6,
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "ufc-fight-night-2026-09-26-fight-card",
       "promotion": "ufc",
       "date": "2026-09-26",
       "title": "Jr. vs Barcelos",
-      "status": "event_matched_card_unreadable",
+      "status": "matched",
       "verdict_event_id": "1959",
       "verdict_url": "https://verdictmma.com/event/1959",
       "verdict_date": "2026-09-26",
@@ -87,7 +87,7 @@
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
-      "confirmed_local_bouts": null
+      "confirmed_local_bouts": 5
     },
     {
       "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
@@ -155,6 +155,96 @@
     }
   ],
   "discrepancies": [
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
+      "verdict_event_id": "1964",
+      "order": 5,
+      "fighters": [
+        "Yutaka Saito",
+        "YA-MAN"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
+      "verdict_event_id": "1964",
+      "order": 8,
+      "fighters": [
+        "“ブラックパンサー”ベイノア",
+        "Hide Meison Usami"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
+      "verdict_event_id": "1964",
+      "order": 9,
+      "fighters": [
+        "【試合中止】冨澤大智",
+        "ドンマイ川端"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 10,
+      "fighters": [
+        "Norma Dumont",
+        "Ailin Perez"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 11,
+      "fighters": [
+        "Vanessa Demopoulos",
+        "Yazmin Jauregui"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 6,
+      "fighters": [
+        "Rodolfo Vieira",
+        "Robert Bryczek"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 7,
+      "fighters": [
+        "Brady Hiestand",
+        "Rinya Nakamura"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 8,
+      "fighters": [
+        "John Castaneda",
+        "Alatengheili"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 9,
+      "fighters": [
+        "Josiah Harrell",
+        "Elves Brener"
+      ]
+    },
     {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
