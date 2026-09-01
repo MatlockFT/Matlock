@@ -1,7 +1,55 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-01T18:39:22.509Z",
+  "generated_at": "2026-09-01T21:20:00.349Z",
   "changes": [
+    {
+      "id": "2026-09-01T21:20:00.349Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|1",
+      "at": "2026-09-01T21:20:00.349Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Kurtis Campbell vs Trevor Peek moved on Hooker vs Parnasse.",
+      "details": {
+        "from_order": 8,
+        "to_order": 5,
+        "from_section": "Prelims",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-01T21:20:00.349Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|2",
+      "at": "2026-09-01T21:20:00.349Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Morgan Charriere vs Felipe Lima moved on Hooker vs Parnasse.",
+      "details": {
+        "from_order": 5,
+        "to_order": 7,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-01T21:20:00.349Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|3",
+      "at": "2026-09-01T21:20:00.349Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Mario Pinto vs Ryan Spann moved on Hooker vs Parnasse.",
+      "details": {
+        "from_order": 7,
+        "to_order": 8,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
     {
       "id": "2026-09-01T18:39:22.509Z|ufc-fight-night-2026-10-10-fight-card|event_added|1",
       "at": "2026-09-01T18:39:22.509Z",
@@ -4452,54 +4500,6 @@
         "to_order": 9,
         "from_section": "Prelims",
         "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-08-16T03:36:42.761Z|ufc-330-2026-08-15|bout_moved|6",
-      "at": "2026-08-16T03:36:42.761Z",
-      "type": "bout_moved",
-      "event_id": "ufc-330-2026-08-15",
-      "promotion": "UFC 330",
-      "event_title": "Makhachev vs Machado Garry",
-      "event_date": "2026-08-15",
-      "summary": "Rafael Tobias vs Lucas Fernando moved on Makhachev vs Machado Garry.",
-      "details": {
-        "from_order": 9,
-        "to_order": 10,
-        "from_section": "Early Prelims",
-        "to_section": "Early Prelims"
-      }
-    },
-    {
-      "id": "2026-08-16T03:36:42.761Z|ufc-330-2026-08-15|bout_moved|7",
-      "at": "2026-08-16T03:36:42.761Z",
-      "type": "bout_moved",
-      "event_id": "ufc-330-2026-08-15",
-      "promotion": "UFC 330",
-      "event_title": "Makhachev vs Machado Garry",
-      "event_date": "2026-08-15",
-      "summary": "Neil Magny vs Ramiz Brahimaj moved on Makhachev vs Machado Garry.",
-      "details": {
-        "from_order": 10,
-        "to_order": 11,
-        "from_section": "Early Prelims",
-        "to_section": "Early Prelims"
-      }
-    },
-    {
-      "id": "2026-08-16T03:36:42.761Z|ufc-330-2026-08-15|bout_moved|8",
-      "at": "2026-08-16T03:36:42.761Z",
-      "type": "bout_moved",
-      "event_id": "ufc-330-2026-08-15",
-      "promotion": "UFC 330",
-      "event_title": "Makhachev vs Machado Garry",
-      "event_date": "2026-08-15",
-      "summary": "Jeremiah Wells vs Myktybek Orolbai moved on Makhachev vs Machado Garry.",
-      "details": {
-        "from_order": 11,
-        "to_order": 12,
-        "from_section": "Early Prelims",
-        "to_section": "Early Prelims"
       }
     }
   ]

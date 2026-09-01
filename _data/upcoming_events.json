@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-01T18:37:43.749Z",
+  "generated_at": "2026-09-01T21:19:17.892Z",
   "events": [
     {
       "id": "dwcs-season-10-week-4-2026-09-01",
@@ -238,16 +238,16 @@
               "weight_class": "Featherweight Bout",
               "fighters": [
                 {
-                  "name": "Morgan Charriere",
-                  "initials": "MC",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1723392568IMG_2773.jpeg",
+                  "name": "Kurtis Campbell",
+                  "initials": "KC",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1729560445campbell.jpg",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 },
                 {
-                  "name": "Felipe Lima",
-                  "initials": "FL",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1718881718IMG_2683.png",
+                  "name": "Trevor Peek",
+                  "initials": "TP",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220828022319_Trevor_Peek.JPG",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
@@ -284,6 +284,27 @@
             {
               "order": 7,
               "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Morgan Charriere",
+                  "initials": "MC",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1723392568IMG_2773.jpeg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Felipe Lima",
+                  "initials": "FL",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1718881718IMG_2683.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
                 {
@@ -297,27 +318,6 @@
                   "name": "Ryan Spann",
                   "initials": "RS",
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220401100055_Ryan_Spann_ff.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 8,
-              "label": "",
-              "weight_class": "Featherweight Bout",
-              "fighters": [
-                {
-                  "name": "Kurtis Campbell",
-                  "initials": "KC",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1729560445campbell.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Trevor Peek",
-                  "initials": "TP",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220828022319_Trevor_Peek.JPG",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
