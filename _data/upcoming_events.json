@@ -1,134 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-02T05:55:03.158Z",
+  "generated_at": "2026-09-02T11:10:00.743Z",
   "events": [
-    {
-      "id": "dwcs-season-10-week-4-2026-09-01",
-      "promotion_key": "dwcs",
-      "promotion": "DWCS",
-      "title": "Season 10 · Week 4",
-      "date": "2026-09-01",
-      "date_label": "Tuesday · September 1, 2026",
-      "venue": "Meta APEX · Las Vegas, Nevada",
-      "broadcast": "Paramount+",
-      "official_url": "https://www.ufc.com/dwcs#season-10-week-4",
-      "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-4-112630",
-      "updated_label": "September 2, 2026",
-      "sections": [
-        {
-          "kind": "main",
-          "title": "Fight Card",
-          "time": "8:00 PM ET",
-          "bouts": [
-            {
-              "order": 1,
-              "label": "Main Event",
-              "weight_class": "Welterweight",
-              "fighters": [
-                {
-                  "name": "Adam Darby",
-                  "initials": "AD",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1668971631316135732_5949278895092228_1379751046776683864_n.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Patrick Rivera",
-                  "initials": "PR",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221014033824_Patrick_Rivera.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Middleweight",
-              "fighters": [
-                {
-                  "name": "Modestino Rodrigues",
-                  "initials": "MR",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1737636324modestino.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Brandon Holmes",
-                  "initials": "BH",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250525015208_Brandon_Holmes.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 3,
-              "label": "",
-              "weight_class": "Lightweight",
-              "fighters": [
-                {
-                  "name": "Silvestre Sanchez",
-                  "initials": "SS",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732822797sanchez.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Liam McCracken",
-                  "initials": "LM",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1677192218Liam_McCracken.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 4,
-              "label": "",
-              "weight_class": "Heavyweight",
-              "fighters": [
-                {
-                  "name": "Gabriel Lourenco",
-                  "initials": "GL",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1763588310gabrielourenco.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Charlie Cleveland",
-                  "initials": "CC",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1768763386IMG_3624.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
-              "weight_class": "Lightweight",
-              "fighters": [
-                {
-                  "name": "Adam Livingston",
-                  "initials": "AL",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732767989livingston.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Hunter Smith",
-                  "initials": "HS",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250718104134_Hunter_Smith.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
     {
       "id": "ufc-fight-night-2026-09-05-fight-card",
       "promotion_key": "ufc",
@@ -444,6 +317,133 @@
                   "name": "Sofia Montenegro",
                   "initials": "SM",
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1743008982sofiamontenegro.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dwcs-season-10-week-5-2026-09-08",
+      "promotion_key": "dwcs",
+      "promotion": "DWCS",
+      "title": "Season 10 · Week 5",
+      "date": "2026-09-08",
+      "date_label": "Tuesday · September 8, 2026",
+      "venue": "Meta APEX · Las Vegas, Nevada",
+      "broadcast": "Paramount+",
+      "official_url": "https://www.ufc.com/dwcs#season-10-week-5",
+      "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-5-112631",
+      "updated_label": "September 2, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Fight Card",
+          "time": "8:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Light Heavyweight",
+              "fighters": [
+                {
+                  "name": "Quentin Pasley",
+                  "initials": "QP",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1750109672quentinpasley.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Arlind Berisha",
+                  "initials": "AB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1746294710arlindberisha.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Welterweight",
+              "fighters": [
+                {
+                  "name": "Reginaldo Geraldo Jr.",
+                  "initials": "RGJ",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221104051939_Reginaldo_Geraldo_Jr.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Isaac Moreno",
+                  "initials": "IM",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250718110823_Isaac_Moreno.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Middleweight",
+              "fighters": [
+                {
+                  "name": "Martin Kozak",
+                  "initials": "MK",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1787584832output-onlinepngtools.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Christian Echols",
+                  "initials": "CE",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221208032913_Christian_Echols1.JPEG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Bantamweight",
+              "fighters": [
+                {
+                  "name": "Apollo Gomes",
+                  "initials": "AG",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/171984828420211009012429_7C791E21E7B9421482D373A791C01781.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Won Il Kwon",
+                  "initials": "WIK",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1560601776Schermata_da_2019-06-15_14-28-44.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Flyweight",
+              "fighters": [
+                {
+                  "name": "Colton Loud",
+                  "initials": "CL",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20260315110638_Colton_Loud.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Christian Natividad",
+                  "initials": "CN",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1612025869Christian_Natividad.jpg",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
@@ -1528,7 +1528,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-332",
-      "updated_label": "September 1, 2026",
+      "updated_label": "September 2, 2026",
       "sections": [
         {
           "kind": "main",
