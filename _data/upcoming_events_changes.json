@@ -1,7 +1,77 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-02T11:10:50.709Z",
+  "generated_at": "2026-09-02T18:49:07.489Z",
   "changes": [
+    {
+      "id": "2026-09-02T18:49:07.489Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|1",
+      "at": "2026-09-02T18:49:07.489Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Kurtis Campbell vs Trevor Peek moved on Hooker vs Parnasse.",
+      "details": {
+        "from_order": 7,
+        "to_order": 5,
+        "from_section": "Prelims",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-02T18:49:07.489Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|2",
+      "at": "2026-09-02T18:49:07.489Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Losene Keita vs Muhammad Naimov moved on Hooker vs Parnasse.",
+      "details": {
+        "from_order": 5,
+        "to_order": 6,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-02T18:49:07.489Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|3",
+      "at": "2026-09-02T18:49:07.489Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Morgan Charriere vs Felipe Lima moved on Hooker vs Parnasse.",
+      "details": {
+        "from_order": 6,
+        "to_order": 7,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-02T18:49:07.489Z|ufc-fight-night-2026-09-05-fight-card|bout_changed|4",
+      "at": "2026-09-02T18:49:07.489Z",
+      "type": "bout_changed",
+      "event_id": "ufc-fight-night-2026-09-05-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Hooker vs Parnasse",
+      "event_date": "2026-09-05",
+      "summary": "Nora Cornolle vs Klaudia Sygula changed to Nora Cornolle vs Klaudia Syguła on Hooker vs Parnasse.",
+      "details": {
+        "order": 12,
+        "section": "Prelims",
+        "from": [
+          "Nora Cornolle",
+          "Klaudia Sygula"
+        ],
+        "to": [
+          "Nora Cornolle",
+          "Klaudia Syguła"
+        ]
+      }
+    },
     {
       "id": "2026-09-02T11:10:50.709Z|dwcs-season-10-week-5-2026-09-08|event_added|1",
       "at": "2026-09-02T11:10:50.709Z",
@@ -4439,65 +4509,6 @@
         "to_order": 13,
         "from_section": "Main Card",
         "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-08-17T10:52:50.383Z|rizin-angel-champagne-presents-rizin-5-2026-09-10|broadcast_changed|1",
-      "at": "2026-08-17T10:52:50.383Z",
-      "type": "broadcast_changed",
-      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
-      "promotion": "RIZIN",
-      "event_title": "ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り",
-      "event_date": "2026-09-10",
-      "summary": "RIZIN ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り: broadcast changed.",
-      "details": {
-        "from": "RIZIN 100 CLUB",
-        "to": "RIZIN 100 CLUB · RIZIN LIVE · ABEMA · Sky PerfecTV"
-      }
-    },
-    {
-      "id": "2026-08-17T09:53:50.747Z|rizin-angel-champagne-presents-rizin-5-2026-09-10|bout_added|1",
-      "at": "2026-08-17T09:53:50.747Z",
-      "type": "bout_added",
-      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
-      "promotion": "RIZIN",
-      "event_title": "ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り",
-      "event_date": "2026-09-10",
-      "summary": "“ブラックパンサー”ベイノア vs Hide Meison Usami added to ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り.",
-      "details": {
-        "order": 9,
-        "section": "Fight Card",
-        "weight_class": "71.0 kg"
-      }
-    },
-    {
-      "id": "2026-08-16T19:39:53.214Z|ufc-333-2026-10-24-fight-card|event_added|1",
-      "at": "2026-08-16T19:39:53.214Z",
-      "type": "event_added",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "promotion": "UFC 333",
-      "event_title": "Volkanovski vs Evloev",
-      "event_date": "2026-10-24",
-      "summary": "UFC 333 Volkanovski vs Evloev added to Upcoming Events.",
-      "details": {
-        "bout_count": 5,
-        "venue": "Venue TBA",
-        "date": "2026-10-24"
-      }
-    },
-    {
-      "id": "2026-08-16T06:55:17.280Z|ufc-330-2026-08-15|event_removed|1",
-      "at": "2026-08-16T06:55:17.280Z",
-      "type": "event_removed",
-      "event_id": "ufc-330-2026-08-15",
-      "promotion": "UFC 330",
-      "event_title": "Makhachev vs Machado Garry",
-      "event_date": "2026-08-15",
-      "summary": "UFC 330 Makhachev vs Machado Garry removed from Upcoming Events.",
-      "details": {
-        "bout_count": 12,
-        "venue": "Xfinity Mobile Arena · Philadelphia, Pennsylvania",
-        "date": "2026-08-15"
       }
     }
   ]
