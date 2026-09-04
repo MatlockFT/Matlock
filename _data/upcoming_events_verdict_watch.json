@@ -14,12 +14,12 @@
       "verdict_url": "https://verdictmma.com/event/1905",
       "verdict_date": "2026-09-05",
       "local_fight_count": 14,
-      "verdict_fight_count": 12,
+      "verdict_fight_count": 14,
       "local_main_count": 6,
-      "verdict_main_count": 5,
+      "verdict_main_count": 6,
       "local_prelim_count": 8,
-      "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 11
+      "verdict_prelim_count": 8,
+      "confirmed_local_bouts": 13
     },
     {
       "event_id": "dwcs-season-10-week-5-2026-09-08",
@@ -57,13 +57,13 @@
       "verdict_event_id": "1938",
       "verdict_url": "https://verdictmma.com/event/1938",
       "verdict_date": "2026-09-12",
-      "local_fight_count": 12,
+      "local_fight_count": 11,
       "verdict_fight_count": 12,
       "local_main_count": 6,
       "verdict_main_count": 6,
-      "local_prelim_count": 6,
+      "local_prelim_count": 5,
       "verdict_prelim_count": 6,
-      "confirmed_local_bouts": 12
+      "confirmed_local_bouts": 11
     },
     {
       "event_id": "ufc-fight-night-2026-09-26-fight-card",
@@ -169,6 +169,22 @@
   ],
   "discrepancies": [
     {
+      "type": "bout_count_mismatch",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "verdict_event_id": "1938",
+      "local_fight_count": 11,
+      "verdict_fight_count": 12
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "verdict_event_id": "1938",
+      "local_main_count": 6,
+      "verdict_main_count": 6,
+      "local_prelim_count": 5,
+      "verdict_prelim_count": 6
+    },
+    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
       "verdict_event_id": "1964",
@@ -189,13 +205,6 @@
       ]
     },
     {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "verdict_event_id": "1905",
-      "local_fight_count": 14,
-      "verdict_fight_count": 12
-    },
-    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-09-05-fight-card",
       "verdict_event_id": "1905",
@@ -204,35 +213,6 @@
         "Nora Cornolle",
         "Klaudia Syguła"
       ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "verdict_event_id": "1905",
-      "order": 5,
-      "fighters": [
-        "Kurtis Campbell",
-        "Trevor Peek"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "verdict_event_id": "1905",
-      "order": 7,
-      "fighters": [
-        "Morgan Charriere",
-        "Felipe Lima"
-      ]
-    },
-    {
-      "type": "section_count_mismatch",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "verdict_event_id": "1905",
-      "local_main_count": 6,
-      "verdict_main_count": 5,
-      "local_prelim_count": 8,
-      "verdict_prelim_count": 7
     },
     {
       "type": "local_bout_not_found_on_verdict",
