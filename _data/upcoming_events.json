@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-04T18:19:51.813Z",
+  "generated_at": "2026-09-04T22:35:59.385Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-09-05-fight-card",
@@ -864,6 +864,27 @@
               "weight_class": "Lightweight Bout",
               "fighters": [
                 {
+                  "name": "Drakkar Klose",
+                  "initials": "DK",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20240502023413_Drakkar_Klose_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Tommy Gantt",
+                  "initials": "TG",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 11,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
                   "name": "Rafa Garcia",
                   "initials": "RG",
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220807091759_Rafa_Garcia.PNG",
@@ -880,7 +901,28 @@
               ]
             },
             {
-              "order": 11,
+              "order": 12,
+              "label": "",
+              "weight_class": "Featherweight Bout",
+              "fighters": [
+                {
+                  "name": "Sean King",
+                  "initials": "SK",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250718074952_Sean_King.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Jessie Rosas",
+                  "initials": "JR",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1780890608jessierosas.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 13,
               "label": "",
               "weight_class": "Women's Flyweight Bout",
               "fighters": [

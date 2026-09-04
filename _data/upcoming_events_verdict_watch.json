@@ -57,12 +57,12 @@
       "verdict_event_id": "1938",
       "verdict_url": "https://verdictmma.com/event/1938",
       "verdict_date": "2026-09-12",
-      "local_fight_count": 11,
-      "verdict_fight_count": 12,
+      "local_fight_count": 13,
+      "verdict_fight_count": 11,
       "local_main_count": 6,
       "verdict_main_count": 6,
-      "local_prelim_count": 5,
-      "verdict_prelim_count": 6,
+      "local_prelim_count": 7,
+      "verdict_prelim_count": 5,
       "confirmed_local_bouts": 11
     },
     {
@@ -172,8 +172,28 @@
       "type": "bout_count_mismatch",
       "event_id": "noche-ufc-2026-09-12-fight-card",
       "verdict_event_id": "1938",
-      "local_fight_count": 11,
-      "verdict_fight_count": 12
+      "local_fight_count": 13,
+      "verdict_fight_count": 11
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "verdict_event_id": "1938",
+      "order": 10,
+      "fighters": [
+        "Drakkar Klose",
+        "Tommy Gantt"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "verdict_event_id": "1938",
+      "order": 12,
+      "fighters": [
+        "Sean King",
+        "Jessie Rosas"
+      ]
     },
     {
       "type": "section_count_mismatch",
@@ -181,8 +201,8 @@
       "verdict_event_id": "1938",
       "local_main_count": 6,
       "verdict_main_count": 6,
-      "local_prelim_count": 5,
-      "verdict_prelim_count": 6
+      "local_prelim_count": 7,
+      "verdict_prelim_count": 5
     },
     {
       "type": "local_bout_not_found_on_verdict",
