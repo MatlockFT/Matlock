@@ -127,7 +127,7 @@
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
-      "confirmed_local_bouts": 5
+      "confirmed_local_bouts": 4
     },
     {
       "event_id": "ufc-333-2026-10-24-fight-card",
@@ -302,6 +302,16 @@
       "fighters": [
         "Jamey-Lyn Horth",
         "Katlyn Cerminara"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "verdict_event_id": "1936",
+      "order": 5,
+      "fighters": [
+        "Tanner Boser",
+        "Jhonata Diniz"
       ]
     },
     {
