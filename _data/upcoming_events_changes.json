@@ -1,7 +1,36 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-04T22:38:21.969Z",
+  "generated_at": "2026-09-05T21:39:50.121Z",
   "changes": [
+    {
+      "id": "2026-09-05T21:39:50.121Z|ufc-332-2026-10-03-fight-card|broadcast_changed|1",
+      "at": "2026-09-05T21:39:50.121Z",
+      "type": "broadcast_changed",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "UFC 332 Figueiredo vs Talbott: broadcast changed.",
+      "details": {
+        "from": "Paramount+ · UFC Fight Pass",
+        "to": "Paramount+ · CBS · UFC Fight Pass"
+      }
+    },
+    {
+      "id": "2026-09-05T21:39:50.121Z|ufc-332-2026-10-03-fight-card|start_time_changed|2",
+      "at": "2026-09-05T21:39:50.121Z",
+      "type": "start_time_changed",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Figueiredo vs Talbott",
+      "event_date": "2026-10-03",
+      "summary": "UFC 332 Figueiredo vs Talbott: Main Card start time changed.",
+      "details": {
+        "section": "Main Card",
+        "from": "9:00 PM ET",
+        "to": "8:00 PM ET"
+      }
+    },
     {
       "id": "2026-09-04T22:38:21.969Z|noche-ufc-2026-09-12-fight-card|bout_moved|1",
       "at": "2026-09-04T22:38:21.969Z",
@@ -4471,38 +4500,6 @@
       "details": {
         "from_order": 9,
         "to_order": 8,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-08-17T21:09:29.813Z|ufc-fight-night-sacramento-2026-08-22|bout_moved|4",
-      "at": "2026-08-17T21:09:29.813Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Jamall Emmers vs Lerryan Douglas moved on Hernandez vs Rodrigues.",
-      "details": {
-        "from_order": 10,
-        "to_order": 9,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-08-17T21:09:29.813Z|ufc-fight-night-sacramento-2026-08-22|bout_moved|5",
-      "at": "2026-08-17T21:09:29.813Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Wes Schultz vs Jackson McVey moved on Hernandez vs Rodrigues.",
-      "details": {
-        "from_order": 7,
-        "to_order": 10,
         "from_section": "Prelims",
         "to_section": "Prelims"
       }
