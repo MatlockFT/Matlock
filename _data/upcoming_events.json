@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-05T21:38:47.784Z",
+  "generated_at": "2026-09-05T23:24:43.655Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-09-05-fight-card",
@@ -1520,7 +1520,7 @@
       "id": "ufc-332-2026-10-03-fight-card",
       "promotion_key": "ufc",
       "promotion": "UFC 332",
-      "title": "Figueiredo vs Talbott",
+      "title": "Silva vs Cong",
       "date": "2026-10-03",
       "date_label": "Saturday · October 3, 2026",
       "starts_at": "",
@@ -1538,6 +1538,27 @@
             {
               "order": 1,
               "label": "Main Event",
+              "weight_class": "Women's Flyweight Title Bout",
+              "fighters": [
+                {
+                  "name": "Natalia Silva",
+                  "initials": "NS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221014015345_Natalia_Silva_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Wang Cong",
+                  "initials": "WC",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250601053456_Cong_Wang_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
               "weight_class": "Bantamweight Bout",
               "fighters": [
                 {
@@ -1557,42 +1578,21 @@
               ]
             },
             {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Johnny Walker",
-                  "initials": "JW",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1749610885WhatsApp_Image_2025-06-10_at_19.57.18_fd46f6ee.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Mick Parkin",
-                  "initials": "MP",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220711023709_Michael_Parkin.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
               "order": 3,
               "label": "",
-              "weight_class": "Middleweight Bout",
+              "weight_class": "Welterweight Bout",
               "fighters": [
                 {
-                  "name": "Marvin Vettori",
-                  "initials": "MV",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220401022516_Marvin_Vettori_ff.JPG",
+                  "name": "Khaos Williams",
+                  "initials": "KW",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20201220014947_Kalinn_Williams1.PNG",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 },
                 {
-                  "name": "Ismail Naurdiev",
-                  "initials": "IN",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/17064750794f8fb9532853645831aa97cfc0105995.png",
+                  "name": "Roberto Soldic",
+                  "initials": "RS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1740075028robertosoldic.jpg",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
@@ -1663,6 +1663,111 @@
             },
             {
               "order": 7,
+              "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Marcus McGhee",
+                  "initials": "MM",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221120105535_Marcus_McGhee1.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Benardo Sopaj",
+                  "initials": "BS",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            },
+            {
+              "order": 8,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "King Green",
+                  "initials": "KG",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220325075534_Bobby_Green_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Esteban Ribovics",
+                  "initials": "ER",
+                  "image": "https://a.espncdn.com/i/headshots/mma/players/full/5074131.png",
+                  "image_source": "espn",
+                  "image_framing": "standard"
+                }
+              ]
+            },
+            {
+              "order": 9,
+              "label": "",
+              "weight_class": "Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Johnny Walker",
+                  "initials": "JW",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1749610885WhatsApp_Image_2025-06-10_at_19.57.18_fd46f6ee.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Mick Parkin",
+                  "initials": "MP",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220711023709_Michael_Parkin.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 10,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Rafael Dos Anjos",
+                  "initials": "RDA",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220331083405_Rafael_dos_Anjos_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Alexander Hernandez",
+                  "initials": "AH",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220929071519_Alexander_Hernandez_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 11,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Marvin Vettori",
+                  "initials": "MV",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20220401022516_Marvin_Vettori_ff.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Ismail Naurdiev",
+                  "initials": "IN",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/17064750794f8fb9532853645831aa97cfc0105995.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 12,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [

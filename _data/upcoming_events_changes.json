@@ -1,7 +1,160 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-05T21:39:50.121Z",
+  "generated_at": "2026-09-05T23:26:02.492Z",
   "changes": [
+    {
+      "id": "2026-09-05T23:26:02.492Z|ufc-332-2026-10-03-fight-card|title_changed|1",
+      "at": "2026-09-05T23:26:02.492Z",
+      "type": "title_changed",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "UFC 332 Silva vs Cong: title changed.",
+      "details": {
+        "from": "Figueiredo vs Talbott",
+        "to": "Silva vs Cong"
+      }
+    },
+    {
+      "id": "2026-09-05T23:26:02.492Z|ufc-332-2026-10-03-fight-card|bout_moved|2",
+      "at": "2026-09-05T23:26:02.492Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Deiveson Figueiredo vs Payton Talbott moved on Silva vs Cong.",
+      "details": {
+        "from_order": 1,
+        "to_order": 2,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-05T23:26:02.492Z|ufc-332-2026-10-03-fight-card|bout_moved|3",
+      "at": "2026-09-05T23:26:02.492Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Johnny Walker vs Mick Parkin moved on Silva vs Cong.",
+      "details": {
+        "from_order": 2,
+        "to_order": 9,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-05T23:26:02.492Z|ufc-332-2026-10-03-fight-card|bout_moved|4",
+      "at": "2026-09-05T23:26:02.492Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Marvin Vettori vs Ismail Naurdiev moved on Silva vs Cong.",
+      "details": {
+        "from_order": 3,
+        "to_order": 11,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-05T23:26:02.492Z|ufc-332-2026-10-03-fight-card|bout_moved|5",
+      "at": "2026-09-05T23:26:02.492Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Court McGee vs Eric Nolan moved on Silva vs Cong.",
+      "details": {
+        "from_order": 7,
+        "to_order": 12,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-05T23:26:02.492Z|ufc-332-2026-10-03-fight-card|bout_added|6",
+      "at": "2026-09-05T23:26:02.492Z",
+      "type": "bout_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Natalia Silva vs Wang Cong added to Silva vs Cong.",
+      "details": {
+        "order": 1,
+        "section": "Main Card",
+        "weight_class": "Women's Flyweight Title Bout"
+      }
+    },
+    {
+      "id": "2026-09-05T23:26:02.492Z|ufc-332-2026-10-03-fight-card|bout_added|7",
+      "at": "2026-09-05T23:26:02.492Z",
+      "type": "bout_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Khaos Williams vs Roberto Soldic added to Silva vs Cong.",
+      "details": {
+        "order": 3,
+        "section": "Main Card",
+        "weight_class": "Welterweight Bout"
+      }
+    },
+    {
+      "id": "2026-09-05T23:26:02.492Z|ufc-332-2026-10-03-fight-card|bout_added|8",
+      "at": "2026-09-05T23:26:02.492Z",
+      "type": "bout_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Marcus McGhee vs Benardo Sopaj added to Silva vs Cong.",
+      "details": {
+        "order": 7,
+        "section": "Main Card",
+        "weight_class": "Bantamweight Bout"
+      }
+    },
+    {
+      "id": "2026-09-05T23:26:02.492Z|ufc-332-2026-10-03-fight-card|bout_added|9",
+      "at": "2026-09-05T23:26:02.492Z",
+      "type": "bout_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "King Green vs Esteban Ribovics added to Silva vs Cong.",
+      "details": {
+        "order": 8,
+        "section": "Main Card",
+        "weight_class": "Lightweight Bout"
+      }
+    },
+    {
+      "id": "2026-09-05T23:26:02.492Z|ufc-332-2026-10-03-fight-card|bout_added|10",
+      "at": "2026-09-05T23:26:02.492Z",
+      "type": "bout_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Rafael Dos Anjos vs Alexander Hernandez added to Silva vs Cong.",
+      "details": {
+        "order": 10,
+        "section": "Main Card",
+        "weight_class": "Lightweight Bout"
+      }
+    },
     {
       "id": "2026-09-05T21:39:50.121Z|ufc-332-2026-10-03-fight-card|broadcast_changed|1",
       "at": "2026-09-05T21:39:50.121Z",
@@ -4348,160 +4501,6 @@
         "to_order": 5,
         "from_section": "Fight Card",
         "to_section": "Fight Card"
-      }
-    },
-    {
-      "id": "2026-08-17T21:20:33.411Z|ufc-333-2026-10-24-fight-card|portrait_added|1",
-      "at": "2026-08-17T21:20:33.411Z",
-      "type": "portrait_added",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "promotion": "UFC 333",
-      "event_title": "Volkanovski vs Evloev",
-      "event_date": "2026-10-24",
-      "summary": "Ramazan Temirov portrait added.",
-      "details": {
-        "fighter": "Ramazan Temirov",
-        "source": "ufc"
-      }
-    },
-    {
-      "id": "2026-08-17T21:15:22.730Z|ufc-333-2026-10-24-fight-card|bout_moved|1",
-      "at": "2026-08-17T21:15:22.730Z",
-      "type": "bout_moved",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "promotion": "UFC 333",
-      "event_title": "Volkanovski vs Evloev",
-      "event_date": "2026-10-24",
-      "summary": "Azamat Murzakanov vs Dominick Reyes moved on Volkanovski vs Evloev.",
-      "details": {
-        "from_order": 4,
-        "to_order": 6,
-        "from_section": "Main Card",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-08-17T21:15:22.730Z|ufc-333-2026-10-24-fight-card|bout_moved|2",
-      "at": "2026-08-17T21:15:22.730Z",
-      "type": "bout_moved",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "promotion": "UFC 333",
-      "event_title": "Volkanovski vs Evloev",
-      "event_date": "2026-10-24",
-      "summary": "Grant Dawson vs Nurullo Aliev moved on Volkanovski vs Evloev.",
-      "details": {
-        "from_order": 5,
-        "to_order": 9,
-        "from_section": "Main Card",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-08-17T21:15:22.730Z|ufc-333-2026-10-24-fight-card|bout_added|3",
-      "at": "2026-08-17T21:15:22.730Z",
-      "type": "bout_added",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "promotion": "UFC 333",
-      "event_title": "Volkanovski vs Evloev",
-      "event_date": "2026-10-24",
-      "summary": "Alexander Volkov vs Rizvan Kuniev added to Volkanovski vs Evloev.",
-      "details": {
-        "order": 4,
-        "section": "Main Card",
-        "weight_class": "Heavyweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-17T21:15:22.730Z|ufc-333-2026-10-24-fight-card|bout_added|4",
-      "at": "2026-08-17T21:15:22.730Z",
-      "type": "bout_added",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "promotion": "UFC 333",
-      "event_title": "Volkanovski vs Evloev",
-      "event_date": "2026-10-24",
-      "summary": "Arnold Allen vs Aaron Pico added to Volkanovski vs Evloev.",
-      "details": {
-        "order": 5,
-        "section": "Main Card",
-        "weight_class": "Featherweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-17T21:15:22.730Z|ufc-333-2026-10-24-fight-card|bout_added|5",
-      "at": "2026-08-17T21:15:22.730Z",
-      "type": "bout_added",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "promotion": "UFC 333",
-      "event_title": "Volkanovski vs Evloev",
-      "event_date": "2026-10-24",
-      "summary": "Abus Magomedov vs Cam Rowston added to Volkanovski vs Evloev.",
-      "details": {
-        "order": 7,
-        "section": "Prelims",
-        "weight_class": "Middleweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-17T21:15:22.730Z|ufc-333-2026-10-24-fight-card|bout_added|6",
-      "at": "2026-08-17T21:15:22.730Z",
-      "type": "bout_added",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "promotion": "UFC 333",
-      "event_title": "Volkanovski vs Evloev",
-      "event_date": "2026-10-24",
-      "summary": "Nikita Krylov vs Abdul Rakhman Yakhyaev added to Volkanovski vs Evloev.",
-      "details": {
-        "order": 8,
-        "section": "Prelims",
-        "weight_class": "Light Heavyweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-17T21:09:29.813Z|ufc-fight-night-sacramento-2026-08-22|bout_moved|1",
-      "at": "2026-08-17T21:09:29.813Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Kennedy Nzechukwu vs Shamil Gaziev moved on Hernandez vs Rodrigues.",
-      "details": {
-        "from_order": 6,
-        "to_order": 6,
-        "from_section": "Main Card",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-08-17T21:09:29.813Z|ufc-fight-night-sacramento-2026-08-22|bout_moved|2",
-      "at": "2026-08-17T21:09:29.813Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Chris Padilla vs Nasrat Haqparast moved on Hernandez vs Rodrigues.",
-      "details": {
-        "from_order": 8,
-        "to_order": 7,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-08-17T21:09:29.813Z|ufc-fight-night-sacramento-2026-08-22|bout_moved|3",
-      "at": "2026-08-17T21:09:29.813Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Gauge Young vs Stan Dorsainvil moved on Hernandez vs Rodrigues.",
-      "details": {
-        "from_order": 9,
-        "to_order": 8,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
       }
     }
   ]
