@@ -17,6 +17,7 @@
     const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
     const norm = value => clean(value).toLowerCase();
     let events = [];
+    let loadPromise = null;
 
     function titleMatchup(title) {
         const text = clean(title)
@@ -24,8 +25,7 @@
             .replace(/\s+\|.*$/, '');
         const afterColon = text.includes(':') ? text.split(':').slice(1).join(':').trim() : text;
         const match = afterColon.match(/^(.{2,70}?)\s+(?:vs\.?|v\.)\s+(.{2,70}?)(?:\s+[–—-]\s+.*)?$/i);
-        if (!match) return null;
-        return [clean(match[1]), clean(match[2])];
+        return match ? [clean(match[1]), clean(match[2])] : null;
     }
 
     function weightFromText(value) {
@@ -43,25 +43,20 @@
         if (bouts.length) {
             const bout = bouts.find(item => /main event/i.test(clean(item?.label)))
                 || [...bouts].sort((a, b) => Number(a?.order || 999) - Number(b?.order || 999))[0];
-            const fighters = (bout?.fighters || []).map(item => clean(item?.name || item)).filter(Boolean).slice(0, 2);
             return {
-                fighters,
+                fighters: (bout?.fighters || []).map(item => clean(item?.name || item)).filter(Boolean).slice(0, 2),
                 weight: clean(bout?.weight_class || bout?.weight || bout?.division) || weightFromText(bout?.label)
             };
         }
-
         const stored = event?.main_event;
         if (stored && typeof stored === 'object') {
-            const fighters = (stored.fighters || []).map(item => clean(item?.name || item)).filter(Boolean).slice(0, 2);
             return {
-                fighters,
+                fighters: (stored.fighters || []).map(item => clean(item?.name || item)).filter(Boolean).slice(0, 2),
                 weight: clean(stored.weight_class || stored.weight || stored.division) || weightFromText(event?.title)
             };
         }
-
-        const inferred = titleMatchup(event?.title);
         return {
-            fighters: inferred || [],
+            fighters: titleMatchup(event?.title) || [],
             weight: clean(event?.weight_class || event?.division) || weightFromText(event?.title)
         };
     }
@@ -82,16 +77,16 @@
     }
 
     function renderPoster(event) {
-        const url = posterUrl(event);
         if (!posterWrap || !poster) return;
+        const url = posterUrl(event);
         if (!url) {
-            posterWrap.hidden = true;
+            if (!posterWrap.hidden) posterWrap.hidden = true;
             poster.removeAttribute('src');
             return;
         }
-        posterWrap.hidden = false;
+        if (posterWrap.hidden) posterWrap.hidden = false;
         poster.alt = `${clean(event.promotion) || 'MMA'} ${clean(event.title) || 'event'} poster`;
-        poster.src = url;
+        if (poster.src !== url) poster.src = url;
         poster.onerror = () => {
             posterWrap.hidden = true;
             poster.removeAttribute('src');
@@ -99,14 +94,9 @@
     }
 
     function renderDetails() {
-        if (detailCard.hidden) return;
+        if (detailCard.hidden || !events.length) return;
         const event = findCurrentEvent();
-        if (!event) {
-            fightersNode.textContent = 'Main event not yet listed';
-            weightNode.textContent = 'Weight class not yet listed';
-            if (posterWrap) posterWrap.hidden = true;
-            return;
-        }
+        if (!event) return;
         const bout = mainBout(event);
         fightersNode.textContent = bout.fighters.length >= 2
             ? `${bout.fighters[0]} vs. ${bout.fighters[1]}`
@@ -116,7 +106,7 @@
     }
 
     function enhanceClusterRows() {
-        if (!clusterList) return;
+        if (!clusterList || !events.length) return;
         clusterList.querySelectorAll('.event-map-cluster-event').forEach(button => {
             if (button.querySelector('.event-map-cluster-matchup')) return;
             const title = clean(button.querySelector('strong')?.textContent);
@@ -138,33 +128,49 @@
 
     function updateLockLabel() {
         if (!lockNode) return;
-        if (selectedFromUrl()) {
-            lockNode.textContent = 'Selected · details locked';
-            lockNode.dataset.locked = 'true';
-        } else {
-            lockNode.textContent = 'Hover preview · click/tap to lock';
-            lockNode.dataset.locked = 'false';
-        }
+        const locked = selectedFromUrl();
+        lockNode.textContent = locked ? 'Selected · details locked' : 'Hover preview · click/tap to lock';
+        lockNode.dataset.locked = String(locked);
     }
 
-    const observer = new MutationObserver(() => {
-        renderDetails();
-        enhanceClusterRows();
+    function ensureEvents() {
+        if (events.length) return Promise.resolve(events);
+        if (loadPromise) return loadPromise;
+        loadPromise = fetch(page.dataset.eventsUrl, { cache: 'no-store' })
+            .then(response => response.ok ? response.json() : Promise.reject(new Error(`HTTP ${response.status}`)))
+            .then(data => {
+                events = Array.isArray(data?.events) ? data.events : [];
+                return events;
+            })
+            .catch(error => {
+                console.warn('Event Map detail enrichment unavailable', error);
+                return [];
+            });
+        return loadPromise;
+    }
+
+    function refreshDetails() {
         updateLockLabel();
-    });
-    observer.observe(page, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: ['hidden'] });
-
-    window.addEventListener('popstate', updateLockLabel);
-    page.addEventListener('pointerup', () => setTimeout(updateLockLabel, 0));
-    page.addEventListener('click', () => setTimeout(updateLockLabel, 0));
-
-    fetch(page.dataset.eventsUrl, { cache: 'no-store' })
-        .then(response => response.ok ? response.json() : Promise.reject(new Error(`HTTP ${response.status}`)))
-        .then(data => {
-            events = Array.isArray(data?.events) ? data.events : [];
+        if (detailCard.hidden && (!clusterList || !clusterList.children.length)) return;
+        ensureEvents().then(() => {
             renderDetails();
             enhanceClusterRows();
-            updateLockLabel();
-        })
-        .catch(error => console.warn('Event Map detail enrichment unavailable', error));
+        });
+    }
+
+    const detailObserver = new MutationObserver(refreshDetails);
+    detailObserver.observe(detailCard, { attributes: true, attributeFilter: ['hidden'] });
+    detailObserver.observe(titleNode, { childList: true, characterData: true, subtree: true });
+    if (promotionNode) detailObserver.observe(promotionNode, { childList: true, characterData: true, subtree: true });
+    if (dateNode) detailObserver.observe(dateNode, { childList: true, characterData: true, subtree: true, attributes: true, attributeFilter: ['datetime'] });
+
+    if (clusterList) {
+        const clusterObserver = new MutationObserver(refreshDetails);
+        clusterObserver.observe(clusterList, { childList: true });
+    }
+
+    window.addEventListener('popstate', updateLockLabel);
+    page.addEventListener('pointerup', () => setTimeout(updateLockLabel, 0), { passive: true });
+    page.addEventListener('click', () => setTimeout(updateLockLabel, 0), { passive: true });
+    updateLockLabel();
 })();
