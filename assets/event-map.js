@@ -7,20 +7,40 @@
     const eventCount = page.querySelector("[data-event-count]");
     const stateFilter = page.querySelector("[data-state-filter]");
     const promotionFilter = page.querySelector("[data-promotion-filter]");
+    const levelFilter = page.querySelector("[data-level-filter]");
     const searchInput = page.querySelector("[data-event-search]");
     const rangeButtons = [...page.querySelectorAll("[data-range]")];
     const resetButton = page.querySelector("[data-map-reset]");
+    const nearButton = page.querySelector("[data-near-me]");
+    const radiusFilter = page.querySelector("[data-radius-filter]");
+    const nearStatus = page.querySelector("[data-near-status]");
     const zoomInButton = page.querySelector("[data-map-zoom-in]");
     const zoomOutButton = page.querySelector("[data-map-zoom-out]");
+    const detailPanel = page.querySelector("[data-event-detail]");
     const detailEmpty = page.querySelector("[data-event-detail-empty]");
     const detailCard = page.querySelector("[data-event-detail-card]");
     const detailPromotion = page.querySelector("[data-detail-promotion]");
     const detailDate = page.querySelector("[data-detail-date]");
     const detailTitle = page.querySelector("[data-detail-title]");
     const detailLocation = page.querySelector("[data-detail-location]");
+    const detailDistance = page.querySelector("[data-detail-distance]");
     const detailVenue = page.querySelector("[data-detail-venue]");
     const detailBroadcast = page.querySelector("[data-detail-broadcast]");
+    const detailTickets = page.querySelector("[data-detail-tickets]");
     const detailSource = page.querySelector("[data-detail-source]");
+    const detailCalendar = page.querySelector("[data-detail-calendar]");
+    const detailShare = page.querySelector("[data-detail-share]");
+    const detailPicker = page.querySelector("[data-detail-picker]");
+    const clusterCard = page.querySelector("[data-cluster-card]");
+    const clusterCount = page.querySelector("[data-cluster-count]");
+    const clusterTitle = page.querySelector("[data-cluster-title]");
+    const clusterList = page.querySelector("[data-cluster-list]");
+    const summaryCount = page.querySelector("[data-summary-count]");
+    const summaryNext = page.querySelector("[data-summary-next]");
+    const summaryNear = page.querySelector("[data-summary-near]");
+    const resultsCount = page.querySelector("[data-results-count]");
+    const eventList = page.querySelector("[data-event-list]");
+    const eventListEmpty = page.querySelector("[data-event-list-empty]");
 
     const WIDTH = 960;
     const HEIGHT = 600;
@@ -79,21 +99,24 @@
         "memphis|TN": [-90.0490, 35.1495], "louisville|KY": [-85.7585, 38.2527],
         "indianapolis|IN": [-86.1581, 39.7684], "milwaukee|WI": [-87.9065, 43.0389],
         "minneapolis|MN": [-93.2650, 44.9778], "st paul|MN": [-93.0900, 44.9537],
-        "kansas city|MO": [-94.5786, 39.0997], "st louis|MO": [-90.1994, 38.6270],
-        "springfield|MO": [-93.2923, 37.2090], "oklahoma city|OK": [-97.5164, 35.4676],
-        "tulsa|OK": [-95.9928, 36.1540], "new orleans|LA": [-90.0715, 29.9511],
-        "bossier city|LA": [-93.7321, 32.5160], "albuquerque|NM": [-106.6504, 35.0844],
-        "salt lake city|UT": [-111.8910, 40.7608], "sandy|UT": [-111.8841, 40.5650],
-        "seattle|WA": [-122.3321, 47.6062], "tacoma|WA": [-122.4443, 47.2529],
-        "portland|OR": [-122.6765, 45.5231], "boston|MA": [-71.0589, 42.3601],
-        "worcester|MA": [-71.8023, 42.2626], "uncasville|CT": [-72.1098, 41.4334],
-        "hartford|CT": [-72.6851, 41.7637], "mashantucket|CT": [-71.9737, 41.4643],
-        "washington|DC": [-77.0369, 38.9072], "baltimore|MD": [-76.6122, 39.2904],
-        "norfolk|VA": [-76.2859, 36.8508], "richmond|VA": [-77.4360, 37.5407],
-        "virginia beach|VA": [-75.9780, 36.8529], "raleigh|NC": [-78.6382, 35.7796],
-        "charlotte|NC": [-80.8431, 35.2271], "greensboro|NC": [-79.7920, 36.0726],
-        "charleston|SC": [-79.9311, 32.7765], "myrtle beach|SC": [-78.8867, 33.6891],
-        "omaha|NE": [-95.9345, 41.2565], "lincoln|NE": [-96.7026, 40.8136],
+        "prior lake|MN": [-93.4227, 44.7133], "kansas city|MO": [-94.5786, 39.0997],
+        "st louis|MO": [-90.1994, 38.6270], "springfield|MO": [-93.2923, 37.2090],
+        "lake ozark|MO": [-92.6388, 38.1986], "st charles|MO": [-90.4812, 38.7881],
+        "oklahoma city|OK": [-97.5164, 35.4676], "tulsa|OK": [-95.9928, 36.1540],
+        "new orleans|LA": [-90.0715, 29.9511], "bossier city|LA": [-93.7321, 32.5160],
+        "albuquerque|NM": [-106.6504, 35.0844], "salt lake city|UT": [-111.8910, 40.7608],
+        "sandy|UT": [-111.8841, 40.5650], "seattle|WA": [-122.3321, 47.6062],
+        "tacoma|WA": [-122.4443, 47.2529], "portland|OR": [-122.6765, 45.5231],
+        "boston|MA": [-71.0589, 42.3601], "worcester|MA": [-71.8023, 42.2626],
+        "uncasville|CT": [-72.1098, 41.4334], "hartford|CT": [-72.6851, 41.7637],
+        "mashantucket|CT": [-71.9737, 41.4643], "washington|DC": [-77.0369, 38.9072],
+        "baltimore|MD": [-76.6122, 39.2904], "parkville|MD": [-76.5397, 39.3773],
+        "gaithersburg|MD": [-77.2014, 39.1434], "norfolk|VA": [-76.2859, 36.8508],
+        "richmond|VA": [-77.4360, 37.5407], "virginia beach|VA": [-75.9780, 36.8529],
+        "raleigh|NC": [-78.6382, 35.7796], "charlotte|NC": [-80.8431, 35.2271],
+        "greensboro|NC": [-79.7920, 36.0726], "charleston|SC": [-79.9311, 32.7765],
+        "myrtle beach|SC": [-78.8867, 33.6891], "omaha|NE": [-95.9345, 41.2565],
+        "ralston|NE": [-96.0422, 41.2053], "lincoln|NE": [-96.7026, 40.8136],
         "sioux falls|SD": [-96.7311, 43.5446], "boise|ID": [-116.2023, 43.6150],
         "honolulu|HI": [-157.8583, 21.3069], "anchorage|AK": [-149.9003, 61.2181],
         "minot|ND": [-101.2963, 48.2330], "detroit|MI": [-83.0458, 42.3314],
@@ -102,7 +125,9 @@
         "birmingham|AL": [-86.8025, 33.5207], "mobile|AL": [-88.0399, 30.6954],
         "biloxi|MS": [-88.8853, 30.3960], "jackson|MS": [-90.1848, 32.2988],
         "little rock|AR": [-92.2896, 34.7465], "fayetteville|AR": [-94.1574, 36.0626],
-        "wichita|KS": [-97.3301, 37.6872], "topeka|KS": [-95.6770, 39.0473]
+        "wichita|KS": [-97.3301, 37.6872], "topeka|KS": [-95.6770, 39.0473],
+        "kansas city|KS": [-94.6275, 39.1142], "laughlin|NV": [-114.5730, 35.1678],
+        "waterloo|IA": [-92.3426, 42.4928], "ankeny|IA": [-93.6001, 41.7318]
     };
 
     let d3;
@@ -120,8 +145,16 @@
     let filteredEvents = [];
     let currentRange = "all";
     let selectedEventId = "";
+    let selectedClusterKey = "";
+    let currentDetailEvent = null;
+    let userLocation = null;
+    let nearMeActive = false;
+    let currentRadius = 250;
+    let calendarObjectUrl = "";
+    let initialEventId = "";
 
     const normalizeText = value => String(value || "").replace(/\s+/g, " ").trim();
+    const clamp = (min, value, max) => Math.min(max, Math.max(min, value));
 
     function eventDate(event) {
         const value = event.starts_at || event.date;
@@ -133,11 +166,7 @@
     function parseLocation(event) {
         const explicitState = normalizeText(event.state || event.state_code).toUpperCase();
         if (STATES[explicitState] && event.city) {
-            return {
-                city: normalizeText(event.city),
-                stateCode: explicitState,
-                stateName: STATES[explicitState][0]
-            };
+            return { city: normalizeText(event.city), stateCode: explicitState, stateName: STATES[explicitState][0] };
         }
 
         const source = [event.location, event.venue, event.title].filter(Boolean).join(" · ");
@@ -162,7 +191,6 @@
         let city = normalizeText(locationPiece.split(",")[0]);
         if (!city || city.toLowerCase() === stateName.toLowerCase()) city = "";
         city = city.replace(/\b(?:usa|united states)\b/ig, "").trim();
-
         return { city, stateCode, stateName };
     }
 
@@ -173,6 +201,23 @@
         return Number.isFinite(point[0]) && Number.isFinite(point[1]) ? point : null;
     }
 
+    function levelCategory(event) {
+        const level = normalizeText(event.level).toLowerCase();
+        if (level.includes("pro-am") || level.includes("pro/am") || level.includes("pro am")) return "pro-am";
+        if (level.includes("amateur")) return "amateur";
+        if (level.includes("professional") || level === "pro") return "professional";
+        if (event.regional === true) return "regional";
+        return "professional";
+    }
+
+    function levelLabel(event) {
+        const level = levelCategory(event);
+        if (level === "professional") return "Pro";
+        if (level === "pro-am") return "Pro / Am";
+        if (level === "amateur") return "Amateur";
+        return "Regional";
+    }
+
     function locateEvent(event, index) {
         const location = parseLocation(event);
         if (!location) return null;
@@ -181,7 +226,8 @@
         const latitude = Number(event.latitude ?? event.lat);
         const hasSourceCoordinates = Number.isFinite(longitude) && Number.isFinite(latitude);
         const cityKey = `${location.city.toLowerCase()}|${location.stateCode}`;
-        const coordinates = hasSourceCoordinates ? [longitude, latitude] : CITY_COORDS[cityKey];
+        const cityCoordinates = CITY_COORDS[cityKey];
+        const coordinates = hasSourceCoordinates ? [longitude, latitude] : cityCoordinates;
         let point = coordinates ? projection(coordinates) : null;
         let precision = hasSourceCoordinates ? "source" : "city";
 
@@ -199,6 +245,10 @@
             stateCode: location.stateCode,
             stateName: location.stateName,
             locationPrecision: precision,
+            levelCategory: levelCategory(event),
+            geoLongitude: coordinates ? coordinates[0] : null,
+            geoLatitude: coordinates ? coordinates[1] : null,
+            distanceMiles: null,
             x: point[0],
             y: point[1]
         };
@@ -207,6 +257,11 @@
     function dateLabel(event) {
         if (!event.dateObject) return "Date TBA";
         return event.dateObject.toLocaleDateString([], { month: "short", day: "numeric", year: "numeric" });
+    }
+
+    function shortDateLabel(event) {
+        if (!event.dateObject) return "TBA";
+        return event.dateObject.toLocaleDateString([], { month: "short", day: "numeric" });
     }
 
     function isFuture(event) {
@@ -236,6 +291,32 @@
         return true;
     }
 
+    function haversineMiles(lat1, lon1, lat2, lon2) {
+        const toRad = value => value * Math.PI / 180;
+        const earthRadiusMiles = 3958.7613;
+        const dLat = toRad(lat2 - lat1);
+        const dLon = toRad(lon2 - lon1);
+        const a = Math.sin(dLat / 2) ** 2
+            + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+        return 2 * earthRadiusMiles * Math.asin(Math.sqrt(a));
+    }
+
+    function computeDistances() {
+        if (!userLocation) return;
+        allEvents.forEach(event => {
+            if (!Number.isFinite(event.geoLatitude) || !Number.isFinite(event.geoLongitude)) {
+                event.distanceMiles = null;
+                return;
+            }
+            event.distanceMiles = haversineMiles(
+                userLocation.latitude,
+                userLocation.longitude,
+                event.geoLatitude,
+                event.geoLongitude
+            );
+        });
+    }
+
     function populateFilters() {
         const stateCodes = [...new Set(allEvents.map(event => event.stateCode))]
             .sort((a, b) => STATES[a][0].localeCompare(STATES[b][0]));
@@ -248,21 +329,94 @@
         promotions.forEach(name => promotionFilter.append(new Option(name, name)));
     }
 
+    function setSelectValue(select, value) {
+        if (!value) return;
+        if ([...select.options].some(option => option.value === value)) select.value = value;
+    }
+
+    function applyUrlState() {
+        const params = new URLSearchParams(window.location.search);
+        const range = params.get("range");
+        if (["weekend", "30", "all"].includes(range)) currentRange = range;
+        setSelectValue(stateFilter, params.get("state"));
+        setSelectValue(promotionFilter, params.get("promotion"));
+        setSelectValue(levelFilter, params.get("level"));
+        const query = params.get("q");
+        if (query) searchInput.value = query;
+        const radius = params.get("radius");
+        if (["50", "100", "250", "500"].includes(radius)) {
+            radiusFilter.value = radius;
+            currentRadius = Number(radius);
+        }
+        initialEventId = params.get("event") || "";
+        rangeButtons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.range === currentRange)));
+    }
+
+    function syncUrl() {
+        const url = new URL(window.location.href);
+        const params = url.searchParams;
+        ["range", "state", "promotion", "level", "q", "radius", "event"].forEach(key => params.delete(key));
+        if (currentRange !== "all") params.set("range", currentRange);
+        if (stateFilter.value) params.set("state", stateFilter.value);
+        if (promotionFilter.value) params.set("promotion", promotionFilter.value);
+        if (levelFilter.value) params.set("level", levelFilter.value);
+        if (searchInput.value.trim()) params.set("q", searchInput.value.trim());
+        if (currentRadius !== 250) params.set("radius", String(currentRadius));
+        if (selectedEventId) params.set("event", selectedEventId);
+        window.history.replaceState({}, "", `${url.pathname}${params.toString() ? `?${params}` : ""}${url.hash}`);
+    }
+
     function renderStateActivity() {
         const activeStates = new Set(filteredEvents.map(event => event.stateCode));
         stateLayer.selectAll(".event-map-state")
             .attr("data-has-events", feature => String(activeStates.has(STATE_BY_FIPS.get(String(feature.id)))));
     }
 
-    function applyFilters() {
+    function displayOrder(events) {
+        return [...events].sort((a, b) => {
+            if (nearMeActive) {
+                const aDistance = Number.isFinite(a.distanceMiles) ? a.distanceMiles : Infinity;
+                const bDistance = Number.isFinite(b.distanceMiles) ? b.distanceMiles : Infinity;
+                if (aDistance !== bDistance) return aDistance - bDistance;
+            }
+            return (a.dateObject?.getTime() || Infinity) - (b.dateObject?.getTime() || Infinity);
+        });
+    }
+
+    function updateSummary() {
+        summaryCount.textContent = String(filteredEvents.length);
+        const dated = filteredEvents.filter(event => event.dateObject).sort((a, b) => a.dateObject - b.dateObject);
+        if (dated[0]) {
+            summaryNext.textContent = `Next: ${normalizeText(dated[0].promotion) || "MMA"} · ${shortDateLabel(dated[0])} · ${dated[0].city || dated[0].stateCode}`;
+        } else {
+            summaryNext.textContent = "Next event unavailable";
+        }
+
+        if (nearMeActive) {
+            const nearest = displayOrder(filteredEvents).find(event => Number.isFinite(event.distanceMiles));
+            summaryNear.hidden = false;
+            summaryNear.textContent = nearest
+                ? `${filteredEvents.length} within ${currentRadius} mi · nearest ${Math.round(nearest.distanceMiles)} mi away`
+                : `No precisely located events within ${currentRadius} mi`;
+        } else {
+            summaryNear.hidden = true;
+            summaryNear.textContent = "";
+        }
+    }
+
+    function applyFilters({ sync = true } = {}) {
         const state = stateFilter.value;
         const promotion = promotionFilter.value;
+        const level = levelFilter.value;
         const query = searchInput.value.trim().toLowerCase();
+        currentRadius = Number(radiusFilter.value) || 250;
 
         filteredEvents = allEvents.filter(event => {
             if (!matchesRange(event)) return false;
             if (state && event.stateCode !== state) return false;
             if (promotion && normalizeText(event.promotion) !== promotion) return false;
+            if (level && event.levelCategory !== level) return false;
+            if (nearMeActive && (!Number.isFinite(event.distanceMiles) || event.distanceMiles > currentRadius)) return false;
             if (query) {
                 const haystack = [
                     event.promotion,
@@ -272,7 +426,8 @@
                     event.city,
                     event.stateName,
                     event.source_label,
-                    event.level
+                    event.level,
+                    levelLabel(event)
                 ].join(" ").toLowerCase();
                 if (!haystack.includes(query)) return false;
             }
@@ -282,10 +437,14 @@
         eventCount.textContent = String(filteredEvents.length);
         if (selectedEventId && !filteredEvents.some(event => event.mapId === selectedEventId)) {
             selectedEventId = "";
+            selectedClusterKey = "";
             showEmptyDetail();
         }
         renderStateActivity();
         renderMarkers();
+        renderResults();
+        updateSummary();
+        if (sync) syncUrl();
     }
 
     function clusterEvents(events) {
@@ -306,70 +465,208 @@
         return clusters;
     }
 
+    function clusterKey(cluster) {
+        return cluster.events.map(event => event.mapId).sort().join("|");
+    }
+
     function showEmptyDetail() {
         detailCard.hidden = true;
+        clusterCard.hidden = true;
         detailEmpty.hidden = false;
+        currentDetailEvent = null;
+    }
+
+    function escapeIcs(value) {
+        return String(value || "").replace(/\\/g, "\\\\").replace(/\n/g, "\\n").replace(/,/g, "\\,").replace(/;/g, "\\;");
+    }
+
+    function calendarHref(event) {
+        if (calendarObjectUrl) URL.revokeObjectURL(calendarObjectUrl);
+        const date = event.dateObject || new Date();
+        const start = `${date.getUTCFullYear()}${String(date.getUTCMonth() + 1).padStart(2, "0")}${String(date.getUTCDate()).padStart(2, "0")}`;
+        const endDate = new Date(date.getTime() + DAY_MS);
+        const end = `${endDate.getUTCFullYear()}${String(endDate.getUTCMonth() + 1).padStart(2, "0")}${String(endDate.getUTCDate()).padStart(2, "0")}`;
+        const summary = normalizeText(event.title) || normalizeText(event.promotion) || "MMA event";
+        const location = [normalizeText(event.venue), event.city, event.stateCode].filter(Boolean).join(", ");
+        const lines = [
+            "BEGIN:VCALENDAR",
+            "VERSION:2.0",
+            "PRODID:-//MMA Matlock//Event Map//EN",
+            "BEGIN:VEVENT",
+            `UID:${escapeIcs(event.mapId)}@matlockfighttalk.com`,
+            `DTSTART;VALUE=DATE:${start}`,
+            `DTEND;VALUE=DATE:${end}`,
+            `SUMMARY:${escapeIcs(summary)}`,
+            `LOCATION:${escapeIcs(location)}`,
+            event.official_url ? `URL:${event.official_url}` : "",
+            "END:VEVENT",
+            "END:VCALENDAR"
+        ].filter(Boolean).join("\r\n");
+        calendarObjectUrl = URL.createObjectURL(new Blob([lines], { type: "text/calendar;charset=utf-8" }));
+        return calendarObjectUrl;
     }
 
     function renderEventDetail(event) {
         detailEmpty.hidden = true;
+        clusterCard.hidden = true;
         detailCard.hidden = false;
+        currentDetailEvent = event;
         detailPromotion.textContent = normalizeText(event.promotion) || "MMA";
         detailDate.textContent = dateLabel(event);
         detailDate.dateTime = event.dateObject?.toISOString() || "";
         detailTitle.textContent = normalizeText(event.title) || normalizeText(event.promotion) || "MMA event";
         detailLocation.textContent = [event.city, event.stateCode].filter(Boolean).join(", ") || event.stateName;
+        if (Number.isFinite(event.distanceMiles)) {
+            detailDistance.hidden = false;
+            detailDistance.textContent = `${Math.round(event.distanceMiles)} mi away`;
+        } else {
+            detailDistance.hidden = true;
+            detailDistance.textContent = "";
+        }
         const precisionNote = event.locationPrecision === "state" ? " · approximate state placement" : "";
         detailVenue.textContent = `${normalizeText(event.venue) || "Venue not yet listed"}${precisionNote}`;
-        detailBroadcast.textContent = event.broadcast ? `Watch: ${normalizeText(event.broadcast)}` : "Broadcast information not yet listed";
-        detailSource.href = event.official_url || "/upcoming-events/";
-        detailSource.textContent = event.regional ? "Official promotion page" : "Event source";
+        detailBroadcast.textContent = event.broadcast ? `Watch: ${normalizeText(event.broadcast)}` : `${levelLabel(event)} event`;
+
+        const sourceUrl = event.official_url || "";
+        const isTicketPage = event.source_key === "nitro" || /nitrotickets\.com/i.test(sourceUrl);
+        detailTickets.hidden = !isTicketPage || !sourceUrl;
+        detailTickets.href = sourceUrl || "#";
+        detailSource.hidden = isTicketPage || !sourceUrl;
+        detailSource.href = sourceUrl || "#";
+        detailSource.textContent = event.regional ? "Official event page" : "Event page";
+        detailCalendar.href = calendarHref(event);
+        detailCalendar.download = `${normalizeText(event.title || event.promotion || "mma-event").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "mma-event"}.ics`;
+        detailPicker.hidden = event.regional === true;
     }
 
-    function selectEvent(event) {
+    function renderClusterDetail(cluster) {
+        detailEmpty.hidden = true;
+        detailCard.hidden = true;
+        clusterCard.hidden = false;
+        currentDetailEvent = null;
+        const ordered = displayOrder(cluster.events);
+        const first = ordered[0];
+        clusterCount.textContent = `${ordered.length} events`;
+        clusterTitle.textContent = `Events near ${first.city || first.stateName}`;
+        clusterList.replaceChildren();
+
+        ordered.forEach(event => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "event-map-cluster-event";
+            const title = document.createElement("strong");
+            title.textContent = normalizeText(event.title) || normalizeText(event.promotion) || "MMA event";
+            const meta = document.createElement("span");
+            const distance = Number.isFinite(event.distanceMiles) ? ` · ${Math.round(event.distanceMiles)} mi` : "";
+            meta.textContent = `${shortDateLabel(event)} · ${normalizeText(event.promotion) || "MMA"}${distance}`;
+            button.append(title, meta);
+            button.addEventListener("click", () => {
+                selectEvent(event, { zoom: true, scroll: false });
+            });
+            clusterList.append(button);
+        });
+    }
+
+    function scrollDetailOnMobile() {
+        if (!window.matchMedia("(max-width: 820px)").matches) return;
+        detailPanel.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+    }
+
+    function selectEvent(event, { zoom = false, scroll = true } = {}) {
         selectedEventId = event.mapId;
+        selectedClusterKey = "";
         renderEventDetail(event);
         renderSelectedState();
+        renderResultSelectedState();
+        syncUrl();
+        if (zoom) zoomToPoint(event.x, event.y, Math.max(currentTransform?.k || 1, 3.2));
+        if (scroll) scrollDetailOnMobile();
+    }
+
+    function selectCluster(cluster) {
+        selectedEventId = "";
+        selectedClusterKey = clusterKey(cluster);
+        renderClusterDetail(cluster);
+        renderSelectedState();
+        renderResultSelectedState();
+        syncUrl();
+        scrollDetailOnMobile();
     }
 
     function previewEvent(event) {
         renderEventDetail(event);
     }
 
+    function previewCluster(cluster) {
+        renderClusterDetail(cluster);
+    }
+
     function restoreSelectedDetail() {
-        const selected = allEvents.find(event => event.mapId === selectedEventId);
-        if (selected) renderEventDetail(selected);
-        else showEmptyDetail();
+        const selected = filteredEvents.find(event => event.mapId === selectedEventId);
+        if (selected) {
+            renderEventDetail(selected);
+            return;
+        }
+        if (selectedClusterKey) {
+            const cluster = clusterEvents(filteredEvents).find(item => clusterKey(item) === selectedClusterKey);
+            if (cluster) {
+                renderClusterDetail(cluster);
+                return;
+            }
+        }
+        showEmptyDetail();
     }
 
     function renderSelectedState() {
         markerLayer.selectAll(".event-map-pin-group")
-            .attr("data-selected", cluster => String(cluster.events.some(event => event.mapId === selectedEventId)));
+            .attr("data-selected", cluster => String(
+                cluster.events.some(event => event.mapId === selectedEventId) || clusterKey(cluster) === selectedClusterKey
+            ));
     }
 
-    function showClusterDetail(cluster) {
-        detailEmpty.hidden = true;
-        detailCard.hidden = false;
-        const first = cluster.events[0];
-        detailPromotion.textContent = "EVENT CLUSTER";
-        detailDate.textContent = `${cluster.events.length} events`;
-        detailDate.removeAttribute("datetime");
-        detailTitle.textContent = `${cluster.events.length} events near ${first.city || first.stateName}`;
-        detailLocation.textContent = cluster.events.slice(0, 6)
-            .map(event => `${dateLabel(event)} · ${normalizeText(event.promotion)}`)
-            .join(" • ");
-        detailVenue.textContent = cluster.events.slice(0, 6)
-            .map(event => normalizeText(event.title)).filter(Boolean).join(" • ");
-        detailBroadcast.textContent = cluster.events.length > 6
-            ? `Plus ${cluster.events.length - 6} more events in this cluster.`
-            : "Zoom in to separate nearby event pins.";
-        detailSource.href = "/upcoming-events/";
-        detailSource.textContent = "Open Fight Card Picker";
+    function renderResultSelectedState() {
+        eventList.querySelectorAll(".event-map-result").forEach(button => {
+            button.dataset.selected = String(button.dataset.eventId === selectedEventId);
+        });
     }
 
-    function zoomToPoint(x, y, factor = 2) {
-        const nextScale = Math.min(8, Math.max((currentTransform?.k || 1) * factor, 1));
+    function zoomToPoint(x, y, targetScale = 3.2) {
+        const nextScale = clamp(1, targetScale, 8);
         const transform = d3.zoomIdentity.translate(WIDTH / 2, HEIGHT / 2).scale(nextScale).translate(-x, -y);
+        d3.select(svgNode).transition().duration(260).call(zoomBehavior.transform, transform);
+    }
+
+    function zoomToEvents(events) {
+        if (!events.length) return;
+        if (events.length === 1) {
+            zoomToPoint(events[0].x, events[0].y, 4);
+            return;
+        }
+        const xs = events.map(event => event.x);
+        const ys = events.map(event => event.y);
+        const minX = Math.min(...xs);
+        const maxX = Math.max(...xs);
+        const minY = Math.min(...ys);
+        const maxY = Math.max(...ys);
+        const dx = Math.max(maxX - minX, 40);
+        const dy = Math.max(maxY - minY, 40);
+        const x = (minX + maxX) / 2;
+        const y = (minY + maxY) / 2;
+        const scale = clamp(1, 0.72 / Math.max(dx / WIDTH, dy / HEIGHT), 6);
+        const transform = d3.zoomIdentity.translate(WIDTH / 2, HEIGHT / 2).scale(scale).translate(-x, -y);
+        d3.select(svgNode).transition().duration(280).call(zoomBehavior.transform, transform);
+    }
+
+    function zoomToState(code) {
+        const feature = stateFeatureByCode.get(code);
+        if (!feature) return;
+        const bounds = geoPath.bounds(feature);
+        const dx = bounds[1][0] - bounds[0][0];
+        const dy = bounds[1][1] - bounds[0][1];
+        const x = (bounds[0][0] + bounds[1][0]) / 2;
+        const y = (bounds[0][1] + bounds[1][1]) / 2;
+        const scale = clamp(1, 0.78 / Math.max(dx / WIDTH, dy / HEIGHT), 8);
+        const transform = d3.zoomIdentity.translate(WIDTH / 2, HEIGHT / 2).scale(scale).translate(-x, -y);
         d3.select(svgNode).transition().duration(260).call(zoomBehavior.transform, transform);
     }
 
@@ -379,18 +676,21 @@
         markerLayer.selectAll("*").remove();
 
         const groups = markerLayer.selectAll("g.event-map-pin-group")
-            .data(clusters, cluster => cluster.events.map(event => event.mapId).join("|"))
+            .data(clusters, clusterKey)
             .join("g")
             .attr("class", cluster => `event-map-pin-group${cluster.events.length > 1 ? " event-map-cluster" : ""}`)
             .attr("tabindex", 0)
             .attr("role", "button")
             .attr("aria-label", cluster => {
-                if (cluster.events.length > 1) return `${cluster.events.length} upcoming MMA events`;
+                if (cluster.events.length > 1) return `${cluster.events.length} upcoming MMA events. Activate to choose an event.`;
                 const event = cluster.events[0];
                 return `${normalizeText(event.promotion)} ${normalizeText(event.title)}, ${dateLabel(event)}`;
             })
+            .attr("data-level", cluster => cluster.events.length > 1 ? "cluster" : cluster.events[0].levelCategory)
             .attr("data-soon", cluster => String(cluster.events.some(event => event.dateObject && event.dateObject.getTime() - Date.now() <= SOON_MS)) )
-            .attr("data-selected", cluster => String(cluster.events.some(event => event.mapId === selectedEventId)))
+            .attr("data-selected", cluster => String(
+                cluster.events.some(event => event.mapId === selectedEventId) || clusterKey(cluster) === selectedClusterKey
+            ))
             .attr("transform", cluster => `translate(${cluster.x},${cluster.y}) scale(${1 / scale})`);
 
         groups.append("circle")
@@ -404,51 +704,159 @@
             .attr("class", "event-map-pin-count")
             .text(cluster => cluster.events.length > 99 ? "99+" : cluster.events.length);
         groups.append("title").text(cluster => {
-            if (cluster.events.length > 1) return `${cluster.events.length} events near ${cluster.events[0].city || cluster.events[0].stateName}`;
+            if (cluster.events.length > 1) return `${cluster.events.length} events near ${cluster.events[0].city || cluster.events[0].stateName} — click to choose`;
             const event = cluster.events[0];
             return `${normalizeText(event.promotion)} · ${normalizeText(event.title)} · ${dateLabel(event)}`;
         });
 
         groups
             .on("mouseenter", (_, cluster) => {
-                if (cluster.events.length === 1) previewEvent(cluster.events[0]);
+                if (cluster.events.length > 1) previewCluster(cluster);
+                else previewEvent(cluster.events[0]);
             })
-            .on("mouseleave", () => restoreSelectedDetail())
+            .on("mouseleave", restoreSelectedDetail)
             .on("focus", (_, cluster) => {
-                if (cluster.events.length === 1) previewEvent(cluster.events[0]);
+                if (cluster.events.length > 1) previewCluster(cluster);
+                else previewEvent(cluster.events[0]);
             })
-            .on("blur", () => restoreSelectedDetail())
+            .on("blur", restoreSelectedDetail)
             .on("click", (event, cluster) => {
                 event.stopPropagation();
-                if (cluster.events.length > 1 && (currentTransform?.k || 1) < 4) zoomToPoint(cluster.x, cluster.y, 2);
-                else if (cluster.events.length > 1) showClusterDetail(cluster);
+                if (cluster.events.length > 1) selectCluster(cluster);
                 else selectEvent(cluster.events[0]);
             })
             .on("keydown", (event, cluster) => {
                 if (event.key !== "Enter" && event.key !== " ") return;
                 event.preventDefault();
-                if (cluster.events.length > 1 && (currentTransform?.k || 1) < 4) zoomToPoint(cluster.x, cluster.y, 2);
-                else if (cluster.events.length > 1) showClusterDetail(cluster);
+                event.stopPropagation();
+                if (cluster.events.length > 1) selectCluster(cluster);
                 else selectEvent(cluster.events[0]);
             });
+    }
+
+    function renderResults() {
+        const ordered = displayOrder(filteredEvents);
+        resultsCount.textContent = String(ordered.length);
+        eventList.replaceChildren();
+        eventListEmpty.hidden = ordered.length !== 0;
+
+        ordered.forEach(event => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "event-map-result";
+            button.dataset.eventId = event.mapId;
+            button.dataset.selected = String(event.mapId === selectedEventId);
+
+            const date = document.createElement("span");
+            date.className = "event-map-result-date";
+            date.textContent = shortDateLabel(event);
+
+            const copy = document.createElement("span");
+            copy.className = "event-map-result-copy";
+            const title = document.createElement("strong");
+            title.textContent = normalizeText(event.title) || normalizeText(event.promotion) || "MMA event";
+            const meta = document.createElement("span");
+            meta.className = "event-map-result-meta";
+            meta.textContent = `${normalizeText(event.promotion) || "MMA"} · ${[event.city, event.stateCode].filter(Boolean).join(", ")} · ${levelLabel(event)}`;
+            copy.append(title, meta);
+
+            button.append(date, copy);
+            if (Number.isFinite(event.distanceMiles)) {
+                const distance = document.createElement("span");
+                distance.className = "event-map-result-distance";
+                distance.textContent = `${Math.round(event.distanceMiles)} mi`;
+                button.append(distance);
+            }
+            button.addEventListener("click", () => selectEvent(event, { zoom: true }));
+            eventList.append(button);
+        });
     }
 
     function resetMap() {
         stateFilter.value = "";
         promotionFilter.value = "";
+        levelFilter.value = "";
         searchInput.value = "";
         currentRange = "all";
+        currentRadius = 250;
+        radiusFilter.value = "250";
+        radiusFilter.disabled = true;
+        nearMeActive = false;
+        nearButton.setAttribute("aria-pressed", "false");
+        nearStatus.textContent = "";
         selectedEventId = "";
+        selectedClusterKey = "";
         rangeButtons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.range === "all")));
         d3.select(svgNode).transition().duration(240).call(zoomBehavior.transform, d3.zoomIdentity);
         showEmptyDetail();
         applyFilters();
     }
 
+    function setNearMode(enabled) {
+        nearMeActive = enabled;
+        nearButton.setAttribute("aria-pressed", String(enabled));
+        radiusFilter.disabled = !enabled;
+        if (!enabled) nearStatus.textContent = userLocation ? "Location saved for this visit" : "";
+    }
+
+    function activateNearMe() {
+        if (nearMeActive) {
+            setNearMode(false);
+            applyFilters();
+            return;
+        }
+
+        if (userLocation) {
+            setNearMode(true);
+            computeDistances();
+            applyFilters();
+            zoomToEvents(filteredEvents);
+            return;
+        }
+
+        if (!("geolocation" in navigator)) {
+            nearStatus.textContent = "Location is not available in this browser";
+            return;
+        }
+
+        nearStatus.textContent = "Requesting location…";
+        nearButton.disabled = true;
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                nearButton.disabled = false;
+                userLocation = {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                };
+                computeDistances();
+                setNearMode(true);
+                nearStatus.textContent = "Location active";
+                applyFilters();
+                zoomToEvents(filteredEvents);
+            },
+            error => {
+                nearButton.disabled = false;
+                setNearMode(false);
+                nearStatus.textContent = error.code === 1 ? "Location permission denied" : "Could not determine location";
+            },
+            { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 }
+        );
+    }
+
     function bindControls() {
-        stateFilter.addEventListener("change", applyFilters);
-        promotionFilter.addEventListener("change", applyFilters);
-        searchInput.addEventListener("input", applyFilters);
+        stateFilter.addEventListener("change", () => {
+            applyFilters();
+            if (stateFilter.value) zoomToState(stateFilter.value);
+        });
+        promotionFilter.addEventListener("change", () => applyFilters());
+        levelFilter.addEventListener("change", () => applyFilters());
+        searchInput.addEventListener("input", () => applyFilters());
+        radiusFilter.addEventListener("change", () => {
+            currentRadius = Number(radiusFilter.value) || 250;
+            applyFilters();
+            if (nearMeActive) zoomToEvents(filteredEvents);
+        });
+        nearButton.addEventListener("click", activateNearMe);
         rangeButtons.forEach(button => {
             button.addEventListener("click", () => {
                 currentRange = button.dataset.range;
@@ -459,6 +867,28 @@
         resetButton.addEventListener("click", resetMap);
         zoomInButton.addEventListener("click", () => d3.select(svgNode).transition().duration(180).call(zoomBehavior.scaleBy, 1.5));
         zoomOutButton.addEventListener("click", () => d3.select(svgNode).transition().duration(180).call(zoomBehavior.scaleBy, 1 / 1.5));
+        detailShare.addEventListener("click", async () => {
+            if (!currentDetailEvent) return;
+            const event = currentDetailEvent;
+            const url = new URL(window.location.href);
+            url.searchParams.set("event", event.mapId);
+            const payload = {
+                title: normalizeText(event.title) || normalizeText(event.promotion) || "MMA event",
+                text: `${dateLabel(event)} · ${[event.city, event.stateCode].filter(Boolean).join(", ")}`,
+                url: url.toString()
+            };
+            try {
+                if (navigator.share) await navigator.share(payload);
+                else if (navigator.clipboard) {
+                    await navigator.clipboard.writeText(payload.url);
+                    const original = detailShare.textContent;
+                    detailShare.textContent = "Link copied";
+                    setTimeout(() => { detailShare.textContent = original; }, 1400);
+                }
+            } catch (error) {
+                if (error?.name !== "AbortError") console.warn("Event share failed", error);
+            }
+        });
     }
 
     async function init() {
@@ -511,21 +941,18 @@
                 .attr("data-state", feature => STATE_BY_FIPS.get(String(feature.id)) || "")
                 .on("click", (event, feature) => {
                     event.stopPropagation();
-                    const bounds = geoPath.bounds(feature);
-                    const dx = bounds[1][0] - bounds[0][0];
-                    const dy = bounds[1][1] - bounds[0][1];
-                    const x = (bounds[0][0] + bounds[1][0]) / 2;
-                    const y = (bounds[0][1] + bounds[1][1]) / 2;
-                    const scale = Math.max(1, Math.min(8, 0.78 / Math.max(dx / WIDTH, dy / HEIGHT)));
-                    const transform = d3.zoomIdentity.translate(WIDTH / 2, HEIGHT / 2).scale(scale).translate(-x, -y);
-                    d3.select(svgNode).transition().duration(260).call(zoomBehavior.transform, transform);
+                    const code = STATE_BY_FIPS.get(String(feature.id));
+                    if (code) zoomToState(code);
                 });
 
             svg.call(zoomBehavior).on("dblclick.zoom", null);
             svg.on("click", () => {
                 selectedEventId = "";
+                selectedClusterKey = "";
                 showEmptyDetail();
                 renderSelectedState();
+                renderResultSelectedState();
+                syncUrl();
             });
             currentTransform = d3.zoomIdentity;
 
@@ -537,14 +964,27 @@
                 .sort((a, b) => (a.dateObject || 0) - (b.dateObject || 0));
 
             populateFilters();
+            applyUrlState();
             bindControls();
-            applyFilters();
+            applyFilters({ sync: false });
+
+            if (initialEventId) {
+                const initialEvent = filteredEvents.find(event => event.mapId === initialEventId)
+                    || allEvents.find(event => event.mapId === initialEventId);
+                if (initialEvent) selectEvent(initialEvent, { zoom: true, scroll: false });
+            } else {
+                syncUrl();
+            }
             loading.hidden = true;
         } catch (error) {
             loading.textContent = "Event Map is temporarily unavailable.";
             console.error("Event Map failed to initialize", error);
         }
     }
+
+    window.addEventListener("beforeunload", () => {
+        if (calendarObjectUrl) URL.revokeObjectURL(calendarObjectUrl);
+    });
 
     init();
 })();
