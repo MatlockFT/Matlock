@@ -327,7 +327,9 @@
     line-height: 1;
     text-align: center;
     text-transform: uppercase;
-    overflow-wrap: anywhere;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
 }
 
 .bout-card-featured .fighter-name {
