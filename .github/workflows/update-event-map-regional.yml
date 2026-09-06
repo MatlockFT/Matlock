@@ -8,6 +8,7 @@ on:
     paths:
       - ".github/workflows/update-event-map-regional.yml"
       - "scripts/update-event-map-regional.mjs"
+      - "scripts/update-event-map-discovery.mjs"
       - "scripts/validate-event-map-regional.mjs"
   schedule:
     - cron: "23 */6 * * *"
@@ -22,7 +23,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12
 
     steps:
       - name: Check out repository
@@ -38,10 +39,14 @@ jobs:
       - name: Validate updater syntax
         run: |
           node --check scripts/update-event-map-regional.mjs
+          node --check scripts/update-event-map-discovery.mjs
           node --check scripts/validate-event-map-regional.mjs
 
       - name: Read official regional promotion schedules
         run: node scripts/update-event-map-regional.mjs
+
+      - name: Read regional discovery feeds
+        run: node scripts/update-event-map-discovery.mjs
 
       - name: Validate regional event data
         run: node scripts/validate-event-map-regional.mjs
