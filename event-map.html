@@ -12,14 +12,14 @@ page_scripts:
 <section
     class="event-map-page"
     data-event-map
-    data-events-url="{{ '/assets/data/upcoming-events-live.json' | relative_url }}?v={{ site.asset_version }}"
+    data-events-url="{{ '/assets/data/event-map-live.json' | relative_url }}?v={{ site.asset_version }}"
 >
     <header class="event-map-hero">
         <div>
             <p class="event-map-kicker">MMA MATLOCK</p>
             <h1>EVENT MAP</h1>
             <p class="event-map-intro">
-                Find upcoming MMA events across the United States. Zoom, drag, filter, and select a pin for event details.
+                Find upcoming MMA events across the United States, including regional cards pulled from official promotion schedules. Zoom, drag, filter, and select a pin for event details.
             </p>
         </div>
 
@@ -115,6 +115,6 @@ page_scripts:
     </div>
 
     <footer class="event-map-footer-note">
-        Event locations are plotted from the best location data available in the current Matlock event feed. City-level coordinates are used when available; otherwise the event is placed at its state center until a more precise location is verified.
+        Regional coverage currently reads official schedules from Fury FC, CFFC, 559 Fights, and Peak Fighting, alongside the existing Matlock major-promotion feed. Pins use verified source coordinates when available, then city-level coordinates, then a state-center fallback.
     </footer>
 </section>
