@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /assets/data/upcoming-events-live.json
+---
+{{ site.data.upcoming_events | jsonify }}
