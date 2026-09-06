@@ -946,14 +946,6 @@
                 });
 
             svg.call(zoomBehavior).on("dblclick.zoom", null);
-            svg.on("click", () => {
-                selectedEventId = "";
-                selectedClusterKey = "";
-                showEmptyDetail();
-                renderSelectedState();
-                renderResultSelectedState();
-                syncUrl();
-            });
             currentTransform = d3.zoomIdentity;
 
             const rawEvents = Array.isArray(eventData?.events) ? eventData.events : [];
