@@ -30,6 +30,51 @@
       "key": "nitro",
       "name": "Nitro Tickets",
       "url": "https://www.nitrotickets.com/"
+    },
+    {
+      "key": "lfa_official",
+      "name": "Legacy Fighting Alliance",
+      "url": "https://www.lfa.com/events/"
+    },
+    {
+      "key": "cage_titans",
+      "name": "Cage Titans",
+      "url": "https://cagetitans.com/upcoming-event"
+    },
+    {
+      "key": "fac_official",
+      "name": "Fighting Alliance Championship",
+      "url": "https://facmma.com/"
+    },
+    {
+      "key": "afc_alaska",
+      "name": "Alaska Fighting Championships",
+      "url": "https://alaskafighting.com/"
+    },
+    {
+      "key": "caged_thunder",
+      "name": "Caged Thunder MMA",
+      "url": "https://cagedthundermma.com/upcoming-fights/"
+    },
+    {
+      "key": "gladiator_challenge",
+      "name": "Gladiator Challenge",
+      "url": "https://gladiatorchallenge.com/"
+    },
+    {
+      "key": "camomma",
+      "name": "California Amateur Mixed Martial Arts Organization",
+      "url": "https://camomma.org/Events-upcoming&sort_dir=ASC&showall=1"
+    },
+    {
+      "key": "florida_commission",
+      "name": "Florida Athletic Commission",
+      "url": "https://www2.myfloridalicense.com/athletic-commission/commission-upcoming-events-professional/"
+    },
+    {
+      "key": "cfc_el_paso",
+      "name": "Combat Fighting Championship",
+      "url": "https://www.cfcshow.com/"
     }
   ],
   "events": [
@@ -57,6 +102,65 @@
       }
     },
     {
+      "id": "camomma-evolution-sports-expo-2026-09-11",
+      "promotion": "Evolution Sports Expo",
+      "promotion_key": "camomma",
+      "title": "Evolution Sports Expo",
+      "date": "2026-09-11",
+      "venue": "29 Palms Box",
+      "location": "Twentynine Palms, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1920/Evolution-Sports-Expo",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 34.1356,
+      "longitude": -116.0542
+    },
+    {
+      "id": "cage_titans-cage-titans-78-on-september-12-2026-09-12",
+      "promotion": "Cage Titans",
+      "promotion_key": "cage_titans",
+      "title": "CAGE TITANS 78 ON SEPTEMBER 12",
+      "date": "2026-09-12",
+      "venue": "Plymouth Memorial Hall",
+      "location": "Plymouth, MA",
+      "broadcast": "Spectation Sports",
+      "official_url": "https://cagetitans.com/upcoming-event",
+      "regional": true,
+      "level": "pro-am",
+      "source_key": "cage_titans",
+      "source_label": "Cage Titans",
+      "latitude": 41.9584,
+      "longitude": -70.6673,
+      "main_event": {
+        "fighters": [
+          "Daeri Alderman",
+          "Nick Eldridge (C)"
+        ],
+        "weight_class": "Bantamweight Championship"
+      },
+      "poster_url": "https://img1.wsimg.com/isteam/ip/e3c6b927-d93a-4205-9921-ff559dbe9a4a/CT78_PosterFinal.jpg/:/rs=w:400,cg:true,m"
+    },
+    {
+      "id": "camomma-fxc-firepower-2026-09-12",
+      "promotion": "FXC Firepower",
+      "promotion_key": "camomma",
+      "title": "FXC Firepower",
+      "date": "2026-09-12",
+      "venue": "Alameda County Fairgrounds Pleasanton CA Building A",
+      "location": "Pleasanton, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1915/FXC-Firepower",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 37.6624,
+      "longitude": -121.8747
+    },
+    {
       "id": "nitro-synergy-fc-31-springfield-09-12-2026-09-12",
       "promotion": "SYNERGY FC",
       "promotion_key": "nitro",
@@ -75,22 +179,47 @@
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1267/1786399951_ctlEW.jpg"
     },
     {
-      "id": "nitro-lfa-mystic-lake-09-18-2026-09-18",
-      "promotion": "Legacy Fighting Alliance",
-      "promotion_key": "nitro",
-      "title": "LFA: Mystic Lake - 09/18",
+      "id": "florida_commission-halo-fighting-group-2026-09-18",
+      "promotion": "Halo Fighting Group",
+      "promotion_key": "florida_commission",
+      "title": "Halo Fighting Group",
       "date": "2026-09-18",
-      "venue": "Mystic Showroom",
-      "location": "Prior Lake, MN",
+      "venue": "",
+      "location": "Doral, FL",
       "broadcast": "",
-      "official_url": "https://www.nitrotickets.com/event/1257/lfa-mystic-lake-0918",
+      "official_url": "https://www2.myfloridalicense.com/athletic-commission/commission-upcoming-events-professional/",
       "regional": true,
-      "level": "regional",
-      "source_key": "nitro",
-      "source_label": "Nitro Tickets",
+      "level": "professional",
+      "source_key": "florida_commission",
+      "source_label": "Florida Athletic Commission",
+      "latitude": 25.8195,
+      "longitude": -80.3553
+    },
+    {
+      "id": "lfa_official-lfa-242-lozej-vs-bittencourt-2026-09-18",
+      "promotion": "LFA",
+      "promotion_key": "lfa_official",
+      "title": "LFA 242 – LOZEJ vs. BITTENCOURT",
+      "date": "2026-09-18",
+      "venue": "Mystic Lake Casino Hotel",
+      "location": "Prior Lake, MN",
+      "broadcast": "VICE TV",
+      "official_url": "https://www.lfa.com/event/lfa-242-lozej-vs-bittencourt/",
+      "regional": true,
+      "level": "professional",
+      "source_key": "lfa_official",
+      "source_label": "Legacy Fighting Alliance",
       "latitude": 44.7133,
       "longitude": -93.4227,
-      "poster_url": "https://www.nitrotickets.com/storage/advertimage/1257/1785953607_M2OxL.jpg"
+      "main_event": {
+        "fighters": [
+          "LFA 242 – LOZEJ",
+          "BITTENCOURT"
+        ]
+      },
+      "poster_url": "https://www.lfa.com/wp-content/uploads/2026/07/LFA-242-Standard-Poster-WEB-scaled.jpg",
+      "starts_at": "2026-09-18T00:00:00-07:00",
+      "ticket_url": "https://www.nitrotickets.com/event/1257/lfa-mystic-lake-0918"
     },
     {
       "id": "nitro-synergy-fc-32-bikefest-2026-2026-09-18",
@@ -109,6 +238,24 @@
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1290/1786381735_QWmJD.jpg"
     },
     {
+      "id": "caged_thunder-caged-thunder-41-double-feature-mma-kickboxing-2026-09-19",
+      "promotion": "Caged Thunder",
+      "promotion_key": "caged_thunder",
+      "title": "Caged Thunder 41 – Double Feature – MMA & Kickboxing",
+      "date": "2026-09-19",
+      "venue": "Chapparells",
+      "location": "Akron, OH",
+      "broadcast": "",
+      "official_url": "https://cagedthundermma.com/upcoming-fights/",
+      "regional": true,
+      "level": "regional",
+      "source_key": "caged_thunder",
+      "source_label": "Caged Thunder MMA",
+      "latitude": 41.0814,
+      "longitude": -81.519,
+      "poster_url": "https://cagedthundermma.com/wp-content/uploads/2026/07/Wide-Poster-Version.png"
+    },
+    {
       "id": "nitro-2026-missouri-border-brawl-09-19-2026-09-19",
       "promotion": "Missouri Border Brawl",
       "promotion_key": "nitro",
@@ -123,6 +270,23 @@
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1243/3295519a3ee85ea195e7fb1ec7fed670.jpg"
+    },
+    {
+      "id": "camomma-saviado-fc-2026-09-19",
+      "promotion": "Saviado FC",
+      "promotion_key": "camomma",
+      "title": "Saviado FC",
+      "date": "2026-09-19",
+      "venue": "Mission peak sportsplex",
+      "location": "fremont, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1908/Saviado-FC",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 37.5485,
+      "longitude": -121.9886
     },
     {
       "id": "fury-fury-as-62-2026-09-20",
@@ -140,6 +304,57 @@
       "source_label": "Fury Fighting Championship",
       "latitude": 29.7604,
       "longitude": -95.3698
+    },
+    {
+      "id": "afc_alaska-afc-sep-26-2026-2026-09-26",
+      "promotion": "Alaska Fighting Championships",
+      "promotion_key": "afc_alaska",
+      "title": "AFC Sep 26, 2026",
+      "date": "2026-09-26",
+      "venue": "Sullivan Arena",
+      "location": "Anchorage, AK",
+      "broadcast": "Zone Sports",
+      "official_url": "https://alaskafighting.com/",
+      "regional": true,
+      "level": "regional",
+      "source_key": "afc_alaska",
+      "source_label": "Alaska Fighting Championships",
+      "latitude": 61.2181,
+      "longitude": -149.9003
+    },
+    {
+      "id": "camomma-hendo-s-fight-night-2026-09-26",
+      "promotion": "Hendo’s Fight Night",
+      "promotion_key": "camomma",
+      "title": "Hendo’s Fight Night",
+      "date": "2026-09-26",
+      "venue": "Dan Henderson’s athletic fitness center",
+      "location": "Temecula, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1917/Hendo-s-Fight-Night",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 33.4936,
+      "longitude": -117.1484
+    },
+    {
+      "id": "camomma-knockout-promotions-2026-09-26",
+      "promotion": "Knockout Promotions",
+      "promotion_key": "camomma",
+      "title": "Knockout Promotions",
+      "date": "2026-09-26",
+      "venue": "The Mayan Theatre",
+      "location": "Los Angeles, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1925/Knockout-Promotions",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 34.0522,
+      "longitude": -118.2437
     },
     {
       "id": "peak-pfc-54-braxton-smith-vs-khetag-sabeev-2026-09-26",
@@ -197,21 +412,21 @@
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1210/1785882241_WFC-D2-Group-image.jpg"
     },
     {
-      "id": "559-fights-127-2026-09-27",
+      "id": "camomma-559-fights-127-2026-09-27",
       "promotion": "559 Fights",
-      "promotion_key": "559",
+      "promotion_key": "camomma",
       "title": "559 Fights 127",
       "date": "2026-09-27",
       "venue": "Eagle Mountain Casino",
       "location": "Porterville, CA",
       "latitude": 36.0652,
       "longitude": -119.0168,
-      "broadcast": "UFC Fight Pass",
-      "official_url": "https://www.559fights.com/",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1826/559-Fights-127",
       "regional": true,
-      "level": "pro-am",
-      "source_key": "559",
-      "source_label": "559 Fights"
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization"
     },
     {
       "id": "nitro-dynasty-combat-sports-halloween-havoc-2026-10-02-2026-10-02",
@@ -247,6 +462,65 @@
       "longitude": -101.2963
     },
     {
+      "id": "camomma-ssp-mma-2026-10-03",
+      "promotion": "SSP MMA",
+      "promotion_key": "camomma",
+      "title": "SSP MMA",
+      "date": "2026-10-03",
+      "venue": "UFC Torrance",
+      "location": "Torrance, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1928/SSP-MMA",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 33.8358,
+      "longitude": -118.3406
+    },
+    {
+      "id": "lfa_official-lfa-243-maximov-vs-santos-2026-10-09",
+      "promotion": "LFA",
+      "promotion_key": "lfa_official",
+      "title": "LFA 243 – Maximov vs. Santos",
+      "date": "2026-10-09",
+      "venue": "Kaiser Permanente Arena",
+      "location": "Santa Cruz, CA",
+      "broadcast": "VICE TV",
+      "official_url": "https://www.lfa.com/event/lfa-243-santa-cruz-california/",
+      "regional": true,
+      "level": "professional",
+      "source_key": "lfa_official",
+      "source_label": "Legacy Fighting Alliance",
+      "latitude": 36.9741,
+      "longitude": -122.0308,
+      "main_event": {
+        "fighters": [
+          "LFA 243 – Maximov",
+          "Santos"
+        ]
+      },
+      "poster_url": "https://www.lfa.com/wp-content/uploads/2026/08/LFA-243-Standard-Poster_Web.png",
+      "starts_at": "2026-10-09T00:00:00-07:00"
+    },
+    {
+      "id": "camomma-51fifty-entertainment-2026-10-10",
+      "promotion": "51Fifty Entertainment",
+      "promotion_key": "camomma",
+      "title": "51Fifty Entertainment",
+      "date": "2026-10-10",
+      "venue": "51FIFTY Boxing Gym",
+      "location": "Livingston, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1911/51Fifty-Entertainment",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 37.3869,
+      "longitude": -120.7235
+    },
+    {
       "id": "nitro-brave-challenge-ii-10-10-2026-10-10",
       "promotion": "BRAVE CHALLENGE",
       "promotion_key": "nitro",
@@ -261,6 +535,40 @@
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1289/1786464280_hFdMF.jpg"
+    },
+    {
+      "id": "camomma-regime-fight-league-2026-10-10",
+      "promotion": "Regime Fight League",
+      "promotion_key": "camomma",
+      "title": "Regime Fight League",
+      "date": "2026-10-10",
+      "venue": "Tarantula Hill Brewing Co.",
+      "location": "Thousand Oaks, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1914/Regime-Fight-League",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 34.1706,
+      "longitude": -118.8376
+    },
+    {
+      "id": "camomma-sundown-fights-2026-10-11",
+      "promotion": "Sundown Fights",
+      "promotion_key": "camomma",
+      "title": "Sundown Fights",
+      "date": "2026-10-11",
+      "venue": "",
+      "location": "Los Angeles, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1899/Sundown-Fights",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 34.0522,
+      "longitude": -118.2437
     },
     {
       "id": "nitro-fury-fs-6-hostile-territory-10-17-2026-10-17",
@@ -279,6 +587,41 @@
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1264/1786400252_5pkVQ__1_.jpg"
     },
     {
+      "id": "camomma-gladiator-challenge-2026-10-17",
+      "promotion": "Gladiator Challenge",
+      "promotion_key": "camomma",
+      "title": "Gladiator Challenge",
+      "date": "2026-10-17",
+      "venue": "Adelanto Plaza & Event Center",
+      "location": "Adelanto, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1930/Gladiator-Challenge",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 34.5828,
+      "longitude": -117.4092,
+      "poster_url": "https://gladiatorchallenge.com/wp-content/uploads/2026/04/GC-ALL-AMERICAN-GLADIATORS-POSTER-185x300.jpg"
+    },
+    {
+      "id": "camomma-new-money-fight-club-2026-10-17",
+      "promotion": "New Money Fight Club",
+      "promotion_key": "camomma",
+      "title": "New Money Fight Club",
+      "date": "2026-10-17",
+      "venue": "Continental Club",
+      "location": "Oakland, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1926/New-Money-Fight-Club",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 37.8044,
+      "longitude": -122.2711
+    },
+    {
       "id": "nitro-wfc-199-eqc-10-17-2026-10-17",
       "promotion": "World Fighting Championship",
       "promotion_key": "nitro",
@@ -293,6 +636,31 @@
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1297/1787194048_WFC-D2-Group-image.jpg"
+    },
+    {
+      "id": "lfa_official-lfa-244-woodley-vs-havener-2026-10-23",
+      "promotion": "LFA",
+      "promotion_key": "lfa_official",
+      "title": "LFA 244 – Woodley vs. Havener",
+      "date": "2026-10-23",
+      "venue": "Foxwoods Resort Casino",
+      "location": "Mashantucket, CT",
+      "broadcast": "VICE TV",
+      "official_url": "https://www.lfa.com/event/lfa-244-mashantucket-connecticut/",
+      "regional": true,
+      "level": "professional",
+      "source_key": "lfa_official",
+      "source_label": "Legacy Fighting Alliance",
+      "latitude": 41.4643,
+      "longitude": -71.9737,
+      "main_event": {
+        "fighters": [
+          "LFA 244 – Woodley",
+          "Havener"
+        ]
+      },
+      "poster_url": "https://www.lfa.com/wp-content/uploads/2026/08/LFA-244-Standard-Poster-Web.jpg",
+      "starts_at": "2026-10-23T00:00:00-07:00"
     },
     {
       "id": "nitro-afc-71-2026-10-24",
@@ -311,6 +679,23 @@
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1295/1786986253_UzCka.jpg"
     },
     {
+      "id": "camomma-fxc-firepower-2026-10-24",
+      "promotion": "FXC FIREPOWER",
+      "promotion_key": "camomma",
+      "title": "FXC FIREPOWER",
+      "date": "2026-10-24",
+      "venue": "THUNDER STUDIOS",
+      "location": "LONG BEACH, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1929/FXC-FIREPOWER",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 33.7701,
+      "longitude": -118.1937
+    },
+    {
       "id": "nitro-capitol-city-punishment-10-24-2026-10-24",
       "promotion": "GE Fights",
       "promotion_key": "nitro",
@@ -327,6 +712,23 @@
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1270/1785882975_dfGzg.jpg"
     },
     {
+      "id": "camomma-ssp-mma-2026-10-24",
+      "promotion": "SSP MMA",
+      "promotion_key": "camomma",
+      "title": "SSP MMA",
+      "date": "2026-10-24",
+      "venue": "The Compound by Dirt Dog",
+      "location": "Commerce, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1918/SSP-MMA",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 34.0006,
+      "longitude": -118.1598
+    },
+    {
       "id": "nitro-synergy-fc-33-kansas-city-10-24-2026-10-24",
       "promotion": "SYNERGY FC",
       "promotion_key": "nitro",
@@ -341,6 +743,65 @@
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1302/1788195524_cttVd.jpg"
+    },
+    {
+      "id": "camomma-559-fights-128-2026-10-30",
+      "promotion": "559 Fights",
+      "promotion_key": "camomma",
+      "title": "559 Fights 128",
+      "date": "2026-10-30",
+      "venue": "Visalia Convention Center",
+      "location": "Visalia, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1827/559-Fights-128",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 36.3302,
+      "longitude": -119.2921
+    },
+    {
+      "id": "lfa_official-lfa-245-khamzaev-vs-prescendo-2026-10-30",
+      "promotion": "LFA",
+      "promotion_key": "lfa_official",
+      "title": "LFA 245 – Khamzaev vs. Prescendo",
+      "date": "2026-10-30",
+      "venue": "Seneca Niagara Resort and Casino",
+      "location": "Niagara Falls, NY",
+      "broadcast": "VICE TV",
+      "official_url": "https://www.lfa.com/event/lfa-245-niagara-falls-new-york/",
+      "regional": true,
+      "level": "professional",
+      "source_key": "lfa_official",
+      "source_label": "Legacy Fighting Alliance",
+      "latitude": 43.0962,
+      "longitude": -79.0377,
+      "main_event": {
+        "fighters": [
+          "LFA 245 – Khamzaev",
+          "Prescendo"
+        ]
+      },
+      "poster_url": "https://www.lfa.com/wp-content/uploads/2026/09/LFA-245-Standard-Poster-Web.png",
+      "starts_at": "2026-10-30T00:00:00-07:00"
+    },
+    {
+      "id": "florida_commission-combat-night-2026-11-07",
+      "promotion": "Combat Night",
+      "promotion_key": "florida_commission",
+      "title": "Combat Night",
+      "date": "2026-11-07",
+      "venue": "",
+      "location": "Jacksonville, FL",
+      "broadcast": "",
+      "official_url": "https://www2.myfloridalicense.com/athletic-commission/commission-upcoming-events-professional/",
+      "regional": true,
+      "level": "professional",
+      "source_key": "florida_commission",
+      "source_label": "Florida Athletic Commission",
+      "latitude": 30.3322,
+      "longitude": -81.6557
     },
     {
       "id": "peak-pfc-55-brian-mitchell-vs-drako-rodriguez-2026-11-07",
@@ -366,6 +827,40 @@
       }
     },
     {
+      "id": "camomma-sparstar-mma-2026-11-07",
+      "promotion": "SparStar MMA",
+      "promotion_key": "camomma",
+      "title": "SparStar MMA",
+      "date": "2026-11-07",
+      "venue": "The Compound by Dirt Dog",
+      "location": "Commerce, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1874/SparStar-MMA",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 34.0006,
+      "longitude": -118.1598
+    },
+    {
+      "id": "camomma-up-next-fighting-2026-11-07",
+      "promotion": "Up Next Fighting",
+      "promotion_key": "camomma",
+      "title": "Up Next Fighting",
+      "date": "2026-11-07",
+      "venue": "Commerce Casino",
+      "location": "Commerce, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1931/Up-Next-Fighting",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 34.0006,
+      "longitude": -118.1598
+    },
+    {
       "id": "fury-fury-challenger-series-17-2026-11-08",
       "promotion": "Fury FC",
       "promotion_key": "fury",
@@ -381,6 +876,23 @@
       "source_label": "Fury Fighting Championship",
       "latitude": 29.7604,
       "longitude": -95.3698
+    },
+    {
+      "id": "camomma-fxc-firepower-2026-11-13",
+      "promotion": "FXC Firepower",
+      "promotion_key": "camomma",
+      "title": "FXC Firepower",
+      "date": "2026-11-13",
+      "venue": "Hard Rock Live",
+      "location": "Wheatland, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1855/FXC-Firepower",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 39.0099,
+      "longitude": -121.423
     },
     {
       "id": "nitro-game-show-x-11-14-2026-11-14",
@@ -399,6 +911,108 @@
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1311/1788456324_nHCYI.jpg"
     },
     {
+      "id": "camomma-new-money-fight-club-2026-11-14",
+      "promotion": "New Money Fight Club",
+      "promotion_key": "camomma",
+      "title": "New Money Fight Club",
+      "date": "2026-11-14",
+      "venue": "The Grove at Santa Cruz Beach Boardwalk",
+      "location": "Santa Cruz, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1922/New-Money-Fight-Club",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 36.9741,
+      "longitude": -122.0308
+    },
+    {
+      "id": "camomma-zhong-luo-cage-fighting-series-2026-11-14",
+      "promotion": "Zhong Luo Cage Fighting Series",
+      "promotion_key": "camomma",
+      "title": "Zhong Luo Cage Fighting Series",
+      "date": "2026-11-14",
+      "venue": "Kezar Pavilion",
+      "location": "San Francisco, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1844/Zhong-Luo-Cage-Fighting-Series",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    {
+      "id": "camomma-epic-fighting-67-2026-11-20",
+      "promotion": "Epic Fighting",
+      "promotion_key": "camomma",
+      "title": "Epic Fighting 67",
+      "date": "2026-11-20",
+      "venue": "Four Points Sheraton San Diego",
+      "location": "San Diego, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1850/Epic-Fighting-67",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 32.7157,
+      "longitude": -117.1611
+    },
+    {
+      "id": "camomma-209-beatdown-2026-11-21",
+      "promotion": "209 BeatDown",
+      "promotion_key": "camomma",
+      "title": "209 BeatDown",
+      "date": "2026-11-21",
+      "venue": "Chicken Ranch Casino Resort",
+      "location": "Jamestown, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1819/209-BeatDown",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 37.9533,
+      "longitude": -120.4227
+    },
+    {
+      "id": "camomma-hendo-s-fight-night-2026-11-21",
+      "promotion": "Hendo's Fight Night",
+      "promotion_key": "camomma",
+      "title": "Hendo's Fight Night",
+      "date": "2026-11-21",
+      "venue": "Dan Henderson's Athletic Fitness Center",
+      "location": "Temecula, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1924/Hendo-s-Fight-Night",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 33.4936,
+      "longitude": -117.1484
+    },
+    {
+      "id": "camomma-sparstar-mma-2026-11-21",
+      "promotion": "SparStar MMA",
+      "promotion_key": "camomma",
+      "title": "SparStar MMA",
+      "date": "2026-11-21",
+      "venue": "Estrella Studios",
+      "location": "Burbank, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1879/SparStar-MMA",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 34.1808,
+      "longitude": -118.309
+    },
+    {
       "id": "nitro-wfc-197-dakota-magic-12-05-2026-12-05",
       "promotion": "World Fighting Championship",
       "promotion_key": "nitro",
@@ -413,6 +1027,23 @@
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1209/1785882211_WFC-D2-Group-image.jpg"
+    },
+    {
+      "id": "camomma-559-fights-129-2026-12-06",
+      "promotion": "559 Fights",
+      "promotion_key": "camomma",
+      "title": "559 Fights 129",
+      "date": "2026-12-06",
+      "venue": "Eagle Mountain Casino",
+      "location": "Porterville, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1828/559-Fights-129",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 36.0652,
+      "longitude": -119.0168
     },
     {
       "id": "nitro-ignite-fights-115-12-12-2026-12-12",
@@ -431,6 +1062,23 @@
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1287/e1ae5424c7b1ee59c283d9cc59f6410b.jpg"
     },
     {
+      "id": "camomma-ssp-mma-2026-12-12",
+      "promotion": "SSP MMA",
+      "promotion_key": "camomma",
+      "title": "SSP MMA",
+      "date": "2026-12-12",
+      "venue": "The Compound by Dirt Dog",
+      "location": "Commerce, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1919/SSP-MMA",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 34.0006,
+      "longitude": -118.1598
+    },
+    {
       "id": "nitro-wfc-200-ilani-12-19-2026-12-19",
       "promotion": "World Fighting Championship",
       "promotion_key": "nitro",
@@ -445,6 +1093,40 @@
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1298/1785882165_WFC-D2-Group-image.jpg"
+    },
+    {
+      "id": "camomma-559-fights-130-2027-02-07",
+      "promotion": "559 Fights",
+      "promotion_key": "camomma",
+      "title": "559 Fights 130",
+      "date": "2027-02-07",
+      "venue": "Eagle Mountain Casino",
+      "location": "Porterville, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1932/559-Fights-130",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 36.0652,
+      "longitude": -119.0168
+    },
+    {
+      "id": "camomma-zhong-luo-cage-fight-series-2027-03-20",
+      "promotion": "Zhong Luo Cage Fight Series",
+      "promotion_key": "camomma",
+      "title": "Zhong Luo Cage Fight Series",
+      "date": "2027-03-20",
+      "venue": "Kezar Pavilion",
+      "location": "San Francisco, CA",
+      "broadcast": "",
+      "official_url": "https://camomma.org/amateur-mma-events/E1933/Zhong-Luo-Cage-Fight-Series",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "camomma",
+      "source_label": "California Amateur Mixed Martial Arts Organization",
+      "latitude": 37.7749,
+      "longitude": -122.4194
     }
   ]
 }
