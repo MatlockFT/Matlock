@@ -276,3 +276,13 @@ textarea:focus-visible {
         animation-duration: 0.01ms !important;
     }
 }
+
+/* Keep event exploration independent from the moving news rail. */
+.site-event-stack.is-open ~ .site-news-ticker .site-news-track {
+    animation-play-state: running !important;
+}
+
+.site-event-stack.is-open ~ .site-news-ticker .site-news-viewport:hover .site-news-track,
+.site-event-stack.is-open ~ .site-news-ticker .site-news-viewport:focus-within .site-news-track {
+    animation-play-state: paused !important;
+}
