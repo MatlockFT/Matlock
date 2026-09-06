@@ -1,0 +1,61 @@
+name: Update regional Event Map
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/update-event-map-regional.yml"
+      - "scripts/update-event-map-regional.mjs"
+      - "scripts/validate-event-map-regional.mjs"
+  schedule:
+    - cron: "23 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: event-map-regional
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate updater syntax
+        run: |
+          node --check scripts/update-event-map-regional.mjs
+          node --check scripts/validate-event-map-regional.mjs
+
+      - name: Read official regional promotion schedules
+        run: node scripts/update-event-map-regional.mjs
+
+      - name: Validate regional event data
+        run: node scripts/validate-event-map-regional.mjs
+
+      - name: Commit regional event changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- _data/event_map_regional.json; then
+            echo "No regional Event Map changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- _data/event_map_regional.json
+          git commit -m "Refresh regional Event Map data"
+          git push origin HEAD:main
