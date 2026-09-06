@@ -6,6 +6,7 @@ permalink: /event-map/
 page_styles:
   - /assets/event-map.css
   - /assets/event-map-detail-enhance.css
+  - /assets/event-map-controls-cleanup.css
 page_scripts:
   - /assets/event-map.js
   - /assets/event-map-pointer-fix.js
@@ -22,7 +23,7 @@ page_scripts:
             <p class="event-map-kicker">MMA MATLOCK</p>
             <h1>EVENT MAP</h1>
             <p class="event-map-intro">
-                Find upcoming MMA events across the United States, including regional cards pulled from official promotion schedules, sanctioning bodies, commissions, and ticket listings. Zoom, drag, filter, or find fights near you.
+                Find upcoming MMA events across the United States, including regional cards pulled from official promotion schedules, sanctioning bodies, commissions, and ticket listings. Zoom, drag, choose a date window, or find fights near you.
             </p>
         </div>
 
@@ -32,7 +33,7 @@ page_scripts:
         </div>
     </header>
 
-    <div class="event-map-toolbar" aria-label="Event Map filters">
+    <div class="event-map-toolbar" aria-label="Event Map controls">
         <div class="event-map-range" role="group" aria-label="Date range">
             <button type="button" data-range="weekend">This weekend</button>
             <button type="button" data-range="30">30 days</button>
@@ -41,34 +42,19 @@ page_scripts:
 
         <div class="event-map-near-controls">
             <button type="button" class="event-map-near-button" data-near-me aria-pressed="false">Near me</button>
-            <label>
-                <span>Radius</span>
-                <select data-radius-filter disabled>
-                    <option value="50">50 mi</option>
-                    <option value="100">100 mi</option>
-                    <option value="250" selected>250 mi</option>
-                    <option value="500">500 mi</option>
-                </select>
-            </label>
             <span class="event-map-near-status" data-near-status aria-live="polite"></span>
         </div>
 
-        <label>
-            <span>State</span>
+        <div class="event-map-filter-backing" hidden aria-hidden="true">
+            <select data-radius-filter disabled>
+                <option value="250" selected>250 mi</option>
+            </select>
             <select data-state-filter>
                 <option value="">All states</option>
             </select>
-        </label>
-
-        <label>
-            <span>Promotion</span>
             <select data-promotion-filter>
                 <option value="">All promotions</option>
             </select>
-        </label>
-
-        <label>
-            <span>Level</span>
             <select data-level-filter>
                 <option value="">All levels</option>
                 <option value="professional">Professional</option>
@@ -76,21 +62,9 @@ page_scripts:
                 <option value="amateur">Amateur</option>
                 <option value="regional">Regional / unspecified</option>
             </select>
-        </label>
-
-        <label class="event-map-search">
-            <span>Search</span>
-            <input
-                type="search"
-                data-event-search
-                placeholder="City, venue, promotion…"
-                autocomplete="off"
-            >
-        </label>
-
-        <button class="event-map-reset" type="button" data-map-reset>
-            Reset map
-        </button>
+            <input type="search" data-event-search autocomplete="off">
+            <button type="button" data-map-reset>Reset map</button>
+        </div>
     </div>
 
     <div class="event-map-summary" data-map-summary aria-live="polite">
@@ -185,7 +159,7 @@ page_scripts:
             <span><strong data-results-count>0</strong> shown</span>
         </header>
         <div class="event-map-results-list" data-event-list></div>
-        <p class="event-map-results-empty" data-event-list-empty hidden>No events match these filters.</p>
+        <p class="event-map-results-empty" data-event-list-empty hidden>No events match this view.</p>
     </section>
 
     <footer class="event-map-footer-note">
