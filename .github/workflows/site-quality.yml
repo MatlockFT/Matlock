@@ -39,6 +39,7 @@ jobs:
           node --check assets/news-feed.js
           node --check assets/event-map.js
           node --check assets/event-map-pointer-fix.js
+          node --check assets/event-map-detail-enhance.js
           node --check scripts/build-news-feed.mjs
           node --check scripts/check-news-data.mjs
           node --check scripts/upcoming-events-data.mjs
@@ -47,6 +48,7 @@ jobs:
           node --check scripts/update-rizin-upcoming-events.mjs
           node --check scripts/update-event-map-regional.mjs
           node --check scripts/update-event-map-discovery.mjs
+          node --check scripts/enrich-event-map-details.mjs
           node --check scripts/preserve-event-map-discovery.mjs
           node --check scripts/validate-event-map-regional.mjs
           node --check scripts/resolve-espn-fighter-portraits.mjs
