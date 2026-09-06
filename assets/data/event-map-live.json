@@ -3,9 +3,11 @@ layout: null
 permalink: /assets/data/event-map-live.json
 ---
 {% assign major_events = site.data.upcoming_events.events %}
-{% assign regional_events = site.data.event_map_regional.events %}
+{% assign regional_events = site.data.event_map_regional.events | slice: 0, 72 %}
 {% assign event_map_events = major_events | concat: regional_events %}
 {
   "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
+  "regional_total": {{ site.data.event_map_regional.events | size | jsonify }},
+  "regional_loaded": {{ regional_events | size | jsonify }},
   "events": {{ event_map_events | jsonify }}
 }
