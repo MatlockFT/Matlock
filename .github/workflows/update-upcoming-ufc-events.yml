@@ -17,6 +17,7 @@ on:
       - "scripts/apply-upcoming-event-overrides.mjs"
       - "scripts/resolve-espn-fighter-portraits.mjs"
       - "scripts/enrich-fighter-portraits.mjs"
+      - "scripts/enforce-ufc-fighter-portraits.mjs"
       - "scripts/check-verdict-upcoming-events.mjs"
       - "scripts/publish-fighter-portraits.mjs"
       - "scripts/validate-upcoming-events.mjs"
@@ -60,6 +61,7 @@ jobs:
           node --check scripts/apply-upcoming-event-overrides.mjs
           node --check scripts/resolve-espn-fighter-portraits.mjs
           node --check scripts/enrich-fighter-portraits.mjs
+          node --check scripts/enforce-ufc-fighter-portraits.mjs
           node --check scripts/check-verdict-upcoming-events.mjs
           node --check scripts/publish-fighter-portraits.mjs
           node --check scripts/validate-upcoming-events.mjs
@@ -91,6 +93,9 @@ jobs:
 
       - name: Fill remaining portraits from ESPN
         run: node scripts/resolve-espn-fighter-portraits.mjs
+
+      - name: Enforce UFC.com portraits on UFC cards
+        run: node scripts/enforce-ufc-fighter-portraits.mjs
 
       - name: Validate merged event data
         run: node scripts/validate-upcoming-events.mjs /tmp/upcoming-events.before.json _data/upcoming_events.json upcoming-events.html
