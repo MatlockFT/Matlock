@@ -1,0 +1,41 @@
+.event-map-toolbar {
+    grid-template-columns: auto auto;
+    justify-content: start;
+    align-items: center;
+    gap: .55rem;
+}
+
+.event-map-near-controls {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.event-map-near-status {
+    grid-column: auto;
+    min-height: 0;
+}
+
+.event-map-filter-backing {
+    display: none !important;
+}
+
+@media (max-width: 720px) {
+    .event-map-toolbar {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+    }
+
+    .event-map-range {
+        width: 100%;
+    }
+
+    .event-map-range button {
+        flex: 1 1 0;
+    }
+
+    .event-map-near-controls,
+    .event-map-near-button {
+        width: 100%;
+    }
+}
