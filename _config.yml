@@ -7,7 +7,7 @@ description: >-
 
 url: "https://matlockfighttalk.com"
 baseurl: ""
-asset_version: "55"
+asset_version: "56"
 
 lang: "en-US"
 locale: "en_US"
@@ -67,6 +67,9 @@ nav:
 
   - name: "Fight Card Picker"
     link: "/upcoming-events/"
+
+  - name: "Event Map"
+    link: "/event-map/"
 
   - name: "UFC Roster"
     link: "/ufc-roster/"
