@@ -5,9 +5,11 @@ description: "Explore upcoming MMA events across the United States on the MMA Ma
 permalink: /event-map/
 page_styles:
   - /assets/event-map.css
+  - /assets/event-map-detail-enhance.css
 page_scripts:
   - /assets/event-map.js
   - /assets/event-map-pointer-fix.js
+  - /assets/event-map-detail-enhance.js
 ---
 
 <section
@@ -128,7 +130,7 @@ page_scripts:
             <div class="event-map-detail-empty" data-event-detail-empty>
                 <p class="event-map-detail-label">EVENT INFO</p>
                 <h2>Select a pin</h2>
-                <p>Tap or click an event marker to keep its details open. Hover previews an event. Numbered pins contain multiple events.</p>
+                <p>Hover previews an event. Click or tap a pin to lock its information here so you can use the event links. Numbered pins contain multiple events.</p>
             </div>
 
             <section class="event-map-cluster-card" data-cluster-card hidden>
@@ -137,16 +139,28 @@ page_scripts:
                     <span data-cluster-count></span>
                 </div>
                 <h2 data-cluster-title></h2>
-                <p class="event-map-cluster-help">Select an event below. Clustered cards may share the exact same venue or city coordinates, so they do not always separate when zoomed.</p>
+                <p class="event-map-cluster-help">Choose an event below to lock its details. Events at the same venue or city can share the exact same pin.</p>
                 <div class="event-map-cluster-list" data-cluster-list></div>
             </section>
 
             <article class="event-map-detail-card" data-event-detail-card hidden>
+                <p class="event-map-detail-lock" data-detail-lock-state data-locked="false">Hover preview · click/tap to lock</p>
                 <div class="event-map-detail-topline">
                     <span data-detail-promotion></span>
                     <time data-detail-date></time>
                 </div>
                 <h2 data-detail-title></h2>
+
+                <figure class="event-map-detail-poster" data-detail-poster-wrap hidden>
+                    <img data-detail-poster loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="">
+                </figure>
+
+                <div class="event-map-detail-matchup">
+                    <p class="event-map-detail-matchup-label">Main event</p>
+                    <p class="event-map-detail-fighters" data-detail-fighters>Main event not yet listed</p>
+                    <p class="event-map-detail-weight" data-detail-weight>Weight class not yet listed</p>
+                </div>
+
                 <p class="event-map-detail-location" data-detail-location></p>
                 <p class="event-map-detail-distance" data-detail-distance hidden></p>
                 <p class="event-map-detail-venue" data-detail-venue></p>
@@ -175,6 +189,6 @@ page_scripts:
     </section>
 
     <footer class="event-map-footer-note">
-        Regional coverage currently combines official schedules from Fury FC, CFFC, 559 Fights, and Peak Fighting with MMA-only Nitro Tickets listings and the existing Matlock major-promotion feed. Pins use verified source coordinates when available, then city-level coordinates, then a state-center fallback. Near Me excludes state-center-only placements because their distance would be misleading.
+        Regional coverage currently combines official schedules from Fury FC, CFFC, 559 Fights, and Peak Fighting with MMA-only Nitro Tickets listings and the existing Matlock major-promotion feed. Main-event and weight information are shown when supplied by the source or verified in the existing Matlock fight-card data. Posters are shown only when a source exposes a usable event image. Pins use verified source coordinates when available, then city-level coordinates, then a state-center fallback.
     </footer>
 </section>
