@@ -9,6 +9,7 @@ on:
       - ".github/workflows/update-event-map-regional.yml"
       - "scripts/update-event-map-regional.mjs"
       - "scripts/update-event-map-discovery.mjs"
+      - "scripts/update-event-map-regional-extra.mjs"
       - "scripts/enrich-event-map-details.mjs"
       - "scripts/preserve-event-map-discovery.mjs"
       - "scripts/validate-event-map-regional.mjs"
@@ -42,6 +43,7 @@ jobs:
         run: |
           node --check scripts/update-event-map-regional.mjs
           node --check scripts/update-event-map-discovery.mjs
+          node --check scripts/update-event-map-regional-extra.mjs
           node --check scripts/enrich-event-map-details.mjs
           node --check scripts/preserve-event-map-discovery.mjs
           node --check scripts/validate-event-map-regional.mjs
@@ -57,6 +59,9 @@ jobs:
 
       - name: Read regional discovery feeds
         run: node scripts/update-event-map-discovery.mjs
+
+      - name: Read additional official and commission schedules
+        run: node scripts/update-event-map-regional-extra.mjs
 
       - name: Enrich event posters and matchup details
         run: node scripts/enrich-event-map-details.mjs
