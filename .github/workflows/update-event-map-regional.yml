@@ -9,6 +9,7 @@ on:
       - ".github/workflows/update-event-map-regional.yml"
       - "scripts/update-event-map-regional.mjs"
       - "scripts/update-event-map-discovery.mjs"
+      - "scripts/preserve-event-map-discovery.mjs"
       - "scripts/validate-event-map-regional.mjs"
   schedule:
     - cron: "23 */6 * * *"
@@ -40,10 +41,17 @@ jobs:
         run: |
           node --check scripts/update-event-map-regional.mjs
           node --check scripts/update-event-map-discovery.mjs
+          node --check scripts/preserve-event-map-discovery.mjs
           node --check scripts/validate-event-map-regional.mjs
+
+      - name: Snapshot current regional data
+        run: cp _data/event_map_regional.json /tmp/event-map-regional-before.json
 
       - name: Read official regional promotion schedules
         run: node scripts/update-event-map-regional.mjs
+
+      - name: Preserve discovery source fallback data
+        run: node scripts/preserve-event-map-discovery.mjs /tmp/event-map-regional-before.json
 
       - name: Read regional discovery feeds
         run: node scripts/update-event-map-discovery.mjs
