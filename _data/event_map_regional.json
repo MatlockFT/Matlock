@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "key": "fury",
+      "name": "Fury Fighting Championship",
+      "url": "https://www.furyfc.tv/events"
+    },
+    {
+      "key": "cffc",
+      "name": "Cage Fury Fighting Championships",
+      "url": "https://cffc.tv/"
+    },
+    {
+      "key": "559",
+      "name": "559 Fights",
+      "url": "https://www.559fights.com/"
+    },
+    {
+      "key": "peak",
+      "name": "Peak Fighting Championship",
+      "url": "https://www.peakfighting.com/"
+    }
+  ],
+  "events": [
+    {
+      "id": "cffc-161-2026-09-11",
+      "promotion": "CFFC",
+      "promotion_key": "cffc",
+      "title": "CFFC 161: Aladi vs. Lleshi",
+      "date": "2026-09-11",
+      "venue": "Hard Rock Casino Rockford",
+      "location": "Rockford, IL",
+      "latitude": 42.2711,
+      "longitude": -89.094,
+      "broadcast": "UFC Fight Pass",
+      "official_url": "https://cffc.tv/",
+      "regional": true,
+      "level": "professional",
+      "source_key": "cffc",
+      "source_label": "CFFC"
+    },
+    {
+      "id": "fury-as-62-2026-09-20",
+      "promotion": "Fury FC",
+      "promotion_key": "fury",
+      "title": "Fury AS 62",
+      "date": "2026-09-20",
+      "venue": "Imagen Venues",
+      "location": "Houston, TX",
+      "latitude": 29.7604,
+      "longitude": -95.3698,
+      "broadcast": "",
+      "official_url": "https://www.furyfc.tv/events",
+      "regional": true,
+      "level": "amateur",
+      "source_key": "fury",
+      "source_label": "Fury FC"
+    },
+    {
+      "id": "pfc-54-2026-09-26",
+      "promotion": "Peak Fighting",
+      "promotion_key": "peak",
+      "title": "PFC 54: Braxton Smith vs. Khetag Sabeev",
+      "date": "2026-09-26",
+      "venue": "Kay Yeager Coliseum",
+      "location": "Wichita Falls, TX",
+      "latitude": 33.9137,
+      "longitude": -98.4934,
+      "broadcast": "",
+      "official_url": "https://www.peakfighting.com/",
+      "regional": true,
+      "level": "pro-am",
+      "source_key": "peak",
+      "source_label": "Peak Fighting"
+    },
+    {
+      "id": "559-fights-127-2026-09-27",
+      "promotion": "559 Fights",
+      "promotion_key": "559",
+      "title": "559 Fights 127",
+      "date": "2026-09-27",
+      "venue": "Eagle Mountain Casino",
+      "location": "Porterville, CA",
+      "latitude": 36.0652,
+      "longitude": -119.0168,
+      "broadcast": "UFC Fight Pass",
+      "official_url": "https://www.559fights.com/",
+      "regional": true,
+      "level": "pro-am",
+      "source_key": "559",
+      "source_label": "559 Fights"
+    },
+    {
+      "id": "fury-fc-125-2026-10-02",
+      "promotion": "Fury FC",
+      "promotion_key": "fury",
+      "title": "Fury FC 125",
+      "date": "2026-10-02",
+      "venue": "Minot Air Force Base",
+      "location": "Minot, ND",
+      "latitude": 48.233,
+      "longitude": -101.2963,
+      "broadcast": "",
+      "official_url": "https://www.furyfc.tv/events",
+      "regional": true,
+      "level": "professional",
+      "source_key": "fury",
+      "source_label": "Fury FC"
+    },
+    {
+      "id": "pfc-55-2026-11-07",
+      "promotion": "Peak Fighting",
+      "promotion_key": "peak",
+      "title": "PFC 55: Mercedes Chavez vs. Marilyn Perez",
+      "date": "2026-11-07",
+      "venue": "Momentum Bank Ballpark",
+      "location": "Midland, TX",
+      "latitude": 31.9973,
+      "longitude": -102.0779,
+      "broadcast": "",
+      "official_url": "https://www.peakfighting.com/",
+      "regional": true,
+      "level": "pro-am",
+      "source_key": "peak",
+      "source_label": "Peak Fighting"
+    },
+    {
+      "id": "fury-challenger-series-17-2026-11-08",
+      "promotion": "Fury FC",
+      "promotion_key": "fury",
+      "title": "Fury Challenger Series 17",
+      "date": "2026-11-08",
+      "venue": "Imagen Venues",
+      "location": "Houston, TX",
+      "latitude": 29.7604,
+      "longitude": -95.3698,
+      "broadcast": "",
+      "official_url": "https://www.furyfc.tv/events",
+      "regional": true,
+      "level": "regional",
+      "source_key": "fury",
+      "source_label": "Fury FC"
+    }
+  ]
+}
