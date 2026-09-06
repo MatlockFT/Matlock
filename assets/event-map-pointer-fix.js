@@ -63,8 +63,8 @@
         moved = false;
     }, true);
 
-    // Browsers still synthesize a click after pointerup. Keep that click from
-    // reaching the SVG background handler, which clears the selected event.
+    // Browsers still synthesize a click after pointerup. Suppress duplicate
+    // activation while retaining a fallback for environments without Pointer Events.
     svg.addEventListener('click', event => {
         const marker = markerFrom(event.target);
         if (!marker) return;
@@ -72,8 +72,6 @@
         event.preventDefault();
         event.stopPropagation();
 
-        // Keyboard/mouse environments that did not emit Pointer Events still
-        // get a direct activation fallback here.
         if (performance.now() > suppressClickUntil) activateMarker(marker);
     }, true);
 })();
