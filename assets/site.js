@@ -1,4 +1,9 @@
 (() => {
+    const tickerScript = document.createElement("script");
+    tickerScript.src = "/assets/site-ticker.js?v=1";
+    tickerScript.defer = true;
+    document.head.appendChild(tickerScript);
+
     const typographyStylesheet = document.createElement("link");
     typographyStylesheet.rel = "stylesheet";
     typographyStylesheet.href = "/assets/typography-fixes.css?v=1";
