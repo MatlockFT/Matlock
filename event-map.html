@@ -18,18 +18,10 @@ page_scripts:
     data-event-map
     data-events-url="{{ '/assets/data/event-map-live.json' | relative_url }}?v={{ site.asset_version }}"
 >
-    <header class="event-map-hero">
+    <header class="event-map-hero event-map-hero--compact">
         <div>
             <p class="event-map-kicker">MMA MATLOCK</p>
             <h1>EVENT MAP</h1>
-            <p class="event-map-intro">
-                Find upcoming MMA events across the United States, including regional cards pulled from official promotion schedules, sanctioning bodies, commissions, and ticket listings. Zoom, drag, choose a date window, or find fights near you.
-            </p>
-        </div>
-
-        <div class="event-map-status" aria-live="polite">
-            <strong data-event-count>0</strong>
-            <span>events visible</span>
         </div>
     </header>
 
@@ -46,6 +38,11 @@ page_scripts:
         </div>
 
         <div class="event-map-filter-backing" hidden aria-hidden="true">
+            <strong data-event-count>0</strong>
+            <strong data-summary-count>0</strong>
+            <span data-summary-next></span>
+            <span data-summary-near></span>
+            <strong data-results-count>0</strong>
             <select data-radius-filter disabled>
                 <option value="250" selected>250 mi</option>
             </select>
@@ -65,12 +62,6 @@ page_scripts:
             <input type="search" data-event-search autocomplete="off">
             <button type="button" data-map-reset>Reset map</button>
         </div>
-    </div>
-
-    <div class="event-map-summary" data-map-summary aria-live="polite">
-        <span><strong data-summary-count>0</strong> upcoming events match</span>
-        <span data-summary-next>Next event unavailable</span>
-        <span data-summary-near hidden></span>
     </div>
 
     <div class="event-map-layout">
@@ -101,11 +92,7 @@ page_scripts:
         </section>
 
         <aside class="event-map-detail" data-event-detail aria-live="polite">
-            <div class="event-map-detail-empty" data-event-detail-empty>
-                <p class="event-map-detail-label">EVENT INFO</p>
-                <h2>Select a pin</h2>
-                <p>Hover previews an event. Click or tap a pin to lock its information here so you can use the event links. Numbered pins contain multiple events.</p>
-            </div>
+            <div data-event-detail-empty hidden></div>
 
             <section class="event-map-cluster-card" data-cluster-card hidden>
                 <div class="event-map-detail-topline">
@@ -156,13 +143,8 @@ page_scripts:
                 <p class="event-map-detail-label">MAP RESULTS</p>
                 <h2 id="event-map-results-title">Upcoming events</h2>
             </div>
-            <span><strong data-results-count>0</strong> shown</span>
         </header>
         <div class="event-map-results-list" data-event-list></div>
         <p class="event-map-results-empty" data-event-list-empty hidden>No events match this view.</p>
     </section>
-
-    <footer class="event-map-footer-note">
-        Regional coverage combines official promotion schedules, state and sanctioning-body listings, MMA-only ticket feeds, and the existing Matlock major-promotion feed. Direct promotion data takes priority when duplicate listings exist. Main-event and weight information are shown when supplied by the source or verified in Matlock fight-card data. Posters are shown only when a source exposes a usable event image. Pins use verified source coordinates when available, then city-level coordinates, then a state-center fallback.
-    </footer>
 </section>
