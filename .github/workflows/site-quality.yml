@@ -37,12 +37,15 @@ jobs:
           node --check assets/site.js
           node --check assets/article-toc.js
           node --check assets/news-feed.js
+          node --check assets/event-map.js
           node --check scripts/build-news-feed.mjs
           node --check scripts/check-news-data.mjs
           node --check scripts/upcoming-events-data.mjs
           node --check scripts/update-upcoming-ufc-events.mjs
           node --check scripts/update-pfl-upcoming-events.mjs
           node --check scripts/update-rizin-upcoming-events.mjs
+          node --check scripts/update-event-map-regional.mjs
+          node --check scripts/validate-event-map-regional.mjs
           node --check scripts/resolve-espn-fighter-portraits.mjs
           node --check scripts/enrich-fighter-portraits.mjs
           node --check scripts/validate-upcoming-events.mjs
@@ -50,6 +53,9 @@ jobs:
 
       - name: Check Upcoming Events data and renderer
         run: node scripts/validate-upcoming-events.mjs
+
+      - name: Check regional Event Map data
+        run: node scripts/validate-event-map-regional.mjs
 
       - name: Check bundled MMA news data
         run: npm run check:news
