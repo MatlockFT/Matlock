@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-06T06:51:16.600Z",
+  "generated_at": "2026-09-06T10:50:57.380Z",
   "changes": [
+    {
+      "id": "2026-09-06T10:50:57.380Z|ufc-2026-09-19-crypto-com-ufc-331|event_added|1",
+      "at": "2026-09-06T10:50:57.380Z",
+      "type": "event_added",
+      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
+      "promotion": "UFC",
+      "event_title": "Crypto.com UFC 331",
+      "event_date": "2026-09-19",
+      "summary": "UFC Crypto.com UFC 331 added to Upcoming Events.",
+      "details": {
+        "bout_count": 13,
+        "venue": "Venue TBA",
+        "date": "2026-09-19"
+      }
+    },
     {
       "id": "2026-09-06T06:51:16.600Z|noche-ufc-2026-09-12-fight-card|portrait_changed|1",
       "at": "2026-09-06T06:51:16.600Z",
@@ -4541,20 +4556,6 @@
       "summary": "Michael Venom Page portrait added.",
       "details": {
         "fighter": "Michael Venom Page",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|52",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Nursulton Ruziboev portrait added.",
-      "details": {
-        "fighter": "Nursulton Ruziboev",
         "source": "sherdog"
       }
     }
