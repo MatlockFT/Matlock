@@ -254,8 +254,7 @@
 }
 
 .site-news-viewport:hover .site-news-track,
-.site-news-viewport:focus-within .site-news-track,
-.site-event-stack.is-open ~ .site-news-ticker .site-news-track {
+.site-news-viewport:focus-within .site-news-track {
     animation-play-state: paused;
 }
 
@@ -384,16 +383,16 @@
     }
 
     .site-event-drawer {
-        position: fixed;
-        top: auto;
-        right: .5rem;
-        bottom: .5rem;
-        left: .5rem;
-        width: auto;
+        position: absolute;
+        top: calc(100% + 1px);
+        right: auto;
+        bottom: auto;
+        left: 0;
+        width: min(430px, calc(100vw - .5rem));
         max-height: min(62vh, 430px);
         overflow-y: auto;
-        border-top: 1px solid rgba(255,255,255,.18);
-        transform: translateY(10px);
+        border-top: 0;
+        transform: translateY(-5px);
     }
 }
 
