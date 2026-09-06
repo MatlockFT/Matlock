@@ -41,7 +41,7 @@ function canonicalEventUrl(raw) {
   try {
     const u = new URL(raw, ORIGIN);
     if (!/(?:^|\.)ufc\.com$/i.test(u.hostname)) return '';
-    if (!/^\/event\/(?:ufc-|noche-ufc|ufc-noche)/i.test(u.pathname)) return '';
+    if (!/^\/event\/(?:(?:[a-z0-9]+-)*ufc-(?:\d{3,4}(?:-|$)|fight-night)|noche-ufc|ufc-noche)/i.test(u.pathname)) return '';
     if (/contender|dwcs|ultimate-fighter|road-to-ufc|fight-pass/i.test(u.pathname)) return '';
     u.protocol = 'https:';
     u.hostname = 'www.ufc.com';
@@ -66,7 +66,7 @@ function fightNightDateUrls(date) {
   if (!Number.isNaN(date.getTime())) {
     for (const delta of [-1, 0, 1]) {
       const d = new Date(date.getTime() + delta * 86400000);
-      dates.add(`${monthNames[d.getUTCMonth()]}-${String(d.getUTCDate()).padStart(2, '0')}-${d.getUTCFullYear()}`);
+      dates.add(`${monthNames[d.getUTCMonth()]}-${String(d.getUTCDate()).padStart(2, '0')}${d.getUTCFullYear() ? '-' + d.getUTCFullYear() : ''}`);
     }
     try {
       const parts = Object.fromEntries(new Intl.DateTimeFormat('en-US', {
