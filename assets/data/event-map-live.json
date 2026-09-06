@@ -1,0 +1,11 @@
+---
+layout: null
+permalink: /assets/data/event-map-live.json
+---
+{% assign major_events = site.data.upcoming_events.events %}
+{% assign regional_events = site.data.event_map_regional.events %}
+{% assign event_map_events = major_events | concat: regional_events %}
+{
+  "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
+  "events": {{ event_map_events | jsonify }}
+}
