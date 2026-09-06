@@ -10,6 +10,7 @@ on:
       - "scripts/update-event-map-regional.mjs"
       - "scripts/update-event-map-discovery.mjs"
       - "scripts/update-event-map-regional-extra.mjs"
+      - "scripts/update-event-map-regional-more.mjs"
       - "scripts/enrich-event-map-details.mjs"
       - "scripts/preserve-event-map-discovery.mjs"
       - "scripts/validate-event-map-regional.mjs"
@@ -44,6 +45,7 @@ jobs:
           node --check scripts/update-event-map-regional.mjs
           node --check scripts/update-event-map-discovery.mjs
           node --check scripts/update-event-map-regional-extra.mjs
+          node --check scripts/update-event-map-regional-more.mjs
           node --check scripts/enrich-event-map-details.mjs
           node --check scripts/preserve-event-map-discovery.mjs
           node --check scripts/validate-event-map-regional.mjs
@@ -62,6 +64,9 @@ jobs:
 
       - name: Read additional official and commission schedules
         run: node scripts/update-event-map-regional-extra.mjs
+
+      - name: Read broad U.S. regional MMA discovery
+        run: node scripts/update-event-map-regional-more.mjs
 
       - name: Enrich event posters and matchup details
         run: node scripts/enrich-event-map-details.mjs
