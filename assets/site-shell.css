@@ -270,7 +270,16 @@ h3 {
     line-height: 1.2;
 }
 
-/* Dynamic archive shells reserve one realistic result row during fetch. */
+/* Dynamic archive shells reserve realistic geometry during fetch. */
+.otd-page-date {
+    display: block;
+    min-height: 0.95em;
+}
+
+.otd-page-count {
+    min-height: 1.2em;
+}
+
 .otd-list:empty {
     position: relative;
     min-height: clamp(190px, 24vw, 250px);
