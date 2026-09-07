@@ -1,3 +1,5 @@
+@import url("/assets/site-ticker.css?v=2");
+
 /* =========================================================
    CANONICAL SITE SHELL
    Shared navigation, page rhythm, typography, and accessibility preferences.
@@ -27,6 +29,7 @@
     height: auto;
     max-width: 100%;
     max-height: none;
+    aspect-ratio: 5 / 2;
     object-fit: contain;
 }
 
