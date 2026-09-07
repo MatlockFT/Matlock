@@ -386,21 +386,26 @@
 
 @media (max-width: 520px) {
     .site-live-strip-inner {
-        grid-template-columns: minmax(176px, 52vw) minmax(0,1fr);
+        grid-template-columns: clamp(178px, 47vw, 200px) minmax(0,1fr);
     }
 
     .site-event-primary {
-        gap: .28rem;
-        padding: .42rem .4rem;
+        gap: .22rem;
+        padding: .42rem .28rem;
     }
 
     .site-event-primary-name {
-        max-width: 62px;
+        max-width: 52px;
     }
 
     .site-event-primary-countdown {
         font-size: .5rem;
         letter-spacing: .015em;
+    }
+
+    .site-event-more {
+        min-width: 23px;
+        padding: 0 .22rem;
     }
 
     .site-event-drawer {
