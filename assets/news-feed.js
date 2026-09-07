@@ -1,36 +1,32 @@
 (() => {
     const newsPage = document.querySelector("[data-news-feed]");
-
     if (!newsPage) return;
 
-    const storyRail = newsPage.querySelector("[data-news-story-list]");
+    const leadGrid = newsPage.querySelector("[data-news-lead-grid]");
+    const topStorySlot = newsPage.querySelector("[data-news-top-story]");
+    const latestList = newsPage.querySelector("[data-news-latest-list]");
+    const moreList = newsPage.querySelector("[data-news-more-list]");
     const status = newsPage.querySelector("[data-news-status]");
-    const counter = newsPage.querySelector("[data-news-counter]");
+    const liveStatus = newsPage.querySelector(".news-live-status");
+    const summary = newsPage.querySelector("[data-news-summary]");
     const refreshButton = newsPage.querySelector("[data-news-refresh]");
-    const previousButton = newsPage.querySelector("[data-news-previous]");
-    const nextButton = newsPage.querySelector("[data-news-next]");
+    const sourceFilter = newsPage.querySelector("[data-news-source-filter]");
+    const showMoreButton = newsPage.querySelector("[data-news-show-more]");
     const remoteFeedUrl = newsPage.dataset.feedUrl;
     const fallbackFeedUrl = newsPage.dataset.fallbackUrl;
-    const refreshInterval =
-        Number(newsPage.dataset.refreshInterval) || 5 * 60 * 1000;
-    let lastRefreshTime = 0;
-    let refreshTimer;
-    let scrollFrame;
-    let deckIndex = 0;
-    let deckAnimating = false;
-    let dragState = null;
-    let suppressClickUntil = 0;
-    const deckLayout = window.matchMedia("(max-width: 760px)");
-    const reducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    );
+    const refreshInterval = Number(newsPage.dataset.refreshInterval) || 300000;
+    const LATEST_COUNT = 4;
+    const MORE_INCREMENT = 6;
+
+    let refreshTimer = 0;
+    let allStories = [];
+    let moreVisibleCount = MORE_INCREMENT;
+    let selectedSource = "all";
 
     function element(tagName, className, text) {
         const node = document.createElement(tagName);
-
         if (className) node.className = className;
         if (text !== undefined) node.textContent = text;
-
         return node;
     }
 
@@ -39,18 +35,20 @@
         link.href = url;
         link.target = "_blank";
         link.rel = "noopener noreferrer";
-
         return link;
     }
 
-    function formatPublishedDate(value) {
+    function safeDate(value) {
         const date = new Date(value);
-        const elapsedSeconds = Math.round(
-            (date.getTime() - Date.now()) / 1000
-        );
-        const relativeTime = new Intl.RelativeTimeFormat([], {
-            numeric: "auto"
-        });
+        return Number.isNaN(date.getTime()) ? null : date;
+    }
+
+    function relativeTime(value) {
+        const date = safeDate(value);
+        if (!date) return "Recently";
+
+        const elapsedSeconds = Math.round((date.getTime() - Date.now()) / 1000);
+        const relative = new Intl.RelativeTimeFormat([], { numeric: "auto" });
         const ranges = [
             ["year", 31536000],
             ["month", 2592000],
@@ -62,119 +60,138 @@
 
         for (const [unit, seconds] of ranges) {
             if (Math.abs(elapsedSeconds) >= seconds || unit === "minute") {
-                return relativeTime.format(
-                    Math.round(elapsedSeconds / seconds),
-                    unit
-                );
+                return relative.format(Math.round(elapsedSeconds / seconds), unit);
             }
         }
 
         return "just now";
     }
 
-    function storyTime(story) {
-        const date = new Date(story.publishedAt);
-        const time = element(
-            "time",
-            "news-card-time",
-            formatPublishedDate(story.publishedAt)
-        );
-        time.dateTime = date.toISOString();
-        time.title = date.toLocaleString();
+    function timeChip(story) {
+        const date = safeDate(story.publishedAt);
+        const time = element("time", "news-time-chip", relativeTime(story.publishedAt));
+
+        if (date) {
+            time.dateTime = date.toISOString();
+            time.title = date.toLocaleString();
+        }
 
         return time;
     }
 
-    function addPlaceholder(media, story) {
-        if (media.querySelector(".news-card-placeholder")) return;
+    function sourceChip(story) {
+        if (story.sourceUrl) {
+            return externalLink(story.sourceUrl, "news-source-chip", story.source || "Source");
+        }
 
-        media.classList.add("news-card-media--empty");
-        media.append(
-            element(
-                "span",
-                "news-card-placeholder",
-                story.source
-            )
-        );
+        return element("span", "news-source-chip", story.source || "Source");
     }
 
-    function storyMedia(story, index) {
-        const media = element("div", "news-card-media");
+    function coverageChip(story) {
+        if (!(story.coverageCount > 1)) return null;
+        return element("span", "news-coverage-chip", `${story.coverageCount} sources`);
+    }
 
-        if (story.image) {
-            const image = document.createElement("img");
-            image.src = story.image;
-            image.alt = "";
-            image.loading = index < 2 ? "eager" : "lazy";
-            image.decoding = "async";
-            image.referrerPolicy = "no-referrer";
-            image.addEventListener(
-                "error",
-                () => {
-                    image.remove();
-                    addPlaceholder(media, story);
-                },
-                { once: true }
-            );
-            media.append(image);
-        } else {
-            addPlaceholder(media, story);
+    function appendMeta(container, story, includeTopLabel = false) {
+        if (includeTopLabel) {
+            container.append(element("span", "news-top-label", "Top story"));
         }
 
-        const meta = element("div", "news-card-meta");
+        container.append(sourceChip(story), timeChip(story));
+        const coverage = coverageChip(story);
+        if (coverage) container.append(coverage);
+    }
 
-        if (index === 0) {
-            meta.append(
-                element("span", "news-card-top-label", "Top story")
-            );
+    function addImage(container, story, className, eager = false) {
+        if (!story.image) return false;
+
+        const image = document.createElement("img");
+        image.src = story.image;
+        image.alt = "";
+        image.loading = eager ? "eager" : "lazy";
+        image.decoding = "async";
+        image.referrerPolicy = "no-referrer";
+        image.addEventListener("error", () => {
+            image.remove();
+            container.classList.add(`${className}--empty`);
+            container.dataset.source = story.source || "MMA";
+        }, { once: true });
+        container.append(image);
+        return true;
+    }
+
+    function renderTopStory(story) {
+        const article = element("article", "news-lead-card");
+        article.dataset.storyId = story.id || story.url;
+
+        const media = element("div", "news-lead-media");
+        if (!addImage(media, story, "news-lead-media", true)) {
+            media.append(element("span", "news-lead-placeholder", story.source || "MMA News"));
         }
 
-        meta.append(
-            externalLink(
-                story.sourceUrl,
-                "news-card-source",
-                story.source
-            ),
-            storyTime(story)
-        );
+        const content = element("div", "news-lead-content");
+        const meta = element("div", "news-lead-meta");
+        appendMeta(meta, story, true);
 
-        if (story.coverageCount > 1) {
-            meta.append(
-                element(
-                    "span",
-                    "news-card-coverage",
-                    `${story.coverageCount} sources`
-                )
-            );
-        }
-
-        const heading = element(
-            index === 0 ? "h2" : "h3",
-            "news-card-headline"
-        );
+        const heading = element("h2");
         heading.append(externalLink(story.url, "", story.title));
 
-        const overlay = element("div", "news-card-overlay");
-        overlay.append(meta, heading);
-        media.append(overlay);
+        const excerpt = element(
+            "p",
+            "news-lead-excerpt",
+            story.excerpt || "Open the original report for the latest details."
+        );
 
-        return media;
+        const read = externalLink(story.url, "news-lead-read", "Read original report");
+        content.append(meta, heading, excerpt, read);
+        article.append(media, content);
+        return article;
     }
 
-    function renderStory(story, index) {
-        const article = element(
-            "article",
-            index === 0
-                ? "news-card news-card--top"
-                : "news-card"
+    function renderLatestStory(story) {
+        const article = element("article", "news-latest-row");
+        article.dataset.storyId = story.id || story.url;
+
+        const thumb = element("div", "news-latest-thumb");
+        if (!addImage(thumb, story, "news-latest-thumb")) {
+            thumb.classList.add("news-latest-thumb--empty");
+            thumb.dataset.source = story.source || "MMA";
+        }
+
+        const copy = element("div", "news-latest-copy");
+        const meta = element("div", "news-latest-meta");
+        meta.append(
+            element("span", "", story.source || "Source"),
+            element("span", "", relativeTime(story.publishedAt))
         );
-        article.dataset.storyId = story.id;
-        article.setAttribute("role", "listitem");
+
+        const title = element("h4", "news-latest-title");
+        title.append(externalLink(story.url, "", story.title));
+        copy.append(meta, title);
+        article.append(thumb, copy);
+        return article;
+    }
+
+    function renderMoreStory(story) {
+        const article = element("article", "news-card");
+        article.dataset.storyId = story.id || story.url;
+
+        const media = element("div", "news-card-media");
+        if (!addImage(media, story, "news-card-media")) {
+            media.append(element("span", "news-card-placeholder", story.source || "MMA News"));
+        }
 
         const body = element("div", "news-card-body");
-        const excerpt = story.excerpt ||
-            "Open the full story for the latest details.";
-        body.append(element("p", "news-card-excerpt", excerpt));
+        const meta = element("div", "news-card-meta");
+        appendMeta(meta, story);
+
+        const title = element("h3");
+        title.append(externalLink(story.url, "", story.title));
+        body.append(meta, title);
+
+        if (story.excerpt) {
+            body.append(element("p", "news-card-excerpt", story.excerpt));
+        }
 
         if (story.relatedSources?.length) {
             body.append(
@@ -186,12 +203,20 @@
             );
         }
 
-        body.append(
-            externalLink(story.url, "news-card-read", "Read full story")
-        );
-        article.append(storyMedia(story, index), body);
-
+        body.append(externalLink(story.url, "news-card-read", "Read story"));
+        article.append(media, body);
         return article;
+    }
+
+    function uniqueStories(data) {
+        const seen = new Set();
+        return [data.topStory, ...(data.stories || [])].filter(story => {
+            if (!story?.title || !story?.url) return false;
+            const key = story.id || story.url;
+            if (seen.has(key)) return false;
+            seen.add(key);
+            return true;
+        });
     }
 
     function validateFeed(data) {
@@ -204,235 +229,92 @@
         );
     }
 
-    function currentCard() {
-        const cards = [...storyRail.querySelectorAll(".news-card")];
-
-        if (cards.length === 0) return null;
-        if (deckLayout.matches) return cards[deckIndex] || cards[0];
-
-        const scrollPadding =
-            Number.parseFloat(
-                window.getComputedStyle(storyRail).scrollPaddingLeft
-            ) || 0;
-        const snapLine =
-            storyRail.getBoundingClientRect().left + scrollPadding;
-
-        return cards.reduce((closest, card) => {
-            const rect = card.getBoundingClientRect();
-            const distance = Math.abs(rect.left - snapLine);
-
-            if (!closest || distance < closest.distance) {
-                return { card, distance };
-            }
-
-            return closest;
-        }, null)?.card;
+    function updateSummary() {
+        const sourceCount = new Set(allStories.map(story => story.source).filter(Boolean)).size;
+        summary.textContent = `${allStories.length} stories · ${sourceCount} sources`;
     }
 
-    function updateRailState() {
-        const cards = [...storyRail.querySelectorAll(".news-card")];
-        const activeCard = currentCard();
-        const activeIndex = Math.max(0, cards.indexOf(activeCard));
+    function updateSourceFilter() {
+        const previous = selectedSource;
+        const sources = [...new Set(
+            allStories.slice(1 + LATEST_COUNT).map(story => story.source).filter(Boolean)
+        )].sort((a, b) => a.localeCompare(b));
 
-        counter.textContent = cards.length
-            ? `${activeIndex + 1} / ${cards.length}` +
-                (deckLayout.matches ? " · Swipe" : "")
-            : "0 / 0";
-        previousButton.disabled = activeIndex <= 0;
-        nextButton.disabled =
-            cards.length === 0 || activeIndex >= cards.length - 1;
-    }
+        const options = [element("option", "", "All sources")];
+        options[0].value = "all";
 
-    function updateDeckState() {
-        const cards = [...storyRail.querySelectorAll(".news-card")];
-
-        if (!deckLayout.matches || cards.length === 0) return;
-
-        deckIndex = (
-            (deckIndex % cards.length) + cards.length
-        ) % cards.length;
-
-        cards.forEach((card, index) => {
-            const position = (
-                index - deckIndex + cards.length
-            ) % cards.length;
-            const isVisible = position < 3;
-            const isActive = position === 0;
-
-            card.dataset.deckPosition = isVisible
-                ? String(position)
-                : "hidden";
-            card.setAttribute("aria-hidden", String(!isActive));
-            card.inert = !isActive;
+        sources.forEach(source => {
+            const option = element("option", "", source);
+            option.value = source;
+            options.push(option);
         });
 
-        updateRailState();
+        sourceFilter.replaceChildren(...options);
+        selectedSource = sources.includes(previous) ? previous : "all";
+        sourceFilter.value = selectedSource;
     }
 
-    function resetDeckCard(card) {
-        if (!card) return;
-
-        card.classList.remove(
-            "is-deck-dragging",
-            "is-deck-leaving-left",
-            "is-deck-leaving-right"
-        );
-        card.style.removeProperty("--deck-drag-x");
-        card.style.removeProperty("--deck-drag-rotation");
+    function filteredMoreStories() {
+        const stories = allStories.slice(1 + LATEST_COUNT);
+        if (selectedSource === "all") return stories;
+        return stories.filter(story => story.source === selectedSource);
     }
 
-    function animateDeck(direction) {
-        const cards = [...storyRail.querySelectorAll(".news-card")];
-        const activeCard = cards[deckIndex];
+    function renderMoreStories() {
+        const stories = filteredMoreStories();
+        const visibleStories = stories.slice(0, moreVisibleCount);
 
-        if (
-            !deckLayout.matches ||
-            !activeCard ||
-            cards.length < 2 ||
-            deckAnimating
-        ) {
-            return;
+        if (!visibleStories.length) {
+            moreList.replaceChildren(
+                element("p", "news-empty", "No additional stories match this source right now.")
+            );
+        } else {
+            moreList.replaceChildren(...visibleStories.map(renderMoreStory));
         }
 
-        deckAnimating = true;
-        resetDeckCard(activeCard);
-        activeCard.classList.add(
-            direction > 0
-                ? "is-deck-leaving-left"
-                : "is-deck-leaving-right"
-        );
-
-        window.setTimeout(
-            () => {
-                resetDeckCard(activeCard);
-                deckIndex = (
-                    deckIndex + direction + cards.length
-                ) % cards.length;
-                deckAnimating = false;
-                updateDeckState();
-            },
-            reducedMotion.matches ? 0 : 320
-        );
-    }
-
-    function resetDeckLayout() {
-        const cards = [...storyRail.querySelectorAll(".news-card")];
-
-        cards.forEach(card => {
-            resetDeckCard(card);
-            delete card.dataset.deckPosition;
-            card.removeAttribute("aria-hidden");
-            card.inert = false;
-        });
-    }
-
-    function syncLayout() {
-        if (deckLayout.matches) {
-            updateDeckState();
-            return;
-        }
-
-        const cards = [...storyRail.querySelectorAll(".news-card")];
-        resetDeckLayout();
-        moveToCard(cards[deckIndex] || cards[0], "auto");
-        updateRailState();
-    }
-
-    function storyOffset(card) {
-        const scrollPadding =
-            Number.parseFloat(
-                window.getComputedStyle(storyRail).scrollPaddingLeft
-            ) || 0;
-
-        return Math.max(
-            0,
-            card.getBoundingClientRect().left -
-            storyRail.getBoundingClientRect().left +
-            storyRail.scrollLeft -
-            scrollPadding
-        );
-    }
-
-    function moveToCard(card, behavior = "smooth") {
-        if (!card) return;
-
-        if (deckLayout.matches) {
-            const cards = [...storyRail.querySelectorAll(".news-card")];
-            const requestedIndex = cards.indexOf(card);
-
-            if (requestedIndex >= 0) deckIndex = requestedIndex;
-            updateDeckState();
-            return;
-        }
-
-        storyRail.scrollTo({
-            left: storyOffset(card),
-            behavior
-        });
-    }
-
-    function moveBy(direction) {
-        if (deckLayout.matches) {
-            animateDeck(direction);
-            return;
-        }
-
-        const cards = [...storyRail.querySelectorAll(".news-card")];
-        const activeIndex = Math.max(0, cards.indexOf(currentCard()));
-        const nextIndex = Math.min(
-            cards.length - 1,
-            Math.max(0, activeIndex + direction)
-        );
-
-        moveToCard(cards[nextIndex]);
+        moreList.setAttribute("aria-busy", "false");
+        showMoreButton.hidden = stories.length <= visibleStories.length;
+        showMoreButton.textContent = `Show more stories${stories.length > visibleStories.length ? ` (${stories.length - visibleStories.length})` : ""}`;
     }
 
     function setStatus(data, fallbackUsed = false) {
-        const generatedAt = new Date(data.generatedAt);
-        const today = new Date();
-        const sameDay =
-            generatedAt.getFullYear() === today.getFullYear() &&
-            generatedAt.getMonth() === today.getMonth() &&
-            generatedAt.getDate() === today.getDate();
-        const time = sameDay
-            ? generatedAt.toLocaleTimeString([], {
-                hour: "numeric",
-                minute: "2-digit"
-            })
-            : generatedAt.toLocaleString([], {
-                month: "short",
-                day: "numeric",
-                hour: "numeric",
-                minute: "2-digit"
-            });
+        const generatedAt = safeDate(data.generatedAt);
+        let timeLabel = "recently";
+
+        if (generatedAt) {
+            const today = new Date();
+            const sameDay = generatedAt.toDateString() === today.toDateString();
+            timeLabel = sameDay
+                ? generatedAt.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
+                : generatedAt.toLocaleString([], {
+                    month: "short",
+                    day: "numeric",
+                    hour: "numeric",
+                    minute: "2-digit"
+                });
+        }
 
         status.textContent = fallbackUsed
-            ? `Showing the last published update from ${time}`
-            : `Updated ${time}`;
+            ? `Last published update · ${timeLabel}`
+            : `Updated ${timeLabel}`;
         status.dataset.state = fallbackUsed ? "stale" : "ready";
+        liveStatus.dataset.state = fallbackUsed ? "stale" : "ready";
     }
 
     function renderFeed(data, fallbackUsed = false) {
-        const previousStoryId = currentCard()?.dataset.storyId;
-        const stories = [data.topStory, ...data.stories];
-        const cards = stories.map(renderStory);
-        storyRail.replaceChildren(...cards);
-        storyRail.setAttribute("aria-busy", "false");
+        allStories = uniqueStories(data);
+        moreVisibleCount = MORE_INCREMENT;
+
+        const topStory = allStories[0];
+        const latestStories = allStories.slice(1, 1 + LATEST_COUNT);
+
+        topStorySlot.replaceChildren(renderTopStory(topStory));
+        latestList.replaceChildren(...latestStories.map(renderLatestStory));
+        leadGrid.setAttribute("aria-busy", "false");
+        updateSummary();
+        updateSourceFilter();
+        renderMoreStories();
         setStatus(data, fallbackUsed);
-        lastRefreshTime = Date.now();
-
-        const preservedCard = previousStoryId
-            ? storyRail.querySelector(
-                `[data-story-id="${CSS.escape(previousStoryId)}"]`
-            )
-            : null;
-
-        deckIndex = Math.max(
-            0,
-            cards.indexOf(preservedCard || cards[0])
-        );
-        moveToCard(preservedCard || cards[0], "auto");
-        updateRailState();
     }
 
     async function fetchJson(url, useCacheBucket = false) {
@@ -447,9 +329,7 @@
 
         const response = await fetch(requestUrl, {
             cache: "no-store",
-            headers: {
-                accept: "application/json"
-            }
+            headers: { accept: "application/json" }
         });
 
         if (!response.ok) {
@@ -457,11 +337,9 @@
         }
 
         const responseData = await response.json();
-        const data =
-            typeof responseData.body === "string" &&
-            responseData.tag_name
-                ? JSON.parse(responseData.body)
-                : responseData;
+        const data = typeof responseData.body === "string" && responseData.tag_name
+            ? JSON.parse(responseData.body)
+            : responseData;
 
         if (!validateFeed(data)) {
             throw new Error("News response was incomplete");
@@ -471,12 +349,12 @@
     }
 
     async function refreshFeed() {
-        status.textContent = lastRefreshTime
+        status.textContent = allStories.length
             ? "Checking for new stories…"
             : "Loading the latest stories…";
         status.dataset.state = "loading";
-
-        if (refreshButton) refreshButton.disabled = true;
+        liveStatus.dataset.state = "loading";
+        refreshButton.disabled = true;
 
         try {
             const data = await fetchJson(remoteFeedUrl, true);
@@ -486,144 +364,48 @@
                 const fallback = await fetchJson(fallbackFeedUrl);
                 renderFeed(fallback, true);
             } catch {
-                status.textContent =
-                    "The news feed is temporarily unavailable. Please try again.";
+                status.textContent = "News feed temporarily unavailable · Try refresh";
                 status.dataset.state = "error";
+                liveStatus.dataset.state = "error";
+                leadGrid.setAttribute("aria-busy", "false");
+                moreList.setAttribute("aria-busy", "false");
+
+                if (!allStories.length) {
+                    topStorySlot.replaceChildren(
+                        element("p", "news-empty", "The latest MMA stories could not be loaded. Use Refresh to try again.")
+                    );
+                    latestList.replaceChildren();
+                    moreList.replaceChildren();
+                    summary.textContent = "Feed unavailable";
+                }
             }
         } finally {
-            if (refreshButton) refreshButton.disabled = false;
+            refreshButton.disabled = false;
         }
     }
 
-    function scheduleRefresh() {
-        window.clearInterval(refreshTimer);
-        refreshTimer = window.setInterval(refreshFeed, refreshInterval);
-    }
-
-    previousButton.addEventListener("click", () => moveBy(-1));
-    nextButton.addEventListener("click", () => moveBy(1));
-
-    storyRail.addEventListener("keydown", event => {
-        if (event.key === "ArrowLeft") {
-            event.preventDefault();
-            moveBy(-1);
-        }
-
-        if (event.key === "ArrowRight") {
-            event.preventDefault();
-            moveBy(1);
-        }
+    sourceFilter.addEventListener("change", () => {
+        selectedSource = sourceFilter.value;
+        moreVisibleCount = MORE_INCREMENT;
+        renderMoreStories();
     });
 
-    storyRail.addEventListener(
-        "scroll",
-        () => {
-            window.cancelAnimationFrame(scrollFrame);
-            scrollFrame = window.requestAnimationFrame(updateRailState);
-        },
-        { passive: true }
-    );
-
-    storyRail.addEventListener("pointerdown", event => {
-        if (
-            !deckLayout.matches ||
-            deckAnimating ||
-            event.pointerType === "mouse" && event.button !== 0
-        ) {
-            return;
-        }
-
-        const activeCard = currentCard();
-        if (!activeCard || !event.target.closest(".news-card")) return;
-
-        dragState = {
-            card: activeCard,
-            pointerId: event.pointerId,
-            startX: event.clientX,
-            startY: event.clientY,
-            startedAt: performance.now(),
-            deltaX: 0,
-            dragging: false
-        };
-        activeCard.setPointerCapture?.(event.pointerId);
+    showMoreButton.addEventListener("click", () => {
+        moreVisibleCount += MORE_INCREMENT;
+        renderMoreStories();
     });
 
-    storyRail.addEventListener("pointermove", event => {
-        if (!dragState || event.pointerId !== dragState.pointerId) return;
+    refreshButton.addEventListener("click", refreshFeed);
 
-        const deltaX = event.clientX - dragState.startX;
-        const deltaY = event.clientY - dragState.startY;
-
-        if (
-            !dragState.dragging &&
-            Math.abs(deltaY) > Math.abs(deltaX)
-        ) {
-            resetDeckCard(dragState.card);
-            dragState = null;
-            return;
+    window.addEventListener("matlock:preferences", event => {
+        if (event.detail?.reducedMotion) {
+            newsPage.querySelectorAll(".news-loading-card, .news-loading-row").forEach(node => {
+                node.style.animation = "none";
+            });
         }
-
-        if (Math.abs(deltaX) < 6 && !dragState.dragging) return;
-
-        dragState.dragging = true;
-        dragState.deltaX = deltaX;
-        dragState.card.classList.add("is-deck-dragging");
-        dragState.card.style.setProperty(
-            "--deck-drag-x",
-            `${deltaX}px`
-        );
-        dragState.card.style.setProperty(
-            "--deck-drag-rotation",
-            `${Math.max(-9, Math.min(9, deltaX / 24))}deg`
-        );
     });
-
-    function finishDeckDrag(event) {
-        if (!dragState || event.pointerId !== dragState.pointerId) return;
-
-        const {
-            card,
-            deltaX,
-            dragging,
-            startedAt
-        } = dragState;
-        const velocity =
-            Math.abs(deltaX) /
-            Math.max(1, performance.now() - startedAt);
-        const shouldMove =
-            dragging && (Math.abs(deltaX) >= 70 || velocity >= 0.45);
-        dragState = null;
-
-        if (dragging) suppressClickUntil = Date.now() + 450;
-
-        if (shouldMove) {
-            resetDeckCard(card);
-            animateDeck(deltaX < 0 ? 1 : -1);
-        } else {
-            resetDeckCard(card);
-        }
-    }
-
-    storyRail.addEventListener("pointerup", finishDeckDrag);
-    storyRail.addEventListener("pointercancel", finishDeckDrag);
-    storyRail.addEventListener(
-        "click",
-        event => {
-            if (Date.now() < suppressClickUntil) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-        },
-        true
-    );
-
-    window.addEventListener("resize", syncLayout);
-    deckLayout.addEventListener?.("change", syncLayout);
-
-    if (refreshButton) {
-        refreshButton.addEventListener("click", refreshFeed);
-    }
 
     refreshFeed();
-    scheduleRefresh();
+    refreshTimer = window.setInterval(refreshFeed, refreshInterval);
+    window.addEventListener("pagehide", () => window.clearInterval(refreshTimer));
 })();
