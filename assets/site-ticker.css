@@ -15,6 +15,15 @@
     box-shadow: 0 8px 22px rgba(0,0,0,.24);
     backdrop-filter: blur(10px);
     animation: site-live-strip-enter 180ms cubic-bezier(.2,.75,.25,1) both;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+.site-live-strip *,
+.site-live-strip *::before,
+.site-live-strip *::after {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 .site-live-strip[hidden] {
@@ -72,6 +81,8 @@
 
 .site-event-primary-name {
     color: #fff;
+    font-size: var(--site-ticker-font-size);
+    line-height: 1;
     white-space: nowrap;
 }
 
@@ -79,6 +90,7 @@
     color: #d5d5d5;
     font-size: var(--site-ticker-font-size);
     font-variant-numeric: tabular-nums;
+    line-height: 1;
     white-space: nowrap;
 }
 
@@ -109,6 +121,7 @@
     border-radius: 999px;
     color: #fff;
     font-size: var(--site-ticker-font-size);
+    line-height: 1;
 }
 
 .site-event-more[hidden] {
@@ -239,6 +252,7 @@
     color: var(--accent, #ff4a54);
     font: 900 var(--site-ticker-font-size) "Courier New", monospace;
     letter-spacing: .11em;
+    line-height: 1;
     text-transform: uppercase;
 }
 
@@ -277,8 +291,16 @@
     color: #d7d7d7;
     font: 700 var(--site-ticker-font-size) "Courier New", monospace;
     letter-spacing: .015em;
+    line-height: 1;
     text-decoration: none;
     white-space: nowrap;
+}
+
+.site-news-item > span {
+    flex: 0 0 auto;
+    font-family: "Courier New", monospace;
+    font-size: var(--site-ticker-font-size) !important;
+    line-height: 1 !important;
 }
 
 .site-news-item + .site-news-item::before {
@@ -289,9 +311,10 @@
 
 .site-news-item-source {
     color: #777;
-    font-size: var(--site-ticker-font-size);
+    font-size: var(--site-ticker-font-size) !important;
     font-weight: 900;
     letter-spacing: .055em;
+    line-height: 1 !important;
     text-transform: uppercase;
 }
 
@@ -309,6 +332,7 @@
     color: #777;
     font: 700 var(--site-ticker-font-size) "Courier New", monospace;
     letter-spacing: .04em;
+    line-height: 1;
     text-transform: uppercase;
 }
 
