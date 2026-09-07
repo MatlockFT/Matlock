@@ -3,6 +3,7 @@
    ========================================================= */
 
 .site-live-strip {
+    --site-ticker-font-size: .62rem;
     position: sticky;
     top: 52px;
     z-index: 96;
@@ -51,7 +52,7 @@
     background: transparent;
     color: #fff;
     cursor: pointer;
-    font: 800 .67rem "Courier New", monospace;
+    font: 800 var(--site-ticker-font-size) "Courier New", monospace;
     letter-spacing: .035em;
     line-height: 1;
     text-align: left;
@@ -76,6 +77,7 @@
 
 .site-event-primary-countdown {
     color: #d5d5d5;
+    font-size: var(--site-ticker-font-size);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
 }
@@ -106,7 +108,7 @@
     border: 1px solid rgba(255,255,255,.26);
     border-radius: 999px;
     color: #fff;
-    font-size: .58rem;
+    font-size: var(--site-ticker-font-size);
 }
 
 .site-event-more[hidden] {
@@ -235,7 +237,7 @@
     padding: 0 .65rem;
     border-right: 1px solid rgba(255,255,255,.13);
     color: var(--accent, #ff4a54);
-    font: 900 .58rem "Courier New", monospace;
+    font: 900 var(--site-ticker-font-size) "Courier New", monospace;
     letter-spacing: .11em;
     text-transform: uppercase;
 }
@@ -273,7 +275,7 @@
     align-items: center;
     gap: .42rem;
     color: #d7d7d7;
-    font: 700 .62rem "Courier New", monospace;
+    font: 700 var(--site-ticker-font-size) "Courier New", monospace;
     letter-spacing: .015em;
     text-decoration: none;
     white-space: nowrap;
@@ -287,7 +289,7 @@
 
 .site-news-item-source {
     color: #777;
-    font-size: .53rem;
+    font-size: var(--site-ticker-font-size);
     font-weight: 900;
     letter-spacing: .055em;
     text-transform: uppercase;
@@ -305,7 +307,7 @@
 
 .site-news-unavailable {
     color: #777;
-    font: 700 .6rem "Courier New", monospace;
+    font: 700 var(--site-ticker-font-size) "Courier New", monospace;
     letter-spacing: .04em;
     text-transform: uppercase;
 }
@@ -336,6 +338,7 @@
 
 @media (max-width: 850px) {
     .site-live-strip {
+        --site-ticker-font-size: .57rem;
         top: 57px;
     }
 
@@ -355,7 +358,6 @@
         gap: .34rem;
         padding-right: .45rem;
         padding-left: .55rem;
-        font-size: .58rem;
     }
 
     .site-event-primary-name {
@@ -363,15 +365,10 @@
         text-overflow: ellipsis;
     }
 
-    .site-event-primary-countdown {
-        font-size: .54rem;
-    }
-
     .site-event-more {
         min-width: 24px;
         height: 18px;
         padding: 0 .28rem;
-        font-size: .52rem;
     }
 
     .site-news-label {
@@ -381,13 +378,13 @@
     .site-news-ticker {
         grid-template-columns: minmax(0,1fr);
     }
-
-    .site-news-item {
-        font-size: .57rem;
-    }
 }
 
 @media (max-width: 520px) {
+    .site-live-strip {
+        --site-ticker-font-size: .55rem;
+    }
+
     .site-live-strip-inner {
         grid-template-columns: max-content minmax(0,1fr);
     }
@@ -407,7 +404,6 @@
     }
 
     .site-event-primary-countdown {
-        font-size: .5rem;
         letter-spacing: .015em;
     }
 
@@ -464,7 +460,7 @@ html.reduce-motion .site-news-track {
 }
 
 html.reduce-motion .site-news-sequence:nth-child(2) {
-    display: none;
+    display: none !important;
 }
 
 html.reduce-motion .site-event-primary-countdown[data-live="true"]::before {
