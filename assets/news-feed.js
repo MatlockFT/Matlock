@@ -17,6 +17,7 @@
     const refreshInterval = Number(newsPage.dataset.refreshInterval) || 300000;
     const LATEST_COUNT = 4;
     const MORE_INCREMENT = 6;
+    const BOXING_SIGNAL = /\b(?:boxing|boxer|pugilist|wbc|wba|ibf|wbo|the ring|ring magazine|canelo|saul alvarez|tyson fury|oleksandr usyk|anthony joshua|terence crawford|gervonta davis|ryan garcia|naoya inoue|devin haney|shakur stevenson|teofimo lopez|dmitry bivol|artur beterbiev|jai opetai?a|jaron ennis|sebastian fundora|david benavidez|caleb plant|katie taylor|claressa shields|amanda serrano)\b/i;
 
     let refreshTimer = 0;
     let allStories = [];
@@ -120,6 +121,25 @@
         return true;
     }
 
+    function isBoxingStory(story) {
+        const title = story?.title || "";
+        const excerpt = story?.excerpt || "";
+        const url = story?.url || "";
+        return BOXING_SIGNAL.test(`${title} ${excerpt}`) || /\/boxing(?:\/|[-?])/i.test(url);
+    }
+
+    function prioritizeMmaLead(stories) {
+        if (stories.length < 2 || !isBoxingStory(stories[0])) return stories;
+
+        const mmaIndex = stories.findIndex((story, index) => index > 0 && !isBoxingStory(story));
+        if (mmaIndex < 1) return stories;
+
+        const ordered = [...stories];
+        const [mmaLead] = ordered.splice(mmaIndex, 1);
+        ordered.unshift(mmaLead);
+        return ordered;
+    }
+
     function renderTopStory(story) {
         const article = element("article", "news-lead-card");
         article.dataset.storyId = story.id || story.url;
@@ -136,14 +156,7 @@
         const heading = element("h2");
         heading.append(externalLink(story.url, "", story.title));
 
-        const excerpt = element(
-            "p",
-            "news-lead-excerpt",
-            story.excerpt || "Open the original report for the latest details."
-        );
-
-        const read = externalLink(story.url, "news-lead-read", "Read original report");
-        content.append(meta, heading, excerpt, read);
+        content.append(meta, heading);
         article.append(media, content);
         return article;
     }
@@ -188,35 +201,21 @@
         const title = element("h3");
         title.append(externalLink(story.url, "", story.title));
         body.append(meta, title);
-
-        if (story.excerpt) {
-            body.append(element("p", "news-card-excerpt", story.excerpt));
-        }
-
-        if (story.relatedSources?.length) {
-            body.append(
-                element(
-                    "p",
-                    "news-card-related",
-                    `Also reported by ${story.relatedSources.join(", ")}`
-                )
-            );
-        }
-
-        body.append(externalLink(story.url, "news-card-read", "Read story"));
         article.append(media, body);
         return article;
     }
 
     function uniqueStories(data) {
         const seen = new Set();
-        return [data.topStory, ...(data.stories || [])].filter(story => {
+        const stories = [data.topStory, ...(data.stories || [])].filter(story => {
             if (!story?.title || !story?.url) return false;
             const key = story.id || story.url;
             if (seen.has(key)) return false;
             seen.add(key);
             return true;
         });
+
+        return prioritizeMmaLead(stories);
     }
 
     function validateFeed(data) {
