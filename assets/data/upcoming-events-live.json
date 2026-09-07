@@ -2,7 +2,26 @@
 layout: null
 permalink: /assets/data/upcoming-events-live.json
 ---
-{% assign ticker_events = site.data.upcoming_events.events | concat: site.data.event_map_regional.events %}
+{% assign major_events = site.data.upcoming_events.events %}
+{% assign regional = site.data.event_map_regional.events %}
+{% assign verified_regional = regional | where: "source_key", "fury" %}
+{% assign verified_regional = verified_regional | concat: regional | where: "source_key", "cffc" %}
+{% assign verified_regional = verified_regional | concat: regional | where: "source_key", "559" %}
+{% assign verified_regional = verified_regional | concat: regional | where: "source_key", "peak" %}
+{% assign verified_regional = verified_regional | concat: regional | where: "source_key", "lfa_official" %}
+{% assign verified_regional = verified_regional | concat: regional | where: "source_key", "cage_titans" %}
+{% assign verified_regional = verified_regional | concat: regional | where: "source_key", "fac_official" %}
+{% assign verified_regional = verified_regional | concat: regional | where: "source_key", "afc_alaska" %}
+{% assign verified_regional = verified_regional | concat: regional | where: "source_key", "caged_thunder" %}
+{% assign verified_regional = verified_regional | concat: regional | where: "source_key", "gladiator_challenge" %}
+{% assign verified_regional = verified_regional | concat: regional | where: "source_key", "tuff_n_uff" %}
+{% assign verified_regional = verified_regional | concat: regional | where: "source_key", "xfn_official" %}
+{% assign verified_regional = verified_regional | concat: regional | where: "source_key", "ruf_official" %}
+{% assign verified_regional = verified_regional | concat: regional | where: "source_key", "camomma" %}
+{% assign verified_regional = verified_regional | concat: regional | where: "source_key", "florida_commission" %}
+{% assign verified_regional = verified_regional | concat: regional | where: "source_key", "cfc_el_paso" %}
+{% assign verified_regional = verified_regional | concat: regional | where: "source_key", "cfc_southeast" %}
+{% assign ticker_events = major_events | concat: verified_regional %}
 {
   "schema_version": 2,
   "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
