@@ -37,10 +37,12 @@ jobs:
           node --check assets/site.js
           node --check assets/article-toc.js
           node --check assets/news-feed.js
+          node --check assets/on-this-day.js
           node --check assets/event-map-v2.js
           node --check assets/event-map-enhancements.js
           node --check scripts/build-news-feed.mjs
           node --check scripts/check-news-data.mjs
+          node --check scripts/check-on-this-day.mjs
           node --check scripts/upcoming-events-data.mjs
           node --check scripts/update-upcoming-ufc-events.mjs
           node --check scripts/update-pfl-upcoming-events.mjs
@@ -67,6 +69,9 @@ jobs:
 
       - name: Check bundled MMA news data
         run: npm run check:news
+
+      - name: Check On This Day MMA history data
+        run: npm run check:history
 
       - name: Build site
         uses: actions/jekyll-build-pages@v1
