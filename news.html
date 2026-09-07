@@ -17,26 +17,22 @@ page_scripts:
     data-feed-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/mma-news-data"
     data-fallback-url="{{ '/assets/data/mma-news.json' | relative_url }}?v={{ site.asset_version }}"
     data-refresh-interval="300000"
+    aria-label="MMA News"
 >
-    <!-- Feed status and manual refresh remain available to the feed controller,
-         but stay out of the visual hierarchy. The page already identifies itself
-         through navigation and the content does not need another title stack. -->
-    <header class="news-page-header" hidden>
-        <h1>News</h1>
-
+    <div class="news-lead-meta" role="group" aria-label="News feed controls">
         <div class="news-live-status" aria-live="polite">
             <span class="news-live-dot" aria-hidden="true"></span>
             <span data-news-status>Loading the latest stories…</span>
         </div>
 
         <button
-            class="secondary-button news-refresh-button"
+            class="news-source-chip"
             type="button"
             data-news-refresh
         >
             Refresh
         </button>
-    </header>
+    </div>
 
     <section class="news-lead" aria-label="Top stories">
         <div class="news-lead-grid" aria-busy="true" data-news-lead-grid>
