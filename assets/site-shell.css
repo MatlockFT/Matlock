@@ -1,6 +1,6 @@
 /* =========================================================
    CANONICAL SITE SHELL
-   Final authority for shared navigation, page rhythm, and typography.
+   Shared navigation, page rhythm, typography, and accessibility preferences.
    Page-specific styles should handle page-specific components only.
    ========================================================= */
 
@@ -30,14 +30,15 @@
     object-fit: contain;
 }
 
-/* The desktop nav owns the full row and centers from the viewport,
-   not from however many items happen to exist. */
+/* Desktop nav remains centered independent of item count. */
 @media (min-width: 851px) {
     .navigation-inner {
+        position: relative;
         justify-content: center;
     }
 
     .navigation-panel {
+        position: relative;
         display: block;
         width: 100%;
     }
@@ -47,11 +48,97 @@
         justify-content: center;
         gap: 0.1rem;
         margin: 0 auto;
+        padding-inline: 9rem;
     }
 
     .navigation-list a {
-        padding: 1.05rem 0.78rem;
-        font-size: 0.82rem;
+        padding: 1.05rem 0.72rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Display preferences: visible, compact, and persistent without stealing nav focus. */
+.site-display-controls {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.site-display-label {
+    display: none;
+}
+
+.site-display-button {
+    display: inline-flex;
+    min-height: 34px;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.58rem;
+    border: 1px solid var(--border-bright);
+    border-radius: 999px;
+    background: #0b0b0b;
+    color: var(--text-soft);
+    font: 800 0.67rem/1 Arial, Helvetica, sans-serif;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.site-display-button:hover,
+.site-display-button:focus-visible {
+    border-color: var(--accent-soft);
+    color: #ffffff;
+}
+
+.site-display-button[aria-pressed="true"] {
+    border-color: var(--accent);
+    background: rgba(255, 74, 84, 0.14);
+    color: #ffffff;
+}
+
+.site-display-button:disabled {
+    cursor: default;
+    opacity: 0.78;
+}
+
+.site-display-icon {
+    min-width: 1.25rem;
+    color: var(--accent-soft);
+    font-family: "Courier New", monospace;
+    font-size: 0.74rem;
+    text-align: center;
+}
+
+@media (min-width: 851px) {
+    .site-display-controls {
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+    }
+}
+
+@media (min-width: 1160px) {
+    .site-display-label {
+        display: inline;
+    }
+}
+
+@media (min-width: 851px) and (max-width: 1159px) {
+    .navigation-list {
+        padding-inline: 5.25rem;
+    }
+
+    .navigation-list a {
+        padding-inline: 0.52rem;
+        font-size: 0.74rem;
+    }
+
+    .site-display-button {
+        min-width: 34px;
+        padding-inline: 0.42rem;
     }
 }
 
@@ -140,7 +227,7 @@ h3 {
     display: none;
 }
 
-/* Fight Card Picker: keep the compact zine layout without microscopic UI text. */
+/* Fight Card Picker: retain the compact zine layout without microscopic UI text. */
 .event-promotion {
     font-size: 0.56rem;
 }
@@ -187,11 +274,6 @@ h3 {
     line-height: 1.05;
 }
 
-/* News headlines were set unusually tight compared with the rest of the site. */
-.news-card-headline {
-    line-height: 1.08;
-}
-
 /* Event Map utility labels should read as UI, not decoration. */
 .event-map-detail-lock,
 .event-map-detail-topline,
@@ -200,10 +282,134 @@ h3 {
     line-height: 1.3;
 }
 
+/* =========================================================
+   READABILITY MODE
+   Opt-in: more spacing, calmer type, and a conventional sans-serif hierarchy.
+   ========================================================= */
+
+html.readable-mode body {
+    font-size: 18px;
+    line-height: 1.78;
+    letter-spacing: 0.006em;
+}
+
+html.readable-mode h1,
+html.readable-mode h2,
+html.readable-mode h3,
+html.readable-mode h4,
+html.readable-mode .mobile-brand,
+html.readable-mode .ufc-roster-rank {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 800;
+    letter-spacing: 0.005em;
+}
+
+html.readable-mode h1,
+html.readable-mode h2,
+html.readable-mode h3 {
+    line-height: 1.16;
+}
+
+html.readable-mode .post-body {
+    width: min(100%, 760px);
+    font-size: 1.04rem;
+    line-height: 1.85;
+}
+
+html.readable-mode .post-body p,
+html.readable-mode .post-body li,
+html.readable-mode .post-description,
+html.readable-mode .featured-description,
+html.readable-mode .homepage-intro-description {
+    max-width: 72ch;
+}
+
+html.readable-mode .article-card-content,
+html.readable-mode .post-share,
+html.readable-mode .event-map-detail-card,
+html.readable-mode .ufc-roster-card {
+    line-height: 1.65;
+}
+
+html.readable-mode .navigation-list a,
+html.readable-mode .footer-navigation a,
+html.readable-mode .primary-button,
+html.readable-mode .secondary-button {
+    letter-spacing: 0.025em;
+}
+
+html.readable-mode .eyebrow,
+html.readable-mode .article-date,
+html.readable-mode .post-meta,
+html.readable-mode .event-map-detail-topline,
+html.readable-mode .event-map-legend {
+    letter-spacing: 0.06em;
+}
+
+/* =========================================================
+   REDUCE MOTION
+   User preference supplements prefers-reduced-motion and stops decorative motion.
+   ========================================================= */
+
+html.reduce-motion {
+    scroll-behavior: auto;
+}
+
+html.reduce-motion *,
+html.reduce-motion *::before,
+html.reduce-motion *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+}
+
+html.reduce-motion .site-news-track {
+    animation: none !important;
+    transform: none !important;
+}
+
+html.reduce-motion .article-card:hover,
+html.reduce-motion .featured-image:hover img,
+html.reduce-motion .article-card-image:hover img,
+html.reduce-motion .news-card:hover img,
+html.reduce-motion .mma-gallery-card:hover,
+html.reduce-motion .mma-gallery-image-button:hover img {
+    transform: none !important;
+}
+
 @media (max-width: 850px) {
     :root {
         --page-title-size: clamp(2.05rem, 9.1vw, 3rem);
         --page-header-gap: 1.05rem;
+    }
+
+    .site-display-controls {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+        margin: 0.8rem 1rem 1rem;
+        padding-top: 0.8rem;
+        border-top: 1px solid var(--border);
+    }
+
+    .site-display-controls::before {
+        grid-column: 1 / -1;
+        color: var(--muted);
+        font: 800 0.64rem/1.2 Arial, Helvetica, sans-serif;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        content: "Display preferences";
+    }
+
+    .site-display-button {
+        width: 100%;
+        min-height: 42px;
+        border-radius: var(--radius-small);
+    }
+
+    .site-display-label {
+        display: inline;
     }
 }
 
@@ -228,5 +434,9 @@ h3 {
     .post-body h3,
     .post-body h4 {
         line-height: 1.22;
+    }
+
+    html.readable-mode body {
+        font-size: 17px;
     }
 }
