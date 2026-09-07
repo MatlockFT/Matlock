@@ -2,6 +2,7 @@
     const widgets = [...document.querySelectorAll("[data-on-this-day]")];
     if (!widgets.length) return;
 
+    const REFERENCE_YEAR = 2024;
     const kindOrder = new Map([
         ["fight", 0],
         ["signing", 1],
@@ -29,7 +30,7 @@
 
     function localToday() {
         const now = new Date();
-        return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        return new Date(REFERENCE_YEAR, now.getMonth(), now.getDate());
     }
 
     function keyForDate(date) {
@@ -42,8 +43,7 @@
 
         const month = Number(match[1]);
         const day = Number(match[2]);
-        const year = localToday().getFullYear();
-        const date = new Date(year, month - 1, day);
+        const date = new Date(REFERENCE_YEAR, month - 1, day);
 
         if (date.getMonth() !== month - 1 || date.getDate() !== day) return null;
         return date;
@@ -156,8 +156,7 @@
             dateDisplay.setAttribute("datetime", keyForDate(activeDate));
 
             if (dateInput) {
-                const year = localToday().getFullYear();
-                dateInput.value = `${year}-${keyForDate(activeDate)}`;
+                dateInput.value = `${REFERENCE_YEAR}-${keyForDate(activeDate)}`;
             }
 
             if (count) {
@@ -219,7 +218,7 @@
         dateInput?.addEventListener("change", () => {
             const selected = new Date(`${dateInput.value}T12:00:00`);
             if (Number.isNaN(selected.getTime())) return;
-            activeDate = new Date(localToday().getFullYear(), selected.getMonth(), selected.getDate());
+            activeDate = new Date(REFERENCE_YEAR, selected.getMonth(), selected.getDate());
             updateUrl();
             render();
         });
