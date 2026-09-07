@@ -3,11 +3,16 @@ layout: null
 permalink: /assets/data/event-map-live.json
 ---
 {% assign major_events = site.data.upcoming_events.events %}
-{% assign regional_events = site.data.event_map_regional.events | slice: 0, 72 %}
+{% assign regional_events = site.data.event_map_regional.events %}
+{% assign picker_regional_events = site.data.upcoming_events_regional.events %}
 {% assign event_map_events = major_events | concat: regional_events %}
+{% assign picker_major_ids = major_events | map: "id" %}
+{% assign picker_regional_ids = picker_regional_events | map: "id" %}
+{% assign picker_ids = picker_major_ids | concat: picker_regional_ids %}
 {
   "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
-  "regional_total": {{ site.data.event_map_regional.events | size | jsonify }},
+  "regional_total": {{ regional_events | size | jsonify }},
   "regional_loaded": {{ regional_events | size | jsonify }},
+  "picker_event_ids": {{ picker_ids | jsonify }},
   "events": {{ event_map_events | jsonify }}
 }
