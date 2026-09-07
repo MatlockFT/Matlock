@@ -49,6 +49,11 @@
 
     <link
         rel="stylesheet"
+        href="{{ '/assets/site-shell.css' | relative_url }}?v={{ site.asset_version }}"
+    >
+
+    <link
+        rel="stylesheet"
         href="{{ '/assets/micro-interactions.css' | relative_url }}?v={{ site.asset_version }}"
     >
 
@@ -71,30 +76,6 @@
         type="image/png"
         fetchpriority="high"
     >
-
-    <style>
-        .logo-banner {
-            padding: 0.2rem 1rem;
-        }
-
-        .site-logo {
-            width: min(64vw, 260px);
-            height: auto;
-            max-width: 100%;
-            max-height: none;
-            object-fit: contain;
-        }
-
-        @media (max-width: 760px) {
-            .logo-banner {
-                padding: 0.2rem 0.75rem;
-            }
-
-            .site-logo {
-                width: min(62vw, 220px);
-            }
-        }
-    </style>
 
     <link
         rel="preload"
@@ -145,7 +126,6 @@
                 }
 
                 .navigation-panel-header,
-                .navigation-panel-footer,
                 .navigation-backdrop {
                     display: none !important;
                 }
@@ -224,7 +204,7 @@
                     aria-hidden="false"
                 >
                     <div class="navigation-panel-header">
-                        <span>Explore MMA Matlock</span>
+                        <span>Menu</span>
 
                         <button
                             class="navigation-close"
@@ -283,10 +263,6 @@
                             </li>
                         {% endfor %}
                     </ul>
-
-                    <div class="navigation-panel-footer">
-                        MMA breakdowns &amp; classic clips
-                    </div>
                 </div>
             </div>
         </nav>
@@ -316,11 +292,6 @@
                     <h2>
                         MMA Matlock
                     </h2>
-
-                    <p>
-                        Fight breakdowns, predictions, classic MMA clip
-                        edits, commentary, and opinions.
-                    </p>
 
                     <nav aria-label="Footer navigation">
                         <ul class="footer-navigation">
@@ -361,7 +332,7 @@
                     aria-labelledby="social-links-title"
                 >
                     <h2 id="social-links-title">
-                        Follow MMA Matlock
+                        Follow
                     </h2>
 
                     <div class="footer-socials">
@@ -443,6 +414,7 @@
     </footer>
 
     <script src="{{ '/assets/site.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
+    <script src="{{ '/assets/site-ticker.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
 
     {% for script in page.page_scripts %}
         <script src="{{ script | relative_url }}?v={{ site.asset_version }}" defer></script>

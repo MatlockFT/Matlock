@@ -7,7 +7,7 @@ description: >-
 
 url: "https://matlockfighttalk.com"
 baseurl: ""
-asset_version: "68"
+asset_version: "69"
 
 lang: "en-US"
 locale: "en_US"
@@ -74,7 +74,7 @@ nav:
   - name: "UFC Roster"
     link: "/ufc-roster/"
 
-  - name: "MMA Yellow Pages"
+  - name: "Yellow Pages"
     link: "/mma-yellowpages"
 
   - name: "YouTube"
@@ -90,9 +90,6 @@ footer_nav:
 
   - name: "Picture Gallery"
     link: "/picture-gallery"
-
-  - name: "Media Kit"
-    link: "/media-kit/"
 
   - name: "Contact"
     link: "/contact/"
