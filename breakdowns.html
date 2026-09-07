@@ -3,6 +3,8 @@ layout: default
 title: "MMA Breakdowns"
 description: "Browse MMA fight breakdowns, predictions, event recaps, and opinions from MMA Matlock."
 permalink: /breakdowns/
+page_styles:
+  - /assets/breakdowns.css
 ---
 
 <section class="archive-page">
@@ -121,7 +123,12 @@ permalink: /breakdowns/
                                 {% endif %}
                                 alt="{{ post_alt | escape }}"
                                 data-hide-broken
-                                loading="lazy"
+                                {% if forloop.first %}
+                                    loading="eager"
+                                    fetchpriority="high"
+                                {% else %}
+                                    loading="lazy"
+                                {% endif %}
                                 decoding="async"
                             >
                         </a>
