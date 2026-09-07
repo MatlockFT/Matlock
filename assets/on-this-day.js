@@ -2,6 +2,8 @@
     const widgets = [...document.querySelectorAll("[data-on-this-day]")];
     if (!widgets.length) return;
 
+    // Leap-year reference keeps Feb. 29 available while the archive itself
+    // intentionally matches month/day across every historical year.
     const REFERENCE_YEAR = 2024;
     const kindOrder = new Map([
         ["fight", 0],
@@ -71,8 +73,40 @@
             });
     }
 
+    function compactEntries(entries, date, limit = 4) {
+        const ordered = entriesForDate(entries, date);
+        const picked = [];
+        const years = new Set();
+
+        // A small homepage/news module is more interesting when it spans eras
+        // instead of showing four moments from the same event or year.
+        for (const entry of ordered) {
+            const year = entryYear(entry);
+            if (years.has(year)) continue;
+            picked.push(entry);
+            years.add(year);
+            if (picked.length === limit) return picked;
+        }
+
+        for (const entry of ordered) {
+            if (picked.includes(entry)) continue;
+            picked.push(entry);
+            if (picked.length === limit) break;
+        }
+
+        return picked;
+    }
+
     function entryYear(entry) {
         return entry.date?.slice(0, 4) || "";
+    }
+
+    function ageLabel(entry) {
+        const year = Number(entryYear(entry));
+        if (!year) return "";
+        const age = new Date().getFullYear() - year;
+        if (age <= 0) return "This year";
+        return `${age} ${age === 1 ? "year" : "years"} ago`;
     }
 
     function kindLabel(kind) {
@@ -88,9 +122,44 @@
         return labels[kind] || "Note";
     }
 
+    function mediaBlock(entry, compact = false) {
+        const media = element("div", compact ? "otd-compact-media" : "otd-entry-media");
+        media.dataset.year = entryYear(entry);
+        media.dataset.promotion = entry.promotion || kindLabel(entry.kind);
+
+        const fallback = () => {
+            media.classList.add("is-fallback");
+            media.replaceChildren(
+                element("span", "otd-media-year", entryYear(entry)),
+                element("span", "otd-media-promotion", entry.promotion || kindLabel(entry.kind))
+            );
+        };
+
+        if (!entry.imageUrl) {
+            fallback();
+            return media;
+        }
+
+        const image = document.createElement("img");
+        image.src = entry.imageUrl;
+        image.alt = entry.imageAlt || "";
+        image.loading = compact ? "eager" : "lazy";
+        image.decoding = "async";
+        image.referrerPolicy = "no-referrer";
+        if (entry.imagePosition) image.style.objectPosition = entry.imagePosition;
+        image.addEventListener("error", fallback, { once: true });
+        media.append(image);
+
+        if (entry.imageCredit) {
+            media.append(element("span", "otd-media-credit", entry.imageCredit));
+        }
+
+        return media;
+    }
+
     function renderCompact(widget, entries) {
         const date = localToday();
-        const matching = entriesForDate(entries, date).slice(0, 3);
+        const matching = compactEntries(entries, date, 4);
         const dateNode = widget.querySelector("[data-otd-date]");
         const list = widget.querySelector("[data-otd-list]");
 
@@ -102,8 +171,9 @@
             return;
         }
 
-        const cards = matching.map(entry => {
-            const card = element("article", "otd-compact-item");
+        const cards = matching.map((entry, index) => {
+            const card = element("article", `otd-compact-item${index === 0 ? " otd-compact-item--lead" : ""}`);
+            const copy = element("div", "otd-compact-copy");
             const meta = element("div", "otd-compact-meta");
             meta.append(
                 element("span", "otd-year", entryYear(entry)),
@@ -117,7 +187,8 @@
                 title.textContent = entry.title;
             }
 
-            card.append(meta, title);
+            copy.append(meta, title);
+            card.append(mediaBlock(entry, true), copy);
             return card;
         });
 
@@ -175,8 +246,8 @@
                 return;
             }
 
-            const items = matching.map(entry => {
-                const item = element("article", `otd-entry otd-entry--${entry.kind || "note"}`);
+            const items = matching.map((entry, index) => {
+                const item = element("article", `otd-entry otd-entry--${entry.kind || "note"}${index === 0 ? " otd-entry--lead" : ""}`);
                 const year = element("div", "otd-entry-year", entryYear(entry));
                 const body = element("div", "otd-entry-body");
                 const meta = element("div", "otd-entry-meta");
@@ -184,6 +255,9 @@
                     element("span", `otd-kind otd-kind--${entry.kind || "note"}`, kindLabel(entry.kind))
                 );
                 if (entry.promotion) meta.append(element("span", "otd-promotion", entry.promotion));
+
+                const age = ageLabel(entry);
+                if (age) meta.append(element("span", "otd-age", age));
 
                 const title = element("h2", "otd-entry-title", entry.title);
                 body.append(meta, title);
@@ -193,7 +267,7 @@
                     body.append(externalLink(entry.sourceUrl, "otd-entry-source", `${entry.source || "Source"} ↗`));
                 }
 
-                item.append(year, body);
+                item.append(year, mediaBlock(entry), body);
                 return item;
             });
 

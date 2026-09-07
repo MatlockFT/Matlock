@@ -1,12 +1,12 @@
 /* =========================================================
    ON THIS DAY IN MMA
-   Compact history module + full archive. Intentionally restrained:
-   dates and stories lead; headings do not dominate the screen.
+   Visual history cards with restrained labels. Photos are editorial accents;
+   every card has a branded fallback so a remote image can fail gracefully.
    ========================================================= */
 
 .otd-compact {
-    margin: clamp(1.25rem, 2.6vw, 2rem) 0;
-    padding: 0.85rem 0;
+    margin: clamp(1.35rem, 2.8vw, 2.25rem) 0;
+    padding: 0.9rem 0 1rem;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
 }
@@ -16,16 +16,22 @@
     align-items: baseline;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.75rem;
 }
 
 .otd-compact-title {
     color: #ffffff;
-    font-size: 0.76rem;
+    font-size: 0.74rem;
     font-weight: 900;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.075em;
     text-decoration: none;
     text-transform: uppercase;
+}
+
+.otd-compact-title::after {
+    margin-left: 0.35rem;
+    color: var(--accent);
+    content: "→";
 }
 
 .otd-compact-title:hover,
@@ -35,22 +41,123 @@
 
 .otd-compact-date {
     color: var(--muted);
-    font: 800 0.68rem/1 "Courier New", monospace;
+    font: 800 0.66rem/1 "Courier New", monospace;
     letter-spacing: 0.06em;
     text-transform: uppercase;
 }
 
 .otd-compact-list {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.7rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
 }
 
 .otd-compact-item {
     min-width: 0;
-    padding: 0.75rem;
-    border-left: 2px solid var(--border-bright);
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0.025), transparent 68%);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #0d0d0d;
+}
+
+.otd-compact-item--lead {
+    border-color: rgba(255, 74, 84, 0.42);
+    box-shadow: inset 0 -3px 0 rgba(255, 74, 84, 0.14);
+}
+
+.otd-compact-media,
+.otd-entry-media {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 78% 18%, rgba(255, 74, 84, 0.32), transparent 38%),
+        linear-gradient(145deg, #262626 0%, #111111 58%, #080808 100%);
+    isolation: isolate;
+}
+
+.otd-compact-media {
+    aspect-ratio: 16 / 9;
+    border-bottom: 1px solid var(--border);
+}
+
+.otd-compact-media::after,
+.otd-entry-media::after {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    background:
+        linear-gradient(to top, rgba(0, 0, 0, 0.62), transparent 55%),
+        repeating-linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 0.025) 0,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+    content: "";
+    pointer-events: none;
+}
+
+.otd-compact-media img,
+.otd-entry-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.72) contrast(1.08) brightness(0.9);
+    transition: filter 180ms ease, transform 220ms ease;
+}
+
+.otd-compact-item:hover .otd-compact-media img,
+.otd-entry:hover .otd-entry-media img {
+    filter: saturate(0.96) contrast(1.06) brightness(0.96);
+    transform: scale(1.018);
+}
+
+.otd-media-credit {
+    position: absolute;
+    z-index: 3;
+    right: 0.45rem;
+    bottom: 0.38rem;
+    color: rgba(255, 255, 255, 0.72);
+    font: 800 0.48rem/1 "Courier New", monospace;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.otd-compact-media.is-fallback,
+.otd-entry-media.is-fallback {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.55rem;
+    padding: 0.65rem;
+}
+
+.otd-media-year {
+    position: relative;
+    z-index: 3;
+    color: #ffffff;
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: clamp(2.2rem, 5vw, 4.3rem);
+    font-weight: 700;
+    line-height: 0.8;
+    letter-spacing: -0.025em;
+}
+
+.otd-media-promotion {
+    position: relative;
+    z-index: 3;
+    max-width: 50%;
+    color: var(--accent-soft);
+    font: 900 0.56rem/1.08 "Courier New", monospace;
+    letter-spacing: 0.08em;
+    text-align: right;
+    text-transform: uppercase;
+}
+
+.otd-compact-copy {
+    padding: 0.72rem 0.78rem 0.8rem;
 }
 
 .otd-compact-meta,
@@ -63,11 +170,12 @@
 
 .otd-year,
 .otd-kind,
-.otd-promotion {
+.otd-promotion,
+.otd-age {
     color: var(--muted);
-    font-size: 0.58rem;
+    font-size: 0.56rem;
     font-weight: 900;
-    letter-spacing: 0.07em;
+    letter-spacing: 0.065em;
     line-height: 1;
     text-transform: uppercase;
 }
@@ -91,13 +199,19 @@
     color: #c9c9c9;
 }
 
+.otd-age::before {
+    margin-right: 0.42rem;
+    color: #494949;
+    content: "•";
+}
+
 .otd-compact-item-title {
     margin: 0.42rem 0 0;
     color: #ffffff;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: clamp(0.93rem, 1.25vw, 1.08rem);
+    font-size: clamp(0.91rem, 1.15vw, 1.04rem);
     font-weight: 850;
-    line-height: 1.18;
+    line-height: 1.2;
     text-wrap: pretty;
 }
 
@@ -114,13 +228,13 @@
 /* Full archive */
 
 .otd-page {
-    width: min(100%, 980px);
+    width: min(100%, 1120px);
     margin: 0 auto;
 }
 
 .otd-page-header {
     display: grid;
-    gap: 0.55rem;
+    gap: 0.5rem;
     margin-bottom: 1rem;
     padding-bottom: 0.9rem;
     border-bottom: 1px solid var(--border);
@@ -130,7 +244,7 @@
     margin: 0;
     color: var(--muted);
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 900;
     letter-spacing: 0.09em;
     line-height: 1;
@@ -148,7 +262,7 @@
     margin: 0;
     color: #ffffff;
     font-family: "Gobold", Impact, sans-serif;
-    font-size: clamp(2.4rem, 6vw, 4.8rem);
+    font-size: clamp(2.4rem, 5.4vw, 4.6rem);
     font-weight: 700;
     line-height: 0.95;
     text-transform: uppercase;
@@ -157,7 +271,7 @@
 .otd-page-count {
     margin: 0 0 0.25rem;
     color: var(--muted);
-    font: 800 0.68rem/1.2 "Courier New", monospace;
+    font: 800 0.66rem/1.2 "Courier New", monospace;
     text-transform: uppercase;
 }
 
@@ -166,7 +280,7 @@
     grid-template-columns: auto minmax(170px, 1fr) auto auto;
     gap: 0.55rem;
     align-items: center;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.3rem;
 }
 
 .otd-control-button,
@@ -183,7 +297,7 @@
     min-width: 44px;
     place-items: center;
     padding: 0.55rem 0.8rem;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 900;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -211,8 +325,9 @@
 
 .otd-entry {
     display: grid;
-    grid-template-columns: 92px minmax(0, 1fr);
-    gap: clamp(1rem, 3vw, 1.6rem);
+    grid-template-columns: 78px minmax(190px, 240px) minmax(0, 1fr);
+    gap: clamp(0.9rem, 2.2vw, 1.45rem);
+    align-items: start;
     padding: 1.15rem 0;
     border-top: 1px solid var(--border);
 }
@@ -221,36 +336,55 @@
     border-bottom: 1px solid var(--border);
 }
 
+.otd-entry--lead {
+    padding-top: 1.35rem;
+}
+
 .otd-entry-year {
-    padding-top: 0.12rem;
+    padding-top: 0.1rem;
     color: var(--accent-soft);
-    font: 900 clamp(1.1rem, 2.2vw, 1.45rem)/1 "Courier New", monospace;
+    font: 900 clamp(1.05rem, 1.8vw, 1.35rem)/1 "Courier New", monospace;
+}
+
+.otd-entry-media {
+    aspect-ratio: 16 / 10;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.otd-entry--lead .otd-entry-media {
+    border-color: rgba(255, 74, 84, 0.42);
+}
+
+.otd-entry-body {
+    min-width: 0;
+    padding-top: 0.05rem;
 }
 
 .otd-entry-title {
-    margin: 0.4rem 0 0;
+    margin: 0.42rem 0 0;
     color: #ffffff;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: clamp(1.1rem, 2.3vw, 1.55rem);
+    font-size: clamp(1.08rem, 1.85vw, 1.48rem);
     font-weight: 900;
-    line-height: 1.12;
+    line-height: 1.13;
     letter-spacing: -0.015em;
     text-wrap: pretty;
 }
 
 .otd-entry-detail {
-    max-width: 760px;
-    margin: 0.45rem 0 0;
+    max-width: 720px;
+    margin: 0.48rem 0 0;
     color: var(--text-soft);
     font-size: 0.86rem;
-    line-height: 1.5;
+    line-height: 1.52;
 }
 
 .otd-entry-source {
     display: inline-block;
-    margin-top: 0.55rem;
+    margin-top: 0.58rem;
     color: var(--muted);
-    font-size: 0.64rem;
+    font-size: 0.62rem;
     font-weight: 900;
     letter-spacing: 0.06em;
     text-decoration: none;
@@ -283,19 +417,53 @@
     font-size: 0.82rem;
 }
 
+html.reduce-motion .otd-compact-media img,
+html.reduce-motion .otd-entry-media img {
+    transition: none;
+    transform: none !important;
+}
+
+@media (max-width: 980px) {
+    .otd-compact-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .otd-entry {
+        grid-template-columns: 66px minmax(165px, 210px) minmax(0, 1fr);
+    }
+}
+
 @media (max-width: 760px) {
     .otd-compact-list {
         grid-template-columns: 1fr;
-        gap: 0;
+        gap: 0.55rem;
     }
 
     .otd-compact-item {
-        padding: 0.72rem 0.25rem 0.72rem 0.7rem;
-        border-bottom: 1px solid var(--border);
+        display: grid;
+        grid-template-columns: 112px minmax(0, 1fr);
+        min-height: 100px;
     }
 
-    .otd-compact-item:last-child {
+    .otd-compact-media {
+        height: 100%;
+        min-height: 100px;
+        aspect-ratio: auto;
+        border-right: 1px solid var(--border);
         border-bottom: 0;
+    }
+
+    .otd-compact-media .otd-media-year {
+        font-size: 2rem;
+    }
+
+    .otd-compact-media .otd-media-promotion {
+        display: none;
+    }
+
+    .otd-compact-copy {
+        align-self: center;
+        padding: 0.68rem 0.72rem;
     }
 
     .otd-page-date-row {
@@ -317,13 +485,27 @@
     }
 
     .otd-entry {
-        grid-template-columns: 62px minmax(0, 1fr);
-        gap: 0.75rem;
+        grid-template-columns: 56px minmax(0, 1fr);
+        gap: 0.7rem;
         padding: 1rem 0;
     }
 
     .otd-entry-year {
-        font-size: 1rem;
+        grid-column: 1;
+        grid-row: 1 / 3;
+        font-size: 0.96rem;
+    }
+
+    .otd-entry-media {
+        grid-column: 2;
+        grid-row: 1;
+        width: min(100%, 520px);
+        aspect-ratio: 16 / 8.6;
+    }
+
+    .otd-entry-body {
+        grid-column: 2;
+        grid-row: 2;
     }
 
     .otd-entry-title {
@@ -332,12 +514,16 @@
 
     .otd-entry-detail {
         font-size: 0.82rem;
-        line-height: 1.45;
+        line-height: 1.46;
     }
 }
 
 @media (max-width: 420px) {
+    .otd-compact-item {
+        grid-template-columns: 96px minmax(0, 1fr);
+    }
+
     .otd-entry {
-        grid-template-columns: 54px minmax(0, 1fr);
+        grid-template-columns: 50px minmax(0, 1fr);
     }
 }
