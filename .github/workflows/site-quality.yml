@@ -62,6 +62,24 @@ jobs:
           node --check scripts/validate-upcoming-events.mjs
           node --check scripts/publish-scheduled-posts.mjs
 
+      - name: Check first-paint shell invariants
+        run: |
+          grep -q "assets/site-ticker.css" _layouts/default.html
+          grep -q "site-live-strip-reserve" _layouts/default.html
+          grep -q 'width="1600"' _layouts/default.html
+          grep -q 'height="640"' _layouts/default.html
+          grep -q "site-live-strip-reserve" assets/site-shell.css
+          grep -q "otd-list:empty" assets/site-shell.css
+          grep -q "min-height: 104px" assets/ufc-roster.css
+          if grep -q 'document.createElement("style")' assets/site.js; then
+            echo "site.js must not inject shell CSS at runtime"
+            exit 1
+          fi
+          if grep -q '@import.*site-ticker.css' assets/site-shell.css; then
+            echo "Ticker CSS must be linked directly, not discovered through @import"
+            exit 1
+          fi
+
       - name: Check fighter birthday registry JSON
         run: node -e "JSON.parse(require('fs').readFileSync('assets/data/fighter-birthday-seeds.json','utf8'));"
 
