@@ -133,7 +133,7 @@
         return labels[kind] || "Note";
     }
 
-    function mediaBlock(entry, compact = false) {
+    function mediaBlock(entry, compact = false, priority = false) {
         const media = element("div", compact ? "otd-compact-media" : "otd-entry-media");
         media.dataset.year = entryYear(entry);
         media.dataset.promotion = entry.promotion || kindLabel(entry.kind);
@@ -154,7 +154,8 @@
         const image = document.createElement("img");
         image.src = entry.imageUrl;
         image.alt = entry.imageAlt || "";
-        image.loading = compact ? "eager" : "lazy";
+        image.loading = priority ? "eager" : "lazy";
+        if (priority) image.fetchPriority = "high";
         image.decoding = "async";
         image.referrerPolicy = "no-referrer";
         if (entry.imagePosition) image.style.objectPosition = entry.imagePosition;
@@ -199,7 +200,7 @@
             }
 
             copy.append(meta, title);
-            card.append(mediaBlock(entry, true), copy);
+            card.append(mediaBlock(entry, true, index === 0), copy);
             return card;
         });
 
@@ -278,7 +279,7 @@
                     body.append(externalLink(entry.sourceUrl, "otd-entry-source", `${entry.source || "Source"} ↗`));
                 }
 
-                item.append(year, mediaBlock(entry), body);
+                item.append(year, mediaBlock(entry, false, index === 0), body);
                 return item;
             });
 
