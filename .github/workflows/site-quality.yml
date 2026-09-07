@@ -38,8 +38,11 @@ jobs:
           node --check assets/article-toc.js
           node --check assets/news-feed.js
           node --check assets/event-map.js
+          node --check assets/event-map-v2.js
           node --check assets/event-map-pointer-fix.js
           node --check assets/event-map-detail-enhance.js
+          node --check assets/event-map-ux.js
+          node --check assets/event-map-near-standards.js
           node --check scripts/build-news-feed.mjs
           node --check scripts/check-news-data.mjs
           node --check scripts/upcoming-events-data.mjs
@@ -51,6 +54,7 @@ jobs:
           node --check scripts/enrich-event-map-details.mjs
           node --check scripts/preserve-event-map-discovery.mjs
           node --check scripts/validate-event-map-regional.mjs
+          node --check scripts/validate-regional-picker.mjs
           node --check scripts/resolve-espn-fighter-portraits.mjs
           node --check scripts/enrich-fighter-portraits.mjs
           node --check scripts/validate-upcoming-events.mjs
@@ -58,6 +62,9 @@ jobs:
 
       - name: Check Upcoming Events data and renderer
         run: node scripts/validate-upcoming-events.mjs
+
+      - name: Check curated regional Fight Card Picker data
+        run: node scripts/validate-regional-picker.mjs
 
       - name: Check regional Event Map data
         run: node scripts/validate-event-map-regional.mjs
