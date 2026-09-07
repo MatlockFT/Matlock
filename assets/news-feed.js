@@ -13,20 +13,39 @@
     const sourceFilter = newsPage.querySelector("[data-news-source-filter]");
     const showMoreButton = newsPage.querySelector("[data-news-show-more]");
     const remoteFeedUrl = newsPage.dataset.feedUrl;
+    const apiFallbackFeedUrl = newsPage.dataset.apiFallbackUrl || "";
     const fallbackFeedUrl = newsPage.dataset.fallbackUrl;
     const refreshInterval = Number(newsPage.dataset.refreshInterval) || 300000;
     const LATEST_COUNT = 4;
     const MORE_INCREMENT = 6;
+    const CACHE_KEY = "matlock-news-feed-v2";
+    const CACHE_MAX_AGE = Math.max(refreshInterval * 6, 30 * 60 * 1000);
     const BOXING_SIGNAL = /\b(?:boxing|boxer|pugilist|wbc|wba|ibf|wbo|the ring|ring magazine|canelo|saul alvarez|tyson fury|oleksandr usyk|anthony joshua|terence crawford|gervonta davis|ryan garcia|naoya inoue|devin haney|shakur stevenson|teofimo lopez|dmitry bivol|artur beterbiev|jai opetai?a|jaron ennis|sebastian fundora|david benavidez|caleb plant|katie taylor|claressa shields|amanda serrano)\b/i;
     const VOX_IMAGE_HOSTS = new Set([
         "platform.mmafighting.com",
         "platform.mmamania.com"
     ]);
+    const relativeFormatter = new Intl.RelativeTimeFormat([], { numeric: "auto" });
 
     let refreshTimer = 0;
     let allStories = [];
     let moreVisibleCount = MORE_INCREMENT;
     let selectedSource = "all";
+    let lastRemoteRefresh = 0;
+
+    const deferredImageObserver = "IntersectionObserver" in window
+        ? new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const image = entry.target;
+                deferredImageObserver.unobserve(image);
+                const src = image.dataset.src;
+                if (!src) return;
+                delete image.dataset.src;
+                image.src = src;
+            });
+        }, { rootMargin: "40px 0px" })
+        : null;
 
     function element(tagName, className, text) {
         const node = document.createElement(tagName);
@@ -53,7 +72,6 @@
         if (!date) return "Recently";
 
         const elapsedSeconds = Math.round((date.getTime() - Date.now()) / 1000);
-        const relative = new Intl.RelativeTimeFormat([], { numeric: "auto" });
         const ranges = [
             ["year", 31536000],
             ["month", 2592000],
@@ -65,7 +83,7 @@
 
         for (const [unit, seconds] of ranges) {
             if (Math.abs(elapsedSeconds) >= seconds || unit === "minute") {
-                return relative.format(Math.round(elapsedSeconds / seconds), unit);
+                return relativeFormatter.format(Math.round(elapsedSeconds / seconds), unit);
             }
         }
 
@@ -112,38 +130,73 @@
 
         try {
             const url = new URL(rawUrl, window.location.href);
-            if (!VOX_IMAGE_HOSTS.has(url.hostname)) return rawUrl;
-
             const targetWidth = className === "news-latest-thumb"
-                ? 360
+                ? 240
                 : className === "news-lead-media"
-                    ? 900
-                    : 720;
+                    ? (window.innerWidth <= 620 ? 720 : 900)
+                    : 640;
 
-            url.searchParams.set("quality", "76");
-            url.searchParams.set("strip", "all");
-            url.searchParams.set("w", String(targetWidth));
-            return url.href;
+            if (VOX_IMAGE_HOSTS.has(url.hostname)) {
+                url.searchParams.set("quality", "76");
+                url.searchParams.set("strip", "all");
+                url.searchParams.set("w", String(targetWidth));
+                return url.href;
+            }
+
+            if (url.hostname === "s.yimg.com") {
+                url.pathname = url.pathname
+                    .replace(/resizefill_w\d+%3Bquality_\d+%3Bformat_webp/i, `resizefill_w${targetWidth}%3Bquality_76%3Bformat_webp`)
+                    .replace(/resizefill_w\d+;quality_\d+;format_webp/i, `resizefill_w${targetWidth};quality_76;format_webp`);
+                return url.href;
+            }
+
+            return rawUrl;
         } catch {
             return rawUrl;
         }
+    }
+
+    function unobserveImages(container) {
+        if (!deferredImageObserver || !container) return;
+        container.querySelectorAll("img[data-src]").forEach(image => {
+            deferredImageObserver.unobserve(image);
+        });
     }
 
     function addImage(container, story, className, eager = false) {
         if (!story.image) return false;
 
         const image = document.createElement("img");
-        image.src = optimizedImageUrl(story.image, className);
+        const src = optimizedImageUrl(story.image, className);
         image.alt = "";
-        image.loading = eager ? "eager" : "lazy";
-        if (eager) image.fetchPriority = "high";
         image.decoding = "async";
         image.referrerPolicy = "no-referrer";
+
+        if (eager) {
+            image.src = src;
+            image.loading = "eager";
+            image.fetchPriority = "high";
+        } else if (deferredImageObserver) {
+            image.dataset.src = src;
+            image.loading = "lazy";
+            image.fetchPriority = "low";
+            deferredImageObserver.observe(image);
+        } else {
+            image.src = src;
+            image.loading = "lazy";
+        }
+
         image.addEventListener("error", () => {
+            deferredImageObserver?.unobserve(image);
             image.remove();
             container.classList.add(`${className}--empty`);
             container.dataset.source = story.source || "MMA";
         }, { once: true });
+
+        image.addEventListener("load", () => {
+            deferredImageObserver?.unobserve(image);
+        }, { once: true });
+
         container.append(image);
         return true;
     }
@@ -255,6 +308,28 @@
         );
     }
 
+    function readCachedFeed() {
+        try {
+            const stored = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+            if (!stored?.savedAt || !validateFeed(stored.data)) return null;
+            if (Date.now() - Number(stored.savedAt) > CACHE_MAX_AGE) return null;
+            return stored.data;
+        } catch {
+            return null;
+        }
+    }
+
+    function writeCachedFeed(data) {
+        try {
+            localStorage.setItem(CACHE_KEY, JSON.stringify({
+                savedAt: Date.now(),
+                data
+            }));
+        } catch {
+            // Live news still works when storage is unavailable.
+        }
+    }
+
     function updateSummary() {
         const sourceCount = new Set(allStories.map(story => story.source).filter(Boolean)).size;
         summary.textContent = `${allStories.length} stories · ${sourceCount} sources`;
@@ -289,6 +364,7 @@
     function renderMoreStories() {
         const stories = filteredMoreStories();
         const visibleStories = stories.slice(0, moreVisibleCount);
+        unobserveImages(moreList);
 
         if (!visibleStories.length) {
             moreList.replaceChildren(
@@ -303,7 +379,7 @@
         showMoreButton.textContent = `Show more stories${stories.length > visibleStories.length ? ` (${stories.length - visibleStories.length})` : ""}`;
     }
 
-    function setStatus(data, fallbackUsed = false) {
+    function setStatus(data, { fallbackUsed = false } = {}) {
         const generatedAt = safeDate(data.generatedAt);
         let timeLabel = "recently";
 
@@ -327,20 +403,22 @@
         liveStatus.dataset.state = fallbackUsed ? "stale" : "ready";
     }
 
-    function renderFeed(data, fallbackUsed = false) {
+    function renderFeed(data, options = {}) {
         allStories = uniqueStories(data);
         moreVisibleCount = MORE_INCREMENT;
 
         const topStory = allStories[0];
         const latestStories = allStories.slice(1, 1 + LATEST_COUNT);
 
+        unobserveImages(topStorySlot);
+        unobserveImages(latestList);
         topStorySlot.replaceChildren(renderTopStory(topStory));
         latestList.replaceChildren(...latestStories.map(renderLatestStory));
         leadGrid.setAttribute("aria-busy", "false");
         updateSummary();
         updateSourceFilter();
         renderMoreStories();
-        setStatus(data, fallbackUsed);
+        setStatus(data, options);
     }
 
     async function fetchJson(url, useCacheBucket = false) {
@@ -354,7 +432,7 @@
         }
 
         const response = await fetch(requestUrl, {
-            cache: "no-store",
+            cache: useCacheBucket ? "default" : "no-store",
             headers: { accept: "application/json" }
         });
 
@@ -374,21 +452,40 @@
         return data;
     }
 
-    async function refreshFeed() {
-        status.textContent = allStories.length
-            ? "Checking for new stories…"
-            : "Loading the latest stories…";
-        status.dataset.state = "loading";
-        liveStatus.dataset.state = "loading";
+    async function fetchLiveFeed() {
+        try {
+            return await fetchJson(remoteFeedUrl, true);
+        } catch (primaryError) {
+            if (!apiFallbackFeedUrl) throw primaryError;
+            return fetchJson(apiFallbackFeedUrl, true);
+        }
+    }
+
+    async function refreshFeed({ quiet = false } = {}) {
+        if (!quiet) {
+            status.textContent = allStories.length
+                ? "Checking for new stories…"
+                : "Loading the latest stories…";
+            status.dataset.state = "loading";
+            liveStatus.dataset.state = "loading";
+        }
         refreshButton.disabled = true;
 
         try {
-            const data = await fetchJson(remoteFeedUrl, true);
+            const data = await fetchLiveFeed();
+            lastRemoteRefresh = Date.now();
+            writeCachedFeed(data);
             renderFeed(data);
         } catch {
+            if (allStories.length) {
+                status.dataset.state = "stale";
+                liveStatus.dataset.state = "stale";
+                return;
+            }
+
             try {
                 const fallback = await fetchJson(fallbackFeedUrl);
-                renderFeed(fallback, true);
+                renderFeed(fallback, { fallbackUsed: true });
             } catch {
                 status.textContent = "News feed temporarily unavailable · Try refresh";
                 status.dataset.state = "error";
@@ -421,7 +518,7 @@
         renderMoreStories();
     });
 
-    refreshButton.addEventListener("click", refreshFeed);
+    refreshButton.addEventListener("click", () => refreshFeed());
 
     window.addEventListener("matlock:preferences", event => {
         if (event.detail?.reducedMotion) {
@@ -431,7 +528,25 @@
         }
     });
 
-    refreshFeed();
-    refreshTimer = window.setInterval(refreshFeed, refreshInterval);
-    window.addEventListener("pagehide", () => window.clearInterval(refreshTimer));
+    document.addEventListener("visibilitychange", () => {
+        if (
+            !document.hidden &&
+            Date.now() - lastRemoteRefresh >= refreshInterval
+        ) {
+            refreshFeed({ quiet: allStories.length > 0 });
+        }
+    });
+
+    const cached = readCachedFeed();
+    if (cached) renderFeed(cached);
+    refreshFeed({ quiet: Boolean(cached) });
+
+    refreshTimer = window.setInterval(() => {
+        if (!document.hidden) refreshFeed({ quiet: allStories.length > 0 });
+    }, refreshInterval);
+
+    window.addEventListener("pagehide", () => {
+        window.clearInterval(refreshTimer);
+        deferredImageObserver?.disconnect();
+    });
 })();
