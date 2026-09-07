@@ -17,60 +17,6 @@
     ].filter(Boolean);
     let lockedScrollPosition = 0;
 
-    /*
-       Shell regression guard.
-       Internal navigation links contain a single span, while older CSS hid the
-       last span to suppress the external-link arrow. On desktop that also hid
-       every internal label. Keep the actual label visible and make the primary
-       nav explicitly present at desktop widths.
-
-       The site-level Reduce Motion preference still calms decorative effects,
-       but the live news strip remains a slow information ticker unless the
-       device itself requests reduced motion. Device reduced-motion continues to
-       stop the ticker entirely.
-    */
-    const shellRegressionGuard = document.createElement("style");
-    shellRegressionGuard.dataset.shellRegressionGuard = "";
-    shellRegressionGuard.textContent = `
-        @media (min-width: 851px) {
-            .navigation-panel {
-                display: grid !important;
-            }
-
-            .navigation-list {
-                display: flex !important;
-            }
-
-            .navigation-list li {
-                opacity: 1 !important;
-                transform: none !important;
-            }
-
-            .navigation-list a > span:first-child {
-                display: inline !important;
-            }
-        }
-
-        @media (prefers-reduced-motion: no-preference) {
-            html.reduce-motion body .site-news-track {
-                animation-name: site-news-scroll-manual !important;
-                animation-duration: var(--site-news-duration, 70s) !important;
-                animation-timing-function: linear !important;
-                animation-iteration-count: infinite !important;
-            }
-
-            html.reduce-motion body .site-news-sequence:nth-child(2) {
-                display: flex !important;
-            }
-        }
-
-        @keyframes site-news-scroll-manual {
-            from { translate: 0 0; }
-            to { translate: -50% 0; }
-        }
-    `;
-    document.head.appendChild(shellRegressionGuard);
-
     function readPreference(key) {
         try {
             return localStorage.getItem(key);
