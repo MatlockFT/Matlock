@@ -6,6 +6,7 @@ permalink: /assets/data/event-map-live.json
 {% assign regional_events = site.data.event_map_regional.events %}
 {% assign picker_regional_events = site.data.upcoming_events_regional.events %}
 {% assign event_map_events = major_events | concat: regional_events %}
+{% assign picker_events = major_events | concat: picker_regional_events %}
 {% assign picker_major_ids = major_events | map: "id" %}
 {% assign picker_regional_ids = picker_regional_events | map: "id" %}
 {% assign picker_ids = picker_major_ids | concat: picker_regional_ids %}
@@ -14,5 +15,16 @@ permalink: /assets/data/event-map-live.json
   "regional_total": {{ regional_events | size | jsonify }},
   "regional_loaded": {{ regional_events | size | jsonify }},
   "picker_event_ids": {{ picker_ids | jsonify }},
+  "picker_events": [
+    {% for event in picker_events %}
+    {
+      "id": {{ event.id | jsonify }},
+      "title": {{ event.title | jsonify }},
+      "date": {{ event.date | jsonify }},
+      "promotion": {{ event.promotion | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "event_overrides": {{ site.data.event_map_overrides | jsonify }},
   "events": {{ event_map_events | jsonify }}
 }

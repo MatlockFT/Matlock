@@ -1,0 +1,15 @@
+/* Event Map detail hardening: no empty poster box, no placeholder weight copy. */
+
+.event-map-detail-poster:not([data-poster-ready="true"]),
+.event-map-detail-poster[hidden],
+.event-map-detail-weight[hidden] {
+    display: none !important;
+}
+
+.event-map-detail-poster[data-poster-ready="true"] {
+    display: block;
+}
+
+.event-map-detail-poster img {
+    max-height: 320px;
+}

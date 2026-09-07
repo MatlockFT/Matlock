@@ -5,9 +5,11 @@ description: "Explore upcoming MMA events across the United States, browse nearb
 permalink: /event-map/
 page_styles:
   - /assets/event-map.css
+  - /assets/event-map-detail.css
 page_scripts:
   - /assets/event-map-v2.js
   - /assets/event-map-enhancements.js
+  - /assets/event-map-detail.js
 ---
 
 <section
@@ -108,14 +110,14 @@ page_scripts:
                 </div>
                 <h2 data-detail-title></h2>
 
-                <figure class="event-map-detail-poster" data-detail-poster-wrap hidden>
+                <figure class="event-map-detail-poster" data-detail-poster-wrap data-poster-ready="false" hidden>
                     <img data-detail-poster loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="">
                 </figure>
 
                 <div class="event-map-detail-matchup">
                     <p class="event-map-detail-matchup-label">Main event</p>
                     <p class="event-map-detail-fighters" data-detail-fighters>Main event not yet listed</p>
-                    <p class="event-map-detail-weight" data-detail-weight>Weight class not yet listed</p>
+                    <p class="event-map-detail-weight" data-detail-weight hidden></p>
                 </div>
 
                 <p class="event-map-detail-location" data-detail-location></p>

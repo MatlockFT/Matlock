@@ -41,6 +41,8 @@ jobs:
           node --check assets/on-this-day.js
           node --check assets/event-map-v2.js
           node --check assets/event-map-enhancements.js
+          node --check assets/event-map-detail.js
+          node --check assets/upcoming-events-jump.js
           node --check scripts/build-news-feed.mjs
           node --check scripts/check-news-data.mjs
           node --check scripts/check-on-this-day.mjs
