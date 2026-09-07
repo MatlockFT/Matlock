@@ -230,6 +230,10 @@
         queued = true;
         queueMicrotask(() => {
             queued = false;
+            if (detailCard.hidden) {
+                render();
+                return;
+            }
             ensureData().then(render);
         });
     }
@@ -245,8 +249,7 @@
         attributes: true,
         attributeFilter: ['datetime']
     });
-    observer.observe(weightNode, { childList: true, characterData: true, subtree: true });
 
     tidyWeight();
-    ensureData().then(render);
+    if (!detailCard.hidden) queueRender();
 })();
