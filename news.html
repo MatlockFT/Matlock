@@ -5,8 +5,10 @@ description: "Latest MMA news, UFC headlines, fight announcements, interviews, r
 permalink: /news/
 page_styles:
   - /assets/news.css
+  - /assets/on-this-day.css
 page_scripts:
   - /assets/news-feed.js
+  - /assets/on-this-day.js
 ---
 
 <article
@@ -56,6 +58,21 @@ page_scripts:
                 </div>
             </aside>
         </div>
+    </section>
+
+    <section
+        class="otd-compact"
+        data-on-this-day
+        data-mode="compact"
+        data-history-url="{{ '/assets/data/on-this-day.json' | relative_url }}?v={{ site.asset_version }}"
+        hidden
+        aria-label="On this day in MMA history"
+    >
+        <div class="otd-compact-header">
+            <a class="otd-compact-title" href="{{ '/on-this-day/' | relative_url }}">On This Day</a>
+            <span class="otd-compact-date" data-otd-date></span>
+        </div>
+        <div class="otd-compact-list" data-otd-list></div>
     </section>
 
     <section class="news-more" aria-labelledby="news-more-title">
