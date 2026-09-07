@@ -18,7 +18,7 @@ page_scripts:
   <div class="upcoming-events-list">
     {% assign picker_events = site.data.upcoming_events.events | concat: site.data.upcoming_events_regional.events | sort: "date" %}
     {% for event in picker_events %}
-      {% include fight-card-picker-event.html event=event %}
+      {% include fight-card-picker-event.html event=event priority=forloop.first %}
     {% endfor %}
   </div>
 </article>
