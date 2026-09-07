@@ -11,10 +11,12 @@ const allowedKinds = new Set([
     "title",
     "incident",
     "news",
-    "death"
+    "death",
+    "birthday"
 ]);
 const failures = [];
 const seen = new Set();
+const birthdayKeys = new Set();
 
 if (!Number.isInteger(data?.version) || data.version < 1) {
     failures.push("version must be a positive integer");
@@ -52,6 +54,19 @@ for (const [index, entry] of entries.entries()) {
         failures.push(`${prefix}.title is required`);
     }
 
+    if (entry?.kind === "birthday") {
+        if (typeof entry?.fighter !== "string" || !entry.fighter.trim()) {
+            failures.push(`${prefix}.fighter is required for birthday entries`);
+        }
+        if (typeof entry?.birthdayKey !== "string" || !entry.birthdayKey.trim()) {
+            failures.push(`${prefix}.birthdayKey is required for birthday entries`);
+        } else if (birthdayKeys.has(entry.birthdayKey)) {
+            failures.push(`${prefix}.birthdayKey duplicates another fighter birthday`);
+        } else {
+            birthdayKeys.add(entry.birthdayKey);
+        }
+    }
+
     if (entry?.detail && entry.detail.length > 240) {
         failures.push(`${prefix}.detail must stay concise (240 characters max)`);
     }
@@ -76,9 +91,14 @@ for (const [index, entry] of entries.entries()) {
         failures.push(`${prefix}.imagePosition must look like "50% 40%"`);
     }
 
-    const key = `${entry?.date || ""}::${entry?.title || ""}`.toLowerCase();
-    if (seen.has(key)) failures.push(`${prefix} duplicates an existing date/title`);
-    seen.add(key);
+    const entryKey = `${entry?.date || ""}::${entry?.title || ""}`.toLowerCase();
+    if (seen.has(entryKey)) failures.push(`${prefix} duplicates an existing date/title`);
+    seen.add(entryKey);
+}
+
+const birthdayCount = entries.filter(entry => entry?.kind === "birthday").length;
+if (data?.birthdayCount !== undefined && Number(data.birthdayCount) !== birthdayCount) {
+    failures.push(`birthdayCount says ${data.birthdayCount} but ${birthdayCount} birthday entries exist`);
 }
 
 if (failures.length) {
@@ -86,4 +106,4 @@ if (failures.length) {
     process.exit(1);
 }
 
-console.log(`On This Day data valid: ${entries.length} entries`);
+console.log(`On This Day data valid: ${entries.length} entries (${birthdayCount} birthdays)`);
