@@ -1,7 +1,7 @@
 ---
 layout: default
-title: MMA News
-description: "The latest MMA stories from trusted fight-news sources, refreshed throughout the day."
+title: "MMA News: Latest Headlines and Fight News"
+description: "Latest MMA news, UFC headlines, fight announcements, interviews, results, and major stories from trusted combat-sports sources, refreshed throughout the day."
 permalink: /news/
 page_styles:
   - /assets/news.css
@@ -17,78 +17,105 @@ page_scripts:
     data-refresh-interval="300000"
 >
     <header class="news-page-header">
-        <h1>News</h1>
+        <div class="news-page-heading">
+            <h1>News</h1>
+            <p>
+                The latest MMA headlines, fight announcements, results, and reporting from established combat-sports outlets.
+            </p>
+        </div>
+
+        <div class="news-live-status" aria-live="polite">
+            <span class="news-live-dot" aria-hidden="true"></span>
+            <span data-news-status>Loading the latest stories…</span>
+        </div>
     </header>
 
-    <section
-        class="news-deck"
-        aria-label="Top story and latest MMA news"
-    >
-        <div class="news-rail-shell">
-            <button
-                class="news-rail-button news-rail-button--previous"
-                type="button"
-                data-news-previous
-                aria-label="Show previous story"
-                disabled
-            >
-                <span aria-hidden="true">←</span>
-            </button>
-
-            <div
-                class="news-story-rail"
-                data-news-story-list
-                aria-busy="true"
-                aria-label="MMA news stories. Swipe left or right on mobile."
-                role="list"
-                tabindex="0"
-            >
-                <article class="news-loading-card" role="listitem"></article>
-                <article class="news-loading-card" role="listitem"></article>
-                <article class="news-loading-card" role="listitem"></article>
+    <section class="news-lead" aria-labelledby="news-top-stories-title">
+        <div class="news-section-heading">
+            <div>
+                <p class="news-section-kicker">Right now</p>
+                <h2 id="news-top-stories-title">Top stories</h2>
             </div>
 
             <button
-                class="news-rail-button news-rail-button--next"
+                class="secondary-button news-refresh-button"
                 type="button"
-                data-news-next
-                aria-label="Show next story"
+                data-news-refresh
             >
-                <span aria-hidden="true">→</span>
+                Refresh
             </button>
         </div>
 
-        <div class="news-feed-controls">
-            <div class="news-feed-details">
-                <span
-                    class="news-card-counter"
-                    data-news-counter
-                    aria-live="polite"
-                >
-                    1 / …
-                </span>
+        <div class="news-lead-grid" aria-busy="true" data-news-lead-grid>
+            <div class="news-top-story" data-news-top-story>
+                <article class="news-loading-card news-loading-card--lead" aria-hidden="true"></article>
             </div>
 
-            <div class="news-feed-actions">
-                <div
-                    class="news-feed-status"
-                    data-news-status
-                    data-state="loading"
-                    aria-live="polite"
-                >
-                    Loading the latest stories…
+            <aside class="news-latest-panel" aria-labelledby="news-latest-title">
+                <header class="news-latest-header">
+                    <h3 id="news-latest-title">Latest</h3>
+                    <span data-news-summary>Loading…</span>
+                </header>
+
+                <div class="news-latest-list" data-news-latest-list>
+                    <article class="news-loading-row" aria-hidden="true"></article>
+                    <article class="news-loading-row" aria-hidden="true"></article>
+                    <article class="news-loading-row" aria-hidden="true"></article>
+                    <article class="news-loading-row" aria-hidden="true"></article>
                 </div>
-
-                <button
-                    class="secondary-button news-refresh-button"
-                    type="button"
-                    data-news-refresh
-                >
-                    Refresh stories
-                </button>
-            </div>
+            </aside>
         </div>
     </section>
+
+    <section class="news-more" aria-labelledby="news-more-title">
+        <div class="news-section-heading news-section-heading--more">
+            <div>
+                <p class="news-section-kicker">Across the sport</p>
+                <h2 id="news-more-title">More MMA headlines</h2>
+            </div>
+
+            <label class="news-source-filter">
+                <span>Source</span>
+                <select data-news-source-filter aria-label="Filter MMA news by source">
+                    <option value="all">All sources</option>
+                </select>
+            </label>
+        </div>
+
+        <div
+            class="news-more-grid"
+            data-news-more-list
+            aria-live="polite"
+            aria-busy="true"
+        >
+            <article class="news-loading-card" aria-hidden="true"></article>
+            <article class="news-loading-card" aria-hidden="true"></article>
+            <article class="news-loading-card" aria-hidden="true"></article>
+        </div>
+
+        <div class="news-more-actions">
+            <button
+                class="secondary-button news-show-more"
+                type="button"
+                data-news-show-more
+                hidden
+            >
+                Show more stories
+            </button>
+        </div>
+    </section>
+
+    <details class="news-feed-note">
+        <summary>How this news feed works</summary>
+        <div>
+            <p>
+                MMA Matlock collects current headlines from established MMA and combat-sports publishers and links to the original reporting. Stories are refreshed automatically throughout the day.
+            </p>
+            <p>
+                Repeated coverage of the same story may be grouped together to reduce clutter. Source links open the publisher directly.
+            </p>
+        </div>
+    </details>
 
     <noscript>
         <p class="news-noscript">
