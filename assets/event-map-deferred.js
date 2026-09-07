@@ -11,8 +11,8 @@
     }
 
     const scripts = [
-        '/assets/event-map-enhancements.js',
-        '/assets/event-map-detail.js'
+        '/assets/event-map-detail.js',
+        '/assets/event-map-enhancements.js'
     ];
     let started = false;
 
@@ -29,19 +29,33 @@
     function start() {
         if (started) return;
         started = true;
+        removeWakeListeners();
         loadNext();
     }
 
-    const wakeEvents = ['pointerdown', 'focusin', 'keydown'];
-    const wake = () => {
-        wakeEvents.forEach(type => page.removeEventListener(type, wake, true));
+    function relevantTarget(target) {
+        if (!(target instanceof Element)) return false;
+        return Boolean(target.closest(
+            '.event-map-stage, [data-near-me], [data-event-list], [data-event-detail]'
+        ));
+    }
+
+    function wake(event) {
+        if (!relevantTarget(event.target)) return;
+        if (event.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') return;
         start();
-    };
+    }
+
+    const wakeEvents = ['pointerdown', 'pointerover', 'focusin', 'keydown'];
+
+    function removeWakeListeners() {
+        wakeEvents.forEach(type => page.removeEventListener(type, wake, true));
+    }
+
     wakeEvents.forEach(type => page.addEventListener(type, wake, true));
 
-    if ('requestIdleCallback' in window) {
-        window.requestIdleCallback(start, { timeout: 500 });
-    } else {
-        window.setTimeout(start, 220);
+    // Deep-linked events need poster / matchup enrichment without waiting for input.
+    if (new URLSearchParams(window.location.search).has('event')) {
+        window.requestAnimationFrame(start);
     }
 })();
