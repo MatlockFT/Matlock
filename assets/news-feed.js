@@ -18,6 +18,10 @@
     const LATEST_COUNT = 4;
     const MORE_INCREMENT = 6;
     const BOXING_SIGNAL = /\b(?:boxing|boxer|pugilist|wbc|wba|ibf|wbo|the ring|ring magazine|canelo|saul alvarez|tyson fury|oleksandr usyk|anthony joshua|terence crawford|gervonta davis|ryan garcia|naoya inoue|devin haney|shakur stevenson|teofimo lopez|dmitry bivol|artur beterbiev|jai opetai?a|jaron ennis|sebastian fundora|david benavidez|caleb plant|katie taylor|claressa shields|amanda serrano)\b/i;
+    const VOX_IMAGE_HOSTS = new Set([
+        "platform.mmafighting.com",
+        "platform.mmamania.com"
+    ]);
 
     let refreshTimer = 0;
     let allStories = [];
@@ -103,13 +107,36 @@
         if (coverage) container.append(coverage);
     }
 
+    function optimizedImageUrl(rawUrl, className) {
+        if (!rawUrl) return rawUrl;
+
+        try {
+            const url = new URL(rawUrl, window.location.href);
+            if (!VOX_IMAGE_HOSTS.has(url.hostname)) return rawUrl;
+
+            const targetWidth = className === "news-latest-thumb"
+                ? 360
+                : className === "news-lead-media"
+                    ? 900
+                    : 720;
+
+            url.searchParams.set("quality", "76");
+            url.searchParams.set("strip", "all");
+            url.searchParams.set("w", String(targetWidth));
+            return url.href;
+        } catch {
+            return rawUrl;
+        }
+    }
+
     function addImage(container, story, className, eager = false) {
         if (!story.image) return false;
 
         const image = document.createElement("img");
-        image.src = story.image;
+        image.src = optimizedImageUrl(story.image, className);
         image.alt = "";
         image.loading = eager ? "eager" : "lazy";
+        if (eager) image.fetchPriority = "high";
         image.decoding = "async";
         image.referrerPolicy = "no-referrer";
         image.addEventListener("error", () => {
