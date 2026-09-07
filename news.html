@@ -16,32 +16,27 @@ page_scripts:
     data-fallback-url="{{ '/assets/data/mma-news.json' | relative_url }}?v={{ site.asset_version }}"
     data-refresh-interval="300000"
 >
-    <header class="news-page-header">
-        <div class="news-page-heading">
-            <h1>News</h1>
-        </div>
+    <!-- Feed status and manual refresh remain available to the feed controller,
+         but stay out of the visual hierarchy. The page already identifies itself
+         through navigation and the content does not need another title stack. -->
+    <header class="news-page-header" hidden>
+        <h1>News</h1>
 
         <div class="news-live-status" aria-live="polite">
             <span class="news-live-dot" aria-hidden="true"></span>
             <span data-news-status>Loading the latest stories…</span>
         </div>
+
+        <button
+            class="secondary-button news-refresh-button"
+            type="button"
+            data-news-refresh
+        >
+            Refresh
+        </button>
     </header>
 
-    <section class="news-lead" aria-labelledby="news-top-stories-title">
-        <div class="news-section-heading">
-            <div>
-                <h2 id="news-top-stories-title">Top stories</h2>
-            </div>
-
-            <button
-                class="secondary-button news-refresh-button"
-                type="button"
-                data-news-refresh
-            >
-                Refresh
-            </button>
-        </div>
-
+    <section class="news-lead" aria-label="Top stories">
         <div class="news-lead-grid" aria-busy="true" data-news-lead-grid>
             <div class="news-top-story" data-news-top-story>
                 <article class="news-loading-card news-loading-card--lead" aria-hidden="true"></article>
@@ -49,7 +44,7 @@ page_scripts:
 
             <aside class="news-latest-panel" aria-labelledby="news-latest-title">
                 <header class="news-latest-header">
-                    <h3 id="news-latest-title">Latest</h3>
+                    <h2 id="news-latest-title">Latest</h2>
                     <span data-news-summary>Loading…</span>
                 </header>
 
@@ -66,7 +61,7 @@ page_scripts:
     <section class="news-more" aria-labelledby="news-more-title">
         <div class="news-section-heading news-section-heading--more">
             <div>
-                <h2 id="news-more-title">More MMA headlines</h2>
+                <h2 id="news-more-title">More</h2>
             </div>
 
             <label class="news-source-filter">
