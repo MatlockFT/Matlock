@@ -107,7 +107,7 @@
             document.activeElement === last
         ) {
             event.preventDefault();
-            last.focus();
+            first.focus();
         }
     }
 
@@ -187,6 +187,8 @@
             const framing = image.dataset.portraitFraming || "standard";
             const source = image.dataset.portraitSource || "";
             const src = image.currentSrc || image.src || "";
+            const card = image.closest(".upcoming-event-card");
+            const regional = card?.dataset.regional === "true";
             const standardEspn = source === "espn" || /a\.espncdn\.com\/i\/headshots\/mma\/players\/full\//i.test(src);
 
             const restoreStandardCrop = () => {
@@ -196,12 +198,24 @@
                 image.style.removeProperty("transform-origin");
             };
 
+            const extremeRatio = ratio < 0.46 || ratio > 1.75;
+
+            // Regional sources are often already tight 200x300 crops. Keep the pro
+            // card treatment untouched, but zoom regional portraits much less and
+            // bias the transform toward the top so foreheads/chins survive the frame.
+            if (regional) {
+                image.style.setProperty("object-fit", "contain", "important");
+                image.style.setProperty("object-position", "50% 18%", "important");
+                image.style.setProperty("transform", extremeRatio ? "scale(1.02)" : "scale(1.16)", "important");
+                image.style.setProperty("transform-origin", "50% 20%", "important");
+                return;
+            }
+
             if (framing === "standard" && standardEspn) {
                 restoreStandardCrop();
                 return;
             }
 
-            const extremeRatio = ratio < 0.46 || ratio > 1.75;
             if (framing === "safe" || extremeRatio) {
                 image.style.objectFit = "contain";
                 image.style.objectPosition = "50% 12%";
