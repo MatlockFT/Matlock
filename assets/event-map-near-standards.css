@@ -1,0 +1,18 @@
+.event-map-near-button[aria-busy="true"] {
+    cursor: progress;
+    opacity: .72;
+}
+
+.event-map-near-button[data-permission="denied"]:not([aria-pressed="true"]) {
+    border-color: rgba(255,255,255,.24);
+}
+
+.event-map-near-status {
+    line-height: 1.35;
+}
+
+@media (max-width: 720px) {
+    .event-map-near-status:not(:empty) {
+        padding-inline: .15rem;
+    }
+}
