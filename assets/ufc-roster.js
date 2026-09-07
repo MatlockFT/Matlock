@@ -4,6 +4,7 @@
 
     const list = page.querySelector("[data-roster-list]");
     const status = page.querySelector("[data-roster-status]");
+    const liveStatus = page.querySelector("[data-roster-live-status]");
     const refreshButton = page.querySelector("[data-roster-refresh]");
     const feedUrl = page.dataset.feedUrl;
     const backfillUrl = page.dataset.backfillUrl;
@@ -38,6 +39,34 @@
             hour: "numeric",
             minute: "2-digit"
         });
+    }
+
+    function formatCheckedAt(value) {
+        const date = new Date(value);
+        if (Number.isNaN(date.getTime())) return "Checked recently";
+
+        const now = new Date();
+        const sameDay =
+            date.getFullYear() === now.getFullYear() &&
+            date.getMonth() === now.getMonth() &&
+            date.getDate() === now.getDate();
+
+        if (sameDay) {
+            return `Checked ${date.toLocaleTimeString([], {
+                hour: "numeric",
+                minute: "2-digit"
+            })}`;
+        }
+
+        return `Checked ${date.toLocaleDateString([], {
+            month: "short",
+            day: "numeric"
+        })}`;
+    }
+
+    function setLiveState(state, text) {
+        if (liveStatus) liveStatus.dataset.state = state;
+        if (status) status.textContent = text;
     }
 
     function fighterSlug(fighter) {
@@ -164,7 +193,7 @@
             additions.forEach((fighter, index) => list.append(fighterCard(fighter, index)));
         }
 
-        status.textContent = `Last checked ${formatDate(data.generatedAt)}`;
+        setLiveState("ready", formatCheckedAt(data.generatedAt));
     }
 
     async function loadBackfill() {
@@ -183,7 +212,7 @@
     }
 
     async function refresh() {
-        status.textContent = "Checking UFC roster data…";
+        setLiveState("loading", "Checking roster…");
         if (refreshButton) refreshButton.disabled = true;
 
         try {
@@ -211,7 +240,7 @@
                     "Roster data is not available yet. The tracker may still be creating its first baseline snapshot."
                 )
             );
-            status.textContent = "Roster tracker unavailable";
+            setLiveState("error", "Tracker unavailable");
         } finally {
             if (refreshButton) refreshButton.disabled = false;
         }
