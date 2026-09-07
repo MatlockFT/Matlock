@@ -106,6 +106,94 @@
     syncReadabilityState();
     syncMotionState();
 
+    function setupLiveTickerClock() {
+        let track = null;
+        let trackObserver = null;
+        let insertionObserver = null;
+        let phaseFrame = 0;
+
+        function reducedMotion() {
+            return root.classList.contains("reduce-motion") || systemReducedMotion.matches;
+        }
+
+        function durationSeconds() {
+            if (!track) return 70;
+            const raw = getComputedStyle(track)
+                .getPropertyValue("--site-news-duration")
+                .trim();
+            const parsed = Number.parseFloat(raw);
+            return Number.isFinite(parsed) && parsed > 0 ? parsed : 70;
+        }
+
+        function syncPhase() {
+            phaseFrame = 0;
+            if (!track?.isConnected) return;
+
+            if (reducedMotion()) {
+                track.style.removeProperty("animation-delay");
+                return;
+            }
+
+            const duration = durationSeconds();
+            const phase = (Date.now() / 1000) % duration;
+            track.style.animationDelay = `-${phase.toFixed(3)}s`;
+            track.dataset.liveClock = "true";
+        }
+
+        function queuePhaseSync() {
+            if (phaseFrame) cancelAnimationFrame(phaseFrame);
+            phaseFrame = requestAnimationFrame(() => {
+                phaseFrame = requestAnimationFrame(syncPhase);
+            });
+        }
+
+        function bindTrack(nextTrack) {
+            if (!nextTrack || nextTrack === track) return;
+            track = nextTrack;
+            trackObserver?.disconnect();
+            trackObserver = new MutationObserver(queuePhaseSync);
+            trackObserver.observe(track, {
+                childList: true,
+                subtree: true
+            });
+
+            const viewport = track.closest(".site-news-viewport");
+            viewport?.addEventListener("pointerleave", queuePhaseSync, { passive: true });
+            viewport?.addEventListener("focusout", queuePhaseSync);
+            queuePhaseSync();
+        }
+
+        const existingTrack = document.querySelector("[data-news-track]");
+        if (existingTrack) {
+            bindTrack(existingTrack);
+        } else {
+            insertionObserver = new MutationObserver(() => {
+                const nextTrack = document.querySelector("[data-news-track]");
+                if (!nextTrack) return;
+                insertionObserver?.disconnect();
+                insertionObserver = null;
+                bindTrack(nextTrack);
+            });
+            insertionObserver.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        }
+
+        document.addEventListener("visibilitychange", () => {
+            if (!document.hidden) queuePhaseSync();
+        });
+        window.addEventListener("matlock:preferences", queuePhaseSync);
+        window.addEventListener("pageshow", queuePhaseSync);
+        window.addEventListener("pagehide", () => {
+            trackObserver?.disconnect();
+            insertionObserver?.disconnect();
+            if (phaseFrame) cancelAnimationFrame(phaseFrame);
+        });
+    }
+
+    setupLiveTickerClock();
+
     function unlockPageScroll() {
         const bodyWasLocked = document.body.style.position === "fixed";
         document.body.style.position = "";

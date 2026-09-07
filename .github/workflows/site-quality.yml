@@ -38,6 +38,7 @@ jobs:
           node --check assets/site-ticker.js
           node --check assets/article-toc.js
           node --check assets/news-feed.js
+          node --check assets/news-otd-deferred.js
           node --check assets/on-this-day.js
           node --check assets/event-map-v2.js
           node --check assets/event-map-enhancements.js

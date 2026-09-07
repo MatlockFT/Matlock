@@ -8,13 +8,14 @@ page_styles:
   - /assets/on-this-day.css
 page_scripts:
   - /assets/news-feed.js
-  - /assets/on-this-day.js
+  - /assets/news-otd-deferred.js
 ---
 
 <article
     class="news-page"
     data-news-feed
-    data-feed-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/mma-news-data"
+    data-feed-url="https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-news.json"
+    data-api-fallback-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/mma-news-data"
     data-fallback-url="{{ '/assets/data/mma-news.json' | relative_url }}?v={{ site.asset_version }}"
     data-refresh-interval="300000"
     aria-label="MMA News"
@@ -56,11 +57,14 @@ page_scripts:
         </div>
     </section>
 
+    <div data-news-otd-sentinel aria-hidden="true" style="height:1px"></div>
+
     <section
         class="otd-compact"
         data-on-this-day
         data-mode="compact"
         data-history-url="{{ '/assets/data/on-this-day.json' | relative_url }}?v={{ site.asset_version }}"
+        data-history-script-url="{{ '/assets/on-this-day.js' | relative_url }}?v={{ site.asset_version }}"
         hidden
         aria-label="On this day in MMA history"
     >

@@ -54,6 +54,20 @@ jobs:
       - name: Validate generated news
         run: npm run check:news -- /tmp/mma-news.json
 
+      - name: Publish browser-friendly live snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -rf /tmp/mma-news-live-branch
+          git worktree add --detach /tmp/mma-news-live-branch
+          cd /tmp/mma-news-live-branch
+          git switch --orphan live-news-data
+          git rm -rf . >/dev/null 2>&1 || true
+          cp /tmp/mma-news.json mma-news.json
+          git add mma-news.json
+          git commit -m "Refresh MMA news data"
+          git push --force origin HEAD:live-news-data
+
       - name: Publish the latest data snapshot
         env:
           GH_TOKEN: ${{ github.token }}
