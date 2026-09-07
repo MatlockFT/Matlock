@@ -1,82 +1,137 @@
 (() => {
+    const page = document.querySelector(".upcoming-events-page");
+    const eventList = page?.querySelector(".upcoming-events-list");
+    if (!page || !eventList) return;
+
     const PICK = "is-pick";
     const H2C = "https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js";
 
-    const style = document.createElement("style");
-    style.textContent = `
-        .upcoming-event-card .fighter{cursor:pointer;outline:none}
-        .upcoming-event-card .fighter::after{position:absolute;inset:0;z-index:6;border:3px solid transparent;background:transparent;content:"";pointer-events:none;transition:.12s ease}
-        .upcoming-event-card .fighter:hover::after,.upcoming-event-card .fighter:focus-visible::after{border-color:rgba(255,255,255,.5)}
-        .upcoming-event-card .fighter.${PICK}::after{border-color:#37e66b;background:rgba(34,205,88,.17);box-shadow:inset 0 0 0 1px rgba(196,255,211,.72),inset 0 0 28px rgba(34,205,88,.12)}
-        .upcoming-event-card .fighter.${PICK} .fighter-name{background:#0d2113;color:#e9ffef}
-        .prediction-actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.5rem;margin-top:.7rem}
-        .prediction-status{width:100%;margin:0;color:#aaa;font:700 .62rem "Courier New",monospace;letter-spacing:.05em;text-align:center;text-transform:uppercase}
-        .prediction-button{appearance:none;border:1px solid #fff;border-radius:0;padding:.55rem .8rem;background:#fff;color:#000;cursor:pointer;font:700 .64rem "Courier New",monospace;letter-spacing:.04em;line-height:1;text-transform:uppercase}
-        .prediction-button:hover,.prediction-button:focus-visible{background:#ddd}
-        .prediction-button-clear{border-color:#686868;background:transparent;color:#fff}
-        .prediction-button-clear:hover,.prediction-button-clear:focus-visible{border-color:#fff;background:#151515;color:#fff}
-        .prediction-button:disabled{cursor:wait;opacity:.58}
-        .event-card-disclaimer{margin:.42rem 0 0!important;padding:.08rem .15rem 0!important;border:0!important;background:transparent!important}
-        .event-card-disclaimer p{margin:0!important;color:#777!important;font:400 .52rem "Courier New",monospace!important;line-height:1.35;text-align:center}
+    const slug = text => (text || "fight-card")
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
 
-        /* 90s photocopied-zine fighter treatment: noisy, scratched, dirty rather than soft grunge. */
-        .fighter-photo{
-            background:
-                radial-gradient(circle at 1px 1px,rgba(255,255,255,.13) 0 .55px,transparent .8px) 0 0/4px 4px,
-                radial-gradient(circle at 2px 2px,rgba(0,0,0,.58) 0 .65px,transparent .9px) 0 0/5px 5px,
-                linear-gradient(106deg,transparent 0 14%,rgba(255,255,255,.08) 14.2% 14.5%,transparent 14.8% 39%,rgba(0,0,0,.32) 39.4% 40.2%,transparent 40.7% 73%,rgba(255,255,255,.05) 73.3% 73.8%,transparent 74.2% 100%),
-                radial-gradient(ellipse at 79% 24%,rgba(255,255,255,.08),transparent 25%),
-                radial-gradient(ellipse at 18% 72%,rgba(0,0,0,.42),transparent 31%),
-                url('/assets/fighter-grunge.svg') center/cover,
-                #0b0b0b!important;
-        }
-        .fighter-photo::before{
-            z-index:3!important;
-            background:
-                repeating-linear-gradient(176deg,transparent 0 8px,rgba(255,255,255,.055) 9px,transparent 10px 21px),
-                repeating-linear-gradient(96deg,transparent 0 31px,rgba(255,255,255,.09) 32px 32.8px,transparent 34px 67px),
-                linear-gradient(82deg,transparent 0 11%,rgba(0,0,0,.30) 11.4% 12.3%,transparent 12.8% 61%,rgba(255,255,255,.075) 61.3% 61.8%,transparent 62.2% 100%),
-                radial-gradient(circle at 8% 17%,rgba(255,255,255,.11) 0 1px,transparent 1.5px) 0 0/11px 13px!important;
-            opacity:.58!important;
-            pointer-events:none;
-        }
-        .fighter-photo::after{
-            position:absolute!important;
-            inset:0!important;
-            z-index:4!important;
-            height:auto!important;
-            background:
-                linear-gradient(118deg,transparent 0 24%,rgba(255,255,255,.10) 24.2% 24.5%,transparent 24.8% 53%,rgba(0,0,0,.25) 53.4% 54%,transparent 54.4% 100%),
-                repeating-linear-gradient(183deg,transparent 0 14px,rgba(0,0,0,.10) 15px 16px,transparent 17px 33px),
-                radial-gradient(circle at center,transparent 52%,rgba(0,0,0,.22) 100%)!important;
-            opacity:.52;
-            content:"";
-            pointer-events:none;
-        }
-        .fighter-photo img[data-fighter-photo]{filter:grayscale(1) contrast(1.32) brightness(.9)!important}
-
-        .upcoming-event-card.is-exporting .fighter:hover::after,.upcoming-event-card.is-exporting .fighter:focus-visible::after{border-color:transparent}
-        .upcoming-event-card.is-exporting .fighter.${PICK}::after{border-color:#37e66b}
-        .fighter-photo .export-portrait-canvas{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none}
-        .upcoming-event-card.is-exporting .fighter-photo img[data-fighter-photo]{visibility:hidden!important}
-    `;
-    document.head.appendChild(style);
-
-    document.querySelectorAll("[data-fighter-photo]").forEach(image => {
-        const frame = image.closest(".fighter-photo");
-        if (!frame) return;
-        const fallback = () => { frame.classList.add("photo-missing"); image.remove(); };
-        image.addEventListener("error", fallback, { once: true });
-        if (image.complete && image.naturalWidth === 0) fallback();
-    });
-
-    const slug = text => (text || "fight-card").toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
     const fighterName = fighter => fighter.querySelector(".fighter-name")?.textContent?.trim() || "fighter";
     const boutKey = bout => bout.querySelector(".bout-label span")?.textContent?.trim() || "bout";
     const storeKey = card => `mma-matlock-picks:${card.querySelector("time")?.getAttribute("datetime") || "date"}:${slug(card.querySelector("h2")?.textContent)}`;
 
+    const normalizeFighterName = value => (value || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/\b(jr|sr|ii|iii|iv)\b/g, "")
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim();
+
+    const cards = [...eventList.querySelectorAll(":scope > .upcoming-event-card")];
+    cards
+        .sort((a, b) => {
+            const aDate = a.querySelector("time[datetime]")?.getAttribute("datetime") || "9999-12-31";
+            const bDate = b.querySelector("time[datetime]")?.getAttribute("datetime") || "9999-12-31";
+            return aDate.localeCompare(bDate);
+        })
+        .forEach(card => eventList.appendChild(card));
+
+    const sherdogOriginalUrl = src => {
+        if (!/sherdog\.com\/image_crop\/\d+\/\d+\//i.test(src)) return "";
+        return src.replace(/\/image_crop\/\d+\/\d+\//i, "/");
+    };
+
+    const markPortraitFraming = image => {
+        if (!image?.naturalWidth || !image?.naturalHeight) return;
+        const card = image.closest(".upcoming-event-card");
+        const regional = card?.dataset.regional === "true";
+        const ratio = image.naturalWidth / image.naturalHeight;
+        const framing = image.dataset.portraitFraming || "standard";
+        const source = image.dataset.portraitSource || "";
+        const src = image.currentSrc || image.src || "";
+        const standardEspn = source === "espn" || /a\.espncdn\.com\/i\/headshots\/mma\/players\/full\//i.test(src);
+        const extremeRatio = ratio < .46 || ratio > 1.75;
+        const safe = regional || framing === "safe" || extremeRatio || !standardEspn;
+        image.dataset.portraitSafe = safe ? "true" : "false";
+    };
+
+    const probeRegionalOriginal = image => {
+        const card = image.closest(".upcoming-event-card");
+        if (card?.dataset.regional !== "true" || image.dataset.originalProbe === "done") return;
+        image.dataset.originalProbe = "done";
+
+        const current = image.currentSrc || image.src || "";
+        const candidate = sherdogOriginalUrl(current);
+        if (!candidate || candidate === current) return;
+
+        const probe = new Image();
+        probe.referrerPolicy = "no-referrer";
+        probe.decoding = "async";
+        probe.onload = () => {
+            if (probe.naturalWidth < 80 || probe.naturalHeight < 80) return;
+            image.src = candidate;
+            image.dataset.portraitSource = "sherdog-original";
+        };
+        probe.src = candidate;
+    };
+
+    const preparePortrait = image => {
+        const frame = image.closest(".fighter-photo");
+        if (!frame || image.dataset.portraitPrepared === "true") return;
+        image.dataset.portraitPrepared = "true";
+
+        const fail = () => {
+            frame.classList.add("photo-missing");
+            image.remove();
+        };
+        const ready = () => {
+            frame.classList.remove("photo-missing");
+            markPortraitFraming(image);
+            probeRegionalOriginal(image);
+        };
+
+        image.addEventListener("load", ready);
+        image.addEventListener("error", fail, { once: true });
+        if (image.complete) {
+            if (image.naturalWidth > 0) ready();
+            else fail();
+        }
+    };
+
+    eventList.querySelectorAll("img[data-fighter-photo]").forEach(preparePortrait);
+
+    fetch("/assets/fighter-portraits.json", { cache: "no-cache" })
+        .then(response => response.ok ? response.json() : Promise.reject(new Error(`HTTP ${response.status}`)))
+        .then(portraits => {
+            eventList.querySelectorAll(".fighter").forEach(fighter => {
+                const name = fighter.querySelector(".fighter-name")?.textContent?.trim();
+                const hit = portraits[normalizeFighterName(name)];
+                const frame = fighter.querySelector(".fighter-photo");
+                if (!hit?.url || !frame) return;
+
+                let image = frame.querySelector("img[data-fighter-photo]");
+                if (!image) {
+                    image = document.createElement("img");
+                    image.setAttribute("data-fighter-photo", "");
+                    image.alt = name || "Fighter portrait";
+                    image.loading = fighter.closest(".bout-card-featured") ? "eager" : "lazy";
+                    image.decoding = "async";
+                    image.referrerPolicy = "no-referrer";
+                    frame.appendChild(image);
+                }
+
+                image.dataset.portraitSource = hit.source || image.dataset.portraitSource || "cache";
+                image.dataset.portraitFraming = hit.framing || image.dataset.portraitFraming || "standard";
+
+                if (!image.src || frame.classList.contains("photo-missing")) {
+                    image.src = hit.url;
+                }
+                preparePortrait(image);
+            });
+        })
+        .catch(() => {});
+
     const updateStatus = (card, status) => {
-        status.textContent = `${card.querySelectorAll(`.fighter.${PICK}`).length} of ${card.querySelectorAll(".bout-card").length} fights picked`;
+        const picked = card.querySelectorAll(`.fighter.${PICK}`).length;
+        const fights = card.querySelectorAll(".bout-card").length;
+        status.textContent = `${picked} of ${fights} fights picked`;
     };
 
     const save = card => {
@@ -91,14 +146,14 @@
     const restore = (card, status) => {
         let picks = {};
         try { picks = JSON.parse(localStorage.getItem(storeKey(card)) || "{}"); } catch {}
+
         card.querySelectorAll(".bout-card").forEach(bout => {
             const name = picks[boutKey(bout)];
             if (!name) return;
             const fighter = [...bout.querySelectorAll(".fighter")].find(item => fighterName(item) === name);
-            if (fighter) {
-                fighter.classList.add(PICK);
-                fighter.setAttribute("aria-pressed", "true");
-            }
+            if (!fighter) return;
+            fighter.classList.add(PICK);
+            fighter.setAttribute("aria-pressed", "true");
         });
         updateStatus(card, status);
     };
@@ -107,10 +162,12 @@
         const bout = fighter.closest(".bout-card");
         if (!bout) return;
         const wasPicked = fighter.classList.contains(PICK);
+
         bout.querySelectorAll(".fighter").forEach(item => {
             item.classList.remove(PICK);
             item.setAttribute("aria-pressed", "false");
         });
+
         if (!wasPicked) {
             fighter.classList.add(PICK);
             fighter.setAttribute("aria-pressed", "true");
@@ -132,14 +189,16 @@
         setTimeout(() => { button.textContent = label; }, 1200);
     };
 
-    const loadExporter = () => window.html2canvas ? Promise.resolve(window.html2canvas) : new Promise((resolve, reject) => {
-        const script = document.createElement("script");
-        script.src = H2C;
-        script.crossOrigin = "anonymous";
-        script.onload = () => resolve(window.html2canvas);
-        script.onerror = () => reject(new Error("Could not load JPEG exporter"));
-        document.head.appendChild(script);
-    });
+    const loadExporter = () => window.html2canvas
+        ? Promise.resolve(window.html2canvas)
+        : new Promise((resolve, reject) => {
+            const script = document.createElement("script");
+            script.src = H2C;
+            script.crossOrigin = "anonymous";
+            script.onload = () => resolve(window.html2canvas);
+            script.onerror = () => reject(new Error("Could not load JPEG exporter"));
+            document.head.appendChild(script);
+        });
 
     const toDataUrl = blob => new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -184,67 +243,69 @@
 
     const distressPortrait = (ctx, width, height, seedText) => {
         const rand = seededRandom(hashSeed(seedText || "fighter"));
-        const specks = Math.max(260, Math.round(width * height * 0.055));
+        const specks = Math.max(260, Math.round(width * height * .055));
 
         ctx.save();
         ctx.filter = "none";
         ctx.globalCompositeOperation = "source-over";
 
-        // Fine copier grain and dry-ink flecks.
         for (let i = 0; i < specks; i += 1) {
             const x = rand() * width;
             const y = rand() * height;
-            const size = 0.25 + rand() * 1.15;
-            const alpha = 0.025 + rand() * 0.07;
-            ctx.fillStyle = rand() > 0.47
+            const size = .25 + rand() * 1.15;
+            const alpha = .025 + rand() * .07;
+            ctx.fillStyle = rand() > .47
                 ? `rgba(255,255,255,${alpha})`
                 : `rgba(0,0,0,${alpha * 1.35})`;
             ctx.fillRect(x, y, size, size);
         }
 
-        // Uneven copier drag across the portrait.
         for (let i = 0; i < 11; i += 1) {
             const y = rand() * height;
-            const thickness = 0.35 + rand() * 1.25;
-            const alpha = 0.018 + rand() * 0.045;
-            ctx.fillStyle = rand() > 0.55
+            const thickness = .35 + rand() * 1.25;
+            const alpha = .018 + rand() * .045;
+            ctx.fillStyle = rand() > .55
                 ? `rgba(255,255,255,${alpha})`
                 : `rgba(0,0,0,${alpha * 1.4})`;
             ctx.fillRect(0, y, width, thickness);
         }
 
-        // Random scratches — sparse enough to keep faces readable.
         ctx.lineCap = "round";
         const scratchCount = Math.max(7, Math.round(width / 13));
         for (let i = 0; i < scratchCount; i += 1) {
             const x1 = rand() * width;
             const y1 = rand() * height;
-            const length = 8 + rand() * Math.min(42, height * 0.42);
+            const length = 8 + rand() * Math.min(42, height * .42);
             const drift = -12 + rand() * 24;
-
             ctx.beginPath();
-            ctx.strokeStyle = rand() > 0.42
-                ? `rgba(255,255,255,${0.055 + rand() * 0.075})`
-                : `rgba(0,0,0,${0.08 + rand() * 0.09})`;
-            ctx.lineWidth = 0.35 + rand() * 1.05;
+            ctx.strokeStyle = rand() > .42
+                ? `rgba(255,255,255,${.055 + rand() * .075})`
+                : `rgba(0,0,0,${.08 + rand() * .09})`;
+            ctx.lineWidth = .35 + rand() * 1.05;
             ctx.moveTo(x1, y1);
             ctx.lineTo(x1 + drift, Math.min(height, y1 + length));
             ctx.stroke();
         }
 
-        // A few heavier damaged spots, like toner dropout.
         for (let i = 0; i < 8; i += 1) {
             const x = rand() * width;
             const y = rand() * height;
             const w = 1.2 + rand() * 4;
-            const h = 0.5 + rand() * 2.2;
-            ctx.fillStyle = rand() > 0.5
-                ? `rgba(255,255,255,${0.045 + rand() * 0.055})`
-                : `rgba(0,0,0,${0.10 + rand() * 0.08})`;
+            const h = .5 + rand() * 2.2;
+            ctx.fillStyle = rand() > .5
+                ? `rgba(255,255,255,${.045 + rand() * .055})`
+                : `rgba(0,0,0,${.10 + rand() * .08})`;
             ctx.fillRect(x, y, w, h);
         }
-
         ctx.restore();
+    };
+
+    const positionPercent = value => {
+        const match = String(value || "").match(/(-?\d+(?:\.\d+)?)%/g) || [];
+        return {
+            x: Math.max(0, Math.min(1, parseFloat(match[0] || "50") / 100)),
+            y: Math.max(0, Math.min(1, parseFloat(match[1] || "50") / 100))
+        };
     };
 
     const rasterizePortraits = async card => {
@@ -255,8 +316,7 @@
             const frame = image.closest(".fighter-photo");
             if (!frame) return;
 
-            const originalSrc = image.currentSrc || image.src;
-            const localized = await exportableSrc(originalSrc);
+            const localized = await exportableSrc(image.currentSrc || image.src);
             if (!localized) return;
 
             let source;
@@ -293,8 +353,11 @@
             const fitScale = Math.min(imageRect.width / sourceWidth, imageRect.height / sourceHeight);
             const drawWidth = sourceWidth * fitScale;
             const drawHeight = sourceHeight * fitScale;
-            const drawX = (imageRect.left - frameRect.left) + ((imageRect.width - drawWidth) / 2);
-            const drawY = (imageRect.top - frameRect.top) + (imageRect.height - drawHeight);
+            const freeX = imageRect.width - drawWidth;
+            const freeY = imageRect.height - drawHeight;
+            const pos = positionPercent(getComputedStyle(image).objectPosition);
+            const drawX = (imageRect.left - frameRect.left) + freeX * pos.x;
+            const drawY = (imageRect.top - frameRect.top) + freeY * pos.y;
 
             ctx.drawImage(source, drawX, drawY, drawWidth, drawHeight);
             distressPortrait(ctx, frameRect.width, frameRect.height, fighterName(frame.closest(".fighter")));
@@ -316,7 +379,6 @@
             const html2canvas = await loadExporter();
             if (document.fonts?.ready) await document.fonts.ready;
 
-            // Bake the live crop plus zine distress into temporary portrait canvases.
             clearPortraitCanvases = await rasterizePortraits(card);
             card.classList.add("is-exporting");
             await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
@@ -355,11 +417,11 @@
         }
     };
 
-    document.querySelectorAll(".upcoming-event-card").forEach(card => {
-        const disclaimer = card.querySelector(".event-card-note");
-        if (disclaimer) {
-            disclaimer.classList.add("event-card-disclaimer");
-            card.insertAdjacentElement("afterend", disclaimer);
+    cards.forEach(card => {
+        const note = card.querySelector(".event-card-note");
+        if (note) {
+            note.classList.add("event-card-disclaimer");
+            card.insertAdjacentElement("afterend", note);
         }
 
         const actions = document.createElement("div");
@@ -380,7 +442,7 @@
         clearButton.textContent = "Clear Picks";
 
         actions.append(status, downloadButton, clearButton);
-        card.insertAdjacentElement("afterend", actions);
+        note ? note.insertAdjacentElement("afterend", actions) : card.insertAdjacentElement("afterend", actions);
 
         downloadButton.addEventListener("click", () => download(card, downloadButton));
         clearButton.addEventListener("click", () => clearPicks(card, status, clearButton));
