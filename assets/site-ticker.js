@@ -9,13 +9,14 @@
     const NEWS_FALLBACK_URL = "/assets/data/mma-news.json";
     const NEWS_REFRESH_MS = 5 * 60 * 1000;
     const EVENT_REFRESH_MS = 60 * 1000;
+    const COUNTDOWN_TICK_MS = 1000;
     const FIGHT_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
     const DEFAULT_EVENT_LENGTH_MS = 6 * 60 * 60 * 1000;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const deviceReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     const stylesheet = document.createElement("link");
     stylesheet.rel = "stylesheet";
-    stylesheet.href = "/assets/site-ticker.css?v=1";
+    stylesheet.href = "/assets/site-ticker.css?v=2";
     document.head.appendChild(stylesheet);
 
     const strip = document.createElement("section");
@@ -235,14 +236,16 @@
             };
         }
 
-        const totalMinutes = Math.max(0, Math.floor(difference / 60000));
-        const days = Math.floor(totalMinutes / 1440);
-        const hours = Math.floor((totalMinutes % 1440) / 60);
-        const minutes = totalMinutes % 60;
+        const totalSeconds = Math.max(0, Math.floor(difference / 1000));
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+        const secondText = `${String(seconds).padStart(2, "0")}S`;
 
-        if (days > 0) return { text: `${days}D ${hours}H ${minutes}M`, live: false };
-        if (hours > 0) return { text: `${hours}H ${minutes}M`, live: false };
-        return { text: `${minutes}M`, live: false };
+        if (days > 0) return { text: `${days}D ${hours}H ${minutes}M ${secondText}`, live: false };
+        if (hours > 0) return { text: `${hours}H ${minutes}M ${secondText}`, live: false };
+        return { text: `${minutes}M ${secondText}`, live: false };
     }
 
     function normalizedEvents(data) {
@@ -504,16 +507,19 @@
         if (!eventStack.contains(event.target)) setDrawer(false);
     });
 
-    reducedMotion.addEventListener("change", () => {
-        newsTrack.style.animationPlayState = reducedMotion.matches ? "paused" : "running";
+    deviceReducedMotion.addEventListener?.("change", () => {
+        newsTrack.style.animationPlayState = deviceReducedMotion.matches ? "paused" : "running";
     });
 
     loadEvents();
     loadNews();
+
     window.setInterval(() => {
         updateCountdowns();
         const first = allEvents[0];
-        if (first && first.timing.end && Date.now() >= first.timing.end.getTime()) renderEvents();
-    }, EVENT_REFRESH_MS);
+        if (first?.timing?.end && Date.now() >= first.timing.end.getTime()) renderEvents();
+    }, COUNTDOWN_TICK_MS);
+
+    window.setInterval(loadEvents, EVENT_REFRESH_MS);
     window.setInterval(loadNews, NEWS_REFRESH_MS);
 })();
