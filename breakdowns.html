@@ -12,10 +12,6 @@ permalink: /breakdowns/
         </p>
 
         <h1>Breakdowns</h1>
-
-        <p>
-            MMA breakdowns, predictions, and post-event commentary.
-        </p>
     </header>
 
     {% assign visible_posts = "" | split: "" %}
@@ -231,12 +227,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        const label =
-            visibleCount === 1 ? 'article' : 'articles';
-
-        status.textContent =
-            `Showing ${visibleCount} ${label}.`;
-
+        const label = visibleCount === 1 ? 'article' : 'articles';
+        status.textContent = `Showing ${visibleCount} ${label}.`;
         empty.hidden = visibleCount !== 0;
     }
 
