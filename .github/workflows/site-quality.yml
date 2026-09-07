@@ -37,13 +37,8 @@ jobs:
           node --check assets/site.js
           node --check assets/article-toc.js
           node --check assets/news-feed.js
-          node --check assets/event-map.js
           node --check assets/event-map-v2.js
-          node --check assets/event-map-pointer-fix.js
-          node --check assets/event-map-detail-enhance.js
-          node --check assets/event-map-ux.js
-          node --check assets/event-map-near-standards.js
-          node --check assets/event-map-hover-stability.js
+          node --check assets/event-map-enhancements.js
           node --check scripts/build-news-feed.mjs
           node --check scripts/check-news-data.mjs
           node --check scripts/upcoming-events-data.mjs
