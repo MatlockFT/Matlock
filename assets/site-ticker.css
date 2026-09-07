@@ -340,11 +340,14 @@
     }
 
     .site-live-strip-inner {
-        grid-template-columns: minmax(176px, 44vw) minmax(0,1fr);
+        grid-template-columns: fit-content(46vw) minmax(0,1fr);
     }
 
     .site-event-stack {
+        width: max-content;
+        max-width: 46vw;
         min-width: 0;
+        border-right: 0;
     }
 
     .site-event-primary {
@@ -386,16 +389,21 @@
 
 @media (max-width: 520px) {
     .site-live-strip-inner {
-        grid-template-columns: clamp(160px, 42vw, 180px) minmax(0,1fr);
+        grid-template-columns: max-content minmax(0,1fr);
+    }
+
+    .site-event-stack {
+        width: max-content;
+        max-width: none;
     }
 
     .site-event-primary {
-        gap: .22rem;
-        padding: .42rem .28rem;
+        gap: .18rem;
+        padding: .42rem .2rem;
     }
 
     .site-event-primary-name {
-        max-width: 44px;
+        max-width: 42px;
     }
 
     .site-event-primary-countdown {
