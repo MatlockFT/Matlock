@@ -4,21 +4,14 @@
 
     const stage = page.querySelector('.event-map-stage');
     const svg = page.querySelector('[data-map-svg]');
-    const eventList = page.querySelector('[data-event-list]');
-    const eventListEmpty = page.querySelector('[data-event-list-empty]');
-    const weekButton = page.querySelector('[data-week-view]');
-    const rangeButtons = [...page.querySelectorAll('[data-range]')];
     const detailCard = page.querySelector('[data-event-detail-card]');
     const detailTitle = page.querySelector('[data-detail-title]');
     const detailPromotion = page.querySelector('[data-detail-promotion]');
     const detailDate = page.querySelector('[data-detail-date]');
     const detailMatchup = page.querySelector('.event-map-detail-matchup');
-    if (!stage || !svg || !eventList || !weekButton) return;
+    if (!stage || !svg) return;
 
-    const DAY_MS = 86400000;
-    let weekActive = false;
     let markerObserver = null;
-    let resultsObserver = null;
     let detailObserver = null;
     let refreshQueued = false;
     let eventById = new Map();
@@ -27,36 +20,12 @@
     const norm = value => clean(value).toLowerCase();
 
     function eventDate(event) {
+        if (event?.calendarDay instanceof Date && !Number.isNaN(event.calendarDay.getTime())) return event.calendarDay;
         if (event?.dateObject instanceof Date && !Number.isNaN(event.dateObject.getTime())) return event.dateObject;
         const raw = event?.starts_at || event?.date;
         if (!raw) return null;
         const date = event.starts_at ? new Date(raw) : new Date(`${raw}T12:00:00`);
         return Number.isNaN(date.getTime()) ? null : date;
-    }
-
-    function inRollingWeek(event) {
-        const date = eventDate(event);
-        if (!date) return false;
-        const now = new Date();
-        const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-        const end = new Date(start.getTime() + 7 * DAY_MS);
-        return date >= start && date < end;
-    }
-
-    function dateKey(event) {
-        const date = eventDate(event);
-        if (!date) return '9999-TBA';
-        return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-    }
-
-    function dateHeading(event) {
-        const date = eventDate(event);
-        if (!date) return 'DATE TBA';
-        return date.toLocaleDateString([], {
-            weekday: 'short',
-            month: 'short',
-            day: 'numeric'
-        }).toUpperCase();
     }
 
     function shortDate(event) {
@@ -77,9 +46,8 @@
         const bouts = sections.flatMap(section => Array.isArray(section?.bouts) ? section.bouts : []);
         const bout = bouts.find(item => /main event/i.test(clean(item?.label))) || bouts[0];
         if (bout) {
-            const fighters = (bout.fighters || []).map(item => clean(item?.name || item)).filter(Boolean).slice(0, 2);
             return {
-                fighters,
+                fighters: (bout.fighters || []).map(item => clean(item?.name || item)).filter(Boolean).slice(0, 2),
                 weight: clean(bout.weight_class || bout.weight || bout.division || bout.label)
             };
         }
@@ -104,102 +72,31 @@
         markerGroups().forEach(group => {
             const cluster = group.__data__;
             if (!cluster || !Array.isArray(cluster.events)) return;
-            const sourceEvents = cluster.__eventMapWeekSource || cluster.events;
-            sourceEvents.forEach(event => {
+            cluster.events.forEach(event => {
                 if (event?.mapId) next.set(event.mapId, event);
+                if (event?.id) next.set(event.id, event);
             });
         });
         eventById = next;
     }
 
-    function updateClusterVisual(group, cluster, originalEvents) {
-        const subset = weekActive ? originalEvents.filter(inRollingWeek) : originalEvents;
-        cluster.events = subset;
-        group.hidden = subset.length === 0;
-        if (!subset.length) return;
-
-        const isCluster = subset.length > 1;
-        group.classList.toggle('event-map-cluster', isCluster);
-        group.setAttribute('aria-label', isCluster
-            ? `${subset.length} upcoming MMA events. Activate to choose an event.`
-            : `${clean(subset[0].promotion) || 'MMA'} ${clean(subset[0].title) || 'event'}, ${shortDate(subset[0])}`);
-
-        const halo = group.querySelector('.event-map-pin-halo');
-        const pin = group.querySelector('.event-map-pin');
-        if (halo) halo.setAttribute('r', isCluster ? '15' : '11');
-        if (pin) pin.setAttribute('r', isCluster ? '10' : '6.5');
-        const count = group.querySelector('.event-map-pin-count');
-        if (count) {
-            count.hidden = !isCluster;
-            if (isCluster && count.firstChild) count.firstChild.nodeValue = subset.length > 99 ? '99+' : String(subset.length);
-        }
-    }
-
-    function applyWeekToMarkers() {
-        markerGroups().forEach(group => {
-            const cluster = group.__data__;
-            if (!cluster || !Array.isArray(cluster.events)) return;
-            if (!cluster.__eventMapWeekSource) cluster.__eventMapWeekSource = [...cluster.events];
-            updateClusterVisual(group, cluster, cluster.__eventMapWeekSource);
-        });
-    }
-
-    function regroupResults() {
-        if (!eventList) return;
-        const buttons = [...eventList.querySelectorAll('.event-map-result')];
-        if (!buttons.length) {
-            if (eventListEmpty) eventListEmpty.hidden = false;
-            return;
-        }
-
-        if (resultsObserver) resultsObserver.disconnect();
-        const byDay = new Map();
-        let visibleCount = 0;
-
-        buttons.forEach(button => {
-            const event = eventById.get(button.dataset.eventId);
-            const visible = !weekActive || (event && inRollingWeek(event));
-            button.hidden = !visible;
-            if (!visible) return;
-            visibleCount += 1;
-            const key = event ? dateKey(event) : '9999-TBA';
-            if (!byDay.has(key)) byDay.set(key, { event, buttons: [] });
-            byDay.get(key).buttons.push(button);
-        });
-
-        const fragment = document.createDocumentFragment();
-        [...byDay.entries()]
-            .sort(([a], [b]) => a.localeCompare(b))
-            .forEach(([, group]) => {
-                const section = document.createElement('section');
-                section.className = 'event-map-date-group';
-                const heading = document.createElement('h3');
-                heading.className = 'event-map-date-heading';
-                heading.textContent = group.event ? dateHeading(group.event) : 'DATE TBA';
-                const rows = document.createElement('div');
-                rows.className = 'event-map-date-rows';
-                group.buttons.forEach(button => rows.append(button));
-                section.append(heading, rows);
-                fragment.append(section);
-            });
-
-        eventList.replaceChildren(fragment);
-        if (eventListEmpty) eventListEmpty.hidden = visibleCount !== 0;
-        if (resultsObserver) resultsObserver.observe(eventList, { childList: true });
+    function findDetailEvent() {
+        if (!detailCard || detailCard.hidden) return null;
+        const title = norm(detailTitle?.textContent);
+        const promotion = norm(detailPromotion?.textContent);
+        const dateIso = detailDate?.dateTime ? String(detailDate.dateTime).slice(0, 10) : '';
+        if (!title) return null;
+        return [...new Set(eventById.values())].find(item =>
+            norm(item.title) === title
+            && (!promotion || norm(item.promotion) === promotion)
+            && (!dateIso || !item.date || item.date === dateIso)
+        ) || [...new Set(eventById.values())].find(item => norm(item.title) === title) || null;
     }
 
     function renderAnnouncedCard() {
         if (!detailCard || detailCard.hidden || !detailMatchup) return;
         let block = detailCard.querySelector('[data-detail-announced-card]');
-        const title = norm(detailTitle?.textContent);
-        const promotion = norm(detailPromotion?.textContent);
-        const dateIso = detailDate?.dateTime ? String(detailDate.dateTime).slice(0, 10) : '';
-        const event = [...eventById.values()].find(item =>
-            norm(item.title) === title
-            && (!promotion || norm(item.promotion) === promotion)
-            && (!dateIso || !item.date || item.date === dateIso)
-        ) || [...eventById.values()].find(item => norm(item.title) === title);
-
+        const event = findDetailEvent();
         if (!event) {
             if (block) block.hidden = true;
             return;
@@ -252,10 +149,9 @@
         const centerX = pinRect.left - stageRect.left + pinRect.width / 2;
         const pinTop = pinRect.top - stageRect.top;
         const pinBottom = pinRect.bottom - stageRect.top;
-        const width = Math.min(popover.offsetWidth || 260, stageRect.width - 16);
+        const width = Math.min(popover.offsetWidth || 260, Math.max(180, stageRect.width - 16));
         const height = popover.offsetHeight || 100;
-        let left = centerX - width / 2;
-        left = Math.max(8, Math.min(left, stageRect.width - width - 8));
+        let left = Math.max(8, Math.min(centerX - width / 2, stageRect.width - width - 8));
         let top = pinTop - height - 12;
         if (top < 8) top = pinBottom + 12;
         popover.style.left = `${left}px`;
@@ -323,33 +219,9 @@
         requestAnimationFrame(() => {
             refreshQueued = false;
             rebuildEventIndex();
-            applyWeekToMarkers();
-            regroupResults();
             renderAnnouncedCard();
         });
     }
-
-    weekButton.addEventListener('click', () => {
-        // The core renderer already has a reliable 30-day mode. Use it as the
-        // backing dataset, then narrow that rendered view to a rolling 7 days.
-        weekButton.dataset.range = '30';
-        weekActive = true;
-    }, true);
-    weekButton.addEventListener('click', () => {
-        queueMicrotask(() => {
-            weekButton.dataset.range = 'weekend';
-            rangeButtons.forEach(button => button.setAttribute('aria-pressed', String(button === weekButton)));
-            scheduleRefresh();
-        });
-    });
-
-    rangeButtons.filter(button => button !== weekButton).forEach(button => {
-        button.addEventListener('click', () => {
-            weekActive = false;
-            hidePopover();
-        }, true);
-        button.addEventListener('click', scheduleRefresh);
-    });
 
     stage.addEventListener('pointerover', event => {
         const group = groupFromTarget(event.target);
@@ -375,9 +247,6 @@
     stage.addEventListener('pointerdown', event => {
         if (!groupFromTarget(event.target)) hidePopover();
     }, { passive: true });
-
-    resultsObserver = new MutationObserver(scheduleRefresh);
-    resultsObserver.observe(eventList, { childList: true });
 
     function attachMarkerObserver() {
         const layer = svg.querySelector('.event-map-markers');
