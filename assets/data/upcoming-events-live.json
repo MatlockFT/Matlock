@@ -2,4 +2,9 @@
 layout: null
 permalink: /assets/data/upcoming-events-live.json
 ---
-{{ site.data.upcoming_events | jsonify }}
+{% assign ticker_events = site.data.upcoming_events.events | concat: site.data.event_map_regional.events %}
+{
+  "schema_version": 2,
+  "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
+  "events": {{ ticker_events | jsonify }}
+}
