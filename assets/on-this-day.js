@@ -12,7 +12,8 @@
         ["title", 3],
         ["incident", 4],
         ["news", 5],
-        ["death", 6]
+        ["death", 6],
+        ["birthday", 7]
     ]);
 
     function element(tag, className, text) {
@@ -75,17 +76,25 @@
 
     function compactEntries(entries, date, limit = 4) {
         const ordered = entriesForDate(entries, date);
+        const birthdays = ordered.filter(entry => entry.kind === "birthday");
+        const nonBirthdays = ordered.filter(entry => entry.kind !== "birthday");
         const picked = [];
         const years = new Set();
 
-        // A small homepage/news module is more interesting when it spans eras
-        // instead of showing four moments from the same event or year.
-        for (const entry of ordered) {
+        // Prioritize historical moments and era variety, but reserve one slot for
+        // a fighter birthday when the date has one so birthdays do not disappear
+        // behind four fight cards on busy dates.
+        for (const entry of nonBirthdays) {
             const year = entryYear(entry);
             if (years.has(year)) continue;
             picked.push(entry);
             years.add(year);
-            if (picked.length === limit) return picked;
+            if (picked.length === limit) break;
+        }
+
+        if (birthdays.length && !picked.some(entry => entry.kind === "birthday")) {
+            if (picked.length >= limit) picked[picked.length - 1] = birthdays[0];
+            else picked.push(birthdays[0]);
         }
 
         for (const entry of ordered) {
@@ -94,7 +103,7 @@
             if (picked.length === limit) break;
         }
 
-        return picked;
+        return picked.slice(0, limit);
     }
 
     function entryYear(entry) {
@@ -106,6 +115,7 @@
         if (!year) return "";
         const age = new Date().getFullYear() - year;
         if (age <= 0) return "This year";
+        if (entry.kind === "birthday") return `Born ${age} ${age === 1 ? "year" : "years"} ago`;
         return `${age} ${age === 1 ? "year" : "years"} ago`;
     }
 
@@ -117,7 +127,8 @@
             title: "Title",
             incident: "Incident",
             news: "News",
-            death: "In memoriam"
+            death: "In memoriam",
+            birthday: "Birthday"
         };
         return labels[kind] || "Note";
     }
