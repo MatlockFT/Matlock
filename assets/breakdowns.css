@@ -1,0 +1,60 @@
+/* =========================================================
+   BREAKDOWNS — MOBILE DENSITY + FIRST-VIEW PERFORMANCE
+   Keep the archive controls useful without letting them consume the screen.
+   ========================================================= */
+
+.archive-tools {
+    align-items: end;
+}
+
+@media (max-width: 760px) {
+    .archive-header {
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.7rem;
+    }
+
+    .archive-tools {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.62rem;
+        padding: 0.78rem;
+    }
+
+    .archive-tools label:first-child,
+    .archive-status {
+        grid-column: 1 / -1;
+    }
+
+    .archive-tools label {
+        gap: 0.32rem;
+    }
+
+    .archive-tools label > span {
+        font-size: 0.64rem;
+        line-height: 1.1;
+    }
+
+    .archive-tools input,
+    .archive-tools select {
+        min-height: 43px;
+        padding-top: 0.48rem;
+        padding-bottom: 0.48rem;
+        font-size: 16px;
+    }
+
+    .archive-status {
+        margin: 0.04rem 0 0;
+        font-size: 0.7rem;
+        line-height: 1.25;
+    }
+
+    .article-grid {
+        margin-top: 1rem;
+    }
+}
+
+@supports (content-visibility: auto) {
+    .article-card {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 440px;
+    }
+}
