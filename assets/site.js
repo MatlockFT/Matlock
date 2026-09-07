@@ -1,14 +1,4 @@
 (() => {
-    const tickerScript = document.createElement("script");
-    tickerScript.src = "/assets/site-ticker.js?v=1";
-    tickerScript.defer = true;
-    document.head.appendChild(tickerScript);
-
-    const typographyStylesheet = document.createElement("link");
-    typographyStylesheet.rel = "stylesheet";
-    typographyStylesheet.href = "/assets/typography-fixes.css?v=1";
-    document.head.appendChild(typographyStylesheet);
-
     const navigationToggle = document.getElementById("navigation-toggle");
     const navigationList = document.getElementById("navigation-list");
     const navigationPanel = document.getElementById("navigation-panel");
