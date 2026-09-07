@@ -61,6 +61,7 @@ jobs:
           node --check scripts/enrich-fighter-portraits.mjs
           node --check scripts/validate-upcoming-events.mjs
           node --check scripts/publish-scheduled-posts.mjs
+          node --check scripts/summarize-lighthouse.mjs
 
       - name: Check first-paint shell invariants
         run: |
@@ -71,6 +72,8 @@ jobs:
           grep -q "site-live-strip-reserve" assets/site-shell.css
           grep -q "otd-list:empty" assets/site-shell.css
           grep -q "min-height: 104px" assets/ufc-roster.css
+          grep -q "/assets/breakdowns.css" breakdowns.html
+          grep -q 'fetchpriority="high"' breakdowns.html
           if grep -q 'document.createElement("style")' assets/site.js; then
             echo "site.js must not inject shell CSS at runtime"
             exit 1
