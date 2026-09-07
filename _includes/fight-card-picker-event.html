@@ -4,6 +4,7 @@
   id="{{ event.id }}"
   data-picker-event-id="{{ event.id }}"
   data-auto-promotion="{{ event.promotion_key }}"
+  data-regional="{% if event.regional %}true{% else %}false{% endif %}"
   aria-labelledby="{{ event.id }}-title"
 >
   <header class="event-card-header">
