@@ -1,18 +1,25 @@
-name: Optimize Pages CMS article images
+name: Optimize site images
 
 on:
+  push:
+    paths:
+      - '_posts/**'
+      - 'assets/uploads/**'
+      - 'assets/header-image.png'
+      - 'scripts/optimize-post-images.mjs'
+      - '.github/workflows/pages-cms-optimize-images.yml'
   workflow_dispatch:
     inputs:
       payload:
         description: Pages CMS payload as JSON
-        required: true
+        required: false
         type: string
 
 permissions:
   contents: write
 
 concurrency:
-  group: pages-cms-image-optimization-${{ github.ref }}
+  group: site-image-optimization-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -42,13 +49,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- assets/generated/posts _data/responsive_images.yml; then
+          if git diff --quiet -- assets/generated/posts assets/generated/site _data/responsive_images.yml; then
             echo "Images are already optimized."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- assets/generated/posts _data/responsive_images.yml
-          git commit -m "Optimize article images"
+          git add -- assets/generated/posts assets/generated/site _data/responsive_images.yml
+          git commit -m "Optimize site images"
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
