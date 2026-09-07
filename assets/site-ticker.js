@@ -12,12 +12,9 @@
     const COUNTDOWN_TICK_MS = 1000;
     const FIGHT_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
     const DEFAULT_EVENT_LENGTH_MS = 6 * 60 * 60 * 1000;
+    const MAX_TICKER_EVENTS = 64;
     const deviceReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    const stylesheet = document.createElement("link");
-    stylesheet.rel = "stylesheet";
-    stylesheet.href = "/assets/site-ticker.css?v=2";
-    document.head.appendChild(stylesheet);
+    const zoneFormatters = new Map();
 
     const strip = document.createElement("section");
     strip.className = "site-live-strip";
@@ -76,6 +73,8 @@
     let fightWeekEvents = [];
     let drawerCloseTimer = 0;
     let drawerOpenTimer = 0;
+    let newsLoadStarted = false;
+    let eventCountdownNodes = new Map();
 
     function safeDate(value) {
         if (!value) return null;
@@ -94,12 +93,8 @@
         return "America/New_York";
     }
 
-    function zonedDateTime(dateString, hour, minute, timeZone) {
-        const [year, month, day] = dateString.split("-").map(Number);
-        if (!year || !month || !day) return null;
-
-        const desiredUtc = Date.UTC(year, month - 1, day, hour, minute, 0);
-        let guess = desiredUtc;
+    function formatterForZone(timeZone) {
+        if (zoneFormatters.has(timeZone)) return zoneFormatters.get(timeZone);
         const formatter = new Intl.DateTimeFormat("en-US", {
             timeZone,
             year: "numeric",
@@ -109,6 +104,17 @@
             minute: "2-digit",
             hourCycle: "h23"
         });
+        zoneFormatters.set(timeZone, formatter);
+        return formatter;
+    }
+
+    function zonedDateTime(dateString, hour, minute, timeZone) {
+        const [year, month, day] = dateString.split("-").map(Number);
+        if (!year || !month || !day) return null;
+
+        const desiredUtc = Date.UTC(year, month - 1, day, hour, minute, 0);
+        let guess = desiredUtc;
+        const formatter = formatterForZone(timeZone);
 
         for (let index = 0; index < 3; index += 1) {
             const parts = Object.fromEntries(
@@ -167,16 +173,16 @@
             };
         }
 
-        const sectionStarts = (event.sections || [])
-            .map(section => parseSectionTime(event, section.time))
-            .filter(Boolean)
-            .sort((a, b) => a - b);
+        let sectionStart = null;
+        for (const section of event.sections || []) {
+            const parsed = parseSectionTime(event, section.time);
+            if (parsed && (!sectionStart || parsed < sectionStart)) sectionStart = parsed;
+        }
 
-        if (sectionStarts.length) {
-            const start = sectionStarts[0];
+        if (sectionStart) {
             return {
-                start,
-                end: explicitEnd || new Date(start.getTime() + DEFAULT_EVENT_LENGTH_MS),
+                start: sectionStart,
+                end: explicitEnd || new Date(sectionStart.getTime() + DEFAULT_EVENT_LENGTH_MS),
                 precise: true
             };
         }
@@ -250,7 +256,17 @@
 
     function normalizedEvents(data) {
         const now = Date.now();
-        return (Array.isArray(data?.events) ? data.events : [])
+        const roughCutoff = now - DEFAULT_EVENT_LENGTH_MS;
+        const raw = Array.isArray(data?.events) ? data.events : [];
+        const candidates = raw
+            .filter(event => {
+                const rough = safeDate(event.starts_at || (event.date ? `${event.date}T23:59:59Z` : ""));
+                return !rough || rough.getTime() > roughCutoff;
+            })
+            .sort((a, b) => String(a.starts_at || a.date || "9999").localeCompare(String(b.starts_at || b.date || "9999")))
+            .slice(0, MAX_TICKER_EVENTS);
+
+        return candidates
             .map(event => ({ event, timing: eventTiming(event) }))
             .filter(item => item.timing.start)
             .filter(item => {
@@ -305,6 +321,7 @@
         time.className = "site-event-row-countdown";
         time.dataset.eventCountdown = "";
         time.dataset.eventId = event.id || "";
+        if (event.id) eventCountdownNodes.set(event.id, time);
 
         link.append(main, time);
         li.append(link);
@@ -318,6 +335,7 @@
         });
         allEvents.sort((a, b) => a.timing.start - b.timing.start);
         fightWeekEvents = chooseFightWeek();
+        eventCountdownNodes = new Map();
 
         if (!fightWeekEvents.length) {
             eventPrimaryName.textContent = "Next event";
@@ -346,15 +364,16 @@
     }
 
     function updateCountdowns() {
-        if (!fightWeekEvents.length) return;
+        if (document.hidden || !fightWeekEvents.length) return;
         const primary = fightWeekEvents[0];
         const primaryValue = countdown(primary.timing);
         eventPrimaryCountdown.textContent = primaryValue.text;
         eventPrimaryCountdown.dataset.live = String(primaryValue.live);
 
-        strip.querySelectorAll("[data-event-countdown]").forEach(node => {
-            const item = fightWeekEvents.find(entry => (entry.event.id || "") === node.dataset.eventId);
-            if (!item) return;
+        fightWeekEvents.forEach(item => {
+            const id = item.event.id || "";
+            const node = id ? eventCountdownNodes.get(id) : null;
+            if (!node) return;
             const value = countdown(item.timing);
             node.textContent = value.text;
             node.dataset.live = String(value.live);
@@ -470,6 +489,20 @@
         }
     }
 
+    function startNewsLoad() {
+        if (newsLoadStarted) return;
+        newsLoadStarted = true;
+        loadNews();
+    }
+
+    function scheduleNewsLoad() {
+        if ("requestIdleCallback" in window) {
+            window.requestIdleCallback(startNewsLoad, { timeout: 450 });
+        } else {
+            window.setTimeout(startNewsLoad, 180);
+        }
+    }
+
     eventPrimary.addEventListener("click", () => {
         setDrawer(!eventStack.classList.contains("is-open"));
     });
@@ -511,15 +544,25 @@
         newsTrack.style.animationPlayState = deviceReducedMotion.matches ? "paused" : "running";
     });
 
+    document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) updateCountdowns();
+    });
+
     loadEvents();
-    loadNews();
+    scheduleNewsLoad();
 
     window.setInterval(() => {
+        if (document.hidden) return;
         updateCountdowns();
         const first = allEvents[0];
         if (first?.timing?.end && Date.now() >= first.timing.end.getTime()) renderEvents();
     }, COUNTDOWN_TICK_MS);
 
-    window.setInterval(loadEvents, EVENT_REFRESH_MS);
-    window.setInterval(loadNews, NEWS_REFRESH_MS);
+    window.setInterval(() => {
+        if (!document.hidden) loadEvents();
+    }, EVENT_REFRESH_MS);
+
+    window.setInterval(() => {
+        if (!document.hidden) loadNews();
+    }, NEWS_REFRESH_MS);
 })();
