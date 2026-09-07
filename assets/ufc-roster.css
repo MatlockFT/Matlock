@@ -89,6 +89,7 @@
 
 .ufc-roster-list {
     display: grid;
+    min-height: 104px;
     gap: 0.8rem;
 }
 
@@ -169,7 +170,10 @@
 }
 
 .ufc-roster-empty {
-    padding: 2rem;
+    display: grid;
+    min-height: 104px;
+    place-items: center;
+    padding: 1rem 2rem;
     border: 1px dashed var(--border-bright, #333);
     border-radius: 14px;
     color: var(--text-muted, #aaa);
