@@ -75,6 +75,7 @@
 
 .site-event-primary-countdown {
     color: #d5d5d5;
+    font-variant-numeric: tabular-nums;
     white-space: nowrap;
 }
 
@@ -212,6 +213,7 @@
 .site-event-row-countdown {
     color: #cfcfcf;
     font: 900 .62rem "Courier New", monospace;
+    font-variant-numeric: tabular-nums;
     white-space: nowrap;
 }
 
@@ -324,7 +326,7 @@
     }
 
     .site-live-strip-inner {
-        grid-template-columns: minmax(160px, 42vw) minmax(0,1fr);
+        grid-template-columns: minmax(188px, 48vw) minmax(0,1fr);
     }
 
     .site-event-stack {
@@ -370,7 +372,7 @@
 
 @media (max-width: 520px) {
     .site-live-strip-inner {
-        grid-template-columns: minmax(142px, 46vw) minmax(0,1fr);
+        grid-template-columns: minmax(176px, 52vw) minmax(0,1fr);
     }
 
     .site-event-primary {
@@ -379,7 +381,12 @@
     }
 
     .site-event-primary-name {
-        max-width: 74px;
+        max-width: 62px;
+    }
+
+    .site-event-primary-countdown {
+        font-size: .5rem;
+        letter-spacing: .015em;
     }
 
     .site-event-drawer {
