@@ -1,0 +1,62 @@
+---
+layout: default
+title: "On This Day in MMA History"
+description: "MMA history by date: memorable fights, title changes, signings, debuts, deaths, incidents, and other moments from across the sport."
+permalink: /on-this-day/
+page_styles:
+  - /assets/on-this-day.css
+page_scripts:
+  - /assets/on-this-day.js
+---
+
+<article
+    class="otd-page"
+    data-on-this-day
+    data-mode="full"
+    data-history-url="{{ '/assets/data/on-this-day.json' | relative_url }}?v={{ site.asset_version }}"
+>
+    <header class="otd-page-header">
+        <h1>On This Day in MMA</h1>
+        <div class="otd-page-date-row">
+            <time class="otd-page-date" data-otd-date></time>
+            <p class="otd-page-count" data-otd-count></p>
+        </div>
+    </header>
+
+    <div class="otd-controls" aria-label="Browse MMA history by date">
+        <button
+            class="otd-control-button"
+            type="button"
+            data-otd-prev
+            aria-label="Previous day"
+        >
+            ←
+        </button>
+
+        <input
+            class="otd-date-input"
+            type="date"
+            data-otd-input
+            aria-label="Choose a date"
+        >
+
+        <button
+            class="otd-control-button"
+            type="button"
+            data-otd-next
+            aria-label="Next day"
+        >
+            →
+        </button>
+
+        <button
+            class="otd-control-button"
+            type="button"
+            data-otd-today
+        >
+            Today
+        </button>
+    </div>
+
+    <div class="otd-list" data-otd-list aria-live="polite"></div>
+</article>
