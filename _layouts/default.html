@@ -65,6 +65,11 @@
 
     <link
         rel="stylesheet"
+        href="{{ '/assets/site-ticker.css' | relative_url }}?v={{ site.asset_version }}"
+    >
+
+    <link
+        rel="stylesheet"
         href="{{ '/assets/micro-interactions.css' | relative_url }}?v={{ site.asset_version }}"
     >
 
@@ -152,6 +157,8 @@
                     src="{{ '/assets/header-image.png' | relative_url }}"
                     alt="MMA Matlock"
                     class="site-logo"
+                    width="1600"
+                    height="640"
                     loading="eager"
                     fetchpriority="high"
                     decoding="async"
@@ -281,6 +288,8 @@
                 </div>
             </div>
         </nav>
+
+        <div class="site-live-strip-reserve" aria-hidden="true"></div>
 
         <button
             class="navigation-backdrop"
