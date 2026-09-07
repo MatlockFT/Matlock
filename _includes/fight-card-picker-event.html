@@ -1,0 +1,100 @@
+{% assign event = include.event %}
+<section
+  class="upcoming-event-card"
+  id="{{ event.id }}"
+  data-picker-event-id="{{ event.id }}"
+  data-auto-promotion="{{ event.promotion_key }}"
+  aria-labelledby="{{ event.id }}-title"
+>
+  <header class="event-card-header">
+    <div class="event-card-heading">
+      <p class="event-promotion">{{ event.promotion }}</p>
+      <h2 id="{{ event.id }}-title">{{ event.title }}</h2>
+      <p class="event-date"><time datetime="{{ event.date }}">{{ event.date_label }}</time></p>
+    </div>
+    <div class="event-card-meta">
+      <p>{{ event.venue }}</p>
+      {% for section in event.sections reversed %}
+        {% if section.bouts.size > 0 and section.time != '' %}<p><strong>{{ section.title }}</strong> {{ section.time }}</p>{% endif %}
+      {% endfor %}
+      {% if event.broadcast != '' %}<p>{{ event.broadcast }}</p>{% endif %}
+      {% if event.official_url != '' %}<a href="{{ event.official_url }}" target="_blank" rel="noopener noreferrer">Official event page ↗</a>{% endif %}
+      {% if event.source_card_url and event.source_card_url != '' and event.source_card_url != event.official_url %}<a href="{{ event.source_card_url }}" target="_blank" rel="noopener noreferrer">Fight card source ↗</a>{% endif %}
+    </div>
+  </header>
+
+  {% for section in event.sections %}
+    {% if section.bouts.size > 0 %}
+      {% if section.kind == 'main' %}
+        <div class="event-card-section">
+          <div class="event-card-section-heading"><h3>{{ section.title }}</h3><span>{{ section.time }}</span></div>
+          <div class="featured-bouts">
+            {% for bout in section.bouts limit:2 %}
+              <article class="bout-card bout-card-featured">
+                <div class="bout-label"><span>{% if bout.order < 10 %}0{% endif %}{{ bout.order }}</span>{% if bout.label != '' %} {{ bout.label }}{% endif %}</div>
+                <div class="bout-fighters">
+                  {% for fighter in bout.fighters %}
+                    <div class="fighter">
+                      <div class="fighter-photo{% if fighter.image == '' %} photo-missing{% endif %}">
+                        <span class="fighter-fallback" aria-hidden="true">{{ fighter.initials }}</span>
+                        {% if fighter.image != '' %}<img data-fighter-photo data-portrait-source="{{ fighter.image_source }}" data-portrait-framing="{{ fighter.image_framing }}" src="{{ fighter.image }}" alt="{{ fighter.name }}" loading="eager" decoding="async" referrerpolicy="no-referrer">{% endif %}
+                      </div>
+                      <p class="fighter-name">{{ fighter.name }}</p>
+                    </div>
+                  {% endfor %}
+                </div>
+                <div class="bout-footer"><span>{{ bout.weight_class }}</span><strong>VS</strong></div>
+              </article>
+            {% endfor %}
+          </div>
+          {% if section.bouts.size > 2 %}
+            <div class="main-card-bouts">
+              {% for bout in section.bouts offset:2 %}
+                <article class="bout-card bout-card-compact">
+                  <div class="bout-label"><span>{% if bout.order < 10 %}0{% endif %}{{ bout.order }}</span>{% if bout.label != '' %} {{ bout.label }}{% endif %}</div>
+                  <div class="bout-fighters">
+                    {% for fighter in bout.fighters %}
+                      <div class="fighter">
+                        <div class="fighter-photo{% if fighter.image == '' %} photo-missing{% endif %}">
+                          <span class="fighter-fallback" aria-hidden="true">{{ fighter.initials }}</span>
+                          {% if fighter.image != '' %}<img data-fighter-photo data-portrait-source="{{ fighter.image_source }}" data-portrait-framing="{{ fighter.image_framing }}" src="{{ fighter.image }}" alt="{{ fighter.name }}" loading="lazy" decoding="async" referrerpolicy="no-referrer">{% endif %}
+                        </div>
+                        <p class="fighter-name">{{ fighter.name }}</p>
+                      </div>
+                    {% endfor %}
+                  </div>
+                  <div class="bout-footer"><span>{{ bout.weight_class }}</span><strong>VS</strong></div>
+                </article>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="event-card-section event-card-prelims">
+          <div class="event-card-section-heading"><h3>{{ section.title }}</h3><span>{{ section.time }}</span></div>
+          <div class="prelim-bouts">
+            {% for bout in section.bouts %}
+              <article class="bout-card bout-card-compact">
+                <div class="bout-label"><span>{% if bout.order < 10 %}0{% endif %}{{ bout.order }}</span>{% if bout.label != '' %} {{ bout.label }}{% endif %}</div>
+                <div class="bout-fighters">
+                  {% for fighter in bout.fighters %}
+                    <div class="fighter">
+                      <div class="fighter-photo{% if fighter.image == '' %} photo-missing{% endif %}">
+                        <span class="fighter-fallback" aria-hidden="true">{{ fighter.initials }}</span>
+                        {% if fighter.image != '' %}<img data-fighter-photo data-portrait-source="{{ fighter.image_source }}" data-portrait-framing="{{ fighter.image_framing }}" src="{{ fighter.image }}" alt="{{ fighter.name }}" loading="lazy" decoding="async" referrerpolicy="no-referrer">{% endif %}
+                      </div>
+                      <p class="fighter-name">{{ fighter.name }}</p>
+                    </div>
+                  {% endfor %}
+                </div>
+                <div class="bout-footer"><span>{{ bout.weight_class }}</span><strong>VS</strong></div>
+              </article>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  <footer class="event-card-note"><p>Card order and start times updated {{ event.updated_label }}. Fight cards can change.</p></footer>
+</section>
