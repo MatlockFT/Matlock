@@ -1,7 +1,38 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-07T04:52:44.216Z",
+  "generated_at": "2026-09-07T19:16:33.588Z",
   "changes": [
+    {
+      "id": "2026-09-07T19:16:33.588Z|noche-ufc-2026-09-12-fight-card|bout_moved|1",
+      "at": "2026-09-07T19:16:33.588Z",
+      "type": "bout_moved",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "JJ Aldrich vs Regina Tarin moved on Silva vs Delgado.",
+      "details": {
+        "from_order": 12,
+        "to_order": 13,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-07T19:16:33.588Z|noche-ufc-2026-09-12-fight-card|bout_added|2",
+      "at": "2026-09-07T19:16:33.588Z",
+      "type": "bout_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "Sean King vs Jessie Rosas added to Silva vs Delgado.",
+      "details": {
+        "order": 12,
+        "section": "Prelims",
+        "weight_class": "Featherweight Bout"
+      }
+    },
     {
       "id": "2026-09-07T04:52:44.216Z|noche-ufc-2026-09-12-fight-card|bout_moved|1",
       "at": "2026-09-07T04:52:44.216Z",
@@ -4531,34 +4562,6 @@
       "summary": "Dan Hooker portrait added.",
       "details": {
         "fighter": "Dan Hooker",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|48",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Salahdine Parnasse portrait added.",
-      "details": {
-        "fighter": "Salahdine Parnasse",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|49",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Farès Ziam portrait added.",
-      "details": {
-        "fighter": "Farès Ziam",
         "source": "sherdog"
       }
     }
