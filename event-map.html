@@ -7,10 +7,12 @@ page_styles:
   - /assets/event-map.css
   - /assets/event-map-detail-enhance.css
   - /assets/event-map-controls-cleanup.css
+  - /assets/event-map-ux.css
 page_scripts:
   - /assets/event-map.js
   - /assets/event-map-pointer-fix.js
   - /assets/event-map-detail-enhance.js
+  - /assets/event-map-ux.js
 ---
 
 <section
@@ -27,7 +29,7 @@ page_scripts:
 
     <div class="event-map-toolbar" aria-label="Event Map controls">
         <div class="event-map-range" role="group" aria-label="Date range">
-            <button type="button" data-range="weekend">This weekend</button>
+            <button type="button" data-range="weekend" data-week-view>This week</button>
             <button type="button" data-range="30">30 days</button>
             <button type="button" data-range="all" aria-pressed="true">All upcoming</button>
         </div>
