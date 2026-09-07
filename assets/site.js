@@ -12,12 +12,8 @@
     const navigationToggle = document.getElementById("navigation-toggle");
     const navigationList = document.getElementById("navigation-list");
     const navigationPanel = document.getElementById("navigation-panel");
-    const navigationClose = document.querySelector(
-        "[data-navigation-close]"
-    );
-    const navigationBackdrop = document.querySelector(
-        "[data-navigation-backdrop]"
-    );
+    const navigationClose = document.querySelector("[data-navigation-close]");
+    const navigationBackdrop = document.querySelector("[data-navigation-backdrop]");
     const mobileNavigation = window.matchMedia("(max-width: 850px)");
     const pageRegions = [
         document.querySelector(".logo-banner"),
@@ -34,9 +30,7 @@
         document.body.style.left = "";
         document.body.style.width = "";
 
-        if (bodyWasLocked) {
-            window.scrollTo(0, lockedScrollPosition);
-        }
+        if (bodyWasLocked) window.scrollTo(0, lockedScrollPosition);
     }
 
     function setPageRegionsInert(isInert) {
@@ -52,14 +46,8 @@
         const panelIsHidden = mobileNavigation.matches && !isOpen;
 
         navigationToggle.setAttribute("aria-expanded", String(isOpen));
-        navigationToggle.setAttribute(
-            "aria-label",
-            isOpen ? "Close main navigation" : "Open main navigation"
-        );
-        navigationPanel.setAttribute(
-            "aria-hidden",
-            String(panelIsHidden)
-        );
+        navigationToggle.setAttribute("aria-label", isOpen ? "Close main navigation" : "Open main navigation");
+        navigationPanel.setAttribute("aria-hidden", String(panelIsHidden));
         navigationPanel.inert = panelIsHidden;
         navigationList.classList.toggle("navigation-list-open", isOpen);
         document.body.classList.toggle("navigation-is-open", isOpen);
@@ -81,20 +69,12 @@
     }
 
     function trapPanelFocus(event) {
-        if (
-            event.key !== "Tab" ||
-            navigationToggle?.getAttribute("aria-expanded") !== "true"
-        ) {
-            return;
-        }
+        if (event.key !== "Tab" || navigationToggle?.getAttribute("aria-expanded") !== "true") return;
 
         const focusable = [
-            ...navigationPanel.querySelectorAll(
-                "a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])"
-            )
+            ...navigationPanel.querySelectorAll("a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])")
         ].filter(node => !node.inert && node.offsetParent !== null);
-
-        if (focusable.length === 0) return;
+        if (!focusable.length) return;
 
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
@@ -102,10 +82,7 @@
         if (event.shiftKey && document.activeElement === first) {
             event.preventDefault();
             last.focus();
-        } else if (
-            !event.shiftKey &&
-            document.activeElement === last
-        ) {
+        } else if (!event.shiftKey && document.activeElement === last) {
             event.preventDefault();
             first.focus();
         }
@@ -113,40 +90,23 @@
 
     if (navigationToggle && navigationList && navigationPanel) {
         navigationToggle.addEventListener("click", () => {
-            setNavigationState(
-                navigationToggle.getAttribute("aria-expanded") !== "true"
-            );
+            setNavigationState(navigationToggle.getAttribute("aria-expanded") !== "true");
         });
-
-        navigationClose?.addEventListener(
-            "click",
-            () => setNavigationState(false, true)
-        );
-        navigationBackdrop?.addEventListener(
-            "click",
-            () => setNavigationState(false, true)
-        );
-
+        navigationClose?.addEventListener("click", () => setNavigationState(false, true));
+        navigationBackdrop?.addEventListener("click", () => setNavigationState(false, true));
         navigationList.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => setNavigationState(false));
         });
 
         document.addEventListener("keydown", event => {
-            if (
-                event.key === "Escape" &&
-                navigationToggle.getAttribute("aria-expanded") === "true"
-            ) {
+            if (event.key === "Escape" && navigationToggle.getAttribute("aria-expanded") === "true") {
                 setNavigationState(false, true);
                 return;
             }
-
             trapPanelFocus(event);
         });
 
-        mobileNavigation.addEventListener(
-            "change",
-            () => setNavigationState(false)
-        );
+        mobileNavigation.addEventListener("change", () => setNavigationState(false));
         window.addEventListener("pagehide", unlockPageScroll);
         setNavigationState(false);
     }
@@ -156,163 +116,7 @@
             const imageShell = image.closest("[data-image-shell]");
             (imageShell || image).remove();
         };
-
         image.addEventListener("error", removeBrokenImage);
         if (image.complete && image.naturalWidth === 0) removeBrokenImage();
     });
-
-    const upcomingEventsList = document.querySelector(".upcoming-events-list");
-    if (upcomingEventsList) {
-        const cards = [...upcomingEventsList.querySelectorAll(":scope > .upcoming-event-card")];
-        cards
-            .sort((a, b) => {
-                const aDate = a.querySelector("time[datetime]")?.getAttribute("datetime") || "9999-12-31";
-                const bDate = b.querySelector("time[datetime]")?.getAttribute("datetime") || "9999-12-31";
-                return aDate.localeCompare(bDate);
-            })
-            .forEach(card => upcomingEventsList.appendChild(card));
-
-        const normalizeFighterName = value => (value || "")
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "")
-            .toLowerCase()
-            .replace(/\b(jr|sr|ii|iii|iv)\b/g, "")
-            .replace(/[^a-z0-9]+/g, " ")
-            .trim();
-
-        const applyPortraitFraming = image => {
-            if (!image?.naturalWidth || !image?.naturalHeight) return;
-
-            const ratio = image.naturalWidth / image.naturalHeight;
-            const framing = image.dataset.portraitFraming || "standard";
-            const source = image.dataset.portraitSource || "";
-            const src = image.currentSrc || image.src || "";
-            const card = image.closest(".upcoming-event-card");
-            const regional = card?.dataset.regional === "true";
-            const standardEspn = source === "espn" || /a\.espncdn\.com\/i\/headshots\/mma\/players\/full\//i.test(src);
-
-            const restoreStandardCrop = () => {
-                image.style.removeProperty("object-fit");
-                image.style.removeProperty("object-position");
-                image.style.removeProperty("transform");
-                image.style.removeProperty("transform-origin");
-            };
-
-            const extremeRatio = ratio < 0.46 || ratio > 1.75;
-
-            // Regional sources are often already tight 200x300 crops. Keep the pro
-            // card treatment untouched, but zoom regional portraits much less and
-            // bias the transform toward the top so foreheads/chins survive the frame.
-            if (regional) {
-                image.style.setProperty("object-fit", "contain", "important");
-                image.style.setProperty("object-position", "50% 18%", "important");
-                image.style.setProperty("transform", extremeRatio ? "scale(1.02)" : "scale(1.16)", "important");
-                image.style.setProperty("transform-origin", "50% 20%", "important");
-                return;
-            }
-
-            if (framing === "standard" && standardEspn) {
-                restoreStandardCrop();
-                return;
-            }
-
-            if (framing === "safe" || extremeRatio) {
-                image.style.objectFit = "contain";
-                image.style.objectPosition = "50% 12%";
-                image.style.transform = extremeRatio ? "scale(1.02)" : "scale(1.08)";
-                image.style.transformOrigin = "50% 18%";
-                return;
-            }
-
-            restoreStandardCrop();
-        };
-
-        const preparePortrait = image => {
-            const frame = image.closest(".fighter-photo");
-            if (!frame) return;
-            const fail = () => {
-                frame.classList.add("photo-missing");
-                image.remove();
-            };
-            const ready = () => {
-                frame.classList.remove("photo-missing");
-                applyPortraitFraming(image);
-            };
-            image.addEventListener("load", ready, { once: true });
-            image.addEventListener("error", fail, { once: true });
-            if (image.complete) {
-                if (image.naturalWidth > 0) ready();
-                else fail();
-            }
-        };
-
-        fetch("/assets/fighter-portraits.json", { cache: "no-cache" })
-            .then(response => response.ok ? response.json() : Promise.reject())
-            .then(portraits => {
-                upcomingEventsList.querySelectorAll(".fighter").forEach(fighter => {
-                    const name = fighter.querySelector(".fighter-name")?.textContent?.trim();
-                    const key = normalizeFighterName(name);
-                    const hit = portraits[key];
-                    const frame = fighter.querySelector(".fighter-photo");
-                    if (!hit?.url || !frame) return;
-
-                    let image = frame.querySelector("img[data-fighter-photo]");
-                    if (!image) {
-                        image = document.createElement("img");
-                        image.setAttribute("data-fighter-photo", "");
-                        image.alt = name || "Fighter portrait";
-                        image.loading = fighter.closest(".bout-card-featured") ? "eager" : "lazy";
-                        image.decoding = "async";
-                        image.referrerPolicy = "no-referrer";
-                        frame.appendChild(image);
-                    }
-
-                    if (!image.src || frame.classList.contains("photo-missing")) {
-                        image.src = hit.url;
-                    }
-                    image.dataset.portraitSource = hit.source || "cache";
-                    image.dataset.portraitFraming = hit.framing || "standard";
-                    preparePortrait(image);
-                });
-            })
-            .catch(() => {});
-
-        upcomingEventsList.querySelectorAll("img[data-fighter-photo]").forEach(preparePortrait);
-
-        // upcoming-events.js injects legacy portrait styling after the static CSS.
-        // Apply the final background as soon as all deferred scripts have run so the
-        // intended griptape treatment wins without waiting for portrait images to load.
-        document.addEventListener("DOMContentLoaded", () => {
-            const portraitStyle = document.createElement("style");
-            portraitStyle.dataset.portraitBackground = "black-griptape-v4";
-            portraitStyle.textContent = `
-                body .upcoming-events-page .upcoming-event-card .fighter-photo {
-                    background: #010101 !important;
-                }
-
-                body .upcoming-events-page .upcoming-event-card .fighter-photo::before {
-                    z-index: 0 !important;
-                    background:
-                        linear-gradient(164deg, transparent 0 18%, rgba(255,255,255,.065) 18.25% 18.45%, transparent 18.75% 67%, rgba(255,255,255,.05) 67.25% 67.45%, transparent 67.8%),
-                        radial-gradient(ellipse at 19% 27%, rgba(255,255,255,.08), transparent 30%),
-                        radial-gradient(ellipse at 82% 74%, rgba(255,255,255,.06), transparent 33%),
-                        url('/assets/fighter-gripboard.svg?v=3') center / cover no-repeat !important;
-                    opacity: .18 !important;
-                    mix-blend-mode: screen !important;
-                }
-
-                body .upcoming-events-page .upcoming-event-card .fighter-photo::after {
-                    position: absolute !important;
-                    inset: 0 !important;
-                    z-index: 2 !important;
-                    height: auto !important;
-                    background:
-                        radial-gradient(ellipse at center, transparent 48%, rgba(0,0,0,.34) 100%),
-                        linear-gradient(to top, rgba(0,0,0,.62), transparent 26%) !important;
-                    opacity: 1 !important;
-                }
-            `;
-            document.head.appendChild(portraitStyle);
-        }, { once: true });
-    }
 })();
