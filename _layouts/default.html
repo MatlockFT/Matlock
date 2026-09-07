@@ -87,9 +87,11 @@
 
     <link
         rel="preload"
-        href="{{ '/assets/header-image.png' | relative_url }}"
+        href="{{ '/assets/generated/site/header-image-480.webp' | relative_url }}"
         as="image"
-        type="image/png"
+        type="image/webp"
+        imagesrcset="{{ '/assets/generated/site/header-image-480.webp' | relative_url }} 480w, {{ '/assets/generated/site/header-image-800.webp' | relative_url }} 800w"
+        imagesizes="min(64vw, 260px)"
         fetchpriority="high"
     >
 
@@ -154,7 +156,9 @@
         <div class="logo-banner">
             <a href="{{ '/' | relative_url }}" aria-label="MMA Matlock home">
                 <img
-                    src="{{ '/assets/header-image.png' | relative_url }}"
+                    src="{{ '/assets/generated/site/header-image-480.webp' | relative_url }}"
+                    srcset="{{ '/assets/generated/site/header-image-480.webp' | relative_url }} 480w, {{ '/assets/generated/site/header-image-800.webp' | relative_url }} 800w"
+                    sizes="min(64vw, 260px)"
                     alt="MMA Matlock"
                     class="site-logo"
                     width="1600"

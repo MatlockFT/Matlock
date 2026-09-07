@@ -38,7 +38,7 @@
                     <div class="fighter">
                       <div class="fighter-photo{% if fighter.image == '' %} photo-missing{% endif %}">
                         <span class="fighter-fallback" aria-hidden="true">{{ fighter.initials }}</span>
-                        {% if fighter.image != '' %}<img data-fighter-photo data-portrait-source="{{ fighter.image_source }}" data-portrait-framing="{{ fighter.image_framing }}" src="{{ fighter.image }}" alt="{{ fighter.name }}" loading="eager" decoding="async" referrerpolicy="no-referrer">{% endif %}
+                        {% if fighter.image != '' %}<img data-fighter-photo data-portrait-source="{{ fighter.image_source }}" data-portrait-framing="{{ fighter.image_framing }}" src="{{ fighter.image }}" alt="{{ fighter.name }}" loading="{% if include.priority %}eager{% else %}lazy{% endif %}" decoding="async" referrerpolicy="no-referrer">{% endif %}
                       </div>
                       <p class="fighter-name">{{ fighter.name }}</p>
                     </div>

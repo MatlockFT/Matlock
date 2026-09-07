@@ -1,10 +1,11 @@
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
-import { basename, extname, join, resolve } from 'node:path';
+import { extname, join, resolve } from 'node:path';
 import sharp from 'sharp';
 
 const root = resolve(import.meta.dirname, '..');
 const postsDirectory = join(root, '_posts');
-const outputDirectory = join(root, 'assets', 'generated', 'posts');
+const postOutputDirectory = join(root, 'assets', 'generated', 'posts');
+const siteOutputDirectory = join(root, 'assets', 'generated', 'site');
 const manifestPath = join(root, '_data', 'responsive_images.yml');
 const targetWidths = [480, 960, 1600];
 
@@ -46,7 +47,27 @@ function outputStem(imagePath) {
         .toLowerCase();
 }
 
-await mkdir(outputDirectory, { recursive: true });
+async function generateSiteHeader() {
+    const sourcePath = join(root, 'assets', 'header-image.png');
+    const widths = [480, 800];
+
+    for (const width of widths) {
+        await sharp(sourcePath)
+            .rotate()
+            .resize({
+                width,
+                withoutEnlargement: true
+            })
+            .webp({
+                quality: 82,
+                effort: 5
+            })
+            .toFile(join(siteOutputDirectory, `header-image-${width}.webp`));
+    }
+}
+
+await mkdir(postOutputDirectory, { recursive: true });
+await mkdir(siteOutputDirectory, { recursive: true });
 await mkdir(join(root, '_data'), { recursive: true });
 
 const postFiles = (await readdir(postsDirectory))
@@ -87,7 +108,7 @@ for (const imagePath of [...imagePaths].sort()) {
 
     for (const width of widths) {
         const filename = `${stem}-${width}.webp`;
-        const outputPath = join(outputDirectory, filename);
+        const outputPath = join(postOutputDirectory, filename);
 
         await sharp(sourcePath)
             .rotate()
@@ -136,7 +157,8 @@ const manifest = [
 ].join('\n');
 
 await writeFile(manifestPath, manifest);
+await generateSiteHeader();
 
 console.log(
-    `Generated responsive variants for ${manifestEntries.length} featured images.`
+    `Generated responsive variants for ${manifestEntries.length} featured images plus the site header.`
 );
