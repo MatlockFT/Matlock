@@ -60,6 +60,22 @@ for (const [index, entry] of entries.entries()) {
         failures.push(`${prefix}.sourceUrl must be https`);
     }
 
+    if (entry?.imageUrl && !/^https:\/\//i.test(entry.imageUrl)) {
+        failures.push(`${prefix}.imageUrl must be https`);
+    }
+
+    if (entry?.imageUrl && (typeof entry.imageAlt !== "string" || !entry.imageAlt.trim())) {
+        failures.push(`${prefix}.imageAlt is required when imageUrl is present`);
+    }
+
+    if (entry?.imageCredit && typeof entry.imageCredit !== "string") {
+        failures.push(`${prefix}.imageCredit must be a string`);
+    }
+
+    if (entry?.imagePosition && !/^\d{1,3}%\s+\d{1,3}%$/.test(entry.imagePosition)) {
+        failures.push(`${prefix}.imagePosition must look like "50% 40%"`);
+    }
+
     const key = `${entry?.date || ""}::${entry?.title || ""}`.toLowerCase();
     if (seen.has(key)) failures.push(`${prefix} duplicates an existing date/title`);
     seen.add(key);
