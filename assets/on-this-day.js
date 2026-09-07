@@ -1,0 +1,255 @@
+(() => {
+    const widgets = [...document.querySelectorAll("[data-on-this-day]")];
+    if (!widgets.length) return;
+
+    const REFERENCE_YEAR = 2024;
+    const kindOrder = new Map([
+        ["fight", 0],
+        ["signing", 1],
+        ["debut", 2],
+        ["title", 3],
+        ["incident", 4],
+        ["news", 5],
+        ["death", 6]
+    ]);
+
+    function element(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+    }
+
+    function externalLink(url, className, text) {
+        const link = element("a", className, text);
+        link.href = url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        return link;
+    }
+
+    function localToday() {
+        const now = new Date();
+        return new Date(REFERENCE_YEAR, now.getMonth(), now.getDate());
+    }
+
+    function keyForDate(date) {
+        return `${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+    }
+
+    function parseKey(value) {
+        const match = /^(\d{2})-(\d{2})$/.exec(value || "");
+        if (!match) return null;
+
+        const month = Number(match[1]);
+        const day = Number(match[2]);
+        const date = new Date(REFERENCE_YEAR, month - 1, day);
+
+        if (date.getMonth() !== month - 1 || date.getDate() !== day) return null;
+        return date;
+    }
+
+    function displayDate(date, long = false) {
+        return new Intl.DateTimeFormat([], long
+            ? { month: "long", day: "numeric" }
+            : { month: "short", day: "numeric" }
+        ).format(date);
+    }
+
+    function entriesForDate(entries, date) {
+        const key = keyForDate(date);
+        return entries
+            .filter(entry => entry.date?.slice(5) === key)
+            .sort((first, second) => {
+                const kindDifference = (kindOrder.get(first.kind) ?? 99) - (kindOrder.get(second.kind) ?? 99);
+                if (kindDifference) return kindDifference;
+
+                const weightDifference = (second.weight || 0) - (first.weight || 0);
+                if (weightDifference) return weightDifference;
+
+                return second.date.localeCompare(first.date);
+            });
+    }
+
+    function entryYear(entry) {
+        return entry.date?.slice(0, 4) || "";
+    }
+
+    function kindLabel(kind) {
+        const labels = {
+            fight: "Fight",
+            signing: "Signing",
+            debut: "Debut",
+            title: "Title",
+            incident: "Incident",
+            news: "News",
+            death: "In memoriam"
+        };
+        return labels[kind] || "Note";
+    }
+
+    function renderCompact(widget, entries) {
+        const date = localToday();
+        const matching = entriesForDate(entries, date).slice(0, 3);
+        const dateNode = widget.querySelector("[data-otd-date]");
+        const list = widget.querySelector("[data-otd-list]");
+
+        if (dateNode) dateNode.textContent = displayDate(date);
+        if (!list) return;
+
+        if (!matching.length) {
+            widget.hidden = true;
+            return;
+        }
+
+        const cards = matching.map(entry => {
+            const card = element("article", "otd-compact-item");
+            const meta = element("div", "otd-compact-meta");
+            meta.append(
+                element("span", "otd-year", entryYear(entry)),
+                element("span", `otd-kind otd-kind--${entry.kind || "note"}`, kindLabel(entry.kind))
+            );
+
+            const title = element("h3", "otd-compact-item-title");
+            if (entry.sourceUrl) {
+                title.append(externalLink(entry.sourceUrl, "", entry.title));
+            } else {
+                title.textContent = entry.title;
+            }
+
+            card.append(meta, title);
+            return card;
+        });
+
+        list.replaceChildren(...cards);
+        widget.hidden = false;
+    }
+
+    function renderFull(widget, entries) {
+        const list = widget.querySelector("[data-otd-list]");
+        const dateDisplay = widget.querySelector("[data-otd-date]");
+        const dateInput = widget.querySelector("[data-otd-input]");
+        const previous = widget.querySelector("[data-otd-prev]");
+        const next = widget.querySelector("[data-otd-next]");
+        const todayButton = widget.querySelector("[data-otd-today]");
+        const count = widget.querySelector("[data-otd-count]");
+
+        if (!list || !dateDisplay) return;
+
+        const queryDate = parseKey(new URLSearchParams(window.location.search).get("date"));
+        let activeDate = queryDate || localToday();
+
+        function updateUrl() {
+            const url = new URL(window.location.href);
+            const key = keyForDate(activeDate);
+            if (key === keyForDate(localToday())) {
+                url.searchParams.delete("date");
+            } else {
+                url.searchParams.set("date", key);
+            }
+            window.history.replaceState({}, "", url);
+        }
+
+        function render() {
+            const matching = entriesForDate(entries, activeDate);
+            dateDisplay.textContent = displayDate(activeDate, true);
+            dateDisplay.setAttribute("datetime", keyForDate(activeDate));
+
+            if (dateInput) {
+                dateInput.value = `${REFERENCE_YEAR}-${keyForDate(activeDate)}`;
+            }
+
+            if (count) {
+                count.textContent = matching.length
+                    ? `${matching.length} ${matching.length === 1 ? "entry" : "entries"}`
+                    : "No entries yet";
+            }
+
+            if (!matching.length) {
+                const empty = element("div", "otd-empty");
+                empty.append(
+                    element("strong", "", "Nothing logged for this date yet."),
+                    element("span", "", "The archive is being built out continuously.")
+                );
+                list.replaceChildren(empty);
+                return;
+            }
+
+            const items = matching.map(entry => {
+                const item = element("article", `otd-entry otd-entry--${entry.kind || "note"}`);
+                const year = element("div", "otd-entry-year", entryYear(entry));
+                const body = element("div", "otd-entry-body");
+                const meta = element("div", "otd-entry-meta");
+                meta.append(
+                    element("span", `otd-kind otd-kind--${entry.kind || "note"}`, kindLabel(entry.kind))
+                );
+                if (entry.promotion) meta.append(element("span", "otd-promotion", entry.promotion));
+
+                const title = element("h2", "otd-entry-title", entry.title);
+                body.append(meta, title);
+
+                if (entry.detail) body.append(element("p", "otd-entry-detail", entry.detail));
+                if (entry.sourceUrl) {
+                    body.append(externalLink(entry.sourceUrl, "otd-entry-source", `${entry.source || "Source"} ↗`));
+                }
+
+                item.append(year, body);
+                return item;
+            });
+
+            list.replaceChildren(...items);
+        }
+
+        function shiftDay(amount) {
+            const nextDate = new Date(activeDate);
+            nextDate.setDate(nextDate.getDate() + amount);
+            activeDate = nextDate;
+            updateUrl();
+            render();
+        }
+
+        previous?.addEventListener("click", () => shiftDay(-1));
+        next?.addEventListener("click", () => shiftDay(1));
+        todayButton?.addEventListener("click", () => {
+            activeDate = localToday();
+            updateUrl();
+            render();
+        });
+        dateInput?.addEventListener("change", () => {
+            const selected = new Date(`${dateInput.value}T12:00:00`);
+            if (Number.isNaN(selected.getTime())) return;
+            activeDate = new Date(REFERENCE_YEAR, selected.getMonth(), selected.getDate());
+            updateUrl();
+            render();
+        });
+
+        render();
+    }
+
+    async function loadWidget(widget) {
+        const url = widget.dataset.historyUrl;
+        if (!url) return;
+
+        try {
+            const response = await fetch(url, { cache: "no-store" });
+            if (!response.ok) throw new Error(`History request failed: ${response.status}`);
+            const data = await response.json();
+            const entries = Array.isArray(data?.entries) ? data.entries : [];
+
+            if (widget.dataset.mode === "compact") renderCompact(widget, entries);
+            else renderFull(widget, entries);
+        } catch {
+            if (widget.dataset.mode === "compact") {
+                widget.hidden = true;
+                return;
+            }
+
+            const list = widget.querySelector("[data-otd-list]");
+            if (list) {
+                list.replaceChildren(element("p", "otd-empty", "History archive unavailable right now."));
+            }
+        }
+    }
+
+    widgets.forEach(loadWidget);
+})();

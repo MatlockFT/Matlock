@@ -1,0 +1,343 @@
+/* =========================================================
+   ON THIS DAY IN MMA
+   Compact history module + full archive. Intentionally restrained:
+   dates and stories lead; headings do not dominate the screen.
+   ========================================================= */
+
+.otd-compact {
+    margin: clamp(1.25rem, 2.6vw, 2rem) 0;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.otd-compact-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.7rem;
+}
+
+.otd-compact-title {
+    color: #ffffff;
+    font-size: 0.76rem;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.otd-compact-title:hover,
+.otd-compact-title:focus-visible {
+    color: var(--accent-soft);
+}
+
+.otd-compact-date {
+    color: var(--muted);
+    font: 800 0.68rem/1 "Courier New", monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.otd-compact-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.7rem;
+}
+
+.otd-compact-item {
+    min-width: 0;
+    padding: 0.75rem;
+    border-left: 2px solid var(--border-bright);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.025), transparent 68%);
+}
+
+.otd-compact-meta,
+.otd-entry-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.42rem;
+}
+
+.otd-year,
+.otd-kind,
+.otd-promotion {
+    color: var(--muted);
+    font-size: 0.58rem;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.otd-year {
+    color: var(--accent-soft);
+    font-family: "Courier New", monospace;
+}
+
+.otd-kind--fight {
+    color: #ffffff;
+}
+
+.otd-kind--signing,
+.otd-kind--debut,
+.otd-kind--title {
+    color: var(--accent-soft);
+}
+
+.otd-kind--death {
+    color: #c9c9c9;
+}
+
+.otd-compact-item-title {
+    margin: 0.42rem 0 0;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(0.93rem, 1.25vw, 1.08rem);
+    font-weight: 850;
+    line-height: 1.18;
+    text-wrap: pretty;
+}
+
+.otd-compact-item-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.otd-compact-item-title a:hover,
+.otd-compact-item-title a:focus-visible {
+    color: var(--accent-soft);
+}
+
+/* Full archive */
+
+.otd-page {
+    width: min(100%, 980px);
+    margin: 0 auto;
+}
+
+.otd-page-header {
+    display: grid;
+    gap: 0.55rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.otd-page-header h1 {
+    margin: 0;
+    color: var(--muted);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.09em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.otd-page-date-row {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.otd-page-date {
+    margin: 0;
+    color: #ffffff;
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4.8rem);
+    font-weight: 700;
+    line-height: 0.95;
+    text-transform: uppercase;
+}
+
+.otd-page-count {
+    margin: 0 0 0.25rem;
+    color: var(--muted);
+    font: 800 0.68rem/1.2 "Courier New", monospace;
+    text-transform: uppercase;
+}
+
+.otd-controls {
+    display: grid;
+    grid-template-columns: auto minmax(170px, 1fr) auto auto;
+    gap: 0.55rem;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+.otd-control-button,
+.otd-date-input {
+    min-height: 44px;
+    border: 1px solid var(--border-bright);
+    border-radius: var(--radius-small);
+    background: #0d0d0d;
+    color: #ffffff;
+}
+
+.otd-control-button {
+    display: inline-grid;
+    min-width: 44px;
+    place-items: center;
+    padding: 0.55rem 0.8rem;
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.otd-control-button:hover,
+.otd-control-button:focus-visible,
+.otd-date-input:hover,
+.otd-date-input:focus-visible {
+    border-color: var(--accent);
+}
+
+.otd-date-input {
+    width: 100%;
+    padding: 0.55rem 0.72rem;
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+.otd-list {
+    display: grid;
+    gap: 0;
+}
+
+.otd-entry {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: clamp(1rem, 3vw, 1.6rem);
+    padding: 1.15rem 0;
+    border-top: 1px solid var(--border);
+}
+
+.otd-entry:last-child {
+    border-bottom: 1px solid var(--border);
+}
+
+.otd-entry-year {
+    padding-top: 0.12rem;
+    color: var(--accent-soft);
+    font: 900 clamp(1.1rem, 2.2vw, 1.45rem)/1 "Courier New", monospace;
+}
+
+.otd-entry-title {
+    margin: 0.4rem 0 0;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(1.1rem, 2.3vw, 1.55rem);
+    font-weight: 900;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    text-wrap: pretty;
+}
+
+.otd-entry-detail {
+    max-width: 760px;
+    margin: 0.45rem 0 0;
+    color: var(--text-soft);
+    font-size: 0.86rem;
+    line-height: 1.5;
+}
+
+.otd-entry-source {
+    display: inline-block;
+    margin-top: 0.55rem;
+    color: var(--muted);
+    font-size: 0.64rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.otd-entry-source:hover,
+.otd-entry-source:focus-visible {
+    color: #ffffff;
+}
+
+.otd-entry--fight .otd-entry-year {
+    color: #ffffff;
+}
+
+.otd-empty {
+    display: grid;
+    gap: 0.25rem;
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+}
+
+.otd-empty strong {
+    color: #ffffff;
+}
+
+.otd-empty span {
+    font-size: 0.82rem;
+}
+
+@media (max-width: 760px) {
+    .otd-compact-list {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .otd-compact-item {
+        padding: 0.72rem 0.25rem 0.72rem 0.7rem;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .otd-compact-item:last-child {
+        border-bottom: 0;
+    }
+
+    .otd-page-date-row {
+        align-items: start;
+        flex-direction: column;
+        gap: 0.35rem;
+    }
+
+    .otd-page-date {
+        font-size: clamp(2.2rem, 11vw, 3.4rem);
+    }
+
+    .otd-controls {
+        grid-template-columns: 44px minmax(0, 1fr) 44px;
+    }
+
+    .otd-control-button[data-otd-today] {
+        grid-column: 1 / -1;
+    }
+
+    .otd-entry {
+        grid-template-columns: 62px minmax(0, 1fr);
+        gap: 0.75rem;
+        padding: 1rem 0;
+    }
+
+    .otd-entry-year {
+        font-size: 1rem;
+    }
+
+    .otd-entry-title {
+        font-size: 1.08rem;
+    }
+
+    .otd-entry-detail {
+        font-size: 0.82rem;
+        line-height: 1.45;
+    }
+}
+
+@media (max-width: 420px) {
+    .otd-entry {
+        grid-template-columns: 54px minmax(0, 1fr);
+    }
+}
