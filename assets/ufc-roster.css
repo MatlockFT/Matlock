@@ -3,28 +3,88 @@
     margin: 0 auto;
 }
 
-.ufc-roster-header {
-    padding-bottom: 1.4rem;
+.ufc-roster-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-width: 0;
+    margin-bottom: 1rem;
+    padding-bottom: 0.8rem;
     border-bottom: 1px solid var(--border);
 }
 
-.ufc-roster-header h1 {
-    margin: 0;
-    color: #fff;
-    font-family: "Gobold", Impact, sans-serif;
-    font-size: clamp(2.8rem, 7vw, 5.2rem);
-    line-height: 0.9;
-    text-transform: uppercase;
+.ufc-roster-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
 }
 
-.ufc-roster-meta {
-    display: flex;
+.ufc-roster-live-status {
+    display: inline-flex;
+    min-width: 0;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1rem 0;
+    gap: 0.48rem;
     color: var(--text-muted, #b9b9b9);
-    font-size: 0.9rem;
+    font-size: 0.74rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.ufc-roster-live-status > span:last-child {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ufc-roster-live-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px rgba(255, 74, 84, 0.1);
+}
+
+.ufc-roster-live-status[data-state="ready"] .ufc-roster-live-dot {
+    background: var(--green, #3ddd78);
+    box-shadow: 0 0 0 3px rgba(61, 221, 120, 0.1);
+}
+
+.ufc-roster-live-status[data-state="loading"] .ufc-roster-live-dot {
+    background: #e6c45b;
+    box-shadow: 0 0 0 3px rgba(230, 196, 91, 0.1);
+}
+
+.ufc-roster-refresh {
+    min-height: 30px;
+    margin-left: auto;
+    padding: 0.34rem 0.58rem;
+    border: 1px solid var(--border-bright, #333);
+    border-radius: 999px;
+    background: #0d0d0d;
+    color: #fff;
+    font: 900 0.62rem/1 "Courier New", monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.ufc-roster-refresh:hover,
+.ufc-roster-refresh:focus-visible {
+    border-color: #fff;
+}
+
+.ufc-roster-refresh[disabled] {
+    cursor: wait;
+    opacity: 0.55;
 }
 
 .ufc-roster-list {
@@ -117,9 +177,19 @@
 }
 
 @media (max-width: 640px) {
-    .ufc-roster-meta {
-        align-items: flex-start;
-        flex-direction: column;
+    .ufc-roster-toolbar {
+        gap: 0.5rem;
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.68rem;
+    }
+
+    .ufc-roster-live-status {
+        flex: 1 1 auto;
+        font-size: 0.7rem;
+    }
+
+    .ufc-roster-refresh {
+        flex: 0 0 auto;
     }
 
     .ufc-roster-card {
