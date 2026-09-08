@@ -55,6 +55,8 @@ jobs:
           node --check scripts/update-event-map-regional.mjs
           node --check scripts/update-event-map-discovery.mjs
           node --check scripts/enrich-event-map-details.mjs
+          node --check scripts/sanitize-event-map-posters.mjs
+          node --check scripts/validate-event-map-posters.mjs
           node --check scripts/preserve-event-map-discovery.mjs
           node --check scripts/validate-event-map-regional.mjs
           node --check scripts/validate-regional-picker.mjs
@@ -63,6 +65,9 @@ jobs:
           node --check scripts/validate-upcoming-events.mjs
           node --check scripts/publish-scheduled-posts.mjs
           node --check scripts/summarize-lighthouse.mjs
+
+      - name: Check Event Map poster sanitizer behavior
+        run: node scripts/sanitize-event-map-posters.mjs --self-test
 
       - name: Check first-paint shell invariants
         run: |
