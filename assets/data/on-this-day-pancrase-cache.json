@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 1,
-  "updatedAt": "2026-09-08T07:03:33.069Z",
+  "updatedAt": "2026-09-08T07:26:26.768Z",
   "fighters": {
     "船木誠勝": {
       "checkedAt": "2026-09-08T07:03:33.069Z",
@@ -99,6 +99,69 @@
       "status": "resolved",
       "wikidataId": "Q2698144",
       "englishName": "Maurice Smith (fighter)"
+    },
+    "フランク・シャムロック": {
+      "checkedAt": "2026-09-08T07:26:26.768Z",
+      "status": "resolved",
+      "wikidataId": "Q2554576",
+      "englishName": "Frank Shamrock"
+    },
+    "ガイ・メッツァー": {
+      "checkedAt": "2026-09-08T07:26:26.768Z",
+      "status": "resolved",
+      "wikidataId": "Q6481363",
+      "englishName": "Guy Mezger"
+    },
+    "ピート・ウイリアムス": {
+      "checkedAt": "2026-09-08T07:26:26.768Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "近藤有己": {
+      "checkedAt": "2026-09-08T07:26:26.768Z",
+      "status": "resolved",
+      "wikidataId": "Q2090890",
+      "englishName": "Yuki Kondo"
+    },
+    "國奥麒樹真": {
+      "checkedAt": "2026-09-08T07:26:26.768Z",
+      "status": "resolved",
+      "wikidataId": "Q6418717",
+      "englishName": "Kiuma Kunioku"
+    },
+    "セーム・シュルト": {
+      "checkedAt": "2026-09-08T07:26:26.768Z",
+      "status": "resolved",
+      "wikidataId": "Q311016",
+      "englishName": "Semmy Schilt"
+    },
+    "ポール・レイゼンビー": {
+      "checkedAt": "2026-09-08T07:26:26.768Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "ジョエル・サトゥン": {
+      "checkedAt": "2026-09-08T07:26:26.768Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "ジャグジット・シン": {
+      "checkedAt": "2026-09-08T07:26:26.768Z",
+      "status": "resolved",
+      "wikidataId": "Q983548",
+      "englishName": "Jagjit Singh Aurora"
+    },
+    "渋谷修身": {
+      "checkedAt": "2026-09-08T07:26:26.768Z",
+      "status": "resolved",
+      "wikidataId": "Q11561682",
+      "englishName": "Osami Shibuya"
+    },
+    "山宮恵一郎": {
+      "checkedAt": "2026-09-08T07:26:26.768Z",
+      "status": "resolved",
+      "wikidataId": "Q6383637",
+      "englishName": "Keiichiro Yamamiya"
     }
   },
   "entries": {
@@ -674,6 +737,494 @@
         "status": "commons-headliner-image",
         "fighterName": "Bas Rutten",
         "imageFileTitle": "File:MMA Champ Bas Rutten.jpg"
+      }
+    },
+    "pancrase:1996-01-28:pancrase-truth-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1996/0128.html",
+        "rawNames": [
+          "鈴木みのる",
+          "フランク・シャムロック"
+        ],
+        "englishNames": [
+          "Minoru Suzuki",
+          "Frank Shamrock"
+        ],
+        "mainEvent": "Minoru Suzuki vs. Frank Shamrock"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Minoru Suzuki",
+        "imageFileTitle": "File:Minoru Suzuki NEVER Openweight Champion.jpg"
+      }
+    },
+    "pancrase:1996-03-02:pancrase-truth-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1996/0302.html",
+        "rawNames": [
+          "バス・ルッテン",
+          "ガイ・メッツァー"
+        ],
+        "englishNames": [
+          "Bas Rutten",
+          "Guy Mezger"
+        ],
+        "mainEvent": "Bas Rutten vs. Guy Mezger"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Bas Rutten",
+        "imageFileTitle": "File:MMA Champ Bas Rutten.jpg"
+      }
+    },
+    "pancrase:1996-04-07:pancrase-truth-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1996/0407.html"
+      }
+    },
+    "pancrase:1996-04-07:pancrase-truth-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1996/0407.html"
+      }
+    },
+    "pancrase:1996-05-16:pancrase-truth-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1996/0516.html",
+        "rawNames": [
+          "バス・ルッテン",
+          "フランク・シャムロック"
+        ],
+        "englishNames": [
+          "Bas Rutten",
+          "Frank Shamrock"
+        ],
+        "mainEvent": "Bas Rutten vs. Frank Shamrock"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Bas Rutten",
+        "imageFileTitle": "File:MMA Champ Bas Rutten.jpg"
+      }
+    },
+    "pancrase:1996-06-25:pancrase-truth-6": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1996/0625.html",
+        "rawNames": [
+          "船木誠勝",
+          "ヴァーノン“タイガー”ホワイト"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "Vernon White (fighter)"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. Vernon White (fighter)"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1996-07-22:pancrase-1996-neo-blood-tournament-round-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1996/0722.html",
+        "rawNames": [
+          "フランク・シャムロック",
+          "山田学"
+        ],
+        "englishNames": [
+          "Frank Shamrock",
+          "Manabu Yamada"
+        ],
+        "mainEvent": "Frank Shamrock vs. Manabu Yamada"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Frank Shamrock",
+        "imageFileTitle": "File:Frank-shamrock-03-29-08.jpg"
+      }
+    },
+    "pancrase:1996-07-23:pancrase-1996-neo-blood-tournament-round-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1996/0723.html",
+        "rawNames": [
+          "ピート・ウイリアムス",
+          "近藤有己"
+        ],
+        "englishNames": [
+          "ピート・ウイリアムス",
+          "Yuki Kondo"
+        ],
+        "mainEvent": "ピート・ウイリアムス vs. Yuki Kondo"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:1996-09-07:pancrase-1996-anniversary-show": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1996/0907.html",
+        "rawNames": [
+          "バス・ルッテン",
+          "船木誠勝"
+        ],
+        "englishNames": [
+          "Bas Rutten",
+          "Masakatsu Funaki"
+        ],
+        "mainEvent": "Bas Rutten vs. Masakatsu Funaki"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Bas Rutten",
+        "imageFileTitle": "File:MMA Champ Bas Rutten.jpg"
+      }
+    },
+    "pancrase:1996-10-08:pancrase-truth-7": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1996/1008.html",
+        "rawNames": [
+          "バス・ルッテン",
+          "山田学"
+        ],
+        "englishNames": [
+          "Bas Rutten",
+          "Manabu Yamada"
+        ],
+        "mainEvent": "Bas Rutten vs. Manabu Yamada"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Bas Rutten",
+        "imageFileTitle": "File:MMA Champ Bas Rutten.jpg"
+      }
+    },
+    "pancrase:1996-10-22:pancrase-truth-8": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "no-main-event",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1996/1022.html"
+      }
+    },
+    "pancrase:1996-11-09:pancrase-truth-9": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1996/1109.html",
+        "rawNames": [
+          "船木誠勝",
+          "近藤有己"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "Yuki Kondo"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. Yuki Kondo"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1996-12-15:pancrase-truth-10": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1996/1215.html",
+        "rawNames": [
+          "ジェイソン・デルーシア",
+          "船木誠勝"
+        ],
+        "englishNames": [
+          "Jason DeLucia",
+          "Masakatsu Funaki"
+        ],
+        "mainEvent": "Jason DeLucia vs. Masakatsu Funaki"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1997-01-17:pancrase-alive-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/0117.html",
+        "rawNames": [
+          "國奥麒樹真",
+          "近藤有己"
+        ],
+        "englishNames": [
+          "Kiuma Kunioku",
+          "Yuki Kondo"
+        ],
+        "mainEvent": "Kiuma Kunioku vs. Yuki Kondo"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:1997-02-22:pancrase-alive-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/0222.html",
+        "rawNames": [
+          "船木誠勝",
+          "セーム・シュルト"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "Semmy Schilt"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. Semmy Schilt"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1997-03-22:pancrase-alive-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/0322.html",
+        "rawNames": [
+          "船木誠勝",
+          "ポール・レイゼンビー"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "ポール・レイゼンビー"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. ポール・レイゼンビー"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1997-04-27:pancrase-alive-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/0427.html",
+        "rawNames": [
+          "船木誠勝",
+          "近藤有己"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "Yuki Kondo"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. Yuki Kondo"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1997-05-24:pancrase-alive-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/0524.html",
+        "rawNames": [
+          "鈴木みのる",
+          "ジョエル・サトゥン"
+        ],
+        "englishNames": [
+          "Minoru Suzuki",
+          "ジョエル・サトゥン"
+        ],
+        "mainEvent": "Minoru Suzuki vs. ジョエル・サトゥン"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Minoru Suzuki",
+        "imageFileTitle": "File:Minoru Suzuki NEVER Openweight Champion.jpg"
+      }
+    },
+    "pancrase:1997-06-18:pancrase-alive-6": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/0618.html",
+        "rawNames": [
+          "鈴木みのる",
+          "ジャグジット・シン"
+        ],
+        "englishNames": [
+          "Minoru Suzuki",
+          "Jagjit Singh Aurora"
+        ],
+        "mainEvent": "Minoru Suzuki vs. Jagjit Singh Aurora"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Minoru Suzuki",
+        "imageFileTitle": "File:Minoru Suzuki NEVER Openweight Champion.jpg"
+      }
+    },
+    "pancrase:1997-06-30:pancrase-alive-7": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/0630.html",
+        "rawNames": [
+          "近藤有己",
+          "セーム・シュルト"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Semmy Schilt"
+        ],
+        "mainEvent": "Yuki Kondo vs. Semmy Schilt"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Semmy Schilt",
+        "imageFileTitle": "File:Semmy Schilt 2008.jpg"
+      }
+    },
+    "pancrase:1997-07-20:pancrase-1997-neo-blood-tournament-round-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/0720.html"
+      }
+    },
+    "pancrase:1997-07-20:pancrase-1997-neo-blood-tournament-round-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/0720.html"
+      }
+    },
+    "pancrase:1997-08-09:pancrase-alive-8": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/0809.html",
+        "rawNames": [
+          "渋谷修身",
+          "山宮恵一郎"
+        ],
+        "englishNames": [
+          "Osami Shibuya",
+          "Keiichiro Yamamiya"
+        ],
+        "mainEvent": "Osami Shibuya vs. Keiichiro Yamamiya"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:1997-09-06:pancrase-1997-anniversary-show": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/0906.html",
+        "rawNames": [
+          "近藤有己",
+          "ジェイソン・デルーシア"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Jason DeLucia"
+        ],
+        "mainEvent": "Yuki Kondo vs. Jason DeLucia"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:26:26.768Z",
+        "status": "no-headliner-image"
       }
     }
   }
