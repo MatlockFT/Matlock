@@ -121,6 +121,49 @@
     border-color: var(--accent, #ff4a54);
 }
 
+/* Footer socials stay horizontal and compact instead of becoming a vertical stack. */
+.footer-grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.4rem;
+    align-items: start;
+}
+
+.footer-column:last-child {
+    min-width: 0;
+}
+
+.footer-column:last-child h2 {
+    margin-bottom: .45rem;
+    font-size: 1rem;
+}
+
+.footer-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3rem;
+}
+
+.footer-socials a {
+    gap: .38rem;
+    padding: .28rem .38rem;
+    border: 1px solid transparent;
+    border-radius: 2px;
+}
+
+.footer-socials a:hover,
+.footer-socials a:focus-visible {
+    border-color: #3d3d3d;
+}
+
+.footer-socials img {
+    width: 26px;
+    height: 26px;
+}
+
+.footer-socials span {
+    font-size: .68rem;
+}
+
 @media (max-width: 760px) {
     .site-main {
         overflow-x: clip;
@@ -176,6 +219,15 @@
     .post-event-context-actions a {
         flex: 1 1 120px;
     }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 1.1rem;
+    }
+
+    .footer-socials {
+        justify-content: flex-start;
+    }
 }
 
 @media (max-width: 430px) {
@@ -200,6 +252,19 @@
     .news-show-more {
         white-space: normal;
         text-align: center;
+    }
+
+    .footer-socials span {
+        display: none;
+    }
+
+    .footer-socials a {
+        padding: .3rem;
+    }
+
+    .footer-socials img {
+        width: 28px;
+        height: 28px;
     }
 }
 
