@@ -64,6 +64,68 @@
     overflow-wrap: anywhere;
 }
 
+.post-event-context {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .7rem;
+    margin: .72rem 0 1rem;
+    padding: .5rem .58rem;
+    border: 1px solid #3f3f3f;
+    background: #090909;
+}
+
+.post-event-context > div:first-child {
+    min-width: 0;
+}
+
+.post-event-context-label {
+    display: block;
+    margin-bottom: .12rem;
+    color: var(--accent, #ff4a54);
+    font: 700 .48rem/1 "Courier New", monospace;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.post-event-context strong {
+    display: block;
+    color: #fff;
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: .95rem;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.post-event-context-actions {
+    display: flex;
+    gap: .32rem;
+    flex-shrink: 0;
+}
+
+.post-event-context-actions a {
+    display: inline-flex;
+    min-height: 32px;
+    align-items: center;
+    justify-content: center;
+    padding: .3rem .45rem;
+    border: 1px solid #565656;
+    color: #fff;
+    font: 700 .48rem/1 "Courier New", monospace;
+    letter-spacing: .04em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.post-event-context-actions a:first-child {
+    border-color: #fff;
+}
+
+.post-event-context-actions a:hover,
+.post-event-context-actions a:focus-visible {
+    border-color: var(--accent, #ff4a54);
+}
+
 @media (max-width: 760px) {
     :where(
         .homepage,
@@ -93,6 +155,16 @@
     .event-map-detail-actions,
     .prediction-actions,
     .homepage-intro-actions {
+        flex-wrap: wrap;
+    }
+
+    .post-event-context {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .post-event-context-actions {
+        width: 100%;
         flex-wrap: wrap;
     }
 }
