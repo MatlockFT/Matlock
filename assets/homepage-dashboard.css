@@ -197,7 +197,7 @@
     display: grid;
     grid-template-columns: 1fr auto;
     gap: .45rem;
-    align-items: baseline;
+    align-items: center;
     padding: .5rem .55rem;
     border-top: 1px solid #262626;
 }
