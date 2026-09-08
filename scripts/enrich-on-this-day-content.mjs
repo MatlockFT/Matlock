@@ -137,6 +137,7 @@ async function sectionIndexFor(title, fragment) {
 
 async function fetchWikitext(title, fragment) {
     const section = await sectionIndexFor(title, fragment);
+    if (fragment && !section) return "";
     const url = new URL("https://en.wikipedia.org/w/api.php");
     url.searchParams.set("action", "parse");
     url.searchParams.set("format", "json");
