@@ -10,9 +10,13 @@ page_styles:
 page_scripts:
   - /assets/upcoming-events.js
   - /assets/upcoming-events-jump.js
+  - /assets/upcoming-events-links.js
 ---
 
-<article class="upcoming-events-page">
+<article
+  class="upcoming-events-page"
+  data-event-map-url="{{ '/assets/data/event-map-live.json' | relative_url }}?v={{ site.asset_version }}"
+>
   <header class="upcoming-events-header">
     <h1>Fight Card Picker</h1>
   </header>
