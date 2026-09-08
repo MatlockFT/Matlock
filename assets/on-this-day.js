@@ -5,6 +5,7 @@
     // Leap-year reference keeps Feb. 29 selectable while the archive itself
     // intentionally matches month/day across every historical year.
     const REFERENCE_YEAR = 2024;
+    const wikipediaImageCache = new Map();
     const kindOrder = new Map([
         ["fight", 0],
         ["title", 1],
@@ -142,6 +143,116 @@
         return labels[kind] || "Note";
     }
 
+    function wikipediaTitle(entry) {
+        if (entry?.wikipediaTitle) return String(entry.wikipediaTitle).trim();
+        if (!entry?.sourceUrl) return "";
+
+        try {
+            const url = new URL(entry.sourceUrl);
+            if (url.hostname.toLowerCase() !== "en.wikipedia.org") return "";
+            if (!url.pathname.startsWith("/wiki/")) return "";
+            const raw = url.pathname.slice(6);
+            return decodeURIComponent(raw).replace(/_/g, " ").trim();
+        } catch {
+            return "";
+        }
+    }
+
+    async function fetchWikipediaImage(entry) {
+        const title = wikipediaTitle(entry);
+        if (!title) return null;
+
+        const cacheKey = title.toLowerCase();
+        if (wikipediaImageCache.has(cacheKey)) return wikipediaImageCache.get(cacheKey);
+
+        const pending = (async () => {
+            try {
+                const url = new URL("https://en.wikipedia.org/w/api.php");
+                url.searchParams.set("action", "query");
+                url.searchParams.set("format", "json");
+                url.searchParams.set("formatversion", "2");
+                url.searchParams.set("origin", "*");
+                url.searchParams.set("redirects", "1");
+                url.searchParams.set("prop", "pageimages");
+                url.searchParams.set("piprop", "thumbnail|original|name");
+                url.searchParams.set("pilicense", "any");
+                url.searchParams.set("pithumbsize", "1200");
+                url.searchParams.set("titles", title);
+
+                const response = await fetch(url, { cache: "force-cache" });
+                if (!response.ok) return null;
+                const data = await response.json();
+                const page = Array.isArray(data?.query?.pages) ? data.query.pages[0] : null;
+                const imageUrl = page?.thumbnail?.source || page?.original?.source || "";
+                if (!/^https:\/\//i.test(imageUrl)) return null;
+
+                return {
+                    url: imageUrl,
+                    alt: entry.imageAlt || `${entry.title?.replace(/\s+took place$/i, "") || title} image`,
+                    credit: entry.imageCredit || "Wikipedia"
+                };
+            } catch {
+                return null;
+            }
+        })();
+
+        wikipediaImageCache.set(cacheKey, pending);
+        return pending;
+    }
+
+    async function resolveEntryImage(entry, ignoreStored = false) {
+        if (!ignoreStored && entry?.imageUrl) {
+            return {
+                url: entry.imageUrl,
+                alt: entry.imageAlt || "",
+                credit: entry.imageCredit || ""
+            };
+        }
+        return fetchWikipediaImage(entry);
+    }
+
+    function preloadImage(candidate, entry, priority = false, decorative = false) {
+        return new Promise((resolve, reject) => {
+            if (!candidate?.url) {
+                reject(new Error("No image URL"));
+                return;
+            }
+
+            const image = document.createElement("img");
+            image.alt = decorative ? "" : (candidate.alt || entry.imageAlt || "");
+            image.loading = priority ? "eager" : "lazy";
+            if (priority) image.fetchPriority = "high";
+            image.decoding = "async";
+            image.referrerPolicy = "no-referrer";
+            if (entry.imagePosition) image.style.objectPosition = entry.imagePosition;
+            image.addEventListener("load", () => resolve(image), { once: true });
+            image.addEventListener("error", reject, { once: true });
+            image.src = candidate.url;
+        });
+    }
+
+    async function bestLoadedImage(entry, priority = false, decorative = false) {
+        const stored = await resolveEntryImage(entry, false);
+        if (stored) {
+            try {
+                const image = await preloadImage(stored, entry, priority, decorative);
+                return { image, credit: stored.credit || "" };
+            } catch {
+                // A stored URL can go stale. Retry against the live Wikipedia page.
+            }
+        }
+
+        const live = await resolveEntryImage(entry, true);
+        if (!live || live.url === stored?.url) return null;
+
+        try {
+            const image = await preloadImage(live, entry, priority, decorative);
+            return { image, credit: live.credit || "" };
+        } catch {
+            return null;
+        }
+    }
+
     function mediaBlock(entry, compact = false, priority = false) {
         const media = element("div", compact ? "otd-compact-media" : "otd-entry-media");
         media.dataset.year = entryYear(entry);
@@ -155,27 +266,29 @@
             );
         };
 
-        if (!entry.imageUrl) {
-            fallback();
-            return media;
-        }
+        fallback();
 
-        const image = document.createElement("img");
-        image.src = entry.imageUrl;
-        image.alt = entry.imageAlt || "";
-        image.loading = priority ? "eager" : "lazy";
-        if (priority) image.fetchPriority = "high";
-        image.decoding = "async";
-        image.referrerPolicy = "no-referrer";
-        if (entry.imagePosition) image.style.objectPosition = entry.imagePosition;
-        image.addEventListener("error", fallback, { once: true });
-        media.append(image);
-
-        if (entry.imageCredit) {
-            media.append(element("span", "otd-media-credit", entry.imageCredit));
-        }
+        bestLoadedImage(entry, priority).then(result => {
+            if (!result?.image || !media.isConnected) return;
+            media.classList.remove("is-fallback");
+            media.replaceChildren(result.image);
+            if (result.credit) media.append(element("span", "otd-media-credit", result.credit));
+        });
 
         return media;
+    }
+
+    function attachPillImage(button, entry) {
+        if (!entry) return;
+        const media = element("span", "otd-day-pill-image");
+        media.setAttribute("aria-hidden", "true");
+        button.prepend(media);
+
+        bestLoadedImage(entry, false, true).then(result => {
+            if (!result?.image || !button.isConnected) return;
+            media.replaceChildren(result.image);
+            button.classList.add("has-image");
+        });
     }
 
     function renderCompact(widget, entries) {
@@ -290,6 +403,10 @@
                 if (birthdayCount) types.push(`${birthdayCount}B`);
                 summary.append(element("span", "otd-day-pill-types", types.join(" · ") || "—"));
                 button.append(summary);
+
+                const representative = matching.find(entry => entry.kind !== "birthday" && (entry.imageUrl || wikipediaTitle(entry)))
+                    || matching.find(entry => entry.imageUrl || wikipediaTitle(entry));
+                attachPillImage(button, representative);
 
                 button.addEventListener("click", () => setActiveDate(date));
                 buttons.push(button);
