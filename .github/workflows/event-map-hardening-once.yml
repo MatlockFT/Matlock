@@ -1,0 +1,1318 @@
+name: One-time Event Map hardening
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/event-map-hardening-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  harden:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply Event Map quality pass
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          def read(path):
+              return Path(path).read_text(encoding='utf-8')
+
+          def write(path, text):
+              Path(path).write_text(text, encoding='utf-8')
+
+          def replace_once(text, old, new, label):
+              if old not in text:
+                  raise SystemExit(f'Patch target not found: {label}')
+              return text.replace(old, new, 1)
+
+          # ---------------------------------------------------------
+          # Core Event Map: one source of truth for committed selection,
+          # detail rendering, history, poster/matchup state and mobile flow.
+          # ---------------------------------------------------------
+          path = 'assets/event-map-v2.js'
+          text = read(path)
+
+          text = replace_once(text,
+          """    const detailTitle = page.querySelector('[data-detail-title]');
+    const detailLocation = page.querySelector('[data-detail-location]');""",
+          """    const detailTitle = page.querySelector('[data-detail-title]');
+    const detailFighters = page.querySelector('[data-detail-fighters]');
+    const detailWeight = page.querySelector('[data-detail-weight]');
+    const detailPosterWrap = page.querySelector('[data-detail-poster-wrap]');
+    const detailPoster = page.querySelector('[data-detail-poster]');
+    const detailLock = page.querySelector('[data-detail-lock-state]');
+    const detailLocation = page.querySelector('[data-detail-location]');""",
+          'detail DOM nodes')
+
+          text = replace_once(text,
+          """    let pickerEventIds = new Set();
+    let currentRange = 'all';""",
+          """    let pickerEventIds = new Set();
+    let pickerEvents = [];
+    let eventOverrides = {};
+    let currentRange = 'all';""",
+          'picker/override state')
+
+          text = replace_once(text,
+          """    let calendarObjectUrl = '';
+    let initialEventId = '';
+
+    const normalizeText""",
+          """    let calendarObjectUrl = '';
+    let initialEventId = '';
+    let posterRequest = 0;
+
+    const desktopHover = window.matchMedia('(min-width: 821px) and (hover: hover) and (pointer: fine)');
+    const coarsePointer = window.matchMedia('(pointer: coarse)');
+    const normalizeText""",
+          'interaction media state')
+
+          marker = """    function dateLabel(event) {
+"""
+          helpers = r'''    function canonicalPromotion(value) {
+        const text = normalizeText(value)
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, ' ')
+            .trim();
+        if (/^(ultimate fighting championship|ufc)\b/.test(text)) return 'ufc';
+        if (/^(legacy fighting alliance|lfa)\b/.test(text)) return 'lfa';
+        if (/^(cage fury fighting championships|cffc)\b/.test(text)) return 'cffc';
+        if (/^(professional fighters league|pfl)\b/.test(text)) return 'pfl';
+        if (/^rizin\b/.test(text)) return 'rizin';
+        if (/^(one championship|one)\b/.test(text)) return 'one';
+        if (/^(dana whites contender series|dwcs)\b/.test(text)) return 'dwcs';
+        return text.replace(/\b\d+\b.*$/, '').trim();
+    }
+
+    function eventNumber(value) {
+        return normalizeText(value).match(/\b(\d{1,4})\b/)?.[1] || '';
+    }
+
+    function mergedEvent(event) {
+        if (!event) return null;
+        const override = eventOverrides[event.id] || eventOverrides[event.mapId] || {};
+        return {
+            ...event,
+            ...override,
+            mapId: event.mapId,
+            id: event.id,
+            x: event.x,
+            y: event.y,
+            calendarDay: event.calendarDay,
+            dateObject: event.dateObject,
+            distanceMiles: event.distanceMiles,
+            main_event: override.main_event
+                ? { ...(event.main_event || {}), ...override.main_event }
+                : event.main_event
+        };
+    }
+
+    function titleMatchup(title) {
+        const text = normalizeText(title)
+            .replace(/\s+-\s+\d{1,2}\/\d{1,2}\s*$/i, '')
+            .replace(/\s+\|.*$/, '');
+        const afterColon = text.includes(':') ? text.split(':').slice(1).join(':').trim() : text;
+        const match = afterColon.match(/^(.{2,70}?)\s+(?:vs\.?|v\.)\s+(.{2,70}?)(?:\s+[–—-]\s+.*)?$/i);
+        return match ? [normalizeText(match[1]), normalizeText(match[2])] : [];
+    }
+
+    function weightFromText(value) {
+        const text = normalizeText(value);
+        const match = text.match(/\b(Women'?s\s+(?:Strawweight|Flyweight|Bantamweight|Featherweight)|Light Heavyweight|Heavyweight|Middleweight|Welterweight|Lightweight|Featherweight|Bantamweight|Flyweight|Strawweight|Catchweight)\b/i);
+        if (!match) return '';
+        let weight = match[1].replace(/women'?s/i, "Women's");
+        if (/\b(?:title|championship|champion|world title)\b/i.test(text) && !/title|championship/i.test(weight)) {
+            weight += ' Championship';
+        }
+        return weight;
+    }
+
+    function mainInfo(event) {
+        const sections = Array.isArray(event?.sections) ? event.sections : [];
+        const bouts = sections.flatMap(section => Array.isArray(section?.bouts) ? section.bouts : []);
+        if (bouts.length) {
+            const bout = bouts.find(item => /main event/i.test(normalizeText(item?.label)))
+                || [...bouts].sort((a, b) => Number(a?.order || 999) - Number(b?.order || 999))[0];
+            return {
+                fighters: (bout?.fighters || []).map(item => normalizeText(item?.name || item)).filter(Boolean).slice(0, 2),
+                weight: normalizeText(bout?.weight_class || bout?.weight || bout?.division) || weightFromText(bout?.label)
+            };
+        }
+        const stored = event?.main_event;
+        if (stored && typeof stored === 'object') {
+            return {
+                fighters: (stored.fighters || []).map(item => normalizeText(item?.name || item)).filter(Boolean).slice(0, 2),
+                weight: normalizeText(stored.weight_class || stored.weight || stored.division) || weightFromText(event?.title)
+            };
+        }
+        return {
+            fighters: titleMatchup(event?.title),
+            weight: normalizeText(event?.weight_class || event?.division) || weightFromText(event?.title)
+        };
+    }
+
+    function usablePoster(url) {
+        const value = normalizeText(url);
+        if (!/^https?:\/\//i.test(value)) return '';
+        if (/(?:tribe[-_]?loading|loading(?:[-_.]|$)|spinner|preloader|placeholder|blank\.gif|transparent\.gif|favicon|logo(?:[-_.]|$))/i.test(value)) return '';
+        return value;
+    }
+
+    function hidePoster() {
+        posterRequest += 1;
+        if (!detailPosterWrap || !detailPoster) return;
+        detailPosterWrap.hidden = true;
+        detailPosterWrap.dataset.posterReady = 'false';
+        detailPoster.removeAttribute('src');
+        detailPoster.alt = '';
+    }
+
+    function renderPoster(event) {
+        if (!detailPosterWrap || !detailPoster) return;
+        const requestId = ++posterRequest;
+        detailPosterWrap.hidden = true;
+        detailPosterWrap.dataset.posterReady = 'false';
+        detailPoster.removeAttribute('src');
+        detailPoster.alt = '';
+
+        const url = usablePoster(event?.poster || event?.poster_url || event?.image || event?.image_url);
+        if (!url) return;
+
+        const probe = new Image();
+        probe.decoding = 'async';
+        probe.referrerPolicy = 'no-referrer';
+        probe.onload = () => {
+            if (requestId !== posterRequest) return;
+            if (probe.naturalWidth < 180 || probe.naturalHeight < 120) return;
+            detailPoster.src = url;
+            detailPoster.alt = `${normalizeText(event.promotion) || 'MMA'} ${normalizeText(event.title) || 'event'} poster`;
+            detailPosterWrap.dataset.posterReady = 'true';
+            detailPosterWrap.hidden = false;
+        };
+        probe.onerror = () => {
+            if (requestId === posterRequest) hidePoster();
+        };
+        probe.src = url;
+    }
+
+    function pickerIdFor(event) {
+        if (!event) return '';
+        const direct = pickerEvents.find(item => item.id === event.id || item.id === event.mapId);
+        if (direct) return direct.id;
+
+        const title = normalizeText(event.title).toLowerCase();
+        const date = normalizeText(event.date);
+        const promotion = canonicalPromotion(event.promotion);
+        const number = eventNumber(event.title);
+        const exact = pickerEvents.find(item =>
+            normalizeText(item.title).toLowerCase() === title
+            && (!date || item.date === date)
+        );
+        if (exact) return exact.id;
+
+        const samePromotionDate = pickerEvents.filter(item =>
+            (!date || item.date === date)
+            && (!promotion || canonicalPromotion(item.promotion) === promotion)
+        );
+        if (number) {
+            const numbered = samePromotionDate.find(item => eventNumber(item.title) === number);
+            if (numbered) return numbered.id;
+        }
+        return samePromotionDate.length === 1 ? samePromotionDate[0].id : '';
+    }
+
+    function setHoverPreview(active) {
+        if (!detailPanel) return;
+        detailPanel.dataset.hoverPreview = String(Boolean(active && desktopHover.matches && !selectedEventId && !selectedClusterKey));
+    }
+
+    function updateDetailLock() {
+        if (!detailLock) return;
+        const locked = Boolean(selectedEventId || selectedClusterKey);
+        detailLock.textContent = locked ? 'Selected · details locked' : 'Hover preview · click/tap to lock';
+        detailLock.dataset.locked = String(locked);
+    }
+
+'''
+          text = replace_once(text, marker, helpers + marker, 'detail helpers')
+
+          old_url = r'''    function applyUrlState() {
+        const params = new URLSearchParams(window.location.search);
+        let range = params.get('range');
+        if (range === 'weekend') range = 'week';
+        if (['week', '30', 'all'].includes(range)) currentRange = range;
+        initialEventId = params.get('event') || '';
+        rangeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.range === currentRange)));
+    }
+
+    function syncUrl() {
+        const url = new URL(window.location.href);
+        const params = url.searchParams;
+        ['range', 'state', 'promotion', 'level', 'q', 'radius', 'event'].forEach(key => params.delete(key));
+        if (currentRange !== 'all') params.set('range', currentRange);
+        if (selectedEventId) params.set('event', selectedEventId);
+        window.history.replaceState({}, '', `${url.pathname}${params.toString() ? `?${params}` : ''}${url.hash}`);
+    }
+'''
+          new_url = r'''    function normalizedRange(value) {
+        if (value === 'weekend') return 'week';
+        return ['week', '30', 'all'].includes(value) ? value : 'all';
+    }
+
+    function applyUrlState() {
+        const params = new URLSearchParams(window.location.search);
+        currentRange = normalizedRange(params.get('range'));
+        initialEventId = params.get('event') || '';
+        rangeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.range === currentRange)));
+    }
+
+    function eventMapHistoryState() {
+        return {
+            ...(window.history.state || {}),
+            eventMap: {
+                range: currentRange,
+                event: selectedEventId,
+                cluster: selectedClusterKey
+            }
+        };
+    }
+
+    function syncUrl({ mode = 'replace' } = {}) {
+        const url = new URL(window.location.href);
+        const params = url.searchParams;
+        ['range', 'state', 'promotion', 'level', 'q', 'radius', 'event'].forEach(key => params.delete(key));
+        if (currentRange !== 'all') params.set('range', currentRange);
+        if (selectedEventId) params.set('event', selectedEventId);
+        const target = `${url.pathname}${params.toString() ? `?${params}` : ''}${url.hash}`;
+        const previous = window.history.state?.eventMap || {};
+        const selectionChanged = previous.event !== selectedEventId
+            || previous.cluster !== selectedClusterKey
+            || previous.range !== currentRange;
+        const state = eventMapHistoryState();
+        if (mode === 'push' && selectionChanged) window.history.pushState(state, '', target);
+        else window.history.replaceState(state, '', target);
+    }
+
+    function clusterFromKey(key) {
+        const ids = new Set(String(key || '').split('|').filter(Boolean));
+        if (ids.size < 2) return null;
+        const events = filteredEvents.filter(event => ids.has(event.mapId));
+        if (events.length < 2) return null;
+        return {
+            events,
+            x: events.reduce((sum, event) => sum + event.x, 0) / events.length,
+            y: events.reduce((sum, event) => sum + event.y, 0) / events.length
+        };
+    }
+
+    function restoreHistorySelection() {
+        const params = new URLSearchParams(window.location.search);
+        currentRange = normalizedRange(params.get('range'));
+        selectedEventId = params.get('event') || '';
+        selectedClusterKey = selectedEventId ? '' : String(window.history.state?.eventMap?.cluster || '');
+        rangeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.range === currentRange)));
+        applyFilters({ sync: false });
+
+        const event = selectedEventId
+            ? filteredEvents.find(item => item.mapId === selectedEventId)
+            : null;
+        if (event) {
+            renderEventDetail(event);
+        } else if (selectedClusterKey) {
+            const cluster = clusterFromKey(selectedClusterKey);
+            if (cluster) renderClusterDetail(cluster);
+            else {
+                selectedClusterKey = '';
+                showEmptyDetail();
+            }
+        } else {
+            showEmptyDetail();
+        }
+        renderSelectedState();
+        renderResultSelectedState();
+        setHoverPreview(false);
+    }
+'''
+          text = replace_once(text, old_url, new_url, 'URL/history state')
+
+          text = replace_once(text,
+          r'''    function showEmptyDetail() {
+        detailCard.hidden = true;
+        clusterCard.hidden = true;
+        detailEmpty.hidden = false;
+        currentDetailEvent = null;
+    }
+''',
+          r'''    function showEmptyDetail() {
+        detailCard.hidden = true;
+        clusterCard.hidden = true;
+        detailEmpty.hidden = false;
+        currentDetailEvent = null;
+        hidePoster();
+        setHoverPreview(false);
+        updateDetailLock();
+    }
+''',
+          'empty detail state')
+
+          pattern = re.compile(r"    function renderEventDetail\(event\) \{.*?\n    \}\n\n    function renderClusterDetail", re.S)
+          replacement = r'''    function renderEventDetail(sourceEvent) {
+        const event = mergedEvent(sourceEvent);
+        if (!event) return;
+        detailEmpty.hidden = true;
+        clusterCard.hidden = true;
+        detailCard.hidden = false;
+        currentDetailEvent = event;
+        detailPromotion.textContent = normalizeText(event.promotion) || 'MMA';
+        detailDate.textContent = dateLabel(event);
+        detailDate.dateTime = event.date || event.dateObject?.toISOString() || '';
+        detailTitle.textContent = normalizeText(event.title) || normalizeText(event.promotion) || 'MMA event';
+
+        const info = mainInfo(event);
+        if (detailFighters) {
+            detailFighters.textContent = info.fighters.length >= 2
+                ? `${info.fighters[0]} vs. ${info.fighters[1]}`
+                : 'Main event not yet listed';
+        }
+        if (detailWeight) {
+            detailWeight.textContent = info.weight || '';
+            detailWeight.hidden = !info.weight;
+        }
+        renderPoster(event);
+
+        detailLocation.textContent = [event.city, event.stateCode].filter(Boolean).join(', ') || event.stateName;
+        if (Number.isFinite(event.distanceMiles)) {
+            detailDistance.hidden = false;
+            detailDistance.textContent = `${Math.round(event.distanceMiles)} mi away`;
+        } else {
+            detailDistance.hidden = true;
+            detailDistance.textContent = '';
+        }
+        const precisionNote = event.locationPrecision === 'state' ? ' · approximate state placement' : '';
+        detailVenue.textContent = `${normalizeText(event.venue) || 'Venue not yet listed'}${precisionNote}`;
+        detailBroadcast.textContent = event.broadcast ? `Watch: ${normalizeText(event.broadcast)}` : `${levelLabel(event)} event`;
+
+        const sourceUrl = event.official_url || '';
+        const ticketUrl = event.ticket_url || ((event.source_key === 'nitro' || /nitrotickets\.com/i.test(sourceUrl)) ? sourceUrl : '');
+        detailTickets.hidden = !ticketUrl;
+        detailTickets.href = ticketUrl || '#';
+        detailSource.hidden = !sourceUrl || sourceUrl === ticketUrl;
+        detailSource.href = sourceUrl || '#';
+        detailSource.textContent = event.regional ? 'Official event page' : 'Event page';
+        detailCalendar.href = calendarHref(event);
+        detailCalendar.download = `${normalizeText(event.title || event.promotion || 'mma-event').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'mma-event'}.ics`;
+
+        const pickerId = pickerIdFor(event);
+        detailPicker.hidden = !pickerId;
+        const encodedPickerId = encodeURIComponent(pickerId);
+        detailPicker.href = pickerId ? `/upcoming-events/?event=${encodedPickerId}#${encodedPickerId}` : '/upcoming-events/';
+        updateDetailLock();
+    }
+
+    function renderClusterDetail'''
+          text, count = pattern.subn(replacement, text, count=1)
+          if count != 1:
+              raise SystemExit('Patch target not found: renderEventDetail')
+
+          old_cluster_loop = r'''        ordered.forEach(event => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'event-map-cluster-event';
+            const title = document.createElement('strong');
+            title.textContent = normalizeText(event.title) || normalizeText(event.promotion) || 'MMA event';
+            const meta = document.createElement('span');
+            const distance = Number.isFinite(event.distanceMiles) ? ` · ${Math.round(event.distanceMiles)} mi` : '';
+            meta.textContent = `${shortDateLabel(event)} · ${normalizeText(event.promotion) || 'MMA'}${distance}`;
+            button.append(title, meta);
+            button.addEventListener('click', () => selectEvent(event, { zoom: true, scroll: false }));
+            clusterList.append(button);
+        });
+    }
+'''
+          new_cluster_loop = r'''        ordered.forEach(event => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'event-map-cluster-event';
+            const title = document.createElement('strong');
+            title.textContent = normalizeText(event.title) || normalizeText(event.promotion) || 'MMA event';
+            const meta = document.createElement('span');
+            const distance = Number.isFinite(event.distanceMiles) ? ` · ${Math.round(event.distanceMiles)} mi` : '';
+            meta.textContent = `${shortDateLabel(event)} · ${normalizeText(event.promotion) || 'MMA'}${distance}`;
+            button.append(title, meta);
+
+            const info = mainInfo(mergedEvent(event));
+            if (info.fighters.length >= 2 || info.weight) {
+                const matchup = document.createElement('span');
+                matchup.className = 'event-map-cluster-matchup';
+                const fighters = info.fighters.length >= 2 ? `${info.fighters[0]} vs. ${info.fighters[1]}` : 'Main event TBA';
+                matchup.textContent = `${fighters}${info.weight ? ` · ${info.weight}` : ''}`;
+                button.append(matchup);
+            }
+
+            button.addEventListener('click', () => selectEvent(event, { zoom: true, scroll: false }));
+            clusterList.append(button);
+        });
+        hidePoster();
+        updateDetailLock();
+    }
+'''
+          text = replace_once(text, old_cluster_loop, new_cluster_loop, 'cluster detail rows')
+
+          old_selection = r'''    function selectEvent(event, { zoom = false, scroll = true } = {}) {
+        selectedEventId = event.mapId;
+        selectedClusterKey = '';
+        renderEventDetail(event);
+        renderSelectedState();
+        renderResultSelectedState();
+        syncUrl();
+        if (zoom) zoomToPoint(event.x, event.y, Math.max(currentTransform?.k || 1, 3.2));
+        if (scroll) scrollDetailOnMobile();
+    }
+
+    function selectCluster(cluster) {
+        selectedEventId = '';
+        selectedClusterKey = clusterKey(cluster);
+        renderClusterDetail(cluster);
+        renderSelectedState();
+        renderResultSelectedState();
+        syncUrl();
+        scrollDetailOnMobile();
+    }
+
+    function previewEvent(event) { renderEventDetail(event); }
+    function previewCluster(cluster) { renderClusterDetail(cluster); }
+
+    function restoreSelectedDetail() {
+        const selected = filteredEvents.find(event => event.mapId === selectedEventId);
+        if (selected) return renderEventDetail(selected);
+        if (selectedClusterKey) {
+            const cluster = clusterEvents(filteredEvents).find(item => clusterKey(item) === selectedClusterKey);
+            if (cluster) return renderClusterDetail(cluster);
+        }
+        showEmptyDetail();
+    }
+'''
+          new_selection = r'''    function selectEvent(event, { zoom = false, scroll = true, history = 'push' } = {}) {
+        const changed = selectedEventId !== event.mapId || Boolean(selectedClusterKey);
+        selectedEventId = event.mapId;
+        selectedClusterKey = '';
+        setHoverPreview(false);
+        renderEventDetail(event);
+        renderSelectedState();
+        renderResultSelectedState();
+        syncUrl({ mode: changed ? history : 'replace' });
+        if (zoom) zoomToPoint(event.x, event.y, Math.max(currentTransform?.k || 1, 3.2));
+        if (scroll) scrollDetailOnMobile();
+    }
+
+    function selectCluster(cluster, { scroll = true, history = 'push' } = {}) {
+        const nextKey = clusterKey(cluster);
+        const changed = selectedClusterKey !== nextKey || Boolean(selectedEventId);
+        selectedEventId = '';
+        selectedClusterKey = nextKey;
+        setHoverPreview(false);
+        renderClusterDetail(cluster);
+        renderSelectedState();
+        renderResultSelectedState();
+        syncUrl({ mode: changed ? history : 'replace' });
+        if (scroll) scrollDetailOnMobile();
+    }
+
+    function previewEvent(event) {
+        if (selectedEventId || selectedClusterKey) return;
+        setHoverPreview(true);
+        renderEventDetail(event);
+    }
+
+    function previewCluster(cluster) {
+        if (selectedEventId || selectedClusterKey) return;
+        setHoverPreview(true);
+        renderClusterDetail(cluster);
+    }
+
+    function restoreSelectedDetail() {
+        setHoverPreview(false);
+        const selected = filteredEvents.find(event => event.mapId === selectedEventId);
+        if (selected) return renderEventDetail(selected);
+        if (selectedClusterKey) {
+            const cluster = clusterFromKey(selectedClusterKey);
+            if (cluster) return renderClusterDetail(cluster);
+        }
+        showEmptyDetail();
+    }
+'''
+          text = replace_once(text, old_selection, new_selection, 'selection state machine')
+
+          old_selected = r'''    function renderSelectedState() {
+        markerLayer.selectAll('.event-map-pin-group')
+            .attr('data-selected', cluster => String(
+                cluster.events.some(event => event.mapId === selectedEventId) || clusterKey(cluster) === selectedClusterKey
+            ));
+    }
+'''
+          new_selected = r'''    function renderSelectedState() {
+        const clusterIds = selectedClusterKey
+            ? new Set(selectedClusterKey.split('|').filter(Boolean))
+            : null;
+        markerLayer.selectAll('.event-map-pin-group')
+            .attr('data-selected', cluster => String(
+                cluster.events.some(event => event.mapId === selectedEventId)
+                || Boolean(clusterIds && cluster.events.some(event => clusterIds.has(event.mapId)))
+            ));
+    }
+'''
+          text = replace_once(text, old_selected, new_selected, 'selected marker state')
+
+          old_marker_selected = r'''            .attr('data-selected', cluster => String(
+                cluster.events.some(event => event.mapId === selectedEventId) || clusterKey(cluster) === selectedClusterKey
+            ))
+            .attr('transform', cluster => `translate(${cluster.x},${cluster.y}) scale(${1 / scale})`);
+
+        groups.append('circle').attr('class', 'event-map-pin-halo').attr('r', cluster => cluster.events.length > 1 ? 15 : 11);'''
+          new_marker_selected = r'''            .attr('data-selected', cluster => {
+                const clusterIds = selectedClusterKey
+                    ? new Set(selectedClusterKey.split('|').filter(Boolean))
+                    : null;
+                return String(
+                    cluster.events.some(event => event.mapId === selectedEventId)
+                    || Boolean(clusterIds && cluster.events.some(event => clusterIds.has(event.mapId)))
+                );
+            })
+            .attr('transform', cluster => `translate(${cluster.x},${cluster.y}) scale(${1 / scale})`);
+
+        groups.append('circle').attr('class', 'event-map-pin-halo').attr('r', cluster => {
+            if (coarsePointer.matches) return cluster.events.length > 1 ? 21 : 18;
+            return cluster.events.length > 1 ? 15 : 11;
+        });'''
+          text = replace_once(text, old_marker_selected, new_marker_selected, 'marker hit targets')
+
+          old_handlers = r'''        groups
+            .on('mouseenter', (_, cluster) => cluster.events.length > 1 ? previewCluster(cluster) : previewEvent(cluster.events[0]))
+            .on('mouseleave', restoreSelectedDetail)
+            .on('focus', (_, cluster) => cluster.events.length > 1 ? previewCluster(cluster) : previewEvent(cluster.events[0]))
+            .on('blur', restoreSelectedDetail)
+            .on('click', (event, cluster) => {
+                event.stopPropagation();
+                cluster.events.length > 1 ? selectCluster(cluster) : selectEvent(cluster.events[0]);
+            })
+            .on('keydown', (event, cluster) => {
+                if (event.key !== 'Enter' && event.key !== ' ') return;
+                event.preventDefault();
+                event.stopPropagation();
+                cluster.events.length > 1 ? selectCluster(cluster) : selectEvent(cluster.events[0]);
+            });
+'''
+          new_handlers = r'''        groups
+            .on('mouseenter', (_, cluster) => {
+                if (!desktopHover.matches || selectedEventId || selectedClusterKey) return;
+                cluster.events.length > 1 ? previewCluster(cluster) : previewEvent(cluster.events[0]);
+            })
+            .on('mouseleave', () => {
+                if (!desktopHover.matches) return;
+                restoreSelectedDetail();
+            })
+            .on('focus', (_, cluster) => {
+                if (selectedEventId || selectedClusterKey) return;
+                cluster.events.length > 1 ? previewCluster(cluster) : previewEvent(cluster.events[0]);
+            })
+            .on('blur', restoreSelectedDetail)
+            .on('click', (event, cluster) => {
+                event.stopPropagation();
+                cluster.events.length > 1
+                    ? selectCluster(cluster)
+                    : selectEvent(cluster.events[0], { scroll: false });
+            })
+            .on('keydown', (event, cluster) => {
+                if (event.key !== 'Enter' && event.key !== ' ') return;
+                event.preventDefault();
+                event.stopPropagation();
+                cluster.events.length > 1
+                    ? selectCluster(cluster)
+                    : selectEvent(cluster.events[0], { scroll: false });
+            });
+'''
+          text = replace_once(text, old_handlers, new_handlers, 'marker interaction handlers')
+
+          text = replace_once(text,
+          """            zoomBehavior = d3.zoom()
+                .scaleExtent([1, 8])
+                .translateExtent([[-80, -80], [WIDTH + 80, HEIGHT + 80]])""",
+          """            zoomBehavior = d3.zoom()
+                .scaleExtent([1, 8])
+                .translateExtent([[-80, -80], [WIDTH + 80, HEIGHT + 80]])
+                .clickDistance(8)
+                .tapDistance(12)""",
+          'zoom click/tap thresholds')
+
+          text = replace_once(text,
+          """            pickerEventIds = new Set(Array.isArray(eventData?.picker_event_ids) ? eventData.picker_event_ids : []);
+            stateFeatures""",
+          """            pickerEventIds = new Set(Array.isArray(eventData?.picker_event_ids) ? eventData.picker_event_ids : []);
+            pickerEvents = Array.isArray(eventData?.picker_events) ? eventData.picker_events : [];
+            eventOverrides = eventData?.event_overrides && typeof eventData.event_overrides === 'object'
+                ? eventData.event_overrides
+                : {};
+            stateFeatures""",
+          'event feed detail data')
+
+          text = replace_once(text,
+          """                if (initialEvent) selectEvent(initialEvent, { zoom: true, scroll: false });
+            } else {
+                syncUrl();
+            }""",
+          """                if (initialEvent) selectEvent(initialEvent, { zoom: true, scroll: false, history: 'replace' });
+            } else {
+                syncUrl({ mode: 'replace' });
+            }""",
+          'initial selection history')
+
+          text = replace_once(text,
+          """    window.addEventListener('beforeunload', () => {
+""",
+          """    window.addEventListener('popstate', restoreHistorySelection);
+
+    window.addEventListener('beforeunload', () => {
+""",
+          'popstate binding')
+
+          write(path, text)
+
+          # ---------------------------------------------------------
+          # Enhancements: keep pointer safety, popover/card enrichment and
+          # near-me accessibility. Remove duplicate detail/lock controllers.
+          # ---------------------------------------------------------
+          path = 'assets/event-map-enhancements.js'
+          text = read(path)
+
+          # Remove duplicate detail controller (poster, matchup, picker, second feed fetch).
+          pattern = re.compile(
+              r"\n\(\(\) => \{\n    const page = document\.querySelector\('\[data-event-map\]'\);\n    if \(!page\) return;\n\n    const detailCard = page\.querySelector\('\[data-event-detail-card\]'\);.*?\n\}\)\(\);\n\n(?=\(\(\) => \{\n    const page = document\.querySelector\('\[data-event-map\]'\);\n    if \(!page\) return;\n\n    const stage =)",
+              re.S
+          )
+          text, count = pattern.subn('\n', text, count=1)
+          if count != 1:
+              raise SystemExit('Patch target not found: duplicate Event Map detail controller')
+
+          # Remove duplicate lock/hover state controller at the end; core owns it now.
+          pattern = re.compile(
+              r"\n\(\(\) => \{\n    const page = document\.querySelector\('\[data-event-map\]'\);\n    const svg = page\?\.querySelector\('\[data-map-svg\]'\);\n    const detail = page\?\.querySelector\('\[data-event-detail\]'\);.*?\n\}\)\(\);\s*$",
+              re.S
+          )
+          text, count = pattern.subn('\n', text, count=1)
+          if count != 1:
+              raise SystemExit('Patch target not found: duplicate lock controller')
+
+          # Replace pointer activation shim so dragging can start on a pin without
+          # accidentally selecting it, including touch/pointer-id handling.
+          pointer = r'''(() => {
+    const page = document.querySelector('[data-event-map]');
+    const svg = page?.querySelector('[data-map-svg]');
+    if (!svg) return;
+
+    let pressedMarker = null;
+    let pressedPointerId = null;
+    let startX = 0;
+    let startY = 0;
+    let moved = false;
+    let suppressClickUntil = 0;
+
+    const markerFrom = target => target instanceof Element
+        ? target.closest('.event-map-pin-group')
+        : null;
+
+    const activateMarker = marker => {
+        if (!marker?.isConnected) return;
+        try { marker.focus({ preventScroll: true }); } catch (_) { marker.focus(); }
+        marker.dispatchEvent(new KeyboardEvent('keydown', {
+            key: 'Enter',
+            code: 'Enter',
+            bubbles: false,
+            cancelable: true
+        }));
+    };
+
+    const clearPress = () => {
+        pressedMarker = null;
+        pressedPointerId = null;
+        moved = false;
+    };
+
+    svg.addEventListener('pointerdown', event => {
+        if (event.isPrimary === false) return;
+        const marker = markerFrom(event.target);
+        if (!marker) return;
+        pressedMarker = marker;
+        pressedPointerId = event.pointerId;
+        startX = event.clientX;
+        startY = event.clientY;
+        moved = false;
+        // Do not stop propagation here: a drag that begins on a pin must still pan the map.
+    }, true);
+
+    svg.addEventListener('pointermove', event => {
+        if (!pressedMarker || event.pointerId !== pressedPointerId) return;
+        if (Math.hypot(event.clientX - startX, event.clientY - startY) > 10) moved = true;
+    }, true);
+
+    svg.addEventListener('pointerup', event => {
+        if (!pressedMarker || event.pointerId !== pressedPointerId) return;
+        const marker = markerFrom(event.target);
+        const shouldActivate = !moved && marker === pressedMarker;
+        const selectedMarker = pressedMarker;
+        suppressClickUntil = performance.now() + 700;
+        clearPress();
+
+        if (!shouldActivate) return;
+        event.preventDefault();
+        event.stopPropagation();
+        activateMarker(selectedMarker);
+    }, true);
+
+    svg.addEventListener('pointercancel', event => {
+        if (pressedPointerId !== null && event.pointerId !== pressedPointerId) return;
+        suppressClickUntil = performance.now() + 250;
+        clearPress();
+    }, true);
+
+    svg.addEventListener('click', event => {
+        const marker = markerFrom(event.target);
+        if (!marker) return;
+        event.preventDefault();
+        event.stopPropagation();
+        if (performance.now() > suppressClickUntil) activateMarker(marker);
+    }, true);
+})();'''
+          pattern = re.compile(r"^\(\(\) => \{.*?\n\}\)\(\);", re.S)
+          text, count = pattern.subn(pointer, text, count=1)
+          if count != 1:
+              raise SystemExit('Patch target not found: pointer controller')
+
+          text = replace_once(text,
+          """    const detailMatchup = page.querySelector('.event-map-detail-matchup');
+    if (!stage || !svg) return;
+""",
+          """    const detailMatchup = page.querySelector('.event-map-detail-matchup');
+    const hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)');
+    if (!stage || !svg) return;
+""",
+          'popover hover capability')
+
+          text = replace_once(text,
+          """    stage.addEventListener('pointerover', event => {
+        const group = groupFromTarget(event.target);
+        if (!group) return;""",
+          """    stage.addEventListener('pointerover', event => {
+        if (!hoverCapable.matches) return;
+        const group = groupFromTarget(event.target);
+        if (!group) return;""",
+          'popover pointerover gate')
+
+          text = replace_once(text,
+          """    stage.addEventListener('focusin', event => {
+        const group = groupFromTarget(event.target);
+        if (group) showPopover(group);
+    });""",
+          """    stage.addEventListener('focusin', event => {
+        if (!hoverCapable.matches) return;
+        const group = groupFromTarget(event.target);
+        if (group) showPopover(group);
+    });""",
+          'popover mobile focus gate')
+
+          write(path, text)
+
+          # Deferred runtime now has one enhancement controller, not a second event-data fetcher.
+          path = 'assets/event-map-deferred.js'
+          text = read(path)
+          text = replace_once(text,
+          """    const scripts = [
+        '/assets/event-map-detail.js',
+        '/assets/event-map-enhancements.js'
+    ];""",
+          """    const scripts = [
+        '/assets/event-map-enhancements.js'
+    ];""",
+          'deferred scripts')
+          write(path, text)
+
+          # Mobile/touch quality: correct pro-am selector and larger touch targets.
+          path = 'assets/event-map.css'
+          text = read(path)
+          text = text.replace('.event-map-pin-group[data-level="proam"] .event-map-pin {', '.event-map-pin-group[data-level="pro-am"] .event-map-pin {')
+          text = replace_once(text,
+          """    touch-action: none;
+}""",
+          """    touch-action: none;
+    overscroll-behavior: contain;
+    -webkit-user-select: none;
+    user-select: none;
+}""",
+          'map touch containment')
+          text = replace_once(text,
+          """    .event-map-detail {
+        min-height: 0;
+        max-height: none;
+    }
+""",
+          """    .event-map-detail {
+        min-height: 0;
+        max-height: none;
+        scroll-margin-top: 4.75rem;
+    }
+
+    .event-map-range button,
+    .event-map-near-button,
+    .event-map-zoom-controls button {
+        min-height: 44px;
+    }
+
+    .event-map-zoom-controls button {
+        width: 44px;
+        height: 44px;
+    }
+
+    .event-map-result {
+        min-height: 56px;
+    }
+
+    .event-map-cluster-event {
+        min-height: 52px;
+    }
+""",
+          'mobile touch targets')
+          write(path, text)
+
+          # Remove the now-retired duplicate controller.
+          detail_path = Path('assets/event-map-detail.js')
+          if detail_path.exists():
+              detail_path.unlink()
+
+          # ---------------------------------------------------------
+          # Permanent data-quality validator.
+          # ---------------------------------------------------------
+          quality = r'''import fs from 'node:fs/promises';
+
+const FILES = {
+  major: '_data/upcoming_events.json',
+  regional: '_data/event_map_regional.json',
+  pickerRegional: '_data/upcoming_events_regional.json'
+};
+
+const STATES = new Map(Object.entries({
+  AL:'Alabama',AK:'Alaska',AZ:'Arizona',AR:'Arkansas',CA:'California',CO:'Colorado',CT:'Connecticut',DE:'Delaware',DC:'District of Columbia',FL:'Florida',GA:'Georgia',HI:'Hawaii',ID:'Idaho',IL:'Illinois',IN:'Indiana',IA:'Iowa',KS:'Kansas',KY:'Kentucky',LA:'Louisiana',ME:'Maine',MD:'Maryland',MA:'Massachusetts',MI:'Michigan',MN:'Minnesota',MS:'Mississippi',MO:'Missouri',MT:'Montana',NE:'Nebraska',NV:'Nevada',NH:'New Hampshire',NJ:'New Jersey',NM:'New Mexico',NY:'New York',NC:'North Carolina',ND:'North Dakota',OH:'Ohio',OK:'Oklahoma',OR:'Oregon',PA:'Pennsylvania',RI:'Rhode Island',SC:'South Carolina',SD:'South Dakota',TN:'Tennessee',TX:'Texas',UT:'Utah',VT:'Vermont',VA:'Virginia',WA:'Washington',WV:'West Virginia',WI:'Wisconsin',WY:'Wyoming'
+}));
+
+const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
+const norm = value => clean(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const failures = [];
+const warnings = [];
+
+async function load(path) {
+  const data = JSON.parse(await fs.readFile(path, 'utf8'));
+  if (!Array.isArray(data.events)) throw new Error(`${path}: events must be an array`);
+  return data.events;
+}
+
+function canonicalPromotion(value) {
+  const text = norm(value);
+  if (/^(ultimate fighting championship|ufc)\b/.test(text)) return 'ufc';
+  if (/^(dana whites contender series|dwcs)\b/.test(text)) return 'dwcs';
+  if (/^(legacy fighting alliance|lfa)\b/.test(text)) return 'lfa';
+  if (/^(professional fighters league|pfl)\b/.test(text)) return 'pfl';
+  if (/^(cage fury fighting championships|cffc)\b/.test(text)) return 'cffc';
+  if (/^rizin\b/.test(text)) return 'rizin';
+  if (/^(one championship|one)\b/.test(text)) return 'one';
+  return text.replace(/\b\d+\b.*$/, '').trim();
+}
+
+function validHttp(value) {
+  if (!clean(value)) return true;
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' || url.protocol === 'http:';
+  } catch {
+    return false;
+  }
+}
+
+function locationHasState(event) {
+  const explicit = clean(event.state || event.state_code).toUpperCase();
+  if (STATES.has(explicit)) return true;
+  const source = `${clean(event.location)} ${clean(event.venue)}`;
+  for (const [code, name] of STATES) {
+    if (new RegExp(`(?:,|\\b)\\s*${code}\\b`, 'i').test(source)) return true;
+    if (new RegExp(`\\b${name.replace(/ /g, '\\s+')}\\b`, 'i').test(source)) return true;
+  }
+  return false;
+}
+
+function coordinateCheck(event, label) {
+  const hasLat = event.latitude !== undefined || event.lat !== undefined;
+  const hasLon = event.longitude !== undefined || event.lng !== undefined;
+  if (hasLat !== hasLon) failures.push(`${label}: latitude/longitude must be supplied together.`);
+  if (!hasLat || !hasLon) return;
+  const lat = Number(event.latitude ?? event.lat);
+  const lon = Number(event.longitude ?? event.lng);
+  if (!Number.isFinite(lat) || lat < 18 || lat > 72) failures.push(`${label}: latitude outside expected U.S. bounds.`);
+  if (!Number.isFinite(lon) || lon < -180 || lon > -60) failures.push(`${label}: longitude outside expected U.S. bounds.`);
+}
+
+const [major, regional, pickerRegional] = await Promise.all([
+  load(FILES.major), load(FILES.regional), load(FILES.pickerRegional)
+]);
+const mapEvents = [...major, ...regional];
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+const staleCutoff = new Date(today);
+staleCutoff.setDate(staleCutoff.getDate() - 2);
+
+const ids = new Map();
+const semantic = new Map();
+for (const [index, event] of mapEvents.entries()) {
+  const source = index < major.length ? 'major' : 'regional';
+  const label = `${source}:${event.id || event.title || index}`;
+  const id = clean(event.id);
+  if (!id) failures.push(`${label}: missing id.`);
+  else if (ids.has(id)) failures.push(`${label}: duplicate map id also used by ${ids.get(id)}.`);
+  else ids.set(id, label);
+
+  if (!/^20\d{2}-\d{2}-\d{2}$/.test(clean(event.date))) failures.push(`${label}: invalid or missing YYYY-MM-DD date.`);
+  else {
+    const date = new Date(`${event.date}T12:00:00`);
+    if (!Number.isNaN(date.getTime()) && date < staleCutoff) warnings.push(`${label}: event is more than two days in the past and should be pruned.`);
+  }
+  if (!clean(event.promotion)) failures.push(`${label}: missing promotion.`);
+  if (!clean(event.title)) failures.push(`${label}: missing title.`);
+  if (!locationHasState(event)) failures.push(`${label}: location/venue has no recognizable U.S. state.`);
+  if (!validHttp(event.official_url)) failures.push(`${label}: invalid official_url.`);
+  if (!validHttp(event.ticket_url)) failures.push(`${label}: invalid ticket_url.`);
+  coordinateCheck(event, label);
+
+  const semanticKey = [clean(event.date), canonicalPromotion(event.promotion), norm(event.title), norm(event.location || event.venue)].join('|');
+  if (semanticKey.replaceAll('|', '')) {
+    if (semantic.has(semanticKey) && semantic.get(semanticKey) !== id) {
+      failures.push(`${label}: semantic duplicate of ${semantic.get(semanticKey)} (same date/promotion/title/location).`);
+    } else semantic.set(semanticKey, id || label);
+  }
+
+  const fighters = event?.main_event?.fighters;
+  if (Array.isArray(fighters) && fighters.length === 1) warnings.push(`${label}: main_event contains only one fighter.`);
+}
+
+const mapRegionalIds = new Set(regional.map(event => clean(event.id)).filter(Boolean));
+for (const event of pickerRegional) {
+  const id = clean(event.id);
+  if (id && !mapRegionalIds.has(id)) failures.push(`picker-regional:${id}: appears in Fight Card Picker but is missing from Event Map regional data.`);
+}
+
+if (warnings.length) {
+  console.warn(`Event Map quality warnings (${warnings.length}):`);
+  warnings.forEach(item => console.warn(`- ${item}`));
+}
+if (failures.length) {
+  console.error(`Event Map quality validation failed (${failures.length}):`);
+  failures.forEach(item => console.error(`- ${item}`));
+  process.exit(1);
+}
+console.log(`Event Map quality passed: ${mapEvents.length} mapped events (${major.length} major + ${regional.length} regional), ${pickerRegional.length} curated regional picker events.`);
+'''
+          write('scripts/validate-event-map-quality.mjs', quality)
+
+          architecture = r'''import fs from 'node:fs/promises';
+
+const core = await fs.readFile('assets/event-map-v2.js', 'utf8');
+const deferred = await fs.readFile('assets/event-map-deferred.js', 'utf8');
+const enhancements = await fs.readFile('assets/event-map-enhancements.js', 'utf8');
+const html = await fs.readFile('event-map.html', 'utf8');
+const failures = [];
+
+function requireText(text, needle, message) {
+  if (!text.includes(needle)) failures.push(message);
+}
+function forbid(text, needle, message) {
+  if (text.includes(needle)) failures.push(message);
+}
+
+requireText(core, "window.addEventListener('popstate', restoreHistorySelection)", 'Core must restore event selection on browser back/forward.');
+requireText(core, "window.history.pushState", 'Committed Event Map selections must create history entries.');
+requireText(core, "selectEvent(cluster.events[0], { scroll: false })", 'Single-pin map taps must keep the mobile map in place for repeated exploration.');
+requireText(core, '.clickDistance(8)', 'Map zoom must suppress accidental click-after-drag selection.');
+requireText(core, '.tapDistance(12)', 'Map zoom must use a touch tap-distance threshold.');
+requireText(core, "detailPanel.dataset.hoverPreview", 'Core must own hover-preview state.');
+requireText(core, "pickerIdFor(event)", 'Core must resolve Event Map events to Fight Card Picker IDs.');
+requireText(core, "renderPoster(event)", 'Core must own poster rendering and stale-request protection.');
+requireText(enhancements, 'pressedPointerId', 'Pointer controller must track the active pointer ID.');
+requireText(enhancements, 'a drag that begins on a pin must still pan the map', 'Pin pointerdown must not block map panning.');
+forbid(enhancements, "fetch(page.dataset.eventsUrl", 'Enhancements must not fetch the Event Map feed a second time.');
+forbid(deferred, 'event-map-detail.js', 'Retired duplicate detail controller must not be deferred.');
+forbid(html, '/assets/event-map-detail.js', 'Retired duplicate detail controller must not be loaded by the page.');
+
+if (failures.length) {
+  console.error(`Event Map architecture check failed (${failures.length}):`);
+  failures.forEach(item => console.error(`- ${item}`));
+  process.exit(1);
+}
+console.log('Event Map architecture check passed: one detail owner, history-safe selection, drag-safe pins, mobile repeat-selection behavior.');
+'''
+          write('scripts/check-event-map-architecture.mjs', architecture)
+
+          # ---------------------------------------------------------
+          # Production interaction smoke test (desktop + mobile).
+          # ---------------------------------------------------------
+          smoke = r'''const { test, expect } = require('@playwright/test');
+
+const BASE = process.env.EVENT_MAP_BASE_URL || 'https://mmamatlock.com/event-map/';
+
+async function ready(page) {
+  const pageErrors = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
+  await page.goto(BASE, { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('[data-map-loading]')).toBeHidden({ timeout: 30000 });
+  await expect(page.locator('.event-map-pin-group').first()).toBeVisible({ timeout: 30000 });
+  return pageErrors;
+}
+
+async function title(page) {
+  return (await page.locator('[data-detail-title]').textContent() || '').trim();
+}
+
+test.describe('Event Map desktop interaction chain', () => {
+  test.use({ viewport: { width: 1280, height: 900 } });
+
+  test('first, second, back, zoom and results stay coherent', async ({ page }) => {
+    const pageErrors = await ready(page);
+    const singles = page.locator('.event-map-pin-group:not(.event-map-cluster)');
+    const count = await singles.count();
+    expect(count).toBeGreaterThan(0);
+
+    await singles.nth(0).click();
+    await expect(page.locator('[data-event-detail-card]')).toBeVisible();
+    const firstTitle = await title(page);
+    const firstUrl = page.url();
+    expect(new URL(firstUrl).searchParams.get('event')).toBeTruthy();
+
+    if (count > 1) {
+      await singles.nth(1).click();
+      const secondTitle = await title(page);
+      expect(secondTitle).not.toBe('');
+      expect(page.url()).not.toBe(firstUrl);
+
+      await page.evaluate(() => history.back());
+      await expect.poll(() => title(page), { timeout: 5000 }).toBe(firstTitle);
+      expect(page.url()).toBe(firstUrl);
+    }
+
+    await page.locator('[data-map-zoom-in]').click();
+    await page.waitForTimeout(450);
+    await expect.poll(() => title(page)).toBe(firstTitle);
+
+    const results = page.locator('.event-map-result');
+    expect(await results.count()).toBeGreaterThan(0);
+    await results.first().click();
+    await expect(page.locator('[data-event-detail-card]')).toBeVisible();
+    expect(new URL(page.url()).searchParams.get('event')).toBeTruthy();
+
+    const calendarHref = await page.locator('[data-detail-calendar]').getAttribute('href');
+    expect(calendarHref || '').toMatch(/^blob:/);
+    const source = page.locator('[data-detail-source]:not([hidden])');
+    if (await source.count()) expect(await source.getAttribute('href')).toMatch(/^https?:\/\//);
+
+    expect(pageErrors).toEqual([]);
+  });
+});
+
+test.describe('Event Map mobile interaction chain', () => {
+  test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+
+  test('repeated pin taps stay on map; clusters deliberately move to chooser', async ({ page }) => {
+    const pageErrors = await ready(page);
+    const singles = page.locator('.event-map-pin-group:not(.event-map-cluster)');
+    const count = await singles.count();
+    expect(count).toBeGreaterThan(0);
+
+    const before = await page.evaluate(() => window.scrollY);
+    await singles.nth(0).tap();
+    await expect(page.locator('[data-event-detail-card]')).toBeVisible();
+    const firstTitle = await title(page);
+    const afterFirst = await page.evaluate(() => window.scrollY);
+    expect(Math.abs(afterFirst - before)).toBeLessThan(100);
+
+    if (count > 1) {
+      await singles.nth(1).tap();
+      const secondTitle = await title(page);
+      expect(secondTitle).not.toBe('');
+      expect(secondTitle).not.toBe(firstTitle);
+      const afterSecond = await page.evaluate(() => window.scrollY);
+      expect(Math.abs(afterSecond - before)).toBeLessThan(120);
+
+      await page.evaluate(() => history.back());
+      await expect.poll(() => title(page), { timeout: 5000 }).toBe(firstTitle);
+    }
+
+    const clusters = page.locator('.event-map-pin-group.event-map-cluster');
+    if (await clusters.count()) {
+      await clusters.first().tap();
+      await expect(page.locator('[data-cluster-card]')).toBeVisible();
+      await expect(page.locator('.event-map-cluster-event').first()).toBeVisible();
+      await page.locator('.event-map-cluster-event').first().tap();
+      await expect(page.locator('[data-event-detail-card]')).toBeVisible();
+    }
+
+    expect(pageErrors).toEqual([]);
+  });
+});
+'''
+          write('scripts/event-map-smoke.spec.cjs', smoke)
+
+          smoke_workflow = r'''name: Event Map production smoke
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "41 9 * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - "event-map.html"
+      - "assets/event-map*.js"
+      - "assets/event-map*.css"
+      - "_data/event_map*.json"
+      - "_data/upcoming_events*.json"
+      - "scripts/event-map-smoke.spec.cjs"
+      - ".github/workflows/event-map-smoke.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: event-map-production-smoke
+  cancel-in-progress: true
+
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Wait for matching production assets
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="$(awk -F'"' '/^asset_version:/ { print $2; exit }' _config.yml)"
+          for attempt in $(seq 1 48); do
+            html="$(curl -fsSL --retry 2 "https://mmamatlock.com/event-map/?smoke_probe=${GITHUB_RUN_ID}-${attempt}" || true)"
+            if grep -Fq "?v=${version}" <<<"${html}"; then
+              echo "Production Event Map is serving asset version ${version}."
+              exit 0
+            fi
+            echo "Attempt ${attempt}/48: waiting for Event Map v${version}."
+            sleep 10
+          done
+          echo "Production Event Map did not reach v${version} within eight minutes."
+          exit 1
+
+      - name: Install browser test runtime
+        run: |
+          npm install --no-save --no-package-lock @playwright/test@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Exercise desktop and mobile Event Map interactions
+        env:
+          EVENT_MAP_BASE_URL: https://mmamatlock.com/event-map/
+        run: npx playwright test scripts/event-map-smoke.spec.cjs --browser=chromium --reporter=line
+'''
+          write('.github/workflows/event-map-smoke.yml', smoke_workflow)
+
+          # Site Quality permanently enforces the new architecture and data checks.
+          path = '.github/workflows/site-quality.yml'
+          text = read(path)
+          text = text.replace('          node --check assets/event-map-detail.js\n', '')
+          text = replace_once(text,
+          """          node --check scripts/validate-event-map-regional.mjs
+          node --check scripts/validate-regional-picker.mjs""",
+          """          node --check scripts/validate-event-map-regional.mjs
+          node --check scripts/validate-event-map-quality.mjs
+          node --check scripts/check-event-map-architecture.mjs
+          node --check scripts/validate-regional-picker.mjs""",
+          'site-quality script syntax list')
+          text = replace_once(text,
+          """      - name: Check regional Event Map data
+        run: node scripts/validate-event-map-regional.mjs
+
+      - name: Check bundled MMA news data""",
+          """      - name: Check regional Event Map data
+        run: node scripts/validate-event-map-regional.mjs
+
+      - name: Check Event Map quality and interaction architecture
+        run: |
+          node scripts/validate-event-map-quality.mjs
+          node scripts/check-event-map-architecture.mjs
+
+      - name: Check bundled MMA news data""",
+          'site-quality Event Map checks')
+          write(path, text)
+
+          # Asset bump so production smoke can wait for this exact hardening pass.
+          path = '_config.yml'
+          text = read(path)
+          match = re.search(r'asset_version:\s*"(\d+)"', text)
+          if not match:
+              raise SystemExit('asset_version not found')
+          version = int(match.group(1))
+          text = text[:match.start(1)] + str(version + 1) + text[match.end(1):]
+          write(path, text)
+
+          print(f'Event Map hardening prepared. asset_version {version} -> {version + 1}')
+          PY
+
+      - name: Validate patched source and data
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check assets/event-map-v2.js
+          node --check assets/event-map-deferred.js
+          node --check assets/event-map-enhancements.js
+          node --check scripts/validate-event-map-quality.mjs
+          node --check scripts/check-event-map-architecture.mjs
+          node --check scripts/event-map-smoke.spec.cjs
+          node scripts/validate-event-map-regional.mjs
+          node scripts/validate-event-map-quality.mjs
+          node scripts/check-event-map-architecture.mjs
+          grep -q '/assets/event-map-v2.js' event-map.html
+          ! test -e assets/event-map-detail.js
+
+      - name: Commit hardening pass
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Harden Event Map interactions and mobile behavior"
+          git pull --rebase origin main
+          git push origin HEAD:main
