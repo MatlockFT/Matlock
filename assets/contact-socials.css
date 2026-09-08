@@ -1,0 +1,178 @@
+/* Contact page social directory: bolder, centered incomplete rows, no generic button stack. */
+
+.contact-page .contact-hero {
+    margin-bottom: 2rem;
+}
+
+.contact-page .contact-hero-simple .contact-hero-main {
+    min-height: 290px;
+}
+
+.contact-page .contact-hero-main {
+    padding: clamp(1.35rem, 4vw, 3rem);
+}
+
+.contact-page .contact-platform-section {
+    margin-bottom: 2.25rem;
+}
+
+.contact-page .contact-section-header {
+    display: block;
+    margin-bottom: .75rem;
+}
+
+.contact-page .platform-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .62rem;
+}
+
+.contact-page .platform-card {
+    position: relative;
+    isolation: isolate;
+    flex: 1 1 300px;
+    max-width: calc(33.333% - .42rem);
+    min-height: 112px;
+    grid-template-columns: 66px minmax(0, 1fr) auto;
+    gap: .78rem;
+    padding: .72rem .82rem;
+    overflow: hidden;
+    border: 1px solid #454545;
+    border-radius: 2px;
+    background:
+        linear-gradient(135deg, rgba(255,255,255,.035), transparent 48%),
+        #080808;
+    box-shadow: none;
+}
+
+.contact-page .platform-card::before {
+    content: attr(data-mark);
+    position: absolute;
+    right: -.08em;
+    bottom: -.22em;
+    z-index: -1;
+    color: rgba(255,255,255,.045);
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: 5.2rem;
+    line-height: 1;
+    letter-spacing: -.05em;
+    pointer-events: none;
+}
+
+.contact-page .platform-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: .17;
+    background-image: radial-gradient(circle, #fff .7px, transparent .75px);
+    background-size: 7px 7px;
+    mask-image: linear-gradient(90deg, transparent 55%, #000);
+    pointer-events: none;
+}
+
+.contact-page .platform-card:hover,
+.contact-page .platform-card:focus-visible {
+    border-color: #fff;
+    background:
+        linear-gradient(135deg, rgba(255,255,255,.06), transparent 48%),
+        #0d0d0d;
+    transform: translateY(-2px);
+}
+
+.contact-page .platform-icon {
+    width: 66px;
+    height: 66px;
+    border: 0;
+    border-radius: 2px;
+    background: #f5f5f5;
+    color: #050505;
+    font-size: 1.22rem;
+    letter-spacing: -.02em;
+}
+
+.contact-page .platform-card:nth-child(even) .platform-icon {
+    background: #141414;
+    color: #fff;
+    outline: 1px solid #666;
+    outline-offset: -1px;
+}
+
+.contact-page .platform-card > span:nth-child(2) {
+    gap: .12rem;
+}
+
+.contact-page .platform-card small {
+    color: #8f8f8f;
+    font-size: .58rem;
+    letter-spacing: .08em;
+}
+
+.contact-page .platform-card strong {
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: 1.02rem;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: .01em;
+    text-transform: uppercase;
+}
+
+.contact-page .platform-card b {
+    color: #8a8a8a;
+    font-size: 1.15rem;
+    transition: transform 140ms ease, color 140ms ease;
+}
+
+.contact-page .platform-card:hover b,
+.contact-page .platform-card:focus-visible b {
+    color: #fff;
+    transform: translateX(2px);
+}
+
+@media (max-width: 900px) {
+    .contact-page .platform-card {
+        flex-basis: 340px;
+        max-width: calc(50% - .31rem);
+    }
+}
+
+@media (max-width: 620px) {
+    .contact-page .contact-hero-simple .contact-hero-main {
+        min-height: 0;
+    }
+
+    .contact-page .contact-hero-main h1 {
+        font-size: clamp(2.7rem, 14vw, 4.6rem);
+    }
+
+    .contact-page .platform-grid {
+        gap: .5rem;
+    }
+
+    .contact-page .platform-card {
+        flex-basis: 100%;
+        max-width: 100%;
+        min-height: 92px;
+        grid-template-columns: 54px minmax(0, 1fr) auto;
+        padding: .62rem .68rem;
+    }
+
+    .contact-page .platform-icon {
+        width: 54px;
+        height: 54px;
+        font-size: 1rem;
+    }
+
+    .contact-page .platform-card::before {
+        font-size: 4.4rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact-page .platform-card,
+    .contact-page .platform-card b {
+        transition: none;
+        transform: none !important;
+    }
+}
