@@ -2,12 +2,12 @@ import fs from "node:fs/promises";
 
 const HISTORY_PATH = process.argv[2] || "assets/data/on-this-day.json";
 const CACHE_PATH = process.argv[3] || "assets/data/on-this-day-image-cache.json";
-const USER_AGENT = "MMA-Matlock-OnThisDay-Images/1.3 (+https://mmamatlock.com/on-this-day/)";
+const USER_AGENT = "MMA-Matlock-OnThisDay-Images/1.4 (+https://mmamatlock.com/on-this-day/)";
 const REQUEST_TIMEOUT_MS = 20000;
 const REQUEST_ATTEMPTS = 3;
 const ENRICH_LIMIT = Math.max(1, Number(process.env.OTD_IMAGE_ENRICH_LIMIT || 240));
 const CONCURRENCY = Math.max(1, Math.min(6, Number(process.env.OTD_IMAGE_CONCURRENCY || 4)));
-const STRATEGY_VERSION = 5;
+const STRATEGY_VERSION = 6;
 const POSTER_RECHECK_DAYS = 365;
 const FALLBACK_RECHECK_DAYS = 90;
 const FAILED_RECHECK_DAYS = 10;
@@ -135,14 +135,19 @@ function cyclicDistance(entry) {
 
 const STOP_WORDS = new Set([
     "the", "and", "with", "from", "into", "versus", "took", "place",
-    "ufc", "mma", "fight", "night", "championship", "championships", "fighting",
-    "event", "live", "final", "finals"
+    "ufc", "mma", "fight", "night", "champion", "champions", "championship",
+    "championships", "fighting", "event", "live", "final", "finals", "ultimate"
 ]);
 
-function meaningfulTokens(entry) {
-    const tokens = normalized(eventName(entry))
+function words(value) {
+    return normalized(value)
         .replace(/[^a-z0-9]+/g, " ")
         .split(" ")
+        .filter(Boolean);
+}
+
+function meaningfulTokens(entry) {
+    const tokens = words(eventName(entry))
         .filter(token => token.length >= 3 && !STOP_WORDS.has(token));
     return [...new Set(tokens)].slice(0, 14);
 }
@@ -151,32 +156,54 @@ function numberedEvent(entry) {
     return normalized(eventName(entry)).match(/\b(?:ufc|wec|bellator|pfl|rizin|one|pride|pancrase)\s*(?:fight\s*night\s*)?(\d{1,4})\b/i)?.[1] || "";
 }
 
-function candidateScore(fileTitle, entry) {
+function candidateEvidence(fileTitle, entry) {
     const filename = normalized(String(fileTitle || "").replace(/^File:/i, ""));
+    const filenameWords = new Set(words(filename.replace(/\.(?:jpe?g|png|webp|gif|tiff?)$/i, "")));
+    const bareFilename = [...filenameWords].join(" ");
+    const bareEvent = words(eventName(entry)).join(" ");
+    const promotion = promotionKey(entry?.promotion);
+    const eventNumber = numberedEvent(entry);
+    const tokens = meaningfulTokens(entry);
+    const tokenMatches = tokens.filter(token => filenameWords.has(token));
+    const posterish = /\bposter\b|promotional|\bpromo\b|fight[ _-]?card|event[ _-]?card|official[ _-]?art|key[ _-]?art/i.test(filename);
+    const promotionMatch = Boolean(promotion && filenameWords.has(promotion));
+    const numberMatch = Boolean(eventNumber && filenameWords.has(eventNumber));
+    const fullNameMatch = Boolean(bareEvent && (bareFilename === bareEvent || bareFilename.includes(bareEvent)));
+
+    return {
+        filename,
+        tokenMatches,
+        posterish,
+        promotionMatch,
+        numberMatch,
+        fullNameMatch
+    };
+}
+
+function candidatePlausible(fileTitle, entry) {
+    const evidence = candidateEvidence(fileTitle, entry);
+    if (evidence.fullNameMatch) return true;
+    if (evidence.posterish && evidence.promotionMatch && (evidence.numberMatch || evidence.tokenMatches.length >= 1)) return true;
+    if (evidence.promotionMatch && evidence.tokenMatches.length >= 2) return true;
+    if (evidence.promotionMatch && evidence.numberMatch && evidence.tokenMatches.length >= 1) return true;
+    return false;
+}
+
+function candidateScore(fileTitle, entry) {
+    const evidence = candidateEvidence(fileTitle, entry);
+    const filename = evidence.filename;
     if (!filename || /\.svg(?:$|\?)/i.test(filename)) return -1000;
     if (!/\.(?:jpe?g|png|webp|gif|tiff?)$/i.test(filename)) return -500;
 
     let score = 0;
-    const bareFilename = filename.replace(/\.(?:jpe?g|png|webp|gif|tiff?)$/i, "").replace(/[^a-z0-9]+/g, " ").trim();
-    const bareEvent = normalized(eventName(entry)).replace(/[^a-z0-9]+/g, " ").trim();
-
-    if (/\bposter\b|promotional|promotion\b|promo\b|fight[ _-]?card|event[ _-]?card|official[ _-]?art|key[ _-]?art/i.test(filename)) score += 120;
+    if (evidence.posterish) score += 120;
     if (/cover|programme|program\b/i.test(filename)) score += 70;
-    if (bareEvent && (bareFilename === bareEvent || bareFilename.includes(bareEvent))) score += 90;
-
-    const eventNumber = numberedEvent(entry);
-    if (eventNumber && new RegExp(`(?:^|[^0-9])${eventNumber}(?:[^0-9]|$)`).test(filename)) score += 65;
-
-    let tokenMatches = 0;
-    for (const token of meaningfulTokens(entry)) {
-        if (filename.includes(token)) tokenMatches += 1;
-    }
-    score += Math.min(tokenMatches, 7) * 11;
-    if (tokenMatches >= 2) score += 18;
-    if (tokenMatches >= 4) score += 18;
-
-    const promotion = promotionKey(entry?.promotion);
-    if (promotion && filename.includes(promotion)) score += 24;
+    if (evidence.fullNameMatch) score += 90;
+    if (evidence.numberMatch && evidence.promotionMatch) score += 58;
+    score += Math.min(evidence.tokenMatches.length, 7) * 18;
+    if (evidence.tokenMatches.length >= 2) score += 22;
+    if (evidence.tokenMatches.length >= 4) score += 18;
+    if (evidence.promotionMatch) score += 28;
 
     if (/\b(?:logo|flag|map|icon|symbol|seal|coat[ _-]?of[ _-]?arms|wikidata|location|venue|arena|sponsor)\b/i.test(filename)) score -= 130;
     if (/headshot|portrait|weigh[ _-]?in|press[ _-]?conference|interview/i.test(filename)) score -= 48;
@@ -254,7 +281,7 @@ async function pageLeadImage(title) {
         metadata: {},
         sourceType: "wikipedia-lead-image",
         artworkType: "event-photo",
-        score: 76
+        score: 90
     };
 }
 
@@ -335,7 +362,7 @@ function artworkType(fileTitle) {
     return "event-photo";
 }
 
-function rankCandidates(items, entry, sourceType, minimum = 82) {
+function rankCandidates(items, entry, sourceType, minimum = 82, requireEvidence = false) {
     return items
         .map(item => ({
             ...item,
@@ -344,6 +371,7 @@ function rankCandidates(items, entry, sourceType, minimum = 82) {
             score: candidateScore(item.title, entry) + dimensionAdjustment(item)
         }))
         .filter(item => item.score >= minimum)
+        .filter(item => !requireEvidence || candidatePlausible(item.title, entry))
         .sort((a, b) => b.score - a.score || (b.width * b.height) - (a.width * a.height));
 }
 
@@ -404,7 +432,7 @@ async function findBetterArtwork(entry) {
 
         if (rankedFiles.length) {
             const info = await imageInfo(rankedFiles.map(item => item.fileTitle));
-            candidates.push(...rankCandidates(info, entry, "wikipedia-page-artwork", 80));
+            candidates.push(...rankCandidates(info, entry, "wikipedia-page-artwork", 80, false));
         }
 
         if (!entry.imageUrl || !candidates.length) {
@@ -419,18 +447,25 @@ async function findBetterArtwork(entry) {
     const shouldSearchCommons = !entry.imageUrl || isTargetPromotion(entry) || !bestPageCandidate || bestPageCandidate.score < 150;
     if (shouldSearchCommons) {
         const commonsItems = await searchCommons(entry);
-        candidates.push(...rankCandidates(commonsItems, entry, "wikimedia-commons-search", 84));
+        candidates.push(...rankCandidates(commonsItems, entry, "wikimedia-commons-search", 84, true));
     }
 
     candidates.sort((a, b) => {
-        const typeRank = { poster: 3, artwork: 2, "event-photo": 1 };
-        return (typeRank[b.artworkType] - typeRank[a.artworkType]) || b.score - a.score || (b.width * b.height) - (a.width * a.height);
+        const typeRank = { poster: 4, artwork: 3, "event-photo": 1 };
+        const sourceRank = {
+            "wikipedia-page-artwork": 3,
+            "wikipedia-lead-image": 2,
+            "wikimedia-commons-search": 1
+        };
+        return (typeRank[b.artworkType] - typeRank[a.artworkType]) ||
+            (sourceRank[b.sourceType] - sourceRank[a.sourceType]) ||
+            b.score - a.score ||
+            (b.width * b.height) - (a.width * a.height);
     });
 
     const best = candidates[0] || null;
     if (!best) return null;
 
-    // Do not replace an existing usable image with a weak generic lead photo.
     if (entry.imageUrl && best.artworkType === "event-photo" && best.sourceType === "wikipedia-lead-image") return null;
     return best;
 }
@@ -448,6 +483,26 @@ function cachePageImage(entry, nowIso, status = "pageimage-kept") {
         ...(entry?.imageWidth ? { width: entry.imageWidth } : {}),
         ...(entry?.imageHeight ? { height: entry.imageHeight } : {})
     };
+}
+
+function clearEntryImage(entry) {
+    delete entry.imageUrl;
+    delete entry.imageAlt;
+    delete entry.imageCredit;
+    delete entry.imageFileTitle;
+    delete entry.imageWidth;
+    delete entry.imageHeight;
+    delete entry.imageSourceType;
+    delete entry.imageStrategyVersion;
+}
+
+function suspectStrategyFiveRecord(entry, record) {
+    return Boolean(
+        record &&
+        Number(record.strategyVersion || 0) === 5 &&
+        record.sourceType === "wikimedia-commons-search" &&
+        !candidatePlausible(record.imageFileTitle || "", entry)
+    );
 }
 
 function applyCache(history, cache) {
@@ -477,10 +532,22 @@ const history = await readJson(HISTORY_PATH, { entries: [] });
 const cache = await readJson(CACHE_PATH, { version: 1, updatedAt: null, entries: {} });
 if (!cache.entries || typeof cache.entries !== "object" || Array.isArray(cache.entries)) cache.entries = {};
 
+const scrubbedKeys = new Set();
+for (const entry of history.entries || []) {
+    if (entry?.generatedBy !== "wikipedia-event-index" || !entry?.autoKey) continue;
+    const record = cache.entries[entry.autoKey];
+    if (!suspectStrategyFiveRecord(entry, record)) continue;
+    clearEntryImage(entry);
+    delete cache.entries[entry.autoKey];
+    scrubbedKeys.add(entry.autoKey);
+}
+
 const eligible = (history.entries || [])
     .filter(entry => entry?.generatedBy === "wikipedia-event-index" && entry?.autoKey && wikipediaReference(entry).title)
     .filter(entry => needsReview(cache.entries[entry.autoKey]))
     .sort((a, b) => {
+        const scrubDifference = Number(!scrubbedKeys.has(a.autoKey)) - Number(!scrubbedKeys.has(b.autoKey));
+        if (scrubDifference) return scrubDifference;
         const dateDifference = cyclicDistance(a) - cyclicDistance(b);
         if (dateDifference) return dateDifference;
         const imageDifference = Number(Boolean(a.imageUrl)) - Number(Boolean(b.imageUrl));
@@ -554,7 +621,7 @@ await Promise.all(Array.from({ length: workerCount }, () => worker()));
 const applied = applyCache(history, cache);
 cache.version = Math.max(Number(cache.version || 1), 3);
 cache.strategyVersion = STRATEGY_VERSION;
-if (eligible.length) cache.updatedAt = nowIso;
+if (eligible.length || scrubbedKeys.size) cache.updatedAt = nowIso;
 
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, "utf8");
 await fs.writeFile(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`, "utf8");
@@ -562,5 +629,5 @@ await fs.writeFile(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`, "utf8");
 const generated = (history.entries || []).filter(entry => entry?.generatedBy === "wikipedia-event-index");
 const withImages = generated.filter(entry => entry?.imageUrl).length;
 const targetedReviewed = eligible.filter(isTargetPromotion).length;
-console.log(`On This Day image enrichment: ${eligible.length} reviewed (${targetedReviewed} targeted) with ${workerCount} workers; ${improved} improved (${commonsImproved} Commons, ${leadImproved} Wikipedia lead), ${kept} kept, ${failed} failed.`);
+console.log(`On This Day image enrichment: scrubbed ${scrubbedKeys.size} weak strategy-5 matches; ${eligible.length} reviewed (${targetedReviewed} targeted) with ${workerCount} workers; ${improved} improved (${commonsImproved} Commons, ${leadImproved} Wikipedia lead), ${kept} kept, ${failed} failed.`);
 console.log(`Image cache applied to ${applied} generated entries. Generated image coverage now ${withImages}/${generated.length}.`);
