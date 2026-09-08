@@ -270,7 +270,7 @@
     align-items: center;
     animation: site-news-scroll var(--site-news-duration, 70s) linear infinite;
     animation-play-state: running !important;
-    will-change: transform, translate;
+    will-change: transform;
 }
 
 /* The news rail is operational information, not decorative motion. It keeps
@@ -485,12 +485,14 @@ html.reduce-motion .site-live-strip {
     animation: none !important;
 }
 
-html.reduce-motion .site-news-track {
+/* Match the shell rule's body-level specificity. The shell's older reduced-
+   motion override otherwise wins the cascade on desktop and pins the rail. */
+html.reduce-motion body .site-news-track {
     animation: site-news-scroll-reduced-safe var(--site-news-duration, 70s) linear infinite !important;
     animation-play-state: running !important;
 }
 
-html.reduce-motion .site-news-sequence:nth-child(2) {
+html.reduce-motion body .site-news-sequence:nth-child(2) {
     display: flex !important;
 }
 
