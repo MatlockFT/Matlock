@@ -148,6 +148,7 @@
         return [...live, ...filler].slice(0, 10);
     }
 
+    // Departures are intentionally stricter than additions: legacy or single-snapshot misses never render here.
     function credibleRemovals(data) {
         return (Array.isArray(data.removals) ? data.removals : [])
             .filter(fighter =>
