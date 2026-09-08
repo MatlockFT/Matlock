@@ -29,7 +29,7 @@ Credit to McMillen, though—he stayed composed. He tried to use his wrestling b
 - Tommy McMillen moneyline: +160
 - Fight over 1.5 rounds: -199
 
-On [Verdict](https://verdictmma.com/profile/matlockfighttalk), I picked Mgoyan, so I got that wrong, but my bets cashed. My Verdict picks went 3/5:
+On [Verdict](https://verdictmma.com/profile/mmamatlock), I picked Mgoyan, so I got that wrong, but my bets cashed. My Verdict picks went 3/5:
 
 - David Mgoyan by decision: **Wrong**
 - Eduardo Henrique ("Chapolin"): **Correct**
