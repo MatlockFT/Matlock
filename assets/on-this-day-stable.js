@@ -547,6 +547,7 @@
         if (activeMode === "notable") pool = notableSubset(pool);
         const modeTotal = pool.length;
         const ordered = sortEntries(pool, activeSort);
+        if (hashScrollPending && location.hash) expanded = true;
         const displayed = expanded || ordered.length <= COLLAPSE_LIMIT
             ? ordered
             : ordered.slice(0, COLLAPSE_LIMIT);
