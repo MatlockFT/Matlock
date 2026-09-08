@@ -1,6 +1,7 @@
 /* =========================================================
    BREAKDOWNS — MOBILE DENSITY + FIRST-VIEW PERFORMANCE
    Keep the archive controls useful without letting them consume the screen.
+   Page-header sizing and spacing live in site-shell.css.
    ========================================================= */
 
 .archive-tools {
@@ -8,11 +9,6 @@
 }
 
 @media (max-width: 760px) {
-    .archive-header {
-        margin-bottom: 0.8rem;
-        padding-bottom: 0.7rem;
-    }
-
     .archive-tools {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 0.62rem;
