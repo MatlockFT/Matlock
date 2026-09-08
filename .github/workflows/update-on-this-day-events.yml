@@ -1,0 +1,65 @@
+name: Update On This Day events
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - on-this-day-continuous-history
+    paths:
+      - ".github/workflows/update-on-this-day-events.yml"
+      - "assets/data/on-this-day-event-sources.json"
+      - "scripts/update-on-this-day-events.mjs"
+      - "scripts/check-on-this-day.mjs"
+  schedule:
+    - cron: "42 9 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: on-this-day-events
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check updater syntax
+        run: |
+          node --check scripts/update-on-this-day-events.mjs
+          node --check scripts/check-on-this-day.mjs
+
+      - name: Refresh event anniversaries from Wikipedia
+        run: node scripts/update-on-this-day-events.mjs
+
+      - name: Validate On This Day archive
+        run: npm run check:history
+
+      - name: Commit event archive changes
+        if: github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- assets/data/on-this-day.json; then
+            echo "No On This Day event archive changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- assets/data/on-this-day.json
+          git commit -m "Refresh On This Day event archive"
+          git pull --rebase origin main
+          git push origin HEAD:main
