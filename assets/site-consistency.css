@@ -1,4 +1,9 @@
-/* Conservative shared alignment/mobile baseline for top-level site surfaces. */
+/* =========================================================
+   SITE CONSISTENCY SAFETY LAYER
+   Keep this file limited to overflow protection, responsive fallbacks, and
+   a few cross-page utility fixes. Shared visual hierarchy belongs in
+   site-shell.css so it is not patched twice.
+   ========================================================= */
 
 .site-main,
 .site-main > * {
@@ -68,6 +73,7 @@
     overflow-wrap: anywhere;
 }
 
+/* Article/event cross-link bar. */
 .post-event-context {
     display: flex;
     align-items: center;
@@ -99,10 +105,7 @@
 }
 
 .post-event-context-actions a {
-    display: inline-flex;
     min-height: 32px;
-    align-items: center;
-    justify-content: center;
     padding: .3rem .45rem;
     border: 1px solid #565656;
     color: #fff;
@@ -279,71 +282,4 @@
     .post-event-context-actions a {
         flex-basis: 100%;
     }
-}
-
-/* Shared optical row alignment: fixed line boxes + flex centering avoid font-metric drift between rows. */
-:where(
-    .section-header,
-    .home-panel-heading,
-    .event-card-section-heading,
-    .news-section-heading,
-    .otd-compact-header,
-    .ufc-roster-section-header,
-    .event-map-results > header
-) {
-    align-items: center;
-}
-
-:where(
-    .section-header,
-    .home-panel-heading,
-    .event-card-section-heading,
-    .news-section-heading,
-    .otd-compact-header,
-    .ufc-roster-section-header,
-    .event-map-results > header
-) > :where(h1, h2, h3, a, span, div) {
-    margin-block: 0;
-}
-
-:where(
-    .section-header,
-    .home-panel-heading,
-    .event-card-section-heading,
-    .news-section-heading,
-    .otd-compact-header,
-    .ufc-roster-section-header
-) > :where(h1, h2, h3, a, span) {
-    line-height: 1;
-}
-
-.navigation-list a {
-    display: inline-flex;
-    min-height: 62px;
-    align-items: center;
-    justify-content: center;
-    padding-top: 0;
-    padding-bottom: 0;
-    line-height: 1;
-}
-
-:where(
-    .home-tool-link,
-    .home-next-actions a,
-    .post-event-context-actions a,
-    .event-map-range button,
-    .event-map-near-button,
-    .event-map-detail-actions a,
-    .event-map-detail-actions button,
-    .otd-control-button,
-    .otd-mini-button,
-    .news-source-chip,
-    .news-show-more
-) {
-    box-sizing: border-box;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    vertical-align: middle;
 }
