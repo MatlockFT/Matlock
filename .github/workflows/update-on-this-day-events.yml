@@ -13,6 +13,7 @@ on:
       - "scripts/update-on-this-day-events.mjs"
       - "scripts/normalize-on-this-day-titles.mjs"
       - "scripts/enrich-on-this-day-images.mjs"
+      - "scripts/verify-on-this-day-event-images.mjs"
       - "scripts/enrich-on-this-day-content.mjs"
       - "scripts/enrich-on-this-day-pancrase.mjs"
       - "scripts/curate-on-this-day-events.mjs"
@@ -42,6 +43,7 @@ jobs:
       # the daily backlog moves forward without poisoning the cache with 429s.
       OTD_IMAGE_ENRICH_LIMIT: "120"
       OTD_IMAGE_CONCURRENCY: "1"
+      OTD_IMAGE_VERIFY_LIMIT: "100"
       OTD_CONTENT_ENRICH_LIMIT: "80"
       OTD_CONTENT_CONCURRENCY: "1"
       OTD_PANCRASE_ENRICH_LIMIT: "24"
@@ -62,6 +64,7 @@ jobs:
           node --check scripts/update-on-this-day-events.mjs
           node --check scripts/normalize-on-this-day-titles.mjs
           node --check scripts/enrich-on-this-day-images.mjs
+          node --check scripts/verify-on-this-day-event-images.mjs
           node --check scripts/enrich-on-this-day-content.mjs
           node --check scripts/enrich-on-this-day-pancrase.mjs
           node --check scripts/curate-on-this-day-events.mjs
@@ -83,6 +86,9 @@ jobs:
 
       - name: Prefer posters and event imagery for the archive
         run: node scripts/enrich-on-this-day-images.mjs
+
+      - name: Verify event-specific poster matches
+        run: node scripts/verify-on-this-day-event-images.mjs
 
       - name: Curate duplicate events and generated copy
         run: node scripts/curate-on-this-day-events.mjs
