@@ -16,6 +16,7 @@ on:
       - "scripts/enrich-on-this-day-content.mjs"
       - "scripts/enrich-on-this-day-pancrase.mjs"
       - "scripts/curate-on-this-day-events.mjs"
+      - "scripts/build-on-this-day-home.mjs"
       - "scripts/report-on-this-day-coverage.mjs"
       - "scripts/check-on-this-day.mjs"
   schedule:
@@ -61,6 +62,7 @@ jobs:
           node --check scripts/enrich-on-this-day-content.mjs
           node --check scripts/enrich-on-this-day-pancrase.mjs
           node --check scripts/curate-on-this-day-events.mjs
+          node --check scripts/build-on-this-day-home.mjs
           node --check scripts/report-on-this-day-coverage.mjs
           node --check scripts/check-on-this-day.mjs
 
@@ -82,6 +84,9 @@ jobs:
       - name: Curate duplicate events and generated copy
         run: node scripts/curate-on-this-day-events.mjs
 
+      - name: Build homepage history snapshot
+        run: node scripts/build-on-this-day-home.mjs
+
       - name: Check calendar and image coverage
         run: node scripts/report-on-this-day-coverage.mjs
 
@@ -93,13 +98,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- assets/data/on-this-day.json assets/data/on-this-day-image-cache.json assets/data/on-this-day-content-cache.json assets/data/on-this-day-pancrase-cache.json; then
+          if git diff --quiet -- assets/data/on-this-day.json assets/data/on-this-day-home.json assets/data/on-this-day-image-cache.json assets/data/on-this-day-content-cache.json assets/data/on-this-day-pancrase-cache.json; then
             echo "No On This Day event archive changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- assets/data/on-this-day.json assets/data/on-this-day-image-cache.json assets/data/on-this-day-content-cache.json assets/data/on-this-day-pancrase-cache.json
+          git add -- assets/data/on-this-day.json assets/data/on-this-day-home.json assets/data/on-this-day-image-cache.json assets/data/on-this-day-content-cache.json assets/data/on-this-day-pancrase-cache.json
           git commit -m "Refresh On This Day event archive"
           git pull --rebase origin main
           git push origin HEAD:main
