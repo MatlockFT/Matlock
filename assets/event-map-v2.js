@@ -845,10 +845,11 @@
         updateDetailLock();
     }
 
-    function scrollDetailOnMobile() {
+    function scrollDetailOnMobile({ smooth = true } = {}) {
         if (!window.matchMedia('(max-width: 820px)').matches) return;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         detailPanel.scrollIntoView({
-            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+            behavior: smooth && !reduceMotion ? 'smooth' : 'auto',
             block: 'start'
         });
     }
@@ -876,7 +877,7 @@
         renderSelectedState();
         renderResultSelectedState();
         syncUrl({ mode: changed ? history : 'replace' });
-        if (scroll) scrollDetailOnMobile();
+        if (scroll) scrollDetailOnMobile({ smooth: false });
     }
 
     function previewEvent(event) {

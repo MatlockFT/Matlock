@@ -21,8 +21,7 @@ requireText(core, '.tapDistance(12)', 'Map zoom must use a touch tap-distance th
 requireText(core, "detailPanel.dataset.hoverPreview", 'Core must own hover-preview state.');
 requireText(core, "pickerIdFor(event)", 'Core must resolve Event Map events to Fight Card Picker IDs.');
 requireText(core, "renderPoster(event)", 'Core must own poster rendering and stale-request protection.');
-requireText(enhancements, 'pressedPointerId', 'Pointer controller must track the active pointer ID.');
-requireText(enhancements, 'a drag that begins on a pin must still pan the map', 'Pin pointerdown must not block map panning.');
+forbid(enhancements, 'pressedPointerId', 'Enhancements must not install a second marker activation controller.');
 forbid(enhancements, "fetch(page.dataset.eventsUrl", 'Enhancements must not fetch the Event Map feed a second time.');
 forbid(deferred, 'event-map-detail.js', 'Retired duplicate detail controller must not be deferred.');
 forbid(html, '/assets/event-map-detail.js', 'Retired duplicate detail controller must not be loaded by the page.');
