@@ -40,6 +40,7 @@ jobs:
           node --check assets/news-feed.js
           node --check assets/news-otd-deferred.js
           node --check assets/on-this-day.js
+          node --check assets/on-this-day-full.js
           node --check assets/event-map-v2.js
           node --check assets/event-map-enhancements.js
           node --check assets/event-map-detail.js
