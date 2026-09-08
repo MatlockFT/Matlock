@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 1,
-  "updatedAt": "2026-09-08T23:17:36.610Z",
+  "updatedAt": "2026-09-08T23:26:46.628Z",
   "fighters": {
     "船木誠勝": {
       "checkedAt": "2026-09-08T07:03:33.069Z",
@@ -436,6 +436,119 @@
       "status": "resolved",
       "wikidataId": "Q2703841",
       "englishName": "Yushin Okami"
+    },
+    "エバンゲリスタ・サイボーグ": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "resolved",
+      "wikidataId": "Q5415831",
+      "englishName": "Evangelista Santos"
+    },
+    "グスタボ・シム": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "resolved",
+      "wikidataId": "Q5621437",
+      "englishName": "Gustavo Machado (fighter)"
+    },
+    "ケステゥシャス・アルボーシャス": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "ヒース・シムズ": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "井上克也": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "resolved",
+      "wikidataId": "Q6378220",
+      "englishName": "Katsuya Inoue"
+    },
+    "桜木裕司": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "resolved",
+      "wikidataId": "Q11538094",
+      "englishName": "Yuji Sakuragi"
+    },
+    "村田卓実": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "本田朝樹": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "高本裕和": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "コリン・マンサー": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "大石幸史": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "resolved",
+      "wikidataId": "Q11438201",
+      "englishName": "Koji Oishi"
+    },
+    "ネイサン・ディアズ": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "resolved",
+      "wikidataId": "Q2698008",
+      "englishName": "Nate Diaz"
+    },
+    "松本天心": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "resolved",
+      "wikidataId": "Q22124960",
+      "englishName": "Tenshin Matsumoto"
+    },
+    "志田幹": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "resolved",
+      "wikidataId": "Q11491102",
+      "englishName": "Miki Shida"
+    },
+    "金原弘光": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "resolved",
+      "wikidataId": "Q5770599",
+      "englishName": "Hiromitsu Kanehara"
+    },
+    "野地竜太": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "resolved",
+      "wikidataId": "Q11645268",
+      "englishName": "Ryūta Noji"
+    },
+    "ポアイ菅沼": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "resolved",
+      "wikidataId": "Q11338991",
+      "englishName": "Poai Suganuma"
+    },
+    "アンディー・ウォン": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "resolved",
+      "wikidataId": "Q4761449",
+      "englishName": "Andy Wang"
+    },
+    "北岡悟": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "resolved",
+      "wikidataId": "Q1057477",
+      "englishName": "Satoru Kitaoka"
+    },
+    "dj.taiki": {
+      "checkedAt": "2026-09-08T23:26:46.628Z",
+      "status": "latin-name",
+      "englishName": "DJ.taiki"
     }
   },
   "entries": {
@@ -3414,6 +3527,478 @@
       "image": {
         "strategyVersion": 1,
         "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2004-11-07:pancrase-brave-10": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2004/1107.html",
+        "rawNames": [
+          "近藤有己",
+          "エバンゲリスタ・サイボーグ"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Evangelista Santos"
+        ],
+        "mainEvent": "Yuki Kondo vs. Evangelista Santos"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Evangelista Santos",
+        "imageFileTitle": "File:Evangelista Cyborg Santos (2).jpg"
+      }
+    },
+    "pancrase:2004-11-07:pancrase-hybrid-fight-2004": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2004/1107.html",
+        "rawNames": [
+          "近藤有己",
+          "エバンゲリスタ・サイボーグ"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Evangelista Santos"
+        ],
+        "mainEvent": "Yuki Kondo vs. Evangelista Santos"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Evangelista Santos",
+        "imageFileTitle": "File:Evangelista Cyborg Santos (2).jpg"
+      }
+    },
+    "pancrase:2004-11-26:pancrase-brave-11": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2004/1126.html",
+        "rawNames": [
+          "山宮恵一郎",
+          "グスタボ・シム"
+        ],
+        "englishNames": [
+          "Keiichiro Yamamiya",
+          "Gustavo Machado (fighter)"
+        ],
+        "mainEvent": "Keiichiro Yamamiya vs. Gustavo Machado (fighter)"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2004-12-21:pancrase-brave-12": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2004/1221.html",
+        "rawNames": [
+          "渡辺大介",
+          "ケステゥシャス・アルボーシャス"
+        ],
+        "englishNames": [
+          "Daisuke Watanabe",
+          "ケステゥシャス・アルボーシャス"
+        ],
+        "mainEvent": "Daisuke Watanabe vs. ケステゥシャス・アルボーシャス"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Daisuke Watanabe",
+        "imageFileTitle": "File:Tomoaki Watanabe Yuko Noguchi Kim Jung Hoon and Daisuke Tsuda 20100811 1.jpg"
+      }
+    },
+    "pancrase:2005-02-04:pancrase-spiral-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/0204.html",
+        "rawNames": [
+          "ヒース・シムズ",
+          "井上克也"
+        ],
+        "englishNames": [
+          "ヒース・シムズ",
+          "Katsuya Inoue"
+        ],
+        "mainEvent": "ヒース・シムズ vs. Katsuya Inoue"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2005-02-27:pancrase-2005-neo-blood-tournament-eliminations": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "no-main-event",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/0227.html"
+      }
+    },
+    "pancrase:2005-03-06:pancrase-spiral-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/0306.html",
+        "rawNames": [
+          "郷野聡寛",
+          "桜木裕司"
+        ],
+        "englishNames": [
+          "Akihiro Gono",
+          "Yuji Sakuragi"
+        ],
+        "mainEvent": "Akihiro Gono vs. Yuji Sakuragi"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2005-04-10:pancrase-spiral-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/0410.html",
+        "rawNames": [
+          "前田吉朗",
+          "村田卓実"
+        ],
+        "englishNames": [
+          "Yoshiro Maeda",
+          "村田卓実"
+        ],
+        "mainEvent": "Yoshiro Maeda vs. 村田卓実"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2005-05-01:pancrase-spiral-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/0501.html",
+        "rawNames": [
+          "ネイサン・マーコート",
+          "竹内出"
+        ],
+        "englishNames": [
+          "Nate Marquardt",
+          "Izuru Takeuchi"
+        ],
+        "mainEvent": "Nate Marquardt vs. Izuru Takeuchi"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Nate Marquardt",
+        "imageFileTitle": "File:Nate-Marquardt.jpg"
+      }
+    },
+    "pancrase:2005-05-22:pancrase-hybrid-fight-2005": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/0522.html"
+      }
+    },
+    "pancrase:2005-06-05:pancrase-2005-neo-blood-tournament-semifinals": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/0605.html",
+        "rawNames": [
+          "本田朝樹",
+          "高本裕和"
+        ],
+        "englishNames": [
+          "本田朝樹",
+          "高本裕和"
+        ],
+        "mainEvent": "本田朝樹 vs. 高本裕和"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2005-07-10:pancrase-spiral-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/0710.html",
+        "rawNames": [
+          "高橋義生",
+          "桜木裕司"
+        ],
+        "englishNames": [
+          "Kazuo Takahashi",
+          "Yuji Sakuragi"
+        ],
+        "mainEvent": "Kazuo Takahashi vs. Yuji Sakuragi"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Kazuo Takahashi",
+        "imageFileTitle": "File:US Navy 090713-N-4031K-002 Capt. Eric Gardner, commanding officer of Naval Air Facility Atsugi, presents Rear Adm. Kazuo Takahashi with a certificate of appreciation.jpg"
+      }
+    },
+    "pancrase:2005-07-31:pancrase-spiral-6": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/0731.html",
+        "rawNames": [
+          "前田吉朗",
+          "コリン・マンサー"
+        ],
+        "englishNames": [
+          "Yoshiro Maeda",
+          "コリン・マンサー"
+        ],
+        "mainEvent": "Yoshiro Maeda vs. コリン・マンサー"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2005-08-07:pancrase-hybrid-fight-2005": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/0807.html"
+      }
+    },
+    "pancrase:2005-08-27:pancrase-2005-neo-blood-tournament-finals": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/0827.html",
+        "rawNames": [
+          "大石幸史",
+          "ネイサン・ディアズ"
+        ],
+        "englishNames": [
+          "Koji Oishi",
+          "Nate Diaz"
+        ],
+        "mainEvent": "Koji Oishi vs. Nate Diaz"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Nate Diaz",
+        "imageFileTitle": "File:Nate Diaz 2009.jpg"
+      }
+    },
+    "pancrase:2005-09-03:pancrase-z": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/0903.html",
+        "rawNames": [
+          "佐藤光留",
+          "松本天心"
+        ],
+        "englishNames": [
+          "Hikaru Sato",
+          "Tenshin Matsumoto"
+        ],
+        "mainEvent": "Hikaru Sato vs. Tenshin Matsumoto"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Hikaru Sato",
+        "imageFileTitle": "File:Hikaru Sato World Junior Heavyweight Champion (AJPW).jpg"
+      }
+    },
+    "pancrase:2005-09-04:pancrase-spiral-7": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/0904.html",
+        "rawNames": [
+          "前田吉朗",
+          "志田幹"
+        ],
+        "englishNames": [
+          "Yoshiro Maeda",
+          "Miki Shida"
+        ],
+        "mainEvent": "Yoshiro Maeda vs. Miki Shida"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2005-10-02:pancrase-spiral-8": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/1002.html",
+        "rawNames": [
+          "近藤有己",
+          "金原弘光"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Hiromitsu Kanehara"
+        ],
+        "mainEvent": "Yuki Kondo vs. Hiromitsu Kanehara"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2005-10-23:pancrase-hybrid-fight-2005": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/1023.html"
+      }
+    },
+    "pancrase:2005-11-04:pancrase-spiral-9": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/1104.html",
+        "rawNames": [
+          "野地竜太",
+          "ポアイ菅沼"
+        ],
+        "englishNames": [
+          "Ryūta Noji",
+          "Poai Suganuma"
+        ],
+        "mainEvent": "Ryūta Noji vs. Poai Suganuma"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2005-12-04:pancrase-spiral-10": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2005/1204.html",
+        "rawNames": [
+          "伊藤崇文",
+          "アンディー・ウォン"
+        ],
+        "englishNames": [
+          "Takafumi Itō",
+          "Andy Wang"
+        ],
+        "mainEvent": "Takafumi Itō vs. Andy Wang"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2006-01-26:pancrase-blow-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2006/0126.html",
+        "rawNames": [
+          "井上克也",
+          "北岡悟"
+        ],
+        "englishNames": [
+          "Katsuya Inoue",
+          "Satoru Kitaoka"
+        ],
+        "mainEvent": "Katsuya Inoue vs. Satoru Kitaoka"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2006-02-19:pancrase-2006-neo-blood-tournament-eliminations": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "no-main-event",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2006/0219.html"
+      }
+    },
+    "pancrase:2006-03-19:pancrase-blow-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2006/0319.html",
+        "rawNames": [
+          "前田吉朗",
+          "DJ.taiki"
+        ],
+        "englishNames": [
+          "Yoshiro Maeda",
+          "DJ.taiki"
+        ],
+        "mainEvent": "Yoshiro Maeda vs. DJ.taiki"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:26:46.628Z",
         "status": "no-headliner-image"
       }
     }

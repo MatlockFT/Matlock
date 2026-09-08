@@ -1955,7 +1955,7 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Ken Shamrock vs. Masakatsu Funaki",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
     },
@@ -1975,7 +1975,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c0/UFC_3_promotional_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 3: The American Dream event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -2324,7 +2324,7 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Minoru Suzuki vs. Bas Rutten",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
     },
@@ -2341,14 +2341,14 @@
       "weight": 52,
       "wikipediaTitle": "UFC 7",
       "detail": "Held at Buffalo Memorial Auditorium in Buffalo, New York, U.S.",
-      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Web_Summit_2018_-_Startup_University_-_Day_2%2C_November_7_HM1_7141_%2830829777397%29.jpg/1280px-Web_Summit_2018_-_Startup_University_-_Day_2%2C_November_7_HM1_7141_%2830829777397%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageStrategyVersion": 6,
+      "imageSourceType": "wikipedia-lead-image",
+      "imageFileTitle": "File:Ufc7.gif",
+      "imageWidth": 235,
+      "imageHeight": 423,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/32/Ufc7.gif?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 7: The Brawl in Buffalo event image",
-      "imageCredit": "Wikimedia Commons · Web Summit · CC BY 2.0",
-      "imageStrategyVersion": 5,
-      "imageSourceType": "wikimedia-commons-search",
-      "imageFileTitle": "File:Web Summit 2018 - Startup University - Day 2, November 7 HM1 7141 (30829777397).jpg",
-      "imageWidth": 5568,
-      "imageHeight": 3712
+      "imageCredit": "Wikipedia"
     },
     {
       "date": "1995-11-04",
@@ -2702,7 +2702,7 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Bas Rutten vs. Masakatsu Funaki",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
     },
@@ -2722,7 +2722,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/5b/Ufc11.gif?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 11: The Proving Ground event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -3169,7 +3169,7 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Yuki Kondo vs. Jason DeLucia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
     },
@@ -3677,7 +3677,7 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Guy Mezger vs. Ryūshi Yanagisawa",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
     },
@@ -4179,7 +4179,7 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Semmy Schilt vs. Katsuomi Inagaki",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
     },
@@ -4200,8 +4200,14 @@
       "contentCheckedAt": "2026-09-08T06:39:14.300Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
-      "imageSourceType": "wikipedia-pageimage"
+      "imageStrategyVersion": 6,
+      "imageSourceType": "wikimedia-commons-search",
+      "imageFileTitle": "File:Nijntje beeld te Nijntjepleintje Utrecht op Pride 7 juni 2025.jpg",
+      "imageWidth": 3472,
+      "imageHeight": 4624,
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Nijntje_beeld_te_Nijntjepleintje_Utrecht_op_Pride_7_juni_2025.jpg/1280px-Nijntje_beeld_te_Nijntjepleintje_Utrecht_op_Pride_7_juni_2025.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Pride 7 event image",
+      "imageCredit": "Wikimedia Commons · DJStiltecoupé · CC BY-SA 4.0"
     },
     {
       "date": "1999-09-18",
@@ -4221,7 +4227,7 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Yuki Kondo vs. Kiuma Kunioku",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
     },
@@ -4658,7 +4664,7 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Daisuke Watanabe vs. Yūji Hoshino",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 14
     },
@@ -4682,11 +4688,8 @@
       "contentCheckedAt": "2026-09-08T06:39:14.300Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
-      "imageSourceType": "wikimedia-commons-search",
-      "imageFileTitle": "File:2019 Taiwan Pride 10.jpg",
-      "imageWidth": 3024,
-      "imageHeight": 4032
+      "imageStrategyVersion": 6,
+      "imageSourceType": "wikipedia-pageimage"
     },
     {
       "date": "2000-09-22",
@@ -5897,7 +5900,7 @@
       "contentCheckedAt": "2026-09-08T06:39:14.300Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 5
     },
@@ -5914,14 +5917,14 @@
       "weight": 45,
       "wikipediaTitle": "WEC 4",
       "detail": "Held at Mohegan Sun Arena in Uncasville, Connecticut, U.S.",
-      "imageStrategyVersion": 5,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Valentino_Rossi_2024_WEC_Fuji_4.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "WEC 4: Rumble Under the Sun event image",
+      "imageCredit": "Wikimedia Commons · Morio · CC BY-SA 4.0",
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikimedia-commons-search",
       "imageFileTitle": "File:Valentino Rossi 2024 WEC Fuji 4.jpg",
       "imageWidth": 800,
-      "imageHeight": 1200,
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Valentino_Rossi_2024_WEC_Fuji_4.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-      "imageAlt": "WEC 4: Rumble Under the Sun event image",
-      "imageCredit": "Wikimedia Commons · Morio · CC BY-SA 4.0"
+      "imageHeight": 1200
     },
     {
       "date": "2002-09-27",
@@ -6313,20 +6316,19 @@
       "weight": 50,
       "wikipediaTitle": "2003 in Pancrase#Pancrase: Hybrid 4",
       "detail": "Headlined by Ricardo Almeida vs. Yuki Sasaki (mixed martial artist). Held at Korakuen Hall in Tokyo, Japan.",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/86/Ricardo_Almeida_after_a_teaching_session_cropped.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Ricardo Almeida vs. Yuki Sasaki (mixed martial artist) headliner photo",
+      "imageCredit": "Wikimedia Commons · Matt Hecht · CC0",
       "contentStrategyVersion": 2,
       "contentCheckedAt": "2026-09-08T23:17:36.610Z",
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Ricardo Almeida vs. Yuki Sasaki (mixed martial artist)",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2003/0412.html",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/86/Ricardo_Almeida_after_a_teaching_session_cropped.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-      "imageAlt": "Ricardo Almeida vs. Yuki Sasaki (mixed martial artist) headliner photo",
-      "imageCredit": "Wikimedia Commons · Matt Hecht · CC0",
+      "imageStrategyVersion": 4,
       "imageSourceType": "wikimedia-commons-headliner",
       "imageFileTitle": "File:Ricardo Almeida after a teaching session cropped.jpg",
       "imageWidth": 493,
       "imageHeight": 493,
-      "imageStrategyVersion": 4,
       "curationWeightBoost": 7
     },
     {
@@ -6364,7 +6366,6 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Sanae Kikuta vs. Yuki Kondo",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2003/0518.html",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
@@ -6404,7 +6405,6 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Keiichiro Yamamiya vs. ニルソン・デ・カストロ",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2003/0607.html",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
@@ -6453,7 +6453,6 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Katsuomi Inagaki vs. Kiuma Kunioku",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2003/0622.html",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
@@ -6548,20 +6547,16 @@
       "weight": 50,
       "wikipediaTitle": "2003 in Pancrase#Pancrase: 10th Anniversary Show",
       "detail": "Headlined by Yuki Kondo vs. Josh Barnett. Held at Ryogoku Kokugikan in Tokyo, Japan.",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/Josh_Barnett_by_Gage_Skidmore.jpg/1280px-Josh_Barnett_by_Gage_Skidmore.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Yuki Kondo vs. Josh Barnett headliner photo",
+      "imageCredit": "Wikimedia Commons · Gage Skidmore · CC BY-SA 3.0",
       "contentStrategyVersion": 2,
       "contentCheckedAt": "2026-09-08T23:17:36.610Z",
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Yuki Kondo vs. Josh Barnett",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2003/0831.html",
-      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/Josh_Barnett_by_Gage_Skidmore.jpg/1280px-Josh_Barnett_by_Gage_Skidmore.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "imageAlt": "Yuki Kondo vs. Josh Barnett headliner photo",
-      "imageCredit": "Wikimedia Commons · Gage Skidmore · CC BY-SA 3.0",
-      "imageSourceType": "wikimedia-commons-headliner",
-      "imageFileTitle": "File:Josh Barnett by Gage Skidmore.jpg",
-      "imageWidth": 2624,
-      "imageHeight": 3308,
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
+      "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
     },
     {
@@ -6599,7 +6594,6 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Takafumi Itō vs. Daisuke Hanazawa",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2003/1004.html",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
@@ -6652,20 +6646,19 @@
       "weight": 50,
       "wikipediaTitle": "2003 in Pancrase#Pancrase: Hybrid 9",
       "detail": "Headlined by Akihiro Gono vs. Daisuke Watanabe. Held at Korakuen Hall in Tokyo, Japan.",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Tomoaki_Watanabe_Yuko_Noguchi_Kim_Jung_Hoon_and_Daisuke_Tsuda_20100811_1.jpg/1280px-Tomoaki_Watanabe_Yuko_Noguchi_Kim_Jung_Hoon_and_Daisuke_Tsuda_20100811_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Akihiro Gono vs. Daisuke Watanabe headliner photo",
+      "imageCredit": "Wikimedia Commons · コモンスフィア · CC BY 4.0",
       "contentStrategyVersion": 2,
       "contentCheckedAt": "2026-09-08T23:17:36.610Z",
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Akihiro Gono vs. Daisuke Watanabe",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2003/1031.html",
-      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Tomoaki_Watanabe_Yuko_Noguchi_Kim_Jung_Hoon_and_Daisuke_Tsuda_20100811_1.jpg/1280px-Tomoaki_Watanabe_Yuko_Noguchi_Kim_Jung_Hoon_and_Daisuke_Tsuda_20100811_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "imageAlt": "Akihiro Gono vs. Daisuke Watanabe headliner photo",
-      "imageCredit": "Wikimedia Commons · コモンスフィア · CC BY 4.0",
+      "imageStrategyVersion": 4,
       "imageSourceType": "wikimedia-commons-headliner",
       "imageFileTitle": "File:Tomoaki Watanabe Yuko Noguchi Kim Jung Hoon and Daisuke Tsuda 20100811 1.jpg",
       "imageWidth": 1600,
       "imageHeight": 1200,
-      "imageStrategyVersion": 4,
       "curationWeightBoost": 7
     },
     {
@@ -6724,7 +6717,6 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Sanae Kikuta vs. Yuki Kondo",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2003/1130.html",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
@@ -6747,7 +6739,6 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Yuki Sasaki (mixed martial artist) vs. David Terrell (fighter)",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2003/1221.html",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
@@ -6849,7 +6840,6 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Kiuma Kunioku vs. Kazuo Misaki",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2004/0206.html",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
@@ -6872,7 +6862,6 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Yoshiro Maeda vs. アレッシャンドリ・ソッカ",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2004/0215.html",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
@@ -6910,20 +6899,19 @@
       "weight": 50,
       "wikipediaTitle": "2004 in Pancrase#Pancrase: Brave 3",
       "detail": "Headlined by Yuki Kondo vs. Steve Hislop. Held at Korakuen Hall in Tokyo, Japan.",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/72/The_Steve_Hislop_statue_in_Wilton_Lodge_Park_-_geograph.org.uk_-_754804.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Yuki Kondo vs. Steve Hislop headliner photo",
+      "imageCredit": "Wikimedia Commons · Walter Baxter · CC BY-SA 2.0",
       "contentStrategyVersion": 2,
       "contentCheckedAt": "2026-09-08T23:17:36.610Z",
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Yuki Kondo vs. Steve Hislop",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2004/0329.html",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/72/The_Steve_Hislop_statue_in_Wilton_Lodge_Park_-_geograph.org.uk_-_754804.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-      "imageAlt": "Yuki Kondo vs. Steve Hislop headliner photo",
-      "imageCredit": "Wikimedia Commons · Walter Baxter · CC BY-SA 2.0",
+      "imageStrategyVersion": 4,
       "imageSourceType": "wikimedia-commons-headliner",
       "imageFileTitle": "File:The Steve Hislop statue in Wilton Lodge Park - geograph.org.uk - 754804.jpg",
       "imageWidth": 480,
       "imageHeight": 640,
-      "imageStrategyVersion": 4,
       "curationWeightBoost": 7
     },
     {
@@ -6961,7 +6949,6 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Sanae Kikuta vs. キース・ロッケル",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2004/0423.html",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
@@ -7061,7 +7048,6 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Ron Waterman vs. Keigo Takamori",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2004/0528.html",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
@@ -7121,7 +7107,6 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Yuki Kondo vs. Shannon Ritch",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2004/0622.html",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
@@ -7259,7 +7244,6 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Yoshiro Maeda vs. Fredson Paixão",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2004/0822.html",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
@@ -7282,7 +7266,6 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Keigo Takamori vs. アンソニー“辰治”ネツラー",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2004/0924.html",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
@@ -7305,7 +7288,6 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "pancrase-official",
       "mainEvent": "Eiji Ishikawa vs. Yushin Okami",
-      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2004/1012.html",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
@@ -7398,15 +7380,24 @@
       "autoKey": "pancrase:2004-11-07:pancrase-brave-10",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2004 in Pancrase#Pancrase: Brave 10",
-      "detail": "Held at Tokyo Bay NK Hall in Urayasu, Chiba, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
+      "detail": "Headlined by Yuki Kondo vs. Evangelista Santos. Held at Tokyo Bay NK Hall in Urayasu, Chiba, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Yuki Kondo vs. Evangelista Santos",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2004/1107.html",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Evangelista_Cyborg_Santos_%282%29.jpg/1280px-Evangelista_Cyborg_Santos_%282%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Yuki Kondo vs. Evangelista Santos headliner photo",
+      "imageCredit": "Wikimedia Commons · Rhdesantana · CC BY-SA 3.0",
+      "imageSourceType": "wikimedia-commons-headliner",
+      "imageFileTitle": "File:Evangelista Cyborg Santos (2).jpg",
+      "imageWidth": 2000,
+      "imageHeight": 3008,
       "imageStrategyVersion": 4,
-      "imageSourceType": "wikipedia-pageimage"
+      "curationWeightBoost": 7
     },
     {
       "date": "2004-11-07",
@@ -7418,15 +7409,24 @@
       "autoKey": "pancrase:2004-11-07:pancrase-hybrid-fight-2004",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2004 in Pancrase#Pancrase: Hybrid Fight 2004",
-      "detail": "Held at Hybrid Wrestling Kagoshima Gym in Izumi, Kagoshima, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
+      "detail": "Headlined by Yuki Kondo vs. Evangelista Santos. Held at Hybrid Wrestling Kagoshima Gym in Izumi, Kagoshima, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Yuki Kondo vs. Evangelista Santos",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2004/1107.html",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Evangelista_Cyborg_Santos_%282%29.jpg/1280px-Evangelista_Cyborg_Santos_%282%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Yuki Kondo vs. Evangelista Santos headliner photo",
+      "imageCredit": "Wikimedia Commons · Rhdesantana · CC BY-SA 3.0",
+      "imageSourceType": "wikimedia-commons-headliner",
+      "imageFileTitle": "File:Evangelista Cyborg Santos (2).jpg",
+      "imageWidth": 2000,
+      "imageHeight": 3008,
       "imageStrategyVersion": 4,
-      "imageSourceType": "wikipedia-pageimage"
+      "curationWeightBoost": 7
     },
     {
       "date": "2004-11-26",
@@ -7438,15 +7438,18 @@
       "autoKey": "pancrase:2004-11-26:pancrase-brave-11",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2004 in Pancrase#Pancrase: Brave 11",
-      "detail": "Held at Korakuen Hall in Tokyo, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
+      "detail": "Headlined by Keiichiro Yamamiya vs. Gustavo Machado (fighter). Held at Korakuen Hall in Tokyo, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Keiichiro Yamamiya vs. Gustavo Machado (fighter)",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2004/1126.html",
       "imageStrategyVersion": 4,
-      "imageSourceType": "wikipedia-pageimage"
+      "imageSourceType": "wikipedia-pageimage",
+      "curationWeightBoost": 7
     },
     {
       "date": "2004-12-21",
@@ -7458,15 +7461,24 @@
       "autoKey": "pancrase:2004-12-21:pancrase-brave-12",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2004 in Pancrase#Pancrase: Brave 12",
-      "detail": "Held at Korakuen Hall in Tokyo, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
+      "detail": "Headlined by Daisuke Watanabe vs. ケステゥシャス・アルボーシャス. Held at Korakuen Hall in Tokyo, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Daisuke Watanabe vs. ケステゥシャス・アルボーシャス",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2004/1221.html",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Tomoaki_Watanabe_Yuko_Noguchi_Kim_Jung_Hoon_and_Daisuke_Tsuda_20100811_1.jpg/1280px-Tomoaki_Watanabe_Yuko_Noguchi_Kim_Jung_Hoon_and_Daisuke_Tsuda_20100811_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Daisuke Watanabe vs. ケステゥシャス・アルボーシャス headliner photo",
+      "imageCredit": "Wikimedia Commons · コモンスフィア · CC BY 4.0",
+      "imageSourceType": "wikimedia-commons-headliner",
+      "imageFileTitle": "File:Tomoaki Watanabe Yuko Noguchi Kim Jung Hoon and Daisuke Tsuda 20100811 1.jpg",
+      "imageWidth": 1600,
+      "imageHeight": 1200,
       "imageStrategyVersion": 4,
-      "imageSourceType": "wikipedia-pageimage"
+      "curationWeightBoost": 7
     },
     {
       "date": "2004-12-31",
@@ -7512,15 +7524,18 @@
       "autoKey": "pancrase:2005-02-04:pancrase-spiral-1",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2005 in Pancrase#Pancrase: Spiral 1",
-      "detail": "Held at Korakuen Hall in Tokyo, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
+      "detail": "Headlined by ヒース・シムズ vs. Katsuya Inoue. Held at Korakuen Hall in Tokyo, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "ヒース・シムズ vs. Katsuya Inoue",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2005/0204.html",
       "imageStrategyVersion": 4,
-      "imageSourceType": "wikipedia-pageimage"
+      "imageSourceType": "wikipedia-pageimage",
+      "curationWeightBoost": 7
     },
     {
       "date": "2005-02-05",
@@ -7596,15 +7611,18 @@
       "autoKey": "pancrase:2005-03-06:pancrase-spiral-2",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2005 in Pancrase#Pancrase: Spiral 2",
-      "detail": "Held at Yokohama Cultural Gymnasium in Yokohama, Kanagawa, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
+      "detail": "Headlined by Akihiro Gono vs. Yuji Sakuragi. Held at Yokohama Cultural Gymnasium in Yokohama, Kanagawa, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Akihiro Gono vs. Yuji Sakuragi",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2005/0306.html",
       "imageStrategyVersion": 4,
-      "imageSourceType": "wikipedia-pageimage"
+      "imageSourceType": "wikipedia-pageimage",
+      "curationWeightBoost": 7
     },
     {
       "date": "2005-03-17",
@@ -7668,15 +7686,18 @@
       "autoKey": "pancrase:2005-04-10:pancrase-spiral-3",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2005 in Pancrase#Pancrase: Spiral 3",
-      "detail": "Held at Umeda Stella Hall in Osaka, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
+      "detail": "Headlined by Yoshiro Maeda vs. 村田卓実. Held at Umeda Stella Hall in Osaka, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Yoshiro Maeda vs. 村田卓実",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2005/0410.html",
       "imageStrategyVersion": 4,
-      "imageSourceType": "wikipedia-pageimage"
+      "imageSourceType": "wikipedia-pageimage",
+      "curationWeightBoost": 7
     },
     {
       "date": "2005-04-16",
@@ -7730,15 +7751,24 @@
       "autoKey": "pancrase:2005-05-01:pancrase-spiral-4",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2005 in Pancrase#Pancrase: Spiral 4",
-      "detail": "Held at Yokohama Cultural Gymnasium in Yokohama, Kanagawa, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
+      "detail": "Headlined by Nate Marquardt vs. Izuru Takeuchi. Held at Yokohama Cultural Gymnasium in Yokohama, Kanagawa, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Nate Marquardt vs. Izuru Takeuchi",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2005/0501.html",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Nate-Marquardt.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Nate Marquardt vs. Izuru Takeuchi headliner photo",
+      "imageCredit": "Wikimedia Commons · MannyMMA · CC BY-SA 3.0",
+      "imageSourceType": "wikimedia-commons-headliner",
+      "imageFileTitle": "File:Nate-Marquardt.jpg",
+      "imageWidth": 392,
+      "imageHeight": 588,
       "imageStrategyVersion": 4,
-      "imageSourceType": "wikipedia-pageimage"
+      "curationWeightBoost": 7
     },
     {
       "date": "2005-05-19",
@@ -7822,16 +7852,18 @@
       "autoKey": "pancrase:2005-06-05:pancrase-2005-neo-blood-tournament-semifinals",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 50,
+      "weight": 57,
       "wikipediaTitle": "2005 in Pancrase#Pancrase: 2005 Neo-Blood Tournament Semifinals",
-      "detail": "Part of Pancrase's Neo-Blood Tournament. Held at Gold's Gym South Tokyo Annex in Tokyo, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
+      "detail": "Headlined by 本田朝樹 vs. 高本裕和. Part of Pancrase's Neo-Blood Tournament. Held at Gold's Gym South Tokyo Annex in Tokyo, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "本田朝樹 vs. 高本裕和",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2005/0605.html",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage",
-      "curationWeightBoost": 7
+      "curationWeightBoost": 14
     },
     {
       "date": "2005-06-26",
@@ -7863,15 +7895,24 @@
       "autoKey": "pancrase:2005-07-10:pancrase-spiral-5",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2005 in Pancrase#Pancrase: Spiral 5",
-      "detail": "Held at Yokohama Cultural Gymnasium in Yokohama, Kanagawa, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
+      "detail": "Headlined by Kazuo Takahashi vs. Yuji Sakuragi. Held at Yokohama Cultural Gymnasium in Yokohama, Kanagawa, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Kazuo Takahashi vs. Yuji Sakuragi",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2005/0710.html",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/US_Navy_090713-N-4031K-002_Capt._Eric_Gardner%2C_commanding_officer_of_Naval_Air_Facility_Atsugi%2C_presents_Rear_Adm._Kazuo_Takahashi_with_a_certificate_of_appreciation.jpg/1280px-thumbnail.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Kazuo Takahashi vs. Yuji Sakuragi headliner photo",
+      "imageCredit": "Wikimedia Commons · U.S. Navy photo by Mass Communication Specialist 2nd Class Steven Khor · Public domain",
+      "imageSourceType": "wikimedia-commons-headliner",
+      "imageFileTitle": "File:US Navy 090713-N-4031K-002 Capt. Eric Gardner, commanding officer of Naval Air Facility Atsugi, presents Rear Adm. Kazuo Takahashi with a certificate of appreciation.jpg",
+      "imageWidth": 4288,
+      "imageHeight": 2848,
       "imageStrategyVersion": 4,
-      "imageSourceType": "wikipedia-pageimage"
+      "curationWeightBoost": 7
     },
     {
       "date": "2005-07-17",
@@ -7903,15 +7944,18 @@
       "autoKey": "pancrase:2005-07-31:pancrase-spiral-6",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2005 in Pancrase#Pancrase: Spiral 6",
-      "detail": "Held at Korakuen Hall in Tokyo, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
+      "detail": "Headlined by Yoshiro Maeda vs. コリン・マンサー. Held at Korakuen Hall in Tokyo, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Yoshiro Maeda vs. コリン・マンサー",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2005/0731.html",
       "imageStrategyVersion": 4,
-      "imageSourceType": "wikipedia-pageimage"
+      "imageSourceType": "wikipedia-pageimage",
+      "curationWeightBoost": 7
     },
     {
       "date": "2005-08-06",
@@ -7992,16 +8036,24 @@
       "autoKey": "pancrase:2005-08-27:pancrase-2005-neo-blood-tournament-finals",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 50,
+      "weight": 57,
       "wikipediaTitle": "2005 in Pancrase#Pancrase: 2005 Neo-Blood Tournament Finals",
-      "detail": "Part of Pancrase's Neo-Blood Tournament. Held at Korakuen Hall in Tokyo, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
-      "imageSourceType": "wikipedia-pageimage",
-      "curationWeightBoost": 7
+      "detail": "Headlined by Koji Oishi vs. Nate Diaz. Part of Pancrase's Neo-Blood Tournament. Held at Korakuen Hall in Tokyo, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Koji Oishi vs. Nate Diaz",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2005/0827.html",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Nate_Diaz_2009.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Koji Oishi vs. Nate Diaz headliner photo",
+      "imageCredit": "Wikimedia Commons · Bhenricksen · Public domain",
+      "imageSourceType": "wikimedia-commons-headliner",
+      "imageFileTitle": "File:Nate Diaz 2009.jpg",
+      "imageWidth": 820,
+      "imageHeight": 1092,
+      "imageStrategyVersion": 6,
+      "curationWeightBoost": 14
     },
     {
       "date": "2005-08-28",
@@ -8020,7 +8072,7 @@
       "contentCheckedAt": "2026-09-08T06:39:14.300Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 10
     },
@@ -8034,15 +8086,24 @@
       "autoKey": "pancrase:2005-09-03:pancrase-z",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2005 in Pancrase#Pancrase: Z",
-      "detail": "Held at Grand Messe Kumamoto in Kumamoto, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
-      "imageSourceType": "wikipedia-pageimage"
+      "detail": "Headlined by Hikaru Sato vs. Tenshin Matsumoto. Held at Grand Messe Kumamoto in Kumamoto, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Hikaru Sato vs. Tenshin Matsumoto",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2005/0903.html",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Hikaru_Sato_World_Junior_Heavyweight_Champion_%28AJPW%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Hikaru Sato vs. Tenshin Matsumoto headliner photo",
+      "imageCredit": "Wikimedia Commons · ゾーヒョー · CC BY-SA 4.0",
+      "imageSourceType": "wikimedia-commons-headliner",
+      "imageFileTitle": "File:Hikaru Sato World Junior Heavyweight Champion (AJPW).jpg",
+      "imageWidth": 600,
+      "imageHeight": 900,
+      "imageStrategyVersion": 6,
+      "curationWeightBoost": 7
     },
     {
       "date": "2005-09-04",
@@ -8054,15 +8115,18 @@
       "autoKey": "pancrase:2005-09-04:pancrase-spiral-7",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2005 in Pancrase#Pancrase: Spiral 7",
-      "detail": "Held at Umeda Stella Hall in Osaka, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
-      "imageSourceType": "wikipedia-pageimage"
+      "detail": "Headlined by Yoshiro Maeda vs. Miki Shida. Held at Umeda Stella Hall in Osaka, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Yoshiro Maeda vs. Miki Shida",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2005/0904.html",
+      "imageStrategyVersion": 6,
+      "imageSourceType": "wikipedia-pageimage",
+      "curationWeightBoost": 7
     },
     {
       "date": "2005-09-25",
@@ -8094,15 +8158,18 @@
       "autoKey": "pancrase:2005-10-02:pancrase-spiral-8",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2005 in Pancrase#Pancrase: Spiral 8",
-      "detail": "Held at Yokohama Cultural Gymnasium in Yokohama, Kanagawa, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
+      "detail": "Headlined by Yuki Kondo vs. Hiromitsu Kanehara. Held at Yokohama Cultural Gymnasium in Yokohama, Kanagawa, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Yuki Kondo vs. Hiromitsu Kanehara",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2005/1002.html",
       "imageStrategyVersion": 4,
-      "imageSourceType": "wikipedia-pageimage"
+      "imageSourceType": "wikipedia-pageimage",
+      "curationWeightBoost": 7
     },
     {
       "date": "2005-10-03",
@@ -8203,15 +8270,18 @@
       "autoKey": "pancrase:2005-11-04:pancrase-spiral-9",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2005 in Pancrase#Pancrase: Spiral 9",
-      "detail": "Held at Korakuen Hall in Tokyo, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
+      "detail": "Headlined by Ryūta Noji vs. Poai Suganuma. Held at Korakuen Hall in Tokyo, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Ryūta Noji vs. Poai Suganuma",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2005/1104.html",
       "imageStrategyVersion": 4,
-      "imageSourceType": "wikipedia-pageimage"
+      "imageSourceType": "wikipedia-pageimage",
+      "curationWeightBoost": 7
     },
     {
       "date": "2005-11-05",
@@ -8261,15 +8331,18 @@
       "autoKey": "pancrase:2005-12-04:pancrase-spiral-10",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2005 in Pancrase#Pancrase: Spiral 10",
-      "detail": "Held at Differ Ariake Arena in Tokyo, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
+      "detail": "Headlined by Takafumi Itō vs. Andy Wang. Held at Differ Ariake Arena in Tokyo, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Takafumi Itō vs. Andy Wang",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2005/1204.html",
       "imageStrategyVersion": 4,
-      "imageSourceType": "wikipedia-pageimage"
+      "imageSourceType": "wikipedia-pageimage",
+      "curationWeightBoost": 7
     },
     {
       "date": "2005-12-31",
@@ -8335,15 +8408,18 @@
       "autoKey": "pancrase:2006-01-26:pancrase-blow-1",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2006 in Pancrase#Pancrase: Blow 1",
-      "detail": "Held at Korakuen Hall in Tokyo, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
+      "detail": "Headlined by Katsuya Inoue vs. Satoru Kitaoka. Held at Korakuen Hall in Tokyo, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Katsuya Inoue vs. Satoru Kitaoka",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2006/0126.html",
       "imageStrategyVersion": 4,
-      "imageSourceType": "wikipedia-pageimage"
+      "imageSourceType": "wikipedia-pageimage",
+      "curationWeightBoost": 7
     },
     {
       "date": "2006-02-04",
@@ -8476,15 +8552,18 @@
       "autoKey": "pancrase:2006-03-19:pancrase-blow-2",
       "archiveSource": "pancrase",
       "generatedBy": "wikipedia-event-index",
-      "weight": 43,
+      "weight": 50,
       "wikipediaTitle": "2006 in Pancrase#Pancrase: Blow 2",
-      "detail": "Held at Umeda Stella Hall in Osaka, Japan.",
-      "contentStrategyVersion": 1,
-      "contentCheckedAt": "2026-09-08T17:00:04.092Z",
-      "contentStatus": "no-main-event",
-      "contentSourceType": "wikipedia-structured",
+      "detail": "Headlined by Yoshiro Maeda vs. DJ.taiki. Held at Umeda Stella Hall in Osaka, Japan.",
+      "contentStrategyVersion": 2,
+      "contentCheckedAt": "2026-09-08T23:26:46.628Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "pancrase-official",
+      "mainEvent": "Yoshiro Maeda vs. DJ.taiki",
+      "contentSourceUrl": "https://www.pancrase.co.jp/data/result/2006/0319.html",
       "imageStrategyVersion": 4,
-      "imageSourceType": "wikipedia-pageimage"
+      "imageSourceType": "wikipedia-pageimage",
+      "curationWeightBoost": 7
     },
     {
       "date": "2006-04-02",
@@ -8914,7 +8993,7 @@
       "contentCheckedAt": "2026-09-08T17:00:04.092Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -8934,7 +9013,7 @@
       "contentCheckedAt": "2026-09-08T06:39:14.300Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -8954,7 +9033,7 @@
       "contentCheckedAt": "2026-09-08T06:39:14.300Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 10
     },
@@ -8975,7 +9054,7 @@
       "contentCheckedAt": "2026-09-08T17:00:04.092Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -9926,7 +10005,7 @@
       "contentCheckedAt": "2026-09-08T17:00:04.092Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -9944,7 +10023,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/4c/WEC_30_McCullough_vs_Crunkilton_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "WEC 30: McCullough vs. Crunkilton event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -9960,19 +10039,19 @@
       "weight": 52,
       "wikipediaTitle": "UFC 75",
       "detail": "Held at The O2 Arena in London, England.",
-      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/US_Navy_070713-N-8923M-164_Ultimate_Fighting_Championship_%28UFC%29_fighter_Rich_Franklin_signs_his_name_for_a_Sailor_during_an_autograph_session_on_the_mess_decks_aboard_Nimitz-class_aircraft_carrier_USS_Harry_S._Truman_%28CVN_75%29.jpg/1280px-thumbnail.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "imageAlt": "UFC 75: Champion vs. Champion event image",
-      "imageCredit": "Wikimedia Commons · U.S. Navy photo by Seaman Kevin T. Murray Jr. · Public domain",
       "contentStrategyVersion": 1,
       "contentCheckedAt": "2026-09-08T23:17:31.538Z",
       "contentStatus": "main-event-found",
       "contentSourceType": "event-title",
       "mainEvent": "Champion vs. Champion",
-      "imageStrategyVersion": 5,
-      "imageSourceType": "wikimedia-commons-search",
-      "imageFileTitle": "File:US Navy 070713-N-8923M-164 Ultimate Fighting Championship (UFC) fighter Rich Franklin signs his name for a Sailor during an autograph session on the mess decks aboard Nimitz-class aircraft carrier USS Harry S. Truman (CVN 75).jpg",
-      "imageWidth": 2100,
-      "imageHeight": 1491
+      "imageStrategyVersion": 6,
+      "imageSourceType": "wikipedia-lead-image",
+      "imageFileTitle": "File:UFC_75.jpg",
+      "imageWidth": 263,
+      "imageHeight": 377,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/6a/UFC_75.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 75: Champion vs. Champion event image",
+      "imageCredit": "Wikipedia"
     },
     {
       "date": "2007-09-19",
@@ -9995,7 +10074,7 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "event-title",
       "mainEvent": "Thomas vs. Florian",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -10783,7 +10862,7 @@
       "contentCheckedAt": "2026-09-08T17:00:04.092Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -10799,14 +10878,14 @@
       "weight": 52,
       "wikipediaTitle": "UFC 88",
       "detail": "Held at State Farm Arena in Atlanta, Georgia, U.S.",
-      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/UFC_88_-_Time_Square.JPG/1280px-UFC_88_-_Time_Square.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageStrategyVersion": 6,
+      "imageSourceType": "wikipedia-lead-image",
+      "imageFileTitle": "File:UFC88.jpg",
+      "imageWidth": 266,
+      "imageHeight": 375,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/90/UFC88.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 88: Breakthrough event image",
-      "imageCredit": "Wikimedia Commons · No machine-readable author provided. Grook Da Oger assumed (based on c · CC BY-SA 3.0",
-      "imageStrategyVersion": 5,
-      "imageSourceType": "wikimedia-commons-search",
-      "imageFileTitle": "File:UFC 88 - Time Square.JPG",
-      "imageWidth": 3456,
-      "imageHeight": 2304
+      "imageCredit": "Wikipedia"
     },
     {
       "date": "2008-09-07",
@@ -10825,7 +10904,7 @@
       "contentCheckedAt": "2026-09-08T17:00:04.092Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -10841,7 +10920,7 @@
       "weight": 46,
       "wikipediaTitle": "Strikeforce: Young Guns III",
       "detail": "Held at San Jose Civic Auditorium in San Jose, California.",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -10865,7 +10944,7 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "event-title",
       "mainEvent": "Diaz vs. Neer",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -10884,7 +10963,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/b/b9/Strikeforce_at_the_manson_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "Strikeforce: At The Mansion II event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -11881,7 +11960,7 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "event-title",
       "mainEvent": "Couture vs. Nogueira",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -11905,7 +11984,7 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "event-title",
       "mainEvent": "Diaz vs. Guillard",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -11929,11 +12008,8 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "event-title",
       "mainEvent": "Franklin vs. Belfort",
-      "imageStrategyVersion": 5,
-      "imageSourceType": "wikimedia-commons-search",
-      "imageFileTitle": "File:UFC 103 Franklin vs. Belfort - American Airlines Center - Dallas, Texas.jpg",
-      "imageWidth": 800,
-      "imageHeight": 600
+      "imageStrategyVersion": 6,
+      "imageSourceType": "wikipedia-pageimage"
     },
     {
       "date": "2009-09-25",
@@ -13315,19 +13391,19 @@
       "weight": 52,
       "wikipediaTitle": "UFC 118",
       "detail": "Held at TD Garden in Boston, Massachusetts, U.S.",
-      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ee/Chris_Lytle_demonstrates_how_to_move_in_for_a_body_blow_at_the_gym_during_a_visit_to_Camp_Atterbury%2C_Indiana%2C_Sept._20%2C_2011_%28110920-A-GI410-118%29.jpg/1280px-Chris_Lytle_demonstrates_how_to_move_in_for_a_body_blow_at_the_gym_during_a_visit_to_Camp_Atterbury%2C_Indiana%2C_Sept._20%2C_2011_%28110920-A-GI410-118%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "imageAlt": "UFC 118: Edgar vs. Penn 2 event image",
-      "imageCredit": "Wikimedia Commons · U.S. Army photo by Michael Maddox · Public domain",
       "contentStrategyVersion": 1,
       "contentCheckedAt": "2026-09-08T23:17:31.538Z",
       "contentStatus": "main-event-found",
       "contentSourceType": "event-title",
       "mainEvent": "Edgar vs. Penn 2",
-      "imageStrategyVersion": 5,
-      "imageSourceType": "wikimedia-commons-search",
-      "imageFileTitle": "File:Chris Lytle demonstrates how to move in for a body blow at the gym during a visit to Camp Atterbury, Indiana, Sept. 20, 2011 (110920-A-GI410-118).jpg",
-      "imageWidth": 1680,
-      "imageHeight": 1116
+      "imageStrategyVersion": 6,
+      "imageSourceType": "wikipedia-lead-image",
+      "imageFileTitle": "File:UFC_118_Edgar_vs_Penn_2_poster.jpg",
+      "imageWidth": 274,
+      "imageHeight": 363,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/0d/UFC_118_Edgar_vs_Penn_2_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 118: Edgar vs. Penn 2 event image",
+      "imageCredit": "Wikipedia"
     },
     {
       "date": "2010-09-02",
@@ -13346,7 +13422,7 @@
       "contentCheckedAt": "2026-09-08T06:39:14.300Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -13362,18 +13438,18 @@
       "weight": 43,
       "wikipediaTitle": "2010 in Pancrase#Pancrase: Passion Tour 8",
       "detail": "Held at Differ Ariake Arena in Tokyo, Japan.",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Pancrase_Passion_Tour_8-01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Pancrase: Passion Tour 8 event image",
+      "imageCredit": "Wikimedia Commons · Dean Marchand · CC BY 2.0",
       "contentStrategyVersion": 1,
       "contentCheckedAt": "2026-09-08T21:52:17.289Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikimedia-commons-search",
       "imageFileTitle": "File:Pancrase Passion Tour 8-01.jpg",
       "imageWidth": 667,
-      "imageHeight": 1000,
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Pancrase_Passion_Tour_8-01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-      "imageAlt": "Pancrase: Passion Tour 8 event image",
-      "imageCredit": "Wikimedia Commons · Dean Marchand · CC BY 2.0"
+      "imageHeight": 1000
     },
     {
       "date": "2010-09-09",
@@ -13392,7 +13468,7 @@
       "contentCheckedAt": "2026-09-08T06:39:14.300Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -13416,7 +13492,7 @@
       "contentStatus": "main-event-found",
       "contentSourceType": "event-title",
       "mainEvent": "Marquardt vs. Palhares",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -13436,7 +13512,7 @@
       "contentCheckedAt": "2026-09-08T06:39:14.300Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -13456,7 +13532,7 @@
       "contentCheckedAt": "2026-09-08T21:52:17.289Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -13476,7 +13552,7 @@
       "contentCheckedAt": "2026-09-08T21:52:17.289Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -14897,7 +14973,12 @@
       "detail": "Held at Bradley Center in Milwaukee, Wisconsin, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/f9/Ufclive5.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Live: Hardy vs. Lytle event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Hardy vs. Lytle"
     },
     {
       "date": "2011-08-20",
@@ -14935,7 +15016,12 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/5e/UFC_134_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 134: Silva vs. Okami event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Silva vs. Okami",
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -14955,7 +15041,7 @@
       "contentCheckedAt": "2026-09-08T21:52:17.289Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -14975,7 +15061,7 @@
       "contentCheckedAt": "2026-09-08T06:39:14.300Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -14994,7 +15080,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/d2/Sfbvkposter.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "Strikeforce: Barnett vs. Kharitonov event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -15014,7 +15100,7 @@
       "contentCheckedAt": "2026-09-08T06:39:14.300Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -15033,7 +15119,12 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/0a/UFC_FN_25_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Shields vs. Ellenberger event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Shields vs. Ellenberger",
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -15086,7 +15177,12 @@
       "detail": "Held at Pepsi Center in Denver, Colorado, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/4e/UFC-135-new.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 135: Jones vs. Rampage event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Jones vs. Rampage"
     },
     {
       "date": "2011-10-01",
@@ -15124,7 +15220,12 @@
       "detail": "Held at Capital One Arena in Washington, D.C., U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/0f/Uvs6logo.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Live: Cruz vs. Johnson event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Cruz vs. Johnson"
     },
     {
       "date": "2011-10-02",
@@ -15182,7 +15283,12 @@
       "detail": "Held at Toyota Center in Houston, Texas, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/70/UFC_136_banner.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 136: Edgar vs. Maynard III event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Edgar vs. Maynard III"
     },
     {
       "date": "2011-10-15",
@@ -15262,7 +15368,12 @@
       "detail": "Held at Mandalay Bay Events Center in Las Vegas, Nevada, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/cf/137pennvsdiaz.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 137: Penn vs. Diaz event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Penn vs. Diaz"
     },
     {
       "date": "2011-11-05",
@@ -15279,7 +15390,12 @@
       "detail": "Held at LG Arena in Birmingham, England.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/d4/UFC_138_in_Birmingham.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 138: Leben vs. Muñoz event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Leben vs. Muñoz"
     },
     {
       "date": "2011-11-12",
@@ -15337,7 +15453,12 @@
       "detail": "Held at Honda Center in Anaheim, California, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/41/UFC_on_Fox_Velasquez_vs._Dos_Santos.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on Fox: Velasquez vs. dos Santos event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Velasquez vs. dos Santos"
     },
     {
       "date": "2011-11-18",
@@ -15370,7 +15491,12 @@
       "detail": "Held at SAP Center in San Jose, California, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/6c/UFC139_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 139: Shogun vs. Henderson event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Shogun vs. Henderson"
     },
     {
       "date": "2011-11-26",
@@ -15446,6 +15572,11 @@
       "weight": 52,
       "wikipediaTitle": "The Ultimate Fighter: Team Bisping vs. Team Miller Finale",
       "detail": "Held at Palms Casino Resort in Las Vegas, Nevada, U.S.",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Team Bisping vs. Team Miller Finale",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage"
     },
@@ -15464,7 +15595,12 @@
       "detail": "Held at Scotiabank Arena in Toronto, Ontario, Canada.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/97/UFC140_PRESALE_JPG.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 140: Jones vs. Machida event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Jones vs. Machida"
     },
     {
       "date": "2011-12-17",
@@ -15498,7 +15634,12 @@
       "detail": "Held at MGM Grand Garden Arena in Las Vegas, Nevada, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/52/Scaled_php.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 141: Lesnar vs. Overeem event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Lesnar vs. Overeem"
     },
     {
       "date": "2012-01-07",
@@ -15532,7 +15673,12 @@
       "detail": "Held at HSBC Arena in Rio de Janeiro, Brazil.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/0a/UFC_142_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 142: Aldo vs. Mendes event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Aldo vs. Mendes"
     },
     {
       "date": "2012-01-20",
@@ -15549,7 +15695,12 @@
       "detail": "Held at Bridgestone Arena in Nashville, Tennessee, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/2/22/UFC_on_FX%2C_Guillard_vs._Miller_poster_art.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on FX: Guillard vs. Miller event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Guillard vs. Miller"
     },
     {
       "date": "2012-01-22",
@@ -15606,7 +15757,12 @@
       "detail": "Held at United Center in Chicago, Illinois, U.S.",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Logo_of_the_Ultimate_Fighting_Championship.svg/1280px-Logo_of_the_Ultimate_Fighting_Championship.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "imageAlt": "UFC on Fox: Evans vs. Davis event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Evans vs. Davis"
     },
     {
       "date": "2012-02-04",
@@ -15623,7 +15779,12 @@
       "detail": "Held at Mandalay Bay Events Center in Las Vegas, Nevada, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/6c/UFC_143_fight_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 143: Diaz vs. Condit event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Diaz vs. Condit"
     },
     {
       "date": "2012-02-15",
@@ -15640,7 +15801,12 @@
       "detail": "Held at Omaha Civic Auditorium in Omaha, Nebraska, U.S.",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Logo_of_the_Ultimate_Fighting_Championship.svg/1280px-Logo_of_the_Ultimate_Fighting_Championship.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "imageAlt": "UFC on Fuel TV: Sanchez vs. Ellenberger event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Sanchez vs. Ellenberger"
     },
     {
       "date": "2012-02-26",
@@ -15657,7 +15823,12 @@
       "detail": "Held at Saitama Super Arena in Saitama, Japan.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/ff/UFC144Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 144: Edgar vs. Henderson event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Edgar vs. Henderson"
     },
     {
       "date": "2012-03-03",
@@ -15711,7 +15882,12 @@
       "detail": "Held at Qudos Bank Arena in Sydney, Australia.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/9a/UFC_on_FX_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on FX: Alves vs. Kampmann event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Alves vs. Kampmann"
     },
     {
       "date": "2012-03-09",
@@ -15894,7 +16070,12 @@
       "detail": "Held at Avicii Arena in Stockholm, Sweden.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/80/UFC-IN-SWEDEN-2012.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on Fuel TV: Gustafsson vs. Silva event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Gustafsson vs. Silva"
     },
     {
       "date": "2012-04-20",
@@ -15932,7 +16113,12 @@
       "detail": "Held at Philips Arena in Atlanta, Georgia, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/05/Ufc-145-poster-jones-vs-evans.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 145: Jones vs. Evans event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Jones vs. Evans"
     },
     {
       "date": "2012-04-28",
@@ -15990,7 +16176,12 @@
       "detail": "Held at Meadowlands Arena in East Rutherford, New Jersey, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/56/UFC_on_FOX_3.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on Fox: Diaz vs. Miller event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Diaz vs. Miller"
     },
     {
       "date": "2012-05-11",
@@ -16027,7 +16218,12 @@
       "detail": "Held at EagleBank Arena in Fairfax, Virginia, U.S.",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Logo_of_the_Ultimate_Fighting_Championship.svg/1280px-Logo_of_the_Ultimate_Fighting_Championship.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "imageAlt": "UFC on Fuel TV: The Korean Zombie vs. Poirier event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "The Korean Zombie vs. Poirier"
     },
     {
       "date": "2012-05-18",
@@ -16121,7 +16317,12 @@
       "detail": "Held at MGM Grand Garden Arena in 14,674.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/76/UFC-146-Dos-Santos-Mir-poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 146: dos Santos vs. Mir event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "dos Santos vs. Mir"
     },
     {
       "date": "2012-06-01",
@@ -16174,7 +16375,12 @@
       "detail": "Held at Amerant Bank Arena in Sunrise, Florida, U.S.",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Logo_of_the_Ultimate_Fighting_Championship.svg/1280px-Logo_of_the_Ultimate_Fighting_Championship.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "imageAlt": "UFC on FX: Johnson vs. McCall 2 event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Johnson vs. McCall 2"
     },
     {
       "date": "2012-06-22",
@@ -16211,7 +16417,12 @@
       "detail": "Held at Revel Casino Hotel in Atlantic City, New Jersey, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/b/bd/UFC_on_FX%2C_Maynard_vs._Guida_poster_art.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on FX: Maynard vs. Guida event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Maynard vs. Guida"
     },
     {
       "date": "2012-06-23",
@@ -16228,7 +16439,12 @@
       "detail": "Held at Mineirinho Arena in Belo Horizonte, Brazil.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/f2/UFCPoster147WanderleiSilvaRichFranklinWerdumRussow.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 147: Silva vs. Franklin II event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Silva vs. Franklin II"
     },
     {
       "date": "2012-07-01",
@@ -16265,7 +16481,12 @@
       "detail": "Held at MGM Grand Garden Arena in Las Vegas, Nevada, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/71/UFC_148_Event_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 148: Silva vs. Sonnen II event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Silva vs. Sonnen II"
     },
     {
       "date": "2012-07-11",
@@ -16282,7 +16503,12 @@
       "detail": "Held at SAP Center in San Jose, California, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/5c/UFC_on_Fuel_TV%2C_Munoz_vs._Weidman_%28POSTER%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on Fuel TV: Muñoz vs. Weidman event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Muñoz vs. Weidman"
     },
     {
       "date": "2012-07-14",
@@ -16336,7 +16562,12 @@
       "detail": "Held at Scotiabank Saddledome in Calgary, Alberta, Canada.",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Logo_of_the_Ultimate_Fighting_Championship.svg/1280px-Logo_of_the_Ultimate_Fighting_Championship.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "imageAlt": "UFC 149: Faber vs. Barão event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Faber vs. Barão"
     },
     {
       "date": "2012-07-29",
@@ -16373,7 +16604,12 @@
       "detail": "Held at Crypto.com Arena in Los Angeles, California, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/e/ea/UFC_on_Fox%2C_Shogun_vs_Vera.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on Fox: Shogun vs. Vera event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Shogun vs. Vera"
     },
     {
       "date": "2012-08-05",
@@ -16410,7 +16646,12 @@
       "detail": "Held at Ball Arena in Denver, Colorado, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/6e/Edgar_vs._Bendo_II.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 150: Henderson vs. Edgar II event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Henderson vs. Edgar II"
     },
     {
       "date": "2012-08-18",
@@ -16466,7 +16707,7 @@
       "contentCheckedAt": "2026-09-08T21:52:17.289Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -16484,7 +16725,12 @@
       "detail": "Held at Scotiabank Arena in Toronto, Ontario, Canada.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/db/UFC_152_promotional_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 152: Jones vs. Belfort event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Jones vs. Belfort"
     },
     {
       "date": "2012-09-28",
@@ -16521,7 +16767,12 @@
       "detail": "Held at Motorpoint Arena in Nottingham, England.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/a2/Struve_vs._miocic.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on Fuel TV: Struve vs. Miocic event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Struve vs. Miocic"
     },
     {
       "date": "2012-10-05",
@@ -16558,7 +16809,12 @@
       "detail": "Held at Target Center in Minneapolis, Minnesota, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/f0/UFC_on_FX_Browne_vs._Bigfoot.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on FX: Browne vs. Bigfoot event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Browne vs. Bigfoot"
     },
     {
       "date": "2012-10-06",
@@ -16615,7 +16871,12 @@
       "detail": "Held at Farmasi Arena in Rio de Janeiro, Brazil.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/9f/Silva_Bonnar.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 153: Silva vs. Bonnar event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Silva vs. Bonnar"
     },
     {
       "date": "2012-10-19",
@@ -16749,7 +17010,12 @@
       "detail": "Held at Cotai Arena in Macau SAR, China.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/e/ec/UFConFUEL6.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on Fuel TV: Franklin vs. Le event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Franklin vs. Le"
     },
     {
       "date": "2012-11-16",
@@ -16786,7 +17052,12 @@
       "detail": "Held at Bell Centre in Montreal, Quebec, Canada.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c6/UFC_154_GSP_Condit.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 154: St-Pierre vs. Condit event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "St-Pierre vs. Condit"
     },
     {
       "date": "2012-11-25",
@@ -16883,7 +17154,12 @@
       "detail": "Held at Climate Pledge Arena in Seattle, Washington, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/e/e9/Bendo-Diaz_FOX_5.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on Fox: Henderson vs. Diaz event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Henderson vs. Diaz"
     },
     {
       "date": "2012-12-14",
@@ -16918,6 +17194,11 @@
       "weight": 52,
       "wikipediaTitle": "The Ultimate Fighter: Team Carwin vs. Team Nelson#The Ultimate Fighter 16 Finale",
       "detail": "Held at Hard Rock Hotel and Casino in 2,500.",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Team Carwin vs. Team Nelson Finale",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage"
     },
@@ -16934,6 +17215,11 @@
       "weight": 52,
       "wikipediaTitle": "The Ultimate Fighter: The Smashes#The Ultimate Fighter: The Smashes Finale",
       "detail": "Held at Gold Coast Convention and Exhibition Centre in Gold Coast, Australia.",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Sotiropoulos vs. Pearson",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage"
     },
@@ -16952,7 +17238,12 @@
       "detail": "Held at MGM Grand Garden Arena in Las Vegas, Nevada, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/08/UFC_155_JDS_Cain.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 155: dos Santos vs. Velasquez 2 event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "dos Santos vs. Velasquez 2"
     },
     {
       "date": "2013-01-12",
@@ -17026,7 +17317,12 @@
       "detail": "Held at Ginásio do Ibirapuera in São Paulo, Brazil.",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Logo_of_the_Ultimate_Fighting_Championship.svg/1280px-Logo_of_the_Ultimate_Fighting_Championship.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "imageAlt": "UFC on FX: Belfort vs. Bisping event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Belfort vs. Bisping"
     },
     {
       "date": "2013-01-24",
@@ -17063,7 +17359,12 @@
       "detail": "Held at United Center in Chicago, Illinois, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/96/UFC_on_FOX_6.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on Fox: Johnson vs. Dodson event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Johnson vs. Dodson"
     },
     {
       "date": "2013-01-31",
@@ -17100,7 +17401,12 @@
       "detail": "Held at Mandalay Bay Events Center in Las Vegas, Nevada, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/7a/Official_UFC_156_event_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 156: Aldo vs. Edgar event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Aldo vs. Edgar"
     },
     {
       "date": "2013-02-03",
@@ -17177,7 +17483,12 @@
       "detail": "Held at Wembley Arena in London, England.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/69/UFC_on_Fuel_TV_Barao_vs._McDonald_poster_art.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on Fuel TV: Barão vs. McDonald event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Barão vs. McDonald"
     },
     {
       "date": "2013-02-21",
@@ -17214,7 +17525,12 @@
       "detail": "Held at Honda Center in Anaheim, California, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/4c/UFC_157_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 157: Rousey vs. Carmouche event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Rousey vs. Carmouche"
     },
     {
       "date": "2013-02-28",
@@ -17251,7 +17567,12 @@
       "detail": "Held at Saitama Super Arena in Saitama, Japan.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/fd/UFC_on_FUEL_Japan.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on Fuel TV: Silva vs. Stann event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Silva vs. Stann"
     },
     {
       "date": "2013-03-07",
@@ -17288,7 +17609,12 @@
       "detail": "Held at Bell Centre in Montreal, Quebec, Canada.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/e/ef/UFC_158_New_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 158: St-Pierre vs. Diaz event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "St-Pierre vs. Diaz"
     },
     {
       "date": "2013-03-17",
@@ -17402,7 +17728,12 @@
       "detail": "Held at Avicii Arena in Stockholm, Sweden.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/ce/UFC_on_Fuel_TV_9.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on Fuel TV: Mousasi vs. Latifi event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Mousasi vs. Latifi"
     },
     {
       "date": "2013-04-13",
@@ -17416,7 +17747,12 @@
       "generatedBy": "wikipedia-event-index",
       "weight": 52,
       "wikipediaTitle": "The Ultimate Fighter: Team Jones vs. Team Sonnen#The Ultimate Fighter 17 Finale",
-      "detail": "Held at Mandalay Bay Events Center in Las Vegas, Nevada, U.S."
+      "detail": "Held at Mandalay Bay Events Center in Las Vegas, Nevada, U.S.",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Team Jones vs. Team Sonnen Finale"
     },
     {
       "date": "2013-04-20",
@@ -17433,7 +17769,12 @@
       "detail": "Held at SAP Center in San Jose, California, U.S.",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Logo_of_the_Ultimate_Fighting_Championship.svg/1280px-Logo_of_the_Ultimate_Fighting_Championship.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
       "imageAlt": "UFC on Fox: Henderson vs. Melendez event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Henderson vs. Melendez"
     },
     {
       "date": "2013-04-21",
@@ -17472,7 +17813,12 @@
       "detail": "Held at Prudential Center in Newark, New Jersey, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/61/UFC_159_poster_art.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 159: Jones vs. Sonnen event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Jones vs. Sonnen"
     },
     {
       "date": "2013-05-18",
@@ -17489,7 +17835,12 @@
       "detail": "Held at Arena Jaraguá in Jaraguá do Sul, Brazil.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/3d/Official_UFC_Belfort_vs_Rockhold_poster.gif?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on FX: Belfort vs. Rockhold event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Belfort vs. Rockhold"
     },
     {
       "date": "2013-05-19",
@@ -17526,7 +17877,12 @@
       "detail": "Held at MGM Grand Garden Arena in Las Vegas, Nevada, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/fc/Cain_Big_Foot_II.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 160: Velasquez vs. Bigfoot 2 event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Velasquez vs. Bigfoot 2"
     },
     {
       "date": "2013-06-08",
@@ -17541,6 +17897,11 @@
       "weight": 52,
       "wikipediaTitle": "The Ultimate Fighter: Brazil 2#The Ultimate Fighter: Brazil 2 Finale",
       "detail": "Held at Ginásio Paulo Sarasate in Fortaleza, Brazil.",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Nogueira vs. Werdum",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage"
     },
@@ -17575,7 +17936,12 @@
       "detail": "Held at Canada Life Centre in Winnipeg, Manitoba, Canada.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/b/b9/Official_UFC_161_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 161: Evans vs. Henderson event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Evans vs. Henderson"
     },
     {
       "date": "2013-06-19",
@@ -17672,7 +18038,12 @@
       "detail": "Held at Climate Pledge Arena in Seattle, Washington, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/60/UFC_on_FOX_8_updated_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on Fox: Johnson vs. Moraga event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Johnson vs. Moraga"
     },
     {
       "date": "2013-07-27",
@@ -17746,7 +18117,12 @@
       "detail": "Held at HSBC Arena in Rio de Janeiro, Brazil.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/66/New_UFC_163_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 163: Aldo vs. Korean Zombie event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Aldo vs. Korean Zombie"
     },
     {
       "date": "2013-08-10",
@@ -17779,7 +18155,12 @@
       "detail": "Held at TD Garden in Boston, Massachusetts, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/7f/UFC_FOX_Sports_1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Shogun vs. Sonnen event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Shogun vs. Sonnen"
     },
     {
       "date": "2013-08-28",
@@ -17797,7 +18178,12 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/68/Condit_vs_Kampmann_II.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Condit vs. Kampmann 2 event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Condit vs. Kampmann 2",
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -17816,11 +18202,13 @@
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/US_Navy_070713-N-8923M-164_Ultimate_Fighting_Championship_%28UFC%29_fighter_Rich_Franklin_signs_his_name_for_a_Sailor_during_an_autograph_session_on_the_mess_decks_aboard_Nimitz-class_aircraft_carrier_USS_Harry_S._Truman_%28CVN_75%29.jpg/1280px-thumbnail.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "imageAlt": "UFC 164: Henderson vs. Pettis 2 event image",
       "imageCredit": "Wikimedia Commons · U.S. Navy photo by Seaman Kevin T. Murray Jr. · Public domain",
-      "imageStrategyVersion": 5,
-      "imageSourceType": "wikimedia-commons-search",
-      "imageFileTitle": "File:US Navy 070713-N-8923M-164 Ultimate Fighting Championship (UFC) fighter Rich Franklin signs his name for a Sailor during an autograph session on the mess decks aboard Nimitz-class aircraft carrier USS Harry S. Truman (CVN 75).jpg",
-      "imageWidth": 2100,
-      "imageHeight": 1491
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Henderson vs. Pettis 2",
+      "imageStrategyVersion": 6,
+      "imageSourceType": "wikipedia-pageimage"
     },
     {
       "date": "2013-09-04",
@@ -17838,7 +18226,12 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/b/b6/UFN_28_event_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Teixeira vs. Bader event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Teixeira vs. Bader",
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -17858,7 +18251,7 @@
       "contentCheckedAt": "2026-09-08T06:45:33.933Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -17878,7 +18271,7 @@
       "contentCheckedAt": "2026-09-08T21:52:17.289Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -17898,7 +18291,7 @@
       "contentCheckedAt": "2026-09-08T06:45:33.933Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -17914,7 +18307,7 @@
       "weight": 42,
       "wikipediaTitle": "World Series of Fighting 5: Arlovski vs. Kyle",
       "detail": "Held at Revel Atlantic City in Atlantic City, New Jersey, U.S.",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -17934,7 +18327,7 @@
       "contentCheckedAt": "2026-09-08T06:45:33.933Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -17952,7 +18345,12 @@
       "detail": "Held at Scotiabank Arena in Toronto, Ontario, Canada.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/61/UFC_165_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 165: Jones vs. Gustafsson event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Jones vs. Gustafsson"
     },
     {
       "date": "2013-09-27",
@@ -18029,7 +18427,12 @@
       "detail": "Held at Ginásio José Corrêa in Barueri, Brazil.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/8b/Improved_UFN_29_poster.ppg.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Maia vs. Shields event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Maia vs. Shields"
     },
     {
       "date": "2013-10-11",
@@ -18086,7 +18489,12 @@
       "detail": "Held at Toyota Center in Houston, Texas, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/6a/UFC_166_%28mixed_martial_arts_event%29_poster.gif?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 166: Velasquez vs. dos Santos III event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Velasquez vs. dos Santos III"
     },
     {
       "date": "2013-10-25",
@@ -18123,7 +18531,12 @@
       "detail": "Held at Phones 4u Arena in Manchester, England.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/e/eb/UFC_FIGHT_NIGHT_30.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Machida vs. Muñoz event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Machida vs. Muñoz"
     },
     {
       "date": "2013-10-26",
@@ -18233,7 +18646,12 @@
       "detail": "Held at Goiânia Arena in Goiânia, Brazil.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/1/13/Belfort_vs_Hendo_first_look.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Belfort vs. Henderson 2 event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Belfort vs. Henderson 2"
     },
     {
       "date": "2013-11-15",
@@ -18270,7 +18688,12 @@
       "detail": "Held at MGM Grand Garden Arena in 14,856.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/81/Updated_UFC_167_event_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 167: St-Pierre vs. Hendricks event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "St-Pierre vs. Hendricks"
     },
     {
       "date": "2013-11-22",
@@ -18305,6 +18728,11 @@
       "weight": 52,
       "wikipediaTitle": "The Ultimate Fighter: Team Rousey vs. Team Tate#The Ultimate Fighter 18 Finale",
       "detail": "Held at Mandalay Bay Events Center in Las Vegas, Nevada, U.S.",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Team Rousey vs. Team Tate Finale",
       "imageStrategyVersion": 4,
       "imageSourceType": "wikipedia-pageimage"
     },
@@ -18343,7 +18771,12 @@
       "detail": "Held at Brisbane Entertainment Centre in Brisbane, Australia.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/df/UFC_Fight_Night_33.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Hunt vs. Bigfoot event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Hunt vs. Bigfoot"
     },
     {
       "date": "2013-12-07",
@@ -18396,7 +18829,12 @@
       "detail": "Held at Sleep Train Arena in Sacramento, California, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/0c/Updated_UFC_on_FOX_9.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on Fox: Johnson vs. Benavidez 2 event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Johnson vs. Benavidez 2"
     },
     {
       "date": "2013-12-14",
@@ -18429,7 +18867,12 @@
       "detail": "Held at MGM Grand Garden Arena in Las Vegas, Nevada, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/47/UFC_168_event_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 168: Weidman vs. Silva 2 event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Weidman vs. Silva 2"
     },
     {
       "date": "2014-01-04",
@@ -18446,7 +18889,12 @@
       "detail": "Held at Marina Bay Sands in Marina Bay, Singapore.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/0b/New_UFN_34_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Saffiedine vs. Lim event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Saffiedine vs. Lim"
     },
     {
       "date": "2014-01-15",
@@ -18463,7 +18911,12 @@
       "detail": "Held at Arena at Gwinnett Center in Duluth, Georgia, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/7f/UFN_35_event_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Rockhold vs. Philippou event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Rockhold vs. Philippou"
     },
     {
       "date": "2014-01-18",
@@ -18494,7 +18947,12 @@
       "detail": "Held at United Center in Chicago, Illinois, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/47/UFC_on_FOX_10.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on Fox: Henderson vs. Thomson event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Henderson vs. Thomson"
     },
     {
       "date": "2014-02-01",
@@ -18511,7 +18969,12 @@
       "detail": "Held at Prudential Center in Newark, New Jersey, U.S.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/1/18/UFC_169_2_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 169: Barão vs. Faber 2 event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Barão vs. Faber 2"
     },
     {
       "date": "2014-02-02",
@@ -18548,7 +19011,12 @@
       "detail": "Held at Arena Jaraguá in Jaraguá do Sul, Brazil.",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/4e/UFN_36_poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Machida vs. Mousasi event image",
-      "imageCredit": "Wikipedia"
+      "imageCredit": "Wikipedia",
+      "contentStrategyVersion": 1,
+      "contentCheckedAt": "2026-09-08T23:26:41.709Z",
+      "contentStatus": "main-event-found",
+      "contentSourceType": "event-title",
+      "mainEvent": "Machida vs. Mousasi"
     },
     {
       "date": "2014-02-21",
@@ -19455,7 +19923,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/2/2d/Final_UFC_177_event_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 177: Dillashaw vs. Soto event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -19475,7 +19943,7 @@
       "contentCheckedAt": "2026-09-08T06:45:33.933Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -19494,7 +19962,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/ae/UFN_50_event_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Jacaré vs. Mousasi event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -19514,7 +19982,7 @@
       "contentCheckedAt": "2026-09-08T06:45:33.933Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -19533,7 +20001,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/51/UFN_51_event_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Bigfoot vs. Arlovski event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -19549,7 +20017,7 @@
       "weight": 42,
       "wikipediaTitle": "World Series of Fighting 13: Moraes vs. Bollinger",
       "detail": "Held at Sands Casino Resort Bethlehem in Bethlehem, Pennsylvania, U.S.",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -19569,7 +20037,7 @@
       "contentCheckedAt": "2026-09-08T06:45:33.933Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -19588,7 +20056,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/2/2c/UFC_Fight_Night_Hunt_vs._Nelson_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Hunt vs. Nelson event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -20945,7 +21413,7 @@
       "contentCheckedAt": "2026-09-08T06:45:33.933Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -20964,7 +21432,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/e/e0/UFC_191_event_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 191: Johnson vs. Dodson 2 event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -20980,7 +21448,7 @@
       "weight": 42,
       "wikipediaTitle": "World Series of Fighting 23: Gaethje vs. Palomino II",
       "detail": "Held at Comerica Theatre in Phoenix, Arizona, U.S.",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -21003,7 +21471,7 @@
       "contentCheckedAt": "2026-09-08T06:45:33.933Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-page-artwork",
       "imageFileTitle": "File:Bellator MMA & Glory Dynamite poster.jpg",
       "imageWidth": 421,
@@ -22419,7 +22887,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/1/1a/UFC_Vancouver_main_event.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on Fox: Maia vs. Condit event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -22438,7 +22906,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/4e/UFC_Hamburg.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Arlovski vs. Barnett event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -22454,14 +22922,14 @@
       "weight": 52,
       "wikipediaTitle": "UFC 203",
       "detail": "Held at Quicken Loans Arena in Cleveland, Ohio, U.S.",
-      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/USMC-120331-M-PR201-203.jpg/1280px-USMC-120331-M-PR201-203.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageStrategyVersion": 6,
+      "imageSourceType": "wikipedia-lead-image",
+      "imageFileTitle": "File:UFC_203_event_poster.jpg",
+      "imageWidth": 220,
+      "imageHeight": 318,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/e/eb/UFC_203_event_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 203: Miocic vs. Overeem event image",
-      "imageCredit": "Wikimedia Commons · Sgt Michael V. Walters · Public domain",
-      "imageStrategyVersion": 5,
-      "imageSourceType": "wikimedia-commons-search",
-      "imageFileTitle": "File:USMC-120331-M-PR201-203.jpg",
-      "imageWidth": 2848,
-      "imageHeight": 4288
+      "imageCredit": "Wikipedia"
     },
     {
       "date": "2016-09-11",
@@ -22476,7 +22944,7 @@
       "weight": 43,
       "detail": "Held at Differ Ariake in Tokyo, Japan.",
       "wikipediaTitle": "List of Pancrase events",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -22496,7 +22964,7 @@
       "contentCheckedAt": "2026-09-08T06:45:33.933Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -22516,7 +22984,7 @@
       "contentCheckedAt": "2026-09-08T06:45:33.933Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -22535,7 +23003,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/90/UFC_Hidalgo_event_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Poirier vs. Johnson event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -23983,7 +24451,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/74/UFC_Fight_Night_Rotterdam_Struve_vs._Volkov.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Volkov vs. Struve event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -24002,7 +24470,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/a6/UFC_Johnson_Borg.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 215: Nunes vs. Shevchenko 2 event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -24021,7 +24489,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/f8/Rockhold_vs._Branch_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Rockhold vs. Branch event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -25550,7 +26018,7 @@
       "weight": 42,
       "wikipediaTitle": "PFL 7 (2018 season)",
       "detail": "Held at Ocean Resort Casino in Atlantic City, New Jersey, U.S.",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -25569,11 +26037,8 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Alijamain_Sterling_at_UFC_228.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 228: Woodley vs. Till event image",
       "imageCredit": "Wikimedia Commons · MMAnytt · CC BY 3.0",
-      "imageStrategyVersion": 5,
-      "imageSourceType": "wikimedia-commons-search",
-      "imageFileTitle": "File:Alijamain Sterling at UFC 228.jpg",
-      "imageWidth": 1112,
-      "imageHeight": 1395
+      "imageStrategyVersion": 6,
+      "imageSourceType": "wikipedia-pageimage"
     },
     {
       "date": "2018-09-09",
@@ -25588,7 +26053,7 @@
       "weight": 43,
       "detail": "Held at Studio Coast in Tokyo, Japan.",
       "wikipediaTitle": "List of Pancrase events",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -25607,7 +26072,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/e/e3/UFC_Fight_Night_136_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Hunt vs. Oleinik event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -27175,7 +27640,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/33/UFC_Fight_Night-_Andrade_vs._Zhang.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Andrade vs. Zhang event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -27191,7 +27656,7 @@
       "weight": 43,
       "detail": "Held at Studio Coast in Tokyo, Japan.",
       "wikipediaTitle": "List of Pancrase events",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -27211,7 +27676,7 @@
       "contentCheckedAt": "2026-09-08T07:03:07.571Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -27230,7 +27695,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/1/17/UFC_on_ESPN%2B_16.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Cowboy vs. Gaethje event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -28577,7 +29042,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/8a/Smith_vs._Raki%C4%87.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Smith vs. Rakić event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -28595,7 +29060,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/f9/Overeem_vs_Sakai.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Overeem vs. Sakai event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -28614,7 +29079,7 @@
       "contentCheckedAt": "2026-09-08T07:26:07.145Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -28634,7 +29099,7 @@
       "contentCheckedAt": "2026-09-08T07:26:07.145Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -28652,7 +29117,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/d1/Hill_vs_Waterson.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Waterson vs. Hill event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -28671,7 +29136,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/d7/Covington_vs._Woodley.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Covington vs. Woodley event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -30210,7 +30675,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/9b/Official_poster_for_UFC_on_UFC_on_ESPN_Barboza_vs._Chikadze.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC on ESPN: Barboza vs. Chikadze event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -30228,7 +30693,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/f4/Official_poster_for_UFC_Fight_Night_Brunson_vs._Till.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Brunson vs. Till event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -30244,7 +30709,7 @@
       "weight": 43,
       "detail": "Held at Studio Coast in Tokyo, Japan.",
       "wikipediaTitle": "List of Pancrase events",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -30267,7 +30732,7 @@
       "contentCheckedAt": "2026-09-08T07:26:07.145Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -30286,7 +30751,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/48/UFC_Fight_Night_Smith_vs._Spann_official_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Smith vs. Spann event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -30302,7 +30767,7 @@
       "weight": 43,
       "wikipediaTitle": "2021 in Rizin Fighting Federation#Rizin 30 - Saitama",
       "detail": "Held at Saitama Super Arena in Saitama, Japan.",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -31952,7 +32417,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/43/UFC_France_-_Gane_vs_Tuivasa_official_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Gane vs. Tuivasa event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -31968,14 +32433,14 @@
       "weight": 52,
       "wikipediaTitle": "UFC 279",
       "detail": "Held at T-Mobile Arena in 19,125.",
-      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/VCJCS_hosts_USO_Spring_Tour_160312-D-HU462-279.jpg/1280px-VCJCS_hosts_USO_Spring_Tour_160312-D-HU462-279.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageStrategyVersion": 6,
+      "imageSourceType": "wikipedia-lead-image",
+      "imageFileTitle": "File:Official_poster_for_UFC_279.jpg",
+      "imageWidth": 263,
+      "imageHeight": 379,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/3f/Official_poster_for_UFC_279.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 279: Diaz vs. Ferguson event image",
-      "imageCredit": "Wikimedia Commons · Staff Sgt. Sean Harp · Public domain",
-      "imageStrategyVersion": 5,
-      "imageSourceType": "wikimedia-commons-search",
-      "imageFileTitle": "File:VCJCS hosts USO Spring Tour 160312-D-HU462-279.jpg",
-      "imageWidth": 4509,
-      "imageHeight": 3001
+      "imageCredit": "Wikipedia"
     },
     {
       "date": "2022-09-11",
@@ -31990,7 +32455,7 @@
       "weight": 43,
       "detail": "Held at Tachikawa Stage Garden in Tachikawa, Tokyo, Japan.",
       "wikipediaTitle": "List of Pancrase events",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -32008,7 +32473,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/a1/UFC_Cory_vs_Song_official_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Sandhagen vs. Song event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -33543,7 +34008,7 @@
       "weight": 50,
       "detail": "Part of Pancrase's Neo-Blood Tournament. Held at Shinagawa Intercity Hall in Shinagawa, Tokyo, Japan.",
       "wikipediaTitle": "List of Pancrase events",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage",
       "curationWeightBoost": 7
     },
@@ -33563,7 +34028,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/1/1d/UFCGaneSpivakPoster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Gane vs. Spivac event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -33582,7 +34047,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/a4/UFC_293_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 293: Adesanya vs. Strickland event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -33601,7 +34066,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/d3/Noche_UFC_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Grasso vs. Shevchenko 2 event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -35132,7 +35597,7 @@
       "contentCheckedAt": "2026-09-08T07:26:07.145Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -35151,7 +35616,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/dc/UFC_Fight_Night_242.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Burns vs. Brady event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -35174,7 +35639,7 @@
       "contentCheckedAt": "2026-09-08T07:26:07.145Z",
       "contentStatus": "no-main-event",
       "contentSourceType": "wikipedia-structured",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -35190,14 +35655,14 @@
       "weight": 52,
       "wikipediaTitle": "UFC 306",
       "detail": "Held at Sphere in Las Vegas, Nevada, U.S.",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c8/From_cancer_to_company_commander_130802-M-AR522-306_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageStrategyVersion": 6,
+      "imageSourceType": "wikipedia-lead-image",
+      "imageFileTitle": "File:UFC_306_poster.jpg",
+      "imageWidth": 263,
+      "imageHeight": 380,
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/d3/UFC_306_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 306: O'Malley vs. Dvalishvili event image",
-      "imageCredit": "Wikimedia Commons · Cpl. Devin Nichols · Public domain",
-      "imageStrategyVersion": 5,
-      "imageSourceType": "wikimedia-commons-search",
-      "imageFileTitle": "File:From cancer to company commander 130802-M-AR522-306 (cropped).jpg",
-      "imageWidth": 744,
-      "imageHeight": 1109
+      "imageCredit": "Wikipedia"
     },
     {
       "date": "2024-09-20",
@@ -36656,7 +37121,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/71/UFC_Fight_Night_258_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Imavov vs. Borralho event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -36675,7 +37140,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/48/Noche_UFC_3_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Lopes vs. Silva event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -38187,7 +38652,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c7/UFC_Fight_Night_286_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Nurmagomedov vs. Song event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -38206,7 +38671,7 @@
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/4c/UFC_Fight_Night_287_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC Fight Night: Hooker vs. Parnasse event image",
       "imageCredit": "Wikipedia",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     },
     {
@@ -38222,7 +38687,7 @@
       "weight": 43,
       "detail": "Held at Tachikawa Stage Garden in Tachikawa, Tokyo, Japan.",
       "wikipediaTitle": "List of Pancrase events",
-      "imageStrategyVersion": 5,
+      "imageStrategyVersion": 6,
       "imageSourceType": "wikipedia-pageimage"
     }
   ],
@@ -38243,13 +38708,13 @@
   "curationVersion": 2,
   "curationSummary": {
     "normalizedDetails": 775,
-    "enrichedDetails": 163,
-    "boostedEntries": 188,
+    "enrichedDetails": 180,
+    "boostedEntries": 205,
     "suppressedGenericEvents": 9
   },
   "contentEnrichmentVersion": 1,
-  "contentEnrichmentUpdatedAt": "2026-09-08T23:17:31.538Z",
+  "contentEnrichmentUpdatedAt": "2026-09-08T23:26:41.709Z",
   "eventTitleStyleVersion": 1,
   "pancraseEnrichmentVersion": 1,
-  "pancraseEnrichmentUpdatedAt": "2026-09-08T23:17:36.610Z"
+  "pancraseEnrichmentUpdatedAt": "2026-09-08T23:26:46.628Z"
 }
