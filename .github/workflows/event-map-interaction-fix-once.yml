@@ -1,0 +1,120 @@
+name: One-time Event Map interaction fix
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/event-map-interaction-fix-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Apply interaction fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          # The core D3 controller already owns click/tap + drag suppression.
+          # Remove the second marker activator that was intercepting real clicks.
+          path = Path('assets/event-map-enhancements.js')
+          text = path.read_text(encoding='utf-8')
+          pattern = re.compile(r'^\(\(\) => \{.*?\n\}\)\(\);\n\n(?=\(\(\) => \{)', re.S)
+          text, count = pattern.subn('', text, count=1)
+          if count != 1:
+              raise SystemExit('Could not remove duplicate marker pointer controller')
+          path.write_text(text, encoding='utf-8')
+
+          # Keep result-list navigation smooth, but make cluster -> chooser immediate
+          # so the second mobile tap cannot land while the chooser is still moving.
+          path = Path('assets/event-map-v2.js')
+          core = path.read_text(encoding='utf-8')
+          old_scroll = '''    function scrollDetailOnMobile() {
+        if (!window.matchMedia('(max-width: 820px)').matches) return;
+        detailPanel.scrollIntoView({
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+            block: 'start'
+        });
+    }
+'''
+          new_scroll = '''    function scrollDetailOnMobile({ smooth = true } = {}) {
+        if (!window.matchMedia('(max-width: 820px)').matches) return;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        detailPanel.scrollIntoView({
+            behavior: smooth && !reduceMotion ? 'smooth' : 'auto',
+            block: 'start'
+        });
+    }
+'''
+          if old_scroll not in core:
+              raise SystemExit('Could not locate mobile detail scroll helper')
+          core = core.replace(old_scroll, new_scroll, 1)
+          cluster_tail = '''        if (scroll) scrollDetailOnMobile();
+    }
+
+    function previewEvent'''
+          cluster_tail_new = '''        if (scroll) scrollDetailOnMobile({ smooth: false });
+    }
+
+    function previewEvent'''
+          if cluster_tail not in core:
+              raise SystemExit('Could not locate cluster mobile scroll call')
+          core = core.replace(cluster_tail, cluster_tail_new, 1)
+          path.write_text(core, encoding='utf-8')
+
+          # Architecture guard: one marker activation owner, not two.
+          path = Path('scripts/check-event-map-architecture.mjs')
+          check = path.read_text(encoding='utf-8')
+          old_guard = '''requireText(enhancements, 'pressedPointerId', 'Pointer controller must track the active pointer ID.');
+requireText(enhancements, 'a drag that begins on a pin must still pan the map', 'Pin pointerdown must not block map panning.');'''
+          new_guard = '''forbid(enhancements, 'pressedPointerId', 'Enhancements must not install a second marker activation controller.');'''
+          if old_guard not in check:
+              raise SystemExit('Could not locate pointer-controller architecture guard')
+          check = check.replace(old_guard, new_guard, 1)
+          path.write_text(check, encoding='utf-8')
+
+          # Cache-bust the corrected production interaction layer.
+          path = Path('_config.yml')
+          cfg = path.read_text(encoding='utf-8')
+          match = re.search(r'(?m)^asset_version: "(\d+)"$', cfg)
+          if not match:
+              raise SystemExit('Could not locate asset_version')
+          old_version = int(match.group(1))
+          cfg = cfg[:match.start(1)] + str(old_version + 1) + cfg[match.end(1):]
+          path.write_text(cfg, encoding='utf-8')
+          print(f'Event Map interaction fix prepared. asset_version {old_version} -> {old_version + 1}')
+          PY
+
+      - name: Validate interaction fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check assets/event-map-v2.js
+          node --check assets/event-map-enhancements.js
+          node --check scripts/check-event-map-architecture.mjs
+          node --check scripts/event-map-smoke.spec.cjs
+          node scripts/validate-event-map-regional.mjs
+          node scripts/validate-event-map-quality.mjs
+          node scripts/check-event-map-architecture.mjs
+
+      - name: Commit interaction fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/event-map-v2.js assets/event-map-enhancements.js scripts/check-event-map-architecture.mjs _config.yml
+          git commit -m "Fix Event Map click and mobile cluster interactions"
+          git pull --rebase origin main
+          git push origin HEAD:main
