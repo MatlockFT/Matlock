@@ -5,10 +5,18 @@
 
     const REFERENCE_YEAR = 2024;
     const SESSION_KEY = "mma-matlock:otd:last-date";
+    const SHORTCUT_HINT_KEY = "mma-matlock:otd:shortcut-hint-seen";
     const FILTER_THRESHOLD = 6;
+    const COLLAPSE_LIMIT = 8;
+
     const kindOrder = new Map([
         ["fight", 0], ["title", 1], ["signing", 2], ["debut", 3],
         ["incident", 4], ["event", 5], ["news", 6], ["death", 7], ["birthday", 8]
+    ]);
+
+    const kindBonus = new Map([
+        ["title", 12], ["fight", 10], ["incident", 8], ["debut", 7],
+        ["signing", 6], ["death", 5], ["news", 4], ["birthday", 2], ["event", 0]
     ]);
 
     const list = widget.querySelector("[data-otd-list]");
@@ -22,6 +30,11 @@
     const count = widget.querySelector("[data-otd-count]");
     const weekStrip = widget.querySelector("[data-otd-week]");
     const filterBar = widget.querySelector("[data-otd-filters]");
+    const dock = widget.querySelector("[data-otd-dock]");
+    const modeGroup = widget.querySelector("[data-otd-mode-group]");
+    const modeButtons = [...widget.querySelectorAll("[data-otd-mode]")];
+    const sortSelect = widget.querySelector("[data-otd-sort]");
+    const shortcutHint = widget.querySelector("[data-otd-shortcut-hint]");
     if (!list || !dateDisplay) return;
 
     const formatLong = new Intl.DateTimeFormat([], { month: "long", day: "numeric" });
@@ -70,11 +83,23 @@
     };
 
     const entryYear = entry => entry.date?.slice(0, 4) || "";
+
     const kindLabel = kind => ({
         fight: "Fight", event: "Event", signing: "Signing", debut: "Debut",
         title: "Title", incident: "Incident", news: "News", death: "In memoriam",
         birthday: "Birthday"
     })[kind] || "Note";
+
+    const slug = value => String(value || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/&/g, " and ")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .slice(0, 90) || "entry";
+
+    const entryAnchor = entry => `otd-${String(entry?.date || "").replace(/-/g, "")}-${slug(entry?.title)}`;
 
     function ageLabel(entry) {
         const year = Number(entryYear(entry));
@@ -85,12 +110,39 @@
         return `${age} ${age === 1 ? "year" : "years"} ago`;
     }
 
-    function compareEntries(a, b) {
+    function significanceScore(entry) {
+        return Number(entry?.weight || 0) + (kindBonus.get(entry?.kind) || 0);
+    }
+
+    function compareNotable(a, b) {
+        const scoreDiff = significanceScore(b) - significanceScore(a);
+        if (scoreDiff) return scoreDiff;
         const kindDiff = (kindOrder.get(a.kind) ?? 99) - (kindOrder.get(b.kind) ?? 99);
         if (kindDiff) return kindDiff;
-        const weightDiff = (b.weight || 0) - (a.weight || 0);
-        if (weightDiff) return weightDiff;
         return String(b.date || "").localeCompare(String(a.date || ""));
+    }
+
+    function sortEntries(entries, mode) {
+        const copy = [...entries];
+        if (mode === "newest") {
+            return copy.sort((a, b) =>
+                String(b.date || "").localeCompare(String(a.date || "")) ||
+                compareNotable(a, b)
+            );
+        }
+        if (mode === "oldest") {
+            return copy.sort((a, b) =>
+                String(a.date || "").localeCompare(String(b.date || "")) ||
+                compareNotable(a, b)
+            );
+        }
+        return copy.sort(compareNotable);
+    }
+
+    function notableSubset(entries) {
+        if (entries.length <= FILTER_THRESHOLD) return [...entries];
+        const total = Math.min(6, Math.max(3, Math.ceil(entries.length * 0.4)));
+        return [...entries].sort(compareNotable).slice(0, total);
     }
 
     function buildDayIndex(entries) {
@@ -101,7 +153,6 @@
             if (!index.has(key)) index.set(key, []);
             index.get(key).push(entry);
         }
-        for (const bucket of index.values()) bucket.sort(compareEntries);
         return index;
     }
 
@@ -131,6 +182,9 @@
         if (!row || !media) return;
         media.classList.remove("is-image-loading", "is-image-ready");
         media.classList.add("is-fallback");
+        media.removeAttribute("role");
+        media.removeAttribute("tabindex");
+        media.removeAttribute("aria-label");
         row.classList.add("is-media-fallback");
         row.dataset.mediaMode = "fallback";
         row.dataset.mediaModeApplied = "1";
@@ -162,8 +216,15 @@
             settled = true;
             media.classList.remove("is-image-loading", "is-fallback");
             media.classList.add("is-image-ready");
+            media.tabIndex = 0;
+            media.setAttribute("role", "button");
+            media.setAttribute("aria-label", `View full image for ${entry.title || "this entry"}`);
+            media.dataset.lightboxSrc = image.currentSrc || image.src;
+            media.dataset.lightboxAlt = image.alt;
+            media.dataset.lightboxCredit = entry.imageCredit || "";
             applyImageMode(row, media, image);
         };
+
         const failed = () => {
             if (settled) return;
             settled = true;
@@ -179,7 +240,6 @@
         media.append(image);
         if (entry.imageCredit) media.append(el("span", "otd-media-credit", entry.imageCredit));
         image.src = String(entry.imageUrl);
-
         if (image.complete) queueMicrotask(() => image.naturalWidth ? ready() : failed());
         return media;
     }
@@ -199,19 +259,77 @@
         image.src = String(entry.imageUrl);
     }
 
+    let lightbox = null;
+    let lightboxImage = null;
+    let lightboxCaption = null;
+    let lightboxClose = null;
+    let lightboxReturnFocus = null;
+
+    function ensureLightbox() {
+        if (lightbox) return;
+        lightbox = el("div", "otd-lightbox");
+        lightbox.hidden = true;
+        lightbox.setAttribute("role", "dialog");
+        lightbox.setAttribute("aria-modal", "true");
+        lightbox.setAttribute("aria-label", "Full-size event artwork");
+
+        const figure = el("figure", "otd-lightbox-figure");
+        lightboxImage = el("img", "otd-lightbox-image");
+        lightboxCaption = el("figcaption", "otd-lightbox-caption");
+        lightboxClose = el("button", "otd-lightbox-close", "×");
+        lightboxClose.type = "button";
+        lightboxClose.setAttribute("aria-label", "Close image");
+        figure.append(lightboxImage, lightboxCaption);
+        lightbox.append(figure, lightboxClose);
+        document.body.append(lightbox);
+
+        lightboxClose.addEventListener("click", closeLightbox);
+        lightbox.addEventListener("click", event => {
+            if (event.target === lightbox) closeLightbox();
+        });
+    }
+
+    function openLightbox(media) {
+        const src = media?.dataset?.lightboxSrc;
+        if (!src) return;
+        ensureLightbox();
+        lightboxReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : media;
+        lightboxImage.src = src;
+        lightboxImage.alt = media.dataset.lightboxAlt || "";
+        lightboxCaption.textContent = media.dataset.lightboxCredit || "";
+        lightboxCaption.hidden = !lightboxCaption.textContent;
+        lightbox.hidden = false;
+        document.documentElement.classList.add("otd-lightbox-open");
+        lightboxClose.focus({ preventScroll: true });
+    }
+
+    function closeLightbox() {
+        if (!lightbox || lightbox.hidden) return;
+        lightbox.hidden = true;
+        document.documentElement.classList.remove("otd-lightbox-open");
+        lightboxImage.removeAttribute("src");
+        lightboxReturnFocus?.focus?.({ preventScroll: true });
+        lightboxReturnFocus = null;
+    }
+
     const queryDate = parseKey(new URLSearchParams(location.search).get("date"));
     let dayIndex = new Map();
     let activeDate = queryDate || readSessionDate() || localToday();
     let activeFilter = "all";
+    let activeMode = "all";
+    let activeSort = "notable";
+    let expanded = false;
     let renderedWeekKey = "";
+    let hashScrollPending = Boolean(location.hash);
 
     const entriesForDate = date => dayIndex.get(keyForDate(date)) || [];
 
-    function updateUrl() {
+    function updateUrl(clearHash = true) {
         const url = new URL(location.href);
         const key = keyForDate(activeDate);
         if (key === keyForDate(localToday())) url.searchParams.delete("date");
         else url.searchParams.set("date", key);
+        if (clearHash) url.hash = "";
         history.replaceState({}, "", url);
         saveSessionDate(activeDate);
     }
@@ -272,11 +390,14 @@
             if (birthdayCount) types.push(`${birthdayCount}B`);
             summary.append(el("span", "otd-day-pill-types", types.join(" · ") || "—"));
             button.append(summary);
-            const representative = matching.find(entry => entry.kind !== "birthday" && entry.imageUrl)
-                || matching.find(entry => entry.imageUrl);
+
+            const representative = [...matching]
+                .filter(entry => entry.imageUrl)
+                .sort(compareNotable)[0];
             attachPillImage(button, representative);
             buttons.push(button);
         }
+
         weekStrip.replaceChildren(...buttons);
         if (motionAllowed()) {
             weekStrip.classList.remove("is-entering");
@@ -288,12 +409,14 @@
         if (!filterBar) return;
         const kinds = [...new Set(matching.map(entry => entry.kind).filter(Boolean))]
             .sort((a, b) => (kindOrder.get(a) ?? 99) - (kindOrder.get(b) ?? 99));
+
         if (matching.length < FILTER_THRESHOLD || kinds.length < 2) {
             activeFilter = "all";
             filterBar.hidden = true;
             filterBar.replaceChildren();
             return;
         }
+
         if (activeFilter !== "all" && !kinds.includes(activeFilter)) activeFilter = "all";
         const buttons = ["all", ...kinds].map(kind => {
             const total = kind === "all" ? matching.length : matching.filter(entry => entry.kind === kind).length;
@@ -305,8 +428,25 @@
             button.setAttribute("aria-pressed", String(selected));
             return button;
         });
+
         filterBar.replaceChildren(...buttons);
         filterBar.hidden = false;
+    }
+
+    function renderModeControls(matching) {
+        if (modeGroup) {
+            const busy = matching.length > FILTER_THRESHOLD;
+            modeGroup.hidden = !busy;
+            if (!busy) activeMode = "all";
+        }
+
+        for (const button of modeButtons) {
+            const selected = button.dataset.otdMode === activeMode;
+            button.classList.toggle("is-active", selected);
+            button.setAttribute("aria-pressed", String(selected));
+        }
+
+        if (sortSelect && sortSelect.value !== activeSort) sortSelect.value = activeSort;
     }
 
     function nearestDateWithEntries(direction) {
@@ -324,6 +464,7 @@
             el("strong", "", "Nothing logged for this date yet."),
             el("span", "", "Jump to the nearest day with MMA history, or keep browsing above.")
         );
+
         const jumps = el("div", "otd-empty-jumps");
         for (const [date, arrow] of [[nearestDateWithEntries(-1), "←"], [nearestDateWithEntries(1), "→"]]) {
             if (!date) continue;
@@ -345,54 +486,120 @@
         return link;
     };
 
+    function entryShareUrl(entry) {
+        const url = new URL(location.href);
+        url.searchParams.set("date", String(entry.date || "").slice(5));
+        url.hash = entryAnchor(entry);
+        return url.href;
+    }
+
+    function buildRow(entry, index) {
+        const row = el("article", `otd-entry otd-entry--${entry.kind || "note"}${index === 0 ? " otd-entry--lead" : ""}`);
+        row.id = entryAnchor(entry);
+        row.style.setProperty("--otd-order", String(index));
+
+        if (entry.sourceUrl) {
+            row.classList.add("is-clickable");
+            row.dataset.sourceUrl = entry.sourceUrl;
+            row.tabIndex = 0;
+            row.setAttribute("role", "link");
+            row.setAttribute("aria-label", `Open source for ${entry.title}`);
+        }
+
+        const year = el("div", "otd-entry-year", entryYear(entry));
+        const body = el("div", "otd-entry-body");
+        const meta = el("div", "otd-entry-meta");
+        const age = ageLabel(entry);
+        if (age) meta.append(el("span", "otd-age", age));
+        if (entry.promotion) meta.append(el("span", "otd-promotion", entry.promotion));
+        meta.append(el("span", `otd-kind otd-kind--${entry.kind || "note"}`, kindLabel(entry.kind)));
+
+        body.append(meta, el("h2", "otd-entry-title", entry.title));
+        if (entry.detail) body.append(el("p", "otd-entry-detail", entry.detail));
+
+        const actions = el("div", "otd-entry-actions");
+        if (entry.sourceUrl) actions.append(externalLink(entry.sourceUrl, "otd-entry-source", `${entry.source || "Source"} ↗`));
+
+        const linkButton = el("button", "otd-entry-link", "Link");
+        linkButton.type = "button";
+        linkButton.dataset.otdEntryLink = entryShareUrl(entry);
+        linkButton.setAttribute("aria-label", `Share link to ${entry.title}`);
+        actions.append(linkButton);
+        body.append(actions);
+
+        const media = mediaBlock(entry, row, index === 0);
+        row.append(year, media, body);
+
+        if (location.hash === `#${row.id}`) row.classList.add("is-targeted");
+        return row;
+    }
+
     function render(animate = true) {
         const matching = entriesForDate(activeDate);
         renderFilters(matching);
-        const visible = activeFilter === "all" ? matching : matching.filter(entry => entry.kind === activeFilter);
+        renderModeControls(matching);
+
+        let pool = activeFilter === "all"
+            ? [...matching]
+            : matching.filter(entry => entry.kind === activeFilter);
+
+        const filteredTotal = pool.length;
+        if (activeMode === "notable") pool = notableSubset(pool);
+        const modeTotal = pool.length;
+        const ordered = sortEntries(pool, activeSort);
+        const displayed = expanded || ordered.length <= COLLAPSE_LIMIT
+            ? ordered
+            : ordered.slice(0, COLLAPSE_LIMIT);
 
         dateDisplay.textContent = formatLong.format(activeDate);
         dateDisplay.setAttribute("datetime", `${activeDate.getFullYear()}-${keyForDate(activeDate)}`);
         if (dateInput) dateInput.value = `${REFERENCE_YEAR}-${keyForDate(activeDate)}`;
-        if (count) count.textContent = activeFilter === "all"
-            ? (matching.length ? `${matching.length} ${matching.length === 1 ? "entry" : "entries"}` : "No entries yet")
-            : `${visible.length} of ${matching.length}`;
+        if (todayButton) todayButton.hidden = keyForDate(activeDate) === keyForDate(localToday());
+
+        if (count) {
+            if (!matching.length) count.textContent = "No entries yet";
+            else if (activeMode === "notable") count.textContent = `${modeTotal} notable of ${filteredTotal}`;
+            else if (activeFilter !== "all") count.textContent = `${filteredTotal} of ${matching.length}`;
+            else count.textContent = `${matching.length} ${matching.length === 1 ? "entry" : "entries"}`;
+        }
 
         renderWeek();
         list.setAttribute("aria-busy", "true");
+
         if (!matching.length) {
             list.replaceChildren(renderEmptyState());
-        } else if (!visible.length) {
+        } else if (!ordered.length) {
             const empty = el("div", "otd-empty");
-            empty.append(el("strong", "", "No entries match this filter."));
+            empty.append(el("strong", "", "No entries match this view."));
             list.replaceChildren(empty);
         } else {
-            const rows = visible.map((entry, index) => {
-                const row = el("article", `otd-entry otd-entry--${entry.kind || "note"}${index === 0 ? " otd-entry--lead" : ""}`);
-                row.style.setProperty("--otd-order", String(index));
-                if (entry.sourceUrl) {
-                    row.classList.add("is-clickable");
-                    row.dataset.sourceUrl = entry.sourceUrl;
-                    row.tabIndex = 0;
-                    row.setAttribute("role", "link");
-                    row.setAttribute("aria-label", `Open source for ${entry.title}`);
-                }
-                const year = el("div", "otd-entry-year", entryYear(entry));
-                const body = el("div", "otd-entry-body");
-                const meta = el("div", "otd-entry-meta");
-                const age = ageLabel(entry);
-                if (age) meta.append(el("span", "otd-age", age));
-                if (entry.promotion) meta.append(el("span", "otd-promotion", entry.promotion));
-                meta.append(el("span", `otd-kind otd-kind--${entry.kind || "note"}`, kindLabel(entry.kind)));
-                body.append(meta, el("h2", "otd-entry-title", entry.title));
-                if (entry.detail) body.append(el("p", "otd-entry-detail", entry.detail));
-                if (entry.sourceUrl) body.append(externalLink(entry.sourceUrl, "otd-entry-source", `${entry.source || "Source"} ↗`));
-                const media = mediaBlock(entry, row, index === 0);
-                row.append(year, media, body);
-                return row;
-            });
-            list.replaceChildren(...rows);
+            const children = displayed.map(buildRow);
+
+            if (ordered.length > COLLAPSE_LIMIT) {
+                const wrap = el("div", "otd-show-more-wrap");
+                const remaining = Math.max(0, ordered.length - COLLAPSE_LIMIT);
+                const button = el("button", "otd-show-more", expanded ? "Show fewer" : `Show ${remaining} more`);
+                button.type = "button";
+                button.dataset.otdMore = expanded ? "less" : "more";
+                wrap.append(button);
+                children.push(wrap);
+            }
+
+            list.replaceChildren(...children);
         }
+
         list.setAttribute("aria-busy", "false");
+
+        if (hashScrollPending && location.hash) {
+            requestAnimationFrame(() => {
+                const target = document.getElementById(location.hash.slice(1));
+                if (target) {
+                    target.classList.add("is-targeted");
+                    target.scrollIntoView({ block: "center", behavior: "auto" });
+                }
+                hashScrollPending = false;
+            });
+        }
 
         if (animate && motionAllowed() && typeof list.animate === "function") {
             list.animate(
@@ -408,7 +615,10 @@
         const wasDeep = list.getBoundingClientRect().top < 0;
         activeDate = nextDate;
         activeFilter = "all";
-        updateUrl();
+        activeMode = "all";
+        expanded = false;
+        hashScrollPending = false;
+        updateUrl(true);
         render(true);
         if (wasDeep) requestAnimationFrame(() => list.scrollIntoView({ behavior: "auto", block: "start" }));
     }
@@ -446,13 +656,36 @@
     }
 
     async function shareActiveDate() {
-        const data = { title: `On This Day in MMA — ${formatLong.format(activeDate)}`, url: location.href };
+        const url = new URL(location.href);
+        url.hash = "";
+        const data = { title: `On This Day in MMA — ${formatLong.format(activeDate)}`, url: url.href };
         if (navigator.share) {
-            try { await navigator.share(data); flashButton(shareButton, "Shared"); return; }
-            catch (error) { if (error?.name === "AbortError") return; }
+            try {
+                await navigator.share(data);
+                flashButton(shareButton, "Shared");
+                return;
+            } catch (error) {
+                if (error?.name === "AbortError") return;
+            }
         }
-        try { await copyText(location.href); flashButton(shareButton, "Copied"); }
+        try { await copyText(url.href); flashButton(shareButton, "Copied"); }
         catch { flashButton(shareButton, "Copy failed"); }
+    }
+
+    async function shareEntry(button) {
+        const url = button?.dataset?.otdEntryLink;
+        if (!url) return;
+        if (navigator.share) {
+            try {
+                await navigator.share({ title: "On This Day in MMA", url });
+                flashButton(button, "Shared");
+                return;
+            } catch (error) {
+                if (error?.name === "AbortError") return;
+            }
+        }
+        try { await copyText(url); flashButton(button, "Copied"); }
+        catch { flashButton(button, "Failed"); }
     }
 
     function randomDay() {
@@ -467,8 +700,13 @@
         if (!dateInput) return;
         try {
             if (typeof dateInput.showPicker === "function") dateInput.showPicker();
-            else { dateInput.focus(); dateInput.click(); }
-        } catch { dateInput.focus(); }
+            else {
+                dateInput.focus();
+                dateInput.click();
+            }
+        } catch {
+            dateInput.focus();
+        }
     }
 
     function openRowSource(row) {
@@ -478,12 +716,39 @@
         if (opened) opened.opener = null;
     }
 
+    function maybeShowShortcutHint() {
+        if (!shortcutHint) return;
+        let seen = false;
+        try { seen = localStorage.getItem(SHORTCUT_HINT_KEY) === "1"; }
+        catch {}
+        if (seen) return;
+
+        shortcutHint.hidden = false;
+        try { localStorage.setItem(SHORTCUT_HINT_KEY, "1"); }
+        catch {}
+        window.setTimeout(() => {
+            shortcutHint.hidden = true;
+        }, 8000);
+    }
+
+    let dockScrollFrame = 0;
+    function updateDockCompact() {
+        dockScrollFrame = 0;
+        if (!dock) return;
+        dock.classList.toggle("is-compact", list.getBoundingClientRect().top < 135);
+    }
+
+    function scheduleDockCompact() {
+        if (dockScrollFrame) return;
+        dockScrollFrame = requestAnimationFrame(updateDockCompact);
+    }
+
     previous?.addEventListener("click", () => shiftDay(-1));
     next?.addEventListener("click", () => shiftDay(1));
     todayButton?.addEventListener("click", () => setActiveDate(localToday()));
     shareButton?.addEventListener("click", shareActiveDate);
     randomButton?.addEventListener("click", randomDay);
-    dateDisplay.addEventListener("dblclick", openDatePicker);
+    dateDisplay.addEventListener("click", openDatePicker);
 
     dateInput?.addEventListener("change", () => {
         const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateInput.value || "");
@@ -498,6 +763,23 @@
         const nextFilter = button.dataset.otdFilter || "all";
         if (nextFilter === activeFilter) return;
         activeFilter = nextFilter;
+        expanded = false;
+        render(true);
+    });
+
+    modeGroup?.addEventListener("click", event => {
+        const button = event.target.closest("[data-otd-mode]");
+        if (!button || !modeGroup.contains(button)) return;
+        const nextMode = button.dataset.otdMode === "notable" ? "notable" : "all";
+        if (nextMode === activeMode) return;
+        activeMode = nextMode;
+        expanded = false;
+        render(true);
+    });
+
+    sortSelect?.addEventListener("change", () => {
+        activeSort = ["newest", "oldest"].includes(sortSelect.value) ? sortSelect.value : "notable";
+        expanded = false;
         render(true);
     });
 
@@ -528,12 +810,37 @@
     }, { passive: false });
 
     list.addEventListener("click", event => {
+        const more = event.target.closest("[data-otd-more]");
+        if (more) {
+            expanded = more.dataset.otdMore === "more";
+            render(true);
+            if (!expanded) requestAnimationFrame(() => list.scrollIntoView({ block: "start", behavior: "auto" }));
+            return;
+        }
+
+        const entryLink = event.target.closest("[data-otd-entry-link]");
+        if (entryLink) {
+            event.preventDefault();
+            event.stopPropagation();
+            shareEntry(entryLink);
+            return;
+        }
+
+        const media = event.target.closest(".otd-entry-media.is-image-ready");
+        if (media && list.contains(media)) {
+            event.preventDefault();
+            event.stopPropagation();
+            openLightbox(media);
+            return;
+        }
+
         const jump = event.target.closest("[data-otd-jump]");
         if (jump) {
             const date = parseKey(jump.dataset.otdJump);
             if (date) setActiveDate(date);
             return;
         }
+
         if (event.target.closest("a, button, input, select, textarea")) return;
         const row = event.target.closest(".otd-entry.is-clickable");
         if (!row || !list.contains(row) || window.getSelection?.().toString().trim()) return;
@@ -541,6 +848,13 @@
     });
 
     list.addEventListener("keydown", event => {
+        const media = event.target.closest(".otd-entry-media.is-image-ready");
+        if (media && event.target === media && ["Enter", " "].includes(event.key)) {
+            event.preventDefault();
+            openLightbox(media);
+            return;
+        }
+
         const row = event.target.closest(".otd-entry.is-clickable");
         if (!row || event.target !== row || !["Enter", " "].includes(event.key)) return;
         event.preventDefault();
@@ -548,8 +862,15 @@
     });
 
     document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && lightbox && !lightbox.hidden) {
+            event.preventDefault();
+            closeLightbox();
+            return;
+        }
+        if (lightbox && !lightbox.hidden) return;
         if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
         if (event.target?.matches?.("input, textarea, select, [contenteditable='true']")) return;
+
         if (/^Arrow(Left|Right)$/.test(event.key)) {
             if (event.target?.closest?.("[data-otd-week]")) return;
             event.preventDefault();
@@ -560,17 +881,23 @@
         }
     });
 
+    window.addEventListener("scroll", scheduleDockCompact, { passive: true });
+    window.addEventListener("resize", scheduleDockCompact, { passive: true });
+
     async function load() {
         const url = widget.dataset.historyUrl;
         if (!url) return;
         widget.classList.add("is-loading");
+
         try {
             const response = await fetch(url, { cache: "default" });
             if (!response.ok) throw new Error(`History request failed: ${response.status}`);
             const data = await response.json();
             dayIndex = buildDayIndex(Array.isArray(data?.entries) ? data.entries : []);
-            updateUrl();
+            updateUrl(false);
             render(false);
+            maybeShowShortcutHint();
+            scheduleDockCompact();
         } catch (error) {
             console.error("On This Day failed to load", error);
             list.replaceChildren(el("p", "otd-empty", "History archive unavailable right now."));
