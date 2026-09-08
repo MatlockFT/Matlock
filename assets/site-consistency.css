@@ -1,0 +1,105 @@
+/* Conservative shared alignment/mobile baseline for top-level site surfaces. */
+
+.site-main,
+.site-main > * {
+    min-width: 0;
+}
+
+:where(
+    .homepage,
+    .archive-page,
+    .news-page,
+    .upcoming-events-page,
+    .event-map-page,
+    .ufc-roster-page,
+    .otd-page,
+    .simple-about-page,
+    .contact-page,
+    .privacy-page,
+    .mma-gallery-page,
+    .media-kit-page
+) {
+    margin-inline: auto;
+    min-width: 0;
+}
+
+:where(
+    .homepage,
+    .archive-page,
+    .news-page,
+    .upcoming-events-page,
+    .event-map-page,
+    .ufc-roster-page,
+    .otd-page
+) :where(section, article, header, footer, div, nav, aside) {
+    min-width: 0;
+}
+
+:where(
+    .homepage,
+    .archive-page,
+    .news-page,
+    .upcoming-events-page,
+    .event-map-page,
+    .ufc-roster-page,
+    .otd-page
+) img {
+    max-width: 100%;
+}
+
+.event-card-meta a,
+.event-map-detail-actions a,
+.event-map-detail-actions button,
+.news-source-chip,
+.news-show-more,
+.otd-control-button,
+.otd-mini-button {
+    max-width: 100%;
+}
+
+.event-card-meta a,
+.event-map-detail-location,
+.event-map-detail-venue,
+.news-matlock-meta {
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 760px) {
+    :where(
+        .homepage,
+        .archive-page,
+        .news-page,
+        .upcoming-events-page,
+        .event-map-page,
+        .ufc-roster-page,
+        .otd-page
+    ) {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .event-card-section-heading,
+    .news-section-heading,
+    .section-header {
+        min-width: 0;
+    }
+
+    .event-card-section-heading > *,
+    .news-section-heading > *,
+    .section-header > * {
+        min-width: 0;
+    }
+
+    .event-map-detail-actions,
+    .prediction-actions,
+    .homepage-intro-actions {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 390px) {
+    .event-card-section-heading,
+    .news-section-heading {
+        gap: .35rem;
+    }
+}
