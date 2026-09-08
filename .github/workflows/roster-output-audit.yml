@@ -2,6 +2,12 @@ name: UFC roster output audit
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/roster-output-audit.yml"
+      - "scripts/validate-ufc-roster-output.mjs"
   workflow_run:
     workflows:
       - Update UFC roster tracker
