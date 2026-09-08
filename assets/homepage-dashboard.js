@@ -56,13 +56,19 @@
             .slice(0, 4);
     };
 
+    const sectionLink = (label, href) => {
+        const link = element('a', 'home-side-link', label);
+        link.href = href;
+        return link;
+    };
+
     function renderNews(data) {
         if (!newsList) return;
         const stories = newsStories(data);
         newsList.replaceChildren();
 
         if (!stories.length) {
-            newsList.append(element('p', 'home-dashboard-loading', 'Latest headlines are available on the News page.'));
+            newsList.append(sectionLink('News →', '/news/'));
             return;
         }
 
@@ -93,10 +99,7 @@
         if (!otdBody) return;
         otdBody.replaceChildren();
         if (!entry) {
-            otdBody.append(element('p', 'home-dashboard-loading', 'Browse the MMA history archive by date.'));
-            const fallbackLink = element('a', 'home-side-link', 'Open history →');
-            fallbackLink.href = '/on-this-day/';
-            otdBody.append(fallbackLink);
+            otdBody.append(sectionLink('History →', '/on-this-day/'));
             return;
         }
 
@@ -106,9 +109,7 @@
         otdBody.append(label, title);
         const detail = entry.detail || entry.description || '';
         if (detail) otdBody.append(element('p', 'home-otd-copy', detail));
-        const link = element('a', 'home-side-link', 'Open the day →');
-        link.href = `/on-this-day/?date=${encodeURIComponent(key || String(entry.date || '').slice(5))}`;
-        otdBody.append(link);
+        otdBody.append(sectionLink('History →', `/on-this-day/?date=${encodeURIComponent(key || String(entry.date || '').slice(5))}`));
     }
 
     async function loadOnThisDay() {
@@ -145,19 +146,12 @@
         if (!rosterBody) return;
         rosterBody.replaceChildren();
         const addition = Array.isArray(data?.additions) ? data.additions[0] : null;
-        if (!addition) {
-            rosterBody.append(element('p', 'home-dashboard-loading', 'The UFC roster tracker is active.'));
-        } else {
-            rosterBody.append(
-                element('span', 'home-roster-label', 'Recent roster addition'),
-                element('h3', 'home-roster-name', fighterName(addition))
-            );
+        if (addition) {
+            rosterBody.append(element('h3', 'home-roster-name', fighterName(addition)));
             const details = [addition.division, addition.record].filter(Boolean).join(' · ');
             if (details) rosterBody.append(element('p', 'home-roster-meta', details));
         }
-        const link = element('a', 'home-side-link', 'Open roster tracker →');
-        link.href = '/ufc-roster/';
-        rosterBody.append(link);
+        rosterBody.append(sectionLink('Roster →', '/ufc-roster/'));
     }
 
     async function loadRoster() {
