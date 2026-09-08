@@ -9,9 +9,12 @@ on:
     paths:
       - ".github/workflows/update-on-this-day-events.yml"
       - "assets/data/on-this-day-event-sources.json"
+      - "assets/data/on-this-day-pancrase-cache.json"
       - "scripts/update-on-this-day-events.mjs"
+      - "scripts/normalize-on-this-day-titles.mjs"
       - "scripts/enrich-on-this-day-images.mjs"
       - "scripts/enrich-on-this-day-content.mjs"
+      - "scripts/enrich-on-this-day-pancrase.mjs"
       - "scripts/curate-on-this-day-events.mjs"
       - "scripts/report-on-this-day-coverage.mjs"
       - "scripts/check-on-this-day.mjs"
@@ -37,6 +40,7 @@ jobs:
       OTD_IMAGE_CONCURRENCY: "1"
       OTD_CONTENT_ENRICH_LIMIT: "80"
       OTD_CONTENT_CONCURRENCY: "1"
+      OTD_PANCRASE_ENRICH_LIMIT: "24"
 
     steps:
       - name: Check out repository
@@ -52,8 +56,10 @@ jobs:
       - name: Check updater syntax
         run: |
           node --check scripts/update-on-this-day-events.mjs
+          node --check scripts/normalize-on-this-day-titles.mjs
           node --check scripts/enrich-on-this-day-images.mjs
           node --check scripts/enrich-on-this-day-content.mjs
+          node --check scripts/enrich-on-this-day-pancrase.mjs
           node --check scripts/curate-on-this-day-events.mjs
           node --check scripts/report-on-this-day-coverage.mjs
           node --check scripts/check-on-this-day.mjs
@@ -61,8 +67,14 @@ jobs:
       - name: Refresh event anniversaries from Wikipedia
         run: node scripts/update-on-this-day-events.mjs
 
+      - name: Normalize generated event titles
+        run: node scripts/normalize-on-this-day-titles.mjs
+
       - name: Add targeted main-event context
         run: node scripts/enrich-on-this-day-content.mjs
+
+      - name: Backfill Pancrase from the official archive
+        run: node scripts/enrich-on-this-day-pancrase.mjs
 
       - name: Prefer posters and event imagery for weak promotions
         run: node scripts/enrich-on-this-day-images.mjs
@@ -81,13 +93,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- assets/data/on-this-day.json assets/data/on-this-day-image-cache.json assets/data/on-this-day-content-cache.json; then
+          if git diff --quiet -- assets/data/on-this-day.json assets/data/on-this-day-image-cache.json assets/data/on-this-day-content-cache.json assets/data/on-this-day-pancrase-cache.json; then
             echo "No On This Day event archive changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- assets/data/on-this-day.json assets/data/on-this-day-image-cache.json assets/data/on-this-day-content-cache.json
+          git add -- assets/data/on-this-day.json assets/data/on-this-day-image-cache.json assets/data/on-this-day-content-cache.json assets/data/on-this-day-pancrase-cache.json
           git commit -m "Refresh On This Day event archive"
           git pull --rebase origin main
           git push origin HEAD:main
