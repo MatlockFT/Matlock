@@ -207,10 +207,22 @@ function cellsForRow(rowHtml) {
     return String(rowHtml || "").match(/<t[dh]\b[^>]*>[\s\S]*?<\/t[dh]>/gi) || [];
 }
 
+function cleanPlace(value) {
+    return clean(value)
+        .replace(/\s+([,.;:!?])/g, "$1")
+        .replace(/,\s*,+/g, ",")
+        .replace(/\.\s*\.+$/g, ".")
+        .replace(/\bU\.S\.\.$/i, "U.S.")
+        .replace(/\bU\.K\.\.$/i, "U.K.")
+        .trim();
+}
+
 function conciseDetail(venue, location) {
-    if (venue && location) return clean(`Held at ${venue} in ${location}.`).slice(0, 240);
-    if (venue) return clean(`Held at ${venue}.`).slice(0, 240);
-    if (location) return clean(`Held in ${location}.`).slice(0, 240);
+    const cleanVenue = cleanPlace(venue);
+    const cleanLocation = cleanPlace(location);
+    if (cleanVenue && cleanLocation) return clean(`Held at ${cleanVenue} in ${cleanLocation}.`).slice(0, 240);
+    if (cleanVenue) return clean(`Held at ${cleanVenue}.`).slice(0, 240);
+    if (cleanLocation) return clean(`Held in ${cleanLocation}.`).slice(0, 240);
     return "";
 }
 
@@ -340,7 +352,7 @@ function eventRowsFromHtml(html, source) {
             date,
             kind: "event",
             promotion: source.promotion,
-            title: `${eventTitle} took place`,
+            title: eventTitle,
             source: "Wikipedia",
             sourceUrl: sourceLink(cells[eventCellIndex], source.page),
             autoKey,

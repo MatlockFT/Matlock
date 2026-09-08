@@ -613,17 +613,22 @@ async function fetchFeed(feed) {
             .map((item, feedRank) => {
                 const title = plainText(item.title);
                 const url = itemLink(item);
-                const publishedAt = itemDate(item);
-                const timestamp = Date.parse(publishedAt);
+                const sourcePublishedAt = itemDate(item);
+                const sourceTimestamp = Date.parse(sourcePublishedAt);
 
                 if (
                     !title ||
                     !url ||
-                    !Number.isFinite(timestamp) ||
-                    timestamp < cutoff
+                    !Number.isFinite(sourceTimestamp) ||
+                    sourceTimestamp < cutoff
                 ) {
                     return null;
                 }
+
+                // Some publisher feeds pre-date stories by hours. Treat those as current,
+                // never as future news, so relative-time UI cannot render "in N hours".
+                const timestamp = Math.min(sourceTimestamp, Date.now());
+                const publishedAt = new Date(timestamp).toISOString();
 
                 return {
                     id: createHash("sha256").update(url).digest("hex").slice(0, 16),
