@@ -20,11 +20,14 @@ function walk(directory) {
 function stripSiteUrl(value) {
     try {
         const parsed = new URL(value);
+        const internalHosts = new Set([
+            'mmamatlock.com',
+            'www.mmamatlock.com',
+            'matlockfighttalk.com',
+            'www.matlockfighttalk.com'
+        ]);
 
-        if (
-            parsed.hostname === 'matlockfighttalk.com' ||
-            parsed.hostname === 'www.matlockfighttalk.com'
-        ) {
+        if (internalHosts.has(parsed.hostname)) {
             return parsed.pathname;
         }
     } catch {
