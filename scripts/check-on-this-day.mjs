@@ -20,9 +20,29 @@ const allowedKinds = new Set([
     "birthday"
 ]);
 const failures = [];
+const warnings = [];
 const seen = new Set();
 const birthdayKeys = new Set();
 const eventKeys = new Set();
+const sourceDateKeys = new Map();
+
+const clean = value => String(value || "").replace(/\s+/g, " ").trim();
+const norm = value => clean(value)
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+
+function punctuationProblems(value) {
+    const text = clean(value);
+    return (
+        /\s+[,.!?;:]/.test(text) ||
+        /[,;:]\s*[,;:]/.test(text) ||
+        /\.\s*\.$/.test(text) ||
+        /\b(?:U\.S|U\.K)\.\.$/i.test(text)
+    );
+}
 
 if (!Number.isInteger(data?.version) || data.version < 1) {
     failures.push("version must be a positive integer");
@@ -52,7 +72,7 @@ if (pageScriptRefs.length !== 1) {
 if (/\bMutationObserver\b/.test(runtime) || /\bIntersectionObserver\b/.test(runtime)) {
     failures.push("stable On This Day runtime must not reintroduce observer-based image/render loops");
 }
-for (const marker of ["COLLAPSE_LIMIT", "significanceScore", "openLightbox", "dataset.otdEntryLink"]) {
+for (const marker of ["COLLAPSE_LIMIT", "significanceScore", "openLightbox", "dataset.otdEntryLink", "classifyImage"]) {
     if (!runtime.includes(marker)) failures.push(`stable On This Day runtime is missing QoL marker: ${marker}`);
 }
 
@@ -78,6 +98,8 @@ for (const [index, entry] of entries.entries()) {
 
     if (!allowedKinds.has(entry?.kind)) failures.push(`${prefix}.kind is invalid`);
     if (typeof entry?.title !== "string" || !entry.title.trim()) failures.push(`${prefix}.title is required`);
+    if (entry?.title && punctuationProblems(entry.title)) failures.push(`${prefix}.title contains malformed punctuation`);
+    if (entry?.promotion && punctuationProblems(entry.promotion)) failures.push(`${prefix}.promotion contains malformed punctuation`);
 
     if (entry?.kind === "birthday") {
         if (typeof entry?.fighter !== "string" || !entry.fighter.trim()) failures.push(`${prefix}.fighter is required for birthday entries`);
@@ -101,20 +123,24 @@ for (const [index, entry] of entries.entries()) {
         }
         if (typeof entry?.promotion !== "string" || !entry.promotion.trim()) failures.push(`${prefix}.promotion is required for generated event entries`);
         if (/\s+took place$/i.test(String(entry?.title || ""))) failures.push(`${prefix}.title must omit the redundant "took place" suffix`);
+
+        const sourceDateKey = `${entry.archiveSource || "unknown"}::${entry.date || ""}::${norm(entry.title)}`;
+        if (sourceDateKeys.has(sourceDateKey)) failures.push(`${prefix} duplicates generated source/date/title at ${sourceDateKeys.get(sourceDateKey)}`);
+        else sourceDateKeys.set(sourceDateKey, prefix);
     }
 
-    if (entry?.detail && entry.detail.length > 240) failures.push(`${prefix}.detail must stay concise (240 characters max)`);
-    if (entry?.detail && /\s+[,.!?;:]/.test(entry.detail)) failures.push(`${prefix}.detail contains spacing before punctuation`);
-    if (entry?.detail && /\.\.$/.test(entry.detail)) failures.push(`${prefix}.detail ends with duplicate punctuation`);
+    if (entry?.detail && entry.detail.length > 320) failures.push(`${prefix}.detail must stay concise (320 characters max)`);
+    if (entry?.detail && punctuationProblems(entry.detail)) failures.push(`${prefix}.detail contains malformed punctuation`);
 
     if (entry?.sourceUrl && !/^https:\/\//i.test(entry.sourceUrl)) failures.push(`${prefix}.sourceUrl must be https`);
     if (entry?.imageUrl && !/^https:\/\//i.test(entry.imageUrl)) failures.push(`${prefix}.imageUrl must be https`);
     if (entry?.imageUrl && (typeof entry.imageAlt !== "string" || !entry.imageAlt.trim())) failures.push(`${prefix}.imageAlt is required when imageUrl is present`);
+    if (entry?.imageAlt && punctuationProblems(entry.imageAlt)) failures.push(`${prefix}.imageAlt contains malformed punctuation`);
     if (entry?.imageCredit && typeof entry.imageCredit !== "string") failures.push(`${prefix}.imageCredit must be a string`);
     if (entry?.imagePosition && !/^\d{1,3}%\s+\d{1,3}%$/.test(entry.imagePosition)) failures.push(`${prefix}.imagePosition must look like "50% 40%"`);
 
-    const entryKey = `${entry?.date || ""}::${entry?.title || ""}`.toLowerCase();
-    if (seen.has(entryKey)) failures.push(`${prefix} duplicates an existing date/title`);
+    const entryKey = `${entry?.date || ""}::${norm(entry?.title)}`;
+    if (seen.has(entryKey)) failures.push(`${prefix} duplicates an existing normalized date/title`);
     seen.add(entryKey);
 }
 
@@ -123,7 +149,8 @@ if (data?.birthdayCount !== undefined && Number(data.birthdayCount) !== birthday
     failures.push(`birthdayCount says ${data.birthdayCount} but ${birthdayCount} birthday entries exist`);
 }
 
-const eventArchiveCount = entries.filter(entry => entry?.generatedBy === "wikipedia-event-index").length;
+const generatedEntries = entries.filter(entry => entry?.generatedBy === "wikipedia-event-index");
+const eventArchiveCount = generatedEntries.length;
 if (data?.eventArchiveCount !== undefined && Number(data.eventArchiveCount) !== eventArchiveCount) {
     failures.push(`eventArchiveCount says ${data.eventArchiveCount} but ${eventArchiveCount} generated event entries exist`);
 }
@@ -152,10 +179,23 @@ if (data?.curationVersion !== undefined && Number(data.curationVersion) < 1) {
     failures.push("curationVersion must be at least 1 when present");
 }
 
+const generatedWithImages = generatedEntries.filter(entry => entry?.imageUrl).length;
+const generatedWithDetails = generatedEntries.filter(entry => entry?.detail).length;
+if (eventArchiveCount) {
+    const imageRate = generatedWithImages / eventArchiveCount;
+    const detailRate = generatedWithDetails / eventArchiveCount;
+    if (imageRate < 0.35) warnings.push(`generated event image coverage is only ${(imageRate * 100).toFixed(1)}%`);
+    if (detailRate < 0.75) warnings.push(`generated event detail coverage is only ${(detailRate * 100).toFixed(1)}%`);
+}
+
+if (warnings.length) {
+    console.warn("On This Day quality warnings:\n- " + warnings.join("\n- "));
+}
 if (failures.length) {
     console.error("On This Day validation failed:\n- " + failures.join("\n- "));
     process.exit(1);
 }
 
 console.log(`On This Day data valid: ${entries.length} entries (${eventArchiveCount} auto events, ${birthdayCount} birthdays)`);
+console.log(`On This Day generated coverage: ${generatedWithImages}/${eventArchiveCount} images, ${generatedWithDetails}/${eventArchiveCount} concise details.`);
 console.log("On This Day runtime regression checks passed: one stable renderer, QoL controls present, observer loops absent, representative event images intact.");
