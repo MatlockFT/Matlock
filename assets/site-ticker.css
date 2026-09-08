@@ -269,13 +269,12 @@
     min-height: 38px;
     align-items: center;
     animation: site-news-scroll var(--site-news-duration, 70s) linear infinite;
+    animation-play-state: running;
     will-change: transform;
 }
 
-.site-news-viewport:hover .site-news-track,
-.site-news-viewport:focus-within .site-news-track {
-    animation-play-state: paused;
-}
+/* Do not pause the ticker simply because the pointer or focus happens to sit
+   over it. Reduced-motion preferences below remain the deliberate stop path. */
 
 .site-news-sequence {
     display: flex;
