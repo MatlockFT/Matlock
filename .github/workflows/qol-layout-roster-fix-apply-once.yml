@@ -1,0 +1,114 @@
+name: One-time homepage alignment and roster fix apply
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/qol-layout-roster-fix-apply-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Apply layout and roster fixes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          def replace_once(path, old, new, label):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              if old not in text:
+                  raise SystemExit(f'{label}: expected text not found in {path}')
+              p.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          replace_once(
+              'index.html',
+              '''        <nav class="home-panel" aria-label="MMA Matlock tools">\n            <header class="home-panel-heading">\n                <h2>Tools</h2>\n            </header>\n            <div class="home-tools">\n                <a class="home-tool-link" href="{{ '/upcoming-events/' | relative_url }}">Fight Cards</a>\n                <a class="home-tool-link" href="{{ '/event-map/' | relative_url }}">Event Map</a>\n                <a class="home-tool-link" href="{{ '/on-this-day/' | relative_url }}">On This Day</a>\n                <a class="home-tool-link" href="{{ '/ufc-roster/' | relative_url }}">UFC Roster</a>\n            </div>\n        </nav>''',
+              '''        <nav class="home-tools-bar" aria-label="MMA Matlock tools">\n            <div class="home-tools">\n                <a class="home-tool-link" href="{{ '/upcoming-events/' | relative_url }}">Fight Cards</a>\n                <a class="home-tool-link" href="{{ '/event-map/' | relative_url }}">Event Map</a>\n                <a class="home-tool-link" href="{{ '/on-this-day/' | relative_url }}">On This Day</a>\n                <a class="home-tool-link" href="{{ '/ufc-roster/' | relative_url }}">UFC Roster</a>\n            </div>\n        </nav>''',
+              'homepage tools block'
+          )
+
+          p = Path('assets/homepage-dashboard.css')
+          css = p.read_text(encoding='utf-8')
+          css = css.replace('''.home-snapshot {\n    display: grid;\n    grid-template-columns: minmax(0, 1.5fr) minmax(280px, .5fr);\n    gap: .5rem;\n    margin-bottom: .85rem;\n}''', '''.home-snapshot {\n    display: grid;\n    grid-template-columns: 1fr;\n    gap: .32rem;\n    margin-bottom: .85rem;\n}''', 1)
+          css = css.replace('align-items: baseline;\n    justify-content: space-between;\n    gap: .55rem;\n    padding: .36rem .5rem;', 'align-items: center;\n    justify-content: space-between;\n    gap: .55rem;\n    min-height: 30px;\n    padding: .34rem .5rem;', 1)
+          css = css.replace('font: 700 .48rem/1.2 "Courier New", monospace;', 'font: 700 .48rem/1 "Courier New", monospace;', 1)
+          css = css.replace('''.home-tools {\n    display: grid;\n    grid-template-columns: repeat(2, minmax(0, 1fr));\n    gap: .28rem;\n    padding: .36rem;\n}\n\n.home-tool-link {\n    min-height: 54px;\n    padding: .38rem;\n}''', '''.home-tools-bar {\n    min-width: 0;\n    border: 1px solid #454545;\n    background: #090909;\n}\n\n.home-tools {\n    display: grid;\n    grid-template-columns: repeat(4, minmax(0, 1fr));\n    gap: .28rem;\n    padding: .3rem;\n}\n\n.home-tool-link {\n    min-height: 42px;\n    padding: 0 .5rem;\n}''', 1)
+          p.write_text(css, encoding='utf-8')
+
+          p = Path('assets/site-consistency.css')
+          text = p.read_text(encoding='utf-8')
+          if '/* Shared optical row alignment */' not in text:
+              text += '''\n\n/* Shared optical row alignment */\n:where(\n    .home-panel-heading,\n    .event-card-section-heading,\n    .news-section-heading,\n    .otd-compact-header,\n    .ufc-roster-section-header\n) {\n    align-items: center;\n}\n\n:where(\n    .home-panel-heading,\n    .event-card-section-heading,\n    .news-section-heading,\n    .otd-compact-header,\n    .ufc-roster-section-header\n) > :where(h2, h3, a, span) {\n    margin-block: 0;\n    line-height: 1;\n}\n\n.navigation-list a {\n    display: inline-flex;\n    min-height: 62px;\n    align-items: center;\n    justify-content: center;\n    padding-top: 0;\n    padding-bottom: 0;\n    line-height: 1;\n}\n\n:where(\n    .home-tool-link,\n    .home-next-actions a,\n    .post-event-context-actions a,\n    .event-map-detail-actions a,\n    .event-map-detail-actions button,\n    .otd-control-button,\n    .otd-mini-button,\n    .news-source-chip,\n    .news-show-more\n) {\n    line-height: 1;\n}\n'''
+          p.write_text(text, encoding='utf-8')
+
+          p = Path('assets/ufc-roster.css')
+          text = p.read_text(encoding='utf-8')
+          text = text.replace('    align-items: baseline;\n    justify-content: space-between;', '    align-items: center;\n    justify-content: space-between;', 1)
+          p.write_text(text, encoding='utf-8')
+
+          p = Path('assets/ufc-roster.js')
+          text = p.read_text(encoding='utf-8')
+          text = text.replace('''    function renderStats(data, additions, removals) {\n        if (activeCount) activeCount.textContent = Number.isFinite(Number(data.activeCount))\n            ? Number(data.activeCount).toLocaleString()\n            : "—";\n        if (addCount) addCount.textContent = String(additions.length);\n        if (removeCount) removeCount.textContent = String(removals.length);\n    }\n\n    function render(data, backfill = []) {\n        const additions = combinedAdditions(data, backfill);\n        const removals = (Array.isArray(data.removals) ? data.removals : []).slice(0, 6);''', '''    function credibleRemovals(data) {\n        return (Array.isArray(data.removals) ? data.removals : [])\n            .filter(fighter =>\n                fighter?.confirmationSource === "ufc-active-absence-confirmed" &&\n                String(fighter?.status || "").trim().toLowerCase() !== "active"\n            )\n            .slice(0, 6);\n    }\n\n    function renderStats(data, additions, removals) {\n        if (activeCount) activeCount.textContent = Number.isFinite(Number(data.activeCount))\n            ? Number(data.activeCount).toLocaleString()\n            : "—";\n        const publishedAdds = Array.isArray(data.additions) ? data.additions.length : 0;\n        if (addCount) addCount.textContent = String(publishedAdds);\n        if (removeCount) removeCount.textContent = String(removals.length);\n    }\n\n    function render(data, backfill = []) {\n        const additions = combinedAdditions(data, backfill);\n        const removals = credibleRemovals(data);''', 1)
+          p.write_text(text, encoding='utf-8')
+
+          p = Path('scripts/update-ufc-roster-v4.mjs')
+          text = p.read_text(encoding='utf-8')
+          text = text.replace('const PENDING_CHECK_LIMIT = 40;\n', 'const PENDING_CHECK_LIMIT = 40;\nconst REMOVAL_CONFIRMATION_MISSES = 3;\n', 1)
+          text = text.replace('''let removals = collectorMatches && Array.isArray(previous?.removals) ? previous.removals : [];\nlet pending =\n    collectorMatches && Array.isArray(previous?.pendingActiveAdditions)\n        ? previous.pendingActiveAdditions\n        : [];''', '''let removals = collectorMatches && Array.isArray(previous?.removals) ? previous.removals : [];\nremovals = removals.filter(item => item?.confirmationSource === "ufc-active-absence-confirmed");\nlet pending =\n    collectorMatches && Array.isArray(previous?.pendingActiveAdditions)\n        ? previous.pendingActiveAdditions\n        : [];\nlet pendingRemovals =\n    collectorMatches && Array.isArray(previous?.pendingRemovals)\n        ? previous.pendingRemovals\n        : [];''', 1)
+          old = '''    for (const url of leftActive) {\n        let details;\n        try {\n            details = await fighterDetails(url);\n        } catch {\n            const slug = new URL(url).pathname.split("/").filter(Boolean).at(-1);\n            details = { name: slug.replaceAll("-", " "), slug, url };\n        }\n        const removal = {\n            ...details,\n            eventId: `${url}|removed|${now}`,\n            eventType: "removed",\n            detectedAt: now\n        };\n        removals.unshift(removal);\n        newlyRemoved.push(removal);\n        seenProfileUrls.add(url);\n    }'''
+          new = '''    const pendingRemovalUrls = new Set(pendingRemovals.map(item => item.url));\n    for (const url of leftActive) {\n        if (pendingRemovalUrls.has(url)) continue;\n        pendingRemovals.push({\n            url,\n            firstMissingAt: now,\n            lastMissingAt: now,\n            misses: 0,\n            lastStatus: ""\n        });\n        pendingRemovalUrls.add(url);\n    }'''
+          if old not in text:
+              raise SystemExit('tracker removal loop not found')
+          text = text.replace(old, new, 1)
+          confirm = '''\n// Confirm departures only after sustained absence; one bad UFC snapshot is not a removal.\nconst remainingPendingRemovals = [];\nfor (const candidate of uniqueByUrl(pendingRemovals)) {\n    if (currentActiveSet.has(candidate.url)) continue;\n    const updated = { ...candidate, misses: Number(candidate.misses || 0) + 1, lastMissingAt: now };\n    if (updated.misses < REMOVAL_CONFIRMATION_MISSES) {\n        remainingPendingRemovals.push(updated);\n        continue;\n    }\n    try {\n        const details = await fighterDetails(candidate.url);\n        if (!details.status || details.status === "Active") {\n            remainingPendingRemovals.push({ ...updated, lastStatus: details.status || "Unknown", lastCheckedAt: now });\n            continue;\n        }\n        const detectedAt = candidate.firstMissingAt || now;\n        const removal = {\n            ...details,\n            eventId: `${candidate.url}|removed|${detectedAt}`,\n            eventType: "removed",\n            detectedAt,\n            confirmedInactiveAt: now,\n            confirmationSource: "ufc-active-absence-confirmed",\n            missingSnapshots: updated.misses\n        };\n        removals.unshift(removal);\n        newlyRemoved.push(removal);\n        seenProfileUrls.add(candidate.url);\n    } catch (error) {\n        remainingPendingRemovals.push({ ...updated, lastCheckedAt: now });\n        console.warn(`Could not confirm removal candidate ${candidate.url}: ${error.message}`);\n    }\n}\npendingRemovals = uniqueByUrl(remainingPendingRemovals);\n'''
+          anchor = '// Keep an unconfirmed entrant for as long as UFC keeps it in the Active set.\n'
+          if anchor not in text:
+              raise SystemExit('tracker pending anchor not found')
+          text = text.replace(anchor, confirm + '\n' + anchor, 1)
+          text = text.replace('    version: 7,\n    collectorId: COLLECTOR_ID,', '    version: 8,\n    collectorId: COLLECTOR_ID,', 1)
+          text = text.replace('''    removals,\n    pendingActiveAdditions: pending\n};''', '''    removals,\n    pendingActiveAdditions: pending,\n    pendingRemovals\n};''', 1)
+          text = text.replace('    version: 7,\n    collectorId: COLLECTOR_ID,', '    version: 8,\n    collectorId: COLLECTOR_ID,', 1)
+          text = text.replace('''        "Snapshots UFC.com's hidden Active athlete collection (status:23) and compares it with the previous verified snapshot. New entrants, including returning fighters whose existing UFC profile re-enters the Active set, are published only after their UFC profile also reports Status: Active. Detection time is the first tracker run that observed the change, not a contract-signing timestamp.",''', '''        "Snapshots UFC.com's hidden Active athlete collection (status:23) and compares it with the previous verified snapshot. Additions are confirmed through the existing roster sensors. Departures require three consecutive missing Active snapshots plus a current UFC profile status that no longer reports Active. Detection time is tracker observation time, not a contract transaction timestamp.",''', 1)
+          p.write_text(text, encoding='utf-8')
+
+          p = Path('_config.yml')
+          cfg = p.read_text(encoding='utf-8')
+          m = re.search(r'(?m)^asset_version: "(\d+)"$', cfg)
+          if not m: raise SystemExit('asset_version not found')
+          version = int(m.group(1))
+          cfg = cfg[:m.start(1)] + str(version + 1) + cfg[m.end(1):]
+          p.write_text(cfg, encoding='utf-8')
+          print(f'asset_version {version} -> {version + 1}')
+          PY
+
+      - name: Validate
+        run: |
+          set -euo pipefail
+          node --check assets/ufc-roster.js
+          node --check scripts/update-ufc-roster-v4.mjs
+          grep -q 'class="home-tools-bar"' index.html
+          ! grep -q '<h2>Tools</h2>' index.html
+          grep -q 'Shared optical row alignment' assets/site-consistency.css
+          grep -q 'REMOVAL_CONFIRMATION_MISSES = 3' scripts/update-ufc-roster-v4.mjs
+          grep -q 'ufc-active-absence-confirmed' assets/ufc-roster.js
+
+      - name: Commit
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html assets/homepage-dashboard.css assets/site-consistency.css assets/ufc-roster.css assets/ufc-roster.js scripts/update-ufc-roster-v4.mjs _config.yml
+          git commit -m "Fix homepage alignment and roster departure validation"
+          git pull --rebase origin main
+          git push origin HEAD:main
