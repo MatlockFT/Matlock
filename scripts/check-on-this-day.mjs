@@ -121,12 +121,13 @@ if (data?.eventArchiveSources !== undefined) {
     }
 }
 
+const normalizedEventTitle = value => String(value || "").replace(/\s+took place$/i, "").trim();
 const imageRegressionTitles = [
-    "UFC 228: Woodley vs. Till took place",
-    "UFC 75: Champion vs. Champion took place"
+    "UFC 228: Woodley vs. Till",
+    "UFC 75: Champion vs. Champion"
 ];
 for (const title of imageRegressionTitles) {
-    const entry = entries.find(item => item?.title === title);
+    const entry = entries.find(item => normalizedEventTitle(item?.title) === title);
     if (!entry) failures.push(`regression fixture missing: ${title}`);
     else if (!entry.imageUrl) failures.push(`regression fixture lost its image: ${title}`);
 }
