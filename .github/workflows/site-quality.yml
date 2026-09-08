@@ -58,6 +58,7 @@ jobs:
           node --check scripts/update-fighter-birthdays.mjs
           node --check scripts/update-on-this-day-events.mjs
           node --check scripts/enrich-on-this-day-images.mjs
+          node --check scripts/verify-on-this-day-event-images.mjs
           node --check scripts/enrich-on-this-day-content.mjs
           node --check scripts/curate-on-this-day-events.mjs
           node --check scripts/report-on-this-day-coverage.mjs
@@ -83,6 +84,9 @@ jobs:
 
       - name: Check Event Map poster sanitizer behavior
         run: node scripts/sanitize-event-map-posters.mjs --self-test
+
+      - name: Check On This Day event-image verifier behavior
+        run: node scripts/verify-on-this-day-event-images.mjs --self-test
 
       - name: Check first-paint shell invariants
         run: |
