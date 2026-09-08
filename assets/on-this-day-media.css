@@ -1,10 +1,38 @@
-/* Full On This Day archive: show the complete source image.
-   The fallback keeps a fixed thumbnail shape while an image is loading, but once
-   real artwork is available its own aspect ratio drives the card. Tall posters
-   may grow vertically; very tall art is contained inside a matte instead of cropped. */
+/* Full On This Day archive: the artwork controls its own shape.
+   Posters stay tall, landscape photos stay wide, and no-image entries become
+   typography-led instead of pretending every source is a 16:9 thumbnail. */
 
 .otd-page .otd-entry {
-    grid-template-columns: 78px minmax(200px, 270px) minmax(0, 1fr);
+    grid-template-columns: 78px minmax(220px, 285px) minmax(0, 1fr);
+    transition:
+        background-color 180ms ease,
+        border-color 180ms ease,
+        grid-template-columns 220ms var(--otd-ease, ease);
+}
+
+.otd-page .otd-entry.is-media-poster {
+    grid-template-columns: 78px minmax(170px, 225px) minmax(0, 1fr);
+    contain-intrinsic-size: 360px;
+}
+
+.otd-page .otd-entry.is-media-portrait {
+    grid-template-columns: 78px minmax(190px, 245px) minmax(0, 1fr);
+    contain-intrinsic-size: 330px;
+}
+
+.otd-page .otd-entry.is-media-square {
+    grid-template-columns: 78px minmax(215px, 280px) minmax(0, 1fr);
+    contain-intrinsic-size: 280px;
+}
+
+.otd-page .otd-entry.is-media-landscape {
+    grid-template-columns: 78px minmax(285px, 375px) minmax(0, 1fr);
+    contain-intrinsic-size: 235px;
+}
+
+.otd-page .otd-entry.is-media-wide {
+    grid-template-columns: 78px minmax(330px, 430px) minmax(0, 1fr);
+    contain-intrinsic-size: 220px;
 }
 
 .otd-page .otd-entry-media.is-image-ready {
@@ -17,7 +45,7 @@
         #090909;
 }
 
-/* The archive image is the content, not a decorative crop. */
+/* Archive images are content. Never crop them to fit a decorative frame. */
 .otd-page .otd-entry-media.is-image-ready::after {
     display: none;
 }
@@ -26,7 +54,8 @@
     display: block;
     width: 100%;
     height: auto;
-    max-height: 420px;
+    max-width: 100%;
+    max-height: none;
     margin: 0 auto;
     object-fit: contain;
     object-position: center;
@@ -38,6 +67,24 @@
 .otd-page .otd-entry:hover .otd-entry-media.is-image-ready img {
     filter: saturate(1) contrast(1.025) brightness(1);
     transform: none;
+}
+
+.otd-page .otd-entry.is-media-poster .otd-entry-body,
+.otd-page .otd-entry.is-media-portrait .otd-entry-body,
+.otd-page .otd-entry.is-media-square .otd-entry-body {
+    align-self: center;
+}
+
+.otd-page .otd-entry.is-media-landscape .otd-entry-body,
+.otd-page .otd-entry.is-media-wide .otd-entry-body {
+    align-self: start;
+    padding-top: 0.12rem;
+}
+
+/* A little extra room for wide event art without making the copy feel detached. */
+.otd-page .otd-entry.is-media-wide .otd-entry-title,
+.otd-page .otd-entry.is-media-landscape .otd-entry-title {
+    max-width: 650px;
 }
 
 /* Keep the credit outside the artwork so it never covers poster text or faces. */
@@ -53,44 +100,162 @@
     text-align: right;
 }
 
-/* Do not let the hover treatment visually clip the newly preserved edges. */
 .otd-page .otd-entry:hover .otd-entry-media.is-image-ready {
     transform: translateY(-1px);
 }
 
+/* If the remote image really fails, stop showing an empty fake thumbnail.
+   Give the year/title more presence and let the entry read like an archive record. */
+.otd-page .otd-entry.is-media-fallback {
+    grid-template-columns: 78px minmax(0, 1fr);
+    min-height: 138px;
+    contain-intrinsic-size: 150px;
+}
+
+.otd-page .otd-entry.is-media-fallback .otd-entry-media {
+    display: none;
+}
+
+.otd-page .otd-entry.is-media-fallback .otd-entry-body {
+    grid-column: 2;
+    align-self: center;
+    max-width: 860px;
+    padding: 0.18rem 0 0.42rem;
+}
+
+.otd-page .otd-entry.is-media-fallback .otd-entry-title {
+    max-width: 800px;
+    margin-top: 0.5rem;
+    font-size: clamp(1.3rem, 2.35vw, 1.86rem);
+    line-height: 1.08;
+}
+
+.otd-page .otd-entry.is-media-fallback .otd-entry-year {
+    font-size: clamp(1.12rem, 2vw, 1.48rem);
+}
+
 @media (max-width: 980px) {
-    .otd-page .otd-entry {
-        grid-template-columns: 66px minmax(180px, 230px) minmax(0, 1fr);
+    .otd-page .otd-entry,
+    .otd-page .otd-entry.is-media-square {
+        grid-template-columns: 66px minmax(200px, 255px) minmax(0, 1fr);
+    }
+
+    .otd-page .otd-entry.is-media-poster {
+        grid-template-columns: 66px minmax(160px, 205px) minmax(0, 1fr);
+    }
+
+    .otd-page .otd-entry.is-media-portrait {
+        grid-template-columns: 66px minmax(175px, 220px) minmax(0, 1fr);
+    }
+
+    .otd-page .otd-entry.is-media-landscape {
+        grid-template-columns: 66px minmax(245px, 320px) minmax(0, 1fr);
+    }
+
+    .otd-page .otd-entry.is-media-wide {
+        grid-template-columns: 66px minmax(275px, 350px) minmax(0, 1fr);
+    }
+
+    .otd-page .otd-entry.is-media-fallback {
+        grid-template-columns: 66px minmax(0, 1fr);
     }
 }
 
 @media (max-width: 760px) {
-    .otd-page .otd-entry {
+    .otd-page .otd-entry,
+    .otd-page .otd-entry.is-media-poster,
+    .otd-page .otd-entry.is-media-portrait,
+    .otd-page .otd-entry.is-media-square,
+    .otd-page .otd-entry.is-media-landscape,
+    .otd-page .otd-entry.is-media-wide,
+    .otd-page .otd-entry.is-media-fallback {
         grid-template-columns: 52px minmax(0, 1fr);
+        contain-intrinsic-size: 380px;
+    }
+
+    .otd-page .otd-entry-year {
+        grid-column: 1;
+        grid-row: 1 / 3;
     }
 
     .otd-page .otd-entry-media.is-image-ready {
-        width: min(100%, 520px);
-        max-width: 100%;
+        grid-column: 2;
+        grid-row: 1;
         justify-self: start;
+        max-width: 100%;
     }
 
-    .otd-page .otd-entry-media.is-image-ready img {
-        max-height: 460px;
+    .otd-page .otd-entry.is-media-poster .otd-entry-media.is-image-ready {
+        width: min(74vw, 300px);
+    }
+
+    .otd-page .otd-entry.is-media-portrait .otd-entry-media.is-image-ready {
+        width: min(82vw, 340px);
+    }
+
+    .otd-page .otd-entry.is-media-square .otd-entry-media.is-image-ready {
+        width: min(100%, 420px);
+    }
+
+    .otd-page .otd-entry.is-media-landscape .otd-entry-media.is-image-ready,
+    .otd-page .otd-entry.is-media-wide .otd-entry-media.is-image-ready {
+        width: min(100%, 560px);
+    }
+
+    .otd-page .otd-entry-body,
+    .otd-page .otd-entry.is-media-poster .otd-entry-body,
+    .otd-page .otd-entry.is-media-portrait .otd-entry-body,
+    .otd-page .otd-entry.is-media-square .otd-entry-body,
+    .otd-page .otd-entry.is-media-landscape .otd-entry-body,
+    .otd-page .otd-entry.is-media-wide .otd-entry-body {
+        grid-column: 2;
+        grid-row: 2;
+        align-self: start;
+        padding-top: 0.05rem;
+    }
+
+    .otd-page .otd-entry.is-media-fallback {
+        min-height: 118px;
+    }
+
+    .otd-page .otd-entry.is-media-fallback .otd-entry-body {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: start;
+        padding-top: 0;
+    }
+
+    .otd-page .otd-entry.is-media-fallback .otd-entry-year {
+        grid-row: 1;
+    }
+
+    .otd-page .otd-entry.is-media-fallback .otd-entry-title {
+        font-size: clamp(1.18rem, 5vw, 1.48rem);
     }
 }
 
 @media (max-width: 420px) {
-    .otd-page .otd-entry {
+    .otd-page .otd-entry,
+    .otd-page .otd-entry.is-media-poster,
+    .otd-page .otd-entry.is-media-portrait,
+    .otd-page .otd-entry.is-media-square,
+    .otd-page .otd-entry.is-media-landscape,
+    .otd-page .otd-entry.is-media-wide,
+    .otd-page .otd-entry.is-media-fallback {
         grid-template-columns: 46px minmax(0, 1fr);
     }
 
-    .otd-page .otd-entry-media.is-image-ready img {
-        max-height: 430px;
+    .otd-page .otd-entry.is-media-poster .otd-entry-media.is-image-ready {
+        width: min(76vw, 280px);
+    }
+
+    .otd-page .otd-entry.is-media-portrait .otd-entry-media.is-image-ready {
+        width: min(80vw, 315px);
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .otd-page .otd-entry,
     .otd-page .otd-entry-media.is-image-ready img,
     .otd-page .otd-entry:hover .otd-entry-media.is-image-ready img {
         transition: none !important;
@@ -98,6 +263,7 @@
     }
 }
 
+html.reduce-motion .otd-page .otd-entry,
 html.reduce-motion .otd-page .otd-entry-media.is-image-ready img,
 html.reduce-motion .otd-page .otd-entry:hover .otd-entry-media.is-image-ready img {
     transition: none !important;
