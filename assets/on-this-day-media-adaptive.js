@@ -11,15 +11,17 @@
         "is-media-fallback"
     ];
 
+    const MEDIA_MODE_CLASSES = [
+        "otd-entry-media--poster",
+        "otd-entry-media--portrait",
+        "otd-entry-media--square",
+        "otd-entry-media--landscape",
+        "otd-entry-media--wide"
+    ];
+
     function clearModes(row, media) {
         row?.classList.remove(...MODE_CLASSES);
-        media?.classList.remove(
-            "otd-entry-media--poster",
-            "otd-entry-media--portrait",
-            "otd-entry-media--square",
-            "otd-entry-media--landscape",
-            "otd-entry-media--wide"
-        );
+        media?.classList.remove(...MEDIA_MODE_CLASSES);
     }
 
     function classifyImage(image) {
@@ -35,18 +37,28 @@
         return "landscape";
     }
 
+    function imageModeIsCurrent(row, media, mode) {
+        return row.dataset.mediaMode === mode
+            && row.classList.contains(`is-media-${mode}`)
+            && media.classList.contains(`otd-entry-media--${mode}`);
+    }
+
+    function fallbackModeIsCurrent(row) {
+        return row.dataset.mediaMode === "fallback"
+            && row.classList.contains("is-media-fallback");
+    }
+
     function applyMediaMode(media) {
-        if (!(media instanceof HTMLElement)) return;
+        if (!(media instanceof HTMLElement) || !media.matches(".otd-entry-media")) return;
         const row = media.closest(".otd-entry");
         if (!row) return;
 
         if (media.classList.contains("is-image-ready")) {
             const image = media.querySelector("img");
-            if (!image) return;
-            if (!image.complete || !image.naturalWidth || !image.naturalHeight) return;
+            if (!image || !image.complete || !image.naturalWidth || !image.naturalHeight) return;
 
             const mode = classifyImage(image);
-            if (!mode) return;
+            if (!mode || imageModeIsCurrent(row, media, mode)) return;
 
             clearModes(row, media);
             row.classList.add(`is-media-${mode}`);
@@ -59,6 +71,7 @@
         }
 
         if (media.classList.contains("is-fallback") && !media.classList.contains("is-image-loading")) {
+            if (fallbackModeIsCurrent(row)) return;
             clearModes(row, media);
             row.classList.add("is-media-fallback");
             row.dataset.mediaMode = "fallback";
@@ -81,7 +94,9 @@
     const observer = new MutationObserver(records => {
         for (const record of records) {
             if (record.type === "attributes") {
-                applyMediaMode(record.target);
+                if (record.target instanceof HTMLElement && record.target.matches(".otd-entry-media")) {
+                    applyMediaMode(record.target);
+                }
                 continue;
             }
 
