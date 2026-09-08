@@ -18,19 +18,24 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 3
 
       - name: Recover and run hardening patch
         shell: bash
         run: |
           set -euo pipefail
-          git show HEAD^:.github/workflows/event-map-hardening-once.yml > /tmp/previous-hardening.yml
+          git show 5a217ecd05ed5ca673d467042d6df549ee9ce65e:.github/workflows/event-map-hardening-once.yml > /tmp/previous-hardening.yml
           python3 - <<'PY'
           from pathlib import Path
           lines = Path('/tmp/previous-hardening.yml').read_text(encoding='utf-8').splitlines()
           start = next(i for i, line in enumerate(lines) if "python3 - <<'PY'" in line) + 1
           end = next(i for i in range(start, len(lines)) if lines[i].strip() == 'PY')
           body = '\n'.join(line[10:] if line.startswith('          ') else line for line in lines[start:end]) + '\n'
+          needle = "text = replace_once(text, old_cluster_loop, new_cluster_loop, 'cluster detail rows')"
+          replacement = """pattern_cluster_rows = re.compile(r\"        ordered\\.forEach\\(event => \\{.*?\\n        \\}\\);\\n    \\}\\n\\n    function scrollDetailOnMobile\", re.S)\n          text, count = pattern_cluster_rows.subn(new_cluster_loop + \"\\n    function scrollDetailOnMobile\", text, count=1)\n          if count != 1:\n              raise SystemExit('Patch target not found: cluster detail rows')"""
+          if needle not in body:
+              raise SystemExit('Could not locate cluster-row patch operation')
+          body = body.replace(needle, replacement, 1)
           Path('/tmp/event-map-hardening.py').write_text(body, encoding='utf-8')
           PY
           python3 /tmp/event-map-hardening.py
