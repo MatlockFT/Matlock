@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 1,
-  "updatedAt": "2026-09-08T21:52:36.823Z",
+  "updatedAt": "2026-09-08T23:17:36.610Z",
   "fighters": {
     "船木誠勝": {
       "checkedAt": "2026-09-08T07:03:33.069Z",
@@ -338,6 +338,104 @@
       "status": "resolved",
       "wikidataId": "Q2717516",
       "englishName": "Ricardo Almeida"
+    },
+    "佐々木有生": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "resolved",
+      "wikidataId": "Q8060656",
+      "englishName": "Yuki Sasaki (mixed martial artist)"
+    },
+    "kei山宮": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "resolved",
+      "wikidataId": "Q6383637",
+      "englishName": "Keiichiro Yamamiya"
+    },
+    "ニルソン・デ・カストロ": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "ジョシュ・バーネット": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "resolved",
+      "wikidataId": "Q2407490",
+      "englishName": "Josh Barnett"
+    },
+    "花澤大介13": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "resolved",
+      "wikidataId": "Q11615524",
+      "englishName": "Daisuke Hanazawa"
+    },
+    "デビッド・テレル": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "resolved",
+      "wikidataId": "Q5240320",
+      "englishName": "David Terrell (fighter)"
+    },
+    "三崎和雄": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "resolved",
+      "wikidataId": "Q2699043",
+      "englishName": "Kazuo Misaki"
+    },
+    "前田吉朗": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "resolved",
+      "wikidataId": "Q8056267",
+      "englishName": "Yoshiro Maeda"
+    },
+    "アレッシャンドリ・ソッカ": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "スティーブ・ヒース": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "resolved",
+      "wikidataId": "Q1529857",
+      "englishName": "Steve Hislop"
+    },
+    "キース・ロッケル": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "ロン・ウォーターマ": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "resolved",
+      "wikidataId": "Q4352535",
+      "englishName": "Ron Waterman"
+    },
+    "高森啓吾": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "resolved",
+      "wikidataId": "Q22119284",
+      "englishName": "Keigo Takamori"
+    },
+    "シャノン“ザ・キャノン”リッチ": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "resolved",
+      "wikidataId": "Q7488938",
+      "englishName": "Shannon Ritch"
+    },
+    "フレジソン・パイシャオ": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "resolved",
+      "wikidataId": "Q5499582",
+      "englishName": "Fredson Paixão"
+    },
+    "アンソニー“辰治”ネツラー": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "岡見勇信": {
+      "checkedAt": "2026-09-08T23:17:36.610Z",
+      "status": "resolved",
+      "wikidataId": "Q2703841",
+      "englishName": "Yushin Okami"
     }
   },
   "entries": {
@@ -2865,6 +2963,458 @@
         "status": "commons-headliner-image",
         "fighterName": "Ricardo Almeida",
         "imageFileTitle": "File:Ricardo Almeida after a teaching session cropped.jpg"
+      }
+    },
+    "pancrase:2003-03-08:pancrase-hybrid-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-main-event",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2003/0308.html"
+      }
+    },
+    "pancrase:2003-04-12:pancrase-hybrid-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2003/0412.html",
+        "rawNames": [
+          "ヒカルド・アルメイダ",
+          "佐々木有生"
+        ],
+        "englishNames": [
+          "Ricardo Almeida",
+          "Yuki Sasaki (mixed martial artist)"
+        ],
+        "mainEvent": "Ricardo Almeida vs. Yuki Sasaki (mixed martial artist)"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Ricardo Almeida",
+        "imageFileTitle": "File:Ricardo Almeida after a teaching session cropped.jpg"
+      }
+    },
+    "pancrase:2003-05-18:pancrase-hybrid-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2003/0518.html",
+        "rawNames": [
+          "菊田早苗",
+          "近藤有己"
+        ],
+        "englishNames": [
+          "Sanae Kikuta",
+          "Yuki Kondo"
+        ],
+        "mainEvent": "Sanae Kikuta vs. Yuki Kondo"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2003-06-07:pancrase-hybrid-6": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2003/0607.html",
+        "rawNames": [
+          "KEI山宮",
+          "ニルソン・デ・カストロ"
+        ],
+        "englishNames": [
+          "Keiichiro Yamamiya",
+          "ニルソン・デ・カストロ"
+        ],
+        "mainEvent": "Keiichiro Yamamiya vs. ニルソン・デ・カストロ"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2003-06-22:pancrase-hybrid-7": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2003/0622.html",
+        "rawNames": [
+          "稲垣克臣",
+          "國奥麒樹真"
+        ],
+        "englishNames": [
+          "Katsuomi Inagaki",
+          "Kiuma Kunioku"
+        ],
+        "mainEvent": "Katsuomi Inagaki vs. Kiuma Kunioku"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2003-07-27:pancrase-2003-neo-blood-tournament-opening-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2003/0727.html"
+      }
+    },
+    "pancrase:2003-07-27:pancrase-2003-neo-blood-tournament-second-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2003/0727.html"
+      }
+    },
+    "pancrase:2003-08-31:pancrase-10th-anniversary-show": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2003/0831.html",
+        "rawNames": [
+          "近藤有己",
+          "ジョシュ・バーネット"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Josh Barnett"
+        ],
+        "mainEvent": "Yuki Kondo vs. Josh Barnett"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Josh Barnett",
+        "imageFileTitle": "File:Josh Barnett by Gage Skidmore.jpg"
+      }
+    },
+    "pancrase:2003-10-04:pancrase-hybrid-8": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2003/1004.html",
+        "rawNames": [
+          "伊藤崇文",
+          "花澤大介13"
+        ],
+        "englishNames": [
+          "Takafumi Itō",
+          "Daisuke Hanazawa"
+        ],
+        "mainEvent": "Takafumi Itō vs. Daisuke Hanazawa"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2003-10-31:pancrase-hybrid-9": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2003/1031.html",
+        "rawNames": [
+          "郷野聡寛",
+          "渡辺大介"
+        ],
+        "englishNames": [
+          "Akihiro Gono",
+          "Daisuke Watanabe"
+        ],
+        "mainEvent": "Akihiro Gono vs. Daisuke Watanabe"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Daisuke Watanabe",
+        "imageFileTitle": "File:Tomoaki Watanabe Yuko Noguchi Kim Jung Hoon and Daisuke Tsuda 20100811 1.jpg"
+      }
+    },
+    "pancrase:2003-11-30:pancrase-hybrid-10": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2003/1130.html",
+        "rawNames": [
+          "菊田早苗",
+          "近藤有己"
+        ],
+        "englishNames": [
+          "Sanae Kikuta",
+          "Yuki Kondo"
+        ],
+        "mainEvent": "Sanae Kikuta vs. Yuki Kondo"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2003-12-21:pancrase-hybrid-11": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2003/1221.html",
+        "rawNames": [
+          "佐々木有生",
+          "デビッド・テレル"
+        ],
+        "englishNames": [
+          "Yuki Sasaki (mixed martial artist)",
+          "David Terrell (fighter)"
+        ],
+        "mainEvent": "Yuki Sasaki (mixed martial artist) vs. David Terrell (fighter)"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2004-02-06:pancrase-brave-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2004/0206.html",
+        "rawNames": [
+          "國奥麒樹真",
+          "三崎和雄"
+        ],
+        "englishNames": [
+          "Kiuma Kunioku",
+          "Kazuo Misaki"
+        ],
+        "mainEvent": "Kiuma Kunioku vs. Kazuo Misaki"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2004-02-15:pancrase-brave-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2004/0215.html",
+        "rawNames": [
+          "前田吉朗",
+          "アレッシャンドリ・ソッカ"
+        ],
+        "englishNames": [
+          "Yoshiro Maeda",
+          "アレッシャンドリ・ソッカ"
+        ],
+        "mainEvent": "Yoshiro Maeda vs. アレッシャンドリ・ソッカ"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2004-03-29:pancrase-brave-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2004/0329.html",
+        "rawNames": [
+          "近藤有己",
+          "スティーブ・ヒース"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Steve Hislop"
+        ],
+        "mainEvent": "Yuki Kondo vs. Steve Hislop"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Steve Hislop",
+        "imageFileTitle": "File:The Steve Hislop statue in Wilton Lodge Park - geograph.org.uk - 754804.jpg"
+      }
+    },
+    "pancrase:2004-04-23:pancrase-brave-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2004/0423.html",
+        "rawNames": [
+          "菊田早苗",
+          "キース・ロッケル"
+        ],
+        "englishNames": [
+          "Sanae Kikuta",
+          "キース・ロッケル"
+        ],
+        "mainEvent": "Sanae Kikuta vs. キース・ロッケル"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2004-05-02:pancrase-2004-neo-blood-tournament-eliminations": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-main-event",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2004/0502.html"
+      }
+    },
+    "pancrase:2004-05-28:pancrase-brave-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2004/0528.html",
+        "rawNames": [
+          "ロン・ウォーターマ",
+          "高森啓吾"
+        ],
+        "englishNames": [
+          "Ron Waterman",
+          "Keigo Takamori"
+        ],
+        "mainEvent": "Ron Waterman vs. Keigo Takamori"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2004-06-22:pancrase-brave-6": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2004/0622.html",
+        "rawNames": [
+          "近藤有己",
+          "シャノン“ザ・キャノン”リッチ"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Shannon Ritch"
+        ],
+        "mainEvent": "Yuki Kondo vs. Shannon Ritch"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2004-07-25:pancrase-2004-neo-blood-tournament-final": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2004/0725.html"
+      }
+    },
+    "pancrase:2004-07-25:pancrase-2004-neo-blood-tournament-semifinals": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2004/0725.html"
+      }
+    },
+    "pancrase:2004-08-22:pancrase-brave-7": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2004/0822.html",
+        "rawNames": [
+          "前田吉朗",
+          "フレジソン・パイシャオ"
+        ],
+        "englishNames": [
+          "Yoshiro Maeda",
+          "Fredson Paixão"
+        ],
+        "mainEvent": "Yoshiro Maeda vs. Fredson Paixão"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2004-09-24:pancrase-brave-8": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2004/0924.html",
+        "rawNames": [
+          "高森啓吾",
+          "アンソニー“辰治”ネツラー"
+        ],
+        "englishNames": [
+          "Keigo Takamori",
+          "アンソニー“辰治”ネツラー"
+        ],
+        "mainEvent": "Keigo Takamori vs. アンソニー“辰治”ネツラー"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2004-10-12:pancrase-brave-9": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2004/1012.html",
+        "rawNames": [
+          "石川英司",
+          "岡見勇信"
+        ],
+        "englishNames": [
+          "Eiji Ishikawa",
+          "Yushin Okami"
+        ],
+        "mainEvent": "Eiji Ishikawa vs. Yushin Okami"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T23:17:36.610Z",
+        "status": "no-headliner-image"
       }
     }
   }
