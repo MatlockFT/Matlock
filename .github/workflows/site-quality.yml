@@ -46,6 +46,7 @@ jobs:
           node --check assets/post-event-context.js
           node --check assets/on-this-day.js
           node --check assets/on-this-day-stable.js
+          node --check assets/ufc-roster.js
           node --check assets/event-map-v2.js
           node --check assets/event-map-enhancements.js
           node --check assets/upcoming-events-jump.js
@@ -92,7 +93,15 @@ jobs:
           grep -q 'height="640"' _layouts/default.html
           grep -q "site-live-strip-reserve" assets/site-shell.css
           grep -q "otd-list:empty" assets/site-shell.css
-          grep -q "min-height: 104px" assets/ufc-roster.css
+          grep -q "grid-template-columns: repeat(2, minmax(0, 1fr))" assets/ufc-roster.css
+          grep -q "data-roster-active-count" ufc-roster.html
+          grep -q "data-roster-removals" ufc-roster.html
+          grep -q "is-portrait" assets/on-this-day.js
+          grep -q "animation-play-state: paused !important" assets/site-ticker.css
+          if grep -q 'data-news-refresh' news.html || grep -q 'data-news-status' news.html; then
+            echo "News page must not expose manual refresh/update-status clutter"
+            exit 1
+          fi
           grep -q "/assets/breakdowns.css" breakdowns.html
           grep -q 'fetchpriority="high"' breakdowns.html
           grep -q "/assets/on-this-day-stable.js" on-this-day.html
