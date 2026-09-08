@@ -18,7 +18,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 4
+          fetch-depth: 6
 
       - name: Recover and run hardening patch
         shell: bash
@@ -31,11 +31,19 @@ jobs:
           start = next(i for i, line in enumerate(lines) if "python3 - <<'PY'" in line) + 1
           end = next(i for i in range(start, len(lines)) if lines[i].strip() == 'PY')
           body = '\n'.join(line[10:] if line.startswith('          ') else line for line in lines[start:end]) + '\n'
-          needle = "text = replace_once(text, old_cluster_loop, new_cluster_loop, 'cluster detail rows')"
-          replacement = """pattern_cluster_rows = re.compile(r\"        ordered\\.forEach\\(event => \\{.*?\\n        \\}\\);\\n    \\}\\n\\n    function scrollDetailOnMobile\", re.S)\ntext, count = pattern_cluster_rows.subn(new_cluster_loop + \"\\n    function scrollDetailOnMobile\", text, count=1)\nif count != 1:\n    raise SystemExit('Patch target not found: cluster detail rows')"""
-          if needle not in body:
+
+          cluster_needle = "text = replace_once(text, old_cluster_loop, new_cluster_loop, 'cluster detail rows')"
+          cluster_replacement = """pattern_cluster_rows = re.compile(r\"        ordered\\.forEach\\(event => \\{.*?\\n        \\}\\);\\n    \\}\\n\\n    function scrollDetailOnMobile\", re.S)\ntext, count = pattern_cluster_rows.subn(new_cluster_loop + \"\\n    function scrollDetailOnMobile\", text, count=1)\nif count != 1:\n    raise SystemExit('Patch target not found: cluster detail rows')"""
+          if cluster_needle not in body:
               raise SystemExit('Could not locate cluster-row patch operation')
-          body = body.replace(needle, replacement, 1)
+          body = body.replace(cluster_needle, cluster_replacement, 1)
+
+          selection_needle = "text = replace_once(text, old_selection, new_selection, 'selection state machine')"
+          selection_replacement = """pattern_selection = re.compile(r\"    function selectEvent\\(event,.*?\\n    function renderSelectedState\\(\\) \\{\", re.S)\ntext, count = pattern_selection.subn(new_selection + \"\\n    function renderSelectedState() {\", text, count=1)\nif count != 1:\n    raise SystemExit('Patch target not found: selection state machine')"""
+          if selection_needle not in body:
+              raise SystemExit('Could not locate selection patch operation')
+          body = body.replace(selection_needle, selection_replacement, 1)
+
           Path('/tmp/event-map-hardening.py').write_text(body, encoding='utf-8')
           PY
           python3 /tmp/event-map-hardening.py
