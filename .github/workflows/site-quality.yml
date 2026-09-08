@@ -39,12 +39,15 @@ jobs:
           node --check assets/article-toc.js
           node --check assets/news-feed.js
           node --check assets/news-otd-deferred.js
+          node --check assets/homepage-dashboard.js
+          node --check assets/post-event-context.js
           node --check assets/on-this-day.js
           node --check assets/on-this-day-stable.js
           node --check assets/event-map-v2.js
           node --check assets/event-map-enhancements.js
           node --check assets/event-map-detail.js
           node --check assets/upcoming-events-jump.js
+          node --check assets/upcoming-events-links.js
           node --check scripts/build-news-feed.mjs
           node --check scripts/check-news-data.mjs
           node --check scripts/check-on-this-day.mjs
@@ -78,6 +81,7 @@ jobs:
       - name: Check first-paint shell invariants
         run: |
           grep -q "assets/site-ticker.css" _layouts/default.html
+          grep -q "assets/site-consistency.css" _layouts/default.html
           grep -q "site-live-strip-reserve" _layouts/default.html
           grep -q 'width="1600"' _layouts/default.html
           grep -q 'height="640"' _layouts/default.html
@@ -87,6 +91,15 @@ jobs:
           grep -q "/assets/breakdowns.css" breakdowns.html
           grep -q 'fetchpriority="high"' breakdowns.html
           grep -q "/assets/on-this-day-stable.js" on-this-day.html
+          grep -q 'data-home-dashboard' index.html
+          grep -q '/assets/homepage-dashboard.js' index.html
+          grep -q '/assets/news-matlock.css' news.html
+          grep -q 'news-matlock-latest' news.html
+          grep -q '/assets/upcoming-events-links.js' upcoming-events.html
+          grep -q 'data-picker-map-link' _includes/fight-card-picker-event.html
+          grep -q 'data-event-id' _includes/fight-card-picker-event.html
+          grep -q 'name: "On This Day"' _config.yml
+          grep -q '/assets/post-event-context.js' _config.yml
           if grep -qE '/assets/on-this-day-(full|media-adaptive)\.js' on-this-day.html; then
             echo "On This Day must not load deprecated runtimes"
             exit 1
