@@ -5,6 +5,8 @@
    site-shell.css so it is not patched twice.
    ========================================================= */
 
+/* Shared optical row alignment now lives in site-shell.css. */
+
 .site-main,
 .site-main > * {
     min-width: 0;
@@ -26,6 +28,18 @@
 ) {
     margin-inline: auto;
     min-width: 0;
+}
+
+/* The primary tool pages begin at the shell's shared top rhythm. Individual
+   page styles may still own bottom/side padding. */
+:where(
+    .archive-page,
+    .upcoming-events-page,
+    .event-map-page,
+    .ufc-roster-page,
+    .otd-page
+) {
+    padding-top: 0;
 }
 
 :where(
