@@ -1,0 +1,122 @@
+name: One-time final quality hardening apply
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/quality-hardening-apply-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply hardening patches
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path, old, new, label):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              if old not in text:
+                  raise SystemExit(f'{label}: expected text not found in {path}')
+              p.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          # Never let a publisher's future-dated RSS timestamp make the site say "in 3 hours".
+          replace_once(
+              'scripts/build-news-feed.mjs',
+              '''                const publishedAt = itemDate(item);\n                const timestamp = Date.parse(publishedAt);\n\n                if (\n                    !title ||\n                    !url ||\n                    !Number.isFinite(timestamp) ||\n                    timestamp < cutoff\n                ) {\n                    return null;\n                }\n\n                return {''',
+              '''                const sourcePublishedAt = itemDate(item);\n                const sourceTimestamp = Date.parse(sourcePublishedAt);\n\n                if (\n                    !title ||\n                    !url ||\n                    !Number.isFinite(sourceTimestamp) ||\n                    sourceTimestamp < cutoff\n                ) {\n                    return null;\n                }\n\n                // Some publisher feeds pre-date stories by hours. Treat those as current,\n                // never as future news, so relative-time UI cannot render \"in N hours\".\n                const timestamp = Math.min(sourceTimestamp, Date.now());\n                const publishedAt = new Date(timestamp).toISOString();\n\n                return {''',
+              'news future timestamp clamp'
+          )
+
+          # Generate clean On This Day event titles/details at the source instead of relying
+          # on later display cleanup.
+          replace_once(
+              'scripts/update-on-this-day-events.mjs',
+              '''function conciseDetail(venue, location) {\n    if (venue && location) return clean(`Held at ${venue} in ${location}.`).slice(0, 240);\n    if (venue) return clean(`Held at ${venue}.`).slice(0, 240);\n    if (location) return clean(`Held in ${location}.`).slice(0, 240);\n    return \"\";\n}''',
+              '''function cleanPlace(value) {\n    return clean(value)\n        .replace(/\\s+([,.;:!?])/g, \"$1\")\n        .replace(/,\\s*,+/g, \",\")\n        .replace(/\\.\\s*\\.+$/g, \".\")\n        .replace(/\\bU\\.S\\.\\.$/i, \"U.S.\")\n        .replace(/\\bU\\.K\\.\\.$/i, \"U.K.\")\n        .trim();\n}\n\nfunction conciseDetail(venue, location) {\n    const cleanVenue = cleanPlace(venue);\n    const cleanLocation = cleanPlace(location);\n    if (cleanVenue && cleanLocation) return clean(`Held at ${cleanVenue} in ${cleanLocation}.`).slice(0, 240);\n    if (cleanVenue) return clean(`Held at ${cleanVenue}.`).slice(0, 240);\n    if (cleanLocation) return clean(`Held in ${cleanLocation}.`).slice(0, 240);\n    return \"\";\n}''',
+              'OTD place punctuation normalization'
+          )
+          replace_once(
+              'scripts/update-on-this-day-events.mjs',
+              '            title: `${eventTitle} took place`,',
+              '            title: eventTitle,',
+              'OTD redundant title suffix'
+          )
+
+          # Validate final roster data immediately before publishing it.
+          p = Path('.github/workflows/update-ufc-roster.yml')
+          text = p.read_text(encoding='utf-8')
+          text = text.replace(
+              '      - "scripts/normalize-ufc-roster-events.mjs"\n',
+              '      - "scripts/normalize-ufc-roster-events.mjs"\n      - "scripts/validate-ufc-roster-output.mjs"\n',
+              1
+          )
+          old = '''      - name: Publish roster data\n        id: publish\n        if: steps.antidoping_check.outcome == 'success'\n'''
+          new = '''      - name: Validate roster output integrity\n        id: output_validation\n        if: steps.antidoping_check.outcome == 'success'\n        shell: bash\n        run: |\n          set -euo pipefail\n          node scripts/validate-ufc-roster-output.mjs \\\n            /tmp/ufc-roster-latest.json \\\n            /tmp/ufc-roster-state.json \\\n            2>&1 | tee -a /tmp/ufc-roster-run.log\n\n      - name: Publish roster data\n        id: publish\n        if: steps.output_validation.outcome == 'success'\n'''
+          if old not in text:
+              raise SystemExit('roster publish gate: expected text not found')
+          text = text.replace(old, new, 1)
+          text = text.replace(
+              '          ANTIDOPING_RESULT: ${{ steps.antidoping_check.outcome }}\n          PUBLISH_RESULT: ${{ steps.publish.outcome }}',
+              '          ANTIDOPING_RESULT: ${{ steps.antidoping_check.outcome }}\n          OUTPUT_VALIDATION_RESULT: ${{ steps.output_validation.outcome }}\n          PUBLISH_RESULT: ${{ steps.publish.outcome }}',
+              1
+          )
+          text = text.replace(
+              "          antidoping_result = os.environ.get('ANTIDOPING_RESULT', '')\n          publish_result = os.environ.get('PUBLISH_RESULT', '')",
+              "          antidoping_result = os.environ.get('ANTIDOPING_RESULT', '')\n          output_validation_result = os.environ.get('OUTPUT_VALIDATION_RESULT', '')\n          publish_result = os.environ.get('PUBLISH_RESULT', '')",
+              1
+          )
+          text = text.replace(
+              "              'antiDopingOutcome': antidoping_result,\n              'publishOutcome': publish_result,",
+              "              'antiDopingOutcome': antidoping_result,\n              'outputValidationOutcome': output_validation_result,\n              'publishOutcome': publish_result,",
+              1
+          )
+          text = text.replace(
+              "                  and antidoping_result == 'success'\n                  and publish_result == 'success'",
+              "                  and antidoping_result == 'success'\n                  and output_validation_result == 'success'\n                  and publish_result == 'success'",
+              1
+          )
+          p.write_text(text, encoding='utf-8')
+
+          # Make syntax/static guard coverage include the new production smoke and roster validator.
+          p = Path('.github/workflows/site-quality.yml')
+          text = p.read_text(encoding='utf-8')
+          anchor = '          node --check scripts/check-event-map-architecture.mjs\n'
+          insert = (
+              anchor +
+              '          node --check scripts/event-map-smoke.spec.cjs\n' +
+              '          node --check scripts/site-visual-smoke.spec.cjs\n' +
+              '          node --check scripts/validate-ufc-roster-output.mjs\n'
+          )
+          if anchor not in text:
+              raise SystemExit('site quality syntax anchor not found')
+          text = text.replace(anchor, insert, 1)
+          p.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit hardening patches
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "MatlockFT"
+          git config user.email "fighttalkmma@protonmail.com"
+          git add scripts/build-news-feed.mjs scripts/update-on-this-day-events.mjs scripts/validate-ufc-roster-output.mjs .github/workflows/update-ufc-roster.yml .github/workflows/site-quality.yml
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Complete site quality hardening pass"
+          git pull --rebase origin main
+          git push origin HEAD:main
