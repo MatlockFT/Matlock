@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 1,
-  "updatedAt": "2026-09-08T17:00:31.599Z",
+  "updatedAt": "2026-09-08T21:52:36.823Z",
   "fighters": {
     "船木誠勝": {
       "checkedAt": "2026-09-08T07:03:33.069Z",
@@ -252,6 +252,92 @@
       "status": "resolved",
       "wikidataId": "Q4717845",
       "englishName": "Alex Stiebling"
+    },
+    "佐藤光留": {
+      "checkedAt": "2026-09-08T21:52:36.823Z",
+      "status": "resolved",
+      "wikidataId": "Q5760445",
+      "englishName": "Hikaru Sato"
+    },
+    "長南亮": {
+      "checkedAt": "2026-09-08T21:52:36.823Z",
+      "status": "resolved",
+      "wikidataId": "Q1151941",
+      "englishName": "Ryo Chonan"
+    },
+    "朝日昇": {
+      "checkedAt": "2026-09-08T21:52:36.823Z",
+      "status": "resolved",
+      "wikidataId": "Q7046040",
+      "englishName": "Noboru Asahi"
+    },
+    "マット・トライヘイ": {
+      "checkedAt": "2026-09-08T21:52:36.823Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "藤井克久": {
+      "checkedAt": "2026-09-08T21:52:36.823Z",
+      "status": "resolved",
+      "wikidataId": "Q6378095",
+      "englishName": "Katsuhisa Fujii"
+    },
+    "佐藤光芳": {
+      "checkedAt": "2026-09-08T21:52:36.823Z",
+      "status": "resolved",
+      "wikidataId": "Q11383721",
+      "englishName": "Mitsuyoshi Satō"
+    },
+    "石川英司": {
+      "checkedAt": "2026-09-08T21:52:36.823Z",
+      "status": "resolved",
+      "wikidataId": "Q11586348",
+      "englishName": "Eiji Ishikawa"
+    },
+    "百瀬善規": {
+      "checkedAt": "2026-09-08T21:52:36.823Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "窪田幸生": {
+      "checkedAt": "2026-09-08T21:52:36.823Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "郷野聡寛": {
+      "checkedAt": "2026-09-08T21:52:36.823Z",
+      "status": "resolved",
+      "wikidataId": "Q4700928",
+      "englishName": "Akihiro Gono"
+    },
+    "長岡弘樹": {
+      "checkedAt": "2026-09-08T21:52:36.823Z",
+      "status": "resolved",
+      "wikidataId": "Q13365071",
+      "englishName": "Nagaoka Hiroki"
+    },
+    "竹内出": {
+      "checkedAt": "2026-09-08T21:52:36.823Z",
+      "status": "resolved",
+      "wikidataId": "Q11598836",
+      "englishName": "Izuru Takeuchi"
+    },
+    "獣神サンダー・ライガー": {
+      "checkedAt": "2026-09-08T21:52:36.823Z",
+      "status": "resolved",
+      "wikidataId": "Q1395975",
+      "englishName": "Jushin Liger"
+    },
+    "ガブリエル・ベラ": {
+      "checkedAt": "2026-09-08T21:52:36.823Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "ヒカルド・アルメイダ": {
+      "checkedAt": "2026-09-08T21:52:36.823Z",
+      "status": "resolved",
+      "wikidataId": "Q2717516",
+      "englishName": "Ricardo Almeida"
     }
   },
   "entries": {
@@ -2305,6 +2391,480 @@
         "checkedAt": "2026-09-08T17:00:31.599Z",
         "status": "no-main-event",
         "sourceUrl": "https://www.pancrase.co.jp/data/result/2001/0331.html"
+      }
+    },
+    "pancrase:2001-05-05:pancrase-2001-neo-blood-tournament-eliminations": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2001/0505.html",
+        "rawNames": [
+          "佐藤光留",
+          "長南亮"
+        ],
+        "englishNames": [
+          "Hikaru Sato",
+          "Ryo Chonan"
+        ],
+        "mainEvent": "Hikaru Sato vs. Ryo Chonan"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Hikaru Sato",
+        "imageFileTitle": "File:Hikaru Sato World Junior Heavyweight Champion (AJPW).jpg"
+      }
+    },
+    "pancrase:2001-05-13:pancrase-proof-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2001/0513.html",
+        "rawNames": [
+          "山田学",
+          "朝日昇"
+        ],
+        "englishNames": [
+          "Manabu Yamada",
+          "Noboru Asahi"
+        ],
+        "mainEvent": "Manabu Yamada vs. Noboru Asahi"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2001-06-26:pancrase-proof-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2001/0626.html",
+        "rawNames": [
+          "菊田早苗",
+          "マット・トライヘイ"
+        ],
+        "englishNames": [
+          "Sanae Kikuta",
+          "マット・トライヘイ"
+        ],
+        "mainEvent": "Sanae Kikuta vs. マット・トライヘイ"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2001-07-29:pancrase-2001-neo-blood-tournament-opening-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2001/0729.html"
+      }
+    },
+    "pancrase:2001-07-29:pancrase-2001-neo-blood-tournament-second-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2001/0729.html"
+      }
+    },
+    "pancrase:2001-08-25:pancrase-proof-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2001/0825.html",
+        "rawNames": [
+          "高橋義生",
+          "稲垣克臣"
+        ],
+        "englishNames": [
+          "Kazuo Takahashi",
+          "Katsuomi Inagaki"
+        ],
+        "mainEvent": "Kazuo Takahashi vs. Katsuomi Inagaki"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Kazuo Takahashi",
+        "imageFileTitle": "File:US Navy 090713-N-4031K-002 Capt. Eric Gardner, commanding officer of Naval Air Facility Atsugi, presents Rear Adm. Kazuo Takahashi with a certificate of appreciation.jpg"
+      }
+    },
+    "pancrase:2001-09-30:pancrase-2001-anniversary-show": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2001/0930.html",
+        "rawNames": [
+          "菊田早苗",
+          "美濃輪育久"
+        ],
+        "englishNames": [
+          "Sanae Kikuta",
+          "Ikuhisa Minowa"
+        ],
+        "mainEvent": "Sanae Kikuta vs. Ikuhisa Minowa"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2001-10-16:pancrase-australia": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2001/1016.html"
+      }
+    },
+    "pancrase:2001-10-30:pancrase-proof-6": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2001/1030.html",
+        "rawNames": [
+          "ネイサン・マーコート",
+          "星野勇二"
+        ],
+        "englishNames": [
+          "Nate Marquardt",
+          "Yūji Hoshino"
+        ],
+        "mainEvent": "Nate Marquardt vs. Yūji Hoshino"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Nate Marquardt",
+        "imageFileTitle": "File:Nate-Marquardt.jpg"
+      }
+    },
+    "pancrase:2001-12-01:pancrase-proof-7": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2001/1201.html",
+        "rawNames": [
+          "高橋義生",
+          "藤井克久"
+        ],
+        "englishNames": [
+          "Kazuo Takahashi",
+          "Katsuhisa Fujii"
+        ],
+        "mainEvent": "Kazuo Takahashi vs. Katsuhisa Fujii"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Kazuo Takahashi",
+        "imageFileTitle": "File:US Navy 090713-N-4031K-002 Capt. Eric Gardner, commanding officer of Naval Air Facility Atsugi, presents Rear Adm. Kazuo Takahashi with a certificate of appreciation.jpg"
+      }
+    },
+    "pancrase:2002-01-27:pancrase-spirit-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2002/0127.html",
+        "rawNames": [
+          "近藤有己",
+          "佐藤光芳"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Mitsuyoshi Satō"
+        ],
+        "mainEvent": "Yuki Kondo vs. Mitsuyoshi Satō"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2002-02-17:pancrase-spirit-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2002/0217.html",
+        "rawNames": [
+          "近藤有己",
+          "石川英司"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Eiji Ishikawa"
+        ],
+        "mainEvent": "Yuki Kondo vs. Eiji Ishikawa"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2002-03-25:pancrase-spirit-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2002/0325.html",
+        "rawNames": [
+          "美濃輪育久",
+          "百瀬善規"
+        ],
+        "englishNames": [
+          "Ikuhisa Minowa",
+          "百瀬善規"
+        ],
+        "mainEvent": "Ikuhisa Minowa vs. 百瀬善規"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2002-05-11:pancrase-spirit-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2002/0511.html",
+        "rawNames": [
+          "窪田幸生",
+          "郷野聡寛"
+        ],
+        "englishNames": [
+          "窪田幸生",
+          "Akihiro Gono"
+        ],
+        "mainEvent": "窪田幸生 vs. Akihiro Gono"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2002-05-28:pancrase-spirit-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2002/0528.html",
+        "rawNames": [
+          "美濃輪育久",
+          "佐藤光芳"
+        ],
+        "englishNames": [
+          "Ikuhisa Minowa",
+          "Mitsuyoshi Satō"
+        ],
+        "mainEvent": "Ikuhisa Minowa vs. Mitsuyoshi Satō"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2002-07-28:pancrase-2002-neo-blood-tournament-opening-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2002/0728.html"
+      }
+    },
+    "pancrase:2002-07-28:pancrase-2002-neo-blood-tournament-second-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2002/0728.html"
+      }
+    },
+    "pancrase:2002-08-25:pancrase-spirit-6": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2002/0825.html",
+        "rawNames": [
+          "郷野聡寛",
+          "渋谷修身"
+        ],
+        "englishNames": [
+          "Akihiro Gono",
+          "Osami Shibuya"
+        ],
+        "mainEvent": "Akihiro Gono vs. Osami Shibuya"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2002-09-29:pancrase-2002-anniversary-show": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2002/0929.html",
+        "rawNames": [
+          "國奥麒樹真",
+          "長岡弘樹"
+        ],
+        "englishNames": [
+          "Kiuma Kunioku",
+          "Nagaoka Hiroki"
+        ],
+        "mainEvent": "Kiuma Kunioku vs. Nagaoka Hiroki"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2002-10-29:pancrase-spirit-7": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2002/1029.html",
+        "rawNames": [
+          "ネイサン・マーコート",
+          "竹内出"
+        ],
+        "englishNames": [
+          "Nate Marquardt",
+          "Izuru Takeuchi"
+        ],
+        "mainEvent": "Nate Marquardt vs. Izuru Takeuchi"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Nate Marquardt",
+        "imageFileTitle": "File:Nate-Marquardt.jpg"
+      }
+    },
+    "pancrase:2002-11-30:pancrase-spirit-8": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2002/1130.html",
+        "rawNames": [
+          "鈴木みのる",
+          "獣神サンダー・ライガー"
+        ],
+        "englishNames": [
+          "Minoru Suzuki",
+          "Jushin Liger"
+        ],
+        "mainEvent": "Minoru Suzuki vs. Jushin Liger"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Minoru Suzuki",
+        "imageFileTitle": "File:Minoru Suzuki NEVER Openweight Champion.jpg"
+      }
+    },
+    "pancrase:2002-12-21:pancrase-spirit-9": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2002/1221.html",
+        "rawNames": [
+          "國奥麒樹真",
+          "ネイサン・マーコート"
+        ],
+        "englishNames": [
+          "Kiuma Kunioku",
+          "Nate Marquardt"
+        ],
+        "mainEvent": "Kiuma Kunioku vs. Nate Marquardt"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Nate Marquardt",
+        "imageFileTitle": "File:Nate-Marquardt.jpg"
+      }
+    },
+    "pancrase:2003-01-26:pancrase-hybrid-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2003/0126.html",
+        "rawNames": [
+          "近藤有己",
+          "ガブリエル・ベラ"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "ガブリエル・ベラ"
+        ],
+        "mainEvent": "Yuki Kondo vs. ガブリエル・ベラ"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2003-02-16:pancrase-hybrid-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2003/0216.html",
+        "rawNames": [
+          "美濃輪育久",
+          "ヒカルド・アルメイダ"
+        ],
+        "englishNames": [
+          "Ikuhisa Minowa",
+          "Ricardo Almeida"
+        ],
+        "mainEvent": "Ikuhisa Minowa vs. Ricardo Almeida"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T21:52:36.823Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Ricardo Almeida",
+        "imageFileTitle": "File:Ricardo Almeida after a teaching session cropped.jpg"
       }
     }
   }
