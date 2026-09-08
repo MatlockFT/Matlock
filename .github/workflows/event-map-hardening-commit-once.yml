@@ -24,6 +24,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          git fetch --no-tags origin 5a217ecd05ed5ca673d467042d6df549ee9ce65e
           python3 - <<'PY'
           from pathlib import Path
           lines = Path('.github/workflows/event-map-hardening-once.yml').read_text(encoding='utf-8').splitlines()
