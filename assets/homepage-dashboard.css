@@ -1,4 +1,4 @@
-/* Homepage dashboard: make the front page reflect the whole site, not just articles. */
+/* Homepage dashboard: compact, functional, no decorative filler. */
 
 .homepage-dashboard {
     width: min(100%, 1040px);
@@ -17,39 +17,11 @@
     border: 0;
 }
 
-.home-dashboard-strip {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: .8rem;
-    margin: 0 0 .5rem;
-    padding-bottom: .28rem;
-    border-bottom: 1px solid #444;
-}
-
-.home-dashboard-strip strong,
-.home-dashboard-strip span {
-    font-family: "Courier New", monospace;
-    text-transform: uppercase;
-}
-
-.home-dashboard-strip strong {
-    color: #fff;
-    font-size: .62rem;
-    letter-spacing: .09em;
-}
-
-.home-dashboard-strip span {
-    color: #777;
-    font-size: .5rem;
-    letter-spacing: .05em;
-}
-
 .home-snapshot {
     display: grid;
     grid-template-columns: minmax(0, 1.5fr) minmax(280px, .5fr);
-    gap: .55rem;
-    margin-bottom: 1.15rem;
+    gap: .5rem;
+    margin-bottom: .85rem;
 }
 
 .home-panel {
@@ -62,9 +34,9 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    gap: .6rem;
-    padding: .42rem .55rem;
-    border-bottom: 1px solid #3b3b3b;
+    gap: .55rem;
+    padding: .36rem .5rem;
+    border-bottom: 1px solid #353535;
 }
 
 .home-panel-heading h2,
@@ -76,8 +48,8 @@
     text-transform: uppercase;
 }
 
-.home-panel-heading h2 { font-size: 1.05rem; }
-.home-panel-heading h3 { font-size: .92rem; }
+.home-panel-heading h2 { font-size: 1rem; }
+.home-panel-heading h3 { font-size: .9rem; }
 
 .home-panel-heading a,
 .home-panel-heading span {
@@ -95,16 +67,16 @@
 .home-next-card {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: .8rem;
+    gap: .7rem;
     align-items: end;
-    padding: .72rem;
+    padding: .58rem .62rem;
 }
 
 .home-next-promotion {
-    margin: 0 0 .18rem;
+    margin: 0 0 .16rem;
     color: var(--accent, #ff4a54);
-    font: 700 .56rem/1 "Courier New", monospace;
-    letter-spacing: .1em;
+    font: 700 .54rem/1 "Courier New", monospace;
+    letter-spacing: .09em;
     text-transform: uppercase;
 }
 
@@ -112,27 +84,27 @@
     margin: 0;
     color: #fff;
     font-family: "Gobold", Impact, sans-serif;
-    font-size: clamp(1.55rem, 4.2vw, 2.8rem);
-    line-height: .92;
+    font-size: clamp(1.45rem, 3.8vw, 2.55rem);
+    line-height: .94;
     text-transform: uppercase;
     text-wrap: balance;
 }
 
 .home-next-meta,
 .home-next-main {
-    margin: .34rem 0 0;
+    margin: .28rem 0 0;
     font-family: "Courier New", monospace;
 }
 
 .home-next-meta {
     color: #aaa;
-    font-size: .58rem;
-    line-height: 1.4;
+    font-size: .56rem;
+    line-height: 1.35;
 }
 
 .home-next-main {
     color: #fff;
-    font-size: .62rem;
+    font-size: .6rem;
     font-weight: 700;
 }
 
@@ -140,8 +112,8 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: .38rem;
-    min-width: 116px;
+    gap: .32rem;
+    min-width: 112px;
 }
 
 .home-next-actions a,
@@ -149,11 +121,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 38px;
+    min-height: 36px;
     border: 1px solid #606060;
     background: #111;
     color: #fff;
-    font: 700 .54rem/1 "Courier New", monospace;
+    font: 700 .52rem/1 "Courier New", monospace;
     letter-spacing: .04em;
     text-align: center;
     text-decoration: none;
@@ -176,28 +148,32 @@
 .home-tools {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: .32rem;
-    padding: .45rem;
+    gap: .28rem;
+    padding: .36rem;
 }
 
 .home-tool-link {
-    min-height: 66px;
-    padding: .45rem;
+    min-height: 54px;
+    padding: .38rem;
 }
 
 .home-dashboard .featured-section {
-    margin-bottom: 1.15rem;
+    margin-bottom: .85rem;
 }
 
 .home-dashboard .section-header {
-    margin-bottom: .45rem;
+    margin-bottom: .36rem;
+}
+
+.home-dashboard .section-header > h2 {
+    margin: 0;
 }
 
 .home-live-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.3fr) minmax(280px, .7fr);
-    gap: .55rem;
-    margin-bottom: 1.2rem;
+    gap: .5rem;
+    margin-bottom: .9rem;
 }
 
 .home-news-list,
@@ -213,9 +189,9 @@
 .home-news-item {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: .5rem;
+    gap: .45rem;
     align-items: baseline;
-    padding: .58rem .62rem;
+    padding: .5rem .55rem;
     border-top: 1px solid #262626;
 }
 
@@ -226,9 +202,9 @@
 .home-news-item a {
     color: #f3f3f3;
     font-family: Arial, sans-serif;
-    font-size: .82rem;
+    font-size: .8rem;
     font-weight: 700;
-    line-height: 1.22;
+    line-height: 1.2;
     text-decoration: none;
 }
 
@@ -239,7 +215,7 @@
 
 .home-news-item span {
     color: #777;
-    font: 700 .45rem/1.2 "Courier New", monospace;
+    font: 700 .44rem/1.2 "Courier New", monospace;
     text-align: right;
     text-transform: uppercase;
 }
@@ -247,20 +223,19 @@
 .home-side-stack {
     display: grid;
     align-content: start;
-    gap: .55rem;
+    gap: .5rem;
 }
 
 .home-otd-body,
 .home-roster-body {
-    padding: .65rem;
+    padding: .54rem .58rem;
 }
 
-.home-otd-year,
-.home-roster-label {
+.home-otd-year {
     display: block;
-    margin-bottom: .2rem;
+    margin-bottom: .16rem;
     color: var(--accent, #ff4a54);
-    font: 700 .5rem/1 "Courier New", monospace;
+    font: 700 .48rem/1 "Courier New", monospace;
     letter-spacing: .06em;
     text-transform: uppercase;
 }
@@ -270,28 +245,28 @@
     margin: 0;
     color: #fff;
     font-family: "Gobold", Impact, sans-serif;
-    font-size: 1.16rem;
-    line-height: .98;
+    font-size: 1.08rem;
+    line-height: 1;
     text-transform: uppercase;
 }
 
 .home-otd-copy,
 .home-roster-meta,
 .home-dashboard-loading {
-    margin: .38rem 0 0;
+    margin: .3rem 0 0;
     color: #8d8d8d;
-    font: 400 .56rem/1.4 "Courier New", monospace;
+    font: 400 .54rem/1.35 "Courier New", monospace;
 }
 
 .home-dashboard-loading {
-    padding: .65rem;
+    padding: .54rem .58rem;
 }
 
 .home-side-link {
     display: inline-block;
-    margin-top: .48rem;
+    margin-top: .38rem;
     color: #fff;
-    font: 700 .5rem/1 "Courier New", monospace;
+    font: 700 .48rem/1 "Courier New", monospace;
     letter-spacing: .04em;
     text-transform: uppercase;
 }
@@ -316,7 +291,7 @@
     }
 
     .home-tool-link {
-        min-height: 52px;
+        min-height: 46px;
     }
 
     .home-side-stack {
@@ -329,16 +304,15 @@
         width: 100%;
     }
 
-    .home-dashboard-strip {
-        align-items: center;
-    }
-
-    .home-dashboard-strip span {
-        display: none;
+    .home-snapshot,
+    .home-live-grid,
+    .home-dashboard .featured-section {
+        margin-bottom: .7rem;
     }
 
     .home-next-card {
         grid-template-columns: 1fr;
+        gap: .5rem;
     }
 
     .home-next-actions {
@@ -357,7 +331,7 @@
 
     .home-news-item {
         grid-template-columns: 1fr;
-        gap: .2rem;
+        gap: .16rem;
     }
 
     .home-news-item span {
@@ -371,6 +345,10 @@
     }
 
     .home-next-card h2 {
-        font-size: clamp(1.5rem, 10vw, 2.2rem);
+        font-size: clamp(1.42rem, 9.5vw, 2.05rem);
+    }
+
+    .home-tool-link {
+        min-height: 42px;
     }
 }
