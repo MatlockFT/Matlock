@@ -4,13 +4,18 @@
 
     const REFERENCE_YEAR = 2024;
     const IMAGE_WIDTH = 720;
-    const formatShort = new Intl.DateTimeFormat([], { month: "short", day: "numeric" });
+    const PILL_IMAGE_WIDTH = 360;
+    const SESSION_KEY = "mma-matlock:otd:last-date";
+    const IMAGE_FAILURE_TTL_MS = 15 * 60 * 1000;
+    const FILTER_THRESHOLD = 6;
     const formatLong = new Intl.DateTimeFormat([], { month: "long", day: "numeric" });
+    const formatShort = new Intl.DateTimeFormat([], { month: "short", day: "numeric" });
     const formatWeekday = new Intl.DateTimeFormat([], { weekday: "short" });
     const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)");
     const wikipediaCache = new Map();
     const resolvedImageCache = new WeakMap();
     const pendingMedia = new WeakMap();
+    const failedImageUntil = new Map();
     const kindOrder = new Map([
         ["fight", 0], ["title", 1], ["signing", 2], ["debut", 3],
         ["incident", 4], ["event", 5], ["news", 6], ["death", 7], ["birthday", 8]
@@ -22,8 +27,11 @@
     const previous = widget.querySelector("[data-otd-prev]");
     const next = widget.querySelector("[data-otd-next]");
     const todayButton = widget.querySelector("[data-otd-today]");
+    const shareButton = widget.querySelector("[data-otd-share]");
+    const randomButton = widget.querySelector("[data-otd-random]");
     const count = widget.querySelector("[data-otd-count]");
     const weekStrip = widget.querySelector("[data-otd-week]");
+    const filterBar = widget.querySelector("[data-otd-filters]");
     if (!list || !dateDisplay) return;
 
     const mediaObserver = "IntersectionObserver" in window
@@ -75,6 +83,20 @@
     const parseKey = value => {
         const match = /^(\d{2})-(\d{2})$/.exec(value || "");
         return match ? dateForMonthDay(Number(match[1]), Number(match[2])) : null;
+    };
+
+    const readSessionDate = () => {
+        try {
+            return parseKey(sessionStorage.getItem(SESSION_KEY));
+        } catch {
+            return null;
+        }
+    };
+
+    const saveSessionDate = date => {
+        try {
+            sessionStorage.setItem(SESSION_KEY, keyForDate(date));
+        } catch {}
     };
 
     const entryYear = entry => entry.date?.slice(0, 4) || "";
@@ -131,6 +153,16 @@
         return url.replace(/\/(\d+)px-([^/]+)$/i, `/${width}px-$2`);
     };
 
+    const imageCanRetry = url => {
+        const until = failedImageUntil.get(url) || 0;
+        if (!until) return true;
+        if (Date.now() >= until) {
+            failedImageUntil.delete(url);
+            return true;
+        }
+        return false;
+    };
+
     async function fetchWikipediaImage(entry) {
         const title = wikipediaTitle(entry);
         if (!title) return null;
@@ -182,6 +214,9 @@
     function preloadImage(candidate, entry, { priority = false, decorative = false, targetWidth = IMAGE_WIDTH } = {}) {
         return new Promise((resolve, reject) => {
             if (!candidate?.url) return reject(new Error("No image URL"));
+            const src = optimizedWikimediaUrl(candidate.url, targetWidth);
+            if (!imageCanRetry(src)) return reject(new Error("Image retry cooldown"));
+
             const image = document.createElement("img");
             image.alt = decorative ? "" : (candidate.alt || entry.imageAlt || "");
             image.loading = "eager";
@@ -189,9 +224,15 @@
             image.decoding = "async";
             image.referrerPolicy = "no-referrer";
             if (entry.imagePosition) image.style.objectPosition = entry.imagePosition;
-            image.addEventListener("load", () => resolve(image), { once: true });
-            image.addEventListener("error", reject, { once: true });
-            image.src = optimizedWikimediaUrl(candidate.url, targetWidth);
+            image.addEventListener("load", () => {
+                failedImageUntil.delete(src);
+                resolve(image);
+            }, { once: true });
+            image.addEventListener("error", () => {
+                failedImageUntil.set(src, Date.now() + IMAGE_FAILURE_TTL_MS);
+                reject(new Error("Image failed"));
+            }, { once: true });
+            image.src = src;
         });
     }
 
@@ -219,7 +260,7 @@
         );
 
         const load = () => {
-            bestLoadedImage(entry, { priority, targetWidth: 720 }).then(result => {
+            bestLoadedImage(entry, { priority, targetWidth: IMAGE_WIDTH }).then(result => {
                 if (!result?.image || !media.isConnected) return;
                 media.classList.remove("is-fallback", "is-image-loading");
                 media.classList.add("is-image-ready");
@@ -244,7 +285,7 @@
 
         const load = () => {
             if (!button.isConnected) return;
-            bestLoadedImage(entry, { decorative: true, targetWidth: 360 }).then(result => {
+            bestLoadedImage(entry, { decorative: true, targetWidth: PILL_IMAGE_WIDTH }).then(result => {
                 if (!result?.image || !button.isConnected) return;
                 media.replaceChildren(result.image);
                 button.classList.add("has-image");
@@ -260,9 +301,12 @@
         node.animate(keyframes, options);
     }
 
+    const queryDate = parseKey(new URLSearchParams(location.search).get("date"));
     let dayIndex = new Map();
-    let activeDate = parseKey(new URLSearchParams(location.search).get("date")) || localToday();
+    let activeDate = queryDate || readSessionDate() || localToday();
+    let activeFilter = "all";
     let renderedWeekKey = "";
+    let prefetchHandle = null;
 
     const entriesForDate = date => dayIndex.get(keyForDate(date)) || [];
 
@@ -272,6 +316,7 @@
         if (key === keyForDate(localToday())) url.searchParams.delete("date");
         else url.searchParams.set("date", key);
         history.replaceState({}, "", url);
+        saveSessionDate(activeDate);
     }
 
     function updateWeekSelection() {
@@ -323,6 +368,8 @@
                 el("span", "otd-day-pill-date", String(date.getDate()))
             );
 
+            if (dateKey === todayKey) button.append(el("span", "otd-day-pill-today", "Today"));
+
             const summary = el("span", "otd-day-pill-summary");
             summary.append(el("span", "otd-day-pill-total", String(matching.length)));
             const types = [];
@@ -344,30 +391,119 @@
         }
     }
 
+    function renderFilters(matching) {
+        if (!filterBar) return;
+        const kinds = [...new Set(matching.map(entry => entry.kind).filter(Boolean))]
+            .sort((a, b) => (kindOrder.get(a) ?? 99) - (kindOrder.get(b) ?? 99));
+        const shouldShow = matching.length >= FILTER_THRESHOLD && kinds.length > 1;
+
+        if (!shouldShow) {
+            activeFilter = "all";
+            filterBar.hidden = true;
+            filterBar.replaceChildren();
+            return;
+        }
+
+        if (activeFilter !== "all" && !kinds.includes(activeFilter)) activeFilter = "all";
+        const controls = ["all", ...kinds].map(kind => {
+            const total = kind === "all" ? matching.length : matching.filter(entry => entry.kind === kind).length;
+            const label = kind === "all" ? "All" : kindLabel(kind);
+            const button = el("button", "otd-filter-button", `${label} ${total}`);
+            button.type = "button";
+            button.dataset.otdFilter = kind;
+            const isActive = kind === activeFilter;
+            button.classList.toggle("is-active", isActive);
+            button.setAttribute("aria-pressed", String(isActive));
+            return button;
+        });
+        filterBar.replaceChildren(...controls);
+        filterBar.hidden = false;
+    }
+
+    function nearestDateWithEntries(direction) {
+        for (let distance = 1; distance <= 366; distance += 1) {
+            const date = new Date(activeDate);
+            date.setDate(date.getDate() + (distance * direction));
+            if (entriesForDate(date).length) return date;
+        }
+        return null;
+    }
+
+    function renderEmptyState() {
+        const empty = el("div", "otd-empty");
+        empty.append(
+            el("strong", "", "Nothing logged for this date yet."),
+            el("span", "", "Jump to the nearest day with MMA history, or keep browsing above.")
+        );
+
+        const jumps = el("div", "otd-empty-jumps");
+        const before = nearestDateWithEntries(-1);
+        const after = nearestDateWithEntries(1);
+
+        for (const [date, arrow] of [[before, "←"], [after, "→"]]) {
+            if (!date) continue;
+            const entries = entriesForDate(date);
+            const button = el("button", "otd-empty-jump", `${arrow} ${formatShort.format(date)} · ${entries.length}`);
+            button.type = "button";
+            button.dataset.otdJump = keyForDate(date);
+            button.setAttribute("aria-label", `Go to ${formatLong.format(date)}, ${entries.length} ${entries.length === 1 ? "entry" : "entries"}`);
+            jumps.append(button);
+        }
+
+        if (jumps.childElementCount) empty.append(jumps);
+        return empty;
+    }
+
+    function openRowSource(row) {
+        const url = row?.dataset?.sourceUrl;
+        if (!url) return;
+        const opened = window.open(url, "_blank", "noopener,noreferrer");
+        if (opened) opened.opener = null;
+    }
+
     function render(animate = true) {
         const matching = entriesForDate(activeDate);
+        renderFilters(matching);
+        const visible = activeFilter === "all"
+            ? matching
+            : matching.filter(entry => entry.kind === activeFilter);
+
         dateDisplay.textContent = formatLong.format(activeDate);
         dateDisplay.setAttribute("datetime", `${activeDate.getFullYear()}-${keyForDate(activeDate)}`);
         if (dateInput) dateInput.value = `${REFERENCE_YEAR}-${keyForDate(activeDate)}`;
-        if (count) count.textContent = matching.length ? `${matching.length} ${matching.length === 1 ? "entry" : "entries"}` : "No entries yet";
+        if (count) {
+            count.textContent = activeFilter === "all"
+                ? (matching.length ? `${matching.length} ${matching.length === 1 ? "entry" : "entries"}` : "No entries yet")
+                : `${visible.length} of ${matching.length}`;
+        }
         renderWeek();
         list.setAttribute("aria-busy", "true");
 
         if (!matching.length) {
+            list.replaceChildren(renderEmptyState());
+        } else if (!visible.length) {
             const empty = el("div", "otd-empty");
-            empty.append(el("strong", "", "Nothing logged for this date yet."), el("span", "", "Use the week rail or calendar to keep browsing."));
+            empty.append(el("strong", "", "No entries match this filter."));
             list.replaceChildren(empty);
         } else {
-            const items = matching.map((entry, index) => {
+            const items = visible.map((entry, index) => {
                 const item = el("article", `otd-entry otd-entry--${entry.kind || "note"}${index === 0 ? " otd-entry--lead" : ""}`);
                 item.style.setProperty("--otd-order", String(index));
+                if (entry.sourceUrl) {
+                    item.classList.add("is-clickable");
+                    item.dataset.sourceUrl = entry.sourceUrl;
+                    item.tabIndex = 0;
+                    item.setAttribute("role", "link");
+                    item.setAttribute("aria-label", `Open source for ${entry.title}`);
+                }
+
                 const year = el("div", "otd-entry-year", entryYear(entry));
                 const body = el("div", "otd-entry-body");
                 const meta = el("div", "otd-entry-meta");
-                meta.append(el("span", `otd-kind otd-kind--${entry.kind || "note"}`, kindLabel(entry.kind)));
-                if (entry.promotion) meta.append(el("span", "otd-promotion", entry.promotion));
                 const age = ageLabel(entry);
                 if (age) meta.append(el("span", "otd-age", age));
+                if (entry.promotion) meta.append(el("span", "otd-promotion", entry.promotion));
+                meta.append(el("span", `otd-kind otd-kind--${entry.kind || "note"}`, kindLabel(entry.kind)));
                 body.append(meta, el("h2", "otd-entry-title", entry.title));
                 if (entry.detail) body.append(el("p", "otd-entry-detail", entry.detail));
                 if (entry.sourceUrl) body.append(externalLink(entry.sourceUrl, "otd-entry-source", `${entry.source || "Source"} ↗`));
@@ -382,19 +518,34 @@
             animateNode(dateDisplay, [{ opacity: .45, transform: "translateY(5px)" }, { opacity: 1, transform: "translateY(0)" }], { duration: 220, easing: "cubic-bezier(.2,.75,.25,1)" });
             animateNode(list, [{ opacity: .45, transform: "translateY(6px)" }, { opacity: 1, transform: "translateY(0)" }], { duration: 240, easing: "cubic-bezier(.2,.75,.25,1)" });
         }
+
+        scheduleAdjacentPrefetch();
     }
 
     function renderWithTransition() {
-        if (motionAllowed() && typeof document.startViewTransition === "function") document.startViewTransition(() => render(false));
-        else render(true);
+        if (motionAllowed() && typeof document.startViewTransition === "function") {
+            document.startViewTransition(() => render(false));
+        } else {
+            render(true);
+        }
+    }
+
+    function maybeResetScroll(wasDeep) {
+        if (!wasDeep) return;
+        requestAnimationFrame(() => {
+            list.scrollIntoView({ behavior: motionAllowed() ? "smooth" : "auto", block: "start" });
+        });
     }
 
     function setActiveDate(date) {
         const nextDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
         if (keyForDate(nextDate) === keyForDate(activeDate)) return;
+        const wasDeep = list.getBoundingClientRect().top < 0;
         activeDate = nextDate;
+        activeFilter = "all";
         updateUrl();
         renderWithTransition();
+        maybeResetScroll(wasDeep);
     }
 
     function shiftDay(amount) {
@@ -403,14 +554,125 @@
         setActiveDate(date);
     }
 
+    function scheduleAdjacentPrefetch() {
+        const run = () => {
+            for (const offset of [-1, 1]) {
+                const date = new Date(activeDate);
+                date.setDate(date.getDate() + offset);
+                const matching = entriesForDate(date);
+                const representative = matching.find(entry => entry.imageUrl || wikipediaTitle(entry));
+                if (representative) bestLoadedImage(representative, { targetWidth: IMAGE_WIDTH }).catch(() => {});
+            }
+        };
+
+        if (prefetchHandle !== null && "cancelIdleCallback" in window) window.cancelIdleCallback(prefetchHandle);
+        if ("requestIdleCallback" in window) {
+            prefetchHandle = window.requestIdleCallback(() => {
+                prefetchHandle = null;
+                run();
+            }, { timeout: 1800 });
+        } else {
+            window.setTimeout(run, 500);
+        }
+    }
+
+    function flashButton(button, text) {
+        if (!button) return;
+        const original = button.dataset.defaultText || button.textContent;
+        button.dataset.defaultText = original;
+        button.textContent = text;
+        window.clearTimeout(Number(button.dataset.resetTimer || 0));
+        const timer = window.setTimeout(() => {
+            button.textContent = original;
+            delete button.dataset.resetTimer;
+        }, 1300);
+        button.dataset.resetTimer = String(timer);
+    }
+
+    async function copyText(value) {
+        if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(value);
+            return;
+        }
+        const textarea = document.createElement("textarea");
+        textarea.value = value;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.append(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        textarea.remove();
+    }
+
+    async function shareActiveDate() {
+        const url = location.href;
+        const data = {
+            title: `On This Day in MMA — ${formatLong.format(activeDate)}`,
+            url
+        };
+
+        if (navigator.share) {
+            try {
+                await navigator.share(data);
+                flashButton(shareButton, "Shared");
+                return;
+            } catch (error) {
+                if (error?.name === "AbortError") return;
+            }
+        }
+
+        try {
+            await copyText(url);
+            flashButton(shareButton, "Copied");
+        } catch {
+            flashButton(shareButton, "Copy failed");
+        }
+    }
+
+    function randomDay() {
+        const currentKey = keyForDate(activeDate);
+        const keys = [...dayIndex.keys()].filter(key => key !== currentKey && dayIndex.get(key)?.length);
+        if (!keys.length) return;
+        const key = keys[Math.floor(Math.random() * keys.length)];
+        const date = parseKey(key);
+        if (date) setActiveDate(date);
+    }
+
+    function openDatePicker() {
+        if (!dateInput) return;
+        try {
+            if (typeof dateInput.showPicker === "function") dateInput.showPicker();
+            else {
+                dateInput.focus();
+                dateInput.click();
+            }
+        } catch {
+            dateInput.focus();
+        }
+    }
+
     previous?.addEventListener("click", () => shiftDay(-1));
     next?.addEventListener("click", () => shiftDay(1));
     todayButton?.addEventListener("click", () => setActiveDate(localToday()));
+    shareButton?.addEventListener("click", shareActiveDate);
+    randomButton?.addEventListener("click", randomDay);
+    dateDisplay.addEventListener("dblclick", openDatePicker);
+
     dateInput?.addEventListener("change", () => {
         const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateInput.value || "");
         if (!match) return;
         const selected = dateForMonthDay(Number(match[2]), Number(match[3]));
         if (selected) setActiveDate(selected);
+    });
+
+    filterBar?.addEventListener("click", event => {
+        const button = event.target.closest("[data-otd-filter]");
+        if (!button || !filterBar.contains(button)) return;
+        const filter = button.dataset.otdFilter || "all";
+        if (filter === activeFilter) return;
+        activeFilter = filter;
+        render(true);
     });
 
     weekStrip?.addEventListener("click", event => {
@@ -432,6 +694,54 @@
         target.click();
     });
 
+    weekStrip?.addEventListener("wheel", event => {
+        if (weekStrip.scrollWidth <= weekStrip.clientWidth) return;
+        if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+        event.preventDefault();
+        weekStrip.scrollLeft += event.deltaY;
+    }, { passive: false });
+
+    list.addEventListener("click", event => {
+        const jump = event.target.closest("[data-otd-jump]");
+        if (jump) {
+            const date = parseKey(jump.dataset.otdJump);
+            if (date) setActiveDate(date);
+            return;
+        }
+
+        if (event.target.closest("a, button, input, select, textarea")) return;
+        const row = event.target.closest(".otd-entry.is-clickable");
+        if (!row || !list.contains(row)) return;
+        if (window.getSelection?.().toString().trim()) return;
+        openRowSource(row);
+    });
+
+    list.addEventListener("keydown", event => {
+        const row = event.target.closest(".otd-entry.is-clickable");
+        if (!row || event.target !== row || !["Enter", " "].includes(event.key)) return;
+        event.preventDefault();
+        openRowSource(row);
+    });
+
+    document.addEventListener("keydown", event => {
+        if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
+        const target = event.target;
+        const editable = target?.matches?.("input, textarea, select, [contenteditable='true']");
+        if (editable) return;
+
+        if (/^Arrow(Left|Right)$/.test(event.key)) {
+            if (target?.closest?.("[data-otd-week]")) return;
+            event.preventDefault();
+            shiftDay(event.key === "ArrowRight" ? 1 : -1);
+            return;
+        }
+
+        if (event.key.toLowerCase() === "t") {
+            event.preventDefault();
+            setActiveDate(localToday());
+        }
+    });
+
     async function load() {
         const url = widget.dataset.historyUrl;
         if (!url) return;
@@ -441,7 +751,8 @@
             if (!response.ok) throw new Error(`History request failed: ${response.status}`);
             const data = await response.json();
             dayIndex = buildDayIndex(Array.isArray(data?.entries) ? data.entries : []);
-            render();
+            updateUrl();
+            render(false);
         } catch {
             list.replaceChildren(el("p", "otd-empty", "History archive unavailable right now."));
         } finally {
