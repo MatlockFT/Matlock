@@ -29,6 +29,9 @@ jobs:
       - name: Install JavaScript dependencies
         run: npm ci
 
+      - name: Check current brand identity
+        run: node scripts/check-brand-identity.mjs
+
       - name: Check article content and image metadata
         run: npm run check:content
 
@@ -48,6 +51,7 @@ jobs:
           node --check assets/event-map-detail.js
           node --check assets/upcoming-events-jump.js
           node --check assets/upcoming-events-links.js
+          node --check scripts/check-brand-identity.mjs
           node --check scripts/build-news-feed.mjs
           node --check scripts/check-news-data.mjs
           node --check scripts/check-on-this-day.mjs
