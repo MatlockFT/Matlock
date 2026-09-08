@@ -18,7 +18,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 6
+          fetch-depth: 8
 
       - name: Recover and run hardening patch
         shell: bash
@@ -32,17 +32,17 @@ jobs:
           end = next(i for i in range(start, len(lines)) if lines[i].strip() == 'PY')
           body = '\n'.join(line[10:] if line.startswith('          ') else line for line in lines[start:end]) + '\n'
 
-          cluster_needle = "text = replace_once(text, old_cluster_loop, new_cluster_loop, 'cluster detail rows')"
-          cluster_replacement = """pattern_cluster_rows = re.compile(r\"        ordered\\.forEach\\(event => \\{.*?\\n        \\}\\);\\n    \\}\\n\\n    function scrollDetailOnMobile\", re.S)\ntext, count = pattern_cluster_rows.subn(new_cluster_loop + \"\\n    function scrollDetailOnMobile\", text, count=1)\nif count != 1:\n    raise SystemExit('Patch target not found: cluster detail rows')"""
-          if cluster_needle not in body:
-              raise SystemExit('Could not locate cluster-row patch operation')
-          body = body.replace(cluster_needle, cluster_replacement, 1)
-
-          selection_needle = "text = replace_once(text, old_selection, new_selection, 'selection state machine')"
-          selection_replacement = """pattern_selection = re.compile(r\"    function selectEvent\\(event,.*?\\n    function renderSelectedState\\(\\) \\{\", re.S)\ntext, count = pattern_selection.subn(new_selection + \"\\n    function renderSelectedState() {\", text, count=1)\nif count != 1:\n    raise SystemExit('Patch target not found: selection state machine')"""
-          if selection_needle not in body:
-              raise SystemExit('Could not locate selection patch operation')
-          body = body.replace(selection_needle, selection_replacement, 1)
+          replacements = {
+            "text = replace_once(text, old_cluster_loop, new_cluster_loop, 'cluster detail rows')": """pattern_cluster_rows = re.compile(r\"        ordered\\.forEach\\(event => \\{.*?\\n        \\}\\);\\n    \\}\\n\\n    function scrollDetailOnMobile\", re.S)\ntext, count = pattern_cluster_rows.subn(new_cluster_loop + \"\\n    function scrollDetailOnMobile\", text, count=1)\nif count != 1:\n    raise SystemExit('Patch target not found: cluster detail rows')""",
+            "text = replace_once(text, old_selection, new_selection, 'selection state machine')": """pattern_selection = re.compile(r\"    function selectEvent\\(event,.*?\\n    function renderSelectedState\\(\\) \\{\", re.S)\ntext, count = pattern_selection.subn(new_selection + \"\\n    function renderSelectedState() {\", text, count=1)\nif count != 1:\n    raise SystemExit('Patch target not found: selection state machine')""",
+            "text = replace_once(text, old_selected, new_selected, 'selected marker state')": """pattern_selected = re.compile(r\"    function renderSelectedState\\(\\) \\{.*?\\n    \\}\\n\\n    function renderResultSelectedState\", re.S)\ntext, count = pattern_selected.subn(new_selected + \"\\n    function renderResultSelectedState\", text, count=1)\nif count != 1:\n    raise SystemExit('Patch target not found: selected marker state')""",
+            "text = replace_once(text, old_marker_selected, new_marker_selected, 'marker hit targets')": """pattern_marker_selected = re.compile(r\"            \\.attr\\('data-selected', cluster => String\\(.*?groups\\.append\\('circle'\\)\\.attr\\('class', 'event-map-pin-halo'\\)\\.attr\\('r', cluster => cluster\\.events\\.length > 1 \\? 15 : 11\\);\", re.S)\ntext, count = pattern_marker_selected.subn(new_marker_selected, text, count=1)\nif count != 1:\n    raise SystemExit('Patch target not found: marker hit targets')""",
+            "text = replace_once(text, old_handlers, new_handlers, 'marker interaction handlers')": """pattern_handlers = re.compile(r\"        groups\\n            \\.on\\('mouseenter'.*?\\n            \\}\\);\\n    \\}\\n\\n    function makeResultButton\", re.S)\ntext, count = pattern_handlers.subn(new_handlers + \"    }\\n\\n    function makeResultButton\", text, count=1)\nif count != 1:\n    raise SystemExit('Patch target not found: marker interaction handlers')"""
+          }
+          for needle, replacement in replacements.items():
+              if needle not in body:
+                  raise SystemExit(f'Could not locate patch operation: {needle}')
+              body = body.replace(needle, replacement, 1)
 
           Path('/tmp/event-map-hardening.py').write_text(body, encoding='utf-8')
           PY
