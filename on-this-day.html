@@ -8,6 +8,7 @@ page_styles:
   - /assets/on-this-day-week.css
   - /assets/on-this-day-polish.css
   - /assets/on-this-day-media.css
+  - /assets/on-this-day-qol.css
   - /assets/dynamic-page-stability.css
 page_scripts:
   - /assets/on-this-day-stable.js
@@ -25,7 +26,7 @@ page_scripts:
             <time
                 class="otd-page-date"
                 data-otd-date
-                title="Double-click to choose a date"
+                title="Click to choose a date"
             ></time>
 
             <div class="otd-page-side">
@@ -98,6 +99,24 @@ page_scripts:
             aria-label="Filter entries by type"
             hidden
         ></div>
+
+        <div class="otd-viewbar" data-otd-viewbar aria-label="History display options">
+            <div class="otd-view-toggle" data-otd-mode-group hidden aria-label="Entry visibility">
+                <button class="otd-view-button is-active" type="button" data-otd-mode="all" aria-pressed="true">All</button>
+                <button class="otd-view-button" type="button" data-otd-mode="notable" aria-pressed="false">Notable</button>
+            </div>
+
+            <label class="otd-sort-control">
+                <span>Sort</span>
+                <select class="otd-sort-select" data-otd-sort aria-label="Sort history entries">
+                    <option value="notable">Notable</option>
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+            </label>
+
+            <span class="otd-shortcut-hint" data-otd-shortcut-hint hidden>← → browse · T today</span>
+        </div>
     </div>
 
     <div class="otd-list" data-otd-list aria-live="polite"></div>
