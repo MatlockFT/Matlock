@@ -32,7 +32,7 @@ page_scripts:
     <div class="news-lead-meta" role="group" aria-label="News feed controls">
         <div class="news-live-status" aria-live="polite">
             <span class="news-live-dot" aria-hidden="true"></span>
-            <span data-news-status>Loading the latest stories…</span>
+            <span data-news-status>Loading…</span>
         </div>
 
         <button class="news-source-chip" type="button" data-news-refresh>Refresh</button>
@@ -40,7 +40,7 @@ page_scripts:
 
     {% if news_matlock_post %}
         <section class="news-matlock-latest" aria-label="Latest original MMA Matlock article">
-            <span class="news-matlock-label">Latest From Matlock</span>
+            <span class="news-matlock-label">MMA Matlock</span>
             <div class="news-matlock-copy">
                 <h2><a href="{{ news_matlock_post.url | relative_url }}">{{ news_matlock_post.title }}</a></h2>
                 <p class="news-matlock-meta">{{ news_matlock_post.date | date: "%B %d, %Y" }}{% if news_matlock_post.description %} · {{ news_matlock_post.description | strip_html | truncate: 110 }}{% endif %}</p>
@@ -108,13 +108,13 @@ page_scripts:
         </div>
 
         <div class="news-more-actions">
-            <button class="secondary-button news-show-more" type="button" data-news-show-more hidden>Show more stories</button>
+            <button class="secondary-button news-show-more" type="button" data-news-show-more hidden>Show more</button>
         </div>
     </section>
 
     <noscript>
         <p class="news-noscript">
-            JavaScript is required to load the aggregated news feed. Visit the
+            JavaScript is required to load the news feed. Visit the
             <a href="/mma-yellowpages">MMA Yellow Pages</a>
             for direct links to MMA news outlets.
         </p>
