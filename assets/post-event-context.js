@@ -46,19 +46,16 @@
         section.setAttribute('aria-label', 'Related live event tools');
 
         const copy = document.createElement('div');
-        const label = document.createElement('span');
-        label.className = 'post-event-context-label';
-        label.textContent = 'Related upcoming event';
         const strong = document.createElement('strong');
         strong.textContent = [event.promotion, event.title].filter(Boolean).join(' · ');
-        copy.append(label, strong);
+        copy.append(strong);
 
         const actions = document.createElement('div');
         actions.className = 'post-event-context-actions';
 
         const map = document.createElement('a');
         map.href = `/event-map/?event=${encodeURIComponent(event.id)}`;
-        map.textContent = 'View event';
+        map.textContent = 'Event map';
         actions.append(map);
 
         if (pickerAvailable) {
