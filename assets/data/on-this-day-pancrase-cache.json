@@ -1,7 +1,680 @@
 {
   "version": 1,
   "strategyVersion": 1,
-  "updatedAt": null,
-  "fighters": {},
-  "entries": {}
+  "updatedAt": "2026-09-08T07:03:33.069Z",
+  "fighters": {
+    "船木誠勝": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "resolved",
+      "wikidataId": "Q2080446",
+      "englishName": "Masakatsu Funaki"
+    },
+    "ウェイン・シャムロック": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "resolved",
+      "wikidataId": "Q380834",
+      "englishName": "Ken Shamrock"
+    },
+    "高橋義生": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "resolved",
+      "wikidataId": "Q6381671",
+      "englishName": "Kazuo Takahashi"
+    },
+    "キース・ベーゼムス": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "鈴木みのる": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "resolved",
+      "wikidataId": "Q1705122",
+      "englishName": "Minoru Suzuki"
+    },
+    "冨宅祐輔": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "resolved",
+      "wikidataId": "Q11395094",
+      "englishName": "Takaku Fuke"
+    },
+    "トーマス・プケット": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "グレゴリー・スミット": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "ジェイソン・デルーシア": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "resolved",
+      "wikidataId": "Q6162338",
+      "englishName": "Jason DeLucia"
+    },
+    "バス・ルッテン": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "resolved",
+      "wikidataId": "Q704832",
+      "englishName": "Bas Rutten"
+    },
+    "ヴァーノン“タイガー”ホワイト": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "resolved",
+      "wikidataId": "Q7922292",
+      "englishName": "Vernon White (fighter)"
+    },
+    "山田学": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "resolved",
+      "wikidataId": "Q11470302",
+      "englishName": "Manabu Yamada"
+    },
+    "リオン・ダイク": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "ラリー・パパドポロス": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "伊藤崇文": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "resolved",
+      "wikidataId": "Q11380061",
+      "englishName": "Takafumi Itō"
+    },
+    "柳澤龍志": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "resolved",
+      "wikidataId": "Q5371429",
+      "englishName": "Ryūshi Yanagisawa"
+    },
+    "モーリス・スミス": {
+      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "status": "resolved",
+      "wikidataId": "Q2698144",
+      "englishName": "Maurice Smith (fighter)"
+    }
+  },
+  "entries": {
+    "pancrase:1993-09-21:pancrase-yes-we-are-hybrid-wrestlers-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1993/0921.html",
+        "rawNames": [
+          "船木誠勝",
+          "ウェイン・シャムロック"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "Ken Shamrock"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. Ken Shamrock"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1993-10-14:pancrase-yes-we-are-hybrid-wrestlers-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1993/1014.html",
+        "rawNames": [
+          "ウェイン・シャムロック",
+          "高橋義生"
+        ],
+        "englishNames": [
+          "Ken Shamrock",
+          "Kazuo Takahashi"
+        ],
+        "mainEvent": "Ken Shamrock vs. Kazuo Takahashi"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Ken Shamrock",
+        "imageFileTitle": "File:Ken Shamrock 2016 (cropped).jpg"
+      }
+    },
+    "pancrase:1993-11-08:pancrase-yes-we-are-hybrid-wrestlers-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1993/1108.html",
+        "rawNames": [
+          "船木誠勝",
+          "キース・ベーゼムス"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "キース・ベーゼムス"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. キース・ベーゼムス"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1993-12-08:pancrase-yes-we-are-hybrid-wrestlers-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1993/1208.html",
+        "rawNames": [
+          "船木誠勝",
+          "高橋義生"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "Kazuo Takahashi"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. Kazuo Takahashi"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1994-01-19:pancrase-pancrash-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1994/0119.html",
+        "rawNames": [
+          "ウェイン・シャムロック",
+          "鈴木みのる"
+        ],
+        "englishNames": [
+          "Ken Shamrock",
+          "Minoru Suzuki"
+        ],
+        "mainEvent": "Ken Shamrock vs. Minoru Suzuki"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Ken Shamrock",
+        "imageFileTitle": "File:Ken Shamrock 2016 (cropped).jpg"
+      }
+    },
+    "pancrase:1994-03-12:pancrase-pancrash-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1994/0312.html",
+        "rawNames": [
+          "鈴木みのる",
+          "冨宅祐輔"
+        ],
+        "englishNames": [
+          "Minoru Suzuki",
+          "Takaku Fuke"
+        ],
+        "mainEvent": "Minoru Suzuki vs. Takaku Fuke"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Minoru Suzuki",
+        "imageFileTitle": "File:Minoru Suzuki NEVER Openweight Champion.jpg"
+      }
+    },
+    "pancrase:1994-04-21:pancrase-pancrash-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1994/0421.html",
+        "rawNames": [
+          "鈴木みのる",
+          "トーマス・プケット"
+        ],
+        "englishNames": [
+          "Minoru Suzuki",
+          "トーマス・プケット"
+        ],
+        "mainEvent": "Minoru Suzuki vs. トーマス・プケット"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Minoru Suzuki",
+        "imageFileTitle": "File:Minoru Suzuki NEVER Openweight Champion.jpg"
+      }
+    },
+    "pancrase:1994-05-31:pancrase-road-to-the-championship-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1994/0531.html",
+        "rawNames": [
+          "船木誠勝",
+          "グレゴリー・スミット"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "グレゴリー・スミット"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. グレゴリー・スミット"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1994-07-06:pancrase-road-to-the-championship-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1994/0706.html",
+        "rawNames": [
+          "船木誠勝",
+          "ジェイソン・デルーシア"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "Jason DeLucia"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. Jason DeLucia"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1994-07-26:pancrase-road-to-the-championship-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1994/0726.html",
+        "rawNames": [
+          "バス・ルッテン",
+          "ウェイン・シャムロック"
+        ],
+        "englishNames": [
+          "Bas Rutten",
+          "Ken Shamrock"
+        ],
+        "mainEvent": "Bas Rutten vs. Ken Shamrock"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Bas Rutten",
+        "imageFileTitle": "File:MMA Champ Bas Rutten.jpg"
+      }
+    },
+    "pancrase:1994-09-01:pancrase-road-to-the-championship-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1994/0901.html",
+        "rawNames": [
+          "ウェイン・シャムロック",
+          "船木誠勝"
+        ],
+        "englishNames": [
+          "Ken Shamrock",
+          "Masakatsu Funaki"
+        ],
+        "mainEvent": "Ken Shamrock vs. Masakatsu Funaki"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Ken Shamrock",
+        "imageFileTitle": "File:Ken Shamrock 2016 (cropped).jpg"
+      }
+    },
+    "pancrase:1994-10-15:pancrase-road-to-the-championship-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1994/1015.html",
+        "rawNames": [
+          "船木誠勝",
+          "鈴木みのる"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "Minoru Suzuki"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. Minoru Suzuki"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1994-12-16:pancrase-king-of-pancrase-tournament-opening-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1994/1216.html",
+        "rawNames": [
+          "ヴァーノン“タイガー”ホワイト",
+          "船木誠勝"
+        ],
+        "englishNames": [
+          "Vernon White (fighter)",
+          "Masakatsu Funaki"
+        ],
+        "mainEvent": "Vernon White (fighter) vs. Masakatsu Funaki"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1994-12-17:pancrase-king-of-pancrase-tournament-second-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1994/1217.html",
+        "rawNames": [
+          "山田学",
+          "ウェイン・シャムロック"
+        ],
+        "englishNames": [
+          "Manabu Yamada",
+          "Ken Shamrock"
+        ],
+        "mainEvent": "Manabu Yamada vs. Ken Shamrock"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Ken Shamrock",
+        "imageFileTitle": "File:Ken Shamrock 2016 (cropped).jpg"
+      }
+    },
+    "pancrase:1995-01-26:pancrase-eyes-of-beast-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1995/0126.html",
+        "rawNames": [
+          "ウェイン・シャムロック",
+          "リオン・ダイク"
+        ],
+        "englishNames": [
+          "Ken Shamrock",
+          "リオン・ダイク"
+        ],
+        "mainEvent": "Ken Shamrock vs. リオン・ダイク"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Ken Shamrock",
+        "imageFileTitle": "File:Ken Shamrock 2016 (cropped).jpg"
+      }
+    },
+    "pancrase:1995-03-10:pancrase-eyes-of-beast-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1995/0310.html",
+        "rawNames": [
+          "ウェイン・シャムロック",
+          "バス・ルッテン"
+        ],
+        "englishNames": [
+          "Ken Shamrock",
+          "Bas Rutten"
+        ],
+        "mainEvent": "Ken Shamrock vs. Bas Rutten"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Ken Shamrock",
+        "imageFileTitle": "File:Ken Shamrock 2016 (cropped).jpg"
+      }
+    },
+    "pancrase:1995-04-08:pancrase-eyes-of-beast-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1995/0408.html",
+        "rawNames": [
+          "船木誠勝",
+          "山田学"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "Manabu Yamada"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. Manabu Yamada"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1995-05-13:pancrase-eyes-of-beast-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1995/0513.html",
+        "rawNames": [
+          "ウェイン・シャムロック",
+          "鈴木みのる"
+        ],
+        "englishNames": [
+          "Ken Shamrock",
+          "Minoru Suzuki"
+        ],
+        "mainEvent": "Ken Shamrock vs. Minoru Suzuki"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Ken Shamrock",
+        "imageFileTitle": "File:Ken Shamrock 2016 (cropped).jpg"
+      }
+    },
+    "pancrase:1995-06-13:pancrase-eyes-of-beast-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1995/0613.html",
+        "rawNames": [
+          "鈴木みのる",
+          "ラリー・パパドポロス"
+        ],
+        "englishNames": [
+          "Minoru Suzuki",
+          "ラリー・パパドポロス"
+        ],
+        "mainEvent": "Minoru Suzuki vs. ラリー・パパドポロス"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Minoru Suzuki",
+        "imageFileTitle": "File:Minoru Suzuki NEVER Openweight Champion.jpg"
+      }
+    },
+    "pancrase:1995-07-22:pancrase-1995-neo-blood-tournament-opening-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1995/0722.html",
+        "rawNames": [
+          "鈴木みのる",
+          "ジェイソン・デルーシア"
+        ],
+        "englishNames": [
+          "Minoru Suzuki",
+          "Jason DeLucia"
+        ],
+        "mainEvent": "Minoru Suzuki vs. Jason DeLucia"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Minoru Suzuki",
+        "imageFileTitle": "File:Minoru Suzuki NEVER Openweight Champion.jpg"
+      }
+    },
+    "pancrase:1995-07-23:pancrase-1995-neo-blood-tournament-second-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1995/0723.html",
+        "rawNames": [
+          "伊藤崇文",
+          "柳澤龍志"
+        ],
+        "englishNames": [
+          "Takafumi Itō",
+          "Ryūshi Yanagisawa"
+        ],
+        "mainEvent": "Takafumi Itō vs. Ryūshi Yanagisawa"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:1995-09-01:pancrase-1995-anniversary-show": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1995/0901.html",
+        "rawNames": [
+          "鈴木みのる",
+          "バス・ルッテン"
+        ],
+        "englishNames": [
+          "Minoru Suzuki",
+          "Bas Rutten"
+        ],
+        "mainEvent": "Minoru Suzuki vs. Bas Rutten"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Minoru Suzuki",
+        "imageFileTitle": "File:Minoru Suzuki NEVER Openweight Champion.jpg"
+      }
+    },
+    "pancrase:1995-11-04:pancrase-eyes-of-beast-6": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1995/1104.html",
+        "rawNames": [
+          "バス・ルッテン",
+          "モーリス・スミス"
+        ],
+        "englishNames": [
+          "Bas Rutten",
+          "Maurice Smith (fighter)"
+        ],
+        "mainEvent": "Bas Rutten vs. Maurice Smith (fighter)"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Bas Rutten",
+        "imageFileTitle": "File:MMA Champ Bas Rutten.jpg"
+      }
+    },
+    "pancrase:1995-12-14:pancrase-eyes-of-beast-7": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1995/1214.html",
+        "rawNames": [
+          "バス・ルッテン",
+          "柳澤龍志"
+        ],
+        "englishNames": [
+          "Bas Rutten",
+          "Ryūshi Yanagisawa"
+        ],
+        "mainEvent": "Bas Rutten vs. Ryūshi Yanagisawa"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T07:03:33.069Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Bas Rutten",
+        "imageFileTitle": "File:MMA Champ Bas Rutten.jpg"
+      }
+    }
+  }
 }
