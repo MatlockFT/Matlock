@@ -1,7 +1,21 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-07T19:16:33.588Z",
+  "generated_at": "2026-09-08T00:16:54.507Z",
   "changes": [
+    {
+      "id": "2026-09-08T00:16:54.507Z|dwcs-season-10-week-5-2026-09-08|bout_weight_changed|1",
+      "at": "2026-09-08T00:16:54.507Z",
+      "type": "bout_weight_changed",
+      "event_id": "dwcs-season-10-week-5-2026-09-08",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 5",
+      "event_date": "2026-09-08",
+      "summary": "Martin Kozak vs Christian Echols weight/class changed.",
+      "details": {
+        "from": "Middleweight",
+        "to": "Catchweight"
+      }
+    },
     {
       "id": "2026-09-07T19:16:33.588Z|noche-ufc-2026-09-12-fight-card|bout_moved|1",
       "at": "2026-09-07T19:16:33.588Z",
@@ -4548,20 +4562,6 @@
       "summary": "Ding Meng portrait added.",
       "details": {
         "fighter": "Ding Meng",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-09-05-fight-card|portrait_added|47",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Dan Hooker portrait added.",
-      "details": {
-        "fighter": "Dan Hooker",
         "source": "sherdog"
       }
     }
