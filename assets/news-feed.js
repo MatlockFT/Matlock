@@ -8,7 +8,6 @@
     const moreList = newsPage.querySelector("[data-news-more-list]");
     const status = newsPage.querySelector("[data-news-status]");
     const liveStatus = newsPage.querySelector(".news-live-status");
-    const summary = newsPage.querySelector("[data-news-summary]");
     const refreshButton = newsPage.querySelector("[data-news-refresh]");
     const sourceFilter = newsPage.querySelector("[data-news-source-filter]");
     const showMoreButton = newsPage.querySelector("[data-news-show-more]");
@@ -330,11 +329,6 @@
         }
     }
 
-    function updateSummary() {
-        const sourceCount = new Set(allStories.map(story => story.source).filter(Boolean)).size;
-        summary.textContent = `${allStories.length} stories · ${sourceCount} sources`;
-    }
-
     function updateSourceFilter() {
         const previous = selectedSource;
         const sources = [...new Set(
@@ -415,7 +409,6 @@
         topStorySlot.replaceChildren(renderTopStory(topStory));
         latestList.replaceChildren(...latestStories.map(renderLatestStory));
         leadGrid.setAttribute("aria-busy", "false");
-        updateSummary();
         updateSourceFilter();
         renderMoreStories();
         setStatus(data, options);
@@ -499,7 +492,6 @@
                     );
                     latestList.replaceChildren();
                     moreList.replaceChildren();
-                    summary.textContent = "Feed unavailable";
                 }
             }
         } finally {
