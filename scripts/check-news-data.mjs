@@ -7,7 +7,9 @@ const failures = [];
 const warnings = [];
 const now = Date.now();
 const MAX_FUTURE_SKEW = 20 * 60 * 1000;
+const MAX_FUTURE_HARD_LIMIT = 12 * 60 * 60 * 1000;
 const MAX_STORY_AGE = 15 * 24 * 60 * 60 * 1000;
+const STALE_SNAPSHOT_AGE = 2 * 24 * 60 * 60 * 1000;
 
 const clean = value => String(value || "").replace(/\s+/g, " ").trim();
 const normalizedTitle = value => clean(value)
@@ -39,10 +41,14 @@ function canonicalUrl(value) {
     }
 }
 
-if (!Number.isFinite(Date.parse(data.generatedAt))) {
+const generatedAt = Date.parse(data.generatedAt);
+if (!Number.isFinite(generatedAt)) {
     failures.push("generatedAt must be a valid date");
-} else if (Date.parse(data.generatedAt) > now + MAX_FUTURE_SKEW) {
-    failures.push("generatedAt is implausibly far in the future");
+} else {
+    if (generatedAt > now + MAX_FUTURE_SKEW) failures.push("generatedAt is implausibly far in the future");
+    if (generatedAt < now - STALE_SNAPSHOT_AGE) {
+        warnings.push(`bundled snapshot is ${((now - generatedAt) / 86400000).toFixed(1)} days old; live/release data should remain the primary browser source`);
+    }
 }
 
 if (!Number.isInteger(data.sourceCount) || data.sourceCount < 4) {
@@ -106,9 +112,10 @@ for (const [index, story] of stories.entries()) {
 
     const published = Date.parse(story.publishedAt);
     if (!Number.isFinite(published)) failures.push(`${label} has invalid publishedAt`);
-    else {
-        if (published > now + MAX_FUTURE_SKEW) failures.push(`${label} is implausibly future-dated`);
-        if (published < now - MAX_STORY_AGE) failures.push(`${label} is older than the feed age ceiling`);
+    else if (Number.isFinite(generatedAt)) {
+        if (published > generatedAt + MAX_FUTURE_HARD_LIMIT) failures.push(`${label} is more than 12 hours ahead of its snapshot`);
+        else if (published > generatedAt + MAX_FUTURE_SKEW) warnings.push(`${label} is future-dated relative to its snapshot`);
+        if (published < generatedAt - MAX_STORY_AGE) failures.push(`${label} is older than the feed age ceiling at snapshot time`);
     }
 
     if (story.image) {
@@ -132,10 +139,10 @@ if (stories.length) {
     if (imageRate < 0.7) warnings.push(`story image coverage is only ${(imageRate * 100).toFixed(1)}%`);
 }
 
-const topAgeHours = data.topStory?.publishedAt
-    ? Math.max(0, now - Date.parse(data.topStory.publishedAt)) / 3600000
+const topAgeHours = Number.isFinite(generatedAt) && data.topStory?.publishedAt
+    ? Math.max(0, generatedAt - Date.parse(data.topStory.publishedAt)) / 3600000
     : 0;
-if (Number.isFinite(topAgeHours) && topAgeHours > 72) warnings.push(`top story is ${topAgeHours.toFixed(1)} hours old`);
+if (Number.isFinite(topAgeHours) && topAgeHours > 72) warnings.push(`top story was already ${topAgeHours.toFixed(1)} hours old when the snapshot was built`);
 
 if (warnings.length > 0) {
     console.warn("MMA news quality warnings:");
