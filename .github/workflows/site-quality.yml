@@ -98,6 +98,10 @@ jobs:
           grep -q "data-roster-removals" ufc-roster.html
           grep -q "is-portrait" assets/on-this-day.js
           grep -q "animation-play-state: paused !important" assets/site-ticker.css
+          grep -q "home-tools-bar" index.html
+          grep -q "Shared optical row alignment" assets/site-consistency.css
+          grep -q "ufc-active-absence-confirmed" assets/ufc-roster.js
+          grep -q "REMOVAL_CONFIRMATION_MISSES = 3" scripts/update-ufc-roster-v4.mjs
           if grep -q 'data-news-refresh' news.html || grep -q 'data-news-status' news.html; then
             echo "News page must not expose manual refresh/update-status clutter"
             exit 1
