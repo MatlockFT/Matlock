@@ -1,5 +1,6 @@
 name: Event Map production smoke
 
+# Production regression gate for committed selection, history, and mobile tap flow.
 on:
   workflow_dispatch:
   schedule:
