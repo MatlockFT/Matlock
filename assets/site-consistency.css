@@ -282,7 +282,7 @@
 }
 
 
-/* Shared optical row alignment */
+/* Shared optical row alignment: fixed line boxes + flex centering avoid font-metric drift between rows. */
 :where(
     .home-panel-heading,
     .event-card-section-heading,
