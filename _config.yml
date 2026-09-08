@@ -7,7 +7,7 @@ description: >-
 
 url: "https://mmamatlock.com"
 baseurl: ""
-asset_version: "128"
+asset_version: "129"
 
 lang: "en-US"
 locale: "en_US"
@@ -70,13 +70,10 @@ nav:
   - name: "On This Day"
     link: "/on-this-day/"
 
-  - name: "Roster"
+  - name: "UFC Roster"
     link: "/ufc-roster/"
 
 footer_nav:
-  - name: "RSS"
-    link: "/feed.xml"
-
   - name: "About"
     link: "/about/"
 
@@ -86,14 +83,14 @@ footer_nav:
   - name: "MMA Yellow Pages"
     link: "/mma-yellowpages"
 
-  - name: "On This Day"
-    link: "/on-this-day/"
-
   - name: "Contact"
     link: "/contact/"
 
   - name: "Privacy"
     link: "/privacy/"
+
+  - name: "RSS"
+    link: "/feed.xml"
 
 
 defaults:
