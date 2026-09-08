@@ -1,0 +1,748 @@
+name: One-time News ticker and roster QoL pass
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/qol-news-ticker-roster-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  qol-pass:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Apply News, ticker, OTD and roster quality pass
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          # NEWS: remove manual refresh/update UI while preserving silent auto-refresh.
+          news = Path('news.html')
+          html = news.read_text(encoding='utf-8')
+          controls = '''    <div class="news-lead-meta" role="group" aria-label="News feed controls">\n        <div class="news-live-status" aria-live="polite">\n            <span class="news-live-dot" aria-hidden="true"></span>\n            <span data-news-status>Loading…</span>\n        </div>\n\n        <button class="news-source-chip" type="button" data-news-refresh>Refresh</button>\n    </div>\n\n'''
+          if controls not in html:
+              raise SystemExit('News controls block not found')
+          html = html.replace(controls, '', 1)
+          news.write_text(html, encoding='utf-8')
+
+          js_path = Path('assets/news-feed.js')
+          js = js_path.read_text(encoding='utf-8')
+          js = js.replace('''        if (!quiet) {\n            status.textContent = allStories.length\n                ? "Checking for new stories…"\n                : "Loading the latest stories…";\n            status.dataset.state = "loading";\n            liveStatus.dataset.state = "loading";\n        }\n        refreshButton.disabled = true;\n''', '''        if (!quiet && status && liveStatus) {\n            status.textContent = allStories.length\n                ? "Checking for new stories…"\n                : "Loading the latest stories…";\n            status.dataset.state = "loading";\n            liveStatus.dataset.state = "loading";\n        }\n        if (refreshButton) refreshButton.disabled = true;\n''', 1)
+          js = js.replace('''            if (allStories.length) {\n                status.dataset.state = "stale";\n                liveStatus.dataset.state = "stale";\n                return;\n            }\n''', '''            if (allStories.length) {\n                if (status) status.dataset.state = "stale";\n                if (liveStatus) liveStatus.dataset.state = "stale";\n                return;\n            }\n''', 1)
+          js = js.replace('''                status.textContent = "News feed temporarily unavailable · Try refresh";\n                status.dataset.state = "error";\n                liveStatus.dataset.state = "error";\n''', '''                if (status) {\n                    status.textContent = "News feed temporarily unavailable";\n                    status.dataset.state = "error";\n                }\n                if (liveStatus) liveStatus.dataset.state = "error";\n''', 1)
+          js = js.replace('''        } finally {\n            refreshButton.disabled = false;\n        }\n''', '''        } finally {\n            if (refreshButton) refreshButton.disabled = false;\n        }\n''', 1)
+          js = js.replace('''    refreshButton.addEventListener("click", () => refreshFeed());\n''', '''    refreshButton?.addEventListener("click", () => refreshFeed());\n''', 1)
+          # setStatus is called after every render; make it a no-op when the visible status UI is intentionally absent.
+          js = js.replace('''    function setStatus(data, { fallbackUsed = false } = {}) {\n        const generatedAt = safeDate(data.generatedAt);\n''', '''    function setStatus(data, { fallbackUsed = false } = {}) {\n        if (!status || !liveStatus) return;\n        const generatedAt = safeDate(data.generatedAt);\n''', 1)
+          js_path.write_text(js, encoding='utf-8')
+
+          # ON THIS DAY: compact News cards become image-shape aware.
+          otd_css_path = Path('assets/on-this-day.css')
+          css = otd_css_path.read_text(encoding='utf-8')
+          css = css.replace('''.otd-compact-media {\n    aspect-ratio: 16 / 9;\n    border-bottom: 1px solid var(--border);\n}\n''', '''.otd-compact-media {\n    aspect-ratio: 4 / 3;\n    border-bottom: 1px solid var(--border);\n    background: #070707;\n}\n''', 1)
+          image_rule = '''.otd-compact-media img,\n.otd-entry-media img {\n    display: block;\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n    filter: saturate(0.72) contrast(1.08) brightness(0.9);\n    transition: filter 180ms ease, transform 220ms ease;\n}\n'''
+          image_new = image_rule + '''\n/* Compact News cards protect faces/posters instead of forcing every image through a centered crop. */\n.otd-compact-media img {\n    object-position: center top;\n}\n\n.otd-compact-media.is-portrait img,\n.otd-compact-media.is-square img {\n    object-fit: contain;\n    object-position: center center;\n}\n\n.otd-compact-item:hover .otd-compact-media.is-portrait img,\n.otd-compact-item:hover .otd-compact-media.is-square img {\n    transform: none;\n}\n'''
+          if image_rule not in css:
+              raise SystemExit('OTD compact image rule not found')
+          css = css.replace(image_rule, image_new, 1)
+          otd_css_path.write_text(css, encoding='utf-8')
+
+          otd_js_path = Path('assets/on-this-day.js')
+          otd = otd_js_path.read_text(encoding='utf-8')
+          old_loaded = '''            media.classList.remove("is-fallback");\n            media.replaceChildren(result.image);\n            if (result.credit) media.append(element("span", "otd-media-credit", result.credit));\n'''
+          new_loaded = '''            media.classList.remove("is-fallback");\n            if (compact) {\n                const ratio = result.image.naturalHeight\n                    ? result.image.naturalWidth / result.image.naturalHeight\n                    : 1.5;\n                media.classList.remove("is-portrait", "is-square", "is-landscape");\n                media.classList.add(\n                    ratio < 0.9 ? "is-portrait" : ratio < 1.25 ? "is-square" : "is-landscape"\n                );\n            }\n            media.replaceChildren(result.image);\n            if (result.credit) media.append(element("span", "otd-media-credit", result.credit));\n'''
+          if old_loaded not in otd:
+              raise SystemExit('OTD loaded-image block not found')
+          otd = otd.replace(old_loaded, new_loaded, 1)
+          otd_js_path.write_text(otd, encoding='utf-8')
+
+          # TICKER: CSS animation play-state preserves the exact position, so hover truly pauses and resumes without catch-up.
+          ticker_path = Path('assets/site-ticker.css')
+          ticker = ticker_path.read_text(encoding='utf-8')
+          pause_rules = '''\n\n/* Pause the actual moving rail. CSS play-state resumes from the exact frame instead of catching up. */\n.site-news-viewport:hover .site-news-track,\n.site-news-viewport:focus-within .site-news-track {\n    animation-play-state: paused !important;\n}\n\nhtml.reduce-motion body .site-news-viewport:hover .site-news-track,\nhtml.reduce-motion body .site-news-viewport:focus-within .site-news-track {\n    animation-play-state: paused !important;\n}\n'''
+          if 'Pause the actual moving rail' not in ticker:
+              ticker = ticker.rstrip() + pause_rules + '\n'
+          ticker_path.write_text(ticker, encoding='utf-8')
+
+          # Asset cache bump.
+          cfg_path = Path('_config.yml')
+          cfg = cfg_path.read_text(encoding='utf-8')
+          m = re.search(r'(?m)^asset_version: "(\d+)"$', cfg)
+          if not m:
+              raise SystemExit('asset_version not found')
+          version = int(m.group(1))
+          cfg = cfg[:m.start(1)] + str(version + 1) + cfg[m.end(1):]
+          cfg_path.write_text(cfg, encoding='utf-8')
+          print(f'Base QoL patches ready. asset_version {version} -> {version + 1}')
+          PY
+
+          cat > ufc-roster.html <<'EOF'
+          ---
+          layout: default
+          title: "UFC Roster Updates: Recent UFC Additions"
+          description: "Track recent additions to the UFC active roster, including newly detected UFC athlete pages and roster status updates."
+          permalink: /ufc-roster/
+          page_styles:
+            - /assets/ufc-roster.css
+            - /assets/dynamic-page-stability.css
+          page_scripts:
+            - /assets/ufc-roster.js
+          ---
+
+          <article
+              class="ufc-roster-page"
+              data-ufc-roster
+              data-feed-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/ufc-roster-data"
+              data-backfill-url="{{ '/assets/ufc-roster-backfill.json' | relative_url }}"
+              data-refresh-interval="300000"
+          >
+              <header class="ufc-roster-hero">
+                  <div class="ufc-roster-hero-copy">
+                      <span class="ufc-roster-eyebrow">UFC roster tracker</span>
+                      <h1>Roster Changes</h1>
+                  </div>
+
+                  <div class="ufc-roster-live-status" data-roster-live-status data-state="loading" aria-live="polite">
+                      <span class="ufc-roster-live-dot" aria-hidden="true"></span>
+                      <span data-roster-status>Checking roster…</span>
+                  </div>
+              </header>
+
+              <section class="ufc-roster-stats" aria-label="Roster snapshot">
+                  <div class="ufc-roster-stat">
+                      <strong data-roster-active-count>—</strong>
+                      <span>Active</span>
+                  </div>
+                  <div class="ufc-roster-stat">
+                      <strong data-roster-add-count>—</strong>
+                      <span>Recent adds</span>
+                  </div>
+                  <div class="ufc-roster-stat">
+                      <strong data-roster-remove-count>—</strong>
+                      <span>Recent exits</span>
+                  </div>
+              </section>
+
+              <section class="ufc-roster-section" aria-labelledby="ufc-roster-additions-title">
+                  <header class="ufc-roster-section-header">
+                      <h2 id="ufc-roster-additions-title">Recent additions</h2>
+                  </header>
+                  <div class="ufc-roster-grid" data-roster-list aria-live="polite" aria-busy="true">
+                      <div class="ufc-roster-empty">Loading…</div>
+                  </div>
+              </section>
+
+              <section class="ufc-roster-section" data-roster-removals-section aria-labelledby="ufc-roster-removals-title" hidden>
+                  <header class="ufc-roster-section-header">
+                      <h2 id="ufc-roster-removals-title">Recent departures</h2>
+                  </header>
+                  <div class="ufc-roster-grid ufc-roster-grid--removals" data-roster-removals></div>
+              </section>
+          </article>
+          EOF
+
+          cat > assets/ufc-roster.css <<'EOF'
+          .ufc-roster-page {
+              width: min(100%, 1180px);
+              margin: 0 auto;
+          }
+
+          .ufc-roster-hero {
+              display: flex;
+              align-items: end;
+              justify-content: space-between;
+              gap: 1.25rem;
+              margin-bottom: 1rem;
+              padding-bottom: 1rem;
+              border-bottom: 1px solid var(--border);
+          }
+
+          .ufc-roster-hero-copy {
+              min-width: 0;
+          }
+
+          .ufc-roster-eyebrow {
+              display: block;
+              margin-bottom: 0.35rem;
+              color: var(--accent-soft, #ff8087);
+              font: 900 0.62rem/1 "Courier New", monospace;
+              letter-spacing: 0.11em;
+              text-transform: uppercase;
+          }
+
+          .ufc-roster-hero h1 {
+              margin: 0;
+              color: #fff;
+              font-family: "Gobold", Impact, sans-serif;
+              font-size: clamp(2rem, 5vw, 3.8rem);
+              line-height: 0.95;
+              text-transform: uppercase;
+          }
+
+          .ufc-roster-live-status {
+              display: inline-flex;
+              min-width: 0;
+              align-items: center;
+              gap: 0.46rem;
+              padding: 0.42rem 0.62rem;
+              border: 1px solid var(--border);
+              border-radius: 999px;
+              color: var(--text-muted, #aaa);
+              font: 800 0.66rem/1.1 "Courier New", monospace;
+              white-space: nowrap;
+          }
+
+          .ufc-roster-live-dot {
+              width: 0.45rem;
+              height: 0.45rem;
+              flex: 0 0 auto;
+              border-radius: 50%;
+              background: #e6c45b;
+          }
+
+          .ufc-roster-live-status[data-state="ready"] .ufc-roster-live-dot {
+              background: var(--green, #3ddd78);
+          }
+
+          .ufc-roster-live-status[data-state="error"] .ufc-roster-live-dot {
+              background: var(--accent, #ff4a54);
+          }
+
+          .ufc-roster-stats {
+              display: grid;
+              grid-template-columns: repeat(3, minmax(0, 1fr));
+              gap: 0.75rem;
+              margin-bottom: clamp(1.4rem, 3vw, 2rem);
+          }
+
+          .ufc-roster-stat {
+              display: flex;
+              min-width: 0;
+              align-items: baseline;
+              justify-content: space-between;
+              gap: 0.75rem;
+              padding: 0.8rem 0.95rem;
+              border: 1px solid var(--border);
+              border-radius: 12px;
+              background: linear-gradient(145deg, rgba(255, 74, 84, 0.045), transparent 55%), var(--surface, #111);
+          }
+
+          .ufc-roster-stat strong {
+              color: #fff;
+              font-family: "Gobold", Impact, sans-serif;
+              font-size: clamp(1.45rem, 3vw, 2.1rem);
+              font-variant-numeric: tabular-nums;
+              line-height: 1;
+          }
+
+          .ufc-roster-stat span {
+              color: var(--text-muted, #999);
+              font: 900 0.58rem/1.1 "Courier New", monospace;
+              letter-spacing: 0.065em;
+              text-align: right;
+              text-transform: uppercase;
+          }
+
+          .ufc-roster-section + .ufc-roster-section {
+              margin-top: clamp(1.6rem, 3.5vw, 2.5rem);
+          }
+
+          .ufc-roster-section[hidden] {
+              display: none !important;
+          }
+
+          .ufc-roster-section-header {
+              display: flex;
+              align-items: center;
+              margin-bottom: 0.7rem;
+          }
+
+          .ufc-roster-section-header h2 {
+              margin: 0;
+              color: #fff;
+              font-family: Arial, Helvetica, sans-serif;
+              font-size: 0.78rem;
+              font-weight: 900;
+              letter-spacing: 0.07em;
+              text-transform: uppercase;
+          }
+
+          .ufc-roster-grid {
+              display: grid;
+              grid-template-columns: repeat(2, minmax(0, 1fr));
+              gap: 0.7rem;
+              min-height: 88px;
+          }
+
+          .ufc-roster-card {
+              display: grid;
+              grid-template-columns: 64px minmax(0, 1fr);
+              align-items: center;
+              gap: 0.85rem;
+              min-width: 0;
+              min-height: 94px;
+              padding: 0.72rem;
+              border: 1px solid var(--border, #262626);
+              border-radius: 12px;
+              background: var(--surface, #101010);
+              transition: border-color 150ms ease, background-color 150ms ease, transform 170ms ease;
+          }
+
+          .ufc-roster-card:hover,
+          .ufc-roster-card:focus-within {
+              border-color: var(--border-bright, #3a3a3a);
+              background: #141414;
+          }
+
+          .ufc-roster-card--removed {
+              opacity: 0.82;
+          }
+
+          .ufc-roster-photo {
+              display: grid;
+              width: 64px;
+              height: 64px;
+              overflow: hidden;
+              place-items: center;
+              border: 1px solid rgba(255, 255, 255, 0.08);
+              border-radius: 10px;
+              background: #080808;
+              color: rgba(255, 255, 255, 0.38);
+              font-family: "Gobold", Impact, sans-serif;
+              font-size: 1.15rem;
+              line-height: 1;
+              text-decoration: none;
+          }
+
+          .ufc-roster-photo img {
+              display: block;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: center top;
+          }
+
+          .ufc-roster-card-body {
+              min-width: 0;
+          }
+
+          .ufc-roster-card-meta {
+              display: flex;
+              align-items: center;
+              flex-wrap: wrap;
+              gap: 0.42rem;
+              margin-bottom: 0.3rem;
+          }
+
+          .ufc-roster-rank,
+          .ufc-roster-event-pill,
+          .ufc-roster-division {
+              font: 900 0.55rem/1 "Courier New", monospace;
+              letter-spacing: 0.055em;
+              text-transform: uppercase;
+          }
+
+          .ufc-roster-rank {
+              color: #666;
+          }
+
+          .ufc-roster-event-pill {
+              padding: 0.18rem 0.34rem;
+              border: 1px solid rgba(61, 221, 120, 0.3);
+              border-radius: 999px;
+              color: #9df0bd;
+          }
+
+          .ufc-roster-card--removed .ufc-roster-event-pill {
+              border-color: rgba(255, 74, 84, 0.3);
+              color: #ff8e95;
+          }
+
+          .ufc-roster-division {
+              color: var(--text-muted, #999);
+          }
+
+          .ufc-roster-name {
+              overflow: hidden;
+              margin: 0;
+              font-family: Arial, Helvetica, sans-serif;
+              font-size: clamp(1rem, 1.55vw, 1.18rem);
+              font-weight: 900;
+              line-height: 1.08;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+          }
+
+          .ufc-roster-name a {
+              color: #fff;
+              text-decoration: none;
+          }
+
+          .ufc-roster-name a:hover,
+          .ufc-roster-name a:focus-visible {
+              color: var(--accent-soft, #ff8087);
+          }
+
+          .ufc-roster-details,
+          .ufc-roster-detected {
+              margin: 0.32rem 0 0;
+          }
+
+          .ufc-roster-details {
+              overflow: hidden;
+              color: #d8d8d8;
+              font-size: 0.74rem;
+              line-height: 1.25;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+          }
+
+          .ufc-roster-detected {
+              color: #777;
+              font: 700 0.62rem/1.25 "Courier New", monospace;
+          }
+
+          .ufc-roster-status-pill {
+              display: inline-block;
+              margin-top: 0.38rem;
+              color: #8e8e8e;
+              font: 800 0.56rem/1 "Courier New", monospace;
+              letter-spacing: 0.04em;
+              text-transform: uppercase;
+          }
+
+          .ufc-roster-empty {
+              grid-column: 1 / -1;
+              display: grid;
+              min-height: 88px;
+              place-items: center;
+              padding: 1rem;
+              border: 1px dashed var(--border-bright, #333);
+              border-radius: 12px;
+              color: var(--text-muted, #aaa);
+              font-size: 0.8rem;
+              text-align: center;
+          }
+
+          @media (hover: hover) and (pointer: fine) {
+              .ufc-roster-card:hover {
+                  transform: translateY(-2px);
+              }
+          }
+
+          @media (max-width: 760px) {
+              .ufc-roster-hero {
+                  align-items: flex-start;
+                  flex-direction: column;
+                  gap: 0.65rem;
+              }
+
+              .ufc-roster-live-status {
+                  padding: 0;
+                  border: 0;
+              }
+
+              .ufc-roster-grid {
+                  grid-template-columns: 1fr;
+              }
+          }
+
+          @media (max-width: 520px) {
+              .ufc-roster-stats {
+                  gap: 0.45rem;
+              }
+
+              .ufc-roster-stat {
+                  align-items: flex-start;
+                  flex-direction: column;
+                  gap: 0.28rem;
+                  padding: 0.65rem;
+              }
+
+              .ufc-roster-stat span {
+                  text-align: left;
+              }
+
+              .ufc-roster-card {
+                  grid-template-columns: 54px minmax(0, 1fr);
+                  min-height: 82px;
+                  gap: 0.68rem;
+                  padding: 0.62rem;
+              }
+
+              .ufc-roster-photo {
+                  width: 54px;
+                  height: 54px;
+              }
+
+              .ufc-roster-name {
+                  font-size: 1rem;
+              }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+              .ufc-roster-card {
+                  transition: none;
+              }
+
+              .ufc-roster-card:hover {
+                  transform: none;
+              }
+          }
+          EOF
+
+          cat > assets/ufc-roster.js <<'EOF'
+          (() => {
+              const page = document.querySelector("[data-ufc-roster]");
+              if (!page) return;
+
+              const list = page.querySelector("[data-roster-list]");
+              const removalsList = page.querySelector("[data-roster-removals]");
+              const removalsSection = page.querySelector("[data-roster-removals-section]");
+              const status = page.querySelector("[data-roster-status]");
+              const liveStatus = page.querySelector("[data-roster-live-status]");
+              const activeCount = page.querySelector("[data-roster-active-count]");
+              const addCount = page.querySelector("[data-roster-add-count]");
+              const removeCount = page.querySelector("[data-roster-remove-count]");
+              const feedUrl = page.dataset.feedUrl;
+              const backfillUrl = page.dataset.backfillUrl;
+              const refreshInterval = Number(page.dataset.refreshInterval) || 300000;
+
+              const GENERIC_FIGHTER_NAMES = new Set([
+                  "search results", "search", "athletes", "all athletes", "ufc",
+                  "page not found", "not found", "access denied", "error"
+              ]);
+
+              function element(tag, className, text) {
+                  const node = document.createElement(tag);
+                  if (className) node.className = className;
+                  if (text !== undefined) node.textContent = text;
+                  return node;
+              }
+
+              function formatDate(value, includeYear = true) {
+                  const date = new Date(value);
+                  if (Number.isNaN(date.getTime())) return "Unknown";
+                  return date.toLocaleDateString([], {
+                      month: "short",
+                      day: "numeric",
+                      ...(includeYear ? { year: "numeric" } : {})
+                  });
+              }
+
+              function formatCheckedAt(value) {
+                  const date = new Date(value);
+                  if (Number.isNaN(date.getTime())) return "Checked recently";
+                  const now = new Date();
+                  const sameDay = date.toDateString() === now.toDateString();
+                  return sameDay
+                      ? `Checked ${date.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}`
+                      : `Checked ${formatDate(value, false)}`;
+              }
+
+              function setLiveState(state, text) {
+                  if (liveStatus) liveStatus.dataset.state = state;
+                  if (status) status.textContent = text;
+              }
+
+              function fighterSlug(fighter) {
+                  if (fighter?.slug) return String(fighter.slug);
+                  try {
+                      return new URL(fighter?.url || "", window.location.href)
+                          .pathname.split("/").filter(Boolean).at(-1) || "";
+                  } catch {
+                      return "";
+                  }
+              }
+
+              function nameFromSlug(slug) {
+                  return String(slug || "").split("-").filter(Boolean)
+                      .map(part => part.charAt(0).toUpperCase() + part.slice(1)).join(" ");
+              }
+
+              function fighterDisplayName(fighter) {
+                  const candidate = String(fighter?.name || "").replace(/\s+/g, " ").trim();
+                  if (candidate && !GENERIC_FIGHTER_NAMES.has(candidate.toLowerCase())) return candidate;
+                  return nameFromSlug(fighterSlug(fighter)) || "Unknown fighter";
+              }
+
+              function initials(name) {
+                  return String(name || "?").split(/\s+/).filter(Boolean).slice(0, 2)
+                      .map(part => part[0]?.toUpperCase() || "").join("") || "?";
+              }
+
+              function fighterMedia(fighter) {
+                  const name = fighterDisplayName(fighter);
+                  const link = element("a", "ufc-roster-photo", initials(name));
+                  link.href = fighter.url;
+                  link.target = "_blank";
+                  link.rel = "noopener noreferrer";
+                  link.setAttribute("aria-label", `Open ${name} on UFC.com`);
+
+                  if (fighter.image) {
+                      const image = document.createElement("img");
+                      image.src = fighter.image;
+                      image.alt = "";
+                      image.loading = "lazy";
+                      image.decoding = "async";
+                      image.referrerPolicy = "no-referrer";
+                      image.addEventListener("error", () => image.remove(), { once: true });
+                      link.append(image);
+                  }
+                  return link;
+              }
+
+              function fighterCard(fighter, index, eventType = "added") {
+                  const removed = eventType === "removed";
+                  const article = element("article", `ufc-roster-card${removed ? " ufc-roster-card--removed" : ""}`);
+                  const body = element("div", "ufc-roster-card-body");
+                  const meta = element("div", "ufc-roster-card-meta");
+                  meta.append(
+                      element("span", "ufc-roster-rank", String(index + 1).padStart(2, "0")),
+                      element("span", "ufc-roster-event-pill", removed ? "Departed" : "Added")
+                  );
+                  if (fighter.division) meta.append(element("span", "ufc-roster-division", fighter.division));
+
+                  const heading = element("h3", "ufc-roster-name");
+                  const link = element("a", "", fighterDisplayName(fighter));
+                  link.href = fighter.url;
+                  link.target = "_blank";
+                  link.rel = "noopener noreferrer";
+                  heading.append(link);
+                  body.append(meta, heading);
+
+                  if (fighter.record) body.append(element("p", "ufc-roster-details", fighter.record));
+
+                  const dateValue = fighter.initialBackfill
+                      ? fighter.profilePublishedAt
+                      : fighter.detectedAt || fighter.confirmedActiveAt;
+                  const dateLabel = fighter.initialBackfill ? "Profile published" : removed ? "Detected out" : "First detected";
+                  if (dateValue) body.append(element("p", "ufc-roster-detected", `${dateLabel} · ${formatDate(dateValue)}`));
+
+                  if (fighter.status && !removed) {
+                      body.append(element("span", "ufc-roster-status-pill", fighter.status));
+                  }
+
+                  article.append(fighterMedia(fighter), body);
+                  return article;
+              }
+
+              function combinedAdditions(data, backfill) {
+                  const live = Array.isArray(data.additions) ? data.additions : [];
+                  const seen = new Set(live.map(item => item?.url).filter(Boolean));
+                  const activeBackfillUrls = Array.isArray(data.activeBackfillUrls)
+                      ? new Set(data.activeBackfillUrls)
+                      : null;
+                  const filler = (Array.isArray(backfill) ? backfill : []).filter(item => {
+                      if (!item?.url || seen.has(item.url)) return false;
+                      if (activeBackfillUrls && !activeBackfillUrls.has(item.url)) return false;
+                      seen.add(item.url);
+                      return true;
+                  });
+                  return [...live, ...filler].slice(0, 10);
+              }
+
+              function renderStats(data, additions, removals) {
+                  if (activeCount) activeCount.textContent = Number.isFinite(Number(data.activeCount))
+                      ? Number(data.activeCount).toLocaleString()
+                      : "—";
+                  if (addCount) addCount.textContent = String(additions.length);
+                  if (removeCount) removeCount.textContent = String(removals.length);
+              }
+
+              function render(data, backfill = []) {
+                  const additions = combinedAdditions(data, backfill);
+                  const removals = (Array.isArray(data.removals) ? data.removals : []).slice(0, 6);
+
+                  list.replaceChildren();
+                  list.setAttribute("aria-busy", "false");
+
+                  if (!additions.length) {
+                      list.append(element("div", "ufc-roster-empty", "No recent active-roster additions detected."));
+                  } else {
+                      additions.forEach((fighter, index) => list.append(fighterCard(fighter, index, "added")));
+                  }
+
+                  if (removalsList && removalsSection) {
+                      removalsList.replaceChildren(...removals.map((fighter, index) => fighterCard(fighter, index, "removed")));
+                      removalsSection.hidden = removals.length === 0;
+                  }
+
+                  renderStats(data, additions, removals);
+                  setLiveState("ready", formatCheckedAt(data.generatedAt));
+              }
+
+              async function loadBackfill() {
+                  if (!backfillUrl) return [];
+                  try {
+                      const response = await fetch(backfillUrl, { cache: "no-store", headers: { accept: "application/json" } });
+                      if (!response.ok) return [];
+                      const data = await response.json();
+                      return Array.isArray(data.fighters) ? data.fighters : [];
+                  } catch {
+                      return [];
+                  }
+              }
+
+              async function refresh() {
+                  setLiveState("loading", "Checking roster…");
+                  try {
+                      const url = new URL(feedUrl);
+                      url.searchParams.set("update", String(Math.floor(Date.now() / refreshInterval)));
+                      const response = await fetch(url, {
+                          cache: "no-store",
+                          headers: { accept: "application/vnd.github+json" }
+                      });
+                      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                      const release = await response.json();
+                      const data = JSON.parse(release.body || "{}");
+                      if (!data.generatedAt || !Array.isArray(data.additions)) throw new Error("Roster data is incomplete");
+                      const backfill = data.additions.length < 10 ? await loadBackfill() : [];
+                      render(data, backfill);
+                  } catch {
+                      list.setAttribute("aria-busy", "false");
+                      list.replaceChildren(element("div", "ufc-roster-empty", "Roster data is temporarily unavailable."));
+                      setLiveState("error", "Tracker unavailable");
+                  }
+              }
+
+              refresh();
+              window.setInterval(refresh, refreshInterval);
+          })();
+          EOF
+
+      - name: Validate changed files
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check assets/news-feed.js
+          node --check assets/on-this-day.js
+          node --check assets/ufc-roster.js
+          ! grep -Fq 'data-news-refresh' news.html
+          ! grep -Fq 'data-news-status' news.html
+          grep -Fq 'aspect-ratio: 4 / 3;' assets/on-this-day.css
+          grep -Fq 'is-portrait' assets/on-this-day.js
+          grep -Fq 'animation-play-state: paused !important;' assets/site-ticker.css
+          grep -Fq 'data-roster-active-count' ufc-roster.html
+          grep -Fq 'grid-template-columns: repeat(2, minmax(0, 1fr));' assets/ufc-roster.css
+          grep -Eq '^asset_version: "[0-9]+"$' _config.yml
+
+      - name: Commit quality pass
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add news.html assets/news-feed.js assets/on-this-day.css assets/on-this-day.js assets/site-ticker.css ufc-roster.html assets/ufc-roster.css assets/ufc-roster.js _config.yml
+          git commit -m "Polish News imagery ticker and UFC roster"
+          git pull --rebase origin main
+          git push origin HEAD:main
