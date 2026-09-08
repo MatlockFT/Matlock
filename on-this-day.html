@@ -21,50 +21,82 @@ page_scripts:
     <header class="otd-page-header">
         <h1>On This Day in MMA</h1>
         <div class="otd-page-date-row">
-            <time class="otd-page-date" data-otd-date></time>
-            <p class="otd-page-count" data-otd-count></p>
+            <time
+                class="otd-page-date"
+                data-otd-date
+                title="Double-click to choose a date"
+            ></time>
+
+            <div class="otd-page-side">
+                <p class="otd-page-count" data-otd-count></p>
+                <div class="otd-page-actions" aria-label="On This Day utilities">
+                    <button
+                        class="otd-mini-button"
+                        type="button"
+                        data-otd-share
+                    >
+                        Share
+                    </button>
+                    <button
+                        class="otd-mini-button"
+                        type="button"
+                        data-otd-random
+                    >
+                        Random day
+                    </button>
+                </div>
+            </div>
         </div>
     </header>
 
-    <nav
-        class="otd-week-strip"
-        data-otd-week
-        aria-label="Browse this week in MMA history"
-    ></nav>
+    <div class="otd-nav-dock" data-otd-dock>
+        <nav
+            class="otd-week-strip"
+            data-otd-week
+            aria-label="Browse this week in MMA history"
+        ></nav>
 
-    <div class="otd-controls" aria-label="Browse MMA history by date">
-        <button
-            class="otd-control-button"
-            type="button"
-            data-otd-prev
-            aria-label="Previous day"
-        >
-            ←
-        </button>
+        <div class="otd-controls" aria-label="Browse MMA history by date">
+            <button
+                class="otd-control-button"
+                type="button"
+                data-otd-prev
+                aria-label="Previous day"
+            >
+                ←
+            </button>
 
-        <input
-            class="otd-date-input"
-            type="date"
-            data-otd-input
-            aria-label="Choose a date"
-        >
+            <input
+                class="otd-date-input"
+                type="date"
+                data-otd-input
+                aria-label="Choose a date"
+            >
 
-        <button
-            class="otd-control-button"
-            type="button"
-            data-otd-next
-            aria-label="Next day"
-        >
-            →
-        </button>
+            <button
+                class="otd-control-button"
+                type="button"
+                data-otd-next
+                aria-label="Next day"
+            >
+                →
+            </button>
 
-        <button
-            class="otd-control-button"
-            type="button"
-            data-otd-today
-        >
-            Today
-        </button>
+            <button
+                class="otd-control-button"
+                type="button"
+                data-otd-today
+            >
+                Today
+            </button>
+        </div>
+
+        <div
+            class="otd-filters"
+            data-otd-filters
+            aria-label="Filter entries by type"
+            hidden
+        ></div>
     </div>
 
     <div class="otd-list" data-otd-list aria-live="polite"></div>
