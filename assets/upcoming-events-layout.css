@@ -1,0 +1,45 @@
+/* Keep incomplete fight rows centered at every breakpoint.
+   Flex wrapping lets 1- or 2-card final rows sit in the middle instead of
+   sticking to the left edge of a 3-column grid. */
+
+.featured-bouts,
+.main-card-bouts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: .28rem;
+}
+
+.featured-bouts .bout-card {
+    flex: 0 0 calc((100% - .28rem) / 2);
+    max-width: calc((100% - .28rem) / 2);
+}
+
+.main-card-bouts .bout-card {
+    flex: 0 0 calc((100% - .56rem) / 3);
+    max-width: calc((100% - .56rem) / 3);
+}
+
+/* The prelim section already uses flex wrapping; make the centering contract
+   explicit here so all fight-card rows behave the same way. */
+.prelim-bouts {
+    justify-content: center;
+}
+
+@media (max-width: 680px) {
+    .main-card-bouts .bout-card {
+        flex-basis: calc((100% - .28rem) / 2);
+        max-width: calc((100% - .28rem) / 2);
+        width: auto;
+    }
+}
+
+@media (max-width: 390px) {
+    .featured-bouts .bout-card,
+    .main-card-bouts .bout-card {
+        flex-basis: 100%;
+        max-width: 100%;
+        width: auto;
+    }
+}
