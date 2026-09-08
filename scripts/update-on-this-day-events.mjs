@@ -6,6 +6,8 @@ const USER_AGENT = "MMA-Matlock-OnThisDay/1.0 (+https://matlockfighttalk.com/on-
 const GENERATED_BY = "wikipedia-event-index";
 const REQUEST_ATTEMPTS = 3;
 const REQUEST_TIMEOUT_MS = 25000;
+const IMAGE_BATCH_SIZE = 40;
+const IMAGE_THUMB_WIDTH = 1200;
 
 const clean = value => String(value || "").replace(/\s+/g, " ").trim();
 const slug = value => clean(value)
@@ -153,6 +155,50 @@ function sourceLink(cellHtml, fallbackPage) {
     return wikipediaPageUrl(fallbackPage);
 }
 
+function wikipediaTitleFromHref(href) {
+    const decoded = decodeHtml(href);
+    let path = "";
+
+    if (/^https:\/\/en\.wikipedia\.org\/wiki\//i.test(decoded)) {
+        try {
+            path = new URL(decoded).pathname.replace(/^\/wiki\//i, "");
+        } catch {
+            return "";
+        }
+    } else if (/^\/wiki\//i.test(decoded)) {
+        path = decoded.replace(/^\/wiki\//i, "");
+    } else if (/^\.\//.test(decoded)) {
+        path = decoded.slice(2);
+    } else {
+        return "";
+    }
+
+    try {
+        return clean(decodeURIComponent(path).replace(/_/g, " "));
+    } catch {
+        return clean(path.replace(/_/g, " "));
+    }
+}
+
+function wikipediaTitleFromCell(cellHtml) {
+    for (const match of String(cellHtml || "").matchAll(/href=["']([^"']+)["']/gi)) {
+        const title = wikipediaTitleFromHref(match[1]);
+        if (title) return title;
+    }
+    return "";
+}
+
+function wikipediaTitleFromUrl(value) {
+    try {
+        const parsed = new URL(String(value || ""));
+        if (parsed.hostname.toLowerCase() !== "en.wikipedia.org") return "";
+        if (!/^\/wiki\//i.test(parsed.pathname)) return "";
+        return wikipediaTitleFromHref(parsed.href);
+    } catch {
+        return "";
+    }
+}
+
 function tableRows(html) {
     return String(html || "").match(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi) || [];
 }
@@ -172,6 +218,93 @@ function looksLikeEventTitle(title) {
     if (!title || title.length < 3 || title.length > 150) return false;
     if (/^(event|date|venue|location|attendance|source|broadcast|#|no\.?|number)$/i.test(title)) return false;
     return /[a-z]/i.test(title);
+}
+
+function copyStoredImage(entry, stored) {
+    if (!stored?.imageUrl) return false;
+    entry.imageUrl = stored.imageUrl;
+    entry.imageAlt = stored.imageAlt || `${entry.title.replace(/\s+took place$/i, "")} event image`;
+    if (stored.imageCredit) entry.imageCredit = stored.imageCredit;
+    if (stored.imagePosition) entry.imagePosition = stored.imagePosition;
+    if (!entry.wikipediaTitle && stored.wikipediaTitle) entry.wikipediaTitle = stored.wikipediaTitle;
+    return true;
+}
+
+function resolvedTitle(title, aliases) {
+    let current = title;
+    for (let index = 0; index < 6; index += 1) {
+        const next = aliases.get(current);
+        if (!next || next === current) break;
+        current = next;
+    }
+    return current;
+}
+
+async function hydrateWikipediaImages(entries, previousEntries) {
+    const previousByKey = new Map(
+        previousEntries
+            .filter(entry => entry?.generatedBy === GENERATED_BY && entry?.autoKey)
+            .map(entry => [entry.autoKey, entry])
+    );
+
+    const pending = [];
+    let reused = 0;
+
+    for (const entry of entries) {
+        if (copyStoredImage(entry, previousByKey.get(entry.autoKey))) {
+            reused += 1;
+            continue;
+        }
+
+        const wikipediaTitle = entry.wikipediaTitle || wikipediaTitleFromUrl(entry.sourceUrl);
+        if (!wikipediaTitle) continue;
+        entry.wikipediaTitle = wikipediaTitle;
+        pending.push({ entry, title: wikipediaTitle });
+    }
+
+    let fetched = 0;
+    for (let offset = 0; offset < pending.length; offset += IMAGE_BATCH_SIZE) {
+        const batch = pending.slice(offset, offset + IMAGE_BATCH_SIZE);
+        const url = new URL("https://en.wikipedia.org/w/api.php");
+        url.searchParams.set("action", "query");
+        url.searchParams.set("format", "json");
+        url.searchParams.set("formatversion", "2");
+        url.searchParams.set("redirects", "1");
+        url.searchParams.set("prop", "pageimages");
+        url.searchParams.set("piprop", "thumbnail|original|name");
+        url.searchParams.set("pilicense", "any");
+        url.searchParams.set("pithumbsize", String(IMAGE_THUMB_WIDTH));
+        url.searchParams.set("titles", batch.map(item => item.title).join("|"));
+
+        let data;
+        try {
+            data = await requestJson(url);
+        } catch (error) {
+            console.warn(`Wikipedia image batch ${Math.floor(offset / IMAGE_BATCH_SIZE) + 1} failed: ${error.message}`);
+            continue;
+        }
+
+        const aliases = new Map();
+        for (const item of data?.query?.normalized || []) aliases.set(item.from, item.to);
+        for (const item of data?.query?.redirects || []) aliases.set(item.from, item.to);
+
+        const pages = Array.isArray(data?.query?.pages) ? data.query.pages : [];
+        const pagesByTitle = new Map(pages.map(page => [clean(page?.title).toLowerCase(), page]));
+
+        for (const item of batch) {
+            const finalTitle = resolvedTitle(item.title, aliases);
+            const page = pagesByTitle.get(clean(finalTitle).toLowerCase()) || pagesByTitle.get(clean(item.title).toLowerCase());
+            const imageUrl = page?.thumbnail?.source || page?.original?.source || "";
+            if (!/^https:\/\//i.test(imageUrl)) continue;
+
+            item.entry.imageUrl = imageUrl;
+            item.entry.imageAlt = `${item.entry.title.replace(/\s+took place$/i, "")} event image`;
+            item.entry.imageCredit = "Wikipedia";
+            fetched += 1;
+        }
+    }
+
+    console.log(`On This Day images: ${reused} reused, ${fetched} fetched, ${entries.length - reused - fetched} without a Wikipedia image.`);
 }
 
 function eventRowsFromHtml(html, source) {
@@ -215,6 +348,9 @@ function eventRowsFromHtml(html, source) {
             generatedBy: GENERATED_BY,
             weight: Number(source.weight || 40)
         };
+
+        const wikipediaTitle = wikipediaTitleFromCell(cells[eventCellIndex]);
+        if (wikipediaTitle) entry.wikipediaTitle = wikipediaTitle;
 
         const detail = conciseDetail(venue, location);
         if (detail) entry.detail = detail;
@@ -273,6 +409,7 @@ for (const entry of generated) {
 }
 
 uniqueGenerated.sort((first, second) => first.date.localeCompare(second.date) || first.title.localeCompare(second.title));
+await hydrateWikipediaImages(uniqueGenerated, history.entries || []);
 
 const minimumTotal = sources.reduce((total, source) => total + Number(source.minimumEvents || 0), 0);
 if (uniqueGenerated.length < minimumTotal) {
