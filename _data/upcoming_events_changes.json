@@ -1,7 +1,392 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-08T00:16:54.507Z",
+  "generated_at": "2026-09-08T20:13:52.435Z",
   "changes": [
+    {
+      "id": "2026-09-08T20:13:52.435Z|noche-ufc-2026-09-12-fight-card|bout_changed|1",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_changed",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "Sean King vs Jessie Rosas changed to Sean King III vs Jessie Rosas on Silva vs Delgado.",
+      "details": {
+        "order": 12,
+        "section": "Prelims",
+        "from": [
+          "Sean King",
+          "Jessie Rosas"
+        ],
+        "to": [
+          "Sean King III",
+          "Jessie Rosas"
+        ]
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|noche-ufc-2026-09-12-fight-card|portrait_added|2",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "portrait_added",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "Jessie Rosas portrait added.",
+      "details": {
+        "fighter": "Jessie Rosas",
+        "source": "ufc"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|start_time_changed|3",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "start_time_changed",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "UFC Fight Night Jr. vs Barcelos: Main Card start time changed.",
+      "details": {
+        "section": "Main Card",
+        "from": "6:00 PM ET",
+        "to": "8:00 PM ET"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|4",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Rodolfo Vieira vs Robert Bryczek moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 6,
+        "to_order": 2,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|5",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Brady Hiestand vs Rinya Nakamura moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 7,
+        "to_order": 3,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|6",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Mehemmedeli Osmanli vs Ilimbek Akylbek Uulu moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 3,
+        "to_order": 4,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|7",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Melissa Amaya vs Valesca Machado moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 2,
+        "to_order": 5,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|8",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Josiah Harrell vs Elves Brener moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 9,
+        "to_order": 6,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|9",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Rodolfo Bellato vs Christian Edwards moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 5,
+        "to_order": 7,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|10",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Montel Jackson vs Ricky Simon moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 4,
+        "to_order": 8,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|11",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "John Castaneda vs Alatengheili moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 8,
+        "to_order": 9,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|12",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Norma Dumont vs Ailin Perez moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 10,
+        "to_order": 10,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|13",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Vanessa Demopoulos vs Yazmin Jauregui moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 11,
+        "to_order": 11,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|14",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "King Green vs Esteban Ribovics moved on Silva vs Cong.",
+      "details": {
+        "from_order": 8,
+        "to_order": 3,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|15",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Khaos Williams vs Roberto Soldic moved on Silva vs Cong.",
+      "details": {
+        "from_order": 3,
+        "to_order": 4,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|16",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Ateba Gautier vs Roman Kopylov moved on Silva vs Cong.",
+      "details": {
+        "from_order": 4,
+        "to_order": 5,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|17",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Imanol Rodriguez vs Alden Coria moved on Silva vs Cong.",
+      "details": {
+        "from_order": 5,
+        "to_order": 6,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|18",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Damian Pinas vs Andrey Pulyaev moved on Silva vs Cong.",
+      "details": {
+        "from_order": 6,
+        "to_order": 7,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|19",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Marcus McGhee vs Benardo Sopaj moved on Silva vs Cong.",
+      "details": {
+        "from_order": 7,
+        "to_order": 8,
+        "from_section": "Main Card",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|20",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Johnny Walker vs Mick Parkin moved on Silva vs Cong.",
+      "details": {
+        "from_order": 9,
+        "to_order": 9,
+        "from_section": "Main Card",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|21",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Rafael Dos Anjos vs Alexander Hernandez moved on Silva vs Cong.",
+      "details": {
+        "from_order": 10,
+        "to_order": 10,
+        "from_section": "Main Card",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|22",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Marvin Vettori vs Ismail Naurdiev moved on Silva vs Cong.",
+      "details": {
+        "from_order": 11,
+        "to_order": 11,
+        "from_section": "Main Card",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|bout_moved|23",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Court McGee vs Eric Nolan moved on Silva vs Cong.",
+      "details": {
+        "from_order": 12,
+        "to_order": 12,
+        "from_section": "Main Card",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-09-08T20:13:52.435Z|ufc-332-2026-10-03-fight-card|portrait_added|24",
+      "at": "2026-09-08T20:13:52.435Z",
+      "type": "portrait_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Roberto Soldic portrait added.",
+      "details": {
+        "fighter": "Roberto Soldic",
+        "source": "ufc"
+      }
+    },
     {
       "id": "2026-09-08T00:16:54.507Z|dwcs-season-10-week-5-2026-09-08|bout_weight_changed|1",
       "at": "2026-09-08T00:16:54.507Z",
@@ -4226,342 +4611,6 @@
       "summary": "Carlos Petruzzella portrait added.",
       "details": {
         "fighter": "Carlos Petruzzella",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|23",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Umar Nurmagomedov portrait added.",
-      "details": {
-        "fighter": "Umar Nurmagomedov",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|24",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Song Yadong portrait added.",
-      "details": {
-        "fighter": "Song Yadong",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|25",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Yan Xiaonan portrait added.",
-      "details": {
-        "fighter": "Yan Xiaonan",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|26",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Denise Gomes portrait added.",
-      "details": {
-        "fighter": "Denise Gomes",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|27",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Aoriqileng portrait added.",
-      "details": {
-        "fighter": "Aoriqileng",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|28",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Kai Asakura portrait added.",
-      "details": {
-        "fighter": "Kai Asakura",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|29",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Alex Perez portrait added.",
-      "details": {
-        "fighter": "Alex Perez",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|30",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Sumudaerji portrait added.",
-      "details": {
-        "fighter": "Sumudaerji",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|31",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Liu Ce portrait added.",
-      "details": {
-        "fighter": "Liu Ce",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|32",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Junior Tafa portrait added.",
-      "details": {
-        "fighter": "Junior Tafa",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|33",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Bilal Hasan portrait added.",
-      "details": {
-        "fighter": "Bilal Hasan",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|34",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Nilson Rojas portrait added.",
-      "details": {
-        "fighter": "Nilson Rojas",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|35",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Namsrai Batbayar portrait added.",
-      "details": {
-        "fighter": "Namsrai Batbayar",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|36",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Rei Tsuruya portrait added.",
-      "details": {
-        "fighter": "Rei Tsuruya",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|37",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Kevin Borjas portrait added.",
-      "details": {
-        "fighter": "Kevin Borjas",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|38",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Jack Jenkins portrait added.",
-      "details": {
-        "fighter": "Jack Jenkins",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|39",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Sean Woodson portrait added.",
-      "details": {
-        "fighter": "Sean Woodson",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|40",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Xiao Long portrait added.",
-      "details": {
-        "fighter": "Xiao Long",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|41",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Francesco Nuzzi portrait added.",
-      "details": {
-        "fighter": "Francesco Nuzzi",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|42",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Lawrence Lui portrait added.",
-      "details": {
-        "fighter": "Lawrence Lui",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|43",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Hector Santiago portrait added.",
-      "details": {
-        "fighter": "Hector Santiago",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|44",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Xiong Jingnan portrait added.",
-      "details": {
-        "fighter": "Xiong Jingnan",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|45",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Julia Polastri portrait added.",
-      "details": {
-        "fighter": "Julia Polastri",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-2026-08-29-fight-card|portrait_added|46",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-08-29-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Nurmagomedov vs Yadong",
-      "event_date": "2026-08-29",
-      "summary": "Ding Meng portrait added.",
-      "details": {
-        "fighter": "Ding Meng",
         "source": "sherdog"
       }
     }
