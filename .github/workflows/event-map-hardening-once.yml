@@ -18,7 +18,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 8
+          fetch-depth: 10
 
       - name: Recover and run hardening patch
         shell: bash
@@ -31,6 +31,25 @@ jobs:
           start = next(i for i, line in enumerate(lines) if "python3 - <<'PY'" in line) + 1
           end = next(i for i in range(start, len(lines)) if lines[i].strip() == 'PY')
           body = '\n'.join(line[10:] if line.startswith('          ') else line for line in lines[start:end]) + '\n'
+
+          original_helper = """def replace_once(text, old, new, label):
+    if old not in text:
+        raise SystemExit(f'Patch target not found: {label}')
+    return text.replace(old, new, 1)
+"""
+          robust_helper = """def replace_once(text, old, new, label):
+    if old in text:
+        return text.replace(old, new, 1)
+    if label == 'zoom click/tap thresholds':
+        pattern = re.compile(r'(zoomBehavior = d3\\.zoom\\(\\)\\s*\\n\\s*\\.scaleExtent\\(\\[1, 8\\]\\)\\s*\\n\\s*\\.translateExtent\\(\\[\\[-80, -80\\], \\[WIDTH \\+ 80, HEIGHT \\+ 80\\]\\]\\))')
+        updated, count = pattern.subn(r'\\1\\n                .clickDistance(8)\\n                .tapDistance(12)', text, count=1)
+        if count == 1:
+            return updated
+    raise SystemExit(f'Patch target not found: {label}')
+"""
+          if original_helper not in body:
+              raise SystemExit('Could not locate patch helper')
+          body = body.replace(original_helper, robust_helper, 1)
 
           replacements = {
             "text = replace_once(text, old_cluster_loop, new_cluster_loop, 'cluster detail rows')": """pattern_cluster_rows = re.compile(r\"        ordered\\.forEach\\(event => \\{.*?\\n        \\}\\);\\n    \\}\\n\\n    function scrollDetailOnMobile\", re.S)\ntext, count = pattern_cluster_rows.subn(new_cluster_loop + \"\\n    function scrollDetailOnMobile\", text, count=1)\nif count != 1:\n    raise SystemExit('Patch target not found: cluster detail rows')""",
