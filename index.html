@@ -37,8 +37,9 @@ page_scripts:
     data-home-dashboard
     data-news-url="https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-news.json"
     data-news-fallback-url="{{ '/assets/data/mma-news.json' | relative_url }}?v={{ site.asset_version }}"
-    data-history-url="{{ '/assets/data/on-this-day.json' | relative_url }}?v={{ site.asset_version }}"
+    data-history-url="{{ '/assets/data/on-this-day-home.json' | relative_url }}?v={{ site.asset_version }}"
     data-roster-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/ufc-roster-data"
+    data-event-map-url="{{ '/assets/data/event-map-live.json' | relative_url }}?v={{ site.asset_version }}"
 >
     <h1 class="home-dashboard-sr-only">MMA Matlock</h1>
 
@@ -69,7 +70,12 @@ page_scripts:
 
                     <div class="home-next-actions">
                         <a href="{{ '/upcoming-events/' | relative_url }}#{{ next_event.id | escape }}">Make picks</a>
-                        <a href="{{ '/event-map/' | relative_url }}?event={{ next_event.id | url_encode }}">Event map</a>
+                        <a
+                            href="{{ '/event-map/' | relative_url }}?event={{ next_event.id | url_encode }}"
+                            data-home-next-map
+                            data-event-id="{{ next_event.id }}"
+                            hidden
+                        >Event map</a>
                     </div>
                 </div>
             {% else %}
