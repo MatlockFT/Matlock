@@ -281,26 +281,39 @@
     }
 }
 
-
 /* Shared optical row alignment: fixed line boxes + flex centering avoid font-metric drift between rows. */
 :where(
+    .section-header,
     .home-panel-heading,
     .event-card-section-heading,
     .news-section-heading,
     .otd-compact-header,
-    .ufc-roster-section-header
+    .ufc-roster-section-header,
+    .event-map-results > header
 ) {
     align-items: center;
 }
 
 :where(
+    .section-header,
+    .home-panel-heading,
+    .event-card-section-heading,
+    .news-section-heading,
+    .otd-compact-header,
+    .ufc-roster-section-header,
+    .event-map-results > header
+) > :where(h1, h2, h3, a, span, div) {
+    margin-block: 0;
+}
+
+:where(
+    .section-header,
     .home-panel-heading,
     .event-card-section-heading,
     .news-section-heading,
     .otd-compact-header,
     .ufc-roster-section-header
-) > :where(h2, h3, a, span) {
-    margin-block: 0;
+) > :where(h1, h2, h3, a, span) {
     line-height: 1;
 }
 
@@ -318,6 +331,8 @@
     .home-tool-link,
     .home-next-actions a,
     .post-event-context-actions a,
+    .event-map-range button,
+    .event-map-near-button,
     .event-map-detail-actions a,
     .event-map-detail-actions button,
     .otd-control-button,
@@ -325,5 +340,10 @@
     .news-source-chip,
     .news-show-more
 ) {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     line-height: 1;
+    vertical-align: middle;
 }
