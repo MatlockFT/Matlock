@@ -1006,10 +1006,13 @@
       restoreSelectedDetail();
   })
   .on('focus', (_, cluster) => {
-      if (selectedEventId || selectedClusterKey) return;
+      if (!desktopHover.matches || selectedEventId || selectedClusterKey) return;
       cluster.events.length > 1 ? previewCluster(cluster) : previewEvent(cluster.events[0]);
   })
-  .on('blur', restoreSelectedDetail)
+  .on('blur', () => {
+      if (!desktopHover.matches) return;
+      restoreSelectedDetail();
+  })
   .on('click', (event, cluster) => {
       event.stopPropagation();
       cluster.events.length > 1
@@ -1231,7 +1234,10 @@
                     markerLayer.selectAll('.event-map-pin-group')
                         .attr('transform', cluster => `translate(${cluster.x},${cluster.y}) scale(${1 / currentTransform.k})`);
                 })
-                .on('end', renderMarkers);
+                .on('end', event => {
+                    if (event.sourceEvent) setTimeout(renderMarkers, 0);
+                    else renderMarkers();
+                });
 
             stateLayer.selectAll('path')
                 .data(stateFeatures)

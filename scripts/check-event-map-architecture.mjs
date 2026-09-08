@@ -18,6 +18,8 @@ requireText(core, "window.history.pushState", 'Committed Event Map selections mu
 requireText(core, "selectEvent(cluster.events[0], { scroll: false })", 'Single-pin map taps must keep the mobile map in place for repeated exploration.');
 requireText(core, '.clickDistance(8)', 'Map zoom must suppress accidental click-after-drag selection.');
 requireText(core, '.tapDistance(12)', 'Map zoom must use a touch tap-distance threshold.');
+requireText(core, 'setTimeout(renderMarkers, 0)', 'Input-driven zoom end must not replace a marker before its native click commits.');
+requireText(core, '!desktopHover.matches || selectedEventId || selectedClusterKey', 'Touch focus must not masquerade as a committed mobile pin selection.');
 requireText(core, "detailPanel.dataset.hoverPreview", 'Core must own hover-preview state.');
 requireText(core, "pickerIdFor(event)", 'Core must resolve Event Map events to Fight Card Picker IDs.');
 requireText(core, "renderPoster(event)", 'Core must own poster rendering and stale-request protection.');
