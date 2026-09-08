@@ -22,6 +22,11 @@
     const detailPromotion = page.querySelector('[data-detail-promotion]');
     const detailDate = page.querySelector('[data-detail-date]');
     const detailTitle = page.querySelector('[data-detail-title]');
+    const detailFighters = page.querySelector('[data-detail-fighters]');
+    const detailWeight = page.querySelector('[data-detail-weight]');
+    const detailPosterWrap = page.querySelector('[data-detail-poster-wrap]');
+    const detailPoster = page.querySelector('[data-detail-poster]');
+    const detailLock = page.querySelector('[data-detail-lock-state]');
     const detailLocation = page.querySelector('[data-detail-location]');
     const detailDistance = page.querySelector('[data-detail-distance]');
     const detailVenue = page.querySelector('[data-detail-venue]');
@@ -154,6 +159,8 @@
     let allEvents = [];
     let filteredEvents = [];
     let pickerEventIds = new Set();
+    let pickerEvents = [];
+    let eventOverrides = {};
     let currentRange = 'all';
     let selectedEventId = '';
     let selectedClusterKey = '';
@@ -163,7 +170,10 @@
     let currentRadius = DEFAULT_RADIUS;
     let calendarObjectUrl = '';
     let initialEventId = '';
+    let posterRequest = 0;
 
+    const desktopHover = window.matchMedia('(min-width: 821px) and (hover: hover) and (pointer: fine)');
+    const coarsePointer = window.matchMedia('(pointer: coarse)');
     const normalizeText = value => String(value || '').replace(/\s+/g, ' ').trim();
     const clamp = (min, value, max) => Math.min(max, Math.max(min, value));
 
@@ -288,6 +298,172 @@
         };
     }
 
+    function canonicalPromotion(value) {
+        const text = normalizeText(value)
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, ' ')
+  .trim();
+        if (/^(ultimate fighting championship|ufc)\b/.test(text)) return 'ufc';
+        if (/^(legacy fighting alliance|lfa)\b/.test(text)) return 'lfa';
+        if (/^(cage fury fighting championships|cffc)\b/.test(text)) return 'cffc';
+        if (/^(professional fighters league|pfl)\b/.test(text)) return 'pfl';
+        if (/^rizin\b/.test(text)) return 'rizin';
+        if (/^(one championship|one)\b/.test(text)) return 'one';
+        if (/^(dana whites contender series|dwcs)\b/.test(text)) return 'dwcs';
+        return text.replace(/\b\d+\b.*$/, '').trim();
+    }
+
+    function eventNumber(value) {
+        return normalizeText(value).match(/\b(\d{1,4})\b/)?.[1] || '';
+    }
+
+    function mergedEvent(event) {
+        if (!event) return null;
+        const override = eventOverrides[event.id] || eventOverrides[event.mapId] || {};
+        return {
+  ...event,
+  ...override,
+  mapId: event.mapId,
+  id: event.id,
+  x: event.x,
+  y: event.y,
+  calendarDay: event.calendarDay,
+  dateObject: event.dateObject,
+  distanceMiles: event.distanceMiles,
+  main_event: override.main_event
+      ? { ...(event.main_event || {}), ...override.main_event }
+      : event.main_event
+        };
+    }
+
+    function titleMatchup(title) {
+        const text = normalizeText(title)
+  .replace(/\s+-\s+\d{1,2}\/\d{1,2}\s*$/i, '')
+  .replace(/\s+\|.*$/, '');
+        const afterColon = text.includes(':') ? text.split(':').slice(1).join(':').trim() : text;
+        const match = afterColon.match(/^(.{2,70}?)\s+(?:vs\.?|v\.)\s+(.{2,70}?)(?:\s+[–—-]\s+.*)?$/i);
+        return match ? [normalizeText(match[1]), normalizeText(match[2])] : [];
+    }
+
+    function weightFromText(value) {
+        const text = normalizeText(value);
+        const match = text.match(/\b(Women'?s\s+(?:Strawweight|Flyweight|Bantamweight|Featherweight)|Light Heavyweight|Heavyweight|Middleweight|Welterweight|Lightweight|Featherweight|Bantamweight|Flyweight|Strawweight|Catchweight)\b/i);
+        if (!match) return '';
+        let weight = match[1].replace(/women'?s/i, "Women's");
+        if (/\b(?:title|championship|champion|world title)\b/i.test(text) && !/title|championship/i.test(weight)) {
+  weight += ' Championship';
+        }
+        return weight;
+    }
+
+    function mainInfo(event) {
+        const sections = Array.isArray(event?.sections) ? event.sections : [];
+        const bouts = sections.flatMap(section => Array.isArray(section?.bouts) ? section.bouts : []);
+        if (bouts.length) {
+  const bout = bouts.find(item => /main event/i.test(normalizeText(item?.label)))
+      || [...bouts].sort((a, b) => Number(a?.order || 999) - Number(b?.order || 999))[0];
+  return {
+      fighters: (bout?.fighters || []).map(item => normalizeText(item?.name || item)).filter(Boolean).slice(0, 2),
+      weight: normalizeText(bout?.weight_class || bout?.weight || bout?.division) || weightFromText(bout?.label)
+  };
+        }
+        const stored = event?.main_event;
+        if (stored && typeof stored === 'object') {
+  return {
+      fighters: (stored.fighters || []).map(item => normalizeText(item?.name || item)).filter(Boolean).slice(0, 2),
+      weight: normalizeText(stored.weight_class || stored.weight || stored.division) || weightFromText(event?.title)
+  };
+        }
+        return {
+  fighters: titleMatchup(event?.title),
+  weight: normalizeText(event?.weight_class || event?.division) || weightFromText(event?.title)
+        };
+    }
+
+    function usablePoster(url) {
+        const value = normalizeText(url);
+        if (!/^https?:\/\//i.test(value)) return '';
+        if (/(?:tribe[-_]?loading|loading(?:[-_.]|$)|spinner|preloader|placeholder|blank\.gif|transparent\.gif|favicon|logo(?:[-_.]|$))/i.test(value)) return '';
+        return value;
+    }
+
+    function hidePoster() {
+        posterRequest += 1;
+        if (!detailPosterWrap || !detailPoster) return;
+        detailPosterWrap.hidden = true;
+        detailPosterWrap.dataset.posterReady = 'false';
+        detailPoster.removeAttribute('src');
+        detailPoster.alt = '';
+    }
+
+    function renderPoster(event) {
+        if (!detailPosterWrap || !detailPoster) return;
+        const requestId = ++posterRequest;
+        detailPosterWrap.hidden = true;
+        detailPosterWrap.dataset.posterReady = 'false';
+        detailPoster.removeAttribute('src');
+        detailPoster.alt = '';
+
+        const url = usablePoster(event?.poster || event?.poster_url || event?.image || event?.image_url);
+        if (!url) return;
+
+        const probe = new Image();
+        probe.decoding = 'async';
+        probe.referrerPolicy = 'no-referrer';
+        probe.onload = () => {
+  if (requestId !== posterRequest) return;
+  if (probe.naturalWidth < 180 || probe.naturalHeight < 120) return;
+  detailPoster.src = url;
+  detailPoster.alt = `${normalizeText(event.promotion) || 'MMA'} ${normalizeText(event.title) || 'event'} poster`;
+  detailPosterWrap.dataset.posterReady = 'true';
+  detailPosterWrap.hidden = false;
+        };
+        probe.onerror = () => {
+  if (requestId === posterRequest) hidePoster();
+        };
+        probe.src = url;
+    }
+
+    function pickerIdFor(event) {
+        if (!event) return '';
+        const direct = pickerEvents.find(item => item.id === event.id || item.id === event.mapId);
+        if (direct) return direct.id;
+
+        const title = normalizeText(event.title).toLowerCase();
+        const date = normalizeText(event.date);
+        const promotion = canonicalPromotion(event.promotion);
+        const number = eventNumber(event.title);
+        const exact = pickerEvents.find(item =>
+  normalizeText(item.title).toLowerCase() === title
+  && (!date || item.date === date)
+        );
+        if (exact) return exact.id;
+
+        const samePromotionDate = pickerEvents.filter(item =>
+  (!date || item.date === date)
+  && (!promotion || canonicalPromotion(item.promotion) === promotion)
+        );
+        if (number) {
+  const numbered = samePromotionDate.find(item => eventNumber(item.title) === number);
+  if (numbered) return numbered.id;
+        }
+        return samePromotionDate.length === 1 ? samePromotionDate[0].id : '';
+    }
+
+    function setHoverPreview(active) {
+        if (!detailPanel) return;
+        detailPanel.dataset.hoverPreview = String(Boolean(active && desktopHover.matches && !selectedEventId && !selectedClusterKey));
+    }
+
+    function updateDetailLock() {
+        if (!detailLock) return;
+        const locked = Boolean(selectedEventId || selectedClusterKey);
+        detailLock.textContent = locked ? 'Selected · details locked' : 'Hover preview · click/tap to lock';
+        detailLock.dataset.locked = String(locked);
+    }
+
     function dateLabel(event) {
         const date = event.calendarDay || event.dateObject;
         if (!date) return 'Date TBA';
@@ -365,22 +541,83 @@
         promotions.forEach(name => promotionFilter?.append(new Option(name, name)));
     }
 
+    function normalizedRange(value) {
+        if (value === 'weekend') return 'week';
+        return ['week', '30', 'all'].includes(value) ? value : 'all';
+    }
+
     function applyUrlState() {
         const params = new URLSearchParams(window.location.search);
-        let range = params.get('range');
-        if (range === 'weekend') range = 'week';
-        if (['week', '30', 'all'].includes(range)) currentRange = range;
+        currentRange = normalizedRange(params.get('range'));
         initialEventId = params.get('event') || '';
         rangeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.range === currentRange)));
     }
 
-    function syncUrl() {
+    function eventMapHistoryState() {
+        return {
+  ...(window.history.state || {}),
+  eventMap: {
+      range: currentRange,
+      event: selectedEventId,
+      cluster: selectedClusterKey
+  }
+        };
+    }
+
+    function syncUrl({ mode = 'replace' } = {}) {
         const url = new URL(window.location.href);
         const params = url.searchParams;
         ['range', 'state', 'promotion', 'level', 'q', 'radius', 'event'].forEach(key => params.delete(key));
         if (currentRange !== 'all') params.set('range', currentRange);
         if (selectedEventId) params.set('event', selectedEventId);
-        window.history.replaceState({}, '', `${url.pathname}${params.toString() ? `?${params}` : ''}${url.hash}`);
+        const target = `${url.pathname}${params.toString() ? `?${params}` : ''}${url.hash}`;
+        const previous = window.history.state?.eventMap || {};
+        const selectionChanged = previous.event !== selectedEventId
+  || previous.cluster !== selectedClusterKey
+  || previous.range !== currentRange;
+        const state = eventMapHistoryState();
+        if (mode === 'push' && selectionChanged) window.history.pushState(state, '', target);
+        else window.history.replaceState(state, '', target);
+    }
+
+    function clusterFromKey(key) {
+        const ids = new Set(String(key || '').split('|').filter(Boolean));
+        if (ids.size < 2) return null;
+        const events = filteredEvents.filter(event => ids.has(event.mapId));
+        if (events.length < 2) return null;
+        return {
+  events,
+  x: events.reduce((sum, event) => sum + event.x, 0) / events.length,
+  y: events.reduce((sum, event) => sum + event.y, 0) / events.length
+        };
+    }
+
+    function restoreHistorySelection() {
+        const params = new URLSearchParams(window.location.search);
+        currentRange = normalizedRange(params.get('range'));
+        selectedEventId = params.get('event') || '';
+        selectedClusterKey = selectedEventId ? '' : String(window.history.state?.eventMap?.cluster || '');
+        rangeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.range === currentRange)));
+        applyFilters({ sync: false });
+
+        const event = selectedEventId
+  ? filteredEvents.find(item => item.mapId === selectedEventId)
+  : null;
+        if (event) {
+  renderEventDetail(event);
+        } else if (selectedClusterKey) {
+  const cluster = clusterFromKey(selectedClusterKey);
+  if (cluster) renderClusterDetail(cluster);
+  else {
+      selectedClusterKey = '';
+      showEmptyDetail();
+  }
+        } else {
+  showEmptyDetail();
+        }
+        renderSelectedState();
+        renderResultSelectedState();
+        setHoverPreview(false);
     }
 
     function renderStateActivity() {
@@ -491,6 +728,9 @@
         clusterCard.hidden = true;
         detailEmpty.hidden = false;
         currentDetailEvent = null;
+        hidePoster();
+        setHoverPreview(false);
+        updateDetailLock();
     }
 
     function escapeIcs(value) {
@@ -515,7 +755,9 @@
         return calendarObjectUrl;
     }
 
-    function renderEventDetail(event) {
+    function renderEventDetail(sourceEvent) {
+        const event = mergedEvent(sourceEvent);
+        if (!event) return;
         detailEmpty.hidden = true;
         clusterCard.hidden = true;
         detailCard.hidden = false;
@@ -524,13 +766,26 @@
         detailDate.textContent = dateLabel(event);
         detailDate.dateTime = event.date || event.dateObject?.toISOString() || '';
         detailTitle.textContent = normalizeText(event.title) || normalizeText(event.promotion) || 'MMA event';
+
+        const info = mainInfo(event);
+        if (detailFighters) {
+  detailFighters.textContent = info.fighters.length >= 2
+      ? `${info.fighters[0]} vs. ${info.fighters[1]}`
+      : 'Main event not yet listed';
+        }
+        if (detailWeight) {
+  detailWeight.textContent = info.weight || '';
+  detailWeight.hidden = !info.weight;
+        }
+        renderPoster(event);
+
         detailLocation.textContent = [event.city, event.stateCode].filter(Boolean).join(', ') || event.stateName;
         if (Number.isFinite(event.distanceMiles)) {
-            detailDistance.hidden = false;
-            detailDistance.textContent = `${Math.round(event.distanceMiles)} mi away`;
+  detailDistance.hidden = false;
+  detailDistance.textContent = `${Math.round(event.distanceMiles)} mi away`;
         } else {
-            detailDistance.hidden = true;
-            detailDistance.textContent = '';
+  detailDistance.hidden = true;
+  detailDistance.textContent = '';
         }
         const precisionNote = event.locationPrecision === 'state' ? ' · approximate state placement' : '';
         detailVenue.textContent = `${normalizeText(event.venue) || 'Venue not yet listed'}${precisionNote}`;
@@ -546,9 +801,11 @@
         detailCalendar.href = calendarHref(event);
         detailCalendar.download = `${normalizeText(event.title || event.promotion || 'mma-event').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'mma-event'}.ics`;
 
-        const pickerAvailable = pickerEventIds.has(event.mapId) || pickerEventIds.has(event.id);
-        detailPicker.hidden = !pickerAvailable;
-        detailPicker.href = pickerAvailable ? `/upcoming-events/#${encodeURIComponent(event.mapId)}` : '/upcoming-events/';
+        const pickerId = pickerIdFor(event);
+        detailPicker.hidden = !pickerId;
+        const encodedPickerId = encodeURIComponent(pickerId);
+        detailPicker.href = pickerId ? `/upcoming-events/?event=${encodedPickerId}#${encodedPickerId}` : '/upcoming-events/';
+        updateDetailLock();
     }
 
     function renderClusterDetail(cluster) {
@@ -562,18 +819,30 @@
         clusterTitle.textContent = `Events near ${first.city || first.stateName}`;
         clusterList.replaceChildren();
         ordered.forEach(event => {
-            const button = document.createElement('button');
-            button.type = 'button';
-            button.className = 'event-map-cluster-event';
-            const title = document.createElement('strong');
-            title.textContent = normalizeText(event.title) || normalizeText(event.promotion) || 'MMA event';
-            const meta = document.createElement('span');
-            const distance = Number.isFinite(event.distanceMiles) ? ` · ${Math.round(event.distanceMiles)} mi` : '';
-            meta.textContent = `${shortDateLabel(event)} · ${normalizeText(event.promotion) || 'MMA'}${distance}`;
-            button.append(title, meta);
-            button.addEventListener('click', () => selectEvent(event, { zoom: true, scroll: false }));
-            clusterList.append(button);
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'event-map-cluster-event';
+  const title = document.createElement('strong');
+  title.textContent = normalizeText(event.title) || normalizeText(event.promotion) || 'MMA event';
+  const meta = document.createElement('span');
+  const distance = Number.isFinite(event.distanceMiles) ? ` · ${Math.round(event.distanceMiles)} mi` : '';
+  meta.textContent = `${shortDateLabel(event)} · ${normalizeText(event.promotion) || 'MMA'}${distance}`;
+  button.append(title, meta);
+
+  const info = mainInfo(mergedEvent(event));
+  if (info.fighters.length >= 2 || info.weight) {
+      const matchup = document.createElement('span');
+      matchup.className = 'event-map-cluster-matchup';
+      const fighters = info.fighters.length >= 2 ? `${info.fighters[0]} vs. ${info.fighters[1]}` : 'Main event TBA';
+      matchup.textContent = `${fighters}${info.weight ? ` · ${info.weight}` : ''}`;
+      button.append(matchup);
+  }
+
+  button.addEventListener('click', () => selectEvent(event, { zoom: true, scroll: false }));
+  clusterList.append(button);
         });
+        hidePoster();
+        updateDetailLock();
     }
 
     function scrollDetailOnMobile() {
@@ -584,45 +853,64 @@
         });
     }
 
-    function selectEvent(event, { zoom = false, scroll = true } = {}) {
+    function selectEvent(event, { zoom = false, scroll = true, history = 'push' } = {}) {
+        const changed = selectedEventId !== event.mapId || Boolean(selectedClusterKey);
         selectedEventId = event.mapId;
         selectedClusterKey = '';
+        setHoverPreview(false);
         renderEventDetail(event);
         renderSelectedState();
         renderResultSelectedState();
-        syncUrl();
+        syncUrl({ mode: changed ? history : 'replace' });
         if (zoom) zoomToPoint(event.x, event.y, Math.max(currentTransform?.k || 1, 3.2));
         if (scroll) scrollDetailOnMobile();
     }
 
-    function selectCluster(cluster) {
+    function selectCluster(cluster, { scroll = true, history = 'push' } = {}) {
+        const nextKey = clusterKey(cluster);
+        const changed = selectedClusterKey !== nextKey || Boolean(selectedEventId);
         selectedEventId = '';
-        selectedClusterKey = clusterKey(cluster);
+        selectedClusterKey = nextKey;
+        setHoverPreview(false);
         renderClusterDetail(cluster);
         renderSelectedState();
         renderResultSelectedState();
-        syncUrl();
-        scrollDetailOnMobile();
+        syncUrl({ mode: changed ? history : 'replace' });
+        if (scroll) scrollDetailOnMobile();
     }
 
-    function previewEvent(event) { renderEventDetail(event); }
-    function previewCluster(cluster) { renderClusterDetail(cluster); }
+    function previewEvent(event) {
+        if (selectedEventId || selectedClusterKey) return;
+        setHoverPreview(true);
+        renderEventDetail(event);
+    }
+
+    function previewCluster(cluster) {
+        if (selectedEventId || selectedClusterKey) return;
+        setHoverPreview(true);
+        renderClusterDetail(cluster);
+    }
 
     function restoreSelectedDetail() {
+        setHoverPreview(false);
         const selected = filteredEvents.find(event => event.mapId === selectedEventId);
         if (selected) return renderEventDetail(selected);
         if (selectedClusterKey) {
-            const cluster = clusterEvents(filteredEvents).find(item => clusterKey(item) === selectedClusterKey);
-            if (cluster) return renderClusterDetail(cluster);
+  const cluster = clusterFromKey(selectedClusterKey);
+  if (cluster) return renderClusterDetail(cluster);
         }
         showEmptyDetail();
     }
 
     function renderSelectedState() {
+        const clusterIds = selectedClusterKey
+  ? new Set(selectedClusterKey.split('|').filter(Boolean))
+  : null;
         markerLayer.selectAll('.event-map-pin-group')
-            .attr('data-selected', cluster => String(
-                cluster.events.some(event => event.mapId === selectedEventId) || clusterKey(cluster) === selectedClusterKey
-            ));
+  .attr('data-selected', cluster => String(
+      cluster.events.some(event => event.mapId === selectedEventId)
+      || Boolean(clusterIds && cluster.events.some(event => clusterIds.has(event.mapId)))
+  ));
     }
 
     function renderResultSelectedState() {
@@ -682,12 +970,21 @@
                 const difference = event.calendarDay.getTime() - localDay().getTime();
                 return difference >= 0 && difference < SOON_MS;
             })))
-            .attr('data-selected', cluster => String(
-                cluster.events.some(event => event.mapId === selectedEventId) || clusterKey(cluster) === selectedClusterKey
-            ))
-            .attr('transform', cluster => `translate(${cluster.x},${cluster.y}) scale(${1 / scale})`);
+            .attr('data-selected', cluster => {
+      const clusterIds = selectedClusterKey
+          ? new Set(selectedClusterKey.split('|').filter(Boolean))
+          : null;
+      return String(
+          cluster.events.some(event => event.mapId === selectedEventId)
+          || Boolean(clusterIds && cluster.events.some(event => clusterIds.has(event.mapId)))
+      );
+  })
+  .attr('transform', cluster => `translate(${cluster.x},${cluster.y}) scale(${1 / scale})`);
 
-        groups.append('circle').attr('class', 'event-map-pin-halo').attr('r', cluster => cluster.events.length > 1 ? 15 : 11);
+        groups.append('circle').attr('class', 'event-map-pin-halo').attr('r', cluster => {
+  if (coarsePointer.matches) return cluster.events.length > 1 ? 21 : 18;
+  return cluster.events.length > 1 ? 15 : 11;
+        });
         groups.append('circle').attr('class', 'event-map-pin').attr('r', cluster => cluster.events.length > 1 ? 10 : 6.5);
         groups.filter(cluster => cluster.events.length > 1)
             .append('text').attr('class', 'event-map-pin-count')
@@ -699,20 +996,33 @@
         });
 
         groups
-            .on('mouseenter', (_, cluster) => cluster.events.length > 1 ? previewCluster(cluster) : previewEvent(cluster.events[0]))
-            .on('mouseleave', restoreSelectedDetail)
-            .on('focus', (_, cluster) => cluster.events.length > 1 ? previewCluster(cluster) : previewEvent(cluster.events[0]))
-            .on('blur', restoreSelectedDetail)
-            .on('click', (event, cluster) => {
-                event.stopPropagation();
-                cluster.events.length > 1 ? selectCluster(cluster) : selectEvent(cluster.events[0]);
-            })
-            .on('keydown', (event, cluster) => {
-                if (event.key !== 'Enter' && event.key !== ' ') return;
-                event.preventDefault();
-                event.stopPropagation();
-                cluster.events.length > 1 ? selectCluster(cluster) : selectEvent(cluster.events[0]);
-            });
+  .on('mouseenter', (_, cluster) => {
+      if (!desktopHover.matches || selectedEventId || selectedClusterKey) return;
+      cluster.events.length > 1 ? previewCluster(cluster) : previewEvent(cluster.events[0]);
+  })
+  .on('mouseleave', () => {
+      if (!desktopHover.matches) return;
+      restoreSelectedDetail();
+  })
+  .on('focus', (_, cluster) => {
+      if (selectedEventId || selectedClusterKey) return;
+      cluster.events.length > 1 ? previewCluster(cluster) : previewEvent(cluster.events[0]);
+  })
+  .on('blur', restoreSelectedDetail)
+  .on('click', (event, cluster) => {
+      event.stopPropagation();
+      cluster.events.length > 1
+          ? selectCluster(cluster)
+          : selectEvent(cluster.events[0], { scroll: false });
+  })
+  .on('keydown', (event, cluster) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      event.stopPropagation();
+      cluster.events.length > 1
+          ? selectCluster(cluster)
+          : selectEvent(cluster.events[0], { scroll: false });
+  });
     }
 
     function makeResultButton(event) {
@@ -892,6 +1202,10 @@
             d3 = d3Module;
             topojson = topoModule;
             pickerEventIds = new Set(Array.isArray(eventData?.picker_event_ids) ? eventData.picker_event_ids : []);
+            pickerEvents = Array.isArray(eventData?.picker_events) ? eventData.picker_events : [];
+            eventOverrides = eventData?.event_overrides && typeof eventData.event_overrides === 'object'
+                ? eventData.event_overrides
+                : {};
             stateFeatures = topojson.feature(us, us.objects.states).features;
             stateFeatureByCode = new Map(
                 stateFeatures.map(feature => [STATE_BY_FIPS.get(String(feature.id)), feature]).filter(([code]) => code)
@@ -908,6 +1222,8 @@
             zoomBehavior = d3.zoom()
                 .scaleExtent([1, 8])
                 .translateExtent([[-80, -80], [WIDTH + 80, HEIGHT + 80]])
+                .clickDistance(8)
+                .tapDistance(12)
                 .on('zoom', event => {
                     currentTransform = event.transform;
                     root.attr('transform', currentTransform);
@@ -943,9 +1259,9 @@
             if (initialEventId) {
                 const initialEvent = filteredEvents.find(event => event.mapId === initialEventId)
                     || allEvents.find(event => event.mapId === initialEventId);
-                if (initialEvent) selectEvent(initialEvent, { zoom: true, scroll: false });
+                if (initialEvent) selectEvent(initialEvent, { zoom: true, scroll: false, history: 'replace' });
             } else {
-                syncUrl();
+                syncUrl({ mode: 'replace' });
             }
             loading.hidden = true;
         } catch (error) {
@@ -953,6 +1269,8 @@
             console.error('Event Map failed to initialize', error);
         }
     }
+
+    window.addEventListener('popstate', restoreHistorySelection);
 
     window.addEventListener('beforeunload', () => {
         if (calendarObjectUrl) URL.revokeObjectURL(calendarObjectUrl);

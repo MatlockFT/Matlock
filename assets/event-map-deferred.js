@@ -11,7 +11,6 @@
     }
 
     const scripts = [
-        '/assets/event-map-detail.js',
         '/assets/event-map-enhancements.js'
     ];
     let started = false;

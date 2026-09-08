@@ -148,6 +148,9 @@
     background: #000;
     cursor: grab;
     touch-action: none;
+    overscroll-behavior: contain;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .event-map-stage:active {
@@ -215,7 +218,7 @@
     vector-effect: non-scaling-stroke;
 }
 
-.event-map-pin-group[data-level="proam"] .event-map-pin {
+.event-map-pin-group[data-level="pro-am"] .event-map-pin {
     fill: #070707;
     stroke: #fff;
     stroke-width: 2;
@@ -833,6 +836,26 @@
     .event-map-detail {
         min-height: 0;
         max-height: none;
+        scroll-margin-top: 4.75rem;
+    }
+
+    .event-map-range button,
+    .event-map-near-button,
+    .event-map-zoom-controls button {
+        min-height: 44px;
+    }
+
+    .event-map-zoom-controls button {
+        width: 44px;
+        height: 44px;
+    }
+
+    .event-map-result {
+        min-height: 56px;
+    }
+
+    .event-map-cluster-event {
+        min-height: 52px;
     }
 
     .event-map-detail-poster img {
