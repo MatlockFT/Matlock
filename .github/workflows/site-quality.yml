@@ -48,7 +48,6 @@ jobs:
           node --check assets/on-this-day-stable.js
           node --check assets/event-map-v2.js
           node --check assets/event-map-enhancements.js
-          node --check assets/event-map-detail.js
           node --check assets/upcoming-events-jump.js
           node --check assets/upcoming-events-links.js
           node --check scripts/check-brand-identity.mjs
@@ -72,6 +71,8 @@ jobs:
           node --check scripts/validate-event-map-posters.mjs
           node --check scripts/preserve-event-map-discovery.mjs
           node --check scripts/validate-event-map-regional.mjs
+          node --check scripts/validate-event-map-quality.mjs
+          node --check scripts/check-event-map-architecture.mjs
           node --check scripts/validate-regional-picker.mjs
           node --check scripts/resolve-espn-fighter-portraits.mjs
           node --check scripts/enrich-fighter-portraits.mjs
@@ -132,6 +133,11 @@ jobs:
 
       - name: Check regional Event Map data
         run: node scripts/validate-event-map-regional.mjs
+
+      - name: Check Event Map quality and interaction architecture
+        run: |
+          node scripts/validate-event-map-quality.mjs
+          node scripts/check-event-map-architecture.mjs
 
       - name: Check bundled MMA news data
         run: npm run check:news
