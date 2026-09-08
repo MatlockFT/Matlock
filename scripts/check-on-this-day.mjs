@@ -3,8 +3,10 @@ import { resolve } from "node:path";
 
 const file = resolve("assets/data/on-this-day.json");
 const pageFile = resolve("on-this-day.html");
+const runtimeFile = resolve("assets/on-this-day-stable.js");
 const data = JSON.parse(await readFile(file, "utf8"));
 const page = await readFile(pageFile, "utf8");
+const runtime = await readFile(runtimeFile, "utf8");
 const entries = Array.isArray(data?.entries) ? data.entries : [];
 const allowedKinds = new Set([
     "fight",
@@ -33,12 +35,25 @@ if (!entries.length) {
 if (!page.includes("/assets/on-this-day-stable.js")) {
     failures.push("on-this-day.html must load the stable On This Day renderer");
 }
+if (!page.includes("/assets/on-this-day-qol.css")) {
+    failures.push("on-this-day.html must load the On This Day QoL stylesheet");
+}
+if (!page.includes("data-otd-mode-group") || !page.includes("data-otd-sort")) {
+    failures.push("on-this-day.html must expose notable/all and sort controls");
+}
 if (page.includes("/assets/on-this-day-full.js") || page.includes("/assets/on-this-day-media-adaptive.js")) {
     failures.push("on-this-day.html must not load deprecated On This Day runtimes");
 }
 const pageScriptRefs = [...page.matchAll(/^\s*-\s+\/assets\/on-this-day[^\s]*\.js\s*$/gm)].map(match => match[0]);
 if (pageScriptRefs.length !== 1) {
     failures.push(`on-this-day.html must declare exactly one On This Day page runtime (found ${pageScriptRefs.length})`);
+}
+
+if (/\bMutationObserver\b/.test(runtime) || /\bIntersectionObserver\b/.test(runtime)) {
+    failures.push("stable On This Day runtime must not reintroduce observer-based image/render loops");
+}
+for (const marker of ["COLLAPSE_LIMIT", "significanceScore", "openLightbox", "dataset.otdEntryLink"]) {
+    if (!runtime.includes(marker)) failures.push(`stable On This Day runtime is missing QoL marker: ${marker}`);
 }
 
 for (const [index, entry] of entries.entries()) {
@@ -85,6 +100,7 @@ for (const [index, entry] of entries.entries()) {
             eventKeys.add(entry.autoKey);
         }
         if (typeof entry?.promotion !== "string" || !entry.promotion.trim()) failures.push(`${prefix}.promotion is required for generated event entries`);
+        if (/\s+took place$/i.test(String(entry?.title || ""))) failures.push(`${prefix}.title must omit the redundant "took place" suffix`);
     }
 
     if (entry?.detail && entry.detail.length > 240) failures.push(`${prefix}.detail must stay concise (240 characters max)`);
@@ -142,4 +158,4 @@ if (failures.length) {
 }
 
 console.log(`On This Day data valid: ${entries.length} entries (${eventArchiveCount} auto events, ${birthdayCount} birthdays)`);
-console.log("On This Day runtime regression checks passed: one stable renderer, representative event images intact.");
+console.log("On This Day runtime regression checks passed: one stable renderer, QoL controls present, observer loops absent, representative event images intact.");
