@@ -1,0 +1,148 @@
+.otd-week-strip {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0.48rem;
+    margin: 0 0 0.72rem;
+}
+
+.otd-day-pill {
+    display: grid;
+    min-width: 0;
+    min-height: 86px;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto 1fr auto;
+    gap: 0.18rem 0.35rem;
+    align-items: center;
+    padding: 0.62rem 0.68rem 0.58rem;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: #0c0c0c;
+    color: #ffffff;
+    text-align: left;
+    cursor: pointer;
+}
+
+.otd-day-pill:hover,
+.otd-day-pill:focus-visible {
+    border-color: rgba(255, 255, 255, 0.34);
+    background: #111111;
+}
+
+.otd-day-pill.is-today {
+    box-shadow: inset 0 0 0 1px rgba(255, 74, 84, 0.3);
+}
+
+.otd-day-pill.is-active {
+    border-color: var(--accent);
+    background:
+        linear-gradient(150deg, rgba(255, 74, 84, 0.15), transparent 72%),
+        #111111;
+    box-shadow: inset 0 -3px 0 rgba(255, 74, 84, 0.2);
+}
+
+.otd-day-pill-weekday {
+    grid-column: 1;
+    grid-row: 1;
+    color: var(--muted);
+    font: 900 0.53rem/1 "Courier New", monospace;
+    letter-spacing: 0.085em;
+    text-transform: uppercase;
+}
+
+.otd-day-pill-date {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    align-self: end;
+    color: #ffffff;
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: clamp(1.38rem, 2.1vw, 1.78rem);
+    font-weight: 700;
+    line-height: 0.9;
+}
+
+.otd-day-pill.is-active .otd-day-pill-weekday,
+.otd-day-pill.is-active .otd-day-pill-types {
+    color: var(--accent-soft);
+}
+
+.otd-day-pill-summary {
+    display: flex;
+    grid-column: 1 / -1;
+    grid-row: 3;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.4rem;
+    min-width: 0;
+}
+
+.otd-day-pill-total {
+    display: inline-grid;
+    min-width: 20px;
+    height: 20px;
+    place-items: center;
+    padding: 0 0.3rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    color: #ffffff;
+    font: 900 0.58rem/1 "Courier New", monospace;
+}
+
+.otd-day-pill.is-active .otd-day-pill-total {
+    border-color: rgba(255, 74, 84, 0.55);
+    color: var(--accent-soft);
+}
+
+.otd-day-pill-types {
+    overflow: hidden;
+    color: #6f6f6f;
+    font: 900 0.48rem/1 "Courier New", monospace;
+    letter-spacing: 0.035em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.otd-kind--event {
+    color: #d8d8d8;
+}
+
+.otd-controls {
+    margin-top: 0;
+}
+
+@media (max-width: 760px) {
+    .otd-week-strip {
+        grid-template-columns: repeat(7, minmax(86px, 1fr));
+        gap: 0.38rem;
+        margin-right: -0.9rem;
+        padding-right: 0.9rem;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        scrollbar-width: none;
+        scroll-snap-type: x proximity;
+    }
+
+    .otd-week-strip::-webkit-scrollbar {
+        display: none;
+    }
+
+    .otd-day-pill {
+        min-height: 80px;
+        padding: 0.55rem 0.58rem 0.5rem;
+        border-radius: 14px;
+        scroll-snap-align: start;
+    }
+
+    .otd-day-pill-date {
+        font-size: 1.42rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .otd-week-strip {
+        grid-template-columns: repeat(7, 82px);
+    }
+
+    .otd-day-pill {
+        min-height: 76px;
+    }
+}

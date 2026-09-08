@@ -2,18 +2,19 @@
     const widgets = [...document.querySelectorAll("[data-on-this-day]")];
     if (!widgets.length) return;
 
-    // Leap-year reference keeps Feb. 29 available while the archive itself
+    // Leap-year reference keeps Feb. 29 selectable while the archive itself
     // intentionally matches month/day across every historical year.
     const REFERENCE_YEAR = 2024;
     const kindOrder = new Map([
         ["fight", 0],
-        ["signing", 1],
-        ["debut", 2],
-        ["title", 3],
+        ["title", 1],
+        ["signing", 2],
+        ["debut", 3],
         ["incident", 4],
-        ["news", 5],
-        ["death", 6],
-        ["birthday", 7]
+        ["event", 5],
+        ["news", 6],
+        ["death", 7],
+        ["birthday", 8]
     ]);
 
     function element(tag, className, text) {
@@ -33,23 +34,26 @@
 
     function localToday() {
         const now = new Date();
-        return new Date(REFERENCE_YEAR, now.getMonth(), now.getDate());
+        return new Date(now.getFullYear(), now.getMonth(), now.getDate());
     }
 
     function keyForDate(date) {
         return `${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
     }
 
+    function dateForMonthDay(month, day, year = new Date().getFullYear()) {
+        const candidate = new Date(year, month - 1, day);
+        if (candidate.getMonth() === month - 1 && candidate.getDate() === day) return candidate;
+
+        const fallback = new Date(REFERENCE_YEAR, month - 1, day);
+        if (fallback.getMonth() === month - 1 && fallback.getDate() === day) return fallback;
+        return null;
+    }
+
     function parseKey(value) {
         const match = /^(\d{2})-(\d{2})$/.exec(value || "");
         if (!match) return null;
-
-        const month = Number(match[1]);
-        const day = Number(match[2]);
-        const date = new Date(REFERENCE_YEAR, month - 1, day);
-
-        if (date.getMonth() !== month - 1 || date.getDate() !== day) return null;
-        return date;
+        return dateForMonthDay(Number(match[1]), Number(match[2]));
     }
 
     function displayDate(date, long = false) {
@@ -57,6 +61,10 @@
             ? { month: "long", day: "numeric" }
             : { month: "short", day: "numeric" }
         ).format(date);
+    }
+
+    function weekdayLabel(date) {
+        return new Intl.DateTimeFormat([], { weekday: "short" }).format(date);
     }
 
     function entriesForDate(entries, date) {
@@ -122,6 +130,7 @@
     function kindLabel(kind) {
         const labels = {
             fight: "Fight",
+            event: "Event",
             signing: "Signing",
             debut: "Debut",
             title: "Title",
@@ -216,6 +225,7 @@
         const next = widget.querySelector("[data-otd-next]");
         const todayButton = widget.querySelector("[data-otd-today]");
         const count = widget.querySelector("[data-otd-count]");
+        const weekStrip = widget.querySelector("[data-otd-week]");
 
         if (!list || !dateDisplay) return;
 
@@ -233,10 +243,68 @@
             window.history.replaceState({}, "", url);
         }
 
+        function setActiveDate(date) {
+            activeDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+            updateUrl();
+            render();
+        }
+
+        function renderWeek() {
+            if (!weekStrip) return;
+
+            const start = new Date(activeDate);
+            start.setDate(start.getDate() - start.getDay());
+            const todayKey = keyForDate(localToday());
+            const activeKey = keyForDate(activeDate);
+            const buttons = [];
+
+            for (let index = 0; index < 7; index += 1) {
+                const date = new Date(start);
+                date.setDate(start.getDate() + index);
+                const matching = entriesForDate(entries, date);
+                const historyCount = matching.filter(entry => entry.kind !== "birthday").length;
+                const birthdayCount = matching.length - historyCount;
+                const dateKey = keyForDate(date);
+
+                const button = element("button", "otd-day-pill");
+                button.type = "button";
+                button.dataset.date = dateKey;
+                button.classList.toggle("is-active", dateKey === activeKey);
+                button.classList.toggle("is-today", dateKey === todayKey);
+                button.setAttribute("aria-pressed", String(dateKey === activeKey));
+                if (dateKey === todayKey) button.setAttribute("aria-current", "date");
+                button.setAttribute(
+                    "aria-label",
+                    `${displayDate(date, true)}: ${historyCount} history ${historyCount === 1 ? "entry" : "entries"}, ${birthdayCount} ${birthdayCount === 1 ? "birthday" : "birthdays"}`
+                );
+
+                button.append(
+                    element("span", "otd-day-pill-weekday", weekdayLabel(date)),
+                    element("span", "otd-day-pill-date", String(date.getDate()))
+                );
+
+                const summary = element("span", "otd-day-pill-summary");
+                summary.append(element("span", "otd-day-pill-total", String(matching.length)));
+                const types = [];
+                if (historyCount) types.push(`${historyCount}H`);
+                if (birthdayCount) types.push(`${birthdayCount}B`);
+                summary.append(element("span", "otd-day-pill-types", types.join(" · ") || "—"));
+                button.append(summary);
+
+                button.addEventListener("click", () => setActiveDate(date));
+                buttons.push(button);
+            }
+
+            weekStrip.replaceChildren(...buttons);
+        }
+
         function render() {
             const matching = entriesForDate(entries, activeDate);
             dateDisplay.textContent = displayDate(activeDate, true);
-            dateDisplay.setAttribute("datetime", keyForDate(activeDate));
+            dateDisplay.setAttribute(
+                "datetime",
+                `${activeDate.getFullYear()}-${keyForDate(activeDate)}`
+            );
 
             if (dateInput) {
                 dateInput.value = `${REFERENCE_YEAR}-${keyForDate(activeDate)}`;
@@ -248,11 +316,13 @@
                     : "No entries yet";
             }
 
+            renderWeek();
+
             if (!matching.length) {
                 const empty = element("div", "otd-empty");
                 empty.append(
                     element("strong", "", "Nothing logged for this date yet."),
-                    element("span", "", "The archive is being built out continuously.")
+                    element("span", "", "Use the week rail or calendar to keep browsing.")
                 );
                 list.replaceChildren(empty);
                 return;
@@ -289,24 +359,18 @@
         function shiftDay(amount) {
             const nextDate = new Date(activeDate);
             nextDate.setDate(nextDate.getDate() + amount);
-            activeDate = nextDate;
-            updateUrl();
-            render();
+            setActiveDate(nextDate);
         }
 
         previous?.addEventListener("click", () => shiftDay(-1));
         next?.addEventListener("click", () => shiftDay(1));
-        todayButton?.addEventListener("click", () => {
-            activeDate = localToday();
-            updateUrl();
-            render();
-        });
+        todayButton?.addEventListener("click", () => setActiveDate(localToday()));
         dateInput?.addEventListener("change", () => {
-            const selected = new Date(`${dateInput.value}T12:00:00`);
-            if (Number.isNaN(selected.getTime())) return;
-            activeDate = new Date(REFERENCE_YEAR, selected.getMonth(), selected.getDate());
-            updateUrl();
-            render();
+            const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateInput.value || "");
+            if (!match) return;
+            const selected = dateForMonthDay(Number(match[2]), Number(match[3]));
+            if (!selected) return;
+            setActiveDate(selected);
         });
 
         render();

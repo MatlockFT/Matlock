@@ -5,6 +5,7 @@ description: "MMA history by date: memorable fights, title changes, signings, de
 permalink: /on-this-day/
 page_styles:
   - /assets/on-this-day.css
+  - /assets/on-this-day-week.css
   - /assets/dynamic-page-stability.css
 page_scripts:
   - /assets/on-this-day.js
@@ -23,6 +24,12 @@ page_scripts:
             <p class="otd-page-count" data-otd-count></p>
         </div>
     </header>
+
+    <nav
+        class="otd-week-strip"
+        data-otd-week
+        aria-label="Browse this week in MMA history"
+    ></nav>
 
     <div class="otd-controls" aria-label="Browse MMA history by date">
         <button
