@@ -10,28 +10,90 @@
     margin-bottom: 0.9rem;
 }
 
+.otd-page-date-row {
+    align-items: end;
+}
+
 .otd-page-date {
     view-transition-name: otd-date;
     text-shadow: 0 10px 36px rgba(0, 0, 0, 0.34);
+    cursor: pointer;
+    user-select: none;
+}
+
+.otd-page-side {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.48rem;
 }
 
 .otd-page-count {
+    margin: 0;
     padding: 0.28rem 0.48rem;
     border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.025);
 }
 
+.otd-page-actions {
+    display: flex;
+    gap: 0.38rem;
+}
+
+.otd-mini-button {
+    min-height: 30px;
+    padding: 0.35rem 0.56rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.025);
+    color: #a9a9a9;
+    font: 900 0.54rem/1 "Courier New", monospace;
+    letter-spacing: 0.055em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+        color 160ms ease,
+        border-color 160ms ease,
+        background-color 160ms ease,
+        transform 160ms var(--otd-ease);
+}
+
+.otd-mini-button:hover,
+.otd-mini-button:focus-visible {
+    border-color: rgba(255, 74, 84, 0.46);
+    background: rgba(255, 74, 84, 0.06);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.otd-mini-button:active {
+    transform: translateY(0) scale(0.985);
+}
+
+.otd-nav-dock {
+    position: sticky;
+    z-index: 18;
+    top: 0.35rem;
+    margin: -0.42rem 0 0.72rem;
+    padding: 0.42rem 0 0.08rem;
+    background:
+        linear-gradient(to bottom, rgba(7, 7, 7, 0.97) 0%, rgba(7, 7, 7, 0.91) 76%, rgba(7, 7, 7, 0) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
 .otd-controls {
     position: relative;
     gap: 0.46rem;
-    margin-bottom: 1.15rem;
+    margin-bottom: 0.55rem;
     padding: 0.38rem;
     border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 14px;
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.024), transparent 70%),
-        rgba(8, 8, 8, 0.72);
+        rgba(8, 8, 8, 0.84);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 
@@ -61,17 +123,90 @@
     transform: translateY(0) scale(0.985);
 }
 
+.otd-mini-button:focus-visible,
 .otd-control-button:focus-visible,
 .otd-date-input:focus-visible,
 .otd-day-pill:focus-visible,
-.otd-entry-source:focus-visible {
+.otd-filter-button:focus-visible,
+.otd-empty-jump:focus-visible,
+.otd-entry-source:focus-visible,
+.otd-entry.is-clickable:focus-visible {
     outline: 2px solid rgba(255, 74, 84, 0.72);
     outline-offset: 2px;
+}
+
+.otd-day-pill-today {
+    position: absolute !important;
+    z-index: 3 !important;
+    top: 0.5rem;
+    right: 0.56rem;
+    padding: 0.18rem 0.3rem;
+    border: 1px solid rgba(255, 74, 84, 0.46);
+    border-radius: 999px;
+    background: rgba(8, 8, 8, 0.64);
+    color: var(--accent-soft);
+    font: 900 0.42rem/1 "Courier New", monospace;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+}
+
+.otd-filters {
+    display: flex;
+    gap: 0.38rem;
+    align-items: center;
+    overflow-x: auto;
+    padding: 0 0 0.45rem;
+    scrollbar-width: none;
+}
+
+.otd-filters[hidden] {
+    display: none;
+}
+
+.otd-filters::-webkit-scrollbar {
+    display: none;
+}
+
+.otd-filter-button {
+    flex: 0 0 auto;
+    min-height: 30px;
+    padding: 0.34rem 0.52rem;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.02);
+    color: #868686;
+    font: 900 0.52rem/1 "Courier New", monospace;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+        color 150ms ease,
+        border-color 150ms ease,
+        background-color 150ms ease,
+        transform 150ms var(--otd-ease);
+}
+
+.otd-filter-button:hover,
+.otd-filter-button:focus-visible {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.24);
+}
+
+.otd-filter-button.is-active {
+    border-color: rgba(255, 74, 84, 0.52);
+    background: rgba(255, 74, 84, 0.08);
+    color: var(--accent-soft);
+}
+
+.otd-filter-button:active {
+    transform: scale(0.975);
 }
 
 .otd-list {
     position: relative;
     view-transition-name: otd-list;
+    scroll-margin-top: 184px;
 }
 
 .otd-entry {
@@ -83,6 +218,10 @@
     transition:
         background-color 180ms ease,
         border-color 180ms ease;
+}
+
+.otd-entry.is-clickable {
+    cursor: pointer;
 }
 
 .otd-entry::before {
@@ -107,7 +246,8 @@
         linear-gradient(90deg, rgba(255, 74, 84, 0.045), rgba(255, 255, 255, 0.012) 38%, transparent 75%);
 }
 
-.otd-entry:hover::before {
+.otd-entry:hover::before,
+.otd-entry.is-clickable:focus-visible::before {
     opacity: 0.75;
     transform: scaleY(1);
 }
@@ -127,9 +267,57 @@
     transform: translateX(2px);
 }
 
+.otd-entry-meta .otd-age {
+    color: #d4d4d4;
+    font-family: "Courier New", monospace;
+}
+
+.otd-entry-meta .otd-age::before {
+    display: none;
+    content: none;
+}
+
+.otd-entry-meta .otd-promotion {
+    color: #a0a0a0;
+}
+
+.otd-entry-meta .otd-kind {
+    color: #777777;
+}
+
+.otd-entry-meta > span + span {
+    position: relative;
+    padding-left: 0.58rem;
+}
+
+.otd-entry-meta > span + span::before {
+    position: absolute;
+    left: 0;
+    color: #454545;
+    content: "·";
+}
+
 .otd-entry-media {
     contain: layout paint;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+}
+
+.otd-entry-media.is-image-loading::before {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    background: linear-gradient(
+        105deg,
+        transparent 18%,
+        rgba(255, 255, 255, 0.045) 43%,
+        rgba(255, 255, 255, 0.09) 50%,
+        rgba(255, 255, 255, 0.045) 57%,
+        transparent 82%
+    );
+    background-size: 220% 100%;
+    content: "";
+    pointer-events: none;
+    animation: otd-shimmer 1.25s linear infinite;
 }
 
 .otd-entry:hover .otd-entry-media {
@@ -140,6 +328,10 @@
 
 .otd-entry--lead:hover .otd-entry-media {
     border-color: rgba(255, 74, 84, 0.58);
+}
+
+.otd-entry:hover .otd-entry-title {
+    color: #ffffff;
 }
 
 .otd-entry-source:hover,
@@ -157,9 +349,47 @@
     background: linear-gradient(120deg, rgba(255, 74, 84, 0.035), transparent 55%);
 }
 
+.otd-empty-jumps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: 0.65rem;
+}
+
+.otd-empty-jump {
+    min-height: 34px;
+    padding: 0.42rem 0.62rem;
+    border: 1px solid rgba(255, 255, 255, 0.11);
+    border-radius: 999px;
+    background: #0c0c0c;
+    color: #d2d2d2;
+    font: 900 0.58rem/1 "Courier New", monospace;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+        color 150ms ease,
+        border-color 150ms ease,
+        background-color 150ms ease,
+        transform 150ms var(--otd-ease);
+}
+
+.otd-empty-jump:hover,
+.otd-empty-jump:focus-visible {
+    border-color: rgba(255, 74, 84, 0.46);
+    background: rgba(255, 74, 84, 0.055);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
 .otd-page.is-loading .otd-controls,
 .otd-page.is-loading .otd-week-strip {
     opacity: 0.72;
+}
+
+@keyframes otd-shimmer {
+    from { background-position: 110% 0; }
+    to { background-position: -110% 0; }
 }
 
 @keyframes otd-image-in {
@@ -198,9 +428,28 @@
 }
 
 @media (max-width: 760px) {
+    .otd-page-date-row {
+        align-items: flex-start;
+    }
+
+    .otd-page-side {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .otd-nav-dock {
+        top: 0;
+        margin-inline: -0.2rem;
+        padding-inline: 0.2rem;
+    }
+
     .otd-controls {
         padding: 0.32rem;
         border-radius: 12px;
+    }
+
+    .otd-list {
+        scroll-margin-top: 166px;
     }
 
     .otd-entry {
@@ -223,24 +472,46 @@
     .otd-entry-source:focus-visible {
         transform: none;
     }
+
+    .otd-day-pill-today {
+        top: 0.42rem;
+        right: 0.44rem;
+        font-size: 0.39rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .otd-page-actions {
+        width: 100%;
+    }
+
+    .otd-mini-button {
+        flex: 1 1 0;
+    }
 }
 
 @media (hover: none) {
     .otd-entry:hover,
-    .otd-control-button:hover {
+    .otd-control-button:hover,
+    .otd-mini-button:hover,
+    .otd-empty-jump:hover {
         transform: none;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .otd-mini-button,
     .otd-control-button,
     .otd-date-input,
+    .otd-filter-button,
+    .otd-empty-jump,
     .otd-entry,
     .otd-entry::before,
     .otd-entry-year,
     .otd-entry-media,
     .otd-entry-title,
     .otd-entry-source,
+    .otd-entry-media::before,
     .otd-entry-media img,
     .otd-compact-media img {
         animation: none !important;
@@ -249,14 +520,18 @@
     }
 }
 
+html.reduce-motion .otd-mini-button,
 html.reduce-motion .otd-control-button,
 html.reduce-motion .otd-date-input,
+html.reduce-motion .otd-filter-button,
+html.reduce-motion .otd-empty-jump,
 html.reduce-motion .otd-entry,
 html.reduce-motion .otd-entry::before,
 html.reduce-motion .otd-entry-year,
 html.reduce-motion .otd-entry-media,
 html.reduce-motion .otd-entry-title,
 html.reduce-motion .otd-entry-source,
+html.reduce-motion .otd-entry-media::before,
 html.reduce-motion .otd-entry-media img,
 html.reduce-motion .otd-compact-media img {
     animation: none !important;
