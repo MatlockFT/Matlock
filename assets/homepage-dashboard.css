@@ -19,8 +19,8 @@
 
 .home-snapshot {
     display: grid;
-    grid-template-columns: minmax(0, 1.5fr) minmax(280px, .5fr);
-    gap: .5rem;
+    grid-template-columns: 1fr;
+    gap: .32rem;
     margin-bottom: .85rem;
 }
 
@@ -32,10 +32,11 @@
 
 .home-panel-heading {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     gap: .55rem;
-    padding: .36rem .5rem;
+    min-height: 30px;
+    padding: .34rem .5rem;
     border-bottom: 1px solid #353535;
 }
 
@@ -54,7 +55,7 @@
 .home-panel-heading a,
 .home-panel-heading span {
     color: #8b8b8b;
-    font: 700 .48rem/1.2 "Courier New", monospace;
+    font: 700 .48rem/1 "Courier New", monospace;
     letter-spacing: .04em;
     text-transform: uppercase;
 }
@@ -145,16 +146,22 @@
     border-color: var(--accent, #ff4a54);
 }
 
+.home-tools-bar {
+    min-width: 0;
+    border: 1px solid #454545;
+    background: #090909;
+}
+
 .home-tools {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: .28rem;
-    padding: .36rem;
+    padding: .3rem;
 }
 
 .home-tool-link {
-    min-height: 54px;
-    padding: .38rem;
+    min-height: 42px;
+    padding: 0 .5rem;
 }
 
 .home-dashboard .featured-section {

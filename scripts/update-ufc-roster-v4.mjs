@@ -12,6 +12,7 @@ const PAGE_CONCURRENCY = 6;
 const MAX_PAGES = 160;
 const MIN_ACTIVE_PROFILES = 500;
 const PENDING_CHECK_LIMIT = 40;
+const REMOVAL_CONFIRMATION_MISSES = 3;
 const EVENT_HISTORY_LIMIT = 1000;
 const REQUEST_ATTEMPTS = 3;
 const REQUEST_TIMEOUT_MS = 30000;
@@ -372,9 +373,14 @@ const hasActiveBaseline =
 
 let additions = collectorMatches && Array.isArray(previous?.additions) ? previous.additions : [];
 let removals = collectorMatches && Array.isArray(previous?.removals) ? previous.removals : [];
+removals = removals.filter(item => item?.confirmationSource === "ufc-active-absence-confirmed");
 let pending =
     collectorMatches && Array.isArray(previous?.pendingActiveAdditions)
         ? previous.pendingActiveAdditions
+        : [];
+let pendingRemovals =
+    collectorMatches && Array.isArray(previous?.pendingRemovals)
+        ? previous.pendingRemovals
         : [];
 const seenProfileUrls = new Set(
     collectorMatches && Array.isArray(previous?.seenProfileUrls)
@@ -427,23 +433,17 @@ if (hasActiveBaseline) {
         pendingUrls.add(url);
     }
 
+    const pendingRemovalUrls = new Set(pendingRemovals.map(item => item.url));
     for (const url of leftActive) {
-        let details;
-        try {
-            details = await fighterDetails(url);
-        } catch {
-            const slug = new URL(url).pathname.split("/").filter(Boolean).at(-1);
-            details = { name: slug.replaceAll("-", " "), slug, url };
-        }
-        const removal = {
-            ...details,
-            eventId: `${url}|removed|${now}`,
-            eventType: "removed",
-            detectedAt: now
-        };
-        removals.unshift(removal);
-        newlyRemoved.push(removal);
-        seenProfileUrls.add(url);
+        if (pendingRemovalUrls.has(url)) continue;
+        pendingRemovals.push({
+            url,
+            firstMissingAt: now,
+            lastMissingAt: now,
+            misses: 0,
+            lastStatus: ""
+        });
+        pendingRemovalUrls.add(url);
     }
 
     console.log(
@@ -456,6 +456,42 @@ if (hasActiveBaseline) {
             : "Collector changed to the verified UFC Active feed. Establishing a fresh baseline without backfilling changes."
     );
 }
+
+
+// Confirm departures only after sustained absence; one bad UFC snapshot is not a removal.
+const remainingPendingRemovals = [];
+for (const candidate of uniqueByUrl(pendingRemovals)) {
+    if (currentActiveSet.has(candidate.url)) continue;
+    const updated = { ...candidate, misses: Number(candidate.misses || 0) + 1, lastMissingAt: now };
+    if (updated.misses < REMOVAL_CONFIRMATION_MISSES) {
+        remainingPendingRemovals.push(updated);
+        continue;
+    }
+    try {
+        const details = await fighterDetails(candidate.url);
+        if (!details.status || details.status === "Active") {
+            remainingPendingRemovals.push({ ...updated, lastStatus: details.status || "Unknown", lastCheckedAt: now });
+            continue;
+        }
+        const detectedAt = candidate.firstMissingAt || now;
+        const removal = {
+            ...details,
+            eventId: `${candidate.url}|removed|${detectedAt}`,
+            eventType: "removed",
+            detectedAt,
+            confirmedInactiveAt: now,
+            confirmationSource: "ufc-active-absence-confirmed",
+            missingSnapshots: updated.misses
+        };
+        removals.unshift(removal);
+        newlyRemoved.push(removal);
+        seenProfileUrls.add(candidate.url);
+    } catch (error) {
+        remainingPendingRemovals.push({ ...updated, lastCheckedAt: now });
+        console.warn(`Could not confirm removal candidate ${candidate.url}: ${error.message}`);
+    }
+}
+pendingRemovals = uniqueByUrl(remainingPendingRemovals);
 
 // Keep an unconfirmed entrant for as long as UFC keeps it in the Active set.
 // Expiring it by age would permanently lose the event because it would already
@@ -516,7 +552,7 @@ const backfillUrls = await readBackfillUrls();
 const activeBackfillUrls = backfillUrls.filter(url => currentActiveSet.has(url));
 
 const state = {
-    version: 7,
+    version: 8,
     collectorId: COLLECTOR_ID,
     checkedAt: now,
     trackingStartedAt,
@@ -529,11 +565,12 @@ const state = {
     seenProfileUrls: [...seenProfileUrls].sort(),
     additions,
     removals,
-    pendingActiveAdditions: pending
+    pendingActiveAdditions: pending,
+    pendingRemovals
 };
 
 const publicData = {
-    version: 7,
+    version: 8,
     collectorId: COLLECTOR_ID,
     generatedAt: now,
     trackingStartedAt,
@@ -543,7 +580,7 @@ const publicData = {
     activeRosterMode: "status23-query-post",
     activeBackfillUrls,
     methodology:
-        "Snapshots UFC.com's hidden Active athlete collection (status:23) and compares it with the previous verified snapshot. New entrants, including returning fighters whose existing UFC profile re-enters the Active set, are published only after their UFC profile also reports Status: Active. Detection time is the first tracker run that observed the change, not a contract-signing timestamp.",
+        "Snapshots UFC.com's hidden Active athlete collection (status:23) and compares it with the previous verified snapshot. Additions are confirmed through the existing roster sensors. Departures require three consecutive missing Active snapshots plus a current UFC profile status that no longer reports Active. Detection time is tracker observation time, not a contract transaction timestamp.",
     additions: additions.slice(0, 10),
     removals: removals.slice(0, 10),
     changesThisRun: {

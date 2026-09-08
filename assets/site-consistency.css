@@ -280,3 +280,50 @@
         flex-basis: 100%;
     }
 }
+
+
+/* Shared optical row alignment */
+:where(
+    .home-panel-heading,
+    .event-card-section-heading,
+    .news-section-heading,
+    .otd-compact-header,
+    .ufc-roster-section-header
+) {
+    align-items: center;
+}
+
+:where(
+    .home-panel-heading,
+    .event-card-section-heading,
+    .news-section-heading,
+    .otd-compact-header,
+    .ufc-roster-section-header
+) > :where(h2, h3, a, span) {
+    margin-block: 0;
+    line-height: 1;
+}
+
+.navigation-list a {
+    display: inline-flex;
+    min-height: 62px;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 1;
+}
+
+:where(
+    .home-tool-link,
+    .home-next-actions a,
+    .post-event-context-actions a,
+    .event-map-detail-actions a,
+    .event-map-detail-actions button,
+    .otd-control-button,
+    .otd-mini-button,
+    .news-source-chip,
+    .news-show-more
+) {
+    line-height: 1;
+}

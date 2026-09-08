@@ -148,17 +148,27 @@
         return [...live, ...filler].slice(0, 10);
     }
 
+    function credibleRemovals(data) {
+        return (Array.isArray(data.removals) ? data.removals : [])
+            .filter(fighter =>
+                fighter?.confirmationSource === "ufc-active-absence-confirmed" &&
+                String(fighter?.status || "").trim().toLowerCase() !== "active"
+            )
+            .slice(0, 6);
+    }
+
     function renderStats(data, additions, removals) {
         if (activeCount) activeCount.textContent = Number.isFinite(Number(data.activeCount))
             ? Number(data.activeCount).toLocaleString()
             : "—";
-        if (addCount) addCount.textContent = String(additions.length);
+        const publishedAdds = Array.isArray(data.additions) ? data.additions.length : 0;
+        if (addCount) addCount.textContent = String(publishedAdds);
         if (removeCount) removeCount.textContent = String(removals.length);
     }
 
     function render(data, backfill = []) {
         const additions = combinedAdditions(data, backfill);
-        const removals = (Array.isArray(data.removals) ? data.removals : []).slice(0, 6);
+        const removals = credibleRemovals(data);
 
         list.replaceChildren();
         list.setAttribute("aria-busy", "false");
