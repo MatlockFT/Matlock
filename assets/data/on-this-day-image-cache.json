@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-09-08T06:17:28.830Z",
+  "updatedAt": "2026-09-08T06:39:35.626Z",
   "entries": {
     "ufc:1995-09-08:ufc-7-the-brawl-in-buffalo": {
       "strategyVersion": 2,
@@ -52,25 +52,28 @@
       "wikipediaTitle": "UFC Fight Night: Burns vs. Brady"
     },
     "bellator:2010-09-09:bellator-28": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator 28"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator 28",
+      "error": "429 Too Many Requests"
     },
     "bellator:2013-09-07:bellator-98": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 98"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 98",
+      "error": "429 Too Many Requests"
     },
     "bellator:2019-09-07:bellator-226": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA in 2019#Bellator 226"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2019#Bellator 226",
+      "error": "429 Too Many Requests"
     },
     "bellator:2024-09-07:bellator-champions-series-4": {
       "strategyVersion": 2,
@@ -80,32 +83,36 @@
       "wikipediaTitle": "Bellator Champions Series 4"
     },
     "pancrase:1996-09-07:pancrase-1996-anniversary-show": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "1996 in Pancrase#Pancrase: 1996 Anniversary Show"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1996 in Pancrase#Pancrase: 1996 Anniversary Show",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2008-09-07:pancrase-shining-7": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 7"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 7",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2013-09-07:pancrase-251": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2018-09-09:pancrase-299": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Too Many Requests"
     },
     "ufc:2008-09-06:ufc-88-breakthrough": {
       "strategyVersion": 2,
@@ -143,11 +150,12 @@
       "wikipediaTitle": "UFC Fight Night: Imavov vs. Borralho"
     },
     "pride:2006-09-10:pride-final-conflict-absolute": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Pride Final Conflict Absolute"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Pride Final Conflict Absolute",
+      "error": "429 Too Many Requests"
     },
     "strikeforce:2011-09-10:strikeforce-barnett-vs-kharitonov": {
       "strategyVersion": 2,
@@ -157,25 +165,28 @@
       "wikipediaTitle": "Strikeforce: Barnett vs. Kharitonov"
     },
     "bellator:2011-09-10:bellator-49": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator 49"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator 49",
+      "error": "429 Too Many Requests"
     },
     "pancrase:1997-09-06:pancrase-1997-anniversary-show": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "1997 in Pancrase#Pancrase: 1997 Anniversary Show"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1997 in Pancrase#Pancrase: 1997 Anniversary Show",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2026-09-06:pancrase-365": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Too Many Requests"
     },
     "ufc:2014-09-05:ufc-fight-night-jacare-vs-mousasi": {
       "strategyVersion": 2,
@@ -213,46 +224,52 @@
       "wikipediaTitle": "WEC 30"
     },
     "bellator:2014-09-05:bellator-123": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA: Season Eleven#Bellator 123"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA: Season Eleven#Bellator 123",
+      "error": "429 Too Many Requests"
     },
     "bellator:2020-09-11:bellator-245": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA in 2020#Bellator 245"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2020#Bellator 245",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2007-09-05:pancrase-rising-6": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2007 in Pancrase#Pancrase: Rising 6"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2007 in Pancrase#Pancrase: Rising 6",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2010-09-05:pancrase-passion-tour-8": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2010 in Pancrase#Pancrase: Passion Tour 8"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2010 in Pancrase#Pancrase: Passion Tour 8",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2016-09-11:pancrase-280": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2022-09-11:pancrase-329": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Too Many Requests"
     },
     "ufc:2013-09-04:ufc-fight-night-teixeira-vs-bader": {
       "strategyVersion": 2,
@@ -276,53 +293,60 @@
       "wikipediaTitle": "UFC Fight Night: Brunson vs. Till"
     },
     "pride:1999-09-12:pride-7": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "1999 in Pride FC#Pride 7"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1999 in Pride FC#Pride 7",
+      "error": "429 Too Many Requests"
     },
     "bellator:2014-09-12:bellator-124": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA: Season Eleven#Bellator 124"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA: Season Eleven#Bellator 124",
+      "error": "429 Too Many Requests"
     },
     "bellator:2020-09-12:bellator-246": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA in 2020#Bellator 246"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2020#Bellator 246",
+      "error": "429 Too Many Requests"
     },
     "pancrase:1999-09-04:pancrase-breakthrough-8": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 8"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 8",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2005-09-04:pancrase-spiral-7": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2005 in Pancrase#Pancrase: Spiral 7"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2005 in Pancrase#Pancrase: Spiral 7",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2011-09-04:pancrase-impressive-tour-9": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2011 in Pancrase#Pancrase: Impressive Tour 9"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2011 in Pancrase#Pancrase: Impressive Tour 9",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2021-09-12:pancrase-323": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Too Many Requests"
     },
     "ufc:2014-09-13:ufc-fight-night-bigfoot-vs-arlovski": {
       "strategyVersion": 2,
@@ -360,18 +384,20 @@
       "wikipediaTitle": "Strikeforce: Young Guns III"
     },
     "bellator:2013-09-13:bellator-99": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 99"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 99",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2005-09-03:pancrase-z": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2005 in Pancrase#Pancrase: Z"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2005 in Pancrase#Pancrase: Z",
+      "error": "429 Too Many Requests"
     },
     "pfl:2014-09-13:wsof13-moraes-vs-bollinger": {
       "strategyVersion": 3,
@@ -395,18 +421,20 @@
       "wikipediaTitle": "UFC Fight Night: Cowboy vs. Gaethje"
     },
     "bellator:2010-09-02:bellator-27": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator 27"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator 27",
+      "error": "429 Too Many Requests"
     },
     "pancrase:1998-09-14:pancrase-1998-anniversary-show": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "1998 in Pancrase#Pancrase: 1998 Anniversary Show"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: 1998 Anniversary Show",
+      "error": "429 Too Many Requests"
     },
     "pfl:2013-09-14:wsof5-arlovski-vs-kyle": {
       "strategyVersion": 3,
@@ -416,32 +444,36 @@
       "wikipediaTitle": "World Series of Fighting 5: Arlovski vs. Kyle"
     },
     "pancrase:1994-09-01:pancrase-road-to-the-championship-4": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "1994 in Pancrase#Pancrase: Road to the Championship 4"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1994 in Pancrase#Pancrase: Road to the Championship 4",
+      "error": "429 Too Many Requests"
     },
     "pancrase:1995-09-01:pancrase-1995-anniversary-show": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "1995 in Pancrase#Pancrase: 1995 Anniversary Show"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1995 in Pancrase#Pancrase: 1995 Anniversary Show",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2019-09-01:one-japan-series-road-to-century": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2012-09-01:pancrase-progress-tour-10": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Too Many Requests"
     },
     "wec:2002-08-31:wec-4-rumble-under-the-sun": {
       "strategyVersion": 3,
@@ -451,53 +483,60 @@
       "wikipediaTitle": "WEC 4"
     },
     "bellator:2010-09-16:bellator-29": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator 29"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator 29",
+      "error": "429 Too Many Requests"
     },
     "bellator:2016-09-16:bellator-161": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA in 2016#Bellator 161"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2016#Bellator 161",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2003-08-31:pancrase-10th-anniversary-show": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2003 in Pancrase#Pancrase: 10th Anniversary Show"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2003 in Pancrase#Pancrase: 10th Anniversary Show",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2006-09-16:pancrase-blow-7": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2006 in Pancrase#Pancrase: Blow 7"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2006 in Pancrase#Pancrase: Blow 7",
+      "error": "429 Too Many Requests"
     },
     "bellator:2011-09-17:bellator-50": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator 50"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator 50",
+      "error": "429 Too Many Requests"
     },
     "bellator:2016-09-17:bellator-kickboxing-3": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA in 2016#Bellator Kickboxing 3"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2016#Bellator Kickboxing 3",
+      "error": "429 Too Many Requests"
     },
     "pancrase:1999-09-18:pancrase-1999-anniversary-show": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "1999 in Pancrase#Pancrase: 1999 Anniversary Show"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1999 in Pancrase#Pancrase: 1999 Anniversary Show",
+      "error": "429 Too Many Requests"
     },
     "pfl:2018-08-30:pfl-7": {
       "strategyVersion": 3,
@@ -514,129 +553,142 @@
       "wikipediaTitle": "World Series of Fighting 23: Gaethje vs. Palomino II"
     },
     "bellator:2014-09-19:bellator-125": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA: Season Eleven#Bellator 125"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA: Season Eleven#Bellator 125",
+      "error": "429 Too Many Requests"
     },
     "pride:2005-08-28:pride-final-conflict-2005": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Pride Final Conflict 2005"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Pride Final Conflict 2005",
+      "error": "429 Too Many Requests"
     },
     "bellator:2015-08-28:bellator-141": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA in 2015#Bellator 141"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2015#Bellator 141",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2010-09-19:pancrase-2010-pro-am-open-catch-wrestling-tournament": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2010 in Pancrase#Pancrase: 2010 Pro-Am Open Catch Wrestling Tournament"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2010 in Pancrase#Pancrase: 2010 Pro-Am Open Catch Wrestling Tournament",
+      "error": "429 Too Many Requests"
     },
     "rizin:2021-09-19:rizin-30-saitama": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2021 in Rizin Fighting Federation#Rizin 30 - Saitama"
     },
     "pancrase:2010-09-19:pancrase-gate-6th-chance": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2010 in Pancrase#Pancrase: Gate 6th Chance"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2010 in Pancrase#Pancrase: Gate 6th Chance",
+      "error": "429 Too Many Requests"
     },
     "pride:2000-08-27:pride-10": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2000 in Pride FC#Pride 10: Return of the Warriors"
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2000 in Pride FC#Pride 10: Return of the Warriors",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/2019_Taiwan_Pride_10.jpg/1280px-2019_Taiwan_Pride_10.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Pride 10 event image",
+      "imageCredit": "Wikimedia Commons · Vian Chen · CC BY-SA 4.0",
+      "imageFileTitle": "File:2019 Taiwan Pride 10.jpg",
+      "width": 3024,
+      "height": 4032,
+      "score": 224
     },
     "pride:2006-08-27:pride-bushido-12": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Pride Bushido 12"
     },
     "bellator:2013-09-20:bellator-100": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 100"
     },
     "pancrase:2000-08-27:pancrase-2000-neo-blood-tournament-second-round": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2000 in Pancrase#Pancrase: 2000 Neo-Blood Tournament Second Round"
     },
     "pancrase:2005-08-27:pancrase-2005-neo-blood-tournament-finals": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2005 in Pancrase#Pancrase: 2005 Neo-Blood Tournament Finals"
     },
     "pancrase:2006-08-27:pancrase-blow-6": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2006 in Pancrase#Pancrase: Blow 6"
     },
     "pancrase:2008-08-27:pancrase-shining-6": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 6"
     },
     "pancrase:2023-08-27:pancrase-29th-neo-blood-tournament-finals": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "bellator:2010-08-26:bellator-26": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator 26"
     },
     "bellator:2016-08-26:bellator-160": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator MMA in 2016#Bellator 160"
     },
     "pancrase:1993-09-21:pancrase-yes-we-are-hybrid-wrestlers-1": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Pancrase: Yes, We Are Hybrid Wrestlers 1"
     },
     "bellator:2018-09-21:bellator-205": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator MMA in 2018#Bellator 205"
     },
     "ufc:2000-09-22:ufc-27-ultimate-bad-boyz": {
@@ -647,31 +699,31 @@
       "wikipediaTitle": "UFC 27"
     },
     "bellator:2017-08-25:bellator-182": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator MMA in 2017#Bellator 182"
     },
     "pancrase:2001-08-25:pancrase-proof-5": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2001 in Pancrase#Pancrase: Proof 5"
     },
     "pancrase:2002-08-25:pancrase-spirit-6": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2002 in Pancrase#Pancrase: Spirit 6"
     },
     "pancrase:2024-08-25:pancrase-blood-4": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "ufc:2023-09-23:ufc-fight-night-fiziev-vs-gamrot": {
@@ -689,108 +741,116 @@
       "wikipediaTitle": "2011 in Strikeforce#Strikeforce Challengers: Larkin vs. Rossborough"
     },
     "bellator:2010-09-23:bellator-30": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator 30"
     },
     "bellator:2012-08-24:bellator-73": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator Fighting Championships: 2012 Summer Series#Bellator 73"
     },
     "bellator:2019-08-24:bellator-225": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator MMA in 2019#Bellator 225"
     },
     "pancrase:2019-09-23:pancrase-sapporo": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "pancrase:2025-09-23:pancrase-356": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "bellator:2017-09-23:bellator-183": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator MMA in 2017#Bellator 183"
     },
     "pancrase:2025-09-23:pancrase-357": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "bellator:2011-09-24:bellator-51": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator 51"
     },
     "pride:2001-09-24:pride-16": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Pride 16"
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Pride 16",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Steyr_2023-07-01_Steyr_Pride_16_-_Kirchengasse_-_Bild_01.jpg/1280px-Steyr_2023-07-01_Steyr_Pride_16_-_Kirchengasse_-_Bild_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Pride 16 event image",
+      "imageCredit": "Wikimedia Commons · Miloš Hlávka · CC0",
+      "imageFileTitle": "File:Steyr 2023-07-01 Steyr Pride 16 - Kirchengasse - Bild 01.jpg",
+      "width": 3456,
+      "height": 4608,
+      "score": 224
     },
     "pancrase:2000-09-24:pancrase-2000-anniversary-show": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2000 in Pancrase#Pancrase: 2000 Anniversary Show"
     },
     "pancrase:2004-09-24:pancrase-brave-8": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2004 in Pancrase#Pancrase: Brave 8"
     },
     "pancrase:2020-08-23:pancrase-317": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "pancrase:2023-09-24:pancrase-337-30th-anniversary-tournament-vol-1": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "rizin:2023-09-24:rizin-44": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2023 in Rizin Fighting Federation#Rizin 44"
     },
     "pride:2005-09-25:pride-bushido-9": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Pride Bushido 9"
     },
     "strikeforce:2009-09-25:strikeforce-challengers-3-kennedy-vs-cummings": {
@@ -801,53 +861,56 @@
       "wikipediaTitle": "2009 in Strikeforce#Strikeforce Challengers 3: Kennedy vs. Cummings"
     },
     "pancrase:2004-08-22:pancrase-brave-7": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2004 in Pancrase#Pancrase: Brave 7"
     },
     "bellator:2015-09-25:bellator-143": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator MMA in 2015#Bellator 143"
     },
     "rizin:2016-09-25:rizin-world-grand-prix-2016-1st-round": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2016 in Rizin Fighting Federation#Rizin World Grand Prix 2016: 1st Round"
     },
     "rizin:2022-09-25:super-rizin-and-rizin-38": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2022 in Rizin Fighting Federation#Super Rizin & Rizin 38"
     },
     "bellator:2014-09-26:bellator-126": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA: Season Eleven#Bellator 126"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA: Season Eleven#Bellator 126",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "bellator:2020-08-21:bellator-244": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA in 2020#Bellator 244"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2020#Bellator 244",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "bellator:2020-09-26:bellator-milan-2": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA in 2020#Bellator Milan 2"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2020#Bellator Milan 2",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "wec:2004-08-20:wec-11-evolution": {
       "strategyVersion": 3,
@@ -857,88 +920,100 @@
       "wikipediaTitle": "WEC 11"
     },
     "bellator:2011-08-20:bellator-48": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator 48"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator 48",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "bellator:2013-09-27:bellator-101": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 101"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 101",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "bellator:2019-09-27:bellator-dublin-227": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA in 2019#Bellator Dublin/Bellator 227"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2019#Bellator Dublin/Bellator 227",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "pancrase:2017-08-20:pancrase-289": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "pancrase:2020-09-27:pancrase-318": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "rizin:2020-09-27:rizin-24-saitama": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2020 in Rizin Fighting Federation#Rizin 24 – Saitama"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2020 in Rizin Fighting Federation#Rizin 24 – Saitama",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "bellator:2010-08-19:bellator-25": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator 25"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator 25",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "bellator:2012-09-28:bellator-74": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator Fighting Championships: Season Seven#Bellator 74"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator Fighting Championships: Season Seven#Bellator 74",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "bellator:2017-08-19:bellator-monster-energy-fight-series-bristol": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA in 2017#Bellator: Monster Energy Fight Series: Bristol"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2017#Bellator: Monster Energy Fight Series: Bristol",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "bellator:2019-09-28:bellator-228": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA in 2019#Bellator 228"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2019#Bellator 228",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "rizin:2025-09-28:rizin-51": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2025 in Rizin Fighting Federation#Rizin 51"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2025 in Rizin Fighting Federation#Rizin 51",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "pride:2002-09-29:pride-22": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Pride 22"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Pride 22",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "wec:2005-08-18:wec-16-clash-of-the-titans-2": {
       "strategyVersion": 3,
@@ -948,52 +1023,52 @@
       "wikipediaTitle": "WEC 16"
     },
     "bellator:2018-09-29:bellator-206": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator MMA in 2018#Bellator 206"
     },
     "pancrase:2002-09-29:pancrase-2002-anniversary-show": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2002 in Pancrase#Pancrase: 2002 Anniversary Show"
     },
     "pancrase:2013-09-29:pancrase-252-20th-anniversary": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "rizin:2019-08-18:rizin-18-nagoya": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2019 in Rizin Fighting Federation#Rizin 18 - Nagoya"
     },
     "pancrase:2019-09-29:pancrase-308": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "pancrase:2024-09-29:pancrase-347": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "rizin:2024-09-29:rizin-48": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2024 in Rizin Fighting Federation#Rizin 48"
     },
     "wec:2006-08-17:wec-23-hot-august-fights": {
@@ -1004,79 +1079,74 @@
       "wikipediaTitle": "WEC 23"
     },
     "bellator:2010-09-30:bellator-31": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator 31"
     },
     "bellator:2018-08-17:bellator-204": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator MMA in 2018#Bellator 204"
     },
     "pancrase:2007-09-30:pancrase-rising-7": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2007 in Pancrase#Pancrase: Rising 7"
     },
     "pancrase:2001-09-30:pancrase-2001-anniversary-show": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2001 in Pancrase#Pancrase: 2001 Anniversary Show"
     },
     "rizin:2018-09-30:rizin-13-saitama": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2018 in Rizin Fighting Federation#Rizin 13 - Saitama"
     },
     "bellator:2011-10-01:bellator-52": {
-      "strategyVersion": 3,
-      "status": "check-failed",
+      "strategyVersion": 4,
+      "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator 52",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator 52"
     },
     "bellator:2020-10-01:bellator-247": {
-      "strategyVersion": 3,
-      "status": "check-failed",
+      "strategyVersion": 4,
+      "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA in 2020#Bellator 247",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2020#Bellator 247"
     },
     "pancrase:2006-10-01:pancrase-blow-8": {
-      "strategyVersion": 3,
-      "status": "check-failed",
+      "strategyVersion": 4,
+      "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2006 in Pancrase#Pancrase: Blow 8",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2006 in Pancrase#Pancrase: Blow 8"
     },
     "pancrase:2008-10-01:pancrase-shining-8": {
-      "strategyVersion": 3,
-      "status": "check-failed",
+      "strategyVersion": 4,
+      "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 8",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 8"
     },
     "rizin:2023-10-01:rizin-landmark-6": {
-      "strategyVersion": 3,
-      "status": "check-failed",
+      "strategyVersion": 4,
+      "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2023 in Rizin Fighting Federation#Rizin Landmark 6",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2023 in Rizin Fighting Federation#Rizin Landmark 6"
     },
     "pfl:2018-08-16:pfl-6": {
       "strategyVersion": 3,
@@ -1087,66 +1157,63 @@
       "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "pride:2004-08-15:pride-final-conflict-2004": {
-      "strategyVersion": 3,
-      "status": "check-failed",
+      "strategyVersion": 4,
+      "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Pride Final Conflict 2004",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Pride Final Conflict 2004"
     },
     "pancrase:2005-10-02:pancrase-spiral-8": {
-      "strategyVersion": 3,
-      "status": "check-failed",
+      "strategyVersion": 4,
+      "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2005 in Pancrase#Pancrase: Spiral 8",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2005 in Pancrase#Pancrase: Spiral 8"
     },
     "pancrase:2011-10-02:pancrase-impressive-tour-10": {
-      "strategyVersion": 3,
-      "status": "check-failed",
+      "strategyVersion": 4,
+      "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2011 in Pancrase#Pancrase: Impressive Tour 10",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2011 in Pancrase#Pancrase: Impressive Tour 10"
     },
     "pancrase:2016-10-02:pancrase-281": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "List of Pancrase events",
       "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "rizin:2021-10-02:rizin-landmark-vol-1": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2021 in Rizin Fighting Federation#Rizin Landmark Vol.1",
       "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "bellator:2014-10-03:bellator-127": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator MMA: Season Eleven#Bellator 127",
       "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "bellator:2020-10-03:bellator-milan-3": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator MMA in 2020#Bellator Milan 3",
       "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "pancrase:2010-10-03:pancrase-passion-tour-9": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2010 in Pancrase#Pancrase: Passion Tour 9",
       "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
@@ -1167,39 +1234,44 @@
       "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "bellator:2013-10-04:bellator-102": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 102"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 102",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "pancrase:1998-10-04:pancrase-advance-9": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 9"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 9",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "bellator:2019-10-04:bellator-229": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA in 2019#Bellator 229"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2019#Bellator 229",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "pancrase:2003-10-04:pancrase-hybrid-8": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2003 in Pancrase#Pancrase: Hybrid 8"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2003 in Pancrase#Pancrase: Hybrid 8",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "pride:2003-10-05:pride-bushido-1": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Pride Bushido 1"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Pride Bushido 1",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "strikeforce:2011-08-12:strikeforce-challengers-gurgel-vs-duarte": {
       "strategyVersion": 3,
@@ -1209,46 +1281,52 @@
       "wikipediaTitle": "2011 in Strikeforce#Strikeforce Challengers: Gurgel vs. Duarte"
     },
     "bellator:2010-08-12:bellator-24": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator 24"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator 24",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "pancrase:2015-10-04:pancrase-270": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "bellator:2012-10-05:bellator-75": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator Fighting Championships: Season Seven#Bellator 75"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator Fighting Championships: Season Seven#Bellator 75",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "pancrase:2014-10-05:pancrase-261-world-slam": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "rizin:2018-08-12:rizin-12-aichi-ken": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2018 in Rizin Fighting Federation#Rizin 12 - Aichi - Ken"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2018 in Rizin Fighting Federation#Rizin 12 - Aichi - Ken",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "bellator:2017-10-06:bellator-184": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "Bellator MMA in 2017#Bellator 184"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2017#Bellator 184",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "pfl:2018-10-05:pfl-8": {
       "strategyVersion": 3,
@@ -1258,38 +1336,38 @@
       "wikipediaTitle": "PFL 8 (2018 season)"
     },
     "pancrase:2012-10-06:pancrase-progress-tour-11": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "pride:2003-08-10:pride-total-elimination-2003": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2003 in Pride FC#Pride FC: Total Elimination 2003"
     },
     "rizin:2020-08-10:rizin-23-calling-over": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2020 in Rizin Fighting Federation#Rizin 23 – Hamamatsu"
     },
     "pancrase:2014-08-10:pancrase-260": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "pancrase:2025-08-10:pancrase-blood-8": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "pfl:2013-08-10:wsof4-spong-vs-deanda": {
@@ -1314,60 +1392,64 @@
       "wikipediaTitle": "WEC 7"
     },
     "bellator:2011-10-08:bellator-53": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator 53"
     },
     "pancrase:1996-10-08:pancrase-truth-7": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "1996 in Pancrase#Pancrase: Truth 7"
     },
     "pancrase:2015-08-09:pancrase-269": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "pancrase:1997-08-09:pancrase-alive-8": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "1997 in Pancrase#Pancrase: Alive 8"
     },
     "pancrase:2017-10-08:pancrase-290": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2020-08-09:pancrase-osaka": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2026-08-09:pancrase-blood-12": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Too Many Requests"
     },
     "rizin:2020-08-09:rizin-22-starting-over": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2020 in Rizin Fighting Federation#Rizin 22 – Hamamatsu"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2020 in Rizin Fighting Federation#Rizin 22 – Hamamatsu",
+      "error": "429 Too Many Requests"
     },
     "pfl:2014-08-09:wsof12-palomino-vs-gonzalez": {
       "strategyVersion": 3,
@@ -1377,91 +1459,92 @@
       "wikipediaTitle": "World Series of Fighting 12: Palomino vs Gonzalez"
     },
     "pancrase:2009-08-08:pancrase-changing-tour-4": {
-      "strategyVersion": 3,
-      "status": "no-image-found",
+      "strategyVersion": 4,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
-      "wikipediaTitle": "2009 in Pancrase#Pancrase: Changing Tour 4"
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2009 in Pancrase#Pancrase: Changing Tour 4",
+      "error": "429 Too Many Requests"
     },
     "pancrase:2010-08-08:pancrase-passion-tour-7": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2010 in Pancrase#Pancrase: Passion Tour 7",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "error": "429 Too Many Requests"
     },
     "bellator:2014-10-10:bellator-128": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator MMA: Season Eleven#Bellator 128",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "error": "429 Too Many Requests"
     },
     "bellator:2020-08-07:bellator-243": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator MMA in 2020#Bellator 243",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "error": "429 Too Many Requests"
     },
     "bellator:2020-10-10:bellator-paris-248": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator MMA in 2020#Bellator Paris/Bellator 248",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "error": "429 Too Many Requests"
     },
     "pancrase:2005-08-07:pancrase-hybrid-fight-2005": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2005 in Pancrase#Pancrase: Hybrid Fight 2005 2",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "error": "429 Too Many Requests"
     },
     "pancrase:2011-08-07:pancrase-impressive-tour-8": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "2011 in Pancrase#Pancrase: Impressive Tour 8",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "error": "429 Too Many Requests"
     },
     "pancrase:2022-10-10:pancrase-28th-neo-blood-tournament-finals": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "List of Pancrase events",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "error": "429 Too Many Requests"
     },
     "pride:1997-10-11:pride-1": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Pride 1",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "error": "429 Too Many Requests"
     },
     "pride:1998-10-11:pride-4": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "1998 in Pride FC#Pride 4",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "error": "429 Too Many Requests"
     },
     "bellator:2013-10-11:bellator-103": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 103",
-      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+      "error": "429 Too Many Requests"
     },
     "pfl:2014-10-11:wsof14-ford-vs-shields": {
       "strategyVersion": 3,
@@ -1480,13 +1563,830 @@
       "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     },
     "bellator:2012-10-12:bellator-76": {
-      "strategyVersion": 3,
+      "strategyVersion": 4,
       "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:17:28.830Z",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
       "wikipediaTitle": "Bellator Fighting Championships: Season Seven#Bellator 76",
+      "error": "429 Too Many Requests"
+    },
+    "bellator:2018-10-12:bellator-207": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2018#Bellator 207",
+      "error": "429 Too Many Requests"
+    },
+    "bellator:2019-10-12:bellator-milan-230": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2019#Bellator Milan/Bellator 230",
+      "error": "429 Too Many Requests"
+    },
+    "pancrase:2004-10-12:pancrase-brave-9": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2004 in Pancrase#Pancrase: Brave 9",
+      "error": "429 Too Many Requests"
+    },
+    "pancrase:2012-08-05:pancrase-progress-tour-9": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Too Many Requests"
+    },
+    "pancrase:2018-08-05:pancrase-298": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Too Many Requests"
+    },
+    "rizin:2019-10-12:rizin-19-osaka": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2019 in Rizin Fighting Federation#Rizin 19 - Osaka",
+      "error": "429 Too Many Requests"
+    },
+    "bellator:2017-10-13:bellator-monster-energy-fight-series-talladega": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2017#Bellator: Monster Energy Fight Series: Talladega",
+      "error": "429 Too Many Requests"
+    },
+    "bellator:2018-10-13:bellator-208": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2018#Bellator 208",
+      "error": "429 Too Many Requests"
+    },
+    "pride:2004-10-14:pride-bushido-5": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Pride Bushido 5",
+      "error": "429 Too Many Requests"
+    },
+    "bellator:2010-10-14:bellator-32": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator 32",
+      "error": "429 Too Many Requests"
+    },
+    "pancrase:1993-10-14:pancrase-yes-we-are-hybrid-wrestlers-2": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Pancrase: Yes, We Are Hybrid Wrestlers 2",
+      "error": "429 Too Many Requests"
+    },
+    "pancrase:2007-10-14:pancrase-rising-8": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2007 in Pancrase#Pancrase: Rising 8",
+      "error": "429 Too Many Requests"
+    },
+    "bellator:2011-10-15:bellator-54": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator 54",
+      "error": "429 Too Many Requests"
+    },
+    "bellator:2020-10-15:bellator-249": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2020#Bellator 249",
+      "error": "429 Too Many Requests"
+    },
+    "pancrase:1994-10-15:pancrase-road-to-the-championship-5": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1994 in Pancrase#Pancrase: Road to the Championship 5",
+      "error": "429 Too Many Requests"
+    },
+    "rizin:2017-10-15:rizin-world-grand-prix-2017-opening-round-part-2": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2017 in Rizin Fighting Federation#Rizin World Grand Prix 2017: Opening Round - Part 2",
+      "error": "429 Too Many Requests"
+    },
+    "pancrase:1999-08-01:pancrase-1999-neo-blood-tournament-opening-round": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1999 in Pancrase#Pancrase: 1999 Neo-Blood Tournament Opening Round",
+      "error": "429 Too Many Requests"
+    },
+    "pancrase:1999-08-01:pancrase-1999-neo-blood-tournament-second-round": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1999 in Pancrase#Pancrase: 1999 Neo-Blood Tournament Second Round",
+      "error": "429 Too Many Requests"
+    },
+    "pancrase:2001-10-16:pancrase-australia": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2001 in Pancrase#Pancrase: Australia",
+      "error": "429 Too Many Requests"
+    },
+    "pancrase:2016-10-16:pancrase-sapporo": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Too Many Requests"
+    },
+    "bellator:2013-07-31:bellator-97": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator Fighting Championships: 2013 Summer Series#Bellator 97"
+    },
+    "pancrase:2021-10-16:pancrase-324": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "bellator:2014-10-17:bellator-129": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA: Season Eleven#Bellator 129"
+    },
+    "pancrase:2005-07-31:pancrase-spiral-6": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2005 in Pancrase#Pancrase: Spiral 6"
+    },
+    "pancrase:2009-10-17:pancrase-changing-tour-5": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2009 in Pancrase#Pancrase: Changing Tour 5"
+    },
+    "pancrase:2016-07-31:pancrase-osaka": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "pancrase:2011-07-31:pancrase-impressive-tour-7": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2011 in Pancrase#Pancrase: Impressive Tour 7"
+    },
+    "rizin:2017-07-30:rizin-world-grand-prix-2017-opening-round-part-1": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2017 in Rizin Fighting Federation#Rizin World Grand Prix 2017: Opening Round - Part 1"
+    },
+    "bellator:2014-10-18:bellator-2014-monster-energy-cup": {
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA: Season Eleven#Bellator 2014 Monster Energy Cup",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Tubuca_bellator_%28MNHN-IU-2014-11949%29_002.jpeg/1280px-Tubuca_bellator_%28MNHN-IU-2014-11949%29_002.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Bellator 2014 Monster Energy Cup event image",
+      "imageCredit": "Wikimedia Commons · Noémy MOLLARET · CC BY 4.0",
+      "imageFileTitle": "File:Tubuca bellator (MNHN-IU-2014-11949) 002.jpeg",
+      "width": 4800,
+      "height": 3402,
+      "score": 150
+    },
+    "rizin:2022-07-31:rizin-37-saitama": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2022 in Rizin Fighting Federation#Rizin 37 - Saitama"
+    },
+    "bellator:2013-10-18:bellator-104": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 104"
+    },
+    "pride:2001-07-29:pride-15": {
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Pride 15",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Steyr_2023-07-01_Steyr_Pride_15_-_Steyrbruecke_Bild_04.jpg/1280px-Steyr_2023-07-01_Steyr_Pride_15_-_Steyrbruecke_Bild_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Pride 15 event image",
+      "imageCredit": "Wikimedia Commons · Miloš Hlávka · CC0",
+      "imageFileTitle": "File:Steyr 2023-07-01 Steyr Pride 15 - Steyrbruecke Bild 04.jpg",
+      "width": 3456,
+      "height": 4608,
+      "score": 224
+    },
+    "pancrase:2001-07-29:pancrase-2001-neo-blood-tournament-opening-round": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2001 in Pancrase#Pancrase: 2001 Neo-Blood Tournament Opening Round"
+    },
+    "bellator:2012-10-19:bellator-77": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator Fighting Championships: Season Seven#Bellator 77"
+    },
+    "pancrase:2012-07-29:pancrase-gate-10th-chance": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "pancrase:2001-07-29:pancrase-2001-neo-blood-tournament-second-round": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2001 in Pancrase#Pancrase: 2001 Neo-Blood Tournament Second Round"
+    },
+    "pride:2002-10-20:pride-fc-the-best-vol-3": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2002 in Pride FC#Pride FC: The Best, Vol. 3"
+    },
+    "rizin:2023-07-30:super-rizin-2-rizin-x-bellator": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2023 in Rizin Fighting Federation#Super Rizin 2: Rizin X Bellator"
+    },
+    "rizin:2018-07-29:rizin-11-saitama": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2018 in Rizin Fighting Federation#Rizin 11 - Saitama"
+    },
+    "pancrase:2002-07-28:pancrase-2002-neo-blood-tournament-opening-round": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2002 in Pancrase#Pancrase: 2002 Neo-Blood Tournament Opening Round"
+    },
+    "bellator:2017-10-20:bellator-185": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2017#Bellator 185"
+    },
+    "pancrase:2002-07-28:pancrase-2002-neo-blood-tournament-second-round": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2002 in Pancrase#Pancrase: 2002 Neo-Blood Tournament Second Round"
+    },
+    "pancrase:2006-07-28:pancrase-2006-neo-blood-tournament-finals": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2006 in Pancrase#Pancrase: 2006 Neo-Blood Tournament Finals"
+    },
+    "pancrase:2013-07-28:pancrase-250-2013-neo-blood-tournament-finals": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "pancrase:2019-10-20:pancrase-309": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "pancrase:2024-07-28:pancrase-blood-3": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "rizin:2019-07-28:rizin-17-saitama": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2019 in Rizin Fighting Federation#Rizin 17 - Saitama"
+    },
+    "bellator:2016-10-21:bellator-162": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2016#Bellator 162"
+    },
+    "pancrase:2003-07-27:pancrase-2003-neo-blood-tournament-opening-round": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2003 in Pancrase#Pancrase: 2003 Neo-Blood Tournament Opening Round"
+    },
+    "rizin:2024-07-28:super-rizin-3": {
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2024 in Rizin Fighting Federation#Super Rizin 3",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Rizin_3_World_Grand_Prix_2016%2C_panorama.jpg/1280px-Rizin_3_World_Grand_Prix_2016%2C_panorama.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Super Rizin 3 event image",
+      "imageCredit": "Wikimedia Commons · Tonusamuel · CC BY-SA 4.0",
+      "imageFileTitle": "File:Rizin 3 World Grand Prix 2016, panorama.jpg",
+      "width": 7570,
+      "height": 2784,
+      "score": 115
+    },
+    "pancrase:2003-07-27:pancrase-2003-neo-blood-tournament-second-round": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2003 in Pancrase#Pancrase: 2003 Neo-Blood Tournament Second Round"
+    },
+    "pancrase:2007-07-27:pancrase-2007-neo-blood-tournament-finals": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2007 in Pancrase#Pancrase: 2007 Neo-Blood Tournament Finals"
+    },
+    "bellator:2010-10-21:bellator-33": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator 33"
+    },
+    "pancrase:2018-10-21:pancrase-300": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "pancrase:2025-07-27:pancrase-355": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "rizin:2025-07-27:super-rizin-4-midsummer-fight-festival": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2025 in Rizin Fighting Federation#Super Rizin 4"
+    },
+    "pancrase:1994-07-26:pancrase-road-to-the-championship-3": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1994 in Pancrase#Pancrase: Road to the Championship 3",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "bellator:2011-10-22:bellator-55": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator 55",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:1996-10-22:pancrase-truth-8": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1996 in Pancrase#Pancrase: Truth 8",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:1998-07-26:pancrase-1998-neo-blood-tournament-second-round": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: 1998 Neo-Blood Tournament Second Round",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:2009-07-26:pancrase-pancrase-gate-2009": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2009 in Pancrase#Pancrase: Pancrase Gate 2009 2",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:2015-07-26:pancrase-osaka": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:2017-10-22:pancrase-sapporo": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:2026-07-26:pancrase-364": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:2026-07-26:pancrase-blood-11": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pride:2005-10-23:pride-30": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Pride 30",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "bellator:2014-07-25:bellator-122": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA: 2014 Summer Series#Bellator 122",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "bellator:2015-10-23:bellator-144": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2015#Bellator 144",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:2004-07-25:pancrase-2004-neo-blood-tournament-final": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2004 in Pancrase#Pancrase: 2004 Neo-Blood Tournament Final",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:2004-07-25:pancrase-2004-neo-blood-tournament-semifinals": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2004 in Pancrase#Pancrase: 2004 Neo-Blood Tournament Semifinals",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:2005-10-23:pancrase-hybrid-fight-2005": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2005 in Pancrase#Pancrase: Hybrid Fight 2005 3",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "rizin:2022-10-23:rizin-39": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2022 in Rizin Fighting Federation#Rizin 39",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:2016-07-24:pancrase-279": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "bellator:2014-10-24:bellator-130": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA: Season Eleven#Bellator 130"
+    },
+    "bellator:2020-07-24:bellator-242": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2020#Bellator 242"
+    },
+    "pancrase:2020-07-24:pancrase-316": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "rizin:2021-10-24:featherweight": {
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Rizin Fighting Federation",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Bardufoss_Lufthavn_Airport_Norway_Avinor_UTSTILLING_teknisk_utstyr_kommunikasjon_Old_control_tower_technical_equipment_on_display_Mikrofon_microphone_Hodetelefoner_Trimm_featherweight_headphones_etc_%282022-06-03%29_DSC06565.jpg/1280px-thumbnail.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Featherweight event image",
+      "imageCredit": "Wikimedia Commons · Wolfmann · CC BY-SA 4.0",
+      "imageFileTitle": "File:Bardufoss Lufthavn Airport Norway Avinor UTSTILLING teknisk utstyr kommunikasjon Old control tower technical equipment on display Mikrofon microphone Hodetelefoner Trimm featherweight headphones etc (2022-06-03) DSC06565.jpg",
+      "width": 3648,
+      "height": 5472,
+      "score": 135
+    },
+    "rizin:2021-10-24:rizin-31-yokohama": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2021 in Rizin Fighting Federation#Rizin 31 - Yokohama"
+    },
+    "bellator:2013-10-25:bellator-105": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 105"
+    },
+    "bellator:2019-10-25:bellator-231": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2019#Bellator 231"
+    },
+    "bellator:2011-07-23:bellator-47": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator 47"
+    },
+    "bellator:2016-07-23:bellator-159": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2016#Bellator 159"
+    },
+    "pancrase:1995-07-23:pancrase-1995-neo-blood-tournament-second-round": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1995 in Pancrase#Pancrase: 1995 Neo-Blood Tournament Second Round"
+    },
+    "pancrase:1996-07-23:pancrase-1996-neo-blood-tournament-round-2": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1996 in Pancrase#Pancrase: 1996 Neo-Blood Tournament.2C Round 2"
+    },
+    "pancrase:1999-10-25:pancrase-breakthrough-9": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 9"
+    },
+    "pancrase:2000-07-23:pancrase-2000-neo-blood-tournament-opening-round": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2000 in Pancrase#Pancrase: 2000 Neo-Blood Tournament Opening Round"
+    },
+    "pancrase:2000-07-23:pancrase-trans-5": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2000 in Pancrase#Pancrase: Trans 5"
+    },
+    "pancrase:2006-10-25:pancrase-blow-9": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2006 in Pancrase#Pancrase: Blow 9"
+    },
+    "pancrase:2009-10-25:pancrase-changing-tour-6": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2009 in Pancrase#Pancrase: Changing Tour 6"
+    },
+    "pancrase:2011-07-23:pancrase-impressive-tour-6": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2011 in Pancrase#Pancrase: Impressive Tour 6"
+    },
+    "pancrase:2020-10-25:pancrase-319": {
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Classes_319_and_222_at_St_Pancras_1.JPG/1280px-Classes_319_and_222_at_St_Pancras_1.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Pancrase 319 event image",
+      "imageCredit": "Wikimedia Commons · Edvid · CC BY-SA 2.5",
+      "imageFileTitle": "File:Classes 319 and 222 at St Pancras 1.JPG",
+      "width": 2304,
+      "height": 1728,
+      "score": 97
+    },
+    "bellator:2019-10-26:bellator-232": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator MMA in 2019#Bellator 232",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:1995-07-22:pancrase-1995-neo-blood-tournament-opening-round": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1995 in Pancrase#Pancrase: 1995 Neo-Blood Tournament Opening Round",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "bellator:2012-10-26:bellator-78": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator Fighting Championships: Season Seven#Bellator 78",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:1996-07-22:pancrase-1996-neo-blood-tournament-round-1": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1996 in Pancrase#Pancrase: 1996 Neo-Blood Tournament.2C Round 1",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:1998-10-26:pancrase-advance-10": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 10",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:2008-10-26:pancrase-shining-9": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 9",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:2007-10-27:pancrase-hybrid-bout-in-utsunomiya-3": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "2007 in Pancrase#Pancrase: Hybrid Bout in Utsunomiya 3",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:2013-07-21:pancrase-pro-trials-for-amateurs": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:2019-07-21:pancrase-307": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pancrase:2024-07-21:pancrase-346": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "pride:2002-07-20:pride-fc-the-best-vol-2": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "List of Pride FC events",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "bellator:2010-10-28:bellator-34": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator 34",
+      "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
+    },
+    "bellator:2012-07-20:bellator-72": {
+      "strategyVersion": 4,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "wikipediaTitle": "Bellator Fighting Championships: 2012 Summer Series#Bellator 72",
       "error": "429 Your bot is making too many requests. Please reduce your request rate or contact bot-traffic@wikimedia.org (f263c81)"
     }
   },
-  "strategyVersion": 3
+  "strategyVersion": 4
 }
