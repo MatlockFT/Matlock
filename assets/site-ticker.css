@@ -269,12 +269,12 @@
     min-height: 38px;
     align-items: center;
     animation: site-news-scroll var(--site-news-duration, 70s) linear infinite;
-    animation-play-state: running;
+    animation-play-state: running !important;
     will-change: transform;
 }
 
-/* Do not pause the ticker simply because the pointer or focus happens to sit
-   over it. Reduced-motion preferences below remain the deliberate stop path. */
+/* The news rail is operational information, not decorative motion. It keeps
+   moving even when the site's broader Motion: Reduced preference is active. */
 
 .site-news-sequence {
     display: flex;
@@ -455,12 +455,12 @@
     }
 
     .site-news-track {
-        animation: none !important;
-        transform: none !important;
+        animation: site-news-scroll var(--site-news-duration, 70s) linear infinite !important;
+        animation-play-state: running !important;
     }
 
     .site-news-sequence:nth-child(2) {
-        display: none;
+        display: flex !important;
     }
 
     .site-event-primary-countdown[data-live="true"]::before {
@@ -478,12 +478,12 @@ html.reduce-motion .site-live-strip {
 }
 
 html.reduce-motion .site-news-track {
-    animation: none !important;
-    transform: none !important;
+    animation: site-news-scroll var(--site-news-duration, 70s) linear infinite !important;
+    animation-play-state: running !important;
 }
 
 html.reduce-motion .site-news-sequence:nth-child(2) {
-    display: none !important;
+    display: flex !important;
 }
 
 html.reduce-motion .site-event-primary-countdown[data-live="true"]::before {
