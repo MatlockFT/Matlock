@@ -56,22 +56,22 @@ adsense:
   banner_slot: ""
 
 nav:
-  - name: "Home"
-    link: "/"
-
   - name: "News"
     link: "/news/"
 
   - name: "Breakdowns"
     link: "/breakdowns/"
 
-  - name: "Fight Card Picker"
+  - name: "Fight Cards"
     link: "/upcoming-events/"
 
   - name: "Event Map"
     link: "/event-map/"
 
-  - name: "UFC Roster"
+  - name: "On This Day"
+    link: "/on-this-day/"
+
+  - name: "Roster"
     link: "/ufc-roster/"
 
 footer_nav:
