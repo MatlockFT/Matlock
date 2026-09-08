@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 const UFC_ORIGIN = "https://www.ufc.com";
 const EVENTS_URL = `${UFC_ORIGIN}/events`;
 const USER_AGENT =
-    "Mozilla/5.0 (compatible; MMAMatlockEventCardMonitor/1.0; +https://matlockfighttalk.com/)";
+    "Mozilla/5.0 (compatible; MMAMatlockEventCardMonitor/1.0; +https://mmamatlock.com/)";
 const REQUEST_ATTEMPTS = 3;
 const REQUEST_TIMEOUT_MS = 30000;
 const MIN_EVENT_COUNT = 2;

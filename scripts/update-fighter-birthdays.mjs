@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 const HISTORY_PATH = process.argv[2] || "assets/data/on-this-day.json";
 const SEEDS_PATH = process.argv[3] || "assets/data/fighter-birthday-seeds.json";
 const PORTRAITS_PATH = process.argv[4] || "assets/fighter-portraits.json";
-const USER_AGENT = "MMA-Matlock-BirthdayArchive/1.0 (+https://matlockfighttalk.com/on-this-day/)";
+const USER_AGENT = "MMA-Matlock-BirthdayArchive/1.0 (+https://mmamatlock.com/on-this-day/)";
 const REQUEST_ATTEMPTS = 3;
 const REQUEST_TIMEOUT_MS = 20000;
 const WIKIPEDIA_BATCH = 40;

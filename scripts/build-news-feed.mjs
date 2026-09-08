@@ -409,7 +409,7 @@ async function fetchArticleImage(story) {
         const response = await fetch(story.url, {
             headers: {
                 accept: "text/html,application/xhtml+xml;q=0.9,*/*;q=0.5",
-                "user-agent": "MMA Matlock News Aggregator/1.0 (+https://matlockfighttalk.com/news/)"
+                "user-agent": "MMA Matlock News Aggregator/1.0 (+https://mmamatlock.com/news/)"
             },
             redirect: "follow",
             signal: controller.signal
@@ -595,7 +595,7 @@ async function fetchFeed(feed) {
         const response = await fetch(feed.feedUrl, {
             headers: {
                 accept: "application/atom+xml, application/rss+xml, application/xml, text/xml;q=0.9, */*;q=0.5",
-                "user-agent": "MMA Matlock News Aggregator/1.0 (+https://matlockfighttalk.com/news/)"
+                "user-agent": "MMA Matlock News Aggregator/1.0 (+https://mmamatlock.com/news/)"
             },
             redirect: "follow",
             signal: controller.signal

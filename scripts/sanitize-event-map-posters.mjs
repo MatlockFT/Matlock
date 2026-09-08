@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 const DATA_PATH = process.argv[2] && !process.argv[2].startsWith('--')
   ? process.argv[2]
   : '_data/event_map_regional.json';
-const UA = 'Mozilla/5.0 (compatible; MatlockFightTalk-EventMap/1.0; +https://matlockfighttalk.com/event-map/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlock-EventMap/1.0; +https://mmamatlock.com/event-map/)';
 const BAD_POSTER_RE = /(?:tribe-loading|loading(?:[-_.]|$)|spinner|preloader|placeholder|blank(?:[-_.]|$)|transparent(?:[-_.]|$)|favicon|(?:^|[/_.-])logo(?:[/_.-]|$)|\.gif(?:[?#]|$))/i;
 
 const clean = value => String(value || '').replace(/\s+/g, ' ').trim();

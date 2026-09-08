@@ -6,7 +6,7 @@ const AJAX_URL = `${UFC_ORIGIN}/views/ajax?_wrapper_format=drupal_ajax`;
 const ACTIVE_FILTER = "status:23";
 const COLLECTOR_ID = "ufc-status23-drupal-post-v1";
 const USER_AGENT =
-    "Mozilla/5.0 (compatible; MMAMatlockRosterMonitor/7.0; +https://matlockfighttalk.com/)";
+    "Mozilla/5.0 (compatible; MMAMatlockRosterMonitor/7.0; +https://mmamatlock.com/)";
 
 const PAGE_CONCURRENCY = 6;
 const MAX_PAGES = 160;

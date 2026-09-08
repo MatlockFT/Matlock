@@ -5,7 +5,7 @@ const CONTENT_CACHE_PATH = process.argv[3] || "assets/data/on-this-day-content-c
 const IMAGE_CACHE_PATH = process.argv[4] || "assets/data/on-this-day-image-cache.json";
 const PANCRASE_CACHE_PATH = process.argv[5] || "assets/data/on-this-day-pancrase-cache.json";
 
-const USER_AGENT = "MMA-Matlock-OnThisDay-Pancrase/1.0 (+https://matlockfighttalk.com/on-this-day/)";
+const USER_AGENT = "MMA-Matlock-OnThisDay-Pancrase/1.0 (+https://mmamatlock.com/on-this-day/)";
 const REQUEST_TIMEOUT_MS = 20000;
 const REQUEST_ATTEMPTS = 3;
 const ENRICH_LIMIT = Math.max(1, Number(process.env.OTD_PANCRASE_ENRICH_LIMIT || 24));

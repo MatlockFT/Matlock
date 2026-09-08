@@ -22,9 +22,7 @@ function stripSiteUrl(value) {
         const parsed = new URL(value);
         const internalHosts = new Set([
             'mmamatlock.com',
-            'www.mmamatlock.com',
-            'matlockfighttalk.com',
-            'www.matlockfighttalk.com'
+            'www.mmamatlock.com'
         ]);
 
         if (internalHosts.has(parsed.hostname)) {

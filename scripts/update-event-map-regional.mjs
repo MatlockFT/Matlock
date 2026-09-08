@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 const DATA_PATH = '_data/event_map_regional.json';
 const MAJOR_PATH = '_data/upcoming_events.json';
-const UA = 'Mozilla/5.0 (compatible; MatlockFightTalk-EventMap/1.0; +https://matlockfighttalk.com/event-map/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlock-EventMap/1.0; +https://mmamatlock.com/event-map/)';
 const TODAY = new Date().toISOString().slice(0, 10);
 
 const SOURCES = [

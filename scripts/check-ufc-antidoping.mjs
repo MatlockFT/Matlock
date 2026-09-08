@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 
 const SOURCE_URL = "https://ufcantidoping.com/tests";
 const USER_AGENT =
-    "Mozilla/5.0 (compatible; MMAMatlockRosterMonitor/8.0; +https://matlockfighttalk.com/)";
+    "Mozilla/5.0 (compatible; MMAMatlockRosterMonitor/8.0; +https://mmamatlock.com/)";
 const REQUEST_TIMEOUT_MS = 30000;
 const REQUEST_ATTEMPTS = 3;
 const MIN_ENTRIES = 400;

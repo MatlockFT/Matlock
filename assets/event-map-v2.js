@@ -507,7 +507,7 @@
         const location = [normalizeText(event.venue), event.city, event.stateCode].filter(Boolean).join(', ');
         const lines = [
             'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//MMA Matlock//Event Map//EN', 'BEGIN:VEVENT',
-            `UID:${escapeIcs(event.mapId)}@matlockfighttalk.com`, `DTSTART;VALUE=DATE:${start}`, `DTEND;VALUE=DATE:${end}`,
+            `UID:${escapeIcs(event.mapId)}@mmamatlock.com`, `DTSTART;VALUE=DATE:${start}`, `DTEND;VALUE=DATE:${end}`,
             `SUMMARY:${escapeIcs(summary)}`, `LOCATION:${escapeIcs(location)}`,
             event.official_url ? `URL:${event.official_url}` : '', 'END:VEVENT', 'END:VCALENDAR'
         ].filter(Boolean).join('\r\n');

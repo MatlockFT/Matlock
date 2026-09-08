@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 
 const USER_AGENT =
-    "Mozilla/5.0 (compatible; MMAMatlockRosterCompetitionCheck/1.1; +https://matlockfighttalk.com/)";
+    "Mozilla/5.0 (compatible; MMAMatlockRosterCompetitionCheck/1.1; +https://mmamatlock.com/)";
 const REQUEST_ATTEMPTS = 3;
 const REQUEST_TIMEOUT_MS = 30000;
 const EVENT_HISTORY_LIMIT = 1000;

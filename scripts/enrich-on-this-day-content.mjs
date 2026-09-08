@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 
 const HISTORY_PATH = process.argv[2] || "assets/data/on-this-day.json";
 const CACHE_PATH = process.argv[3] || "assets/data/on-this-day-content-cache.json";
-const USER_AGENT = "MMA-Matlock-OnThisDay-Content/1.1 (+https://matlockfighttalk.com/on-this-day/)";
+const USER_AGENT = "MMA-Matlock-OnThisDay-Content/1.1 (+https://mmamatlock.com/on-this-day/)";
 const REQUEST_TIMEOUT_MS = 20000;
 const REQUEST_ATTEMPTS = 3;
 const ENRICH_LIMIT = Math.max(1, Number(process.env.OTD_CONTENT_ENRICH_LIMIT || 160));

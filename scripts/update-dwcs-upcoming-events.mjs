@@ -3,7 +3,7 @@ import { dateLabel, eventIsCurrent, fighter, loadData, loadPortraitCache, mergeP
 const SHERDOG = 'https://www.sherdog.com';
 const SHERDOG_ORG = `${SHERDOG}/organizations/Dana-Whites-Contender-Series-12411`;
 const UFC_DWCS = 'https://www.ufc.com/dwcs';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockDWCSUpdater/1.1; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockDWCSUpdater/1.1; +https://mmamatlock.com/)';
 const SEASON = 10;
 const FIRST_DATE = new Date('2026-08-11T12:00:00Z');
 

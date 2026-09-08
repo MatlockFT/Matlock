@@ -3,7 +3,7 @@ import { DATA_PATH, norm } from './upcoming-events-data.mjs';
 
 const CACHE_PATH = '_data/fighter_portraits.json';
 const UFC = 'https://www.ufc.com';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockUfcPortraits/1.0; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockUfcPortraits/1.0; +https://mmamatlock.com/)';
 const TIMEOUT = 16000;
 const tracking = /(?:piwik|matomo|google-analytics|googletagmanager|doubleclick|analytics|tracking|pixel|beacon|\/collect(?:[/?]|$)|\/track(?:[/?]|$))/i;
 const badPortrait = /(?:\/articles?\/|\/news\/|\/galleries?\/|\/thumbnails?\/|(?:^|[\/_-])(?:banner|sponsor|poster|promo|placeholder|logo|flag)(?:[\/_-]|$))/i;

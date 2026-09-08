@@ -2,7 +2,7 @@ import { dateLabel, fighter, loadData, loadPortraitCache, mergePromotion, portra
 
 const SCHEDULE='https://jp.rizinff.com/_ct/17813466';
 const ORIGIN='https://jp.rizinff.com';
-const UA='Mozilla/5.0 (compatible; MMAMatlockRizinUpdater/3.3; +https://matlockfighttalk.com/)';
+const UA='Mozilla/5.0 (compatible; MMAMatlockRizinUpdater/3.3; +https://mmamatlock.com/)';
 const MAX_DAYS=240;
 const TRUSTED_IMAGE=/^https:\/\/d1uzk9o9cg136f\.cloudfront\.net\//i;
 

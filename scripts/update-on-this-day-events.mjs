@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 
 const HISTORY_PATH = process.argv[2] || "assets/data/on-this-day.json";
 const SOURCES_PATH = process.argv[3] || "assets/data/on-this-day-event-sources.json";
-const USER_AGENT = "MMA-Matlock-OnThisDay/1.0 (+https://matlockfighttalk.com/on-this-day/)";
+const USER_AGENT = "MMA-Matlock-OnThisDay/1.0 (+https://mmamatlock.com/on-this-day/)";
 const GENERATED_BY = "wikipedia-event-index";
 const REQUEST_ATTEMPTS = 3;
 const REQUEST_TIMEOUT_MS = 25000;

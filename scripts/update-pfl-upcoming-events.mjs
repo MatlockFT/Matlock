@@ -4,7 +4,7 @@ const ORIGIN = 'https://pflmma.com';
 const EVENTS_URL = `${ORIGIN}/events`;
 const HOME_URL = `${ORIGIN}/`;
 const ESPN = 'https://site.api.espn.com/apis/site/v2/sports/mma/pfl/scoreboard';
-const UA = 'Mozilla/5.0 (compatible; MMAMatlockPFLUpdater/3.5; +https://matlockfighttalk.com/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlockPFLUpdater/3.5; +https://mmamatlock.com/)';
 const MAX_DAYS = 240;
 const MAIN_CARD_SIZE = 5;
 

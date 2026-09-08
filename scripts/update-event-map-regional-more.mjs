@@ -3,7 +3,7 @@ import fs from 'node:fs/promises';
 const DATA_PATH = '_data/event_map_regional.json';
 const TODAY = new Date().toISOString().slice(0, 10);
 const MAX_DATE = new Date(Date.now() + 180 * 86400000).toISOString().slice(0, 10);
-const UA = 'Mozilla/5.0 (compatible; MatlockFightTalk-EventMap/1.0; +https://matlockfighttalk.com/event-map/)';
+const UA = 'Mozilla/5.0 (compatible; MMAMatlock-EventMap/1.0; +https://mmamatlock.com/event-map/)';
 
 const SOURCES = [
   { key: 'cfc_southeast', name: 'Cage Fighting Championships', url: 'https://www.cfcfights.com/' },

@@ -5,7 +5,7 @@ const ATHLETES_URL = `${UFC_ORIGIN}/athletes/all`;
 const AJAX_URL = `${UFC_ORIGIN}/views/ajax?_wrapper_format=drupal_ajax`;
 const SENSOR_ID = "ufc-all-athletes-drupal-post-v1";
 const USER_AGENT =
-    "Mozilla/5.0 (compatible; MMAMatlockProfileDirectoryMonitor/1.1; +https://matlockfighttalk.com/)";
+    "Mozilla/5.0 (compatible; MMAMatlockProfileDirectoryMonitor/1.1; +https://mmamatlock.com/)";
 const PAGE_CONCURRENCY = 8;
 const MAX_PAGES = 360;
 const MIN_DIRECTORY_PROFILES = 2000;
