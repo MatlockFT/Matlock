@@ -28,3 +28,13 @@ page_scripts:
     {% endfor %}
   </div>
 </article>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document
+    .querySelectorAll(".prediction-button:not(.prediction-button-clear)")
+    .forEach(button => {
+      button.textContent = "Download Picks";
+    });
+});
+</script>
