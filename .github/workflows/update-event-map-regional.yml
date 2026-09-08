@@ -13,6 +13,8 @@ on:
       - "scripts/update-event-map-regional-more.mjs"
       - "scripts/cleanup-event-map-regional.mjs"
       - "scripts/enrich-event-map-details.mjs"
+      - "scripts/sanitize-event-map-posters.mjs"
+      - "scripts/validate-event-map-posters.mjs"
       - "scripts/preserve-event-map-discovery.mjs"
       - "scripts/validate-event-map-regional.mjs"
   schedule:
@@ -49,6 +51,8 @@ jobs:
           node --check scripts/update-event-map-regional-more.mjs
           node --check scripts/cleanup-event-map-regional.mjs
           node --check scripts/enrich-event-map-details.mjs
+          node --check scripts/sanitize-event-map-posters.mjs
+          node --check scripts/validate-event-map-posters.mjs
           node --check scripts/preserve-event-map-discovery.mjs
           node --check scripts/validate-event-map-regional.mjs
 
@@ -76,8 +80,13 @@ jobs:
       - name: Enrich event posters and matchup details
         run: node scripts/enrich-event-map-details.mjs
 
+      - name: Sanitize event poster images
+        run: node scripts/sanitize-event-map-posters.mjs
+
       - name: Validate regional event data
-        run: node scripts/validate-event-map-regional.mjs
+        run: |
+          node scripts/validate-event-map-regional.mjs
+          node scripts/validate-event-map-posters.mjs
 
       - name: Commit regional event changes
         shell: bash
