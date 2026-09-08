@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 2,
-  "updatedAt": "2026-09-08T07:26:26.768Z",
+  "updatedAt": "2026-09-08T13:52:57.830Z",
   "entries": {
     "pancrase:2013-04-21:pancrase-sakaguchi-dojo-vs-pancrase": {
       "strategyVersion": 1,
@@ -3136,6 +3136,614 @@
       "wikipediaTitle": "1997 in Pancrase#Pancrase: 1997 Anniversary Show",
       "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/0906.html",
       "mainEvent": "Yuki Kondo vs. Jason DeLucia"
+    },
+    "pancrase:1997-07-20:pancrase-1997-neo-blood-tournament-round-1": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "1997 in Pancrase"
+    },
+    "pancrase:1997-07-20:pancrase-1997-neo-blood-tournament-round-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "1997 in Pancrase"
+    },
+    "pancrase:1997-10-29:pancrase-alive-9": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1997 in Pancrase#Pancrase: Alive 9",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/1029.html",
+      "mainEvent": "Yuki Kondo vs. リオン・ダイク"
+    },
+    "pancrase:1997-11-16:pancrase-alive-10": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1997 in Pancrase#Pancrase: Alive 10",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/1116.html",
+      "mainEvent": "Yuki Kondo vs. Kazuo Takahashi"
+    },
+    "pancrase:1997-12-20:pancrase-alive-11": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1997 in Pancrase#Pancrase: Alive 11",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/1220.html",
+      "mainEvent": "Yuki Kondo vs. Masakatsu Funaki"
+    },
+    "pancrase:1998-01-16:pancrase-advance-1": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 1",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0116.html",
+      "mainEvent": "Minoru Suzuki vs. Semmy Schilt"
+    },
+    "pancrase:1998-02-06:pancrase-advance-2": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 2",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0206.html",
+      "mainEvent": "Masakatsu Funaki vs. Katsuomi Inagaki"
+    },
+    "pancrase:1998-03-01:pancrase-advance-3": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 3",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0301.html",
+      "mainEvent": "Minoru Suzuki vs. Keiichiro Yamamiya"
+    },
+    "pancrase:1998-03-18:pancrase-advance-4": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 4",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0318.html",
+      "mainEvent": "Masakatsu Funaki vs. Semmy Schilt"
+    },
+    "pancrase:1998-04-26:pancrase-advance-5": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 5",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0426.html",
+      "mainEvent": "Masakatsu Funaki vs. Guy Mezger"
+    },
+    "pancrase:1998-05-12:pancrase-advance-6": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 6",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0512.html",
+      "mainEvent": "Semmy Schilt vs. Kazuo Takahashi"
+    },
+    "pancrase:1998-06-02:pancrase-advance-7": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 7",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0602.html",
+      "mainEvent": "Minoru Suzuki vs. John Roberts"
+    },
+    "pancrase:1998-06-21:pancrase-advance-8": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 8",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0621.html",
+      "mainEvent": "Ryūshi Yanagisawa vs. Keiichiro Yamamiya"
+    },
+    "pancrase:1998-07-07:pancrase-1998-neo-blood-tournament-opening-round": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: 1998 Neo-Blood Tournament Opening Round",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0707.html",
+      "mainEvent": "ジャスティン・マッコーリー vs. 石井大輔"
+    },
+    "pancrase:1998-07-26:pancrase-1998-neo-blood-tournament-second-round": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: 1998 Neo-Blood Tournament Second Round",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0726.html",
+      "mainEvent": "Masakatsu Funaki vs. Osami Shibuya"
+    },
+    "pancrase:1998-09-14:pancrase-1998-anniversary-show": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: 1998 Anniversary Show",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0914.html",
+      "mainEvent": "Guy Mezger vs. Ryūshi Yanagisawa"
+    },
+    "pancrase:1998-10-04:pancrase-advance-9": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 9",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/1004.html",
+      "mainEvent": "Kengo vs. ジェイソン・ゴドシー"
+    },
+    "pancrase:1998-10-26:pancrase-advance-10": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 10",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/1026.html",
+      "mainEvent": "Masakatsu Funaki vs. Kiuma Kunioku"
+    },
+    "pancrase:1998-11-29:pancrase-advance-11": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 11",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/1129.html",
+      "mainEvent": "Katsuomi Inagaki vs. Kengo"
+    },
+    "pancrase:1998-12-19:pancrase-advance-12": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 12",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/1219.html",
+      "mainEvent": "Guy Mezger vs. Yuki Kondo"
+    },
+    "pancrase:1999-01-19:pancrase-breakthrough-1": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 1",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0119.html",
+      "mainEvent": "Kiuma Kunioku vs. Jason DeLucia"
+    },
+    "pancrase:1999-02-11:pancrase-breakthrough-2": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 2",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0211.html",
+      "mainEvent": "Takafumi Itō vs. Osami Shibuya"
+    },
+    "pancrase:1999-03-09:pancrase-breakthrough-3": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 3",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0309.html",
+      "mainEvent": "Ryūshi Yanagisawa vs. Manabu Yamada"
+    },
+    "pancrase:1999-04-18:pancrase-breakthrough-4": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 4",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0418.html",
+      "mainEvent": "Semmy Schilt vs. Yuki Kondo"
+    },
+    "pancrase:1999-05-23:pancrase-breakthrough-5": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 5",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0523.html",
+      "mainEvent": "Kiuma Kunioku vs. Keiichiro Yamamiya"
+    },
+    "pancrase:1999-06-11:pancrase-breakthrough-6": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 6",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0611.html",
+      "mainEvent": "Kazuo Takahashi vs. John Roberts"
+    },
+    "pancrase:1999-07-06:pancrase-breakthrough-7": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "1999 in Pancrase"
+    },
+    "pancrase:1999-08-01:pancrase-1999-neo-blood-tournament-opening-round": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "1999 in Pancrase"
+    },
+    "pancrase:1999-08-01:pancrase-1999-neo-blood-tournament-second-round": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "1999 in Pancrase"
+    },
+    "pancrase:1999-09-04:pancrase-breakthrough-8": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "1999 in Pancrase"
+    },
+    "pancrase:1999-09-18:pancrase-1999-anniversary-show": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "1999 in Pancrase"
+    },
+    "pancrase:1999-10-25:pancrase-breakthrough-9": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "1999 in Pancrase"
+    },
+    "pancrase:1999-11-28:pancrase-breakthrough-10": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "1999 in Pancrase"
+    },
+    "pancrase:1999-12-18:pancrase-breakthrough-11": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "1999 in Pancrase"
+    },
+    "pancrase:2000-01-23:pancrase-trans-1": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2000 in Pancrase"
+    },
+    "pancrase:2000-02-27:pancrase-trans-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2000 in Pancrase"
+    },
+    "pancrase:2000-04-30:pancrase-trans-3": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2000 in Pancrase"
+    },
+    "pancrase:2000-06-26:pancrase-trans-4": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2000 in Pancrase"
+    },
+    "pancrase:2000-07-10:pancrase-australia": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2000 in Pancrase"
+    },
+    "pancrase:2000-07-23:pancrase-2000-neo-blood-tournament-opening-round": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2000 in Pancrase"
+    },
+    "pancrase:2000-07-23:pancrase-trans-5": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2000 in Pancrase"
+    },
+    "pancrase:2000-08-27:pancrase-2000-neo-blood-tournament-second-round": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2000 in Pancrase"
+    },
+    "pancrase:2000-09-24:pancrase-2000-anniversary-show": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2000 in Pancrase"
+    },
+    "pancrase:2000-10-31:pancrase-trans-6": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2000 in Pancrase"
+    },
+    "pancrase:2000-11-25:pancrase-pancrase-uk": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2000 in Pancrase"
+    },
+    "pancrase:2000-12-04:pancrase-trans-7": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2000 in Pancrase"
+    },
+    "pancrase:2000-12-09:pancrase-trans-8": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2000 in Pancrase"
+    },
+    "pancrase:2001-02-04:pancrase-proof-1": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2001 in Pancrase"
+    },
+    "pancrase:2001-02-17:pancrase-australia-hybrid-evolution": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2001 in Pancrase"
+    },
+    "pancrase:2001-03-31:pancrase-proof-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2001 in Pancrase"
+    },
+    "pancrase:2001-05-05:pancrase-2001-neo-blood-tournament-eliminations": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2001 in Pancrase"
+    },
+    "pancrase:2001-05-13:pancrase-proof-3": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2001 in Pancrase"
+    },
+    "pancrase:2001-06-26:pancrase-proof-4": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2001 in Pancrase"
+    },
+    "pancrase:2001-07-29:pancrase-2001-neo-blood-tournament-opening-round": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2001 in Pancrase"
+    },
+    "pancrase:2001-07-29:pancrase-2001-neo-blood-tournament-second-round": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2001 in Pancrase"
+    },
+    "pancrase:2001-08-25:pancrase-proof-5": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2001 in Pancrase"
+    },
+    "pancrase:2001-09-30:pancrase-2001-anniversary-show": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2001 in Pancrase"
+    },
+    "pancrase:2001-10-16:pancrase-australia": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2001 in Pancrase"
+    },
+    "pancrase:2001-10-30:pancrase-proof-6": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2001 in Pancrase"
+    },
+    "pancrase:2001-12-01:pancrase-proof-7": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2001 in Pancrase"
+    },
+    "pancrase:2002-01-27:pancrase-spirit-1": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2002 in Pancrase"
+    },
+    "pancrase:2002-02-17:pancrase-spirit-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2002 in Pancrase"
+    },
+    "pancrase:2002-03-25:pancrase-spirit-3": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2002 in Pancrase"
+    },
+    "pancrase:2002-05-11:pancrase-spirit-4": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2002 in Pancrase"
+    },
+    "pancrase:2002-05-28:pancrase-spirit-5": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2002 in Pancrase"
+    },
+    "pancrase:2002-07-28:pancrase-2002-neo-blood-tournament-opening-round": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2002 in Pancrase"
+    },
+    "pancrase:2002-07-28:pancrase-2002-neo-blood-tournament-second-round": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2002 in Pancrase"
+    },
+    "pancrase:2002-08-25:pancrase-spirit-6": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2002 in Pancrase"
+    },
+    "pancrase:2002-09-29:pancrase-2002-anniversary-show": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2002 in Pancrase"
+    },
+    "pancrase:2002-10-29:pancrase-spirit-7": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2002 in Pancrase"
+    },
+    "pancrase:2002-11-30:pancrase-spirit-8": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2002 in Pancrase"
+    },
+    "pancrase:2002-12-21:pancrase-spirit-9": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2002 in Pancrase"
+    },
+    "pancrase:2003-01-26:pancrase-hybrid-1": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2003 in Pancrase"
+    },
+    "pancrase:2003-02-16:pancrase-hybrid-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2003 in Pancrase"
+    },
+    "pancrase:2003-03-08:pancrase-hybrid-3": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2003 in Pancrase"
+    },
+    "pancrase:2003-04-12:pancrase-hybrid-4": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2003 in Pancrase"
+    },
+    "pancrase:2003-05-18:pancrase-hybrid-5": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2003 in Pancrase"
+    },
+    "pancrase:2003-06-07:pancrase-hybrid-6": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2003 in Pancrase"
+    },
+    "pancrase:2003-06-22:pancrase-hybrid-7": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2003 in Pancrase"
+    },
+    "pancrase:2003-07-27:pancrase-2003-neo-blood-tournament-opening-round": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-08T13:52:30.257Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2003 in Pancrase"
     }
   }
 }

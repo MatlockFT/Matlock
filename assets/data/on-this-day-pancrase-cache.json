@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 1,
-  "updatedAt": "2026-09-08T07:26:26.768Z",
+  "updatedAt": "2026-09-08T13:52:57.830Z",
   "fighters": {
     "船木誠勝": {
       "checkedAt": "2026-09-08T07:03:33.069Z",
@@ -162,6 +162,39 @@
       "status": "resolved",
       "wikidataId": "Q6383637",
       "englishName": "Keiichiro Yamamiya"
+    },
+    "稲垣克臣": {
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "resolved",
+      "wikidataId": "Q11596478",
+      "englishName": "Katsuomi Inagaki"
+    },
+    "ジョン・ローバー": {
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "resolved",
+      "wikidataId": "Q11153",
+      "englishName": "John Roberts"
+    },
+    "ジャスティン・マッコーリー": {
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "石井大輔": {
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "渡部謙吾": {
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "resolved",
+      "wikidataId": "Q11632181",
+      "englishName": "Kengo"
+    },
+    "ジェイソン・ゴドシー": {
+      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
     }
   },
   "entries": {
@@ -1225,6 +1258,564 @@
         "strategyVersion": 1,
         "checkedAt": "2026-09-08T07:26:26.768Z",
         "status": "no-headliner-image"
+      }
+    },
+    "pancrase:1997-10-29:pancrase-alive-9": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/1029.html",
+        "rawNames": [
+          "近藤有己",
+          "リオン・ダイク"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "リオン・ダイク"
+        ],
+        "mainEvent": "Yuki Kondo vs. リオン・ダイク"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:1997-11-16:pancrase-alive-10": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/1116.html",
+        "rawNames": [
+          "近藤有己",
+          "高橋義生"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Kazuo Takahashi"
+        ],
+        "mainEvent": "Yuki Kondo vs. Kazuo Takahashi"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Kazuo Takahashi",
+        "imageFileTitle": "File:US Navy 090713-N-4031K-002 Capt. Eric Gardner, commanding officer of Naval Air Facility Atsugi, presents Rear Adm. Kazuo Takahashi with a certificate of appreciation.jpg"
+      }
+    },
+    "pancrase:1997-12-20:pancrase-alive-11": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1997/1220.html",
+        "rawNames": [
+          "近藤有己",
+          "船木誠勝"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Masakatsu Funaki"
+        ],
+        "mainEvent": "Yuki Kondo vs. Masakatsu Funaki"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1998-01-16:pancrase-advance-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0116.html",
+        "rawNames": [
+          "鈴木みのる",
+          "セーム・シュルト"
+        ],
+        "englishNames": [
+          "Minoru Suzuki",
+          "Semmy Schilt"
+        ],
+        "mainEvent": "Minoru Suzuki vs. Semmy Schilt"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Minoru Suzuki",
+        "imageFileTitle": "File:Minoru Suzuki NEVER Openweight Champion.jpg"
+      }
+    },
+    "pancrase:1998-02-06:pancrase-advance-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0206.html",
+        "rawNames": [
+          "船木誠勝",
+          "稲垣克臣"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "Katsuomi Inagaki"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. Katsuomi Inagaki"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1998-03-01:pancrase-advance-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0301.html",
+        "rawNames": [
+          "鈴木みのる",
+          "山宮恵一郎"
+        ],
+        "englishNames": [
+          "Minoru Suzuki",
+          "Keiichiro Yamamiya"
+        ],
+        "mainEvent": "Minoru Suzuki vs. Keiichiro Yamamiya"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Minoru Suzuki",
+        "imageFileTitle": "File:Minoru Suzuki NEVER Openweight Champion.jpg"
+      }
+    },
+    "pancrase:1998-03-18:pancrase-advance-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0318.html",
+        "rawNames": [
+          "船木誠勝",
+          "セーム・シュルト"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "Semmy Schilt"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. Semmy Schilt"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1998-04-26:pancrase-advance-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0426.html",
+        "rawNames": [
+          "船木誠勝",
+          "ガイ・メッツァー"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "Guy Mezger"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. Guy Mezger"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1998-05-12:pancrase-advance-6": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0512.html",
+        "rawNames": [
+          "セーム・シュルト",
+          "高橋義生"
+        ],
+        "englishNames": [
+          "Semmy Schilt",
+          "Kazuo Takahashi"
+        ],
+        "mainEvent": "Semmy Schilt vs. Kazuo Takahashi"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Semmy Schilt",
+        "imageFileTitle": "File:Semmy Schilt 2008.jpg"
+      }
+    },
+    "pancrase:1998-06-02:pancrase-advance-7": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0602.html",
+        "rawNames": [
+          "鈴木みのる",
+          "ジョン・ローバー"
+        ],
+        "englishNames": [
+          "Minoru Suzuki",
+          "John Roberts"
+        ],
+        "mainEvent": "Minoru Suzuki vs. John Roberts"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Minoru Suzuki",
+        "imageFileTitle": "File:Minoru Suzuki NEVER Openweight Champion.jpg"
+      }
+    },
+    "pancrase:1998-06-21:pancrase-advance-8": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0621.html",
+        "rawNames": [
+          "柳澤龍志",
+          "山宮恵一郎"
+        ],
+        "englishNames": [
+          "Ryūshi Yanagisawa",
+          "Keiichiro Yamamiya"
+        ],
+        "mainEvent": "Ryūshi Yanagisawa vs. Keiichiro Yamamiya"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:1998-07-07:pancrase-1998-neo-blood-tournament-opening-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0707.html",
+        "rawNames": [
+          "ジャスティン・マッコーリー",
+          "石井大輔"
+        ],
+        "englishNames": [
+          "ジャスティン・マッコーリー",
+          "石井大輔"
+        ],
+        "mainEvent": "ジャスティン・マッコーリー vs. 石井大輔"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:1998-07-26:pancrase-1998-neo-blood-tournament-second-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0726.html",
+        "rawNames": [
+          "船木誠勝",
+          "渋谷修身"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "Osami Shibuya"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. Osami Shibuya"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1998-09-14:pancrase-1998-anniversary-show": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/0914.html",
+        "rawNames": [
+          "ガイ・メッツァー",
+          "柳澤龍志"
+        ],
+        "englishNames": [
+          "Guy Mezger",
+          "Ryūshi Yanagisawa"
+        ],
+        "mainEvent": "Guy Mezger vs. Ryūshi Yanagisawa"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:1998-10-04:pancrase-advance-9": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/1004.html",
+        "rawNames": [
+          "渡部謙吾",
+          "ジェイソン・ゴドシー"
+        ],
+        "englishNames": [
+          "Kengo",
+          "ジェイソン・ゴドシー"
+        ],
+        "mainEvent": "Kengo vs. ジェイソン・ゴドシー"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Kengo",
+        "imageFileTitle": "File:NDL11918642 (NODA, Kengo).pdf"
+      }
+    },
+    "pancrase:1998-10-26:pancrase-advance-10": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/1026.html",
+        "rawNames": [
+          "船木誠勝",
+          "國奥麒樹真"
+        ],
+        "englishNames": [
+          "Masakatsu Funaki",
+          "Kiuma Kunioku"
+        ],
+        "mainEvent": "Masakatsu Funaki vs. Kiuma Kunioku"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Masakatsu Funaki",
+        "imageFileTitle": "File:Masakatsu Funaki.jpg"
+      }
+    },
+    "pancrase:1998-11-29:pancrase-advance-11": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/1129.html",
+        "rawNames": [
+          "稲垣克臣",
+          "渡部謙吾"
+        ],
+        "englishNames": [
+          "Katsuomi Inagaki",
+          "Kengo"
+        ],
+        "mainEvent": "Katsuomi Inagaki vs. Kengo"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Kengo",
+        "imageFileTitle": "File:Léon Kengo Senate of Poland 01.JPG"
+      }
+    },
+    "pancrase:1998-12-19:pancrase-advance-12": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1998/1219.html",
+        "rawNames": [
+          "ガイ・メッツァー",
+          "近藤有己"
+        ],
+        "englishNames": [
+          "Guy Mezger",
+          "Yuki Kondo"
+        ],
+        "mainEvent": "Guy Mezger vs. Yuki Kondo"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:1999-01-19:pancrase-breakthrough-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0119.html",
+        "rawNames": [
+          "國奥麒樹真",
+          "ジェイソン・デルーシア"
+        ],
+        "englishNames": [
+          "Kiuma Kunioku",
+          "Jason DeLucia"
+        ],
+        "mainEvent": "Kiuma Kunioku vs. Jason DeLucia"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:1999-02-11:pancrase-breakthrough-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0211.html",
+        "rawNames": [
+          "伊藤崇文",
+          "渋谷修身"
+        ],
+        "englishNames": [
+          "Takafumi Itō",
+          "Osami Shibuya"
+        ],
+        "mainEvent": "Takafumi Itō vs. Osami Shibuya"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:1999-03-09:pancrase-breakthrough-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0309.html",
+        "rawNames": [
+          "柳澤龍志",
+          "山田学"
+        ],
+        "englishNames": [
+          "Ryūshi Yanagisawa",
+          "Manabu Yamada"
+        ],
+        "mainEvent": "Ryūshi Yanagisawa vs. Manabu Yamada"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:1999-04-18:pancrase-breakthrough-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0418.html",
+        "rawNames": [
+          "セーム・シュルト",
+          "近藤有己"
+        ],
+        "englishNames": [
+          "Semmy Schilt",
+          "Yuki Kondo"
+        ],
+        "mainEvent": "Semmy Schilt vs. Yuki Kondo"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Semmy Schilt",
+        "imageFileTitle": "File:Semmy Schilt 2008.jpg"
+      }
+    },
+    "pancrase:1999-05-23:pancrase-breakthrough-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0523.html",
+        "rawNames": [
+          "國奥麒樹真",
+          "山宮恵一郎"
+        ],
+        "englishNames": [
+          "Kiuma Kunioku",
+          "Keiichiro Yamamiya"
+        ],
+        "mainEvent": "Kiuma Kunioku vs. Keiichiro Yamamiya"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:1999-06-11:pancrase-breakthrough-6": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0611.html",
+        "rawNames": [
+          "高橋義生",
+          "ジョン・ローバー"
+        ],
+        "englishNames": [
+          "Kazuo Takahashi",
+          "John Roberts"
+        ],
+        "mainEvent": "Kazuo Takahashi vs. John Roberts"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T13:52:57.830Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Kazuo Takahashi",
+        "imageFileTitle": "File:US Navy 090713-N-4031K-002 Capt. Eric Gardner, commanding officer of Naval Air Facility Atsugi, presents Rear Adm. Kazuo Takahashi with a certificate of appreciation.jpg"
       }
     }
   }
