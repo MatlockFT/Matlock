@@ -34,7 +34,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      OTD_TARGET_PROMOTIONS: "pancrase,bellator,rizin,pride"
+      # Image coverage is now a general archive-quality goal, not just a cleanup
+      # pass for a few promotions. Current/nearby calendar dates are prioritized
+      # inside the enricher so the live On This Day page improves first.
+      OTD_TARGET_PROMOTIONS: "ufc,wec,strikeforce,pfl,one,pancrase,bellator,rizin,pride"
       # Wikimedia rate-limits bursty bot traffic. Keep this deliberately serial so
       # the daily backlog moves forward without poisoning the cache with 429s.
       OTD_IMAGE_ENRICH_LIMIT: "120"
@@ -78,7 +81,7 @@ jobs:
       - name: Backfill Pancrase from the official archive
         run: node scripts/enrich-on-this-day-pancrase.mjs
 
-      - name: Prefer posters and event imagery for weak promotions
+      - name: Prefer posters and event imagery for the archive
         run: node scripts/enrich-on-this-day-images.mjs
 
       - name: Curate duplicate events and generated copy
