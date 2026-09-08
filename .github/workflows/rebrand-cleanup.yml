@@ -17,7 +17,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Replace retired domain and brand identifiers
         shell: bash
@@ -111,16 +111,6 @@ jobs:
           guard = '\n'.join(line[10:] if line.startswith('          ') else line for line in guard.splitlines()) + '\n'
           Path('scripts/check-brand-identity.mjs').write_text(guard, encoding='utf-8')
 
-          quality = Path('.github/workflows/site-quality.yml')
-          quality_text = quality.read_text(encoding='utf-8')
-          marker = '      - name: Check article content and image metadata\n'
-          step = '      - name: Check current brand identity\n        run: node scripts/check-brand-identity.mjs\n\n'
-          if step not in quality_text:
-              if marker not in quality_text:
-                  raise SystemExit('Could not locate Site Quality insertion point')
-              quality_text = quality_text.replace(marker, step + marker, 1)
-              quality.write_text(quality_text, encoding='utf-8')
-
           print(f'Rebranded {len(changed)} existing files.')
           for path in changed:
               print(path)
@@ -134,9 +124,10 @@ jobs:
           grep -q '^mmamatlock.com$' CNAME
           grep -q 'url: "https://mmamatlock.com"' _config.yml
 
-      - name: Commit cleanup
+      - name: Commit non-workflow cleanup
         shell: bash
         run: |
+          git restore .github/workflows/mobile-performance.yml
           if git diff --quiet && git diff --cached --quiet; then
             echo "No cleanup changes needed."
             exit 0
