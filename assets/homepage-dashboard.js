@@ -5,11 +5,13 @@
     const newsList = root.querySelector('[data-home-news-list]');
     const otdBody = root.querySelector('[data-home-otd-body]');
     const rosterBody = root.querySelector('[data-home-roster-body]');
+    const nextMapLink = root.querySelector('[data-home-next-map][data-event-id]');
 
     const liveNewsUrl = root.dataset.newsUrl;
     const fallbackNewsUrl = root.dataset.newsFallbackUrl;
     const historyUrl = root.dataset.historyUrl;
     const rosterUrl = root.dataset.rosterUrl;
+    const eventMapUrl = root.dataset.eventMapUrl;
 
     const element = (tag, className, text) => {
         const node = document.createElement(tag);
@@ -23,9 +25,9 @@
         return response.json();
     };
 
-    const fetchJson = async url => {
+    const fetchJson = async (url, cache = 'no-store') => {
         if (!url) throw new Error('Missing URL');
-        return safeJson(await fetch(url, { cache: 'no-store' }));
+        return safeJson(await fetch(url, { cache }));
     };
 
     const formatSource = story => story?.source || 'Source';
@@ -87,25 +89,14 @@
         renderNews({ stories: [] });
     }
 
-    const historyEntries = data => {
-        if (Array.isArray(data)) return data;
-        if (Array.isArray(data?.entries)) return data.entries;
-        if (Array.isArray(data?.history)) return data.history;
-        return [];
-    };
-
-    const kindBonus = new Map([
-        ['title', 12], ['fight', 10], ['incident', 8], ['debut', 7],
-        ['signing', 6], ['death', 5], ['news', 4], ['birthday', 2], ['event', 0]
-    ]);
-
-    const historyScore = entry => Number(entry?.weight || 0) + (kindBonus.get(entry?.kind) || 0);
-
-    function renderOnThisDay(entry) {
+    function renderOnThisDay(entry, key) {
         if (!otdBody) return;
         otdBody.replaceChildren();
         if (!entry) {
             otdBody.append(element('p', 'home-dashboard-loading', 'Browse the MMA history archive by date.'));
+            const fallbackLink = element('a', 'home-side-link', 'Open history →');
+            fallbackLink.href = '/on-this-day/';
+            otdBody.append(fallbackLink);
             return;
         }
 
@@ -113,26 +104,30 @@
         const label = element('span', 'home-otd-year', year || 'On this day');
         const title = element('h3', 'home-otd-title', entry.title || 'MMA history');
         otdBody.append(label, title);
-        if (entry.description) otdBody.append(element('p', 'home-otd-copy', entry.description));
+        const detail = entry.detail || entry.description || '';
+        if (detail) otdBody.append(element('p', 'home-otd-copy', detail));
         const link = element('a', 'home-side-link', 'Open the day →');
-        const now = new Date();
-        const key = `${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-        link.href = `/on-this-day/?date=${key}`;
+        link.href = `/on-this-day/?date=${encodeURIComponent(key || String(entry.date || '').slice(5))}`;
         otdBody.append(link);
     }
 
     async function loadOnThisDay() {
         if (!otdBody || !historyUrl) return;
         try {
-            const entries = historyEntries(await fetchJson(historyUrl));
+            const data = await fetchJson(historyUrl, 'force-cache');
+            if (data?.entry !== undefined) {
+                renderOnThisDay(data.entry, data.key);
+                return;
+            }
+            const entries = Array.isArray(data) ? data : Array.isArray(data?.entries) ? data.entries : [];
             const now = new Date();
             const key = `${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
             const todays = entries
                 .filter(entry => String(entry?.date || '').slice(5) === key)
-                .sort((a, b) => historyScore(b) - historyScore(a));
-            renderOnThisDay(todays[0]);
+                .sort((a, b) => Number(b?.weight || 0) - Number(a?.weight || 0));
+            renderOnThisDay(todays[0], key);
         } catch {
-            renderOnThisDay(null);
+            renderOnThisDay(null, '');
         }
     }
 
@@ -176,7 +171,21 @@
         }
     }
 
+    async function loadNextEventMapLink() {
+        if (!nextMapLink || !eventMapUrl) return;
+        try {
+            const data = await fetchJson(eventMapUrl, 'force-cache');
+            const id = String(nextMapLink.dataset.eventId || '');
+            const eventIds = new Set([
+                ...(data?.events || []).map(event => String(event?.id || '')).filter(Boolean),
+                ...(data?.picker_event_ids || []).map(String)
+            ]);
+            if (eventIds.has(id)) nextMapLink.hidden = false;
+        } catch {}
+    }
+
     loadNews();
     loadOnThisDay();
     loadRoster();
+    loadNextEventMapLink();
 })();
