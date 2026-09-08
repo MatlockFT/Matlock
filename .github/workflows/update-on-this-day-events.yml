@@ -31,10 +31,12 @@ jobs:
     timeout-minutes: 20
     env:
       OTD_TARGET_PROMOTIONS: "pancrase,bellator,rizin,pride"
-      OTD_IMAGE_ENRICH_LIMIT: "260"
-      OTD_IMAGE_CONCURRENCY: "4"
-      OTD_CONTENT_ENRICH_LIMIT: "160"
-      OTD_CONTENT_CONCURRENCY: "4"
+      # Wikimedia rate-limits bursty bot traffic. Keep this deliberately serial so
+      # the daily backlog moves forward without poisoning the cache with 429s.
+      OTD_IMAGE_ENRICH_LIMIT: "120"
+      OTD_IMAGE_CONCURRENCY: "1"
+      OTD_CONTENT_ENRICH_LIMIT: "80"
+      OTD_CONTENT_CONCURRENCY: "1"
 
     steps:
       - name: Check out repository
