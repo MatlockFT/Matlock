@@ -5,11 +5,20 @@ description: "Latest MMA news, UFC headlines, fight announcements, interviews, r
 permalink: /news/
 page_styles:
   - /assets/news.css
+  - /assets/news-matlock.css
   - /assets/on-this-day.css
 page_scripts:
   - /assets/news-feed.js
   - /assets/news-otd-deferred.js
 ---
+
+{% assign news_matlock_post = nil %}
+{% for post in site.posts %}
+    {% assign visibility = post.listing_visibility | default: "normal" %}
+    {% unless visibility == "direct-only" %}
+        {% if news_matlock_post == nil %}{% assign news_matlock_post = post %}{% endif %}
+    {% endunless %}
+{% endfor %}
 
 <article
     class="news-page"
@@ -26,14 +35,19 @@ page_scripts:
             <span data-news-status>Loading the latest stories…</span>
         </div>
 
-        <button
-            class="news-source-chip"
-            type="button"
-            data-news-refresh
-        >
-            Refresh
-        </button>
+        <button class="news-source-chip" type="button" data-news-refresh>Refresh</button>
     </div>
+
+    {% if news_matlock_post %}
+        <section class="news-matlock-latest" aria-label="Latest original MMA Matlock article">
+            <span class="news-matlock-label">Latest From Matlock</span>
+            <div class="news-matlock-copy">
+                <h2><a href="{{ news_matlock_post.url | relative_url }}">{{ news_matlock_post.title }}</a></h2>
+                <p class="news-matlock-meta">{{ news_matlock_post.date | date: "%B %d, %Y" }}{% if news_matlock_post.description %} · {{ news_matlock_post.description | strip_html | truncate: 110 }}{% endif %}</p>
+            </div>
+            <a class="news-matlock-action" href="{{ news_matlock_post.url | relative_url }}">Read</a>
+        </section>
+    {% endif %}
 
     <section class="news-lead" aria-label="Top stories">
         <div class="news-lead-grid" aria-busy="true" data-news-lead-grid>
@@ -77,9 +91,7 @@ page_scripts:
 
     <section class="news-more" aria-labelledby="news-more-title">
         <div class="news-section-heading news-section-heading--more">
-            <div>
-                <h2 id="news-more-title">More</h2>
-            </div>
+            <div><h2 id="news-more-title">More</h2></div>
 
             <label class="news-source-filter">
                 <span>Source</span>
@@ -89,26 +101,14 @@ page_scripts:
             </label>
         </div>
 
-        <div
-            class="news-more-grid"
-            data-news-more-list
-            aria-live="polite"
-            aria-busy="true"
-        >
+        <div class="news-more-grid" data-news-more-list aria-live="polite" aria-busy="true">
             <article class="news-loading-card" aria-hidden="true"></article>
             <article class="news-loading-card" aria-hidden="true"></article>
             <article class="news-loading-card" aria-hidden="true"></article>
         </div>
 
         <div class="news-more-actions">
-            <button
-                class="secondary-button news-show-more"
-                type="button"
-                data-news-show-more
-                hidden
-            >
-                Show more stories
-            </button>
+            <button class="secondary-button news-show-more" type="button" data-news-show-more hidden>Show more stories</button>
         </div>
     </section>
 
