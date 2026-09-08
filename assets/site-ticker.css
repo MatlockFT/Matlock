@@ -270,7 +270,7 @@
     align-items: center;
     animation: site-news-scroll var(--site-news-duration, 70s) linear infinite;
     animation-play-state: running !important;
-    will-change: transform;
+    will-change: transform, translate;
 }
 
 /* The news rail is operational information, not decorative motion. It keeps
@@ -351,6 +351,14 @@
 @keyframes site-news-scroll {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
+}
+
+/* Reduced-motion mode elsewhere in the shell pins transform:none !important.
+   Use the independent translate property here so the information rail can
+   still move without fighting that global transform rule. */
+@keyframes site-news-scroll-reduced-safe {
+    from { translate: 0 0; }
+    to { translate: -50% 0; }
 }
 
 @keyframes site-live-pulse {
@@ -455,7 +463,7 @@
     }
 
     .site-news-track {
-        animation: site-news-scroll var(--site-news-duration, 70s) linear infinite !important;
+        animation: site-news-scroll-reduced-safe var(--site-news-duration, 70s) linear infinite !important;
         animation-play-state: running !important;
     }
 
@@ -478,7 +486,7 @@ html.reduce-motion .site-live-strip {
 }
 
 html.reduce-motion .site-news-track {
-    animation: site-news-scroll var(--site-news-duration, 70s) linear infinite !important;
+    animation: site-news-scroll-reduced-safe var(--site-news-duration, 70s) linear infinite !important;
     animation-play-state: running !important;
 }
 
