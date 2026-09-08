@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 1,
-  "updatedAt": "2026-09-08T13:52:57.830Z",
+  "updatedAt": "2026-09-08T17:00:31.599Z",
   "fighters": {
     "船木誠勝": {
       "checkedAt": "2026-09-08T07:03:33.069Z",
@@ -195,6 +195,63 @@
       "checkedAt": "2026-09-08T13:52:57.830Z",
       "status": "unresolved",
       "error": "No Wikidata match"
+    },
+    "美濃輪育久": {
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "status": "resolved",
+      "wikidataId": "Q3098906",
+      "englishName": "Ikuhisa Minowa"
+    },
+    "エイドリアン・セラーノ": {
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "菊田早苗": {
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "status": "resolved",
+      "wikidataId": "Q7415460",
+      "englishName": "Sanae Kikuta"
+    },
+    "オマー・ブイシェ": {
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "渡辺大介": {
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "status": "resolved",
+      "wikidataId": "Q11562168",
+      "englishName": "Daisuke Watanabe"
+    },
+    "星野勇二": {
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "status": "resolved",
+      "wikidataId": "Q11513093",
+      "englishName": "Yūji Hoshino"
+    },
+    "ムリーロ・ブスタマンチ": {
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "status": "resolved",
+      "wikidataId": "Q2703737",
+      "englishName": "Murilo Bustamante"
+    },
+    "ネイサン・マーコート": {
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "status": "resolved",
+      "wikidataId": "Q2704820",
+      "englishName": "Nate Marquardt"
+    },
+    "ケベドフ・ミカイル": {
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "アレックス・スティーブリング": {
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "status": "resolved",
+      "wikidataId": "Q4717845",
+      "englishName": "Alex Stiebling"
     }
   },
   "entries": {
@@ -1816,6 +1873,438 @@
         "status": "commons-headliner-image",
         "fighterName": "Kazuo Takahashi",
         "imageFileTitle": "File:US Navy 090713-N-4031K-002 Capt. Eric Gardner, commanding officer of Naval Air Facility Atsugi, presents Rear Adm. Kazuo Takahashi with a certificate of appreciation.jpg"
+      }
+    },
+    "pancrase:1999-07-06:pancrase-breakthrough-7": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0706.html",
+        "rawNames": [
+          "セーム・シュルト",
+          "渋谷修身"
+        ],
+        "englishNames": [
+          "Semmy Schilt",
+          "Osami Shibuya"
+        ],
+        "mainEvent": "Semmy Schilt vs. Osami Shibuya"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Semmy Schilt",
+        "imageFileTitle": "File:Semmy Schilt 2008.jpg"
+      }
+    },
+    "pancrase:1999-08-01:pancrase-1999-neo-blood-tournament-opening-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0801.html"
+      }
+    },
+    "pancrase:1999-08-01:pancrase-1999-neo-blood-tournament-second-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0801.html"
+      }
+    },
+    "pancrase:1999-09-04:pancrase-breakthrough-8": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0904.html",
+        "rawNames": [
+          "セーム・シュルト",
+          "稲垣克臣"
+        ],
+        "englishNames": [
+          "Semmy Schilt",
+          "Katsuomi Inagaki"
+        ],
+        "mainEvent": "Semmy Schilt vs. Katsuomi Inagaki"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Semmy Schilt",
+        "imageFileTitle": "File:Semmy Schilt 2008.jpg"
+      }
+    },
+    "pancrase:1999-09-18:pancrase-1999-anniversary-show": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/0918.html",
+        "rawNames": [
+          "近藤有己",
+          "國奥麒樹真"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Kiuma Kunioku"
+        ],
+        "mainEvent": "Yuki Kondo vs. Kiuma Kunioku"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:1999-10-25:pancrase-breakthrough-9": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/1025.html",
+        "rawNames": [
+          "美濃輪育久",
+          "エイドリアン・セラーノ"
+        ],
+        "englishNames": [
+          "Ikuhisa Minowa",
+          "エイドリアン・セラーノ"
+        ],
+        "mainEvent": "Ikuhisa Minowa vs. エイドリアン・セラーノ"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:1999-11-28:pancrase-breakthrough-10": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/1128.html",
+        "rawNames": [
+          "近藤有己",
+          "セーム・シュルト"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Semmy Schilt"
+        ],
+        "mainEvent": "Yuki Kondo vs. Semmy Schilt"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Semmy Schilt",
+        "imageFileTitle": "File:Semmy Schilt 2008.jpg"
+      }
+    },
+    "pancrase:1999-12-18:pancrase-breakthrough-11": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/1999/1218.html",
+        "rawNames": [
+          "鈴木みのる",
+          "菊田早苗"
+        ],
+        "englishNames": [
+          "Minoru Suzuki",
+          "Sanae Kikuta"
+        ],
+        "mainEvent": "Minoru Suzuki vs. Sanae Kikuta"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Minoru Suzuki",
+        "imageFileTitle": "File:Minoru Suzuki NEVER Openweight Champion.jpg"
+      }
+    },
+    "pancrase:2000-01-23:pancrase-trans-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2000/0123.html",
+        "rawNames": [
+          "近藤有己",
+          "山田学"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Manabu Yamada"
+        ],
+        "mainEvent": "Yuki Kondo vs. Manabu Yamada"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2000-02-27:pancrase-trans-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2000/0227.html",
+        "rawNames": [
+          "柳澤龍志",
+          "菊田早苗"
+        ],
+        "englishNames": [
+          "Ryūshi Yanagisawa",
+          "Sanae Kikuta"
+        ],
+        "mainEvent": "Ryūshi Yanagisawa vs. Sanae Kikuta"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2000-04-30:pancrase-trans-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2000/0430.html",
+        "rawNames": [
+          "セーム・シュルト",
+          "高橋義生"
+        ],
+        "englishNames": [
+          "Semmy Schilt",
+          "Kazuo Takahashi"
+        ],
+        "mainEvent": "Semmy Schilt vs. Kazuo Takahashi"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Semmy Schilt",
+        "imageFileTitle": "File:Semmy Schilt 2008.jpg"
+      }
+    },
+    "pancrase:2000-06-26:pancrase-trans-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2000/0626.html",
+        "rawNames": [
+          "オマー・ブイシェ",
+          "石井大輔"
+        ],
+        "englishNames": [
+          "オマー・ブイシェ",
+          "石井大輔"
+        ],
+        "mainEvent": "オマー・ブイシェ vs. 石井大輔"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2000-07-10:pancrase-australia": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2000/0710.html"
+      }
+    },
+    "pancrase:2000-07-23:pancrase-2000-neo-blood-tournament-opening-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2000/0723.html"
+      }
+    },
+    "pancrase:2000-07-23:pancrase-trans-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2000/0723.html"
+      }
+    },
+    "pancrase:2000-08-27:pancrase-2000-neo-blood-tournament-second-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2000/0827.html",
+        "rawNames": [
+          "渡辺大介",
+          "星野勇二"
+        ],
+        "englishNames": [
+          "Daisuke Watanabe",
+          "Yūji Hoshino"
+        ],
+        "mainEvent": "Daisuke Watanabe vs. Yūji Hoshino"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Daisuke Watanabe",
+        "imageFileTitle": "File:Tomoaki Watanabe Yuko Noguchi Kim Jung Hoon and Daisuke Tsuda 20100811 1.jpg"
+      }
+    },
+    "pancrase:2000-09-24:pancrase-2000-anniversary-show": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2000/0924.html",
+        "rawNames": [
+          "セーム・シュルト",
+          "渋谷修身"
+        ],
+        "englishNames": [
+          "Semmy Schilt",
+          "Osami Shibuya"
+        ],
+        "mainEvent": "Semmy Schilt vs. Osami Shibuya"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Semmy Schilt",
+        "imageFileTitle": "File:Semmy Schilt 2008.jpg"
+      }
+    },
+    "pancrase:2000-10-31:pancrase-trans-6": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2000/1031.html",
+        "rawNames": [
+          "菊田早苗",
+          "ムリーロ・ブスタマンチ"
+        ],
+        "englishNames": [
+          "Sanae Kikuta",
+          "Murilo Bustamante"
+        ],
+        "mainEvent": "Sanae Kikuta vs. Murilo Bustamante"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2000-11-25:pancrase-pancrase-uk": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2000/1125.html"
+      }
+    },
+    "pancrase:2000-12-04:pancrase-trans-7": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2000/1204.html",
+        "rawNames": [
+          "ネイサン・マーコート",
+          "國奥麒樹真"
+        ],
+        "englishNames": [
+          "Nate Marquardt",
+          "Kiuma Kunioku"
+        ],
+        "mainEvent": "Nate Marquardt vs. Kiuma Kunioku"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Nate Marquardt",
+        "imageFileTitle": "File:Nate-Marquardt.jpg"
+      }
+    },
+    "pancrase:2000-12-09:pancrase-trans-8": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2000/1209.html",
+        "rawNames": [
+          "渋谷修身",
+          "ケベドフ・ミカイル"
+        ],
+        "englishNames": [
+          "Osami Shibuya",
+          "ケベドフ・ミカイル"
+        ],
+        "mainEvent": "Osami Shibuya vs. ケベドフ・ミカイル"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2001-02-04:pancrase-proof-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2001/0204.html",
+        "rawNames": [
+          "菊田早苗",
+          "アレックス・スティーブリング"
+        ],
+        "englishNames": [
+          "Sanae Kikuta",
+          "Alex Stiebling"
+        ],
+        "mainEvent": "Sanae Kikuta vs. Alex Stiebling"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2001-02-17:pancrase-australia-hybrid-evolution": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2001/0217.html"
+      }
+    },
+    "pancrase:2001-03-31:pancrase-proof-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-08T17:00:31.599Z",
+        "status": "no-main-event",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2001/0331.html"
       }
     }
   }

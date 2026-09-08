@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "updatedAt": "2026-09-08T13:53:51.329Z",
+  "updatedAt": "2026-09-08T17:01:05.833Z",
   "entries": {
     "ufc:1995-09-08:ufc-7-the-brawl-in-buffalo": {
       "strategyVersion": 2,
@@ -76,11 +76,14 @@
       "error": "429 Too Many Requests"
     },
     "bellator:2024-09-07:bellator-champions-series-4": {
-      "strategyVersion": 2,
+      "strategyVersion": 4,
       "status": "pageimage-kept",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T05:53:13.825Z",
-      "wikipediaTitle": "Bellator Champions Series 4"
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator Champions Series 4",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/2/2c/Bellator_Champions_Series_4.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator Champions Series 4 event image",
+      "imageCredit": "Wikipedia"
     },
     "pancrase:1996-09-07:pancrase-1996-anniversary-show": {
       "strategyVersion": 4,
@@ -325,11 +328,18 @@
     },
     "pancrase:1999-09-04:pancrase-breakthrough-8": {
       "strategyVersion": 4,
-      "status": "check-failed",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:39:35.626Z",
+      "status": "commons-headliner-image",
+      "sourceType": "wikimedia-commons-headliner",
+      "artworkType": "headliner-photo",
+      "checkedAt": "2026-09-08T17:00:31.599Z",
       "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 8",
-      "error": "429 Too Many Requests"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Semmy_Schilt_2008.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Semmy Schilt vs. Katsuomi Inagaki headliner photo",
+      "imageCredit": "Wikimedia Commons · Amw9991 at English Wikipedia · CC BY-SA 3.0",
+      "imageFileTitle": "File:Semmy Schilt 2008.jpg",
+      "width": 480,
+      "height": 640,
+      "score": 185
     },
     "pancrase:2005-09-04:pancrase-spiral-7": {
       "strategyVersion": 4,
@@ -651,10 +661,18 @@
     },
     "pancrase:2000-08-27:pancrase-2000-neo-blood-tournament-second-round": {
       "strategyVersion": 4,
-      "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:39:35.626Z",
-      "wikipediaTitle": "2000 in Pancrase#Pancrase: 2000 Neo-Blood Tournament Second Round"
+      "status": "commons-headliner-image",
+      "sourceType": "wikimedia-commons-headliner",
+      "artworkType": "headliner-photo",
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "wikipediaTitle": "2000 in Pancrase#Pancrase: 2000 Neo-Blood Tournament Second Round",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Tomoaki_Watanabe_Yuko_Noguchi_Kim_Jung_Hoon_and_Daisuke_Tsuda_20100811_1.jpg/1280px-Tomoaki_Watanabe_Yuko_Noguchi_Kim_Jung_Hoon_and_Daisuke_Tsuda_20100811_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Daisuke Watanabe vs. Yūji Hoshino headliner photo",
+      "imageCredit": "Wikimedia Commons · コモンスフィア · CC BY 4.0",
+      "imageFileTitle": "File:Tomoaki Watanabe Yuko Noguchi Kim Jung Hoon and Daisuke Tsuda 20100811 1.jpg",
+      "width": 1600,
+      "height": 1200,
+      "score": 80
     },
     "pancrase:2005-08-27:pancrase-2005-neo-blood-tournament-finals": {
       "strategyVersion": 4,
@@ -842,10 +860,18 @@
     },
     "pancrase:2000-09-24:pancrase-2000-anniversary-show": {
       "strategyVersion": 4,
-      "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:39:35.626Z",
-      "wikipediaTitle": "2000 in Pancrase#Pancrase: 2000 Anniversary Show"
+      "status": "commons-headliner-image",
+      "sourceType": "wikimedia-commons-headliner",
+      "artworkType": "headliner-photo",
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "wikipediaTitle": "2000 in Pancrase#Pancrase: 2000 Anniversary Show",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Semmy_Schilt_2008.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Semmy Schilt vs. Osami Shibuya headliner photo",
+      "imageCredit": "Wikimedia Commons · Amw9991 at English Wikipedia · CC BY-SA 3.0",
+      "imageFileTitle": "File:Semmy Schilt 2008.jpg",
+      "width": 480,
+      "height": 640,
+      "score": 185
     },
     "pancrase:2004-09-24:pancrase-brave-8": {
       "strategyVersion": 4,
@@ -3029,10 +3055,18 @@
     },
     "pancrase:1999-07-06:pancrase-breakthrough-7": {
       "strategyVersion": 4,
-      "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T06:46:00.119Z",
-      "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 7"
+      "status": "commons-headliner-image",
+      "sourceType": "wikimedia-commons-headliner",
+      "artworkType": "headliner-photo",
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 7",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Semmy_Schilt_2008.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Semmy Schilt vs. Osami Shibuya headliner photo",
+      "imageCredit": "Wikimedia Commons · Amw9991 at English Wikipedia · CC BY-SA 3.0",
+      "imageFileTitle": "File:Semmy Schilt 2008.jpg",
+      "width": 480,
+      "height": 640,
+      "score": 185
     },
     "bellator:2011-11-12:bellator-57": {
       "strategyVersion": 4,
@@ -3808,10 +3842,18 @@
     },
     "pancrase:1999-11-28:pancrase-breakthrough-10": {
       "strategyVersion": 4,
-      "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
-      "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 10"
+      "status": "commons-headliner-image",
+      "sourceType": "wikimedia-commons-headliner",
+      "artworkType": "headliner-photo",
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 10",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Semmy_Schilt_2008.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Yuki Kondo vs. Semmy Schilt headliner photo",
+      "imageCredit": "Wikimedia Commons · Amw9991 at English Wikipedia · CC BY-SA 3.0",
+      "imageFileTitle": "File:Semmy Schilt 2008.jpg",
+      "width": 480,
+      "height": 640,
+      "score": 185
     },
     "pancrase:2007-11-28:pancrase-rising-9": {
       "strategyVersion": 4,
@@ -3992,10 +4034,18 @@
     },
     "pancrase:2000-12-04:pancrase-trans-7": {
       "strategyVersion": 4,
-      "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
-      "wikipediaTitle": "2000 in Pancrase#Pancrase: Trans 7"
+      "status": "commons-headliner-image",
+      "sourceType": "wikimedia-commons-headliner",
+      "artworkType": "headliner-photo",
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "wikipediaTitle": "2000 in Pancrase#Pancrase: Trans 7",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Nate-Marquardt.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Nate Marquardt vs. Kiuma Kunioku headliner photo",
+      "imageCredit": "Wikimedia Commons · MannyMMA · CC BY-SA 3.0",
+      "imageFileTitle": "File:Nate-Marquardt.jpg",
+      "width": 392,
+      "height": 588,
+      "score": 185
     },
     "pancrase:2005-12-04:pancrase-spiral-10": {
       "strategyVersion": 4,
@@ -4446,10 +4496,18 @@
     },
     "pancrase:1999-12-18:pancrase-breakthrough-11": {
       "strategyVersion": 4,
-      "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
-      "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 11"
+      "status": "commons-headliner-image",
+      "sourceType": "wikimedia-commons-headliner",
+      "artworkType": "headliner-photo",
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 11",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Minoru_Suzuki_NEVER_Openweight_Champion.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Minoru Suzuki vs. Sanae Kikuta headliner photo",
+      "imageCredit": "Wikimedia Commons · ゾーヒョー · CC BY-SA 4.0",
+      "imageFileTitle": "File:Minoru Suzuki NEVER Openweight Champion.jpg",
+      "width": 600,
+      "height": 900,
+      "score": 192
     },
     "pancrase:2007-05-30:pancrase-rising-5": {
       "strategyVersion": 4,
@@ -5479,10 +5537,18 @@
     },
     "pancrase:2000-04-30:pancrase-trans-3": {
       "strategyVersion": 4,
-      "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:27:01.163Z",
-      "wikipediaTitle": "2000 in Pancrase#Pancrase: Trans 3"
+      "status": "commons-headliner-image",
+      "sourceType": "wikimedia-commons-headliner",
+      "artworkType": "headliner-photo",
+      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "wikipediaTitle": "2000 in Pancrase#Pancrase: Trans 3",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Semmy_Schilt_2008.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Semmy Schilt vs. Kazuo Takahashi headliner photo",
+      "imageCredit": "Wikimedia Commons · Amw9991 at English Wikipedia · CC BY-SA 3.0",
+      "imageFileTitle": "File:Semmy Schilt 2008.jpg",
+      "width": 480,
+      "height": 640,
+      "score": 185
     },
     "pancrase:2023-04-30:pancrase-333": {
       "strategyVersion": 4,
@@ -6566,6 +6632,1063 @@
       "sourceType": "wikipedia-pageimage",
       "checkedAt": "2026-09-08T13:53:51.329Z",
       "wikipediaTitle": "2006 in Pancrase#Pancrase: 2006 Neo-Blood Tournament Eliminations"
+    },
+    "pride:2005-02-20:pride-29": {
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Pride 29",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Public_nudity_-_Toronto_Pride_29.jpg/1280px-Public_nudity_-_Toronto_Pride_29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Pride 29 event image",
+      "imageCredit": "Wikimedia Commons · Jim MacDonald · CC BY-SA 2.0",
+      "imageFileTitle": "File:Public nudity - Toronto Pride 29.jpg",
+      "width": 2448,
+      "height": 3264,
+      "score": 224
+    },
+    "bellator:2015-03-27:bellator-135": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA in 2015#Bellator 135"
+    },
+    "bellator:2011-03-26:bellator-38": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 38"
+    },
+    "bellator:2013-02-21:bellator-90": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator Fighting Championships: Season Eight#Bellator 90"
+    },
+    "bellator:2020-02-21:bellator-239": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA in 2020#Bellator 239"
+    },
+    "pancrase:2008-03-26:pancrase-shining-2": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 2"
+    },
+    "pancrase:2023-03-26:pancrase-332": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "pride:2001-03-25:pride-13": {
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2001 in Pride FC#Pride 13: Collision Course",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/66/Steyr_2023-07-01_Steyr_Pride_13_-_Stadtplatz_Bild_03.jpg/1280px-Steyr_2023-07-01_Steyr_Pride_13_-_Stadtplatz_Bild_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Pride 13 event image",
+      "imageCredit": "Wikimedia Commons · Miloš Hlávka · CC0",
+      "imageFileTitle": "File:Steyr 2023-07-01 Steyr Pride 13 - Stadtplatz Bild 03.jpg",
+      "width": 3456,
+      "height": 4608,
+      "score": 224
+    },
+    "pride:2002-02-22:pride-fc-the-best-vol-1": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "List of Pride FC events"
+    },
+    "bellator:2020-02-22:bellator-dublin-2-240": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA in 2020#Bellator Dublin 2/Bellator 240"
+    },
+    "pancrase:2002-03-25:pancrase-spirit-3": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2002 in Pancrase#Pancrase: Spirit 3"
+    },
+    "pancrase:2007-03-25:pancrase-2007-neo-blood-tournament-eliminations": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2007 in Pancrase#Pancrase: 2007 Neo-Blood Tournament Eliminations"
+    },
+    "rizin:2020-02-22:rizin-21-hamamatsu": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2020 in Rizin Fighting Federation#Rizin 21 – Hamamatsu"
+    },
+    "pancrase:2023-03-25:pancrase-331": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "bellator:2019-02-23:bellator-217": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA in 2019#Bellator 217"
+    },
+    "rizin:2022-02-23:rizin-trigger-2": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2022 in Rizin Fighting Federation#Rizin Trigger 2"
+    },
+    "pride:2002-02-24:pride-19": {
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Pride 19",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/ce/2014_%C4%B0stanbul_LGBT_Pride_%2819%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Pride 19 event image",
+      "imageCredit": "Wikimedia Commons · Lubunya · CC BY-SA 3.0",
+      "imageFileTitle": "File:2014 İstanbul LGBT Pride (19).jpg",
+      "width": 642,
+      "height": 960,
+      "score": 214
+    },
+    "bellator:2012-03-23:bellator-62": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator Fighting Championships: Season Six#Bellator 62"
+    },
+    "bellator:2017-02-24:bellator-173": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA in 2017#Bellator 173"
+    },
+    "pancrase:2008-03-23:pancrase-2008-neo-blood-tournament-eliminations": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2008 in Pancrase#Pancrase: 2008 Neo-Blood Tournament Eliminations"
+    },
+    "rizin:2024-02-24:rizin-landmark-8": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2024 in Rizin Fighting Federation#Rizin Landmark 8"
+    },
+    "rizin:2024-03-23:rizin-landmark-9": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2024 in Rizin Fighting Federation#Rizin Landmark 9"
+    },
+    "bellator:2019-03-22:bellator-218": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA in 2019#Bellator 218"
+    },
+    "pancrase:2010-03-22:pancrase-passion-tour-2": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2010 in Pancrase#Pancrase: Passion Tour 2"
+    },
+    "pancrase:2024-02-25:pancrase-blood-2": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "pride:2006-02-26:pride-31": {
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Pride 31",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Public_nudity_-_Toronto_Pride_31.jpg/1280px-Public_nudity_-_Toronto_Pride_31.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Pride 31 event image",
+      "imageCredit": "Wikimedia Commons · Jim MacDonald · CC BY-SA 2.0",
+      "imageFileTitle": "File:Public nudity - Toronto Pride 31.jpg",
+      "width": 2448,
+      "height": 3264,
+      "score": 224
+    },
+    "bellator:2013-03-21:bellator-93": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator Fighting Championships: Season Eight#Bellator 93"
+    },
+    "bellator:2014-03-21:bellator-113": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA: Season Ten#Bellator 113"
+    },
+    "bellator:2016-02-26:bellator-150": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA in 2016#Bellator 150"
+    },
+    "rizin:2021-03-21:rizin-27-nagoya": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2021 in Rizin Fighting Federation#Rizin 27 – Nagoya"
+    },
+    "pancrase:2022-03-21:pancrase-326": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "bellator:2015-02-27:bellator-134-the-british-invasion": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA in 2015#Bellator 134"
+    },
+    "pancrase:2000-02-27:pancrase-trans-2": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2000 in Pancrase#Pancrase: Trans 2"
+    },
+    "pancrase:2005-02-27:pancrase-2005-neo-blood-tournament-eliminations": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2005 in Pancrase#Pancrase: 2005 Neo-Blood Tournament Eliminations"
+    },
+    "rizin:2022-03-20:rizin-34-osaka": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2022 in Rizin Fighting Federation#Rizin 34 – Osaka"
+    },
+    "bellator:2011-03-19:bellator-37": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 37"
+    },
+    "bellator:2013-02-28:bellator-91": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator Fighting Championships: Season Eight#Bellator 91"
+    },
+    "bellator:2014-02-28:bellator-110": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA: Season Ten#Bellator 110"
+    },
+    "pancrase:2006-03-19:pancrase-blow-2": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2006 in Pancrase#Pancrase: Blow 2"
+    },
+    "pancrase:2007-02-28:pancrase-rising-2": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2007 in Pancrase#Pancrase: Rising 2"
+    },
+    "pancrase:2007-03-18:pancrase-rising-3": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2007 in Pancrase#Pancrase: Rising 3"
+    },
+    "pancrase:2013-03-17:pancrase-246": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "pancrase:2019-03-17:pancrase-303": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "pride:2003-03-16:pride-25": {
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Pride 25",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0a/2019_Taiwan_Pride_25.jpg/1280px-2019_Taiwan_Pride_25.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Pride 25 event image",
+      "imageCredit": "Wikimedia Commons · Vian Chen · CC BY-SA 4.0",
+      "imageFileTitle": "File:2019 Taiwan Pride 25.jpg",
+      "width": 3024,
+      "height": 4032,
+      "score": 224
+    },
+    "bellator:2012-03-16:bellator-61": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator Fighting Championships: Season Six#Bellator 61"
+    },
+    "bellator:2018-03-02:bellator-195": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA in 2018#Bellator 195"
+    },
+    "pride:1998-03-15:pride-2": {
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Pride 2",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/SF_Pride_2.jpg/1280px-SF_Pride_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Pride 2 event image",
+      "imageCredit": "Wikimedia Commons · Fuzchia · CC BY-SA 4.0",
+      "imageFileTitle": "File:SF Pride 2.jpg",
+      "width": 2988,
+      "height": 5312,
+      "score": 224
+    },
+    "bellator:2017-03-03:bellator-174": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA in 2017#Bellator 174"
+    },
+    "bellator:2018-03-03:bellator-monster-energy-fight-series-atlanta": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA in 2018#Bellator: Monster Energy Fight Series: Atlanta"
+    },
+    "pancrase:2012-03-03:pancrase-progress-tour-2": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "pancrase:2015-03-15:pancrase-265": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "bellator:2014-03-14:bellator-112": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA: Season Ten#Bellator 112"
+    },
+    "bellator:2016-03-04:bellator-151": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA in 2016#Bellator 151"
+    },
+    "pancrase:2023-03-04:pancrase-29th-neo-blood-tournament": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "pancrase:2026-03-14:pancrase-361": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "bellator:2011-03-05:bellator-35": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 35"
+    },
+    "pancrase:2011-03-13:pancrase-impressive-tour-2": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2011 in Pancrase#Pancrase: Impressive Tour 2"
+    },
+    "pancrase:2016-03-13:pancrase-276": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "bellator:2011-03-12:bellator-36": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 36"
+    },
+    "pancrase:2005-03-06:pancrase-spiral-2": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2005 in Pancrase#Pancrase: Spiral 2"
+    },
+    "pancrase:2017-03-12:pancrase-285": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "rizin:2022-03-06:rizin-landmark-2": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2022 in Rizin Fighting Federation#Rizin Landmark 2"
+    },
+    "bellator:2013-03-07:bellator-92": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator Fighting Championships: Season Eight#Bellator 92"
+    },
+    "bellator:2014-03-07:bellator-111": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA: Season Ten#Bellator 111"
+    },
+    "pancrase:2007-03-11:pancrase-korea-hybrid-challenge": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2007 in Pancrase#Pancrase: Korea Hybrid Challenge"
+    },
+    "pancrase:2012-03-11:pancrase-progress-tour-3": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "pancrase:2018-03-11:pancrase-294": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "pancrase:2003-03-08:pancrase-hybrid-3": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2003 in Pancrase#Pancrase: Hybrid 3"
+    },
+    "rizin:2026-03-08:rizin-52": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "2026 in Rizin Fighting Federation#Rizin 52"
+    },
+    "bellator:2012-03-09:bellator-60": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator Fighting Championships: Season Six#Bellator 60"
+    },
+    "pancrase:1999-03-09:pancrase-breakthrough-3": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 3"
+    },
+    "pancrase:2025-03-09:pancrase-352": {
+      "strategyVersion": 4,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "List of Pancrase events"
+    },
+    "bellator:2024-09-14:bellator-champions-series-5": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator Champions Series 5",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/1/12/Bellator_Champions_Series_5.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator Champions Series 5 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2021-09-18:bellator-266": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 266",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/01/Bellator266.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 266 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "pride:2002-08-28:pride-shockwave": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Pride Shockwave",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/1/1e/Pride_Shockwave_poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Pride Shockwave event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2015-09-19:bellator-142-dynamite-1": {
+      "strategyVersion": 4,
+      "status": "poster-candidate",
+      "sourceType": "wikipedia-page-artwork",
+      "artworkType": "poster",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA & Glory: Dynamite 1",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/98/Bellator_MMA_%26_Glory_Dynamite_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 142: Dynamite 1 event poster",
+      "imageCredit": "Wikipedia",
+      "imageFileTitle": "File:Bellator MMA & Glory Dynamite poster.jpg",
+      "width": 421,
+      "height": 236,
+      "score": 191
+    },
+    "bellator:2022-09-23:bellator-285": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 285",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/da/Bellator285.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 285 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2023-09-23:bellator-299": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 299",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/e/e4/Bellator_Eblen_vs._Edwards.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 299 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2021-08-20:bellator-265": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 265",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/b/b6/Bellator265.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 265 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2021-10-01:bellator-267": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 267",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/69/BellatorLondon.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 267 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2022-10-01:bellator-286": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 286",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/5c/Bellator286.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 286 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2021-08-13:bellator-264": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 264",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/70/Bellator264.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 264 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2022-08-12:bellator-284": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 284",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/f5/Bellator284.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 284 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2023-08-11:bellator-298": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 298",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/1/15/Bellator298.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 298 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2023-10-07:bellator-300": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 300",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/a0/Bellator300.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 300 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2021-10-16:bellator-268": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 268",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/b/b0/BellatorLHWGP.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 268 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2021-07-31:bellator-263": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 263",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/df/Bellator263.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 263 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2023-07-30:bellator-mma-x-rizin-2": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA x Rizin 2",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/2/2d/BellatorXRizin2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator MMA x Rizin 2 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "pride:2006-10-21:pride-32": {
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Pride 32",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Public_nudity_-_Toronto_Pride_32.jpg/1280px-Public_nudity_-_Toronto_Pride_32.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Pride 32 event image",
+      "imageCredit": "Wikimedia Commons · Jim MacDonald · CC BY-SA 2.0",
+      "imageFileTitle": "File:Public nudity - Toronto Pride 32.jpg",
+      "width": 1952,
+      "height": 3264,
+      "score": 224
+    },
+    "bellator:2021-10-23:bellator-269": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 269",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/b/b5/BellatorMoscow.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 269 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2022-07-22:bellator-283": {
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 283",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Skelet_van_een_paard_Dierskeletten_%28serietitel%29%2C_RP-P-1997-283.jpg/1280px-Skelet_van_een_paard_Dierskeletten_%28serietitel%29%2C_RP-P-1997-283.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Bellator 283 event image",
+      "imageCredit": "Wikimedia Commons · Rijksmuseum · CC0",
+      "imageFileTitle": "File:Skelet van een paard Dierskeletten (serietitel), RP-P-1997-283.jpg",
+      "width": 2433,
+      "height": 3990,
+      "score": 110
+    },
+    "bellator:2022-10-29:bellator-287": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 287",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/6a/Bellator287.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 287 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2021-07-16:bellator-262": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 262",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/06/Bellator262.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 262 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2021-11-05:bellator-270": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 270",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/00/Bellator270.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 270 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2021-11-12:bellator-271": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 271",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/8f/Bellator271.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 271 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2023-11-17:bellator-301": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 301",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/54/Bellator301.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 301 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2022-11-18:bellator-288": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 288",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/ab/Bellator288.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 288 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2021-06-25:bellator-261": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 261",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/b/b4/Bellator261.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 261 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2022-06-24:bellator-282": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 282",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/a8/Bellator282.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 282 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2024-06-22:bellator-champions-series-3": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator Champions Series 3",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/60/Bellator_Champions_Series_3.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator Champions Series 3 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "rizin:2022-06-19:the-match-2022": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Tenshin Nasukawa vs. Takeru",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/dc/TheMatch2022.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "The Match 2022 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2023-06-16:bellator-297": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 297",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/63/Bellator297.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 297 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2021-12-03:bellator-272": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 272",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/f1/Bellator272.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 272 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2021-06-11:bellator-260": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 260",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/94/Bellator260.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 260 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2022-12-09:bellator-289": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 289",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/82/Bellator289.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 289 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "rizin:2026-06-06:makoto-takahashi": {
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Japan",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Makoto_Takahashi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Makoto Takahashi event image",
+      "imageCredit": "Wikimedia Commons · Ministry of Internal Affairs and Communications (Japan) · CC BY 4.0",
+      "imageFileTitle": "File:Makoto Takahashi.jpg",
+      "width": 1185,
+      "height": 1581,
+      "score": 164
+    },
+    "bellator:2021-05-21:bellator-259": {
+      "strategyVersion": 4,
+      "status": "poster-candidate",
+      "sourceType": "wikipedia-page-artwork",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 259",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/7d/Bellator_259.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 259 event image",
+      "imageCredit": "Wikipedia",
+      "imageFileTitle": "File:Bellator 259.jpg",
+      "width": 421,
+      "height": 237,
+      "score": 226
+    },
+    "pride:2006-12-31:pride-shockwave-2006": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Pride Shockwave 2006",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/3b/Pride_Shockwave_2006.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Pride Shockwave 2006 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2022-12-31:bellator-mma-vs-rizin": {
+      "strategyVersion": 4,
+      "status": "poster-candidate",
+      "sourceType": "wikipedia-page-artwork",
+      "artworkType": "poster",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator MMA vs. Rizin",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/e/e6/Bellator_vs._Rizin_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator MMA vs. Rizin event poster",
+      "imageCredit": "Wikipedia",
+      "imageFileTitle": "File:Bellator vs. Rizin poster.jpg",
+      "width": 376,
+      "height": 265,
+      "score": 191
+    },
+    "bellator:2024-05-17:bellator-champions-series-2": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator Champions Series 2",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c9/Bellator_303.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator Champions Series 2 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "rizin:2025-12-31:danny-sabatello": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "United States",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Flag_of_the_United_States_%28DDD-F-416E_specifications%29.svg/1280px-Flag_of_the_United_States_%28DDD-F-416E_specifications%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "imageAlt": "Danny Sabatello event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2022-05-13:bellator-281": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 281",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/cb/BellatorAmosovMVP.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 281 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2023-05-12:bellator-296": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 296",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/0a/BellatorParis.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 296 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "rizin:2026-05-10:luiz-gustavo": {
+      "strategyVersion": 4,
+      "status": "commons-event-image",
+      "sourceType": "wikimedia-commons-search",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Brazil",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Luiz_Gustavo_8_Mart_2018.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "Luiz Gustavo event image",
+      "imageCredit": "Wikimedia Commons · Werner100359 · CC BY-SA 4.0",
+      "imageFileTitle": "File:Luiz Gustavo 8 Mart 2018.jpg",
+      "width": 923,
+      "height": 1759,
+      "score": 164
+    },
+    "bellator:2021-05-07:bellator-258": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 258",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/e/e9/Bellator258.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 258 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2022-05-06:bellator-280": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 280",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/73/BellatorParis.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 280 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "rizin:2025-05-04:razhabali-shaydullaev": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Kyrgyzstan",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/Flag_of_Kyrgyzstan.svg/1280px-Flag_of_Kyrgyzstan.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "imageAlt": "Razhabali Shaydullaev event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2022-04-23:bellator-279": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 279",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/ab/Bellator279.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 279 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "bellator:2022-04-22:bellator-278": {
+      "strategyVersion": 4,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "wikipediaTitle": "Bellator 278",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/b/bb/Bellator_278.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Bellator 278 event image",
+      "imageCredit": "Wikipedia"
     }
   },
   "strategyVersion": 4
