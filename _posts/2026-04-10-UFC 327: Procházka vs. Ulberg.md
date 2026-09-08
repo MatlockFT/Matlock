@@ -62,6 +62,6 @@ This should be a war.
 
 Wow... if my picks are any indication of what might go down tomorrow, this card is gonna be insane. I also haven't checked the odds to see if I picked more favs or underdogs. 😂
 
-[Follow me on Verdict](https://verdictmma.com/profile/matlockfighttalk)
+[Follow me on Verdict](https://verdictmma.com/profile/mmamatlock)
 
 Enjoy the fights!
