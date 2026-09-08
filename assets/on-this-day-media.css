@@ -1,0 +1,105 @@
+/* Full On This Day archive: show the complete source image.
+   The fallback keeps a fixed thumbnail shape while an image is loading, but once
+   real artwork is available its own aspect ratio drives the card. Tall posters
+   may grow vertically; very tall art is contained inside a matte instead of cropped. */
+
+.otd-page .otd-entry {
+    grid-template-columns: 78px minmax(200px, 270px) minmax(0, 1fr);
+}
+
+.otd-page .otd-entry-media.is-image-ready {
+    display: block;
+    width: 100%;
+    aspect-ratio: auto;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.035), transparent 62%),
+        #090909;
+}
+
+/* The archive image is the content, not a decorative crop. */
+.otd-page .otd-entry-media.is-image-ready::after {
+    display: none;
+}
+
+.otd-page .otd-entry-media.is-image-ready img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    margin: 0 auto;
+    object-fit: contain;
+    object-position: center;
+    background: transparent;
+    filter: saturate(0.92) contrast(1.035) brightness(0.98);
+    transform: none;
+}
+
+.otd-page .otd-entry:hover .otd-entry-media.is-image-ready img {
+    filter: saturate(1) contrast(1.025) brightness(1);
+    transform: none;
+}
+
+/* Keep the credit outside the artwork so it never covers poster text or faces. */
+.otd-page .otd-entry-media.is-image-ready .otd-media-credit {
+    position: static;
+    display: block;
+    padding: 0.34rem 0.46rem 0.36rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(0, 0, 0, 0.38);
+    color: rgba(255, 255, 255, 0.56);
+    font-size: 0.45rem;
+    line-height: 1;
+    text-align: right;
+}
+
+/* Do not let the hover treatment visually clip the newly preserved edges. */
+.otd-page .otd-entry:hover .otd-entry-media.is-image-ready {
+    transform: translateY(-1px);
+}
+
+@media (max-width: 980px) {
+    .otd-page .otd-entry {
+        grid-template-columns: 66px minmax(180px, 230px) minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 760px) {
+    .otd-page .otd-entry {
+        grid-template-columns: 52px minmax(0, 1fr);
+    }
+
+    .otd-page .otd-entry-media.is-image-ready {
+        width: min(100%, 520px);
+        max-width: 100%;
+        justify-self: start;
+    }
+
+    .otd-page .otd-entry-media.is-image-ready img {
+        max-height: 460px;
+    }
+}
+
+@media (max-width: 420px) {
+    .otd-page .otd-entry {
+        grid-template-columns: 46px minmax(0, 1fr);
+    }
+
+    .otd-page .otd-entry-media.is-image-ready img {
+        max-height: 430px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .otd-page .otd-entry-media.is-image-ready img,
+    .otd-page .otd-entry:hover .otd-entry-media.is-image-ready img {
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
+html.reduce-motion .otd-page .otd-entry-media.is-image-ready img,
+html.reduce-motion .otd-page .otd-entry:hover .otd-entry-media.is-image-ready img {
+    transition: none !important;
+    transform: none !important;
+}
