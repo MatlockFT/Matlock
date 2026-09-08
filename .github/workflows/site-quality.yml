@@ -41,6 +41,7 @@ jobs:
           node --check assets/news-otd-deferred.js
           node --check assets/on-this-day.js
           node --check assets/on-this-day-full.js
+          node --check assets/on-this-day-media-adaptive.js
           node --check assets/event-map-v2.js
           node --check assets/event-map-enhancements.js
           node --check assets/event-map-detail.js
@@ -50,6 +51,7 @@ jobs:
           node --check scripts/check-on-this-day.mjs
           node --check scripts/update-fighter-birthdays.mjs
           node --check scripts/update-on-this-day-events.mjs
+          node --check scripts/enrich-on-this-day-images.mjs
           node --check scripts/upcoming-events-data.mjs
           node --check scripts/update-upcoming-ufc-events.mjs
           node --check scripts/update-pfl-upcoming-events.mjs
@@ -95,6 +97,7 @@ jobs:
         run: |
           node -e "JSON.parse(require('fs').readFileSync('assets/data/fighter-birthday-seeds.json','utf8'));"
           node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-event-sources.json','utf8')); if(!Array.isArray(d.sources)||d.sources.length<4) process.exit(1);"
+          node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-image-cache.json','utf8')); if(!d||typeof d.entries!=='object'||Array.isArray(d.entries)) process.exit(1);"
 
       - name: Check Upcoming Events data and renderer
         run: node scripts/validate-upcoming-events.mjs
