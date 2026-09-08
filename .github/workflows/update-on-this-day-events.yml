@@ -10,6 +10,7 @@ on:
       - ".github/workflows/update-on-this-day-events.yml"
       - "assets/data/on-this-day-event-sources.json"
       - "scripts/update-on-this-day-events.mjs"
+      - "scripts/report-on-this-day-coverage.mjs"
       - "scripts/check-on-this-day.mjs"
   schedule:
     - cron: "42 9 * * *"
@@ -40,10 +41,14 @@ jobs:
       - name: Check updater syntax
         run: |
           node --check scripts/update-on-this-day-events.mjs
+          node --check scripts/report-on-this-day-coverage.mjs
           node --check scripts/check-on-this-day.mjs
 
       - name: Refresh event anniversaries from Wikipedia
         run: node scripts/update-on-this-day-events.mjs
+
+      - name: Check calendar coverage
+        run: node scripts/report-on-this-day-coverage.mjs
 
       - name: Validate On This Day archive
         run: npm run check:history
