@@ -1,0 +1,64 @@
+name: Commit validated Event Map hardening
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/event-map-hardening-commit-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  commit-hardening:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Apply validated Event Map patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          lines = Path('.github/workflows/event-map-hardening-once.yml').read_text(encoding='utf-8').splitlines()
+          name = next(i for i, line in enumerate(lines) if line.strip() == '- name: Recover and run hardening patch')
+          run = next(i for i in range(name + 1, len(lines)) if lines[i].strip() == 'run: |')
+          end = next(i for i in range(run + 1, len(lines)) if lines[i].strip() == '- name: Validate patched source and data')
+          shell = '\n'.join(line[10:] if line.startswith('          ') else line for line in lines[run + 1:end]) + '\n'
+          Path('/tmp/apply-event-map-hardening.sh').write_text(shell, encoding='utf-8')
+          PY
+          bash /tmp/apply-event-map-hardening.sh
+
+      - name: Validate hardening
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check assets/event-map-v2.js
+          node --check assets/event-map-deferred.js
+          node --check assets/event-map-enhancements.js
+          node --check scripts/validate-event-map-quality.mjs
+          node --check scripts/check-event-map-architecture.mjs
+          node --check scripts/event-map-smoke.spec.cjs
+          node scripts/validate-event-map-regional.mjs
+          node scripts/validate-event-map-quality.mjs
+          node scripts/check-event-map-architecture.mjs
+          ! test -e assets/event-map-detail.js
+
+      - name: Commit non-workflow hardening
+        shell: bash
+        run: |
+          set -euo pipefail
+          git restore .github/workflows/site-quality.yml
+          rm -f .github/workflows/event-map-smoke.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Harden Event Map interactions and mobile behavior"
+          git pull --rebase origin main
+          git push origin HEAD:main
