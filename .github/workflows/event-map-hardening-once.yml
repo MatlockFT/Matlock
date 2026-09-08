@@ -18,7 +18,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 16
+          fetch-depth: 18
 
       - name: Recover and run hardening patch
         shell: bash
@@ -37,6 +37,11 @@ jobs:
               raise SystemExit('Could not locate patch helper')
           body = body.replace(original_helper, robust_helper, 1)
           body = body.replace('r"^\\(\\(\\) => \\{.*?\\n\\}\\)\\(\\);"', 'r"^(?:/\\*.*?\\*/\\s*)?\\(\\(\\) => \\{.*?\\n\\}\\)\\(\\);"', 1)
+          old_location_check = "  if (!locationHasState(event)) failures.push(`${label}: location/venue has no recognizable U.S. state.`);"
+          new_location_check = "  if (source === 'regional' && !locationHasState(event)) failures.push(`${label}: location/venue has no recognizable U.S. state.`);"
+          if old_location_check not in body:
+              raise SystemExit('Could not locate Event Map location quality rule')
+          body = body.replace(old_location_check, new_location_check, 1)
           replacements = {
             "text = replace_once(text, old_cluster_loop, new_cluster_loop, 'cluster detail rows')": "pattern_cluster_rows = re.compile(r\"        ordered\\.forEach\\(event => \\{.*?\\n        \\}\\);\\n    \\}\\n\\n    function scrollDetailOnMobile\", re.S)\ntext, count = pattern_cluster_rows.subn(new_cluster_loop + \"\\n    function scrollDetailOnMobile\", text, count=1)\nif count != 1:\n    raise SystemExit('Patch target not found: cluster detail rows')",
             "text = replace_once(text, old_selection, new_selection, 'selection state machine')": "pattern_selection = re.compile(r\"    function selectEvent\\(event,.*?\\n    function renderSelectedState\\(\\) \\{\", re.S)\ntext, count = pattern_selection.subn(new_selection + \"\\n    function renderSelectedState() {\", text, count=1)\nif count != 1:\n    raise SystemExit('Patch target not found: selection state machine')",
