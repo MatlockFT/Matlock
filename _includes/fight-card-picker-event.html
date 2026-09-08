@@ -3,6 +3,7 @@
   class="upcoming-event-card"
   id="{{ event.id }}"
   data-picker-event-id="{{ event.id }}"
+  data-event-id="{{ event.id }}"
   data-auto-promotion="{{ event.promotion_key }}"
   data-regional="{% if event.regional %}true{% else %}false{% endif %}"
   aria-labelledby="{{ event.id }}-title"
@@ -21,6 +22,7 @@
       {% if event.broadcast != '' %}<p>{{ event.broadcast }}</p>{% endif %}
       {% if event.official_url != '' %}<a href="{{ event.official_url }}" target="_blank" rel="noopener noreferrer">Official event page ↗</a>{% endif %}
       {% if event.source_card_url and event.source_card_url != '' and event.source_card_url != event.official_url %}<a href="{{ event.source_card_url }}" target="_blank" rel="noopener noreferrer">Fight card source ↗</a>{% endif %}
+      <a href="{{ '/event-map/' | relative_url }}?event={{ event.id | url_encode }}" data-picker-map-link data-event-id="{{ event.id }}" hidden>View on Event Map ↗</a>
     </div>
   </header>
 
