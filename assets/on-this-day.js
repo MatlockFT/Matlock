@@ -2,7 +2,7 @@
     const widgets = [...document.querySelectorAll("[data-on-this-day]")];
     if (!widgets.length) return;
 
-    // Leap-year reference keeps Feb. 29 available while the archive itself
+    // Leap-year reference keeps Feb. 29 selectable while the archive itself
     // intentionally matches month/day across every historical year.
     const REFERENCE_YEAR = 2024;
     const kindOrder = new Map([
@@ -34,23 +34,26 @@
 
     function localToday() {
         const now = new Date();
-        return new Date(REFERENCE_YEAR, now.getMonth(), now.getDate());
+        return new Date(now.getFullYear(), now.getMonth(), now.getDate());
     }
 
     function keyForDate(date) {
         return `${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
     }
 
+    function dateForMonthDay(month, day, year = new Date().getFullYear()) {
+        const candidate = new Date(year, month - 1, day);
+        if (candidate.getMonth() === month - 1 && candidate.getDate() === day) return candidate;
+
+        const fallback = new Date(REFERENCE_YEAR, month - 1, day);
+        if (fallback.getMonth() === month - 1 && fallback.getDate() === day) return fallback;
+        return null;
+    }
+
     function parseKey(value) {
         const match = /^(\d{2})-(\d{2})$/.exec(value || "");
         if (!match) return null;
-
-        const month = Number(match[1]);
-        const day = Number(match[2]);
-        const date = new Date(REFERENCE_YEAR, month - 1, day);
-
-        if (date.getMonth() !== month - 1 || date.getDate() !== day) return null;
-        return date;
+        return dateForMonthDay(Number(match[1]), Number(match[2]));
     }
 
     function displayDate(date, long = false) {
@@ -241,7 +244,7 @@
         }
 
         function setActiveDate(date) {
-            activeDate = new Date(REFERENCE_YEAR, date.getMonth(), date.getDate());
+            activeDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
             updateUrl();
             render();
         }
@@ -298,7 +301,10 @@
         function render() {
             const matching = entriesForDate(entries, activeDate);
             dateDisplay.textContent = displayDate(activeDate, true);
-            dateDisplay.setAttribute("datetime", keyForDate(activeDate));
+            dateDisplay.setAttribute(
+                "datetime",
+                `${activeDate.getFullYear()}-${keyForDate(activeDate)}`
+            );
 
             if (dateInput) {
                 dateInput.value = `${REFERENCE_YEAR}-${keyForDate(activeDate)}`;
@@ -360,8 +366,10 @@
         next?.addEventListener("click", () => shiftDay(1));
         todayButton?.addEventListener("click", () => setActiveDate(localToday()));
         dateInput?.addEventListener("change", () => {
-            const selected = new Date(`${dateInput.value}T12:00:00`);
-            if (Number.isNaN(selected.getTime())) return;
+            const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateInput.value || "");
+            if (!match) return;
+            const selected = dateForMonthDay(Number(match[2]), Number(match[3]));
+            if (!selected) return;
             setActiveDate(selected);
         });
 
