@@ -211,6 +211,7 @@ function eventRowsFromHtml(html, source) {
             source: "Wikipedia",
             sourceUrl: sourceLink(cells[eventCellIndex], source.page),
             autoKey,
+            archiveSource: source.id,
             generatedBy: GENERATED_BY,
             weight: Number(source.weight || 40)
         };
@@ -254,19 +255,20 @@ const sources = Array.isArray(sourceData?.sources) ? sourceData.sources : [];
 if (sources.length < 4) throw new Error(`Event source registry is unexpectedly small (${sources.length} sources).`);
 
 const generated = [];
-const sourceCounts = {};
 for (const source of sources) {
     const sourceEntries = await fetchSource(source);
-    sourceCounts[source.id] = sourceEntries.length;
     generated.push(...sourceEntries);
     console.log(`${source.id}: ${sourceEntries.length} historical events`);
 }
 
 const uniqueGenerated = [];
 const generatedKeys = new Set();
+const dateTitles = new Set();
 for (const entry of generated) {
-    if (generatedKeys.has(entry.autoKey)) continue;
+    const dateTitle = `${entry.date}::${entry.title}`.toLowerCase();
+    if (generatedKeys.has(entry.autoKey) || dateTitles.has(dateTitle)) continue;
     generatedKeys.add(entry.autoKey);
+    dateTitles.add(dateTitle);
     uniqueGenerated.push(entry);
 }
 
@@ -275,6 +277,11 @@ uniqueGenerated.sort((first, second) => first.date.localeCompare(second.date) ||
 const minimumTotal = sources.reduce((total, source) => total + Number(source.minimumEvents || 0), 0);
 if (uniqueGenerated.length < minimumTotal) {
     throw new Error(`Only parsed ${uniqueGenerated.length} unique historical events; refusing to replace the event archive.`);
+}
+
+const sourceCounts = Object.fromEntries(sources.map(source => [source.id, 0]));
+for (const entry of uniqueGenerated) {
+    if (entry.archiveSource in sourceCounts) sourceCounts[entry.archiveSource] += 1;
 }
 
 const preserved = (history.entries || []).filter(entry => entry?.generatedBy !== GENERATED_BY);
