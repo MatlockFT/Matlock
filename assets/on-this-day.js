@@ -271,6 +271,15 @@
         bestLoadedImage(entry, priority).then(result => {
             if (!result?.image || !media.isConnected) return;
             media.classList.remove("is-fallback");
+            if (compact) {
+                const ratio = result.image.naturalHeight
+                    ? result.image.naturalWidth / result.image.naturalHeight
+                    : 1.5;
+                media.classList.remove("is-portrait", "is-square", "is-landscape");
+                media.classList.add(
+                    ratio < 0.9 ? "is-portrait" : ratio < 1.25 ? "is-square" : "is-landscape"
+                );
+            }
             media.replaceChildren(result.image);
             if (result.credit) media.append(element("span", "otd-media-credit", result.credit));
         });

@@ -374,6 +374,7 @@
     }
 
     function setStatus(data, { fallbackUsed = false } = {}) {
+        if (!status || !liveStatus) return;
         const generatedAt = safeDate(data.generatedAt);
         let timeLabel = "recently";
 
@@ -455,14 +456,14 @@
     }
 
     async function refreshFeed({ quiet = false } = {}) {
-        if (!quiet) {
+        if (!quiet && status && liveStatus) {
             status.textContent = allStories.length
                 ? "Checking for new stories…"
                 : "Loading the latest stories…";
             status.dataset.state = "loading";
             liveStatus.dataset.state = "loading";
         }
-        refreshButton.disabled = true;
+        if (refreshButton) refreshButton.disabled = true;
 
         try {
             const data = await fetchLiveFeed();
@@ -471,8 +472,8 @@
             renderFeed(data);
         } catch {
             if (allStories.length) {
-                status.dataset.state = "stale";
-                liveStatus.dataset.state = "stale";
+                if (status) status.dataset.state = "stale";
+                if (liveStatus) liveStatus.dataset.state = "stale";
                 return;
             }
 
@@ -480,9 +481,11 @@
                 const fallback = await fetchJson(fallbackFeedUrl);
                 renderFeed(fallback, { fallbackUsed: true });
             } catch {
-                status.textContent = "News feed temporarily unavailable · Try refresh";
-                status.dataset.state = "error";
-                liveStatus.dataset.state = "error";
+                if (status) {
+                    status.textContent = "News feed temporarily unavailable";
+                    status.dataset.state = "error";
+                }
+                if (liveStatus) liveStatus.dataset.state = "error";
                 leadGrid.setAttribute("aria-busy", "false");
                 moreList.setAttribute("aria-busy", "false");
 
@@ -495,7 +498,7 @@
                 }
             }
         } finally {
-            refreshButton.disabled = false;
+            if (refreshButton) refreshButton.disabled = false;
         }
     }
 
@@ -510,7 +513,7 @@
         renderMoreStories();
     });
 
-    refreshButton.addEventListener("click", () => refreshFeed());
+    refreshButton?.addEventListener("click", () => refreshFeed());
 
     window.addEventListener("matlock:preferences", event => {
         if (event.detail?.reducedMotion) {

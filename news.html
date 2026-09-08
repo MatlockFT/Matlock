@@ -29,15 +29,6 @@ page_scripts:
     data-refresh-interval="300000"
     aria-label="MMA News"
 >
-    <div class="news-lead-meta" role="group" aria-label="News feed controls">
-        <div class="news-live-status" aria-live="polite">
-            <span class="news-live-dot" aria-hidden="true"></span>
-            <span data-news-status>Loading…</span>
-        </div>
-
-        <button class="news-source-chip" type="button" data-news-refresh>Refresh</button>
-    </div>
-
     {% if news_matlock_post %}
         <section class="news-matlock-latest" aria-label="Latest original MMA Matlock article">
             <span class="news-matlock-label">MMA Matlock</span>

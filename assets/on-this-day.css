@@ -76,8 +76,9 @@
 }
 
 .otd-compact-media {
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 4 / 3;
     border-bottom: 1px solid var(--border);
+    background: #070707;
 }
 
 .otd-compact-media::after,
@@ -106,6 +107,22 @@
     object-fit: cover;
     filter: saturate(0.72) contrast(1.08) brightness(0.9);
     transition: filter 180ms ease, transform 220ms ease;
+}
+
+/* Compact News cards protect faces/posters instead of forcing every image through a centered crop. */
+.otd-compact-media img {
+    object-position: center top;
+}
+
+.otd-compact-media.is-portrait img,
+.otd-compact-media.is-square img {
+    object-fit: contain;
+    object-position: center center;
+}
+
+.otd-compact-item:hover .otd-compact-media.is-portrait img,
+.otd-compact-item:hover .otd-compact-media.is-square img {
+    transform: none;
 }
 
 .otd-compact-item:hover .otd-compact-media img,

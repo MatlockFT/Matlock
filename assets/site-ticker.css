@@ -499,3 +499,15 @@ html.reduce-motion body .site-news-sequence:nth-child(2) {
 html.reduce-motion .site-event-primary-countdown[data-live="true"]::before {
     animation: none;
 }
+
+/* Pause the actual moving rail. CSS play-state resumes from the exact frame instead of catching up. */
+.site-news-viewport:hover .site-news-track,
+.site-news-viewport:focus-within .site-news-track {
+    animation-play-state: paused !important;
+}
+
+html.reduce-motion body .site-news-viewport:hover .site-news-track,
+html.reduce-motion body .site-news-viewport:focus-within .site-news-track {
+    animation-play-state: paused !important;
+}
+
