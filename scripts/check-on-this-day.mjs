@@ -6,6 +6,7 @@ const data = JSON.parse(await readFile(file, "utf8"));
 const entries = Array.isArray(data?.entries) ? data.entries : [];
 const allowedKinds = new Set([
     "fight",
+    "event",
     "signing",
     "debut",
     "title",
@@ -17,6 +18,7 @@ const allowedKinds = new Set([
 const failures = [];
 const seen = new Set();
 const birthdayKeys = new Set();
+const eventKeys = new Set();
 
 if (!Number.isInteger(data?.version) || data.version < 1) {
     failures.push("version must be a positive integer");
@@ -67,6 +69,22 @@ for (const [index, entry] of entries.entries()) {
         }
     }
 
+    if (entry?.generatedBy === "wikipedia-event-index") {
+        if (entry?.kind !== "event") {
+            failures.push(`${prefix} generated event archive entries must use kind=event`);
+        }
+        if (typeof entry?.autoKey !== "string" || !entry.autoKey.trim()) {
+            failures.push(`${prefix}.autoKey is required for generated event entries`);
+        } else if (eventKeys.has(entry.autoKey)) {
+            failures.push(`${prefix}.autoKey duplicates another generated event`);
+        } else {
+            eventKeys.add(entry.autoKey);
+        }
+        if (typeof entry?.promotion !== "string" || !entry.promotion.trim()) {
+            failures.push(`${prefix}.promotion is required for generated event entries`);
+        }
+    }
+
     if (entry?.detail && entry.detail.length > 240) {
         failures.push(`${prefix}.detail must stay concise (240 characters max)`);
     }
@@ -101,9 +119,25 @@ if (data?.birthdayCount !== undefined && Number(data.birthdayCount) !== birthday
     failures.push(`birthdayCount says ${data.birthdayCount} but ${birthdayCount} birthday entries exist`);
 }
 
+const eventArchiveCount = entries.filter(entry => entry?.generatedBy === "wikipedia-event-index").length;
+if (data?.eventArchiveCount !== undefined && Number(data.eventArchiveCount) !== eventArchiveCount) {
+    failures.push(`eventArchiveCount says ${data.eventArchiveCount} but ${eventArchiveCount} generated event entries exist`);
+}
+
+if (data?.eventArchiveSources !== undefined) {
+    if (!data.eventArchiveSources || typeof data.eventArchiveSources !== "object" || Array.isArray(data.eventArchiveSources)) {
+        failures.push("eventArchiveSources must be an object when present");
+    } else {
+        const sourceTotal = Object.values(data.eventArchiveSources).reduce((total, value) => total + Number(value || 0), 0);
+        if (sourceTotal !== eventArchiveCount) {
+            failures.push(`eventArchiveSources total ${sourceTotal} does not match ${eventArchiveCount} generated events`);
+        }
+    }
+}
+
 if (failures.length) {
     console.error("On This Day validation failed:\n- " + failures.join("\n- "));
     process.exit(1);
 }
 
-console.log(`On This Day data valid: ${entries.length} entries (${birthdayCount} birthdays)`);
+console.log(`On This Day data valid: ${entries.length} entries (${eventArchiveCount} auto events, ${birthdayCount} birthdays)`);
