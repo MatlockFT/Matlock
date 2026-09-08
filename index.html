@@ -47,7 +47,7 @@ page_scripts:
         <section class="home-panel" aria-labelledby="home-next-card-title">
             <header class="home-panel-heading">
                 <h2 id="home-next-card-title">Next Card</h2>
-                <a href="{{ '/upcoming-events/' | relative_url }}">All cards</a>
+                <a href="{{ '/upcoming-events/' | relative_url }}">Fight Cards</a>
             </header>
 
             {% if next_event %}
@@ -78,7 +78,7 @@ page_scripts:
             {% endif %}
         </section>
 
-        <nav class="home-tools-bar" aria-label="MMA Matlock tools">
+        <nav class="home-tools-bar" aria-label="Primary MMA tools">
             <div class="home-tools">
                 <a class="home-tool-link" href="{{ '/upcoming-events/' | relative_url }}">Fight Cards</a>
                 <a class="home-tool-link" href="{{ '/event-map/' | relative_url }}">Event Map</a>
@@ -99,7 +99,7 @@ page_scripts:
         <section class="featured-section" aria-labelledby="latest-breakdown-title">
             <header class="section-header">
                 <h2>Latest Article</h2>
-                <a href="{{ '/breakdowns/' | relative_url }}">All breakdowns</a>
+                <a href="{{ '/breakdowns/' | relative_url }}">Breakdowns</a>
             </header>
 
             <article class="featured-article{% if latest_image %} featured-article-with-image{% endif %}">
@@ -169,7 +169,7 @@ page_scripts:
         <section class="home-panel">
             <header class="home-panel-heading">
                 <h2>Latest News</h2>
-                <a href="{{ '/news/' | relative_url }}">News</a>
+                <a href="{{ '/news/' | relative_url }}">All news</a>
             </header>
             <div class="home-news-list" data-home-news-list>
                 <p class="home-dashboard-loading">Loading…</p>
@@ -180,7 +180,7 @@ page_scripts:
             <section class="home-panel">
                 <header class="home-panel-heading">
                     <h3>On This Day</h3>
-                    <a href="{{ '/on-this-day/' | relative_url }}">Archive</a>
+                    <a href="{{ '/on-this-day/' | relative_url }}">History</a>
                 </header>
                 <div class="home-otd-body" data-home-otd-body>
                     <p class="home-dashboard-loading">Loading…</p>
@@ -190,7 +190,7 @@ page_scripts:
             <section class="home-panel">
                 <header class="home-panel-heading">
                     <h3>UFC Roster</h3>
-                    <a href="{{ '/ufc-roster/' | relative_url }}">Roster</a>
+                    <a href="{{ '/ufc-roster/' | relative_url }}">Open roster</a>
                 </header>
                 <div class="home-roster-body" data-home-roster-body>
                     <p class="home-dashboard-loading">Loading…</p>
@@ -203,7 +203,7 @@ page_scripts:
         <section class="latest-section" aria-labelledby="latest-breakdowns-title">
             <header class="section-header">
                 <h2 id="latest-breakdowns-title">Latest Articles</h2>
-                <a href="{{ '/breakdowns/' | relative_url }}">All articles</a>
+                <a href="{{ '/breakdowns/' | relative_url }}">Breakdowns</a>
             </header>
 
             <div class="article-grid">
