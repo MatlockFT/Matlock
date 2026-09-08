@@ -9,6 +9,8 @@
     --page-header-gap: clamp(.78rem, 1.4vw, 1.05rem);
     --page-header-padding: clamp(.62rem, 1vw, .82rem);
     --section-heading-gap: .7rem;
+    --feature-page-title-size: clamp(2.35rem, 4.7vw, 4.2rem);
+    --feature-page-gap: clamp(1.5rem, 2.7vw, 2.25rem);
 }
 
 /* Header / brand */
@@ -283,6 +285,50 @@ h3 {
 .media-kit-panel h2,
 .media-kit-value > header h2 {
     line-height: 1.08;
+}
+
+/* Special pages retain their own visual identity, but no longer each reserve
+   a different amount of empty space above or below the opening title. */
+.simple-about-hero,
+.contact-hero,
+.privacy-hero,
+.mma-gallery-hero,
+.media-kit-hero,
+.yellow-pages-cover {
+    margin-top: 0;
+}
+
+.simple-about-hero,
+.contact-page .contact-hero-simple,
+.privacy-hero,
+.mma-gallery-hero,
+.media-kit-hero,
+.yellow-pages-cover {
+    margin-bottom: var(--feature-page-gap);
+}
+
+.simple-about-hero h1,
+.contact-hero-main h1,
+.privacy-hero h1,
+.mma-gallery-hero h1,
+.media-kit-hero h1 {
+    font-size: var(--feature-page-title-size);
+    line-height: .98;
+}
+
+/* Contact had a large fixed-height hero even when its content was short.
+   Let content determine the height and retain only intentional breathing room. */
+.contact-page .contact-hero-simple .contact-hero-main {
+    min-height: 0;
+    padding-top: clamp(1.15rem, 2.5vw, 2rem);
+    padding-bottom: clamp(1.15rem, 2.5vw, 2rem);
+}
+
+/* The About and Privacy openers were also behaving like oversized landing
+   heroes. Keep their decoration, but use normal document flow. */
+.simple-about-hero,
+.privacy-hero {
+    min-height: 0;
 }
 
 .media-kit-stat strong,
@@ -566,6 +612,8 @@ html.reduce-motion .mma-gallery-image-button:hover img {
         --page-title-size: clamp(1.85rem, 8.2vw, 2.65rem);
         --page-header-gap: .78rem;
         --page-header-padding: .62rem;
+        --feature-page-title-size: clamp(2rem, 9vw, 3rem);
+        --feature-page-gap: 1.25rem;
     }
 
     .site-main {
@@ -666,6 +714,11 @@ html.reduce-motion .mma-gallery-image-button:hover img {
 
     .otd-page-header .otd-page-date-row {
         margin-top: .2rem;
+    }
+
+    .contact-page .contact-hero-simple .contact-hero-main {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
     }
 }
 
