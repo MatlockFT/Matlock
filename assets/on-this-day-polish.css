@@ -1,0 +1,265 @@
+/* Page-specific finishing pass for the full On This Day archive. */
+
+.otd-page {
+    --otd-ease: cubic-bezier(.2, .75, .25, 1);
+    --otd-soft-panel: rgba(255, 255, 255, 0.025);
+    position: relative;
+}
+
+.otd-page-header {
+    margin-bottom: 0.9rem;
+}
+
+.otd-page-date {
+    view-transition-name: otd-date;
+    text-shadow: 0 10px 36px rgba(0, 0, 0, 0.34);
+}
+
+.otd-page-count {
+    padding: 0.28rem 0.48rem;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.025);
+}
+
+.otd-controls {
+    position: relative;
+    gap: 0.46rem;
+    margin-bottom: 1.15rem;
+    padding: 0.38rem;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 14px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.024), transparent 70%),
+        rgba(8, 8, 8, 0.72);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.otd-control-button,
+.otd-date-input {
+    transition:
+        border-color 160ms ease,
+        background-color 160ms ease,
+        box-shadow 160ms ease,
+        transform 160ms var(--otd-ease);
+}
+
+.otd-control-button:hover,
+.otd-control-button:focus-visible,
+.otd-date-input:hover,
+.otd-date-input:focus-visible {
+    background-color: #111111;
+    box-shadow: inset 0 0 0 1px rgba(255, 74, 84, 0.08);
+}
+
+.otd-control-button:hover,
+.otd-control-button:focus-visible {
+    transform: translateY(-1px);
+}
+
+.otd-control-button:active {
+    transform: translateY(0) scale(0.985);
+}
+
+.otd-control-button:focus-visible,
+.otd-date-input:focus-visible,
+.otd-day-pill:focus-visible,
+.otd-entry-source:focus-visible {
+    outline: 2px solid rgba(255, 74, 84, 0.72);
+    outline-offset: 2px;
+}
+
+.otd-list {
+    position: relative;
+    view-transition-name: otd-list;
+}
+
+.otd-entry {
+    position: relative;
+    margin-inline: -0.6rem;
+    padding-inline: 0.6rem;
+    content-visibility: auto;
+    contain-intrinsic-size: 190px;
+    transition:
+        background-color 180ms ease,
+        border-color 180ms ease;
+}
+
+.otd-entry::before {
+    position: absolute;
+    top: 12%;
+    bottom: 12%;
+    left: 0;
+    width: 2px;
+    border-radius: 999px;
+    background: var(--accent);
+    content: "";
+    opacity: 0;
+    transform: scaleY(0.35);
+    transform-origin: center;
+    transition:
+        opacity 180ms ease,
+        transform 220ms var(--otd-ease);
+}
+
+.otd-entry:hover {
+    background:
+        linear-gradient(90deg, rgba(255, 74, 84, 0.045), rgba(255, 255, 255, 0.012) 38%, transparent 75%);
+}
+
+.otd-entry:hover::before {
+    opacity: 0.75;
+    transform: scaleY(1);
+}
+
+.otd-entry-year,
+.otd-entry-media,
+.otd-entry-title,
+.otd-entry-source {
+    transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        transform 220ms var(--otd-ease);
+}
+
+.otd-entry:hover .otd-entry-year {
+    transform: translateX(2px);
+}
+
+.otd-entry-media {
+    contain: layout paint;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+}
+
+.otd-entry:hover .otd-entry-media {
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+.otd-entry--lead:hover .otd-entry-media {
+    border-color: rgba(255, 74, 84, 0.58);
+}
+
+.otd-entry-source:hover,
+.otd-entry-source:focus-visible {
+    transform: translateX(2px);
+}
+
+.otd-entry-media.is-image-ready img,
+.otd-compact-media.is-image-ready img {
+    animation: otd-image-in 360ms var(--otd-ease) both;
+}
+
+.otd-empty {
+    border-radius: 12px;
+    background: linear-gradient(120deg, rgba(255, 74, 84, 0.035), transparent 55%);
+}
+
+.otd-page.is-loading .otd-controls,
+.otd-page.is-loading .otd-week-strip {
+    opacity: 0.72;
+}
+
+@keyframes otd-image-in {
+    from {
+        opacity: 0;
+        transform: scale(1.025);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes otd-vt-old {
+    to {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes otd-vt-new {
+    from {
+        opacity: 0;
+        transform: translateY(7px);
+    }
+}
+
+::view-transition-old(otd-date),
+::view-transition-old(otd-list) {
+    animation: 120ms ease both otd-vt-old;
+}
+
+::view-transition-new(otd-date),
+::view-transition-new(otd-list) {
+    animation: 230ms var(--otd-ease) both otd-vt-new;
+}
+
+@media (max-width: 760px) {
+    .otd-controls {
+        padding: 0.32rem;
+        border-radius: 12px;
+    }
+
+    .otd-entry {
+        margin-inline: -0.35rem;
+        padding-inline: 0.35rem;
+        contain-intrinsic-size: 300px;
+    }
+
+    .otd-entry::before {
+        display: none;
+    }
+
+    .otd-entry:hover {
+        background: transparent;
+    }
+
+    .otd-entry:hover .otd-entry-media,
+    .otd-entry:hover .otd-entry-year,
+    .otd-entry-source:hover,
+    .otd-entry-source:focus-visible {
+        transform: none;
+    }
+}
+
+@media (hover: none) {
+    .otd-entry:hover,
+    .otd-control-button:hover {
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .otd-control-button,
+    .otd-date-input,
+    .otd-entry,
+    .otd-entry::before,
+    .otd-entry-year,
+    .otd-entry-media,
+    .otd-entry-title,
+    .otd-entry-source,
+    .otd-entry-media img,
+    .otd-compact-media img {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
+html.reduce-motion .otd-control-button,
+html.reduce-motion .otd-date-input,
+html.reduce-motion .otd-entry,
+html.reduce-motion .otd-entry::before,
+html.reduce-motion .otd-entry-year,
+html.reduce-motion .otd-entry-media,
+html.reduce-motion .otd-entry-title,
+html.reduce-motion .otd-entry-source,
+html.reduce-motion .otd-entry-media img,
+html.reduce-motion .otd-compact-media img {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+}
