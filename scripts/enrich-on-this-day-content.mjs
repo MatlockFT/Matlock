@@ -1,7 +1,8 @@
 import fs from "node:fs/promises";
 
 const HISTORY_PATH = process.argv[2] || "assets/data/on-this-day.json";
-const USER_AGENT = "MMA-Matlock-OnThisDay-Content/1.0 (+https://matlockfighttalk.com/on-this-day/)";
+const CACHE_PATH = process.argv[3] || "assets/data/on-this-day-content-cache.json";
+const USER_AGENT = "MMA-Matlock-OnThisDay-Content/1.1 (+https://matlockfighttalk.com/on-this-day/)";
 const REQUEST_TIMEOUT_MS = 20000;
 const REQUEST_ATTEMPTS = 3;
 const ENRICH_LIMIT = Math.max(1, Number(process.env.OTD_CONTENT_ENRICH_LIMIT || 160));
@@ -22,6 +23,15 @@ const normalized = value => clean(value)
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
+
+async function readJson(path, fallback) {
+    try {
+        return JSON.parse(await fs.readFile(path, "utf8"));
+    } catch (error) {
+        if (error?.code === "ENOENT") return fallback;
+        throw error;
+    }
+}
 
 function promotionKey(value) {
     const text = normalized(value);
@@ -46,16 +56,14 @@ function wikipediaReference(entry) {
         title = title.slice(0, index);
     }
 
-    if (!title) {
-        try {
-            const url = new URL(String(entry?.sourceUrl || ""));
-            if (url.hostname.toLowerCase() === "en.wikipedia.org" && url.pathname.startsWith("/wiki/")) {
-                title = decodeURIComponent(url.pathname.slice(6)).replace(/_/g, " ");
-                fragment = decodeURIComponent(url.hash.replace(/^#/, "")).replace(/_/g, " ");
-            }
-        } catch {
-            return { title: "", fragment: "" };
+    try {
+        const url = new URL(String(entry?.sourceUrl || ""));
+        if (!title && url.hostname.toLowerCase() === "en.wikipedia.org" && url.pathname.startsWith("/wiki/")) {
+            title = decodeURIComponent(url.pathname.slice(6)).replace(/_/g, " ");
         }
+        if (!fragment && url.hash) fragment = decodeURIComponent(url.hash.replace(/^#/, "")).replace(/_/g, " ");
+    } catch {
+        // Keep whatever was already recovered from wikipediaTitle.
     }
 
     return {
@@ -64,17 +72,17 @@ function wikipediaReference(entry) {
     };
 }
 
-function recordAgeDays(entry) {
-    const checked = Date.parse(entry?.contentCheckedAt || "");
+function recordAgeDays(record) {
+    const checked = Date.parse(record?.checkedAt || "");
     if (!Number.isFinite(checked)) return Infinity;
     return (Date.now() - checked) / 86400000;
 }
 
-function needsReview(entry) {
-    if (Number(entry?.contentStrategyVersion || 0) < CONTENT_STRATEGY_VERSION) return true;
-    const age = recordAgeDays(entry);
-    if (entry?.contentStatus === "main-event-found") return false;
-    if (entry?.contentStatus === "no-main-event") return age >= EMPTY_RECHECK_DAYS;
+function needsReview(record) {
+    if (!record || Number(record.strategyVersion || 0) < CONTENT_STRATEGY_VERSION) return true;
+    const age = recordAgeDays(record);
+    if (record.status === "main-event-found") return false;
+    if (record.status === "no-main-event") return age >= EMPTY_RECHECK_DAYS;
     return age >= FAILED_RECHECK_DAYS;
 }
 
@@ -214,19 +222,40 @@ async function findMainEvent(entry) {
     return { mainEvent, sourceType: "wikipedia-structured" };
 }
 
-const history = JSON.parse(await fs.readFile(HISTORY_PATH, "utf8"));
-const entries = Array.isArray(history?.entries) ? history.entries : [];
+function applyRecord(entry, record) {
+    if (!record) return false;
+    entry.contentStrategyVersion = Number(record.strategyVersion || CONTENT_STRATEGY_VERSION);
+    entry.contentCheckedAt = record.checkedAt || "";
+    entry.contentStatus = record.status || "";
+    entry.contentSourceType = record.sourceType || "";
+    if (record.mainEvent) entry.mainEvent = record.mainEvent;
+    else delete entry.mainEvent;
+    if (record.error) entry.contentError = record.error;
+    else delete entry.contentError;
+    return Boolean(record.mainEvent);
+}
 
-const eligible = entries
-    .filter(entry => entry?.generatedBy === "wikipedia-event-index")
-    .filter(entry => TARGET_PROMOTIONS.has(promotionKey(entry?.promotion)))
+const history = await readJson(HISTORY_PATH, { entries: [] });
+const cache = await readJson(CACHE_PATH, { version: 1, strategyVersion: CONTENT_STRATEGY_VERSION, updatedAt: null, entries: {} });
+if (!cache.entries || typeof cache.entries !== "object" || Array.isArray(cache.entries)) cache.entries = {};
+
+const generatedTargets = (history.entries || [])
+    .filter(entry => entry?.generatedBy === "wikipedia-event-index" && entry?.autoKey)
+    .filter(entry => TARGET_PROMOTIONS.has(promotionKey(entry?.promotion)));
+
+let applied = 0;
+for (const entry of generatedTargets) {
+    if (applyRecord(entry, cache.entries[entry.autoKey])) applied += 1;
+}
+
+const eligible = generatedTargets
     .filter(entry => wikipediaReference(entry).title || matchupFromTitle(entry))
-    .filter(entry => needsReview(entry))
+    .filter(entry => needsReview(cache.entries[entry.autoKey]))
     .sort((a, b) => {
         const titleMatch = Number(Boolean(matchupFromTitle(b))) - Number(Boolean(matchupFromTitle(a)));
         if (titleMatch) return titleMatch;
-        const missingMain = Number(Boolean(a.mainEvent)) - Number(Boolean(b.mainEvent));
-        if (missingMain) return missingMain;
+        const cachedMain = Number(Boolean(cache.entries[a.autoKey]?.mainEvent)) - Number(Boolean(cache.entries[b.autoKey]?.mainEvent));
+        if (cachedMain) return cachedMain;
         return Number(b.weight || 0) - Number(a.weight || 0) || String(a.date || "").localeCompare(String(b.date || ""));
     })
     .slice(0, ENRICH_LIMIT);
@@ -238,24 +267,27 @@ let cursor = 0;
 const checkedAt = new Date().toISOString();
 
 async function processEntry(entry) {
-    entry.contentStrategyVersion = CONTENT_STRATEGY_VERSION;
-    entry.contentCheckedAt = checkedAt;
     try {
         const result = await findMainEvent(entry);
-        if (result?.mainEvent) {
-            entry.mainEvent = result.mainEvent;
-            entry.contentSourceType = result.sourceType;
-            entry.contentStatus = "main-event-found";
-            found += 1;
-        } else {
-            delete entry.mainEvent;
-            entry.contentSourceType = "wikipedia-structured";
-            entry.contentStatus = "no-main-event";
-            empty += 1;
-        }
+        cache.entries[entry.autoKey] = {
+            strategyVersion: CONTENT_STRATEGY_VERSION,
+            checkedAt,
+            status: result?.mainEvent ? "main-event-found" : "no-main-event",
+            sourceType: result?.sourceType || "wikipedia-structured",
+            wikipediaTitle: wikipediaReference(entry).title,
+            ...(result?.mainEvent ? { mainEvent: result.mainEvent } : {})
+        };
+        if (result?.mainEvent) found += 1;
+        else empty += 1;
     } catch (error) {
-        entry.contentStatus = "check-failed";
-        entry.contentError = clean(error?.message || error).slice(0, 180);
+        cache.entries[entry.autoKey] = {
+            strategyVersion: CONTENT_STRATEGY_VERSION,
+            checkedAt,
+            status: "check-failed",
+            sourceType: "wikipedia-structured",
+            wikipediaTitle: wikipediaReference(entry).title,
+            error: clean(error?.message || error).slice(0, 180)
+        };
         failed += 1;
     }
 }
@@ -273,8 +305,15 @@ async function worker() {
 const workerCount = Math.min(CONCURRENCY, Math.max(eligible.length, 1));
 await Promise.all(Array.from({ length: workerCount }, () => worker()));
 
+for (const entry of generatedTargets) applyRecord(entry, cache.entries[entry.autoKey]);
+cache.version = Math.max(Number(cache.version || 1), 1);
+cache.strategyVersion = CONTENT_STRATEGY_VERSION;
+if (eligible.length) cache.updatedAt = checkedAt;
 history.contentEnrichmentVersion = CONTENT_STRATEGY_VERSION;
-history.contentEnrichmentUpdatedAt = checkedAt;
+history.contentEnrichmentUpdatedAt = cache.updatedAt;
+
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, "utf8");
+await fs.writeFile(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`, "utf8");
 
 console.log(`On This Day targeted content enrichment: ${eligible.length} reviewed across ${[...TARGET_PROMOTIONS].join(", ")}; ${found} main events found, ${empty} without structured main-event data, ${failed} checks failed.`);
+console.log(`Content cache applied ${applied} existing main-event records before review; ${generatedTargets.filter(entry => entry.mainEvent).length}/${generatedTargets.length} targeted events now carry main-event context.`);
