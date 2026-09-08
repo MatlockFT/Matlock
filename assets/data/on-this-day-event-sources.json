@@ -14,7 +14,11 @@
       "page": "List of Pride FC events",
       "promotion": "PRIDE",
       "minimumEvents": 50,
-      "weight": 50
+      "weight": 50,
+      "eventCell": 1,
+      "dateCell": 3,
+      "venueCell": 4,
+      "locationCell": 5
     },
     {
       "id": "strikeforce",
