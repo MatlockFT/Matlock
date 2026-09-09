@@ -16,6 +16,7 @@ const MAX_PER_DAY = Math.max(1, Number(process.env.OTD_SHARE_MAX_PER_DAY || 12))
 const CONCURRENCY = Math.max(1, Math.min(6, Number(process.env.OTD_SHARE_CONCURRENCY || 3)));
 const USER_AGENT = 'MMA-Matlock-OnThisDay-Share/6.0 (+https://mmamatlock.com/on-this-day/)';
 const MAX_OFFICIAL_IMAGES = 2;
+const SUPPLEMENTAL_POSTER_ROLES = new Set(['event-photo', 'fight-photo']);
 
 const FORMATS = {
   post: { width: 1080, height: 1350, quality: 90 },
@@ -393,7 +394,7 @@ async function supplementalLayers(supplemental, formatName, seed) {
   for (let index = 0; index < count; index += 1) {
     const spec = specs[index];
     const source = supplemental[index];
-    const isEventPhoto = source.role === 'event-photo';
+  const isEventPhoto = SUPPLEMENTAL_POSTER_ROLES.has(source.role);
     const eventSpec = {
       x: 0.25,
       y: formatName === 'story' ? 0.48 : 0.45,
@@ -530,7 +531,7 @@ async function renderNoImage(entry, formatName, seed) {
 }
 
 async function renderEntry(entry, formatName, imageBuffer, supplemental) {
-  const seed = hashInt(`${entryAnchor(entry)}:${formatName}:gobold-gaffer-v6`);
+  const seed = hashInt(`${entryAnchor(entry)}:${formatName}:gobold-gaffer-v7`);
   if (!imageBuffer) return renderNoImage(entry, formatName, seed);
   let metadata;
   try { metadata = await sharp(imageBuffer).rotate().metadata(); }
@@ -568,9 +569,9 @@ await fs.mkdir(path.dirname(MANIFEST_PATH), { recursive: true });
 
 const imageCache = new Map();
 const manifest = {
-  version: 6,
-  renderer: 'sharp-gobold-gaffer-v6',
-  style: 'full-frame-gaffer-collage-v1',
+  version: 7,
+  renderer: 'sharp-gobold-gaffer-v7',
+  style: 'poster-event-photo-v1',
   generatedAt,
   publicBase: PUBLIC_BASE,
   windowDays: WINDOW_DAYS,
@@ -588,15 +589,6 @@ await mapLimit(entries, CONCURRENCY, async entry => {
     imageBuffer = await imageCache.get(entry.imageUrl);
   }
 
-  const curated = curatedSources?.entries?.[entry.autoKey] || curatedSources?.entries?.[id] || [];
-  const discovered = curated.length ? curated : await officialUfcImages(entry);
-  const supplemental = [];
-  for (const source of discovered) {
-    if (!imageCache.has(source.imageUrl)) imageCache.set(source.imageUrl, fetchImage(source.imageUrl));
-    const buffer = await imageCache.get(source.imageUrl);
-    if (buffer) supplemental.push({ ...source, buffer });
-  }
-
   let template = 'type';
   if (imageBuffer) {
     try {
@@ -604,6 +596,22 @@ await mapLimit(entries, CONCURRENCY, async entry => {
       template = metadata?.width && metadata?.height && metadata.width / metadata.height < 0.82 ? 'poster' : 'photo';
     } catch {}
   }
+  const curated = curatedSources?.entries?.[entry.autoKey] || curatedSources?.entries?.[id] || [];
+  const discovered = curated.length
+    ? curated
+    : template === 'photo'
+      ? await officialUfcImages(entry)
+      : [];
+  const eligible = template === 'poster'
+    ? discovered.filter(source => SUPPLEMENTAL_POSTER_ROLES.has(source.role))
+    : discovered;
+  const supplemental = [];
+  for (const source of eligible) {
+    if (!imageCache.has(source.imageUrl)) imageCache.set(source.imageUrl, fetchImage(source.imageUrl));
+    const buffer = await imageCache.get(source.imageUrl);
+    if (buffer) supplemental.push({ ...source, buffer });
+  }
+
   if (supplemental.length && template !== 'type') template += '-collage';
 
   const record = {
@@ -636,4 +644,4 @@ await mapLimit(entries, CONCURRENCY, async entry => {
 });
 
 await fs.writeFile(MANIFEST_PATH, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
-console.log(`On This Day share renderer v6: ${entries.length} entries, ${entries.length * Object.keys(FORMATS).length} images, ${targetMonthDays(WINDOW_DAYS).join(', ')}.`);
+console.log(`On This Day share renderer v7: ${entries.length} entries, ${entries.length * Object.keys(FORMATS).length} images, ${targetMonthDays(WINDOW_DAYS).join(', ')}.`);
