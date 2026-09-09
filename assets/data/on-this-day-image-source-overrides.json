@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "entries": [
     {
       "date": "2002-09-07",
@@ -8,8 +8,8 @@
       "sourceType": "tapology-event-page",
       "subjectType": "event",
       "credit": "Tapology",
-      "confidence": 0.96,
-      "matchReason": "Exact Tapology event page for Cage Rage 1: The Beginning on September 7, 2002; use its event poster/primary event image."
+      "confidence": 0.97,
+      "matchReason": "Exact Tapology event page for Cage Rage 1: The Beginning. Event entries must use the actual event poster/key art, not an editorial thumbnail."
     },
     {
       "date": "2002-09-07",
@@ -24,23 +24,22 @@
     {
       "date": "2006-09-10",
       "title": "Pride Final Conflict Absolute",
-      "sourceUrl": "https://www.sherdog.com/events/Pride-FC-Final-Conflict-Absolute-4013",
-      "sourceType": "sherdog-event-page",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/pride-final-conflict-absolute",
+      "sourceType": "tapology-event-page",
       "subjectType": "event",
-      "credit": "Sherdog",
-      "confidence": 0.97,
-      "matchReason": "Exact Sherdog event page for Pride FC: Final Conflict Absolute on September 10, 2006. Use only its event-specific primary image; never a broad search result for the word Pride."
+      "credit": "Tapology",
+      "confidence": 0.99,
+      "matchReason": "Exact Tapology event page for Pride Final Conflict Absolute. Prefer Tapology's actual event poster; do not substitute a Sherdog editorial thumbnail or other related image."
     },
     {
       "date": "2008-09-07",
       "title": "Pancrase: Shining 7",
-      "imageUrl": "https://www.pancrase.co.jp/icn/fujiwara.jpg",
-      "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0907.html",
-      "sourceType": "official-promotion-fighter-fallback",
-      "subjectType": "fighter",
-      "credit": "Pancrase",
-      "confidence": 0.82,
-      "matchReason": "Exact official Pancrase result page for the September 7, 2008 Shining Tour event. No distinct event art is exposed there, so the main-event fighter image is used as the last-resort official fallback."
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/6777-pancrase-193-shining-7",
+      "sourceType": "tapology-event-page",
+      "subjectType": "event",
+      "credit": "Tapology",
+      "confidence": 0.97,
+      "matchReason": "Exact Tapology event page for Pancrase 193: Shining 7. Use the event poster/key art only; fighter-photo fallback is disabled for event entries."
     },
     {
       "date": "2010-09-09",
@@ -50,18 +49,17 @@
       "subjectType": "event",
       "credit": "Tapology",
       "confidence": 0.97,
-      "matchReason": "Exact Tapology event page for Bellator 28; use its event poster/primary event image."
+      "matchReason": "Exact Tapology event page for Bellator 28. Use the actual event poster/key art."
     },
     {
       "date": "2011-09-10",
       "title": "Bellator 49",
-      "imageUrl": "https://www-cdn.sherdog.com/thumbnail_crop/600/_images/pictures/20110910082535_827Q7520.JPG",
-      "sourceUrl": "https://www.sherdog.com/news/news/Lozano-Lima-Santos-Saunders-Advance-to-170-Semis-at-Bellator-49-35473",
-      "sourceType": "event-article",
-      "subjectType": "moment",
-      "credit": "Sherdog · Keith Mills",
-      "confidence": 0.9,
-      "matchReason": "Directly related Bellator 49 main-event photo from Sherdog's event report. Used because Tapology blocks the GitHub Actions resolver and no durable exact poster URL is available in the current cache."
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/10058-bellator-49",
+      "sourceType": "tapology-event-page",
+      "subjectType": "event",
+      "credit": "Tapology",
+      "confidence": 0.99,
+      "matchReason": "Exact Tapology event page for Bellator 49. Use the actual Bellator 49 event poster; Sherdog event-report photography is not an acceptable event image."
     },
     {
       "date": "2013-09-07",
@@ -71,7 +69,7 @@
       "subjectType": "event",
       "credit": "Tapology",
       "confidence": 0.97,
-      "matchReason": "Exact Tapology event page for Bellator 98: Shlemenko vs. Cooper; Tapology's legacy URL slug says bellator-99 but the page title/date identify Bellator 98."
+      "matchReason": "Exact Tapology event page for Bellator 98: Shlemenko vs. Cooper; Tapology's legacy URL slug says bellator-99 but the page title/date identify Bellator 98. Use the event poster/key art."
     },
     {
       "date": "2016-09-11",
@@ -82,7 +80,7 @@
       "subjectType": "event",
       "credit": "Pancrase",
       "confidence": 0.99,
-      "matchReason": "Exact official PANCRASE280 event image from the promotion's September 11, 2016 result page."
+      "matchReason": "Exact official PANCRASE280 event poster/key art from the promotion's September 11, 2016 result page."
     },
     {
       "date": "2018-09-09",
@@ -93,7 +91,7 @@
       "subjectType": "event",
       "credit": "Pancrase",
       "confidence": 0.99,
-      "matchReason": "Exact official PANCRASE299 event image from the promotion's September 9, 2018 event page."
+      "matchReason": "Exact official PANCRASE299 event poster/key art from the promotion's September 9, 2018 event page."
     },
     {
       "date": "2019-09-07",
@@ -103,7 +101,7 @@
       "subjectType": "event",
       "credit": "Tapology",
       "confidence": 0.97,
-      "matchReason": "Exact Tapology event page for Bellator 226: Bader vs. Kongo; use its event poster/primary event image."
+      "matchReason": "Exact Tapology event page for Bellator 226: Bader vs. Kongo. Use the actual event poster/key art."
     },
     {
       "date": "2020-09-11",
@@ -113,7 +111,7 @@
       "subjectType": "event",
       "credit": "Tapology",
       "confidence": 0.97,
-      "matchReason": "Exact Tapology event page for Bellator 245: Davis vs. Machida 2; use its event poster/primary event image."
+      "matchReason": "Exact Tapology event page for Bellator 245: Davis vs. Machida 2. Use the actual event poster/key art."
     },
     {
       "date": "2022-09-11",
@@ -124,7 +122,7 @@
       "subjectType": "event",
       "credit": "Pancrase",
       "confidence": 0.99,
-      "matchReason": "Exact official PANCRASE329 event image from the promotion's September 11, 2022 result page."
+      "matchReason": "Exact official PANCRASE329 event poster/key art from the promotion's September 11, 2022 result page."
     },
     {
       "birthdayKey": "jose-aldo",
