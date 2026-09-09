@@ -18,6 +18,8 @@
         "search results", "search", "athletes", "all athletes", "ufc",
         "page not found", "not found", "access denied", "error"
     ]);
+    const ROMAN_SUFFIXES = new Set(["ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x"]);
+    const GENERATIONAL_SUFFIXES = new Set(["jr", "sr", ...ROMAN_SUFFIXES]);
 
     function element(tag, className, text) {
         const node = document.createElement(tag);
@@ -61,15 +63,88 @@
         }
     }
 
+    function formatSlugToken(part) {
+        const lower = String(part || "").toLowerCase();
+        if (ROMAN_SUFFIXES.has(lower)) return lower.toUpperCase();
+        if (lower === "jr") return "Jr.";
+        if (lower === "sr") return "Sr.";
+        return lower ? lower.charAt(0).toUpperCase() + lower.slice(1) : "";
+    }
+
     function nameFromSlug(slug) {
         return String(slug || "").split("-").filter(Boolean)
-            .map(part => part.charAt(0).toUpperCase() + part.slice(1)).join(" ");
+            .map(formatSlugToken).join(" ");
+    }
+
+    function normalizeDisplayName(value) {
+        const candidate = String(value || "").replace(/\s+/g, " ").trim();
+        if (!candidate || GENERIC_FIGHTER_NAMES.has(candidate.toLowerCase())) return "";
+        const parts = candidate.split(" ");
+        const lastIndex = parts.length - 1;
+        const last = parts[lastIndex]?.replace(/\.$/, "").toLowerCase();
+        if (ROMAN_SUFFIXES.has(last)) parts[lastIndex] = last.toUpperCase();
+        if (last === "jr") parts[lastIndex] = "Jr.";
+        if (last === "sr") parts[lastIndex] = "Sr.";
+        return parts.join(" ");
     }
 
     function fighterDisplayName(fighter) {
-        const candidate = String(fighter?.name || "").replace(/\s+/g, " ").trim();
-        if (candidate && !GENERIC_FIGHTER_NAMES.has(candidate.toLowerCase())) return candidate;
-        return nameFromSlug(fighterSlug(fighter)) || "Unknown fighter";
+        return normalizeDisplayName(fighter?.name) || nameFromSlug(fighterSlug(fighter)) || "Unknown fighter";
+    }
+
+    function suffixInfo(fighter) {
+        const parts = fighterSlug(fighter).toLowerCase().split("-").filter(Boolean);
+        const suffix = GENERATIONAL_SUFFIXES.has(parts.at(-1)) ? parts.at(-1) : "";
+        return {
+            suffix,
+            base: suffix ? parts.slice(0, -1).join("-") : parts.join("-")
+        };
+    }
+
+    function weakProfile(fighter) {
+        return [fighter?.image, fighter?.division, fighter?.record, fighter?.status, fighter?.description]
+            .filter(value => String(value || "").trim()).length <= 1;
+    }
+
+    function baseName(fighter) {
+        const parts = fighterDisplayName(fighter).split(/\s+/).filter(Boolean);
+        const last = parts.at(-1)?.replace(/\.$/, "").toLowerCase();
+        if (GENERATIONAL_SUFFIXES.has(last)) parts.pop();
+        return parts.join(" ").toLowerCase();
+    }
+
+    function likelySameFighter(a, b) {
+        const aUrl = String(a?.url || "").toLowerCase().replace(/\/$/, "");
+        const bUrl = String(b?.url || "").toLowerCase().replace(/\/$/, "");
+        if (aUrl && bUrl && aUrl === bUrl) return true;
+
+        const aInfo = suffixInfo(a);
+        const bInfo = suffixInfo(b);
+        if (!aInfo.base || aInfo.base !== bInfo.base) return false;
+        if (Boolean(aInfo.suffix) === Boolean(bInfo.suffix)) return false;
+        if (baseName(a) !== baseName(b)) return false;
+        if (a?.eventCardUrl && a.eventCardUrl === b?.eventCardUrl) return true;
+        if (a?.octagonDebutAt && a.octagonDebutAt === b?.octagonDebutAt) return true;
+        return weakProfile(a) || weakProfile(b);
+    }
+
+    function preferAlias(a, b) {
+        const aSuffix = Boolean(suffixInfo(a).suffix);
+        const bSuffix = Boolean(suffixInfo(b).suffix);
+        if (aSuffix !== bSuffix) return aSuffix ? a : b;
+        const aMeta = [a?.image, a?.division, a?.record, a?.status, a?.description].filter(Boolean).length;
+        const bMeta = [b?.image, b?.division, b?.record, b?.status, b?.description].filter(Boolean).length;
+        return bMeta > aMeta ? b : a;
+    }
+
+    function dedupeFighters(items) {
+        const output = [];
+        for (const fighter of Array.isArray(items) ? items : []) {
+            const index = output.findIndex(existing => likelySameFighter(existing, fighter));
+            if (index < 0) output.push(fighter);
+            else output[index] = preferAlias(output[index], fighter);
+        }
+        return output;
     }
 
     function initials(name) {
@@ -134,36 +209,35 @@
     }
 
     function combinedAdditions(data, backfill) {
-        const live = Array.isArray(data.additions) ? data.additions : [];
-        const seen = new Set(live.map(item => item?.url).filter(Boolean));
+        const live = dedupeFighters(Array.isArray(data.additions) ? data.additions : []);
         const activeBackfillUrls = Array.isArray(data.activeBackfillUrls)
             ? new Set(data.activeBackfillUrls)
             : null;
-        const filler = (Array.isArray(backfill) ? backfill : []).filter(item => {
-            if (!item?.url || seen.has(item.url)) return false;
-            if (activeBackfillUrls && !activeBackfillUrls.has(item.url)) return false;
-            seen.add(item.url);
-            return true;
-        });
+        const filler = [];
+        for (const item of Array.isArray(backfill) ? backfill : []) {
+            if (!item?.url) continue;
+            if (activeBackfillUrls && !activeBackfillUrls.has(item.url)) continue;
+            if (live.some(existing => likelySameFighter(existing, item))) continue;
+            if (filler.some(existing => likelySameFighter(existing, item))) continue;
+            filler.push(item);
+        }
         return [...live, ...filler].slice(0, 10);
     }
 
     // Departures are intentionally stricter than additions: legacy or single-snapshot misses never render here.
     function credibleRemovals(data) {
-        return (Array.isArray(data.removals) ? data.removals : [])
+        return dedupeFighters((Array.isArray(data.removals) ? data.removals : [])
             .filter(fighter =>
                 fighter?.confirmationSource === "ufc-active-absence-confirmed" &&
                 String(fighter?.status || "").trim().toLowerCase() !== "active"
-            )
-            .slice(0, 6);
+            )).slice(0, 6);
     }
 
     function renderStats(data, additions, removals) {
         if (activeCount) activeCount.textContent = Number.isFinite(Number(data.activeCount))
             ? Number(data.activeCount).toLocaleString()
             : "—";
-        const publishedAdds = Array.isArray(data.additions) ? data.additions.length : 0;
-        if (addCount) addCount.textContent = String(publishedAdds);
+        if (addCount) addCount.textContent = String(additions.length);
         if (removeCount) removeCount.textContent = String(removals.length);
     }
 
