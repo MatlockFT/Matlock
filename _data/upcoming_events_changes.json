@@ -1,7 +1,29 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-08T20:13:52.435Z",
+  "generated_at": "2026-09-09T00:43:31.891Z",
   "changes": [
+    {
+      "id": "2026-09-09T00:43:31.891Z|ufc-fight-night-2026-09-26-fight-card|bout_changed|1",
+      "at": "2026-09-09T00:43:31.891Z",
+      "type": "bout_changed",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Mehemmedeli Osmanli vs Ilimbek Akylbek Uulu changed to Mehemmedeli Osmanli vs Ilimbek Akylbek on Jr. vs Barcelos.",
+      "details": {
+        "order": 4,
+        "section": "Main Card",
+        "from": [
+          "Mehemmedeli Osmanli",
+          "Ilimbek Akylbek Uulu"
+        ],
+        "to": [
+          "Mehemmedeli Osmanli",
+          "Ilimbek Akylbek"
+        ]
+      }
+    },
     {
       "id": "2026-09-08T20:13:52.435Z|noche-ufc-2026-09-12-fight-card|bout_changed|1",
       "at": "2026-09-08T20:13:52.435Z",
@@ -4597,20 +4619,6 @@
       "summary": "Nick Galanti portrait added.",
       "details": {
         "fighter": "Nick Galanti",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|dwcs-season-10-week-3-2026-08-25|portrait_added|22",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-3-2026-08-25",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 3",
-      "event_date": "2026-08-25",
-      "summary": "Carlos Petruzzella portrait added.",
-      "details": {
-        "fighter": "Carlos Petruzzella",
         "source": "sherdog"
       }
     }
