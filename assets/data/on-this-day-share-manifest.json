@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "renderer": "sharp-svg-archive-v1",
+  "generatedAt": null,
+  "publicBase": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-share-cache",
+  "windowDays": 2,
+  "maxPerDay": 12,
+  "formats": {
+    "post": {
+      "width": 1080,
+      "height": 1350
+    },
+    "story": {
+      "width": 1080,
+      "height": 1920
+    },
+    "social": {
+      "width": 1200,
+      "height": 1200
+    }
+  },
+  "entries": {}
+}
