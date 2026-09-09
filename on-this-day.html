@@ -13,6 +13,7 @@ page_scripts:
 
 {% assign otd_build_key = site.time | date: "%m-%d" %}
 {% assign otd_build_lead = site.data.on_this_day_leads.leads[otd_build_key] %}
+{% assign otd_data_version = site.time | date: "%s" %}
 <script>
     (() => {
         const sessionKey = "mma-matlock:otd:last-date";
@@ -48,7 +49,7 @@ page_scripts:
             return;
         }
 
-        fetch("{{ '/assets/data/on-this-day-leads.json' | relative_url }}?v={{ site.asset_version }}", { cache: "force-cache" })
+        fetch("{{ '/assets/data/on-this-day-leads.json' | relative_url }}?v={{ otd_data_version }}", { cache: "force-cache" })
             .then(response => response.ok ? response.json() : Promise.reject(new Error(`HTTP ${response.status}`)))
             .then(data => preload(data?.leads?.[key]))
             .catch(() => {});
@@ -59,8 +60,8 @@ page_scripts:
     class="otd-page"
     data-on-this-day
     data-mode="full"
-    data-history-index-url="{{ '/assets/data/on-this-day-runtime/index.json' | relative_url }}?v={{ site.asset_version }}"
-    data-history-fallback-url="{{ '/assets/data/on-this-day.json' | relative_url }}?v={{ site.asset_version }}"
+    data-history-index-url="{{ '/assets/data/on-this-day-runtime/index.json' | relative_url }}?v={{ otd_data_version }}"
+    data-history-fallback-url="{{ '/assets/data/on-this-day.json' | relative_url }}?v={{ otd_data_version }}"
 >
     <header class="otd-page-header">
         <h1>On This Day in MMA</h1>
