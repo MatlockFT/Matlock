@@ -8,8 +8,10 @@ on:
     paths:
       - ".github/workflows/update-event-map-regional.yml"
       - "_data/upcoming_events.json"
+      - "scripts/event-location-utils.mjs"
       - "scripts/build-event-map-us.mjs"
       - "scripts/validate-event-map-us.mjs"
+      - "scripts/report-event-map-locations.mjs"
       - "scripts/update-event-map-regional.mjs"
       - "scripts/update-event-map-discovery.mjs"
       - "scripts/update-event-map-regional-extra.mjs"
@@ -48,8 +50,10 @@ jobs:
 
       - name: Validate updater syntax
         run: |
+          node --check scripts/event-location-utils.mjs
           node --check scripts/build-event-map-us.mjs
           node --check scripts/validate-event-map-us.mjs
+          node --check scripts/report-event-map-locations.mjs
           node --check scripts/update-event-map-regional.mjs
           node --check scripts/update-event-map-discovery.mjs
           node --check scripts/update-event-map-regional-extra.mjs
@@ -94,23 +98,27 @@ jobs:
       - name: Build trusted U.S. map dataset
         run: node scripts/build-event-map-us.mjs
 
+      - name: Generate Event Map location quality report
+        run: node scripts/report-event-map-locations.mjs
+
       - name: Validate event locations and regional data
         run: |
           node scripts/validate-event-map-regional.mjs
           node scripts/validate-event-map-posters.mjs
           node scripts/validate-event-map-us.mjs
+          node scripts/report-event-map-locations.mjs --check
 
       - name: Commit Event Map data changes
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- _data/event_map_regional.json _data/event_map_us.json; then
+          if git diff --quiet -- _data/event_map_regional.json _data/event_map_us.json _data/event_map_location_report.json; then
             echo "No Event Map data changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- _data/event_map_regional.json _data/event_map_us.json
+          git add -- _data/event_map_regional.json _data/event_map_us.json _data/event_map_location_report.json
           git commit -m "Refresh trusted Event Map data"
           git pull --rebase origin main
           git push origin HEAD:main
