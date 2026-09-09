@@ -200,6 +200,11 @@ function selfTest() {
       'RIZIN Nagasaki must never become Indiana from the word "in"'
     ],
     [
+      { title: 'RIZIN 99', venue: 'T-Mobile Arena · Las Vegas, Nevada' },
+      { city: 'Las Vegas', state: 'NV' },
+      'RIZIN must be allowed onto the U.S. map when the event venue is actually in the U.S.'
+    ],
+    [
       { title: 'Event in Paris', venue: 'Accor Arena · Paris, France' },
       null,
       'foreign venue must not become Indiana from title text'
