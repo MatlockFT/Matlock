@@ -9,6 +9,8 @@ on:
       - ".github/workflows/update-upcoming-ufc-events.yml"
       - "_data/upcoming_events_overrides.json"
       - "scripts/upcoming-events-data.mjs"
+      - "scripts/event-location-utils.mjs"
+      - "scripts/enrich-upcoming-event-locations.mjs"
       - "scripts/update-upcoming-ufc-events.mjs"
       - "scripts/normalize-upcoming-ufc-events.mjs"
       - "scripts/update-dwcs-upcoming-events.mjs"
@@ -36,6 +38,8 @@ jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      EVENT_LOCATION_CONCURRENCY: "3"
 
     steps:
       - name: Check out repository
@@ -53,6 +57,8 @@ jobs:
         run: |
           set -euo pipefail
           node --check scripts/upcoming-events-data.mjs
+          node --check scripts/event-location-utils.mjs
+          node --check scripts/enrich-upcoming-event-locations.mjs
           node --check scripts/update-upcoming-ufc-events.mjs
           node --check scripts/normalize-upcoming-ufc-events.mjs
           node --check scripts/update-dwcs-upcoming-events.mjs
@@ -88,6 +94,9 @@ jobs:
       - name: Read RIZIN event data
         run: node scripts/update-rizin-upcoming-events.mjs
 
+      - name: Enrich event locations from official sources
+        run: node scripts/enrich-upcoming-event-locations.mjs
+
       - name: Resolve verified promotion portraits
         run: node scripts/enrich-fighter-portraits.mjs
 
@@ -115,7 +124,7 @@ jobs:
           set -euo pipefail
           meaningful="$(git status --porcelain -- _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json || true)"
           if [ -z "$meaningful" ]; then
-            echo "No meaningful MMA event, watchdog, or portrait changes. Timestamp-only refresh discarded."
+            echo "No meaningful MMA event, watchdog, location, or portrait changes. Timestamp-only refresh discarded."
             exit 0
           fi
           git config user.name "github-actions[bot]"
