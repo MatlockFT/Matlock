@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 1,
-  "updatedAt": "2026-09-09T00:03:49.838Z",
+  "updatedAt": "2026-09-09T01:17:23.968Z",
   "fighters": {
     "船木誠勝": {
       "checkedAt": "2026-09-08T07:03:33.069Z",
@@ -727,6 +727,100 @@
       "status": "resolved",
       "wikidataId": "Q11369428",
       "englishName": "Yūji Hisamatsu"
+    },
+    "梶田高裕": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "金井一朗": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "resolved",
+      "wikidataId": "Q11646330",
+      "englishName": "Ichirō Kanai"
+    },
+    "佐藤豪則": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "resolved",
+      "wikidataId": "Q7678038",
+      "englishName": "Takenori Sato"
+    },
+    "ストラッサー起一": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "resolved",
+      "wikidataId": "Q11312418",
+      "englishName": "Kiichi Kunimoto"
+    },
+    "isao": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "latin-name",
+      "englishName": "ISAO"
+    },
+    "宇良健吾": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "resolved",
+      "wikidataId": "Q11252092",
+      "englishName": "URAKEN"
+    },
+    "キム・フン": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "resolved",
+      "wikidataId": "Q11297055",
+      "englishName": "Hoon Kim"
+    },
+    "弘中邦佳": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "resolved",
+      "wikidataId": "Q11487189",
+      "englishName": "Kuniyoshi Hironaka"
+    },
+    "ウマハノフ・アルトゥール": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "花澤大介": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "resolved",
+      "wikidataId": "Q11615524",
+      "englishName": "Daisuke Hanazawa"
+    },
+    "網潤太郎": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "uraken": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "latin-name",
+      "englishName": "URAKEN"
+    },
+    "手塚基伸": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "富田浩司": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "resolved",
+      "wikidataId": "Q30926612",
+      "englishName": "Koji Tomita"
+    },
+    "windy智美": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "resolved",
+      "wikidataId": "Q7820181",
+      "englishName": "Windy Tomomi"
+    },
+    "v.v mei": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "latin-name",
+      "englishName": "V.V Mei"
+    },
+    "大類宗次朗": {
+      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
     }
   },
   "entries": {
@@ -5129,6 +5223,473 @@
       "image": {
         "strategyVersion": 1,
         "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2009-11-08:pancrase-changing-tour-7": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2009/1108.html",
+        "rawNames": [
+          "伊藤崇文",
+          "梶田高裕"
+        ],
+        "englishNames": [
+          "Takafumi Itō",
+          "梶田高裕"
+        ],
+        "mainEvent": "Takafumi Itō vs. 梶田高裕"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2009-12-06:pancrase-changing-tour-8": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2009/1206.html",
+        "rawNames": [
+          "竹内出",
+          "金井一朗"
+        ],
+        "englishNames": [
+          "Izuru Takeuchi",
+          "Ichirō Kanai"
+        ],
+        "mainEvent": "Izuru Takeuchi vs. Ichirō Kanai"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2010-01-10:pancrase-gate-4th-chance": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "no-main-event",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2010/0110.html"
+      }
+    },
+    "pancrase:2010-02-07:pancrase-passion-tour-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2010/0207.html",
+        "rawNames": [
+          "近藤有己",
+          "佐藤豪則"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Takenori Sato"
+        ],
+        "mainEvent": "Yuki Kondo vs. Takenori Sato"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2010-03-22:pancrase-passion-tour-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2010/0322.html",
+        "rawNames": [
+          "岩見谷智義",
+          "ストラッサー起一"
+        ],
+        "englishNames": [
+          "岩見谷智義",
+          "Kiichi Kunimoto"
+        ],
+        "mainEvent": "岩見谷智義 vs. Kiichi Kunimoto"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2010-04-04:pancrase-passion-tour-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2010/0404.html",
+        "rawNames": [
+          "大石幸史",
+          "ISAO"
+        ],
+        "englishNames": [
+          "Koji Oishi",
+          "ISAO"
+        ],
+        "mainEvent": "Koji Oishi vs. ISAO"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "commons-headliner-image",
+        "fighterName": "ISAO",
+        "imageFileTitle": "File:Yukisada Isao at Opening Ceremony of the Tokyo International Film Festival 2022 (52461627138).jpg"
+      }
+    },
+    "pancrase:2010-04-29:pancrase-passion-tour-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2010/0429.html",
+        "rawNames": [
+          "金井一朗",
+          "近藤有己"
+        ],
+        "englishNames": [
+          "Ichirō Kanai",
+          "Yuki Kondo"
+        ],
+        "mainEvent": "Ichirō Kanai vs. Yuki Kondo"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2010-05-16:pancrase-gate-5th-chance": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2010/0516.html"
+      }
+    },
+    "pancrase:2010-06-05:pancrase-passion-tour-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2010/0605.html",
+        "rawNames": [
+          "宇良健吾",
+          "KEI山宮"
+        ],
+        "englishNames": [
+          "URAKEN",
+          "Keiichiro Yamamiya"
+        ],
+        "mainEvent": "URAKEN vs. Keiichiro Yamamiya"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "commons-headliner-image",
+        "fighterName": "URAKEN",
+        "imageFileTitle": "File:Horst Espeloer 2014-01-17 Uraken-uchi.jpg"
+      }
+    },
+    "pancrase:2010-07-04:pancrase-passion-tour-6": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2010/0704.html",
+        "rawNames": [
+          "近藤有己",
+          "久松勇二"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Yūji Hisamatsu"
+        ],
+        "mainEvent": "Yuki Kondo vs. Yūji Hisamatsu"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2010-08-08:pancrase-passion-tour-7": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2010/0808.html",
+        "rawNames": [
+          "KEI山宮",
+          "キム・フン"
+        ],
+        "englishNames": [
+          "Keiichiro Yamamiya",
+          "Hoon Kim"
+        ],
+        "mainEvent": "Keiichiro Yamamiya vs. Hoon Kim"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Hoon Kim",
+        "imageFileTitle": "File:Seuk Hoon Kim.jpg"
+      }
+    },
+    "pancrase:2010-09-05:pancrase-passion-tour-8": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2010/0905.html",
+        "rawNames": [
+          "川村亮",
+          "桜木裕司"
+        ],
+        "englishNames": [
+          "Ryo Kawamura",
+          "Yuji Sakuragi"
+        ],
+        "mainEvent": "Ryo Kawamura vs. Yuji Sakuragi"
+      }
+    },
+    "pancrase:2010-09-19:pancrase-2010-pro-am-open-catch-wrestling-tournament": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "no-main-event",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2010/0919.html"
+      }
+    },
+    "pancrase:2010-09-19:pancrase-gate-6th-chance": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "no-main-event",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2010/0919.html"
+      }
+    },
+    "pancrase:2010-10-03:pancrase-passion-tour-9": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2010/1003.html",
+        "rawNames": [
+          "北岡悟",
+          "弘中邦佳"
+        ],
+        "englishNames": [
+          "Satoru Kitaoka",
+          "Kuniyoshi Hironaka"
+        ],
+        "mainEvent": "Satoru Kitaoka vs. Kuniyoshi Hironaka"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2010-11-03:pancrase-passion-tour-10": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2010/1103.html",
+        "rawNames": [
+          "ISAO",
+          "ウマハノフ・アルトゥール"
+        ],
+        "englishNames": [
+          "ISAO",
+          "ウマハノフ・アルトゥール"
+        ],
+        "mainEvent": "ISAO vs. ウマハノフ・アルトゥール"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "commons-headliner-image",
+        "fighterName": "ISAO",
+        "imageFileTitle": "File:Yukisada Isao at Opening Ceremony of the Tokyo International Film Festival 2022 (52461627138).jpg"
+      }
+    },
+    "pancrase:2010-12-05:pancrase-passion-tour-11": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2010/1205.html",
+        "rawNames": [
+          "川村亮",
+          "桜木裕司"
+        ],
+        "englishNames": [
+          "Ryo Kawamura",
+          "Yuji Sakuragi"
+        ],
+        "mainEvent": "Ryo Kawamura vs. Yuji Sakuragi"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Ryo Kawamura",
+        "imageFileTitle": "File:Japanese newscaster kawamura ryo.jpg"
+      }
+    },
+    "pancrase:2010-12-19:pancrase-passion-tour-12": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2010/1219.html",
+        "rawNames": [
+          "花澤大介",
+          "網潤太郎"
+        ],
+        "englishNames": [
+          "Daisuke Hanazawa",
+          "網潤太郎"
+        ],
+        "mainEvent": "Daisuke Hanazawa vs. 網潤太郎"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2011-01-30:pancrase-gate-7th-chance": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2011/0130.html"
+      }
+    },
+    "pancrase:2011-02-06:pancrase-impressive-tour-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2011/0206.html",
+        "rawNames": [
+          "URAKEN",
+          "佐藤豪則"
+        ],
+        "englishNames": [
+          "URAKEN",
+          "Takenori Sato"
+        ],
+        "mainEvent": "URAKEN vs. Takenori Sato"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "commons-headliner-image",
+        "fighterName": "URAKEN",
+        "imageFileTitle": "File:Horst Espeloer 2014-01-17 Uraken-uchi.jpg"
+      }
+    },
+    "pancrase:2011-03-13:pancrase-impressive-tour-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2011/0313.html",
+        "rawNames": [
+          "手塚基伸",
+          "富田浩司"
+        ],
+        "englishNames": [
+          "手塚基伸",
+          "Koji Tomita"
+        ],
+        "mainEvent": "手塚基伸 vs. Koji Tomita"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Koji Tomita",
+        "imageFileTitle": "File:Koji Tomita in 2020.jpg"
+      }
+    },
+    "pancrase:2011-04-03:pancrase-impressive-tour-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2011/0403.html",
+        "rawNames": [
+          "WINDY智美",
+          "V.V Mei"
+        ],
+        "englishNames": [
+          "Windy Tomomi",
+          "V.V Mei"
+        ],
+        "mainEvent": "Windy Tomomi vs. V.V Mei"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2011-05-03:pancrase-impressive-tour-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2011/0503.html",
+        "rawNames": [
+          "大石幸史",
+          "花澤大介"
+        ],
+        "englishNames": [
+          "Koji Oishi",
+          "Daisuke Hanazawa"
+        ],
+        "mainEvent": "Koji Oishi vs. Daisuke Hanazawa"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2011-06-05:pancrase-impressive-tour-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2011/0605.html",
+        "rawNames": [
+          "佐藤豪則",
+          "大類宗次朗"
+        ],
+        "englishNames": [
+          "Takenori Sato",
+          "大類宗次朗"
+        ],
+        "mainEvent": "Takenori Sato vs. 大類宗次朗"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T01:17:23.968Z",
         "status": "no-headliner-image"
       }
     }
