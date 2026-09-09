@@ -178,8 +178,23 @@
         } catch {}
     }
 
-    loadNews();
-    loadOnThisDay();
-    loadRoster();
-    loadNextEventMapLink();
+    const runWhenIdle = (task, delay, timeout = 900) => {
+        window.setTimeout(() => {
+            if ('requestIdleCallback' in window) {
+                window.requestIdleCallback(() => task(), { timeout });
+            } else {
+                task();
+            }
+        }, delay);
+    };
+
+    const startDeferredLoads = () => {
+        runWhenIdle(loadNews, 0, 650);
+        runWhenIdle(loadNextEventMapLink, 120, 800);
+        runWhenIdle(loadOnThisDay, 280, 1000);
+        runWhenIdle(loadRoster, 480, 1200);
+    };
+
+    if (document.readyState === 'complete') startDeferredLoads();
+    else window.addEventListener('load', startDeferredLoads, { once: true });
 })();
