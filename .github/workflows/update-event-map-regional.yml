@@ -112,7 +112,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- _data/event_map_regional.json _data/event_map_us.json _data/event_map_location_report.json; then
+          changes="$(git status --porcelain -- _data/event_map_regional.json _data/event_map_us.json _data/event_map_location_report.json || true)"
+          if [ -z "$changes" ]; then
             echo "No Event Map data changes."
             exit 0
           fi
