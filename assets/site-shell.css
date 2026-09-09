@@ -191,7 +191,7 @@
 
     .site-display-button {
         padding-inline: 0.3rem;
-        font-size: 0.57rem;
+        font-size: 0.625rem;
     }
 
     .site-display-icon {
@@ -249,7 +249,7 @@ h3 {
    the same vertical rhythm as the other primary tools. */
 .ufc-roster-eyebrow {
     margin-bottom: .22rem;
-    font-size: .56rem;
+    font-size: .625rem;
     line-height: 1;
 }
 
@@ -443,22 +443,22 @@ h3 {
     display: none;
 }
 
-/* Fight Card Picker: compact zine layout without microscopic UI text. */
+/* Fight Card Picker: compact zine layout with a 10px functional-text floor. */
 .event-promotion {
-    font-size: 0.56rem;
+    font-size: 0.625rem;
 }
 
 .event-card-meta p {
-    font-size: 0.54rem;
+    font-size: 0.625rem;
     line-height: 1.35;
 }
 
 .event-card-meta a {
-    font-size: 0.53rem;
+    font-size: 0.625rem;
 }
 
 .event-card-section-heading span {
-    font-size: 0.52rem;
+    font-size: 0.625rem;
 }
 
 .event-card-heading h2 {
@@ -470,24 +470,28 @@ h3 {
 }
 
 .bout-label {
-    min-height: 18px;
-    font-size: 0.47rem;
+    min-height: 20px;
+    font-size: 0.625rem;
     line-height: 1.2;
 }
 
 .bout-footer {
-    min-height: 20px;
-    font-size: 0.44rem;
+    min-height: 22px;
+    font-size: 0.625rem;
     line-height: 1.12;
 }
 
 .event-card-note p {
-    font-size: 0.52rem;
+    font-size: 0.625rem;
     line-height: 1.4;
 }
 
 .fighter-name {
     line-height: 1.05;
+}
+
+.prediction-button {
+    min-height: 44px;
 }
 
 /* Event Map utility labels should read as UI, not decoration. */
