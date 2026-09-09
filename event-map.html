@@ -11,6 +11,16 @@ page_scripts:
   - /assets/event-map-deferred.js
 ---
 
+<script>
+    (() => {
+        const url = new URL(window.location.href);
+        if (!url.searchParams.has('range') && !url.searchParams.has('event')) {
+            url.searchParams.set('range', 'week');
+            window.history.replaceState(window.history.state, '', `${url.pathname}?${url.searchParams}${url.hash}`);
+        }
+    })();
+</script>
+
 <section
     class="event-map-page"
     data-event-map
@@ -24,9 +34,9 @@ page_scripts:
 
     <div class="event-map-toolbar" aria-label="Event Map controls">
         <div class="event-map-range" role="group" aria-label="Date range">
-            <button type="button" data-range="week">This week</button>
+            <button type="button" data-range="week" aria-pressed="true">This week</button>
             <button type="button" data-range="30">30 days</button>
-            <button type="button" data-range="all" aria-pressed="true">All upcoming</button>
+            <button type="button" data-range="all">All upcoming</button>
         </div>
 
         <div class="event-map-near-controls">
