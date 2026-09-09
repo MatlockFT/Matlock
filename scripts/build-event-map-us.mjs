@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import { pathToFileURL } from 'node:url';
 
 const MAJOR_PATH = '_data/upcoming_events.json';
 const REGIONAL_PATH = '_data/event_map_regional.json';
@@ -31,7 +32,7 @@ function countryIsForeign(event) {
 }
 
 function parseLocationSegment(segment) {
-  let text = clean(segment).replace(/\s+\|\s+/g, ', ');
+  const text = clean(segment).replace(/\s+\|\s+/g, ', ');
   if (!text) return null;
 
   const parts = text.split(',').map(clean).filter(Boolean);
@@ -238,15 +239,20 @@ function selfTest() {
   console.log('Event Map trusted-location self-test passed.');
 }
 
-if (process.argv.includes('--self-test')) {
-  selfTest();
-  process.exit(0);
+async function main() {
+  if (process.argv.includes('--self-test')) {
+    selfTest();
+    return;
+  }
+
+  const [majorDoc, regionalDoc] = await Promise.all([readJson(MAJOR_PATH), readJson(REGIONAL_PATH)]);
+  const output = buildUsDataset(majorDoc, regionalDoc);
+  await fs.writeFile(OUTPUT_PATH, `${JSON.stringify(output, null, 2)}\n`, 'utf8');
+  console.log(
+    `Built trusted U.S. Event Map: ${output.major_mapped}/${output.major_total} major + ` +
+    `${output.regional_mapped}/${output.regional_total} regional mapped; ${output.quarantined_count} quarantined.`
+  );
 }
 
-const [majorDoc, regionalDoc] = await Promise.all([readJson(MAJOR_PATH), readJson(REGIONAL_PATH)]);
-const output = buildUsDataset(majorDoc, regionalDoc);
-await fs.writeFile(OUTPUT_PATH, `${JSON.stringify(output, null, 2)}\n`, 'utf8');
-console.log(
-  `Built trusted U.S. Event Map: ${output.major_mapped}/${output.major_total} major + ` +
-  `${output.regional_mapped}/${output.regional_total} regional mapped; ${output.quarantined_count} quarantined.`
-);
+const isMain = Boolean(process.argv[1]) && import.meta.url === pathToFileURL(process.argv[1]).href;
+if (isMain) await main();
