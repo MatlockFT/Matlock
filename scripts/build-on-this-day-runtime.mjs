@@ -6,7 +6,9 @@ const HISTORY_PATH = process.env.OTD_HISTORY_PATH || 'assets/data/on-this-day.js
 const OUTPUT_DIR = 'assets/data/on-this-day-runtime';
 const FIELD_NAMES = [
     'date', 'kind', 'promotion', 'title', 'detail', 'source', 'sourceUrl',
-    'weight', 'imageUrl', 'imageAlt', 'imageCredit', 'imagePosition'
+    'weight', 'imageUrl', 'imageAlt', 'imageCredit', 'imagePosition',
+    'imageSourceUrl', 'imageSourceType', 'imageConfidence', 'imageSubjectType',
+    'imageMatchReason', 'imageStatus'
 ];
 
 const source = JSON.parse(await fs.readFile(HISTORY_PATH, 'utf8'));
