@@ -11,7 +11,9 @@ on:
       - "scripts/resolve-on-this-day-tapology-posters.mjs"
       - "scripts/sanitize-on-this-day-tapology-posters.mjs"
       - "scripts/finalize-on-this-day-image-metadata.mjs"
+      - "scripts/check-on-this-day-images.mjs"
       - "scripts/build-on-this-day-home.mjs"
+      - "scripts/build-on-this-day-share-images.mjs"
       - "assets/data/on-this-day-image-source-overrides.json"
 
 permissions:
@@ -24,17 +26,24 @@ concurrency:
 jobs:
   fast-publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     env:
       OTD_TIME_ZONE: "America/Chicago"
       OTD_TAPOLOGY_POSTER_LIMIT: "48"
       OTD_CURRENT_WINDOW_DAYS: "2"
+      OTD_SHARE_WINDOW_DAYS: "2"
+      OTD_SHARE_MAX_PER_DAY: "12"
+      OTD_SHARE_CONCURRENCY: "3"
+      OTD_SHARE_OUTPUT_DIR: ".otd-share-cache"
+      OTD_SHARE_MANIFEST_PATH: "assets/data/on-this-day-share-manifest.json"
+      OTD_SHARE_PUBLIC_BASE: "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-share-cache"
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
         with:
           ref: main
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -51,9 +60,12 @@ jobs:
           node --check scripts/resolve-on-this-day-tapology-posters.mjs
           node --check scripts/sanitize-on-this-day-tapology-posters.mjs
           node --check scripts/finalize-on-this-day-image-metadata.mjs
+          node --check scripts/check-on-this-day-images.mjs
           node --check scripts/build-on-this-day-runtime.mjs
           node --check scripts/build-on-this-day-home.mjs
           node --check scripts/build-on-this-day-leads.mjs
+          node --check scripts/build-on-this-day-share-images.mjs
+          node --check scripts/check-on-this-day-share.mjs
 
       - name: Apply deterministic hard-case image sources
         run: node scripts/apply-on-this-day-image-source-overrides.mjs
@@ -67,8 +79,19 @@ jobs:
       - name: Finalize public image metadata
         run: node scripts/finalize-on-this-day-image-metadata.mjs
 
+      - name: Enforce current-window and birthday image QA
+        id: image_qa
+        continue-on-error: true
+        run: npm run check:history-images
+
       - name: Build browser runtime immediately
         run: npm run build:history-runtime
+
+      - name: Build current-window share images
+        run: npm run build:history-share
+
+      - name: Validate current-window share manifest
+        run: npm run check:history-share
 
       - name: Build homepage snapshot
         run: node scripts/build-on-this-day-home.mjs
@@ -87,6 +110,7 @@ jobs:
             assets/data/on-this-day.json
             assets/data/on-this-day-home.json
             assets/data/on-this-day-leads.json
+            assets/data/on-this-day-share-manifest.json
             assets/data/on-this-day-runtime
             _data/on_this_day_leads.json
           )
@@ -98,4 +122,31 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- "${tracked_paths[@]}"
           git commit -m "Fast-publish current On This Day images"
+          git pull --rebase origin main
           git push origin HEAD:main
+
+      - name: Publish rolling share image cache
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          cache_repo="$(mktemp -d)"
+          cp -R .otd-share-cache/. "$cache_repo/"
+          cd "$cache_repo"
+          git init
+          git checkout -b otd-share-cache
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Refresh On This Day share cache"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push --force origin HEAD:refs/heads/otd-share-cache
+          cd - >/dev/null
+          rm -rf .otd-share-cache "$cache_repo"
+
+      - name: Report unresolved image QA blockers
+        if: steps.image_qa.outcome == 'failure'
+        run: |
+          echo "The improved OTD data and share images were published, but strict image QA still found unresolved current-window entries or birthday image blockers."
+          exit 1
