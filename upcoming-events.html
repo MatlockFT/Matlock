@@ -8,7 +8,7 @@ page_styles:
   - /assets/upcoming-events-portrait-fixes.css
   - /assets/upcoming-events-layout.css
 page_scripts:
-  - /assets/upcoming-events.js
+  - /assets/upcoming-events-bootstrap.js
   - /assets/upcoming-events-jump.js
   - /assets/upcoming-events-links.js
 ---
@@ -28,13 +28,3 @@ page_scripts:
     {% endfor %}
   </div>
 </article>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  document
-    .querySelectorAll(".prediction-button:not(.prediction-button-clear)")
-    .forEach(button => {
-      button.textContent = "Download Picks";
-    });
-});
-</script>
