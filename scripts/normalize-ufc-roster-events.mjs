@@ -1,4 +1,9 @@
 import fs from "node:fs/promises";
+import {
+    dedupeFighterEvents,
+    nameFromSlug,
+    sanitizeFighter
+} from "./ufc-roster-identity.mjs";
 
 function argument(name, fallback = "") {
     const index = process.argv.indexOf(name);
@@ -8,63 +13,8 @@ function argument(name, fallback = "") {
 const statePath = argument("--state", "/tmp/ufc-roster-state.json");
 const publicPath = argument("--public", "/tmp/ufc-roster-latest.json");
 const finalizePublic = process.argv.includes("--finalize-public");
-
-const GENERIC_FIGHTER_NAMES = new Set([
-    "search results",
-    "search",
-    "athletes",
-    "all athletes",
-    "ufc",
-    "page not found",
-    "not found",
-    "access denied",
-    "error"
-]);
-
-function timestamp(value) {
-    const parsed = Date.parse(value || "");
-    return Number.isNaN(parsed) ? Number.POSITIVE_INFINITY : parsed;
-}
-
-function slugFromItem(item) {
-    if (item?.slug) return String(item.slug);
-
-    try {
-        return new URL(item?.url || "")
-            .pathname
-            .split("/")
-            .filter(Boolean)
-            .at(-1) || "";
-    } catch {
-        return "";
-    }
-}
-
-function nameFromSlug(slug) {
-    return String(slug || "")
-        .split("-")
-        .filter(Boolean)
-        .map(part => part.charAt(0).toUpperCase() + part.slice(1))
-        .join(" ");
-}
-
-function sanitizeFighterName(item) {
-    if (!item || typeof item !== "object") return item;
-
-    const candidate = String(item.name || "")
-        .replace(/\s+/g, " ")
-        .trim();
-
-    if (
-        candidate &&
-        !GENERIC_FIGHTER_NAMES.has(candidate.toLowerCase())
-    ) {
-        return item;
-    }
-
-    const fallback = nameFromSlug(slugFromItem(item));
-    return fallback ? { ...item, name: fallback } : item;
-}
+const selfTest = process.argv.includes("--self-test");
+const EVENT_HISTORY_LIMIT = 1000;
 
 function rank(item) {
     if (
@@ -79,42 +29,115 @@ function rank(item) {
     return 10;
 }
 
-function prefer(a, b) {
-    const aRank = rank(a);
-    const bRank = rank(b);
-    if (aRank !== bRank) return aRank > bRank ? a : b;
-
-    const aTime = timestamp(a?.detectedAt || a?.confirmedActiveAt);
-    const bTime = timestamp(b?.detectedAt || b?.confirmedActiveAt);
-    return aTime <= bTime ? a : b;
+function normalizeList(items, limit = EVENT_HISTORY_LIMIT) {
+    return dedupeFighterEvents(items, { limit, rank });
 }
 
-function dedupeAdditions(items) {
-    const byUrl = new Map();
-    const withoutUrl = [];
-
-    for (const item of Array.isArray(items) ? items : []) {
-        if (!item?.url) {
-            withoutUrl.push(item);
-            continue;
-        }
-        const existing = byUrl.get(item.url);
-        byUrl.set(item.url, existing ? prefer(existing, item) : item);
+function runSelfTest() {
+    const fallback = sanitizeFighter({
+        name: "Search results",
+        slug: "sean-king-iii",
+        url: "https://www.ufc.com/athlete/sean-king-iii"
+    });
+    if (fallback.name !== "Sean King III") {
+        throw new Error(`Roman-numeral fallback failed: ${fallback.name}`);
+    }
+    if (nameFromSlug("john-doe-iv") !== "John Doe IV") {
+        throw new Error("Roman-numeral slug formatting failed.");
     }
 
-    return [...byUrl.values(), ...withoutUrl].sort(
-        (a, b) => timestamp(b?.detectedAt || b?.confirmedActiveAt) - timestamp(a?.detectedAt || a?.confirmedActiveAt)
-    );
+    const duplicate = normalizeList([
+        {
+            name: "Sean King",
+            slug: "sean-king",
+            url: "https://www.ufc.com/athlete/sean-king",
+            image: "",
+            division: "",
+            record: "",
+            status: "",
+            description: "",
+            eventId: "old",
+            eventType: "added",
+            detectedAt: "2026-09-04T00:00:00.000Z",
+            confirmedActiveAt: "2026-09-04T00:00:00.000Z",
+            competitionCheckedAt: "2026-09-04T00:05:00.000Z",
+            priorUfcCompetition: false,
+            entryClass: "newcomer"
+        },
+        {
+            name: "Search results",
+            slug: "sean-king-iii",
+            url: "https://www.ufc.com/athlete/sean-king-iii",
+            image: "",
+            division: "",
+            record: "",
+            status: "",
+            description: "",
+            eventId: "new",
+            eventType: "added",
+            detectedAt: "2026-09-08T00:00:00.000Z",
+            confirmedActiveAt: "2026-09-08T00:00:00.000Z",
+            competitionCheckedAt: "2026-09-08T00:05:00.000Z",
+            priorUfcCompetition: false,
+            entryClass: "newcomer"
+        }
+    ]);
+
+    if (duplicate.length !== 1) {
+        throw new Error(`Expected Sean King alias pair to collapse to one entry; got ${duplicate.length}.`);
+    }
+    if (duplicate[0].name !== "Sean King III") {
+        throw new Error(`Expected canonical Sean King III name; got ${duplicate[0].name}.`);
+    }
+    if (duplicate[0].url !== "https://www.ufc.com/athlete/sean-king-iii") {
+        throw new Error(`Expected suffixed canonical URL; got ${duplicate[0].url}.`);
+    }
+    if (!duplicate[0].profileAliases?.includes("https://www.ufc.com/athlete/sean-king")) {
+        throw new Error("Expected old Sean King profile URL to be retained as an alias.");
+    }
+
+    const distinct = normalizeList([
+        {
+            name: "John Smith Jr.",
+            slug: "john-smith-jr",
+            url: "https://www.ufc.com/athlete/john-smith-jr",
+            eventId: "jr",
+            detectedAt: "2026-01-01T00:00:00.000Z"
+        },
+        {
+            name: "John Smith III",
+            slug: "john-smith-iii",
+            url: "https://www.ufc.com/athlete/john-smith-iii",
+            eventId: "iii",
+            detectedAt: "2026-01-01T00:00:00.000Z"
+        }
+    ]);
+    if (distinct.length !== 2) {
+        throw new Error("Explicitly suffixed fighters must not be collapsed together.");
+    }
+
+    console.log("UFC roster identity normalization self-test passed.");
+}
+
+if (selfTest) {
+    runSelfTest();
+    process.exit(0);
 }
 
 const state = JSON.parse(await fs.readFile(statePath, "utf8"));
 const publicData = JSON.parse(await fs.readFile(publicPath, "utf8"));
-const before = Array.isArray(state.additions) ? state.additions.length : 0;
-const normalizedAdditions = (Array.isArray(state.additions) ? state.additions : [])
-    .map(sanitizeFighterName);
-state.additions = dedupeAdditions(normalizedAdditions);
-const removedDuplicates = before - state.additions.length;
-state.version = Math.max(Number(state.version || 0), 9);
+const beforeAdditions = Array.isArray(state.additions) ? state.additions.length : 0;
+const beforeReactivations = Array.isArray(state.reactivations) ? state.reactivations.length : 0;
+const beforeRemovals = Array.isArray(state.removals) ? state.removals.length : 0;
+
+state.additions = normalizeList(state.additions);
+state.reactivations = normalizeList(state.reactivations);
+state.removals = normalizeList(state.removals);
+
+const removedAdditions = beforeAdditions - state.additions.length;
+const removedReactivations = beforeReactivations - state.reactivations.length;
+const removedRemovals = beforeRemovals - state.removals.length;
+state.version = Math.max(Number(state.version || 0), 11);
 
 if (finalizePublic) {
     const verified = state.additions
@@ -126,10 +149,12 @@ if (finalizePublic) {
         )
         .slice(0, 10);
 
-    publicData.version = Math.max(Number(publicData.version || 0), 9);
+    publicData.version = Math.max(Number(publicData.version || 0), 11);
     publicData.additions = verified;
+    publicData.reactivations = normalizeList(state.reactivations, 10);
+    publicData.removals = normalizeList(state.removals, 10);
     publicData.methodology =
-        "Tracks UFC.com's hidden Active athlete collection and also cross-checks official standard UFC event cards for first-time UFC fighters whose athlete profile may have existed earlier. TUF, Dana White's Contender Series, Road to UFC, and other developmental or qualifying pages are not treated as roster confirmation. Entrants are cross-checked for prior standard UFC competition before appearing as newcomers. Detection time is when this tracker first confirmed the roster change, not a contract-signing timestamp.";
+        "Tracks UFC.com's hidden Active athlete collection and also cross-checks official standard UFC event cards for first-time UFC fighters whose athlete profile may have existed earlier. TUF, Dana White's Contender Series, Road to UFC, and other developmental or qualifying pages are not treated as roster confirmation. Entrants are cross-checked for prior standard UFC competition before appearing as newcomers. Duplicate or renamed UFC athlete profile URLs are normalized before publication. Detection time is when this tracker first confirmed the roster change, not a contract-signing timestamp.";
 
     const generatedAt = publicData.generatedAt;
     const confirmedThisRun = item =>
@@ -137,7 +162,7 @@ if (finalizePublic) {
 
     publicData.changesThisRun = {
         added: verified.filter(confirmedThisRun).length,
-        reactivated: (Array.isArray(publicData.reactivations) ? publicData.reactivations : []).filter(confirmedThisRun).length,
+        reactivated: publicData.reactivations.filter(confirmedThisRun).length,
         removed: Number(publicData?.changesThisRun?.removed || 0)
     };
 }
@@ -146,5 +171,7 @@ await fs.writeFile(statePath, `${JSON.stringify(state, null, 2)}\n`);
 await fs.writeFile(publicPath, `${JSON.stringify(publicData, null, 2)}\n`);
 
 console.log(
-    `${finalizePublic ? "Finalized" : "Normalized"} UFC roster event history; removed ${removedDuplicates} duplicate newcomer event(s).`
+    `${finalizePublic ? "Finalized" : "Normalized"} UFC roster event history; removed ` +
+        `${removedAdditions} duplicate newcomer, ${removedReactivations} duplicate reactivation, ` +
+        `and ${removedRemovals} duplicate departure event(s).`
 );
