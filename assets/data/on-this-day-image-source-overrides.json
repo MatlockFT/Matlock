@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "entries": [
     {
       "date": "2002-09-07",
@@ -120,6 +120,16 @@
       "credit": "Tapology",
       "confidence": 0.97,
       "matchReason": "Exact Tapology event page for Pancrase 329; use its event poster/primary event image."
+    },
+    {
+      "birthdayKey": "jose-aldo",
+      "imageUrl": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Jos%C3%A9_Aldo%2C_UFC_189_World_Tour_London_%282%29_%28cropped%29.jpg?width=1200",
+      "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jos%C3%A9_Aldo,_UFC_189_World_Tour_London_(2)_(cropped).jpg",
+      "sourceType": "wikimedia-commons",
+      "subjectType": "fighter",
+      "credit": "Wikimedia Commons · Andrius Petrucenia / UCinternational · CC BY-SA 2.0",
+      "confidence": 0.99,
+      "matchReason": "Exact José Aldo portrait from Wikimedia Commons, used as a deterministic birthday image fallback."
     },
     {
       "birthdayKey": "tank-abbott",
