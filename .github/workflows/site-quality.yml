@@ -63,11 +63,14 @@ jobs:
           node --check scripts/curate-on-this-day-events.mjs
           node --check scripts/report-on-this-day-coverage.mjs
           node --check scripts/upcoming-events-data.mjs
+          node --check scripts/event-location-utils.mjs
+          node --check scripts/enrich-upcoming-event-locations.mjs
           node --check scripts/update-upcoming-ufc-events.mjs
           node --check scripts/update-pfl-upcoming-events.mjs
           node --check scripts/update-rizin-upcoming-events.mjs
           node --check scripts/build-event-map-us.mjs
           node --check scripts/validate-event-map-us.mjs
+          node --check scripts/report-event-map-locations.mjs
           node --check scripts/update-event-map-regional.mjs
           node --check scripts/update-event-map-discovery.mjs
           node --check scripts/enrich-event-map-details.mjs
@@ -160,6 +163,7 @@ jobs:
       - name: Check Event Map quality and interaction architecture
         run: |
           node scripts/validate-event-map-us.mjs
+          node scripts/report-event-map-locations.mjs --check
           node scripts/validate-event-map-quality.mjs
           node scripts/check-event-map-architecture.mjs
 
