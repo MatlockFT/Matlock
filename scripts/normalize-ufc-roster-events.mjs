@@ -140,7 +140,7 @@ state.removals = normalizeList(state.removals);
 const removedAdditions = beforeAdditions - state.additions.length;
 const removedReactivations = beforeReactivations - state.reactivations.length;
 const removedRemovals = beforeRemovals - state.removals.length;
-state.version = Math.max(Number(state.version || 0), 11);
+state.version = Math.max(Number(state.version || 0), 12);
 
 if (finalizePublic) {
     const verified = state.additions
@@ -152,12 +152,12 @@ if (finalizePublic) {
         )
         .slice(0, 10);
 
-    publicData.version = Math.max(Number(publicData.version || 0), 11);
+    publicData.version = Math.max(Number(publicData.version || 0), 12);
     publicData.additions = verified;
     publicData.reactivations = normalizeList(state.reactivations, 10);
     publicData.removals = normalizeList(state.removals, 10);
     publicData.methodology =
-        "Tracks UFC.com's hidden Active athlete collection and also cross-checks official standard UFC event cards for first-time UFC fighters whose athlete profile may have existed earlier. TUF, Dana White's Contender Series, Road to UFC, and other developmental or qualifying pages are not treated as roster confirmation. Entrants are cross-checked for prior standard UFC competition before appearing as newcomers. Duplicate or renamed UFC athlete profile URLs are normalized before publication. Detection time is when this tracker first confirmed the roster change, not a contract-signing timestamp.";
+        "Tracks UFC.com's hidden Active athlete collection and official UFC event cards, then resolves profile URLs through a persistent canonical fighter registry before publication. The public Active total counts unique canonical fighter identities, while activeProfileCount preserves UFC.com's raw Active-profile count for diagnostics. TUF, Dana White's Contender Series, Road to UFC, and other developmental or qualifying pages are not treated as roster confirmation. Entrants are cross-checked for prior standard UFC competition before appearing as newcomers. Renamed and duplicate UFC athlete URLs remain attached to the same fighter ID as aliases. Detection time is when this tracker first confirmed the roster change, not a contract-signing timestamp.";
 
     const generatedAt = publicData.generatedAt;
     const confirmedThisRun = item =>
