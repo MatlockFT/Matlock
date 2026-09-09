@@ -41,23 +41,6 @@ function posterIdentity(imageUrl) {
   } catch { return null; }
 }
 
-function tapologyEventId(pageUrl) {
-  try {
-    const url = new URL(pageUrl);
-    const slug = url.pathname.split('/').filter(Boolean).pop() || '';
-    const match = slug.match(/^(\d+)(?:-|$)/);
-    return match?.[1] || '';
-  } catch { return ''; }
-}
-
-function tapologyPosterId(imageUrl) {
-  try {
-    const url = new URL(imageUrl);
-    const match = url.pathname.match(/\/poster_images\/(\d+)\//i);
-    return match?.[1] || '';
-  } catch { return ''; }
-}
-
 function clearPoster(entry, reason) {
   delete entry.imageUrl;
   delete entry.imageAlt;
@@ -96,18 +79,10 @@ for (const entry of entries) {
   if (expected && actual && expected.promotion === actual.promotion && expected.number !== actual.number) {
     clearPoster(entry, `Rejected a mismatched Tapology poster: ${entry.title} cannot use artwork whose filename identifies ${actual.promotion.toUpperCase()} ${actual.number}.`);
     rejected += 1;
-    continue;
-  }
-
-  const pageId = tapologyEventId(exactPage);
-  const posterId = tapologyPosterId(entry.imageUrl);
-  if (pageId && posterId && pageId !== posterId) {
-    clearPoster(entry, `Rejected a mismatched Tapology poster: event-page ID ${pageId} does not match poster-image ID ${posterId}.`);
-    rejected += 1;
   }
 }
 
-history.tapologyPosterSanitizerVersion = 1;
+history.tapologyPosterSanitizerVersion = 2;
 history.tapologyPosterSanitizedAt = new Date().toISOString();
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
 console.log(`Tapology poster sanitizer: ${checked} poster(s) checked; ${rejected} mismatched/unbound poster(s) rejected.`);
