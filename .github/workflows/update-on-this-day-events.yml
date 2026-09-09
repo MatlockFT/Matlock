@@ -21,6 +21,7 @@ on:
       - "scripts/build-on-this-day-leads.mjs"
       - "scripts/build-on-this-day-share-images.mjs"
       - "scripts/check-on-this-day-share.mjs"
+      - "assets/textures/otd-xerox-paper-v1.webp"
       - "scripts/report-on-this-day-coverage.mjs"
       - "scripts/check-on-this-day.mjs"
   schedule:

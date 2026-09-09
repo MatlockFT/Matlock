@@ -147,7 +147,7 @@
         modal.innerHTML = `
             <div class="otd-share-panel">
                 <header class="otd-share-header">
-                    <div><p class="otd-share-kicker">On This Day</p><h2 id="otd-share-title">Share This Moment</h2></div>
+                    <div><p class="otd-share-kicker">Xerox Cutout Edition</p><h2 id="otd-share-title">Share This Moment</h2></div>
                     <button type="button" class="otd-share-close" data-otd-share-close aria-label="Close share builder">×</button>
                 </header>
                 <div class="otd-share-workspace">
@@ -227,9 +227,10 @@
         modal.querySelector('[data-otd-share-output-size]').textContent = `${config.width} × ${config.height} JPG`;
         modal.querySelector('[data-otd-share-instagram]').textContent = isTouchLike ? 'Instagram / Stories' : 'Prepare for Instagram';
         modal.querySelector('[data-otd-share-native]').textContent = navigator.share ? 'Share to apps' : 'Save + copy caption';
-        modal.querySelector('[data-otd-share-note]').textContent = isTouchLike
+        const credit = activeEntry?.imageCredit ? ` Image credit: ${activeEntry.imageCredit}.` : '';
+        modal.querySelector('[data-otd-share-note]').textContent = (isTouchLike
             ? 'The finished JPG goes to your phone’s share sheet. The caption is copied first.'
-            : 'Download or copy the finished image. Prepare for Instagram also copies the caption and opens Instagram web.';
+            : 'Download or copy the finished image. Prepare for Instagram also copies the caption and opens Instagram web.') + credit;
     }
 
     function flash(button, label) {
@@ -333,34 +334,48 @@
 
     function buildFallbackSvg(entry, format, source) {
         const { width: w, height: h } = format;
-        const pad = Math.round(w * 0.055);
+        const pad = Math.round(w * 0.047);
         const anniversary = entry.headline.toUpperCase();
-        const titleLines = wrapApprox(entry.title.toUpperCase(), format === FORMATS.story ? 27 : 30, format === FORMATS.story ? 3 : 2);
-        const titleSize = Math.round(w * (format === FORMATS.story ? 0.067 : 0.061));
-        const titleY = Math.round(h * (format === FORMATS.story ? 0.79 : 0.74));
-        const lineHeight = Math.round(titleSize * 0.96);
-        const metaY = Math.round(h * 0.93);
+        const titleLines = wrapApprox(entry.title.toUpperCase(), format === FORMATS.story ? 21 : 23, 3);
+        const longest = Math.max(1, ...titleLines.map(line => line.length));
+        const baseTitleSize = Math.round(w * (format === FORMATS.story ? 0.069 : 0.064));
+        const titleSize = Math.max(Math.round(baseTitleSize * 0.68), Math.min(baseTitleSize, Math.floor((w - pad * 2.2) / (longest * 0.77))));
+        const lineHeight = Math.round(titleSize * 1.13);
+        const titleY = Math.round(h * (format === FORMATS.story ? 0.75 : format === FORMATS.social ? 0.69 : 0.72));
+        const imageY = Math.round(h * (format === FORMATS.story ? 0.14 : 0.13));
+        const imageH = Math.round(h * (format === FORMATS.story ? 0.55 : format === FORMATS.social ? 0.49 : 0.54));
+        const creditY = h - Math.round(w * 0.082);
+        const footerY = h - Math.round(w * 0.05);
         const isPoster = source && source.width / source.height < 0.82;
-        const imageMarkup = source ? (isPoster
-            ? `<image href="${source.dataUrl}" x="0" y="0" width="${w}" height="${h}" preserveAspectRatio="xMidYMid slice" filter="url(#backdrop)"/><rect width="${w}" height="${h}" fill="#000" opacity=".34"/><image href="${source.dataUrl}" x="${Math.round(w * 0.06)}" y="${Math.round(h * 0.025)}" width="${Math.round(w * 0.88)}" height="${Math.round(h * 0.88)}" preserveAspectRatio="xMidYMid meet"/>`
-            : `<image href="${source.dataUrl}" x="0" y="0" width="${w}" height="${h}" preserveAspectRatio="xMidYMid slice"/>`)
-            : `<rect width="${w}" height="${h}" fill="#0a0a0a"/><text x="50%" y="50%" text-anchor="middle" fill="#fff" opacity=".055" font-family="Arial,sans-serif" font-weight="900" font-size="${Math.round(w * 0.34)}">${escapeXml(entry.year || 'MMA')}</text>`;
+        const ripPoints = `${pad},${imageY + 9} ${Math.round(w * .23)},${imageY} ${Math.round(w * .44)},${imageY + 12} ${Math.round(w * .65)},${imageY + 2} ${w - pad},${imageY + 10} ${w - pad - 8},${imageY + imageH - 5} ${Math.round(w * .76)},${imageY + imageH + 8} ${Math.round(w * .52)},${imageY + imageH - 3} ${Math.round(w * .28)},${imageY + imageH + 9} ${pad + 6},${imageY + imageH}`;
+        const imageMarkup = source
+            ? `<polygon points="${ripPoints}" fill="#f0ede3" stroke="#080808" stroke-width="20" stroke-linejoin="bevel"/><image href="${source.dataUrl}" x="${pad}" y="${imageY}" width="${w - pad * 2}" height="${imageH}" preserveAspectRatio="xMidYMid ${isPoster ? 'meet' : 'slice'}" filter="url(#xerox)" clip-path="url(#rip)"/>`
+            : `<rect x="${pad}" y="${imageY}" width="${w - pad * 2}" height="${imageH}" fill="#090909"/><text x="50%" y="${imageY + imageH * .63}" text-anchor="middle" fill="none" stroke="#eeeae0" stroke-width="4" opacity=".28" font-family="Arial Narrow,Arial,sans-serif" font-weight="900" font-size="${Math.round(w * 0.34)}">${escapeXml(entry.year || 'MMA')}</text>`;
+        const titleMarkup = titleLines.map((line, index) => {
+            const y = titleY + index * lineHeight;
+            return `<g transform="rotate(${index % 2 ? '.6' : '-.7'} ${w / 2} ${y})"><polygon points="${pad - 5},${y - Math.round(titleSize * .79)} ${w - pad},${y - Math.round(titleSize * .75)} ${w - pad - 7},${y + Math.round(titleSize * .22)} ${pad},${y + Math.round(titleSize * .17)}" fill="#080808"/><text x="${pad + Math.round(w * .016)}" y="${y}" fill="#f1eee4" font-family="Arial Narrow,Arial,sans-serif" font-size="${titleSize}" font-weight="900">${escapeXml(line)}</text></g>`;
+        }).join('');
+        const credit = entry.imageCredit ? `IMAGE: ${entry.imageCredit.toUpperCase()}` : 'ARCHIVAL IMAGE / SOURCE ON PAGE';
         return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
             <defs>
-                <filter id="backdrop"><feGaussianBlur stdDeviation="24"/><feColorMatrix type="saturate" values=".55"/></filter>
-                <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="2" seed="9"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .055"/></feComponentTransfer></filter>
-                <linearGradient id="bottom" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#050505" stop-opacity="0"/><stop offset=".35" stop-color="#050505" stop-opacity=".45"/><stop offset="1" stop-color="#050505" stop-opacity=".98"/></linearGradient>
+                <clipPath id="rip"><polygon points="${ripPoints}"/></clipPath>
+                <filter id="xerox"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="linear" slope="1.35" intercept="-.12"/><feFuncG type="linear" slope="1.35" intercept="-.12"/><feFuncB type="linear" slope="1.35" intercept="-.12"/></feComponentTransfer></filter>
+                <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="4" seed="19"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .18"/></feComponentTransfer></filter>
             </defs>
+            <rect width="${w}" height="${h}" fill="#e9e6dc"/>
+            <rect width="${w}" height="${h}" filter="url(#paper)" opacity=".62"/>
+            <polygon points="${pad - 7},${Math.round(h * .03)} ${Math.round(w * .75)},${Math.round(h * .028)} ${Math.round(w * .76)},${Math.round(h * .095)} ${pad},${Math.round(h * .10)}" fill="#080808"/>
+            <text x="${pad + Math.round(w * .02)}" y="${Math.round(h * .079)}" fill="#f1eee4" font-family="Arial Narrow,Arial,sans-serif" font-size="${Math.round(w * .055)}" font-weight="900">${escapeXml(anniversary)}</text>
+            <text x="${w - pad}" y="${Math.round(h * .064)}" text-anchor="end" fill="#080808" font-family="monospace" font-size="${Math.round(w * .015)}" font-weight="700">MMA HISTORY / ARCHIVE</text>
             ${imageMarkup}
-            <rect y="${Math.round(h * 0.52)}" width="${w}" height="${Math.round(h * 0.48)}" fill="url(#bottom)"/>
-            <rect x="${pad}" y="${Math.round(h * 0.045)}" width="${Math.round(w * 0.58)}" height="${Math.round(w * 0.062)}" rx="10" fill="#050505" opacity=".8"/>
-            <text x="${Math.round(pad + w * 0.017)}" y="${Math.round(h * 0.045 + w * 0.042)}" fill="#f2ebdf" font-family="Arial Narrow,Arial,sans-serif" font-size="${Math.round(w * 0.025)}" font-weight="900" letter-spacing="2">${escapeXml(anniversary)}</text>
-            <rect x="${pad}" y="${Math.round(titleY - w * 0.035)}" width="${Math.round(w * 0.105)}" height="${Math.max(7, Math.round(w * 0.007))}" fill="#d1252e"/>
-            <text fill="#f3ecdf" font-family="Arial Narrow,Arial,sans-serif" font-size="${titleSize}" font-weight="900">${tspans(titleLines, pad, titleY, lineHeight)}</text>
-            <text x="${pad}" y="${metaY}" fill="#c2b9ad" font-family="monospace" font-size="${Math.round(w * 0.018)}" font-weight="700">${escapeXml(entry.dateLabel.toUpperCase())}</text>
-            ${entry.promotion ? `<text x="${w - pad}" y="${metaY}" text-anchor="end" fill="#d1252e" font-family="monospace" font-size="${Math.round(w * 0.018)}" font-weight="700">${escapeXml(entry.promotion.toUpperCase())}</text>` : ''}
-            <text x="${pad}" y="${h - Math.round(w * 0.025)}" fill="#968e83" font-family="Arial,sans-serif" font-size="${Math.round(w * 0.019)}" font-weight="800" letter-spacing="2">MMA MATLOCK</text>
-            <rect width="${w}" height="${h}" filter="url(#grain)" opacity=".7"/>
+            ${titleMarkup}
+            <polygon points="${pad - 16},${creditY - Math.round(w * .025)} ${w - pad + 10},${creditY - Math.round(w * .019)} ${w - pad + 14},${h} ${pad - 12},${h}" fill="#f1eee4" opacity=".94"/>
+            <text x="${pad}" y="${creditY}" fill="#090909" opacity=".7" font-family="monospace" font-size="${Math.round(w * .013)}" font-weight="700">${escapeXml(credit)}</text>
+            <path d="M ${pad} ${creditY + 12} H ${w - pad}" stroke="#080808" stroke-width="2"/>
+            <text x="${pad}" y="${footerY}" fill="#080808" font-family="monospace" font-size="${Math.round(w * .018)}" font-weight="700">${escapeXml(entry.dateLabel.toUpperCase())}</text>
+            ${entry.promotion ? `<text x="${Math.round(w * .52)}" y="${footerY}" text-anchor="middle" fill="#080808" font-family="monospace" font-size="${Math.round(w * .017)}" font-weight="700">${escapeXml(entry.promotion.toUpperCase())}</text>` : ''}
+            <rect x="${w - pad - Math.round(w * .27)}" y="${footerY - Math.round(w * .034)}" width="${Math.round(w * .27)}" height="${Math.round(w * .046)}" fill="#080808"/>
+            <text x="${w - pad - Math.round(w * .012)}" y="${footerY - Math.round(w * .006)}" text-anchor="end" fill="#f1eee4" font-family="Arial Narrow,Arial,sans-serif" font-size="${Math.round(w * .021)}" font-weight="900">MMA MATLOCK</text>
         </svg>`;
     }
 
