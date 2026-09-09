@@ -29,6 +29,15 @@ const compactEntry = entry => {
             .map(key => [key, entry[key]])
     );
 
+    if (isEvent(entry)) {
+        // Event cards are allowed to show only the verified poster/key art stored
+        // in the archive. assets/on-this-day.js normally falls back to a live
+        // Wikipedia page image when a stored URL is missing or fails. Disable
+        // that behavior for every event so a broken/missing poster becomes the
+        // text fallback rather than a generic event, fighter, or editorial image.
+        compact.wikipediaTitle = ' ';
+    }
+
     if (isEvent(entry) && !verifiedEventPoster(entry)) {
         delete compact.imageUrl;
         delete compact.imageAlt;
@@ -37,13 +46,6 @@ const compactEntry = entry => {
         compact.imagePosterVerified = false;
         compact.imageArtifactType = 'event-poster';
         compact.imageStatus = 'unresolved';
-
-        // assets/on-this-day.js normally tries a live Wikipedia image when a stored
-        // image is unavailable. Event entries are different: a generic Wikipedia
-        // image is not an acceptable substitute for the actual event poster.
-        // A truthy whitespace sentinel returns an empty title after trim(), which
-        // cleanly disables that live fallback without changing the source link.
-        compact.wikipediaTitle = ' ';
     }
 
     return compact;
@@ -100,4 +102,4 @@ for (const [file, expected] of files) {
 }
 
 if (stale) process.exitCode = 1;
-else if (!CHECK_ONLY) console.log(`Built ${entries.length} runtime entries across 12 monthly shards. Unverified event images are suppressed until an actual event poster is resolved.`);
+else if (!CHECK_ONLY) console.log(`Built ${entries.length} runtime entries across 12 monthly shards. Event entries expose verified posters only; generic browser image fallbacks are disabled.`);
