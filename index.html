@@ -17,13 +17,14 @@ page_scripts:
     {% endunless %}
 {% endfor %}
 {% assign latest_post = homepage_posts.first %}
+{% assign homepage_data_version = site.time | date: "%s" %}
 
 <div
     class="homepage homepage-dashboard"
     data-home-dashboard
     data-news-url="https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-news.json"
     data-news-fallback-url="{{ '/assets/data/mma-news.json' | relative_url }}?v={{ site.asset_version }}"
-    data-history-url="{{ '/assets/data/on-this-day-home.json' | relative_url }}?v={{ site.asset_version }}"
+    data-history-url="{{ '/assets/data/on-this-day-home.json' | relative_url }}?v={{ homepage_data_version }}"
     data-roster-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/ufc-roster-data"
 >
     <h1 class="home-dashboard-sr-only">MMA Matlock</h1>
