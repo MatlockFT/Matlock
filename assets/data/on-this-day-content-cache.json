@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 2,
-  "updatedAt": "2026-09-09T07:52:28.735Z",
+  "updatedAt": "2026-09-09T08:34:25.249Z",
   "entries": {
     "pancrase:2013-04-21:pancrase-sakaguchi-dojo-vs-pancrase": {
       "strategyVersion": 2,
@@ -12199,6 +12199,726 @@
       "wikipediaTitle": "List of Pancrase events",
       "sourceUrl": "https://www.pancrase.co.jp/data/result/2020/1129.html",
       "mainEvent": "Tomohiro Adaniya vs. 秋葉太樹"
+    },
+    "pfl:2026-05-23:pfl-brussels-habirora-vs-henderson": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "PFL Brussels: Habirora vs. Henderson",
+      "mainEvent": "Habirora vs. Henderson"
+    },
+    "pfl:2026-06-27:pfl-san-diego-mckee-vs-isbulaev": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "PFL San Diego: McKee vs. Isbulaev",
+      "mainEvent": "McKee vs. Isbulaev"
+    },
+    "pfl:2026-07-18:pfl-austin-eblen-vs-kasanganay-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "PFL Austin: Eblen vs. Kasanganay 2",
+      "mainEvent": "Eblen vs. Kasanganay 2"
+    },
+    "pfl:2026-07-25:pfl-washington-dc-jean-vs-rodriguez": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "PFL Washington DC: Jean vs. Rodriguez",
+      "mainEvent": "Jean vs. Rodriguez"
+    },
+    "pfl:2026-07-31:pfl-new-york-nurmagomedov-vs-colgan": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "PFL New York: Nurmagomedov vs. Colgan",
+      "mainEvent": "Nurmagomedov vs. Colgan"
+    },
+    "pfl:2026-08-07:pfl-charlotte-battle-vs-rosta": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "PFL Charlotte: Battle vs. Rosta",
+      "mainEvent": "Battle vs. Rosta"
+    },
+    "pfl:2026-08-22:pfl-tampa-cyborg-vs-vieira": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "PFL Tampa: Cyborg vs. Vieira",
+      "mainEvent": "Cyborg vs. Vieira"
+    },
+    "ufc:1993-11-12:ufc-1-the-beginning": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 1"
+    },
+    "ufc:1994-03-11:ufc-2-no-way-out": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 2"
+    },
+    "ufc:1994-09-09:ufc-3-the-american-dream": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 3"
+    },
+    "ufc:1994-12-16:ufc-4-revenge-of-the-warriors": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 4"
+    },
+    "ufc:1995-04-07:ufc-5-the-return-of-the-beast": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 5"
+    },
+    "ufc:1995-07-14:ufc-6-clash-of-the-titans": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 6"
+    },
+    "ufc:1995-09-08:ufc-7-the-brawl-in-buffalo": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 7"
+    },
+    "ufc:1995-12-16:ufc-the-ultimate-ultimate": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "Ultimate Ultimate 1995"
+    },
+    "ufc:1996-05-17:ufc-9-motor-city-madness": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 9"
+    },
+    "ufc:1996-07-12:ufc-10-the-tournament": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 10"
+    },
+    "ufc:1996-09-20:ufc-11-the-proving-ground": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 11"
+    },
+    "ufc:1996-12-07:ufc-the-ultimate-ultimate-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "Ultimate Ultimate 1996"
+    },
+    "ufc:1997-02-07:ufc-12-judgement-day": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 12"
+    },
+    "ufc:1997-05-30:ufc-13-the-ultimate-force": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 13"
+    },
+    "ufc:1997-07-27:ufc-14-showdown": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 14"
+    },
+    "ufc:1997-10-17:ufc-15-collision-course": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 15"
+    },
+    "ufc:1997-12-21:ufc-japan-ultimate-japan": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC Japan: Ultimate Japan"
+    },
+    "ufc:1998-03-13:ufc-16-battle-in-the-bayou": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 16"
+    },
+    "ufc:1998-05-15:ufc-17-redemption": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 17"
+    },
+    "ufc:1998-10-16:ufc-brazil-ultimate-brazil": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC Brazil"
+    },
+    "ufc:1999-01-08:ufc-18-the-road-to-the-heavyweight-title": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 18"
+    },
+    "ufc:1999-03-05:ufc-19-ultimate-young-guns": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 19"
+    },
+    "ufc:1999-05-07:ufc-20-battle-for-the-gold": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 20"
+    },
+    "ufc:1999-07-16:ufc-21-return-of-the-champions": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 21"
+    },
+    "ufc:1999-09-24:ufc-22-only-one-can-be-champion": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 22"
+    },
+    "ufc:1999-11-19:ufc-23-ultimate-japan-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 23"
+    },
+    "ufc:2000-03-10:ufc-24-first-defense": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 24"
+    },
+    "ufc:2000-04-14:ufc-25-ultimate-japan-3": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 25"
+    },
+    "ufc:2000-06-09:ufc-26-ultimate-field-of-dreams": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 26"
+    },
+    "ufc:2000-09-22:ufc-27-ultimate-bad-boyz": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 27"
+    },
+    "ufc:2000-11-17:ufc-28-high-stakes": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 28"
+    },
+    "ufc:2000-12-16:ufc-29-defense-of-the-belts": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 29"
+    },
+    "ufc:2001-02-23:ufc-30-battle-on-the-boardwalk": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 30"
+    },
+    "ufc:2001-05-04:ufc-31-locked-and-loaded": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 31"
+    },
+    "ufc:2001-06-29:ufc-32-showdown-in-the-meadowlands": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 32"
+    },
+    "ufc:2001-09-28:ufc-33-victory-in-vegas": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 33"
+    },
+    "ufc:2001-11-02:ufc-34-high-voltage": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 34"
+    },
+    "ufc:2002-01-11:ufc-35-throwdown": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 35"
+    },
+    "ufc:2002-03-22:ufc-36-worlds-collide": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 36"
+    },
+    "ufc:2002-05-10:ufc-37-high-impact": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 37"
+    },
+    "ufc:2002-06-22:ufc-37-5-as-real-as-it-gets": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 37.5"
+    },
+    "ufc:2002-07-13:ufc-38-brawl-at-the-hall": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 38"
+    },
+    "ufc:2002-09-27:ufc-39-the-warriors-return": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 39"
+    },
+    "ufc:2002-11-22:ufc-40-vendetta": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 40"
+    },
+    "ufc:2003-02-28:ufc-41-onslaught": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 41"
+    },
+    "ufc:2003-04-25:ufc-42-sudden-impact": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 42"
+    },
+    "ufc:2003-06-06:ufc-43-meltdown": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 43"
+    },
+    "ufc:2003-09-26:ufc-44-undisputed": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 44"
+    },
+    "ufc:2003-11-21:ufc-45-revolution": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 45"
+    },
+    "ufc:2004-01-31:ufc-46-supernatural": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 46"
+    },
+    "ufc:2004-04-02:ufc-47-it-s-on": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 47"
+    },
+    "ufc:2004-06-19:ufc-48-payback": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 48"
+    },
+    "ufc:2004-08-21:ufc-49-unfinished-business": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 49"
+    },
+    "ufc:2004-10-22:ufc-50-the-war-of-04": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 50"
+    },
+    "ufc:2005-02-05:ufc-51-super-saturday": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 51"
+    },
+    "ufc:2005-06-04:ufc-53-heavy-hitters": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 53"
+    },
+    "ufc:2005-08-06:ufc-ultimate-fight-night": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "2005 in UFC"
+    },
+    "ufc:2005-08-20:ufc-54-boiling-point": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 54"
+    },
+    "ufc:2005-10-03:ufc-ultimate-fight-night-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC Ultimate Fight Night 2"
+    },
+    "ufc:2005-10-07:ufc-55-fury": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 55"
+    },
+    "ufc:2005-11-19:ufc-56-full-force": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 56"
+    },
+    "ufc:2006-01-16:ufc-ultimate-fight-night-3": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC Ultimate Fight Night 3"
+    },
+    "ufc:2006-04-06:ufc-ultimate-fight-night-4": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC Ultimate Fight Night 4"
+    },
+    "ufc:2006-04-15:ufc-59-reality-check": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 59"
+    },
+    "ufc:2006-06-28:ufc-ultimate-fight-night-5": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC Ultimate Fight Night 5"
+    },
+    "ufc:2006-07-08:ufc-61-bitter-rivals": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 61"
+    },
+    "ufc:2006-08-17:ufc-fight-night-6": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC Fight Night: Sanchez vs. Parisyan"
+    },
+    "ufc:2006-10-10:ufc-fight-night-6-5": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "Ortiz vs. Shamrock 3: The Final Chapter"
+    },
+    "ufc:2006-10-14:ufc-64-unstoppable": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 64"
+    },
+    "ufc:2006-11-11:the-ultimate-fighter-the-comeback-finale": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "The Ultimate Fighter 4 Finale"
+    },
+    "ufc:2006-11-18:ufc-65-bad-intentions": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 65"
+    },
+    "ufc:2007-02-03:ufc-67-all-or-nothing": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 67"
+    },
+    "ufc:2007-03-03:ufc-68-the-uprising": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T08:34:11.566Z",
+      "status": "no-main-event",
+      "sourceType": "wikipedia-structured",
+      "wikipediaTitle": "UFC 68"
+    },
+    "pancrase:2020-12-13:pancrase-320": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2020/1213.html",
+      "mainEvent": "Akihiro Murayama vs. 菊入正行"
+    },
+    "pancrase:2021-05-30:pancrase-321": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2021/0530.html",
+      "mainEvent": "ISAO vs. Taichi Nakajima"
+    },
+    "pancrase:2021-06-27:pancrase-322": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2021/0627.html",
+      "mainEvent": "菊入正行 vs. Hiromitsu Miura"
+    },
+    "pancrase:2021-09-12:pancrase-323": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2021/0912.html",
+      "mainEvent": "Hiroki Nakada vs. Ryo"
+    },
+    "pancrase:2022-03-21:pancrase-326": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/0321.html",
+      "mainEvent": "Tōru Ogawa vs. 猿飛流"
+    },
+    "pancrase:2022-04-10:pancrase-and-deep-osaka-tournament-yoshiro-maeda-retirement-event": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/0410.html",
+      "mainEvent": "Yoshiro Maeda vs. Katsuomi Inagaki"
+    },
+    "pancrase:2022-04-29:pancrase-327": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/0429.html",
+      "mainEvent": "Yūsaku Kinoshita vs. Akihiro Murayama"
+    },
+    "pancrase:2022-05-22:pancrase-28th-neo-blood-tournament-1st-round": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/0522.html",
+      "mainEvent": "谷村泰嘉 vs. 大塚智貴"
+    },
+    "pancrase:2022-07-18:pancrase-328": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/0718.html",
+      "mainEvent": "透暉鷹 vs. 亀井晨佑"
+    },
+    "pancrase:2022-09-11:pancrase-329": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/0911.html",
+      "mainEvent": "Kōshi Matsumoto vs. Akira (given name)"
+    },
+    "pancrase:2022-10-10:pancrase-28th-neo-blood-tournament-finals": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/1010.html",
+      "mainEvent": "Emi Fujino vs. Ayaka Watanabe"
+    },
+    "pancrase:2022-12-25:pancrase-330": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/1225.html",
+      "mainEvent": "猿飛流 vs. 鶴屋 怜"
+    },
+    "pancrase:2023-03-26:pancrase-332": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2023/0326.html",
+      "mainEvent": "Hiroki Nakada vs. Kisa Miyake"
+    },
+    "pancrase:2023-04-30:pancrase-333": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2023/0430.html",
+      "mainEvent": "Takasuke Kume vs. Akira (given name)"
+    },
+    "pancrase:2023-06-04:pancrase-334-29th-neo-blood-tournament-2nd-round": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2023/0604.html",
+      "mainEvent": "Akihiro Murayama vs. 林 源平"
+    },
+    "pancrase:2023-08-27:pancrase-29th-neo-blood-tournament-finals": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2023/0827.html",
+      "mainEvent": "栁川唯人 vs. 高田寛也"
+    },
+    "pancrase:2023-09-24:pancrase-337-30th-anniversary-tournament-vol-1": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2023/0924.html",
+      "mainEvent": "亀井晨佑 vs. Suguru Nii"
     }
   }
 }

@@ -1,12 +1,12 @@
 {
   "version": 3,
-  "updatedAt": "2026-09-09T07:55:56.938Z",
+  "updatedAt": "2026-09-09T08:38:01.784Z",
   "entries": {
     "ufc:2018-09-08:ufc-228-woodley-vs-till": {
       "strategyVersion": 7,
       "status": "event-key-image",
       "sourceType": "wikipedia-event-image",
-      "checkedAt": "2026-09-09T07:55:56.938Z",
+      "checkedAt": "2026-09-09T08:38:01.784Z",
       "wikipediaTitle": "UFC 228",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/30/UFC_228_Poster.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 228: Woodley vs. Till event poster",
@@ -355,10 +355,15 @@
     },
     "pancrase:2021-09-12:pancrase-323": {
       "strategyVersion": 6,
-      "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T23:27:41.867Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "status": "pageimage-kept",
+      "sourceType": "wikimedia-commons-headliner",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/39/Yoshizawa_Ryo_from_%22Family%22_at_Red_Carpet_of_the_Tokyo_International_Film_Festival_2023.jpg/1280px-Yoshizawa_Ryo_from_%22Family%22_at_Red_Carpet_of_the_Tokyo_International_Film_Festival_2023.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "Hiroki Nakada vs. Ryo headliner photo",
+      "imageCredit": "Wikimedia Commons · Dick Thomas Johnson from Tokyo, Japan · CC BY 2.0",
+      "width": 4558,
+      "height": 6384
     },
     "ufc:2014-09-13:ufc-fight-night-bigfoot-vs-arlovski": {
       "strategyVersion": 6,
@@ -3521,49 +3526,35 @@
       "score": 192
     },
     "pancrase:1994-05-31:pancrase-road-to-the-championship-1": {
-      "strategyVersion": 4,
-      "status": "commons-headliner-image",
-      "sourceType": "wikimedia-commons-headliner",
-      "artworkType": "headliner-photo",
-      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "strategyVersion": 6,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "1994 in Pancrase#Pancrase: Road to the Championship 1",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Masakatsu_Funaki.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
       "imageAlt": "Masakatsu Funaki vs. グレゴリー・スミット headliner photo",
       "imageCredit": "Wikimedia Commons · Harry Li · CC BY 2.0",
-      "imageFileTitle": "File:Masakatsu Funaki.jpg",
-      "width": 1137,
-      "height": 1313,
-      "score": 185
+      "error": "429 Too Many Requests"
     },
     "pancrase:1994-12-16:pancrase-king-of-pancrase-tournament-opening-round": {
-      "strategyVersion": 4,
-      "status": "commons-headliner-image",
-      "sourceType": "wikimedia-commons-headliner",
-      "artworkType": "headliner-photo",
-      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "Pancrase: King of Pancrase Tournament Opening Round",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Masakatsu_Funaki.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
       "imageAlt": "Vernon White (fighter) vs. Masakatsu Funaki headliner photo",
-      "imageCredit": "Wikimedia Commons · Harry Li · CC BY 2.0",
-      "imageFileTitle": "File:Masakatsu Funaki.jpg",
-      "width": 1137,
-      "height": 1313,
-      "score": 185
+      "imageCredit": "Wikimedia Commons · Harry Li · CC BY 2.0"
     },
     "pancrase:1994-12-17:pancrase-king-of-pancrase-tournament-second-round": {
-      "strategyVersion": 4,
-      "status": "commons-headliner-image",
-      "sourceType": "wikimedia-commons-headliner",
-      "artworkType": "headliner-photo",
-      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "Pancrase: King of Pancrase Tournament Second Round",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a9/Ken_Shamrock_2016_%28cropped%29.jpg/1280px-Ken_Shamrock_2016_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "imageAlt": "Manabu Yamada vs. Ken Shamrock headliner photo",
-      "imageCredit": "Wikimedia Commons · Mike Kalasnik · CC BY-SA 2.0",
-      "imageFileTitle": "File:Ken Shamrock 2016 (cropped).jpg",
-      "width": 1528,
-      "height": 1664,
-      "score": 185
+      "imageCredit": "Wikimedia Commons · Mike Kalasnik · CC BY-SA 2.0"
     },
     "pancrase:1995-01-26:pancrase-eyes-of-beast-1": {
       "strategyVersion": 4,
@@ -3636,19 +3627,14 @@
       "imageCredit": "Wikimedia Commons · ゾーヒョー · CC BY-SA 4.0"
     },
     "pancrase:1995-12-14:pancrase-eyes-of-beast-7": {
-      "strategyVersion": 4,
-      "status": "commons-headliner-image",
-      "sourceType": "wikimedia-commons-headliner",
-      "artworkType": "headliner-photo",
-      "checkedAt": "2026-09-08T07:03:33.069Z",
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "1995 in Pancrase#Pancrase: Eyes of Beast 7",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cb/MMA_Champ_Bas_Rutten.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
       "imageAlt": "Bas Rutten vs. Ryūshi Yanagisawa headliner photo",
-      "imageCredit": "Wikimedia Commons · Bob Bekian · CC BY-SA 2.0",
-      "imageFileTitle": "File:MMA Champ Bas Rutten.jpg",
-      "width": 720,
-      "height": 540,
-      "score": 182
+      "imageCredit": "Wikimedia Commons · Bob Bekian · CC BY-SA 2.0"
     },
     "bellator:2016-06-24:bellator-157-dynamite-2": {
       "strategyVersion": 6,
@@ -4142,11 +4128,11 @@
       "wikipediaTitle": "2024 in Rizin Fighting Federation#Rizin 47"
     },
     "pride:2003-06-08:pride-26": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "commons-event-image",
       "sourceType": "wikimedia-commons-search",
       "artworkType": "event-photo",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "Pride 26",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/20250823-Bemidji_Pride-26.jpg/1280px-20250823-Bemidji_Pride-26.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "imageAlt": "Pride 26 event image",
@@ -4154,7 +4140,7 @@
       "imageFileTitle": "File:20250823-Bemidji Pride-26.jpg",
       "width": 3456,
       "height": 5184,
-      "score": 224
+      "score": 228
     },
     "bellator:2017-12-09:bellator-190": {
       "strategyVersion": 6,
@@ -4192,10 +4178,10 @@
       "wikipediaTitle": "Bellator MMA in 2020#Bellator 254"
     },
     "pancrase:2003-06-07:pancrase-hybrid-6": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "2003 in Pancrase#Pancrase: Hybrid 6"
     },
     "pancrase:2006-12-10:pancrase-blow-11": {
@@ -4206,10 +4192,10 @@
       "wikipediaTitle": "2006 in Pancrase#Pancrase: Blow 11"
     },
     "pancrase:2009-06-07:pancrase-changing-tour-3": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "2009 in Pancrase#Pancrase: Changing Tour 3"
     },
     "pancrase:2017-12-10:pancrase-292": {
@@ -4220,90 +4206,80 @@
       "wikipediaTitle": "List of Pancrase events"
     },
     "bellator:2014-06-06:bellator-121": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "Bellator MMA: 2014 Summer Series#Bellator 121"
     },
     "pancrase:2006-06-06:pancrase-blow-5": {
-      "strategyVersion": 4,
-      "status": "commons-headliner-image",
-      "sourceType": "wikimedia-commons-headliner",
-      "artworkType": "headliner-photo",
-      "checkedAt": "2026-09-08T23:56:29.112Z",
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "2006 in Pancrase#Pancrase: Blow 5",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/2013_IPC_Athletics_World_Championships_-_26072013_-_Atsushi_Yamamoto_of_Japan_preparing_for_the_Men%27s_100m_-_T42.jpg/1280px-2013_IPC_Athletics_World_Championships_-_26072013_-_Atsushi_Yamamoto_of_Japan_preparing_for_the_Men%27s_100m_-_T42.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "imageAlt": "Yoshiro Maeda vs. Atsushi Yamamoto headliner photo",
-      "imageCredit": "Wikimedia Commons · Clément Bucco-Lechat · CC BY-SA 3.0",
-      "imageFileTitle": "File:2013 IPC Athletics World Championships - 26072013 - Atsushi Yamamoto of Japan preparing for the Men's 100m - T42.jpg",
-      "width": 2567,
-      "height": 3875,
-      "score": 185
+      "imageCredit": "Wikimedia Commons · Clément Bucco-Lechat · CC BY-SA 3.0"
     },
     "pancrase:2016-12-11:pancrase-osaka": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "pancrase:2021-12-11:pancrase-325": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "rizin:2026-06-06:rizin-landmark-14": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "2026 in Rizin Fighting Federation#Rizin Landmark 14"
     },
     "bellator:2009-06-05:bellator-10": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "Bellator 10"
     },
     "pancrase:2005-06-05:pancrase-2005-neo-blood-tournament-semifinals": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "2005 in Pancrase#Pancrase: 2005 Neo-Blood Tournament Semifinals"
     },
     "pancrase:2010-06-05:pancrase-passion-tour-5": {
-      "strategyVersion": 4,
-      "status": "commons-headliner-image",
-      "sourceType": "wikimedia-commons-headliner",
-      "artworkType": "headliner-photo",
-      "checkedAt": "2026-09-09T01:17:23.968Z",
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "2010 in Pancrase#Pancrase: Passion Tour 5",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Horst_Espeloer_2014-01-17_Uraken-uchi.jpg/1280px-Horst_Espeloer_2014-01-17_Uraken-uchi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "imageAlt": "URAKEN vs. Keiichiro Yamamiya headliner photo",
-      "imageCredit": "Wikimedia Commons · Reclus · CC0",
-      "imageFileTitle": "File:Horst Espeloer 2014-01-17 Uraken-uchi.jpg",
-      "width": 1600,
-      "height": 1666,
-      "score": 135
+      "imageCredit": "Wikimedia Commons · Reclus · CC0"
     },
     "pancrase:2011-06-05:pancrase-impressive-tour-5": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "2011 in Pancrase#Pancrase: Impressive Tour 5"
     },
     "pride:2000-06-04:pride-9": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "commons-event-image",
       "sourceType": "wikimedia-commons-search",
       "artworkType": "event-photo",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "2000 in Pride FC#Pride 9: New Blood",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Silicon_Valley_Pride_%289%29.jpg/1280px-Silicon_Valley_Pride_%289%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "imageAlt": "Pride 9 event image",
@@ -4311,201 +4287,176 @@
       "imageFileTitle": "File:Silicon Valley Pride (9).jpg",
       "width": 4000,
       "height": 6000,
-      "score": 224
+      "score": 228
     },
     "pride:2006-06-04:pride-bushido-survival-2006": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "Pride Bushido Survival 2006"
     },
     "pancrase:2015-12-13:pancrase-273": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "pancrase:2020-12-13:pancrase-320": {
-      "strategyVersion": 4,
-      "status": "commons-event-image",
-      "sourceType": "wikimedia-commons-search",
-      "artworkType": "event-photo",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "List of Pancrase events",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Londen_2006_%28320%29_%282848075803%29.jpg/1280px-Londen_2006_%28320%29_%282848075803%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "imageAlt": "Pancrase 320 event image",
-      "imageCredit": "Wikimedia Commons · Niels Broekzitter from Piershil, The Netherlands · CC BY 2.0",
-      "imageFileTitle": "File:Londen 2006 (320) (2848075803).jpg",
-      "width": 2272,
-      "height": 1704,
-      "score": 97
+      "imageCredit": "Wikimedia Commons · Niels Broekzitter from Piershil, The Netherlands · CC BY 2.0"
     },
     "pancrase:2023-06-04:pancrase-334-29th-neo-blood-tournament-2nd-round": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "bellator:2012-12-14:bellator-84": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "Bellator Fighting Championships: Season Seven#Bellator 84"
     },
     "bellator:2018-12-14:bellator-212": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "Bellator MMA in 2018#Bellator 212"
     },
     "bellator:2017-12-15:bellator-191": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "Bellator MMA in 2017#Bellator 191"
     },
     "bellator:2018-12-15:bellator-213": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "Bellator MMA in 2018#Bellator 213"
     },
     "pancrase:1996-12-15:pancrase-truth-10": {
-      "strategyVersion": 4,
-      "status": "commons-headliner-image",
-      "sourceType": "wikimedia-commons-headliner",
-      "artworkType": "headliner-photo",
-      "checkedAt": "2026-09-08T07:26:26.768Z",
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "1996 in Pancrase#Pancrase: Truth 10",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Masakatsu_Funaki.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
       "imageAlt": "Jason DeLucia vs. Masakatsu Funaki headliner photo",
-      "imageCredit": "Wikimedia Commons · Harry Li · CC BY 2.0",
-      "imageFileTitle": "File:Masakatsu Funaki.jpg",
-      "width": 1137,
-      "height": 1313,
-      "score": 185
+      "imageCredit": "Wikimedia Commons · Harry Li · CC BY 2.0"
     },
     "pancrase:1998-06-02:pancrase-advance-7": {
-      "strategyVersion": 4,
-      "status": "commons-headliner-image",
-      "sourceType": "wikimedia-commons-headliner",
-      "artworkType": "headliner-photo",
-      "checkedAt": "2026-09-08T13:52:57.830Z",
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 7",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Minoru_Suzuki_NEVER_Openweight_Champion.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
       "imageAlt": "Minoru Suzuki vs. John Roberts headliner photo",
-      "imageCredit": "Wikimedia Commons · ゾーヒョー · CC BY-SA 4.0",
-      "imageFileTitle": "File:Minoru Suzuki NEVER Openweight Champion.jpg",
-      "width": 600,
-      "height": 900,
-      "score": 192
+      "imageCredit": "Wikimedia Commons · ゾーヒョー · CC BY-SA 4.0"
     },
     "pancrase:2012-06-02:pancrase-progress-tour-7": {
-      "strategyVersion": 4,
-      "status": "commons-headliner-image",
-      "sourceType": "wikimedia-commons-headliner",
-      "artworkType": "headliner-photo",
-      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "List of Pancrase events",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Japanese_newscaster_kawamura_ryo.jpg/1280px-Japanese_newscaster_kawamura_ryo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
       "imageAlt": "Ryo Kawamura vs. Shungo Oyama headliner photo",
-      "imageCredit": "Wikimedia Commons · Cream meron pan · CC BY-SA 4.0",
-      "imageFileTitle": "File:Japanese newscaster kawamura ryo.jpg",
-      "width": 3000,
-      "height": 2000,
-      "score": 80
+      "imageCredit": "Wikimedia Commons · Cream meron pan · CC BY-SA 4.0"
     },
     "rizin:2019-06-02:rizin-16-kobe": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "2019 in Rizin Fighting Federation#Rizin 16 - Kobe"
     },
     "pancrase:2024-12-15:pancrase-350": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "pancrase:2024-12-15:pancrase-351": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "bellator:2016-12-16:bellator-169": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "Bellator MMA in 2016#Bellator 169"
     },
     "pancrase:2007-12-16:pancrase-2007-korea-neo-blood-tournament": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "2007 in Pancrase#Pancrase: 2007 Korea Neo-Blood Tournament"
     },
     "pancrase:2008-06-01:pancrase-shining-5": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 5"
     },
     "pancrase:2025-06-01:pancrase-354": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "pancrase:2015-05-31:pancrase-267": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "rizin:2025-05-31:rizin-world-series-in-korea": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "2025 in Rizin Fighting Federation#Rizin World Series in Korea"
     },
     "pancrase:2026-05-31:pancrase-362": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "pancrase:1999-12-18:pancrase-breakthrough-11": {
-      "strategyVersion": 4,
-      "status": "commons-headliner-image",
-      "sourceType": "wikimedia-commons-headliner",
-      "artworkType": "headliner-photo",
-      "checkedAt": "2026-09-08T17:00:31.599Z",
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "1999 in Pancrase#Pancrase: Breakthrough 11",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/68/Minoru_Suzuki_NEVER_Openweight_Champion.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
       "imageAlt": "Minoru Suzuki vs. Sanae Kikuta headliner photo",
-      "imageCredit": "Wikimedia Commons · ゾーヒョー · CC BY-SA 4.0",
-      "imageFileTitle": "File:Minoru Suzuki NEVER Openweight Champion.jpg",
-      "width": 600,
-      "height": 900,
-      "score": 192
+      "imageCredit": "Wikimedia Commons · ゾーヒョー · CC BY-SA 4.0"
     },
     "pancrase:2007-05-30:pancrase-rising-5": {
       "strategyVersion": 4,
@@ -4523,18 +4474,26 @@
       "score": 80
     },
     "pancrase:2016-12-18:pancrase-283": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "pancrase:2021-05-30:pancrase-321": {
       "strategyVersion": 4,
-      "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
-      "wikipediaTitle": "List of Pancrase events"
+      "status": "commons-headliner-image",
+      "sourceType": "wikimedia-commons-headliner",
+      "artworkType": "headliner-photo",
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "wikipediaTitle": "List of Pancrase events",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Isao_Homma_Albirex_Niigata_-_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "ISAO vs. Taichi Nakajima headliner photo",
+      "imageCredit": "Wikimedia Commons · yoppy from Kawasaki, Kanagawa, Japan · CC BY 2.0",
+      "imageFileTitle": "File:Isao Homma Albirex Niigata - 2.jpg",
+      "width": 1190,
+      "height": 1613,
+      "score": 142
     },
     "bellator:2009-05-29:bellator-9": {
       "strategyVersion": 4,
@@ -4544,24 +4503,24 @@
       "wikipediaTitle": "Bellator 9"
     },
     "pancrase:1998-12-19:pancrase-advance-12": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "1998 in Pancrase#Pancrase: Advance 12"
     },
     "pancrase:2010-12-19:pancrase-passion-tour-12": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "2010 in Pancrase#Pancrase: Passion Tour 12"
     },
     "pancrase:2015-12-19:pancrase-274": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "List of Pancrase events"
     },
     "pancrase:2016-05-29:pancrase-sapporo-2016": {
@@ -4572,11 +4531,12 @@
       "wikipediaTitle": "List of Pancrase events"
     },
     "bellator:2019-12-20:bellator-235": {
-      "strategyVersion": 4,
-      "status": "no-image-found",
+      "strategyVersion": 6,
+      "status": "check-failed",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T07:04:04.715Z",
-      "wikipediaTitle": "Bellator MMA in 2019#Bellator 235"
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "Bellator MMA in 2019#Bellator 235",
+      "error": "429 Too Many Requests"
     },
     "pancrase:1997-12-20:pancrase-alive-11": {
       "strategyVersion": 4,
@@ -7576,7 +7536,7 @@
       "status": "lead-image",
       "sourceType": "wikipedia-lead-image",
       "artworkType": "event-photo",
-      "checkedAt": "2026-09-09T07:55:56.938Z",
+      "checkedAt": "2026-09-09T08:38:01.784Z",
       "wikipediaTitle": "Bellator 283",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/7b/Bellator283.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "Bellator 283 event poster",
@@ -7727,19 +7687,14 @@
       "imageCredit": "Wikipedia"
     },
     "rizin:2026-06-06:makoto-takahashi": {
-      "strategyVersion": 4,
-      "status": "commons-event-image",
-      "sourceType": "wikimedia-commons-search",
-      "artworkType": "event-photo",
-      "checkedAt": "2026-09-08T17:01:05.833Z",
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "Japan",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Makoto_Takahashi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
       "imageAlt": "Makoto Takahashi event image",
-      "imageCredit": "Wikimedia Commons · Ministry of Internal Affairs and Communications (Japan) · CC BY 4.0",
-      "imageFileTitle": "File:Makoto Takahashi.jpg",
-      "width": 1185,
-      "height": 1581,
-      "score": 164
+      "imageCredit": "Wikimedia Commons · Ministry of Internal Affairs and Communications (Japan) · CC BY 4.0"
     },
     "bellator:2021-05-21:bellator-259": {
       "strategyVersion": 4,
@@ -8509,104 +8464,101 @@
       "wikipediaTitle": "The Ultimate Fighter: Team Hughes vs. Team Serra Finale"
     },
     "ufc:2013-06-08:ufc-on-fuel-tv-nogueira-vs-werdum": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T21:53:16.422Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "The Ultimate Fighter: Brazil 2#The Ultimate Fighter: Brazil 2 Finale"
     },
     "pfl:2014-06-07:wsof-canada-2-loiseau-vs-lewis": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T21:53:16.422Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "World Series of Fighting Canada 2: Loiseau vs. Lewis"
     },
     "pfl:2018-06-07:pfl-1": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T21:53:16.422Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "PFL 1 (2018 season)"
     },
     "ufc:2015-12-11:the-ultimate-fighter-team-mcgregor-vs-team-faber-finale": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T21:53:16.422Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "The Ultimate Fighter: Team McGregor vs. Team Faber#The Ultimate Fighter 22 Finale"
     },
     "ufc:2014-12-12:the-ultimate-fighter-a-champion-will-be-crowned-finale": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T21:53:16.422Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "The Ultimate Fighter: A Champion Will Be Crowned#The Ultimate Fighter 20 Finale"
     },
     "pfl:2015-06-05:wsof21-palmer-vs-horodecki": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T21:53:16.422Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "World Series of Fighting 21: Palmer vs. Horodecki"
     },
     "ufc:2008-12-13:the-ultimate-fighter-team-nogueira-vs-team-mir-finale": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T21:53:16.422Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "The Ultimate Fighter: Team Nogueira vs. Team Mir Finale"
     },
     "pfl:2014-12-13:wsof16-palhares-vs-fitch": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T21:53:16.422Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "World Series of Fighting 16: Palhares vs. Fitch"
     },
     "pfl:2013-12-14:wsof-2-central-america": {
-      "strategyVersion": 4,
-      "status": "check-failed",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T21:53:16.422Z",
-      "wikipediaTitle": "World Series of Fighting 2: Central America",
-      "error": "429 Too Many Requests"
-    },
-    "ufc:2012-12-15:the-ultimate-fighter-team-carwin-vs-team-nelson-finale": {
-      "strategyVersion": 4,
-      "status": "check-failed",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T21:53:16.422Z",
-      "wikipediaTitle": "The Ultimate Fighter: Team Carwin vs. Team Nelson#The Ultimate Fighter 16 Finale",
-      "error": "429 Too Many Requests"
-    },
-    "ufc:2012-12-15:ufc-on-fx-sotiropoulos-vs-pearson": {
-      "strategyVersion": 4,
-      "status": "check-failed",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T21:53:16.422Z",
-      "wikipediaTitle": "The Ultimate Fighter: The Smashes#The Ultimate Fighter: The Smashes Finale",
-      "error": "429 Too Many Requests"
-    },
-    "ufc:2012-06-01:the-ultimate-fighter-live-finale": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T21:53:16.422Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "World Series of Fighting 2: Central America"
+    },
+    "ufc:2012-12-15:the-ultimate-fighter-team-carwin-vs-team-nelson-finale": {
+      "strategyVersion": 6,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "The Ultimate Fighter: Team Carwin vs. Team Nelson#The Ultimate Fighter 16 Finale"
+    },
+    "ufc:2012-12-15:ufc-on-fx-sotiropoulos-vs-pearson": {
+      "strategyVersion": 6,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "The Ultimate Fighter: The Smashes#The Ultimate Fighter: The Smashes Finale"
+    },
+    "ufc:2012-06-01:the-ultimate-fighter-live-finale": {
+      "strategyVersion": 6,
+      "status": "no-image-found",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "The Ultimate Fighter: Live#The Ultimate Fighter 15 Finale"
     },
     "ufc:2014-05-31:the-ultimate-fighter-brazil-3-finale-miocic-vs-maldonado": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T21:53:16.422Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "The Ultimate Fighter: Brazil 3#The Ultimate Fighter Brazil 3 Finale: Miocic vs. Maldonado"
     },
     "pfl:2015-12-18:wsof26-palmer-vs-almeida": {
-      "strategyVersion": 4,
+      "strategyVersion": 6,
       "status": "no-image-found",
       "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T21:53:16.422Z",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
       "wikipediaTitle": "World Series of Fighting 26: Palmer vs. Almeida"
     },
     "strikeforce:2010-05-21:strikeforce-challengers-lindland-vs-casey": {
@@ -8947,7 +8899,7 @@
       "status": "lead-image",
       "sourceType": "wikipedia-lead-image",
       "artworkType": "event-photo",
-      "checkedAt": "2026-09-09T07:55:56.938Z",
+      "checkedAt": "2026-09-09T08:38:01.784Z",
       "wikipediaTitle": "UFC 7",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/32/Ufc7.gif?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 7: The Brawl in Buffalo event poster",
@@ -8992,7 +8944,7 @@
       "status": "lead-image",
       "sourceType": "wikipedia-lead-image",
       "artworkType": "event-photo",
-      "checkedAt": "2026-09-09T07:55:56.938Z",
+      "checkedAt": "2026-09-09T08:38:01.784Z",
       "wikipediaTitle": "UFC 88",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/90/UFC88.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 88: Breakthrough event poster",
@@ -9022,7 +8974,7 @@
       "status": "lead-image",
       "sourceType": "wikipedia-lead-image",
       "artworkType": "event-photo",
-      "checkedAt": "2026-09-09T07:55:56.938Z",
+      "checkedAt": "2026-09-09T08:38:01.784Z",
       "wikipediaTitle": "UFC 279",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/3f/Official_poster_for_UFC_279.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 279: Diaz vs. Ferguson event poster",
@@ -9477,7 +9429,7 @@
       "status": "lead-image",
       "sourceType": "wikipedia-lead-image",
       "artworkType": "event-photo",
-      "checkedAt": "2026-09-09T07:55:56.938Z",
+      "checkedAt": "2026-09-09T08:38:01.784Z",
       "wikipediaTitle": "UFC 253",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/5c/Adesanya_vs._Costa.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 253: Adesanya vs. Costa event poster",
@@ -13627,6 +13579,620 @@
       "wikipediaTitle": "Strikeforce: Revenge",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/f9/StrikeforceRevenge.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "Strikeforce: Revenge event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2010-12-11:ufc-124-st-pierre-vs-koscheck-2": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 124",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/97/Ufc124_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 124: St-Pierre vs. Koscheck 2 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2012-06-08:ufc-on-fx-johnson-vs-mccall-2": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "2012 in UFC#UFC on FX: Johnson vs. McCall 2",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Logo_of_the_Ultimate_Fighting_Championship.svg/1280px-Logo_of_the_Ultimate_Fighting_Championship.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "imageAlt": "UFC on FX: Johnson vs. McCall 2 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2019-06-08:ufc-238-cejudo-vs-moraes": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 238",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/ca/UFC_238_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 238: Cejudo vs. Moraes event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2021-12-11:ufc-269-oliveira-vs-poirier": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 269",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c8/UFC_269_updated_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 269: Oliveira vs. Poirier event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2024-06-08:ufc-on-espn-cannonier-vs-imavov": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC on ESPN: Cannonier vs. Imavov",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/30/UFC_on_ESPN_57.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC on ESPN: Cannonier vs. Imavov event image",
+      "imageCredit": "Wikipedia"
+    },
+    "pfl:2023-06-08:pfl-4": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "PFL 4 (2023 season)",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/32/PFL_4_2023_Version_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "PFL 4 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "pfl:2024-06-08:pfl-europe-2": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "PFL Europe 2 (2024)",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c3/PFL_Europe_2_2024.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "PFL Europe 2 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2008-06-07:ufc-85-bedlam": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 85",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/8c/UFC_85.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 85: Bedlam event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2009-12-12:ufc-107-penn-vs-sanchez": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 107",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/50/Ufc107poster2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 107: Penn vs. Sanchez event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2014-06-07:ufc-fight-night-henderson-vs-khabilov": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC Fight Night: Henderson vs. Khabilov",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/ac/UFC_42_event_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC Fight Night: Henderson vs. Khabilov event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2015-12-12:ufc-194-aldo-vs-mcgregor": {
+      "strategyVersion": 6,
+      "status": "poster-candidate",
+      "sourceType": "wikipedia-page-artwork",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 194",
+      "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/Jos%C3%A9_Aldo_vs._Conor_McGregor%2C_UFC_189_World_Tour_London.jpg/1280px-Jos%C3%A9_Aldo_vs._Conor_McGregor%2C_UFC_189_World_Tour_London.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "imageAlt": "UFC 194: Aldo vs. McGregor event image",
+      "imageCredit": "Wikipedia",
+      "imageFileTitle": "File:José Aldo vs. Conor McGregor, UFC 189 World Tour London.jpg",
+      "width": 5780,
+      "height": 3850,
+      "score": 107
+    },
+    "ufc:2020-12-12:ufc-256-figueiredo-vs-moreno": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 256",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/2/2d/UFC_256_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 256: Figueiredo vs. Moreno event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2025-06-07:ufc-316-dvalishvili-vs-o-malley-2": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 316",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/84/UFC_316_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 316: Dvalishvili vs. O'Malley 2 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "wec:2002-06-07:wec-3-all-or-nothing": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "WEC 3",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c1/Wec_logo.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "WEC 3: All or Nothing event image",
+      "imageCredit": "Wikipedia"
+    },
+    "wec:2007-12-12:wec-31-faber-vs-curran": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "WEC 31",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/9a/WECFaberCurran.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "WEC 31: Faber vs. Curran event image",
+      "imageCredit": "Wikipedia"
+    },
+    "wec:2009-06-07:wec-41-brown-vs-faber-ii": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "WEC 41",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/3e/Wec-41-BrownvsfaberII-poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "WEC 41: Brown vs. Faber II event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2003-06-06:ufc-43-meltdown": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 43",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/1/1c/UFC43.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 43: Meltdown event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2006-12-13:ufc-fight-night-sanchez-vs-riggs": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC Fight Night: Sanchez vs. Riggs",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/77/UFCFN7.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC Fight Night: Sanchez vs. Riggs event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2014-12-13:ufc-on-fox-dos-santos-vs-miocic": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC on Fox: dos Santos vs. Miocic",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/2/23/UFC_on_FOX_13.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC on Fox: dos Santos vs. Miocic event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2015-06-06:ufc-fight-night-boetsch-vs-henderson": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC Fight Night: Boetsch vs. Henderson",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/78/New_UFN_NOLA_pre_sale.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC Fight Night: Boetsch vs. Henderson event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2020-06-06:ufc-250-nunes-vs-spencer": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 250",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/db/UFC_250_official_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 250: Nunes vs. Spencer event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2025-12-13:ufc-on-espn-royval-vs-kape": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC on ESPN: Royval vs. Kape",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/e/e1/UFC_on_ESPN_73_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC on ESPN: Royval vs. Kape event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2026-06-06:ufc-fight-night-muhammad-vs-bonfim": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC Fight Night: Muhammad vs. Bonfim",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/2/25/Official_Poster_for_UFC_Fight_Night%2C_Muhammad_vs._Bonfim.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC Fight Night: Muhammad vs. Bonfim event image",
+      "imageCredit": "Wikipedia"
+    },
+    "strikeforce:2009-06-06:strikeforce-lawler-vs-shields": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "Strikeforce: Lawler vs. Shields",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/59/Strikeforcelawlershields.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Strikeforce: Lawler vs. Shields event image",
+      "imageCredit": "Wikipedia"
+    },
+    "pfl:2019-06-06:pfl-3": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "PFL 3 (2019 season)",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/0f/PFL_3_%282019_season%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "PFL 3 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "pfl:2025-12-13:pfl-champions-series-4": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "PFL Champions Series 4",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/fd/PFL_Lyon_2025.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "PFL Champions Series 4 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2013-12-14:ufc-on-fox-johnson-vs-benavidez-2": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC on Fox: Johnson vs. Benavidez 2",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/0c/Updated_UFC_on_FOX_9.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC on Fox: Johnson vs. Benavidez 2 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2019-12-14:ufc-245-usman-vs-covington": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 245",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/83/UFC_245poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 245: Usman vs. Covington event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2021-06-05:ufc-fight-night-rozenstruik-vs-sakai": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC Fight Night: Rozenstruik vs. Sakai",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/6f/UFC_Fight_Night_189_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC Fight Night: Rozenstruik vs. Sakai event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2024-12-14:ufc-on-espn-covington-vs-buckley": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC on ESPN: Covington vs. Buckley",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/90/UFC_on_ESPN_63.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC on ESPN: Covington vs. Buckley event image",
+      "imageCredit": "Wikipedia"
+    },
+    "pfl:2024-12-14:pfl-europe-4": {
+      "strategyVersion": 6,
+      "status": "poster-candidate",
+      "sourceType": "wikipedia-page-artwork",
+      "artworkType": "event-photo",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "PFL Europe 4 (2024)",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/a4/PFL_Europe_4_2024.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "imageAlt": "PFL Europe 4 event image",
+      "imageCredit": "Wikipedia",
+      "imageFileTitle": "File:PFL Europe 4 2024.jpg",
+      "width": 316,
+      "height": 316,
+      "score": 158
+    },
+    "ufc:2005-06-04:ufc-53-heavy-hitters": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 53",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/f/f1/UFC53.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 53: Heavy Hitters event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2011-06-04:the-ultimate-fighter-team-lesnar-vs-team-dos-santos-finale": {
+      "strategyVersion": 6,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "The Ultimate Fighter: Team Lesnar vs. Team dos Santos Finale",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/b/bf/Tuf13.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "The Ultimate Fighter: Team Lesnar vs. Team dos Santos Finale event image",
+      "imageCredit": "Wikipedia",
+      "error": "429 Too Many Requests"
+    },
+    "ufc:2016-06-04:ufc-199-rockhold-vs-bisping-2": {
+      "strategyVersion": 6,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 199",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/1/1e/Rockhold_vs_Weidman_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 199: Rockhold vs. Bisping 2 event image",
+      "imageCredit": "Wikipedia",
+      "error": "429 Too Many Requests"
+    },
+    "ufc:2018-12-15:ufc-on-fox-lee-vs-iaquinta-2": {
+      "strategyVersion": 6,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC on Fox: Lee vs. Iaquinta 2",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/2/22/UFConFox31poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC on Fox: Lee vs. Iaquinta 2 event image",
+      "imageCredit": "Wikipedia",
+      "error": "429 Too Many Requests"
+    },
+    "ufc:2022-06-04:ufc-fight-night-volkov-vs-rozenstruik": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC Fight Night: Volkov vs. Rozenstruik",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/de/Officiak_poster_for_Volkov_vs._Rozenstruik.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC Fight Night: Volkov vs. Rozenstruik event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:1994-12-16:ufc-4-revenge-of-the-warriors": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 4",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/61/Ufc4.gif?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 4: Revenge of the Warriors event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:1995-12-16:ufc-the-ultimate-ultimate": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "Ultimate Ultimate 1995",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/33/Ultimate_Ultimate_1995_%28event_poster%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC: The Ultimate Ultimate event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2000-12-16:ufc-29-defense-of-the-belts": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 29",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/87/Ufc29poster.gif?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 29: Defense of the Belts event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2017-06-03:ufc-212-aldo-vs-holloway": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 212",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/50/UFC_212_Poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 212: Aldo vs. Holloway event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2017-12-16:ufc-on-fox-lawler-vs-dos-anjos": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC on Fox: Lawler vs. dos Anjos",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/d/dd/UFC_Winnipeg_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC on Fox: Lawler vs. dos Anjos event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2023-06-03:ufc-on-espn-kara-france-vs-albazi": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC on ESPN: Kara-France vs. Albazi",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/6c/UFC_on_ESPN_46_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC on ESPN: Kara-France vs. Albazi event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2023-12-16:ufc-296-edwards-vs-covington": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 296",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/63/UFC_296_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 296: Edwards vs. Covington event image",
+      "imageCredit": "Wikipedia"
+    },
+    "wec:2007-06-03:wec-28-faber-vs-farrar": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "WEC 28",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/96/Wec-28-original.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "WEC 28: Faber vs. Farrar event image",
+      "imageCredit": "Wikipedia"
+    },
+    "wec:2010-12-16:wec-53-henderson-vs-pettis": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "WEC 53",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/64/WEC_53_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "WEC 53: Henderson vs. Pettis event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2016-12-17:ufc-on-fox-vanzant-vs-waterson": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC on Fox: VanZant vs. Waterson",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/69/UFC_Sacramento_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC on Fox: VanZant vs. Waterson event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2022-12-17:ufc-fight-night-cannonier-vs-strickland": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC Fight Night: Cannonier vs. Strickland",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/8e/Jared_vs_Strickland_official_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC Fight Night: Cannonier vs. Strickland event image",
+      "imageCredit": "Wikipedia"
+    },
+    "strikeforce:2011-12-17:strikeforce-melendez-vs-masvidal": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "Strikeforce: Melendez vs. Masvidal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/60/Melendez.vs.Masvidal.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Strikeforce: Melendez vs. Masvidal event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2018-06-01:ufc-fight-night-rivera-vs-moraes": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC Fight Night: Rivera vs. Moraes",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c5/UFC_Fight_Night_Rivera_vs._Moraes_event_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC Fight Night: Rivera vs. Moraes event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2019-06-01:ufc-fight-night-gustafsson-vs-smith": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC Fight Night: Gustafsson vs. Smith",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/36/UFC_on_ESPN%2B_10.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC Fight Night: Gustafsson vs. Smith event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2021-12-18:ufc-fight-night-lewis-vs-daukaus": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC Fight Night: Lewis vs. Daukaus",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/04/Official_poster_for_UFC_Fight_Night_Lewis_vs._Daukaus.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC Fight Night: Lewis vs. Daukaus event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2024-06-01:ufc-302-makhachev-vs-poirier": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 302",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/6c/UFC_302_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 302: Makhachev vs. Poirier event image",
+      "imageCredit": "Wikipedia"
+    },
+    "wec:2008-06-01:wec-34-faber-vs-pulver": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "WEC 34",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/4f/WECFaberPulver.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "WEC 34: Faber vs. Pulver event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2014-05-31:ufc-fight-night-munoz-vs-mousasi": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC Fight Night: Muñoz vs. Mousasi",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c8/UFC_BERLIN_OFFICIAL_POSTER.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC Fight Night: Muñoz vs. Mousasi event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2015-12-19:ufc-on-fox-dos-anjos-vs-cowboy-2": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC on Fox: dos Anjos vs. Cowboy 2",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c2/UFC_on_FOX_17_pre_sale.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC on Fox: dos Anjos vs. Cowboy 2 event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2020-12-19:ufc-fight-night-thompson-vs-neal": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC Fight Night: Thompson vs. Neal",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/1/15/UFC_Fight_Night_183.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC Fight Night: Thompson vs. Neal event image",
+      "imageCredit": "Wikipedia"
+    },
+    "ufc:2025-05-31:ufc-on-espn-gamrot-vs-klein": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC on ESPN: Gamrot vs. Klein",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/aa/UFC_on_ESPN_68.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC on ESPN: Gamrot vs. Klein event image",
+      "imageCredit": "Wikipedia"
+    },
+    "strikeforce:2009-12-19:strikeforce-evolution": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "Strikeforce: Evolution",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/b/b8/StrikeforceEV.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "Strikeforce: Evolution event image",
+      "imageCredit": "Wikipedia"
+    },
+    "wec:2009-12-19:wec-45-cerrone-vs-ratcliff": {
+      "strategyVersion": 6,
+      "status": "check-failed",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "WEC 45",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/85/WEC_45_Donald_Cerrone_vs._Ed_Ratcliff_2_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "WEC 45: Cerrone vs. Ratcliff event image",
+      "imageCredit": "Wikipedia",
+      "error": "429 Too Many Requests"
+    },
+    "ufc:1997-05-30:ufc-13-the-ultimate-force": {
+      "strategyVersion": 6,
+      "status": "pageimage-kept",
+      "sourceType": "wikipedia-pageimage",
+      "checkedAt": "2026-09-09T08:35:33.973Z",
+      "wikipediaTitle": "UFC 13",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/8/84/UFC13.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "imageAlt": "UFC 13: The Ultimate Force event image",
       "imageCredit": "Wikipedia"
     }
   },

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 1,
-  "updatedAt": "2026-09-09T07:52:28.735Z",
+  "updatedAt": "2026-09-09T08:34:25.249Z",
   "fighters": {
     "船木誠勝": {
       "checkedAt": "2026-09-08T07:03:33.069Z",
@@ -1442,6 +1442,99 @@
       "checkedAt": "2026-09-09T07:52:28.735Z",
       "status": "unresolved",
       "error": "No Wikidata match"
+    },
+    "菊入正行": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "resolved",
+      "wikidataId": "Q113567140",
+      "englishName": "菊入正行"
+    },
+    "中田大貴": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "resolved",
+      "wikidataId": "Q18234176",
+      "englishName": "Hiroki Nakada"
+    },
+    "ryo": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "latin-name",
+      "englishName": "Ryo"
+    },
+    "小川徹": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "resolved",
+      "wikidataId": "Q123405576",
+      "englishName": "Tōru Ogawa"
+    },
+    "猿飛流": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "木下憂朔": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "resolved",
+      "wikidataId": "Q112238050",
+      "englishName": "Yūsaku Kinoshita"
+    },
+    "谷村泰嘉": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "大塚智貴": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "透暉鷹": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "亀井晨佑": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "渡辺彩華": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "resolved",
+      "wikidataId": "Q119517846",
+      "englishName": "Ayaka Watanabe"
+    },
+    "鶴屋 怜": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "三宅輝砂": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "resolved",
+      "wikidataId": "Q132431879",
+      "englishName": "Kisa Miyake"
+    },
+    "林 源平": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "栁川唯人": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "resolved",
+      "wikidataId": "Q138418282",
+      "englishName": "栁川唯人"
+    },
+    "高田寛也": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "新居すぐる": {
+      "checkedAt": "2026-09-09T08:34:25.249Z",
+      "status": "resolved",
+      "wikidataId": "Q110403483",
+      "englishName": "Suguru Nii"
     }
   },
   "entries": {
@@ -8822,6 +8915,430 @@
       "image": {
         "strategyVersion": 1,
         "checkedAt": "2026-09-09T07:52:28.735Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2020-12-13:pancrase-320": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2020/1213.html",
+        "rawNames": [
+          "村山暁洋",
+          "菊入正行"
+        ],
+        "englishNames": [
+          "Akihiro Murayama",
+          "菊入正行"
+        ],
+        "mainEvent": "Akihiro Murayama vs. 菊入正行"
+      }
+    },
+    "pancrase:2021-04-03:pancrase-osaka": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2021/0403.html"
+      }
+    },
+    "pancrase:2021-05-30:pancrase-321": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2021/0530.html",
+        "rawNames": [
+          "ISAO",
+          "中島太一"
+        ],
+        "englishNames": [
+          "ISAO",
+          "Taichi Nakajima"
+        ],
+        "mainEvent": "ISAO vs. Taichi Nakajima"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "commons-headliner-image",
+        "fighterName": "ISAO",
+        "imageFileTitle": "File:Isao Homma Albirex Niigata - 2.jpg"
+      }
+    },
+    "pancrase:2021-06-27:pancrase-322": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2021/0627.html",
+        "rawNames": [
+          "菊入正行",
+          "三浦広光"
+        ],
+        "englishNames": [
+          "菊入正行",
+          "Hiromitsu Miura"
+        ],
+        "mainEvent": "菊入正行 vs. Hiromitsu Miura"
+      }
+    },
+    "pancrase:2021-07-17:pancrase-osaka": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2021/0717.html"
+      }
+    },
+    "pancrase:2021-09-12:pancrase-323": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2021/0912.html",
+        "rawNames": [
+          "中田大貴",
+          "Ryo"
+        ],
+        "englishNames": [
+          "Hiroki Nakada",
+          "Ryo"
+        ],
+        "mainEvent": "Hiroki Nakada vs. Ryo"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Ryo",
+        "imageFileTitle": "File:Yoshizawa Ryo from \"Family\" at Red Carpet of the Tokyo International Film Festival 2023.jpg"
+      }
+    },
+    "pancrase:2021-10-16:pancrase-324": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2021/1016.html"
+      }
+    },
+    "pancrase:2021-12-11:pancrase-325": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2021/1211.html"
+      }
+    },
+    "pancrase:2022-03-21:pancrase-326": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/0321.html",
+        "rawNames": [
+          "小川徹",
+          "猿飛流"
+        ],
+        "englishNames": [
+          "Tōru Ogawa",
+          "猿飛流"
+        ],
+        "mainEvent": "Tōru Ogawa vs. 猿飛流"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2022-04-10:pancrase-and-deep-osaka-tournament-yoshiro-maeda-retirement-event": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/0410.html",
+        "rawNames": [
+          "前田吉朗",
+          "稲垣克臣"
+        ],
+        "englishNames": [
+          "Yoshiro Maeda",
+          "Katsuomi Inagaki"
+        ],
+        "mainEvent": "Yoshiro Maeda vs. Katsuomi Inagaki"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2022-04-29:pancrase-327": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/0429.html",
+        "rawNames": [
+          "木下憂朔",
+          "村山暁洋"
+        ],
+        "englishNames": [
+          "Yūsaku Kinoshita",
+          "Akihiro Murayama"
+        ],
+        "mainEvent": "Yūsaku Kinoshita vs. Akihiro Murayama"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2022-05-22:pancrase-28th-neo-blood-tournament-1st-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/0522.html",
+        "rawNames": [
+          "谷村泰嘉",
+          "大塚智貴"
+        ],
+        "englishNames": [
+          "谷村泰嘉",
+          "大塚智貴"
+        ],
+        "mainEvent": "谷村泰嘉 vs. 大塚智貴"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2022-07-18:pancrase-328": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/0718.html",
+        "rawNames": [
+          "透暉鷹",
+          "亀井晨佑"
+        ],
+        "englishNames": [
+          "透暉鷹",
+          "亀井晨佑"
+        ],
+        "mainEvent": "透暉鷹 vs. 亀井晨佑"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2022-09-11:pancrase-329": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/0911.html",
+        "rawNames": [
+          "松本光史",
+          "アキラ"
+        ],
+        "englishNames": [
+          "Kōshi Matsumoto",
+          "Akira (given name)"
+        ],
+        "mainEvent": "Kōshi Matsumoto vs. Akira (given name)"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2022-10-10:pancrase-28th-neo-blood-tournament-finals": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/1010.html",
+        "rawNames": [
+          "藤野恵実",
+          "渡辺彩華"
+        ],
+        "englishNames": [
+          "Emi Fujino",
+          "Ayaka Watanabe"
+        ],
+        "mainEvent": "Emi Fujino vs. Ayaka Watanabe"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2022-12-25:pancrase-330": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/1225.html",
+        "rawNames": [
+          "猿飛流",
+          "鶴屋 怜"
+        ],
+        "englishNames": [
+          "猿飛流",
+          "鶴屋 怜"
+        ],
+        "mainEvent": "猿飛流 vs. 鶴屋 怜"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2023-03-04:pancrase-29th-neo-blood-tournament": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "no-main-event",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2023/0304.html"
+      }
+    },
+    "pancrase:2023-03-25:pancrase-331": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2023/0325.html"
+      }
+    },
+    "pancrase:2023-03-26:pancrase-332": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2023/0326.html",
+        "rawNames": [
+          "中田大貴",
+          "三宅輝砂"
+        ],
+        "englishNames": [
+          "Hiroki Nakada",
+          "Kisa Miyake"
+        ],
+        "mainEvent": "Hiroki Nakada vs. Kisa Miyake"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2023-04-30:pancrase-333": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2023/0430.html",
+        "rawNames": [
+          "久米鷹介",
+          "アキラ"
+        ],
+        "englishNames": [
+          "Takasuke Kume",
+          "Akira (given name)"
+        ],
+        "mainEvent": "Takasuke Kume vs. Akira (given name)"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2023-06-04:pancrase-334-29th-neo-blood-tournament-2nd-round": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2023/0604.html",
+        "rawNames": [
+          "村山暁洋",
+          "林 源平"
+        ],
+        "englishNames": [
+          "Akihiro Murayama",
+          "林 源平"
+        ],
+        "mainEvent": "Akihiro Murayama vs. 林 源平"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2023-07-09:pancrase-336": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2023/0709.html"
+      }
+    },
+    "pancrase:2023-08-27:pancrase-29th-neo-blood-tournament-finals": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2023/0827.html",
+        "rawNames": [
+          "栁川唯人",
+          "高田寛也"
+        ],
+        "englishNames": [
+          "栁川唯人",
+          "高田寛也"
+        ],
+        "mainEvent": "栁川唯人 vs. 高田寛也"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2023-09-24:pancrase-337-30th-anniversary-tournament-vol-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2023/0924.html",
+        "rawNames": [
+          "亀井晨佑",
+          "新居すぐる"
+        ],
+        "englishNames": [
+          "亀井晨佑",
+          "Suguru Nii"
+        ],
+        "mainEvent": "亀井晨佑 vs. Suguru Nii"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T08:34:25.249Z",
         "status": "no-headliner-image"
       }
     }
