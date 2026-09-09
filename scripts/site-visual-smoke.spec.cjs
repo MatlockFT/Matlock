@@ -178,3 +178,49 @@ for (const viewport of viewports) {
     }
   });
 }
+
+test.describe('On This Day share builder', () => {
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('builds post and story cards without reopening the old lightbox', async ({ page }) => {
+    const pageErrors = [];
+    page.on('pageerror', error => pageErrors.push(error.message));
+
+    await page.goto(targetUrl('/on-this-day/?date=09-08'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await page.waitForFunction(() => {
+      const list = document.querySelector('[data-otd-list]');
+      return list && list.getAttribute('aria-busy') === 'false' && list.children.length > 0;
+    }, null, { timeout: 30000 });
+
+    const media = page.locator('.otd-entry-media.is-image-ready').first();
+    await expect(media).toBeVisible({ timeout: 30000 });
+    await media.click();
+
+    const modal = page.locator('.otd-share-modal');
+    await expect(modal).toBeVisible();
+    await expect(page.locator('.otd-lightbox')).toHaveCount(0);
+
+    const canvas = page.locator('[data-otd-share-canvas]');
+    await expect.poll(async () => Number(await canvas.getAttribute('width')), { timeout: 30000 }).toBe(1080);
+    await expect.poll(async () => Number(await canvas.getAttribute('height')), { timeout: 30000 }).toBe(1350);
+    await expect(page.locator('[data-otd-share-download]')).toBeEnabled({ timeout: 30000 });
+    await expect(page.locator('[data-otd-share-instagram]')).toBeVisible();
+
+    await page.locator('[data-otd-share-format="story"]').click();
+    await expect.poll(async () => Number(await canvas.getAttribute('width')), { timeout: 30000 }).toBe(1080);
+    await expect.poll(async () => Number(await canvas.getAttribute('height')), { timeout: 30000 }).toBe(1920);
+    await expect(page.locator('[data-otd-share-format="story"]')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('[data-otd-share-download]')).toBeEnabled({ timeout: 30000 });
+
+    const dir = path.join(SCREENSHOT_DIR, 'desktop');
+    fs.mkdirSync(dir, { recursive: true });
+    await page.screenshot({ path: path.join(dir, 'otd-share-builder.png'), fullPage: false });
+
+    await page.locator('[data-otd-share-close]').click();
+    await expect(modal).toBeHidden();
+    await media.click();
+    await expect(page.locator('[data-otd-share-format="story"]')).toHaveAttribute('aria-pressed', 'true');
+
+    expect(pageErrors).toEqual([]);
+  });
+});
