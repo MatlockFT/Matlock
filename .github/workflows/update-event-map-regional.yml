@@ -7,6 +7,9 @@ on:
       - main
     paths:
       - ".github/workflows/update-event-map-regional.yml"
+      - "_data/upcoming_events.json"
+      - "scripts/build-event-map-us.mjs"
+      - "scripts/validate-event-map-us.mjs"
       - "scripts/update-event-map-regional.mjs"
       - "scripts/update-event-map-discovery.mjs"
       - "scripts/update-event-map-regional-extra.mjs"
@@ -45,6 +48,8 @@ jobs:
 
       - name: Validate updater syntax
         run: |
+          node --check scripts/build-event-map-us.mjs
+          node --check scripts/validate-event-map-us.mjs
           node --check scripts/update-event-map-regional.mjs
           node --check scripts/update-event-map-discovery.mjs
           node --check scripts/update-event-map-regional-extra.mjs
@@ -55,6 +60,9 @@ jobs:
           node --check scripts/validate-event-map-posters.mjs
           node --check scripts/preserve-event-map-discovery.mjs
           node --check scripts/validate-event-map-regional.mjs
+
+      - name: Check trusted-location parser regressions
+        run: node scripts/build-event-map-us.mjs --self-test
 
       - name: Snapshot current regional data
         run: cp _data/event_map_regional.json /tmp/event-map-regional-before.json
@@ -83,22 +91,26 @@ jobs:
       - name: Sanitize event poster images
         run: node scripts/sanitize-event-map-posters.mjs
 
-      - name: Validate regional event data
+      - name: Build trusted U.S. map dataset
+        run: node scripts/build-event-map-us.mjs
+
+      - name: Validate event locations and regional data
         run: |
           node scripts/validate-event-map-regional.mjs
           node scripts/validate-event-map-posters.mjs
+          node scripts/validate-event-map-us.mjs
 
-      - name: Commit regional event changes
+      - name: Commit Event Map data changes
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- _data/event_map_regional.json; then
-            echo "No regional Event Map changes."
+          if git diff --quiet -- _data/event_map_regional.json _data/event_map_us.json; then
+            echo "No Event Map data changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- _data/event_map_regional.json
-          git commit -m "Refresh regional Event Map data"
+          git add -- _data/event_map_regional.json _data/event_map_us.json
+          git commit -m "Refresh trusted Event Map data"
           git pull --rebase origin main
           git push origin HEAD:main
