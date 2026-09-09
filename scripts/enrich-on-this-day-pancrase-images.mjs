@@ -4,7 +4,7 @@ const HISTORY_PATH = process.argv[2] || 'assets/data/on-this-day.json';
 const LIMIT = Math.max(1, Number(process.env.OTD_PANCRASE_IMAGE_LIMIT || 80));
 const TIME_ZONE = process.env.OTD_TIME_ZONE || 'America/Chicago';
 const REQUEST_TIMEOUT_MS = 18000;
-const USER_AGENT = 'MMA-Matlock-OnThisDay-PancraseImages/1.0 (+https://mmamatlock.com/on-this-day/)';
+const USER_AGENT = 'MMA-Matlock-OnThisDay-PancrasePosters/2.0 (+https://mmamatlock.com/on-this-day/)';
 
 const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
 const norm = value => clean(value).normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
@@ -56,7 +56,7 @@ function officialResultUrl(entry) {
   return `https://www.pancrase.co.jp/data/result/${match[1]}/${match[2]}${match[3]}.html`;
 }
 
-function scoreEventImage(tag, url, entry) {
+function scorePoster(tag, url, entry) {
   const alt = clean(attr(tag, 'alt'));
   const title = clean(attr(tag, 'title'));
   const raw = `${alt} ${title} ${url}`.toLowerCase();
@@ -66,47 +66,27 @@ function scoreEventImage(tag, url, entry) {
   if (/\/(?:main|p\d+(?:ma|tn))\.(?:jpe?g|png|webp)(?:\?|$)/i.test(url)) score += 150;
   if (/pancrase/i.test(raw)) score += 70;
   if (number && new RegExp(`(?:^|[^0-9])${number}(?:[^0-9]|$)`).test(raw)) score += 90;
-  if (/poster|event|大会|ポスター/i.test(raw)) score += 45;
+  if (/poster|key.?art|event|大会|ポスター/i.test(raw)) score += 50;
   if (/\/data\/result\/|\/tour\//i.test(url)) score += 20;
   const width = Number(attr(tag, 'width')) || 0;
   const height = Number(attr(tag, 'height')) || 0;
   if (width >= 300 || height >= 300) score += 10;
+  if (/fighter|headshot|profile|face/i.test(raw)) score -= 100;
   if (/logo|banner|bnr|button|spacer|arrow|icon|header|footer|menu|nav/i.test(raw)) score -= 250;
   return { score, alt };
 }
 
-function exactEventImage(html, pageUrl, entry) {
+function exactPoster(html, pageUrl, entry) {
   const ranked = [];
   for (const tag of html.match(/<img\b[^>]*>/gi) || []) {
     const src = attr(tag, 'src') || attr(tag, 'data-src') || attr(tag, 'data-original');
     const url = absoluteUrl(src, pageUrl);
     if (!usableImage(url)) continue;
-    const { score, alt } = scoreEventImage(tag, url, entry);
+    const { score, alt } = scorePoster(tag, url, entry);
     ranked.push({ url, alt, score });
   }
   ranked.sort((a, b) => b.score - a.score);
   return ranked[0]?.score >= 120 ? ranked[0] : null;
-}
-
-function mainEventFallback(html, pageUrl) {
-  const anchors = ['メインイベント', 'MAIN EVENT', 'Main Event'];
-  let index = -1;
-  for (const anchor of anchors) {
-    const found = html.indexOf(anchor);
-    if (found >= 0 && (index < 0 || found < index)) index = found;
-  }
-  if (index < 0) return null;
-
-  const segment = html.slice(index, index + 16000);
-  for (const tag of segment.match(/<img\b[^>]*>/gi) || []) {
-    const src = attr(tag, 'src') || attr(tag, 'data-src') || attr(tag, 'data-original');
-    const url = absoluteUrl(src, pageUrl);
-    if (!usableImage(url)) continue;
-    const alt = clean(attr(tag, 'alt'));
-    if (/logo|banner|bnr|button|spacer|arrow|icon|header|footer|menu|nav/i.test(`${url} ${alt}`)) continue;
-    return { url, alt };
-  }
-  return null;
 }
 
 function ordinal(mmdd) {
@@ -135,17 +115,11 @@ const nowIso = new Date().toISOString();
 
 const targets = entries
   .filter(pancraseEntry)
-  .filter(entry => {
-    const exact = /^https:\/\//i.test(clean(entry?.imageUrl)) &&
-      Number(entry?.imageConfidence || 0) >= 0.95 &&
-      ['official-promotion-event-image', 'official-promotion-page', 'tapology-event-page'].includes(clean(entry?.imageSourceType));
-    return !exact;
-  })
+  .filter(entry => !(entry?.imagePosterVerified === true && clean(entry?.imageArtifactType) === 'event-poster' && /^https:\/\//i.test(clean(entry?.imageUrl))))
   .sort((a, b) => distance(a) - distance(b) || Number(b?.weight || 0) - Number(a?.weight || 0))
   .slice(0, LIMIT);
 
-let exact = 0;
-let fallback = 0;
+let resolved = 0;
 let missed = 0;
 let failed = 0;
 
@@ -154,27 +128,28 @@ for (const entry of targets) {
   if (!sourceUrl) { missed += 1; continue; }
   try {
     const { html, finalUrl } = await fetchHtml(sourceUrl);
-    const eventImage = exactEventImage(html, finalUrl, entry);
-    const fighterImage = eventImage ? null : mainEventFallback(html, finalUrl);
-    const selected = eventImage || fighterImage;
-    if (!selected) { missed += 1; await sleep(120); continue; }
+    const poster = exactPoster(html, finalUrl, entry);
+    if (!poster) {
+      missed += 1;
+      await sleep(120);
+      continue;
+    }
 
-    entry.imageUrl = selected.url;
-    entry.imageAlt = selected.alt || (eventImage ? `${clean(entry.title)} event image` : `${clean(entry.title)} main-event image`);
+    entry.imageUrl = poster.url;
+    entry.imageAlt = poster.alt || `${clean(entry.title)} event poster`;
     entry.imageCredit = 'Pancrase';
     entry.imageSourceUrl = finalUrl;
-    entry.imageSourceType = eventImage ? 'official-promotion-event-image' : 'official-promotion-fighter-fallback';
-    entry.imageConfidence = eventImage ? 0.99 : 0.82;
-    entry.imageSubjectType = eventImage ? 'event' : 'fighter';
-    entry.imageMatchReason = eventImage
-      ? 'Exact official Pancrase event page supplied the event image.'
-      : 'Exact official Pancrase event page did not expose event art; its main-event fighter image is used as the official fallback.';
+    entry.imageSourceType = 'official-promotion-event-poster';
+    entry.imageConfidence = 0.99;
+    entry.imageSubjectType = 'event';
+    entry.imageArtifactType = 'event-poster';
+    entry.imagePosterVerified = true;
+    entry.imageMatchReason = 'Exact official Pancrase event page supplied the event poster/key art.';
     entry.imageResolvedAt = nowIso;
     entry.imageStatus = 'resolved';
-    entry.imageExactMatch = Boolean(eventImage);
+    entry.imageExactMatch = true;
     delete entry.imageUnresolved;
-    if (eventImage) exact += 1;
-    else fallback += 1;
+    resolved += 1;
   } catch (error) {
     failed += 1;
     console.warn(`${entry.date} ${entry.title}: ${clean(error?.message || error)}`);
@@ -182,7 +157,7 @@ for (const entry of targets) {
   await sleep(120);
 }
 
-history.pancraseImageResolverVersion = 1;
+history.pancraseImageResolverVersion = 2;
 history.pancraseImageResolverUpdatedAt = nowIso;
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
-console.log(`Pancrase official image enrichment: ${targets.length} reviewed; ${exact} exact event images, ${fallback} official fighter fallbacks, ${missed} without a usable image, ${failed} failed.`);
+console.log(`Pancrase poster enrichment: ${targets.length} reviewed; ${resolved} verified event posters, ${missed} without poster art, ${failed} failed. Fighter-photo fallbacks are disabled for event entries.`);
