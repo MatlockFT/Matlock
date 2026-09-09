@@ -1372,6 +1372,21 @@
       "source_label": "Sherdog regional discovery"
     },
     {
+      "id": "sherdog-combat-fc-14-combat-fighting-championship-14-2026-10-09-wilmington",
+      "promotion": "Combat FC",
+      "promotion_key": "sherdog_discovery",
+      "title": "Combat FC 14: Combat Fighting Championship 14",
+      "date": "2026-10-09",
+      "venue": "Shriners Auditorium",
+      "location": "Wilmington, MA",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Combat-FC-14-Combat-Fighting-Championship-14-114372",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "lfa_official-lfa-243-maximov-vs-santos-2026-10-09",
       "promotion": "LFA",
       "promotion_key": "lfa_official",
@@ -1385,14 +1400,14 @@
       "level": "professional",
       "source_key": "lfa_official",
       "source_label": "Legacy Fighting Alliance",
-      "latitude": 36.9741,
-      "longitude": -122.0308,
       "main_event": {
         "fighters": [
           "Maximov",
           "Santos"
         ]
       },
+      "latitude": 36.9741,
+      "longitude": -122.0308,
       "poster_url": "https://www.lfa.com/wp-content/uploads/2026/08/LFA-243-Standard-Poster_Web.png"
     },
     {
