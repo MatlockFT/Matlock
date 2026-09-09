@@ -33,6 +33,8 @@
           <div class="event-card-section-heading"><h3>{{ section.title }}</h3><span>{{ section.time }}</span></div>
           <div class="featured-bouts">
             {% for bout in section.bouts limit:2 %}
+              {% assign priority_bout = false %}
+              {% if include.priority and forloop.first %}{% assign priority_bout = true %}{% endif %}
               <article class="bout-card bout-card-featured">
                 <div class="bout-label"><span>{% if bout.order < 10 %}0{% endif %}{{ bout.order }}</span>{% if bout.label != '' %} {{ bout.label }}{% endif %}</div>
                 <div class="bout-fighters">
@@ -43,7 +45,7 @@
                     <div class="fighter">
                       <div class="fighter-photo{% if fighter.image == '' or portrait_fallback %} photo-missing{% endif %}">
                         <span class="fighter-fallback" aria-hidden="true">{{ fighter.initials }}</span>
-                        {% if fighter.image != '' and portrait_fallback == false %}<img data-fighter-photo data-portrait-source="{{ fighter.image_source }}" data-portrait-framing="{{ fighter.image_framing }}"{% if portrait_override %} data-portrait-override="true" style="{% if portrait_override.scale %}--portrait-scale: {{ portrait_override.scale }};{% endif %}{% if portrait_override.y %} --portrait-y: {{ portrait_override.y }};{% endif %}"{% endif %} src="{{ fighter.image }}" alt="{{ fighter.name }}" loading="{% if include.priority %}eager{% else %}lazy{% endif %}" decoding="async" referrerpolicy="no-referrer">{% endif %}
+                        {% if fighter.image != '' and portrait_fallback == false %}<img data-fighter-photo data-portrait-source="{{ fighter.image_source }}" data-portrait-framing="{{ fighter.image_framing }}"{% if portrait_override %} data-portrait-override="true" style="{% if portrait_override.scale %}--portrait-scale: {{ portrait_override.scale }};{% endif %}{% if portrait_override.y %} --portrait-y: {{ portrait_override.y }};{% endif %}"{% endif %} src="{{ fighter.image }}" alt="{{ fighter.name }}" loading="{% if priority_bout %}eager{% else %}lazy{% endif %}"{% if priority_bout %} fetchpriority="high"{% endif %} decoding="async" referrerpolicy="no-referrer">{% endif %}
                       </div>
                       <p class="fighter-name">{{ fighter.name }}</p>
                     </div>
