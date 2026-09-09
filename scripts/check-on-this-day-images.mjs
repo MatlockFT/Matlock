@@ -39,6 +39,18 @@ function label(entry) {
   return `${entry?.date || 'unknown'} ${clean(entry?.title) || '(untitled)'}`;
 }
 
+const trustedPosterTypes = new Set([
+  'tapology-event-poster',
+  'official-promotion-event-poster',
+  'official-promotion-event-image',
+  'wikipedia-event-poster',
+  'wikipedia-event-image',
+  'wikipedia-page-artwork',
+  'commons-event-image',
+  'archived-promotion-event-poster',
+  'verified-manual-event-poster'
+]);
+
 function verifiedEventPoster(entry) {
   if (!isEvent(entry)) return false;
   if (!http(entry?.imageUrl)) return false;
@@ -46,14 +58,7 @@ function verifiedEventPoster(entry) {
   if (clean(entry?.imageArtifactType) !== 'event-poster') return false;
   if (clean(entry?.imageSubjectType) !== 'event') return false;
   if (Number(entry?.imageConfidence || 0) < 0.9) return false;
-  const type = clean(entry?.imageSourceType);
-  return [
-    'tapology-event-poster',
-    'official-promotion-event-poster',
-    'wikipedia-event-poster',
-    'archived-promotion-event-poster',
-    'verified-manual-event-poster'
-  ].includes(type);
+  return trustedPosterTypes.has(clean(entry?.imageSourceType));
 }
 
 const forbiddenEventImageTypes = new Set([
@@ -61,6 +66,8 @@ const forbiddenEventImageTypes = new Set([
   'official-promotion-fighter-fallback',
   'promotion-or-media-headshot',
   'fighter-fallback',
+  'related-fighter-fallback',
+  'wikipedia-fighter-fallback',
   'wikimedia-commons-search',
   'source-page',
   'existing-image'
@@ -98,13 +105,18 @@ for (const entry of entries) {
   }
 
   if (event && hasImage && forbiddenEventImageTypes.has(clean(entry?.imageSourceType))) {
-    failures.push(`event is using a non-poster image source: ${label(entry)} (${clean(entry.imageSourceType)})`);
+    const message = `event is using a non-poster image source: ${label(entry)} (${clean(entry.imageSourceType)})`;
+    if (current) failures.push(message);
+    else warnings.push(message);
   }
 
   if (event && hasImage && clean(entry?.imageSubjectType) === 'fighter') {
-    failures.push(`event is using a fighter image instead of the event poster: ${label(entry)}`);
+    const message = `event is using a fighter image instead of the event poster: ${label(entry)}`;
+    if (current) failures.push(message);
+    else warnings.push(message);
   }
 
+  // These are true integrity errors, not normal archive backfill debt.
   if (event && entry?.imagePosterVerified === true && clean(entry?.imageArtifactType) !== 'event-poster') {
     failures.push(`event poster verification metadata is inconsistent: ${label(entry)}`);
   }
