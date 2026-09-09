@@ -7,6 +7,7 @@ import {
     sanitizeFighter
 } from "./ufc-roster-identity.mjs";
 
+// Finalization is a publication gate: normalized roster data must pass the validator before release.
 function argument(name, fallback = "") {
     const index = process.argv.indexOf(name);
     return index >= 0 ? process.argv[index + 1] : fallback;
