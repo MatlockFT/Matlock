@@ -565,8 +565,16 @@ async function renderPhoto(entry, formatName, imageBuffer, supplemental, seed) {
   const { width: w, height: h, quality } = FORMATS[formatName];
   const layout = PHOTO_LAYOUTS[formatName];
   const angle = ((hashInt(`${seed}:angle`) % 31) - 15) / 10;
-  const cutout = await cutoutImage(imageBuffer, layout.width, layout.height, seed, imagePosition(entry), angle, false);
-  const cutoutMeta = await sharp(cutout).metadata();
+  let cutout = await cutoutImage(imageBuffer, layout.width, layout.height, seed, imagePosition(entry), angle, false);
+  let cutoutMeta = await sharp(cutout).metadata();
+  if (cutoutMeta.width > w || cutoutMeta.height > h) {
+    const scale = Math.min(w / cutoutMeta.width, h / cutoutMeta.height);
+    cutout = await sharp(cutout)
+      .resize(Math.max(1, Math.floor(cutoutMeta.width * scale)), Math.max(1, Math.floor(cutoutMeta.height * scale)), { fit: 'fill' })
+      .png()
+      .toBuffer();
+    cutoutMeta = await sharp(cutout).metadata();
+  }
   const left = Math.max(0, Math.round(layout.x - (cutoutMeta.width - layout.width) / 2));
   const top = Math.max(0, Math.round(layout.y - (cutoutMeta.height - layout.height) / 2));
   const base = await paperCanvas(w, h);
