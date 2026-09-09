@@ -1,5 +1,6 @@
 import fs from 'node:fs/promises';
 import { pathToFileURL } from 'node:url';
+import { enrichLocationMetadata } from './event-location-utils.mjs';
 
 const MAJOR_PATH = '_data/upcoming_events.json';
 const REGIONAL_PATH = '_data/event_map_regional.json';
@@ -69,8 +70,8 @@ export function trustedUsLocation(event) {
     return {
       city: explicitCity,
       state: explicitState,
-      source: 'structured',
-      confidence: 'verified-structured'
+      source: clean(event.location_source) || 'structured',
+      confidence: clean(event.location_precision) || 'verified-structured'
     };
   }
 
@@ -114,7 +115,11 @@ function coordinatesInUsBounds(point) {
   return point.latitude >= 18 && point.latitude <= 72 && point.longitude >= -180 && point.longitude <= -60;
 }
 
-function normalizedMapEvent(event, kind) {
+function normalizedMapEvent(sourceEvent, kind) {
+  // Normalize known venues and trusted city metadata before deciding whether an
+  // event belongs on the U.S. map. This lets exact venue coordinates outrank
+  // city-centroid placement without ever guessing from the promotion or title.
+  const event = enrichLocationMetadata(sourceEvent);
   const location = trustedUsLocation(event);
   if (!location) return { event: null, reason: countryIsForeign(event) ? 'foreign-country' : 'unresolved-us-location' };
 
@@ -128,8 +133,9 @@ function normalizedMapEvent(event, kind) {
       state: location.state,
       state_code: location.state,
       country: 'US',
-      map_location_source: location.source,
-      map_location_confidence: location.confidence,
+      map_location_source: clean(event.location_source) || location.source,
+      map_location_precision: clean(event.location_precision) || '',
+      map_location_confidence: clean(event.location_precision) || location.confidence,
       map_dataset: kind
     },
     reason: ''
@@ -144,6 +150,7 @@ function quarantineRecord(event, kind, reason) {
     promotion: clean(event.promotion),
     venue: clean(event.venue),
     location: clean(event.location),
+    country: clean(event.country),
     kind,
     reason
   };
@@ -232,7 +239,8 @@ function selfTest() {
   ];
 
   let failures = 0;
-  for (const [event, expected, label] of cases) {
+  for (const [sourceEvent, expected, label] of cases) {
+    const event = enrichLocationMetadata(sourceEvent);
     const actual = trustedUsLocation(event);
     const compact = actual ? { city: actual.city, state: actual.state } : null;
     if (JSON.stringify(compact) !== JSON.stringify(expected)) {
