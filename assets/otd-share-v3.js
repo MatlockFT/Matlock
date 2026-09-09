@@ -6,6 +6,7 @@
 
     const FORMAT_KEY = 'mma-matlock:otd:share-format';
     const MANIFEST_URL = '/assets/data/on-this-day-share-manifest.json';
+    const ASSET_VERSION = new URL(document.currentScript?.src || location.href).searchParams.get('v') || '153';
     const FORMATS = {
         post: { label: 'Instagram Post', width: 1080, height: 1350, ratio: '4:5' },
         story: { label: 'Instagram Story', width: 1080, height: 1920, ratio: '9:16' },
@@ -30,6 +31,9 @@
     let renderedBlob = null;
     let renderedFile = null;
     let manifestPromise = null;
+    let displayFontPromise = null;
+    let displayFont = null;
+    let tapeSourcePromise = null;
 
     function readSavedFormat() {
         try {
@@ -151,7 +155,7 @@
         modal.innerHTML = `
             <div class="otd-share-panel">
                 <header class="otd-share-header">
-                    <div><p class="otd-share-kicker">Oversized Fight Archive</p><h2 id="otd-share-title">Share This Moment</h2></div>
+                    <div><p class="otd-share-kicker">Fight Archive</p><h2 id="otd-share-title">Share This Moment</h2></div>
                     <button type="button" class="otd-share-close" data-otd-share-close aria-label="Close share builder">×</button>
                 </header>
                 <div class="otd-share-workspace">
@@ -309,6 +313,7 @@
     }
 
     function textUnits(value) {
+        if (displayFont) return displayFont.measureDisplay(String(value || ''), 100) / 100;
         let width = 0;
         for (const character of String(value || '')) {
             if (/\s/.test(character)) width += 0.52;
@@ -414,53 +419,81 @@
         } catch { return null; }
     }
 
-    function buildFallbackSvg(entry, format, source) {
+    function buildFallbackSvg(entry, format, source, tapeSource) {
         const { width: w, height: h } = format;
-        const pad = Math.round(w * 0.047);
-        const anniversary = entry.headline.toUpperCase();
-        const titleLines = balancedWrap(entry.title.toUpperCase(), format === FORMATS.social ? 22 : 21, 3);
-        const longest = Math.max(1, ...titleLines.map(textUnits));
-        const baseTitleSize = Math.round(w * (format === FORMATS.story ? 0.078 : format === FORMATS.social ? 0.076 : 0.074));
-        const titleSize = Math.max(Math.round(baseTitleSize * 0.72), Math.min(baseTitleSize, Math.floor((w - pad * 2.2) / (longest * 0.77))));
-        const lineHeight = Math.round(titleSize * 1.01);
-        const titleY = Math.round(h * (format === FORMATS.story ? 0.79 : format === FORMATS.social ? 0.72 : 0.75));
-        const imageY = Math.round(h * (format === FORMATS.story ? 0.12 : 0.115));
-        const imageH = Math.round(h * (format === FORMATS.story ? 0.65 : format === FORMATS.social ? 0.60 : 0.64));
-        const creditY = h - Math.round(w * 0.082);
-        const footerY = h - Math.round(w * 0.05);
+        const pad = Math.round(w * 0.043);
+        const ink = '#080808';
+        const paper = '#f1eee4';
+        const capHeight = displayFont.displayFontMetrics.capHeight / displayFont.displayFontMetrics.unitsPerEm;
+        const anniversary = entry.yearsAgo > 0 ? `${entry.yearsAgo} YEARS AGO` : 'ON THIS DAY';
+        const available = w * 0.87;
+        const title = entry.title.toUpperCase();
+        const subtitleSplit = /^(.{1,18}):\s+(.+)$/.exec(title);
+        const titleRows = [];
+        if (subtitleSplit) {
+            titleRows.push({ text: subtitleSplit[1], size: Math.min(w * 0.14, available / textUnits(subtitleSplit[1])) });
+            const subtitleSize = w * 0.115;
+            const lines = textUnits(subtitleSplit[2]) * w * .085 <= available
+                ? [subtitleSplit[2]]
+                : balancedWrap(subtitleSplit[2], available / subtitleSize, 2);
+            const size = Math.min(subtitleSize, available / Math.max(...lines.map(textUnits)));
+            lines.forEach(text => titleRows.push({ text, size }));
+        } else {
+            const baseSize = w * 0.14;
+            const lines = balancedWrap(title, available / baseSize, 3);
+            const size = Math.min(baseSize, available / Math.max(...lines.map(textUnits)));
+            lines.forEach(text => titleRows.push({ text, size }));
+        }
+        let rowY = h - w * 0.09;
+        for (let index = titleRows.length - 1; index >= 0; index -= 1) {
+            titleRows[index].y = rowY;
+            rowY -= titleRows[index].size * capHeight + w * 0.035;
+        }
+        const imageX = Math.round(w * 0.023);
+        const imageW = w - imageX * 2;
+        const imageY = Math.round(h * 0.085);
+        const imageH = Math.round(h - imageY - w * 0.045);
         const isPoster = source && source.width / source.height < 0.82;
-        const ripPoints = `${pad},${imageY + 9} ${Math.round(w * .23)},${imageY} ${Math.round(w * .44)},${imageY + 12} ${Math.round(w * .65)},${imageY + 2} ${w - pad},${imageY + 10} ${w - pad - 8},${imageY + imageH - 5} ${Math.round(w * .76)},${imageY + imageH + 8} ${Math.round(w * .52)},${imageY + imageH - 3} ${Math.round(w * .28)},${imageY + imageH + 9} ${pad + 6},${imageY + imageH}`;
+        const ripPoints = `${imageX},${imageY + 4} ${w * .34},${imageY} ${w * .68},${imageY + 5} ${w - imageX},${imageY + 1} ${w - imageX - 3},${imageY + imageH} ${w * .57},${imageY + imageH - 4} ${imageX + 2},${imageY + imageH + 2}`;
+        const cropX = source?.width && source?.height
+            ? imageX + (imageW - imageH * source.width / source.height) / 2
+            : imageX;
         const imageMarkup = source
-            ? `<polygon points="${ripPoints}" fill="#f0ede3" stroke="#f1eee4" stroke-width="20" stroke-linejoin="bevel"/><image href="${source.dataUrl}" x="${pad}" y="${imageY}" width="${w - pad * 2}" height="${imageH}" preserveAspectRatio="xMidYMid ${isPoster ? 'meet' : 'slice'}" filter="url(#xerox)" clip-path="url(#rip)"/>`
-            : `<rect x="${pad}" y="${imageY}" width="${w - pad * 2}" height="${imageH}" fill="#090909"/><text x="50%" y="${imageY + imageH * .63}" text-anchor="middle" fill="none" stroke="#eeeae0" stroke-width="4" opacity=".28" font-family="Arial Narrow,Arial,sans-serif" font-weight="900" font-size="${Math.round(w * 0.34)}">${escapeXml(entry.year || 'MMA')}</text>`;
-        const titleMarkup = titleLines.map((line, index) => {
-            const y = titleY + index * lineHeight;
-            const x = pad + (index % 2 ? Math.round(w * .016) : 0);
-            const stroke = Math.max(9, Math.round(titleSize * .15));
-            return `<g transform="rotate(${index % 2 ? '.35' : '-.4'} ${w / 2} ${y})"><text x="${x + 7}" y="${y + 7}" fill="none" stroke="#f1eee4" stroke-width="3" opacity=".22" font-family="Arial Narrow,Arial,sans-serif" font-size="${titleSize}" font-weight="900">${escapeXml(line)}</text><text x="${x}" y="${y}" fill="#f1eee4" stroke="#080808" stroke-width="${stroke}" paint-order="stroke fill" font-family="Arial Narrow,Arial,sans-serif" font-size="${titleSize}" font-weight="900">${escapeXml(line)}</text></g>`;
+            ? `<polygon points="${ripPoints}" fill="${paper}"/><image href="${source.dataUrl}" x="${imageX}" y="${imageY}" width="${imageW}" height="${imageH}" preserveAspectRatio="xMidYMid slice" opacity=".3" filter="url(#xerox)" clip-path="url(#rip)"/><image href="${source.dataUrl}" x="${isPoster ? Math.min(imageX, cropX) : imageX}" y="${imageY}" width="${isPoster ? Math.max(imageW, imageH * source.width / source.height) : imageW}" height="${imageH}" preserveAspectRatio="xMidYMid ${isPoster ? 'meet' : 'slice'}" filter="url(#xerox)" clip-path="url(#rip)"/>`
+            : `<g opacity=".2" transform="rotate(-7 ${w / 2} ${h / 2})">${displayFont.displayTextSvg(String(entry.year || 'MMA'), { x: w / 2, y: imageY + imageH * .57, size: w * .48, fill: paper, anchor: 'middle' })}</g><path d="M ${-w * .1} ${h * .25} L ${w * 1.1} ${h * .17} M ${-w * .1} ${h * .54} L ${w * 1.1} ${h * .46}" stroke="${paper}" stroke-width="${w * .025}" opacity=".2"/>`;
+        const tapeMarkup = (x, y, width, height, index) => {
+            return tapeSource
+                ? `<image href="${tapeSource.dataUrl}" x="${x}" y="${y}" width="${width}" height="${height}" preserveAspectRatio="none" ${index % 2 ? `transform="rotate(180 ${x + width / 2} ${y + height / 2})"` : ''}/>`
+                : `<rect x="${x}" y="${y}" width="${width}" height="${height}" fill="#030303"/>`;
+        };
+        const titleMarkup = titleRows.map(({ text, size, y }, index) => {
+            const x = pad + (index % 2 ? w * .012 : 0);
+            const textWidth = displayFont.measureDisplay(text, size);
+            const tapeY = y - size * capHeight - w * .0185;
+            const tapeH = size * capHeight + w * .0352;
+            const angle = [-1.15, .5, -.4][index % 3];
+            return `<g transform="rotate(${angle} ${x} ${y})">${tapeMarkup(x - w * .018, tapeY, Math.min(w - x - w * .018, textWidth + w * .045), tapeH, index)}${displayFont.displayTextSvg(text, { x, y, size, fill: paper })}</g>`;
         }).join('');
-        const credit = entry.imageCredit ? `IMAGE: ${entry.imageCredit.toUpperCase()}` : 'ARCHIVAL IMAGE / SOURCE ON PAGE';
+        const credit = entry.imageCredit ? `IMAGE: ${entry.imageCredit.toUpperCase()}` : 'MMAMATLOCK.COM / FIGHT ARCHIVE';
+        const creditSize = Math.min(w * .0105, w * .89 / (Math.max(1, credit.length) * .61));
         return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
             <defs>
                 <clipPath id="rip"><polygon points="${ripPoints}"/></clipPath>
                 <filter id="xerox"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="linear" slope="1.35" intercept="-.12"/><feFuncG type="linear" slope="1.35" intercept="-.12"/><feFuncB type="linear" slope="1.35" intercept="-.12"/></feComponentTransfer></filter>
                 <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="4" seed="19"/><feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 .33 .33 .33 0 0"/></filter>
+                <linearGradient id="photoShade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".5" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".6"/></linearGradient>
             </defs>
-            <rect width="${w}" height="${h}" fill="#080808"/>
-            <rect width="${w}" height="${h}" fill="#f1eee4" filter="url(#paper)" opacity=".18"/>
-            <text x="${pad}" y="${Math.round(h * (format === FORMATS.story ? .076 : .086))}" fill="#f1eee4" stroke="#080808" stroke-width="${Math.round(w * .010)}" paint-order="stroke fill" font-family="Arial Narrow,Arial,sans-serif" font-size="${Math.round(w * .066)}" font-weight="900">${escapeXml(anniversary)}</text>
-            <text x="${w - pad}" y="${Math.round(h * (format === FORMATS.story ? .067 : .071))}" text-anchor="end" fill="#f1eee4" font-family="monospace" font-size="${Math.round(w * .015)}" font-weight="700">MMA HISTORY / ARCHIVE</text>
-            <path d="M ${pad} ${Math.round(h * (format === FORMATS.story ? .108 : .126))} H ${w - pad}" stroke="#f1eee4" stroke-width="4"/>
+            <rect width="${w}" height="${h}" fill="${ink}"/>
+            <rect width="${w}" height="${h}" fill="${paper}" filter="url(#paper)" opacity=".12"/>
             ${imageMarkup}
+            <rect x="${imageX}" y="${imageY}" width="${imageW}" height="${imageH}" fill="url(#photoShade)"/>
+            <text x="${pad}" y="${w * .028}" fill="${paper}" font-family="monospace" font-size="${w * .013}" font-weight="700" letter-spacing="1.2">${escapeXml(entry.dateLabel.toUpperCase())}</text>
+            ${displayFont.displayTextSvg('MMA MATLOCK', { x: w - pad, y: w * .033, size: w * .026, fill: paper, anchor: 'end' })}
+            ${tapeMarkup(pad - w * .012, imageY - w * .077, displayFont.measureDisplay(anniversary, w * .05) + w * .035, w * .078, 4)}
+            ${displayFont.displayTextSvg(anniversary, { x: pad, y: imageY - w * .013, size: w * .05, fill: paper })}
+            <text x="${w - pad}" y="${imageY - w * .014}" text-anchor="end" fill="${paper}" font-family="monospace" font-size="${w * .011}" letter-spacing="1.3">${escapeXml(entry.promotion?.toUpperCase() || 'FIGHT ARCHIVE')}</text>
             ${titleMarkup}
-            <rect x="${pad}" y="${titleY + lineHeight * titleLines.length + Math.round(w * .02)}" width="${Math.round(w * .22)}" height="${Math.round(w * .016)}" fill="#f1eee4"/>
-            <polygon points="${pad - 16},${creditY - Math.round(w * .025)} ${w - pad + 10},${creditY - Math.round(w * .019)} ${w - pad + 14},${h} ${pad - 12},${h}" fill="#f1eee4" opacity=".94"/>
-            <text x="${pad}" y="${creditY}" fill="#090909" opacity=".7" font-family="monospace" font-size="${Math.round(w * .013)}" font-weight="700">${escapeXml(credit)}</text>
-            <path d="M ${pad} ${creditY + 12} H ${w - pad}" stroke="#080808" stroke-width="2"/>
-            <text x="${pad}" y="${footerY}" fill="#080808" font-family="monospace" font-size="${Math.round(w * .018)}" font-weight="700">${escapeXml(entry.dateLabel.toUpperCase())}</text>
-            ${entry.promotion ? `<text x="${Math.round(w * .52)}" y="${footerY}" text-anchor="middle" fill="#080808" font-family="monospace" font-size="${Math.round(w * .017)}" font-weight="700">${escapeXml(entry.promotion.toUpperCase())}</text>` : ''}
-            <rect x="${w - pad - Math.round(w * .27)}" y="${footerY - Math.round(w * .034)}" width="${Math.round(w * .27)}" height="${Math.round(w * .046)}" fill="#080808"/>
-            <text x="${w - pad - Math.round(w * .012)}" y="${footerY - Math.round(w * .006)}" text-anchor="end" fill="#f1eee4" font-family="Arial Narrow,Arial,sans-serif" font-size="${Math.round(w * .021)}" font-weight="900">MMA MATLOCK</text>
+            <text x="${pad}" y="${h - w * .021}" fill="${paper}" opacity=".7" font-family="monospace" font-size="${creditSize}" letter-spacing=".4">${escapeXml(credit)}</text>
         </svg>`;
     }
 
@@ -484,9 +517,17 @@
     }
 
     async function renderFallback(entry, format) {
-        const source = await sourceAsDataUrl(entry.imageUrl);
-        const svg = buildFallbackSvg(entry, format, source);
-        return await svgToJpeg(svg, format);
+        try {
+            if (!displayFontPromise) displayFontPromise = import(`/assets/share-gobold.mjs?v=${encodeURIComponent(ASSET_VERSION)}`);
+            if (!tapeSourcePromise) tapeSourcePromise = sourceAsDataUrl(`/assets/textures/otd-gaffer-tape-v1.png?v=${encodeURIComponent(ASSET_VERSION)}`);
+            const [source, font, tapeSource] = await Promise.all([sourceAsDataUrl(entry.imageUrl), displayFontPromise, tapeSourcePromise]);
+            displayFont = font;
+            const svg = buildFallbackSvg(entry, format, source, tapeSource);
+            return await svgToJpeg(svg, format);
+        } catch {
+            displayFontPromise = null;
+            return null;
+        }
     }
 
     async function renderPreview() {
