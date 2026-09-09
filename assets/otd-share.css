@@ -1,0 +1,220 @@
+.otd-share-open {
+    overflow: hidden;
+}
+
+.otd-share-modal[hidden] {
+    display: none !important;
+}
+
+.otd-share-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10050;
+    display: grid;
+    place-items: center;
+    padding: clamp(14px, 3vw, 34px);
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: blur(12px);
+}
+
+.otd-share-panel {
+    width: min(960px, 100%);
+    max-height: calc(100dvh - 28px);
+    overflow: auto;
+    padding: clamp(18px, 2.8vw, 30px);
+    border: 1px solid #2a2a2a;
+    border-radius: 18px;
+    background: #0b0b0b;
+    box-shadow: 0 26px 90px rgba(0, 0, 0, 0.58);
+}
+
+.otd-share-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.otd-share-kicker {
+    margin: 0 0 4px;
+    color: #e31b23;
+    font: 700 0.76rem/1.1 Gobold, sans-serif;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.otd-share-header h2 {
+    margin: 0;
+    color: #fff;
+    font: 700 clamp(1.65rem, 4vw, 2.65rem)/0.96 Gobold, sans-serif;
+    letter-spacing: 0.015em;
+}
+
+.otd-share-close {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    border: 1px solid #303030;
+    border-radius: 50%;
+    background: #111;
+    color: #fff;
+    font-size: 1.55rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.otd-share-formats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin: 22px 0 16px;
+}
+
+.otd-share-formats button,
+.otd-share-action,
+.otd-share-platforms button {
+    min-height: 44px;
+    border: 1px solid #2c2c2c;
+    border-radius: 10px;
+    background: #121212;
+    color: #efefef;
+    font: 700 0.8rem/1 Gobold, sans-serif;
+    letter-spacing: 0.035em;
+    cursor: pointer;
+}
+
+.otd-share-formats button span {
+    margin-left: 5px;
+    color: #8f8f8f;
+    font-family: Arial, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+
+.otd-share-formats button[aria-pressed="true"] {
+    border-color: #e31b23;
+    background: #1c0d0e;
+    color: #fff;
+    box-shadow: inset 0 -2px 0 #e31b23;
+}
+
+.otd-share-preview-wrap {
+    display: grid;
+    place-items: center;
+    min-height: 280px;
+    padding: clamp(12px, 2vw, 22px);
+    border: 1px solid #232323;
+    border-radius: 14px;
+    background:
+        linear-gradient(45deg, #111 25%, transparent 25%) 0 0 / 18px 18px,
+        linear-gradient(45deg, transparent 75%, #111 75%) 0 0 / 18px 18px,
+        linear-gradient(45deg, transparent 75%, #111 75%) 9px -9px / 18px 18px,
+        linear-gradient(45deg, #111 25%, #0c0c0c 25%) 9px 9px / 18px 18px;
+}
+
+.otd-share-preview {
+    display: block;
+    width: auto;
+    max-width: min(100%, 520px);
+    max-height: min(60dvh, 650px);
+    height: auto;
+    border-radius: 8px;
+    background: #080808;
+    box-shadow: 0 14px 42px rgba(0, 0, 0, 0.42);
+}
+
+.otd-share-status {
+    min-height: 1.35em;
+    margin: 12px 2px 0;
+    color: #aaa;
+    font-size: 0.78rem;
+    line-height: 1.35;
+}
+
+.otd-share-actions {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.otd-share-action.is-primary {
+    border-color: #e31b23;
+    background: #e31b23;
+    color: #fff;
+}
+
+.otd-share-platforms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 10px;
+}
+
+.otd-share-platforms button {
+    min-height: 38px;
+    padding: 0 14px;
+    color: #cfcfcf;
+    font-size: 0.7rem;
+}
+
+.otd-share-note {
+    margin: 14px 2px 0;
+    color: #7f7f7f;
+    font-size: 0.75rem;
+    line-height: 1.45;
+}
+
+.otd-entry-media.is-image-ready {
+    cursor: pointer;
+}
+
+.otd-entry-media.is-image-ready:focus-visible,
+.otd-share-formats button:focus-visible,
+.otd-share-action:focus-visible,
+.otd-share-platforms button:focus-visible,
+.otd-share-close:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+@media (max-width: 700px) {
+    .otd-share-modal {
+        align-items: end;
+        padding: 0;
+    }
+
+    .otd-share-panel {
+        width: 100%;
+        max-height: 94dvh;
+        border-radius: 18px 18px 0 0;
+        border-right: 0;
+        border-bottom: 0;
+        border-left: 0;
+        padding: 18px 14px calc(16px + env(safe-area-inset-bottom));
+    }
+
+    .otd-share-preview-wrap {
+        min-height: 220px;
+        padding: 10px;
+    }
+
+    .otd-share-preview {
+        max-height: 47dvh;
+    }
+
+    .otd-share-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 390px) {
+    .otd-share-formats button {
+        font-size: 0.72rem;
+    }
+
+    .otd-share-formats button span {
+        display: block;
+        margin: 4px 0 0;
+    }
+}
