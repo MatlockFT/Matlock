@@ -20,7 +20,8 @@ const kindBonus = new Map([
     ['title', 12], ['fight', 10], ['incident', 8], ['debut', 7],
     ['signing', 6], ['death', 5], ['news', 4], ['birthday', 2], ['event', 0]
 ]);
-const score = entry => Number(entry?.weight || 0) + (kindBonus.get(entry?.kind) || 0);
+const hasImage = entry => /^https:\/\//i.test(String(entry?.imageUrl || '').trim());
+const score = entry => Number(entry?.weight || 0) + (kindBonus.get(entry?.kind) || 0) + (hasImage(entry) ? 1000 : 0);
 
 const best = entries
     .filter(entry => String(entry?.date || '').slice(5) === key)
@@ -34,11 +35,20 @@ const compactEntry = best ? {
     detail: best.detail || best.description || '',
     source: best.source || '',
     sourceUrl: best.sourceUrl || '',
-    weight: Number(best.weight || 0)
+    weight: Number(best.weight || 0),
+    imageUrl: best.imageUrl || '',
+    imageAlt: best.imageAlt || best.title || 'MMA history image',
+    imageCredit: best.imageCredit || '',
+    imageSourceUrl: best.imageSourceUrl || best.sourceUrl || '',
+    imageSourceType: best.imageSourceType || '',
+    imageConfidence: Number.isFinite(Number(best.imageConfidence)) ? Number(best.imageConfidence) : null,
+    imageSubjectType: best.imageSubjectType || '',
+    imageMatchReason: best.imageMatchReason || '',
+    imageStatus: best.imageStatus || (hasImage(best) ? 'resolved' : 'unresolved')
 } : null;
 
 const output = {
-    version: 1,
+    version: 2,
     generatedAt: new Date().toISOString(),
     timeZone: TIME_ZONE,
     key,
