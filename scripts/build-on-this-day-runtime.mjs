@@ -8,18 +8,46 @@ const FIELD_NAMES = [
     'date', 'kind', 'promotion', 'title', 'detail', 'source', 'sourceUrl',
     'weight', 'imageUrl', 'imageAlt', 'imageCredit', 'imagePosition',
     'imageSourceUrl', 'imageSourceType', 'imageConfidence', 'imageSubjectType',
-    'imageMatchReason', 'imageStatus'
+    'imageMatchReason', 'imageStatus', 'imageArtifactType', 'imagePosterVerified'
 ];
 
 const source = JSON.parse(await fs.readFile(HISTORY_PATH, 'utf8'));
 const entries = Array.isArray(source) ? source : source.entries;
 if (!Array.isArray(entries)) throw new Error(`${HISTORY_PATH} does not contain an entries array.`);
 
-const compactEntry = entry => Object.fromEntries(
-    FIELD_NAMES
-        .filter(key => entry[key] !== undefined && entry[key] !== null && entry[key] !== '')
-        .map(key => [key, entry[key]])
-);
+const isEvent = entry => entry?.kind === 'event' || entry?.generatedBy === 'wikipedia-event-index';
+const verifiedEventPoster = entry => isEvent(entry) &&
+    entry?.imagePosterVerified === true &&
+    entry?.imageArtifactType === 'event-poster' &&
+    typeof entry?.imageUrl === 'string' &&
+    /^https:\/\//i.test(entry.imageUrl);
+
+const compactEntry = entry => {
+    const compact = Object.fromEntries(
+        FIELD_NAMES
+            .filter(key => entry[key] !== undefined && entry[key] !== null && entry[key] !== '')
+            .map(key => [key, entry[key]])
+    );
+
+    if (isEvent(entry) && !verifiedEventPoster(entry)) {
+        delete compact.imageUrl;
+        delete compact.imageAlt;
+        delete compact.imageCredit;
+        delete compact.imagePosition;
+        compact.imagePosterVerified = false;
+        compact.imageArtifactType = 'event-poster';
+        compact.imageStatus = 'unresolved';
+
+        // assets/on-this-day.js normally tries a live Wikipedia image when a stored
+        // image is unavailable. Event entries are different: a generic Wikipedia
+        // image is not an acceptable substitute for the actual event poster.
+        // A truthy whitespace sentinel returns an empty title after trim(), which
+        // cleanly disables that live fallback without changing the source link.
+        compact.wikipediaTitle = ' ';
+    }
+
+    return compact;
+};
 
 const months = Object.fromEntries(
     Array.from({ length: 12 }, (_, index) => [String(index + 1).padStart(2, '0'), []])
@@ -72,4 +100,4 @@ for (const [file, expected] of files) {
 }
 
 if (stale) process.exitCode = 1;
-else if (!CHECK_ONLY) console.log(`Built ${entries.length} runtime entries across 12 monthly shards.`);
+else if (!CHECK_ONLY) console.log(`Built ${entries.length} runtime entries across 12 monthly shards. Unverified event images are suppressed until an actual event poster is resolved.`);
