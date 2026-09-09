@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 1,
-  "updatedAt": "2026-09-09T01:17:23.968Z",
+  "updatedAt": "2026-09-09T06:15:52.259Z",
   "fighters": {
     "船木誠勝": {
       "checkedAt": "2026-09-08T07:03:33.069Z",
@@ -821,6 +821,117 @@
       "checkedAt": "2026-09-09T01:17:23.968Z",
       "status": "unresolved",
       "error": "No Wikidata match"
+    },
+    "山崎昭博": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "久米鷹介": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "resolved",
+      "wikidataId": "Q15987792",
+      "englishName": "Takasuke Kume"
+    },
+    "岡澤弘太": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "徳留一樹": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "resolved",
+      "wikidataId": "Q15984578",
+      "englishName": "Kazuki Tokudome"
+    },
+    "鹿又智成": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "resolved",
+      "wikidataId": "Q11677027",
+      "englishName": "Tomonari Kanomata"
+    },
+    "タクミ": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "resolved",
+      "wikidataId": "Q2627707",
+      "englishName": "10617 Takumi"
+    },
+    "赤井太志朗": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "resolved",
+      "wikidataId": "Q11635321",
+      "englishName": "Tashirō Akai"
+    },
+    "花レメ紋次郎tk": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "一慶": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "resolved",
+      "wikidataId": "Q11352676",
+      "englishName": "Ikkei"
+    },
+    "吉武伸洋": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "清水俊一": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "resolved",
+      "wikidataId": "Q11560791",
+      "englishName": "Shunichi Shimizu"
+    },
+    "三谷敏生": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "大山峻護": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "resolved",
+      "wikidataId": "Q7505055",
+      "englishName": "Shungo Oyama"
+    },
+    "山内慎人": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "川原誠也": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "resolved",
+      "wikidataId": "Q11477897",
+      "englishName": "Seiya Kawahara"
+    },
+    "タイガー石井": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "松永義弘": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "resolved",
+      "wikidataId": "Q11531602",
+      "englishName": "Yoshihiro Matsunaga"
+    },
+    "宇都木正和": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "小塚誠司": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "北方大地": {
+      "checkedAt": "2026-09-09T06:15:52.259Z",
+      "status": "resolved",
+      "wikidataId": "Q110402185",
+      "englishName": "Daichi Kitakata"
     }
   },
   "entries": {
@@ -5690,6 +5801,488 @@
       "image": {
         "strategyVersion": 1,
         "checkedAt": "2026-09-09T01:17:23.968Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2011-07-10:pancrase-gate-8th-chance": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-main-event",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2011/0710.html"
+      }
+    },
+    "pancrase:2011-07-23:pancrase-impressive-tour-6": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2011/0723.html",
+        "rawNames": [
+          "長岡弘樹",
+          "山崎昭博"
+        ],
+        "englishNames": [
+          "Nagaoka Hiroki",
+          "山崎昭博"
+        ],
+        "mainEvent": "Nagaoka Hiroki vs. 山崎昭博"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2011-07-31:pancrase-impressive-tour-7": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2011/0731.html",
+        "rawNames": [
+          "鳥生将大",
+          "久米鷹介"
+        ],
+        "englishNames": [
+          "Masahiro Toryū",
+          "Takasuke Kume"
+        ],
+        "mainEvent": "Masahiro Toryū vs. Takasuke Kume"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2011-08-07:pancrase-impressive-tour-8": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2011/0807.html",
+        "rawNames": [
+          "岡澤弘太",
+          "徳留一樹"
+        ],
+        "englishNames": [
+          "岡澤弘太",
+          "Kazuki Tokudome"
+        ],
+        "mainEvent": "岡澤弘太 vs. Kazuki Tokudome"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2011-09-04:pancrase-impressive-tour-9": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2011/0904.html",
+        "rawNames": [
+          "鹿又智成",
+          "タクミ"
+        ],
+        "englishNames": [
+          "Tomonari Kanomata",
+          "10617 Takumi"
+        ],
+        "mainEvent": "Tomonari Kanomata vs. 10617 Takumi"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2011-10-02:pancrase-impressive-tour-10": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2011/1002.html",
+        "rawNames": [
+          "佐藤豪則",
+          "石川英司"
+        ],
+        "englishNames": [
+          "Takenori Sato",
+          "Eiji Ishikawa"
+        ],
+        "mainEvent": "Takenori Sato vs. Eiji Ishikawa"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2011-11-12:pancrase-impressive-tour-11": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2011/1112.html",
+        "rawNames": [
+          "赤井太志朗",
+          "花レメ紋次郎TK"
+        ],
+        "englishNames": [
+          "Tashirō Akai",
+          "花レメ紋次郎TK"
+        ],
+        "mainEvent": "Tashirō Akai vs. 花レメ紋次郎TK"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2011-11-27:pancrase-impressive-tour-12": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2011/1127.html"
+      }
+    },
+    "pancrase:2011-12-03:pancrase-impressive-tour-13": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2011/1203.html",
+        "rawNames": [
+          "ISAO",
+          "徳留一樹"
+        ],
+        "englishNames": [
+          "ISAO",
+          "Kazuki Tokudome"
+        ],
+        "mainEvent": "ISAO vs. Kazuki Tokudome"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "commons-headliner-image",
+        "fighterName": "ISAO",
+        "imageFileTitle": "File:Yukisada Isao at Opening Ceremony of the Tokyo International Film Festival 2022 (52461627138).jpg"
+      }
+    },
+    "pancrase:2012-01-22:pancrase-gate-9th-chance": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-main-event",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2012/0122.html"
+      }
+    },
+    "pancrase:2012-01-28:pancrase-progress-tour-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2012/0128.html",
+        "rawNames": [
+          "一慶",
+          "川村亮"
+        ],
+        "englishNames": [
+          "Ikkei",
+          "Ryo Kawamura"
+        ],
+        "mainEvent": "Ikkei vs. Ryo Kawamura"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Ikkei",
+        "imageFileTitle": "File:Ikkei - Inro with Cranes Soaring by Mount Fuji, and Netsuke of a Turtle - Walters 67388.jpg"
+      }
+    },
+    "pancrase:2012-03-03:pancrase-progress-tour-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2012/0303.html",
+        "rawNames": [
+          "吉武伸洋",
+          "花レメ紋次郎TK"
+        ],
+        "englishNames": [
+          "吉武伸洋",
+          "花レメ紋次郎TK"
+        ],
+        "mainEvent": "吉武伸洋 vs. 花レメ紋次郎TK"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2012-03-11:pancrase-progress-tour-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2012/0311.html",
+        "rawNames": [
+          "佐藤豪則",
+          "ストラッサー起一"
+        ],
+        "englishNames": [
+          "Takenori Sato",
+          "Kiichi Kunimoto"
+        ],
+        "mainEvent": "Takenori Sato vs. Kiichi Kunimoto"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2012-04-01:pancrase-progress-tour-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2012/0401.html",
+        "rawNames": [
+          "大石幸史",
+          "ISAO"
+        ],
+        "englishNames": [
+          "Koji Oishi",
+          "ISAO"
+        ],
+        "mainEvent": "Koji Oishi vs. ISAO"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "commons-headliner-image",
+        "fighterName": "ISAO",
+        "imageFileTitle": "File:Yukisada Isao at Opening Ceremony of the Tokyo International Film Festival 2022 (52461627138).jpg"
+      }
+    },
+    "pancrase:2012-04-28:pancrase-progress-tour-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2012/0428.html",
+        "rawNames": [
+          "手塚基伸",
+          "清水俊一"
+        ],
+        "englishNames": [
+          "手塚基伸",
+          "Shunichi Shimizu"
+        ],
+        "mainEvent": "手塚基伸 vs. Shunichi Shimizu"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2012-05-20:pancrase-progress-tour-6": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2012/0520.html",
+        "rawNames": [
+          "砂辺光久",
+          "三谷敏生"
+        ],
+        "englishNames": [
+          "Mitsuhisa Sunabe",
+          "三谷敏生"
+        ],
+        "mainEvent": "Mitsuhisa Sunabe vs. 三谷敏生"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2012-06-02:pancrase-progress-tour-7": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2012/0602.html",
+        "rawNames": [
+          "川村亮",
+          "大山峻護"
+        ],
+        "englishNames": [
+          "Ryo Kawamura",
+          "Shungo Oyama"
+        ],
+        "mainEvent": "Ryo Kawamura vs. Shungo Oyama"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Ryo Kawamura",
+        "imageFileTitle": "File:Japanese newscaster kawamura ryo.jpg"
+      }
+    },
+    "pancrase:2012-07-01:pancrase-progress-tour-8": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2012/0701.html",
+        "rawNames": [
+          "山内慎人",
+          "川原誠也"
+        ],
+        "englishNames": [
+          "山内慎人",
+          "Seiya Kawahara"
+        ],
+        "mainEvent": "山内慎人 vs. Seiya Kawahara"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2012-07-29:pancrase-gate-10th-chance": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-main-event",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2012/0729.html"
+      }
+    },
+    "pancrase:2012-08-05:pancrase-progress-tour-9": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2012/0805.html",
+        "rawNames": [
+          "高橋義生",
+          "桜木裕司"
+        ],
+        "englishNames": [
+          "Kazuo Takahashi",
+          "Yuji Sakuragi"
+        ],
+        "mainEvent": "Kazuo Takahashi vs. Yuji Sakuragi"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Kazuo Takahashi",
+        "imageFileTitle": "File:US Navy 090713-N-4031K-002 Capt. Eric Gardner, commanding officer of Naval Air Facility Atsugi, presents Rear Adm. Kazuo Takahashi with a certificate of appreciation.jpg"
+      }
+    },
+    "pancrase:2012-09-01:pancrase-progress-tour-10": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2012/0901.html",
+        "rawNames": [
+          "佐藤豪則",
+          "KEI山宮"
+        ],
+        "englishNames": [
+          "Takenori Sato",
+          "Keiichiro Yamamiya"
+        ],
+        "mainEvent": "Takenori Sato vs. Keiichiro Yamamiya"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2012-10-06:pancrase-progress-tour-11": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2012/1006.html",
+        "rawNames": [
+          "タイガー石井",
+          "松永義弘"
+        ],
+        "englishNames": [
+          "タイガー石井",
+          "Yoshihiro Matsunaga"
+        ],
+        "mainEvent": "タイガー石井 vs. Yoshihiro Matsunaga"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2012-11-10:pancrase-progress-tour-12-all-eyes-on-yuki-kondo": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2012/1110.html",
+        "rawNames": [
+          "砂辺光久",
+          "宇都木正和"
+        ],
+        "englishNames": [
+          "Mitsuhisa Sunabe",
+          "宇都木正和"
+        ],
+        "mainEvent": "Mitsuhisa Sunabe vs. 宇都木正和"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2012-11-25:pancrase-progress-tour-13": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2012/1125.html",
+        "rawNames": [
+          "小塚誠司",
+          "北方大地"
+        ],
+        "englishNames": [
+          "小塚誠司",
+          "Daichi Kitakata"
+        ],
+        "mainEvent": "小塚誠司 vs. Daichi Kitakata"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T06:15:52.259Z",
         "status": "no-headliner-image"
       }
     }
