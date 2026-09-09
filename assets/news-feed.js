@@ -31,6 +31,15 @@
     let moreVisibleCount = MORE_INCREMENT;
     let selectedSource = "all";
     let lastRemoteRefresh = 0;
+    let renderVersion = 0;
+
+    const runWhenIdle = callback => {
+        if (typeof window.requestIdleCallback === "function") {
+            window.requestIdleCallback(callback, { timeout: 1000 });
+        } else {
+            window.setTimeout(callback, 0);
+        }
+    };
 
     const deferredImageObserver = "IntersectionObserver" in window
         ? new IntersectionObserver(entries => {
@@ -401,6 +410,7 @@
     function renderFeed(data, options = {}) {
         allStories = uniqueStories(data);
         moreVisibleCount = MORE_INCREMENT;
+        const version = ++renderVersion;
 
         const topStory = allStories[0];
         const latestStories = allStories.slice(1, 1 + LATEST_COUNT);
@@ -408,11 +418,18 @@
         unobserveImages(topStorySlot);
         unobserveImages(latestList);
         topStorySlot.replaceChildren(renderTopStory(topStory));
-        latestList.replaceChildren(...latestStories.map(renderLatestStory));
         leadGrid.setAttribute("aria-busy", "false");
-        updateSourceFilter();
-        renderMoreStories();
         setStatus(data, options);
+
+        requestAnimationFrame(() => {
+            if (version !== renderVersion) return;
+            latestList.replaceChildren(...latestStories.map(renderLatestStory));
+            runWhenIdle(() => {
+                if (version !== renderVersion) return;
+                updateSourceFilter();
+                renderMoreStories();
+            });
+        });
     }
 
     async function fetchJson(url, useCacheBucket = false) {
@@ -426,8 +443,7 @@
         }
 
         const response = await fetch(requestUrl, {
-            cache: useCacheBucket ? "default" : "no-store",
-            headers: { accept: "application/json" }
+            cache: "default"
         });
 
         if (!response.ok) {
@@ -448,7 +464,7 @@
 
     async function fetchLiveFeed() {
         try {
-            return await fetchJson(remoteFeedUrl, true);
+            return await fetchJson(remoteFeedUrl);
         } catch (primaryError) {
             if (!apiFallbackFeedUrl) throw primaryError;
             return fetchJson(apiFallbackFeedUrl, true);
@@ -468,8 +484,8 @@
         try {
             const data = await fetchLiveFeed();
             lastRemoteRefresh = Date.now();
-            writeCachedFeed(data);
             renderFeed(data);
+            runWhenIdle(() => writeCachedFeed(data));
         } catch {
             if (allStories.length) {
                 if (status) status.dataset.state = "stale";

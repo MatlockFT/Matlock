@@ -10,6 +10,10 @@ page_styles:
 page_scripts:
   - /assets/news-feed.js
   - /assets/news-otd-deferred.js
+page_preconnects:
+  - https://raw.githubusercontent.com
+page_fetch_preloads:
+  - https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-news.json
 ---
 
 {% assign news_matlock_post = nil %}
