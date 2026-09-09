@@ -44,6 +44,7 @@ page_scripts:
             const now = new Date();
             key = `${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
         }
+        window.__otdInitialDateKey = key;
 
         if (key === buildKey && buildLead) {
             preload(buildLead);
@@ -70,7 +71,19 @@ page_scripts:
                 class="otd-page-date"
                 data-otd-date
                 title="Click to choose a date"
-            ></time>
+                datetime="{{ site.time | date: '%Y-%m-%d' }}"
+            >{{ site.time | date: "%B %-d" }}</time>
+            <script>
+                (() => {
+                    const node = document.currentScript.previousElementSibling;
+                    const match = /^(\d{2})-(\d{2})$/.exec(window.__otdInitialDateKey || "");
+                    if (!node || !match) return;
+                    const year = new Date().getFullYear();
+                    const date = new Date(year, Number(match[1]) - 1, Number(match[2]));
+                    node.textContent = new Intl.DateTimeFormat([], { month: "long", day: "numeric" }).format(date);
+                    node.setAttribute("datetime", `${year}-${window.__otdInitialDateKey}`);
+                })();
+            </script>
 
             <div class="otd-page-side">
                 <p class="otd-page-count" data-otd-count></p>
