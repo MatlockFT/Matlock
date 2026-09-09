@@ -30,10 +30,11 @@ if (runtime.includes('function wrapApprox')) failures.push('browser fallback mus
 
 if (!textureStat?.isFile() || textureStat.size < 10000) failures.push('share renderer xerox texture is missing or unexpectedly small');
 if (Number(manifest?.version || 0) < 3) failures.push('share manifest version must be at least 3');
-if (!['sharp-xerox-cutout-v3', 'sharp-xerox-collage-v4', 'sharp-xerox-editorial-v5', 'sharp-gobold-gaffer-v6'].includes(manifest?.renderer)) failures.push('share manifest must identify a supported xerox renderer');
+if (!['sharp-xerox-cutout-v3', 'sharp-xerox-collage-v4', 'sharp-xerox-editorial-v5', 'sharp-gobold-gaffer-v6', 'sharp-gobold-gaffer-v7'].includes(manifest?.renderer)) failures.push('share manifest must identify a supported xerox renderer');
 if (Number(manifest?.version || 0) === 4 && manifest?.style !== 'inverse-black-collage-v2') failures.push('v4 share manifest must identify the inverse collage style');
 if (Number(manifest?.version || 0) === 5 && manifest?.style !== 'oversized-editorial-collage-v1') failures.push('v5 share manifest must identify the oversized editorial collage style');
-if (Number(manifest?.version || 0) >= 6 && manifest?.style !== 'full-frame-gaffer-collage-v1') failures.push('v6 share manifest must identify the full-frame GoBold collage style');
+if (Number(manifest?.version || 0) >= 6 && Number(manifest?.version || 0) < 7 && manifest?.style !== 'full-frame-gaffer-collage-v1') failures.push('v6 share manifest must identify the full-frame GoBold collage style');
+if (Number(manifest?.version || 0) >= 7 && manifest?.style !== 'poster-event-photo-v1') failures.push('v7 share manifest must identify the poster event-photo collage style');
 if (manifest?.texture !== '/assets/textures/otd-xerox-paper-v1.webp') failures.push('share manifest must identify the v1 xerox paper texture');
 if (!manifest?.formats || typeof manifest.formats !== 'object') failures.push('share manifest formats object is required');
 else {
@@ -51,6 +52,7 @@ else {
     if (!/^otd-\d{8}-/.test(id)) failures.push(`share manifest key is invalid: ${id}`);
     if (record?.id !== id) failures.push(`share manifest record id mismatch: ${id}`);
     if (typeof record?.imageCredit !== 'string') failures.push(`${id}: imageCredit must be a string`);
+    if (String(record?.template || '').startsWith('poster') && Array.isArray(record?.imageSources) && record.imageSources.some(source => !['event-photo', 'fight-photo'].includes(source?.role))) failures.push(`${id}: poster cards may only use event-photo or fight-photo supplemental imagery`);
     if (record?.imageSources !== undefined && !Array.isArray(record.imageSources)) failures.push(`${id}: imageSources must be an array when present`);
     for (const source of Array.isArray(record?.imageSources) ? record.imageSources : []) {
       if (!source?.credit || !/^https:\/\//.test(source?.sourceUrl || '') || !source?.role) failures.push(`${id}: imageSources entries require credit, HTTPS sourceUrl, and role`);
