@@ -2,13 +2,43 @@ import fs from 'node:fs/promises';
 
 const HISTORY_PATH = process.argv[2] || 'assets/data/on-this-day.json';
 const OVERRIDES_PATH = process.argv[3] || 'assets/data/on-this-day-image-source-overrides.json';
-const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD/1.1';
+const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD/1.2';
 const REQUEST_TIMEOUT_MS = 20000;
 const REQUEST_ATTEMPTS = 3;
 
 const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
 const norm = value => clean(value).normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+const trustedEventPosterTypes = new Set([
+  'tapology-event-poster',
+  'official-promotion-event-poster',
+  'official-promotion-event-image',
+  'wikipedia-event-poster',
+  'wikipedia-event-image',
+  'wikipedia-page-artwork',
+  'commons-event-image',
+  'archived-promotion-event-poster',
+  'verified-manual-event-poster'
+]);
+
+function isEvent(entry) {
+  return entry?.kind === 'event' || entry?.generatedBy === 'wikipedia-event-index';
+}
+
+function trustedEventPosterSource(type) {
+  return trustedEventPosterTypes.has(clean(type));
+}
+
+function applyPosterVerification(entry) {
+  if (!isEvent(entry)) return;
+  if (clean(entry?.imageSubjectType) !== 'event') return;
+  if (!trustedEventPosterSource(entry?.imageSourceType)) return;
+  if (!/^https:\/\//i.test(clean(entry?.imageUrl))) return;
+  if (Number(entry?.imageConfidence || 0) < 0.9) return;
+  entry.imageArtifactType = 'event-poster';
+  entry.imagePosterVerified = true;
+}
 
 function decodeHtml(value) {
   return clean(String(value || '')
@@ -139,6 +169,7 @@ const nowIso = new Date().toISOString();
 let applied = 0;
 let retained = 0;
 let fallbackApplied = 0;
+let posterMetadataRepaired = 0;
 const failures = [];
 
 for (const override of overrides) {
@@ -152,6 +183,10 @@ for (const override of overrides) {
   const primaryConfidence = Math.max(0, Math.min(1, Number(override?.confidence || 0.95)));
   const existingConfidence = Number(entry?.imageConfidence || 0);
   if (/^https:\/\//i.test(clean(entry?.imageUrl)) && existingConfidence >= primaryConfidence && entry?.imageExactMatch === true) {
+    const before = entry?.imagePosterVerified === true && clean(entry?.imageArtifactType) === 'event-poster';
+    applyPosterVerification(entry);
+    const after = entry?.imagePosterVerified === true && clean(entry?.imageArtifactType) === 'event-poster';
+    if (!before && after) posterMetadataRepaired += 1;
     retained += 1;
     continue;
   }
@@ -195,6 +230,7 @@ for (const override of overrides) {
     entry.imageStatus = 'resolved';
     entry.imageExactMatch = !usedFallback && confidence >= 0.95;
     entry.imageFallback = usedFallback;
+    applyPosterVerification(entry);
     if (usedFallback) {
       entry.imagePrimarySourceUrl = clean(override?.sourceUrl);
       entry.imagePrimaryFailureReason = primaryError;
@@ -214,5 +250,5 @@ history.imageSourceOverrideVersion = Number(overridesData?.version || 1);
 history.imageSourceOverridesAppliedAt = nowIso;
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
 
-console.log(`On This Day verified source overrides: ${applied} applied (${fallbackApplied} fallback), ${retained} already protected, ${failures.length} unresolved.`);
+console.log(`On This Day verified source overrides: ${applied} applied (${fallbackApplied} fallback), ${retained} already protected, ${posterMetadataRepaired} poster metadata repaired, ${failures.length} unresolved.`);
 if (failures.length) console.warn(failures.map(item => `- ${item}`).join('\n'));
