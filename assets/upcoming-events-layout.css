@@ -7,9 +7,16 @@
     padding: clamp(.4rem, .8vw, .52rem);
 }
 
+/* Let the browser skip layout/paint work for cards well below the viewport.
+   The intrinsic size keeps page jumps stable until a card is actually needed. */
+.upcoming-event-card:not(:first-child) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1500px;
+}
+
 .event-promotion {
     margin-bottom: .1rem;
-    font-size: .5rem;
+    font-size: .625rem;
 }
 
 .event-card-heading h2 {
@@ -20,7 +27,7 @@
 
 .event-date {
     margin-top: .2rem;
-    font-size: .53rem;
+    font-size: .625rem;
 }
 
 .event-card-meta {
@@ -33,8 +40,8 @@
 
 .event-card-meta p {
     margin: 0;
-    font-size: .48rem;
-    line-height: 1.2;
+    font-size: .625rem;
+    line-height: 1.3;
 }
 
 .event-card-meta p:first-child {
@@ -43,8 +50,8 @@
 
 .event-card-meta a {
     margin-top: 0;
-    font-size: .46rem;
-    line-height: 1.2;
+    font-size: .625rem;
+    line-height: 1.25;
 }
 
 /* Keep incomplete fight rows centered at every breakpoint.
