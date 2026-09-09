@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-09T12:57:23.207Z",
+  "generated_at": "2026-09-09T17:09:36.905Z",
   "events": [
     {
       "id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
@@ -528,7 +528,7 @@
                 {
                   "name": "Zevan Hunt",
                   "initials": "ZH",
-                  "image": "https://www2-cdn.sherdog.com/apple-touch-icon.png",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1788960798Zevan_Hunt.png",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
@@ -1915,6 +1915,48 @@
             {
               "order": 3,
               "label": "",
+              "weight_class": "Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Javad Mahjoub",
+                  "initials": "JM",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Louie Sutherland",
+                  "initials": "LS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/SUTHERLAND_LOUIE_L_08-08.png?itok=R72s_Sj2",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Chad Anheliger",
+                  "initials": "CA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-10/ANHELIGER_CHAD_L_11-02.png?itok=ezY1YMKO",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Steven Koslow",
+                  "initials": "SK",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-01/KOSLOW_STEVEN_L_12-10.png?itok=pqAG6P4G",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
                 {
@@ -1934,7 +1976,7 @@
               ]
             },
             {
-              "order": 4,
+              "order": 6,
               "label": "",
               "weight_class": "Women's Flyweight Bout",
               "fighters": [
@@ -1955,7 +1997,7 @@
               ]
             },
             {
-              "order": 5,
+              "order": 7,
               "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
@@ -1976,7 +2018,7 @@
               ]
             },
             {
-              "order": 6,
+              "order": 8,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
@@ -1997,7 +2039,7 @@
               ]
             },
             {
-              "order": 7,
+              "order": 9,
               "label": "",
               "weight_class": "Women's Bantamweight Bout",
               "fighters": [
@@ -2018,7 +2060,7 @@
               ]
             },
             {
-              "order": 8,
+              "order": 10,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -2039,7 +2081,7 @@
               ]
             },
             {
-              "order": 9,
+              "order": 11,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [

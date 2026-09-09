@@ -1,7 +1,164 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-09T12:57:42.257Z",
+  "generated_at": "2026-09-09T17:10:17.917Z",
   "changes": [
+    {
+      "id": "2026-09-09T17:10:17.917Z|dwcs-season-10-week-6-2026-09-15|portrait_changed|1",
+      "at": "2026-09-09T17:10:17.917Z",
+      "type": "portrait_changed",
+      "event_id": "dwcs-season-10-week-6-2026-09-15",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 6",
+      "event_date": "2026-09-15",
+      "summary": "Zevan Hunt portrait source changed.",
+      "details": {
+        "fighter": "Zevan Hunt",
+        "from_source": "sherdog",
+        "to_source": "sherdog"
+      }
+    },
+    {
+      "id": "2026-09-09T17:10:17.917Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|2",
+      "at": "2026-09-09T17:10:17.917Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Marc-Andre Barriault vs Kyle Daukaus moved on Buckley vs Malott.",
+      "details": {
+        "from_order": 3,
+        "to_order": 5,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-09T17:10:17.917Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|3",
+      "at": "2026-09-09T17:10:17.917Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Jamey-Lyn Horth vs Katlyn Cerminara moved on Buckley vs Malott.",
+      "details": {
+        "from_order": 4,
+        "to_order": 6,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-09T17:10:17.917Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|4",
+      "at": "2026-09-09T17:10:17.917Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Tanner Boser vs Jhonata Diniz moved on Buckley vs Malott.",
+      "details": {
+        "from_order": 5,
+        "to_order": 7,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-09T17:10:17.917Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|5",
+      "at": "2026-09-09T17:10:17.917Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Mandel Nallo vs Nate Landwehr moved on Buckley vs Malott.",
+      "details": {
+        "from_order": 6,
+        "to_order": 8,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-09T17:10:17.917Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|6",
+      "at": "2026-09-09T17:10:17.917Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Melissa Croden vs Chelsea Chandler moved on Buckley vs Malott.",
+      "details": {
+        "from_order": 7,
+        "to_order": 9,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-09T17:10:17.917Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|7",
+      "at": "2026-09-09T17:10:17.917Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Louis Jourdain vs Timmy Cuamba moved on Buckley vs Malott.",
+      "details": {
+        "from_order": 8,
+        "to_order": 10,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-09T17:10:17.917Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|8",
+      "at": "2026-09-09T17:10:17.917Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Julien Leblanc vs Gilbert Urbina moved on Buckley vs Malott.",
+      "details": {
+        "from_order": 9,
+        "to_order": 11,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-09T17:10:17.917Z|ufc-fight-night-2026-10-17-fight-card|bout_added|9",
+      "at": "2026-09-09T17:10:17.917Z",
+      "type": "bout_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Javad Mahjoub vs Louie Sutherland added to Buckley vs Malott.",
+      "details": {
+        "order": 3,
+        "section": "Main Card",
+        "weight_class": "Heavyweight Bout"
+      }
+    },
+    {
+      "id": "2026-09-09T17:10:17.917Z|ufc-fight-night-2026-10-17-fight-card|bout_added|10",
+      "at": "2026-09-09T17:10:17.917Z",
+      "type": "bout_added",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Chad Anheliger vs Steven Koslow added to Buckley vs Malott.",
+      "details": {
+        "order": 4,
+        "section": "Main Card",
+        "weight_class": "Bantamweight Bout"
+      }
+    },
     {
       "id": "2026-09-09T12:57:42.257Z|dwcs-season-10-week-6-2026-09-15|event_added|1",
       "at": "2026-09-09T12:57:42.257Z",
@@ -4499,146 +4656,6 @@
       "summary": "Lerryan Douglas portrait added.",
       "details": {
         "fighter": "Lerryan Douglas",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-sacramento-2026-08-22|portrait_added|9",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Marcio Barbosa portrait added.",
-      "details": {
-        "fighter": "Marcio Barbosa",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-sacramento-2026-08-22|portrait_added|10",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Ryan Kuse portrait added.",
-      "details": {
-        "fighter": "Ryan Kuse",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-sacramento-2026-08-22|portrait_added|11",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Anthony Wint portrait added.",
-      "details": {
-        "fighter": "Anthony Wint",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-sacramento-2026-08-22|portrait_added|12",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Terrance Chatman portrait added.",
-      "details": {
-        "fighter": "Terrance Chatman",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|dwcs-season-10-week-3-2026-08-25|portrait_added|13",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-3-2026-08-25",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 3",
-      "event_date": "2026-08-25",
-      "summary": "Bella Mir portrait added.",
-      "details": {
-        "fighter": "Bella Mir",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|dwcs-season-10-week-3-2026-08-25|portrait_added|14",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-3-2026-08-25",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 3",
-      "event_date": "2026-08-25",
-      "summary": "Alex Apodaca portrait added.",
-      "details": {
-        "fighter": "Alex Apodaca",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|dwcs-season-10-week-3-2026-08-25|portrait_added|15",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-3-2026-08-25",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 3",
-      "event_date": "2026-08-25",
-      "summary": "Mario Piazzon portrait added.",
-      "details": {
-        "fighter": "Mario Piazzon",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|dwcs-season-10-week-3-2026-08-25|portrait_added|16",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-3-2026-08-25",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 3",
-      "event_date": "2026-08-25",
-      "summary": "Guilherme Uriel portrait added.",
-      "details": {
-        "fighter": "Guilherme Uriel",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|dwcs-season-10-week-3-2026-08-25|portrait_added|17",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-3-2026-08-25",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 3",
-      "event_date": "2026-08-25",
-      "summary": "Sean Clancy Jr. portrait added.",
-      "details": {
-        "fighter": "Sean Clancy Jr.",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|dwcs-season-10-week-3-2026-08-25|portrait_added|18",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-3-2026-08-25",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 3",
-      "event_date": "2026-08-25",
-      "summary": "Gary Balletto Jr. portrait added.",
-      "details": {
-        "fighter": "Gary Balletto Jr.",
         "source": "sherdog"
       }
     }

@@ -97,20 +97,34 @@
       "promotion": "ufc",
       "date": "2026-10-03",
       "title": "Silva vs Cong",
-      "status": "coverage_gap",
+      "status": "matched",
+      "verdict_event_id": "1952",
+      "verdict_url": "https://verdictmma.com/event/1952",
+      "verdict_date": "2026-10-03",
       "local_fight_count": 12,
+      "verdict_fight_count": 12,
       "local_main_count": 5,
-      "local_prelim_count": 7
+      "verdict_main_count": 5,
+      "local_prelim_count": 7,
+      "verdict_prelim_count": 7,
+      "confirmed_local_bouts": 11
     },
     {
       "event_id": "ufc-fight-night-2026-10-10-fight-card",
       "promotion": "ufc",
       "date": "2026-10-10",
       "title": "Allen vs Duncan",
-      "status": "coverage_gap",
+      "status": "matched",
+      "verdict_event_id": "1966",
+      "verdict_url": "https://verdictmma.com/event/1966",
+      "verdict_date": "2026-10-10",
       "local_fight_count": 1,
+      "verdict_fight_count": null,
       "local_main_count": 1,
-      "local_prelim_count": 0
+      "verdict_main_count": null,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": null,
+      "confirmed_local_bouts": 1
     },
     {
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
@@ -121,9 +135,9 @@
       "verdict_event_id": "1936",
       "verdict_url": "https://verdictmma.com/event/1936",
       "verdict_date": "2026-10-17",
-      "local_fight_count": 9,
+      "local_fight_count": 11,
       "verdict_fight_count": null,
-      "local_main_count": 9,
+      "local_main_count": 11,
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
@@ -151,20 +165,34 @@
       "promotion": "ufc",
       "date": "2026-10-31",
       "title": "Szabova vs Lisboa",
-      "status": "coverage_gap",
+      "status": "matched",
+      "verdict_event_id": "1969",
+      "verdict_url": "https://verdictmma.com/event/1969",
+      "verdict_date": "2026-10-31",
       "local_fight_count": 2,
+      "verdict_fight_count": null,
       "local_main_count": 2,
-      "local_prelim_count": 0
+      "verdict_main_count": null,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": null,
+      "confirmed_local_bouts": 1
     },
     {
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
       "promotion": "ufc",
       "date": "2026-11-07",
       "title": "Bonfim vs Brady",
-      "status": "coverage_gap",
+      "status": "matched",
+      "verdict_event_id": "1957",
+      "verdict_url": "https://verdictmma.com/event/1957",
+      "verdict_date": "2026-11-07",
       "local_fight_count": 1,
+      "verdict_fight_count": 2,
       "local_main_count": 1,
-      "local_prelim_count": 0
+      "verdict_main_count": 1,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": 1,
+      "confirmed_local_bouts": 1
     }
   ],
   "discrepancies": [
@@ -186,6 +214,16 @@
       "fighters": [
         "“ブラックパンサー”ベイノア",
         "Hide Meison Usami"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "verdict_event_id": "1952",
+      "order": 8,
+      "fighters": [
+        "Marcus McGhee",
+        "Benardo Sopaj"
       ]
     },
     {
@@ -242,27 +280,7 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
       "verdict_event_id": "1936",
-      "order": 5,
-      "fighters": [
-        "Tanner Boser",
-        "Jhonata Diniz"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "verdict_event_id": "1936",
-      "order": 7,
-      "fighters": [
-        "Melissa Croden",
-        "Chelsea Chandler"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "verdict_event_id": "1936",
-      "order": 8,
+      "order": 10,
       "fighters": [
         "Louis Jourdain",
         "Timmy Cuamba"
@@ -272,11 +290,77 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
       "verdict_event_id": "1936",
-      "order": 9,
+      "order": 11,
       "fighters": [
         "Julien Leblanc",
         "Gilbert Urbina"
       ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "verdict_event_id": "1936",
+      "order": 3,
+      "fighters": [
+        "Javad Mahjoub",
+        "Louie Sutherland"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "verdict_event_id": "1936",
+      "order": 4,
+      "fighters": [
+        "Chad Anheliger",
+        "Steven Koslow"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "verdict_event_id": "1936",
+      "order": 7,
+      "fighters": [
+        "Tanner Boser",
+        "Jhonata Diniz"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "verdict_event_id": "1936",
+      "order": 9,
+      "fighters": [
+        "Melissa Croden",
+        "Chelsea Chandler"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "verdict_event_id": "1969",
+      "order": 2,
+      "fighters": [
+        "Nick Klein",
+        "Joseph Kropschot"
+      ]
+    },
+    {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "local_fight_count": 1,
+      "verdict_fight_count": 2
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "local_main_count": 1,
+      "verdict_main_count": 1,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": 1
     }
   ]
 }
