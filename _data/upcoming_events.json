@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-09T00:43:11.806Z",
+  "generated_at": "2026-09-09T03:22:32.845Z",
   "events": [
     {
       "id": "dwcs-season-10-week-5-2026-09-08",
@@ -47,16 +47,16 @@
               "weight_class": "Welterweight",
               "fighters": [
                 {
-                  "name": "Reginaldo Geraldo Jr.",
-                  "initials": "RGJ",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221104051939_Reginaldo_Geraldo_Jr.JPG",
+                  "name": "Isaac Moreno",
+                  "initials": "IM",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250718110823_Isaac_Moreno.JPG",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 },
                 {
-                  "name": "Isaac Moreno",
-                  "initials": "IM",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250718110823_Isaac_Moreno.JPG",
+                  "name": "Reginaldo Geraldo Jr.",
+                  "initials": "RGJ",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20221104051939_Reginaldo_Geraldo_Jr.JPG",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
@@ -127,7 +127,16 @@
             }
           ]
         }
-      ]
+      ],
+      "city": "Las Vegas",
+      "state": "NV",
+      "state_code": "NV",
+      "country": "US",
+      "location": "Las Vegas, NV",
+      "latitude": 36.1699,
+      "longitude": -115.1398,
+      "location_source": "venue-text",
+      "location_precision": "city"
     },
     {
       "id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",

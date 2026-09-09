@@ -1,7 +1,39 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-09T00:43:31.891Z",
+  "generated_at": "2026-09-09T03:23:09.819Z",
   "changes": [
+    {
+      "id": "2026-09-09T03:23:09.819Z|dwcs-season-10-week-5-2026-09-08|location_changed|1",
+      "at": "2026-09-09T03:23:09.819Z",
+      "type": "location_changed",
+      "event_id": "dwcs-season-10-week-5-2026-09-08",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 5",
+      "event_date": "2026-09-08",
+      "summary": "DWCS Season 10 · Week 5: event location metadata changed.",
+      "details": {
+        "from": {
+          "location": "",
+          "city": "",
+          "state": "",
+          "country": "",
+          "latitude": null,
+          "longitude": null,
+          "source": "",
+          "precision": ""
+        },
+        "to": {
+          "location": "Las Vegas, NV",
+          "city": "Las Vegas",
+          "state": "NV",
+          "country": "US",
+          "latitude": 36.1699,
+          "longitude": -115.1398,
+          "source": "venue-text",
+          "precision": "city"
+        }
+      }
+    },
     {
       "id": "2026-09-09T00:43:31.891Z|ufc-fight-night-2026-09-26-fight-card|bout_changed|1",
       "at": "2026-09-09T00:43:31.891Z",
@@ -4605,20 +4637,6 @@
       "summary": "Ronald Humphrey portrait added.",
       "details": {
         "fighter": "Ronald Humphrey",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|dwcs-season-10-week-3-2026-08-25|portrait_added|21",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-3-2026-08-25",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 3",
-      "event_date": "2026-08-25",
-      "summary": "Nick Galanti portrait added.",
-      "details": {
-        "fighter": "Nick Galanti",
         "source": "sherdog"
       }
     }
