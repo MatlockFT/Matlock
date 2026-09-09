@@ -1,5 +1,4 @@
 (() => {
-    let started = false;
     let runtimeLoaded = false;
     let runtimePromise = null;
     const bootstrapSrc = document.currentScript?.src || "";
@@ -42,7 +41,6 @@
 
     const loadPickerRuntime = () => {
         if (runtimePromise) return runtimePromise;
-        started = true;
 
         runtimePromise = new Promise((resolve, reject) => {
             const script = document.createElement("script");
@@ -61,18 +59,14 @@
         return runtimePromise;
     };
 
-    const primeRuntime = () => {
-        loadPickerRuntime().catch(() => {});
-    };
-
     hydratePortraitSources();
 
-    if (page) {
-        page.addEventListener("pointermove", primeRuntime, { once: true, passive: true });
-        page.addEventListener("pointerdown", primeRuntime, { once: true, passive: true });
-        page.addEventListener("focusin", primeRuntime, { once: true });
-        window.addEventListener("scroll", primeRuntime, { once: true, passive: true });
+    // The picker runtime is responsible for portrait framing/cropping as well as
+    // interaction. It must start on page load; waiting for scroll or pointer input
+    // leaves the initial viewport visibly unfinished.
+    if (page) loadPickerRuntime().catch(() => {});
 
+    if (page) {
         page.addEventListener("click", event => {
             if (runtimeLoaded) return;
             const fighter = event.target.closest?.(".fighter");
@@ -85,18 +79,4 @@
                 .catch(() => {});
         }, true);
     }
-
-    const scheduleFallback = () => {
-        window.setTimeout(() => {
-            if (started) return;
-            if ("requestIdleCallback" in window) {
-                window.requestIdleCallback(primeRuntime, { timeout: 1200 });
-            } else {
-                primeRuntime();
-            }
-        }, 8000);
-    };
-
-    if (document.readyState === "complete") scheduleFallback();
-    else window.addEventListener("load", scheduleFallback, { once: true });
 })();
