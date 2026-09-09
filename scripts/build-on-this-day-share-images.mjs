@@ -10,7 +10,7 @@ const PUBLIC_BASE = process.env.OTD_SHARE_PUBLIC_BASE || 'https://raw.githubuser
 const WINDOW_DAYS = Math.max(0, Number(process.env.OTD_SHARE_WINDOW_DAYS || 2));
 const MAX_PER_DAY = Math.max(1, Number(process.env.OTD_SHARE_MAX_PER_DAY || 12));
 const CONCURRENCY = Math.max(1, Math.min(6, Number(process.env.OTD_SHARE_CONCURRENCY || 3)));
-const USER_AGENT = 'MMA-Matlock-OnThisDay-Share/2.0 (+https://mmamatlock.com/on-this-day/)';
+const USER_AGENT = 'MMA-Matlock-OnThisDay-Share/2.1 (+https://mmamatlock.com/on-this-day/)';
 
 const FORMATS = {
   post: { width: 1080, height: 1350, quality: 88 },
@@ -77,7 +77,6 @@ function selectEntries(entries) {
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key).push(entry);
   }
-
   const picked = [];
   for (const key of targets) {
     const group = groups.get(key) || [];
@@ -110,10 +109,7 @@ function wrapApprox(text, maxChars, maxLines = 3) {
   let line = '';
   for (const word of words) {
     const next = line ? `${line} ${word}` : word;
-    if (!line || next.length <= maxChars) {
-      line = next;
-      continue;
-    }
+    if (!line || next.length <= maxChars) { line = next; continue; }
     lines.push(line);
     line = word;
     if (lines.length >= maxLines - 1) break;
@@ -145,23 +141,22 @@ function roughPolygon(x, y, width, height, seed, jitter = 10, points = 10) {
 function paperTextureSvg(width, height, seed, intensity = 1) {
   const random = rng(seed ^ 0x6a09e667);
   let marks = '';
-  const specks = Math.round((width * height) / 4200 * intensity);
+  const specks = Math.round((width * height) / 3900 * intensity);
   for (let i = 0; i < specks; i += 1) {
     const dark = random() > 0.42;
-    const size = 0.6 + random() * 3.8;
-    const alpha = 0.025 + random() * 0.09;
-    marks += `<ellipse cx="${(random() * width).toFixed(1)}" cy="${(random() * height).toFixed(1)}" rx="${size.toFixed(1)}" ry="${(size * (0.3 + random())).toFixed(1)}" fill="${dark ? '#000' : '#fff'}" opacity="${alpha.toFixed(3)}"/>`;
+    const size = 0.6 + random() * 4.4;
+    const alpha = 0.025 + random() * 0.11;
+    marks += `<ellipse cx="${(random() * width).toFixed(1)}" cy="${(random() * height).toFixed(1)}" rx="${size.toFixed(1)}" ry="${(size * (0.25 + random())).toFixed(1)}" fill="${dark ? '#000' : '#fff'}" opacity="${alpha.toFixed(3)}"/>`;
   }
-  const scratches = Math.round(26 * intensity);
-  for (let i = 0; i < scratches; i += 1) {
+  for (let i = 0; i < Math.round(34 * intensity); i += 1) {
     const y = random() * height;
     const x = random() * width * 0.8;
-    const len = width * (0.04 + random() * 0.24);
-    marks += `<path d="M ${x.toFixed(1)} ${y.toFixed(1)} l ${len.toFixed(1)} ${(random() * 3 - 1.5).toFixed(1)}" stroke="${random() > 0.5 ? '#fff' : '#000'}" stroke-width="${(0.5 + random() * 1.8).toFixed(1)}" opacity="${(0.025 + random() * 0.07).toFixed(3)}"/>`;
+    const len = width * (0.04 + random() * 0.26);
+    marks += `<path d="M ${x.toFixed(1)} ${y.toFixed(1)} l ${len.toFixed(1)} ${(random() * 3 - 1.5).toFixed(1)}" stroke="${random() > 0.5 ? '#fff' : '#000'}" stroke-width="${(0.5 + random() * 2).toFixed(1)}" opacity="${(0.03 + random() * 0.08).toFixed(3)}"/>`;
   }
-  for (let i = 0; i < 7; i += 1) {
+  for (let i = 0; i < 9; i += 1) {
     const y = random() * height;
-    marks += `<rect x="0" y="${y.toFixed(1)}" width="${width}" height="${(0.7 + random() * 2).toFixed(1)}" fill="#000" opacity="${(0.012 + random() * 0.026).toFixed(3)}"/>`;
+    marks += `<rect x="0" y="${y.toFixed(1)}" width="${width}" height="${(0.7 + random() * 2.2).toFixed(1)}" fill="#000" opacity="${(0.014 + random() * 0.03).toFixed(3)}"/>`;
   }
   return `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">${marks}</svg>`;
 }
@@ -171,32 +166,28 @@ function halftoneSvg(width, height, opacity = 0.11, step = 9) {
   return `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="dots" width="${step}" height="${step}" patternUnits="userSpaceOnUse"><circle cx="${step / 2}" cy="${step / 2}" r="${r}" fill="#000" opacity="${opacity}"/></pattern></defs><rect width="${width}" height="${height}" fill="url(#dots)"/></svg>`;
 }
 
-function zineBorderSvg(width, height, seed, inset = 24) {
-  const outer = roughPolygon(inset, inset, width - inset * 2, height - inset * 2, seed, 13, 18);
-  const inner = roughPolygon(inset + 8, inset + 8, width - (inset + 8) * 2, height - (inset + 8) * 2, seed ^ 0x1155, 8, 16);
-  return `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg"><polygon points="${outer}" fill="none" stroke="${PAPER}" stroke-width="9"/><polygon points="${inner}" fill="none" stroke="#000" stroke-width="2" opacity="0.4"/></svg>`;
+function zineBorderSvg(width, height, seed, inset = 20) {
+  const outer = roughPolygon(inset, inset, width - inset * 2, height - inset * 2, seed, 12, 20);
+  return `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg"><polygon points="${outer}" fill="none" stroke="${PAPER}" stroke-width="8"/></svg>`;
 }
 
 function anniversaryStickerSvg(entry, width, height, seed, compact = false) {
   const age = yearsAgo(entry);
-  const ageText = age > 0 ? String(age) : '';
   const words = age > 0 ? `${age === 1 ? 'YEAR' : 'YEARS'} AGO TODAY` : 'ON THIS DAY';
-  const x = Math.round(width * 0.046);
-  const y = Math.round(height * (compact ? 0.035 : 0.03));
-  const boxW = Math.round(width * (compact ? 0.70 : 0.79));
-  const boxH = Math.round(width * (compact ? 0.135 : 0.165));
-  const poly = roughPolygon(x, y, boxW, boxH, seed, Math.round(width * 0.014), 12);
-  const ageSize = Math.round(width * (compact ? 0.09 : 0.12));
-  const wordSize = Math.round(width * (compact ? 0.036 : 0.043));
-  const textX = age > 0 ? x + Math.round(width * 0.16) : x + Math.round(width * 0.035);
-  const rotate = compact ? -1.2 : -1.8;
+  const x = Math.round(width * 0.045);
+  const y = Math.round(height * 0.032);
+  const numberW = Math.round(width * (compact ? 0.11 : 0.13));
+  const stripW = Math.round(width * (compact ? 0.51 : 0.56));
+  const h = Math.round(width * (compact ? 0.088 : 0.097));
+  const numberPoly = roughPolygon(x, y, numberW, h, seed ^ 0x5142, 8, 9);
+  const stripX = x + numberW - Math.round(width * 0.012);
+  const stripPoly = roughPolygon(stripX, y + Math.round(width * 0.012), stripW, h - Math.round(width * 0.018), seed, 8, 11);
   return `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-    <g transform="rotate(${rotate} ${x + boxW / 2} ${y + boxH / 2})">
-      <polygon points="${poly}" fill="${PAPER}"/>
-      <polygon points="${roughPolygon(x - 6, y + boxH - Math.round(width * 0.018), Math.round(boxW * 0.45), Math.round(width * 0.022), seed ^ 0x9321, 4, 7)}" fill="${RED}"/>
-      ${age > 0 ? `<text x="${x + Math.round(width * 0.025)}" y="${y + Math.round(boxH * 0.77)}" fill="${RED}" font-family="DejaVu Sans Condensed, DejaVu Sans, sans-serif" font-size="${ageSize}" font-weight="900">${escapeXml(ageText)}</text>` : ''}
-      <text x="${textX + 3}" y="${y + Math.round(boxH * 0.58) + 3}" fill="${RED}" opacity="0.6" font-family="DejaVu Sans Condensed, DejaVu Sans, sans-serif" font-size="${wordSize}" font-weight="900" letter-spacing="1">${escapeXml(words)}</text>
-      <text x="${textX}" y="${y + Math.round(boxH * 0.58)}" fill="${INK}" font-family="DejaVu Sans Condensed, DejaVu Sans, sans-serif" font-size="${wordSize}" font-weight="900" letter-spacing="1">${escapeXml(words)}</text>
+    <g transform="rotate(-1.4 ${x + (numberW + stripW) / 2} ${y + h / 2})">
+      <polygon points="${numberPoly}" fill="${RED}"/>
+      <polygon points="${stripPoly}" fill="${INK}"/>
+      ${age > 0 ? `<text x="${x + numberW / 2}" y="${y + h * 0.77}" text-anchor="middle" fill="${PAPER}" font-family="DejaVu Sans Condensed, DejaVu Sans, sans-serif" font-size="${Math.round(h * 0.76)}" font-weight="900">${age}</text>` : ''}
+      <text x="${stripX + Math.round(width * 0.027)}" y="${y + h * 0.67}" fill="${PAPER}" font-family="DejaVu Sans Condensed, DejaVu Sans, sans-serif" font-size="${Math.round(h * 0.38)}" font-weight="900" letter-spacing="1">${escapeXml(words)}</text>
     </g>
   </svg>`;
 }
@@ -207,22 +198,22 @@ function posterCaptionSvg(entry, formatName, seed) {
   const title = clean(entry.title).toUpperCase();
   const date = dateLabel(entry).toUpperCase();
   const promo = clean(entry.promotion).toUpperCase();
-  const lines = wrapApprox(title, formatName === 'social' ? 33 : 38, 2);
-  const titleSize = Math.round(w * (formatName === 'story' ? 0.044 : 0.046));
-  const lineHeight = Math.round(titleSize * 0.92);
-  const stripH = Math.round(w * (lines.length === 2 ? 0.15 : 0.105));
-  const stripY = h - stripH - Math.round(w * 0.065);
-  const stripW = Math.round(w * 0.91);
-  const poly = roughPolygon(pad, stripY, stripW, stripH, seed ^ 0x7712, 11, 13);
-  const dateY = h - Math.round(w * 0.026);
+  const lines = wrapApprox(title, formatName === 'social' ? 34 : 40, 2);
+  const titleSize = Math.round(w * (formatName === 'story' ? 0.038 : 0.041));
+  const lineHeight = Math.round(titleSize * 0.94);
+  const stripH = Math.round(lineHeight * lines.length + w * 0.045);
+  const stripY = h - stripH - Math.round(w * 0.09);
+  const stripW = Math.round(w * 0.88);
+  const poly = roughPolygon(pad, stripY, stripW, stripH, seed ^ 0x7712, 10, 12);
+  const metaY = h - Math.round(w * 0.048);
   return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
-    <g transform="rotate(-0.7 ${w / 2} ${stripY + stripH / 2})">
+    <g transform="rotate(-0.8 ${w / 2} ${stripY + stripH / 2})">
       <polygon points="${poly}" fill="${RED}"/>
-      <text fill="#050505" font-family="DejaVu Sans Condensed, DejaVu Sans, sans-serif" font-size="${titleSize}" font-weight="900">${textTspans(lines, pad + Math.round(w * 0.025), stripY + Math.round(stripH * 0.49), lineHeight)}</text>
+      <text fill="${INK}" font-family="DejaVu Sans Condensed, DejaVu Sans, sans-serif" font-size="${titleSize}" font-weight="900">${textTspans(lines, pad + Math.round(w * 0.025), stripY + Math.round(w * 0.055), lineHeight)}</text>
     </g>
-    <text x="${pad}" y="${dateY}" fill="${PAPER}" font-family="DejaVu Sans Mono, monospace" font-size="${Math.round(w * 0.018)}" font-weight="700" letter-spacing="1">${escapeXml(date)}</text>
-    ${promo ? `<text x="${w - pad}" y="${dateY}" text-anchor="end" fill="${RED}" font-family="DejaVu Sans Mono, monospace" font-size="${Math.round(w * 0.018)}" font-weight="700" letter-spacing="1">${escapeXml(promo)}</text>` : ''}
-    <text x="${w - pad}" y="${Math.round(w * 0.055)}" text-anchor="end" fill="${PAPER}" font-family="Deja Sans Mono, monospace" font-size="${Math.round(w * 0.018)}" font-weight="700" letter-spacing="2">MMA MATLOCK</text>
+    <text x="${pad}" y="${metaY}" fill="${PAPER}" font-family="DejaVu Sans Mono, monospace" font-size="${Math.round(w * 0.017)}" font-weight="700" letter-spacing="1">${escapeXml(date)}</text>
+    ${promo ? `<text x="${w - pad}" y="${metaY}" text-anchor="end" fill="${RED}" font-family="DejaVu Sans Mono, monospace" font-size="${Math.round(w * 0.017)}" font-weight="700">${escapeXml(promo)}</text>` : ''}
+    <text x="${w - pad}" y="${Math.round(w * 0.052)}" text-anchor="end" fill="${PAPER}" font-family="DejaVu Sans Mono, monospace" font-size="${Math.round(w * 0.016)}" font-weight="700" letter-spacing="2">MMA MATLOCK</text>
   </svg>`;
 }
 
@@ -232,18 +223,18 @@ function photoOverlaySvg(entry, formatName, seed) {
   const title = clean(entry.title).toUpperCase();
   const date = dateLabel(entry).toUpperCase();
   const lines = wrapApprox(title, formatName === 'story' ? 24 : 28, 3);
-  const titleSize = Math.round(w * (formatName === 'story' ? 0.061 : 0.058));
+  const titleSize = Math.round(w * (formatName === 'story' ? 0.058 : 0.055));
   const lineHeight = Math.round(titleSize * 0.96);
-  const stripH = Math.round(lineHeight * lines.length + w * 0.075);
-  const y = h - stripH - Math.round(w * 0.08);
+  const stripH = Math.round(lineHeight * lines.length + w * 0.065);
+  const y = h - stripH - Math.round(w * 0.07);
   const stripW = Math.round(w * 0.88);
   const paperPoly = roughPolygon(pad, y, stripW, stripH, seed ^ 0x2201, 13, 14);
   return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
     <polygon points="${paperPoly}" fill="${PAPER}"/>
-    <text fill="${INK}" font-family="DejaVu Sans Condensed, DejaVu Sans, sans-serif" font-size="${titleSize}" font-weight="900">${textTspans(lines, pad + Math.round(w * 0.028), y + Math.round(w * 0.075), lineHeight)}</text>
-    <polygon points="${roughPolygon(pad + Math.round(w * 0.02), y + stripH - Math.round(w * 0.036), Math.round(stripW * 0.4), Math.round(w * 0.025), seed ^ 0x8881, 4, 7)}" fill="${RED}"/>
-    <text x="${pad}" y="${h - Math.round(w * 0.026)}" fill="${PAPER}" font-family="DejaVu Sans Mono, monospace" font-size="${Math.round(w * 0.018)}" font-weight="700">${escapeXml(date)}</text>
-    <text x="${w - pad}" y="${h - Math.round(w * 0.026)}" text-anchor="end" fill="${RED}" font-family="DejaVu Sans Mono, monospace" font-size="${Math.round(w * 0.018)}" font-weight="700">MMA MATLOCK</text>
+    <text fill="${INK}" font-family="DejaVu Sans Condensed, DejaVu Sans, sans-serif" font-size="${titleSize}" font-weight="900">${textTspans(lines, pad + Math.round(w * 0.028), y + Math.round(w * 0.065), lineHeight)}</text>
+    <polygon points="${roughPolygon(pad + Math.round(w * 0.02), y + stripH - Math.round(w * 0.03), Math.round(stripW * 0.38), Math.round(w * 0.022), seed ^ 0x8881, 4, 7)}" fill="${RED}"/>
+    <text x="${pad}" y="${h - Math.round(w * 0.03)}" fill="${PAPER}" font-family="DejaVu Sans Mono, monospace" font-size="${Math.round(w * 0.017)}" font-weight="700">${escapeXml(date)}</text>
+    <text x="${w - pad}" y="${h - Math.round(w * 0.03)}" text-anchor="end" fill="${RED}" font-family="DejaVu Sans Mono, monospace" font-size="${Math.round(w * 0.017)}" font-weight="700">MMA MATLOCK</text>
   </svg>`;
 }
 
@@ -253,21 +244,30 @@ function noImageSvg(entry, formatName, seed) {
   const anniversary = age > 0 ? `${age} ${age === 1 ? 'YEAR' : 'YEARS'} AGO TODAY` : 'ON THIS DAY';
   const year = String(entry?.date || '').slice(0, 4) || 'MMA';
   const title = clean(entry.title).toUpperCase();
-  const lines = wrapApprox(title, formatName === 'story' ? 21 : 24, 4);
-  const pad = Math.round(w * 0.065);
-  const titleSize = Math.round(w * (formatName === 'story' ? 0.081 : 0.076));
-  const lineHeight = Math.round(titleSize * 0.94);
-  const blockY = Math.round(h * 0.39);
-  const paperPoly = roughPolygon(pad * 0.7, blockY - Math.round(w * 0.08), w - pad * 1.4, lineHeight * lines.length + Math.round(w * 0.14), seed ^ 0xaa55, 18, 14);
+  const lines = wrapApprox(title, formatName === 'story' ? 16 : 19, 4);
+  const pad = Math.round(w * 0.06);
+  const titleSize = Math.round(w * (formatName === 'story' ? 0.088 : 0.082));
+  const lineHeight = Math.round(titleSize * 0.96);
+  const startY = Math.round(h * 0.34);
+  const random = rng(seed ^ 0x4488);
+  let strips = '';
+  lines.forEach((line, i) => {
+    const y = startY + i * Math.round(lineHeight * 1.18);
+    const fill = i % 3 === 1 ? RED : PAPER;
+    const textFill = fill === RED ? INK : INK;
+    const x = pad + Math.round((random() - 0.5) * w * 0.035);
+    const stripW = Math.round(w * (0.78 + random() * 0.13));
+    const stripH = Math.round(lineHeight * 1.04);
+    strips += `<g transform="rotate(${(-2.1 + random() * 4.2).toFixed(2)} ${w / 2} ${y})"><polygon points="${roughPolygon(x, y - stripH * 0.73, stripW, stripH, seed ^ (0x1111 + i * 771), 12, 12)}" fill="${fill}"/><text x="${x + Math.round(w * 0.025)}" y="${y}" fill="${textFill}" font-family="DejaVu Sans Condensed, DejaVu Sans, sans-serif" font-size="${titleSize}" font-weight="900">${escapeXml(line)}</text></g>`;
+  });
   return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
     <rect width="${w}" height="${h}" fill="${INK}"/>
-    <text x="${Math.round(w * 0.53)}" y="${Math.round(h * 0.39)}" text-anchor="middle" fill="${PAPER}" opacity="0.07" font-family="DejaVu Sans Condensed, DejaVu Sans, sans-serif" font-size="${Math.round(w * 0.33)}" font-weight="900">${escapeXml(year)}</text>
-    <polygon points="${roughPolygon(pad, Math.round(h * 0.08), Math.round(w * 0.7), Math.round(w * 0.11), seed ^ 0x1177, 10, 10)}" fill="${RED}"/>
-    <text x="${pad + Math.round(w * 0.02)}" y="${Math.round(h * 0.08 + w * 0.075)}" fill="${INK}" font-family="DejaVu Sans Condensed, DejaVu Sans, sans-serif" font-size="${Math.round(w * 0.043)}" font-weight="900">${escapeXml(anniversary)}</text>
-    <polygon points="${paperPoly}" fill="${PAPER}"/>
-    <text fill="${INK}" font-family="DejaVu Sans Condensed, DejaVu Sans, sans-serif" font-size="${titleSize}" font-weight="900">${textTspans(lines, pad, blockY, lineHeight)}</text>
-    <polygon points="${roughPolygon(pad, blockY + lineHeight * lines.length + Math.round(w * 0.018), Math.round(w * 0.48), Math.round(w * 0.026), seed ^ 0x3137, 4, 8)}" fill="${RED}"/>
-    <text x="${pad}" y="${Math.round(h * 0.84)}" fill="${PAPER_DARK}" font-family="DejaVu Sans Mono, monospace" font-size="${Math.round(w * 0.022)}" font-weight="700">${escapeXml(dateLabel(entry).toUpperCase())}</text>
+    <text x="${Math.round(w * 0.53)}" y="${Math.round(h * 0.55)}" text-anchor="middle" fill="${PAPER}" opacity="0.055" font-family="DejaVu Sans Condensed, DejaVu Sans, sans-serif" font-size="${Math.round(w * 0.42)}" font-weight="900" transform="rotate(-7 ${w * 0.53} ${h * 0.55})">${escapeXml(year)}</text>
+    <polygon points="${roughPolygon(-Math.round(w * 0.08), Math.round(h * 0.12), Math.round(w * 0.82), Math.round(w * 0.09), seed ^ 0x1177, 9, 11)}" fill="${RED}"/>
+    <text x="${pad}" y="${Math.round(h * 0.12 + w * 0.061)}" fill="${INK}" font-family="DejaVu Sans Condensed, DejaVu Sans, sans-serif" font-size="${Math.round(w * 0.042)}" font-weight="900">${escapeXml(anniversary)}</text>
+    ${strips}
+    <polygon points="${roughPolygon(Math.round(w * 0.58), Math.round(h * 0.74), Math.round(w * 0.38), Math.round(w * 0.08), seed ^ 0x9991, 8, 9)}" fill="${PAPER}"/>
+    <text x="${Math.round(w * 0.61)}" y="${Math.round(h * 0.74 + w * 0.055)}" fill="${INK}" font-family="DejaVu Sans Mono, monospace" font-size="${Math.round(w * 0.022)}" font-weight="700">${escapeXml(dateLabel(entry).toUpperCase())}</text>
     <text x="${pad}" y="${h - Math.round(w * 0.05)}" fill="${PAPER}" font-family="DejaVu Sans Mono, monospace" font-size="${Math.round(w * 0.021)}" font-weight="700" letter-spacing="2">MMA MATLOCK</text>
   </svg>`;
 }
@@ -314,9 +314,9 @@ async function photocopyImage(imageBuffer, width, height, fit, position) {
     .resize(width, height, { fit, position, withoutEnlargement: false })
     .greyscale()
     .normalize()
-    .linear(1.16, -8)
+    .linear(1.19, -10)
     .modulate({ brightness: 1.03 })
-    .sharpen({ sigma: 0.85 })
+    .sharpen({ sigma: 0.9 })
     .tint(PAPER)
     .jpeg({ quality: 92 })
     .toBuffer();
@@ -325,11 +325,11 @@ async function photocopyImage(imageBuffer, width, height, fit, position) {
 async function renderEntry(entry, formatName, imageBuffer) {
   const format = FORMATS[formatName];
   const { width: w, height: h } = format;
-  const seed = hashInt(`${entryAnchor(entry)}:${formatName}:zine-v2`);
+  const seed = hashInt(`${entryAnchor(entry)}:${formatName}:zine-v3`);
 
   if (!imageBuffer) {
     return sharp(Buffer.from(noImageSvg(entry, formatName, seed)))
-      .composite([{ input: Buffer.from(paperTextureSvg(w, h, seed, 1.2)), blend: 'soft-light' }])
+      .composite([{ input: Buffer.from(paperTextureSvg(w, h, seed, 1.45)), blend: 'soft-light' }])
       .jpeg({ quality: format.quality, mozjpeg: true })
       .toBuffer();
   }
@@ -346,42 +346,42 @@ async function renderEntry(entry, formatName, imageBuffer) {
       .resize(w, h, { fit: 'cover', position: sharpPosition(entry) })
       .greyscale()
       .normalize()
-      .linear(1.08, -12)
-      .blur(Math.max(9, Math.round(w * 0.015)))
-      .modulate({ brightness: 0.32 })
+      .linear(1.08, -14)
+      .blur(Math.max(8, Math.round(w * 0.013)))
+      .modulate({ brightness: 0.30 })
       .jpeg({ quality: 84 })
       .toBuffer();
 
-    const maxW = Math.round(w * (formatName === 'story' ? 0.88 : formatName === 'social' ? 0.76 : 0.84));
-    const maxH = Math.round(h * (formatName === 'story' ? 0.78 : formatName === 'social' ? 0.72 : 0.77));
+    const maxW = Math.round(w * (formatName === 'story' ? 0.91 : formatName === 'social' ? 0.80 : 0.88));
+    const maxH = Math.round(h * (formatName === 'story' ? 0.89 : formatName === 'social' ? 0.82 : 0.86));
     const poster = await sharp(imageBuffer)
       .rotate()
       .resize({ width: maxW, height: maxH, fit: 'inside', withoutEnlargement: false })
       .greyscale()
       .normalize()
-      .linear(1.14, -7)
-      .sharpen({ sigma: 0.85 })
+      .linear(1.16, -8)
+      .sharpen({ sigma: 0.9 })
       .tint(PAPER)
       .jpeg({ quality: 92 })
       .toBuffer();
     const posterMeta = await sharp(poster).metadata();
     const left = Math.max(0, Math.round((w - posterMeta.width) / 2));
-    const top = Math.max(Math.round(h * 0.13), Math.round((h - posterMeta.height) / 2 - h * 0.015));
-    const mattePad = Math.round(w * 0.012);
+    const top = Math.max(Math.round(h * 0.055), Math.round((h - posterMeta.height) / 2 - h * 0.01));
+    const mattePad = Math.round(w * 0.011);
     const matteW = posterMeta.width + mattePad * 2;
     const matteH = posterMeta.height + mattePad * 2;
     const matte = Buffer.from(`<svg width="${matteW}" height="${matteH}" xmlns="http://www.w3.org/2000/svg"><polygon points="${roughPolygon(mattePad * 0.15, mattePad * 0.15, matteW - mattePad * 0.3, matteH - mattePad * 0.3, seed ^ 0x5511, 10, 20)}" fill="${PAPER}"/></svg>`);
 
     return sharp(backdrop)
       .composite([
-        { input: Buffer.from(`<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg"><rect width="${w}" height="${h}" fill="#050505" opacity="0.48"/></svg>`), blend: 'over' },
-        { input: Buffer.from(halftoneSvg(w, h, 0.16, 10)), blend: 'multiply' },
+        { input: Buffer.from(`<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg"><rect width="${w}" height="${h}" fill="#050505" opacity="0.55"/></svg>`), blend: 'over' },
+        { input: Buffer.from(halftoneSvg(w, h, 0.18, 10)), blend: 'multiply' },
         { input: matte, left: Math.max(0, left - mattePad), top: Math.max(0, top - mattePad), blend: 'over' },
         { input: poster, left, top, blend: 'over' },
-        { input: Buffer.from(zineBorderSvg(w, h, seed, Math.round(w * 0.024))), blend: 'over' },
+        { input: Buffer.from(zineBorderSvg(w, h, seed, Math.round(w * 0.018))), blend: 'over' },
         { input: Buffer.from(anniversaryStickerSvg(entry, w, h, seed, formatName === 'social')), blend: 'over' },
         { input: Buffer.from(posterCaptionSvg(entry, formatName, seed)), blend: 'over' },
-        { input: Buffer.from(paperTextureSvg(w, h, seed, 1.0)), blend: 'soft-light' }
+        { input: Buffer.from(paperTextureSvg(w, h, seed, 1.3)), blend: 'soft-light' }
       ])
       .jpeg({ quality: format.quality, mozjpeg: true })
       .toBuffer();
@@ -390,12 +390,12 @@ async function renderEntry(entry, formatName, imageBuffer) {
   const photo = await photocopyImage(imageBuffer, w, h, 'cover', sharpPosition(entry));
   return sharp(photo)
     .composite([
-      { input: Buffer.from(halftoneSvg(w, h, 0.13, 9)), blend: 'multiply' },
-      { input: Buffer.from(`<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg"><rect width="${w}" height="${h}" fill="#000" opacity="0.12"/></svg>`), blend: 'over' },
-      { input: Buffer.from(zineBorderSvg(w, h, seed, Math.round(w * 0.022))), blend: 'over' },
+      { input: Buffer.from(halftoneSvg(w, h, 0.15, 9)), blend: 'multiply' },
+      { input: Buffer.from(`<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg"><rect width="${w}" height="${h}" fill="#000" opacity="0.08"/></svg>`), blend: 'over' },
+      { input: Buffer.from(zineBorderSvg(w, h, seed, Math.round(w * 0.018))), blend: 'over' },
       { input: Buffer.from(anniversaryStickerSvg(entry, w, h, seed, true)), blend: 'over' },
       { input: Buffer.from(photoOverlaySvg(entry, formatName, seed)), blend: 'over' },
-      { input: Buffer.from(paperTextureSvg(w, h, seed, 1.05)), blend: 'soft-light' }
+      { input: Buffer.from(paperTextureSvg(w, h, seed, 1.25)), blend: 'soft-light' }
     ])
     .jpeg({ quality: format.quality, mozjpeg: true })
     .toBuffer();
@@ -425,8 +425,8 @@ await fs.mkdir(path.dirname(MANIFEST_PATH), { recursive: true });
 
 const imageCache = new Map();
 const manifest = {
-  version: 2,
-  renderer: 'sharp-svg-zine-v2',
+  version: 3,
+  renderer: 'sharp-svg-zine-v3',
   generatedAt,
   publicBase: PUBLIC_BASE,
   windowDays: WINDOW_DAYS,
@@ -452,7 +452,6 @@ await mapLimit(entries, CONCURRENCY, async entry => {
   }
 
   const record = { id, date: entry.date, title: entry.title, template, formats: {} };
-
   for (const formatName of Object.keys(FORMATS)) {
     const fileName = `${id}-${formatName}.jpg`;
     const buffer = await renderEntry(entry, formatName, imageBuffer);
