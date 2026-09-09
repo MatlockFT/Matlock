@@ -1,11 +1,12 @@
 import fs from "node:fs/promises";
+import { nameFromSlug, normalizeFighterName } from "./ufc-roster-identity.mjs";
 
 const UFC_ORIGIN = "https://www.ufc.com";
 const ATHLETES_URL = `${UFC_ORIGIN}/athletes/all`;
 const AJAX_URL = `${UFC_ORIGIN}/views/ajax?_wrapper_format=drupal_ajax`;
 const SENSOR_ID = "ufc-all-athletes-drupal-post-v1";
 const USER_AGENT =
-    "Mozilla/5.0 (compatible; MMAMatlockProfileDirectoryMonitor/1.1; +https://mmamatlock.com/)";
+    "Mozilla/5.0 (compatible; MMAMatlockProfileDirectoryMonitor/1.2; +https://mmamatlock.com/)";
 const PAGE_CONCURRENCY = 8;
 const MAX_PAGES = 360;
 const MIN_DIRECTORY_PROFILES = 2000;
@@ -175,20 +176,17 @@ function slugFromUrl(url) {
     }
 }
 
-function nameFromSlug(slug) {
-    return slug.split("-").filter(Boolean)
-        .map(part => part.charAt(0).toUpperCase() + part.slice(1)).join(" ");
-}
-
 async function discoveryDetails(url) {
     const slug = slugFromUrl(url);
     try {
-        const html = await (await request(url)).text();
-        const title = decodeHtml(meta(html, "og:title"))
+        const response = await request(url);
+        const html = await response.text();
+        const parsedTitle = decodeHtml(meta(html, "og:title"))
             .replace(/\s*\|\s*UFC.*$/i, "")
             .replace(/\s*-\s*UFC.*$/i, "")
             .replace(/\s+/g, " ").trim();
-        return { name: title || nameFromSlug(slug), slug, url, image: meta(html, "og:image") || "" };
+        const name = normalizeFighterName(parsedTitle) || nameFromSlug(slug);
+        return { name, slug, url, image: meta(html, "og:image") || "" };
     } catch (error) {
         return { name: nameFromSlug(slug), slug, url, image: "", detailError: String(error?.message || error) };
     }
@@ -261,7 +259,7 @@ try {
 
     discoveries = uniqueDiscoveries(discoveries);
     Object.assign(state, {
-        version: Math.max(Number(state.version || 0), 10),
+        version: Math.max(Number(state.version || 0), 11),
         profileDirectoryCollectorId: SENSOR_ID,
         profileDirectoryCheckedAt: checkedAt,
         profileDirectoryBaselineEstablishedAt: baselineEstablishedAt,
@@ -277,7 +275,7 @@ try {
             newProfiles: newThisRun.length
         }
     });
-    publicData.version = Math.max(Number(publicData.version || 0), 10);
+    publicData.version = Math.max(Number(publicData.version || 0), 11);
     publicData.profileDirectory = {
         collectorId: SENSOR_ID,
         source: ATHLETES_URL,
