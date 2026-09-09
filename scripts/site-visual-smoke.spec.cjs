@@ -200,15 +200,16 @@ test.describe('On This Day share builder', () => {
     await expect(modal).toBeVisible();
     await expect(page.locator('.otd-lightbox')).toHaveCount(0);
 
-    const canvas = page.locator('[data-otd-share-canvas]');
-    await expect.poll(async () => Number(await canvas.getAttribute('width')), { timeout: 30000 }).toBe(1080);
-    await expect.poll(async () => Number(await canvas.getAttribute('height')), { timeout: 30000 }).toBe(1350);
+    const preview = page.locator('[data-otd-share-preview]');
+    await expect.poll(async () => preview.evaluate(image => image.naturalWidth), { timeout: 30000 }).toBe(1080);
+    await expect.poll(async () => preview.evaluate(image => image.naturalHeight), { timeout: 30000 }).toBe(1350);
+    await expect(preview).toHaveAttribute('src', /otd-share-cache|blob:/);
     await expect(page.locator('[data-otd-share-download]')).toBeEnabled({ timeout: 30000 });
     await expect(page.locator('[data-otd-share-instagram]')).toBeVisible();
 
     await page.locator('[data-otd-share-format="story"]').click();
-    await expect.poll(async () => Number(await canvas.getAttribute('width')), { timeout: 30000 }).toBe(1080);
-    await expect.poll(async () => Number(await canvas.getAttribute('height')), { timeout: 30000 }).toBe(1920);
+    await expect.poll(async () => preview.evaluate(image => image.naturalWidth), { timeout: 30000 }).toBe(1080);
+    await expect.poll(async () => preview.evaluate(image => image.naturalHeight), { timeout: 30000 }).toBe(1920);
     await expect(page.locator('[data-otd-share-format="story"]')).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('[data-otd-share-download]')).toBeEnabled({ timeout: 30000 });
 
