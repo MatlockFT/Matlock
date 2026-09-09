@@ -8,6 +8,7 @@ on:
     paths:
       - ".github/workflows/otd-current-window-fast-publish.yml"
       - "scripts/apply-on-this-day-image-source-overrides.mjs"
+      - "scripts/apply-on-this-day-current-poster-fallbacks.mjs"
       - "scripts/resolve-on-this-day-tapology-posters.mjs"
       - "scripts/sanitize-on-this-day-tapology-posters.mjs"
       - "scripts/finalize-on-this-day-image-metadata.mjs"
@@ -15,6 +16,7 @@ on:
       - "scripts/build-on-this-day-home.mjs"
       - "scripts/build-on-this-day-share-images.mjs"
       - "assets/data/on-this-day-image-source-overrides.json"
+      - "assets/data/on-this-day-current-poster-fallbacks.json"
 
 permissions:
   contents: write
@@ -57,6 +59,7 @@ jobs:
       - name: Check fast-path syntax
         run: |
           node --check scripts/apply-on-this-day-image-source-overrides.mjs
+          node --check scripts/apply-on-this-day-current-poster-fallbacks.mjs
           node --check scripts/resolve-on-this-day-tapology-posters.mjs
           node --check scripts/sanitize-on-this-day-tapology-posters.mjs
           node --check scripts/finalize-on-this-day-image-metadata.mjs
@@ -75,6 +78,9 @@ jobs:
 
       - name: Reject mismatched or unbound Tapology posters
         run: node scripts/sanitize-on-this-day-tapology-posters.mjs
+
+      - name: Apply verified current-window poster fallbacks
+        run: node scripts/apply-on-this-day-current-poster-fallbacks.mjs
 
       - name: Finalize public image metadata
         run: node scripts/finalize-on-this-day-image-metadata.mjs
