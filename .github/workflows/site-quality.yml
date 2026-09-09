@@ -60,8 +60,10 @@ jobs:
           node --check scripts/build-news-feed.mjs
           node --check scripts/check-news-data.mjs
           node --check scripts/check-on-this-day.mjs
+          node --check scripts/check-on-this-day-images.mjs
           node --check scripts/check-on-this-day-share.mjs
           node --check scripts/build-on-this-day-runtime.mjs
+          node --check scripts/build-on-this-day-home.mjs
           node --check scripts/build-frontend-bundles.mjs
           node --check scripts/check-repository-integrity.mjs
           node --check scripts/build-on-this-day-share-images.mjs
@@ -70,6 +72,11 @@ jobs:
           node --check scripts/update-on-this-day-events.mjs
           node --check scripts/enrich-on-this-day-images.mjs
           node --check scripts/verify-on-this-day-event-images.mjs
+          node --check scripts/apply-on-this-day-image-source-overrides.mjs
+          node --check scripts/resolve-on-this-day-images.mjs
+          node --check scripts/resolve-on-this-day-tapology-posters.mjs
+          node --check scripts/sanitize-on-this-day-tapology-posters.mjs
+          node --check scripts/finalize-on-this-day-image-metadata.mjs
           node --check scripts/enrich-on-this-day-content.mjs
           node --check scripts/curate-on-this-day-events.mjs
           node --check scripts/report-on-this-day-coverage.mjs
@@ -131,7 +138,8 @@ jobs:
           grep -q "data-roster-removals" ufc-roster.html
           grep -q "is-portrait" assets/on-this-day.js
           grep -q "animation-play-state: paused !important" assets/site-ticker.css
-          grep -q "home-tools-bar" index.html
+          grep -q "home-live-grid" index.html
+          grep -q "data-home-otd-body" index.html
           grep -q "Shared optical row alignment" assets/site-consistency.css
           grep -q "ufc-active-absence-confirmed" assets/ufc-roster.js
           grep -q "REMOVAL_CONFIRMATION_MISSES = 3" scripts/update-ufc-roster-v4.mjs
@@ -178,6 +186,7 @@ jobs:
           node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-event-sources.json','utf8')); if(!Array.isArray(d.sources)||d.sources.length<4) process.exit(1);"
           node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-image-cache.json','utf8')); if(!d||typeof d.entries!=='object'||Array.isArray(d.entries)) process.exit(1);"
           node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-content-cache.json','utf8')); if(!d||typeof d.entries!=='object'||Array.isArray(d.entries)) process.exit(1);"
+          node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-image-source-overrides.json','utf8')); if(!Array.isArray(d.entries)||d.entries.length<10) process.exit(1);"
 
       - name: Check Upcoming Events data and renderer
         run: node scripts/validate-upcoming-events.mjs
@@ -200,6 +209,12 @@ jobs:
 
       - name: Check On This Day MMA history data
         run: npm run check:history
+
+      - name: Check On This Day image coverage
+        env:
+          OTD_CURRENT_WINDOW_DAYS: "2"
+          OTD_TIME_ZONE: "America/Chicago"
+        run: npm run check:history-images
 
       - name: Check On This Day share pipeline
         run: |
