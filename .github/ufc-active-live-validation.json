@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-08T22:52:56.136514+00:00",
+  "checkedAt": "2026-09-09T03:45:20.154072+00:00",
   "outcome": "success",
   "fallbackOutcome": "skipped",
   "activeEntryOutcome": "success",
@@ -15,23 +15,16 @@
   "mode": "status23-query-post",
   "tail": [
     "Collected 985 profile URLs from UFC's Active collection (view reports 985 athletes).",
-    "Active roster diff: +2 entered, -2 left.",
-    "Active-collection candidate Search results currently reports profile status Unknown; keeping for recheck.",
+    "Active roster diff: +0 entered, -0 left.",
     "Validated active UFC roster: 985 fighters via https://www.ufc.com/views/ajax (status23-query-post).",
     "UFC Active view reports 985 athlete records.",
-    "Detected 1 addition(s) and 0 removal(s) this run.",
-    "1 Active-roster candidate(s) awaiting profile confirmation.",
-    "+ Ilimbek Akylbek \u2014 https://www.ufc.com/athlete/ilimbek-akylbek",
-    "ACTIVE ENTRY Search results \u2014 profile status Unknown",
-    "Promoted 1 UFC Active-collection entrant(s) without waiting for profile Status: Active.",
-    "PROFILE CREATED Ilimbek Akylbek \u2014 https://www.ufc.com/athlete/ilimbek-akylbek",
-    "PROFILE CREATED Search results \u2014 https://www.ufc.com/athlete/sean-king-iii",
-    "UFC profile-directory sensor: 3203 profiles, 2 new profile(s) this run.",
+    "Detected 0 addition(s) and 0 removal(s) this run.",
+    "0 Active-roster candidate(s) awaiting profile confirmation.",
+    "Promoted 0 UFC Active-collection entrant(s) without waiting for profile Status: Active.",
+    "UFC profile-directory sensor: 3203 profiles, 0 new profile(s) this run.",
     "Official UFC event-card cross-check: 7 event(s), 114 athlete slots, 0 first-time UFC newcomer(s) confirmed this run.",
-    "Normalized UFC roster event history; removed 0 duplicate newcomer event(s).",
-    "NEWCOMER Sean King Iii \u2014 No prior UFC competition found on UFC profile",
-    "NEWCOMER Ilimbek Akylbek \u2014 Octagon Debut Sep. 26, 2026",
+    "Normalized UFC roster event history; removed 1 duplicate newcomer, 0 duplicate reactivation, and 0 duplicate departure event(s).",
     "Competition cross-check complete: 10 verified newcomer addition(s), 30 reactivation event(s), 0 newly reclassified this run.",
-    "Finalized UFC roster event history; removed 0 duplicate newcomer event(s)."
+    "Finalized UFC roster event history; removed 0 duplicate newcomer, 0 duplicate reactivation, and 0 duplicate departure event(s)."
   ]
 }
