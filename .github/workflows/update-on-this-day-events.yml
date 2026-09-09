@@ -16,6 +16,7 @@ on:
       - "scripts/update-on-this-day-events.mjs"
       - "scripts/normalize-on-this-day-titles.mjs"
       - "scripts/enrich-on-this-day-images.mjs"
+      - "scripts/apply-on-this-day-image-cache.mjs"
       - "scripts/resolve-on-this-day-images.mjs"
       - "scripts/check-on-this-day-images.mjs"
       - "scripts/verify-on-this-day-event-images.mjs"
@@ -88,6 +89,7 @@ jobs:
           node --check scripts/update-on-this-day-events.mjs
           node --check scripts/normalize-on-this-day-titles.mjs
           node --check scripts/enrich-on-this-day-images.mjs
+          node --check scripts/apply-on-this-day-image-cache.mjs
           node --check scripts/resolve-on-this-day-images.mjs
           node --check scripts/check-on-this-day-images.mjs
           node --check scripts/verify-on-this-day-event-images.mjs
@@ -127,6 +129,9 @@ jobs:
 
       - name: Curate duplicate events and generated copy
         run: node scripts/curate-on-this-day-events.mjs
+
+      - name: Protect exact cached event posters
+        run: node scripts/apply-on-this-day-image-cache.mjs
 
       - name: Resolve images for every On This Day entry type
         run: npm run resolve:history-images
