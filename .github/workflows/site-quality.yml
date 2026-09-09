@@ -46,6 +46,7 @@ jobs:
           node --check assets/post-event-context.js
           node --check assets/on-this-day.js
           node --check assets/on-this-day-stable.js
+          node --check assets/otd-share-v3.js
           node --check assets/ufc-roster.js
           node --check assets/event-map-v2.js
           node --check assets/event-map-enhancements.js
@@ -55,6 +56,8 @@ jobs:
           node --check scripts/build-news-feed.mjs
           node --check scripts/check-news-data.mjs
           node --check scripts/check-on-this-day.mjs
+          node --check scripts/check-on-this-day-share.mjs
+          node --check scripts/build-on-this-day-share-images.mjs
           node --check scripts/update-fighter-birthdays.mjs
           node --check scripts/update-on-this-day-events.mjs
           node --check scripts/enrich-on-this-day-images.mjs
@@ -131,6 +134,7 @@ jobs:
           grep -q "/assets/breakdowns.css" breakdowns.html
           grep -q 'fetchpriority="high"' breakdowns.html
           grep -q "/assets/on-this-day-stable.js" on-this-day.html
+          grep -q "/assets/otd-share-v3.js" on-this-day.html
           grep -q 'data-home-dashboard' index.html
           grep -q '/assets/homepage-dashboard.js' index.html
           grep -q '/assets/news-matlock.css' news.html
@@ -142,6 +146,10 @@ jobs:
           grep -q '/assets/post-event-context.js' _config.yml
           if grep -qE '/assets/on-this-day-(full|media-adaptive)\.js' on-this-day.html; then
             echo "On This Day must not load deprecated runtimes"
+            exit 1
+          fi
+          if grep -q '/assets/otd-share-v2.js' on-this-day.html; then
+            echo "On This Day must not load the retired Canvas share renderer"
             exit 1
           fi
           if grep -q 'document.createElement("style")' assets/site.js; then
@@ -181,6 +189,9 @@ jobs:
 
       - name: Check On This Day MMA history data
         run: npm run check:history
+
+      - name: Check On This Day share pipeline
+        run: npm run check:history-share
 
       - name: Build site
         uses: actions/jekyll-build-pages@v1
