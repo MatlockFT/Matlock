@@ -5,13 +5,11 @@
     const newsList = root.querySelector('[data-home-news-list]');
     const otdBody = root.querySelector('[data-home-otd-body]');
     const rosterBody = root.querySelector('[data-home-roster-body]');
-    const nextMapLink = root.querySelector('[data-home-next-map][data-event-id]');
 
     const liveNewsUrl = root.dataset.newsUrl;
     const fallbackNewsUrl = root.dataset.newsFallbackUrl;
     const historyUrl = root.dataset.historyUrl;
     const rosterUrl = root.dataset.rosterUrl;
-    const eventMapUrl = root.dataset.eventMapUrl;
 
     const element = (tag, className, text) => {
         const node = document.createElement(tag);
@@ -165,19 +163,6 @@
         }
     }
 
-    async function loadNextEventMapLink() {
-        if (!nextMapLink || !eventMapUrl) return;
-        try {
-            const data = await fetchJson(eventMapUrl, 'force-cache');
-            const id = String(nextMapLink.dataset.eventId || '');
-            const eventIds = new Set([
-                ...(data?.events || []).map(event => String(event?.id || '')).filter(Boolean),
-                ...(data?.picker_event_ids || []).map(String)
-            ]);
-            if (eventIds.has(id)) nextMapLink.hidden = false;
-        } catch {}
-    }
-
     const runWhenIdle = (task, delay, timeout = 900) => {
         window.setTimeout(() => {
             if ('requestIdleCallback' in window) {
@@ -190,7 +175,6 @@
 
     const startDeferredLoads = () => {
         runWhenIdle(loadNews, 0, 650);
-        runWhenIdle(loadNextEventMapLink, 120, 800);
         runWhenIdle(loadOnThisDay, 280, 1000);
         runWhenIdle(loadRoster, 480, 1200);
     };
