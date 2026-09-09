@@ -43,7 +43,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: on-this-day-events
+  group: on-this-day-history
   cancel-in-progress: true
 
 jobs:
@@ -107,7 +107,13 @@ jobs:
           node --check assets/otd-share-v3.js
 
       - name: Refresh fighter birthdays from Wikipedia and Wikidata
+        id: refresh_birthdays
+        continue-on-error: true
         run: npm run update:birthdays
+
+      - name: Note birthday source fallback
+        if: steps.refresh_birthdays.outcome == 'failure'
+        run: echo "Birthday source refresh was rate-limited/unavailable; preserving the existing verified birthday archive for this image/share run."
 
       - name: Refresh event anniversaries from Wikipedia
         run: node scripts/update-on-this-day-events.mjs
