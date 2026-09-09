@@ -16,10 +16,10 @@ on:
       - "scripts/update-fighter-birthdays.mjs"
       - "scripts/update-on-this-day-events.mjs"
       - "scripts/normalize-on-this-day-titles.mjs"
-      - "scripts/enrich-on-this-day-images.mjs"
       - "scripts/apply-on-this-day-image-cache.mjs"
       - "scripts/apply-on-this-day-image-source-overrides.mjs"
       - "scripts/resolve-on-this-day-images.mjs"
+      - "scripts/sanitize-on-this-day-event-images.mjs"
       - "scripts/finalize-on-this-day-image-metadata.mjs"
       - "scripts/check-on-this-day-images.mjs"
       - "scripts/verify-on-this-day-event-images.mjs"
@@ -56,8 +56,6 @@ jobs:
     timeout-minutes: 30
     env:
       OTD_TARGET_PROMOTIONS: "ufc,wec,strikeforce,pfl,one,pancrase,bellator,rizin,pride"
-      OTD_IMAGE_ENRICH_LIMIT: "120"
-      OTD_IMAGE_CONCURRENCY: "1"
       OTD_IMAGE_VERIFY_LIMIT: "100"
       OTD_IMAGE_RESOLVE_LIMIT: "180"
       OTD_CURRENT_WINDOW_DAYS: "2"
@@ -93,10 +91,10 @@ jobs:
           node --check scripts/update-fighter-birthdays.mjs
           node --check scripts/update-on-this-day-events.mjs
           node --check scripts/normalize-on-this-day-titles.mjs
-          node --check scripts/enrich-on-this-day-images.mjs
           node --check scripts/apply-on-this-day-image-cache.mjs
           node --check scripts/apply-on-this-day-image-source-overrides.mjs
           node --check scripts/resolve-on-this-day-images.mjs
+          node --check scripts/sanitize-on-this-day-event-images.mjs
           node --check scripts/finalize-on-this-day-image-metadata.mjs
           node --check scripts/check-on-this-day-images.mjs
           node --check scripts/verify-on-this-day-event-images.mjs
@@ -138,9 +136,6 @@ jobs:
       - name: Resolve Pancrase images from the official archive
         run: node scripts/enrich-on-this-day-pancrase-images.mjs
 
-      - name: Prefer posters and event imagery for the archive
-        run: node scripts/enrich-on-this-day-images.mjs
-
       - name: Verify event-specific poster matches
         run: node scripts/verify-on-this-day-event-images.mjs
 
@@ -153,8 +148,11 @@ jobs:
       - name: Apply verified source overrides for hard image matches
         run: node scripts/apply-on-this-day-image-source-overrides.mjs
 
-      - name: Resolve images for every On This Day entry type
+      - name: Resolve images from exact trusted sources
         run: npm run resolve:history-images
+
+      - name: Reject ambiguous or untrusted historical event images
+        run: node scripts/sanitize-on-this-day-event-images.mjs
 
       - name: Normalize image provenance metadata
         run: node scripts/finalize-on-this-day-image-metadata.mjs
