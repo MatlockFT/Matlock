@@ -7,9 +7,11 @@ on:
       - main
     paths:
       - ".github/workflows/otd-current-window-fast-publish.yml"
+      - "scripts/apply-on-this-day-image-source-overrides.mjs"
       - "scripts/resolve-on-this-day-tapology-posters.mjs"
       - "scripts/sanitize-on-this-day-tapology-posters.mjs"
       - "scripts/finalize-on-this-day-image-metadata.mjs"
+      - "scripts/build-on-this-day-home.mjs"
       - "assets/data/on-this-day-image-source-overrides.json"
 
 permissions:
@@ -25,7 +27,7 @@ jobs:
     timeout-minutes: 12
     env:
       OTD_TIME_ZONE: "America/Chicago"
-      OTD_TAPOLOGY_POSTER_LIMIT: "32"
+      OTD_TAPOLOGY_POSTER_LIMIT: "48"
       OTD_CURRENT_WINDOW_DAYS: "2"
 
     steps:
@@ -45,6 +47,7 @@ jobs:
 
       - name: Check fast-path syntax
         run: |
+          node --check scripts/apply-on-this-day-image-source-overrides.mjs
           node --check scripts/resolve-on-this-day-tapology-posters.mjs
           node --check scripts/sanitize-on-this-day-tapology-posters.mjs
           node --check scripts/finalize-on-this-day-image-metadata.mjs
@@ -52,13 +55,16 @@ jobs:
           node --check scripts/build-on-this-day-home.mjs
           node --check scripts/build-on-this-day-leads.mjs
 
+      - name: Apply deterministic hard-case image sources
+        run: node scripts/apply-on-this-day-image-source-overrides.mjs
+
       - name: Resolve current-window Tapology event posters first
         run: node scripts/resolve-on-this-day-tapology-posters.mjs
 
       - name: Reject mismatched or unbound Tapology posters
         run: node scripts/sanitize-on-this-day-tapology-posters.mjs
 
-      - name: Force public event references to Tapology
+      - name: Finalize public image metadata
         run: node scripts/finalize-on-this-day-image-metadata.mjs
 
       - name: Build browser runtime immediately
