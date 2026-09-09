@@ -16,6 +16,9 @@ on:
       - "scripts/filter-ufc-roster-additions.mjs"
       - "scripts/check-ufc-event-cards.mjs"
       - "scripts/normalize-ufc-roster-events.mjs"
+      - "scripts/ufc-roster-identity.mjs"
+      - "scripts/build-ufc-canonical-roster.mjs"
+      - "scripts/validate-ufc-roster-output.mjs"
       - "scripts/check-ufc-antidoping.mjs"
       - "ufc-roster.html"
       - "assets/ufc-roster.js"
@@ -136,7 +139,7 @@ jobs:
 
           echo "Primary UFC Active source failed; reused the last verified snapshot and will continue secondary roster checks." | tee -a /tmp/ufc-roster-run.log
 
-      - name: Preserve competition cross-check history
+      - name: Preserve cross-check and identity history
         if: steps.roster_check.outcome == 'success'
         shell: bash
         run: |
@@ -150,6 +153,8 @@ jobs:
               | .reactivations = ($new.reactivations // $old.reactivations // [])
               | .backfillCompetitionChecks = ($new.backfillCompetitionChecks // $old.backfillCompetitionChecks // {})
               | .competitionRuleVersion = ($new.competitionRuleVersion // $old.competitionRuleVersion // 0)
+              | .canonicalFighters = ($old.canonicalFighters // [])
+              | .canonicalRegistryVersion = ($old.canonicalRegistryVersion // 0)
             ' \
               /tmp/ufc-roster-state.json \
               /tmp/ufc-roster/ufc-roster-state.json \
@@ -215,9 +220,20 @@ jobs:
             --backfill assets/ufc-roster-backfill.json \
             2>&1 | tee -a /tmp/ufc-roster-run.log
 
+      - name: Build canonical fighter registry
+        id: canonical_check
+        if: steps.competition_check.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/build-ufc-canonical-roster.mjs \
+            --state /tmp/ufc-roster-state.json \
+            --public /tmp/ufc-roster-latest.json \
+            2>&1 | tee -a /tmp/ufc-roster-run.log
+
       - name: Finalize newcomer confirmation paths
         id: finalize_check
-        if: steps.competition_check.outcome == 'success'
+        if: steps.canonical_check.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
@@ -276,6 +292,7 @@ jobs:
           PROFILE_DIRECTORY_RESULT: ${{ steps.profile_directory_check.outcome }}
           EVENT_CARD_RESULT: ${{ steps.event_card_check.outcome }}
           CROSSCHECK_RESULT: ${{ steps.competition_check.outcome }}
+          CANONICAL_RESULT: ${{ steps.canonical_check.outcome }}
           FINALIZE_RESULT: ${{ steps.finalize_check.outcome }}
           ANTIDOPING_RESULT: ${{ steps.antidoping_check.outcome }}
           PUBLISH_RESULT: ${{ steps.publish.outcome }}
@@ -288,13 +305,15 @@ jobs:
           from pathlib import Path
 
           log = Path('/tmp/ufc-roster-run.log').read_text(errors='replace') if Path('/tmp/ufc-roster-run.log').exists() else ''
-          match = re.search(r'Validated active UFC roster: (\d+) fighters via (.+?) \((.+?)\)\.', log)
+          source_match = re.search(r'Validated active UFC roster: (\d+) fighters via (.+?) \((.+?)\)\.', log)
+          canonical_match = re.search(r'Canonical UFC roster: (\d+) source profiles -> (\d+) unique fighters', log)
           check_result = os.environ.get('CHECK_RESULT', '')
           fallback_result = os.environ.get('FALLBACK_RESULT', '')
           active_entry_result = os.environ.get('ACTIVE_ENTRY_RESULT', '')
           profile_directory_result = os.environ.get('PROFILE_DIRECTORY_RESULT', '')
           event_card_result = os.environ.get('EVENT_CARD_RESULT', '')
           crosscheck_result = os.environ.get('CROSSCHECK_RESULT', '')
+          canonical_result = os.environ.get('CANONICAL_RESULT', '')
           finalize_result = os.environ.get('FINALIZE_RESULT', '')
           antidoping_result = os.environ.get('ANTIDOPING_RESULT', '')
           publish_result = os.environ.get('PUBLISH_RESULT', '')
@@ -306,23 +325,26 @@ jobs:
               'profileDirectoryOutcome': profile_directory_result,
               'eventCardOutcome': event_card_result,
               'crossCheckOutcome': crosscheck_result,
+              'canonicalOutcome': canonical_result,
               'finalizeOutcome': finalize_result,
               'antiDopingOutcome': antidoping_result,
               'publishOutcome': publish_result,
               'validated': (
-                  bool(match)
-                  and check_result == 'success'
+                  bool(source_match or fallback_result == 'success')
+                  and bool(canonical_match)
                   and active_entry_result == 'success'
                   and event_card_result == 'success'
                   and crosscheck_result == 'success'
+                  and canonical_result == 'success'
                   and finalize_result == 'success'
                   and antidoping_result == 'success'
                   and publish_result == 'success'
               ),
-              'activeCount': int(match.group(1)) if match else None,
-              'source': match.group(2) if match else None,
-              'mode': match.group(3) if match else None,
-              'tail': log.splitlines()[-120:],
+              'activeProfileCount': int(canonical_match.group(1)) if canonical_match else (int(source_match.group(1)) if source_match else None),
+              'activeCount': int(canonical_match.group(2)) if canonical_match else None,
+              'source': source_match.group(2) if source_match else None,
+              'mode': source_match.group(3) if source_match else None,
+              'tail': log.splitlines()[-140:],
           }
           Path('/tmp/ufc-active-live-validation.json').write_text(json.dumps(payload, indent=2) + '\n')
           PY
