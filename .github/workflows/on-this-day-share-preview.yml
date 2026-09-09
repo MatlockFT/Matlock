@@ -8,6 +8,8 @@ on:
     paths:
       - ".github/workflows/on-this-day-share-preview.yml"
       - "scripts/build-on-this-day-share-images.mjs"
+      - "scripts/share-title-layout.mjs"
+      - "assets/data/on-this-day-share-sources.json"
 
 permissions:
   contents: read
@@ -42,7 +44,9 @@ jobs:
         run: npm ci
 
       - name: Check renderer syntax
-        run: node --check scripts/build-on-this-day-share-images.mjs
+        run: |
+          node --check scripts/build-on-this-day-share-images.mjs
+          node --check scripts/share-title-layout.mjs
 
       - name: Render current-day share cards
         run: npm run build:history-share

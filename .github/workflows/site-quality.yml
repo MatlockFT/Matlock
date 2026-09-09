@@ -65,6 +65,7 @@ jobs:
           node --check scripts/build-frontend-bundles.mjs
           node --check scripts/check-repository-integrity.mjs
           node --check scripts/build-on-this-day-share-images.mjs
+          node --check scripts/share-title-layout.mjs
           node --check scripts/update-fighter-birthdays.mjs
           node --check scripts/update-on-this-day-events.mjs
           node --check scripts/enrich-on-this-day-images.mjs

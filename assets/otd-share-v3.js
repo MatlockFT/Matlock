@@ -84,9 +84,7 @@
         if (date) url.searchParams.set('date', `${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`);
         url.hash = row.id;
         const link = url.href;
-        const creditLine = imageCredit ? `\nImage: ${imageCredit}` : '';
-        const caption = `${headline}\n${title}\n${dateLabel}${creditLine}\n\n${link}\n\n#MMA #OnThisDay`;
-        return {
+        const entry = {
             id: row.id,
             row,
             media,
@@ -99,9 +97,15 @@
             yearsAgo,
             dateLabel,
             headline,
-            link,
-            caption
+            link
         };
+        entry.caption = captionForEntry(entry);
+        return entry;
+    }
+
+    function captionForEntry(entry) {
+        const creditLine = entry.imageCredit ? `\nImages: ${entry.imageCredit}` : '';
+        return `${entry.headline}\n${entry.title}\n${entry.dateLabel}${creditLine}\n\n${entry.link}\n\n#MMA #OnThisDay`;
     }
 
     function copyText(value) {
@@ -147,7 +151,7 @@
         modal.innerHTML = `
             <div class="otd-share-panel">
                 <header class="otd-share-header">
-                    <div><p class="otd-share-kicker">Inverse Xerox Edition</p><h2 id="otd-share-title">Share This Moment</h2></div>
+                    <div><p class="otd-share-kicker">Cut &amp; Paste Archive</p><h2 id="otd-share-title">Share This Moment</h2></div>
                     <button type="button" class="otd-share-close" data-otd-share-close aria-label="Close share builder">×</button>
                 </header>
                 <div class="otd-share-workspace">
@@ -228,9 +232,26 @@
         modal.querySelector('[data-otd-share-instagram]').textContent = isTouchLike ? 'Instagram / Stories' : 'Prepare for Instagram';
         modal.querySelector('[data-otd-share-native]').textContent = navigator.share ? 'Share to apps' : 'Save + copy caption';
         const credit = activeEntry?.imageCredit ? ` Image credit: ${activeEntry.imageCredit}.` : '';
-        modal.querySelector('[data-otd-share-note]').textContent = (isTouchLike
+        const note = modal.querySelector('[data-otd-share-note]');
+        note.textContent = (isTouchLike
             ? 'The finished JPG goes to your phone’s share sheet. The caption is copied first.'
             : 'Download or copy the finished image. Prepare for Instagram also copies the caption and opens Instagram web.') + credit;
+        const sources = Array.isArray(activeEntry?.imageSources) ? activeEntry.imageSources : [];
+        const linked = sources.filter(source => source?.credit && /^https:\/\//i.test(source?.sourceUrl || ''));
+        if (linked.length) {
+            note.append(document.createTextNode(' Sources: '));
+            linked.forEach((source, index) => {
+                if (index) note.append(document.createTextNode(', '));
+                const anchor = document.createElement('a');
+                anchor.href = source.sourceUrl;
+                anchor.target = '_blank';
+                anchor.rel = 'noopener noreferrer';
+                anchor.textContent = source.credit;
+                anchor.style.color = '#e8e8e8';
+                note.append(anchor);
+            });
+            note.append(document.createTextNode('.'));
+        }
     }
 
     function flash(button, label) {
@@ -287,19 +308,31 @@
         return String(value || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
     }
 
-    function balancedWrap(text, maxChars, maxLines) {
+    function textUnits(value) {
+        let width = 0;
+        for (const character of String(value || '')) {
+            if (/\s/.test(character)) width += 0.52;
+            else if (/[I1.,'’!:;|]/.test(character)) width += 0.48;
+            else if (/[MW@%&#]/.test(character)) width += 1.24;
+            else if (/[()\[\]{}/-]/.test(character)) width += 0.72;
+            else width += 1;
+        }
+        return width;
+    }
+
+    function balancedWrap(text, maxUnits, maxLines) {
         const sourceWords = clean(text).split(' ').filter(Boolean);
         if (!sourceWords.length) return [];
-        const capacity = Math.ceil(maxChars * 1.08);
+        const capacity = maxUnits * 1.08;
         const words = [...sourceWords];
         let clipped = false;
-        while (words.length > 1 && words.join(' ').length > capacity * maxLines) {
+        while (words.length > 1 && textUnits(words.join(' ')) > capacity * maxLines) {
             words.pop();
             clipped = true;
         }
         if (clipped) words[words.length - 1] = `${words.at(-1).replace(/[\s,.;:-]+$/, '')}…`;
         const whole = words.join(' ');
-        if (whole.length <= maxChars) return [whole];
+        if (textUnits(whole) <= maxUnits) return [whole];
 
         const candidates = [];
         const collect = (start, lines) => {
@@ -310,29 +343,44 @@
             if (lines.length >= maxLines) return;
             for (let end = start + 1; end <= words.length; end += 1) {
                 const line = words.slice(start, end).join(' ');
-                if (line.length > capacity && end > start + 1) break;
+                if (textUnits(line) > capacity && end > start + 1) break;
                 collect(end, [...lines, line]);
             }
         };
         collect(0, []);
 
-        const weakEnd = /^(A|AN|AND|AT|BY|FOR|FROM|IN|OF|ON|OR|THE|TO|VS\.?|WITH)$/i;
+        const weakWord = /^(?:A|AN|AND|AT|BY|FOR|FROM|IN|OF|ON|OR|THE|TO|VS\.?|WITH)$/i;
+        const colonIndex = words.findIndex(word => /[:;—–]$/.test(word));
+        const subtitleStart = colonIndex >= 0 ? colonIndex + 1 : -1;
+        const subtitle = subtitleStart > 0 ? words.slice(subtitleStart).join(' ') : '';
+        const protectSubtitle = subtitle && textUnits(subtitle) <= maxUnits * 1.03;
         const score = lines => {
-            const widths = lines.map(line => line.length);
+            const widths = lines.map(textUnits);
             const widest = Math.max(...widths);
-            let value = lines.length * 14;
+            const target = widths.reduce((sum, width) => sum + width, 0) / widths.length;
+            let value = lines.length * 18;
             widths.forEach(width => {
-                value += (widest - width) ** 2;
-                if (width > maxChars) value += (width - maxChars) ** 2 * 18;
+                value += (width - target) ** 2;
+                if (width > maxUnits) value += (width - maxUnits) ** 2 * 24;
             });
             const finalWords = lines.at(-1).split(' ').filter(Boolean);
-            if (finalWords.length === 1 && words.length > 2) value += 5000;
-            if (widths.at(-1) < widest * 0.48) value += 2200;
-            lines.slice(0, -1).forEach(line => {
+            if (finalWords.length === 1 && words.length > 2) value += 10000;
+            if (finalWords.length === 2 && widths.at(-1) < widest * 0.38) value += 2400;
+            if (widths.at(-1) < widest * 0.48) value += 3200;
+            lines.forEach((line, index) => {
+                const lineWords = line.split(' ').filter(Boolean);
+                const firstWord = lineWords[0] || '';
                 const finalWord = line.split(' ').at(-1) || '';
-                if (/[:;—–-]$/.test(line)) value -= 260;
-                if (weakEnd.test(finalWord)) value += 650;
+                if (index < lines.length - 1 && lineWords.length === 1 && !/[:;—–]$/.test(line)) value += 8000;
+                if (index > 0 && weakWord.test(firstWord)) value += 900;
+                if (index < lines.length - 1 && weakWord.test(finalWord)) value += 1200;
+                if (index < lines.length - 1 && /[:;—–]$/.test(line)) value -= 520;
+                if (index < lines.length - 1 && /\bVS\.?$/i.test(line)) value += 1600;
             });
+            if (protectSubtitle) {
+                const subtitleLine = lines.findIndex(line => line.split(' ').includes(words[subtitleStart]));
+                if (subtitleLine < 0 || lines.slice(subtitleLine).join(' ') !== subtitle) value += 7200;
+            }
             return value;
         };
         return candidates.sort((a, b) => score(a) - score(b))[0] || [whole];
@@ -371,7 +419,7 @@
         const pad = Math.round(w * 0.047);
         const anniversary = entry.headline.toUpperCase();
         const titleLines = balancedWrap(entry.title.toUpperCase(), format === FORMATS.story ? 21 : 23, 3);
-        const longest = Math.max(1, ...titleLines.map(line => line.length));
+        const longest = Math.max(1, ...titleLines.map(textUnits));
         const baseTitleSize = Math.round(w * (format === FORMATS.story ? 0.069 : 0.064));
         const titleSize = Math.max(Math.round(baseTitleSize * 0.68), Math.min(baseTitleSize, Math.floor((w - pad * 2.2) / (longest * 0.77))));
         const lineHeight = Math.round(titleSize * 1.13);
@@ -452,8 +500,15 @@
 
         const manifest = await loadManifest();
         if (token !== renderToken || !activeEntry) return;
-        const prebuilt = manifest?.entries?.[activeEntry.id]?.formats?.[activeFormat];
+        const prebuiltRecord = manifest?.entries?.[activeEntry.id];
+        const prebuilt = prebuiltRecord?.formats?.[activeFormat];
         if (prebuilt) {
+            if (typeof prebuiltRecord.imageCredit === 'string') {
+                activeEntry.imageCredit = prebuiltRecord.imageCredit;
+                activeEntry.imageSources = prebuiltRecord.imageSources;
+                activeEntry.caption = captionForEntry(activeEntry);
+                syncModalState();
+            }
             renderedUrl = prebuilt;
             preview.src = prebuilt;
             setCardActionsEnabled(true);
