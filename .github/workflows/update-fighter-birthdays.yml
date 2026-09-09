@@ -2,25 +2,14 @@ name: Update fighter birthdays
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/workflows/update-fighter-birthdays.yml"
-      - "assets/data/fighter-birthday-seeds.json"
-      - "assets/fighter-portraits.json"
-      - "scripts/update-fighter-birthdays.mjs"
-      - "scripts/resolve-on-this-day-images.mjs"
-      - "scripts/check-on-this-day-images.mjs"
-      - "scripts/check-on-this-day.mjs"
-  schedule:
-    - cron: "17 9 * * *"
 
 permissions:
   contents: write
 
+# The main On This Day workflow is the automatic owner of birthday refreshes.
+# Keep this as a manual recovery/maintenance job so Wikimedia is not hit twice.
 concurrency:
-  group: fighter-birthdays
+  group: on-this-day-history
   cancel-in-progress: true
 
 jobs:
@@ -28,8 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      # Current-window entries are sorted first, followed by all birthdays.
-      # 180 covers both without wasting this focused job on deep archive events.
       OTD_IMAGE_RESOLVE_LIMIT: "180"
       OTD_CURRENT_WINDOW_DAYS: "2"
       OTD_TIME_ZONE: "America/Chicago"
