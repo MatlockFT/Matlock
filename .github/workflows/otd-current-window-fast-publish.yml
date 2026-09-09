@@ -7,6 +7,10 @@ on:
       - main
     paths:
       - ".github/workflows/otd-current-window-fast-publish.yml"
+      - "scripts/resolve-on-this-day-tapology-posters.mjs"
+      - "scripts/sanitize-on-this-day-tapology-posters.mjs"
+      - "scripts/finalize-on-this-day-image-metadata.mjs"
+      - "assets/data/on-this-day-image-source-overrides.json"
 
 permissions:
   contents: write
@@ -42,6 +46,7 @@ jobs:
       - name: Check fast-path syntax
         run: |
           node --check scripts/resolve-on-this-day-tapology-posters.mjs
+          node --check scripts/sanitize-on-this-day-tapology-posters.mjs
           node --check scripts/finalize-on-this-day-image-metadata.mjs
           node --check scripts/build-on-this-day-runtime.mjs
           node --check scripts/build-on-this-day-home.mjs
@@ -49,6 +54,9 @@ jobs:
 
       - name: Resolve current-window Tapology event posters first
         run: node scripts/resolve-on-this-day-tapology-posters.mjs
+
+      - name: Reject mismatched or unbound Tapology posters
+        run: node scripts/sanitize-on-this-day-tapology-posters.mjs
 
       - name: Force public event references to Tapology
         run: node scripts/finalize-on-this-day-image-metadata.mjs
