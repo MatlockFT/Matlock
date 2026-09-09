@@ -1,6 +1,12 @@
 (() => {
     let started = false;
 
+    const normalizeDownloadLabel = () => {
+        document
+            .querySelectorAll(".prediction-button:not(.prediction-button-clear)")
+            .forEach(button => { button.textContent = "Download Picks"; });
+    };
+
     const loadPickerRuntime = () => {
         if (started) return;
         started = true;
@@ -11,6 +17,7 @@
         script.src = `/assets/upcoming-events.js${query}`;
         script.async = true;
         script.dataset.upcomingEventsRuntime = "";
+        script.addEventListener("load", normalizeDownloadLabel, { once: true });
         document.body.appendChild(script);
     };
 
