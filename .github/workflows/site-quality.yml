@@ -73,6 +73,7 @@ jobs:
           node --check scripts/enrich-on-this-day-images.mjs
           node --check scripts/verify-on-this-day-event-images.mjs
           node --check scripts/apply-on-this-day-image-source-overrides.mjs
+          node --check scripts/apply-on-this-day-current-poster-fallbacks.mjs
           node --check scripts/resolve-on-this-day-images.mjs
           node --check scripts/resolve-on-this-day-tapology-posters.mjs
           node --check scripts/sanitize-on-this-day-tapology-posters.mjs
@@ -187,6 +188,7 @@ jobs:
           node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-image-cache.json','utf8')); if(!d||typeof d.entries!=='object'||Array.isArray(d.entries)) process.exit(1);"
           node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-content-cache.json','utf8')); if(!d||typeof d.entries!=='object'||Array.isArray(d.entries)) process.exit(1);"
           node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-image-source-overrides.json','utf8')); if(!Array.isArray(d.entries)||d.entries.length<10) process.exit(1);"
+          node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-current-poster-fallbacks.json','utf8')); const allowed=new Set(['official-promotion-event-poster','wikipedia-event-poster','archived-promotion-event-poster','verified-manual-event-poster']); if(!Array.isArray(d.entries)||d.entries.length<10) process.exit(1); for(const e of d.entries){ if(!e.date||!e.title||!e.sourceUrl||!allowed.has(e.sourceType)||Number(e.confidence)<0.9) process.exit(1); }"
 
       - name: Check Upcoming Events data and renderer
         run: node scripts/validate-upcoming-events.mjs
