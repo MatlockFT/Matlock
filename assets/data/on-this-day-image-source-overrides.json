@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "entries": [
     {
       "date": "2002-09-07",
@@ -34,12 +34,13 @@
     {
       "date": "2008-09-07",
       "title": "Pancrase: Shining 7",
-      "sourceUrl": "https://www.tapology.com/fightcenter/events/6777-pancrase-193-shining-7",
-      "sourceType": "tapology-event-page",
-      "subjectType": "event",
-      "credit": "Tapology",
-      "confidence": 0.93,
-      "matchReason": "Exact Tapology event page for Pancrase 193: Shining 7; use the page's Pancrase event/promotional image as the verified fallback."
+      "imageUrl": "https://www.pancrase.co.jp/icn/fujiwara.jpg",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0907.html",
+      "sourceType": "official-promotion-fighter-fallback",
+      "subjectType": "fighter",
+      "credit": "Pancrase",
+      "confidence": 0.82,
+      "matchReason": "Exact official Pancrase result page for the September 7, 2008 Shining Tour event. No distinct event art is exposed there, so the main-event fighter image is used as the last-resort official fallback."
     },
     {
       "date": "2010-09-09",
@@ -54,12 +55,13 @@
     {
       "date": "2011-09-10",
       "title": "Bellator 49",
-      "sourceUrl": "https://www.tapology.com/fightcenter/events/10058-bellator-49",
-      "sourceType": "tapology-event-page",
-      "subjectType": "event",
-      "credit": "Tapology",
-      "confidence": 0.97,
-      "matchReason": "Exact Tapology event page for Bellator 49; use its event poster/primary event image."
+      "imageUrl": "https://www-cdn.sherdog.com/thumbnail_crop/600/_images/pictures/20110910082535_827Q7520.JPG",
+      "sourceUrl": "https://www.sherdog.com/news/news/Lozano-Lima-Santos-Saunders-Advance-to-170-Semis-at-Bellator-49-35473",
+      "sourceType": "event-article",
+      "subjectType": "moment",
+      "credit": "Sherdog · Keith Mills",
+      "confidence": 0.9,
+      "matchReason": "Directly related Bellator 49 main-event photo from Sherdog's event report. Used because Tapology blocks the GitHub Actions resolver and no durable exact poster URL is available in the current cache."
     },
     {
       "date": "2013-09-07",
@@ -74,22 +76,24 @@
     {
       "date": "2016-09-11",
       "title": "Pancrase: 280",
-      "sourceUrl": "https://www.tapology.com/fightcenter/events/36070-pancrase",
-      "sourceType": "tapology-event-page",
+      "imageUrl": "https://www.pancrase.co.jp/data/result/2016/0911/main.jpg",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2016/0911.html",
+      "sourceType": "official-promotion-event-image",
       "subjectType": "event",
-      "credit": "Tapology",
-      "confidence": 0.97,
-      "matchReason": "Exact Tapology event page for Pancrase 280; use its event poster/primary event image."
+      "credit": "Pancrase",
+      "confidence": 0.99,
+      "matchReason": "Exact official PANCRASE280 event image from the promotion's September 11, 2016 result page."
     },
     {
       "date": "2018-09-09",
       "title": "Pancrase: 299",
-      "sourceUrl": "https://www.tapology.com/fightcenter/events/55176-pancrase-299",
-      "sourceType": "tapology-event-page",
+      "imageUrl": "https://www.pancrase.co.jp/tour/2018/0909/img/p299tn.jpg",
+      "sourceUrl": "https://www.pancrase.co.jp/tour/2018/0909/index.html",
+      "sourceType": "official-promotion-event-image",
       "subjectType": "event",
-      "credit": "Tapology",
-      "confidence": 0.97,
-      "matchReason": "Exact Tapology event page for Pancrase 299; use its event poster/primary event image."
+      "credit": "Pancrase",
+      "confidence": 0.99,
+      "matchReason": "Exact official PANCRASE299 event image from the promotion's September 9, 2018 event page."
     },
     {
       "date": "2019-09-07",
@@ -114,12 +118,13 @@
     {
       "date": "2022-09-11",
       "title": "Pancrase 329",
-      "sourceUrl": "https://www.tapology.com/fightcenter/events/92075-pancrase-329",
-      "sourceType": "tapology-event-page",
+      "imageUrl": "https://www.pancrase.co.jp/images/2022/p329ma.jpg",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2022/0911.html",
+      "sourceType": "official-promotion-event-image",
       "subjectType": "event",
-      "credit": "Tapology",
-      "confidence": 0.97,
-      "matchReason": "Exact Tapology event page for Pancrase 329; use its event poster/primary event image."
+      "credit": "Pancrase",
+      "confidence": 0.99,
+      "matchReason": "Exact official PANCRASE329 event image from the promotion's September 11, 2022 result page."
     },
     {
       "birthdayKey": "jose-aldo",
