@@ -15,6 +15,7 @@
       "promotion": "RIZIN",
       "venue": "京セラドーム大阪",
       "location": "",
+      "country": "",
       "kind": "major",
       "reason": "unresolved-us-location"
     },
@@ -25,6 +26,7 @@
       "promotion": "Noche UFC",
       "venue": "Venue TBA",
       "location": "",
+      "country": "",
       "kind": "major",
       "reason": "unresolved-us-location"
     },
@@ -35,6 +37,7 @@
       "promotion": "UFC",
       "venue": "Venue TBA",
       "location": "",
+      "country": "",
       "kind": "major",
       "reason": "unresolved-us-location"
     },
@@ -45,6 +48,7 @@
       "promotion": "UFC Fight Night",
       "venue": "Venue TBA",
       "location": "",
+      "country": "",
       "kind": "major",
       "reason": "unresolved-us-location"
     },
@@ -55,6 +59,7 @@
       "promotion": "RIZIN",
       "venue": "長崎スタジアムシティ HAPPINESS ARENA",
       "location": "",
+      "country": "",
       "kind": "major",
       "reason": "unresolved-us-location"
     },
@@ -65,6 +70,7 @@
       "promotion": "UFC 332",
       "venue": "Venue TBA",
       "location": "",
+      "country": "",
       "kind": "major",
       "reason": "unresolved-us-location"
     },
@@ -75,6 +81,7 @@
       "promotion": "UFC Fight Night",
       "venue": "Venue TBA",
       "location": "",
+      "country": "",
       "kind": "major",
       "reason": "unresolved-us-location"
     },
@@ -85,6 +92,7 @@
       "promotion": "UFC Fight Night",
       "venue": "Venue TBA",
       "location": "",
+      "country": "",
       "kind": "major",
       "reason": "unresolved-us-location"
     },
@@ -95,6 +103,7 @@
       "promotion": "UFC 333",
       "venue": "Venue TBA",
       "location": "",
+      "country": "",
       "kind": "major",
       "reason": "unresolved-us-location"
     },
@@ -105,6 +114,7 @@
       "promotion": "UFC Fight Night",
       "venue": "Venue TBA",
       "location": "",
+      "country": "",
       "kind": "major",
       "reason": "unresolved-us-location"
     },
@@ -115,6 +125,7 @@
       "promotion": "UFC Fight Night",
       "venue": "Venue TBA",
       "location": "",
+      "country": "",
       "kind": "major",
       "reason": "unresolved-us-location"
     }
@@ -250,8 +261,14 @@
       "state": "NV",
       "state_code": "NV",
       "country": "US",
-      "map_location_source": "venue",
-      "map_location_confidence": "parsed-venue",
+      "location": "Las Vegas, NV",
+      "latitude": 36.1699,
+      "longitude": -115.1398,
+      "location_source": "venue-text",
+      "location_precision": "city",
+      "map_location_source": "venue-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "major"
     },
     {
@@ -280,8 +297,11 @@
       "state": "IL",
       "state_code": "IL",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -302,8 +322,11 @@
       "state": "IN",
       "state_code": "IN",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -326,8 +349,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -348,8 +374,11 @@
       "state": "KY",
       "state_code": "KY",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -370,8 +399,11 @@
       "state": "WI",
       "state_code": "WI",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -402,8 +434,11 @@
       "state": "MA",
       "state_code": "MA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -424,8 +459,11 @@
       "state": "NM",
       "state_code": "NM",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -446,8 +484,11 @@
       "state": "UT",
       "state_code": "UT",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -468,8 +509,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -492,8 +536,11 @@
       "state": "NY",
       "state_code": "NY",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -516,8 +563,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -538,8 +588,11 @@
       "state": "KY",
       "state_code": "KY",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -560,8 +613,11 @@
       "state": "IL",
       "state_code": "IL",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -582,8 +638,11 @@
       "state": "ME",
       "state_code": "ME",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -604,8 +663,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -626,8 +688,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -648,8 +713,11 @@
       "state": "CO",
       "state_code": "CO",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -674,8 +742,11 @@
       "state": "MO",
       "state_code": "MO",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -696,8 +767,11 @@
       "state": "MN",
       "state_code": "MN",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -718,8 +792,11 @@
       "state": "NC",
       "state_code": "NC",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -740,8 +817,13 @@
       "state": "PA",
       "state_code": "PA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "latitude": 39.9526,
+      "longitude": -75.1652,
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -762,8 +844,11 @@
       "state": "NE",
       "state_code": "NE",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -786,8 +871,11 @@
       "state": "FL",
       "state_code": "FL",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -818,8 +906,11 @@
       "state": "MN",
       "state_code": "MN",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -840,8 +931,13 @@
       "state": "GA",
       "state_code": "GA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "latitude": 33.749,
+      "longitude": -84.388,
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -864,8 +960,11 @@
       "state": "NJ",
       "state_code": "NJ",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -888,8 +987,11 @@
       "state": "MO",
       "state_code": "MO",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -910,8 +1012,11 @@
       "state": "FL",
       "state_code": "FL",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -932,8 +1037,11 @@
       "state": "MI",
       "state_code": "MI",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -955,8 +1063,11 @@
       "state": "MO",
       "state_code": "MO",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -977,8 +1088,11 @@
       "state": "VA",
       "state_code": "VA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1002,8 +1116,11 @@
       "state": "OH",
       "state_code": "OH",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1024,8 +1141,11 @@
       "state": "OH",
       "state_code": "OH",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1046,8 +1166,11 @@
       "state": "NM",
       "state_code": "NM",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1070,8 +1193,11 @@
       "state": "WA",
       "state_code": "WA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1092,8 +1218,11 @@
       "state": "NY",
       "state_code": "NY",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1114,8 +1243,11 @@
       "state": "WA",
       "state_code": "WA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1136,8 +1268,11 @@
       "state": "FL",
       "state_code": "FL",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1160,8 +1295,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1182,8 +1320,11 @@
       "state": "CO",
       "state_code": "CO",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1204,8 +1345,11 @@
       "state": "IN",
       "state_code": "IN",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1234,8 +1378,11 @@
       "state": "TX",
       "state_code": "TX",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1267,8 +1414,11 @@
       "state": "NV",
       "state_code": "NV",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1289,8 +1439,11 @@
       "state": "PA",
       "state_code": "PA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1314,8 +1467,11 @@
       "state": "AK",
       "state_code": "AK",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1338,8 +1494,11 @@
       "state": "LA",
       "state_code": "LA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1360,8 +1519,11 @@
       "state": "OH",
       "state_code": "OH",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1382,8 +1544,11 @@
       "state": "SC",
       "state_code": "SC",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1404,8 +1569,11 @@
       "state": "KS",
       "state_code": "KS",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1428,8 +1596,11 @@
       "state": "AL",
       "state_code": "AL",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1450,8 +1621,11 @@
       "state": "PA",
       "state_code": "PA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1472,8 +1646,11 @@
       "state": "MO",
       "state_code": "MO",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1494,8 +1671,11 @@
       "state": "NY",
       "state_code": "NY",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1516,8 +1696,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1540,8 +1723,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1562,8 +1748,11 @@
       "state": "IN",
       "state_code": "IN",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1586,8 +1775,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1616,8 +1808,11 @@
       "state": "TX",
       "state_code": "TX",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1638,8 +1833,11 @@
       "state": "UT",
       "state_code": "UT",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1662,8 +1860,11 @@
       "state": "MD",
       "state_code": "MD",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1685,8 +1886,11 @@
       "state": "NV",
       "state_code": "NV",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1707,8 +1911,11 @@
       "state": "TX",
       "state_code": "TX",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1731,8 +1938,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1753,8 +1963,11 @@
       "state": "RI",
       "state_code": "RI",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1777,8 +1990,11 @@
       "state": "NE",
       "state_code": "NE",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1807,8 +2023,11 @@
       "state": "ND",
       "state_code": "ND",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1835,8 +2054,13 @@
       "state": "UT",
       "state_code": "UT",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "latitude": 40.7608,
+      "longitude": -111.891,
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1857,8 +2081,11 @@
       "state": "MN",
       "state_code": "MN",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1879,8 +2106,11 @@
       "state": "CO",
       "state_code": "CO",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1901,8 +2131,11 @@
       "state": "IA",
       "state_code": "IA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1923,8 +2156,11 @@
       "state": "MI",
       "state_code": "MI",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1945,8 +2181,11 @@
       "state": "NY",
       "state_code": "NY",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1967,8 +2206,11 @@
       "state": "NY",
       "state_code": "NY",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -1989,8 +2231,11 @@
       "state": "AZ",
       "state_code": "AZ",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2011,8 +2256,11 @@
       "state": "OR",
       "state_code": "OR",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2035,8 +2283,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2057,8 +2308,11 @@
       "state": "ID",
       "state_code": "ID",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2079,8 +2333,11 @@
       "state": "MA",
       "state_code": "MA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2110,8 +2367,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2136,8 +2396,11 @@
       "state": "OK",
       "state_code": "OK",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2160,8 +2423,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2183,8 +2449,11 @@
       "state": "MD",
       "state_code": "MD",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2207,8 +2476,11 @@
       "state": "MS",
       "state_code": "MS",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2231,8 +2503,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2255,8 +2530,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2278,8 +2556,11 @@
       "state": "IA",
       "state_code": "IA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2303,8 +2584,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2327,8 +2611,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2350,8 +2637,11 @@
       "state": "WA",
       "state_code": "WA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2381,8 +2671,11 @@
       "state": "CT",
       "state_code": "CT",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2404,8 +2697,11 @@
       "state": "IA",
       "state_code": "IA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2427,8 +2723,11 @@
       "state": "IN",
       "state_code": "IN",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2451,8 +2750,11 @@
       "state": "TX",
       "state_code": "TX",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2475,8 +2777,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2499,8 +2804,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2522,8 +2830,11 @@
       "state": "KS",
       "state_code": "KS",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2546,8 +2857,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2577,8 +2891,11 @@
       "state": "NY",
       "state_code": "NY",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2601,8 +2918,11 @@
       "state": "FL",
       "state_code": "FL",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2631,8 +2951,11 @@
       "state": "TX",
       "state_code": "TX",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2655,8 +2978,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2679,8 +3005,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2703,8 +3032,11 @@
       "state": "TX",
       "state_code": "TX",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2727,8 +3059,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2750,8 +3085,11 @@
       "state": "MN",
       "state_code": "MN",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2774,8 +3112,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2798,8 +3139,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2822,8 +3166,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2846,8 +3193,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2870,8 +3220,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2894,8 +3247,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2917,8 +3273,11 @@
       "state": "ND",
       "state_code": "ND",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2941,8 +3300,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2964,8 +3326,11 @@
       "state": "MN",
       "state_code": "MN",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -2988,8 +3353,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -3021,8 +3389,11 @@
       "state": "NV",
       "state_code": "NV",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -3044,8 +3415,11 @@
       "state": "WA",
       "state_code": "WA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -3077,8 +3451,11 @@
       "state": "NV",
       "state_code": "NV",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -3101,8 +3478,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -3134,8 +3514,11 @@
       "state": "NV",
       "state_code": "NV",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -3158,8 +3541,11 @@
       "state": "CA",
       "state_code": "CA",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     },
     {
@@ -3191,8 +3577,11 @@
       "state": "NV",
       "state_code": "NV",
       "country": "US",
-      "map_location_source": "location",
-      "map_location_confidence": "verified-location",
+      "location_source": "location-text",
+      "location_precision": "city",
+      "map_location_source": "location-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
       "map_dataset": "regional"
     }
   ]
