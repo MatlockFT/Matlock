@@ -1,29 +1,66 @@
 {
-  "version": 5,
+  "version": 6,
   "entries": [
+    {
+      "date": "1994-09-09",
+      "title": "UFC 3: The American Dream",
+      "eventTitle": "UFC 3: The American Dream",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/ufc-3-the-american-dream",
+      "sourceType": "tapology-event-page",
+      "subjectType": "event",
+      "credit": "Tapology",
+      "confidence": 0.97,
+      "matchReason": "Verified exact Tapology event page for UFC 3: The American Dream; resolve the poster from this binding."
+    },
+    {
+      "date": "1995-09-08",
+      "title": "UFC 7: The Brawl in Buffalo",
+      "eventTitle": "UFC 7: The Brawl in Buffalo",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/ufc-7-the-brawl-in-buffalo",
+      "sourceType": "tapology-event-page",
+      "subjectType": "event",
+      "credit": "Tapology",
+      "confidence": 0.97,
+      "matchReason": "Verified exact Tapology event page for UFC 7: The Brawl in Buffalo; resolve the poster from this binding."
+    },
     {
       "date": "2002-09-07",
       "title": "Cage Rage holds its first event in London",
+      "eventTitle": "Cage Rage 1: The Beginning",
       "sourceUrl": "https://www.tapology.com/fightcenter/events/2151-cage-rage-1-the-beginning",
       "sourceType": "tapology-event-page",
       "subjectType": "event",
       "credit": "Tapology",
       "confidence": 0.97,
-      "matchReason": "Exact Tapology event page for Cage Rage 1: The Beginning. Event entries must use the actual event poster/key art, not an editorial thumbnail."
+      "matchReason": "Exact Tapology event page for Cage Rage 1: The Beginning. Event art is preferred over any fighter fallback.",
+      "fallbackSourceUrl": "https://www.sherdog.com/fighter/Jean-Silva-4180",
+      "fallbackSourceType": "related-fighter-fallback",
+      "fallbackSubjectType": "fighter",
+      "fallbackCredit": "Sherdog",
+      "fallbackConfidence": 0.78,
+      "fallbackMatchReason": "Tapology event artwork was temporarily inaccessible; Cage Rage 1 main-event fighter Jean Silva is used as a deterministic related-fighter fallback."
     },
     {
       "date": "2002-09-07",
       "title": "Kiyoshi Tamura defeats Ikuhisa Minowa at DEEP 6 Impact",
+      "eventTitle": "DEEP 6 Impact: Kiyoshi Tamura vs. Ikuhisa Minowa",
       "sourceUrl": "https://www.tapology.com/fightcenter/bouts/4779-deep-6-impact-kiyoshi-tamura-vs-minowaman-ikuhisa-minowa",
       "sourceType": "tapology-bout-page",
       "subjectType": "moment",
       "credit": "Tapology",
       "confidence": 0.96,
-      "matchReason": "Exact Tapology bout page for the Tamura-Minowa main event at DEEP 6 Impact; use its directly related primary image."
+      "matchReason": "Exact Tapology bout page for the Tamura-Minowa main event at DEEP 6 Impact; use its directly related primary image.",
+      "fallbackSourceUrl": "https://en.wikipedia.org/wiki/Kiyoshi_Tamura",
+      "fallbackSourceType": "wikipedia-fighter-fallback",
+      "fallbackSubjectType": "fighter",
+      "fallbackCredit": "Wikipedia / Wikimedia Commons",
+      "fallbackConfidence": 0.82,
+      "fallbackMatchReason": "The exact DEEP 6 bout image was temporarily inaccessible; winner Kiyoshi Tamura's Wikipedia image is used as the fighter fallback."
     },
     {
       "date": "2006-09-10",
       "title": "Pride Final Conflict Absolute",
+      "eventTitle": "Pride Final Conflict Absolute",
       "sourceUrl": "https://www.tapology.com/fightcenter/events/pride-final-conflict-absolute",
       "sourceType": "tapology-event-page",
       "subjectType": "event",
@@ -32,8 +69,20 @@
       "matchReason": "Exact Tapology event page for Pride Final Conflict Absolute. Prefer Tapology's actual event poster; do not substitute a Sherdog editorial thumbnail or other related image."
     },
     {
+      "date": "2007-09-08",
+      "title": "UFC 75: Champion vs. Champion",
+      "eventTitle": "UFC 75: Champion vs. Champion",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/ufc-75-champion-vs-champion",
+      "sourceType": "tapology-event-page",
+      "subjectType": "event",
+      "credit": "Tapology",
+      "confidence": 0.97,
+      "matchReason": "Verified exact Tapology event page for UFC 75: Champion vs. Champion; resolve the poster from this binding."
+    },
+    {
       "date": "2008-09-07",
       "title": "Pancrase: Shining 7",
+      "eventTitle": "Pancrase 193: Shining 7",
       "sourceUrl": "https://www.tapology.com/fightcenter/events/6777-pancrase-193-shining-7",
       "sourceType": "tapology-event-page",
       "subjectType": "event",
@@ -44,6 +93,7 @@
     {
       "date": "2010-09-09",
       "title": "Bellator 28",
+      "eventTitle": "Bellator 28",
       "sourceUrl": "https://www.tapology.com/fightcenter/events/bellator-28",
       "sourceType": "tapology-event-page",
       "subjectType": "event",
@@ -54,6 +104,7 @@
     {
       "date": "2011-09-10",
       "title": "Bellator 49",
+      "eventTitle": "Bellator 49",
       "sourceUrl": "https://www.tapology.com/fightcenter/events/10058-bellator-49",
       "sourceType": "tapology-event-page",
       "subjectType": "event",
@@ -64,12 +115,35 @@
     {
       "date": "2013-09-07",
       "title": "Bellator 98",
+      "eventTitle": "Bellator 98: Shlemenko vs. Cooper",
       "sourceUrl": "https://www.tapology.com/fightcenter/events/19437-bellator-99",
       "sourceType": "tapology-event-page",
       "subjectType": "event",
       "credit": "Tapology",
       "confidence": 0.97,
       "matchReason": "Exact Tapology event page for Bellator 98: Shlemenko vs. Cooper; Tapology's legacy URL slug says bellator-99 but the page title/date identify Bellator 98. Use the event poster/key art."
+    },
+    {
+      "date": "2013-09-07",
+      "title": "Pancrase: 251",
+      "eventTitle": "Pancrase 251",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/19077-pancrase-251",
+      "sourceType": "tapology-event-page",
+      "subjectType": "event",
+      "credit": "Tapology",
+      "confidence": 0.97,
+      "matchReason": "Verified exact Tapology event page for Pancrase 251; resolve the poster from this binding."
+    },
+    {
+      "date": "2016-09-10",
+      "title": "UFC 203: Miocic vs. Overeem",
+      "eventTitle": "UFC 203: Miocic vs. Overeem",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/40102-ufc-203-miocic-vs-overeem",
+      "sourceType": "tapology-event-page",
+      "subjectType": "event",
+      "credit": "Tapology",
+      "confidence": 0.97,
+      "matchReason": "Verified exact Tapology event page for UFC 203: Miocic vs. Overeem; resolve the poster from this binding."
     },
     {
       "date": "2016-09-11",
@@ -81,6 +155,28 @@
       "credit": "Pancrase",
       "confidence": 0.99,
       "matchReason": "Exact official PANCRASE280 event poster/key art from the promotion's September 11, 2016 result page."
+    },
+    {
+      "date": "2017-09-09",
+      "title": "UFC 215: Nunes vs. Shevchenko 2",
+      "eventTitle": "UFC 215: Nunes vs. Shevchenko 2",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/44084-ufc-216",
+      "sourceType": "tapology-event-page",
+      "subjectType": "event",
+      "credit": "Tapology",
+      "confidence": 0.97,
+      "matchReason": "Verified Tapology page for UFC 215: Nunes vs. Shevchenko 2. Tapology's legacy URL slug says UFC 216, but the page title and September 9, 2017 date identify UFC 215."
+    },
+    {
+      "date": "2018-09-08",
+      "title": "UFC 228: Woodley vs. Till",
+      "eventTitle": "UFC 228: Woodley vs. Till",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/53597-ufc-228",
+      "sourceType": "tapology-event-page",
+      "subjectType": "event",
+      "credit": "Tapology",
+      "confidence": 0.97,
+      "matchReason": "Verified exact Tapology event page for UFC 228: Woodley vs. Till; resolve the poster from this binding."
     },
     {
       "date": "2018-09-09",
@@ -96,6 +192,7 @@
     {
       "date": "2019-09-07",
       "title": "Bellator 226",
+      "eventTitle": "Bellator 226: Bader vs. Kongo",
       "sourceUrl": "https://www.tapology.com/fightcenter/events/61709-bellator-226-bader-vs-kongo",
       "sourceType": "tapology-event-page",
       "subjectType": "event",
@@ -106,12 +203,24 @@
     {
       "date": "2020-09-11",
       "title": "Bellator 245",
+      "eventTitle": "Bellator 245: Davis vs. Machida 2",
       "sourceUrl": "https://www.tapology.com/fightcenter/events/70975-bellator-mma",
       "sourceType": "tapology-event-page",
       "subjectType": "event",
       "credit": "Tapology",
       "confidence": 0.97,
       "matchReason": "Exact Tapology event page for Bellator 245: Davis vs. Machida 2. Use the actual event poster/key art."
+    },
+    {
+      "date": "2022-09-10",
+      "title": "UFC 279: Diaz vs. Ferguson",
+      "eventTitle": "UFC 279: Diaz vs. Ferguson",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/89492-ufc-fight-night",
+      "sourceType": "tapology-event-page",
+      "subjectType": "event",
+      "credit": "Tapology",
+      "confidence": 0.97,
+      "matchReason": "Verified Tapology event page for UFC 279: Diaz vs. Ferguson; resolve the poster from this binding despite the generic legacy URL slug."
     },
     {
       "date": "2022-09-11",
@@ -123,6 +232,39 @@
       "credit": "Pancrase",
       "confidence": 0.99,
       "matchReason": "Exact official PANCRASE329 event poster/key art from the promotion's September 11, 2022 result page."
+    },
+    {
+      "date": "2023-09-10",
+      "title": "UFC 293: Adesanya vs. Strickland",
+      "eventTitle": "UFC 293: Adesanya vs. Strickland",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/101315-ufc-293",
+      "sourceType": "tapology-event-page",
+      "subjectType": "event",
+      "credit": "Tapology",
+      "confidence": 0.97,
+      "matchReason": "Verified exact Tapology event page for UFC 293: Adesanya vs. Strickland; resolve the poster from this binding."
+    },
+    {
+      "date": "2024-09-07",
+      "title": "Bellator Champions Series 4",
+      "eventTitle": "Bellator Champions Series: San Diego",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/111173-bellator-champions-series-san-diego",
+      "sourceType": "tapology-event-page",
+      "subjectType": "event",
+      "credit": "Tapology",
+      "confidence": 0.97,
+      "matchReason": "Verified exact Tapology page for Bellator Champions Series: San Diego, the event represented in the archive as Bellator Champions Series 4."
+    },
+    {
+      "date": "2024-09-07",
+      "title": "UFC Fight Night: Burns vs. Brady",
+      "eventTitle": "UFC Fight Night: Burns vs. Brady",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/114678-ufc-fight-night",
+      "sourceType": "tapology-event-page",
+      "subjectType": "event",
+      "credit": "Tapology",
+      "confidence": 0.97,
+      "matchReason": "Verified Tapology event page for UFC Fight Night: Burns vs. Brady; resolve the poster from this binding."
     },
     {
       "birthdayKey": "jose-aldo",
