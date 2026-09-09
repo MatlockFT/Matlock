@@ -14,23 +14,11 @@
         document.body.appendChild(script);
     };
 
-    const primeTicker = () => loadTicker();
-    window.addEventListener("pointermove", primeTicker, { once: true, passive: true });
-    window.addEventListener("pointerdown", primeTicker, { once: true, passive: true });
-    window.addEventListener("scroll", primeTicker, { once: true, passive: true });
-    document.addEventListener("keydown", primeTicker, { once: true });
-
-    const scheduleFallback = () => {
-        window.setTimeout(() => {
-            if (started) return;
-            if ("requestIdleCallback" in window) {
-                window.requestIdleCallback(loadTicker, { timeout: 1200 });
-            } else {
-                loadTicker();
-            }
-        }, 8000);
-    };
-
-    if (document.readyState === "complete") scheduleFallback();
-    else window.addEventListener("load", scheduleFallback, { once: true });
+    // Start automatically after the first paint. The ticker should never depend on
+    // a scroll, pointer or keyboard event to become alive.
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () => requestAnimationFrame(loadTicker), { once: true });
+    } else {
+        requestAnimationFrame(loadTicker);
+    }
 })();
