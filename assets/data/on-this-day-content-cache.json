@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 2,
-  "updatedAt": "2026-09-09T06:35:59.190Z",
+  "updatedAt": "2026-09-09T06:46:16.627Z",
   "entries": {
     "pancrase:2013-04-21:pancrase-sakaguchi-dojo-vs-pancrase": {
       "strategyVersion": 2,
@@ -9694,6 +9694,826 @@
       "wikipediaTitle": "List of Pancrase events",
       "sourceUrl": "https://www.pancrase.co.jp/data/result/2014/1102.html",
       "mainEvent": "Shintaro Ishiwatari vs. Jonathan Brookins"
+    },
+    "ufc:2023-09-23:ufc-fight-night-fiziev-vs-gamrot": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Fiziev vs. Gamrot",
+      "mainEvent": "Fiziev vs. Gamrot"
+    },
+    "ufc:2023-10-07:ufc-fight-night-dawson-vs-green": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Dawson vs. Green",
+      "mainEvent": "Dawson vs. Green"
+    },
+    "ufc:2023-10-14:ufc-fight-night-yusuff-vs-barboza": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Yusuff vs. Barboza",
+      "mainEvent": "Yusuff vs. Barboza"
+    },
+    "ufc:2023-10-21:ufc-294-makhachev-vs-volkanovski-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 294",
+      "mainEvent": "Makhachev vs. Volkanovski 2"
+    },
+    "ufc:2023-11-04:ufc-fight-night-almeida-vs-lewis": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Almeida vs. Lewis",
+      "mainEvent": "Almeida vs. Lewis"
+    },
+    "ufc:2023-11-11:ufc-295-prochazka-vs-pereira": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 295",
+      "mainEvent": "Procházka vs. Pereira"
+    },
+    "ufc:2023-11-18:ufc-fight-night-allen-vs-craig": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Allen vs. Craig",
+      "mainEvent": "Allen vs. Craig"
+    },
+    "ufc:2023-12-02:ufc-on-espn-dariush-vs-tsarukyan": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Dariush vs. Tsarukyan",
+      "mainEvent": "Dariush vs. Tsarukyan"
+    },
+    "ufc:2023-12-09:ufc-fight-night-song-vs-gutierrez": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Song vs. Gutiérrez",
+      "mainEvent": "Song vs. Gutiérrez"
+    },
+    "ufc:2023-12-16:ufc-296-edwards-vs-covington": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 296",
+      "mainEvent": "Edwards vs. Covington"
+    },
+    "ufc:2024-01-13:ufc-fight-night-ankalaev-vs-walker-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Ankalaev vs. Walker 2",
+      "mainEvent": "Ankalaev vs. Walker 2"
+    },
+    "ufc:2024-01-20:ufc-297-strickland-vs-du-plessis": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 297",
+      "mainEvent": "Strickland vs. du Plessis"
+    },
+    "ufc:2024-02-03:ufc-fight-night-dolidze-vs-imavov": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Dolidze vs. Imavov",
+      "mainEvent": "Dolidze vs. Imavov"
+    },
+    "ufc:2024-02-10:ufc-fight-night-hermansson-vs-pyfer": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Hermansson vs. Pyfer",
+      "mainEvent": "Hermansson vs. Pyfer"
+    },
+    "ufc:2024-02-17:ufc-298-volkanovski-vs-topuria": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 298",
+      "mainEvent": "Volkanovski vs. Topuria"
+    },
+    "ufc:2024-02-24:ufc-fight-night-moreno-vs-royval-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Moreno vs. Royval 2",
+      "mainEvent": "Moreno vs. Royval 2"
+    },
+    "ufc:2024-03-02:ufc-fight-night-rozenstruik-vs-gaziev": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Rozenstruik vs. Gaziev",
+      "mainEvent": "Rozenstruik vs. Gaziev"
+    },
+    "ufc:2024-03-09:ufc-299-o-malley-vs-vera-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 299",
+      "mainEvent": "O'Malley vs. Vera 2"
+    },
+    "ufc:2024-03-16:ufc-fight-night-tuivasa-vs-tybura": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Tuivasa vs. Tybura",
+      "mainEvent": "Tuivasa vs. Tybura"
+    },
+    "ufc:2024-03-23:ufc-on-espn-ribas-vs-namajunas": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Ribas vs. Namajunas",
+      "mainEvent": "Ribas vs. Namajunas"
+    },
+    "ufc:2024-03-30:ufc-on-espn-blanchfield-vs-fiorot": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Blanchfield vs. Fiorot",
+      "mainEvent": "Blanchfield vs. Fiorot"
+    },
+    "ufc:2024-04-06:ufc-fight-night-allen-vs-curtis-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Allen vs. Curtis 2",
+      "mainEvent": "Allen vs. Curtis 2"
+    },
+    "ufc:2024-04-13:ufc-300-pereira-vs-hill": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 300",
+      "mainEvent": "Pereira vs. Hill"
+    },
+    "ufc:2024-04-27:ufc-on-espn-nicolau-vs-perez": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Nicolau vs. Perez",
+      "mainEvent": "Nicolau vs. Perez"
+    },
+    "ufc:2024-05-04:ufc-301-pantoja-vs-erceg": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 301",
+      "mainEvent": "Pantoja vs. Erceg"
+    },
+    "ufc:2024-05-11:ufc-on-espn-lewis-vs-nascimento": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Lewis vs. Nascimento",
+      "mainEvent": "Lewis vs. Nascimento"
+    },
+    "ufc:2024-05-18:ufc-fight-night-barboza-vs-murphy": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Barboza vs. Murphy",
+      "mainEvent": "Barboza vs. Murphy"
+    },
+    "ufc:2024-06-01:ufc-302-makhachev-vs-poirier": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 302",
+      "mainEvent": "Makhachev vs. Poirier"
+    },
+    "ufc:2024-06-08:ufc-on-espn-cannonier-vs-imavov": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Cannonier vs. Imavov",
+      "mainEvent": "Cannonier vs. Imavov"
+    },
+    "ufc:2024-06-15:ufc-on-espn-perez-vs-taira": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Perez vs. Taira",
+      "mainEvent": "Perez vs. Taira"
+    },
+    "ufc:2024-06-22:ufc-on-abc-whittaker-vs-aliskerov": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ABC: Whittaker vs. Aliskerov",
+      "mainEvent": "Whittaker vs. Aliskerov"
+    },
+    "ufc:2024-06-29:ufc-303-pereira-vs-prochazka-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 303",
+      "mainEvent": "Pereira vs. Procházka 2"
+    },
+    "ufc:2024-07-13:ufc-on-espn-namajunas-vs-cortez": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Namajunas vs. Cortez",
+      "mainEvent": "Namajunas vs. Cortez"
+    },
+    "ufc:2024-07-20:ufc-on-espn-lemos-vs-jandiroba": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Lemos vs. Jandiroba",
+      "mainEvent": "Lemos vs. Jandiroba"
+    },
+    "ufc:2024-07-27:ufc-304-edwards-vs-muhammad-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 304",
+      "mainEvent": "Edwards vs. Muhammad 2"
+    },
+    "ufc:2024-08-03:ufc-on-abc-sandhagen-vs-nurmagomedov": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ABC: Sandhagen vs. Nurmagomedov",
+      "mainEvent": "Sandhagen vs. Nurmagomedov"
+    },
+    "ufc:2024-08-10:ufc-on-espn-tybura-vs-spivac-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Tybura vs. Spivac 2",
+      "mainEvent": "Tybura vs. Spivac 2"
+    },
+    "ufc:2024-08-18:ufc-305-du-plessis-vs-adesanya": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 305",
+      "mainEvent": "du Plessis vs. Adesanya"
+    },
+    "ufc:2024-08-24:ufc-on-espn-cannonier-vs-borralho": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Cannonier vs. Borralho",
+      "mainEvent": "Cannonier vs. Borralho"
+    },
+    "ufc:2024-09-07:ufc-fight-night-burns-vs-brady": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Burns vs. Brady",
+      "mainEvent": "Burns vs. Brady"
+    },
+    "ufc:2024-09-14:ufc-306-o-malley-vs-dvalishvili": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 306",
+      "mainEvent": "O'Malley vs. Dvalishvili"
+    },
+    "ufc:2024-09-28:ufc-fight-night-moicano-vs-saint-denis": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Moicano vs. Saint Denis",
+      "mainEvent": "Moicano vs. Saint Denis"
+    },
+    "ufc:2024-10-05:ufc-307-pereira-vs-rountree-jr": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 307",
+      "mainEvent": "Pereira vs. Rountree Jr."
+    },
+    "ufc:2024-10-12:ufc-fight-night-royval-vs-taira": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Royval vs. Taira",
+      "mainEvent": "Royval vs. Taira"
+    },
+    "ufc:2024-10-19:ufc-fight-night-hernandez-vs-pereira": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Hernandez vs. Pereira",
+      "mainEvent": "Hernandez vs. Pereira"
+    },
+    "ufc:2024-10-26:ufc-308-topuria-vs-holloway": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 308",
+      "mainEvent": "Topuria vs. Holloway"
+    },
+    "ufc:2024-11-02:ufc-fight-night-moreno-vs-albazi": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Moreno vs. Albazi",
+      "mainEvent": "Moreno vs. Albazi"
+    },
+    "ufc:2024-11-09:ufc-fight-night-magny-vs-prates": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Magny vs. Prates",
+      "mainEvent": "Magny vs. Prates"
+    },
+    "ufc:2024-11-16:ufc-309-jones-vs-miocic": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 309",
+      "mainEvent": "Jones vs. Miocic"
+    },
+    "ufc:2024-11-23:ufc-fight-night-yan-vs-figueiredo": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Yan vs. Figueiredo",
+      "mainEvent": "Yan vs. Figueiredo"
+    },
+    "ufc:2024-12-07:ufc-310-pantoja-vs-asakura": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 310",
+      "mainEvent": "Pantoja vs. Asakura"
+    },
+    "ufc:2024-12-14:ufc-on-espn-covington-vs-buckley": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Covington vs. Buckley",
+      "mainEvent": "Covington vs. Buckley"
+    },
+    "ufc:2025-01-11:ufc-fight-night-dern-vs-ribas-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Dern vs. Ribas 2",
+      "mainEvent": "Dern vs. Ribas 2"
+    },
+    "ufc:2025-01-18:ufc-311-makhachev-vs-moicano": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 311",
+      "mainEvent": "Makhachev vs. Moicano"
+    },
+    "ufc:2025-02-01:ufc-fight-night-adesanya-vs-imavov": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Adesanya vs. Imavov",
+      "mainEvent": "Adesanya vs. Imavov"
+    },
+    "ufc:2025-02-08:ufc-312-du-plessis-vs-strickland-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 312",
+      "mainEvent": "du Plessis vs. Strickland 2"
+    },
+    "ufc:2025-02-15:ufc-fight-night-cannonier-vs-rodrigues": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Cannonier vs. Rodrigues",
+      "mainEvent": "Cannonier vs. Rodrigues"
+    },
+    "ufc:2025-02-22:ufc-fight-night-cejudo-vs-song": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Cejudo vs. Song",
+      "mainEvent": "Cejudo vs. Song"
+    },
+    "ufc:2025-03-01:ufc-fight-night-kape-vs-almabayev": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Kape vs. Almabayev",
+      "mainEvent": "Kape vs. Almabayev"
+    },
+    "ufc:2025-03-08:ufc-313-pereira-vs-ankalaev": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 313",
+      "mainEvent": "Pereira vs. Ankalaev"
+    },
+    "ufc:2025-03-15:ufc-fight-night-vettori-vs-dolidze-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Vettori vs. Dolidze 2",
+      "mainEvent": "Vettori vs. Dolidze 2"
+    },
+    "ufc:2025-03-22:ufc-fight-night-edwards-vs-brady": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Edwards vs. Brady",
+      "mainEvent": "Edwards vs. Brady"
+    },
+    "ufc:2025-03-29:ufc-on-espn-moreno-vs-erceg": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Moreno vs. Erceg",
+      "mainEvent": "Moreno vs. Erceg"
+    },
+    "ufc:2025-04-05:ufc-on-espn-emmett-vs-murphy": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Emmett vs. Murphy",
+      "mainEvent": "Emmett vs. Murphy"
+    },
+    "ufc:2025-04-12:ufc-314-volkanovski-vs-lopes": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 314",
+      "mainEvent": "Volkanovski vs. Lopes"
+    },
+    "ufc:2025-04-26:ufc-on-espn-machado-garry-vs-prates": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Machado Garry vs. Prates",
+      "mainEvent": "Machado Garry vs. Prates"
+    },
+    "ufc:2025-05-03:ufc-on-espn-sandhagen-vs-figueiredo": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Sandhagen vs. Figueiredo",
+      "mainEvent": "Sandhagen vs. Figueiredo"
+    },
+    "ufc:2025-05-10:ufc-315-muhammad-vs-della-maddalena": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 315",
+      "mainEvent": "Muhammad vs. Della Maddalena"
+    },
+    "ufc:2025-05-17:ufc-fight-night-burns-vs-morales": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Burns vs. Morales",
+      "mainEvent": "Burns vs. Morales"
+    },
+    "ufc:2025-05-31:ufc-on-espn-gamrot-vs-klein": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Gamrot vs. Klein",
+      "mainEvent": "Gamrot vs. Klein"
+    },
+    "ufc:2025-06-07:ufc-316-dvalishvili-vs-o-malley-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 316",
+      "mainEvent": "Dvalishvili vs. O'Malley 2"
+    },
+    "ufc:2025-06-14:ufc-on-espn-usman-vs-buckley": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Usman vs. Buckley",
+      "mainEvent": "Usman vs. Buckley"
+    },
+    "ufc:2025-06-21:ufc-on-abc-hill-vs-rountree-jr": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ABC: Hill vs. Rountree Jr.",
+      "mainEvent": "Hill vs. Rountree Jr."
+    },
+    "ufc:2025-06-28:ufc-317-topuria-vs-oliveira": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 317",
+      "mainEvent": "Topuria vs. Oliveira"
+    },
+    "ufc:2025-07-12:ufc-on-espn-lewis-vs-teixeira": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Lewis vs. Teixeira",
+      "mainEvent": "Lewis vs. Teixeira"
+    },
+    "ufc:2025-07-19:ufc-318-holloway-vs-poirier-3": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 318",
+      "mainEvent": "Holloway vs. Poirier 3"
+    },
+    "ufc:2025-07-26:ufc-on-abc-whittaker-vs-de-ridder": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ABC: Whittaker vs. de Ridder",
+      "mainEvent": "Whittaker vs. de Ridder"
+    },
+    "ufc:2025-08-02:ufc-on-espn-taira-vs-park": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Taira vs. Park",
+      "mainEvent": "Taira vs. Park"
+    },
+    "ufc:2025-08-09:ufc-on-espn-dolidze-vs-hernandez": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on ESPN: Dolidze vs. Hernandez",
+      "mainEvent": "Dolidze vs. Hernandez"
+    },
+    "ufc:2025-08-16:ufc-319-du-plessis-vs-chimaev": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T06:46:11.701Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 319",
+      "mainEvent": "du Plessis vs. Chimaev"
+    },
+    "pancrase:2014-12-06:pancrase-263-all-into-power": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2014/1206.html",
+      "mainEvent": "Shungo Oyama vs. Yuji Sakuragi"
+    },
+    "pancrase:2015-03-15:pancrase-265": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2015/0315.html",
+      "mainEvent": "Satoru Kitaoka vs. Akira (given name)"
+    },
+    "pancrase:2015-04-26:pancrase-266": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2015/0426.html",
+      "mainEvent": "Marlon Sandro vs. ISAO"
+    },
+    "pancrase:2015-05-17:pancrase-sapporo-2015": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2015/0517.html",
+      "mainEvent": "Tomoya Tanaka vs. 鮎田直人"
+    },
+    "pancrase:2015-05-31:pancrase-267": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2015/0531.html",
+      "mainEvent": "Kazuki Tokudome vs. J.J.アンブローズ"
+    },
+    "pancrase:2015-07-05:pancrase-268": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2015/0705.html",
+      "mainEvent": "Masakatsu Ueda vs. ルイス“ベタオ”ノゲイラ"
+    },
+    "pancrase:2015-07-26:pancrase-osaka": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2015/0726.html",
+      "mainEvent": "Yoshihiro Koyama vs. Yuki Yamasaki"
+    },
+    "pancrase:2015-08-09:pancrase-269": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2015/0809.html",
+      "mainEvent": "ISAO vs. ウィル“THE KILL”チョープ"
+    },
+    "pancrase:2015-10-04:pancrase-270": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2015/1004.html",
+      "mainEvent": "Nam Phan vs. アンディ・メイン"
+    },
+    "pancrase:2015-11-01:pancrase-271": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2015/1101.html",
+      "mainEvent": "Satoru Kitaoka vs. Kazuki Tokudome"
+    },
+    "pancrase:2015-12-13:pancrase-273": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2015/1213.html",
+      "mainEvent": "Shintaro Ishiwatari vs. Victor Henry (fighter)"
+    },
+    "pancrase:2015-12-23:pancrase-osaka": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2015/1223.html",
+      "mainEvent": "Daichi Kitakata vs. 石綱テツオ"
+    },
+    "pancrase:2016-01-31:pancrase-275": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2016/0131.html",
+      "mainEvent": "Hatsu Hioki vs. 横山恭典"
+    },
+    "pancrase:2016-03-13:pancrase-276": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2016/0313.html",
+      "mainEvent": "Shingo Suzuki (mixed martial artist) vs. Akihiro Murayama"
+    },
+    "pancrase:2016-04-24:pancrase-277": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2016/0424.html",
+      "mainEvent": "Issei Tamura vs. Juntarō Ushiku"
+    },
+    "pancrase:2016-05-29:pancrase-sapporo-2016": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2016/0529.html",
+      "mainEvent": "パッカシット・ウィラサクレック vs. Kōhei Tokeshi"
+    },
+    "pancrase:2016-06-12:pancrase-278": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2016/0612.html",
+      "mainEvent": "Hatsu Hioki vs. 内村洋次郎"
+    },
+    "pancrase:2016-07-24:pancrase-279": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2016/0724.html",
+      "mainEvent": "Shintaro Ishiwatari vs. Jonathan Brookins"
+    },
+    "pancrase:2016-07-31:pancrase-osaka": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2016/0731.html",
+      "mainEvent": "Daichi Kitakata vs. 早坂優瑠"
+    },
+    "pancrase:2016-09-11:pancrase-280": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T06:46:16.627Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2016/0911.html",
+      "mainEvent": "Kazuki Tokudome vs. Takasuke Kume"
     }
   }
 }
