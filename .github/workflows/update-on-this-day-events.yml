@@ -18,6 +18,7 @@ on:
       - "scripts/enrich-on-this-day-pancrase.mjs"
       - "scripts/curate-on-this-day-events.mjs"
       - "scripts/build-on-this-day-home.mjs"
+      - "scripts/build-on-this-day-leads.mjs"
       - "scripts/report-on-this-day-coverage.mjs"
       - "scripts/check-on-this-day.mjs"
   schedule:
@@ -69,6 +70,7 @@ jobs:
           node --check scripts/enrich-on-this-day-pancrase.mjs
           node --check scripts/curate-on-this-day-events.mjs
           node --check scripts/build-on-this-day-home.mjs
+          node --check scripts/build-on-this-day-leads.mjs
           node --check scripts/report-on-this-day-coverage.mjs
           node --check scripts/check-on-this-day.mjs
 
@@ -96,6 +98,14 @@ jobs:
       - name: Build homepage history snapshot
         run: node scripts/build-on-this-day-home.mjs
 
+      - name: Build lead image preload indexes
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/build-on-this-day-leads.mjs
+          mkdir -p _data
+          cp assets/data/on-this-day-leads.json _data/on_this_day_leads.json
+
       - name: Check calendar and image coverage
         run: node scripts/report-on-this-day-coverage.mjs
 
@@ -107,13 +117,22 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- assets/data/on-this-day.json assets/data/on-this-day-home.json assets/data/on-this-day-image-cache.json assets/data/on-this-day-content-cache.json assets/data/on-this-day-pancrase-cache.json; then
+          tracked_paths=(
+            assets/data/on-this-day.json
+            assets/data/on-this-day-home.json
+            assets/data/on-this-day-leads.json
+            assets/data/on-this-day-image-cache.json
+            assets/data/on-this-day-content-cache.json
+            assets/data/on-this-day-pancrase-cache.json
+            _data/on_this_day_leads.json
+          )
+          if [ -z "$(git status --porcelain -- "${tracked_paths[@]}")" ]; then
             echo "No On This Day event archive changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- assets/data/on-this-day.json assets/data/on-this-day-home.json assets/data/on-this-day-image-cache.json assets/data/on-this-day-content-cache.json assets/data/on-this-day-pancrase-cache.json
+          git add -- "${tracked_paths[@]}"
           git commit -m "Refresh On This Day event archive"
           git pull --rebase origin main
           git push origin HEAD:main
