@@ -113,7 +113,7 @@ for(const url of eventUrls){
     const raw=fights(ch);if(!raw.length)continue;
     const bouts=[];let order=1;for(const r of raw){const f1=await resolveFighter(ch,r.jp1,previous,cache);await sleep(60);const f2=await resolveFighter(ch,r.jp2,previous,cache);await sleep(60);const boutOrder=order++;bouts.push({order:boutOrder,label:boutOrder===1?'Main Event':'',weight_class:r.weight,fighters:[f1,f2]});}
     const iso=isoDay(date),start=startTime(page,date);
-    candidates.push({id:`rizin-${slugify(title)}-${iso}`,promotion_key:'rizin',promotion:'RIZIN',title,date:iso,date_label:dateLabel(iso),venue:venue(page),broadcast:broadcast(page),official_url:url,updated_label:updatedLabel(),sections:[{kind:'main',title:'Fight Card',time:start.et==='Time TBA'?'Time TBA':`${start.et} · ${start.jst}`,bouts}],source_card_url:matchedCardUrl});
+    candidates.push({id:`rizin-${slugify(title)}-${iso}`,promotion_key:'rizin',promotion:'RIZIN',country:'Japan',title,date:iso,date_label:dateLabel(iso),venue:venue(page),broadcast:broadcast(page),official_url:url,updated_label:updatedLabel(),sections:[{kind:'main',title:'Fight Card',time:start.et==='Time TBA'?'Time TBA':`${start.et} · ${start.jst}`,bouts}],source_card_url:matchedCardUrl});
   }catch(error){console.warn(`RIZIN skip ${url}: ${error.message}`);}
 }
 if(!candidates.length){console.warn('No usable RIZIN events; preserving existing RIZIN data.');process.exit(0);}
