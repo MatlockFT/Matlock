@@ -19,9 +19,10 @@ catch { failures.push('share manifest must be valid JSON'); manifest = {}; }
 
 if (!page.includes('/assets/otd-share-v3.js')) failures.push('On This Day page must load otd-share-v3.js');
 if (page.includes('/assets/otd-share-v2.js')) failures.push('On This Day page must not load the retired otd-share-v2.js');
-for (const marker of ['MANIFEST_URL', 'buildFallbackSvg', 'svgToJpeg', 'Xerox Cutout Edition', 'Instagram Post', 'Instagram Story']) {
+for (const marker of ['MANIFEST_URL', 'buildFallbackSvg', 'balancedWrap', 'svgToJpeg', 'Inverse Xerox Edition', 'Instagram Post', 'Instagram Story']) {
   if (!runtime.includes(marker)) failures.push(`otd-share-v3.js missing marker: ${marker}`);
 }
+if (runtime.includes('function wrapApprox')) failures.push('browser fallback must use balanced title wrapping, not greedy wrapping');
 
 if (!textureStat?.isFile() || textureStat.size < 10000) failures.push('share renderer xerox texture is missing or unexpectedly small');
 if (Number(manifest?.version || 0) < 3) failures.push('share manifest version must be at least 3');

@@ -111,24 +111,58 @@ function compactDate(entry) {
   return match ? `${match[2]}.${match[3]}.${match[1]}` : '';
 }
 
-function wrapApprox(text, maxChars, maxLines = 3) {
-  const words = clean(text).split(' ').filter(Boolean);
-  const lines = [];
-  let line = '';
-  for (const word of words) {
-    const next = line ? `${line} ${word}` : word;
-    if (!line || next.length <= maxChars) {
-      line = next;
-      continue;
-    }
-    lines.push(line);
-    line = word;
-    if (lines.length >= maxLines - 1) break;
+function balancedWrap(text, maxChars, maxLines = 3) {
+  const sourceWords = clean(text).split(' ').filter(Boolean);
+  if (!sourceWords.length) return [];
+
+  const capacity = Math.ceil(maxChars * 1.08);
+  const words = [...sourceWords];
+  let clipped = false;
+  while (words.length > 1 && words.join(' ').length > capacity * maxLines) {
+    words.pop();
+    clipped = true;
   }
-  if (line && lines.length < maxLines) lines.push(line);
-  const used = lines.join(' ').split(' ').filter(Boolean).length;
-  if (used < words.length && lines.length) lines[lines.length - 1] = `${lines.at(-1).replace(/[\s,.;:-]+$/, '')}…`;
-  return lines;
+  if (clipped) words[words.length - 1] = `${words.at(-1).replace(/[\s,.;:-]+$/, '')}…`;
+
+  const whole = words.join(' ');
+  if (whole.length <= maxChars) return [whole];
+
+  const candidates = [];
+  const collect = (start, lines) => {
+    if (start >= words.length) {
+      if (lines.length <= maxLines) candidates.push(lines);
+      return;
+    }
+    if (lines.length >= maxLines) return;
+    for (let end = start + 1; end <= words.length; end += 1) {
+      const line = words.slice(start, end).join(' ');
+      if (line.length > capacity && end > start + 1) break;
+      collect(end, [...lines, line]);
+    }
+  };
+  collect(0, []);
+
+  const weakEnd = /^(A|AN|AND|AT|BY|FOR|FROM|IN|OF|ON|OR|THE|TO|VS\.?|WITH)$/i;
+  const score = lines => {
+    const widths = lines.map(line => line.length);
+    const widest = Math.max(...widths);
+    let value = lines.length * 14;
+    for (const width of widths) {
+      value += (widest - width) ** 2;
+      if (width > maxChars) value += (width - maxChars) ** 2 * 18;
+    }
+    const finalWords = lines.at(-1).split(' ').filter(Boolean);
+    if (finalWords.length === 1 && words.length > 2) value += 5000;
+    if (widths.at(-1) < widest * 0.48) value += 2200;
+    lines.slice(0, -1).forEach(line => {
+      const finalWord = line.split(' ').at(-1) || '';
+      if (/[:;—–-]$/.test(line)) value -= 260;
+      if (weakEnd.test(finalWord)) value += 650;
+    });
+    return value;
+  };
+
+  return candidates.sort((a, b) => score(a) - score(b))[0] || [whole];
 }
 
 function fitDisplaySize(baseSize, lines, availableWidth, glyphRatio = 0.69) {
@@ -176,10 +210,14 @@ const textureCache = new Map();
 async function paperCanvas(width, height) {
   const key = `${width}x${height}:paper`;
   if (!textureCache.has(key)) {
-    textureCache.set(key, sharp(TEXTURE_PATH)
+    const inverted = await sharp(TEXTURE_PATH)
       .resize(width, height, { fit: 'cover' })
       .greyscale()
-      .modulate({ brightness: 1.08 })
+      .negate()
+      .png()
+      .toBuffer();
+    textureCache.set(key, sharp(inverted)
+      .linear(0.52, 0)
       .jpeg({ quality: 91, mozjpeg: true })
       .toBuffer());
   }
@@ -190,7 +228,7 @@ async function textureOverlay(width, height, opacity = 0.18, invert = false) {
   const key = `${width}x${height}:${opacity}:${invert}`;
   if (!textureCache.has(key)) {
     let pipeline = sharp(TEXTURE_PATH).resize(width, height, { fit: 'cover' }).greyscale();
-    if (invert) pipeline = pipeline.negate();
+    if (invert) pipeline = pipeline.negate({ alpha: false });
     textureCache.set(key, pipeline.ensureAlpha(opacity).png().toBuffer());
   }
   return textureCache.get(key);
@@ -270,13 +308,15 @@ function topMatterSvg(entry, formatName, seed) {
   const barW = Math.round(w * (formatName === 'social' ? 0.68 : 0.72));
   const issue = `ARCHIVE / ${monthDay(entry?.date).replace('-', '.') || '00.00'}`;
   const registration = roughPolygon(pad - 7, barY - 3, barW + 14, barH + 6, seed ^ 0x9191, 8, 13);
+  const registrationEdge = roughPolygon(pad - 11, barY - 7, barW + 22, barH + 14, seed ^ 0x7272, 10, 13);
   return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
-    <text x="${w - pad}" y="${Math.round(h * 0.39)}" text-anchor="end" fill="none" stroke="#090909" stroke-width="3" opacity=".18" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.31)}" font-weight="900" transform="rotate(-90 ${w - pad} ${Math.round(h * 0.39)})">${escapeXml(year)}</text>
+    <text x="${w - pad}" y="${Math.round(h * 0.39)}" text-anchor="end" fill="none" stroke="${PAPER}" stroke-width="3" opacity=".2" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.31)}" font-weight="900" transform="rotate(-90 ${w - pad} ${Math.round(h * 0.39)})">${escapeXml(year)}</text>
+    <polygon points="${registrationEdge}" fill="${PAPER}" opacity=".92"/>
     <polygon points="${registration}" fill="${INK}"/>
     <text x="${pad + Math.round(w * 0.024)}" y="${barY + Math.round(barH * 0.68)}" fill="${PAPER}" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.055)}" font-weight="900" letter-spacing="1">${escapeXml(anniversary)}</text>
-    <text x="${w - pad}" y="${barY + Math.round(barH * 0.45)}" text-anchor="end" fill="${INK}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.015)}" font-weight="700" letter-spacing="1.5">${escapeXml(issue)}</text>
-    <text x="${w - pad}" y="${barY + Math.round(barH * 0.73)}" text-anchor="end" fill="${INK}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.015)}" font-weight="700" letter-spacing="1.5">MMA HISTORY</text>
-    <path d="M ${pad} ${barY + barH + 16} H ${w - pad}" stroke="#070707" stroke-width="3" stroke-dasharray="22 9 4 9"/>
+    <text x="${w - pad}" y="${barY + Math.round(barH * 0.45)}" text-anchor="end" fill="${PAPER}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.015)}" font-weight="700" letter-spacing="1.5">${escapeXml(issue)}</text>
+    <text x="${w - pad}" y="${barY + Math.round(barH * 0.73)}" text-anchor="end" fill="${PAPER}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.015)}" font-weight="700" letter-spacing="1.5">MMA HISTORY</text>
+    <path d="M ${pad} ${barY + barH + 16} H ${w - pad}" stroke="${PAPER}" stroke-width="3" stroke-dasharray="22 9 4 9" opacity=".82"/>
   </svg>`;
 }
 
@@ -284,7 +324,7 @@ function titleAndFooterSvg(entry, formatName, seed, titleY) {
   const { width: w, height: h } = FORMATS[formatName];
   const pad = Math.round(w * 0.047);
   const title = clean(entry.title).toUpperCase();
-  const lines = wrapApprox(title, formatName === 'story' ? 21 : formatName === 'social' ? 24 : 23, 3);
+  const lines = balancedWrap(title, formatName === 'story' ? 21 : formatName === 'social' ? 24 : 23, 3);
   const baseSize = Math.round(w * (formatName === 'story' ? 0.069 : formatName === 'social' ? 0.068 : 0.064));
   const fontSize = fitDisplaySize(baseSize, lines, w - pad * 2.25, 0.77);
   const lineHeight = Math.round(fontSize * 1.13);
@@ -298,7 +338,8 @@ function titleAndFooterSvg(entry, formatName, seed, titleY) {
     const x = pad + Math.round((random() - 0.5) * w * 0.018);
     const angle = ((random() - 0.5) * 2.2).toFixed(2);
     const polygon = roughPolygon(x, y - Math.round(fontSize * 0.78), stripW, stripH, seed ^ (index * 919 + 0x33), 10, 11);
-    strips += `<g transform="rotate(${angle} ${x + stripW / 2} ${y})"><polygon points="${polygon}" fill="${INK}"/><text x="${x + Math.round(w * 0.018)}" y="${y}" fill="${PAPER}" font-family="${DISPLAY_FONT}" font-size="${fontSize}" font-weight="900" letter-spacing="-.5">${escapeXml(line)}</text></g>`;
+    const edge = roughPolygon(x - 5, y - Math.round(fontSize * 0.78) - 5, stripW + 10, stripH + 10, seed ^ (index * 727 + 0x91), 12, 11);
+    strips += `<g transform="rotate(${angle} ${x + stripW / 2} ${y})"><polygon points="${edge}" fill="${PAPER}" opacity=".94"/><polygon points="${polygon}" fill="${INK}"/><text x="${x + Math.round(w * 0.018)}" y="${y}" fill="${PAPER}" font-family="${DISPLAY_FONT}" font-size="${fontSize}" font-weight="900" letter-spacing="-.5">${escapeXml(line)}</text></g>`;
   });
   const promotion = clean(entry.promotion).toUpperCase();
   const credit = clean(entry.imageCredit);
@@ -321,7 +362,7 @@ function noImageSvg(entry, formatName, seed) {
   const pad = Math.round(w * 0.05);
   const year = String(entry?.date || '').slice(0, 4) || 'MMA';
   const title = clean(entry.title).toUpperCase();
-  const lines = wrapApprox(title, formatName === 'story' ? 19 : 23, 4);
+  const lines = balancedWrap(title, formatName === 'story' ? 19 : 23, 4);
   const baseTitleSize = Math.round(w * (formatName === 'story' ? 0.092 : 0.084));
   const titleSize = fitDisplaySize(baseTitleSize, lines, w - pad * 2.15, 0.76);
   const lineHeight = Math.round(titleSize * 1.04);
@@ -335,11 +376,11 @@ function noImageSvg(entry, formatName, seed) {
   return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
     <rect width="${w}" height="${h}" fill="${INK}"/>
     <text x="${Math.round(w * 0.51)}" y="${Math.round(h * 0.35)}" text-anchor="middle" fill="none" stroke="${PAPER}" stroke-width="4" opacity=".24" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.36)}" font-weight="900" transform="rotate(-6 ${w / 2} ${h * 0.35})">${escapeXml(year)}</text>
-    <polygon points="${roughPolygon(pad, Math.round(h * 0.06), Math.round(w * 0.68), Math.round(w * 0.105), seed ^ 0x1177, 12, 12)}" fill="${PAPER}"/>
-    <text x="${pad + Math.round(w * 0.022)}" y="${Math.round(h * 0.06 + w * 0.072)}" fill="${INK}" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.052)}" font-weight="900">${escapeXml(anniversary)}</text>
+    <polygon points="${roughPolygon(pad, Math.round(h * 0.06), Math.round(w * 0.68), Math.round(w * 0.105), seed ^ 0x1177, 12, 12)}" fill="${INK}" stroke="${PAPER}" stroke-width="5"/>
+    <text x="${pad + Math.round(w * 0.022)}" y="${Math.round(h * 0.06 + w * 0.072)}" fill="${PAPER}" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.052)}" font-weight="900">${escapeXml(anniversary)}</text>
     <text x="${w - pad}" y="${Math.round(h * 0.09)}" text-anchor="end" fill="${PAPER}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.017)}" font-weight="700">MMA HISTORY / ${escapeXml(monthDay(entry?.date).replace('-', '.'))}</text>
-    <polygon points="${paperPoly}" fill="${PAPER}"/>
-    <text fill="${INK}" font-family="${DISPLAY_FONT}" font-size="${titleSize}" font-weight="900">${lines.map((line, index) => `<tspan x="${pad}" y="${titleY + index * lineHeight}">${escapeXml(line)}</tspan>`).join('')}</text>
+    <polygon points="${paperPoly}" fill="${INK}" stroke="${PAPER}" stroke-width="6"/>
+    <text fill="${PAPER}" font-family="${DISPLAY_FONT}" font-size="${titleSize}" font-weight="900">${lines.map((line, index) => `<tspan x="${pad}" y="${titleY + index * lineHeight}">${escapeXml(line)}</tspan>`).join('')}</text>
     <rect x="${pad}" y="${titleY + lineHeight * lines.length + Math.round(w * 0.035)}" width="${Math.round(w * 0.48)}" height="${Math.round(w * 0.024)}" fill="${PAPER}"/>
     <text x="${pad}" y="${creditY}" fill="${PAPER_MID}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.014)}" font-weight="700">NO EVENT IMAGE AVAILABLE / TYPE ARCHIVE EDITION</text>
     <path d="M ${pad} ${creditY + 12} H ${w - pad}" stroke="${PAPER}" stroke-width="2"/>
@@ -366,8 +407,8 @@ async function renderPhoto(entry, formatName, imageBuffer, seed) {
   const base = await paperCanvas(w, h);
   return sharp(base)
     .composite([
-      { input: await textureOverlay(w, h, 0.08), blend: 'multiply' },
-      { input: Buffer.from(xeroxDamageSvg(w, h, seed)), blend: 'multiply' },
+      { input: await textureOverlay(w, h, 0.12, true), blend: 'screen' },
+      { input: Buffer.from(xeroxDamageSvg(w, h, seed, true)), blend: 'screen' },
       { input: Buffer.from(topMatterSvg(entry, formatName, seed)), blend: 'over' },
       { input: cutout, left, top, blend: 'over' },
       { input: Buffer.from(titleAndFooterSvg(entry, formatName, seed, layout.titleY)), blend: 'over' }
@@ -397,15 +438,15 @@ async function renderPoster(entry, formatName, imageBuffer, sourceMeta, seed) {
     .greyscale()
     .normalize()
     .threshold(150)
-    .negate()
+    .negate({ alpha: false })
     .ensureAlpha(0.11)
     .png()
     .toBuffer();
   return sharp(base)
     .composite([
-      { input: ghost, blend: 'multiply' },
-      { input: await textureOverlay(w, h, 0.09), blend: 'multiply' },
-      { input: Buffer.from(xeroxDamageSvg(w, h, seed)), blend: 'multiply' },
+      { input: ghost, blend: 'screen' },
+      { input: await textureOverlay(w, h, 0.12, true), blend: 'screen' },
+      { input: Buffer.from(xeroxDamageSvg(w, h, seed, true)), blend: 'screen' },
       { input: Buffer.from(topMatterSvg(entry, formatName, seed)), blend: 'over' },
       { input: cutout, left, top, blend: 'over' },
       { input: Buffer.from(titleAndFooterSvg(entry, formatName, seed, titleY)), blend: 'over' }
@@ -465,6 +506,7 @@ const imageCache = new Map();
 const manifest = {
   version: 3,
   renderer: 'sharp-xerox-cutout-v3',
+  style: 'inverse-black-paper-v1',
   generatedAt,
   publicBase: PUBLIC_BASE,
   windowDays: WINDOW_DAYS,

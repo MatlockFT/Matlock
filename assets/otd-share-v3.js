@@ -147,7 +147,7 @@
         modal.innerHTML = `
             <div class="otd-share-panel">
                 <header class="otd-share-header">
-                    <div><p class="otd-share-kicker">Xerox Cutout Edition</p><h2 id="otd-share-title">Share This Moment</h2></div>
+                    <div><p class="otd-share-kicker">Inverse Xerox Edition</p><h2 id="otd-share-title">Share This Moment</h2></div>
                     <button type="button" class="otd-share-close" data-otd-share-close aria-label="Close share builder">×</button>
                 </header>
                 <div class="otd-share-workspace">
@@ -287,21 +287,55 @@
         return String(value || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&apos;');
     }
 
-    function wrapApprox(text, maxChars, maxLines) {
-        const words = clean(text).split(' ').filter(Boolean);
-        const lines = [];
-        let line = '';
-        for (const word of words) {
-            const next = line ? `${line} ${word}` : word;
-            if (!line || next.length <= maxChars) { line = next; continue; }
-            lines.push(line);
-            line = word;
-            if (lines.length >= maxLines - 1) break;
+    function balancedWrap(text, maxChars, maxLines) {
+        const sourceWords = clean(text).split(' ').filter(Boolean);
+        if (!sourceWords.length) return [];
+        const capacity = Math.ceil(maxChars * 1.08);
+        const words = [...sourceWords];
+        let clipped = false;
+        while (words.length > 1 && words.join(' ').length > capacity * maxLines) {
+            words.pop();
+            clipped = true;
         }
-        if (line && lines.length < maxLines) lines.push(line);
-        const used = lines.join(' ').split(' ').filter(Boolean).length;
-        if (used < words.length && lines.length) lines[lines.length - 1] += '…';
-        return lines;
+        if (clipped) words[words.length - 1] = `${words.at(-1).replace(/[\s,.;:-]+$/, '')}…`;
+        const whole = words.join(' ');
+        if (whole.length <= maxChars) return [whole];
+
+        const candidates = [];
+        const collect = (start, lines) => {
+            if (start >= words.length) {
+                if (lines.length <= maxLines) candidates.push(lines);
+                return;
+            }
+            if (lines.length >= maxLines) return;
+            for (let end = start + 1; end <= words.length; end += 1) {
+                const line = words.slice(start, end).join(' ');
+                if (line.length > capacity && end > start + 1) break;
+                collect(end, [...lines, line]);
+            }
+        };
+        collect(0, []);
+
+        const weakEnd = /^(A|AN|AND|AT|BY|FOR|FROM|IN|OF|ON|OR|THE|TO|VS\.?|WITH)$/i;
+        const score = lines => {
+            const widths = lines.map(line => line.length);
+            const widest = Math.max(...widths);
+            let value = lines.length * 14;
+            widths.forEach(width => {
+                value += (widest - width) ** 2;
+                if (width > maxChars) value += (width - maxChars) ** 2 * 18;
+            });
+            const finalWords = lines.at(-1).split(' ').filter(Boolean);
+            if (finalWords.length === 1 && words.length > 2) value += 5000;
+            if (widths.at(-1) < widest * 0.48) value += 2200;
+            lines.slice(0, -1).forEach(line => {
+                const finalWord = line.split(' ').at(-1) || '';
+                if (/[:;—–-]$/.test(line)) value -= 260;
+                if (weakEnd.test(finalWord)) value += 650;
+            });
+            return value;
+        };
+        return candidates.sort((a, b) => score(a) - score(b))[0] || [whole];
     }
 
     function tspans(lines, x, y, lineHeight) {
@@ -336,7 +370,7 @@
         const { width: w, height: h } = format;
         const pad = Math.round(w * 0.047);
         const anniversary = entry.headline.toUpperCase();
-        const titleLines = wrapApprox(entry.title.toUpperCase(), format === FORMATS.story ? 21 : 23, 3);
+        const titleLines = balancedWrap(entry.title.toUpperCase(), format === FORMATS.story ? 21 : 23, 3);
         const longest = Math.max(1, ...titleLines.map(line => line.length));
         const baseTitleSize = Math.round(w * (format === FORMATS.story ? 0.069 : 0.064));
         const titleSize = Math.max(Math.round(baseTitleSize * 0.68), Math.min(baseTitleSize, Math.floor((w - pad * 2.2) / (longest * 0.77))));
@@ -349,24 +383,25 @@
         const isPoster = source && source.width / source.height < 0.82;
         const ripPoints = `${pad},${imageY + 9} ${Math.round(w * .23)},${imageY} ${Math.round(w * .44)},${imageY + 12} ${Math.round(w * .65)},${imageY + 2} ${w - pad},${imageY + 10} ${w - pad - 8},${imageY + imageH - 5} ${Math.round(w * .76)},${imageY + imageH + 8} ${Math.round(w * .52)},${imageY + imageH - 3} ${Math.round(w * .28)},${imageY + imageH + 9} ${pad + 6},${imageY + imageH}`;
         const imageMarkup = source
-            ? `<polygon points="${ripPoints}" fill="#f0ede3" stroke="#080808" stroke-width="20" stroke-linejoin="bevel"/><image href="${source.dataUrl}" x="${pad}" y="${imageY}" width="${w - pad * 2}" height="${imageH}" preserveAspectRatio="xMidYMid ${isPoster ? 'meet' : 'slice'}" filter="url(#xerox)" clip-path="url(#rip)"/>`
+            ? `<polygon points="${ripPoints}" fill="#f0ede3" stroke="#f1eee4" stroke-width="20" stroke-linejoin="bevel"/><image href="${source.dataUrl}" x="${pad}" y="${imageY}" width="${w - pad * 2}" height="${imageH}" preserveAspectRatio="xMidYMid ${isPoster ? 'meet' : 'slice'}" filter="url(#xerox)" clip-path="url(#rip)"/>`
             : `<rect x="${pad}" y="${imageY}" width="${w - pad * 2}" height="${imageH}" fill="#090909"/><text x="50%" y="${imageY + imageH * .63}" text-anchor="middle" fill="none" stroke="#eeeae0" stroke-width="4" opacity=".28" font-family="Arial Narrow,Arial,sans-serif" font-weight="900" font-size="${Math.round(w * 0.34)}">${escapeXml(entry.year || 'MMA')}</text>`;
         const titleMarkup = titleLines.map((line, index) => {
             const y = titleY + index * lineHeight;
-            return `<g transform="rotate(${index % 2 ? '.6' : '-.7'} ${w / 2} ${y})"><polygon points="${pad - 5},${y - Math.round(titleSize * .79)} ${w - pad},${y - Math.round(titleSize * .75)} ${w - pad - 7},${y + Math.round(titleSize * .22)} ${pad},${y + Math.round(titleSize * .17)}" fill="#080808"/><text x="${pad + Math.round(w * .016)}" y="${y}" fill="#f1eee4" font-family="Arial Narrow,Arial,sans-serif" font-size="${titleSize}" font-weight="900">${escapeXml(line)}</text></g>`;
+            return `<g transform="rotate(${index % 2 ? '.6' : '-.7'} ${w / 2} ${y})"><polygon points="${pad - 10},${y - Math.round(titleSize * .84)} ${w - pad + 5},${y - Math.round(titleSize * .80)} ${w - pad - 2},${y + Math.round(titleSize * .27)} ${pad - 5},${y + Math.round(titleSize * .22)}" fill="#f1eee4"/><polygon points="${pad - 5},${y - Math.round(titleSize * .79)} ${w - pad},${y - Math.round(titleSize * .75)} ${w - pad - 7},${y + Math.round(titleSize * .22)} ${pad},${y + Math.round(titleSize * .17)}" fill="#080808"/><text x="${pad + Math.round(w * .016)}" y="${y}" fill="#f1eee4" font-family="Arial Narrow,Arial,sans-serif" font-size="${titleSize}" font-weight="900">${escapeXml(line)}</text></g>`;
         }).join('');
         const credit = entry.imageCredit ? `IMAGE: ${entry.imageCredit.toUpperCase()}` : 'ARCHIVAL IMAGE / SOURCE ON PAGE';
         return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
             <defs>
                 <clipPath id="rip"><polygon points="${ripPoints}"/></clipPath>
                 <filter id="xerox"><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncR type="linear" slope="1.35" intercept="-.12"/><feFuncG type="linear" slope="1.35" intercept="-.12"/><feFuncB type="linear" slope="1.35" intercept="-.12"/></feComponentTransfer></filter>
-                <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="4" seed="19"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .18"/></feComponentTransfer></filter>
+                <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="4" seed="19"/><feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 .33 .33 .33 0 0"/></filter>
             </defs>
-            <rect width="${w}" height="${h}" fill="#e9e6dc"/>
-            <rect width="${w}" height="${h}" filter="url(#paper)" opacity=".62"/>
+            <rect width="${w}" height="${h}" fill="#080808"/>
+            <rect width="${w}" height="${h}" fill="#f1eee4" filter="url(#paper)" opacity=".18"/>
+            <polygon points="${pad - 11},${Math.round(h * .027)} ${Math.round(w * .754)},${Math.round(h * .025)} ${Math.round(w * .764)},${Math.round(h * .098)} ${pad - 4},${Math.round(h * .103)}" fill="#f1eee4"/>
             <polygon points="${pad - 7},${Math.round(h * .03)} ${Math.round(w * .75)},${Math.round(h * .028)} ${Math.round(w * .76)},${Math.round(h * .095)} ${pad},${Math.round(h * .10)}" fill="#080808"/>
             <text x="${pad + Math.round(w * .02)}" y="${Math.round(h * .079)}" fill="#f1eee4" font-family="Arial Narrow,Arial,sans-serif" font-size="${Math.round(w * .055)}" font-weight="900">${escapeXml(anniversary)}</text>
-            <text x="${w - pad}" y="${Math.round(h * .064)}" text-anchor="end" fill="#080808" font-family="monospace" font-size="${Math.round(w * .015)}" font-weight="700">MMA HISTORY / ARCHIVE</text>
+            <text x="${w - pad}" y="${Math.round(h * .064)}" text-anchor="end" fill="#f1eee4" font-family="monospace" font-size="${Math.round(w * .015)}" font-weight="700">MMA HISTORY / ARCHIVE</text>
             ${imageMarkup}
             ${titleMarkup}
             <polygon points="${pad - 16},${creditY - Math.round(w * .025)} ${w - pad + 10},${creditY - Math.round(w * .019)} ${w - pad + 14},${h} ${pad - 12},${h}" fill="#f1eee4" opacity=".94"/>
