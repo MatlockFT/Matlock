@@ -41,6 +41,14 @@
         })();
     </script>
 
+    {% for origin in page.page_preconnects %}
+        <link rel="preconnect" href="{{ origin }}" crossorigin>
+    {% endfor %}
+
+    {% for resource in page.page_fetch_preloads %}
+        <link rel="preload" href="{{ resource }}" as="fetch" crossorigin>
+    {% endfor %}
+
     <link
         rel="stylesheet"
         href="{{ '/assets/base.css' | relative_url }}?v={{ site.asset_version }}"
