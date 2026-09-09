@@ -1,7 +1,37 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-09T03:23:09.819Z",
+  "generated_at": "2026-09-09T12:57:42.257Z",
   "changes": [
+    {
+      "id": "2026-09-09T12:57:42.257Z|dwcs-season-10-week-6-2026-09-15|event_added|1",
+      "at": "2026-09-09T12:57:42.257Z",
+      "type": "event_added",
+      "event_id": "dwcs-season-10-week-6-2026-09-15",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 6",
+      "event_date": "2026-09-15",
+      "summary": "DWCS Season 10 · Week 6 added to Upcoming Events.",
+      "details": {
+        "bout_count": 5,
+        "venue": "Meta APEX · Las Vegas, Nevada",
+        "date": "2026-09-15"
+      }
+    },
+    {
+      "id": "2026-09-09T12:57:42.257Z|dwcs-season-10-week-5-2026-09-08|event_removed|2",
+      "at": "2026-09-09T12:57:42.257Z",
+      "type": "event_removed",
+      "event_id": "dwcs-season-10-week-5-2026-09-08",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 5",
+      "event_date": "2026-09-08",
+      "summary": "DWCS Season 10 · Week 5 removed from Upcoming Events.",
+      "details": {
+        "bout_count": 5,
+        "venue": "Meta APEX · Las Vegas, Nevada",
+        "date": "2026-09-08"
+      }
+    },
     {
       "id": "2026-09-09T03:23:09.819Z|dwcs-season-10-week-5-2026-09-08|location_changed|1",
       "at": "2026-09-09T03:23:09.819Z",
@@ -4609,34 +4639,6 @@
       "summary": "Gary Balletto Jr. portrait added.",
       "details": {
         "fighter": "Gary Balletto Jr.",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|dwcs-season-10-week-3-2026-08-25|portrait_added|19",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-3-2026-08-25",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 3",
-      "event_date": "2026-08-25",
-      "summary": "Alexis Miranda portrait added.",
-      "details": {
-        "fighter": "Alexis Miranda",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|dwcs-season-10-week-3-2026-08-25|portrait_added|20",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "dwcs-season-10-week-3-2026-08-25",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 3",
-      "event_date": "2026-08-25",
-      "summary": "Ronald Humphrey portrait added.",
-      "details": {
-        "fighter": "Ronald Humphrey",
         "source": "sherdog"
       }
     }
