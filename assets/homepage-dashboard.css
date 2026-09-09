@@ -26,8 +26,13 @@
 
 .home-panel {
     min-width: 0;
-    border: 1px solid #454545;
+    border: 1px solid #353535;
     background: #090909;
+}
+
+.home-snapshot > .home-panel {
+    border-color: #5a5a5a;
+    background: #080808;
 }
 
 .home-panel-heading {
@@ -55,7 +60,7 @@
 .home-panel-heading a,
 .home-panel-heading span {
     color: #999;
-    font: 700 .56rem/1 "Courier New", monospace;
+    font: 700 .625rem/1 "Courier New", monospace;
     letter-spacing: .04em;
     text-transform: uppercase;
 }
@@ -76,7 +81,7 @@
 .home-next-promotion {
     margin: 0 0 .18rem;
     color: var(--accent, #ff4a54);
-    font: 700 .6rem/1 "Courier New", monospace;
+    font: 700 .625rem/1 "Courier New", monospace;
     letter-spacing: .09em;
     text-transform: uppercase;
 }
@@ -99,7 +104,7 @@
 
 .home-next-meta {
     color: #b3b3b3;
-    font-size: .63rem;
+    font-size: .625rem;
     line-height: 1.4;
 }
 
@@ -123,11 +128,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 38px;
+    min-height: 44px;
     border: 1px solid #606060;
     background: #111;
     color: #fff;
-    font: 700 .58rem/1 "Courier New", monospace;
+    font: 700 .625rem/1 "Courier New", monospace;
     letter-spacing: .04em;
     text-align: center;
     text-decoration: none;
@@ -149,7 +154,7 @@
 
 .home-tools-bar {
     min-width: 0;
-    border: 1px solid #454545;
+    border: 1px solid #303030;
     background: #090909;
 }
 
@@ -223,7 +228,7 @@
 
 .home-news-item span {
     color: #858585;
-    font: 700 .5rem/1.2 "Courier New", monospace;
+    font: 700 .625rem/1.2 "Courier New", monospace;
     text-align: right;
     text-transform: uppercase;
 }
@@ -243,7 +248,7 @@
     display: block;
     margin-bottom: .18rem;
     color: var(--accent, #ff4a54);
-    font: 700 .54rem/1 "Courier New", monospace;
+    font: 700 .625rem/1 "Courier New", monospace;
     letter-spacing: .06em;
     text-transform: uppercase;
 }
@@ -263,7 +268,7 @@
 .home-dashboard-loading {
     margin: .34rem 0 0;
     color: #969696;
-    font: 400 .6rem/1.42 "Courier New", monospace;
+    font: 400 .625rem/1.42 "Courier New", monospace;
 }
 
 .home-dashboard-loading {
@@ -274,7 +279,7 @@
     display: inline-block;
     margin-top: .42rem;
     color: #fff;
-    font: 700 .54rem/1 "Courier New", monospace;
+    font: 700 .625rem/1 "Courier New", monospace;
     letter-spacing: .04em;
     text-transform: uppercase;
 }
