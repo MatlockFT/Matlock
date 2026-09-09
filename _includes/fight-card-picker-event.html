@@ -45,7 +45,7 @@
                     <div class="fighter">
                       <div class="fighter-photo{% if fighter.image == '' or portrait_fallback %} photo-missing{% endif %}">
                         <span class="fighter-fallback" aria-hidden="true">{{ fighter.initials }}</span>
-                        {% if fighter.image != '' and portrait_fallback == false %}<img data-fighter-photo data-portrait-source="{{ fighter.image_source }}" data-portrait-framing="{{ fighter.image_framing }}"{% if portrait_override %} data-portrait-override="true" style="{% if portrait_override.scale %}--portrait-scale: {{ portrait_override.scale }};{% endif %}{% if portrait_override.y %} --portrait-y: {{ portrait_override.y }};{% endif %}"{% endif %} src="{{ fighter.image }}" alt="{{ fighter.name }}" loading="{% if priority_bout %}eager{% else %}lazy{% endif %}"{% if priority_bout %} fetchpriority="high"{% endif %} decoding="async" referrerpolicy="no-referrer">{% endif %}
+                        {% if fighter.image != '' and portrait_fallback == false %}<img data-fighter-photo data-portrait-source="{{ fighter.image_source }}" data-portrait-framing="{{ fighter.image_framing }}"{% if portrait_override %} data-portrait-override="true" style="{% if portrait_override.scale %}--portrait-scale: {{ portrait_override.scale }};{% endif %}{% if portrait_override.y %} --portrait-y: {{ portrait_override.y }};{% endif %}"{% endif %}{% if priority_bout %} src="{{ fighter.image }}" loading="eager" fetchpriority="high"{% else %} src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-fighter-src="{{ fighter.image | escape }}" loading="lazy" fetchpriority="low"{% endif %} alt="{{ fighter.name }}" decoding="async" referrerpolicy="no-referrer">{% endif %}
                       </div>
                       <p class="fighter-name">{{ fighter.name }}</p>
                     </div>
@@ -68,7 +68,7 @@
                       <div class="fighter">
                         <div class="fighter-photo{% if fighter.image == '' or portrait_fallback %} photo-missing{% endif %}">
                           <span class="fighter-fallback" aria-hidden="true">{{ fighter.initials }}</span>
-                          {% if fighter.image != '' and portrait_fallback == false %}<img data-fighter-photo data-portrait-source="{{ fighter.image_source }}" data-portrait-framing="{{ fighter.image_framing }}"{% if portrait_override %} data-portrait-override="true" style="{% if portrait_override.scale %}--portrait-scale: {{ portrait_override.scale }};{% endif %}{% if portrait_override.y %} --portrait-y: {{ portrait_override.y }};{% endif %}"{% endif %} src="{{ fighter.image }}" alt="{{ fighter.name }}" loading="lazy" decoding="async" referrerpolicy="no-referrer">{% endif %}
+                          {% if fighter.image != '' and portrait_fallback == false %}<img data-fighter-photo data-portrait-source="{{ fighter.image_source }}" data-portrait-framing="{{ fighter.image_framing }}"{% if portrait_override %} data-portrait-override="true" style="{% if portrait_override.scale %}--portrait-scale: {{ portrait_override.scale }};{% endif %}{% if portrait_override.y %} --portrait-y: {{ portrait_override.y }};{% endif %}"{% endif %} src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-fighter-src="{{ fighter.image | escape }}" alt="{{ fighter.name }}" loading="lazy" fetchpriority="low" decoding="async" referrerpolicy="no-referrer">{% endif %}
                         </div>
                         <p class="fighter-name">{{ fighter.name }}</p>
                       </div>
@@ -95,7 +95,7 @@
                     <div class="fighter">
                       <div class="fighter-photo{% if fighter.image == '' or portrait_fallback %} photo-missing{% endif %}">
                         <span class="fighter-fallback" aria-hidden="true">{{ fighter.initials }}</span>
-                        {% if fighter.image != '' and portrait_fallback == false %}<img data-fighter-photo data-portrait-source="{{ fighter.image_source }}" data-portrait-framing="{{ fighter.image_framing }}"{% if portrait_override %} data-portrait-override="true" style="{% if portrait_override.scale %}--portrait-scale: {{ portrait_override.scale }};{% endif %}{% if portrait_override.y %} --portrait-y: {{ portrait_override.y }};{% endif %}"{% endif %} src="{{ fighter.image }}" alt="{{ fighter.name }}" loading="lazy" decoding="async" referrerpolicy="no-referrer">{% endif %}
+                        {% if fighter.image != '' and portrait_fallback == false %}<img data-fighter-photo data-portrait-source="{{ fighter.image_source }}" data-portrait-framing="{{ fighter.image_framing }}"{% if portrait_override %} data-portrait-override="true" style="{% if portrait_override.scale %}--portrait-scale: {{ portrait_override.scale }};{% endif %}{% if portrait_override.y %} --portrait-y: {{ portrait_override.y }};{% endif %}"{% endif %} src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-fighter-src="{{ fighter.image | escape }}" alt="{{ fighter.name }}" loading="lazy" fetchpriority="low" decoding="async" referrerpolicy="no-referrer">{% endif %}
                       </div>
                       <p class="fighter-name">{{ fighter.name }}</p>
                     </div>
