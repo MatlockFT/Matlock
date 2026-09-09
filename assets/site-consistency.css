@@ -87,6 +87,30 @@
     overflow-wrap: anywhere;
 }
 
+/* Functional controls should remain compact without becoming microscopic. */
+.otd-page .otd-mini-button,
+.otd-page .otd-filter-button,
+.otd-page .otd-view-button,
+.otd-page .otd-sort-control,
+.otd-page .otd-sort-select,
+.otd-page .otd-control-button,
+.otd-page .otd-date-input,
+.otd-page .otd-shortcut-hint {
+    font-size: .625rem;
+}
+
+.otd-page .otd-day-pill-today {
+    font-size: .56rem;
+}
+
+.otd-page .otd-mini-button,
+.otd-page .otd-filter-button,
+.otd-page .otd-view-button,
+.otd-page .otd-control-button,
+.otd-page .otd-date-input {
+    min-height: 40px;
+}
+
 /* Article/event cross-link bar. */
 .post-event-context {
     display: flex;
@@ -119,11 +143,11 @@
 }
 
 .post-event-context-actions a {
-    min-height: 32px;
+    min-height: 40px;
     padding: .3rem .45rem;
     border: 1px solid #565656;
     color: #fff;
-    font: 700 .48rem/1 "Courier New", monospace;
+    font: 700 .625rem/1 "Courier New", monospace;
     letter-spacing: .04em;
     text-decoration: none;
     text-transform: uppercase;
@@ -222,6 +246,15 @@
     .homepage-intro-actions,
     .post-event-context-actions {
         flex-wrap: wrap;
+    }
+
+    .otd-page .otd-mini-button,
+    .otd-page .otd-filter-button,
+    .otd-page .otd-view-button,
+    .otd-page .otd-control-button,
+    .otd-page .otd-date-input,
+    .post-event-context-actions a {
+        min-height: 44px;
     }
 
     .post-event-context {
