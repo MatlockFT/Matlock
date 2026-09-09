@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 2,
-  "updatedAt": "2026-09-09T07:14:11.300Z",
+  "updatedAt": "2026-09-09T07:52:28.735Z",
   "entries": {
     "pancrase:2013-04-21:pancrase-sakaguchi-dojo-vs-pancrase": {
       "strategyVersion": 2,
@@ -11361,6 +11361,844 @@
       "wikipediaTitle": "List of Pancrase events",
       "sourceUrl": "https://www.pancrase.co.jp/data/result/2018/0909.html",
       "mainEvent": "Issei Tamura vs. Taichi Nakajima"
+    },
+    "strikeforce:2011-09-23:strikeforce-challengers-larkin-vs-rossborough": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "2011 in Strikeforce",
+      "mainEvent": "Larkin vs. Rossborough"
+    },
+    "strikeforce:2011-11-18:strikeforce-challengers-britt-vs-sayers": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "2011 in Strikeforce",
+      "mainEvent": "Britt vs. Sayers"
+    },
+    "strikeforce:2011-12-17:strikeforce-melendez-vs-masvidal": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "Strikeforce: Melendez vs. Masvidal",
+      "mainEvent": "Melendez vs. Masvidal"
+    },
+    "strikeforce:2012-01-07:strikeforce-rockhold-vs-jardine": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "Strikeforce: Rockhold vs. Jardine",
+      "mainEvent": "Rockhold vs. Jardine"
+    },
+    "strikeforce:2012-03-03:strikeforce-tate-vs-rousey": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "Strikeforce: Tate vs. Rousey",
+      "mainEvent": "Tate vs. Rousey"
+    },
+    "strikeforce:2012-05-19:strikeforce-barnett-vs-cormier": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "Strikeforce: Barnett vs. Cormier",
+      "mainEvent": "Barnett vs. Cormier"
+    },
+    "strikeforce:2012-07-14:strikeforce-rockhold-vs-kennedy": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "Strikeforce: Rockhold vs. Kennedy",
+      "mainEvent": "Rockhold vs. Kennedy"
+    },
+    "strikeforce:2012-08-18:strikeforce-rousey-vs-kaufman": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "Strikeforce: Rousey vs. Kaufman",
+      "mainEvent": "Rousey vs. Kaufman"
+    },
+    "strikeforce:2013-01-12:strikeforce-marquardt-vs-saffiedine": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "Strikeforce: Marquardt vs. Saffiedine",
+      "mainEvent": "Marquardt vs. Saffiedine"
+    },
+    "wec:2007-01-20:wec-25-mccullough-vs-cope": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 25",
+      "mainEvent": "McCullough vs. Cope"
+    },
+    "wec:2007-03-24:wec-26-condit-vs-alessio": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "2007 in WEC",
+      "mainEvent": "Condit vs. Alessio"
+    },
+    "wec:2007-05-12:wec-27-marshall-vs-mcelfresh": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 27",
+      "mainEvent": "Marshall vs. McElfresh"
+    },
+    "wec:2007-06-03:wec-28-faber-vs-farrar": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 28",
+      "mainEvent": "Faber vs. Farrar"
+    },
+    "wec:2007-08-05:wec-29-condit-vs-larson": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 29",
+      "mainEvent": "Condit vs. Larson"
+    },
+    "wec:2007-09-05:wec-30-mccullough-vs-crunkilton": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 30",
+      "mainEvent": "McCullough vs. Crunkilton"
+    },
+    "wec:2007-12-12:wec-31-faber-vs-curran": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 31",
+      "mainEvent": "Faber vs. Curran"
+    },
+    "wec:2008-02-13:wec-32-condit-vs-prater": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 32",
+      "mainEvent": "Condit vs. Prater"
+    },
+    "wec:2008-03-26:wec-33-marshall-vs-stann": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 33",
+      "mainEvent": "Marshall vs. Stann"
+    },
+    "wec:2008-06-01:wec-34-faber-vs-pulver": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 34",
+      "mainEvent": "Faber vs. Pulver"
+    },
+    "wec:2008-08-03:wec-35-condit-vs-miura": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 35",
+      "mainEvent": "Condit vs. Miura"
+    },
+    "wec:2008-11-05:wec-36-faber-vs-brown": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 36",
+      "mainEvent": "Faber vs. Brown"
+    },
+    "wec:2008-12-03:wec-37-torres-vs-tapia": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 37",
+      "mainEvent": "Torres vs. Tapia"
+    },
+    "wec:2009-01-25:wec-38-varner-vs-cerrone": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 38",
+      "mainEvent": "Varner vs. Cerrone"
+    },
+    "wec:2009-03-01:wec-39-brown-vs-garcia": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 39",
+      "mainEvent": "Brown vs. Garcia"
+    },
+    "wec:2009-04-05:wec-40-torres-vs-mizugaki": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 40",
+      "mainEvent": "Torres vs. Mizugaki"
+    },
+    "wec:2009-06-07:wec-41-brown-vs-faber-ii": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 41",
+      "mainEvent": "Brown vs. Faber II"
+    },
+    "wec:2009-08-09:wec-42-torres-vs-bowles": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 42",
+      "mainEvent": "Torres vs. Bowles"
+    },
+    "wec:2009-10-10:wec-43-cerrone-vs-henderson": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 43",
+      "mainEvent": "Cerrone vs. Henderson"
+    },
+    "wec:2009-11-18:wec-44-brown-vs-aldo": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 44",
+      "mainEvent": "Brown vs. Aldo"
+    },
+    "wec:2009-12-19:wec-45-cerrone-vs-ratcliff": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 45",
+      "mainEvent": "Cerrone vs. Ratcliff"
+    },
+    "wec:2010-01-10:wec-46-varner-vs-henderson": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 46",
+      "mainEvent": "Varner vs. Henderson"
+    },
+    "wec:2010-03-06:wec-47-bowles-vs-cruz": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 47",
+      "mainEvent": "Bowles vs. Cruz"
+    },
+    "wec:2010-04-24:wec-48-aldo-vs-faber": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 48",
+      "mainEvent": "Aldo vs. Faber"
+    },
+    "wec:2010-06-20:wec-49-varner-vs-shalorus": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 49",
+      "mainEvent": "Varner vs. Shalorus"
+    },
+    "wec:2010-08-18:wec-50-cruz-vs-benavidez": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 50",
+      "mainEvent": "Cruz vs. Benavidez"
+    },
+    "wec:2010-09-30:wec-51-aldo-vs-gamburyan": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 51",
+      "mainEvent": "Aldo vs. Gamburyan"
+    },
+    "wec:2010-11-11:wec-52-faber-vs-mizugaki": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 52",
+      "mainEvent": "Faber vs. Mizugaki"
+    },
+    "wec:2010-12-16:wec-53-henderson-vs-pettis": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "WEC 53",
+      "mainEvent": "Henderson vs. Pettis"
+    },
+    "pfl:2012-11-03:wsof1-arlovski-vs-cole": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 1: Arlovski vs. Cole",
+      "mainEvent": "Arlovski vs. Cole"
+    },
+    "pfl:2013-03-23:wsof2-arlovski-vs-johnson": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 2: Arlovski vs. Johnson",
+      "mainEvent": "Arlovski vs. Johnson"
+    },
+    "pfl:2013-06-14:wsof3-fitch-vs-burkman-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 3: Fitch vs. Burkman",
+      "mainEvent": "Fitch vs. Burkman 2"
+    },
+    "pfl:2013-08-10:wsof4-spong-vs-deanda": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 4: Spong vs. DeAnda",
+      "mainEvent": "Spong vs. DeAnda"
+    },
+    "pfl:2013-09-14:wsof5-arlovski-vs-kyle": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 5: Arlovski vs. Kyle",
+      "mainEvent": "Arlovski vs. Kyle"
+    },
+    "pfl:2013-10-26:wsof6-burkman-vs-carl": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 6: Burkman vs. Carl",
+      "mainEvent": "Burkman vs. Carl"
+    },
+    "pfl:2013-12-07:wsof7-karakhanyan-vs-palmer": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 7: Karakhanyan vs. Palmer",
+      "mainEvent": "Karakhanyan vs. Palmer"
+    },
+    "pfl:2014-01-18:wsof8-gaethje-vs-patishnock": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 8: Gaethje vs. Patishnock",
+      "mainEvent": "Gaethje vs. Patishnock"
+    },
+    "pfl:2014-02-21:wsof-canada-1-ford-vs-powell": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting Canada 1: Ford vs. Powell",
+      "mainEvent": "Ford vs. Powell"
+    },
+    "pfl:2014-03-29:wsof9-carl-vs-palhares": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 9: Carl vs. Palhares",
+      "mainEvent": "Carl vs. Palhares"
+    },
+    "pfl:2014-06-07:wsof-canada-2-loiseau-vs-lewis": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting Canada 2: Loiseau vs. Lewis",
+      "mainEvent": "Loiseau vs. Lewis"
+    },
+    "pfl:2014-06-21:wsof10-branch-vs-taylor": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 10: Branch vs. Taylor",
+      "mainEvent": "Branch vs. Taylor"
+    },
+    "pfl:2014-07-05:wsof11-gaethje-vs-newell": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 11: Gaethje vs. Newell",
+      "mainEvent": "Gaethje vs. Newell"
+    },
+    "pfl:2014-08-09:wsof12-palomino-vs-gonzalez": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 12: Palomino vs Gonzalez",
+      "mainEvent": "Palomino vs. Gonzalez"
+    },
+    "pfl:2014-09-13:wsof13-moraes-vs-bollinger": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 13: Moraes vs. Bollinger",
+      "mainEvent": "Moraes vs. Bollinger"
+    },
+    "pfl:2014-10-11:wsof14-ford-vs-shields": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 14: Ford vs. Shields",
+      "mainEvent": "Ford vs. Shields"
+    },
+    "pfl:2014-11-15:wsof15-branch-vs-okami": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 15: Branch vs. Okami",
+      "mainEvent": "Branch vs. Okami"
+    },
+    "pfl:2014-12-13:wsof16-palhares-vs-fitch": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 16: Palhares vs. Fitch",
+      "mainEvent": "Palhares vs. Fitch"
+    },
+    "pfl:2015-01-17:wsof17-shields-vs-foster": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 17: Shields vs. Foster",
+      "mainEvent": "Shields vs. Foster"
+    },
+    "pfl:2015-02-12:wsof18-moraes-vs-hill": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 18: Moraes vs. Hill",
+      "mainEvent": "Moraes vs. Hill"
+    },
+    "pfl:2015-03-28:wsof19-gaethje-vs-palomino": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 19: Gaethje vs. Palomino",
+      "mainEvent": "Gaethje vs. Palomino"
+    },
+    "pfl:2015-04-10:wsof20-branch-vs-mcelligott": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 20: Branch vs. McElligott",
+      "mainEvent": "Branch vs. McElligott"
+    },
+    "pfl:2015-06-05:wsof21-palmer-vs-horodecki": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 21: Palmer vs. Horodecki",
+      "mainEvent": "Palmer vs. Horodecki"
+    },
+    "pfl:2015-08-01:wsof22-palhares-vs-shields": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 22: Palhares vs. Shields",
+      "mainEvent": "Palhares vs. Shields"
+    },
+    "pfl:2015-09-18:wsof23-gaethje-vs-palomino-ii": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 23: Gaethje vs. Palomino II",
+      "mainEvent": "Gaethje vs. Palomino II"
+    },
+    "pfl:2015-10-17:wsof24-fitch-vs-okami": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 24: Fitch vs. Okami",
+      "mainEvent": "Fitch vs. Okami"
+    },
+    "pfl:2015-12-18:wsof26-palmer-vs-almeida": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 26: Palmer vs. Almeida",
+      "mainEvent": "Palmer vs. Almeida"
+    },
+    "pfl:2016-01-23:wsof27-firmino-vs-fodor": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 27: Firmino vs. Fodor",
+      "mainEvent": "Firmino vs. Fodor"
+    },
+    "pfl:2016-02-20:wsof28-moraes-vs-barajas": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 28: Moraes vs. Barajas",
+      "mainEvent": "Moraes vs. Barajas"
+    },
+    "pfl:2016-03-12:wsof29-gaethje-vs-foster": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 29: Gaethje vs. Foster",
+      "mainEvent": "Gaethje vs. Foster"
+    },
+    "pfl:2016-04-02:wsof30-branch-vs-starks": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 30: Branch vs. Starks",
+      "mainEvent": "Branch vs. Starks"
+    },
+    "pfl:2016-06-17:wsof31-ivanov-vs-copeland": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 31: Ivanov vs. Copeland",
+      "mainEvent": "Ivanov vs. Copeland"
+    },
+    "pfl:2016-07-30:wsof32-moraes-vs-hill-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 32: Moraes vs. Hill 2",
+      "mainEvent": "Moraes vs. Hill 2"
+    },
+    "pfl:2016-10-07:wsof33-branch-vs-magalhaes": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 33: Branch vs. Magalhães",
+      "mainEvent": "Branch vs. Magalhães"
+    },
+    "pfl:2016-12-31:wsof34-gaethje-vs-firmino": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 34: Gaethje vs. Firmino",
+      "mainEvent": "Gaethje vs. Firmino"
+    },
+    "pfl:2017-03-18:wsof35-ivanov-vs-jordan": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "World Series of Fighting 35: Ivanov vs. Jordan",
+      "mainEvent": "Ivanov vs. Jordan"
+    },
+    "pfl:2026-02-07:pfl-dubai-nurmagomedov-vs-davis": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "PFL Dubai: Nurmagomedov vs. Davis",
+      "mainEvent": "Nurmagomedov vs. Davis"
+    },
+    "pfl:2026-03-20:pfl-madrid-van-steenis-vs-edwards-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "PFL Madrid: van Steenis vs. Edwards 2",
+      "mainEvent": "van Steenis vs. Edwards 2"
+    },
+    "pfl:2026-03-28:pfl-pittsburgh-eblen-vs-battle": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "PFL Pittsburgh: Eblen vs. Battle",
+      "mainEvent": "Eblen vs. Battle"
+    },
+    "pfl:2026-04-11:pfl-chicago-pettis-vs-mckee": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "PFL Chicago: Pettis vs. McKee",
+      "mainEvent": "Pettis vs. McKee"
+    },
+    "pfl:2026-04-16:pfl-belfast-kelly-vs-wilson": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "PFL Belfast: Kelly vs. Wilson",
+      "mainEvent": "Kelly vs. Wilson"
+    },
+    "pfl:2026-05-02:pfl-sioux-falls-storley-vs-zendeli": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T07:52:23.839Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "PFL Sioux Falls: Storley vs. Zendeli",
+      "mainEvent": "Storley vs. Zendeli"
+    },
+    "pancrase:2018-10-21:pancrase-300": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2018/1021.html",
+      "mainEvent": "Takashi Sato vs. マット・ベイル"
+    },
+    "pancrase:2018-12-09:pancrase-302": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2018/1209.html",
+      "mainEvent": "Hiroyuki Tetsuka vs. Akihiro Murayama"
+    },
+    "pancrase:2018-12-24:pancrase-osaka": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2018/1224.html",
+      "mainEvent": "平田丈二 vs. 河村泰博"
+    },
+    "pancrase:2019-03-17:pancrase-303": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2019/0317.html",
+      "mainEvent": "Rafael Silva (fighter) vs. Kenta Takizawa"
+    },
+    "pancrase:2019-04-14:pancrase-304": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2019/0414.html",
+      "mainEvent": "Takasuke Kume vs. トム・サントス"
+    },
+    "pancrase:2019-05-26:pancrase-305": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2019/0526.html",
+      "mainEvent": "Nazareno Malegarie vs. ISAO"
+    },
+    "pancrase:2019-06-30:pancrase-306": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2019/0630.html",
+      "mainEvent": "Hiroyuki Tetsuka vs. Kenta Takagi"
+    },
+    "pancrase:2019-07-15:pancrase-osaka": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2019/0715.html",
+      "mainEvent": "獅庵 vs. 三村亘"
+    },
+    "pancrase:2019-07-21:pancrase-307": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2019/0721.html",
+      "mainEvent": "Mitsuhisa Sunabe vs. Daichi Kitakata"
+    },
+    "pancrase:2019-09-01:one-japan-series-road-to-century": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2019/0901.html",
+      "mainEvent": "Kleber Koike Erbst vs. Akiyo Nishiura"
+    },
+    "pancrase:2019-09-29:pancrase-308": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2019/0929.html",
+      "mainEvent": "サドゥロエフ・ソリホン vs. 粕谷優介"
+    },
+    "pancrase:2019-10-20:pancrase-309": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2019/1020.html",
+      "mainEvent": "ISAO vs. Kyle Aguon"
+    },
+    "pancrase:2019-11-10:pancrase-310": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2019/1110.html",
+      "mainEvent": "Kenta Takizawa vs. 石井逸人"
+    },
+    "pancrase:2019-11-17:pancrase-and-deep-osaka": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2019/1117.html",
+      "mainEvent": "Yoshiro Maeda vs. ペイヨングサック"
+    },
+    "pancrase:2019-12-08:pancrase-311": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2019/1208.html",
+      "mainEvent": "Emi Fujino vs. Jang Hyun-joo"
+    },
+    "pancrase:2020-02-16:pancrase-312": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2020/0216.html",
+      "mainEvent": "Yoshinori Horie vs. 内村洋次郎"
+    },
+    "pancrase:2020-07-24:pancrase-316": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2020/0724.html",
+      "mainEvent": "ISAO vs. Akira (given name)"
+    },
+    "pancrase:2020-08-09:pancrase-osaka": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2020/0809.html",
+      "mainEvent": "Hidekazu Fukushima vs. 平田丈二"
+    },
+    "pancrase:2020-08-23:pancrase-317": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2020/0823.html",
+      "mainEvent": "Taichi Nakajima vs. Yoshinori Horie"
+    },
+    "pancrase:2020-09-27:pancrase-318": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2020/0927.html",
+      "mainEvent": "林源平 vs. 雑賀 ヤン坊 達也"
+    },
+    "pancrase:2020-10-25:pancrase-319": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2020/1025.html",
+      "mainEvent": "Hiroto Uesako vs. Kōshi Matsumoto"
+    },
+    "pancrase:2020-11-29:deep-and-pancrase-osaka": {
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T07:52:28.735Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "List of Pancrase events",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2020/1129.html",
+      "mainEvent": "Tomohiro Adaniya vs. 秋葉太樹"
     }
   }
 }
