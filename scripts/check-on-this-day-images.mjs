@@ -31,27 +31,61 @@ function distance(entry) {
   return Math.min(direct, 366 - direct);
 }
 
-function label(entry) { return `${entry?.date || 'unknown'} ${clean(entry?.title) || '(untitled)'}`; }
-function exactEventImage(entry) {
-  if (entry?.kind !== 'event') return false;
-  if (!http(entry?.imageUrl)) return false;
-  const type = clean(entry?.imageSourceType);
-  const reason = clean(entry?.imageMatchReason).toLowerCase();
-  const confidence = Number(entry?.imageConfidence || 0);
-  return confidence >= 0.9 && (
-    ['official-promotion-page','tapology-event-page','archived-promotion-page'].includes(type) ||
-    reason.includes('exact') || /poster|event art/i.test(entry?.imageAlt || '')
-  );
+function isEvent(entry) {
+  return entry?.kind === 'event' || entry?.generatedBy === 'wikipedia-event-index';
 }
+
+function label(entry) {
+  return `${entry?.date || 'unknown'} ${clean(entry?.title) || '(untitled)'}`;
+}
+
+function verifiedEventPoster(entry) {
+  if (!isEvent(entry)) return false;
+  if (!http(entry?.imageUrl)) return false;
+  if (entry?.imagePosterVerified !== true) return false;
+  if (clean(entry?.imageArtifactType) !== 'event-poster') return false;
+  if (clean(entry?.imageSubjectType) !== 'event') return false;
+  if (Number(entry?.imageConfidence || 0) < 0.9) return false;
+  const type = clean(entry?.imageSourceType);
+  return [
+    'tapology-event-poster',
+    'official-promotion-event-poster',
+    'wikipedia-event-poster',
+    'archived-promotion-event-poster',
+    'verified-manual-event-poster'
+  ].includes(type);
+}
+
+const forbiddenEventImageTypes = new Set([
+  'event-article',
+  'official-promotion-fighter-fallback',
+  'promotion-or-media-headshot',
+  'fighter-fallback',
+  'wikimedia-commons-search',
+  'source-page',
+  'existing-image'
+]);
 
 for (const entry of entries) {
   const current = distance(entry) <= WINDOW_DAYS;
   const birthday = entry?.kind === 'birthday';
+  const event = isEvent(entry);
   const hasImage = http(entry?.imageUrl);
+  const hasPoster = verifiedEventPoster(entry);
 
-  if (current && !hasImage) failures.push(`current-window entry has no image: ${label(entry)}`);
+  if (current && event && !hasPoster) {
+    failures.push(`current-window event has no verified event poster: ${label(entry)}`);
+  } else if (current && !hasImage) {
+    failures.push(`current-window entry has no image: ${label(entry)}`);
+  }
+
   if (birthday && !hasImage) failures.push(`birthday entry has no image: ${label(entry)}`);
-  if (!current && !birthday && !hasImage) warnings.push(`archive entry still unresolved: ${label(entry)}`);
+
+  if (!current && event && !hasPoster) {
+    warnings.push(`archive event still needs a verified poster: ${label(entry)}`);
+  } else if (!current && !birthday && !event && !hasImage) {
+    warnings.push(`archive entry still unresolved: ${label(entry)}`);
+  }
 
   if (hasImage) {
     for (const field of ['imageCredit','imageSourceUrl','imageSourceType','imageConfidence','imageSubjectType','imageMatchReason']) {
@@ -63,12 +97,20 @@ for (const entry of entries) {
     if (!['event','fighter','moment'].includes(entry.imageSubjectType)) failures.push(`${label(entry)} imageSubjectType is invalid`);
   }
 
-  if (entry?.kind === 'event' && entry?.imageSourceType === 'existing-image' && Number(entry?.imageConfidence || 0) >= 0.9) {
-    warnings.push(`high-confidence event still uses generic existing-image provenance: ${label(entry)}`);
+  if (event && hasImage && forbiddenEventImageTypes.has(clean(entry?.imageSourceType))) {
+    failures.push(`event is using a non-poster image source: ${label(entry)} (${clean(entry.imageSourceType)})`);
   }
 
-  if (entry?.kind === 'event' && entry?.imageFallbackExactAvailable === true && !exactEventImage(entry)) {
-    failures.push(`event uses a fallback even though an exact event image is cached: ${label(entry)}`);
+  if (event && hasImage && clean(entry?.imageSubjectType) === 'fighter') {
+    failures.push(`event is using a fighter image instead of the event poster: ${label(entry)}`);
+  }
+
+  if (event && entry?.imagePosterVerified === true && clean(entry?.imageArtifactType) !== 'event-poster') {
+    failures.push(`event poster verification metadata is inconsistent: ${label(entry)}`);
+  }
+
+  if (event && entry?.imageFallbackExactAvailable === true && !hasPoster) {
+    failures.push(`event uses a fallback even though an exact event poster is cached: ${label(entry)}`);
   }
 }
 
@@ -77,6 +119,7 @@ if (warnings.length) {
   for (const warning of warnings.slice(0, 80)) console.warn(`- ${warning}`);
   if (warnings.length > 80) console.warn(`- ...and ${warnings.length - 80} more archive warnings`);
 }
+
 if (failures.length) {
   console.error(`On This Day image QA failed (${failures.length}):`);
   for (const failure of failures) console.error(`- ${failure}`);
@@ -84,5 +127,8 @@ if (failures.length) {
 }
 
 const current = entries.filter(entry => distance(entry) <= WINDOW_DAYS);
+const currentEvents = current.filter(isEvent);
 const birthdays = entries.filter(entry => entry?.kind === 'birthday');
-console.log(`On This Day image QA passed: ${current.length}/${current.length} current-window entries and ${birthdays.length}/${birthdays.length} birthdays have images with provenance metadata.`);
+const verifiedPosters = entries.filter(verifiedEventPoster);
+console.log(`On This Day image QA passed: ${current.length} current-window entries, ${currentEvents.length} current-window event posters, and ${birthdays.length} birthdays passed strict image checks.`);
+console.log(`Verified event-poster coverage: ${verifiedPosters.length}/${entries.filter(isEvent).length}.`);
