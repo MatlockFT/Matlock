@@ -84,8 +84,17 @@ jobs:
           node --check scripts/resolve-espn-fighter-portraits.mjs
           node --check scripts/enrich-fighter-portraits.mjs
           node --check scripts/validate-upcoming-events.mjs
+          node --check scripts/ufc-roster-identity.mjs
+          node --check scripts/build-ufc-canonical-roster.mjs
+          node --check scripts/normalize-ufc-roster-events.mjs
+          node --check scripts/validate-ufc-roster-output.mjs
           node --check scripts/publish-scheduled-posts.mjs
           node --check scripts/summarize-lighthouse.mjs
+
+      - name: Check UFC roster identity behavior
+        run: |
+          node scripts/normalize-ufc-roster-events.mjs --self-test
+          node scripts/build-ufc-canonical-roster.mjs --self-test
 
       - name: Check Event Map poster sanitizer behavior
         run: node scripts/sanitize-event-map-posters.mjs --self-test
