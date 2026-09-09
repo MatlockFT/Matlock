@@ -2,6 +2,12 @@ import { existsSync, readdirSync, readFileSync, appendFileSync } from 'node:fs';
 import { basename, resolve } from 'node:path';
 
 const reportDir = resolve(process.argv[2] || 'lighthouse-reports');
+const limits = {
+    score: 0.70,
+    lcp: 4000,
+    tbt: 700,
+    cls: 0.25
+};
 
 if (!existsSync(reportDir)) {
     throw new Error(`Lighthouse report directory does not exist: ${reportDir}`);
@@ -37,6 +43,19 @@ const rows = files.map(file => {
     };
 });
 
+const failuresFor = row => {
+    const failures = [];
+    if (Number.isFinite(row.score) && row.score < limits.score) failures.push(`Perf ${display(row.score, 'score')} < 70`);
+    if (Number.isFinite(row.lcp) && row.lcp > limits.lcp) failures.push(`LCP ${display(row.lcp)} > 4.00 s`);
+    if (Number.isFinite(row.tbt) && row.tbt > limits.tbt) failures.push(`TBT ${display(row.tbt)} > 700 ms`);
+    if (Number.isFinite(row.cls) && row.cls > limits.cls) failures.push(`CLS ${display(row.cls, 'cls')} > 0.250`);
+    return failures;
+};
+
+const failingRows = rows
+    .map(row => ({ row, failures: failuresFor(row) }))
+    .filter(item => item.failures.length);
+
 const header = '| Page | Perf | FCP | LCP | Speed Index | TBT | CLS |';
 const divider = '| --- | ---: | ---: | ---: | ---: | ---: | ---: |';
 const body = rows.map(row => [
@@ -49,11 +68,12 @@ const body = rows.map(row => [
     display(row.cls, 'cls')
 ].join(' | ') + ' |');
 
-const warningRows = rows.filter(row =>
-    (Number.isFinite(row.lcp) && row.lcp > 4000) ||
-    (Number.isFinite(row.tbt) && row.tbt > 600) ||
-    (Number.isFinite(row.cls) && row.cls > 0.25)
-);
+const gateLines = failingRows.length
+    ? [
+        `Performance gate failed on ${failingRows.length} page${failingRows.length === 1 ? '' : 's'}:`,
+        ...failingRows.map(({ row, failures }) => `- ${row}: ${failures.join('; ')}`)
+    ]
+    : ['Performance gate passed on all audited pages.'];
 
 const summary = [
     '## Mobile Lighthouse baseline',
@@ -62,9 +82,9 @@ const summary = [
     divider,
     ...body,
     '',
-    warningRows.length
-        ? `Review suggested: ${warningRows.map(row => row.page).join(', ')}.`
-        : 'No page crossed the broad lab warning thresholds (LCP > 4 s, TBT > 600 ms, or CLS > 0.25).',
+    ...gateLines,
+    '',
+    'Gate: performance >= 70, LCP <= 4.00 s, TBT <= 700 ms, CLS <= 0.250.',
     '',
     '_Lab measurements are useful for regression tracking. They are not field INP/Core Web Vitals data._',
     ''
@@ -74,4 +94,8 @@ console.log(summary);
 
 if (process.env.GITHUB_STEP_SUMMARY) {
     appendFileSync(process.env.GITHUB_STEP_SUMMARY, summary);
+}
+
+if (failingRows.length) {
+    process.exitCode = 1;
 }
