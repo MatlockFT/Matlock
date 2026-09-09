@@ -44,7 +44,8 @@ for (const [key, matching] of [...byDay.entries()].sort(([a], [b]) => a.localeCo
 
 const output = {
     version: 1,
-    generatedAt: new Date().toISOString(),
+    sourceVersion: data?.version ?? null,
+    generatedAt: data?.generatedAt || null,
     leads
 };
 
