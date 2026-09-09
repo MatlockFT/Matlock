@@ -70,6 +70,10 @@ jobs:
           node --check scripts/build-on-this-day-share-images.mjs
           node --check scripts/check-on-this-day-share.mjs
 
+      - name: Validate current poster fallback registry
+        run: |
+          node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-current-poster-fallbacks.json','utf8')); const allowed=new Set(['official-promotion-event-poster','wikipedia-event-poster','archived-promotion-event-poster','verified-manual-event-poster']); if(!Array.isArray(d.entries)||d.entries.length<10) process.exit(1); for(const e of d.entries){ if(!e.date||!e.title||!e.sourceUrl||!allowed.has(e.sourceType)||Number(e.confidence)<0.9) process.exit(1); }"
+
       - name: Apply deterministic hard-case image sources
         run: node scripts/apply-on-this-day-image-source-overrides.mjs
 
