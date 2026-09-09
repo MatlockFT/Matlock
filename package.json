@@ -12,7 +12,7 @@
     "build:history-share": "node scripts/build-on-this-day-share-images.mjs",
     "build:history-runtime": "node scripts/build-on-this-day-runtime.mjs",
     "check:history-runtime": "node scripts/build-on-this-day-runtime.mjs --check",
-    "resolve:history-images": "node scripts/resolve-on-this-day-images.mjs && node scripts/resolve-on-this-day-tapology-posters.mjs",
+    "resolve:history-images": "node scripts/resolve-on-this-day-images.mjs && node scripts/resolve-on-this-day-tapology-posters.mjs && node scripts/sanitize-on-this-day-tapology-posters.mjs",
     "build:frontend": "node scripts/build-frontend-bundles.mjs",
     "check:frontend": "node scripts/build-frontend-bundles.mjs --check",
     "check:integrity": "node scripts/check-repository-integrity.mjs",
