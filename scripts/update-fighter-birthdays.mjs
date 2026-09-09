@@ -3,8 +3,8 @@ import fs from "node:fs/promises";
 const HISTORY_PATH = process.argv[2] || "assets/data/on-this-day.json";
 const SEEDS_PATH = process.argv[3] || "assets/data/fighter-birthday-seeds.json";
 const PORTRAITS_PATH = process.argv[4] || "assets/fighter-portraits.json";
-const USER_AGENT = "MMA-Matlock-BirthdayArchive/1.0 (+https://mmamatlock.com/on-this-day/)";
-const REQUEST_ATTEMPTS = 3;
+const USER_AGENT = "MMA-Matlock-BirthdayArchive/1.1 (+https://mmamatlock.com/on-this-day/)";
+const REQUEST_ATTEMPTS = 5;
 const REQUEST_TIMEOUT_MS = 20000;
 const WIKIPEDIA_BATCH = 40;
 const WIKIDATA_BATCH = 45;
@@ -18,6 +18,7 @@ const key = value => clean(value)
     .trim();
 const slug = value => key(value).replace(/\s+/g, "-") || "fighter";
 const chunks = (items, size) => Array.from({ length: Math.ceil(items.length / size) }, (_, index) => items.slice(index * size, (index + 1) * size));
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 async function readJson(path, fallback = null) {
     try {
@@ -26,6 +27,14 @@ async function readJson(path, fallback = null) {
         if (fallback !== null && error?.code === "ENOENT") return fallback;
         throw error;
     }
+}
+
+function retryAfterMs(response) {
+    const value = clean(response?.headers?.get?.("retry-after"));
+    if (!value) return 0;
+    if (/^\d+(?:\.\d+)?$/.test(value)) return Math.ceil(Number(value) * 1000);
+    const when = Date.parse(value);
+    return Number.isFinite(when) ? Math.max(0, when - Date.now()) : 0;
 }
 
 async function requestJson(url) {
@@ -40,11 +49,23 @@ async function requestJson(url) {
                     accept: "application/json"
                 }
             });
-            if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-            return await response.json();
+
+            if (response.ok) return await response.json();
+
+            const error = new Error(`${response.status} ${response.statusText}`);
+            lastError = error;
+            const retryable = [429, 500, 502, 503, 504].includes(response.status);
+            if (!retryable || attempt >= REQUEST_ATTEMPTS) throw error;
+
+            const serverDelay = retryAfterMs(response);
+            const exponentialDelay = Math.min(16000, 1500 * (2 ** (attempt - 1))) + Math.floor(Math.random() * 400);
+            await sleep(Math.max(serverDelay, exponentialDelay));
+            continue;
         } catch (error) {
             lastError = error;
-            if (attempt < REQUEST_ATTEMPTS) await new Promise(resolve => setTimeout(resolve, 600 * attempt));
+            if (attempt >= REQUEST_ATTEMPTS) break;
+            if (/^(?:429|5\d\d)\b/.test(clean(error?.message))) continue;
+            await sleep(Math.min(12000, 1000 * (2 ** (attempt - 1))));
         }
     }
     throw lastError || new Error(`Request failed: ${url}`);
@@ -98,6 +119,7 @@ async function resolveWikipedia(seeds) {
                 pageTitle: page.title
             });
         }
+        await sleep(300);
     }
 
     return resolved;
@@ -138,6 +160,7 @@ async function loadBirthClaims(records) {
                 break;
             }
         }
+        await sleep(300);
     }
 
     return birthByQid;
