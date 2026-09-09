@@ -123,6 +123,17 @@
         return element("span", "news-coverage-chip", `${story.coverageCount} sources`);
     }
 
+    function imageCredit(story) {
+        const credit = story.imageCredit;
+        if (!credit?.source || !/^https?:\/\//i.test(credit.url || "")) return null;
+
+        return externalLink(
+            credit.url,
+            "news-image-credit",
+            `Image: ${credit.source}`
+        );
+    }
+
     function appendMeta(container, story, includeTopLabel = false) {
         if (includeTopLabel) {
             container.append(element("span", "news-top-label", "Top story"));
@@ -236,6 +247,8 @@
         if (!addImage(media, story, "news-lead-media", true)) {
             media.append(element("span", "news-lead-placeholder", story.source || "MMA News"));
         }
+        const credit = imageCredit(story);
+        if (credit) media.append(credit);
 
         const content = element("div", "news-lead-content");
         const meta = element("div", "news-lead-meta");

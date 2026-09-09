@@ -122,6 +122,10 @@ for (const [index, story] of stories.entries()) {
         imageCount += 1;
         if (!httpUrl(story.image)) failures.push(`${label} has invalid image URL`);
     }
+    if (story.imageCredit) {
+        if (!clean(story.imageCredit.source)) failures.push(`${label} has an incomplete image credit`);
+        if (!httpUrl(story.imageCredit.url)) failures.push(`${label} has an invalid image credit URL`);
+    }
     if (story.sourceUrl && !httpUrl(story.sourceUrl)) failures.push(`${label} has invalid sourceUrl`);
 
     const coverageCount = Number(story.coverageCount || 1);
