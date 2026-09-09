@@ -151,7 +151,7 @@
         modal.innerHTML = `
             <div class="otd-share-panel">
                 <header class="otd-share-header">
-                    <div><p class="otd-share-kicker">Cut &amp; Paste Archive</p><h2 id="otd-share-title">Share This Moment</h2></div>
+                    <div><p class="otd-share-kicker">Oversized Fight Archive</p><h2 id="otd-share-title">Share This Moment</h2></div>
                     <button type="button" class="otd-share-close" data-otd-share-close aria-label="Close share builder">×</button>
                 </header>
                 <div class="otd-share-workspace">
@@ -418,14 +418,14 @@
         const { width: w, height: h } = format;
         const pad = Math.round(w * 0.047);
         const anniversary = entry.headline.toUpperCase();
-        const titleLines = balancedWrap(entry.title.toUpperCase(), format === FORMATS.story ? 21 : 23, 3);
+        const titleLines = balancedWrap(entry.title.toUpperCase(), format === FORMATS.social ? 22 : 21, 3);
         const longest = Math.max(1, ...titleLines.map(textUnits));
-        const baseTitleSize = Math.round(w * (format === FORMATS.story ? 0.069 : 0.064));
-        const titleSize = Math.max(Math.round(baseTitleSize * 0.68), Math.min(baseTitleSize, Math.floor((w - pad * 2.2) / (longest * 0.77))));
-        const lineHeight = Math.round(titleSize * 1.13);
-        const titleY = Math.round(h * (format === FORMATS.story ? 0.75 : format === FORMATS.social ? 0.69 : 0.72));
-        const imageY = Math.round(h * (format === FORMATS.story ? 0.14 : 0.13));
-        const imageH = Math.round(h * (format === FORMATS.story ? 0.55 : format === FORMATS.social ? 0.49 : 0.54));
+        const baseTitleSize = Math.round(w * (format === FORMATS.story ? 0.078 : format === FORMATS.social ? 0.076 : 0.074));
+        const titleSize = Math.max(Math.round(baseTitleSize * 0.72), Math.min(baseTitleSize, Math.floor((w - pad * 2.2) / (longest * 0.77))));
+        const lineHeight = Math.round(titleSize * 1.01);
+        const titleY = Math.round(h * (format === FORMATS.story ? 0.79 : format === FORMATS.social ? 0.72 : 0.75));
+        const imageY = Math.round(h * (format === FORMATS.story ? 0.12 : 0.115));
+        const imageH = Math.round(h * (format === FORMATS.story ? 0.65 : format === FORMATS.social ? 0.60 : 0.64));
         const creditY = h - Math.round(w * 0.082);
         const footerY = h - Math.round(w * 0.05);
         const isPoster = source && source.width / source.height < 0.82;
@@ -435,7 +435,9 @@
             : `<rect x="${pad}" y="${imageY}" width="${w - pad * 2}" height="${imageH}" fill="#090909"/><text x="50%" y="${imageY + imageH * .63}" text-anchor="middle" fill="none" stroke="#eeeae0" stroke-width="4" opacity=".28" font-family="Arial Narrow,Arial,sans-serif" font-weight="900" font-size="${Math.round(w * 0.34)}">${escapeXml(entry.year || 'MMA')}</text>`;
         const titleMarkup = titleLines.map((line, index) => {
             const y = titleY + index * lineHeight;
-            return `<g transform="rotate(${index % 2 ? '.6' : '-.7'} ${w / 2} ${y})"><polygon points="${pad - 10},${y - Math.round(titleSize * .84)} ${w - pad + 5},${y - Math.round(titleSize * .80)} ${w - pad - 2},${y + Math.round(titleSize * .27)} ${pad - 5},${y + Math.round(titleSize * .22)}" fill="#f1eee4"/><polygon points="${pad - 5},${y - Math.round(titleSize * .79)} ${w - pad},${y - Math.round(titleSize * .75)} ${w - pad - 7},${y + Math.round(titleSize * .22)} ${pad},${y + Math.round(titleSize * .17)}" fill="#080808"/><text x="${pad + Math.round(w * .016)}" y="${y}" fill="#f1eee4" font-family="Arial Narrow,Arial,sans-serif" font-size="${titleSize}" font-weight="900">${escapeXml(line)}</text></g>`;
+            const x = pad + (index % 2 ? Math.round(w * .016) : 0);
+            const stroke = Math.max(9, Math.round(titleSize * .15));
+            return `<g transform="rotate(${index % 2 ? '.35' : '-.4'} ${w / 2} ${y})"><text x="${x + 7}" y="${y + 7}" fill="none" stroke="#f1eee4" stroke-width="3" opacity=".22" font-family="Arial Narrow,Arial,sans-serif" font-size="${titleSize}" font-weight="900">${escapeXml(line)}</text><text x="${x}" y="${y}" fill="#f1eee4" stroke="#080808" stroke-width="${stroke}" paint-order="stroke fill" font-family="Arial Narrow,Arial,sans-serif" font-size="${titleSize}" font-weight="900">${escapeXml(line)}</text></g>`;
         }).join('');
         const credit = entry.imageCredit ? `IMAGE: ${entry.imageCredit.toUpperCase()}` : 'ARCHIVAL IMAGE / SOURCE ON PAGE';
         return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
@@ -446,12 +448,12 @@
             </defs>
             <rect width="${w}" height="${h}" fill="#080808"/>
             <rect width="${w}" height="${h}" fill="#f1eee4" filter="url(#paper)" opacity=".18"/>
-            <polygon points="${pad - 11},${Math.round(h * .027)} ${Math.round(w * .754)},${Math.round(h * .025)} ${Math.round(w * .764)},${Math.round(h * .098)} ${pad - 4},${Math.round(h * .103)}" fill="#f1eee4"/>
-            <polygon points="${pad - 7},${Math.round(h * .03)} ${Math.round(w * .75)},${Math.round(h * .028)} ${Math.round(w * .76)},${Math.round(h * .095)} ${pad},${Math.round(h * .10)}" fill="#080808"/>
-            <text x="${pad + Math.round(w * .02)}" y="${Math.round(h * .079)}" fill="#f1eee4" font-family="Arial Narrow,Arial,sans-serif" font-size="${Math.round(w * .055)}" font-weight="900">${escapeXml(anniversary)}</text>
-            <text x="${w - pad}" y="${Math.round(h * .064)}" text-anchor="end" fill="#f1eee4" font-family="monospace" font-size="${Math.round(w * .015)}" font-weight="700">MMA HISTORY / ARCHIVE</text>
+            <text x="${pad}" y="${Math.round(h * (format === FORMATS.story ? .076 : .086))}" fill="#f1eee4" stroke="#080808" stroke-width="${Math.round(w * .010)}" paint-order="stroke fill" font-family="Arial Narrow,Arial,sans-serif" font-size="${Math.round(w * .066)}" font-weight="900">${escapeXml(anniversary)}</text>
+            <text x="${w - pad}" y="${Math.round(h * (format === FORMATS.story ? .067 : .071))}" text-anchor="end" fill="#f1eee4" font-family="monospace" font-size="${Math.round(w * .015)}" font-weight="700">MMA HISTORY / ARCHIVE</text>
+            <path d="M ${pad} ${Math.round(h * (format === FORMATS.story ? .108 : .126))} H ${w - pad}" stroke="#f1eee4" stroke-width="4"/>
             ${imageMarkup}
             ${titleMarkup}
+            <rect x="${pad}" y="${titleY + lineHeight * titleLines.length + Math.round(w * .02)}" width="${Math.round(w * .22)}" height="${Math.round(w * .016)}" fill="#f1eee4"/>
             <polygon points="${pad - 16},${creditY - Math.round(w * .025)} ${w - pad + 10},${creditY - Math.round(w * .019)} ${w - pad + 14},${h} ${pad - 12},${h}" fill="#f1eee4" opacity=".94"/>
             <text x="${pad}" y="${creditY}" fill="#090909" opacity=".7" font-family="monospace" font-size="${Math.round(w * .013)}" font-weight="700">${escapeXml(credit)}</text>
             <path d="M ${pad} ${creditY + 12} H ${w - pad}" stroke="#080808" stroke-width="2"/>

@@ -13,7 +13,7 @@ const TEXTURE_PATH = process.env.OTD_SHARE_TEXTURE_PATH || 'assets/textures/otd-
 const WINDOW_DAYS = Math.max(0, Number(process.env.OTD_SHARE_WINDOW_DAYS || 2));
 const MAX_PER_DAY = Math.max(1, Number(process.env.OTD_SHARE_MAX_PER_DAY || 12));
 const CONCURRENCY = Math.max(1, Math.min(6, Number(process.env.OTD_SHARE_CONCURRENCY || 3)));
-const USER_AGENT = 'MMA-Matlock-OnThisDay-Share/4.0 (+https://mmamatlock.com/on-this-day/)';
+const USER_AGENT = 'MMA-Matlock-OnThisDay-Share/5.0 (+https://mmamatlock.com/on-this-day/)';
 const MAX_OFFICIAL_IMAGES = 2;
 
 const FORMATS = {
@@ -382,10 +382,10 @@ async function supplementalLayers(supplemental, formatName, seed) {
   const { width: w, height: h } = FORMATS[formatName];
   const count = Math.min(MAX_OFFICIAL_IMAGES, supplemental.length);
   const specs = count === 1
-    ? [{ x: 0.60, y: formatName === 'story' ? 0.31 : 0.27, width: 0.40, height: formatName === 'story' ? 0.46 : 0.50, angle: 2.2 }]
+    ? [{ x: 0.57, y: formatName === 'story' ? 0.29 : 0.24, width: 0.45, height: formatName === 'story' ? 0.51 : 0.56, angle: 2.2 }]
     : [
-        { x: -0.015, y: formatName === 'story' ? 0.33 : 0.25, width: 0.34, height: formatName === 'story' ? 0.43 : 0.49, angle: -2.4 },
-        { x: 0.69, y: formatName === 'story' ? 0.31 : 0.24, width: 0.34, height: formatName === 'story' ? 0.43 : 0.49, angle: 2.3 }
+        { x: -0.03, y: formatName === 'story' ? 0.30 : 0.22, width: 0.39, height: formatName === 'story' ? 0.49 : 0.56, angle: -2.4 },
+        { x: 0.65, y: formatName === 'story' ? 0.28 : 0.21, width: 0.39, height: formatName === 'story' ? 0.49 : 0.56, angle: 2.3 }
       ];
   const layers = [];
 
@@ -394,10 +394,10 @@ async function supplementalLayers(supplemental, formatName, seed) {
     const source = supplemental[index];
     const isEventPhoto = source.role === 'event-photo';
     const eventSpec = {
-      x: 0.51,
-      y: formatName === 'story' ? 0.38 : formatName === 'social' ? 0.30 : 0.29,
-      width: formatName === 'story' ? 0.47 : 0.46,
-      height: formatName === 'story' ? 0.20 : formatName === 'social' ? 0.27 : 0.25,
+      x: 0.45,
+      y: formatName === 'story' ? 0.36 : formatName === 'social' ? 0.28 : 0.28,
+      width: formatName === 'story' ? 0.56 : 0.55,
+      height: formatName === 'story' ? 0.24 : formatName === 'social' ? 0.32 : 0.30,
       angle: 2.1
     };
     const activeSpec = isEventPhoto ? eventSpec : spec;
@@ -439,20 +439,16 @@ function topMatterSvg(entry, formatName, seed) {
   const anniversary = age > 0 ? `${age} ${age === 1 ? 'YEAR' : 'YEARS'} AGO` : 'ON THIS DAY';
   const year = String(entry?.date || '').slice(0, 4) || 'MMA';
   const pad = Math.round(w * 0.045);
-  const barY = Math.round(h * 0.032);
-  const barH = Math.round(w * (formatName === 'story' ? 0.12 : 0.105));
-  const barW = Math.round(w * (formatName === 'social' ? 0.68 : 0.72));
+  const topY = Math.round(h * (formatName === 'story' ? 0.076 : 0.086));
+  const ruleY = Math.round(h * (formatName === 'story' ? 0.108 : 0.126));
   const issue = `ARCHIVE / ${monthDay(entry?.date).replace('-', '.') || '00.00'}`;
-  const registration = roughPolygon(pad - 7, barY - 3, barW + 14, barH + 6, seed ^ 0x9191, 8, 13);
-  const registrationEdge = roughPolygon(pad - 11, barY - 7, barW + 22, barH + 14, seed ^ 0x7272, 10, 13);
   return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
     <text x="${w - pad}" y="${Math.round(h * 0.39)}" text-anchor="end" fill="none" stroke="${PAPER}" stroke-width="3" opacity=".2" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.31)}" font-weight="900" transform="rotate(-90 ${w - pad} ${Math.round(h * 0.39)})">${escapeXml(year)}</text>
-    <polygon points="${registrationEdge}" fill="${PAPER}" opacity=".92"/>
-    <polygon points="${registration}" fill="${INK}"/>
-    <text x="${pad + Math.round(w * 0.024)}" y="${barY + Math.round(barH * 0.68)}" fill="${PAPER}" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.055)}" font-weight="900" letter-spacing="1">${escapeXml(anniversary)}</text>
-    <text x="${w - pad}" y="${barY + Math.round(barH * 0.45)}" text-anchor="end" fill="${PAPER}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.015)}" font-weight="700" letter-spacing="1.5">${escapeXml(issue)}</text>
-    <text x="${w - pad}" y="${barY + Math.round(barH * 0.73)}" text-anchor="end" fill="${PAPER}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.015)}" font-weight="700" letter-spacing="1.5">MMA HISTORY</text>
-    <path d="M ${pad} ${barY + barH + 16} H ${w - pad}" stroke="${PAPER}" stroke-width="3" stroke-dasharray="22 9 4 9" opacity=".82"/>
+    <text x="${pad}" y="${topY}" fill="${PAPER}" stroke="${INK}" stroke-width="${Math.round(w * 0.010)}" paint-order="stroke fill" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.066)}" font-weight="900" letter-spacing=".5">${escapeXml(anniversary)}</text>
+    <text x="${w - pad}" y="${topY - Math.round(w * 0.018)}" text-anchor="end" fill="${PAPER}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.015)}" font-weight="700" letter-spacing="1.5">${escapeXml(issue)}</text>
+    <text x="${w - pad}" y="${topY + Math.round(w * 0.010)}" text-anchor="end" fill="${PAPER}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.015)}" font-weight="700" letter-spacing="1.5">MMA HISTORY</text>
+    <path d="M ${pad} ${ruleY} H ${w - pad}" stroke="${PAPER}" stroke-width="4"/>
+    <path d="M ${pad} ${ruleY + 10} H ${Math.round(w * 0.44)}" stroke="${PAPER}" stroke-width="2" stroke-dasharray="4 12" opacity=".55"/>
   </svg>`;
 }
 
@@ -480,22 +476,21 @@ function titleAndFooterSvg(entry, formatName, seed, titleY, imageCredit = clean(
   const { width: w, height: h } = FORMATS[formatName];
   const pad = Math.round(w * 0.047);
   const title = clean(entry.title).toUpperCase();
-  const lines = balancedWrap(title, formatName === 'story' ? 21 : formatName === 'social' ? 24 : 23, 3);
-  const baseSize = Math.round(w * (formatName === 'story' ? 0.069 : formatName === 'social' ? 0.068 : 0.064));
+  const lines = balancedWrap(title, formatName === 'social' ? 22 : 21, 3);
+  const baseSize = Math.round(w * (formatName === 'story' ? 0.078 : formatName === 'social' ? 0.076 : 0.074));
   const fontSize = fitDisplaySize(baseSize, lines, w - pad * 2.25, 0.77);
-  const lineHeight = Math.round(fontSize * 1.13);
+  const lineHeight = Math.round(fontSize * 1.01);
   const random = rng(seed ^ 0x551122);
-  let strips = '';
+  let titleMarkup = '';
   lines.forEach((line, index) => {
     const y = titleY + index * lineHeight;
-    const stripH = Math.round(fontSize * 1.03);
-    const estimated = Math.round(textUnits(line) * fontSize * 0.73 + w * 0.064);
-    const stripW = Math.min(w - pad * 1.12, Math.max(Math.round(w * 0.28), estimated));
-    const x = pad + Math.round((random() - 0.5) * w * 0.018);
-    const angle = ((random() - 0.5) * 2.2).toFixed(2);
-    const polygon = roughPolygon(x, y - Math.round(fontSize * 0.78), stripW, stripH, seed ^ (index * 919 + 0x33), 10, 11);
-    const edge = roughPolygon(x - 5, y - Math.round(fontSize * 0.78) - 5, stripW + 10, stripH + 10, seed ^ (index * 727 + 0x91), 12, 11);
-    strips += `<g transform="rotate(${angle} ${x + stripW / 2} ${y})"><polygon points="${edge}" fill="${PAPER}" opacity=".94"/><polygon points="${polygon}" fill="${INK}"/><text x="${x + Math.round(w * 0.018)}" y="${y}" fill="${PAPER}" font-family="${DISPLAY_FONT}" font-size="${fontSize}" font-weight="900" letter-spacing="-.5">${escapeXml(line)}</text></g>`;
+    const x = pad + Math.round((index % 2 ? 0.016 : 0) * w) + Math.round((random() - 0.5) * w * 0.010);
+    const angle = ((random() - 0.5) * 1.15).toFixed(2);
+    const stroke = Math.max(9, Math.round(fontSize * 0.15));
+    titleMarkup += `<g transform="rotate(${angle} ${w / 2} ${y})">
+      <text x="${x + 7}" y="${y + 7}" fill="none" stroke="${PAPER}" stroke-width="3" opacity=".22" font-family="${DISPLAY_FONT}" font-size="${fontSize}" font-weight="900" letter-spacing="-.8">${escapeXml(line)}</text>
+      <text x="${x}" y="${y}" fill="${PAPER}" stroke="${INK}" stroke-width="${stroke}" paint-order="stroke fill" font-family="${DISPLAY_FONT}" font-size="${fontSize}" font-weight="900" letter-spacing="-.8">${escapeXml(line)}</text>
+    </g>`;
   });
   const promotion = clean(entry.promotion).toUpperCase();
   const credit = clean(imageCredit);
@@ -504,7 +499,8 @@ function titleAndFooterSvg(entry, formatName, seed, titleY, imageCredit = clean(
   const footerY = h - Math.round(w * 0.052);
   const creditY = h - Math.round(w * 0.082);
   return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
-    ${strips}
+    ${titleMarkup}
+    <rect x="${pad}" y="${titleY + lineHeight * lines.length + Math.round(w * 0.020)}" width="${Math.round(w * 0.22)}" height="${Math.round(w * 0.016)}" fill="${PAPER}"/>
     <polygon points="${pad - 16},${creditY - Math.round(w * 0.025)} ${w - pad + 10},${creditY - Math.round(w * 0.019)} ${w - pad + 14},${h} ${pad - 12},${h}" fill="${PAPER}" opacity=".94"/>
     <text x="${pad}" y="${creditY}" fill="${INK}" opacity=".72" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.013)}" font-weight="700" letter-spacing=".7">${escapeXml(creditLine)}</text>
     <path d="M ${pad} ${creditY + 12} H ${w - pad}" stroke="#070707" stroke-width="2"/>
@@ -524,8 +520,6 @@ function noImageSvg(entry, formatName, seed) {
   const titleSize = fitDisplaySize(baseTitleSize, lines, w - pad * 2.15, 0.76);
   const lineHeight = Math.round(titleSize * 1.04);
   const titleY = Math.round(h * (formatName === 'story' ? 0.43 : 0.40));
-  const blockH = lineHeight * lines.length + Math.round(w * 0.11);
-  const paperPoly = roughPolygon(pad * 0.55, titleY - Math.round(w * 0.095), w - pad * 1.1, blockH, seed ^ 0x31337, 20, 16);
   const age = yearsAgo(entry);
   const anniversary = age > 0 ? `${age} ${age === 1 ? 'YEAR' : 'YEARS'} AGO` : 'ON THIS DAY';
   const creditY = h - Math.round(w * 0.082);
@@ -533,15 +527,13 @@ function noImageSvg(entry, formatName, seed) {
   const ghostLabel = `${clean(entry.promotion || 'MMA').toUpperCase()} / ${title}`;
   const ghostY = Math.round(h * (formatName === 'story' ? 0.66 : 0.67));
   const issueY = Math.round(h * (formatName === 'story' ? 0.79 : 0.78));
-  const issuePoly = roughPolygon(pad, issueY - Math.round(w * 0.045), Math.round(w * 0.55), Math.round(w * 0.075), seed ^ 0x8181, 9, 12);
   return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
     <rect width="${w}" height="${h}" fill="${INK}"/>
     <text x="${Math.round(w * 0.51)}" y="${Math.round(h * 0.35)}" text-anchor="middle" fill="none" stroke="${PAPER}" stroke-width="4" opacity=".24" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.36)}" font-weight="900" transform="rotate(-6 ${w / 2} ${h * 0.35})">${escapeXml(year)}</text>
-    <polygon points="${roughPolygon(pad, Math.round(h * 0.06), Math.round(w * 0.68), Math.round(w * 0.105), seed ^ 0x1177, 12, 12)}" fill="${INK}" stroke="${PAPER}" stroke-width="5"/>
-    <text x="${pad + Math.round(w * 0.022)}" y="${Math.round(h * 0.06 + w * 0.072)}" fill="${PAPER}" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.052)}" font-weight="900">${escapeXml(anniversary)}</text>
+    <text x="${pad}" y="${Math.round(h * (formatName === 'story' ? 0.10 : 0.115))}" fill="${PAPER}" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.066)}" font-weight="900">${escapeXml(anniversary)}</text>
     <text x="${w - pad}" y="${Math.round(h * 0.09)}" text-anchor="end" fill="${PAPER}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.017)}" font-weight="700">MMA HISTORY / ${escapeXml(monthDay(entry?.date).replace('-', '.'))}</text>
-    <polygon points="${paperPoly}" fill="${INK}" stroke="${PAPER}" stroke-width="6"/>
-    <text fill="${PAPER}" font-family="${DISPLAY_FONT}" font-size="${titleSize}" font-weight="900">${lines.map((line, index) => `<tspan x="${pad}" y="${titleY + index * lineHeight}">${escapeXml(line)}</tspan>`).join('')}</text>
+    <path d="M ${pad} ${Math.round(h * (formatName === 'story' ? 0.125 : 0.14))} H ${w - pad}" stroke="${PAPER}" stroke-width="4"/>
+    <text fill="${PAPER}" stroke="${INK}" stroke-width="${Math.round(titleSize * 0.14)}" paint-order="stroke fill" font-family="${DISPLAY_FONT}" font-size="${titleSize}" font-weight="900">${lines.map((line, index) => `<tspan x="${pad}" y="${titleY + index * lineHeight}">${escapeXml(line)}</tspan>`).join('')}</text>
     <rect x="${pad}" y="${titleY + lineHeight * lines.length + Math.round(w * 0.035)}" width="${Math.round(w * 0.48)}" height="${Math.round(w * 0.024)}" fill="${PAPER}"/>
     <g opacity=".13" fill="none" stroke="${PAPER}" stroke-width="2" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.072)}" font-weight="900" letter-spacing="2" transform="rotate(-4 ${w / 2} ${ghostY})">
       <text x="${-Math.round(w * 0.05)}" y="${ghostY}">${escapeXml(ghostLabel)}</text>
@@ -552,8 +544,8 @@ function noImageSvg(entry, formatName, seed) {
       <circle cx="${Math.round(w * 0.82)}" cy="${issueY}" r="${Math.round(w * 0.085)}"/>
       <path d="M ${Math.round(w * 0.70)} ${issueY} H ${Math.round(w * 0.94)} M ${Math.round(w * 0.82)} ${issueY - Math.round(w * 0.12)} V ${issueY + Math.round(w * 0.12)}"/>
     </g>
-    <polygon points="${issuePoly}" fill="${PAPER}"/>
-    <text x="${pad + Math.round(w * 0.018)}" y="${issueY + Math.round(w * 0.006)}" fill="${INK}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.018)}" font-weight="700" letter-spacing="1.5">TYPE ARCHIVE / ISSUE ${escapeXml(monthDay(entry?.date).replace('-', '.'))}</text>
+    <path d="M ${pad} ${issueY - Math.round(w * 0.035)} H ${Math.round(w * 0.57)}" stroke="${PAPER}" stroke-width="3"/>
+    <text x="${pad}" y="${issueY + Math.round(w * 0.006)}" fill="${PAPER}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.018)}" font-weight="700" letter-spacing="1.5">TYPE ARCHIVE / ISSUE ${escapeXml(monthDay(entry?.date).replace('-', '.'))}</text>
     <text x="${Math.round(w * 0.985)}" y="${Math.round(h * 0.83)}" fill="${PAPER}" opacity=".22" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.013)}" font-weight="700" letter-spacing="2" transform="rotate(-90 ${Math.round(w * 0.985)} ${Math.round(h * 0.83)})">MMAMATLOCK.COM / NO PHOTO FILED</text>
     <text x="${pad}" y="${creditY}" fill="${PAPER_MID}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.014)}" font-weight="700">NO EVENT IMAGE AVAILABLE / TYPE ARCHIVE EDITION</text>
     <path d="M ${pad} ${creditY + 12} H ${w - pad}" stroke="${PAPER}" stroke-width="2"/>
@@ -564,9 +556,9 @@ function noImageSvg(entry, formatName, seed) {
 }
 
 const PHOTO_LAYOUTS = {
-  post: { x: 18, y: 175, width: 1044, height: 720, titleY: 965 },
-  story: { x: 18, y: 238, width: 1044, height: 1070, titleY: 1410 },
-  social: { x: 18, y: 158, width: 1164, height: 580, titleY: 815 }
+  post: { x: -14, y: 145, width: 1108, height: 840, titleY: 1000 },
+  story: { x: -14, y: 208, width: 1108, height: 1250, titleY: 1488 },
+  social: { x: -15, y: 136, width: 1230, height: 690, titleY: 842 }
 };
 
 async function renderPhoto(entry, formatName, imageBuffer, supplemental, seed) {
@@ -598,22 +590,22 @@ async function renderPoster(entry, formatName, imageBuffer, sourceMeta, suppleme
   const { width: w, height: h, quality } = FORMATS[formatName];
   const hasSupplemental = supplemental.length > 0;
   const maxW = Math.round(w * (hasSupplemental
-    ? (formatName === 'story' ? 0.63 : 0.59)
-    : (formatName === 'story' ? 0.72 : 0.67)));
+    ? (formatName === 'story' ? 0.78 : 0.73)
+    : (formatName === 'story' ? 0.80 : 0.76)));
   const maxH = Math.round(h * (hasSupplemental
-    ? (formatName === 'story' ? 0.62 : formatName === 'social' ? 0.56 : 0.60)
-    : (formatName === 'story' ? 0.69 : formatName === 'social' ? 0.63 : 0.67)));
+    ? (formatName === 'story' ? 0.68 : formatName === 'social' ? 0.64 : 0.73)
+    : (formatName === 'story' ? 0.72 : formatName === 'social' ? 0.68 : 0.76)));
   const scale = Math.min(maxW / sourceMeta.width, maxH / sourceMeta.height);
   const pieceW = Math.max(260, Math.round(sourceMeta.width * scale));
   const pieceH = Math.max(340, Math.round(sourceMeta.height * scale));
   const angle = ((hashInt(`${seed}:poster-angle`) % 25) - 12) / 10;
   const cutout = await cutoutImage(imageBuffer, pieceW, pieceH, seed, imagePosition(entry), angle, true);
   const cutoutMeta = await sharp(cutout).metadata();
-  const posterCenterY = Math.round(h * (formatName === 'story' ? 0.43 : 0.40));
-  const posterCenterX = hasSupplemental && supplemental.length === 1 ? w * 0.39 : w * 0.5;
+  const posterCenterY = Math.round(h * (formatName === 'story' ? 0.40 : 0.42));
+  const posterCenterX = hasSupplemental && supplemental.length === 1 ? w * 0.42 : w * 0.5;
   const left = Math.max(0, Math.round(posterCenterX - cutoutMeta.width / 2));
   const top = Math.max(Math.round(h * 0.13), Math.round(posterCenterY - cutoutMeta.height / 2));
-  const titleY = Math.round(h * (formatName === 'story' ? 0.79 : formatName === 'social' ? 0.73 : 0.76));
+  const titleY = Math.round(h * (formatName === 'story' ? 0.79 : formatName === 'social' ? 0.72 : 0.75));
   const base = await paperCanvas(w, h);
   const officialLayers = await supplementalLayers(supplemental, formatName, seed);
   const imageCredit = combinedImageCredit(entry, supplemental);
@@ -654,7 +646,7 @@ async function renderNoImage(entry, formatName, seed) {
 }
 
 async function renderEntry(entry, formatName, imageBuffer, supplemental) {
-  const seed = hashInt(`${entryAnchor(entry)}:${formatName}:xerox-collage-v4`);
+  const seed = hashInt(`${entryAnchor(entry)}:${formatName}:xerox-editorial-v5`);
   if (!imageBuffer) return renderNoImage(entry, formatName, seed);
   let metadata;
   try { metadata = await sharp(imageBuffer).rotate().metadata(); }
@@ -692,9 +684,9 @@ await fs.mkdir(path.dirname(MANIFEST_PATH), { recursive: true });
 
 const imageCache = new Map();
 const manifest = {
-  version: 4,
-  renderer: 'sharp-xerox-collage-v4',
-  style: 'inverse-black-collage-v2',
+  version: 5,
+  renderer: 'sharp-xerox-editorial-v5',
+  style: 'oversized-editorial-collage-v1',
   generatedAt,
   publicBase: PUBLIC_BASE,
   windowDays: WINDOW_DAYS,
@@ -760,4 +752,4 @@ await mapLimit(entries, CONCURRENCY, async entry => {
 });
 
 await fs.writeFile(MANIFEST_PATH, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
-console.log(`On This Day share renderer v4: ${entries.length} entries, ${entries.length * Object.keys(FORMATS).length} images, ${targetMonthDays(WINDOW_DAYS).join(', ')}.`);
+console.log(`On This Day share renderer v5: ${entries.length} entries, ${entries.length * Object.keys(FORMATS).length} images, ${targetMonthDays(WINDOW_DAYS).join(', ')}.`);

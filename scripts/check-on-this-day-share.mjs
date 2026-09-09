@@ -23,15 +23,16 @@ catch { failures.push('share manifest must be valid JSON'); manifest = {}; }
 if (!page.includes('/assets/otd-share-bootstrap.js')) failures.push('On This Day page must load the share bootstrap');
 if (!bootstrap.includes('/assets/otd-share-v3.js')) failures.push('share bootstrap must lazy-load otd-share-v3.js');
 if (page.includes('/assets/otd-share-v2.js')) failures.push('On This Day page must not load the retired otd-share-v2.js');
-for (const marker of ['MANIFEST_URL', 'buildFallbackSvg', 'balancedWrap', 'textUnits', 'imageSources', 'svgToJpeg', 'Cut &amp; Paste Archive', 'Instagram Post', 'Instagram Story']) {
+for (const marker of ['MANIFEST_URL', 'buildFallbackSvg', 'balancedWrap', 'textUnits', 'imageSources', 'svgToJpeg', 'Oversized Fight Archive', 'Instagram Post', 'Instagram Story']) {
   if (!runtime.includes(marker)) failures.push(`otd-share-v3.js missing marker: ${marker}`);
 }
 if (runtime.includes('function wrapApprox')) failures.push('browser fallback must use balanced title wrapping, not greedy wrapping');
 
 if (!textureStat?.isFile() || textureStat.size < 10000) failures.push('share renderer xerox texture is missing or unexpectedly small');
 if (Number(manifest?.version || 0) < 3) failures.push('share manifest version must be at least 3');
-if (!['sharp-xerox-cutout-v3', 'sharp-xerox-collage-v4'].includes(manifest?.renderer)) failures.push('share manifest must identify a supported xerox renderer');
-if (Number(manifest?.version || 0) >= 4 && manifest?.style !== 'inverse-black-collage-v2') failures.push('v4 share manifest must identify the inverse collage style');
+if (!['sharp-xerox-cutout-v3', 'sharp-xerox-collage-v4', 'sharp-xerox-editorial-v5'].includes(manifest?.renderer)) failures.push('share manifest must identify a supported xerox renderer');
+if (Number(manifest?.version || 0) === 4 && manifest?.style !== 'inverse-black-collage-v2') failures.push('v4 share manifest must identify the inverse collage style');
+if (Number(manifest?.version || 0) >= 5 && manifest?.style !== 'oversized-editorial-collage-v1') failures.push('v5 share manifest must identify the oversized editorial collage style');
 if (manifest?.texture !== '/assets/textures/otd-xerox-paper-v1.webp') failures.push('share manifest must identify the v1 xerox paper texture');
 if (!manifest?.formats || typeof manifest.formats !== 'object') failures.push('share manifest formats object is required');
 else {
@@ -71,4 +72,4 @@ if (failures.length) {
   console.error('On This Day share validation failed:\n- ' + failures.join('\n- '));
   process.exit(1);
 }
-console.log(`On This Day share system valid: ${Object.keys(manifest.entries || {}).length} pre-rendered entries; inverse credited SVG browser fallback present.`);
+console.log(`On This Day share system valid: ${Object.keys(manifest.entries || {}).length} pre-rendered entries; oversized editorial SVG browser fallback present.`);
