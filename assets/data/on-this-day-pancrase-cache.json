@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 1,
-  "updatedAt": "2026-09-08T23:56:29.112Z",
+  "updatedAt": "2026-09-09T00:03:49.838Z",
   "fighters": {
     "船木誠勝": {
       "checkedAt": "2026-09-08T07:03:33.069Z",
@@ -666,6 +666,67 @@
       "checkedAt": "2026-09-08T23:56:29.112Z",
       "status": "unresolved",
       "error": "No Wikidata match"
+    },
+    "kei 山宮": {
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "マルロン・サンドロ": {
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "resolved",
+      "wikidataId": "Q3849706",
+      "englishName": "Marlon Sandro"
+    },
+    "花井岳文": {
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "大堀竜二": {
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "パンチィー山内": {
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "resolved",
+      "wikidataId": "Q62018825",
+      "englishName": "Panchii Yamauchi"
+    },
+    "滝田 j太郎": {
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "和田拓也": {
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "resolved",
+      "wikidataId": "Q11418012",
+      "englishName": "Takuya Wada (mixed martial artist)"
+    },
+    "坂口征夫": {
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "resolved",
+      "wikidataId": "Q8060747",
+      "englishName": "Yukio Sakaguchi"
+    },
+    "キム・キーボン": {
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "unresolved",
+      "error": "No Wikidata match"
+    },
+    "鈴木槙吾": {
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "resolved",
+      "wikidataId": "Q116937109",
+      "englishName": "Shingo Suzuki (mixed martial artist)"
+    },
+    "久松勇二": {
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "resolved",
+      "wikidataId": "Q11369428",
+      "englishName": "Yūji Hisamatsu"
     }
   },
   "entries": {
@@ -4618,6 +4679,456 @@
       "image": {
         "strategyVersion": 1,
         "checkedAt": "2026-09-08T23:56:29.112Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2007-10-27:pancrase-hybrid-bout-in-utsunomiya-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2007/1027.html"
+      }
+    },
+    "pancrase:2007-11-28:pancrase-rising-9": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2007/1128.html",
+        "rawNames": [
+          "中西裕一",
+          "竹内出"
+        ],
+        "englishNames": [
+          "Yūichi Nakanishi",
+          "Izuru Takeuchi"
+        ],
+        "mainEvent": "Yūichi Nakanishi vs. Izuru Takeuchi"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Yūichi Nakanishi",
+        "imageFileTitle": "File:Yuichi Kaido, Photographed by Ryota Nakanishi.JPG"
+      }
+    },
+    "pancrase:2007-12-16:pancrase-2007-korea-neo-blood-tournament": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2007/1216.html"
+      }
+    },
+    "pancrase:2007-12-22:pancrase-rising-10": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2007/1222.html",
+        "rawNames": [
+          "川村亮",
+          "KEI 山宮"
+        ],
+        "englishNames": [
+          "Ryo Kawamura",
+          "KEI 山宮"
+        ],
+        "mainEvent": "Ryo Kawamura vs. KEI 山宮"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Ryo Kawamura",
+        "imageFileTitle": "File:Japanese newscaster kawamura ryo.jpg"
+      }
+    },
+    "pancrase:2008-01-30:pancrase-shining-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0130.html",
+        "rawNames": [
+          "井上克也",
+          "北岡悟"
+        ],
+        "englishNames": [
+          "Katsuya Inoue",
+          "Satoru Kitaoka"
+        ],
+        "mainEvent": "Katsuya Inoue vs. Satoru Kitaoka"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2008-03-23:pancrase-2008-neo-blood-tournament-eliminations": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-main-event",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0323.html"
+      }
+    },
+    "pancrase:2008-03-26:pancrase-shining-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0326.html",
+        "rawNames": [
+          "志田幹",
+          "マルロン・サンドロ"
+        ],
+        "englishNames": [
+          "Miki Shida",
+          "Marlon Sandro"
+        ],
+        "mainEvent": "Miki Shida vs. Marlon Sandro"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2008-04-27:pancrase-shining-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0427.html",
+        "rawNames": [
+          "近藤有己",
+          "KEI山宮"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Keiichiro Yamamiya"
+        ],
+        "mainEvent": "Yuki Kondo vs. Keiichiro Yamamiya"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2008-05-25:pancrase-shining-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0525.html",
+        "rawNames": [
+          "花澤大介13",
+          "花井岳文"
+        ],
+        "englishNames": [
+          "Daisuke Hanazawa",
+          "花井岳文"
+        ],
+        "mainEvent": "Daisuke Hanazawa vs. 花井岳文"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2008-06-01:pancrase-shining-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0601.html",
+        "rawNames": [
+          "KEI山宮",
+          "金原弘光"
+        ],
+        "englishNames": [
+          "Keiichiro Yamamiya",
+          "Hiromitsu Kanehara"
+        ],
+        "mainEvent": "Keiichiro Yamamiya vs. Hiromitsu Kanehara"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2008-06-29:pancrase-real-2008": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0629.html"
+      }
+    },
+    "pancrase:2008-08-27:pancrase-shining-6": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0827.html",
+        "rawNames": [
+          "近藤有己",
+          "大堀竜二"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "大堀竜二"
+        ],
+        "mainEvent": "Yuki Kondo vs. 大堀竜二"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2008-09-07:pancrase-shining-7": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0907.html",
+        "rawNames": [
+          "藤原大地",
+          "パンチィー山内"
+        ],
+        "englishNames": [
+          "藤原大地",
+          "Panchii Yamauchi"
+        ],
+        "mainEvent": "藤原大地 vs. Panchii Yamauchi"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2008-10-01:pancrase-shining-8": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/1001.html",
+        "rawNames": [
+          "KEI山宮",
+          "川村亮"
+        ],
+        "englishNames": [
+          "Keiichiro Yamamiya",
+          "Ryo Kawamura"
+        ],
+        "mainEvent": "Keiichiro Yamamiya vs. Ryo Kawamura"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "commons-headliner-image",
+        "fighterName": "Ryo Kawamura",
+        "imageFileTitle": "File:Japanese newscaster kawamura ryo.jpg"
+      }
+    },
+    "pancrase:2008-10-26:pancrase-shining-9": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/1026.html",
+        "rawNames": [
+          "マルロン・サンドロ",
+          "滝田 J太郎"
+        ],
+        "englishNames": [
+          "Marlon Sandro",
+          "滝田 J太郎"
+        ],
+        "mainEvent": "Marlon Sandro vs. 滝田 J太郎"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2008-12-07:pancrase-shining-10": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/1207.html",
+        "rawNames": [
+          "井上克也",
+          "大石幸史"
+        ],
+        "englishNames": [
+          "Katsuya Inoue",
+          "Koji Oishi"
+        ],
+        "mainEvent": "Katsuya Inoue vs. Koji Oishi"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2009-02-01:pancrase-changing-tour-1": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2009/0201.html",
+        "rawNames": [
+          "井上克也",
+          "花澤大介13"
+        ],
+        "englishNames": [
+          "Katsuya Inoue",
+          "Daisuke Hanazawa"
+        ],
+        "mainEvent": "Katsuya Inoue vs. Daisuke Hanazawa"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2009-04-05:pancrase-changing-tour-2": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2009/0405.html",
+        "rawNames": [
+          "和田拓也",
+          "岩見谷智義"
+        ],
+        "englishNames": [
+          "Takuya Wada (mixed martial artist)",
+          "岩見谷智義"
+        ],
+        "mainEvent": "Takuya Wada (mixed martial artist) vs. 岩見谷智義"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2009-05-24:pancrase-pancrase-gate-2009": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-main-event",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2009/0524.html"
+      }
+    },
+    "pancrase:2009-06-07:pancrase-changing-tour-3": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2009/0607.html",
+        "rawNames": [
+          "坂口征夫",
+          "北岡悟"
+        ],
+        "englishNames": [
+          "Yukio Sakaguchi",
+          "Satoru Kitaoka"
+        ],
+        "mainEvent": "Yukio Sakaguchi vs. Satoru Kitaoka"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2009-07-26:pancrase-pancrase-gate-2009": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-main-event",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2009/0726.html"
+      }
+    },
+    "pancrase:2009-08-08:pancrase-changing-tour-4": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2009/0808.html",
+        "rawNames": [
+          "近藤有己",
+          "キム・キーボン"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "キム・キーボン"
+        ],
+        "mainEvent": "Yuki Kondo vs. キム・キーボン"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2009-10-17:pancrase-changing-tour-5": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2009/1017.html",
+        "rawNames": [
+          "岩見谷智義",
+          "鈴木槙吾"
+        ],
+        "englishNames": [
+          "岩見谷智義",
+          "Shingo Suzuki (mixed martial artist)"
+        ],
+        "mainEvent": "岩見谷智義 vs. Shingo Suzuki (mixed martial artist)"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "no-headliner-image"
+      }
+    },
+    "pancrase:2009-10-25:pancrase-changing-tour-6": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
+        "status": "main-event-found",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2009/1025.html",
+        "rawNames": [
+          "近藤有己",
+          "久松勇二"
+        ],
+        "englishNames": [
+          "Yuki Kondo",
+          "Yūji Hisamatsu"
+        ],
+        "mainEvent": "Yuki Kondo vs. Yūji Hisamatsu"
+      },
+      "image": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-09T00:03:49.838Z",
         "status": "no-headliner-image"
       }
     }

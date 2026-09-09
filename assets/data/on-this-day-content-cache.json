@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 2,
-  "updatedAt": "2026-09-08T23:56:29.112Z",
+  "updatedAt": "2026-09-09T00:03:49.838Z",
   "entries": {
     "pancrase:2013-04-21:pancrase-sakaguchi-dojo-vs-pancrase": {
       "strategyVersion": 1,
@@ -4401,11 +4401,13 @@
       "wikipediaTitle": "2007 in Pancrase"
     },
     "pancrase:2007-11-28:pancrase-rising-9": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T17:00:04.092Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2007 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2007 in Pancrase#Pancrase: Rising 9",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2007/1128.html",
+      "mainEvent": "Yūichi Nakanishi vs. Izuru Takeuchi"
     },
     "pancrase:2007-12-16:pancrase-2007-korea-neo-blood-tournament": {
       "strategyVersion": 1,
@@ -4415,18 +4417,22 @@
       "wikipediaTitle": "2007 in Pancrase"
     },
     "pancrase:2007-12-22:pancrase-rising-10": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T17:00:04.092Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2007 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2007 in Pancrase#Pancrase: Rising 10",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2007/1222.html",
+      "mainEvent": "Ryo Kawamura vs. KEI 山宮"
     },
     "pancrase:2008-01-30:pancrase-shining-1": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T17:00:04.092Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2008 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 1",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0130.html",
+      "mainEvent": "Katsuya Inoue vs. Satoru Kitaoka"
     },
     "pancrase:2008-03-23:pancrase-2008-neo-blood-tournament-eliminations": {
       "strategyVersion": 1,
@@ -4436,32 +4442,40 @@
       "wikipediaTitle": "2008 in Pancrase"
     },
     "pancrase:2008-03-26:pancrase-shining-2": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T17:00:04.092Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2008 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 2",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0326.html",
+      "mainEvent": "Miki Shida vs. Marlon Sandro"
     },
     "pancrase:2008-04-27:pancrase-shining-3": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T17:00:04.092Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2008 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 3",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0427.html",
+      "mainEvent": "Yuki Kondo vs. Keiichiro Yamamiya"
     },
     "pancrase:2008-05-25:pancrase-shining-4": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T17:00:04.092Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2008 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 4",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0525.html",
+      "mainEvent": "Daisuke Hanazawa vs. 花井岳文"
     },
     "pancrase:2008-06-01:pancrase-shining-5": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T17:00:04.092Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2008 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 5",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0601.html",
+      "mainEvent": "Keiichiro Yamamiya vs. Hiromitsu Kanehara"
     },
     "pancrase:2008-06-29:pancrase-real-2008": {
       "strategyVersion": 1,
@@ -4471,53 +4485,67 @@
       "wikipediaTitle": "2008 in Pancrase"
     },
     "pancrase:2008-08-27:pancrase-shining-6": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T17:00:04.092Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2008 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 6",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0827.html",
+      "mainEvent": "Yuki Kondo vs. 大堀竜二"
     },
     "pancrase:2008-09-07:pancrase-shining-7": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T17:00:04.092Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2008 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 7",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0907.html",
+      "mainEvent": "藤原大地 vs. Panchii Yamauchi"
     },
     "pancrase:2008-10-01:pancrase-shining-8": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T17:00:04.092Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2008 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 8",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/1001.html",
+      "mainEvent": "Keiichiro Yamamiya vs. Ryo Kawamura"
     },
     "pancrase:2008-10-26:pancrase-shining-9": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T21:52:17.289Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2008 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 9",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/1026.html",
+      "mainEvent": "Marlon Sandro vs. 滝田 J太郎"
     },
     "pancrase:2008-12-07:pancrase-shining-10": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T21:52:17.289Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2008 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2008 in Pancrase#Pancrase: Shining 10",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/1207.html",
+      "mainEvent": "Katsuya Inoue vs. Koji Oishi"
     },
     "pancrase:2009-02-01:pancrase-changing-tour-1": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T21:52:17.289Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2009 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2009 in Pancrase#Pancrase: Changing Tour 1",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2009/0201.html",
+      "mainEvent": "Katsuya Inoue vs. Daisuke Hanazawa"
     },
     "pancrase:2009-04-05:pancrase-changing-tour-2": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T21:52:17.289Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2009 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2009 in Pancrase#Pancrase: Changing Tour 2",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2009/0405.html",
+      "mainEvent": "Takuya Wada (mixed martial artist) vs. 岩見谷智義"
     },
     "pancrase:2009-05-24:pancrase-pancrase-gate-2009": {
       "strategyVersion": 1,
@@ -4527,11 +4555,13 @@
       "wikipediaTitle": "2009 in Pancrase"
     },
     "pancrase:2009-06-07:pancrase-changing-tour-3": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T21:52:17.289Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2009 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2009 in Pancrase#Pancrase: Changing Tour 3",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2009/0607.html",
+      "mainEvent": "Yukio Sakaguchi vs. Satoru Kitaoka"
     },
     "pancrase:2009-07-26:pancrase-pancrase-gate-2009": {
       "strategyVersion": 1,
@@ -4541,25 +4571,31 @@
       "wikipediaTitle": "2009 in Pancrase"
     },
     "pancrase:2009-08-08:pancrase-changing-tour-4": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T21:52:17.289Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2009 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2009 in Pancrase#Pancrase: Changing Tour 4",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2009/0808.html",
+      "mainEvent": "Yuki Kondo vs. キム・キーボン"
     },
     "pancrase:2009-10-17:pancrase-changing-tour-5": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T21:52:17.289Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2009 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2009 in Pancrase#Pancrase: Changing Tour 5",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2009/1017.html",
+      "mainEvent": "岩見谷智義 vs. Shingo Suzuki (mixed martial artist)"
     },
     "pancrase:2009-10-25:pancrase-changing-tour-6": {
-      "strategyVersion": 1,
-      "checkedAt": "2026-09-08T21:52:17.289Z",
-      "status": "no-main-event",
-      "sourceType": "wikipedia-structured",
-      "wikipediaTitle": "2009 in Pancrase"
+      "strategyVersion": 2,
+      "checkedAt": "2026-09-09T00:03:49.838Z",
+      "status": "main-event-found",
+      "sourceType": "pancrase-official",
+      "wikipediaTitle": "2009 in Pancrase#Pancrase: Changing Tour 6",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2009/1025.html",
+      "mainEvent": "Yuki Kondo vs. Yūji Hisamatsu"
     },
     "pancrase:2009-11-08:pancrase-changing-tour-7": {
       "strategyVersion": 1,
@@ -6970,6 +7006,646 @@
       "sourceType": "event-title",
       "wikipediaTitle": "UFC 194",
       "mainEvent": "Aldo vs. McGregor"
+    },
+    "ufc:2015-12-19:ufc-on-fox-dos-anjos-vs-cowboy-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on Fox: dos Anjos vs. Cowboy 2",
+      "mainEvent": "dos Anjos vs. Cowboy 2"
+    },
+    "ufc:2016-01-02:ufc-195-lawler-vs-condit": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 195",
+      "mainEvent": "Lawler vs. Condit"
+    },
+    "ufc:2016-01-17:ufc-fight-night-dillashaw-vs-cruz": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Dillashaw vs. Cruz",
+      "mainEvent": "Dillashaw vs. Cruz"
+    },
+    "ufc:2016-01-30:ufc-on-fox-johnson-vs-bader": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on Fox: Johnson vs. Bader",
+      "mainEvent": "Johnson vs. Bader"
+    },
+    "ufc:2016-02-06:ufc-fight-night-hendricks-vs-thompson": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Hendricks vs. Thompson",
+      "mainEvent": "Hendricks vs. Thompson"
+    },
+    "ufc:2016-02-21:ufc-fight-night-cowboy-vs-cowboy": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Cowboy vs. Cowboy",
+      "mainEvent": "Cowboy vs. Cowboy"
+    },
+    "ufc:2016-02-27:ufc-fight-night-silva-vs-bisping": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Silva vs. Bisping",
+      "mainEvent": "Silva vs. Bisping"
+    },
+    "ufc:2016-03-05:ufc-196-mcgregor-vs-diaz": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 196",
+      "mainEvent": "McGregor vs. Diaz"
+    },
+    "ufc:2016-03-20:ufc-fight-night-hunt-vs-mir": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Hunt vs. Mir",
+      "mainEvent": "Hunt vs. Mir"
+    },
+    "ufc:2016-04-10:ufc-fight-night-rothwell-vs-dos-santos": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Rothwell vs. dos Santos",
+      "mainEvent": "Rothwell vs. dos Santos"
+    },
+    "ufc:2016-04-16:ufc-on-fox-teixeira-vs-evans": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on Fox: Teixeira vs. Evans",
+      "mainEvent": "Teixeira vs. Evans"
+    },
+    "ufc:2016-04-23:ufc-197-jones-vs-saint-preux": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 197",
+      "mainEvent": "Jones vs. Saint Preux"
+    },
+    "ufc:2016-05-08:ufc-fight-night-overeem-vs-arlovski": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Overeem vs. Arlovski",
+      "mainEvent": "Overeem vs. Arlovski"
+    },
+    "ufc:2016-05-14:ufc-198-werdum-vs-miocic": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 198",
+      "mainEvent": "Werdum vs. Miocic"
+    },
+    "ufc:2016-05-29:ufc-fight-night-almeida-vs-garbrandt": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Almeida vs. Garbrandt",
+      "mainEvent": "Almeida vs. Garbrandt"
+    },
+    "ufc:2016-06-04:ufc-199-rockhold-vs-bisping-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 199",
+      "mainEvent": "Rockhold vs. Bisping 2"
+    },
+    "ufc:2016-06-18:ufc-fight-night-macdonald-vs-thompson": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: MacDonald vs. Thompson",
+      "mainEvent": "MacDonald vs. Thompson"
+    },
+    "ufc:2016-07-07:ufc-fight-night-dos-anjos-vs-alvarez": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: dos Anjos vs. Alvarez",
+      "mainEvent": "dos Anjos vs. Alvarez"
+    },
+    "ufc:2016-07-08:the-ultimate-fighter-team-joanna-vs-team-claudia-finale": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "The Ultimate Fighter: Team Joanna vs. Team Cláudia",
+      "mainEvent": "Team Joanna vs. Team Cláudia Finale"
+    },
+    "ufc:2016-07-09:ufc-200-tate-vs-nunes": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 200",
+      "mainEvent": "Tate vs. Nunes"
+    },
+    "ufc:2016-07-13:ufc-fight-night-mcdonald-vs-lineker": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: McDonald vs. Lineker",
+      "mainEvent": "McDonald vs. Lineker"
+    },
+    "ufc:2016-07-23:ufc-on-fox-holm-vs-shevchenko": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on Fox: Holm vs. Shevchenko",
+      "mainEvent": "Holm vs. Shevchenko"
+    },
+    "ufc:2016-07-30:ufc-201-lawler-vs-woodley": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 201",
+      "mainEvent": "Lawler vs. Woodley"
+    },
+    "ufc:2016-08-06:ufc-fight-night-rodriguez-vs-caceres": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Rodríguez vs. Caceres",
+      "mainEvent": "Rodríguez vs. Caceres"
+    },
+    "ufc:2016-08-20:ufc-202-diaz-vs-mcgregor-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 202",
+      "mainEvent": "Diaz vs. McGregor 2"
+    },
+    "ufc:2016-08-27:ufc-on-fox-maia-vs-condit": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on Fox: Maia vs. Condit",
+      "mainEvent": "Maia vs. Condit"
+    },
+    "ufc:2016-09-03:ufc-fight-night-arlovski-vs-barnett": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Arlovski vs. Barnett",
+      "mainEvent": "Arlovski vs. Barnett"
+    },
+    "ufc:2016-09-10:ufc-203-miocic-vs-overeem": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 203",
+      "mainEvent": "Miocic vs. Overeem"
+    },
+    "ufc:2016-09-17:ufc-fight-night-poirier-vs-johnson": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Poirier vs. Johnson",
+      "mainEvent": "Poirier vs. Johnson"
+    },
+    "ufc:2016-09-24:ufc-fight-night-cyborg-vs-lansberg": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Cyborg vs. Länsberg",
+      "mainEvent": "Cyborg vs. Länsberg"
+    },
+    "ufc:2016-10-01:ufc-fight-night-lineker-vs-dodson": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Lineker vs. Dodson",
+      "mainEvent": "Lineker vs. Dodson"
+    },
+    "ufc:2016-10-08:ufc-204-bisping-vs-henderson-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 204",
+      "mainEvent": "Bisping vs. Henderson 2"
+    },
+    "ufc:2016-11-05:the-ultimate-fighter-latin-america-3-finale-dos-anjos-vs-ferguson": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "The Ultimate Fighter: Latin America 3",
+      "mainEvent": "dos Anjos vs. Ferguson"
+    },
+    "ufc:2016-11-12:ufc-205-alvarez-vs-mcgregor": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 205",
+      "mainEvent": "Alvarez vs. McGregor"
+    },
+    "ufc:2016-11-19:ufc-fight-night-bader-vs-nogueira-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Bader vs. Nogueira 2",
+      "mainEvent": "Bader vs. Nogueira 2"
+    },
+    "ufc:2016-11-19:ufc-fight-night-mousasi-vs-hall-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Mousasi vs. Hall 2",
+      "mainEvent": "Mousasi vs. Hall 2"
+    },
+    "ufc:2016-11-27:ufc-fight-night-whittaker-vs-brunson": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Whittaker vs. Brunson",
+      "mainEvent": "Whittaker vs. Brunson"
+    },
+    "ufc:2016-12-09:ufc-fight-night-lewis-vs-abdurakhimov": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Lewis vs. Abdurakhimov",
+      "mainEvent": "Lewis vs. Abdurakhimov"
+    },
+    "ufc:2016-12-10:ufc-206-holloway-vs-pettis": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 206",
+      "mainEvent": "Holloway vs. Pettis"
+    },
+    "ufc:2016-12-17:ufc-on-fox-vanzant-vs-waterson": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on Fox: VanZant vs. Waterson",
+      "mainEvent": "VanZant vs. Waterson"
+    },
+    "ufc:2016-12-30:ufc-207-nunes-vs-rousey": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 207",
+      "mainEvent": "Nunes vs. Rousey"
+    },
+    "ufc:2017-01-15:ufc-fight-night-rodriguez-vs-penn": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Rodríguez vs. Penn",
+      "mainEvent": "Rodríguez vs. Penn"
+    },
+    "ufc:2017-01-28:ufc-on-fox-shevchenko-vs-pena": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on Fox: Shevchenko vs. Peña",
+      "mainEvent": "Shevchenko vs. Peña"
+    },
+    "ufc:2017-02-04:ufc-fight-night-bermudez-vs-the-korean-zombie": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Bermudez vs. The Korean Zombie",
+      "mainEvent": "Bermudez vs. The Korean Zombie"
+    },
+    "ufc:2017-02-11:ufc-208-holm-vs-de-randamie": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 208",
+      "mainEvent": "Holm vs. de Randamie"
+    },
+    "ufc:2017-02-19:ufc-fight-night-lewis-vs-browne": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Lewis vs. Browne",
+      "mainEvent": "Lewis vs. Browne"
+    },
+    "ufc:2017-03-04:ufc-209-woodley-vs-thompson-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 209",
+      "mainEvent": "Woodley vs. Thompson 2"
+    },
+    "ufc:2017-03-11:ufc-fight-night-belfort-vs-gastelum": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Belfort vs. Gastelum",
+      "mainEvent": "Belfort vs. Gastelum"
+    },
+    "ufc:2017-03-18:ufc-fight-night-manuwa-vs-anderson": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Manuwa vs. Anderson",
+      "mainEvent": "Manuwa vs. Anderson"
+    },
+    "ufc:2017-04-08:ufc-210-cormier-vs-johnson-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 210",
+      "mainEvent": "Cormier vs. Johnson 2"
+    },
+    "ufc:2017-04-15:ufc-on-fox-johnson-vs-reis": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on Fox: Johnson vs. Reis",
+      "mainEvent": "Johnson vs. Reis"
+    },
+    "ufc:2017-04-22:ufc-fight-night-swanson-vs-lobov": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Swanson vs. Lobov",
+      "mainEvent": "Swanson vs. Lobov"
+    },
+    "ufc:2017-05-13:ufc-211-miocic-vs-dos-santos-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 211",
+      "mainEvent": "Miocic vs. dos Santos 2"
+    },
+    "ufc:2017-05-28:ufc-fight-night-gustafsson-vs-teixeira": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Gustafsson vs. Teixeira",
+      "mainEvent": "Gustafsson vs. Teixeira"
+    },
+    "ufc:2017-06-03:ufc-212-aldo-vs-holloway": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 212",
+      "mainEvent": "Aldo vs. Holloway"
+    },
+    "ufc:2017-06-11:ufc-fight-night-lewis-vs-hunt": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Lewis vs. Hunt",
+      "mainEvent": "Lewis vs. Hunt"
+    },
+    "ufc:2017-06-17:ufc-fight-night-holm-vs-correia": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Holm vs. Correia",
+      "mainEvent": "Holm vs. Correia"
+    },
+    "ufc:2017-06-25:ufc-fight-night-chiesa-vs-lee": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Chiesa vs. Lee",
+      "mainEvent": "Chiesa vs. Lee"
+    },
+    "ufc:2017-07-08:ufc-213-romero-vs-whittaker": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 213",
+      "mainEvent": "Romero vs. Whittaker"
+    },
+    "ufc:2017-07-16:ufc-fight-night-nelson-vs-ponzinibbio": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Nelson vs. Ponzinibbio",
+      "mainEvent": "Nelson vs. Ponzinibbio"
+    },
+    "ufc:2017-07-22:ufc-on-fox-weidman-vs-gastelum": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on Fox: Weidman vs. Gastelum",
+      "mainEvent": "Weidman vs. Gastelum"
+    },
+    "ufc:2017-07-29:ufc-214-cormier-vs-jones-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 214",
+      "mainEvent": "Cormier vs. Jones 2"
+    },
+    "ufc:2017-08-05:ufc-fight-night-pettis-vs-moreno": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Pettis vs. Moreno",
+      "mainEvent": "Pettis vs. Moreno"
+    },
+    "ufc:2017-09-02:ufc-fight-night-volkov-vs-struve": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Volkov vs. Struve",
+      "mainEvent": "Volkov vs. Struve"
+    },
+    "ufc:2017-09-09:ufc-215-nunes-vs-shevchenko-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 215",
+      "mainEvent": "Nunes vs. Shevchenko 2"
+    },
+    "ufc:2017-09-16:ufc-fight-night-rockhold-vs-branch": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Rockhold vs. Branch",
+      "mainEvent": "Rockhold vs. Branch"
+    },
+    "ufc:2017-09-23:ufc-fight-night-saint-preux-vs-okami": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Saint Preux vs. Okami",
+      "mainEvent": "Saint Preux vs. Okami"
+    },
+    "ufc:2017-10-07:ufc-216-ferguson-vs-lee": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 216",
+      "mainEvent": "Ferguson vs. Lee"
+    },
+    "ufc:2017-10-21:ufc-fight-night-cowboy-vs-till": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Cowboy vs. Till",
+      "mainEvent": "Cowboy vs. Till"
+    },
+    "ufc:2017-10-28:ufc-fight-night-brunson-vs-machida": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Brunson vs. Machida",
+      "mainEvent": "Brunson vs. Machida"
+    },
+    "ufc:2017-11-04:ufc-217-bisping-vs-st-pierre": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 217",
+      "mainEvent": "Bisping vs. St-Pierre"
+    },
+    "ufc:2017-11-11:ufc-fight-night-poirier-vs-pettis": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Poirier vs. Pettis",
+      "mainEvent": "Poirier vs. Pettis"
+    },
+    "ufc:2017-11-19:ufc-fight-night-werdum-vs-tybura": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Werdum vs. Tybura",
+      "mainEvent": "Werdum vs. Tybura"
+    },
+    "ufc:2017-11-25:ufc-fight-night-bisping-vs-gastelum": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Bisping vs. Gastelum",
+      "mainEvent": "Bisping vs. Gastelum"
+    },
+    "ufc:2017-12-02:ufc-218-holloway-vs-aldo-2": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 218",
+      "mainEvent": "Holloway vs. Aldo 2"
+    },
+    "ufc:2017-12-09:ufc-fight-night-swanson-vs-ortega": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Swanson vs. Ortega",
+      "mainEvent": "Swanson vs. Ortega"
+    },
+    "ufc:2017-12-16:ufc-on-fox-lawler-vs-dos-anjos": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC on Fox: Lawler vs. dos Anjos",
+      "mainEvent": "Lawler vs. dos Anjos"
+    },
+    "ufc:2017-12-30:ufc-219-cyborg-vs-holm": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 219",
+      "mainEvent": "Cyborg vs. Holm"
+    },
+    "ufc:2018-01-14:ufc-fight-night-stephens-vs-choi": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Stephens vs. Choi",
+      "mainEvent": "Stephens vs. Choi"
+    },
+    "ufc:2018-01-20:ufc-220-miocic-vs-ngannou": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-09T00:03:44.952Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC 220",
+      "mainEvent": "Miocic vs. Ngannou"
     }
   }
 }
