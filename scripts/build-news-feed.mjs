@@ -10,6 +10,9 @@ const MINIMUM_HEALTHY_SOURCES = 4;
 const MINIMUM_STORIES = 20;
 const ARTICLE_IMAGE_CONCURRENCY = 6;
 const ARTICLE_IMAGE_TIMEOUT = 12000;
+const LEAD_IMAGE_CANDIDATE_LIMIT = 6;
+const LEAD_IMAGE_MAX_BYTES = 250 * 1024;
+const IMAGE_PROBE_TIMEOUT = 6000;
 
 const feeds = [
     {
@@ -428,6 +431,40 @@ async function fetchArticleImage(story) {
     }
 }
 
+async function imageContentLength(value) {
+    const url = safeUrl(value);
+    if (!url) return Number.NaN;
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), IMAGE_PROBE_TIMEOUT);
+
+    try {
+        const response = await fetch(url, {
+            method: "HEAD",
+            headers: {
+                accept: "image/*",
+                "user-agent": "MMA Matlock News Aggregator/1.0 (+https://mmamatlock.com/news/)"
+            },
+            redirect: "follow",
+            signal: controller.signal
+        });
+
+        if (!response.ok) return Number.NaN;
+
+        const contentType = response.headers.get("content-type") || "";
+        if (contentType && !contentType.toLowerCase().startsWith("image/")) {
+            return Number.NaN;
+        }
+
+        const size = Number(response.headers.get("content-length"));
+        return Number.isFinite(size) && size > 0 ? size : Number.NaN;
+    } catch {
+        return Number.NaN;
+    } finally {
+        clearTimeout(timeout);
+    }
+}
+
 async function mapWithConcurrency(items, limit, worker) {
     const results = new Array(items.length);
     let nextIndex = 0;
@@ -723,9 +760,10 @@ function clusterStories(stories) {
 
 function publicStory(cluster) {
     const story = cluster.representative;
-    const image = story.image ||
-        cluster.stories.find(entry => entry.image)?.image ||
-        "";
+    const imageStory = story.image
+        ? story
+        : cluster.stories.find(entry => entry.image);
+    const image = imageStory?.image || "";
     const excerpt = story.excerpt ||
         cluster.stories.find(entry => entry.excerpt)?.excerpt ||
         "";
@@ -742,6 +780,14 @@ function publicStory(cluster) {
         publishedAt: story.publishedAt,
         excerpt,
         image,
+        ...(imageStory && imageStory.url !== story.url
+            ? {
+                imageCredit: {
+                    source: imageStory.source,
+                    url: imageStory.url
+                }
+            }
+            : {}),
         coverageCount: relatedSources.length + 1,
         relatedSources
     };
@@ -758,6 +804,68 @@ function topStoryScore(cluster) {
     const prominence = Math.max(0, 22 - story.feedRank * 2);
 
     return freshness + coverage + prominence + story.sourcePriority;
+}
+
+function leadImageCandidates(cluster, topStory) {
+    const representative = cluster.representative;
+    const candidates = [{
+        ...representative,
+        image: topStory.image,
+        imageCredit: topStory.imageCredit
+    }];
+    const seenUrls = new Set([safeUrl(representative.url)]);
+    const seenSources = new Set([representative.source]);
+    const alternatives = [...cluster.stories].sort((first, second) =>
+        second.sourcePriority - first.sourcePriority ||
+        second.publishedAt.localeCompare(first.publishedAt)
+    );
+
+    for (const story of alternatives) {
+        const url = safeUrl(story.url);
+        if (!url || seenUrls.has(url) || seenSources.has(story.source)) continue;
+
+        candidates.push({ ...story });
+        seenUrls.add(url);
+        seenSources.add(story.source);
+
+        if (candidates.length >= LEAD_IMAGE_CANDIDATE_LIMIT) break;
+    }
+
+    return candidates;
+}
+
+async function selectEfficientLeadImage(topStory, cluster, previousImages) {
+    const candidates = leadImageCandidates(cluster, topStory);
+
+    for (const candidate of candidates) {
+        if (!candidate.image) {
+            const previous = previousImages.get(safeUrl(candidate.url));
+            candidate.image = previous?.image || await fetchArticleImage(candidate);
+            if (previous?.imageCredit) {
+                candidate.imageCredit = previous.imageCredit;
+            }
+        }
+
+        if (!candidate.image) continue;
+
+        const size = await imageContentLength(candidate.image);
+        if (!Number.isFinite(size) || size > LEAD_IMAGE_MAX_BYTES) continue;
+
+        if (candidate.image !== topStory.image) {
+            topStory.image = candidate.image;
+            topStory.imageCredit = {
+                source: candidate.source,
+                url: candidate.url
+            };
+        }
+
+        console.log(
+            `Lead image: ${candidate.source} (${Math.ceil(size / 1024)} KB)`
+        );
+        return;
+    }
+
+    console.warn("Lead image: no verified lightweight cluster alternative found");
 }
 
 function deduplicateUrls(stories) {
@@ -788,8 +896,16 @@ async function previousImageMap() {
         return new Map(
             [data.topStory, ...asArray(data.stories)]
                 .filter(story => story?.url && story?.image)
-                .map(story => [safeUrl(story.url), safeUrl(story.image)])
-                .filter(([url, image]) => url && image)
+                .map(story => [safeUrl(story.url), {
+                    image: safeUrl(story.image),
+                    imageCredit: story.imageCredit?.source && safeUrl(story.imageCredit.url)
+                        ? {
+                            source: story.imageCredit.source,
+                            url: safeUrl(story.imageCredit.url)
+                        }
+                        : undefined
+                }])
+                .filter(([url, value]) => url && value.image)
         );
     } catch {
         console.warn("Previous news snapshot unavailable; fetching missing previews");
@@ -803,10 +919,11 @@ async function enrichStoryImages(stories, previousImages) {
     for (const story of stories) {
         if (story.image) continue;
 
-        const previousImage = previousImages.get(safeUrl(story.url));
-        if (!previousImage) continue;
+        const previous = previousImages.get(safeUrl(story.url));
+        if (!previous?.image) continue;
 
-        story.image = previousImage;
+        story.image = previous.image;
+        if (previous.imageCredit) story.imageCredit = previous.imageCredit;
         reused += 1;
     }
 
@@ -876,7 +993,9 @@ const latest = clusters
     .slice(0, MAX_ITEMS)
     .map(publicStory);
 const publicStories = [topStory, ...latest];
-await enrichStoryImages(publicStories, await previousImageMap());
+const previousImages = await previousImageMap();
+await enrichStoryImages(publicStories, previousImages);
+await selectEfficientLeadImage(topStory, topCluster, previousImages);
 
 const output = {
     version: 1,
