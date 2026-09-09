@@ -11,6 +11,7 @@ on:
       - "assets/data/on-this-day-event-sources.json"
       - "assets/data/on-this-day-pancrase-cache.json"
       - "assets/data/on-this-day-image-source-overrides.json"
+      - "assets/data/on-this-day-current-poster-fallbacks.json"
       - "assets/data/fighter-birthday-seeds.json"
       - "assets/fighter-portraits.json"
       - "scripts/update-fighter-birthdays.mjs"
@@ -18,6 +19,7 @@ on:
       - "scripts/normalize-on-this-day-titles.mjs"
       - "scripts/apply-on-this-day-image-cache.mjs"
       - "scripts/apply-on-this-day-image-source-overrides.mjs"
+      - "scripts/apply-on-this-day-current-poster-fallbacks.mjs"
       - "scripts/resolve-on-this-day-images.mjs"
       - "scripts/resolve-on-this-day-event-posters.mjs"
       - "scripts/sanitize-on-this-day-event-images.mjs"
@@ -95,6 +97,7 @@ jobs:
           node --check scripts/normalize-on-this-day-titles.mjs
           node --check scripts/apply-on-this-day-image-cache.mjs
           node --check scripts/apply-on-this-day-image-source-overrides.mjs
+          node --check scripts/apply-on-this-day-current-poster-fallbacks.mjs
           node --check scripts/resolve-on-this-day-images.mjs
           node --check scripts/resolve-on-this-day-event-posters.mjs
           node --check scripts/sanitize-on-this-day-event-images.mjs
@@ -159,6 +162,9 @@ jobs:
 
       - name: Reject ambiguous or untrusted historical event images
         run: node scripts/sanitize-on-this-day-event-images.mjs
+
+      - name: Apply verified current-window poster fallbacks
+        run: node scripts/apply-on-this-day-current-poster-fallbacks.mjs
 
       - name: Normalize image provenance metadata
         run: node scripts/finalize-on-this-day-image-metadata.mjs
