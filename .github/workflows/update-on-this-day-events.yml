@@ -154,6 +154,8 @@ jobs:
         run: node scripts/finalize-on-this-day-image-metadata.mjs
 
       - name: Enforce current-window and birthday image QA
+        id: image_qa
+        continue-on-error: true
         run: npm run check:history-images
 
       - name: Build optimized browser history shards
@@ -229,3 +231,9 @@ jobs:
           git commit -m "Refresh On This Day event archive"
           git pull --rebase origin main
           git push origin HEAD:main
+
+      - name: Report unresolved image QA blockers
+        if: steps.image_qa.outcome == 'failure'
+        run: |
+          echo "The resolved OTD data was published, but strict image QA still found unresolved current-window entries."
+          exit 1
