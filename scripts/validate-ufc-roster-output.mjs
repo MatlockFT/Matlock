@@ -50,7 +50,7 @@ function validateIdentityCollisions(items, type) {
         for (let j = i + 1; j < items.length; j += 1) {
             if (likelySameFighter(items[i], items[j])) {
                 failures.push(
-                    `${type}[${j}] appears to duplicate ${type}[${i]} by fighter identity: ` +
+                    `${type}[${j}] appears to duplicate ${type}[${i}] by fighter identity: ` +
                         `${clean(items[i]?.name) || items[i]?.url} / ${clean(items[j]?.name) || items[j]?.url}`
                 );
             }
