@@ -19,6 +19,7 @@ on:
       - "scripts/apply-on-this-day-image-cache.mjs"
       - "scripts/apply-on-this-day-image-source-overrides.mjs"
       - "scripts/resolve-on-this-day-images.mjs"
+      - "scripts/resolve-on-this-day-event-posters.mjs"
       - "scripts/sanitize-on-this-day-event-images.mjs"
       - "scripts/finalize-on-this-day-image-metadata.mjs"
       - "scripts/check-on-this-day-images.mjs"
@@ -58,6 +59,7 @@ jobs:
       OTD_TARGET_PROMOTIONS: "ufc,wec,strikeforce,pfl,one,pancrase,bellator,rizin,pride"
       OTD_IMAGE_VERIFY_LIMIT: "100"
       OTD_IMAGE_RESOLVE_LIMIT: "180"
+      OTD_EVENT_POSTER_LIMIT: "220"
       OTD_CURRENT_WINDOW_DAYS: "2"
       OTD_TIME_ZONE: "America/Chicago"
       OTD_CONTENT_ENRICH_LIMIT: "80"
@@ -94,6 +96,7 @@ jobs:
           node --check scripts/apply-on-this-day-image-cache.mjs
           node --check scripts/apply-on-this-day-image-source-overrides.mjs
           node --check scripts/resolve-on-this-day-images.mjs
+          node --check scripts/resolve-on-this-day-event-posters.mjs
           node --check scripts/sanitize-on-this-day-event-images.mjs
           node --check scripts/finalize-on-this-day-image-metadata.mjs
           node --check scripts/check-on-this-day-images.mjs
@@ -151,13 +154,16 @@ jobs:
       - name: Resolve images from exact trusted sources
         run: npm run resolve:history-images
 
+      - name: Resolve actual event posters with Tapology priority
+        run: node scripts/resolve-on-this-day-event-posters.mjs
+
       - name: Reject ambiguous or untrusted historical event images
         run: node scripts/sanitize-on-this-day-event-images.mjs
 
       - name: Normalize image provenance metadata
         run: node scripts/finalize-on-this-day-image-metadata.mjs
 
-      - name: Enforce current-window and birthday image QA
+      - name: Enforce current-window, birthday, and event-poster QA
         id: image_qa
         continue-on-error: true
         run: npm run check:history-images
@@ -239,5 +245,5 @@ jobs:
       - name: Report unresolved image QA blockers
         if: steps.image_qa.outcome == 'failure'
         run: |
-          echo "The resolved OTD data was published, but strict image QA still found unresolved current-window entries."
+          echo "The resolved OTD data was published, but strict image QA still found unresolved current-window entries or event-poster mismatches."
           exit 1
