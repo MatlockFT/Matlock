@@ -11,6 +11,9 @@ on:
       - "scripts/upcoming-events-data.mjs"
       - "scripts/event-location-utils.mjs"
       - "scripts/enrich-upcoming-event-locations.mjs"
+      - "scripts/build-event-map-us.mjs"
+      - "scripts/validate-event-map-us.mjs"
+      - "scripts/report-event-map-locations.mjs"
       - "scripts/update-upcoming-ufc-events.mjs"
       - "scripts/normalize-upcoming-ufc-events.mjs"
       - "scripts/update-dwcs-upcoming-events.mjs"
@@ -59,6 +62,9 @@ jobs:
           node --check scripts/upcoming-events-data.mjs
           node --check scripts/event-location-utils.mjs
           node --check scripts/enrich-upcoming-event-locations.mjs
+          node --check scripts/build-event-map-us.mjs
+          node --check scripts/validate-event-map-us.mjs
+          node --check scripts/report-event-map-locations.mjs
           node --check scripts/update-upcoming-ufc-events.mjs
           node --check scripts/normalize-upcoming-ufc-events.mjs
           node --check scripts/update-dwcs-upcoming-events.mjs
@@ -97,6 +103,13 @@ jobs:
       - name: Enrich event locations from official sources
         run: node scripts/enrich-upcoming-event-locations.mjs
 
+      - name: Rebuild trusted U.S. map from major event data
+        run: |
+          node scripts/build-event-map-us.mjs
+          node scripts/report-event-map-locations.mjs
+          node scripts/validate-event-map-us.mjs
+          node scripts/report-event-map-locations.mjs --check
+
       - name: Resolve verified promotion portraits
         run: node scripts/enrich-fighter-portraits.mjs
 
@@ -118,18 +131,18 @@ jobs:
       - name: Publish fighter portrait cache
         run: node scripts/publish-fighter-portraits.mjs
 
-      - name: Commit meaningful event and portrait changes
+      - name: Commit meaningful event, map, and portrait changes
         shell: bash
         run: |
           set -euo pipefail
-          meaningful="$(git status --porcelain -- _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json || true)"
+          meaningful="$(git status --porcelain -- _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json _data/event_map_us.json _data/event_map_location_report.json || true)"
           if [ -z "$meaningful" ]; then
-            echo "No meaningful MMA event, watchdog, location, or portrait changes. Timestamp-only refresh discarded."
+            echo "No meaningful MMA event, map, watchdog, location, or portrait changes. Timestamp-only refresh discarded."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- _data/upcoming_events.json _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json
+          git add -- _data/upcoming_events.json _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json _data/event_map_us.json _data/event_map_location_report.json
           git commit -m "Refresh upcoming MMA event data"
           git pull --rebase origin main
           git push origin HEAD:main
