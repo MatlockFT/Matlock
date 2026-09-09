@@ -202,7 +202,10 @@ jobs:
         run: npm run check:history
 
       - name: Check On This Day share pipeline
-        run: npm run check:history-share
+        run: |
+          npm run check:history-share
+          node scripts/build-share-gobold.mjs --check
+          node --check scripts/share-card-composition.mjs
 
       - name: Check generated frontend assets
         run: |

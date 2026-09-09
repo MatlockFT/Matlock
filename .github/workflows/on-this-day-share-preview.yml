@@ -9,6 +9,9 @@ on:
       - ".github/workflows/on-this-day-share-preview.yml"
       - "scripts/build-on-this-day-share-images.mjs"
       - "scripts/share-title-layout.mjs"
+      - "scripts/share-card-composition.mjs"
+      - "assets/share-gobold.mjs"
+      - "assets/textures/otd-gaffer-tape-v1.png"
       - "assets/data/on-this-day-share-sources.json"
 
 permissions:

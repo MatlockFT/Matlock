@@ -3,6 +3,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import sharp from 'sharp';
 import { balancedWrap, textUnits } from './share-title-layout.mjs';
+import { topMatterSvg, collageMarksSvg, titleAndFooterSvg, noImageSvg } from './share-card-composition.mjs';
 
 const HISTORY_PATH = process.argv[2] || 'assets/data/on-this-day.json';
 const OUTPUT_DIR = process.env.OTD_SHARE_OUTPUT_DIR || '.otd-share-cache';
@@ -13,7 +14,7 @@ const TEXTURE_PATH = process.env.OTD_SHARE_TEXTURE_PATH || 'assets/textures/otd-
 const WINDOW_DAYS = Math.max(0, Number(process.env.OTD_SHARE_WINDOW_DAYS || 2));
 const MAX_PER_DAY = Math.max(1, Number(process.env.OTD_SHARE_MAX_PER_DAY || 12));
 const CONCURRENCY = Math.max(1, Math.min(6, Number(process.env.OTD_SHARE_CONCURRENCY || 3)));
-const USER_AGENT = 'MMA-Matlock-OnThisDay-Share/5.0 (+https://mmamatlock.com/on-this-day/)';
+const USER_AGENT = 'MMA-Matlock-OnThisDay-Share/6.0 (+https://mmamatlock.com/on-this-day/)';
 const MAX_OFFICIAL_IMAGES = 2;
 
 const FORMATS = {
@@ -271,7 +272,7 @@ async function officialUfcImages(entry) {
 }
 
 async function cutoutImage(imageBuffer, width, height, seed, position, angle = 0, poster = false) {
-  const edge = Math.max(12, Math.round(Math.min(width, height) * 0.026));
+  const edge = Math.max(5, Math.round(Math.min(width, height) * 0.009));
   const inner = roughPolygon(edge, edge, width - edge * 2, height - edge * 2, seed ^ 0x7711, edge * 0.85, 16);
   const outer = roughPolygon(2, 2, width - 4, height - 4, seed ^ 0x2288, edge * 0.72, 17);
   const processed = await sharp(imageBuffer)
@@ -382,10 +383,10 @@ async function supplementalLayers(supplemental, formatName, seed) {
   const { width: w, height: h } = FORMATS[formatName];
   const count = Math.min(MAX_OFFICIAL_IMAGES, supplemental.length);
   const specs = count === 1
-    ? [{ x: 0.57, y: formatName === 'story' ? 0.29 : 0.24, width: 0.45, height: formatName === 'story' ? 0.51 : 0.56, angle: 2.2 }]
+    ? [{ x: 0.40, y: 0.16, width: 0.60, height: 0.71, angle: 1.2 }]
     : [
-        { x: -0.03, y: formatName === 'story' ? 0.30 : 0.22, width: 0.39, height: formatName === 'story' ? 0.49 : 0.56, angle: -2.4 },
-        { x: 0.65, y: formatName === 'story' ? 0.28 : 0.21, width: 0.39, height: formatName === 'story' ? 0.49 : 0.56, angle: 2.3 }
+        { x: -0.07, y: 0.18, width: 0.60, height: 0.74, angle: -1.2 },
+        { x: 0.48, y: 0.16, width: 0.60, height: 0.75, angle: 1.3 }
       ];
   const layers = [];
 
@@ -394,11 +395,11 @@ async function supplementalLayers(supplemental, formatName, seed) {
     const source = supplemental[index];
     const isEventPhoto = source.role === 'event-photo';
     const eventSpec = {
-      x: 0.45,
-      y: formatName === 'story' ? 0.36 : formatName === 'social' ? 0.28 : 0.28,
-      width: formatName === 'story' ? 0.56 : 0.55,
-      height: formatName === 'story' ? 0.24 : formatName === 'social' ? 0.32 : 0.30,
-      angle: 2.1
+      x: 0.25,
+      y: formatName === 'story' ? 0.48 : 0.45,
+      width: 0.75,
+      height: formatName === 'story' ? 0.29 : 0.35,
+      angle: 2.2
     };
     const activeSpec = isEventPhoto ? eventSpec : spec;
     const targetWidth = Math.round(w * activeSpec.width);
@@ -409,7 +410,7 @@ async function supplementalLayers(supplemental, formatName, seed) {
           targetWidth,
           targetHeight,
           seed ^ (0x9119 + index * 1709),
-          'attention',
+          'north',
           activeSpec.angle,
           false
         )
@@ -433,132 +434,11 @@ async function supplementalLayers(supplemental, formatName, seed) {
   return layers;
 }
 
-function topMatterSvg(entry, formatName, seed) {
-  const { width: w, height: h } = FORMATS[formatName];
-  const age = yearsAgo(entry);
-  const anniversary = age > 0 ? `${age} ${age === 1 ? 'YEAR' : 'YEARS'} AGO` : 'ON THIS DAY';
-  const year = String(entry?.date || '').slice(0, 4) || 'MMA';
-  const pad = Math.round(w * 0.045);
-  const topY = Math.round(h * (formatName === 'story' ? 0.076 : 0.086));
-  const ruleY = Math.round(h * (formatName === 'story' ? 0.108 : 0.126));
-  const issue = `ARCHIVE / ${monthDay(entry?.date).replace('-', '.') || '00.00'}`;
-  return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
-    <text x="${w - pad}" y="${Math.round(h * 0.39)}" text-anchor="end" fill="none" stroke="${PAPER}" stroke-width="3" opacity=".2" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.31)}" font-weight="900" transform="rotate(-90 ${w - pad} ${Math.round(h * 0.39)})">${escapeXml(year)}</text>
-    <text x="${pad}" y="${topY}" fill="${PAPER}" stroke="${INK}" stroke-width="${Math.round(w * 0.010)}" paint-order="stroke fill" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.066)}" font-weight="900" letter-spacing=".5">${escapeXml(anniversary)}</text>
-    <text x="${w - pad}" y="${topY - Math.round(w * 0.018)}" text-anchor="end" fill="${PAPER}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.015)}" font-weight="700" letter-spacing="1.5">${escapeXml(issue)}</text>
-    <text x="${w - pad}" y="${topY + Math.round(w * 0.010)}" text-anchor="end" fill="${PAPER}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.015)}" font-weight="700" letter-spacing="1.5">MMA HISTORY</text>
-    <path d="M ${pad} ${ruleY} H ${w - pad}" stroke="${PAPER}" stroke-width="4"/>
-    <path d="M ${pad} ${ruleY + 10} H ${Math.round(w * 0.44)}" stroke="${PAPER}" stroke-width="2" stroke-dasharray="4 12" opacity=".55"/>
-  </svg>`;
-}
-
-function collageMarksSvg(entry, formatName, seed) {
-  const { width: w, height: h } = FORMATS[formatName];
-  const pad = Math.round(w * 0.045);
-  const year = String(entry?.date || '').slice(0, 4) || 'MMA';
-  const issue = monthDay(entry?.date).replace('-', '.') || '00.00';
-  const serial = String(hashInt(`${entryAnchor(entry)}:serial`) % 1000).padStart(3, '0');
-  const crossX = Math.round(w * 0.88);
-  const crossY = Math.round(h * (formatName === 'story' ? 0.68 : 0.58));
-  return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
-    <text x="${Math.round(w * 0.50)}" y="${Math.round(h * 0.58)}" text-anchor="middle" fill="none" stroke="${PAPER}" stroke-width="4" opacity=".09" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.34)}" font-weight="900" transform="rotate(-5 ${w / 2} ${h * 0.58})">${escapeXml(year)}</text>
-    <g opacity=".18" stroke="${PAPER}" stroke-width="3" fill="none">
-      <path d="M ${crossX - 45} ${crossY} H ${crossX + 45} M ${crossX} ${crossY - 45} V ${crossY + 45}"/>
-      <rect x="${crossX - 24}" y="${crossY - 24}" width="48" height="48"/>
-      <path d="M ${pad} ${Math.round(h * 0.90)} H ${Math.round(w * 0.34)}" stroke-dasharray="4 12"/>
-    </g>
-    <text x="${pad}" y="${Math.round(h * 0.86)}" fill="${PAPER}" opacity=".28" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.014)}" font-weight="700" letter-spacing="2">CUT / PASTE / ${escapeXml(issue)} / NO.${serial}</text>
-    <text x="${Math.round(w * 0.988)}" y="${Math.round(h * 0.84)}" fill="${PAPER}" opacity=".20" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.013)}" font-weight="700" letter-spacing="2" transform="rotate(-90 ${Math.round(w * 0.988)} ${Math.round(h * 0.84)})">MMAMATLOCK.COM / FIGHT ARCHIVE</text>
-  </svg>`;
-}
-
-function titleAndFooterSvg(entry, formatName, seed, titleY, imageCredit = clean(entry.imageCredit)) {
-  const { width: w, height: h } = FORMATS[formatName];
-  const pad = Math.round(w * 0.047);
-  const title = clean(entry.title).toUpperCase();
-  const lines = balancedWrap(title, formatName === 'social' ? 22 : 21, 3);
-  const baseSize = Math.round(w * (formatName === 'story' ? 0.078 : formatName === 'social' ? 0.076 : 0.074));
-  const fontSize = fitDisplaySize(baseSize, lines, w - pad * 2.25, 0.77);
-  const lineHeight = Math.round(fontSize * 1.01);
-  const random = rng(seed ^ 0x551122);
-  let titleMarkup = '';
-  lines.forEach((line, index) => {
-    const y = titleY + index * lineHeight;
-    const x = pad + Math.round((index % 2 ? 0.016 : 0) * w) + Math.round((random() - 0.5) * w * 0.010);
-    const angle = ((random() - 0.5) * 1.15).toFixed(2);
-    const stroke = Math.max(9, Math.round(fontSize * 0.15));
-    titleMarkup += `<g transform="rotate(${angle} ${w / 2} ${y})">
-      <text x="${x + 7}" y="${y + 7}" fill="none" stroke="${PAPER}" stroke-width="3" opacity=".22" font-family="${DISPLAY_FONT}" font-size="${fontSize}" font-weight="900" letter-spacing="-.8">${escapeXml(line)}</text>
-      <text x="${x}" y="${y}" fill="${PAPER}" stroke="${INK}" stroke-width="${stroke}" paint-order="stroke fill" font-family="${DISPLAY_FONT}" font-size="${fontSize}" font-weight="900" letter-spacing="-.8">${escapeXml(line)}</text>
-    </g>`;
-  });
-  const promotion = clean(entry.promotion).toUpperCase();
-  const credit = clean(imageCredit);
-  const creditLabel = credit.includes(' + ') ? 'IMAGES' : 'IMAGE';
-  const creditLine = credit ? `${creditLabel}: ${credit.toUpperCase()}` : 'ARCHIVAL IMAGE / SOURCE ON PAGE';
-  const footerY = h - Math.round(w * 0.052);
-  const creditY = h - Math.round(w * 0.082);
-  return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
-    ${titleMarkup}
-    <rect x="${pad}" y="${titleY + lineHeight * lines.length + Math.round(w * 0.020)}" width="${Math.round(w * 0.22)}" height="${Math.round(w * 0.016)}" fill="${PAPER}"/>
-    <polygon points="${pad - 16},${creditY - Math.round(w * 0.025)} ${w - pad + 10},${creditY - Math.round(w * 0.019)} ${w - pad + 14},${h} ${pad - 12},${h}" fill="${PAPER}" opacity=".94"/>
-    <text x="${pad}" y="${creditY}" fill="${INK}" opacity=".72" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.013)}" font-weight="700" letter-spacing=".7">${escapeXml(creditLine)}</text>
-    <path d="M ${pad} ${creditY + 12} H ${w - pad}" stroke="#070707" stroke-width="2"/>
-    <text x="${pad}" y="${footerY}" fill="${INK}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.019)}" font-weight="700" letter-spacing="1.2">${escapeXml(compactDate(entry))}</text>
-    ${promotion ? `<text x="${Math.round(w * 0.52)}" y="${footerY}" text-anchor="middle" fill="${INK}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.018)}" font-weight="700" letter-spacing="1.1">${escapeXml(promotion)}</text>` : ''}
-    <g transform="rotate(-1 ${w - pad} ${footerY})"><rect x="${w - pad - Math.round(w * 0.27)}" y="${footerY - Math.round(w * 0.034)}" width="${Math.round(w * 0.27)}" height="${Math.round(w * 0.045)}" fill="${INK}"/><text x="${w - pad - Math.round(w * 0.012)}" y="${footerY - Math.round(w * 0.005)}" text-anchor="end" fill="${PAPER}" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.021)}" font-weight="900" letter-spacing="1.2">MMA MATLOCK</text></g>
-  </svg>`;
-}
-
-function noImageSvg(entry, formatName, seed) {
-  const { width: w, height: h } = FORMATS[formatName];
-  const pad = Math.round(w * 0.05);
-  const year = String(entry?.date || '').slice(0, 4) || 'MMA';
-  const title = clean(entry.title).toUpperCase();
-  const lines = balancedWrap(title, formatName === 'story' ? 19 : 23, 4);
-  const baseTitleSize = Math.round(w * (formatName === 'story' ? 0.092 : 0.084));
-  const titleSize = fitDisplaySize(baseTitleSize, lines, w - pad * 2.15, 0.76);
-  const lineHeight = Math.round(titleSize * 1.04);
-  const titleY = Math.round(h * (formatName === 'story' ? 0.43 : 0.40));
-  const age = yearsAgo(entry);
-  const anniversary = age > 0 ? `${age} ${age === 1 ? 'YEAR' : 'YEARS'} AGO` : 'ON THIS DAY';
-  const creditY = h - Math.round(w * 0.082);
-  const footerY = h - Math.round(w * 0.05);
-  const ghostLabel = `${clean(entry.promotion || 'MMA').toUpperCase()} / ${title}`;
-  const ghostY = Math.round(h * (formatName === 'story' ? 0.66 : 0.67));
-  const issueY = Math.round(h * (formatName === 'story' ? 0.79 : 0.78));
-  return `<svg width="${w}" height="${h}" xmlns="http://www.w3.org/2000/svg">
-    <rect width="${w}" height="${h}" fill="${INK}"/>
-    <text x="${Math.round(w * 0.51)}" y="${Math.round(h * 0.35)}" text-anchor="middle" fill="none" stroke="${PAPER}" stroke-width="4" opacity=".24" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.36)}" font-weight="900" transform="rotate(-6 ${w / 2} ${h * 0.35})">${escapeXml(year)}</text>
-    <text x="${pad}" y="${Math.round(h * (formatName === 'story' ? 0.10 : 0.115))}" fill="${PAPER}" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.066)}" font-weight="900">${escapeXml(anniversary)}</text>
-    <text x="${w - pad}" y="${Math.round(h * 0.09)}" text-anchor="end" fill="${PAPER}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.017)}" font-weight="700">MMA HISTORY / ${escapeXml(monthDay(entry?.date).replace('-', '.'))}</text>
-    <path d="M ${pad} ${Math.round(h * (formatName === 'story' ? 0.125 : 0.14))} H ${w - pad}" stroke="${PAPER}" stroke-width="4"/>
-    <text fill="${PAPER}" stroke="${INK}" stroke-width="${Math.round(titleSize * 0.14)}" paint-order="stroke fill" font-family="${DISPLAY_FONT}" font-size="${titleSize}" font-weight="900">${lines.map((line, index) => `<tspan x="${pad}" y="${titleY + index * lineHeight}">${escapeXml(line)}</tspan>`).join('')}</text>
-    <rect x="${pad}" y="${titleY + lineHeight * lines.length + Math.round(w * 0.035)}" width="${Math.round(w * 0.48)}" height="${Math.round(w * 0.024)}" fill="${PAPER}"/>
-    <g opacity=".13" fill="none" stroke="${PAPER}" stroke-width="2" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.072)}" font-weight="900" letter-spacing="2" transform="rotate(-4 ${w / 2} ${ghostY})">
-      <text x="${-Math.round(w * 0.05)}" y="${ghostY}">${escapeXml(ghostLabel)}</text>
-      <text x="${Math.round(w * 0.08)}" y="${ghostY + Math.round(w * 0.09)}">${escapeXml(ghostLabel)}</text>
-      <text x="${-Math.round(w * 0.14)}" y="${ghostY + Math.round(w * 0.18)}">${escapeXml(ghostLabel)}</text>
-    </g>
-    <g opacity=".24" stroke="${PAPER}" stroke-width="3" fill="none">
-      <circle cx="${Math.round(w * 0.82)}" cy="${issueY}" r="${Math.round(w * 0.085)}"/>
-      <path d="M ${Math.round(w * 0.70)} ${issueY} H ${Math.round(w * 0.94)} M ${Math.round(w * 0.82)} ${issueY - Math.round(w * 0.12)} V ${issueY + Math.round(w * 0.12)}"/>
-    </g>
-    <path d="M ${pad} ${issueY - Math.round(w * 0.035)} H ${Math.round(w * 0.57)}" stroke="${PAPER}" stroke-width="3"/>
-    <text x="${pad}" y="${issueY + Math.round(w * 0.006)}" fill="${PAPER}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.018)}" font-weight="700" letter-spacing="1.5">TYPE ARCHIVE / ISSUE ${escapeXml(monthDay(entry?.date).replace('-', '.'))}</text>
-    <text x="${Math.round(w * 0.985)}" y="${Math.round(h * 0.83)}" fill="${PAPER}" opacity=".22" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.013)}" font-weight="700" letter-spacing="2" transform="rotate(-90 ${Math.round(w * 0.985)} ${Math.round(h * 0.83)})">MMAMATLOCK.COM / NO PHOTO FILED</text>
-    <text x="${pad}" y="${creditY}" fill="${PAPER_MID}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.014)}" font-weight="700">NO EVENT IMAGE AVAILABLE / TYPE ARCHIVE EDITION</text>
-    <path d="M ${pad} ${creditY + 12} H ${w - pad}" stroke="${PAPER}" stroke-width="2"/>
-    <text x="${pad}" y="${footerY}" fill="${PAPER}" font-family="${MONO_FONT}" font-size="${Math.round(w * 0.019)}" font-weight="700">${escapeXml(compactDate(entry))}</text>
-    <rect x="${w - pad - Math.round(w * 0.27)}" y="${footerY - Math.round(w * 0.033)}" width="${Math.round(w * 0.27)}" height="${Math.round(w * 0.044)}" fill="${PAPER}"/>
-    <text x="${w - pad - Math.round(w * 0.012)}" y="${footerY - Math.round(w * 0.005)}" text-anchor="end" fill="${INK}" font-family="${DISPLAY_FONT}" font-size="${Math.round(w * 0.021)}" font-weight="900">MMA MATLOCK</text>
-  </svg>`;
-}
 
 const PHOTO_LAYOUTS = {
-  post: { x: -14, y: 145, width: 1108, height: 840, titleY: 1000 },
-  story: { x: -14, y: 208, width: 1108, height: 1250, titleY: 1488 },
-  social: { x: -15, y: 136, width: 1230, height: 690, titleY: 842 }
+  post: { x: 0, y: 75, width: 1080, height: 1210, titleY: 0 },
+  story: { x: 0, y: 80, width: 1080, height: 1770, titleY: 0 },
+  social: { x: 0, y: 80, width: 1200, height: 1060, titleY: 0 }
 };
 
 async function renderPhoto(entry, formatName, imageBuffer, supplemental, seed) {
@@ -585,9 +465,9 @@ async function renderPhoto(entry, formatName, imageBuffer, supplemental, seed) {
       { input: await textureOverlay(w, h, 0.12, true), blend: 'screen' },
       { input: Buffer.from(xeroxDamageSvg(w, h, seed, true)), blend: 'screen' },
       { input: Buffer.from(collageMarksSvg(entry, formatName, seed)), blend: 'over' },
-      { input: Buffer.from(topMatterSvg(entry, formatName, seed)), blend: 'over' },
       { input: cutout, left, top, blend: 'over' },
       ...officialLayers,
+      { input: Buffer.from(topMatterSvg(entry, formatName, seed)), blend: 'over' },
       { input: Buffer.from(titleAndFooterSvg(entry, formatName, seed, layout.titleY, imageCredit)), blend: 'over' }
     ])
     .jpeg({ quality, mozjpeg: true })
@@ -597,22 +477,18 @@ async function renderPhoto(entry, formatName, imageBuffer, supplemental, seed) {
 async function renderPoster(entry, formatName, imageBuffer, sourceMeta, supplemental, seed) {
   const { width: w, height: h, quality } = FORMATS[formatName];
   const hasSupplemental = supplemental.length > 0;
-  const maxW = Math.round(w * (hasSupplemental
-    ? (formatName === 'story' ? 0.78 : 0.73)
-    : (formatName === 'story' ? 0.80 : 0.76)));
-  const maxH = Math.round(h * (hasSupplemental
-    ? (formatName === 'story' ? 0.68 : formatName === 'social' ? 0.64 : 0.73)
-    : (formatName === 'story' ? 0.72 : formatName === 'social' ? 0.68 : 0.76)));
+  const maxW = Math.round(w * 0.94);
+  const maxH = Math.round(h * 0.93);
   const scale = Math.min(maxW / sourceMeta.width, maxH / sourceMeta.height);
   const pieceW = Math.max(260, Math.round(sourceMeta.width * scale));
   const pieceH = Math.max(340, Math.round(sourceMeta.height * scale));
   const angle = ((hashInt(`${seed}:poster-angle`) % 25) - 12) / 10;
   const cutout = await cutoutImage(imageBuffer, pieceW, pieceH, seed, imagePosition(entry), angle, true);
   const cutoutMeta = await sharp(cutout).metadata();
-  const posterCenterY = Math.round(h * (formatName === 'story' ? 0.40 : 0.42));
-  const posterCenterX = hasSupplemental && supplemental.length === 1 ? w * 0.42 : w * 0.5;
+  const posterCenterY = Math.round(h * 0.51);
+  const posterCenterX = hasSupplemental && supplemental.length === 1 ? w * 0.45 : w * 0.5;
   const left = Math.max(0, Math.round(posterCenterX - cutoutMeta.width / 2));
-  const top = Math.max(Math.round(h * 0.13), Math.round(posterCenterY - cutoutMeta.height / 2));
+  const top = Math.max(Math.round(w * 0.064), Math.round(posterCenterY - cutoutMeta.height / 2));
   const titleY = Math.round(h * (formatName === 'story' ? 0.79 : formatName === 'social' ? 0.72 : 0.75));
   const base = await paperCanvas(w, h);
   const officialLayers = await supplementalLayers(supplemental, formatName, seed);
@@ -633,9 +509,9 @@ async function renderPoster(entry, formatName, imageBuffer, sourceMeta, suppleme
       { input: await textureOverlay(w, h, 0.12, true), blend: 'screen' },
       { input: Buffer.from(xeroxDamageSvg(w, h, seed, true)), blend: 'screen' },
       { input: Buffer.from(collageMarksSvg(entry, formatName, seed)), blend: 'over' },
-      { input: Buffer.from(topMatterSvg(entry, formatName, seed)), blend: 'over' },
       { input: cutout, left, top, blend: 'over' },
       ...officialLayers,
+      { input: Buffer.from(topMatterSvg(entry, formatName, seed)), blend: 'over' },
       { input: Buffer.from(titleAndFooterSvg(entry, formatName, seed, titleY, imageCredit)), blend: 'over' }
     ])
     .jpeg({ quality, mozjpeg: true })
@@ -654,7 +530,7 @@ async function renderNoImage(entry, formatName, seed) {
 }
 
 async function renderEntry(entry, formatName, imageBuffer, supplemental) {
-  const seed = hashInt(`${entryAnchor(entry)}:${formatName}:xerox-editorial-v5`);
+  const seed = hashInt(`${entryAnchor(entry)}:${formatName}:gobold-gaffer-v6`);
   if (!imageBuffer) return renderNoImage(entry, formatName, seed);
   let metadata;
   try { metadata = await sharp(imageBuffer).rotate().metadata(); }
@@ -692,9 +568,9 @@ await fs.mkdir(path.dirname(MANIFEST_PATH), { recursive: true });
 
 const imageCache = new Map();
 const manifest = {
-  version: 5,
-  renderer: 'sharp-xerox-editorial-v5',
-  style: 'oversized-editorial-collage-v1',
+  version: 6,
+  renderer: 'sharp-gobold-gaffer-v6',
+  style: 'full-frame-gaffer-collage-v1',
   generatedAt,
   publicBase: PUBLIC_BASE,
   windowDays: WINDOW_DAYS,
@@ -760,4 +636,4 @@ await mapLimit(entries, CONCURRENCY, async entry => {
 });
 
 await fs.writeFile(MANIFEST_PATH, `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
-console.log(`On This Day share renderer v5: ${entries.length} entries, ${entries.length * Object.keys(FORMATS).length} images, ${targetMonthDays(WINDOW_DAYS).join(', ')}.`);
+console.log(`On This Day share renderer v6: ${entries.length} entries, ${entries.length * Object.keys(FORMATS).length} images, ${targetMonthDays(WINDOW_DAYS).join(', ')}.`);
