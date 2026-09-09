@@ -10,6 +10,7 @@ on:
       - ".github/workflows/update-on-this-day-events.yml"
       - "assets/data/on-this-day-event-sources.json"
       - "assets/data/on-this-day-pancrase-cache.json"
+      - "assets/data/on-this-day-image-source-overrides.json"
       - "assets/data/fighter-birthday-seeds.json"
       - "assets/fighter-portraits.json"
       - "scripts/update-fighter-birthdays.mjs"
@@ -17,7 +18,9 @@ on:
       - "scripts/normalize-on-this-day-titles.mjs"
       - "scripts/enrich-on-this-day-images.mjs"
       - "scripts/apply-on-this-day-image-cache.mjs"
+      - "scripts/apply-on-this-day-image-source-overrides.mjs"
       - "scripts/resolve-on-this-day-images.mjs"
+      - "scripts/finalize-on-this-day-image-metadata.mjs"
       - "scripts/check-on-this-day-images.mjs"
       - "scripts/verify-on-this-day-event-images.mjs"
       - "scripts/enrich-on-this-day-content.mjs"
@@ -90,7 +93,9 @@ jobs:
           node --check scripts/normalize-on-this-day-titles.mjs
           node --check scripts/enrich-on-this-day-images.mjs
           node --check scripts/apply-on-this-day-image-cache.mjs
+          node --check scripts/apply-on-this-day-image-source-overrides.mjs
           node --check scripts/resolve-on-this-day-images.mjs
+          node --check scripts/finalize-on-this-day-image-metadata.mjs
           node --check scripts/check-on-this-day-images.mjs
           node --check scripts/verify-on-this-day-event-images.mjs
           node --check scripts/enrich-on-this-day-content.mjs
@@ -139,8 +144,14 @@ jobs:
       - name: Protect exact cached event posters
         run: node scripts/apply-on-this-day-image-cache.mjs
 
+      - name: Apply verified source overrides for hard image matches
+        run: node scripts/apply-on-this-day-image-source-overrides.mjs
+
       - name: Resolve images for every On This Day entry type
         run: npm run resolve:history-images
+
+      - name: Normalize image provenance metadata
+        run: node scripts/finalize-on-this-day-image-metadata.mjs
 
       - name: Enforce current-window and birthday image QA
         run: npm run check:history-images
