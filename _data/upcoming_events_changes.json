@@ -1,7 +1,36 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-09T17:10:17.917Z",
+  "generated_at": "2026-09-09T19:53:35.271Z",
   "changes": [
+    {
+      "id": "2026-09-09T19:53:35.271Z|noche-ufc-2026-09-12-fight-card|bout_weight_changed|1",
+      "at": "2026-09-09T19:53:35.271Z",
+      "type": "bout_weight_changed",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "Tim Elliott vs Edgar Chairez weight/class changed.",
+      "details": {
+        "from": "Flyweight Bout",
+        "to": "Catchweight Bout"
+      }
+    },
+    {
+      "id": "2026-09-09T19:53:35.271Z|dwcs-season-10-week-6-2026-09-15|portrait_changed|2",
+      "at": "2026-09-09T19:53:35.271Z",
+      "type": "portrait_changed",
+      "event_id": "dwcs-season-10-week-6-2026-09-15",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 6",
+      "event_date": "2026-09-15",
+      "summary": "Oscar Ravello portrait source changed.",
+      "details": {
+        "fighter": "Oscar Ravello",
+        "from_source": "sherdog",
+        "to_source": "sherdog"
+      }
+    },
     {
       "id": "2026-09-09T17:10:17.917Z|dwcs-season-10-week-6-2026-09-15|portrait_changed|1",
       "at": "2026-09-09T17:10:17.917Z",
@@ -4628,34 +4657,6 @@
       "summary": "Stan Dorsainvil portrait added.",
       "details": {
         "fighter": "Stan Dorsainvil",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-sacramento-2026-08-22|portrait_added|7",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Jamall Emmers portrait added.",
-      "details": {
-        "fighter": "Jamall Emmers",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-sacramento-2026-08-22|portrait_added|8",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Lerryan Douglas portrait added.",
-      "details": {
-        "fighter": "Lerryan Douglas",
         "source": "sherdog"
       }
     }
