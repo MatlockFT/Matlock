@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 const HISTORY_PATH = process.argv[2] || 'assets/data/on-this-day.json';
 const OVERRIDES_PATH = process.argv[3] || 'assets/data/on-this-day-image-source-overrides.json';
-const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD/1.0';
+const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD/1.1';
 const REQUEST_TIMEOUT_MS = 20000;
 const REQUEST_ATTEMPTS = 3;
 
@@ -109,10 +109,25 @@ function findEntry(entries, override) {
 }
 
 function entryNeedles(entry, override) {
-  const needles = [entry?.fighter, entry?.title, override?.title].map(clean).filter(Boolean);
+  const needles = [entry?.fighter, entry?.title, override?.title, override?.eventTitle].map(clean).filter(Boolean);
   if (entry?.kind === 'birthday') needles.push(String(entry.title || '').replace(/\s+was born$/i, ''));
   if (entry?.kind === 'event') needles.push(String(entry.title || '').replace(/^Pancrase:\s*/i, 'Pancrase '));
   return [...new Set(needles)];
+}
+
+async function resolveFromSource(imageUrl, sourceUrl, entry, override) {
+  let resolvedImage = clean(imageUrl);
+  let finalSourceUrl = clean(sourceUrl);
+  if (usableImage(resolvedImage)) return { imageUrl: resolvedImage, sourceUrl: finalSourceUrl };
+  if (!/^https:\/\//i.test(finalSourceUrl)) throw new Error('missing HTTPS source URL');
+  const { html, finalUrl } = await fetchHtml(finalSourceUrl);
+  finalSourceUrl = finalUrl || finalSourceUrl;
+  resolvedImage = metaImage(html, finalSourceUrl);
+  if (!usableImage(resolvedImage)) {
+    resolvedImage = imageCandidates(html, finalSourceUrl, entryNeedles(entry, override))[0]?.url || '';
+  }
+  if (!usableImage(resolvedImage)) throw new Error('source page did not expose a usable primary image');
+  return { imageUrl: resolvedImage, sourceUrl: finalSourceUrl };
 }
 
 const history = JSON.parse(await fs.readFile(HISTORY_PATH, 'utf8'));
@@ -123,6 +138,7 @@ const nowIso = new Date().toISOString();
 
 let applied = 0;
 let retained = 0;
+let fallbackApplied = 0;
 const failures = [];
 
 for (const override of overrides) {
@@ -133,44 +149,63 @@ for (const override of overrides) {
     continue;
   }
 
+  const primaryConfidence = Math.max(0, Math.min(1, Number(override?.confidence || 0.95)));
   const existingConfidence = Number(entry?.imageConfidence || 0);
-  if (/^https:\/\//i.test(clean(entry?.imageUrl)) && existingConfidence >= Number(override?.confidence || 0.95) && entry?.imageExactMatch === true) {
+  if (/^https:\/\//i.test(clean(entry?.imageUrl)) && existingConfidence >= primaryConfidence && entry?.imageExactMatch === true) {
     retained += 1;
     continue;
   }
 
+  let result;
+  let usedFallback = false;
+  let primaryError = '';
   try {
-    let imageUrl = clean(override?.imageUrl);
-    let finalSourceUrl = clean(override?.sourceUrl);
-    if (!usableImage(imageUrl)) {
-      const { html, finalUrl } = await fetchHtml(override.sourceUrl);
-      finalSourceUrl = finalUrl || finalSourceUrl;
-      imageUrl = metaImage(html, finalSourceUrl);
-      if (!usableImage(imageUrl)) {
-        imageUrl = imageCandidates(html, finalSourceUrl, entryNeedles(entry, override))[0]?.url || '';
+    result = await resolveFromSource(override?.imageUrl, override?.sourceUrl, entry, override);
+  } catch (error) {
+    primaryError = clean(error?.message || error);
+    if (clean(override?.fallbackImageUrl) || clean(override?.fallbackSourceUrl)) {
+      try {
+        result = await resolveFromSource(override?.fallbackImageUrl, override?.fallbackSourceUrl, entry, override);
+        usedFallback = true;
+      } catch (fallbackError) {
+        failures.push(`${label}: primary ${primaryError}; fallback ${clean(fallbackError?.message || fallbackError)}`);
       }
+    } else {
+      failures.push(`${label}: ${primaryError}`);
     }
-    if (!usableImage(imageUrl)) throw new Error('source page did not expose a usable primary image');
+  }
 
-    entry.imageUrl = imageUrl;
-    entry.imageAlt = clean(override?.imageAlt) || (entry?.kind === 'event'
+  if (result?.imageUrl) {
+    const confidence = usedFallback
+      ? Math.max(0, Math.min(1, Number(override?.fallbackConfidence || 0.8)))
+      : primaryConfidence;
+    entry.imageUrl = result.imageUrl;
+    entry.imageAlt = clean((usedFallback ? override?.fallbackImageAlt : override?.imageAlt)) || (entry?.kind === 'event'
       ? `${clean(entry.title)} event image`
       : entry?.kind === 'birthday'
         ? `${clean(entry.fighter || String(entry.title).replace(/\s+was born$/i, ''))} photo`
         : `${clean(entry.title)} image`);
-    entry.imageCredit = clean(override?.credit || entry?.imageCredit || entry?.source || 'Source');
-    entry.imageSourceUrl = finalSourceUrl || override.sourceUrl;
-    entry.imageSourceType = clean(override?.sourceType || 'verified-source-page');
-    entry.imageConfidence = Math.max(0, Math.min(1, Number(override?.confidence || 0.95)));
-    entry.imageSubjectType = clean(override?.subjectType || (entry?.kind === 'event' ? 'event' : entry?.kind === 'birthday' ? 'fighter' : 'moment'));
-    entry.imageMatchReason = clean(override?.matchReason || 'Verified source override matched this exact On This Day entry.');
+    entry.imageCredit = clean(usedFallback ? override?.fallbackCredit : override?.credit) || clean(entry?.imageCredit || entry?.source || 'Source');
+    entry.imageSourceUrl = result.sourceUrl || (usedFallback ? override?.fallbackSourceUrl : override?.sourceUrl);
+    entry.imageSourceType = clean(usedFallback ? override?.fallbackSourceType : override?.sourceType) || 'verified-source-page';
+    entry.imageConfidence = confidence;
+    entry.imageSubjectType = clean(usedFallback ? override?.fallbackSubjectType : override?.subjectType) || (entry?.kind === 'event' ? 'event' : entry?.kind === 'birthday' ? 'fighter' : 'moment');
+    entry.imageMatchReason = clean(usedFallback ? override?.fallbackMatchReason : override?.matchReason) || 'Verified source override matched this exact On This Day entry.';
     entry.imageResolvedAt = nowIso;
     entry.imageStatus = 'resolved';
-    entry.imageExactMatch = entry.imageConfidence >= 0.95;
+    entry.imageExactMatch = !usedFallback && confidence >= 0.95;
+    entry.imageFallback = usedFallback;
+    if (usedFallback) {
+      entry.imagePrimarySourceUrl = clean(override?.sourceUrl);
+      entry.imagePrimaryFailureReason = primaryError;
+      fallbackApplied += 1;
+    } else {
+      delete entry.imagePrimarySourceUrl;
+      delete entry.imagePrimaryFailureReason;
+      delete entry.imageFallback;
+    }
     delete entry.imageUnresolved;
     applied += 1;
-  } catch (error) {
-    failures.push(`${label}: ${clean(error?.message || error)}`);
   }
   await sleep(120);
 }
@@ -179,5 +214,5 @@ history.imageSourceOverrideVersion = Number(overridesData?.version || 1);
 history.imageSourceOverridesAppliedAt = nowIso;
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
 
-console.log(`On This Day verified source overrides: ${applied} applied, ${retained} already protected, ${failures.length} unresolved.`);
+console.log(`On This Day verified source overrides: ${applied} applied (${fallbackApplied} fallback), ${retained} already protected, ${failures.length} unresolved.`);
 if (failures.length) console.warn(failures.map(item => `- ${item}`).join('\n'));
