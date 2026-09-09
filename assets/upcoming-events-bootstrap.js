@@ -1,5 +1,7 @@
 (() => {
     let started = false;
+    const bootstrapSrc = document.currentScript?.src || "";
+    const assetQuery = bootstrapSrc.includes("?") ? bootstrapSrc.slice(bootstrapSrc.indexOf("?")) : "";
 
     const normalizeDownloadLabel = () => {
         document
@@ -11,10 +13,8 @@
         if (started) return;
         started = true;
 
-        const current = document.currentScript?.src || "";
-        const query = current.includes("?") ? current.slice(current.indexOf("?")) : "";
         const script = document.createElement("script");
-        script.src = `/assets/upcoming-events.js${query}`;
+        script.src = `/assets/upcoming-events.js${assetQuery}`;
         script.async = true;
         script.dataset.upcomingEventsRuntime = "";
         script.addEventListener("load", normalizeDownloadLabel, { once: true });
