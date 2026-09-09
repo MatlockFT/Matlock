@@ -18,20 +18,6 @@ page_scripts:
 {% endfor %}
 {% assign latest_post = homepage_posts.first %}
 
-{% assign picker_events = site.data.upcoming_events.events | concat: site.data.upcoming_events_regional.events | sort: "date" %}
-{% assign now_epoch = site.time | date: "%s" | plus: 0 %}
-{% assign next_event = nil %}
-{% for event in picker_events %}
-    {% assign event_epoch = event.date | date: "%s" | plus: 0 %}
-    {% if next_event == nil and event_epoch >= now_epoch %}
-        {% assign next_event = event %}
-    {% endif %}
-{% endfor %}
-{% if next_event %}
-    {% assign next_main_section = next_event.sections | where: "kind", "main" | first %}
-    {% assign next_main_bout = next_main_section.bouts | first %}
-{% endif %}
-
 <div
     class="homepage homepage-dashboard"
     data-home-dashboard
@@ -39,54 +25,8 @@ page_scripts:
     data-news-fallback-url="{{ '/assets/data/mma-news.json' | relative_url }}?v={{ site.asset_version }}"
     data-history-url="{{ '/assets/data/on-this-day-home.json' | relative_url }}?v={{ site.asset_version }}"
     data-roster-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/ufc-roster-data"
-    data-event-map-url="{{ '/assets/data/event-map-live.json' | relative_url }}?v={{ site.asset_version }}"
 >
     <h1 class="home-dashboard-sr-only">MMA Matlock</h1>
-
-    <section class="home-snapshot" aria-label="Upcoming MMA and site tools">
-        <section class="home-panel" aria-labelledby="home-next-card-title">
-            <header class="home-panel-heading">
-                <h2 id="home-next-card-title">Next Card</h2>
-                <a href="{{ '/upcoming-events/' | relative_url }}">Fight Cards</a>
-            </header>
-
-            {% if next_event %}
-                <div class="home-next-card">
-                    <div>
-                        <p class="home-next-promotion">{{ next_event.promotion }}</p>
-                        <h2>{{ next_event.title }}</h2>
-                        <p class="home-next-meta">{{ next_event.date_label }} · {{ next_event.venue }}</p>
-                        {% if next_main_bout and next_main_bout.fighters.size >= 2 %}
-                            <p class="home-next-main">
-                                {{ next_main_bout.fighters[0].name }} vs {{ next_main_bout.fighters[1].name }}
-                            </p>
-                        {% endif %}
-                    </div>
-
-                    <div class="home-next-actions">
-                        <a href="{{ '/upcoming-events/' | relative_url }}#{{ next_event.id | escape }}">Make picks</a>
-                        <a
-                            href="{{ '/event-map/' | relative_url }}?event={{ next_event.id | url_encode }}"
-                            data-home-next-map
-                            data-event-id="{{ next_event.id }}"
-                            hidden
-                        >Event map</a>
-                    </div>
-                </div>
-            {% else %}
-                <p class="home-dashboard-loading">No upcoming card listed.</p>
-            {% endif %}
-        </section>
-
-        <nav class="home-tools-bar" aria-label="Primary MMA tools">
-            <div class="home-tools">
-                <a class="home-tool-link" href="{{ '/upcoming-events/' | relative_url }}">Fight Cards</a>
-                <a class="home-tool-link" href="{{ '/event-map/' | relative_url }}">Event Map</a>
-                <a class="home-tool-link" href="{{ '/on-this-day/' | relative_url }}">On This Day</a>
-                <a class="home-tool-link" href="{{ '/ufc-roster/' | relative_url }}">UFC Roster</a>
-            </div>
-        </nav>
-    </section>
 
     {% if latest_post %}
         {% assign latest_image = latest_post.image.path | default: latest_post.image %}
