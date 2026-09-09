@@ -5,7 +5,7 @@ const OVERRIDES_PATH = process.argv[3] || 'assets/data/on-this-day-image-source-
 const TIME_ZONE = process.env.OTD_TIME_ZONE || 'America/Chicago';
 const LIMIT = Math.max(1, Number(process.env.OTD_TAPOLOGY_POSTER_LIMIT || 220));
 const REQUEST_TIMEOUT_MS = 20000;
-const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD-TapologyPosters/1.0';
+const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD-TapologyPosters/1.1';
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
@@ -18,10 +18,6 @@ const norm = value => clean(value)
 
 function isEvent(entry) {
   return entry?.kind === 'event' || entry?.generatedBy === 'wikipedia-event-index';
-}
-
-function eventName(entry) {
-  return clean(String(entry?.title || '').replace(/\s+took place$/i, ''));
 }
 
 function http(value) {
@@ -42,6 +38,19 @@ function tapologyPosterUrl(value) {
     const url = new URL(value);
     return /(^|\.)images\.tapology\.com$/i.test(url.hostname) && /\/poster_images\//i.test(url.pathname);
   } catch { return false; }
+}
+
+function exactOverride(entry, overrides) {
+  return overrides.find(item =>
+    clean(item?.date) === clean(entry?.date) &&
+    norm(item?.title) === norm(entry?.title) &&
+    tapologyEventUrl(item?.sourceUrl)
+  );
+}
+
+function eventName(entry, overrides = []) {
+  const override = exactOverride(entry, overrides);
+  return clean(override?.eventTitle || String(entry?.title || '').replace(/\s+took place$/i, ''));
 }
 
 function decode(value) {
@@ -86,9 +95,9 @@ async function fetchText(url, accept = 'text/html,application/xhtml+xml') {
   return { html: await response.text(), finalUrl: response.url || url };
 }
 
-function eventMatch(value, entry) {
+function eventMatch(value, entry, overrides = []) {
   const haystack = norm(value);
-  const title = norm(eventName(entry));
+  const title = norm(eventName(entry, overrides));
   if (!haystack || !title) return false;
   if (haystack.includes(title) || title.includes(haystack)) return true;
   const numbered = title.match(/\b(ufc|wec|bellator|pride|pancrase|rizin|pfl|one)\s*(\d{1,4})\b/);
@@ -174,14 +183,6 @@ function tapologyEventUrlsFromSearch(html) {
   return [...new Set(output)];
 }
 
-function exactOverride(entry, overrides) {
-  return overrides.find(item =>
-    clean(item?.date) === clean(entry?.date) &&
-    norm(item?.title) === norm(entry?.title) &&
-    tapologyEventUrl(item?.sourceUrl)
-  );
-}
-
 async function discoverExactTapologyPage(entry, overrides) {
   const candidates = [];
   const override = exactOverride(entry, overrides);
@@ -190,7 +191,7 @@ async function discoverExactTapologyPage(entry, overrides) {
   }
   if (candidates.length) return [...new Set(candidates)][0];
 
-  const title = eventName(entry).replace(/["<>]/g, ' ');
+  const title = eventName(entry, overrides).replace(/["<>]/g, ' ');
   const year = String(entry?.date || '').slice(0, 4);
   for (const query of [
     `site:tapology.com/fightcenter/events "${title}"`,
@@ -201,24 +202,25 @@ async function discoverExactTapologyPage(entry, overrides) {
       const matches = tapologyEventUrlsFromSearch(html);
       for (const pageUrl of matches) {
         const slugText = decodeURIComponent(new URL(pageUrl).pathname.split('/').pop() || '');
-        if (eventMatch(slugText, entry) || eventMatch(pageUrl, entry)) return pageUrl;
+        if (eventMatch(slugText, entry, overrides) || eventMatch(pageUrl, entry, overrides)) return pageUrl;
       }
     } catch {}
   }
   return '';
 }
 
-async function posterFromExactPage(entry, pageUrl) {
+async function posterFromExactPage(entry, pageUrl, overrides) {
   if (!tapologyEventUrl(pageUrl)) return '';
   try {
     const { html, finalUrl } = await fetchText(pageUrl);
-    if (!eventMatch(htmlTitle(html), entry)) return '';
+    const override = exactOverride(entry, overrides);
+    if (!override && !eventMatch(htmlTitle(html), entry, overrides)) return '';
     return posterUrlsFromTapologyHtml(html, finalUrl)[0]?.url || '';
   } catch { return ''; }
 }
 
-async function posterFromImageIndex(entry, pageUrl) {
-  const title = eventName(entry).replace(/["<>]/g, ' ');
+async function posterFromImageIndex(entry, pageUrl, overrides) {
+  const title = eventName(entry, overrides).replace(/["<>]/g, ' ');
   const queries = [
     `site:images.tapology.com/poster_images "${title}"`,
     `"${title}" "images.tapology.com/poster_images"`,
@@ -256,12 +258,12 @@ function distance(entry) {
   return Math.min(direct, 366 - direct);
 }
 
-function applyTapologyPoster(entry, pageUrl, imageUrl, nowIso) {
-  entry.tapologyUrl = pageUrl || entry.tapologyUrl || `https://www.tapology.com/search?term=${encodeURIComponent(eventName(entry))}`;
+function applyTapologyPoster(entry, pageUrl, imageUrl, nowIso, overrides) {
+  entry.tapologyUrl = pageUrl || entry.tapologyUrl || `https://www.tapology.com/search?term=${encodeURIComponent(eventName(entry, overrides))}`;
   entry.source = 'Tapology';
   entry.sourceUrl = entry.tapologyUrl;
   entry.imageUrl = imageUrl;
-  entry.imageAlt = `${eventName(entry)} event poster`;
+  entry.imageAlt = `${eventName(entry, overrides)} event poster`;
   entry.imageCredit = 'Tapology';
   entry.imageSourceUrl = pageUrl || entry.tapologyUrl;
   entry.imageSourceType = 'tapology-event-poster';
@@ -282,7 +284,7 @@ const history = JSON.parse(await fs.readFile(HISTORY_PATH, 'utf8'));
 let overrideData = { entries: [] };
 try { overrideData = JSON.parse(await fs.readFile(OVERRIDES_PATH, 'utf8')); } catch {}
 const overrides = Array.isArray(overrideData?.entries) ? overrideData.entries : [];
-const events = (history.entries || []).filter(isEvent);
+const events = (history.entries || []).filter(entry => isEvent(entry) || Boolean(exactOverride(entry, overrides)));
 const nowIso = new Date().toISOString();
 
 const targets = events
@@ -312,26 +314,24 @@ for (const entry of targets) {
     exactPages += 1;
   }
 
-  let imageUrl = await posterFromExactPage(entry, pageUrl);
+  let imageUrl = await posterFromExactPage(entry, pageUrl, overrides);
   if (imageUrl) directPagePosters += 1;
   if (!imageUrl) {
-    imageUrl = await posterFromImageIndex(entry, pageUrl);
+    imageUrl = await posterFromImageIndex(entry, pageUrl, overrides);
     if (imageUrl) indexedPosters += 1;
   }
 
   if (imageUrl && tapologyPosterUrl(imageUrl)) {
-    applyTapologyPoster(entry, pageUrl, imageUrl, nowIso);
+    applyTapologyPoster(entry, pageUrl, imageUrl, nowIso, overrides);
     resolved += 1;
   } else if (pageUrl) {
-    // Even when Tapology blocks its poster bytes from automation, keep the exact
-    // event reference. The public card should never fall back to a Wikipedia link.
     entry.tapologyUrl = pageUrl;
     pageOnly += 1;
   }
   await sleep(120);
 }
 
-history.tapologyPosterResolverVersion = 1;
+history.tapologyPosterResolverVersion = 2;
 history.tapologyPosterResolverUpdatedAt = nowIso;
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
 console.log(`Tapology poster pass: ${targets.length} reviewed; ${exactPages} exact event pages, ${resolved} posters resolved (${directPagePosters} direct-page, ${indexedPosters} indexed), ${pageOnly} exact pages still awaiting poster bytes.`);
