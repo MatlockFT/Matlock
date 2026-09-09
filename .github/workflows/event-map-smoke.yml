@@ -1,0 +1,66 @@
+name: Event Map production smoke
+
+# Production regression gate for native click commits, history, and mobile tap flow.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "41 9 * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - "event-map.html"
+      - "assets/event-map*.js"
+      - "assets/event-map*.css"
+      - "_data/event_map*.json"
+      - "_data/upcoming_events*.json"
+      - "scripts/event-map-smoke.spec.cjs"
+      - ".github/workflows/event-map-smoke.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: event-map-production-smoke
+  cancel-in-progress: true
+
+jobs:
+  browser-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Wait for matching production assets
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="$(awk -F'"' '/^asset_version:/ { print $2; exit }' _config.yml)"
+          for attempt in $(seq 1 48); do
+            html="$(curl -fsSL --retry 2 "https://mmamatlock.com/event-map/?smoke_probe=${GITHUB_RUN_ID}-${attempt}" || true)"
+            if grep -Fq "?v=${version}" <<<"${html}"; then
+              echo "Production Event Map is serving asset version ${version}."
+              exit 0
+            fi
+            echo "Attempt ${attempt}/48: waiting for Event Map v${version}."
+            sleep 10
+          done
+          echo "Production Event Map did not reach v${version} within eight minutes."
+          exit 1
+
+      - name: Install browser test runtime
+        run: |
+          npm install --no-save --no-package-lock @playwright/test@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Exercise desktop and mobile Event Map interactions
+        env:
+          EVENT_MAP_BASE_URL: https://mmamatlock.com/event-map/
+        run: npx playwright test scripts/event-map-smoke.spec.cjs --browser=chromium --reporter=line

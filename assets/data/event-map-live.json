@@ -1,0 +1,33 @@
+---
+layout: null
+permalink: /assets/data/event-map-live.json
+---
+{% assign major_events = site.data.upcoming_events.events %}
+{% assign picker_regional_events = site.data.upcoming_events_regional.events %}
+{% assign trusted_map = site.data.event_map_us %}
+{% assign event_map_events = trusted_map.events %}
+{% assign picker_events = major_events | concat: picker_regional_events %}
+{% assign picker_major_ids = major_events | map: "id" %}
+{% assign picker_regional_ids = picker_regional_events | map: "id" %}
+{% assign picker_ids = picker_major_ids | concat: picker_regional_ids %}
+{
+  "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
+  "major_total": {{ trusted_map.major_total | default: 0 | jsonify }},
+  "major_loaded": {{ trusted_map.major_mapped | default: 0 | jsonify }},
+  "regional_total": {{ trusted_map.regional_total | default: 0 | jsonify }},
+  "regional_loaded": {{ trusted_map.regional_mapped | default: 0 | jsonify }},
+  "quarantined_total": {{ trusted_map.quarantined_count | default: 0 | jsonify }},
+  "picker_event_ids": {{ picker_ids | jsonify }},
+  "picker_events": [
+    {% for event in picker_events %}
+    {
+      "id": {{ event.id | jsonify }},
+      "title": {{ event.title | jsonify }},
+      "date": {{ event.date | jsonify }},
+      "promotion": {{ event.promotion | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ],
+  "event_overrides": {{ site.data.event_map_overrides | jsonify }},
+  "events": {{ event_map_events | jsonify }}
+}

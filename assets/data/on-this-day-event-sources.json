@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "generatedBy": "wikipedia-event-index",
+  "sources": [
+    {
+      "id": "ufc",
+      "page": "List of UFC events",
+      "promotion": "UFC",
+      "minimumEvents": 500,
+      "weight": 52
+    },
+    {
+      "id": "pride",
+      "page": "List of Pride FC events",
+      "promotion": "PRIDE",
+      "minimumEvents": 50,
+      "weight": 50,
+      "eventCell": 1,
+      "dateCell": 3,
+      "venueCell": 4,
+      "locationCell": 5
+    },
+    {
+      "id": "strikeforce",
+      "page": "List of Strikeforce events",
+      "promotion": "Strikeforce",
+      "minimumEvents": 45,
+      "weight": 46
+    },
+    {
+      "id": "wec",
+      "page": "List of WEC events",
+      "promotion": "WEC",
+      "minimumEvents": 45,
+      "weight": 45
+    },
+    {
+      "id": "bellator",
+      "page": "List of Bellator MMA events",
+      "promotion": "Bellator",
+      "minimumEvents": 250,
+      "weight": 44
+    },
+    {
+      "id": "pfl",
+      "page": "List of Professional Fighters League events",
+      "promotion": "PFL / WSOF",
+      "minimumEvents": 75,
+      "weight": 42
+    },
+    {
+      "id": "pancrase",
+      "page": "List of Pancrase events",
+      "promotion": "Pancrase",
+      "minimumEvents": 300,
+      "weight": 43
+    },
+    {
+      "id": "rizin",
+      "page": "Rizin Fighting Federation",
+      "promotion": "RIZIN",
+      "minimumEvents": 50,
+      "weight": 43
+    }
+  ]
+}

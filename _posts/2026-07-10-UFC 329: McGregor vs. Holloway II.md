@@ -1,0 +1,99 @@
+---
+layout: post
+title: "UFC 329: McGregor vs. Holloway II | Breakdown & Prediction"
+description: "A breakdown and prediction for UFC 329, featuring Conor McGregor's
+  return against Max Holloway in a rematch that no one really cares about."
+date: 2026-07-10
+category: Breakdown
+author: MMA Matlock
+image:
+  path: /assets/uploads/maxholloway.webp
+  alt: UFC 329 Max Holloway Pointing Down
+last_modified_at: 2026-07-26
+published: true
+---
+<iframe width="560" height="315" src="https://www.youtube.com/embed/QX8-juZsEAs?si=yOKpsRS7ftxu8INZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+It has been a quiet fight week ahead of Conor McGregor’s return. Of course, the hype rarely reaches its peak until the weigh-ins or the day of the fight.
+
+McGregor is also no longer the young, up-and-coming prospect doing extraordinary amounts of media. If anything, he appears to be trying to rehabilitate his image—and he has taken the religious-grifter route.
+
+After a five-year hiatus and a devastating injury, we finally get to see what Conor McGregor looks like. Is he catching Max Holloway at a good time?
+
+Or is Holloway catching McGregor at a good time?
+
+## Tale of the Tape
+
+Conor McGregor is 37. Max Holloway is 34.
+
+The fight is being contested at 170 pounds. Holloway is slightly taller, listed at 5 feet 11 inches, while McGregor is listed at 5 feet 9 inches.
+
+McGregor has a frame built for deceptive reach, especially when he was fighting at featherweight. He has a 74-inch reach compared with Holloway’s 69-inch reach.
+
+The current odds show Holloway as a moderate favorite and McGregor as a slight underdog.
+
+## Revisiting Their First Fight
+
+I rewatched McGregor and Holloway’s first meeting, along with McGregor’s most recent fights against Dustin Poirier.
+
+Their first fight was genuinely good, and it was enjoyable to revisit. Holloway looked rigid, but he had a fairly sound game plan. He ultimately lost a decision, but there were small moments of success in that loss that would, in a way, foreshadow McGregor’s first loss to Poirier.
+
+There are plenty of stylistic differences between Holloway and Poirier. Their fundamental stances are different, as were the stages of their careers when they faced McGregor.
+
+What I liked about Holloway’s performance was the way he disrupted McGregor’s stance and rhythm with leg kicks. He eventually began finding McGregor with the jab and left hook.
+
+What is particularly interesting is what happened when McGregor closed the distance and backed Holloway toward the cage. McGregor would throw his left hand and use his frame, but Holloway was able to read the attack and counter with his right hand.
+
+Again, those moments did not win Holloway the fight. They do show, however, that even during McGregor’s rise—when his style was more refined—Holloway was able to find areas of success.
+
+## The Poirier Blueprint
+
+Eight years later, we saw something similar when McGregor fought Dustin Poirier, only with devastating consequences. Poirier’s success eventually led to McGregor losing by knockout. McGregor was the favorite in that fight as well.
+
+A key difference between Poirier’s second fight with McGregor and their third—which remains McGregor’s most recent fight—was that McGregor looked much closer to the version of himself who was still on the rise.
+
+He threw far more kicks, moved more fluidly on his feet and still showed the boxing-heavy approach that had become central to his game.
+
+One thing has remained consistent throughout McGregor’s career: his best moments come when opponents believe they can hit him. He slides out of the way and counters with the straight left, occasionally following it with a sneaky right hand that can resemble a shovel punch.
+
+## The Questions Surrounding McGregor
+
+What will McGregor’s pace and tempo look like after five years away, especially at 170 pounds? How hesitant will he be to throw kicks?
+
+Holloway tends to build momentum as fights progress, while McGregor generally begins to fade in the second round.
+
+I do not think there is any question that Holloway is past his physical prime, but he is still tough. Durable opponents have historically presented problems for McGregor—particularly fighters who can absorb his best attacks and continue moving forward.
+
+Another major difference is that this fight is scheduled for five rounds.
+
+## Holloway’s Recent Form
+
+I do feel some hesitation about picking Holloway, and that is probably because of his fight with Ilia Topuria.
+
+A disciplined striker with knockout power stopped an incredibly mobile volume striker with elite cardio. I picked Topuria to win that fight, but I do not feel the same way about McGregor’s chances here.
+
+What gives me more confidence in Holloway is his history against Dustin Poirier.
+
+## McGregor’s Preparation
+
+For what it is worth, McGregor physically looks good. He has kept a relatively quiet camp and has had a significant amount of time away from competition to recover from his fractured tibia and fibula, as well as a broken toe.
+
+I have heard that he completed approximately nine solid months of consistent training, which is not insignificant. It is impossible to know exactly how consistent he has been—even if he did put a bed in the gym.
+
+## Prediction
+
+I think this fight could resemble McGregor’s fights with Nate Diaz: Holloway absorbs the early punches, McGregor begins to tire and Holloway takes over.
+
+McGregor has produced good moments in his last few fights, but compared with the performances from his prime, the overall results have not been encouraging.
+
+Holloway may also be past his prime, but his recent performances have still been very good. Add five years of uncertainty surrounding McGregor, along with his decision to compete at 170 rather than discipline himself enough to return to 155, and I think we will see a version of McGregor who has a few good moments before ultimately falling flat.
+
+**Give me Max Holloway by decision or a stoppage in the later rounds.**
+
+If McGregor wins, the significance of his comeback will be overinflated, and he will lean heavily into the result as he attempts to rehabilitate his public image.
+
+That would still be an impressive athletic achievement. Returning after five years and defeating someone like Max Holloway would deserve credit. McGregor has also had ample time to recover, and no disrespect to Holloway, but nobody who understands MMA should be shocked if McGregor lands the knockout.
+
+All of that said, I believe much of the MMA media, the broader media and a large portion of the fan base would quickly look past the civil court verdict against McGregor, in which a jury found him liable for assaulting Nikita Hand after she accused him of rape, as well as the numerous other controversies and allegations that have followed him.
+
+That would feed directly into what I believe is his broader goal: rehabilitating his public image.

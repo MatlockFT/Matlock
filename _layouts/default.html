@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en-US' }}">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    {% if page.noindex or page.listing_visibility == "direct-only" %}
+        <meta
+            name="robots"
+            content="noindex, follow"
+        >
+    {% else %}
+        <meta
+            name="robots"
+            content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+        >
+    {% endif %}
+
+    <meta name="theme-color" content="#080808">
+    <meta name="color-scheme" content="dark">
+
+    <script>
+        (() => {
+            try {
+                const root = document.documentElement;
+                const readable = localStorage.getItem("matlock-readable") === "true";
+                const userReducedMotion = localStorage.getItem("matlock-reduce-motion") === "true";
+                const systemReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+                if (readable) root.classList.add("readable-mode");
+                if (userReducedMotion || systemReducedMotion) root.classList.add("reduce-motion");
+            } catch {
+                if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                    document.documentElement.classList.add("reduce-motion");
+                }
+            }
+        })();
+    </script>
+
+    <link
+        rel="stylesheet"
+        href="{{ '/assets/base.css' | relative_url }}?v={{ site.asset_version }}"
+    >
+
+    {% for stylesheet in page.page_styles %}
+        <link
+            rel="stylesheet"
+            href="{{ stylesheet | relative_url }}?v={{ site.asset_version }}"
+        >
+    {% endfor %}
+
+    <link
+        rel="stylesheet"
+        href="{{ '/assets/style.css' | relative_url }}?v={{ site.asset_version }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ '/assets/site-shell.css' | relative_url }}?v={{ site.asset_version }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ '/assets/site-ticker.css' | relative_url }}?v={{ site.asset_version }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ '/assets/micro-interactions.css' | relative_url }}?v={{ site.asset_version }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ '/assets/site-consistency.css' | relative_url }}?v={{ site.asset_version }}"
+    >
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="{{ '/assets/favicon-matlock-v2.svg' | relative_url }}"
+    >
+
+    <link
+        rel="alternate icon"
+        type="image/x-icon"
+        href="{{ '/assets/favicon.ico' | relative_url }}"
+    >
+
+    <link
+        rel="preload"
+        href="{{ '/assets/generated/site/header-image-480.webp' | relative_url }}"
+        as="image"
+        type="image/webp"
+        imagesrcset="{{ '/assets/generated/site/header-image-480.webp' | relative_url }} 480w, {{ '/assets/generated/site/header-image-800.webp' | relative_url }} 800w"
+        imagesizes="min(64vw, 260px)"
+        fetchpriority="high"
+    >
+
+    <link
+        rel="preload"
+        href="{{ '/Gobold%20Bold.woff' | relative_url }}"
+        as="font"
+        type="font/woff"
+        crossorigin
+    >
+
+    {% if page.ads and site.adsense.consent_manager_enabled and site.adsense.client and site.adsense.client != "" and site.adsense.banner_slot and site.adsense.banner_slot != "" %}
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+        <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense.client }}"
+            crossorigin="anonymous"
+        ></script>
+    {% endif %}
+
+    {% seo %}
+    {% feed_meta %}
+
+    <noscript>
+        <style>
+            @media (max-width: 850px) {
+                .navigation-toggle {
+                    display: none !important;
+                }
+
+                .navigation-inner {
+                    flex-wrap: wrap !important;
+                }
+
+                .navigation-list {
+                    display: flex !important;
+                }
+
+                .navigation-panel {
+                    position: static !important;
+                    width: 100% !important;
+                    height: auto !important;
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    transform: none !important;
+                }
+
+                .navigation-panel-header,
+                .site-display-controls,
+                .navigation-backdrop {
+                    display: none !important;
+                }
+            }
+        </style>
+    </noscript>
+</head>
+
+<body class="layout-{{ page.layout | default: 'default' }}">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+        <div class="logo-banner">
+            <a href="{{ '/' | relative_url }}" aria-label="MMA Matlock home">
+                <img
+                    src="{{ '/assets/generated/site/header-image-480.webp' | relative_url }}"
+                    srcset="{{ '/assets/generated/site/header-image-480.webp' | relative_url }} 480w, {{ '/assets/generated/site/header-image-800.webp' | relative_url }} 800w"
+                    sizes="min(64vw, 260px)"
+                    alt="MMA Matlock"
+                    class="site-logo"
+                    width="1600"
+                    height="640"
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                >
+            </a>
+        </div>
+
+        <nav class="site-navigation" aria-label="Main navigation">
+            <div class="navigation-inner">
+                <a
+                    class="mobile-brand"
+                    href="{{ '/' | relative_url }}"
+                    aria-label="MMA Matlock home"
+                >
+                    MMA Matlock
+                </a>
+
+                <button
+                    class="navigation-toggle"
+                    id="navigation-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="navigation-panel"
+                    aria-haspopup="true"
+                    aria-label="Open main navigation"
+                >
+                    <span class="navigation-toggle-icon" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    <span class="navigation-toggle-label">Menu</span>
+                </button>
+
+                {% assign current_url = page.url | default: "/" | remove: "index.html" %}
+                {% assign current_url_normalized = current_url %}
+
+                {% unless current_url_normalized == "/" %}
+                    {% assign current_last_character = current_url_normalized | slice: -1, 1 %}
+                    {% unless current_last_character == "/" %}
+                        {% assign current_url_normalized = current_url_normalized | append: "/" %}
+                    {% endunless %}
+                {% endunless %}
+
+                <div
+                    class="navigation-panel"
+                    id="navigation-panel"
+                    aria-hidden="false"
+                >
+                    <div class="navigation-panel-header">
+                        <span>Menu</span>
+                        <button
+                            class="navigation-close"
+                            type="button"
+                            data-navigation-close
+                            aria-label="Close main navigation"
+                        >
+                            <span aria-hidden="true"></span>
+                            <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+
+                    <ul class="navigation-list" id="navigation-list">
+                        {% for item in site.nav %}
+                        {% assign active = false %}
+                        {% unless item.external %}
+                            {% assign item_url = item.link | remove: "index.html" %}
+                            {% assign item_url_normalized = item_url %}
+
+                            {% unless item_url_normalized == "/" %}
+                                {% assign item_last_character = item_url_normalized | slice: -1, 1 %}
+                                {% unless item_last_character == "/" %}
+                                    {% assign item_url_normalized = item_url_normalized | append: "/" %}
+                                {% endunless %}
+                            {% endunless %}
+
+                            {% if current_url_normalized == item_url_normalized %}
+                                {% assign active = true %}
+                            {% endif %}
+
+                            {% if page.layout == "post" and item.name == "Breakdowns" %}
+                                {% assign active = true %}
+                            {% endif %}
+                        {% endunless %}
+
+                            <li>
+                                <a
+                                    {% if item.external %}
+                                        href="{{ item.link }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    {% else %}
+                                        href="{{ item.link | relative_url }}"
+                                    {% endif %}
+                                    {% if active %}aria-current="page"{% endif %}
+                                >
+                                    <span>{{ item.name }}</span>
+                                    {% if item.external %}<span aria-hidden="true">↗</span>{% endif %}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="site-display-controls" aria-label="Display preferences">
+                        <button
+                            class="site-display-button"
+                            type="button"
+                            data-readability-toggle
+                            aria-pressed="false"
+                            aria-label="Toggle readability mode"
+                        >
+                            <span class="site-display-icon" aria-hidden="true">Aa</span>
+                            <span class="site-display-label">Readable</span>
+                        </button>
+
+                        <button
+                            class="site-display-button"
+                            type="button"
+                            data-motion-toggle
+                            aria-pressed="false"
+                            aria-label="Reduce motion"
+                        >
+                            <span class="site-display-icon" aria-hidden="true">◫</span>
+                            <span class="site-display-label" data-motion-label>Motion</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="site-live-strip-reserve" aria-hidden="true"></div>
+
+        <button
+            class="navigation-backdrop"
+            type="button"
+            data-navigation-backdrop
+            aria-label="Close main navigation"
+            tabindex="-1"
+        ></button>
+    </header>
+
+    <main
+        class="site-main"
+        id="main-content"
+        tabindex="-1"
+        role="main"
+    >
+        {{ content }}
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <section class="footer-column footer-about">
+                    <h2>MMA Matlock</h2>
+
+                    <nav aria-label="Footer navigation">
+                        <ul class="footer-navigation">
+                            {% for item in site.footer_nav %}
+                                {% assign footer_active = false %}
+                                {% assign footer_url = item.link | remove: "index.html" %}
+                                {% assign footer_url_normalized = footer_url %}
+
+                                {% unless footer_url_normalized == "/" %}
+                                    {% assign footer_last_character = footer_url_normalized | slice: -1, 1 %}
+                                    {% unless footer_last_character == "/" %}
+                                        {% assign footer_url_normalized = footer_url_normalized | append: "/" %}
+                                    {% endunless %}
+                                {% endunless %}
+
+                                {% if current_url_normalized == footer_url_normalized %}
+                                    {% assign footer_active = true %}
+                                {% endif %}
+
+                                <li>
+                                    <a
+                                        href="{{ item.link | relative_url }}"
+                                        {% if footer_active %}aria-current="page"{% endif %}
+                                    >
+                                        {{ item.name }}
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </nav>
+                </section>
+
+                <section class="footer-column" aria-labelledby="social-links-title">
+                    <h2 id="social-links-title">Follow</h2>
+
+                    <div class="footer-socials">
+                        <a
+                            href="https://www.youtube.com/@MMAMatlock"
+                            aria-label="MMA Matlock on YouTube"
+                            target="_blank"
+                            rel="me noopener noreferrer"
+                        >
+                            <img
+                                src="{{ '/assets/youtube.png' | relative_url }}"
+                                alt=""
+                                width="32"
+                                height="32"
+                                loading="lazy"
+                                decoding="async"
+                                data-hide-broken
+                            >
+                            <span>YouTube</span>
+                        </a>
+
+                        <a
+                            href="https://x.com/MMAMatlock"
+                            aria-label="MMA Matlock on X"
+                            target="_blank"
+                            rel="me noopener noreferrer"
+                        >
+                            <img
+                                src="{{ '/assets/x.png' | relative_url }}"
+                                alt=""
+                                width="32"
+                                height="32"
+                                loading="lazy"
+                                decoding="async"
+                                data-hide-broken
+                            >
+                            <span>X</span>
+                        </a>
+
+                        <a
+                            href="https://www.instagram.com/mmamatlock/"
+                            aria-label="MMA Matlock on Instagram"
+                            target="_blank"
+                            rel="me noopener noreferrer"
+                        >
+                            <img
+                                src="{{ '/assets/instagram.png' | relative_url }}"
+                                alt=""
+                                width="32"
+                                height="32"
+                                loading="lazy"
+                                decoding="async"
+                                data-hide-broken
+                            >
+                            <span>Instagram</span>
+                        </a>
+                    </div>
+                </section>
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    Copyright © {{ "now" | date: "%Y" }}
+                    {{ site.legal_name | default: site.title }}.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ '/assets/site.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
+    <script src="{{ '/assets/site-ticker-bootstrap.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
+
+    {% for script in page.page_scripts %}
+        <script src="{{ script | relative_url }}?v={{ site.asset_version }}" defer></script>
+    {% endfor %}
+</body>
+</html>

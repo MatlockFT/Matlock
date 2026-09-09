@@ -1,0 +1,62 @@
+---
+layout: default
+title: "UFC Roster Updates: Recent UFC Additions"
+description: "Track recent additions to the UFC active roster, including newly detected UFC athlete pages and roster status updates."
+permalink: /ufc-roster/
+page_styles:
+  - /assets/ufc-roster.css
+  - /assets/dynamic-page-stability.css
+page_scripts:
+  - /assets/ufc-roster.js
+---
+
+<article
+    class="ufc-roster-page"
+    data-ufc-roster
+    data-feed-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/ufc-roster-data"
+    data-backfill-url="{{ '/assets/ufc-roster-backfill.json' | relative_url }}"
+    data-refresh-interval="300000"
+>
+    <header class="ufc-roster-hero">
+        <div class="ufc-roster-hero-copy">
+            <span class="ufc-roster-eyebrow">UFC roster tracker</span>
+            <h1>Roster Changes</h1>
+        </div>
+
+        <div class="ufc-roster-live-status" data-roster-live-status data-state="loading" aria-live="polite">
+            <span class="ufc-roster-live-dot" aria-hidden="true"></span>
+            <span data-roster-status>Checking roster…</span>
+        </div>
+    </header>
+
+    <section class="ufc-roster-stats" aria-label="Roster snapshot">
+        <div class="ufc-roster-stat">
+            <strong data-roster-active-count>—</strong>
+            <span>Active</span>
+        </div>
+        <div class="ufc-roster-stat">
+            <strong data-roster-add-count>—</strong>
+            <span>Recent adds</span>
+        </div>
+        <div class="ufc-roster-stat">
+            <strong data-roster-remove-count>—</strong>
+            <span>Recent exits</span>
+        </div>
+    </section>
+
+    <section class="ufc-roster-section" aria-labelledby="ufc-roster-additions-title">
+        <header class="ufc-roster-section-header">
+            <h2 id="ufc-roster-additions-title">Recent additions</h2>
+        </header>
+        <div class="ufc-roster-grid" data-roster-list aria-live="polite" aria-busy="true">
+            <div class="ufc-roster-empty">Loading…</div>
+        </div>
+    </section>
+
+    <section class="ufc-roster-section" data-roster-removals-section aria-labelledby="ufc-roster-removals-title" hidden>
+        <header class="ufc-roster-section-header">
+            <h2 id="ufc-roster-removals-title">Recent departures</h2>
+        </header>
+        <div class="ufc-roster-grid ufc-roster-grid--removals" data-roster-removals></div>
+    </section>
+</article>

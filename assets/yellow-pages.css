@@ -1,0 +1,454 @@
+/* =========================================================
+   MMA YELLOW PAGES
+   ========================================================= */
+
+.yellow-pages-page {
+    --yp-paper: #f2d84f;
+    --yp-paper-light: #ffe76b;
+    --yp-paper-dark: #d6b928;
+    --yp-ink: #111111;
+    --yp-ink-soft: #333333;
+    --yp-rule: rgba(17, 17, 17, 0.45);
+    --yp-page: #f8e998;
+
+    width: min(100%, 1120px);
+    margin: 0 auto;
+    padding: clamp(0.8rem, 2vw, 1.4rem);
+    border: 3px solid var(--yp-ink);
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.018) 0,
+            rgba(0, 0, 0, 0.018) 1px,
+            transparent 1px,
+            transparent 4px
+        ),
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(255, 255, 255, 0.3),
+            transparent 260px
+        ),
+        var(--yp-paper);
+    color: var(--yp-ink);
+    box-shadow:
+        12px 12px 0 rgba(0, 0, 0, 0.28),
+        0 22px 60px rgba(0, 0, 0, 0.3);
+}
+
+.yellow-pages-page *,
+.yellow-pages-page *::before,
+.yellow-pages-page *::after {
+    box-sizing: border-box;
+}
+
+.yellow-pages-page a {
+    color: var(--yp-ink);
+}
+
+/* Cover */
+
+.yellow-pages-cover {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: clamp(1.2rem, 4vw, 3rem);
+    align-items: end;
+    padding: clamp(1rem, 3vw, 2rem);
+    border: 6px double var(--yp-ink);
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.018) 0,
+            rgba(0, 0, 0, 0.018) 1px,
+            transparent 1px,
+            transparent 5px
+        ),
+        var(--yp-paper-light);
+}
+
+.yellow-pages-edition {
+    display: inline-block;
+    margin: 0 0 0.85rem;
+    padding: 0.35rem 0.55rem;
+    background: var(--yp-ink);
+    color: var(--yp-paper-light);
+    font-family: "Courier New", monospace;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.yellow-pages-cover h1 {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin: 0;
+    color: var(--yp-ink);
+    text-transform: uppercase;
+}
+
+.yellow-pages-cover h1 span {
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid var(--yp-ink);
+    font-family: "Arial Black", Arial, Helvetica, sans-serif;
+    font-size: clamp(0.9rem, 2vw, 1.35rem);
+    line-height: 1;
+    letter-spacing: 0.24em;
+}
+
+.yellow-pages-cover h1 strong {
+    font-family: "Arial Black", Arial, Helvetica, sans-serif;
+    font-size: clamp(2.7rem, 7vw, 5.8rem);
+    line-height: 1;
+    letter-spacing: -0.055em;
+    white-space: nowrap;
+}
+
+.yellow-pages-cover-mark {
+    display: grid;
+    place-items: center;
+    min-width: 108px;
+    padding: 0.75rem 0.85rem;
+    border: 3px solid var(--yp-ink);
+    background: transparent;
+    color: var(--yp-ink);
+    text-align: center;
+}
+
+.yellow-pages-cover-mark span,
+.yellow-pages-cover-mark strong {
+    display: block;
+}
+
+.yellow-pages-cover-mark span {
+    font-family: "Courier New", monospace;
+    font-size: 0.6rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.yellow-pages-cover-mark strong {
+    font-family: "Arial Black", Arial, Helvetica, sans-serif;
+    font-size: 1.4rem;
+}
+
+/* Category index */
+
+.yellow-pages-index {
+    display: grid;
+    grid-template-columns: auto repeat(4, minmax(0, 1fr));
+    margin: 1rem 0;
+    border: 3px solid var(--yp-ink);
+    background: var(--yp-ink);
+}
+
+.yellow-pages-index-label {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1rem;
+    color: var(--yp-paper);
+    font-family: "Courier New", monospace;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.yellow-pages-index a {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-width: 0;
+    padding: 0.65rem 0.8rem;
+    border-left: 1px solid var(--yp-paper);
+    background: var(--yp-ink);
+    color: var(--yp-paper);
+    font-family: "Arial Black", Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.yellow-pages-index a:hover,
+.yellow-pages-index a:focus-visible {
+    background: var(--yp-page);
+    color: var(--yp-ink);
+}
+
+.yellow-pages-index a > span {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+}
+
+/* Directory */
+
+.yellow-pages-directory {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.yellow-pages-section {
+    min-width: 0;
+    border: 3px solid var(--yp-ink);
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.025) 0,
+            rgba(0, 0, 0, 0.025) 1px,
+            transparent 1px,
+            transparent 5px
+        ),
+        var(--yp-page);
+}
+
+.yellow-pages-section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.75rem;
+    border-bottom: 3px solid var(--yp-ink);
+    background: var(--yp-ink);
+    color: var(--yp-paper);
+}
+
+.yellow-pages-section-letter {
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 46px;
+    height: 46px;
+    border: 2px solid var(--yp-paper);
+    border-radius: 50%;
+    font-family: "Arial Black", Arial, Helvetica, sans-serif;
+    font-size: 1.6rem;
+}
+
+.yellow-pages-section-header p {
+    margin: 0 0 0.05rem;
+    color: var(--yp-paper);
+    font-family: "Courier New", monospace;
+    font-size: 0.58rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.yellow-pages-section-header h2 {
+    margin: 0;
+    color: var(--yp-paper);
+    font-family: "Arial Black", Arial, Helvetica, sans-serif;
+    font-size: clamp(1.7rem, 4vw, 2.5rem);
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.yellow-pages-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: yellow-pages-listing;
+}
+
+.yellow-pages-list li {
+    counter-increment: yellow-pages-listing;
+    border-bottom: 1px dotted var(--yp-rule);
+}
+
+.yellow-pages-list li:last-child {
+    border-bottom: 0;
+}
+
+.yellow-pages-list a {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.2rem 1rem;
+    min-width: 0;
+    padding: 0.85rem 1rem 0.85rem 2.75rem;
+    color: var(--yp-ink);
+    text-decoration: none;
+}
+
+.yellow-pages-list a::before {
+    position: absolute;
+    top: 0.92rem;
+    left: 0.85rem;
+    content: counter(yellow-pages-listing, decimal-leading-zero);
+    color: var(--yp-ink-soft);
+    font-family: "Courier New", monospace;
+    font-size: 0.68rem;
+    font-weight: 900;
+}
+
+.yellow-pages-list a:hover,
+.yellow-pages-list a:focus-visible {
+    background: var(--yp-paper);
+    color: var(--yp-ink);
+}
+
+.yellow-pages-listing-name {
+    grid-column: 1 / -1;
+    color: var(--yp-ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.02rem;
+    font-weight: 800;
+    line-height: 1.25;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+.yellow-pages-listing-description {
+    color: #55503c;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.4;
+}
+
+.yellow-pages-wanted {
+    margin: 1rem;
+    padding: 1.5rem;
+    border: 3px dashed var(--yp-ink);
+    text-align: center;
+}
+
+.yellow-pages-wanted span,
+.yellow-pages-wanted strong {
+    display: block;
+}
+
+.yellow-pages-wanted span {
+    margin-bottom: 0.35rem;
+    font-family: "Courier New", monospace;
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.yellow-pages-wanted strong {
+    font-family: "Arial Black", Arial, Helvetica, sans-serif;
+    font-size: 1.8rem;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.yellow-pages-wanted p {
+    margin: 0.65rem 0 0;
+    color: var(--yp-ink-soft);
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+}
+
+/* Footer */
+
+.yellow-pages-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 3px solid var(--yp-ink);
+    background: var(--yp-ink);
+    color: var(--yp-paper);
+}
+
+.yellow-pages-footer strong,
+.yellow-pages-footer span {
+    display: block;
+}
+
+.yellow-pages-footer strong {
+    font-family: "Arial Black", Arial, Helvetica, sans-serif;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+.yellow-pages-footer span {
+    color: var(--yp-paper-dark);
+    font-size: 0.72rem;
+}
+
+.yellow-pages-footer a {
+    color: var(--yp-paper);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Tablet */
+
+@media (max-width: 850px) {
+    .yellow-pages-cover {
+        grid-template-columns: 1fr;
+    }
+
+    .yellow-pages-cover-mark {
+        display: none;
+    }
+
+    .yellow-pages-index {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .yellow-pages-index-label {
+        display: none;
+    }
+
+    .yellow-pages-index a:first-of-type {
+        border-left: 0;
+    }
+
+    .yellow-pages-directory {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .yellow-pages-page {
+        padding: 0.55rem;
+        border-width: 2px;
+        box-shadow:
+            6px 6px 0 rgba(0, 0, 0, 0.28),
+            0 15px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .yellow-pages-cover {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        text-align: left;
+    }
+
+    .yellow-pages-cover h1 strong {
+        font-size: clamp(2rem, 10.5vw, 3.75rem);
+    }
+
+    .yellow-pages-index {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .yellow-pages-index a {
+        border-bottom: 1px solid var(--yp-paper);
+    }
+
+    .yellow-pages-index a:nth-of-type(odd) {
+        border-left: 0;
+    }
+
+    .yellow-pages-list a {
+        padding-right: 0.75rem;
+    }
+
+    .yellow-pages-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

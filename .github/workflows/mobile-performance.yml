@@ -1,0 +1,96 @@
+name: Mobile performance
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 8 * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - "_layouts/**"
+      - "assets/*.css"
+      - "assets/*.js"
+      - "*.html"
+      - "_config.yml"
+      - "scripts/summarize-lighthouse.mjs"
+      - ".github/workflows/mobile-performance.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mobile-performance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lighthouse-mobile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Wait for matching production assets
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="$(awk -F'"' '/^asset_version:/ { print $2; exit }' _config.yml)"
+          echo "Waiting for production asset version ${version}..."
+
+          for attempt in $(seq 1 36); do
+            html="$(curl -fsSL --retry 2 "https://mmamatlock.com/?performance_probe=${GITHUB_RUN_ID}-${attempt}" || true)"
+            if grep -Fq "?v=${version}" <<<"${html}"; then
+              echo "Production is serving asset version ${version}."
+              exit 0
+            fi
+            echo "Attempt ${attempt}/36: production has not reached v${version} yet."
+            sleep 10
+          done
+
+          echo "Production did not reach asset version ${version} within six minutes."
+          exit 1
+
+      - name: Run mobile Lighthouse audits
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p lighthouse-reports
+
+          while IFS='|' read -r slug path; do
+            echo "Auditing ${path}"
+            npx --yes lighthouse@12.8.2 "https://mmamatlock.com${path}" \
+              --quiet \
+              --only-categories=performance \
+              --form-factor=mobile \
+              --screenEmulation.mobile=true \
+              --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" \
+              --output=json \
+              --output-path="lighthouse-reports/${slug}.json"
+          done <<'PAGES'
+          home|/
+          news|/news/
+          breakdowns|/breakdowns/
+          fight-card-picker|/upcoming-events/
+          event-map|/event-map/
+          ufc-roster|/ufc-roster/
+          on-this-day|/on-this-day/
+          PAGES
+
+      - name: Enforce mobile performance gate
+        run: node scripts/summarize-lighthouse.mjs lighthouse-reports
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobile-lighthouse-${{ github.run_id }}
+          path: lighthouse-reports/*.json
+          retention-days: 14

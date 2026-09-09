@@ -1,0 +1,332 @@
+/* =========================================================
+   SITE CONSISTENCY SAFETY LAYER
+   Keep this file limited to overflow protection, responsive fallbacks, and
+   a few cross-page utility fixes. Shared visual hierarchy belongs in
+   site-shell.css so it is not patched twice.
+   ========================================================= */
+
+/* Shared optical row alignment now lives in site-shell.css. */
+
+.site-main,
+.site-main > * {
+    min-width: 0;
+}
+
+:where(
+    .homepage,
+    .archive-page,
+    .news-page,
+    .upcoming-events-page,
+    .event-map-page,
+    .ufc-roster-page,
+    .otd-page,
+    .simple-about-page,
+    .contact-page,
+    .privacy-page,
+    .mma-gallery-page,
+    .media-kit-page
+) {
+    margin-inline: auto;
+    min-width: 0;
+}
+
+/* The primary tool pages begin at the shell's shared top rhythm. Individual
+   page styles may still own bottom/side padding. */
+:where(
+    .archive-page,
+    .upcoming-events-page,
+    .event-map-page,
+    .ufc-roster-page,
+    .otd-page
+) {
+    padding-top: 0;
+}
+
+:where(
+    .homepage,
+    .archive-page,
+    .news-page,
+    .upcoming-events-page,
+    .event-map-page,
+    .ufc-roster-page,
+    .otd-page
+) :where(section, article, header, footer, div, nav, aside) {
+    min-width: 0;
+}
+
+:where(
+    .homepage,
+    .archive-page,
+    .news-page,
+    .upcoming-events-page,
+    .event-map-page,
+    .ufc-roster-page,
+    .otd-page
+) img {
+    max-width: 100%;
+}
+
+.event-card-meta a,
+.event-map-detail-actions a,
+.event-map-detail-actions button,
+.news-source-chip,
+.news-show-more,
+.otd-control-button,
+.otd-mini-button {
+    max-width: 100%;
+}
+
+.event-card-meta a,
+.event-map-detail-location,
+.event-map-detail-venue,
+.news-matlock-meta,
+.home-next-meta,
+.home-next-main,
+.article-card-content,
+.post-event-context strong {
+    overflow-wrap: anywhere;
+}
+
+/* Functional controls should remain compact without becoming microscopic. */
+.otd-page .otd-mini-button,
+.otd-page .otd-filter-button,
+.otd-page .otd-view-button,
+.otd-page .otd-sort-control,
+.otd-page .otd-sort-select,
+.otd-page .otd-control-button,
+.otd-page .otd-date-input,
+.otd-page .otd-shortcut-hint {
+    font-size: .625rem;
+}
+
+.otd-page .otd-day-pill-today {
+    font-size: .56rem;
+}
+
+.otd-page .otd-mini-button,
+.otd-page .otd-filter-button,
+.otd-page .otd-view-button,
+.otd-page .otd-control-button,
+.otd-page .otd-date-input {
+    min-height: 40px;
+}
+
+/* Article/event cross-link bar. */
+.post-event-context {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .65rem;
+    margin: .68rem 0 .9rem;
+    padding: .46rem .54rem;
+    border: 1px solid #3f3f3f;
+    background: #090909;
+}
+
+.post-event-context > div:first-child {
+    min-width: 0;
+}
+
+.post-event-context strong {
+    display: block;
+    color: #fff;
+    font-family: "Gobold", Impact, sans-serif;
+    font-size: .95rem;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.post-event-context-actions {
+    display: flex;
+    gap: .3rem;
+    flex-shrink: 0;
+}
+
+.post-event-context-actions a {
+    min-height: 40px;
+    padding: .3rem .45rem;
+    border: 1px solid #565656;
+    color: #fff;
+    font: 700 .625rem/1 "Courier New", monospace;
+    letter-spacing: .04em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.post-event-context-actions a:first-child {
+    border-color: #fff;
+}
+
+.post-event-context-actions a:hover,
+.post-event-context-actions a:focus-visible {
+    border-color: var(--accent, #ff4a54);
+}
+
+/* Footer socials stay horizontal and compact instead of becoming a vertical stack. */
+.footer-grid {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.4rem;
+    align-items: start;
+}
+
+.footer-column:last-child {
+    min-width: 0;
+}
+
+.footer-column:last-child h2 {
+    margin-bottom: .45rem;
+    font-size: 1rem;
+}
+
+.footer-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3rem;
+}
+
+.footer-socials a {
+    gap: .38rem;
+    padding: .28rem .38rem;
+    border: 1px solid transparent;
+    border-radius: 2px;
+}
+
+.footer-socials a:hover,
+.footer-socials a:focus-visible {
+    border-color: #3d3d3d;
+}
+
+.footer-socials img {
+    width: 26px;
+    height: 26px;
+}
+
+.footer-socials span {
+    font-size: .68rem;
+}
+
+@media (max-width: 760px) {
+    .site-main {
+        overflow-x: clip;
+    }
+
+    :where(
+        .homepage,
+        .archive-page,
+        .news-page,
+        .upcoming-events-page,
+        .event-map-page,
+        .ufc-roster-page,
+        .otd-page
+    ) {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .event-card-section-heading,
+    .news-section-heading,
+    .section-header,
+    .home-panel-heading,
+    .ufc-roster-toolbar,
+    .otd-page-date-row {
+        min-width: 0;
+    }
+
+    .event-card-section-heading > *,
+    .news-section-heading > *,
+    .section-header > *,
+    .home-panel-heading > *,
+    .ufc-roster-toolbar > *,
+    .otd-page-date-row > * {
+        min-width: 0;
+    }
+
+    .event-map-detail-actions,
+    .prediction-actions,
+    .homepage-intro-actions,
+    .post-event-context-actions {
+        flex-wrap: wrap;
+    }
+
+    .otd-page .otd-mini-button,
+    .otd-page .otd-filter-button,
+    .otd-page .otd-view-button,
+    .otd-page .otd-control-button,
+    .otd-page .otd-date-input,
+    .post-event-context-actions a {
+        min-height: 44px;
+    }
+
+    .post-event-context {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .post-event-context-actions {
+        width: 100%;
+    }
+
+    .post-event-context-actions a {
+        flex: 1 1 120px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 1.1rem;
+    }
+
+    .footer-socials {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 430px) {
+    .section-header,
+    .news-section-heading,
+    .event-card-section-heading,
+    .home-panel-heading {
+        gap: .35rem;
+    }
+
+    .section-header > a,
+    .home-panel-heading > a {
+        flex-shrink: 0;
+    }
+
+    .event-map-toolbar button,
+    .event-map-detail-actions a,
+    .event-map-detail-actions button,
+    .otd-control-button,
+    .otd-mini-button,
+    .news-source-chip,
+    .news-show-more {
+        white-space: normal;
+        text-align: center;
+    }
+
+    .footer-socials span {
+        display: none;
+    }
+
+    .footer-socials a {
+        padding: .3rem;
+    }
+
+    .footer-socials img {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+@media (max-width: 390px) {
+    .event-card-section-heading,
+    .news-section-heading,
+    .section-header,
+    .home-panel-heading {
+        gap: .3rem;
+    }
+
+    .post-event-context-actions a {
+        flex-basis: 100%;
+    }
+}

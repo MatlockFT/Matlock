@@ -1,0 +1,200 @@
+name: Site quality
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install JavaScript dependencies
+        run: npm ci
+
+      - name: Check current brand identity
+        run: node scripts/check-brand-identity.mjs
+
+      - name: Check article content and image metadata
+        run: npm run check:content
+
+      - name: Check browser and data scripts
+        run: |
+          node --check assets/site.js
+          node --check assets/site-ticker.js
+          node --check assets/article-toc.js
+          node --check assets/news-feed.js
+          node --check assets/news-otd-deferred.js
+          node --check assets/homepage-dashboard.js
+          node --check assets/post-event-context.js
+          node --check assets/on-this-day.js
+          node --check assets/on-this-day-stable.js
+          node --check assets/otd-share-v3.js
+          node --check assets/ufc-roster.js
+          node --check assets/event-map-v2.js
+          node --check assets/event-map-enhancements.js
+          node --check assets/upcoming-events-jump.js
+          node --check assets/upcoming-events-links.js
+          node --check scripts/check-brand-identity.mjs
+          node --check scripts/build-news-feed.mjs
+          node --check scripts/check-news-data.mjs
+          node --check scripts/check-on-this-day.mjs
+          node --check scripts/check-on-this-day-share.mjs
+          node --check scripts/build-on-this-day-share-images.mjs
+          node --check scripts/update-fighter-birthdays.mjs
+          node --check scripts/update-on-this-day-events.mjs
+          node --check scripts/enrich-on-this-day-images.mjs
+          node --check scripts/verify-on-this-day-event-images.mjs
+          node --check scripts/enrich-on-this-day-content.mjs
+          node --check scripts/curate-on-this-day-events.mjs
+          node --check scripts/report-on-this-day-coverage.mjs
+          node --check scripts/upcoming-events-data.mjs
+          node --check scripts/event-location-utils.mjs
+          node --check scripts/enrich-upcoming-event-locations.mjs
+          node --check scripts/update-upcoming-ufc-events.mjs
+          node --check scripts/update-pfl-upcoming-events.mjs
+          node --check scripts/update-rizin-upcoming-events.mjs
+          node --check scripts/build-event-map-us.mjs
+          node --check scripts/validate-event-map-us.mjs
+          node --check scripts/report-event-map-locations.mjs
+          node --check scripts/update-event-map-regional.mjs
+          node --check scripts/update-event-map-discovery.mjs
+          node --check scripts/enrich-event-map-details.mjs
+          node --check scripts/sanitize-event-map-posters.mjs
+          node --check scripts/validate-event-map-posters.mjs
+          node --check scripts/preserve-event-map-discovery.mjs
+          node --check scripts/validate-event-map-regional.mjs
+          node --check scripts/validate-event-map-quality.mjs
+          node --check scripts/check-event-map-architecture.mjs
+          node --check scripts/validate-regional-picker.mjs
+          node --check scripts/resolve-espn-fighter-portraits.mjs
+          node --check scripts/enrich-fighter-portraits.mjs
+          node --check scripts/validate-upcoming-events.mjs
+          node --check scripts/ufc-roster-identity.mjs
+          node --check scripts/build-ufc-canonical-roster.mjs
+          node --check scripts/normalize-ufc-roster-events.mjs
+          node --check scripts/validate-ufc-roster-output.mjs
+          node --check scripts/publish-scheduled-posts.mjs
+          node --check scripts/summarize-lighthouse.mjs
+
+      - name: Check UFC roster identity behavior
+        run: |
+          node scripts/normalize-ufc-roster-events.mjs --self-test
+          node scripts/build-ufc-canonical-roster.mjs --self-test
+
+      - name: Check Event Map poster sanitizer behavior
+        run: node scripts/sanitize-event-map-posters.mjs --self-test
+
+      - name: Check Event Map trusted-location behavior
+        run: node scripts/build-event-map-us.mjs --self-test
+
+      - name: Check On This Day event-image verifier behavior
+        run: node scripts/verify-on-this-day-event-images.mjs --self-test
+
+      - name: Check first-paint shell invariants
+        run: |
+          grep -q "assets/site-ticker.css" _layouts/default.html
+          grep -q "assets/site-consistency.css" _layouts/default.html
+          grep -q "site-live-strip-reserve" _layouts/default.html
+          grep -q 'width="1600"' _layouts/default.html
+          grep -q 'height="640"' _layouts/default.html
+          grep -q "site-live-strip-reserve" assets/site-shell.css
+          grep -q "otd-list:empty" assets/site-shell.css
+          grep -q "grid-template-columns: repeat(2, minmax(0, 1fr))" assets/ufc-roster.css
+          grep -q "data-roster-active-count" ufc-roster.html
+          grep -q "data-roster-removals" ufc-roster.html
+          grep -q "is-portrait" assets/on-this-day.js
+          grep -q "animation-play-state: paused !important" assets/site-ticker.css
+          grep -q "home-tools-bar" index.html
+          grep -q "Shared optical row alignment" assets/site-consistency.css
+          grep -q "ufc-active-absence-confirmed" assets/ufc-roster.js
+          grep -q "REMOVAL_CONFIRMATION_MISSES = 3" scripts/update-ufc-roster-v4.mjs
+          grep -q "site.data.event_map_us" assets/data/event-map-live.json
+          if grep -q 'data-news-refresh' news.html || grep -q 'data-news-status' news.html; then
+            echo "News page must not expose manual refresh/update-status clutter"
+            exit 1
+          fi
+          grep -q "/assets/breakdowns.css" breakdowns.html
+          grep -q 'fetchpriority="high"' breakdowns.html
+          grep -q "/assets/on-this-day-stable.js" on-this-day.html
+          grep -q "/assets/otd-share-v3.js" on-this-day.html
+          grep -q 'data-home-dashboard' index.html
+          grep -q '/assets/homepage-dashboard.js' index.html
+          grep -q '/assets/news-matlock.css' news.html
+          grep -q 'news-matlock-latest' news.html
+          grep -q '/assets/upcoming-events-links.js' upcoming-events.html
+          grep -q 'data-picker-map-link' _includes/fight-card-picker-event.html
+          grep -q 'data-event-id' _includes/fight-card-picker-event.html
+          grep -q 'name: "On This Day"' _config.yml
+          grep -q '/assets/post-event-context.js' _config.yml
+          if grep -qE '/assets/on-this-day-(full|media-adaptive)\.js' on-this-day.html; then
+            echo "On This Day must not load deprecated runtimes"
+            exit 1
+          fi
+          if grep -q '/assets/otd-share-v2.js' on-this-day.html; then
+            echo "On This Day must not load the retired Canvas share renderer"
+            exit 1
+          fi
+          if grep -q 'document.createElement("style")' assets/site.js; then
+            echo "site.js must not inject shell CSS at runtime"
+            exit 1
+          fi
+          if grep -q '@import.*site-ticker.css' assets/site-shell.css; then
+            echo "Ticker CSS must be linked directly, not discovered through @import"
+            exit 1
+          fi
+
+      - name: Check fighter birthday and event source registries
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('assets/data/fighter-birthday-seeds.json','utf8'));"
+          node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-event-sources.json','utf8')); if(!Array.isArray(d.sources)||d.sources.length<4) process.exit(1);"
+          node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-image-cache.json','utf8')); if(!d||typeof d.entries!=='object'||Array.isArray(d.entries)) process.exit(1);"
+          node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-content-cache.json','utf8')); if(!d||typeof d.entries!=='object'||Array.isArray(d.entries)) process.exit(1);"
+
+      - name: Check Upcoming Events data and renderer
+        run: node scripts/validate-upcoming-events.mjs
+
+      - name: Check curated regional Fight Card Picker data
+        run: node scripts/validate-regional-picker.mjs
+
+      - name: Check regional Event Map data
+        run: node scripts/validate-event-map-regional.mjs
+
+      - name: Check Event Map quality and interaction architecture
+        run: |
+          node scripts/validate-event-map-us.mjs
+          node scripts/report-event-map-locations.mjs --check
+          node scripts/validate-event-map-quality.mjs
+          node scripts/check-event-map-architecture.mjs
+
+      - name: Check bundled MMA news data
+        run: npm run check:news
+
+      - name: Check On This Day MMA history data
+        run: npm run check:history
+
+      - name: Check On This Day share pipeline
+        run: npm run check:history-share
+
+      - name: Build site
+        uses: actions/jekyll-build-pages@v1
+
+      - name: Check internal links and assets
+        run: node scripts/check-site.mjs _site

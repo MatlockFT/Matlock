@@ -1,0 +1,30 @@
+---
+layout: null
+permalink: /assets/data/upcoming-events-live.json
+---
+{% assign major_events = site.data.upcoming_events.events %}
+{% assign regional = site.data.event_map_regional.events %}
+{% assign r_fury = regional | where: "source_key", "fury" %}
+{% assign r_cffc = regional | where: "source_key", "cffc" %}
+{% assign r_559 = regional | where: "source_key", "559" %}
+{% assign r_peak = regional | where: "source_key", "peak" %}
+{% assign r_lfa = regional | where: "source_key", "lfa_official" %}
+{% assign r_cage_titans = regional | where: "source_key", "cage_titans" %}
+{% assign r_fac = regional | where: "source_key", "fac_official" %}
+{% assign r_afc = regional | where: "source_key", "afc_alaska" %}
+{% assign r_caged_thunder = regional | where: "source_key", "caged_thunder" %}
+{% assign r_gc = regional | where: "source_key", "gladiator_challenge" %}
+{% assign r_tnu = regional | where: "source_key", "tuff_n_uff" %}
+{% assign r_xfn = regional | where: "source_key", "xfn_official" %}
+{% assign r_ruf = regional | where: "source_key", "ruf_official" %}
+{% assign r_camo = regional | where: "source_key", "camomma" %}
+{% assign r_florida = regional | where: "source_key", "florida_commission" %}
+{% assign r_cfc_el_paso = regional | where: "source_key", "cfc_el_paso" %}
+{% assign r_cfc_southeast = regional | where: "source_key", "cfc_southeast" %}
+{% assign verified_regional = r_fury | concat: r_cffc | concat: r_559 | concat: r_peak | concat: r_lfa | concat: r_cage_titans | concat: r_fac | concat: r_afc | concat: r_caged_thunder | concat: r_gc | concat: r_tnu | concat: r_xfn | concat: r_ruf | concat: r_camo | concat: r_florida | concat: r_cfc_el_paso | concat: r_cfc_southeast %}
+{% assign ticker_events = major_events | concat: verified_regional %}
+{
+  "schema_version": 2,
+  "generated_at": {{ site.time | date_to_xmlschema | jsonify }},
+  "events": {{ ticker_events | jsonify }}
+}
