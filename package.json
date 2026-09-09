@@ -7,6 +7,8 @@
     "check:external": "node scripts/check-external-links.mjs _site/mma-yellowpages.html",
     "check:news": "node scripts/check-news-data.mjs",
     "check:history": "node scripts/check-on-this-day.mjs",
+    "check:history-share": "node scripts/check-on-this-day-share.mjs",
+    "build:history-share": "node scripts/build-on-this-day-share-images.mjs",
     "update:news": "node scripts/build-news-feed.mjs",
     "update:birthdays": "node scripts/update-fighter-birthdays.mjs",
     "update:history-events": "node scripts/update-on-this-day-events.mjs",
