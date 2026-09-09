@@ -8,7 +8,8 @@ const FIELD_NAMES = [
     'date', 'kind', 'promotion', 'title', 'detail', 'source', 'sourceUrl',
     'weight', 'imageUrl', 'imageAlt', 'imageCredit', 'imagePosition',
     'imageSourceUrl', 'imageSourceType', 'imageConfidence', 'imageSubjectType',
-    'imageMatchReason', 'imageStatus', 'imageArtifactType', 'imagePosterVerified'
+    'imageMatchReason', 'imageStatus', 'imageArtifactType', 'imagePosterVerified',
+    'imageFallback', 'imageExactMatch'
 ];
 
 const source = JSON.parse(await fs.readFile(HISTORY_PATH, 'utf8'));
@@ -16,11 +17,11 @@ const entries = Array.isArray(source) ? source : source.entries;
 if (!Array.isArray(entries)) throw new Error(`${HISTORY_PATH} does not contain an entries array.`);
 
 const isEvent = entry => entry?.kind === 'event' || entry?.generatedBy === 'wikipedia-event-index';
+const hasHttpsImage = entry => typeof entry?.imageUrl === 'string' && /^https:\/\//i.test(entry.imageUrl);
 const verifiedEventPoster = entry => isEvent(entry) &&
     entry?.imagePosterVerified === true &&
     entry?.imageArtifactType === 'event-poster' &&
-    typeof entry?.imageUrl === 'string' &&
-    /^https:\/\//i.test(entry.imageUrl);
+    hasHttpsImage(entry);
 
 const compactEntry = entry => {
     const compact = Object.fromEntries(
@@ -30,22 +31,26 @@ const compactEntry = entry => {
     );
 
     if (isEvent(entry)) {
-        // Event cards are allowed to show only the verified poster/key art stored
-        // in the archive. assets/on-this-day.js normally falls back to a live
-        // Wikipedia page image when a stored URL is missing or fails. Disable
-        // that behavior for every event so a broken/missing poster becomes the
-        // text fallback rather than a generic event, fighter, or editorial image.
+        // Do not let the browser invent a live Wikipedia image for an event.
+        // The archive may, however, expose a stored trusted fallback while an
+        // exact poster is still being backfilled. A verified poster always wins.
         compact.wikipediaTitle = ' ';
-    }
 
-    if (isEvent(entry) && !verifiedEventPoster(entry)) {
-        delete compact.imageUrl;
-        delete compact.imageAlt;
-        delete compact.imageCredit;
-        delete compact.imagePosition;
-        compact.imagePosterVerified = false;
-        compact.imageArtifactType = 'event-poster';
-        compact.imageStatus = 'unresolved';
+        if (!verifiedEventPoster(entry)) {
+            compact.imagePosterVerified = false;
+            if (hasHttpsImage(entry)) {
+                compact.imageArtifactType = compact.imageArtifactType === 'event-poster'
+                    ? 'event-fallback'
+                    : (compact.imageArtifactType || 'event-fallback');
+                compact.imageFallback = true;
+            } else {
+                compact.imageStatus = 'unresolved';
+                delete compact.imageUrl;
+                delete compact.imageAlt;
+                delete compact.imageCredit;
+                delete compact.imagePosition;
+            }
+        }
     }
 
     return compact;
@@ -102,4 +107,4 @@ for (const [file, expected] of files) {
 }
 
 if (stale) process.exitCode = 1;
-else if (!CHECK_ONLY) console.log(`Built ${entries.length} runtime entries across 12 monthly shards. Event entries expose verified posters only; generic browser image fallbacks are disabled.`);
+else if (!CHECK_ONLY) console.log(`Built ${entries.length} runtime entries across 12 monthly shards. Events use verified posters when available and stored trusted fallbacks otherwise; live generic image lookup is disabled.`);
