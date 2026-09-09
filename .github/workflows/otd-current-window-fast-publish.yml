@@ -1,0 +1,87 @@
+name: OTD Current Window Fast Publish
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/otd-current-window-fast-publish.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: on-this-day-history
+  cancel-in-progress: true
+
+jobs:
+  fast-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      OTD_TIME_ZONE: "America/Chicago"
+      OTD_TAPOLOGY_POSTER_LIMIT: "32"
+      OTD_CURRENT_WINDOW_DAYS: "2"
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check fast-path syntax
+        run: |
+          node --check scripts/resolve-on-this-day-tapology-posters.mjs
+          node --check scripts/finalize-on-this-day-image-metadata.mjs
+          node --check scripts/build-on-this-day-runtime.mjs
+          node --check scripts/build-on-this-day-home.mjs
+          node --check scripts/build-on-this-day-leads.mjs
+
+      - name: Resolve current-window Tapology event posters first
+        run: node scripts/resolve-on-this-day-tapology-posters.mjs
+
+      - name: Force public event references to Tapology
+        run: node scripts/finalize-on-this-day-image-metadata.mjs
+
+      - name: Build browser runtime immediately
+        run: npm run build:history-runtime
+
+      - name: Build homepage snapshot
+        run: node scripts/build-on-this-day-home.mjs
+
+      - name: Build lead-image indexes
+        run: |
+          node scripts/build-on-this-day-leads.mjs
+          mkdir -p _data
+          cp assets/data/on-this-day-leads.json _data/on_this_day_leads.json
+
+      - name: Commit current-window OTD changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          tracked_paths=(
+            assets/data/on-this-day.json
+            assets/data/on-this-day-home.json
+            assets/data/on-this-day-leads.json
+            assets/data/on-this-day-runtime
+            _data/on_this_day_leads.json
+          )
+          if [ -z "$(git status --porcelain -- "${tracked_paths[@]}")" ]; then
+            echo "No current-window OTD changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "${tracked_paths[@]}"
+          git commit -m "Fast-publish current On This Day images"
+          git push origin HEAD:main
