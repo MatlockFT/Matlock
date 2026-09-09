@@ -25,6 +25,7 @@ on:
       - "scripts/verify-on-this-day-event-images.mjs"
       - "scripts/enrich-on-this-day-content.mjs"
       - "scripts/enrich-on-this-day-pancrase.mjs"
+      - "scripts/enrich-on-this-day-pancrase-images.mjs"
       - "scripts/curate-on-this-day-events.mjs"
       - "scripts/build-on-this-day-home.mjs"
       - "scripts/build-on-this-day-leads.mjs"
@@ -64,6 +65,7 @@ jobs:
       OTD_CONTENT_ENRICH_LIMIT: "80"
       OTD_CONTENT_CONCURRENCY: "1"
       OTD_PANCRASE_ENRICH_LIMIT: "24"
+      OTD_PANCRASE_IMAGE_LIMIT: "80"
       OTD_SHARE_WINDOW_DAYS: "2"
       OTD_SHARE_MAX_PER_DAY: "12"
       OTD_SHARE_CONCURRENCY: "3"
@@ -100,6 +102,7 @@ jobs:
           node --check scripts/verify-on-this-day-event-images.mjs
           node --check scripts/enrich-on-this-day-content.mjs
           node --check scripts/enrich-on-this-day-pancrase.mjs
+          node --check scripts/enrich-on-this-day-pancrase-images.mjs
           node --check scripts/curate-on-this-day-events.mjs
           node --check scripts/build-on-this-day-home.mjs
           node --check scripts/build-on-this-day-leads.mjs
@@ -131,6 +134,9 @@ jobs:
 
       - name: Backfill Pancrase from the official archive
         run: node scripts/enrich-on-this-day-pancrase.mjs
+
+      - name: Resolve Pancrase images from the official archive
+        run: node scripts/enrich-on-this-day-pancrase-images.mjs
 
       - name: Prefer posters and event imagery for the archive
         run: node scripts/enrich-on-this-day-images.mjs
