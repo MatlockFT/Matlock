@@ -1,4 +1,6 @@
 import fs from "node:fs/promises";
+import { execFileSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 import {
     dedupeFighterEvents,
     nameFromSlug,
@@ -169,6 +171,11 @@ if (finalizePublic) {
 
 await fs.writeFile(statePath, `${JSON.stringify(state, null, 2)}\n`);
 await fs.writeFile(publicPath, `${JSON.stringify(publicData, null, 2)}\n`);
+
+if (finalizePublic) {
+    const validatorPath = fileURLToPath(new URL("./validate-ufc-roster-output.mjs", import.meta.url));
+    execFileSync(process.execPath, [validatorPath, publicPath, statePath], { stdio: "inherit" });
+}
 
 console.log(
     `${finalizePublic ? "Finalized" : "Normalized"} UFC roster event history; removed ` +
