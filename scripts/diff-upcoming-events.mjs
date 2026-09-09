@@ -39,6 +39,19 @@ function portraitMap(event) {
   return out;
 }
 
+function locationSnapshot(event) {
+  return {
+    location: clean(event?.location),
+    city: clean(event?.city),
+    state: clean(event?.state || event?.state_code),
+    country: clean(event?.country),
+    latitude: Number.isFinite(Number(event?.latitude ?? event?.lat)) ? Number(event?.latitude ?? event?.lat) : null,
+    longitude: Number.isFinite(Number(event?.longitude ?? event?.lng)) ? Number(event?.longitude ?? event?.lng) : null,
+    source: clean(event?.location_source),
+    precision: clean(event?.location_precision)
+  };
+}
+
 const before = await readJson(beforePath,{events:[]});
 const after = await readJson(afterPath,{events:[]});
 const existing = await readJson(logPath,{schema_version:1,generated_at:null,changes:[]});
@@ -70,6 +83,11 @@ for (const [key,next] of newByKey) {
   const old=oldByKey.get(key); if (!old) continue;
   for (const [field,label] of [['title','title'],['date','date'],['venue','venue'],['broadcast','broadcast']]) {
     if (clean(old[field]) !== clean(next[field])) add(`${field}_changed`,next,`${next.promotion || ''} ${next.title}: ${label} changed.`,{from:old[field]||'',to:next[field]||''});
+  }
+
+  const oldLocation=locationSnapshot(old), nextLocation=locationSnapshot(next);
+  if (JSON.stringify(oldLocation) !== JSON.stringify(nextLocation)) {
+    add('location_changed',next,`${next.promotion || ''} ${next.title}: event location metadata changed.`,{from:oldLocation,to:nextLocation});
   }
 
   const oldSections=new Map((old.sections||[]).map(s=>[s.kind||s.title,s]));
