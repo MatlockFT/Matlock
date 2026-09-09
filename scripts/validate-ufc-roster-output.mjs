@@ -1,4 +1,9 @@
 import fs from "node:fs/promises";
+import {
+    GENERIC_FIGHTER_NAMES,
+    likelySameFighter,
+    normalizeFighterName
+} from "./ufc-roster-identity.mjs";
 
 const publicPath = process.argv[2] || "/tmp/ufc-roster-latest.json";
 const statePath = process.argv[3] || "/tmp/ufc-roster-state.json";
@@ -21,6 +26,38 @@ const urlKey = value => {
     }
 };
 
+function validateName(fighter, label) {
+    const name = clean(fighter?.name);
+    if (!name) {
+        failures.push(`${label} has no fighter name`);
+        return;
+    }
+    if (GENERIC_FIGHTER_NAMES.has(name.toLowerCase())) {
+        failures.push(`${label} has generic page title instead of fighter name: ${name}`);
+    }
+
+    const roman = name.match(/\b(ii|iii|iv|v|vi|vii|viii|ix|x)$/i)?.[1] || "";
+    if (roman && roman !== roman.toUpperCase()) {
+        failures.push(`${label} has incorrectly cased Roman-numeral suffix: ${name}`);
+    }
+
+    const normalized = normalizeFighterName(name);
+    if (!normalized) failures.push(`${label} fighter name cannot be normalized: ${name}`);
+}
+
+function validateIdentityCollisions(items, type) {
+    for (let i = 0; i < items.length; i += 1) {
+        for (let j = i + 1; j < items.length; j += 1) {
+            if (likelySameFighter(items[i], items[j])) {
+                failures.push(
+                    `${type}[${j}] appears to duplicate ${type}[${i]} by fighter identity: ` +
+                        `${clean(items[i]?.name) || items[i]?.url} / ${clean(items[j]?.name) || items[j]?.url}`
+                );
+            }
+        }
+    }
+}
+
 function validateEventList(items, type) {
     if (!Array.isArray(items)) {
         failures.push(`${type} must be an array`);
@@ -33,10 +70,11 @@ function validateEventList(items, type) {
         const label = `${type}[${index}]`;
         const url = urlKey(fighter?.url);
         if (!url) failures.push(`${label} has no valid fighter URL`);
-        else if (urls.has(url)) warnings.push(`${label} repeats fighter URL already seen at ${urls.get(url)}`);
+        else if (urls.has(url)) failures.push(`${label} repeats fighter URL already seen at ${urls.get(url)}`);
         else urls.set(url, label);
 
-        if (!clean(fighter?.name)) failures.push(`${label} has no fighter name`);
+        validateName(fighter, label);
+
         if (fighter?.eventType && fighter.eventType !== (type === "additions" ? "added" : "removed")) {
             failures.push(`${label} has wrong eventType ${fighter.eventType}`);
         }
@@ -46,6 +84,12 @@ function validateEventList(items, type) {
 
         if (!Number.isFinite(Date.parse(fighter?.detectedAt || fighter?.confirmedActiveAt || fighter?.confirmedInactiveAt || ""))) {
             failures.push(`${label} has no valid detection/confirmation timestamp`);
+        }
+
+        if (type === "additions") {
+            if (fighter?.entryClass !== "newcomer") failures.push(`${label} is not classified as newcomer`);
+            if (!fighter?.competitionCheckedAt) failures.push(`${label} has no prior-competition verification timestamp`);
+            if (fighter?.priorUfcCompetition !== false) failures.push(`${label} was not verified as having no prior UFC competition`);
         }
 
         if (type === "removals") {
@@ -60,6 +104,8 @@ function validateEventList(items, type) {
             }
         }
     }
+
+    validateIdentityCollisions(items, type);
     return urls;
 }
 
@@ -68,11 +114,22 @@ if (!Number.isInteger(publicData?.activeCount) || publicData.activeCount < 500) 
 if (!Number.isInteger(state?.activeCount) || state.activeCount < 500) failures.push(`implausible state activeCount: ${state?.activeCount}`);
 if (publicData?.activeCount !== state?.activeCount) failures.push(`public/state activeCount disagreement: ${publicData?.activeCount} vs ${state?.activeCount}`);
 if (!Array.isArray(state?.activeProfiles) || state.activeProfiles.length !== state.activeCount) failures.push("state activeProfiles length does not match activeCount");
+if (Array.isArray(publicData?.additions) && publicData.additions.length > 10) failures.push("public additions exceeds 10 entries");
 
 const additions = validateEventList(publicData?.additions, "additions");
 const removals = validateEventList(publicData?.removals, "removals");
 for (const [url, label] of additions) {
     if (removals.has(url)) failures.push(`${label} is simultaneously published as an addition and removal`);
+}
+
+for (const [addIndex, addition] of (publicData?.additions || []).entries()) {
+    for (const [removeIndex, removal] of (publicData?.removals || []).entries()) {
+        if (likelySameFighter(addition, removal)) {
+            failures.push(
+                `additions[${addIndex}] and removals[${removeIndex}] resolve to the same fighter identity`
+            );
+        }
+    }
 }
 
 const activeSet = new Set((state?.activeProfiles || []).map(urlKey).filter(Boolean));
