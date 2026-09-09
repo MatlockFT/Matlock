@@ -84,10 +84,11 @@ jobs:
           on-this-day|/on-this-day/
           PAGES
 
-      - name: Summarize mobile performance
+      - name: Enforce mobile performance gate
         run: node scripts/summarize-lighthouse.mjs lighthouse-reports
 
       - name: Upload Lighthouse reports
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: mobile-lighthouse-${{ github.run_id }}
