@@ -101,13 +101,31 @@
             return;
         }
 
+        const historyHref = `/on-this-day/?date=${encodeURIComponent(key || String(entry.date || '').slice(5))}`;
+        if (/^https:\/\//i.test(String(entry.imageUrl || ''))) {
+            const imageLink = element('a', 'home-otd-image');
+            imageLink.href = historyHref;
+            imageLink.setAttribute('aria-label', `Open ${entry.title || 'this MMA history entry'}`);
+            const image = document.createElement('img');
+            image.src = entry.imageUrl;
+            image.alt = entry.imageAlt || entry.title || 'MMA history image';
+            image.loading = 'lazy';
+            image.decoding = 'async';
+            image.referrerPolicy = 'no-referrer';
+            image.addEventListener('error', () => imageLink.remove(), { once: true });
+            imageLink.append(image);
+            otdBody.append(imageLink);
+        }
+
+        const copy = element('div', 'home-otd-copyblock');
         const year = String(entry.date || '').slice(0, 4);
         const label = element('span', 'home-otd-year', year || 'On this day');
         const title = element('h3', 'home-otd-title', entry.title || 'MMA history');
-        otdBody.append(label, title);
+        copy.append(label, title);
         const detail = entry.detail || entry.description || '';
-        if (detail) otdBody.append(element('p', 'home-otd-copy', detail));
-        otdBody.append(sectionLink('History →', `/on-this-day/?date=${encodeURIComponent(key || String(entry.date || '').slice(5))}`));
+        if (detail) copy.append(element('p', 'home-otd-copy', detail));
+        copy.append(sectionLink('History →', historyHref));
+        otdBody.append(copy);
     }
 
     async function loadOnThisDay() {
@@ -123,7 +141,7 @@
             const key = `${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
             const todays = entries
                 .filter(entry => String(entry?.date || '').slice(5) === key)
-                .sort((a, b) => Number(b?.weight || 0) - Number(a?.weight || 0));
+                .sort((a, b) => Number(Boolean(b?.imageUrl)) - Number(Boolean(a?.imageUrl)) || Number(b?.weight || 0) - Number(a?.weight || 0));
             renderOnThisDay(todays[0], key);
         } catch {
             renderOnThisDay(null, '');
