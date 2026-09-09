@@ -1,16 +1,25 @@
 {
-  "version": 1,
-  "generatedAt": "2026-09-09T21:43:17.549Z",
+  "version": 2,
+  "generatedAt": "2026-09-09T23:14:08.821Z",
   "timeZone": "America/Chicago",
   "key": "09-09",
   "entry": {
-    "date": "1994-09-09",
+    "date": "2018-09-09",
     "kind": "event",
-    "promotion": "UFC",
-    "title": "UFC 3: The American Dream",
-    "detail": "Held at Grady Cole Center in Charlotte, North Carolina, U.S.",
+    "promotion": "Pancrase",
+    "title": "Pancrase: 299",
+    "detail": "Headlined by Issei Tamura vs. Taichi Nakajima. Held at Studio Coast in Tokyo, Japan.",
     "source": "Tapology",
-    "sourceUrl": "https://www.tapology.com/search?term=UFC%203%3A%20The%20American%20Dream",
-    "weight": 52
+    "sourceUrl": "https://www.tapology.com/search?term=Pancrase%3A%20299",
+    "weight": 50,
+    "imageUrl": "https://www.pancrase.co.jp/tour/2018/0909/img/p299tn.jpg",
+    "imageAlt": "Pancrase: 299 event image",
+    "imageCredit": "Pancrase",
+    "imageSourceUrl": "https://www.pancrase.co.jp/tour/2018/0909/index.html",
+    "imageSourceType": "official-promotion-event-image",
+    "imageConfidence": 0.99,
+    "imageSubjectType": "event",
+    "imageMatchReason": "Exact official PANCRASE299 event poster/key art from the promotion's September 9, 2018 event page.",
+    "imageStatus": "resolved"
   }
 }
