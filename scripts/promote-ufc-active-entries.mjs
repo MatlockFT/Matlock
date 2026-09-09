@@ -1,4 +1,5 @@
 import fs from "node:fs/promises";
+import { nameFromSlug, normalizeFighterName } from "./ufc-roster-identity.mjs";
 
 const UFC_ORIGIN = "https://www.ufc.com";
 const USER_AGENT =
@@ -123,14 +124,6 @@ function slugFromUrl(url) {
     }
 }
 
-function nameFromSlug(slug) {
-    return String(slug || "")
-        .split("-")
-        .filter(Boolean)
-        .map(part => part.charAt(0).toUpperCase() + part.slice(1))
-        .join(" ");
-}
-
 async function fighterDetails(url) {
     const html = await requestText(url);
     const plain = stripTags(html);
@@ -138,12 +131,12 @@ async function fighterDetails(url) {
     const title =
         textFromMeta(html, "og:title") ||
         firstMatch(html, [/<h1[^>]*>([\s\S]*?)<\/h1>/i]).replace(/<[^>]+>/g, " ");
-    const name =
-        decodeHtml(title)
-            .replace(/\s*\|\s*UFC.*$/i, "")
-            .replace(/\s*-\s*UFC.*$/i, "")
-            .replace(/\s+/g, " ")
-            .trim() || nameFromSlug(slug);
+    const parsedName = decodeHtml(title)
+        .replace(/\s*\|\s*UFC.*$/i, "")
+        .replace(/\s*-\s*UFC.*$/i, "")
+        .replace(/\s+/g, " ")
+        .trim();
+    const name = normalizeFighterName(parsedName) || nameFromSlug(slug);
     const division = firstMatch(plain, [
         /\b(Women'?s\s+(?:Strawweight|Flyweight|Bantamweight|Featherweight))\s+Division\b/i,
         /\b(Flyweight|Bantamweight|Featherweight|Lightweight|Welterweight|Middleweight|Light Heavyweight|Heavyweight)\s+Division\b/i
@@ -253,7 +246,7 @@ for (const candidate of pending) {
     if (!existingAdditionUrls.has(candidate.url)) retainedPending.push(candidate);
 }
 
-state.version = Math.max(Number(state.version || 0), 10);
+state.version = Math.max(Number(state.version || 0), 11);
 state.additions = uniqueByEvent(additions);
 state.pendingActiveAdditions = retainedPending;
 state.seenProfileUrls = [...seenProfileUrls].sort();
@@ -263,7 +256,7 @@ state.activeEntryPromotion = {
     rule: "Entering UFC.com's status:23 Active collection is the roster-entry signal; profile Status is enrichment, not a publication gate."
 };
 
-publicData.version = Math.max(Number(publicData.version || 0), 10);
+publicData.version = Math.max(Number(publicData.version || 0), 11);
 publicData.activeEntryPromotion = state.activeEntryPromotion;
 if (promoted.length) {
     publicData.additions = uniqueByEvent([
