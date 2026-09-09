@@ -24,6 +24,13 @@ const compareNotable = (a, b) => {
     return String(b?.date || '').localeCompare(String(a?.date || ''));
 };
 
+const displayableImage = entry => {
+    const hasImage = typeof entry?.imageUrl === 'string' && /^https:\/\//i.test(entry.imageUrl.trim());
+    if (!hasImage) return false;
+    if (entry?.kind !== 'event' && entry?.generatedBy !== 'wikipedia-event-index') return true;
+    return entry?.imagePosterVerified === true && entry?.imageArtifactType === 'event-poster';
+};
+
 const data = JSON.parse(await fs.readFile(INPUT_PATH, 'utf8'));
 const entries = Array.isArray(data?.entries) ? data.entries : [];
 const byDay = new Map();
@@ -38,16 +45,16 @@ for (const entry of entries) {
 const leads = {};
 for (const [key, matching] of [...byDay.entries()].sort(([a], [b]) => a.localeCompare(b))) {
     const displayed = [...matching].sort(compareNotable).slice(0, COLLAPSE_LIMIT);
-    const firstImage = displayed.find(entry => typeof entry?.imageUrl === 'string' && entry.imageUrl.trim());
+    const firstImage = displayed.find(displayableImage);
     if (firstImage) leads[key] = firstImage.imageUrl.trim();
 }
 
 const output = {
-    version: 1,
+    version: 2,
     sourceVersion: data?.version ?? null,
     generatedAt: data?.generatedAt || null,
     leads
 };
 
 await fs.writeFile(OUTPUT_PATH, `${JSON.stringify(output, null, 2)}\n`, 'utf8');
-console.log(`Wrote ${Object.keys(leads).length} On This Day lead-image hints to ${OUTPUT_PATH}`);
+console.log(`Wrote ${Object.keys(leads).length} On This Day lead-image hints to ${OUTPUT_PATH}. Unverified event images are excluded.`);
