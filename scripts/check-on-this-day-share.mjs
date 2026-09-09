@@ -3,12 +3,14 @@ import fs from 'node:fs/promises';
 const pagePath = 'on-this-day.html';
 const manifestPath = 'assets/data/on-this-day-share-manifest.json';
 const runtimePath = 'assets/otd-share-v3.js';
+const bootstrapPath = 'assets/otd-share-bootstrap.js';
 const texturePath = 'assets/textures/otd-xerox-paper-v1.webp';
 const failures = [];
 
-const [page, runtime, manifestText, textureStat] = await Promise.all([
+const [page, runtime, bootstrap, manifestText, textureStat] = await Promise.all([
   fs.readFile(pagePath, 'utf8'),
   fs.readFile(runtimePath, 'utf8'),
+  fs.readFile(bootstrapPath, 'utf8'),
   fs.readFile(manifestPath, 'utf8'),
   fs.stat(texturePath).catch(() => null)
 ]);
@@ -17,7 +19,8 @@ let manifest;
 try { manifest = JSON.parse(manifestText); }
 catch { failures.push('share manifest must be valid JSON'); manifest = {}; }
 
-if (!page.includes('/assets/otd-share-v3.js')) failures.push('On This Day page must load otd-share-v3.js');
+if (!page.includes('/assets/otd-share-bootstrap.js')) failures.push('On This Day page must load the share bootstrap');
+if (!bootstrap.includes('/assets/otd-share-v3.js')) failures.push('share bootstrap must lazy-load otd-share-v3.js');
 if (page.includes('/assets/otd-share-v2.js')) failures.push('On This Day page must not load the retired otd-share-v2.js');
 for (const marker of ['MANIFEST_URL', 'buildFallbackSvg', 'balancedWrap', 'svgToJpeg', 'Inverse Xerox Edition', 'Instagram Post', 'Instagram Story']) {
   if (!runtime.includes(marker)) failures.push(`otd-share-v3.js missing marker: ${marker}`);

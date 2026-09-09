@@ -314,6 +314,11 @@
 
     const queryDate = parseKey(new URLSearchParams(location.search).get("date"));
     let dayIndex = new Map();
+    let availableDateCounts = new Map();
+    let historyIndex = null;
+    const monthRequests = new Map();
+    let fullArchiveLoaded = false;
+    let navigationToken = 0;
     let activeDate = queryDate || readSessionDate() || localToday();
     let activeFilter = "all";
     let activeMode = "all";
@@ -323,6 +328,60 @@
     let hashScrollPending = Boolean(location.hash);
 
     const entriesForDate = date => dayIndex.get(keyForDate(date)) || [];
+
+    function mergeEntries(entries) {
+        const incoming = buildDayIndex(entries);
+        for (const [key, values] of incoming) dayIndex.set(key, values);
+    }
+
+    function monthKeysForWeek(date) {
+        const start = new Date(date);
+        start.setDate(start.getDate() - start.getDay());
+        const months = new Set([String(date.getMonth() + 1).padStart(2, "0")]);
+        for (let offset = 0; offset < 7; offset += 1) {
+            const current = new Date(start);
+            current.setDate(start.getDate() + offset);
+            months.add(String(current.getMonth() + 1).padStart(2, "0"));
+        }
+        return [...months];
+    }
+
+    async function loadMonth(month) {
+        if (fullArchiveLoaded || monthRequests.has(month)) return monthRequests.get(month);
+        const descriptor = historyIndex?.months?.[month];
+        if (!descriptor?.file) throw new Error(`History index is missing month ${month}.`);
+        const indexUrl = new URL(widget.dataset.historyIndexUrl, location.href);
+        const url = new URL(descriptor.file, indexUrl);
+        url.search = indexUrl.search;
+        const request = fetch(url, { cache: "default" })
+            .then(response => {
+                if (!response.ok) throw new Error(`History month request failed: ${response.status}`);
+                return response.json();
+            })
+            .then(data => mergeEntries(Array.isArray(data?.entries) ? data.entries : []));
+        monthRequests.set(month, request);
+        try {
+            await request;
+        } catch (error) {
+            monthRequests.delete(month);
+            throw error;
+        }
+    }
+
+    const ensureVisibleMonths = date => Promise.all(monthKeysForWeek(date).map(loadMonth));
+
+    async function loadFullArchive() {
+        if (fullArchiveLoaded) return;
+        const url = widget.dataset.historyFallbackUrl;
+        if (!url) throw new Error("History fallback URL is missing.");
+        const response = await fetch(url, { cache: "default" });
+        if (!response.ok) throw new Error(`History fallback request failed: ${response.status}`);
+        const data = await response.json();
+        const entries = Array.isArray(data?.entries) ? data.entries : [];
+        dayIndex = buildDayIndex(entries);
+        availableDateCounts = new Map([...dayIndex].map(([key, values]) => [key, values.length]));
+        fullArchiveLoaded = true;
+    }
 
     function updateUrl(clearHash = true) {
         const url = new URL(location.href);
@@ -453,7 +512,7 @@
         for (let distance = 1; distance <= 366; distance += 1) {
             const date = new Date(activeDate);
             date.setDate(date.getDate() + distance * direction);
-            if (entriesForDate(date).length) return date;
+            if (availableDateCounts.get(keyForDate(date))) return date;
         }
         return null;
     }
@@ -468,7 +527,7 @@
         const jumps = el("div", "otd-empty-jumps");
         for (const [date, arrow] of [[nearestDateWithEntries(-1), "←"], [nearestDateWithEntries(1), "→"]]) {
             if (!date) continue;
-            const total = entriesForDate(date).length;
+            const total = availableDateCounts.get(keyForDate(date)) || entriesForDate(date).length;
             const button = el("button", "otd-empty-jump", `${arrow} ${formatShort.format(date)} · ${total}`);
             button.type = "button";
             button.dataset.otdJump = keyForDate(date);
@@ -610,9 +669,10 @@
         }
     }
 
-    function setActiveDate(date) {
+    async function setActiveDate(date) {
         const nextDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
         if (keyForDate(nextDate) === keyForDate(activeDate)) return;
+        const token = ++navigationToken;
         const wasDeep = list.getBoundingClientRect().top < 0;
         activeDate = nextDate;
         activeFilter = "all";
@@ -620,7 +680,23 @@
         expanded = false;
         hashScrollPending = false;
         updateUrl(true);
+        widget.classList.add("is-loading");
+        try {
+            await ensureVisibleMonths(activeDate);
+        } catch (error) {
+            console.warn("Monthly history shard unavailable; using the full archive.", error);
+            try {
+                await loadFullArchive();
+            } catch (fallbackError) {
+                console.error("On This Day failed to load the selected date", fallbackError);
+                if (token === navigationToken) widget.classList.remove("is-loading");
+                return;
+            }
+        }
+        if (token !== navigationToken) return;
+        renderedWeekKey = "";
         render(true);
+        widget.classList.remove("is-loading");
         if (wasDeep) requestAnimationFrame(() => list.scrollIntoView({ behavior: "auto", block: "start" }));
     }
 
@@ -691,7 +767,7 @@
 
     function randomDay() {
         const current = keyForDate(activeDate);
-        const keys = [...dayIndex.keys()].filter(key => key !== current && dayIndex.get(key)?.length);
+        const keys = [...availableDateCounts.keys()].filter(key => key !== current && availableDateCounts.get(key));
         if (!keys.length) return;
         const date = parseKey(keys[Math.floor(Math.random() * keys.length)]);
         if (date) setActiveDate(date);
@@ -886,22 +962,34 @@
     window.addEventListener("resize", scheduleDockCompact, { passive: true });
 
     async function load() {
-        const url = widget.dataset.historyUrl;
+        const url = widget.dataset.historyIndexUrl;
         if (!url) return;
         widget.classList.add("is-loading");
 
         try {
             const response = await fetch(url, { cache: "default" });
-            if (!response.ok) throw new Error(`History request failed: ${response.status}`);
+            if (!response.ok) throw new Error(`History index request failed: ${response.status}`);
             const data = await response.json();
-            dayIndex = buildDayIndex(Array.isArray(data?.entries) ? data.entries : []);
+            if (!data?.months || !data?.dates) throw new Error("History index is invalid.");
+            historyIndex = data;
+            availableDateCounts = new Map(Object.entries(data.dates).map(([key, value]) => [key, Number(value) || 0]));
+            await ensureVisibleMonths(activeDate);
             updateUrl(false);
             render(false);
             maybeShowShortcutHint();
             scheduleDockCompact();
         } catch (error) {
-            console.error("On This Day failed to load", error);
-            list.replaceChildren(el("p", "otd-empty", "History archive unavailable right now."));
+            console.warn("Optimized On This Day archive failed to load; using the full archive.", error);
+            try {
+                await loadFullArchive();
+                updateUrl(false);
+                render(false);
+                maybeShowShortcutHint();
+                scheduleDockCompact();
+            } catch (fallbackError) {
+                console.error("On This Day failed to load", fallbackError);
+                list.replaceChildren(el("p", "otd-empty", "History archive unavailable right now."));
+            }
         } finally {
             widget.classList.remove("is-loading");
             widget.classList.add("is-ready");
