@@ -3,11 +3,14 @@ import fs from "node:fs/promises";
 const HISTORY_PATH = process.argv[2] || "assets/data/on-this-day.json";
 const CACHE_PATH = process.argv[3] || "assets/data/on-this-day-image-cache.json";
 const VERIFY_LIMIT = Math.max(1, Number(process.env.OTD_IMAGE_VERIFY_LIMIT || 100));
-const USER_AGENT = "MMA-Matlock-OnThisDay-Image-Verify/1.0 (+https://mmamatlock.com/on-this-day/)";
+const USER_AGENT = "MMA-Matlock-OnThisDay-Image-Verify/1.1 (+https://mmamatlock.com/on-this-day/)";
 const REQUEST_TIMEOUT_MS = 20000;
 const REQUEST_ATTEMPTS = 3;
 const THUMB_WIDTH = 1200;
-const STRATEGY_VERSION = 6;
+const STRATEGY_VERSION = 7;
+const FORCE_REPAIR_KEYS = new Set([
+    "ufc:2018-09-08:ufc-228-woodley-vs-till"
+]);
 
 const clean = value => String(value || "").replace(/\s+/g, " ").trim();
 const normalized = value => clean(value)
@@ -124,6 +127,7 @@ function candidateEvidence(fileTitle, entry) {
 
     return {
         filename,
+        filenameWordsList,
         tokenMatches,
         posterish,
         promotionMatch,
@@ -202,12 +206,84 @@ function currentFileTitle(entry, cacheRecord) {
 }
 
 function needsRepair(entry, cacheRecord) {
+    if (FORCE_REPAIR_KEYS.has(entry?.autoKey)) return true;
     if (!entry?.imageUrl) return true;
     const sourceType = entry?.imageSourceType || cacheRecord?.sourceType || "";
-    if (sourceType === "wikipedia-lead-image") return false;
+    if (sourceType === "wikipedia-event-image") return false;
     const fileTitle = currentFileTitle(entry, cacheRecord);
     if (!fileTitle) return false;
     return !candidatePlausible(fileTitle, entry);
+}
+
+async function listPageImages(title) {
+    if (!title) return [];
+    const images = new Set();
+    let imcontinue = "";
+
+    for (let page = 0; page < 3; page += 1) {
+        const url = new URL("https://en.wikipedia.org/w/api.php");
+        url.searchParams.set("action", "query");
+        url.searchParams.set("format", "json");
+        url.searchParams.set("formatversion", "2");
+        url.searchParams.set("redirects", "1");
+        url.searchParams.set("prop", "images");
+        url.searchParams.set("imlimit", "100");
+        url.searchParams.set("titles", title);
+        if (imcontinue) url.searchParams.set("imcontinue", imcontinue);
+
+        const data = await requestJson(url);
+        const resultPage = Array.isArray(data?.query?.pages) ? data.query.pages[0] : null;
+        for (const item of resultPage?.images || []) {
+            if (item?.title) images.add(item.title);
+        }
+
+        imcontinue = data?.continue?.imcontinue || "";
+        if (!imcontinue) break;
+    }
+
+    return [...images];
+}
+
+async function imageInfo(fileTitle) {
+    if (!fileTitle) return null;
+    const url = new URL("https://en.wikipedia.org/w/api.php");
+    url.searchParams.set("action", "query");
+    url.searchParams.set("format", "json");
+    url.searchParams.set("formatversion", "2");
+    url.searchParams.set("prop", "imageinfo");
+    url.searchParams.set("iiprop", "url|size");
+    url.searchParams.set("iiurlwidth", String(THUMB_WIDTH));
+    url.searchParams.set("titles", fileTitle);
+
+    const data = await requestJson(url);
+    const page = Array.isArray(data?.query?.pages) ? data.query.pages[0] : null;
+    const info = Array.isArray(page?.imageinfo) ? page.imageinfo[0] : null;
+    const source = info?.thumburl || info?.url || "";
+    if (!/^https:\/\//i.test(source)) return null;
+
+    return {
+        imageUrl: source,
+        imageFileTitle: page?.title || fileTitle,
+        width: Number(info?.width || 0),
+        height: Number(info?.height || 0),
+        sourceType: "wikipedia-event-image"
+    };
+}
+
+async function exactEventImage(title, entry) {
+    const pageImages = await listPageImages(title);
+    const candidates = pageImages
+        .filter(fileTitle => /\.(?:jpe?g|png|webp|gif)$/i.test(fileTitle))
+        .map(fileTitle => ({ fileTitle, evidence: candidateEvidence(fileTitle, entry) }))
+        .filter(item => item.evidence.eventKeyOnly)
+        .sort((a, b) =>
+            Number(b.evidence.posterish) - Number(a.evidence.posterish) ||
+            a.evidence.filenameWordsList.length - b.evidence.filenameWordsList.length ||
+            a.fileTitle.length - b.fileTitle.length
+        );
+
+    if (!candidates.length) return null;
+    return imageInfo(candidates[0].fileTitle);
 }
 
 async function pageLeadImage(title) {
@@ -231,23 +307,35 @@ async function pageLeadImage(title) {
         imageUrl: source,
         imageFileTitle: page?.pageimage ? `File:${page.pageimage}` : "",
         width: Number(page?.thumbnail?.width || 0),
-        height: Number(page?.thumbnail?.height || 0)
+        height: Number(page?.thumbnail?.height || 0),
+        sourceType: "wikipedia-lead-image"
     };
+}
+
+async function preferredEventImage(reference, entry) {
+    const exact = await exactEventImage(reference.title, entry);
+    if (exact) return exact;
+    return pageLeadImage(reference.title);
 }
 
 function selfTest() {
     const entry = {
+        autoKey: "ufc:2018-09-08:ufc-228-woodley-vs-till",
         title: "UFC 228: Woodley vs. Till",
         promotion: "UFC",
-        wikipediaTitle: "UFC 228"
+        wikipediaTitle: "UFC 228",
+        imageUrl: "https://example.com/aljamain.jpg",
+        imageSourceType: "wikipedia-lead-image"
     };
     const checks = [
         [candidatePlausible("File:UFC_228.jpg", entry), true, "event-key poster filename"],
+        [candidateEvidence("File:UFC_228.jpg", entry).eventKeyOnly, true, "exact event-key classification"],
         [candidatePlausible("File:UFC 228 poster.jpg", entry), true, "explicit poster filename"],
         [candidatePlausible("File:UFC 228 Woodley Till.jpg", entry), true, "headliner filename"],
         [candidatePlausible("File:Alijamain Sterling at UFC 228.jpg", entry), false, "unrelated fighter image"],
         [candidatePlausible("File:Geoff Neal at UFC 228.jpg", entry), false, "undercard fighter image"],
-        [referenceIsEventSpecific(entry, wikipediaReference(entry)), true, "event-specific Wikipedia page"]
+        [referenceIsEventSpecific(entry, wikipediaReference(entry)), true, "event-specific Wikipedia page"],
+        [needsRepair(entry, {}), true, "forced UFC 228 repair"]
     ];
     const failed = checks.filter(([actual, expected]) => actual !== expected);
     if (failed.length) {
@@ -274,6 +362,7 @@ const eligible = (history.entries || [])
     .filter(item => referenceIsEventSpecific(item.entry, item.reference))
     .filter(item => needsRepair(item.entry, item.cacheRecord))
     .sort((a, b) =>
+        Number(FORCE_REPAIR_KEYS.has(b.entry?.autoKey)) - Number(FORCE_REPAIR_KEYS.has(a.entry?.autoKey)) ||
         cyclicDistance(a.entry) - cyclicDistance(b.entry) ||
         Number(Boolean(a.entry.imageUrl)) - Number(Boolean(b.entry.imageUrl)) ||
         Number(b.entry.weight || 0) - Number(a.entry.weight || 0)
@@ -281,45 +370,48 @@ const eligible = (history.entries || [])
     .slice(0, VERIFY_LIMIT);
 
 let repaired = 0;
+let exactRepaired = 0;
 let missingLead = 0;
 let failed = 0;
 const nowIso = new Date().toISOString();
 
 for (const { entry, reference, cacheRecord } of eligible) {
     try {
-        const lead = await pageLeadImage(reference.title);
-        if (!lead?.imageUrl) {
+        const image = await preferredEventImage(reference, entry);
+        if (!image?.imageUrl) {
             missingLead += 1;
             continue;
         }
 
-        entry.imageUrl = lead.imageUrl;
+        const isExact = image.sourceType === "wikipedia-event-image";
+        entry.imageUrl = image.imageUrl;
         entry.imageAlt = `${eventName(entry)} event poster`;
         entry.imageCredit = "Wikipedia";
-        entry.imageSourceType = "wikipedia-lead-image";
+        entry.imageSourceType = image.sourceType;
         entry.imageStrategyVersion = STRATEGY_VERSION;
-        if (lead.imageFileTitle) entry.imageFileTitle = lead.imageFileTitle;
+        if (image.imageFileTitle) entry.imageFileTitle = image.imageFileTitle;
         else delete entry.imageFileTitle;
-        if (lead.width) entry.imageWidth = lead.width;
+        if (image.width) entry.imageWidth = image.width;
         else delete entry.imageWidth;
-        if (lead.height) entry.imageHeight = lead.height;
+        if (image.height) entry.imageHeight = image.height;
         else delete entry.imageHeight;
 
         cache.entries[entry.autoKey] = {
             ...(cacheRecord || {}),
             strategyVersion: STRATEGY_VERSION,
-            status: "lead-image",
-            sourceType: "wikipedia-lead-image",
+            status: isExact ? "event-key-image" : "lead-image",
+            sourceType: image.sourceType,
             checkedAt: nowIso,
             wikipediaTitle: reference.fragment ? `${reference.title}#${reference.fragment}` : reference.title,
-            imageUrl: lead.imageUrl,
+            imageUrl: image.imageUrl,
             imageAlt: entry.imageAlt,
             imageCredit: "Wikipedia",
-            ...(lead.imageFileTitle ? { imageFileTitle: lead.imageFileTitle } : {}),
-            ...(lead.width ? { width: lead.width } : {}),
-            ...(lead.height ? { height: lead.height } : {})
+            ...(image.imageFileTitle ? { imageFileTitle: image.imageFileTitle } : {}),
+            ...(image.width ? { width: image.width } : {}),
+            ...(image.height ? { height: image.height } : {})
         };
         repaired += 1;
+        if (isExact) exactRepaired += 1;
     } catch (error) {
         failed += 1;
         console.warn(`${entry.title}: ${clean(error?.message || error).slice(0, 160)}`);
@@ -334,4 +426,4 @@ if (repaired) {
     await fs.writeFile(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`, "utf8");
 }
 
-console.log(`On This Day event-image verification: ${eligible.length} checked, ${repaired} repaired with Wikipedia lead artwork, ${missingLead} without a lead image, ${failed} failed.`);
+console.log(`On This Day event-image verification: ${eligible.length} checked, ${repaired} repaired (${exactRepaired} exact event images), ${missingLead} without a usable event image, ${failed} failed.`);
