@@ -239,8 +239,33 @@
     gap: .6rem;
 }
 
-.home-otd-body,
+.home-otd-body {
+    padding: 0;
+    overflow: hidden;
+}
+
 .home-roster-body {
+    padding: .64rem .66rem;
+}
+
+.home-otd-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-bottom: 1px solid #353535;
+    background: #111;
+}
+
+.home-otd-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.home-otd-copyblock {
     padding: .64rem .66rem;
 }
 
