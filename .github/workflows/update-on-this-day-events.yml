@@ -10,6 +10,9 @@ on:
       - ".github/workflows/update-on-this-day-events.yml"
       - "assets/data/on-this-day-event-sources.json"
       - "assets/data/on-this-day-pancrase-cache.json"
+      - "assets/data/fighter-birthday-seeds.json"
+      - "assets/fighter-portraits.json"
+      - "scripts/update-fighter-birthdays.mjs"
       - "scripts/update-on-this-day-events.mjs"
       - "scripts/normalize-on-this-day-titles.mjs"
       - "scripts/enrich-on-this-day-images.mjs"
@@ -81,6 +84,7 @@ jobs:
 
       - name: Check updater syntax
         run: |
+          node --check scripts/update-fighter-birthdays.mjs
           node --check scripts/update-on-this-day-events.mjs
           node --check scripts/normalize-on-this-day-titles.mjs
           node --check scripts/enrich-on-this-day-images.mjs
@@ -99,6 +103,9 @@ jobs:
           node --check scripts/report-on-this-day-coverage.mjs
           node --check scripts/check-on-this-day.mjs
           node --check assets/otd-share-v3.js
+
+      - name: Refresh fighter birthdays from Wikipedia and Wikidata
+        run: npm run update:birthdays
 
       - name: Refresh event anniversaries from Wikipedia
         run: node scripts/update-on-this-day-events.mjs
