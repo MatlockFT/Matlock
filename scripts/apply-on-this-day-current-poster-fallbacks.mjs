@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 const HISTORY_PATH = process.argv[2] || 'assets/data/on-this-day.json';
 const FALLBACKS_PATH = process.argv[3] || 'assets/data/on-this-day-current-poster-fallbacks.json';
-const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD-PosterFallbacks/1.0';
+const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD-PosterFallbacks/2.0';
 const REQUEST_TIMEOUT_MS = 20000;
 
 const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
@@ -10,12 +10,7 @@ const norm = value => clean(value).normalize('NFKD').replace(/[\u0300-\u036f]/g,
 const http = value => /^https:\/\//i.test(clean(value));
 
 function decodeHtml(value) {
-  return clean(String(value || '')
-    .replace(/&amp;/gi, '&')
-    .replace(/&quot;/gi, '"')
-    .replace(/&#39;|&apos;/gi, "'")
-    .replace(/&lt;/gi, '<')
-    .replace(/&gt;/gi, '>'));
+  return clean(String(value || '').replace(/&amp;/gi, '&').replace(/&quot;/gi, '"').replace(/&#39;|&apos;/gi, "'").replace(/&lt;/gi, '<').replace(/&gt;/gi, '>'));
 }
 
 function absoluteUrl(value, base) {
@@ -36,27 +31,25 @@ function attr(tag, name) {
 }
 
 function titleTokens(title) {
-  return norm(title).split(' ').filter(token => token.length >= 3 && !['the','and','vs','event','champion'].includes(token));
+  return norm(title).split(' ').filter(token => token.length >= 3 && !['the','and','versus','event','champion','championship'].includes(token));
 }
 
 function pageImageCandidates(html, base, title) {
   const candidates = [];
   const tokens = titleTokens(title);
   const seen = new Set();
-  const add = (url, score, evidence) => {
+  const wikipedia = /(?:wikipedia|wikimedia)\.org/i.test(base);
+  const add = (url, score, evidence, tokenMatches = 0, posterish = false) => {
     url = absoluteUrl(url, base);
     if (!usableImage(url) || seen.has(url)) return;
     seen.add(url);
-    candidates.push({ url, score, evidence });
+    candidates.push({ url, score, evidence, tokenMatches, posterish });
   };
 
   for (const tag of html.match(/<meta\b[^>]*>/gi) || []) {
     const key = clean(attr(tag, 'property') || attr(tag, 'name')).toLowerCase();
     if (!['og:image','og:image:url','twitter:image','twitter:image:src'].includes(key)) continue;
-    const url = attr(tag, 'content');
-    let score = 70;
-    if (/wikipedia\.org|wikimedia\.org/i.test(base)) score += 35;
-    add(url, score, key);
+    add(attr(tag, 'content'), wikipedia ? 110 : 20, key, 0, wikipedia);
   }
 
   for (const tag of html.match(/<img\b[^>]*>/gi) || []) {
@@ -70,14 +63,14 @@ function pageImageCandidates(html, base, title) {
       const parts = srcset.split(',').map(part => part.trim()).filter(Boolean);
       if (parts.length) url = parts.at(-1).split(/\s+/)[0] || url;
     }
-    let score = 10;
-    score += tokens.filter(token => text.includes(token)).length * 18;
-    if (/poster|event|hero|fight|card/i.test(classId)) score += 25;
-    if (/poster|event|ufc|pancrase|bellator|strikeforce/i.test(text)) score += 15;
+    const tokenMatches = tokens.filter(token => text.includes(token)).length;
+    const posterish = /poster|event|fight\s*card|key\s*art/i.test(`${alt} ${titleAttr} ${classId}`);
+    let score = 10 + tokenMatches * 22;
+    if (posterish) score += 35;
     const width = Number(attr(tag, 'width')) || 0;
     const height = Number(attr(tag, 'height')) || 0;
     if (width >= 500 || height >= 500) score += 10;
-    add(url, score, `${alt} ${titleAttr}`.trim());
+    add(url, score, `${alt} ${titleAttr}`.trim(), tokenMatches, posterish);
   }
 
   return candidates.sort((a, b) => b.score - a.score);
@@ -99,17 +92,28 @@ async function resolveImage(rule) {
   if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
   const finalUrl = response.url || sourceUrl;
   const html = await response.text();
-  const candidates = pageImageCandidates(html, finalUrl, rule?.title);
+  const candidates = pageImageCandidates(html, finalUrl, rule?.evidenceTitle || rule?.title);
   if (!candidates.length) throw new Error('source page did not expose a usable event image');
-  return { imageUrl: candidates[0].url, sourceUrl: finalUrl };
+
+  const wikipedia = /(?:wikipedia|wikimedia)\.org/i.test(finalUrl);
+  const tokens = titleTokens(rule?.evidenceTitle || rule?.title);
+  const candidate = wikipedia
+    ? candidates[0]
+    : candidates.find(item => item.posterish && item.tokenMatches >= Math.min(2, tokens.length)) || candidates.find(item => item.tokenMatches >= Math.min(3, tokens.length));
+  if (!candidate) throw new Error('source page had images, but none had enough exact event-title/poster evidence');
+  return { imageUrl: candidate.url, sourceUrl: finalUrl };
 }
 
 function findEntry(entries, rule) {
   return entries.find(entry => clean(entry?.date) === clean(rule?.date) && norm(entry?.title) === norm(rule?.title));
 }
 
+function validTapologyBinding(entry) {
+  return clean(entry?.imageSourceType) !== 'tapology-event-poster' || ['direct-event-page','bing-image-exact-event-page','manual-exact-event-page','legacy-filename-exact'].includes(clean(entry?.imageTapologyBinding));
+}
+
 function alreadyVerified(entry) {
-  return http(entry?.imageUrl) && entry?.imagePosterVerified === true && clean(entry?.imageArtifactType) === 'event-poster' && clean(entry?.imageSubjectType) === 'event' && Number(entry?.imageConfidence || 0) >= 0.9;
+  return http(entry?.imageUrl) && entry?.imagePosterVerified === true && clean(entry?.imageArtifactType) === 'event-poster' && clean(entry?.imageSubjectType) === 'event' && Number(entry?.imageConfidence || 0) >= 0.9 && validTapologyBinding(entry);
 }
 
 const history = JSON.parse(await fs.readFile(HISTORY_PATH, 'utf8'));
@@ -147,10 +151,12 @@ for (const rule of rules) {
     entry.imagePosterVerified = true;
     entry.imageExactMatch = true;
     entry.imageFallback = true;
-    entry.imageMatchReason = clean(rule?.matchReason) || 'Verified exact event-poster fallback applied after higher-priority poster discovery failed.';
+    entry.imageMatchReason = clean(rule?.matchReason) || 'Verified exact event-poster fallback applied after higher-priority Tapology poster discovery failed.';
     entry.imageResolvedAt = nowIso;
     entry.imageStatus = 'resolved';
     delete entry.imageUnresolved;
+    delete entry.imageTapologyBinding;
+    delete entry.imageTapologyPageUrl;
     applied += 1;
   } catch (error) {
     failures.push(`${label}: ${clean(error?.message || error)}`);
