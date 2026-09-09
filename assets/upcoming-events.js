@@ -5,6 +5,10 @@
 
     const PICK = "is-pick";
     const H2C = "https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js";
+    const assetQuery = (() => {
+        try { return new URL(document.currentScript?.src || "", location.href).search; }
+        catch { return ""; }
+    })();
 
     const slug = text => (text || "fight-card")
         .toLowerCase()
@@ -97,7 +101,7 @@
 
     eventList.querySelectorAll("img[data-fighter-photo]").forEach(preparePortrait);
 
-    fetch("/assets/fighter-portraits.json", { cache: "no-cache" })
+    fetch(`/assets/fighter-portraits.json${assetQuery}`, { cache: "default" })
         .then(response => response.ok ? response.json() : Promise.reject(new Error(`HTTP ${response.status}`)))
         .then(portraits => {
             eventList.querySelectorAll(".fighter").forEach(fighter => {

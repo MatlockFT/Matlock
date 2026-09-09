@@ -29,6 +29,9 @@ jobs:
       - name: Install JavaScript dependencies
         run: npm ci
 
+      - name: Check repository integrity
+        run: npm run check:integrity
+
       - name: Check current brand identity
         run: node scripts/check-brand-identity.mjs
 
@@ -46,6 +49,7 @@ jobs:
           node --check assets/post-event-context.js
           node --check assets/on-this-day.js
           node --check assets/on-this-day-stable.js
+          node --check assets/otd-share-bootstrap.js
           node --check assets/otd-share-v3.js
           node --check assets/ufc-roster.js
           node --check assets/event-map-v2.js
@@ -57,6 +61,9 @@ jobs:
           node --check scripts/check-news-data.mjs
           node --check scripts/check-on-this-day.mjs
           node --check scripts/check-on-this-day-share.mjs
+          node --check scripts/build-on-this-day-runtime.mjs
+          node --check scripts/build-frontend-bundles.mjs
+          node --check scripts/check-repository-integrity.mjs
           node --check scripts/build-on-this-day-share-images.mjs
           node --check scripts/update-fighter-birthdays.mjs
           node --check scripts/update-on-this-day-events.mjs
@@ -110,8 +117,9 @@ jobs:
 
       - name: Check first-paint shell invariants
         run: |
-          grep -q "assets/site-ticker.css" _layouts/default.html
-          grep -q "assets/site-consistency.css" _layouts/default.html
+          grep -q "assets/site-tail.css" _layouts/default.html
+          grep -q "Source: assets/site-ticker.css" assets/site-tail.css
+          grep -q "Source: assets/site-consistency.css" assets/site-tail.css
           grep -q "site-live-strip-reserve" _layouts/default.html
           grep -q 'width="1600"' _layouts/default.html
           grep -q 'height="640"' _layouts/default.html
@@ -134,7 +142,9 @@ jobs:
           grep -q "/assets/breakdowns.css" breakdowns.html
           grep -q 'fetchpriority="high"' breakdowns.html
           grep -q "/assets/on-this-day-stable.js" on-this-day.html
-          grep -q "/assets/otd-share-v3.js" on-this-day.html
+          grep -q "/assets/otd-share-bootstrap.js" on-this-day.html
+          grep -q "/assets/on-this-day.bundle.css" on-this-day.html
+          grep -q "data-history-index-url" on-this-day.html
           grep -q 'data-home-dashboard' index.html
           grep -q '/assets/homepage-dashboard.js' index.html
           grep -q '/assets/news-matlock.css' news.html
@@ -192,6 +202,11 @@ jobs:
 
       - name: Check On This Day share pipeline
         run: npm run check:history-share
+
+      - name: Check generated frontend assets
+        run: |
+          npm run check:frontend
+          npm run check:history-runtime
 
       - name: Build site
         uses: actions/jekyll-build-pages@v1

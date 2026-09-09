@@ -55,8 +55,11 @@ if (!entries.length) {
 if (!page.includes("/assets/on-this-day-stable.js")) {
     failures.push("on-this-day.html must load the stable On This Day renderer");
 }
-if (!page.includes("/assets/on-this-day-qol.css")) {
-    failures.push("on-this-day.html must load the On This Day QoL stylesheet");
+if (!page.includes("/assets/on-this-day.bundle.css")) {
+    failures.push("on-this-day.html must load the generated On This Day stylesheet bundle");
+}
+if (!page.includes("data-history-index-url") || !page.includes("data-history-fallback-url")) {
+    failures.push("on-this-day.html must provide optimized history data and a full-archive fallback");
 }
 if (!page.includes("data-otd-mode-group") || !page.includes("data-otd-sort")) {
     failures.push("on-this-day.html must expose notable/all and sort controls");

@@ -19,6 +19,7 @@ on:
       - "scripts/curate-on-this-day-events.mjs"
       - "scripts/build-on-this-day-home.mjs"
       - "scripts/build-on-this-day-leads.mjs"
+      - "scripts/build-on-this-day-runtime.mjs"
       - "scripts/build-on-this-day-share-images.mjs"
       - "scripts/check-on-this-day-share.mjs"
       - "assets/textures/otd-xerox-paper-v1.webp"
@@ -86,6 +87,7 @@ jobs:
           node --check scripts/curate-on-this-day-events.mjs
           node --check scripts/build-on-this-day-home.mjs
           node --check scripts/build-on-this-day-leads.mjs
+          node --check scripts/build-on-this-day-runtime.mjs
           node --check scripts/build-on-this-day-share-images.mjs
           node --check scripts/check-on-this-day-share.mjs
           node --check scripts/report-on-this-day-coverage.mjs
@@ -112,6 +114,9 @@ jobs:
 
       - name: Curate duplicate events and generated copy
         run: node scripts/curate-on-this-day-events.mjs
+
+      - name: Build optimized browser history shards
+        run: npm run build:history-runtime
 
       - name: Build share-ready social images
         run: npm run build:history-share
@@ -170,6 +175,7 @@ jobs:
             assets/data/on-this-day-content-cache.json
             assets/data/on-this-day-pancrase-cache.json
             assets/data/on-this-day-share-manifest.json
+            assets/data/on-this-day-runtime
             _data/on_this_day_leads.json
           )
           if [ -z "$(git status --porcelain -- "${tracked_paths[@]}")" ]; then
