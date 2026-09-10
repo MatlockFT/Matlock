@@ -12,14 +12,15 @@ const FIELD_NAMES = [
     'imageSourceUrl', 'imageSourceType', 'imageConfidence', 'imageSubjectType',
     'imageMatchReason', 'imageStatus', 'imageArtifactType', 'imagePosterVerified',
     'imageFallback', 'imageExactMatch', 'imageTapologyBinding', 'imageTapologyPageUrl',
-    'imageManualVisualVerified'
+    'imageManualVisualVerified', 'tapologyUrl', 'imagePosterUnavailableVerified',
+    'imageTapologyRegistryKey', 'imagePosterSha256', 'imageWidth', 'imageHeight'
 ];
 
 const source = JSON.parse(await fs.readFile(HISTORY_PATH, 'utf8'));
 const entries = Array.isArray(source) ? source : source.entries;
 if (!Array.isArray(entries)) throw new Error(`${HISTORY_PATH} does not contain an entries array.`);
 
-const isEvent = entry => entry?.kind === 'event' || entry?.generatedBy === 'wikipedia-event-index';
+const isEvent = entry => entry?.kind === 'event' || entry?.generatedBy === 'wikipedia-event-index' || entry?.imageArtifactType === 'event-poster' || entry?.imageArtifactType === 'event-poster-unavailable' || (entry?.imageSubjectType === 'event' && String(entry?.tapologyUrl || entry?.imageSourceUrl || entry?.sourceUrl || '').includes('tapology.com/fightcenter/events/'));
 const hasHttpsImage = entry => typeof entry?.imageUrl === 'string' && /^https:\/\//i.test(entry.imageUrl);
 const trustedTapologyBindings = new Set(['direct-event-page','bing-image-exact-event-page','manual-exact-event-page','legacy-filename-exact']);
 const trustedPosterTypes = new Set([
@@ -54,7 +55,7 @@ const verifiedEventPoster = entry => {
     if (!isEvent(entry) || entry?.imagePosterVerified !== true || entry?.imageArtifactType !== 'event-poster' || !hasHttpsImage(entry)) return false;
     if (!trustedPosterTypes.has(entry?.imageSourceType)) return false;
     if (entry?.imageSourceType === 'tapology-event-poster') {
-        return trustedTapologyBindings.has(entry?.imageTapologyBinding) && /^https:\/\/(?:www\.)?tapology\.com\/fightcenter\/events\//i.test(entry?.imageTapologyPageUrl || '');
+        return entry?.imageTapologyBinding === 'direct-event-page' && /^https:\/\/(?:www\.)?tapology\.com\/fightcenter\/events\//i.test(entry?.imageTapologyPageUrl || '') && /^https:\/\/raw\.githubusercontent\.com\/MatlockFT\/Matlock\/otd-poster-cache\//i.test(entry?.imageUrl || '') && /^[a-f0-9]{64}$/.test(entry?.imagePosterSha256 || '') && Boolean(entry?.imageTapologyRegistryKey);
     }
     if (entry?.imageSourceType === 'verified-manual-event-poster') return entry?.imageManualVisualVerified === true;
     return true;
