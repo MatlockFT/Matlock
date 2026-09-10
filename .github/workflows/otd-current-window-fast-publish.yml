@@ -13,6 +13,7 @@ on:
       - "scripts/sanitize-on-this-day-tapology-posters.mjs"
       - "scripts/finalize-on-this-day-image-metadata.mjs"
       - "scripts/check-on-this-day-images.mjs"
+      - "scripts/build-on-this-day-runtime.mjs"
       - "scripts/build-on-this-day-home.mjs"
       - "scripts/build-on-this-day-share-images.mjs"
       - "assets/data/on-this-day-image-source-overrides.json"
