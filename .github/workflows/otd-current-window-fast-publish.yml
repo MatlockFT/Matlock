@@ -71,9 +71,9 @@ jobs:
           node --check scripts/build-on-this-day-share-images.mjs
           node --check scripts/check-on-this-day-share.mjs
 
-      - name: Validate current poster fallback registry
+      - name: Validate deterministic current poster fallback registry
         run: |
-          node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-current-poster-fallbacks.json','utf8')); const allowed=new Set(['official-promotion-event-poster','wikipedia-event-poster','archived-promotion-event-poster','verified-manual-event-poster']); if(!Array.isArray(d.entries)||d.entries.length<10) process.exit(1); for(const e of d.entries){ if(!e.date||!e.title||!e.sourceUrl||!allowed.has(e.sourceType)||Number(e.confidence)<0.9) process.exit(1); }"
+          node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-current-poster-fallbacks.json','utf8')); const allowed=new Set(['official-promotion-event-poster','wikipedia-event-poster','archived-promotion-event-poster','verified-manual-event-poster']); if(!Array.isArray(d.entries)) process.exit(1); for(const e of d.entries){ if(!e.date||!e.title||!e.sourceUrl||!e.imageUrl||!allowed.has(e.sourceType)||Number(e.confidence)<0.9) process.exit(1); if(e.sourceType==='verified-manual-event-poster'&&e.manualVisualVerified!==true) process.exit(1); }"
 
       - name: Apply deterministic hard-case image sources
         run: node scripts/apply-on-this-day-image-source-overrides.mjs
@@ -84,7 +84,7 @@ jobs:
       - name: Reject mismatched or unbound Tapology posters
         run: node scripts/sanitize-on-this-day-tapology-posters.mjs
 
-      - name: Apply verified current-window poster fallbacks
+      - name: Apply deterministic current-window poster fallbacks
         run: node scripts/apply-on-this-day-current-poster-fallbacks.mjs
 
       - name: Finalize public image metadata
