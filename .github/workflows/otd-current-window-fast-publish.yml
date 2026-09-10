@@ -9,7 +9,6 @@ on:
       - ".github/workflows/otd-current-window-fast-publish.yml"
       - "scripts/apply-on-this-day-image-source-overrides.mjs"
       - "scripts/apply-on-this-day-current-poster-fallbacks.mjs"
-      - "scripts/resolve-on-this-day-tapology-posters.mjs"
       - "scripts/sanitize-on-this-day-tapology-posters.mjs"
       - "scripts/finalize-on-this-day-image-metadata.mjs"
       - "scripts/check-on-this-day-images.mjs"
@@ -25,7 +24,7 @@ permissions:
 
 concurrency:
   group: on-this-day-history
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   fast-publish:
