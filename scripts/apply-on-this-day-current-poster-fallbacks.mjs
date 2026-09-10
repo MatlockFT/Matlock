@@ -6,6 +6,13 @@ const FALLBACKS_PATH = process.argv[3] || 'assets/data/on-this-day-current-poste
 const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
 const norm = value => clean(value).normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 const http = value => /^https:\/\//i.test(clean(value));
+const trustedPosterTypes = new Set([
+  'tapology-event-poster',
+  'official-promotion-event-poster',
+  'wikipedia-event-poster',
+  'archived-promotion-event-poster',
+  'verified-manual-event-poster'
+]);
 
 function usableImage(value) {
   const url = clean(value);
@@ -36,6 +43,7 @@ function alreadyVerified(entry) {
     clean(entry?.imageArtifactType) === 'event-poster' &&
     clean(entry?.imageSubjectType) === 'event' &&
     Number(entry?.imageConfidence || 0) >= 0.9 &&
+    trustedPosterTypes.has(clean(entry?.imageSourceType)) &&
     validTapologyBinding(entry) &&
     manualVerificationValid(entry);
 }
