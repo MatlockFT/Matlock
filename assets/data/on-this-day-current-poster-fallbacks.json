@@ -1,6 +1,15 @@
 {
-  "version": 1,
+  "version": 2,
   "entries": [
+    {
+      "date": "1994-09-09",
+      "title": "UFC 3: The American Dream",
+      "sourceUrl": "https://en.wikipedia.org/wiki/UFC_3",
+      "sourceType": "wikipedia-event-poster",
+      "credit": "Wikipedia",
+      "confidence": 0.98,
+      "matchReason": "Exact UFC 3 event page used only when Tapology cannot produce a poster bound to the exact UFC 3 event page. This replaces the rejected UFC 290 mismatch."
+    },
     {
       "date": "1995-09-08",
       "title": "UFC 7: The Brawl in Buffalo",
@@ -18,6 +27,17 @@
       "credit": "RingHistory",
       "confidence": 0.93,
       "matchReason": "Exact Pancrase 1996 Anniversary Show event page used as a deterministic event-art fallback after Tapology."
+    },
+    {
+      "date": "2006-09-10",
+      "title": "Pride Final Conflict Absolute",
+      "evidenceTitle": "Pride Final Conflict Absolute 2006",
+      "imageUrl": "https://www.mmafullcontact.com/wp-content/uploads/2010/02/poster-pride-final-conflict-absolute-150x150.jpg.webp",
+      "sourceUrl": "https://www.mmafullcontact.com/pride-event-posters/",
+      "sourceType": "verified-manual-event-poster",
+      "credit": "MMA Full Contact",
+      "confidence": 0.98,
+      "matchReason": "MMA Full Contact's dedicated PRIDE poster archive explicitly labels this image Pride Final Conflict Absolute 2006. Used only when Tapology cannot provide a poster bound to the exact event page; the PRIDE Total Elimination Absolute poster is rejected."
     },
     {
       "date": "2007-09-08",
@@ -72,8 +92,8 @@
       "sourceUrl": "https://en.wikipedia.org/wiki/UFC_279",
       "sourceType": "wikipedia-event-poster",
       "credit": "Wikipedia",
-      "confidence": 0.97,
-      "matchReason": "Exact UFC 279 event page used only after the verified Tapology poster path failed."
+      "confidence": 0.98,
+      "matchReason": "Exact UFC 279 event page used after an unrelated Tapology Fight Night poster was rejected."
     },
     {
       "date": "2022-09-11",
