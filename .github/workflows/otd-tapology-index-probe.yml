@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Probe public reader for exact Tapology pages
+      - name: Probe Tapology event search through public reader
         shell: bash
         run: |
           python - <<'PY'
@@ -23,34 +23,38 @@ jobs:
           import urllib.parse
           import urllib.request
 
-          pages = [
-              'https://www.tapology.com/fightcenter/events/bellator-28',
-              'https://www.tapology.com/fightcenter/events/16750-bellator-98',
-              'https://www.tapology.com/fightcenter/events/42533-ufc-215',
-              'https://www.tapology.com/fightcenter/events/6777-pancrase-193-shining-7',
-          ]
+          terms = ['Bellator 98', 'UFC 215', 'Pancrase Shining 7', 'Pride 7']
           ua = 'Mozilla/5.0 MMA-Matlock-OTD-reader-probe/1.0'
 
-          for page in pages:
-              reader = 'https://r.jina.ai/' + page
+          for term in terms:
+              query = urllib.parse.urlencode({
+                  'model[events]': 'eventsSearch',
+                  'search': 'Submit',
+                  'term': term,
+              })
+              target = 'https://www.tapology.com/search?' + query
+              reader = 'https://r.jina.ai/' + target
               req = urllib.request.Request(reader, headers={
                   'User-Agent': ua,
                   'Accept': 'text/plain,text/markdown,*/*',
               })
-              print(f'PAGE={page}')
+              print(f'=== TERM={term} ===')
+              print(f'TARGET={target}')
               try:
-                  with urllib.request.urlopen(req, timeout=35) as response:
+                  with urllib.request.urlopen(req, timeout=40) as response:
                       body = response.read().decode('utf-8', 'replace')
-                      print(f'READER HTTP={response.status} BYTES={len(body)} FINAL={response.geturl()}')
+                      print(f'READER HTTP={response.status} BYTES={len(body)}')
               except Exception as exc:
                   print(f'READER ERROR={exc}')
                   continue
 
-              posters = sorted(set(re.findall(r'https?://images\.tapology\.com/poster_images/[^\s)\]"\'<>]+', body, flags=re.I)))
-              print(f'POSTER_URLS={len(posters)}')
-              for poster in posters[:12]:
-                  print(f'POSTER={poster}')
+              urls = sorted(set(re.findall(r'https?://(?:www\.)?tapology\.com/fightcenter/events/[^\s)\]"\'<>]+', body, flags=re.I)))
+              rels = sorted(set(re.findall(r'\(/fightcenter/events/[^\s)\]"\'<>]+', body, flags=re.I)))
+              print(f'ABS_EVENT_URLS={len(urls)} REL_EVENT_LINKS={len(rels)}')
+              for url in urls[:20]: print(f'URL={url}')
+              for rel in rels[:20]: print(f'REL={rel[1:]}')
               for line in body.splitlines():
-                  if any(token in line.lower() for token in ['title:', 'date:', 'event poster', 'bellator 28', 'bellator 98', 'ufc 215', 'shining 7']):
-                      print('LINE=' + line[:300])
+                  low = line.lower()
+                  if term.lower() in low or '/fightcenter/events/' in low:
+                      print('LINE=' + line[:500])
           PY
