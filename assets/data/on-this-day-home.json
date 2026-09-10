@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-09-10T02:31:54.338Z",
+  "generatedAt": "2026-09-10T04:38:21.989Z",
   "timeZone": "America/Chicago",
   "key": "09-09",
   "entry": {
@@ -12,14 +12,14 @@
     "source": "Tapology",
     "sourceUrl": "https://www.tapology.com/fightcenter/events/ufc-3-the-american-dream",
     "weight": 52,
-    "imageUrl": "https://images.tapology.com/poster_images/122/profile/ufc3.jpg?1551290735",
+    "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/1994-09-09-ufc-3-the-american-dream-450adfca9aaf379e.jpg",
     "imageAlt": "UFC 3: The American Dream event poster",
     "imageCredit": "Tapology",
     "imageSourceUrl": "https://www.tapology.com/fightcenter/events/ufc-3-the-american-dream",
     "imageSourceType": "tapology-event-poster",
-    "imageConfidence": 0.99,
+    "imageConfidence": 1,
     "imageSubjectType": "event",
-    "imageMatchReason": "Bing image metadata bound this Tapology poster image to the exact Tapology event page; no unbound image-search result was accepted.",
+    "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
     "imageStatus": "resolved"
   }
 }
