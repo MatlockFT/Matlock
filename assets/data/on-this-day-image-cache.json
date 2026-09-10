@@ -1,10 +1,10 @@
 {
   "version": 4,
-  "updatedAt": "2026-09-10T02:14:41.406Z",
+  "updatedAt": "2026-09-10T02:27:15.404Z",
   "entries": {
     "ufc:2018-09-08:ufc-228-woodley-vs-till": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:13:23.763Z",
+      "checkedAt": "2026-09-10T02:25:52.955Z",
       "entryClass": "event",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/3/30/UFC_228_Poster.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
@@ -63,7 +63,7 @@
     },
     "bellator:2010-09-09:bellator-28": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "resolved",
       "imageUrl": "https://images.tapology.com/poster_images/5055/profile/Bellator_28_Poster.jpg?1300129377",
@@ -76,7 +76,7 @@
     },
     "bellator:2013-09-07:bellator-98": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "resolved",
       "imageUrl": "https://images.tapology.com/poster_images/19437/profile/Bellator_98_Shlemenko_vs._Cooper_Poster.jpg?1376936939",
@@ -89,16 +89,16 @@
     },
     "bellator:2019-09-07:bellator-226": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
-      "imageStatus": "unresolved",
-      "imageUrl": "",
-      "imageCredit": "",
-      "imageSourceUrl": "",
-      "imageSourceType": "",
-      "imageConfidence": 0,
+      "imageStatus": "resolved",
+      "imageUrl": "https://images.tapology.com/poster_images/61709/profile/20aCUqSA.jpg?1567605015",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://en.wikipedia.org/wiki/Bellator_MMA_in_2019#Bellator_226",
+      "imageSourceType": "existing-image",
+      "imageConfidence": 0.7,
       "imageSubjectType": "event",
-      "imageMatchReason": "No sufficiently relevant image has been resolved yet; keep retrying enrichment."
+      "imageMatchReason": "Existing resolved image retained with cached provenance metadata."
     },
     "bellator:2024-09-07:bellator-champions-series-4": {
       "strategyVersion": 7,
@@ -128,7 +128,7 @@
     },
     "pancrase:2008-09-07:pancrase-shining-7": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -190,7 +190,7 @@
     },
     "pride:2006-09-10:pride-final-conflict-absolute": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "resolved",
       "imageUrl": "https://images.tapology.com/poster_images/286/profile/pridefinalconflictabsolute.jpg?1551276578",
@@ -216,7 +216,7 @@
     },
     "bellator:2011-09-10:bellator-49": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "resolved",
       "imageUrl": "https://images.tapology.com/poster_images/10058/profile/Bellator-49-poster.jpg?1315613494",
@@ -300,16 +300,16 @@
     },
     "bellator:2020-09-11:bellator-245": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
-      "imageStatus": "unresolved",
-      "imageUrl": "",
-      "imageCredit": "",
-      "imageSourceUrl": "",
-      "imageSourceType": "",
-      "imageConfidence": 0,
+      "imageStatus": "resolved",
+      "imageUrl": "https://images.tapology.com/poster_images/70975/profile/117882747_121465736076835_6371061536050532911_n.jpg?1598024872",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://en.wikipedia.org/wiki/Bellator_MMA_in_2020#Bellator_245",
+      "imageSourceType": "existing-image",
+      "imageConfidence": 0.7,
       "imageSubjectType": "event",
-      "imageMatchReason": "No sufficiently relevant image has been resolved yet; keep retrying enrichment."
+      "imageMatchReason": "Existing resolved image retained with cached provenance metadata."
     },
     "pancrase:2007-09-05:pancrase-rising-6": {
       "strategyVersion": 6,
@@ -689,7 +689,7 @@
     },
     "pride:2005-08-28:pride-final-conflict-2005": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -831,7 +831,7 @@
     },
     "ufc:2000-09-22:ufc-27-ultimate-bad-boyz": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -875,7 +875,7 @@
     },
     "ufc:2023-09-23:ufc-fight-night-fiziev-vs-gamrot": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -1302,7 +1302,7 @@
     },
     "pride:2004-08-15:pride-final-conflict-2004": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -2346,7 +2346,7 @@
     },
     "pancrase:1995-07-23:pancrase-1995-neo-blood-tournament-second-round": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -2359,7 +2359,7 @@
     },
     "pancrase:1996-07-23:pancrase-1996-neo-blood-tournament-round-2": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -2524,7 +2524,7 @@
     },
     "pancrase:1997-07-20:pancrase-1997-neo-blood-tournament-round-1": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -2537,7 +2537,7 @@
     },
     "pancrase:1997-07-20:pancrase-1997-neo-blood-tournament-round-2": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -2578,7 +2578,7 @@
     },
     "pancrase:1997-10-29:pancrase-alive-9": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -2952,7 +2952,7 @@
     },
     "pride:2003-11-09:pride-final-conflict-2003": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -3010,7 +3010,7 @@
     },
     "pancrase:1998-07-07:pancrase-1998-neo-blood-tournament-opening-round": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -3661,7 +3661,7 @@
     },
     "pancrase:1998-06-21:pancrase-advance-8": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -4148,7 +4148,7 @@
     },
     "pancrase:2005-06-05:pancrase-2005-neo-blood-tournament-semifinals": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -4202,7 +4202,7 @@
     },
     "pancrase:2023-06-04:pancrase-334-29th-neo-blood-tournament-2nd-round": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -4387,7 +4387,7 @@
     },
     "pancrase:1998-12-19:pancrase-advance-12": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -4704,7 +4704,7 @@
     },
     "pancrase:2022-05-22:pancrase-28th-neo-blood-tournament-1st-round": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -4822,7 +4822,7 @@
     },
     "pride:2003-12-31:pride-shockwave-2003": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -4835,7 +4835,7 @@
     },
     "pride:2004-12-31:pride-shockwave-2004": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -4848,7 +4848,7 @@
     },
     "pride:2005-12-31:pride-shockwave-2005": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -4878,7 +4878,7 @@
     },
     "rizin:2015-12-31:rizin-world-grand-prix-2015-part-2-iza": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -4891,7 +4891,7 @@
     },
     "rizin:2016-12-31:rizin-world-grand-prix-2016-final-round": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -4904,7 +4904,7 @@
     },
     "rizin:2017-12-31:rizin-world-grand-prix-2017-final-round": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -5179,7 +5179,7 @@
     },
     "pancrase:2007-05-06:pancrase-2007-neo-blood-tournament-semifinals": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -5318,7 +5318,7 @@
     },
     "pride:2000-05-01:pride-grand-prix-2000-finals": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -5372,7 +5372,7 @@
     },
     "pancrase:1997-01-17:pancrase-alive-1": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -5462,7 +5462,7 @@
     },
     "pancrase:1999-01-19:pancrase-breakthrough-1": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -5796,7 +5796,7 @@
     },
     "pride:2000-01-30:pride-grand-prix-2000-opening-round": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -6159,7 +6159,7 @@
     },
     "pancrase:1999-02-11:pancrase-breakthrough-2": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -6959,7 +6959,7 @@
     },
     "pancrase:1999-03-09:pancrase-breakthrough-3": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -7170,7 +7170,7 @@
       "status": "lead-image",
       "sourceType": "wikipedia-lead-image",
       "artworkType": "event-photo",
-      "checkedAt": "2026-09-10T02:13:23.763Z",
+      "checkedAt": "2026-09-10T02:25:52.955Z",
       "wikipediaTitle": "Bellator 283",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/7/7b/Bellator283.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "Bellator 283 event poster",
@@ -7547,7 +7547,7 @@
       "status": "lead-image",
       "sourceType": "wikipedia-lead-image",
       "artworkType": "poster",
-      "checkedAt": "2026-09-10T02:13:23.763Z",
+      "checkedAt": "2026-09-10T02:25:52.955Z",
       "wikipediaTitle": "Pride 34",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/4/4c/Pride34_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "Pride 34 event poster",
@@ -7785,7 +7785,7 @@
     },
     "ufc:2005-11-05:the-ultimate-fighter-team-hughes-vs-team-franklin-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -7798,7 +7798,7 @@
     },
     "ufc:2015-07-12:the-ultimate-fighter-american-top-team-vs-blackzilians-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -7811,7 +7811,7 @@
     },
     "ufc:2016-11-05:the-ultimate-fighter-latin-america-3-finale-dos-anjos-vs-ferguson": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -7831,7 +7831,7 @@
     },
     "ufc:2016-07-08:the-ultimate-fighter-team-joanna-vs-team-claudia-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -7859,7 +7859,7 @@
     },
     "ufc:2017-07-07:the-ultimate-fighter-redemption-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -7872,7 +7872,7 @@
     },
     "ufc:2006-11-11:the-ultimate-fighter-the-comeback-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -7885,7 +7885,7 @@
     },
     "ufc:2014-07-06:the-ultimate-fighter-team-edgar-vs-team-penn-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -7898,7 +7898,7 @@
     },
     "ufc:2018-07-06:the-ultimate-fighter-undefeated-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -7982,7 +7982,7 @@
     },
     "ufc:2015-11-21:the-ultimate-fighter-latin-america-2-finale-magny-vs-gastelum": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8009,7 +8009,7 @@
     },
     "ufc:2006-06-24:the-ultimate-fighter-team-ortiz-vs-team-shamrock-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8029,7 +8029,7 @@
     },
     "ufc:2007-06-23:the-ultimate-fighter-team-pulver-vs-team-penn-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8042,7 +8042,7 @@
     },
     "ufc:2008-06-21:the-ultimate-fighter-team-rampage-vs-team-forrest-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8069,7 +8069,7 @@
     },
     "ufc:2009-06-20:the-ultimate-fighter-united-states-vs-united-kingdom-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8089,7 +8089,7 @@
     },
     "ufc:2013-11-30:the-ultimate-fighter-team-rousey-vs-team-tate-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8102,7 +8102,7 @@
     },
     "ufc:2018-11-30:the-ultimate-fighter-heavy-hitters-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8122,7 +8122,7 @@
     },
     "ufc:2017-12-01:the-ultimate-fighter-a-new-world-champion-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8142,7 +8142,7 @@
     },
     "ufc:2011-12-03:the-ultimate-fighter-team-bisping-vs-team-miller-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8155,7 +8155,7 @@
     },
     "ufc:2016-12-03:the-ultimate-fighter-tournament-of-champions-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8182,7 +8182,7 @@
     },
     "ufc:2007-12-08:the-ultimate-fighter-team-hughes-vs-team-serra-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8195,7 +8195,7 @@
     },
     "ufc:2013-06-08:ufc-on-fuel-tv-nogueira-vs-werdum": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8222,7 +8222,7 @@
     },
     "ufc:2015-12-11:the-ultimate-fighter-team-mcgregor-vs-team-faber-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8235,7 +8235,7 @@
     },
     "ufc:2014-12-12:the-ultimate-fighter-a-champion-will-be-crowned-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8255,7 +8255,7 @@
     },
     "ufc:2008-12-13:the-ultimate-fighter-team-nogueira-vs-team-mir-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8282,7 +8282,7 @@
     },
     "ufc:2012-12-15:the-ultimate-fighter-team-carwin-vs-team-nelson-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8295,7 +8295,7 @@
     },
     "ufc:2012-12-15:ufc-on-fx-sotiropoulos-vs-pearson": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8308,7 +8308,7 @@
     },
     "ufc:2012-06-01:the-ultimate-fighter-live-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8321,7 +8321,7 @@
     },
     "ufc:2014-05-31:the-ultimate-fighter-brazil-3-finale-miocic-vs-maldonado": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -8734,7 +8734,7 @@
       "status": "lead-image",
       "sourceType": "wikipedia-lead-image",
       "artworkType": "event-photo",
-      "checkedAt": "2026-09-10T02:13:23.763Z",
+      "checkedAt": "2026-09-10T02:25:52.955Z",
       "wikipediaTitle": "UFC 88",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/9/90/UFC88.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 88: Breakthrough event poster",
@@ -9215,7 +9215,7 @@
       "status": "lead-image",
       "sourceType": "wikipedia-lead-image",
       "artworkType": "event-photo",
-      "checkedAt": "2026-09-10T02:13:23.763Z",
+      "checkedAt": "2026-09-10T02:25:52.955Z",
       "wikipediaTitle": "UFC 253",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/5c/Adesanya_vs._Costa.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "imageAlt": "UFC 253: Adesanya vs. Costa event poster",
@@ -15880,7 +15880,7 @@
     },
     "ufc:2014-04-16:the-ultimate-fighter-nations-finale-bisping-vs-kennedy": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -16103,7 +16103,7 @@
     },
     "ufc:2013-04-13:the-ultimate-fighter-team-jones-vs-team-sonnen-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -16405,7 +16405,7 @@
     },
     "ufc:2005-04-09:the-ultimate-fighter-team-couture-vs-team-liddell-finale": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -17006,7 +17006,7 @@
     },
     "mirko-cro-cop": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/23/Mirko_Cro_Cop.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17136,7 +17136,7 @@
     },
     "dan-severn": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/97/Frank_Mir_vs_Dan_Severn_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17149,7 +17149,7 @@
     },
     "rickson-gracie": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/06/Rickson_gracie_20080608.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17162,7 +17162,7 @@
     },
     "marco-ruas": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Marco_Ruas_publicity_shot_crop.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17175,7 +17175,7 @@
     },
     "randy-couture": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Randy_Couture_by_Gage_Skidmore_2.jpg/1920px-Randy_Couture_by_Gage_Skidmore_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
@@ -17188,7 +17188,7 @@
     },
     "ken-shamrock": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Ken_Shamrock_2016_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17201,7 +17201,7 @@
     },
     "mark-coleman": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/90/Mark_Coleman_At_TIFF_2025_02.jpg/1920px-Mark_Coleman_At_TIFF_2025_02.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
@@ -17214,7 +17214,7 @@
     },
     "bas-rutten": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/75/Bas_Rutten.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17227,7 +17227,7 @@
     },
     "pat-miletich": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5e/PatMiletich.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17240,7 +17240,7 @@
     },
     "royce-gracie": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/16/Royce_Gracie_Photo_Pose_4975753_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17253,7 +17253,7 @@
     },
     "renzo-gracie": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/RenzoCropped.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17266,7 +17266,7 @@
     },
     "oleg-taktarov": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/75/Oleg_Taktarov_7_July_2010.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17279,7 +17279,7 @@
     },
     "mark-kerr": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Mark_Kerr-1593.jpg/1920px-Mark_Kerr-1593.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
@@ -17292,7 +17292,7 @@
     },
     "kazushi-sakuraba": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/20230122saku1.jpg/1920px-20230122saku1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
@@ -17305,7 +17305,7 @@
     },
     "chuck-liddell": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/48/Chuck_Liddell_in_Santa_Monica-California_2005_photo_by_Ithaka_Darin_Pappas.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17318,7 +17318,7 @@
     },
     "dan-henderson": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Dan_Henderson_2025_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17331,7 +17331,7 @@
     },
     "frank-shamrock": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Frank_Shamrock.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17344,7 +17344,7 @@
     },
     "matt-hughes": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/27/Matt_Hughes_%28cropped%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17357,7 +17357,7 @@
     },
     "megumi-fujii": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/ff/MegumiFujii.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17370,7 +17370,7 @@
     },
     "rich-franklin": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/RichFranklinphoto.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17383,7 +17383,7 @@
     },
     "jens-pulver": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/Jens_Pulver_at_UFC_-_Neer_vs_Diaz_2013-12-03_22-51.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17396,7 +17396,7 @@
     },
     "tito-ortiz": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/16/Tito_Ortiz.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17409,7 +17409,7 @@
     },
     "anderson-silva": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Anderson_Silva.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17422,7 +17422,7 @@
     },
     "yoshihiro-akiyama": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fe/%EC%B6%94%EC%84%B1%ED%9B%88.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17435,7 +17435,7 @@
     },
     "hayato-sakurai": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/Hayato_Sakurai.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17448,7 +17448,7 @@
     },
     "antonio-rodrigo-nogueira": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Antonio_Rodrigo_Nogueira_%22Minotauro%22_Paris_-_2004.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17461,7 +17461,7 @@
     },
     "wanderlei-silva": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Wanderlei_Silva_-_Franz_no_MMA_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17474,7 +17474,7 @@
     },
     "fedor-emelianenko": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Fedor_Emelianenko_Dec_2015.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17487,7 +17487,7 @@
     },
     "vitor-belfort": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Vitor_belfort_cropped.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17500,7 +17500,7 @@
     },
     "chael-sonnen": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/Meet_and_Greet_with_Special_MMA_Clinic_%282%29.jpg/1920px-Meet_and_Greet_with_Special_MMA_Clinic_%282%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
@@ -17513,7 +17513,7 @@
     },
     "yoel-romero": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/24/Yoel_Romero.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17526,7 +17526,7 @@
     },
     "brock-lesnar": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Brock_Lesnar_At_SummerSlam_2023_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17539,7 +17539,7 @@
     },
     "fabricio-werdum": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Fabr%C3%ADcio_Werdum_Web_Summit_Rio_2023.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17552,7 +17552,7 @@
     },
     "genki-sudo": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c3/G_sudo.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17565,7 +17565,7 @@
     },
     "lyoto-machida": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Lyoto_Machida_by_Marcos_Joel_Reis.jpg/1920px-Lyoto_Machida_by_Marcos_Joel_Reis.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
@@ -17578,7 +17578,7 @@
     },
     "takanori-gomi": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Takanori_Gomi.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17591,7 +17591,7 @@
     },
     "b-j-penn": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/29/B.J._Penn%2C_2019.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17604,7 +17604,7 @@
     },
     "michael-bisping": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/11/MichaelBispingProfile.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17617,7 +17617,7 @@
     },
     "daniel-cormier": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/22/Daniel_Cormier_taking_a_picture_with_a_fan..jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17630,7 +17630,7 @@
     },
     "urijah-faber": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Urijah_Faber_24_July_2009.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17643,7 +17643,7 @@
     },
     "rashad-evans": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Rashad_Evans_joins_Fleet_Week_Miami_2024_%282%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17656,7 +17656,7 @@
     },
     "georges-st-pierre": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/eb/2021_-_Centre_Stage_DG4_5765_%2851654942080%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17669,7 +17669,7 @@
     },
     "frankie-edgar": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/Frankie_Edgar.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17682,7 +17682,7 @@
     },
     "holly-holm": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Holly_Holm_at_UFC_246.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17695,7 +17695,7 @@
     },
     "mauricio-rua": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e9/MauricioRua.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17708,7 +17708,7 @@
     },
     "robbie-lawler": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/12/Robbie_Lawler.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17721,7 +17721,7 @@
     },
     "tyron-woodley": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/59/Tyron_Woodley.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17734,7 +17734,7 @@
     },
     "gina-carano": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/99/Gina_Carano.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17747,7 +17747,7 @@
     },
     "cain-velasquez": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Cain_Velasquez.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17760,7 +17760,7 @@
     },
     "stipe-miocic": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Stipe_Miocic_%2848086643396%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17773,7 +17773,7 @@
     },
     "stephen-thompson": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c8/From_cancer_to_company_commander_130802-M-AR522-306_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17786,7 +17786,7 @@
     },
     "nick-diaz": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Nick_Diaz.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17799,7 +17799,7 @@
     },
     "benson-henderson": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Benhendersonfighter.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17812,7 +17812,7 @@
     },
     "eddie-alvarez": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/06/Eddie_Alvarez.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17825,7 +17825,7 @@
     },
     "junior-dos-santos": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/db/Junior_dos_Santos.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17838,7 +17838,7 @@
     },
     "tony-ferguson": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Tony_Ferguson_2025.jpg/1920px-Tony_Ferguson_2025.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
@@ -17851,7 +17851,7 @@
     },
     "carlos-condit": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Carloscondit.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17864,7 +17864,7 @@
     },
     "chris-weidman": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/32/Chris_Weidman_at_UFC_230.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17877,7 +17877,7 @@
     },
     "luke-rockhold": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/Luke_Rockhold_2025.jpg/1920px-Luke_Rockhold_2025.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
@@ -17890,7 +17890,7 @@
     },
     "jorge-masvidal": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Jorge_Masvidal_2023.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17903,7 +17903,7 @@
     },
     "dominick-cruz": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/Dom_Cruz_2.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17916,7 +17916,7 @@
     },
     "nate-diaz": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/13/Nate_Diaz_Oct_2019.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17929,7 +17929,7 @@
     },
     "aung-la-nsang": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/87/Aung_La_N_Sang.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17942,7 +17942,7 @@
     },
     "michelle-waterson-gomez": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Michelle_Waterson_smiling_UFC_229.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17955,7 +17955,7 @@
     },
     "michael-chandler": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/MichaelChandler0523_%28cropped%29.jpg/1920px-MichaelChandler0523_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
@@ -17968,7 +17968,7 @@
     },
     "gilbert-burns": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Gilbert_Burns_2024.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17981,7 +17981,7 @@
     },
     "demetrious-johnson": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Demetrious_Johnson_2024.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -17994,7 +17994,7 @@
     },
     "miesha-tate": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/26/MCAS_Yuma_hosts_MMA_Fight_Night_with_guest_of_honor%2C_Miesha_Tate_%286%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18007,7 +18007,7 @@
     },
     "francis-ngannou": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/55/Francis_Ngannou_2023_%28cropped%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18020,7 +18020,7 @@
     },
     "ronda-rousey": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/25/Rousey_HOF_2018_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18033,7 +18033,7 @@
     },
     "henry-cejudo": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Henry_Cejudo_%2854235464255%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18046,7 +18046,7 @@
     },
     "kamaru-usman": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/05/KamaruUsmanPress2018.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18059,7 +18059,7 @@
     },
     "alex-pereira": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Freedom_250_press_conference_at_the_Lincoln_Memorial_on_June_12%2C_2026_-_26%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18072,7 +18072,7 @@
     },
     "jon-jones": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/43/Jon_Jones_-_Supporting_Brain_Health_Study.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18085,7 +18085,7 @@
     },
     "joanna-jedrzejczyk": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/50/Joanna_J%C4%99drzejczyk.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18098,7 +18098,7 @@
     },
     "renan-barao": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/01/UFC_173_Renan_Barao_Media_Day_Interview_-_YouTube_-_0-0-10_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18111,7 +18111,7 @@
     },
     "colby-covington": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/18/ColbyCovingtonFortJackson2022%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18124,7 +18124,7 @@
     },
     "valentina-shevchenko": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/79/Valentina_Shevchenko_2020.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18137,7 +18137,7 @@
     },
     "amanda-nunes": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Ceremonial_weigh_ins_-_Amanda_Nunes_vs_Julianna_Pe%C3%B1a_UFC_269_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18150,7 +18150,7 @@
     },
     "belal-muhammad": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/16/Belal_Muhammad_UFC_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18163,7 +18163,7 @@
     },
     "conor-mcgregor": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Conor_McGregor_2025.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18176,7 +18176,7 @@
     },
     "khabib-nurmagomedov": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/34/Khabib_nurmagomedov.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18189,7 +18189,7 @@
     },
     "justin-gaethje": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/86/UFC_Freedom_250%2C_the_mixed_martial_arts_event_produced_by_the_Ultimate_Fighting_Championship%2C_Sunday%2C_June_14%2C_2026%2C_in_the_Grand_Foyer_of_the_White_House_-_67%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18202,7 +18202,7 @@
     },
     "dustin-poirier": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Dustin_Poirier_UFC_269.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18215,7 +18215,7 @@
     },
     "israel-adesanya": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/12/Israel_Adesanya_at_UFC_230.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18228,7 +18228,7 @@
     },
     "rory-macdonald": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Redkingrorymacdonald.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18241,7 +18241,7 @@
     },
     "aljamain-sterling": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Alijamain_Sterling_at_UFC_228.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18254,7 +18254,7 @@
     },
     "zhang-weili": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4d/%E5%BC%A0%E4%BC%9F%E4%B8%BD.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18267,7 +18267,7 @@
     },
     "julianna-pena": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Ceremonial_weigh_ins_-_Amanda_Nunes_vs_Julianna_Pe%C3%B1a_UFC_269_-_YouTube_-_0_23_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18280,7 +18280,7 @@
     },
     "charles-oliveira": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Charles_Oliveira_do_Bronxs.jpg/1920px-Charles_Oliveira_do_Bronxs.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
@@ -18293,7 +18293,7 @@
     },
     "ciryl-gane": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5f/UFC_Freedom_250%2C_the_mixed_martial_arts_event_produced_by_the_Ultimate_Fighting_Championship%2C_Sunday%2C_June_14%2C_2026%2C_in_the_Grand_Foyer_of_the_White_House_-_64%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18306,7 +18306,7 @@
     },
     "kayla-harrison": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/99/President_Donald_Trump_congratulates_Kayla_Harrison_after_her_victory_during_UFC_316_%2854577590491%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18319,7 +18319,7 @@
     },
     "tatiana-suarez": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/58/Tatiana_Suarez_at_UFC_228.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18332,7 +18332,7 @@
     },
     "robert-whittaker": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Robert_Whittaker_2024.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18345,7 +18345,7 @@
     },
     "sean-strickland": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/44/Sean_Strickland_at_UFN_200.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18358,7 +18358,7 @@
     },
     "paulo-costa": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/40/302-costa.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18371,7 +18371,7 @@
     },
     "leon-edwards": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/Leon_Edwards_2021.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18384,7 +18384,7 @@
     },
     "max-holloway": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Blue_Angels%27_VIP_Rider_Max_Holloway_%281%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18397,7 +18397,7 @@
     },
     "magomed-ankalaev": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/63/Magomed_Ankalaev_at_UFC_Fight_Night_136_in_Moscow%2C_Russia.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18410,7 +18410,7 @@
     },
     "rose-namajunas": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/66/Rose_Namajunas.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18423,7 +18423,7 @@
     },
     "jiri-prochazka": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/74/JiriProchazka2022.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18436,7 +18436,7 @@
     },
     "kai-kara-france": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Kaikarafrance.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18449,7 +18449,7 @@
     },
     "dricus-du-plessis": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/31/IMG-Dricus-Duplessis%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18462,7 +18462,7 @@
     },
     "khamzat-chimaev": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Khamzat_Chimaev_2022_%28cropped%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18475,7 +18475,7 @@
     },
     "shavkat-rakhmonov": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Shavkat_Rakhmonov_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18488,7 +18488,7 @@
     },
     "sean-o-malley": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/93/UFC_Freedom_250_on_the_South_Lawn_of_the_White_House_in_Washington%2C_D.C._on_June_14%2C_2026_-_29%28cropped%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18501,7 +18501,7 @@
     },
     "angela-lee": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/41/COMLOG_WESTPAC_at_ONE_Championship_Fight_Night_%282%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18514,7 +18514,7 @@
     },
     "ilia-topuria": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ee/UFC_Freedom_250_Ceremonial_Weigh_In_%289748627%29%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18527,7 +18527,7 @@
     },
     "stamp-fairtex": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "birthday",
       "imageStatus": "resolved",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Stamp_Fairtex_-_Lumpinee_Jan_2023.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -18969,7 +18969,7 @@
     },
     "ufc:2014-03-01:the-ultimate-fighter-china-finale-kim-vs-hathaway": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -18982,7 +18982,7 @@
     },
     "pride:1997-10-11:pride-1": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -18995,7 +18995,7 @@
     },
     "pride:1998-03-15:pride-2": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -19008,7 +19008,7 @@
     },
     "pride:1998-06-24:pride-3": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -19021,7 +19021,7 @@
     },
     "pride:1998-10-11:pride-4": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-10T02:14:41.406Z",
+      "checkedAt": "2026-09-10T02:27:15.404Z",
       "entryClass": "event",
       "imageStatus": "unresolved",
       "imageUrl": "",
@@ -19035,5 +19035,5 @@
   },
   "strategyVersion": 7,
   "trustedEventImageGateVersion": 1,
-  "trustedEventImageGateUpdatedAt": "2026-09-10T02:18:37.989Z"
+  "trustedEventImageGateUpdatedAt": "2026-09-10T02:30:58.646Z"
 }
