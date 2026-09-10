@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Probe search indexes and Tapology image CDN
+      - name: Probe public reader for exact Tapology pages
         shell: bash
         run: |
           python - <<'PY'
@@ -23,42 +23,34 @@ jobs:
           import urllib.parse
           import urllib.request
 
-          ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36'
-          events = ['Bellator 28', 'Bellator 98', 'UFC 215 Nunes Shevchenko 2', 'Pancrase 193 Shining 7']
+          pages = [
+              'https://www.tapology.com/fightcenter/events/bellator-28',
+              'https://www.tapology.com/fightcenter/events/16750-bellator-98',
+              'https://www.tapology.com/fightcenter/events/42533-ufc-215',
+              'https://www.tapology.com/fightcenter/events/6777-pancrase-193-shining-7',
+          ]
+          ua = 'Mozilla/5.0 MMA-Matlock-OTD-reader-probe/1.0'
 
-          def get(url):
-              req = urllib.request.Request(url, headers={'User-Agent': ua, 'Accept-Language': 'en-US,en;q=0.9'})
-              with urllib.request.urlopen(req, timeout=20) as response:
-                  return response.status, response.geturl(), response.read().decode('utf-8', 'replace')
+          for page in pages:
+              reader = 'https://r.jina.ai/' + page
+              req = urllib.request.Request(reader, headers={
+                  'User-Agent': ua,
+                  'Accept': 'text/plain,text/markdown,*/*',
+              })
+              print(f'PAGE={page}')
+              try:
+                  with urllib.request.urlopen(req, timeout=35) as response:
+                      body = response.read().decode('utf-8', 'replace')
+                      print(f'READER HTTP={response.status} BYTES={len(body)} FINAL={response.geturl()}')
+              except Exception as exc:
+                  print(f'READER ERROR={exc}')
+                  continue
 
-          try:
-              req = urllib.request.Request('https://images.tapology.com/poster_images/122/profile/ufc3.jpg?1551290735', headers={'User-Agent': ua}, method='HEAD')
-              with urllib.request.urlopen(req, timeout=20) as response:
-                  print(f'TAPOLOGY_CDN HTTP={response.status} TYPE={response.headers.get("content-type")} LENGTH={response.headers.get("content-length")}')
-          except Exception as exc:
-              print(f'TAPOLOGY_CDN ERROR={exc}')
-
-          engines = {
-              'google-web': lambda q: 'https://www.google.com/search?num=20&q=' + urllib.parse.quote(q),
-              'google-images': lambda q: 'https://www.google.com/search?tbm=isch&num=50&q=' + urllib.parse.quote(q),
-              'bing-web': lambda q: 'https://www.bing.com/search?count=30&q=' + urllib.parse.quote(q),
-              'yahoo-images': lambda q: 'https://images.search.yahoo.com/search/images?p=' + urllib.parse.quote(q),
-          }
-
-          poster_rx = re.compile(r'https?(?:%3A%2F%2F|://)images(?:%2E|\.)tapology(?:%2E|\.com)(?:%2F|/)poster_images(?:%2F|/)[^"\'<>\\s)&]+', re.I)
-          event_rx = re.compile(r'https?(?:%3A%2F%2F|://)(?:www(?:%2E|\.)|)tapology(?:%2E|\.com)(?:%2F|/)fightcenter(?:%2F|/)events(?:%2F|/)[^"\'<>\\s)&]+', re.I)
-
-          for event in events:
-              print(f'=== {event} ===')
-              query = f'"{event}" Tapology'
-              for name, builder in engines.items():
-                  try:
-                      status, final, raw = get(builder(query))
-                      posters = sorted(set(poster_rx.findall(raw)))
-                      pages = sorted(set(event_rx.findall(raw)))
-                      print(f'{name} HTTP={status} BYTES={len(raw)} POSTERS={len(posters)} EVENT_URLS={len(pages)}')
-                      for url in posters[:5]: print(f'{name} POSTER={urllib.parse.unquote(url)}')
-                      for url in pages[:5]: print(f'{name} EVENT={urllib.parse.unquote(url)}')
-                  except Exception as exc:
-                      print(f'{name} ERROR={exc}')
+              posters = sorted(set(re.findall(r'https?://images\.tapology\.com/poster_images/[^\s)\]"\'<>]+', body, flags=re.I)))
+              print(f'POSTER_URLS={len(posters)}')
+              for poster in posters[:12]:
+                  print(f'POSTER={poster}')
+              for line in body.splitlines():
+                  if any(token in line.lower() for token in ['title:', 'date:', 'event poster', 'bellator 28', 'bellator 98', 'ufc 215', 'shining 7']):
+                      print('LINE=' + line[:300])
           PY
