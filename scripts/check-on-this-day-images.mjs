@@ -51,6 +51,13 @@ const trustedPosterTypes = new Set([
   'verified-manual-event-poster'
 ]);
 
+const trustedTapologyBindings = new Set([
+  'direct-event-page',
+  'bing-image-exact-event-page',
+  'manual-exact-event-page',
+  'legacy-filename-exact'
+]);
+
 function verifiedEventPoster(entry) {
   if (!isEvent(entry)) return false;
   if (!http(entry?.imageUrl)) return false;
@@ -58,7 +65,13 @@ function verifiedEventPoster(entry) {
   if (clean(entry?.imageArtifactType) !== 'event-poster') return false;
   if (clean(entry?.imageSubjectType) !== 'event') return false;
   if (Number(entry?.imageConfidence || 0) < 0.9) return false;
-  return trustedPosterTypes.has(clean(entry?.imageSourceType));
+  const type = clean(entry?.imageSourceType);
+  if (!trustedPosterTypes.has(type)) return false;
+  if (type === 'tapology-event-poster') {
+    if (!trustedTapologyBindings.has(clean(entry?.imageTapologyBinding))) return false;
+    if (!/^https:\/\/(?:www\.)?tapology\.com\/fightcenter\/events\//i.test(clean(entry?.imageTapologyPageUrl))) return false;
+  }
+  return true;
 }
 
 const forbiddenEventImageTypes = new Set([
@@ -104,6 +117,12 @@ for (const entry of entries) {
     if (!['event','fighter','moment'].includes(entry.imageSubjectType)) failures.push(`${label(entry)} imageSubjectType is invalid`);
   }
 
+  if (event && hasImage && clean(entry?.imageSourceType) === 'tapology-event-poster' && !trustedTapologyBindings.has(clean(entry?.imageTapologyBinding))) {
+    const message = `Tapology event poster is not bound to an exact event page: ${label(entry)}`;
+    if (current) failures.push(message);
+    else warnings.push(message);
+  }
+
   if (event && hasImage && forbiddenEventImageTypes.has(clean(entry?.imageSourceType))) {
     const message = `event is using a non-poster image source: ${label(entry)} (${clean(entry.imageSourceType)})`;
     if (current) failures.push(message);
@@ -116,7 +135,6 @@ for (const entry of entries) {
     else warnings.push(message);
   }
 
-  // These are true integrity errors, not normal archive backfill debt.
   if (event && entry?.imagePosterVerified === true && clean(entry?.imageArtifactType) !== 'event-poster') {
     failures.push(`event poster verification metadata is inconsistent: ${label(entry)}`);
   }
