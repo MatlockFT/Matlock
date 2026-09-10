@@ -42,11 +42,7 @@ function label(entry) {
 const trustedPosterTypes = new Set([
   'tapology-event-poster',
   'official-promotion-event-poster',
-  'official-promotion-event-image',
   'wikipedia-event-poster',
-  'wikipedia-event-image',
-  'wikipedia-page-artwork',
-  'commons-event-image',
   'archived-promotion-event-poster',
   'verified-manual-event-poster'
 ]);
@@ -65,22 +61,30 @@ function verifiedEventPoster(entry) {
   if (clean(entry?.imageArtifactType) !== 'event-poster') return false;
   if (clean(entry?.imageSubjectType) !== 'event') return false;
   if (Number(entry?.imageConfidence || 0) < 0.9) return false;
+
   const type = clean(entry?.imageSourceType);
   if (!trustedPosterTypes.has(type)) return false;
+
   if (type === 'tapology-event-poster') {
     if (!trustedTapologyBindings.has(clean(entry?.imageTapologyBinding))) return false;
     if (!/^https:\/\/(?:www\.)?tapology\.com\/fightcenter\/events\//i.test(clean(entry?.imageTapologyPageUrl))) return false;
   }
+
+  if (type === 'verified-manual-event-poster' && entry?.imageManualVisualVerified !== true) return false;
   return true;
 }
 
 const forbiddenEventImageTypes = new Set([
   'event-article',
+  'official-promotion-event-image',
   'official-promotion-fighter-fallback',
   'promotion-or-media-headshot',
   'fighter-fallback',
   'related-fighter-fallback',
   'wikipedia-fighter-fallback',
+  'wikipedia-event-image',
+  'wikipedia-page-artwork',
+  'commons-event-image',
   'wikimedia-commons-search',
   'source-page',
   'existing-image'
@@ -119,6 +123,12 @@ for (const entry of entries) {
 
   if (event && hasImage && clean(entry?.imageSourceType) === 'tapology-event-poster' && !trustedTapologyBindings.has(clean(entry?.imageTapologyBinding))) {
     const message = `Tapology event poster is not bound to an exact event page: ${label(entry)}`;
+    if (current) failures.push(message);
+    else warnings.push(message);
+  }
+
+  if (event && hasImage && clean(entry?.imageSourceType) === 'verified-manual-event-poster' && entry?.imageManualVisualVerified !== true) {
+    const message = `manual event poster lacks visual-verification flag: ${label(entry)}`;
     if (current) failures.push(message);
     else warnings.push(message);
   }
