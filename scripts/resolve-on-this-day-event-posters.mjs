@@ -4,7 +4,8 @@ const HISTORY_PATH = process.argv[2] || 'assets/data/on-this-day.json';
 const TIME_ZONE = process.env.OTD_TIME_ZONE || 'America/Chicago';
 const LIMIT = Math.max(1, Number(process.env.OTD_EVENT_POSTER_LIMIT || 220));
 const REQUEST_TIMEOUT_MS = 18000;
-const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD-Posters/3.0';
+const REQUEST_ATTEMPTS = 3;
+const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD-Posters/4.0';
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
@@ -45,7 +46,10 @@ function eventNumber(entry) {
 }
 
 function eventTokens(entry) {
-  const stop = new Set(['the','and','with','from','into','versus','fight','fighting','night','event','championship','championships']);
+  const stop = new Set([
+    'the','and','with','from','into','versus','fight','fighting','night','event','championship','championships',
+    'ufc','wec','bellator','pride','pancrase','rizin','pfl','one','strikeforce'
+  ]);
   return norm(eventName(entry)).split(' ').filter(token => token.length >= 3 && !stop.has(token));
 }
 
@@ -56,7 +60,11 @@ function eventMatch(value, entry) {
   if (haystack.includes(title) || title.includes(haystack)) return true;
   const promo = promotionKey(entry);
   const number = eventNumber(entry);
-  if (promo && number && haystack.includes(promo) && new RegExp(`\\b${number}\\b`).test(haystack)) return true;
+  if (promo && number) {
+    const compact = haystack.replace(/\s+/g, '');
+    if (compact.includes(`${promo}${number}`)) return true;
+    if (haystack.includes(promo) && new RegExp(`\\b${number}\\b`).test(haystack)) return true;
+  }
   const tokens = eventTokens(entry);
   return tokens.length >= 2 && tokens.filter(token => haystack.includes(token)).length >= Math.min(3, tokens.length);
 }
@@ -107,68 +115,141 @@ function distance(entry) {
 }
 
 async function fetchJson(url) {
-  const response = await fetch(url, {
-    redirect: 'follow',
-    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
-    headers: { 'user-agent': USER_AGENT, accept: 'application/json' }
-  });
-  if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-  return response.json();
-}
-
-function wikipediaTitleFromEntry(entry) {
-  const direct = clean(entry?.wikipediaTitle || '').split('#')[0];
-  if (direct) return direct;
-  for (const value of [entry?.archiveSourceUrl, entry?.originalSourceUrl, entry?.imageSourceUrl]) {
+  let lastError;
+  for (let attempt = 1; attempt <= REQUEST_ATTEMPTS; attempt += 1) {
     try {
-      const url = new URL(value);
-      if (!url.hostname.endsWith('wikipedia.org') || !url.pathname.startsWith('/wiki/')) continue;
-      return decodeURIComponent(url.pathname.slice(6)).replace(/_/g, ' ');
-    } catch {}
+      const response = await fetch(url, {
+        redirect: 'follow',
+        signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+        headers: { 'user-agent': USER_AGENT, accept: 'application/json' }
+      });
+      if (!response.ok) {
+        const error = new Error(`${response.status} ${response.statusText}`);
+        error.retryAfter = Number(response.headers.get('retry-after') || 0);
+        throw error;
+      }
+      return response.json();
+    } catch (error) {
+      lastError = error;
+      if (attempt < REQUEST_ATTEMPTS) await sleep(Math.max(500 * attempt, Number(error?.retryAfter || 0) * 1000));
+    }
   }
-  return '';
+  throw lastError || new Error(`Unable to fetch ${url}`);
 }
 
-function posterEvidence(fileName, entry) {
-  const file = norm(fileName);
+function wikipediaTitleFromUrl(value) {
+  try {
+    const url = new URL(value);
+    if (!url.hostname.endsWith('wikipedia.org') || !url.pathname.startsWith('/wiki/')) return '';
+    return decodeURIComponent(url.pathname.slice(6)).replace(/_/g, ' ');
+  } catch { return ''; }
+}
+
+function deterministicWikipediaTitles(entry) {
+  const titles = [];
+  const add = value => {
+    const title = clean(String(value || '').split('#')[0].replace(/_/g, ' '));
+    if (title && !titles.some(existing => norm(existing) === norm(title))) titles.push(title);
+  };
+
+  add(entry?.wikipediaTitle);
+  for (const value of [entry?.archiveSourceUrl, entry?.originalSourceUrl, entry?.imageSourceUrl]) add(wikipediaTitleFromUrl(value));
+
+  const name = eventName(entry);
+  const promo = promotionKey(entry);
+  const number = eventNumber(entry);
+
+  // Canonical numbered pages are safer than guessing from a generic source URL.
+  if (number && ['ufc','wec','bellator','pride','rizin'].includes(promo)) {
+    const label = { ufc: 'UFC', wec: 'WEC', bellator: 'Bellator', pride: 'Pride', rizin: 'Rizin' }[promo];
+    add(`${label} ${number}`);
+  }
+
+  // Exact event titles cover UFC Fight Night, Strikeforce and named PRIDE/PFL/RIZIN events.
+  // Wikipedia must still return a matching page AND poster-identifying filename below.
+  if (promo !== 'pancrase') add(name);
+  return titles.slice(0, 4);
+}
+
+function filenamePosterEvidence(fileName, entry) {
+  const file = norm(String(fileName || '').replace(/\.(?:jpe?g|png|webp|gif|tiff?)$/i, ''));
   if (!file) return false;
-  if (/\bposter\b|\bevent art\b|\bkey art\b|\bpromotional poster\b/.test(file)) return true;
-  return eventMatch(file, entry);
+
+  const promo = promotionKey(entry);
+  const number = eventNumber(entry);
+  const compactFile = file.replace(/\s+/g, '');
+  const compactTitle = norm(eventName(entry)).replace(/\s+/g, '');
+  const explicitPoster = /\bposter\b|\bpromotional\b|\bpromo\b|\bevent art\b|\bkey art\b|\bofficial art\b/.test(file);
+
+  // Named events without a number may use concatenated legacy filenames, e.g. pridefinalconflictabsolute.jpg.
+  if (!number && compactTitle.length >= 12 && compactFile.includes(compactTitle)) return true;
+
+  if (promo && number) {
+    const compactKey = `${promo}${number}`;
+    const hasExactKey = compactFile.includes(compactKey) || (file.includes(promo) && new RegExp(`\\b${number}\\b`).test(file));
+    if (!hasExactKey) return false;
+    if (explicitPoster) return true;
+
+    // A bare event-key filename such as UFC7.jpg is acceptable. A fighter photo merely
+    // mentioning UFC 7 is not: any remaining words must come from the actual event title.
+    const keyPattern = new RegExp(`${promo}\\s*${number}\\b`, 'i');
+    const leftovers = file
+      .replace(keyPattern, ' ')
+      .split(' ')
+      .filter(Boolean)
+      .filter(token => !['jpg','jpeg','png','webp','gif','image','official','event','art','key','promo','promotional','poster'].includes(token));
+    if (!leftovers.length) return true;
+    const allowed = new Set(eventTokens(entry));
+    return leftovers.length <= 5 && leftovers.every(token => allowed.has(token) || token === 'vs');
+  }
+
+  // For named non-numbered events, require explicit poster language plus strong title overlap.
+  const tokens = eventTokens(entry);
+  const matches = tokens.filter(token => file.includes(token));
+  return explicitPoster && tokens.length >= 2 && matches.length >= Math.min(3, tokens.length);
 }
 
 async function resolveWikipediaPoster(entry) {
-  const title = wikipediaTitleFromEntry(entry);
-  if (!title) return null;
-  try {
-    const url = new URL('https://en.wikipedia.org/w/api.php');
-    url.searchParams.set('action', 'query');
-    url.searchParams.set('format', 'json');
-    url.searchParams.set('formatversion', '2');
-    url.searchParams.set('redirects', '1');
-    url.searchParams.set('prop', 'pageimages|info');
-    url.searchParams.set('piprop', 'name|thumbnail|original');
-    url.searchParams.set('pithumbsize', '1400');
-    url.searchParams.set('inprop', 'url');
-    url.searchParams.set('titles', title);
-    const data = await fetchJson(url);
-    const page = data?.query?.pages?.[0];
-    const pageTitle = clean(page?.title || title);
-    const fileName = clean(page?.pageimage || '');
-    const imageUrl = page?.thumbnail?.source || page?.original?.source || '';
-    if (!http(imageUrl) || !eventMatch(pageTitle, entry) || !posterEvidence(fileName, entry)) return null;
-    return {
-      imageUrl,
-      imageAlt: `${eventName(entry)} event poster`,
-      imageCredit: 'Wikipedia / Wikimedia Commons',
-      imageSourceUrl: clean(page?.fullurl || ''),
-      imageSourceType: 'wikipedia-event-poster',
-      imageConfidence: 0.93,
-      imageSubjectType: 'event',
-      imageArtifactType: 'event-poster',
-      imagePosterVerified: true,
-      imageMatchReason: 'Exact Wikipedia MMA event page supplied an image whose filename identifies it as this event poster/key art.'
-    };
-  } catch { return null; }
+  const titles = deterministicWikipediaTitles(entry);
+  if (!titles.length) return null;
+
+  for (const title of titles) {
+    try {
+      const url = new URL('https://en.wikipedia.org/w/api.php');
+      url.searchParams.set('action', 'query');
+      url.searchParams.set('format', 'json');
+      url.searchParams.set('formatversion', '2');
+      url.searchParams.set('redirects', '1');
+      url.searchParams.set('prop', 'pageimages|info');
+      url.searchParams.set('piprop', 'name|thumbnail|original');
+      url.searchParams.set('pithumbsize', '1400');
+      url.searchParams.set('inprop', 'url');
+      url.searchParams.set('titles', title);
+      const data = await fetchJson(url);
+      const page = data?.query?.pages?.[0];
+      if (!page || page?.missing) continue;
+      const pageTitle = clean(page?.title || title);
+      const fileName = clean(page?.pageimage || '');
+      const imageUrl = page?.thumbnail?.source || page?.original?.source || '';
+      if (!http(imageUrl) || !eventMatch(pageTitle, entry) || !filenamePosterEvidence(fileName, entry)) continue;
+      return {
+        imageUrl,
+        imageAlt: `${eventName(entry)} event poster`,
+        imageCredit: 'Wikipedia / Wikimedia Commons',
+        imageSourceUrl: clean(page?.fullurl || ''),
+        imageSourceType: 'wikipedia-event-poster',
+        imageConfidence: 0.96,
+        imageSubjectType: 'event',
+        imageArtifactType: 'event-poster',
+        imagePosterVerified: true,
+        imageMatchReason: `Exact Wikipedia event page (${pageTitle}) supplied poster/key art whose filename identifies this event.`,
+        imageWikipediaTitle: pageTitle,
+        imageWikipediaFileTitle: fileName
+      };
+    } catch {}
+    await sleep(120);
+  }
+  return null;
 }
 
 function applyPoster(entry, poster, nowIso) {
@@ -239,15 +320,15 @@ for (const entry of targets) {
     entry.imageStatus = 'unresolved';
     unresolved += 1;
   }
-  await sleep(80);
+  await sleep(100);
 }
 
-history.eventPosterResolverVersion = 3;
+history.eventPosterResolverVersion = 4;
 history.eventPosterResolverUpdatedAt = nowIso;
 history.eventPosterPriority = ['tapology-exact-bound', 'trusted-explicit-poster', 'wikipedia-exact-event-poster-evidence', 'stored-relevant-fallback'];
-history.eventPosterSearchPolicy = 'no-unbound-image-search; no generic event-image promotion; no orientation-only verification';
+history.eventPosterSearchPolicy = 'no-unbound-image-search; no generic event-image promotion; no orientation-only verification; Wikipedia filename must identify event/poster';
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
 
 const verified = events.filter(entry => exactBoundTapologyPoster(entry) || trustedExistingPoster(entry)).length;
-console.log(`OTD event-poster resolver v3: ${targets.length} reviewed; ${tapologyRetained} exact-bound Tapology, ${trustedRetained} trusted existing posters, ${wikipediaResolved} Wikipedia posters, ${fallbackPreserved} stored fallbacks preserved, ${unresolved} unresolved.`);
-console.log(`Verified event-poster coverage after safe pass: ${verified}/${events.length}. Generic event images and vertical-only Wikipedia images are never promoted to posters.`);
+console.log(`OTD event-poster resolver v4: ${targets.length} reviewed; ${tapologyRetained} exact-bound Tapology, ${trustedRetained} trusted existing posters, ${wikipediaResolved} Wikipedia posters, ${fallbackPreserved} stored fallbacks preserved, ${unresolved} unresolved.`);
+console.log(`Verified event-poster coverage after safe pass: ${verified}/${events.length}. Wikipedia fallbacks require an exact event page plus event-identifying poster filename.`);
