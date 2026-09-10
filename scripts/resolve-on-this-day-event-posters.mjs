@@ -6,7 +6,7 @@ const LIMIT = Math.max(1, Number(process.env.OTD_EVENT_POSTER_LIMIT || 220));
 const REQUEST_TIMEOUT_MS = 7000;
 const REQUEST_ATTEMPTS = 1;
 const WIKIPEDIA_BATCH_SIZE = 25;
-const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD-Posters/5.0';
+const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD-Posters/6.0';
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
@@ -198,6 +198,48 @@ function filenamePosterEvidence(fileName, entry) {
   return explicitPoster && tokens.length >= 2 && matches.length >= Math.min(3, tokens.length);
 }
 
+function wikipediaImageFileName(value) {
+  try {
+    const url = new URL(value);
+    const segments = url.pathname.split('/').filter(Boolean).map(segment => {
+      try { return decodeURIComponent(segment); } catch { return segment; }
+    });
+    const thumbIndex = segments.indexOf('thumb');
+    if (thumbIndex >= 0 && segments[thumbIndex + 3]) return segments[thumbIndex + 3];
+    if (/commons\.wikimedia\.org$/i.test(url.hostname)) {
+      const fileIndex = segments.findIndex(segment => segment.toLowerCase() === 'file');
+      if (fileIndex >= 0 && segments[fileIndex + 1]) return segments[fileIndex + 1];
+    }
+    return segments.at(-1) || '';
+  } catch { return ''; }
+}
+
+function storedWikipediaPoster(entry) {
+  if (!http(entry?.imageUrl)) return null;
+  const pageTitle = wikipediaTitleFromUrl(entry?.imageSourceUrl);
+  const fileName = wikipediaImageFileName(entry.imageUrl);
+  if (!pageTitle || !eventMatch(pageTitle, entry) || !filenamePosterEvidence(fileName, entry)) return null;
+
+  let host = '';
+  try { host = new URL(entry.imageUrl).hostname.toLowerCase(); } catch {}
+  if (!(host === 'upload.wikimedia.org' || host === 'commons.wikimedia.org')) return null;
+
+  return {
+    imageUrl: entry.imageUrl,
+    imageAlt: `${eventName(entry)} event poster`,
+    imageCredit: 'Wikipedia / Wikimedia Commons',
+    imageSourceUrl: entry.imageSourceUrl,
+    imageSourceType: 'wikipedia-event-poster',
+    imageConfidence: 0.97,
+    imageSubjectType: 'event',
+    imageArtifactType: 'event-poster',
+    imagePosterVerified: true,
+    imageMatchReason: `Stored image recovered from the exact Wikipedia event page because the image filename (${fileName}) independently identifies this event/poster.`,
+    imageWikipediaTitle: pageTitle,
+    imageWikipediaFileTitle: fileName
+  };
+}
+
 function wikipediaPosterFromPage(page, entry) {
   if (!page || page?.missing) return null;
   const pageTitle = clean(page?.title || '');
@@ -318,6 +360,7 @@ const targets = events
 
 let tapologyRetained = 0;
 let trustedRetained = 0;
+let storedWikipediaPromoted = 0;
 let wikipediaResolved = 0;
 let fallbackPreserved = 0;
 let unresolved = 0;
@@ -330,6 +373,12 @@ for (const entry of targets) {
   }
   if (trustedExistingPoster(entry)) {
     trustedRetained += 1;
+    continue;
+  }
+  const stored = storedWikipediaPoster(entry);
+  if (stored) {
+    applyPoster(entry, stored, nowIso);
+    storedWikipediaPromoted += 1;
     continue;
   }
   wikipediaTargets.push(entry);
@@ -354,13 +403,13 @@ for (const entry of wikipediaTargets) {
   }
 }
 
-history.eventPosterResolverVersion = 5;
+history.eventPosterResolverVersion = 6;
 history.eventPosterResolverUpdatedAt = nowIso;
-history.eventPosterPriority = ['tapology-exact-bound', 'trusted-explicit-poster', 'wikipedia-exact-event-poster-evidence', 'stored-relevant-fallback'];
-history.eventPosterSearchPolicy = 'no-unbound-image-search; no generic event-image promotion; no orientation-only verification; Wikipedia filename must identify event/poster; batched exact-page lookup';
+history.eventPosterPriority = ['tapology-exact-bound', 'trusted-explicit-poster', 'stored-exact-wikipedia-poster', 'wikipedia-exact-event-poster-evidence', 'stored-relevant-fallback'];
+history.eventPosterSearchPolicy = 'no-unbound-image-search; no generic event-image promotion; no orientation-only verification; Wikipedia page and filename must identify event/poster; batched exact-page lookup';
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
 
 const verified = events.filter(entry => exactBoundTapologyPoster(entry) || trustedExistingPoster(entry)).length;
-console.log(`OTD event-poster resolver v5: ${targets.length} reviewed; ${tapologyRetained} exact-bound Tapology, ${trustedRetained} trusted existing posters, ${wikipediaResolved} Wikipedia posters, ${fallbackPreserved} stored fallbacks preserved, ${unresolved} unresolved.`);
+console.log(`OTD event-poster resolver v6: ${targets.length} reviewed; ${tapologyRetained} exact-bound Tapology, ${trustedRetained} trusted existing posters, ${storedWikipediaPromoted} stored Wikipedia posters promoted, ${wikipediaResolved} Wikipedia posters fetched, ${fallbackPreserved} stored fallbacks preserved, ${unresolved} unresolved.`);
 console.log(`Wikipedia poster recovery used ${wikipediaBatch.requests} successful batched request(s) and ${wikipediaBatch.failedRequests} failed batch(es).`);
-console.log(`Verified event-poster coverage after safe pass: ${verified}/${events.length}. Wikipedia fallbacks require an exact event page plus event-identifying poster filename.`);
+console.log(`Verified event-poster coverage after safe pass: ${verified}/${events.length}. Stored and fetched Wikipedia posters require an exact event page plus event-identifying poster filename.`);
