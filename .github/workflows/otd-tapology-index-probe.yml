@@ -1,0 +1,71 @@
+name: OTD Tapology index probe
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/otd-tapology-index-probe.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Probe Bing image index for Tapology poster metadata
+        shell: bash
+        run: |
+          python - <<'PY'
+          import html as htmllib
+          import json
+          import re
+          import urllib.parse
+          import urllib.request
+
+          events = [
+              'Bellator 28',
+              'Bellator 98',
+              'UFC 215 Nunes Shevchenko 2',
+              'Pancrase 193 Shining 7',
+          ]
+
+          for event in events:
+              q = urllib.parse.quote(f'"{event}" Tapology poster')
+              url = f'https://www.bing.com/images/search?q={q}&form=HDRSC3'
+              req = urllib.request.Request(url, headers={
+                  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/152 Safari/537.36',
+                  'Accept-Language': 'en-US,en;q=0.9',
+              })
+              try:
+                  with urllib.request.urlopen(req, timeout=20) as response:
+                      raw = response.read().decode('utf-8', 'replace')
+                      print(f'QUERY={event} HTTP={response.status} BYTES={len(raw)}')
+              except Exception as exc:
+                  print(f'QUERY={event} ERROR={exc}')
+                  continue
+
+              hits = []
+              for encoded in re.findall(r'\bm=["\']([^"\']+)["\']', raw, flags=re.I):
+                  try:
+                      obj = json.loads(htmllib.unescape(encoded))
+                  except Exception:
+                      continue
+                  murl = str(obj.get('murl') or '')
+                  purl = str(obj.get('purl') or '')
+                  turl = str(obj.get('turl') or '')
+                  title = str(obj.get('t') or obj.get('desc') or '')
+                  if ('tapology.com/fightcenter/' in purl.lower() or
+                      'images.tapology.com/poster_images/' in murl.lower() or
+                      'images.tapology.com/poster_images/' in turl.lower()):
+                      hits.append((purl, murl, turl, title))
+
+              print(f'TAPOLOGY_HITS={len(hits)}')
+              for i, (purl, murl, turl, title) in enumerate(hits[:12], 1):
+                  print(f'HIT {i} PURL={purl}')
+                  print(f'HIT {i} MURL={murl}')
+                  print(f'HIT {i} TURL={turl}')
+                  print(f'HIT {i} TITLE={title[:180]}')
+          PY
