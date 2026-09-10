@@ -4,13 +4,19 @@ const HISTORY_PATH = process.argv[2] || 'assets/data/on-this-day.json';
 const TIME_ZONE = process.env.OTD_TIME_ZONE || 'America/Chicago';
 const LIMIT = Math.max(1, Number(process.env.OTD_EVENT_POSTER_LIMIT || 220));
 const REQUEST_TIMEOUT_MS = 18000;
-const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD-Posters/2.0';
+const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD-Posters/3.0';
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
 const norm = value => clean(value).normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 const http = value => /^https:\/\//i.test(clean(value));
 const trustedTapologyBindings = new Set(['direct-event-page','bing-image-exact-event-page','manual-exact-event-page','legacy-filename-exact']);
+const trustedPosterTypes = new Set([
+  'official-promotion-event-poster',
+  'wikipedia-event-poster',
+  'archived-promotion-event-poster',
+  'verified-manual-event-poster'
+]);
 
 function isEvent(entry) {
   return entry?.kind === 'event' || entry?.generatedBy === 'wikipedia-event-index';
@@ -72,22 +78,12 @@ function exactBoundTapologyPoster(entry) {
     tapologyEventUrl(entry?.imageTapologyPageUrl);
 }
 
-function officialPoster(entry) {
+function trustedExistingPoster(entry) {
   if (!http(entry?.imageUrl) || clean(entry?.imageSubjectType) !== 'event') return false;
-  return ['official-promotion-event-poster','official-promotion-event-image','archived-promotion-event-poster','verified-manual-event-poster'].includes(clean(entry?.imageSourceType));
-}
-
-function promoteOfficialPoster(entry) {
-  entry.imageSourceType = clean(entry.imageSourceType) === 'official-promotion-event-image'
-    ? 'official-promotion-event-poster'
-    : clean(entry.imageSourceType);
-  entry.imageArtifactType = 'event-poster';
-  entry.imagePosterVerified = true;
-  entry.imageConfidence = Math.max(0.96, Number(entry.imageConfidence || 0.96));
-  entry.imageSubjectType = 'event';
-  entry.imageStatus = 'resolved';
-  entry.imageExactMatch = true;
-  delete entry.imageUnresolved;
+  const type = clean(entry?.imageSourceType);
+  if (!trustedPosterTypes.has(type)) return false;
+  if (type === 'verified-manual-event-poster' && entry?.imageManualVisualVerified !== true) return false;
+  return entry?.imagePosterVerified === true && clean(entry?.imageArtifactType) === 'event-poster' && Number(entry?.imageConfidence || 0) >= 0.9;
 }
 
 function ordinal(mmdd) {
@@ -122,7 +118,7 @@ async function fetchJson(url) {
 
 function wikipediaTitleFromEntry(entry) {
   const direct = clean(entry?.wikipediaTitle || '').split('#')[0];
-  if (direct && direct !== '') return direct;
+  if (direct) return direct;
   for (const value of [entry?.archiveSourceUrl, entry?.originalSourceUrl, entry?.imageSourceUrl]) {
     try {
       const url = new URL(value);
@@ -133,12 +129,11 @@ function wikipediaTitleFromEntry(entry) {
   return '';
 }
 
-function posterEvidence(fileName, width, height, entry) {
+function posterEvidence(fileName, entry) {
   const file = norm(fileName);
-  const vertical = width > 0 && height > 0 && width / height <= 1.05;
-  if (/\bposter\b|\bevent art\b|\bkey art\b/.test(file)) return true;
-  if (file && eventMatch(file, entry)) return true;
-  return vertical;
+  if (!file) return false;
+  if (/\bposter\b|\bevent art\b|\bkey art\b|\bpromotional poster\b/.test(file)) return true;
+  return eventMatch(file, entry);
 }
 
 async function resolveWikipediaPoster(entry) {
@@ -160,9 +155,7 @@ async function resolveWikipediaPoster(entry) {
     const pageTitle = clean(page?.title || title);
     const fileName = clean(page?.pageimage || '');
     const imageUrl = page?.thumbnail?.source || page?.original?.source || '';
-    const width = Number(page?.thumbnail?.width || 0);
-    const height = Number(page?.thumbnail?.height || 0);
-    if (!http(imageUrl) || !eventMatch(pageTitle, entry) || !posterEvidence(fileName, width, height, entry)) return null;
+    if (!http(imageUrl) || !eventMatch(pageTitle, entry) || !posterEvidence(fileName, entry)) return null;
     return {
       imageUrl,
       imageAlt: `${eventName(entry)} event poster`,
@@ -173,7 +166,7 @@ async function resolveWikipediaPoster(entry) {
       imageSubjectType: 'event',
       imageArtifactType: 'event-poster',
       imagePosterVerified: true,
-      imageMatchReason: 'Exact Wikipedia MMA event page supplied poster/key art after exact-bound Tapology resolution was unavailable.'
+      imageMatchReason: 'Exact Wikipedia MMA event page supplied an image whose filename identifies it as this event poster/key art.'
     };
   } catch { return null; }
 }
@@ -186,15 +179,29 @@ function applyPoster(entry, poster, nowIso) {
   delete entry.imageUnresolved;
 }
 
+function demoteUnprovenPoster(entry) {
+  if (!http(entry?.imageUrl)) return;
+  if (exactBoundTapologyPoster(entry) || trustedExistingPoster(entry)) return;
+  if (entry?.imagePosterVerified === true || clean(entry?.imageArtifactType) === 'event-poster') {
+    entry.imagePosterVerified = false;
+    entry.imageArtifactType = 'event-fallback';
+    entry.imageFallback = true;
+    entry.imageExactMatch = false;
+  }
+}
+
 const history = JSON.parse(await fs.readFile(HISTORY_PATH, 'utf8'));
 const events = (history.entries || []).filter(isEvent);
 const nowIso = new Date().toISOString();
+
+for (const entry of events) demoteUnprovenPoster(entry);
+
 const targets = events
   .sort((a, b) => {
     const current = Number(distance(a) > 2) - Number(distance(b) > 2);
     if (current) return current;
-    const verifiedA = Number(exactBoundTapologyPoster(a) || officialPoster(a));
-    const verifiedB = Number(exactBoundTapologyPoster(b) || officialPoster(b));
+    const verifiedA = Number(exactBoundTapologyPoster(a) || trustedExistingPoster(a));
+    const verifiedB = Number(exactBoundTapologyPoster(b) || trustedExistingPoster(b));
     if (verifiedA !== verifiedB) return verifiedA - verifiedB;
     const missing = Number(http(a?.imageUrl)) - Number(http(b?.imageUrl));
     if (missing) return missing;
@@ -203,7 +210,7 @@ const targets = events
   .slice(0, LIMIT);
 
 let tapologyRetained = 0;
-let officialRetained = 0;
+let trustedRetained = 0;
 let wikipediaResolved = 0;
 let fallbackPreserved = 0;
 let unresolved = 0;
@@ -213,9 +220,8 @@ for (const entry of targets) {
     tapologyRetained += 1;
     continue;
   }
-  if (officialPoster(entry)) {
-    promoteOfficialPoster(entry);
-    officialRetained += 1;
+  if (trustedExistingPoster(entry)) {
+    trustedRetained += 1;
     continue;
   }
 
@@ -224,12 +230,9 @@ for (const entry of targets) {
     applyPoster(entry, wikipedia, nowIso);
     wikipediaResolved += 1;
   } else if (http(entry?.imageUrl)) {
-    // Keep a trusted/relevant fallback visible in the archive. Do not label it
-    // as a verified poster and do not erase it merely because poster backfill
-    // has not succeeded yet.
     entry.imagePosterVerified = false;
     entry.imageFallback = true;
-    if (clean(entry?.imageArtifactType) === 'event-poster') entry.imageArtifactType = 'event-fallback';
+    entry.imageArtifactType = 'event-fallback';
     fallbackPreserved += 1;
   } else {
     entry.imagePosterVerified = false;
@@ -239,12 +242,12 @@ for (const entry of targets) {
   await sleep(80);
 }
 
-history.eventPosterResolverVersion = 2;
+history.eventPosterResolverVersion = 3;
 history.eventPosterResolverUpdatedAt = nowIso;
-history.eventPosterPriority = ['tapology-exact-bound', 'official-promotion', 'wikipedia-exact-event', 'stored-relevant-fallback'];
-history.eventPosterSearchPolicy = 'no-unbound-image-search';
+history.eventPosterPriority = ['tapology-exact-bound', 'trusted-explicit-poster', 'wikipedia-exact-event-poster-evidence', 'stored-relevant-fallback'];
+history.eventPosterSearchPolicy = 'no-unbound-image-search; no generic event-image promotion; no orientation-only verification';
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
 
-const verified = events.filter(entry => exactBoundTapologyPoster(entry) || (entry?.imagePosterVerified === true && http(entry?.imageUrl))).length;
-console.log(`OTD event-poster resolver v2: ${targets.length} reviewed; ${tapologyRetained} exact-bound Tapology, ${officialRetained} official, ${wikipediaResolved} Wikipedia, ${fallbackPreserved} stored fallbacks preserved, ${unresolved} unresolved.`);
-console.log(`Verified event-poster coverage after safe pass: ${verified}/${events.length}. No unbound Tapology image search is used here.`);
+const verified = events.filter(entry => exactBoundTapologyPoster(entry) || trustedExistingPoster(entry)).length;
+console.log(`OTD event-poster resolver v3: ${targets.length} reviewed; ${tapologyRetained} exact-bound Tapology, ${trustedRetained} trusted existing posters, ${wikipediaResolved} Wikipedia posters, ${fallbackPreserved} stored fallbacks preserved, ${unresolved} unresolved.`);
+console.log(`Verified event-poster coverage after safe pass: ${verified}/${events.length}. Generic event images and vertical-only Wikipedia images are never promoted to posters.`);
