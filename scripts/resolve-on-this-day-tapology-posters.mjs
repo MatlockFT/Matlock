@@ -374,7 +374,7 @@ for (const entry of events) {
   if (validVerifiedRecord(record)) {
     applyVerified(entry, record);
     restored += 1;
-  } else if (record?.status === 'verified-unavailable' && record.eventUrl && record.eventDate === entry.date && titleScore(record.eventTitle, entry.title) >= 86) {
+  } else if (record?.status === 'verified-unavailable' && record.eventUrl && (record.eventDate === entry.date || record.dateMatch === 'timezone-adjacent') && (norm(record.title) === norm(entry.title) || titleScore(record.eventTitle, expectedTitle(entry, overrides)) >= 86)) {
     entry.tapologyUrl = record.eventUrl;
     clearUnverifiedImage(entry);
   }
