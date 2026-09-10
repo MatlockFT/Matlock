@@ -61,6 +61,27 @@ function validateRule(rule) {
   return '';
 }
 
+function clearInvalidManualPoster(entry) {
+  delete entry.imageUrl;
+  delete entry.imageAlt;
+  delete entry.imageCredit;
+  delete entry.imageResolvedAt;
+  delete entry.imageManualVisualVerified;
+  delete entry.imageTapologyBinding;
+  delete entry.imageTapologyPageUrl;
+  entry.imageSourceUrl = '';
+  entry.imageSourceType = 'manual-poster-rejected';
+  entry.imageConfidence = 0;
+  entry.imageSubjectType = 'event';
+  entry.imageArtifactType = 'event-poster';
+  entry.imagePosterVerified = false;
+  entry.imageExactMatch = false;
+  entry.imageFallback = false;
+  entry.imageStatus = 'unresolved';
+  entry.imageUnresolved = true;
+  entry.imageMatchReason = 'Removed a previously certified manual poster because no explicit visual-verification flag proves that the image is the actual event poster.';
+}
+
 const history = JSON.parse(await fs.readFile(HISTORY_PATH, 'utf8'));
 const config = JSON.parse(await fs.readFile(FALLBACKS_PATH, 'utf8'));
 const entries = Array.isArray(history?.entries) ? history.entries : [];
@@ -69,7 +90,15 @@ const nowIso = new Date().toISOString();
 
 let applied = 0;
 let retained = 0;
+let purged = 0;
 const failures = [];
+
+for (const entry of entries) {
+  if (clean(entry?.imageSourceType) === 'verified-manual-event-poster' && entry?.imageManualVisualVerified !== true) {
+    clearInvalidManualPoster(entry);
+    purged += 1;
+  }
+}
 
 for (const rule of rules) {
   const label = `${clean(rule?.date)} ${clean(rule?.title)}`;
@@ -102,14 +131,16 @@ for (const rule of rules) {
   entry.imagePosterVerified = true;
   entry.imageExactMatch = true;
   entry.imageFallback = true;
-  entry.imageManualVisualVerified = rule?.sourceType === 'verified-manual-event-poster' ? true : undefined;
   entry.imageMatchReason = clean(rule?.matchReason) || 'Deterministic direct event-poster fallback applied after higher-priority Tapology poster discovery failed.';
   entry.imageResolvedAt = nowIso;
   entry.imageStatus = 'resolved';
   delete entry.imageUnresolved;
   delete entry.imageTapologyBinding;
   delete entry.imageTapologyPageUrl;
-  if (entry.imageManualVisualVerified === undefined) delete entry.imageManualVisualVerified;
+
+  if (rule?.sourceType === 'verified-manual-event-poster') entry.imageManualVisualVerified = true;
+  else delete entry.imageManualVisualVerified;
+
   applied += 1;
 }
 
@@ -118,5 +149,5 @@ history.currentPosterFallbackUpdatedAt = nowIso;
 history.currentPosterFallbackPolicy = 'direct-image-only';
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
 
-console.log(`Current-window deterministic poster fallbacks: ${applied} applied, ${retained} already verified, ${failures.length} rejected/unresolved.`);
+console.log(`Current-window deterministic poster fallbacks: ${applied} applied, ${retained} already verified, ${purged} unverified manual poster(s) purged, ${failures.length} rejected/unresolved.`);
 if (failures.length) console.warn(failures.map(item => `- ${item}`).join('\n'));
