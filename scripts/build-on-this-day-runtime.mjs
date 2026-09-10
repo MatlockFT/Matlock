@@ -9,7 +9,8 @@ const FIELD_NAMES = [
     'weight', 'imageUrl', 'imageAlt', 'imageCredit', 'imagePosition',
     'imageSourceUrl', 'imageSourceType', 'imageConfidence', 'imageSubjectType',
     'imageMatchReason', 'imageStatus', 'imageArtifactType', 'imagePosterVerified',
-    'imageFallback', 'imageExactMatch', 'imageTapologyBinding', 'imageTapologyPageUrl'
+    'imageFallback', 'imageExactMatch', 'imageTapologyBinding', 'imageTapologyPageUrl',
+    'imageManualVisualVerified'
 ];
 
 const source = JSON.parse(await fs.readFile(HISTORY_PATH, 'utf8'));
@@ -19,11 +20,21 @@ if (!Array.isArray(entries)) throw new Error(`${HISTORY_PATH} does not contain a
 const isEvent = entry => entry?.kind === 'event' || entry?.generatedBy === 'wikipedia-event-index';
 const hasHttpsImage = entry => typeof entry?.imageUrl === 'string' && /^https:\/\//i.test(entry.imageUrl);
 const trustedTapologyBindings = new Set(['direct-event-page','bing-image-exact-event-page','manual-exact-event-page','legacy-filename-exact']);
+const trustedPosterTypes = new Set([
+    'tapology-event-poster',
+    'official-promotion-event-poster',
+    'wikipedia-event-poster',
+    'archived-promotion-event-poster',
+    'verified-manual-event-poster'
+]);
+
 const verifiedEventPoster = entry => {
     if (!isEvent(entry) || entry?.imagePosterVerified !== true || entry?.imageArtifactType !== 'event-poster' || !hasHttpsImage(entry)) return false;
+    if (!trustedPosterTypes.has(entry?.imageSourceType)) return false;
     if (entry?.imageSourceType === 'tapology-event-poster') {
         return trustedTapologyBindings.has(entry?.imageTapologyBinding) && /^https:\/\/(?:www\.)?tapology\.com\/fightcenter\/events\//i.test(entry?.imageTapologyPageUrl || '');
     }
+    if (entry?.imageSourceType === 'verified-manual-event-poster') return entry?.imageManualVisualVerified === true;
     return true;
 };
 
@@ -35,17 +46,15 @@ const compactEntry = entry => {
     );
 
     if (isEvent(entry)) {
-        // Do not let the browser invent a live Wikipedia image for an event.
-        // The archive may, however, expose a stored trusted fallback while an
-        // exact poster is still being backfilled. A verified poster always wins.
+        // Never let the browser invent a live Wikipedia image for an event.
+        // Archive entries may show a stored trusted fallback, but only the
+        // narrow verified-poster classes are labeled as actual event posters.
         compact.wikipediaTitle = ' ';
 
         if (!verifiedEventPoster(entry)) {
             compact.imagePosterVerified = false;
             if (hasHttpsImage(entry)) {
-                compact.imageArtifactType = compact.imageArtifactType === 'event-poster'
-                    ? 'event-fallback'
-                    : (compact.imageArtifactType || 'event-fallback');
+                compact.imageArtifactType = 'event-fallback';
                 compact.imageFallback = true;
             } else {
                 compact.imageStatus = 'unresolved';
@@ -111,4 +120,4 @@ for (const [file, expected] of files) {
 }
 
 if (stale) process.exitCode = 1;
-else if (!CHECK_ONLY) console.log(`Built ${entries.length} runtime entries across 12 monthly shards. Events use exact-bound verified posters when available and stored trusted fallbacks otherwise; live generic image lookup is disabled.`);
+else if (!CHECK_ONLY) console.log(`Built ${entries.length} runtime entries across 12 monthly shards. Event posters require exact source verification; stored archive fallbacks remain separate and unverified.`);
