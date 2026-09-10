@@ -52,7 +52,7 @@ permissions:
 
 concurrency:
   group: on-this-day-history
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   update:
@@ -100,6 +100,8 @@ jobs:
           node --check scripts/apply-on-this-day-image-source-overrides.mjs
           node --check scripts/apply-on-this-day-current-poster-fallbacks.mjs
           node --check scripts/resolve-on-this-day-images.mjs
+          node --check scripts/resolve-on-this-day-tapology-posters.mjs
+          node --check scripts/check-on-this-day-poster-registry.mjs
           node --check scripts/resolve-on-this-day-event-posters.mjs
           node --check scripts/sanitize-on-this-day-event-images.mjs
           node --check scripts/finalize-on-this-day-image-metadata.mjs
@@ -233,6 +235,7 @@ jobs:
             assets/data/on-this-day-home.json
             assets/data/on-this-day-leads.json
             assets/data/on-this-day-image-cache.json
+            assets/data/on-this-day-poster-registry.json
             assets/data/on-this-day-content-cache.json
             assets/data/on-this-day-pancrase-cache.json
             assets/data/on-this-day-share-manifest.json
