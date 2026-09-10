@@ -9,7 +9,7 @@ const FIELD_NAMES = [
     'weight', 'imageUrl', 'imageAlt', 'imageCredit', 'imagePosition',
     'imageSourceUrl', 'imageSourceType', 'imageConfidence', 'imageSubjectType',
     'imageMatchReason', 'imageStatus', 'imageArtifactType', 'imagePosterVerified',
-    'imageFallback', 'imageExactMatch'
+    'imageFallback', 'imageExactMatch', 'imageTapologyBinding', 'imageTapologyPageUrl'
 ];
 
 const source = JSON.parse(await fs.readFile(HISTORY_PATH, 'utf8'));
@@ -18,10 +18,14 @@ if (!Array.isArray(entries)) throw new Error(`${HISTORY_PATH} does not contain a
 
 const isEvent = entry => entry?.kind === 'event' || entry?.generatedBy === 'wikipedia-event-index';
 const hasHttpsImage = entry => typeof entry?.imageUrl === 'string' && /^https:\/\//i.test(entry.imageUrl);
-const verifiedEventPoster = entry => isEvent(entry) &&
-    entry?.imagePosterVerified === true &&
-    entry?.imageArtifactType === 'event-poster' &&
-    hasHttpsImage(entry);
+const trustedTapologyBindings = new Set(['direct-event-page','bing-image-exact-event-page','manual-exact-event-page','legacy-filename-exact']);
+const verifiedEventPoster = entry => {
+    if (!isEvent(entry) || entry?.imagePosterVerified !== true || entry?.imageArtifactType !== 'event-poster' || !hasHttpsImage(entry)) return false;
+    if (entry?.imageSourceType === 'tapology-event-poster') {
+        return trustedTapologyBindings.has(entry?.imageTapologyBinding) && /^https:\/\/(?:www\.)?tapology\.com\/fightcenter\/events\//i.test(entry?.imageTapologyPageUrl || '');
+    }
+    return true;
+};
 
 const compactEntry = entry => {
     const compact = Object.fromEntries(
@@ -107,4 +111,4 @@ for (const [file, expected] of files) {
 }
 
 if (stale) process.exitCode = 1;
-else if (!CHECK_ONLY) console.log(`Built ${entries.length} runtime entries across 12 monthly shards. Events use verified posters when available and stored trusted fallbacks otherwise; live generic image lookup is disabled.`);
+else if (!CHECK_ONLY) console.log(`Built ${entries.length} runtime entries across 12 monthly shards. Events use exact-bound verified posters when available and stored trusted fallbacks otherwise; live generic image lookup is disabled.`);
