@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-09-10T00:36:55.005Z",
+  "generatedAt": "2026-09-10T01:13:31.522Z",
   "timeZone": "America/Chicago",
   "key": "09-09",
   "entry": {
@@ -12,14 +12,14 @@
     "source": "Tapology",
     "sourceUrl": "https://www.tapology.com/fightcenter/events/ufc-3-the-american-dream",
     "weight": 52,
-    "imageUrl": "https://images.tapology.com/poster_images/122/profile/ufc3.jpg?1551290735",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/c/c0/UFC_3_promotional_poster.jpg",
     "imageAlt": "UFC 3: The American Dream event poster",
-    "imageCredit": "Tapology",
-    "imageSourceUrl": "https://www.tapology.com/fightcenter/events/ufc-3-the-american-dream",
-    "imageSourceType": "tapology-event-poster",
+    "imageCredit": "Wikipedia",
+    "imageSourceUrl": "https://en.wikipedia.org/wiki/UFC_3",
+    "imageSourceType": "wikipedia-event-poster",
     "imageConfidence": 0.99,
     "imageSubjectType": "event",
-    "imageMatchReason": "Bing image metadata bound this Tapology poster image to the exact Tapology event page; no unbound image-search result was accepted.",
+    "imageMatchReason": "Deterministic direct URL for the UFC 3 promotional poster from the exact UFC 3 Wikipedia event page. Used only after Tapology cannot supply an exact-bound poster.",
     "imageStatus": "resolved"
   }
 }
