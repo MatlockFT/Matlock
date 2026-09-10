@@ -1,0 +1,38 @@
+name: Update Matchmaker data
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '37 6,18 * * *'
+permissions:
+  contents: write
+concurrency:
+  group: matchmaker-data
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/cache@v4
+        with:
+          path: .cache/matchmaker
+          key: matchmaker-profiles-${{ github.run_id }}
+          restore-keys: matchmaker-profiles-
+      - name: Collect and atomically validate official data
+        run: node scripts/update-matchmaker.mjs
+      - name: Check engine against refreshed data
+        run: node scripts/check-matchmaker.mjs
+      - name: Commit verified snapshots
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- assets/data/matchmaker
+          git diff --cached --quiet && exit 0
+          git commit -m "Refresh verified Matchmaker data"
+          git pull --rebase origin main
+          git push origin HEAD:main

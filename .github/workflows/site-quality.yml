@@ -115,6 +115,12 @@ jobs:
           node scripts/normalize-ufc-roster-events.mjs --self-test
           node scripts/build-ufc-canonical-roster.mjs --self-test
 
+      - name: Check Matchmaker engine and published data
+        run: |
+          node --check assets/matchmaker.js
+          node --check assets/matchmaker-engine.js
+          node scripts/check-matchmaker.mjs
+
       - name: Check Event Map poster sanitizer behavior
         run: node scripts/sanitize-event-map-posters.mjs --self-test
 
