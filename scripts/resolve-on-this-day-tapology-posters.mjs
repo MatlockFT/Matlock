@@ -481,21 +481,23 @@ for (const entry of targets) {
   await sleep(160);
 }
 
-const nowIso = new Date().toISOString();
-registry.updatedAt = nowIso;
+const nowIso = APPLY_ONLY ? clean(registry.updatedAt) || new Date().toISOString() : new Date().toISOString();
+if (!APPLY_ONLY) registry.updatedAt = nowIso;
 registry.policy = 'Exact Tapology title and date; unique search result; event-bound poster path; image bytes dimension-checked and SHA-256 pinned; verified bytes mirrored to otd-poster-cache; failures preserve last known-good records.';
 history.tapologyPosterResolverVersion = 5;
 history.tapologyPosterResolverUpdatedAt = nowIso;
 history.tapologyPosterBindingPolicy = 'verified-registry-only';
 history.tapologyPosterDiscoveryPolicy = registry.policy;
-cache.updatedAt = nowIso;
+if (!APPLY_ONLY) cache.updatedAt = nowIso;
 
-await Promise.all([
-  fs.mkdir(path.dirname(REGISTRY_PATH), { recursive: true }),
-  fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8'),
-  fs.writeFile(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`, 'utf8')
-]);
-await fs.writeFile(REGISTRY_PATH, `${JSON.stringify(registry, null, 2)}\n`, 'utf8');
+await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
+if (!APPLY_ONLY) {
+  await fs.mkdir(path.dirname(REGISTRY_PATH), { recursive: true });
+  await Promise.all([
+    fs.writeFile(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`, 'utf8'),
+    fs.writeFile(REGISTRY_PATH, `${JSON.stringify(registry, null, 2)}\n`, 'utf8')
+  ]);
+}
 
 console.log(`Tapology verified-poster registry v1: ${restored} restored; ${targets.length} reviewed; ${verified} verified and cached, ${unavailable} exact pages with no poster, ${rejected} rejected, ${unresolved} unresolved.`);
 if (failures.length) {
