@@ -1,7 +1,21 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-10T04:58:57.170Z",
+  "generated_at": "2026-09-10T17:22:30.261Z",
   "changes": [
+    {
+      "id": "2026-09-10T17:22:30.261Z|rizin-rizin-landmark-16-in-nagasaki-2026-10-03|broadcast_changed|1",
+      "at": "2026-09-10T17:22:30.261Z",
+      "type": "broadcast_changed",
+      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "promotion": "RIZIN",
+      "event_title": "RIZIN LANDMARK 16 in NAGASAKI",
+      "event_date": "2026-10-03",
+      "summary": "RIZIN RIZIN LANDMARK 16 in NAGASAKI: broadcast changed.",
+      "details": {
+        "from": "RIZIN 100 CLUB · ABEMA",
+        "to": "RIZIN 100 CLUB"
+      }
+    },
     {
       "id": "2026-09-10T04:58:57.170Z|rizin-rizin-landmark-16-in-nagasaki-2026-10-03|broadcast_changed|1",
       "at": "2026-09-10T04:58:57.170Z",
@@ -4643,20 +4657,6 @@
       "summary": "Chris Padilla portrait added.",
       "details": {
         "fighter": "Chris Padilla",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-sacramento-2026-08-22|portrait_added|5",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Nasrat Haqparast portrait added.",
-      "details": {
-        "fighter": "Nasrat Haqparast",
         "source": "sherdog"
       }
     }
