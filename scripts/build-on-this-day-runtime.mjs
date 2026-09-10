@@ -4,6 +4,8 @@ import path from 'node:path';
 const CHECK_ONLY = process.argv.includes('--check');
 const HISTORY_PATH = process.env.OTD_HISTORY_PATH || 'assets/data/on-this-day.json';
 const OUTPUT_DIR = 'assets/data/on-this-day-runtime';
+const TIME_ZONE = process.env.OTD_TIME_ZONE || 'America/Chicago';
+const WINDOW_DAYS = Math.max(0, Number(process.env.OTD_CURRENT_WINDOW_DAYS || 2));
 const FIELD_NAMES = [
     'date', 'kind', 'promotion', 'title', 'detail', 'source', 'sourceUrl',
     'weight', 'imageUrl', 'imageAlt', 'imageCredit', 'imagePosition',
@@ -28,6 +30,26 @@ const trustedPosterTypes = new Set([
     'verified-manual-event-poster'
 ]);
 
+function ordinal(mmdd) {
+    const match = /^(\d{2})-(\d{2})$/.exec(mmdd);
+    if (!match) return 999;
+    const date = new Date(Date.UTC(2024, Number(match[1]) - 1, Number(match[2])));
+    return Math.round((date - Date.UTC(2024, 0, 1)) / 86400000);
+}
+
+function localMMDD() {
+    const parts = new Intl.DateTimeFormat('en-US', { timeZone: TIME_ZONE, month: '2-digit', day: '2-digit' }).formatToParts(new Date());
+    const get = type => parts.find(part => part.type === type)?.value || '';
+    return `${get('month')}-${get('day')}`;
+}
+
+function distance(entry) {
+    const a = ordinal(String(entry?.date || '').slice(5));
+    const b = ordinal(localMMDD());
+    const direct = Math.abs(a - b);
+    return Math.min(direct, 366 - direct);
+}
+
 const verifiedEventPoster = entry => {
     if (!isEvent(entry) || entry?.imagePosterVerified !== true || entry?.imageArtifactType !== 'event-poster' || !hasHttpsImage(entry)) return false;
     if (!trustedPosterTypes.has(entry?.imageSourceType)) return false;
@@ -38,6 +60,16 @@ const verifiedEventPoster = entry => {
     return true;
 };
 
+function removeVisibleImage(compact) {
+    compact.imageStatus = 'unresolved';
+    compact.imagePosterVerified = false;
+    delete compact.imageUrl;
+    delete compact.imageAlt;
+    delete compact.imageCredit;
+    delete compact.imagePosition;
+    delete compact.imageFallback;
+}
+
 const compactEntry = entry => {
     const compact = Object.fromEntries(
         FIELD_NAMES
@@ -47,21 +79,23 @@ const compactEntry = entry => {
 
     if (isEvent(entry)) {
         // Never let the browser invent a live Wikipedia image for an event.
-        // Archive entries may show a stored trusted fallback, but only the
-        // narrow verified-poster classes are labeled as actual event posters.
         compact.wikipediaTitle = ' ';
 
         if (!verifiedEventPoster(entry)) {
             compact.imagePosterVerified = false;
-            if (hasHttpsImage(entry)) {
+            if (distance(entry) <= WINDOW_DAYS) {
+                // The visible/current window is correctness-first: if the
+                // actual poster is not verified, show text rather than a
+                // related, editorial, fighter, or historically stale image.
+                removeVisibleImage(compact);
+            } else if (hasHttpsImage(entry)) {
+                // Deep archive may retain a stored relevant fallback while an
+                // exact poster is still being backfilled. It is never labeled
+                // or surfaced as a verified event poster.
                 compact.imageArtifactType = 'event-fallback';
                 compact.imageFallback = true;
             } else {
-                compact.imageStatus = 'unresolved';
-                delete compact.imageUrl;
-                delete compact.imageAlt;
-                delete compact.imageCredit;
-                delete compact.imagePosition;
+                removeVisibleImage(compact);
             }
         }
     }
@@ -120,4 +154,4 @@ for (const [file, expected] of files) {
 }
 
 if (stale) process.exitCode = 1;
-else if (!CHECK_ONLY) console.log(`Built ${entries.length} runtime entries across 12 monthly shards. Event posters require exact source verification; stored archive fallbacks remain separate and unverified.`);
+else if (!CHECK_ONLY) console.log(`Built ${entries.length} runtime entries across 12 monthly shards. Current-window events expose only verified posters; archive fallbacks remain separate and unverified.`);
