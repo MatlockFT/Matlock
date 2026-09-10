@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 const HISTORY_PATH = process.argv[2] || 'assets/data/on-this-day.json';
 const OVERRIDES_PATH = process.argv[3] || 'assets/data/on-this-day-image-source-overrides.json';
-const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD/1.2';
+const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD/1.3';
 const REQUEST_TIMEOUT_MS = 20000;
 const REQUEST_ATTEMPTS = 3;
 
@@ -13,31 +13,49 @@ const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 const trustedEventPosterTypes = new Set([
   'tapology-event-poster',
   'official-promotion-event-poster',
-  'official-promotion-event-image',
   'wikipedia-event-poster',
-  'wikipedia-event-image',
-  'wikipedia-page-artwork',
-  'commons-event-image',
   'archived-promotion-event-poster',
   'verified-manual-event-poster'
+]);
+const trustedTapologyBindings = new Set([
+  'direct-event-page',
+  'bing-image-exact-event-page',
+  'manual-exact-event-page',
+  'legacy-filename-exact'
 ]);
 
 function isEvent(entry) {
   return entry?.kind === 'event' || entry?.generatedBy === 'wikipedia-event-index';
 }
 
-function trustedEventPosterSource(type) {
-  return trustedEventPosterTypes.has(clean(type));
+function trustedEventPosterSource(entry) {
+  const type = clean(entry?.imageSourceType);
+  if (!trustedEventPosterTypes.has(type)) return false;
+  if (type === 'tapology-event-poster') {
+    return trustedTapologyBindings.has(clean(entry?.imageTapologyBinding)) && /^https:\/\/(?:www\.)?tapology\.com\/fightcenter\/events\//i.test(clean(entry?.imageTapologyPageUrl));
+  }
+  if (type === 'verified-manual-event-poster') return entry?.imageManualVisualVerified === true;
+  return true;
 }
 
 function applyPosterVerification(entry) {
   if (!isEvent(entry)) return;
-  if (clean(entry?.imageSubjectType) !== 'event') return;
-  if (!trustedEventPosterSource(entry?.imageSourceType)) return;
-  if (!/^https:\/\//i.test(clean(entry?.imageUrl))) return;
-  if (Number(entry?.imageConfidence || 0) < 0.9) return;
-  entry.imageArtifactType = 'event-poster';
-  entry.imagePosterVerified = true;
+  const canVerify = clean(entry?.imageSubjectType) === 'event' &&
+    trustedEventPosterSource(entry) &&
+    /^https:\/\//i.test(clean(entry?.imageUrl)) &&
+    Number(entry?.imageConfidence || 0) >= 0.9;
+
+  if (canVerify) {
+    entry.imageArtifactType = 'event-poster';
+    entry.imagePosterVerified = true;
+    return;
+  }
+
+  // Source-page images, Wikipedia lead images, official event photos and
+  // fighter/editorial fallbacks may still be useful archive imagery, but they
+  // are never allowed to self-certify as the actual event poster.
+  entry.imagePosterVerified = false;
+  if (/^https:\/\//i.test(clean(entry?.imageUrl))) entry.imageArtifactType = 'event-fallback';
 }
 
 function decodeHtml(value) {
