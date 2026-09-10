@@ -80,7 +80,7 @@ jobs:
         run: node scripts/apply-on-this-day-image-source-overrides.mjs
 
       - name: Resolve current-window Tapology event posters first
-        run: node scripts/resolve-on-this-day-tapology-posters.mjs
+        run: node scripts/resolve-on-this-day-tapology-posters.mjs --apply-only
 
       - name: Reject mismatched or unbound Tapology posters
         run: node scripts/sanitize-on-this-day-tapology-posters.mjs
