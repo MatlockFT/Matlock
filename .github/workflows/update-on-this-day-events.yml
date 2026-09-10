@@ -34,6 +34,7 @@ on:
       - "scripts/build-on-this-day-leads.mjs"
       - "scripts/build-on-this-day-runtime.mjs"
       - "scripts/build-on-this-day-share-images.mjs"
+      - "scripts/build-on-this-day-share-safe.mjs"
       - "scripts/share-title-layout.mjs"
       - "scripts/share-card-composition.mjs"
       - "assets/share-gobold.mjs"
@@ -112,6 +113,7 @@ jobs:
           node --check scripts/build-on-this-day-leads.mjs
           node --check scripts/build-on-this-day-runtime.mjs
           node --check scripts/build-on-this-day-share-images.mjs
+          node --check scripts/build-on-this-day-share-safe.mjs
           node --check scripts/share-title-layout.mjs
           node --check scripts/check-on-this-day-share.mjs
           node --check scripts/report-on-this-day-coverage.mjs
@@ -177,8 +179,8 @@ jobs:
       - name: Build optimized browser history shards
         run: npm run build:history-runtime
 
-      - name: Build share-ready social images
-        run: npm run build:history-share
+      - name: Build share-ready social images safely
+        run: node scripts/build-on-this-day-share-safe.mjs
 
       - name: Validate share image manifest
         run: npm run check:history-share
