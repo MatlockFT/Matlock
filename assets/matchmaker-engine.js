@@ -39,7 +39,7 @@
   }
   function availability(f, ctx) {
     if (!f.active) return 'Not on the verified active roster.';
-    if (f.booking) return `Already booked: ${f.booking.event} (${f.booking.date}).`;
+    if (f.booking) return `Booked${f.booking.opponent ? " vs " + f.booking.opponent : ""}: ${f.booking.event} (${f.booking.date}).`;
     if (ctx.overrides?.[f.id]?.unavailable) return `Unavailable: ${ctx.overrides[f.id].unavailable}`;
     if ((ctx.locks || []).some(p => p.a === f.id || p.b === f.id)) return 'Reserved in a locked matchup.';
     if (f.lastFight && Date.parse(ctx.asOf) - Date.parse(f.lastFight) > 730 * DAY) return 'No listed fight in the last two years.';
