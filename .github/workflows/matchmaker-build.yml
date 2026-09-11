@@ -1,0 +1,31 @@
+name: Matchmaker build
+on:
+  pull_request:
+    paths:
+      - 'matchmaker.html'
+      - 'assets/matchmaker*'
+      - 'assets/data/matchmaker/**'
+      - 'scripts/*matchmaker*'
+      - 'scripts/matchmaker/**'
+      - '.github/workflows/matchmaker-build.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate Matchmaker
+        run: |
+          node --check assets/matchmaker.js
+          node --check assets/matchmaker-engine.js
+          node scripts/check-matchmaker.mjs
+      - name: Build Jekyll site
+        uses: actions/jekyll-build-pages@v1
+      - name: Check built internal links and assets
+        run: node scripts/check-site.mjs _site
