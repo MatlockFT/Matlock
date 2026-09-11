@@ -36,7 +36,7 @@
       "verdict_main_count": 6,
       "local_prelim_count": 7,
       "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 13
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "dwcs-season-10-week-6-2026-09-15",
@@ -203,6 +203,16 @@
     }
   ],
   "discrepancies": [
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "verdict_event_id": "1938",
+      "order": 11,
+      "fighters": [
+        "Rafa Garcia",
+        "Rongzhu"
+      ]
+    },
     {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
