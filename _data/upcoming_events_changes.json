@@ -1,7 +1,166 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-10T17:22:30.261Z",
+  "generated_at": "2026-09-11T04:53:59.831Z",
   "changes": [
+    {
+      "id": "2026-09-11T04:53:59.831Z|noche-ufc-2026-09-12-fight-card|bout_moved|1",
+      "at": "2026-09-11T04:53:59.831Z",
+      "type": "bout_moved",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "Waldo Cortes Acosta vs Curtis Blaydes moved on Silva vs Delgado.",
+      "details": {
+        "from_order": 5,
+        "to_order": 4,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-11T04:53:59.831Z|noche-ufc-2026-09-12-fight-card|bout_moved|2",
+      "at": "2026-09-11T04:53:59.831Z",
+      "type": "bout_moved",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "David Martinez vs Dan Ige moved on Silva vs Delgado.",
+      "details": {
+        "from_order": 6,
+        "to_order": 5,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-11T04:53:59.831Z|noche-ufc-2026-09-12-fight-card|bout_moved|3",
+      "at": "2026-09-11T04:53:59.831Z",
+      "type": "bout_moved",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "Tim Elliott vs Edgar Chairez moved on Silva vs Delgado.",
+      "details": {
+        "from_order": 7,
+        "to_order": 6,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-11T04:53:59.831Z|noche-ufc-2026-09-12-fight-card|bout_moved|4",
+      "at": "2026-09-11T04:53:59.831Z",
+      "type": "bout_moved",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "Ignacio Bahamondes vs Muslim Salikhov moved on Silva vs Delgado.",
+      "details": {
+        "from_order": 8,
+        "to_order": 7,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-11T04:53:59.831Z|noche-ufc-2026-09-12-fight-card|bout_moved|5",
+      "at": "2026-09-11T04:53:59.831Z",
+      "type": "bout_moved",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "Yousri Belgaroui vs Djorden Santos moved on Silva vs Delgado.",
+      "details": {
+        "from_order": 9,
+        "to_order": 8,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-11T04:53:59.831Z|noche-ufc-2026-09-12-fight-card|bout_moved|6",
+      "at": "2026-09-11T04:53:59.831Z",
+      "type": "bout_moved",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "Drakkar Klose vs Tommy Gantt moved on Silva vs Delgado.",
+      "details": {
+        "from_order": 10,
+        "to_order": 9,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-11T04:53:59.831Z|noche-ufc-2026-09-12-fight-card|bout_moved|7",
+      "at": "2026-09-11T04:53:59.831Z",
+      "type": "bout_moved",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "Rafa Garcia vs Rongzhu moved on Silva vs Delgado.",
+      "details": {
+        "from_order": 11,
+        "to_order": 10,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-11T04:53:59.831Z|noche-ufc-2026-09-12-fight-card|bout_moved|8",
+      "at": "2026-09-11T04:53:59.831Z",
+      "type": "bout_moved",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "Sean King III vs Jessie Rosas moved on Silva vs Delgado.",
+      "details": {
+        "from_order": 12,
+        "to_order": 11,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-11T04:53:59.831Z|noche-ufc-2026-09-12-fight-card|bout_moved|9",
+      "at": "2026-09-11T04:53:59.831Z",
+      "type": "bout_moved",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "JJ Aldrich vs Regina Tarin moved on Silva vs Delgado.",
+      "details": {
+        "from_order": 13,
+        "to_order": 12,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-11T04:53:59.831Z|noche-ufc-2026-09-12-fight-card|bout_removed|10",
+      "at": "2026-09-11T04:53:59.831Z",
+      "type": "bout_removed",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "Manon Fiorot vs Alexa Grasso removed from Silva vs Delgado.",
+      "details": {
+        "order": 4,
+        "section": "Main Card",
+        "weight_class": "Women's Flyweight Bout"
+      }
+    },
     {
       "id": "2026-09-10T17:22:30.261Z|rizin-rizin-landmark-16-in-nagasaki-2026-10-03|broadcast_changed|1",
       "at": "2026-09-10T17:22:30.261Z",
@@ -4509,155 +4668,6 @@
         "to_order": 9,
         "from_section": "Prelims",
         "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-08-22T22:33:18.119Z|ufc-fight-night-sacramento-2026-08-22|bout_moved|5",
-      "at": "2026-08-22T22:33:18.119Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Marcio Barbosa vs Ryan Kuse moved on Hernandez vs Rodrigues.",
-      "details": {
-        "from_order": 11,
-        "to_order": 10,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-08-22T22:33:18.119Z|ufc-fight-night-sacramento-2026-08-22|bout_moved|6",
-      "at": "2026-08-22T22:33:18.119Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Gauge Young vs Stan Dorsainvil moved on Hernandez vs Rodrigues.",
-      "details": {
-        "from_order": 8,
-        "to_order": 11,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-08-22T22:33:18.119Z|ufc-fight-night-sacramento-2026-08-22|bout_removed|7",
-      "at": "2026-08-22T22:33:18.119Z",
-      "type": "bout_removed",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Wes Schultz vs Jackson McVey removed from Hernandez vs Rodrigues.",
-      "details": {
-        "order": 10,
-        "section": "Prelims",
-        "weight_class": "Middleweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-21T20:11:12.110Z|noche-ufc-2026-09-12-fight-card|bout_moved|1",
-      "at": "2026-08-21T20:11:12.110Z",
-      "type": "bout_moved",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Rodriguez vs Silva",
-      "event_date": "2026-09-12",
-      "summary": "JJ Aldrich vs Regina Tarin moved on Rodriguez vs Silva.",
-      "details": {
-        "from_order": 10,
-        "to_order": 12,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-08-21T20:11:12.110Z|noche-ufc-2026-09-12-fight-card|bout_added|2",
-      "at": "2026-08-21T20:11:12.110Z",
-      "type": "bout_added",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Rodriguez vs Silva",
-      "event_date": "2026-09-12",
-      "summary": "Ramiro Jimenez vs Rodrigo Vera added to Rodriguez vs Silva.",
-      "details": {
-        "order": 10,
-        "section": "Prelims",
-        "weight_class": "Featherweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-21T20:11:12.110Z|noche-ufc-2026-09-12-fight-card|bout_added|3",
-      "at": "2026-08-21T20:11:12.110Z",
-      "type": "bout_added",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Rodriguez vs Silva",
-      "event_date": "2026-09-12",
-      "summary": "Rafa Garcia vs Rongzhu added to Rodriguez vs Silva.",
-      "details": {
-        "order": 11,
-        "section": "Prelims",
-        "weight_class": "Lightweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|pfl-tampa-2026-08-22|portrait_added|1",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "pfl-tampa-2026-08-22",
-      "promotion": "PFL",
-      "event_title": "Tampa",
-      "event_date": "2026-08-22",
-      "summary": "Morquez Forest portrait added.",
-      "details": {
-        "fighter": "Morquez Forest",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-sacramento-2026-08-22|portrait_added|2",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "MarQuel Mederos portrait added.",
-      "details": {
-        "fighter": "MarQuel Mederos",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-sacramento-2026-08-22|portrait_added|3",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Mason Jones portrait added.",
-      "details": {
-        "fighter": "Mason Jones",
-        "source": "sherdog"
-      }
-    },
-    {
-      "id": "2026-08-21T17:42:35.697Z|ufc-fight-night-sacramento-2026-08-22|portrait_added|4",
-      "at": "2026-08-21T17:42:35.697Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-sacramento-2026-08-22",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hernandez vs Rodrigues",
-      "event_date": "2026-08-22",
-      "summary": "Chris Padilla portrait added.",
-      "details": {
-        "fighter": "Chris Padilla",
-        "source": "sherdog"
       }
     }
   ]

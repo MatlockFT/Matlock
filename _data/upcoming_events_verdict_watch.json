@@ -5,23 +5,6 @@
   "mode": "read-only-watchdog",
   "coverage": [
     {
-      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
-      "promotion": "rizin",
-      "date": "2026-09-10",
-      "title": "ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り",
-      "status": "matched",
-      "verdict_event_id": "1964",
-      "verdict_url": "https://verdictmma.com/event/1964",
-      "verdict_date": "2026-09-10",
-      "local_fight_count": 8,
-      "verdict_fight_count": null,
-      "local_main_count": 8,
-      "verdict_main_count": null,
-      "local_prelim_count": 0,
-      "verdict_prelim_count": null,
-      "confirmed_local_bouts": 6
-    },
-    {
       "event_id": "noche-ufc-2026-09-12-fight-card",
       "promotion": "ufc",
       "date": "2026-09-12",
@@ -30,13 +13,13 @@
       "verdict_event_id": "1938",
       "verdict_url": "https://verdictmma.com/event/1938",
       "verdict_date": "2026-09-12",
-      "local_fight_count": 13,
+      "local_fight_count": 12,
       "verdict_fight_count": 13,
-      "local_main_count": 6,
+      "local_main_count": 5,
       "verdict_main_count": 6,
       "local_prelim_count": 7,
       "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 12
+      "confirmed_local_bouts": 11
     },
     {
       "event_id": "dwcs-season-10-week-6-2026-09-15",
@@ -82,12 +65,12 @@
       "verdict_url": "https://verdictmma.com/event/1959",
       "verdict_date": "2026-09-26",
       "local_fight_count": 11,
-      "verdict_fight_count": null,
+      "verdict_fight_count": 11,
       "local_main_count": 6,
-      "verdict_main_count": null,
+      "verdict_main_count": 6,
       "local_prelim_count": 5,
-      "verdict_prelim_count": null,
-      "confirmed_local_bouts": 6
+      "verdict_prelim_count": 5,
+      "confirmed_local_bouts": 11
     },
     {
       "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
@@ -143,12 +126,12 @@
       "verdict_url": "https://verdictmma.com/event/1936",
       "verdict_date": "2026-10-17",
       "local_fight_count": 11,
-      "verdict_fight_count": null,
+      "verdict_fight_count": 11,
       "local_main_count": 11,
-      "verdict_main_count": null,
+      "verdict_main_count": 5,
       "local_prelim_count": 0,
-      "verdict_prelim_count": null,
-      "confirmed_local_bouts": 5
+      "verdict_prelim_count": 6,
+      "confirmed_local_bouts": 11
     },
     {
       "event_id": "ufc-333-2026-10-24-fight-card",
@@ -204,34 +187,30 @@
   ],
   "discrepancies": [
     {
+      "type": "bout_count_mismatch",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "verdict_event_id": "1938",
+      "local_fight_count": 12,
+      "verdict_fight_count": 13
+    },
+    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "noche-ufc-2026-09-12-fight-card",
       "verdict_event_id": "1938",
-      "order": 11,
+      "order": 10,
       "fighters": [
         "Rafa Garcia",
         "Rongzhu"
       ]
     },
     {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
-      "verdict_event_id": "1964",
-      "order": 5,
-      "fighters": [
-        "Yutaka Saito",
-        "YA-MAN"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
-      "verdict_event_id": "1964",
-      "order": 8,
-      "fighters": [
-        "“ブラックパンサー”ベイノア",
-        "Hide Meison Usami"
-      ]
+      "type": "section_count_mismatch",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "verdict_event_id": "1938",
+      "local_main_count": 5,
+      "verdict_main_count": 6,
+      "local_prelim_count": 7,
+      "verdict_prelim_count": 7
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -244,114 +223,13 @@
       ]
     },
     {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "verdict_event_id": "1959",
-      "order": 10,
-      "fighters": [
-        "Norma Dumont",
-        "Ailin Perez"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "verdict_event_id": "1959",
-      "order": 11,
-      "fighters": [
-        "Vanessa Demopoulos",
-        "Yazmin Jauregui"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "verdict_event_id": "1959",
-      "order": 7,
-      "fighters": [
-        "Rodolfo Bellato",
-        "Christian Edwards"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "verdict_event_id": "1959",
-      "order": 8,
-      "fighters": [
-        "Montel Jackson",
-        "Ricky Simon"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "verdict_event_id": "1959",
-      "order": 9,
-      "fighters": [
-        "John Castaneda",
-        "Alatengheili"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
+      "type": "section_count_mismatch",
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
       "verdict_event_id": "1936",
-      "order": 10,
-      "fighters": [
-        "Louis Jourdain",
-        "Timmy Cuamba"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "verdict_event_id": "1936",
-      "order": 11,
-      "fighters": [
-        "Julien Leblanc",
-        "Gilbert Urbina"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "verdict_event_id": "1936",
-      "order": 3,
-      "fighters": [
-        "Javad Mahjoub",
-        "Louie Sutherland"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "verdict_event_id": "1936",
-      "order": 4,
-      "fighters": [
-        "Chad Anheliger",
-        "Steven Koslow"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "verdict_event_id": "1936",
-      "order": 7,
-      "fighters": [
-        "Tanner Boser",
-        "Jhonata Diniz"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "verdict_event_id": "1936",
-      "order": 9,
-      "fighters": [
-        "Melissa Croden",
-        "Chelsea Chandler"
-      ]
+      "local_main_count": 11,
+      "verdict_main_count": 5,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": 6
     },
     {
       "type": "local_bout_not_found_on_verdict",
