@@ -17,8 +17,9 @@
   const rankText = f => { const r = E.rank(f, ctx()); return r === 0 ? 'Champion' : r === null ? 'Unranked' : `#${r}`; };
   const participants = () => event.bouts.flatMap(b => b.fighters).filter(f => fighter(f.id)?.active);
   const visible = () => participants().filter(f => filter === 'all' || filter === 'open' && !locks.some(p => p.a === f.id || p.b === f.id) || filter === 'available' && !E.availability(fighter(f.id), ctx()) || filter === 'booked' && !!fighter(f.id).booking || f.result === filter);
-  const avatar = (f, large = false) => f.image ? `<img class="${large ? 'mm-portrait' : 'mm-avatar'}" src="${safeUrl(f.image)}" alt="" width="${large ? 240 : 48}" height="${large ? 180 : 58}" loading="lazy" decoding="async" data-mm-image>` : '';
-  function bindImages() { root.querySelectorAll('[data-mm-image]').forEach(img => { img.onerror = () => { img.hidden = true; }; }); }
+  const placeholder = large => `<span class="${large ? 'mm-portrait' : 'mm-avatar'} mm-photo-placeholder" aria-hidden="true"><svg viewBox="0 0 160 180"><ellipse cx="80" cy="57" rx="28" ry="35"/><path d="M22 180v-42q0-29 34-38l24 14 24-14q34 9 34 38v42z"/></svg></span>`;
+  const avatar = (f, large = false) => { const photo = event?.bouts.flatMap(b => b.fighters).find(entry => entry.id === f.id)?.image || f.image; return photo ? `<img class="${large ? 'mm-portrait' : 'mm-avatar'}" src="${safeUrl(photo)}" alt="" width="${large ? 240 : 48}" height="${large ? 180 : 58}" loading="lazy" decoding="async" data-mm-image>` : placeholder(large); };
+  function bindImages() { root.querySelectorAll('[data-mm-image]').forEach(img => { img.onload = () => requestAnimationFrame(drawStrings); img.onerror = () => { img.outerHTML = placeholder(img.classList.contains('mm-portrait')); requestAnimationFrame(drawStrings); }; }); }
   function transaction(fn) { undo.push(clone({ locks, overrides })); if (undo.length > 30) undo.shift(); fn(); save(); render(); }
   function cleanOverrides(value) {
     const result = {}, divisions = new Set(data.fighters.map(f => f.division).filter(Boolean));
@@ -58,14 +59,15 @@
     $('[data-mm-division-override]').value = o.division || f.division || '';
     $('[data-mm-overrides]').innerHTML = Object.entries(overrides).filter(([, o]) => o.unavailable || o.allowRematch || o.division).map(([id, o]) => `<p class="mm-small">${esc(fighter(id).name)}: ${esc([o.unavailable, o.allowRematch ? 'rematches allowed' : '', o.division].filter(Boolean).join(' · '))} <button data-clear-override="${esc(id)}">Clear</button></p>`).join('');
     $('[data-mm-search]').value = ''; $('[data-mm-search-results]').innerHTML = '';
+    root.querySelectorAll('.mm-card').forEach(card => { if (!card.querySelector('.mm-pin')) card.insertAdjacentHTML('afterbegin', '<span class="mm-pin" aria-hidden="true"></span>'); });
     bindImages(); requestAnimationFrame(drawStrings);
   }
   function drawStrings() {
     const wrapper = $('[data-mm-connections]'), svg = $('[data-mm-strings]'), anchor = $('[data-mm-anchor]');
-    const bounds = wrapper.getBoundingClientRect(), from = anchor?.getBoundingClientRect(); if (!from) return;
-    const x = from.right - bounds.left, y = from.top + from.height / 2 - bounds.top;
+    const bounds = wrapper.getBoundingClientRect(), from = anchor?.querySelector('.mm-pin')?.getBoundingClientRect(); if (!from) return;
+    const x = from.left + from.width / 2 - bounds.left, y = from.top + from.height / 2 - bounds.top;
     svg.setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
-    svg.innerHTML = [...root.querySelectorAll('.mm-candidate')].map(el => { const r = el.getBoundingClientRect(), x2 = r.left - bounds.left, y2 = r.top + r.height / 2 - bounds.top; return `<path class="mm-strings-path" d="M${x},${y} C${x + (x2 - x) / 2},${y} ${x + (x2 - x) / 2},${y2} ${x2},${y2}"/>`; }).join('');
+    svg.innerHTML = [...root.querySelectorAll('.mm-candidate, .mm-locked-card')].map(el => { const r = el.querySelector('.mm-pin').getBoundingClientRect(), x2 = r.left + r.width / 2 - bounds.left, y2 = r.top + r.height / 2 - bounds.top; const sag = Math.min(36, Math.abs(x2 - x) * .08); return `<path class="mm-string-shadow" d="M${x},${y} Q${(x+x2)/2},${(y+y2)/2+sag+3} ${x2},${y2}"/><path class="mm-strings-path" d="M${x},${y} Q${(x+x2)/2},${(y+y2)/2+sag} ${x2},${y2}"/>`; }).join('');
   }
   function showDetail(id, manual = false) {
     const a = fighter(selected), b = fighter(id); if (!b) return;
