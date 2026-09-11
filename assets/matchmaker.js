@@ -1,0 +1,151 @@
+(async function () {
+  'use strict';
+  const root = document.querySelector('[data-matchmaker]'); if (!root) return;
+  const E = window.MatlockMatchmaker, $ = s => root.querySelector(s), esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const safeUrl = s => { try { const u = new URL(s, location.origin); return ['http:', 'https:'].includes(u.protocol) ? esc(u.href) : ''; } catch { return ''; } };
+  const STORAGE = 'matlock-matchmaker-v1', clone = x => JSON.parse(JSON.stringify(x));
+  let data, event, selected, locks = [], overrides = {}, undo = [], detailId, store = { boards: {}, archives: [] }, storageOK = true, filter = 'all';
+  const status = message => { $('[data-mm-status]').textContent = message; };
+  try { const saved = localStorage.getItem(STORAGE); if (saved) { const parsed = JSON.parse(saved); if (parsed.boards && Array.isArray(parsed.archives)) store = parsed; } } catch { storageOK = false; }
+  function save() {
+    store.boards[event.id] = { version: 1, eventId: event.id, locks, overrides, selected, dataAsOf: data.generatedAt };
+    try { localStorage.setItem(STORAGE, JSON.stringify(store)); } catch { storageOK = false; status('Browser storage is unavailable or full. Export or share your board before leaving.'); }
+  }
+  const ctx = () => ({ event, asOf: data.generatedAt, locks, overrides });
+  const fighter = id => data.fighters.find(f => f.id === id);
+  const rankText = f => { const r = E.rank(f, ctx()); return r === 0 ? 'Champion' : r === null ? 'Unranked' : `#${r}`; };
+  const participants = () => event.bouts.flatMap(b => b.fighters);
+  const visible = () => participants().filter(f => filter === 'all' || filter === 'open' && !locks.some(p => p.a === f.id || p.b === f.id) || f.result === filter);
+  const avatar = (f, large = false) => f.image ? `<img class="${large ? 'mm-portrait' : 'mm-avatar'}" src="${safeUrl(f.image)}" alt="" width="${large ? 240 : 48}" height="${large ? 180 : 58}" loading="lazy" decoding="async" data-mm-image>` : '';
+  function bindImages() { root.querySelectorAll('[data-mm-image]').forEach(img => { img.onerror = () => { img.hidden = true; }; }); }
+  function transaction(fn) { undo.push(clone({ locks, overrides })); if (undo.length > 30) undo.shift(); fn(); save(); render(); }
+  function cleanOverrides(value) {
+    const result = {}, divisions = new Set(data.fighters.map(f => f.division).filter(Boolean));
+    for (const [id, o] of Object.entries(value || {})) if (fighter(id) && o && typeof o === 'object') result[id] = { allowRematch: o.allowRematch === true, unavailable: typeof o.unavailable === 'string' ? o.unavailable.slice(0, 120) : '', ...(divisions.has(o.division) ? { division: o.division } : {}) };
+    return result;
+  }
+  function setEvent(id) {
+    event = data.events.find(e => e.id === id) || data.events[0];
+    const saved = store.boards[event.id]; locks = []; overrides = {}; undo = [];
+    if (saved) try { E.validateBoard(saved, data); locks = saved.locks; overrides = cleanOverrides(saved.overrides); } catch { status('A saved board could not be restored. Its exported copies remain independent.'); }
+    selected = participants().some(f => f.id === saved?.selected) ? saved.selected : participants().find(f => !E.availability(fighter(f.id), ctx()))?.id || participants()[0]?.id;
+    $('[data-mm-event]').value = event.id;
+    const sourceLink = $('[data-mm-event-source]'); if (sourceLink) sourceLink.href = event.source;
+    const url = new URL(location.href); url.searchParams.set('event', event.id); history.replaceState(null, '', url); render();
+  }
+  function render() {
+    const f = fighter(selected); if (!f) return;
+    const list = visible();
+    $('[data-mm-fighter-count]').textContent = `${list.length} / ${participants().length}`;
+    $('[data-mm-fighters]').innerHTML = list.length ? list.map(entry => {
+      const item = fighter(entry.id), paired = locks.find(p => p.a === entry.id || p.b === entry.id);
+      return `<button class="mm-fighter" data-select="${esc(item.id)}" aria-pressed="${item.id === selected}">${avatar(item)}<span><strong>${esc(item.name)}</strong><span class="mm-result ${esc(entry.result)}">${entry.result === 'W' ? 'WIN' : entry.result === 'L' ? 'LOSS' : esc(entry.result)}${paired ? ' · LOCKED' : ''}</span><span class="mm-meta">${esc(rankText(item))} · ${esc(E.division(item, ctx()))}</span></span></button>`;
+    }).join('') : '<p class="mm-empty">No fighters in this view.</p>';
+    $('[data-mm-division]').textContent = E.division(f, ctx());
+    const h = f.history || [], listedWins = h.filter(h => h.result === 'W').length, listedLosses = h.filter(h => h.result === 'L').length;
+    const historical = event.rankingsBeforeEvent?.rankings.find(r => r.id === f.id && E.normalize(r.division) === E.normalize(E.division(f, ctx())));
+    $('[data-mm-selected]').innerHTML = `<div class="mm-card" data-mm-anchor><p class="mm-eyebrow">${esc(rankText(f))} / TIER ${esc(E.tier(f, ctx()))}</p>${avatar(f, true)}<h3>${esc(f.name)}</h3><p>${esc(f.record || 'Record unavailable')} overall<br>${listedWins}–${listedLosses} listed UFC bouts</p><div class="mm-tags">${E.tags(f, ctx()).map(t => `<span class="mm-tag">${esc(t)}</span>`).join('')}</div><p class="mm-meta">Before this event: ${historical ? historical.rank === 0 ? 'Champion' : '#' + historical.rank : 'rank snapshot unavailable'}<br>Last listed fight: ${esc(f.lastFight || 'unknown')}</p></div>`;
+    const paired = locks.find(p => p.a === f.id || p.b === f.id), unavailable = E.availability(f, ctx());
+    if (paired) $('[data-mm-candidates]').innerHTML = `<div class="mm-card"><p class="mm-eyebrow">LOCKED MATCH</p><h3>${esc(fighter(paired.a === f.id ? paired.b : paired.a).name)}</h3><p>${esc(paired.rationale || 'Selected on your board.')}</p><button data-unlock="${esc(E.pairKey(paired.a, paired.b))}">Unlock match</button></div>`;
+    else if (unavailable) $('[data-mm-candidates]').innerHTML = `<div class="mm-empty">${esc(unavailable)}</div>`;
+    else {
+      const recs = E.recommendations(f, data.fighters, ctx());
+      $('[data-mm-candidates]').innerHTML = recs.length ? recs.map(r => `<button class="mm-card mm-candidate" data-candidate="${esc(r.fighter.id)}">${avatar(r.fighter)}<p class="mm-eyebrow">${esc(r.label)}</p><h3>${esc(r.fighter.name)}</h3><span class="mm-meta">${esc(rankText(r.fighter))} · ${esc(r.fighter.record || 'Record unavailable')}</span><p>${esc(r.rationale)}</p><span class="mm-result">MAKE THE CASE →</span></button>`).join('') : '<p class="mm-empty">No eligible opponent found. Review your overrides or try manual search.</p>';
+    }
+    $('[data-mm-count]').textContent = locks.length;
+    $('[data-mm-undo]').disabled = !undo.length;
+    const o = overrides[f.id] || {};
+    $('[data-mm-rematch]').checked = o.allowRematch || false; $('[data-mm-exclude]').value = o.unavailable || '';
+    $('[data-mm-division-override]').value = o.division || f.division || '';
+    $('[data-mm-overrides]').innerHTML = Object.entries(overrides).filter(([, o]) => o.unavailable || o.allowRematch || o.division).map(([id, o]) => `<p class="mm-small">${esc(fighter(id).name)}: ${esc([o.unavailable, o.allowRematch ? 'rematches allowed' : '', o.division].filter(Boolean).join(' · '))} <button data-clear-override="${esc(id)}">Clear</button></p>`).join('');
+    $('[data-mm-search]').value = ''; $('[data-mm-search-results]').innerHTML = '';
+    bindImages(); requestAnimationFrame(drawStrings);
+  }
+  function drawStrings() {
+    const wrapper = $('[data-mm-connections]'), svg = $('[data-mm-strings]'), anchor = $('[data-mm-anchor]');
+    const bounds = wrapper.getBoundingClientRect(), from = anchor?.getBoundingClientRect(); if (!from) return;
+    const x = from.right - bounds.left, y = from.top + from.height / 2 - bounds.top;
+    svg.setAttribute('viewBox', `0 0 ${bounds.width} ${bounds.height}`);
+    svg.innerHTML = [...root.querySelectorAll('.mm-candidate')].map(el => { const r = el.getBoundingClientRect(), x2 = r.left - bounds.left, y2 = r.top + r.height / 2 - bounds.top; return `<path class="mm-strings-path" d="M${x},${y} C${x + (x2 - x) / 2},${y} ${x + (x2 - x) / 2},${y2} ${x2},${y2}"/>`; }).join('');
+  }
+  function showDetail(id, manual = false) {
+    const a = fighter(selected), b = fighter(id); if (!b) return;
+    detailId = { id, manual }; const r = E.evaluate(a, b, ctx(), manual);
+    $('[data-mm-detail-body]').innerHTML = `<p class="mm-eyebrow">${manual ? 'YOUR PICK' : 'THE MATCHUP'}</p><h2>${esc(a.name)} <span style="color:#ff4a54">vs</span> ${esc(b.name)}</h2>${r.eligible ? `<p>${esc(r.rationale)}</p><ul class="mm-evidence">${r.evidence.map(e => `<li>${esc(e)}</li>`).join('')}</ul><details><summary>Scoring evidence (${r.score}/100)</summary><div class="mm-score">${Object.entries(r.parts).map(([name, value]) => `<span>${esc(name)}</span><span>${Math.round(value * 10) / 10} / ${E.WEIGHTS[name]}</span>`).join('')}</div></details><p><a href="${safeUrl(a.source)}" target="_blank" rel="noopener">${esc(a.name)} · UFC history</a><br><a href="${safeUrl(b.source)}" target="_blank" rel="noopener">${esc(b.name)} · UFC history</a></p><button class="mm-lock" data-mm-lock>Lock match</button>` : `<p class="mm-empty">${esc(r.reason)}</p>`}`;
+    $('[data-mm-detail]').showModal();
+  }
+  function search() {
+    const query = E.normalize($('[data-mm-search]').value); if (!query) { $('[data-mm-search-results]').innerHTML = ''; return; }
+    const a = fighter(selected);
+    const matches = data.fighters.filter(f => f.id !== a.id && E.normalize(f.name).includes(query) && E.normalize(E.division(f, ctx())) === E.normalize(E.division(a, ctx()))).slice(0, 20);
+    $('[data-mm-search-results]').innerHTML = matches.length ? matches.map(f => { const r = E.evaluate(a, f, ctx(), true); return `<button class="mm-search-row" draggable="${r.eligible}" data-manual="${esc(f.id)}"><span>${esc(f.name)}<span class="mm-meta">${esc(r.eligible ? rankText(f) + ' · Available in collected schedule' : r.reason)}</span></span><span>View →</span></button>`; }).join('') : '<p>No fighters found in this division.</p>';
+  }
+  function bookingStatus(pair, createdAt) {
+    const matching = data.bookings.filter(b => b.pairKey === E.pairKey(pair.a, pair.b));
+    const booking = matching.find(b => Date.parse(b.firstSeen) > Date.parse(createdAt)) || matching[0];
+    if (!booking) return null;
+    const later = Date.parse(booking.firstSeen) > Date.parse(createdAt);
+    return { later, text: later ? `✓ Official booking observed after this prediction: ${booking.event}` : `Official booking was already in the collected data: ${booking.event}` };
+  }
+  function boardData() { return { version: 1, eventId: event.id, eventTitle: event.title, createdAt: new Date().toISOString(), dataAsOf: data.generatedAt, locks: clone(locks), overrides: clone(overrides) }; }
+  function renderBoard() {
+    $('[data-mm-board-body]').innerHTML = `<p>${esc(event.title)} · ${esc(event.date)} · ${locks.length} locked matches</p>${locks.length ? locks.map(p => `<div class="mm-board-row"><div><strong>${esc(fighter(p.a).name)} <span style="color:#ff7d85">vs</span> ${esc(fighter(p.b).name)}</strong><small>${esc(p.rationale || 'Selected matchup')}</small></div><button data-unlock="${esc(E.pairKey(p.a, p.b))}">Unlock</button></div>`).join('') : '<p class="mm-empty">Select a fighter and lock a match to begin.</p>'}`;
+    $('[data-mm-freeze]').disabled = !locks.length; $('[data-mm-download]').disabled = !locks.length;
+    const archives = store.archives.filter(b => b.eventId === event.id);
+    $('[data-mm-archives]').innerHTML = archives.length ? `<h3>Frozen predictions on this device</h3>${archives.slice().reverse().map(b => { const hits = b.locks.filter(p => bookingStatus(p, b.createdAt)?.later).length; return `<details class="mm-archive"><summary>${esc(new Date(b.createdAt).toLocaleString())} · ${hits}/${b.locks.length} later observed bookings</summary><p class="mm-small">Frozen using data from ${esc(b.dataAsOf)}. Observation dates reflect when our collector first saw a booking.</p>${b.locks.map(p => `<p>${esc(fighter(p.a)?.name || p.a)} vs ${esc(fighter(p.b)?.name || p.b)}<br><small class="mm-frozen">${esc(bookingStatus(p, b.createdAt)?.text || 'No matching official booking observed.')}</small></p>`).join('')}</details>`; }).join('')}` : '';
+  }
+  function download(blob, name) { const url = URL.createObjectURL(blob), a = document.createElement('a'); a.href = url; a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(url), 5000); }
+  function drawDownload() {
+    const canvas = document.createElement('canvas'); canvas.width = 1080; canvas.height = 1350; const c = canvas.getContext('2d');
+    c.fillStyle = '#111113'; c.fillRect(0, 0, 1080, 1350); c.fillStyle = '#ff4a54'; c.fillRect(48, 48, 80, 7);
+    c.font = 'bold 22px Arial'; c.fillText('MMA MATLOCK / MATCHMAKER', 48, 102); c.fillStyle = '#fff'; c.font = 'bold 58px Arial'; c.fillText('THE NEXT FIGHT', 48, 180);
+    c.fillStyle = '#bbb'; c.font = '25px Arial'; c.fillText(`${event.title} · ${event.date}`, 48, 227, 980);
+    const rowH = Math.min(115, 950 / Math.max(locks.length, 1));
+    locks.forEach((p, i) => { const y = 280 + i * rowH; c.strokeStyle = '#39393e'; c.beginPath(); c.moveTo(48, y + rowH - 10); c.lineTo(1032, y + rowH - 10); c.stroke(); c.font = `bold ${Math.min(30, rowH * .42)}px Arial`; c.fillStyle = '#f5f5f5'; c.fillText(fighter(p.a).name, 48, y + rowH * .45, 410); c.fillText(fighter(p.b).name, 608, y + rowH * .45, 425); c.fillStyle = '#ff4a54'; c.fillText('VS', 510, y + rowH * .45); });
+    c.fillStyle = '#999'; c.font = '20px Arial'; c.fillText('FAN MATCHMAKING · NOT AN OFFICIAL UFC CARD', 48, 1280); c.fillText('mmamatlock.com/matchmaker', 48, 1310);
+    canvas.toBlob(blob => { if (blob) download(blob, `matlock-${event.id}-matchmaking.png`); else $('[data-mm-board-status]').textContent = 'Image export failed. Try exporting the board JSON.'; }, 'image/png');
+  }
+  root.addEventListener('click', async e => {
+    const button = e.target.closest('button'); if (!button) return;
+    try {
+      if (button.dataset.select) { selected = button.dataset.select; save(); render(); }
+      else if (button.dataset.candidate) showDetail(button.dataset.candidate);
+      else if (button.dataset.manual) showDetail(button.dataset.manual, true);
+      else if (button.hasAttribute('data-mm-close')) button.closest('dialog').close();
+      else if (button.hasAttribute('data-mm-lock')) { const p = E.lock(fighter(selected), fighter(detailId.id), ctx(), detailId.manual); transaction(() => locks.push(p)); $('[data-mm-detail]').close(); status(`Locked ${fighter(p.a).name} vs ${fighter(p.b).name}. Both fighters are reserved.`); }
+      else if (button.dataset.unlock) { transaction(() => { locks = locks.filter(p => E.pairKey(p.a, p.b) !== button.dataset.unlock); }); if ($('[data-mm-board]').open) renderBoard(); }
+      else if (button.hasAttribute('data-mm-undo')) { const prior = undo.pop(); if (prior) { locks = prior.locks; overrides = prior.overrides; save(); render(); status('Last board change undone.'); } }
+      else if (button.hasAttribute('data-mm-auto')) { button.disabled = true; status('Finding unique matchups…'); await new Promise(resolve => setTimeout(resolve, 20)); const result = E.autoMatch(data.fighters, ctx(), visible().map(f => f.id)); if (result.pairs.length) transaction(() => locks.push(...result.pairs)); status(`Auto matchmaking added ${result.pairs.length} unique pairs. Review and unlock any pick you disagree with.`); button.disabled = false; }
+      else if (button.hasAttribute('data-mm-apply')) { if (locks.some(p => p.a === selected || p.b === selected)) throw new Error('Unlock this fighter’s match before changing their overrides.'); transaction(() => { overrides[selected] = { division: $('[data-mm-division-override]').value, allowRematch: $('[data-mm-rematch]').checked, unavailable: $('[data-mm-exclude]').value.trim() }; }); status('Board overrides applied.'); }
+      else if (button.dataset.clearOverride) { const id = button.dataset.clearOverride; if (locks.some(p => p.a === id || p.b === id)) throw new Error('Unlock this fighter before clearing the override.'); transaction(() => { delete overrides[id]; }); }
+      else if (button.hasAttribute('data-mm-completed')) { renderBoard(); $('[data-mm-board]').showModal(); }
+      else if (button.hasAttribute('data-mm-freeze')) { const frozen = boardData(); store.archives.push(frozen); save(); renderBoard(); $('[data-mm-board-status]').textContent = 'Prediction frozen on this device. Later edits affect only your working board.'; }
+      else if (button.hasAttribute('data-mm-share')) { const b = boardData(); b.locks = b.locks.map(({ a, b, manual }) => ({ a, b, manual })); const encoded = btoa(String.fromCharCode(...new TextEncoder().encode(JSON.stringify(b)))); const url = new URL(location.href); url.hash = 'board=' + encodeURIComponent(encoded); if (url.href.length > 24000) throw new Error('This board is too large for a reliable share URL. Export JSON instead.'); try { await navigator.clipboard.writeText(url.href); $('[data-mm-board-status]').textContent = 'Share URL copied. Anyone with the link can open a copy of this board.'; } catch { const area = document.createElement('textarea'); area.value = url.href; area.setAttribute('aria-label', 'Copy this board link'); $('[data-mm-board-status]').replaceChildren(area); area.select(); } }
+      else if (button.hasAttribute('data-mm-download')) drawDownload();
+      else if (button.hasAttribute('data-mm-json')) download(new Blob([JSON.stringify(boardData(), null, 2)], { type: 'application/json' }), `${event.id}-matchmaking.json`);
+    } catch (error) { if ($('[data-mm-board]').open) $('[data-mm-board-status]').textContent = error.message; else status(error.message); }
+  });
+  $('[data-mm-event]').addEventListener('change', e => { save(); setEvent(e.target.value); });
+  $('[data-mm-filter]').addEventListener('change', e => { filter = e.target.value; render(); });
+  $('[data-mm-search]').addEventListener('input', search);
+  root.addEventListener('dragstart', e => { const el = e.target.closest('[data-manual]'); if (el) e.dataTransfer.setData('text/plain', el.dataset.manual); });
+  $('[data-mm-selected]').addEventListener('dragover', e => e.preventDefault());
+  $('[data-mm-selected]').addEventListener('drop', e => { e.preventDefault(); showDetail(e.dataTransfer.getData('text/plain'), true); });
+  try {
+    async function loadData(url) { const response = await fetch(url, { signal: AbortSignal.timeout(10000) }); if (!response.ok) throw new Error('Could not load Matchmaker data. Please try again shortly.'); const payload = await response.json(); if (payload.schemaVersion !== 1 || !payload.events?.length || !payload.fighters?.length) throw new Error('Invalid Matchmaker data.'); return payload; }
+    try { data = await loadData(root.dataset.liveFeed); } catch { data = await loadData(root.dataset.feed); }
+    if (data.schemaVersion !== 1 || !data.events?.length || !data.fighters?.length) throw new Error('The Matchmaker data is unavailable.');
+    $('[data-mm-event]').innerHTML = data.events.map(e => `<option value="${esc(e.id)}">${esc(e.title)} · ${esc(e.date)}</option>`).join('');
+    $('[data-mm-division-override]').innerHTML = [...new Set(data.fighters.map(f => f.division).filter(Boolean))].sort().map(d => `<option>${esc(d)}</option>`).join('');
+    let eventId = new URL(location.href).searchParams.get('event'), sharedMessage = '';
+    if (location.hash.startsWith('#board=')) {
+      try { if (location.hash.length > 30000) throw new Error('Shared board is too large.'); const binary = atob(decodeURIComponent(location.hash.slice(7))); const shared = E.validateBoard(JSON.parse(new TextDecoder().decode(Uint8Array.from(binary, c => c.charCodeAt(0)))), data); store.boards[shared.eventId] = { ...shared, overrides: cleanOverrides(shared.overrides) }; eventId = shared.eventId; sharedMessage = ' Shared board loaded as a working copy.'; history.replaceState(null, '', location.pathname + location.search); }
+      catch (e) { sharedMessage = ` Shared board rejected: ${e.message}`; }
+    }
+    setEvent(eventId); $('[data-mm-app]').hidden = false;
+    const age = Math.floor((Date.now() - Date.parse(data.generatedAt)) / 86400000);
+    status(`${age > 2 ? 'Data is ' + age + ' days old; bookings may have changed. ' : ''}Current matchmaking using data collected ${new Date(data.generatedAt).toLocaleDateString()}. ${data.fighters.filter(f => f.active).length} active roster profiles. Results are verified; historical ranking gaps are labeled.${sharedMessage}${!storageOK ? ' Device saving unavailable.' : ''}`);
+    $('[data-mm-sources]').innerHTML = `Sources: <a href="${safeUrl(data.sources.rankings.url)}">UFC rankings</a> · <a href="${safeUrl(data.sources.roster.url)}">Verified site roster</a> · <a href="${safeUrl(event.source)}" data-mm-event-source>Official event results</a> · <a href="https://www.ufc.com/events">Upcoming UFC cards</a><br>Rankings collected ${esc(data.sources.rankings.checkedAt.slice(0, 10))}; roster checked ${esc(data.sources.roster.checkedAt.slice(0, 10))}. Profile history is partial evidence. Boards save on this device; no account required.`;
+    new ResizeObserver(drawStrings).observe($('[data-mm-connections]'));
+  } catch (error) { status(error.message || 'The Matchmaker could not load. Please try again shortly.'); }
+})();
