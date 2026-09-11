@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import './matchmaker/check-roster.mjs';
 import fs from 'node:fs';
 import { createRequire } from 'node:module';
 import { validateData } from './matchmaker/validate.mjs';

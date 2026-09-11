@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { clean, key, slug, parseEvent, parseProfile, parseRankings } from './matchmaker/sources/ufc.mjs';
 import { validateData } from './matchmaker/validate.mjs';
+import { reconcileRoster } from './matchmaker/roster.mjs';
 const root = path.resolve('assets/data/matchmaker');
 const now = new Date(), checkedAt = now.toISOString(), today = checkedAt.slice(0, 10);
 const cacheDir = process.env.MATCHMAKER_CACHE || path.resolve('.cache/matchmaker');
@@ -64,6 +65,8 @@ const fighters = await mapLimit(wanted, 6, async (f, i) => {
   try { const html = await get(f.source, participants.has(f.id) || ranking ? 1800000 : 3 * 86400000); profile = parseProfile(html, f, retrievedAt.get(f.source)); }
   catch (e) { failed++; profile = oldFighters.get(f.id) ? { ...oldFighters.get(f.id), ...f } : { ...f, division: ranking?.division || null, record: null, history: [], historyCoverage: 'Unavailable', lastFight: null, checkedAt: null }; }
   if (i % 100 === 0) console.log(`Profiles processed: ${i + 1}/${wanted.length}`);
+  // Missing status markup is not evidence that a previously inactive athlete returned.
+  profile.profileStatus ||= oldFighters.get(f.id)?.profileStatus || null;
   const image = Object.entries(images).find(([name]) => key(name) === key(f.name))?.[1]?.url || completed.flatMap(e => e.bouts.flatMap(b => b.fighters)).find(x => x.id === f.id)?.image || null;
   return { ...profile, rank: ranking?.rank ?? null, champion: ranking?.rank === 0, interim: ranking?.interim || false, image, rankings: rankings.filter(r => r.id === f.id).map(({ division, rank }) => ({ division, rank })) };
 });
@@ -107,6 +110,7 @@ for (const e of events) {
 for (const b of bookings) oldBookings.set(b.bookingKey, b);
 const data = { schemaVersion: 1, generatedAt: checkedAt, sources: { rankings: { url: 'https://www.ufc.com/rankings', checkedAt }, roster: { url: rosterUrl, checkedAt: roster.checkedAt }, bookings: { url: 'https://www.ufc.com/events', checkedAt }, history: { url: 'https://www.ufc.com/athletes', checkedAt, note: 'Official UFC profile histories; listed bouts may be incomplete.' } }, fighters, events, rankingsCurrent: rankings, bookings: [...oldBookings.values()], coverage: { profileFailures: failed, activeFighters: fighters.filter(f => f.active).length } };
 validateData(data);
+reconcileRoster(data, roster, rosterOverrides);
 // Write all validated output atomically; never rewrite an existing daily snapshot.
 await fs.writeFile(path.join(snapshotsDir, `${today}.json`), JSON.stringify({ capturedAt: checkedAt, rankings }, null, 2) + '\n', { flag: 'wx' }).catch(e => { if (e.code !== 'EEXIST') throw e; });
 await fs.writeFile(path.join(root, 'current.json.tmp'), JSON.stringify(data, null, 2) + '\n');

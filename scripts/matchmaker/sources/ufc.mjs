@@ -2,6 +2,7 @@
 export const clean = (s = '') => String(s).replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<[^>]+>/g, ' ').replace(/&#x([\da-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16))).replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n)).replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/&quot;/g, '"').replace(/&apos;|&#039;/g, "'").replace(/\s+/g, ' ').trim();
 export const key = s => clean(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
 export const slug = u => u?.match(/\/athlete\/([^/?#"\s]+)/)?.[1] || '';
+export const profileStatus = html => clean(html).match(/\b(?:Fighter\s+)?Status\s*(Active|Not Fighting|Inactive|Retired)\b/i)?.[1] || null;
 const field = (html, cls) => clean(html.match(new RegExp(`class="[^"]*\\b${cls}[^\"]*"[^>]*>([\\s\\S]*?)<\\/[^>]+>`))?.[1]);
 export function eventDate(html, timestamp) {
   const start = new Date(+timestamp * 1000), label = field(html, 'c-hero__headline-suffix');
@@ -72,5 +73,5 @@ export function parseProfile(html, fighter, checkedAt) {
     history.push({ date, result, text, opponentIds: [] });
   }
   history.sort((a, b) => b.date.localeCompare(a.date));
-  return { ...fighter, division, record, history, historyCoverage: 'UFC profile listed bouts; may be incomplete', checkedAt, lastFight: history[0]?.date || null };
+  return { ...fighter, profileStatus: profileStatus(html), division, record, history, historyCoverage: 'UFC profile listed bouts; may be incomplete', checkedAt, lastFight: history[0]?.date || null };
 }
