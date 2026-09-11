@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-09-11T08:56:46.725Z"
+      "checkedAt": "2026-09-11T13:26:55.680Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-11T11:42:48.769Z"
+      "checkedAt": "2026-09-11T13:27:20.629Z"
     },
     "history": {
       "url": "https://www.ufc.com/athletes",
@@ -64,7 +64,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Arnold Allen",
+        "opponentId": "arnold-allen"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -219,7 +221,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Nikita Krylov",
+        "opponentId": "nikita-krylov"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -398,7 +402,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Cam Rowston",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -748,7 +754,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Norma Dumont",
+        "opponentId": "norma-dumont"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -1033,7 +1041,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Imanol Rodriguez",
+        "opponentId": "imanol-rodriguez"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -1827,9 +1837,11 @@
         }
       ],
       "booking": {
-        "event": "Noche UFC: Silva vs Delgado",
+        "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Manon Fiorot",
+        "opponentId": "manon-fiorot"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -1977,7 +1989,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Rafael Dos Anjos",
+        "opponentId": "rafael-dos-anjos"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -2211,7 +2225,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Movsar Evloev",
+        "opponentId": "movsar-evloev"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -2380,7 +2396,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Rizvan Kuniev",
+        "opponentId": "rizvan-kuniev"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -2477,7 +2495,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Joshua Van",
+        "opponentId": "joshua-van"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -3156,7 +3176,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Iwo Baraniewski",
+        "opponentId": "iwo-baraniewski"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -4293,7 +4315,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Damian Pinas",
+        "opponentId": "damian-pinas"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -5113,7 +5137,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Mauricio Ruffy",
+        "opponentId": "mauricio-ruffy"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -5256,7 +5282,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Aaron Pico",
+        "opponentId": "aaron-pico"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -5597,7 +5625,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Roman Kopylov",
+        "opponentId": "roman-kopylov"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -5969,7 +5999,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Dominick Reyes",
+        "opponentId": "dominick-reyes"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -6316,7 +6348,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Marcus McGhee",
+        "opponentId": "marcus-mcghee"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -8051,7 +8085,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Joseph Morales",
+        "opponentId": "joseph-morales"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -8386,7 +8422,9 @@
       "booking": {
         "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Christian Leroy Duncan",
+        "opponentId": "christian-leroy-duncan"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -8605,7 +8643,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Renato Moicano",
+        "opponentId": "renato-moicano"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -8713,7 +8753,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Edmen Shahbazyan",
+        "opponentId": "edmen-shahbazyan"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -10197,7 +10239,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Eduarda Moura",
+        "opponentId": "eduarda-moura"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -10363,7 +10407,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Steven Koslow",
+        "opponentId": "steven-koslow"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -10877,7 +10923,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Marlon Vera",
+        "opponentId": "marlon-vera"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -11534,7 +11582,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Melissa Croden",
+        "opponentId": "melissa-croden"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -12321,7 +12371,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Rodolfo Bellato",
+        "opponentId": "rodolfo-bellato"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -12432,7 +12484,9 @@
       "booking": {
         "event": "Allen vs Duncan",
         "date": "2026-10-10",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
+        "opponent": "Brendan Allen",
+        "opponentId": "brendan-allen"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -14107,7 +14161,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Eric Nolan",
+        "opponentId": "eric-nolan"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -14367,7 +14423,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Waldo Cortes Acosta",
+        "opponentId": "waldo-cortes-acosta"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -14617,7 +14675,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Andrey Pulyaev",
+        "opponentId": "andrey-pulyaev"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -15186,7 +15246,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "David Martinez",
+        "opponentId": "david-martinez"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -16274,7 +16336,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Dan Ige",
+        "opponentId": "dan-ige"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -16603,7 +16667,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Payton Talbott",
+        "opponentId": "payton-talbott"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -17845,7 +17911,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Yousri Belgaroui",
+        "opponentId": "yousri-belgaroui"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -18034,7 +18102,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Azamat Murzakanov",
+        "opponentId": "azamat-murzakanov"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -18263,7 +18333,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Patricio Pitbull",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -18509,7 +18581,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Tommy Gantt",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -19566,7 +19640,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Tim Elliott",
+        "opponentId": "tim-elliott"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -19725,7 +19801,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Brunno Ferreira",
+        "opponentId": "brunno-ferreira"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -19802,7 +19880,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Casey O'Neill",
+        "opponentId": "casey-oneill"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -20196,7 +20276,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Josiah Harrell",
+        "opponentId": "josiah-harrell"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -20393,7 +20475,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Court McGee",
+        "opponentId": "court-mcgee"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -20498,7 +20582,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Jasmine Jasudavicius",
+        "opponentId": "jasmine-jasudavicius"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -20669,7 +20755,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "King Green",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -21904,7 +21992,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Sean Sharaf",
+        "opponentId": "sean-sharaf"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -21999,7 +22089,9 @@
       "booking": {
         "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Sean Brady",
+        "opponentId": "sean-brady"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -22922,7 +23014,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Joanderson Brito",
+        "opponentId": "joanderson-brito"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -23026,7 +23120,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Julien Leblanc",
+        "opponentId": "julien-leblanc"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -23402,7 +23498,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Nurullo Aliev",
+        "opponentId": "nurullo-aliev"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -24852,7 +24950,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Muslim Salikhov",
+        "opponentId": "muslim-salikhov"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -25105,7 +25205,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Mehemmedeli Osmanli",
+        "opponentId": "mehemmedeli-osmanli"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -25145,7 +25247,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Alden Coria",
+        "opponentId": "alden-coria"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -25772,7 +25876,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Marvin Vettori",
+        "opponentId": "marvin-vettori"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -26049,7 +26155,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Alonzo Menifield",
+        "opponentId": "alonzo-menifield"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -27857,7 +27965,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Katlyn Cerminara",
+        "opponentId": "katlyn-cerminara"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -28656,7 +28766,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Erin Blanchfield",
+        "opponentId": "erin-blanchfield"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -28895,7 +29007,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Jose Miguel Delgado",
+        "opponentId": "jose-miguel-delgado"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -29832,7 +29946,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Tanner Boser",
+        "opponentId": "tanner-boser"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -30590,7 +30706,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Regina Tarin",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -30711,7 +30829,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Giga Chikadze",
+        "opponentId": "giga-chikadze"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -31131,7 +31251,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Mike Malott",
+        "opponentId": "mike-malott"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -31463,7 +31585,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Alatengheili",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -31924,7 +32048,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Mick Parkin",
+        "opponentId": "mick-parkin"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -32379,7 +32505,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Michael Aswell Jr.",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -32702,7 +32830,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Jean Silva",
+        "opponentId": "jean-silva"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -32956,7 +33086,9 @@
       "booking": {
         "event": "Szabova vs Lisboa",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Nick Klein",
+        "opponentId": "nick-klein"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -33049,7 +33181,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Brandon Moreno",
+        "opponentId": "brandon-moreno"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -33513,7 +33647,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Alexandre Pantoja",
+        "opponentId": "alexandre-pantoja"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -33580,7 +33716,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Elves Brener",
+        "opponentId": "elves-brener"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -34436,7 +34574,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Gilbert Urbina",
+        "opponentId": "gilbert-urbina"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -36198,7 +36338,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Jamey-Lyn Horth",
+        "opponentId": "jamey-lyn-horth"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -37917,7 +38059,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Roberto Soldic",
+        "opponentId": "roberto-soldic"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -38302,7 +38446,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Marc-Andre Barriault",
+        "opponentId": "marc-andre-barriault"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -39929,7 +40075,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Ramazan Temirov",
+        "opponentId": "ramazan-temirov"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -40199,7 +40347,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Javad Mahjoub",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -40230,7 +40380,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Timmy Cuamba",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -40619,7 +40771,9 @@
       "booking": {
         "event": "Szabova vs Lisboa",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Tainara Lisboa",
+        "opponentId": "tainara-lisboa"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -41875,7 +42029,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Nate Landwehr",
+        "opponentId": "nate-landwehr"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -42277,9 +42433,11 @@
         }
       ],
       "booking": {
-        "event": "Noche UFC: Silva vs Delgado",
+        "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Alexa Grasso",
+        "opponentId": "alexa-grasso"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -42621,7 +42779,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Kyle Daukaus",
+        "opponentId": "kyle-daukaus"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -43253,7 +43413,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Benardo Sopaj",
+        "opponentId": "benardo-sopaj"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -43921,7 +44083,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Charles Jourdain",
+        "opponentId": "charles-jourdain"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -44228,7 +44392,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Ismail Naurdiev",
+        "opponentId": "ismail-naurdiev"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -44276,7 +44442,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Tommy McMillen",
+        "opponentId": "tommy-mcmillen"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -45007,7 +45175,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Arman Tsarukyan",
+        "opponentId": "arman-tsarukyan"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -45491,7 +45661,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Ilimbek Akylbek",
+        "opponentId": "ilimbek-akylbek"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -45522,7 +45694,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Valesca Machado",
+        "opponentId": "valesca-machado"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -45581,7 +45755,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Chelsea Chandler",
+        "opponentId": "chelsea-chandler"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -46049,7 +46225,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Petr Yan",
+        "opponentId": "petr-yan"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -47020,7 +47198,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Johnny Walker",
+        "opponentId": "johnny-walker"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -47480,7 +47660,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Joaquin Buckley",
+        "opponentId": "joaquin-buckley"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -48280,7 +48462,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Ricky Simon",
+        "opponentId": "ricky-simon"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -48562,7 +48746,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Alexander Volkanovski",
+        "opponentId": "alexander-volkanovski"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -48945,7 +49131,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Ignacio Bahamondes",
+        "opponentId": "ignacio-bahamondes"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -49512,7 +49700,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Wang Cong",
+        "opponentId": "wang-cong"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -49684,7 +49874,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Mandel Nallo",
+        "opponentId": "mandel-nallo"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -50385,7 +50577,9 @@
       "booking": {
         "event": "Szabova vs Lisboa",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Joseph Kropschot",
+        "opponentId": "joseph-kropschot"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -50808,7 +51002,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Abdul Rakhman Yakhyaev",
+        "opponentId": "abdulrakhman-yakhyaev"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -51440,7 +51636,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Ailin Perez",
+        "opponentId": "ailin-perez"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -51582,7 +51780,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Grant Dawson",
+        "opponentId": "grant-dawson"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -52133,7 +52333,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Ryan Gandra",
+        "opponentId": "ryan-gandra"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -52819,7 +53021,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Deiveson Figueiredo",
+        "opponentId": "deiveson-figueiredo"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -53070,7 +53274,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Merab Dvalishvili",
+        "opponentId": "merab-dvalishvili"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -53867,7 +54073,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Rongzhu",
+        "opponentId": "rong-zhu"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -54156,7 +54364,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Alexander Hernandez",
+        "opponentId": "alexander-hernandez"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -54494,7 +54704,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Lone’er Kavanagh",
+        "opponentId": "loneer-kavanagh"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -55196,7 +55408,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Raul Rosas Jr.",
+        "opponentId": "raul-rosas-jr"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -55428,7 +55642,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Raoni Barcelos",
+        "opponentId": "raoni-barcelos"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -55853,7 +56069,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Brian Ortega",
+        "opponentId": "brian-ortega"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -56230,7 +56448,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Montel Jackson",
+        "opponentId": "montel-jackson"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -56375,7 +56595,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Brady Hiestand",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -56434,7 +56656,9 @@
       "booking": {
         "event": "Volkanovski vs Evloev",
         "date": "2026-10-24",
-        "source": "https://www.ufc.com/event/ufc-333"
+        "source": "https://www.ufc.com/event/ufc-333",
+        "opponent": "Alexander Volkov",
+        "opponentId": "alexander-volkov"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -56713,7 +56937,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Tai Tuivasa",
+        "opponentId": "tai-tuivasa"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -56765,7 +56991,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Rodolfo Vieira",
+        "opponentId": "rodolfo-vieira"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -57161,7 +57389,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Khaos Williams",
+        "opponentId": "khaos-williams"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -57227,7 +57457,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Christian Edwards",
+        "opponentId": "christian-edwards"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -57341,7 +57573,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Robert Bryczek",
+        "opponentId": "robert-bryczek"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -57681,7 +57915,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Ateba Gautier",
+        "opponentId": "ateba-gautier"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -57836,7 +58072,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Rafa Garcia",
+        "opponentId": "rafa-garcia"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -58126,7 +58364,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Ozzy Diaz",
+        "opponentId": "ozzy-diaz"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -59265,7 +59505,9 @@
       "booking": {
         "event": "Bonfim vs Brady",
         "date": "2026-11-07",
-        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
+        "opponent": "Gabriel Bonfim",
+        "opponentId": "gabriel-bonfim"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -59324,7 +59566,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Jessie Rosas",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -59565,7 +59809,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Gable Steveson",
+        "opponentId": "gable-steveson"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -62304,7 +62550,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Chad Anheliger",
+        "opponentId": "chad-anheliger"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -62948,7 +63196,9 @@
       "booking": {
         "event": "Crypto.com UFC 331",
         "date": "2026-09-19",
-        "source": "https://www.ufc.com/event/cryptocom-ufc-331"
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Robelis Despaigne",
+        "opponentId": "robelis-despaigne"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -63088,7 +63338,9 @@
       "booking": {
         "event": "Szabova vs Lisboa",
         "date": "2026-10-31",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
+        "opponent": "Lucia Szabova",
+        "opponentId": "lucia-szabova"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -63498,7 +63750,9 @@
       "booking": {
         "event": "Buckley vs Malott",
         "date": "2026-10-17",
-        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Jhonata Diniz",
+        "opponentId": "jhonata-diniz"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -64465,7 +64719,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Edgar Chairez",
+        "opponentId": "edgar-chairez"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -65081,7 +65337,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Marwan Rahiki",
+        "opponentId": "marwan-rahiki"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -66326,7 +66584,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Melissa Amaya",
+        "opponentId": "melissa-amaya"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -66507,7 +66767,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Yazmin Jauregui",
+        "opponentId": "yazmin-jauregui"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -67654,7 +67916,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Curtis Blaydes",
+        "opponentId": "curtis-blaydes"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -67733,7 +67997,9 @@
       "booking": {
         "event": "Silva vs Cong",
         "date": "2026-10-03",
-        "source": "https://www.ufc.com/event/ufc-332"
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Natalia Silva",
+        "opponentId": "natalia-silva"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -68733,7 +68999,9 @@
       "booking": {
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Vanessa Demopoulos",
+        "opponentId": "vanessa-demopoulos"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -68894,7 +69162,9 @@
       "booking": {
         "event": "Silva vs Delgado",
         "date": "2026-09-12",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-12-2026",
+        "opponent": "Djorden Santos",
+        "opponentId": "djorden-santos"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
