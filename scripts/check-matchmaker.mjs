@@ -39,6 +39,7 @@ assert.equal(eventDate('<div class="c-hero__headline-suffix">Sat, Aug 15 / 9:00 
 assert.throws(() => eventDate('<html>No local date</html>', '1786842000'));
 const data = JSON.parse(fs.readFileSync('assets/data/matchmaker/current.json', 'utf8'));
 validateData(data);
+assert.equal(data.fighters.find(f => f.id === 'michael-page')?.active, false, 'Michael Page must remain excluded');
 let checked = 0;
 for (const event of data.events) {
   const ctx = { ...context, event, asOf: data.generatedAt };
@@ -54,6 +55,7 @@ for (const event of data.events) {
   const ids = auto.pairs.flatMap(p => [p.a, p.b]); assert.equal(new Set(ids).size, ids.length, 'Auto matching double-booked a fighter');
 }
 const page = fs.readFileSync('matchmaker.html', 'utf8');
+assert(!/YOUR CARD|YOUR CALL|Make your case|Pick a fighter/i.test(page), 'Removed slogans must stay removed');
 for (const asset of ['assets/matchmaker.js', 'assets/matchmaker-engine.js', 'assets/matchmaker.css']) assert(page.includes('/' + asset) && fs.existsSync(asset));
 assert(fs.readFileSync('_config.yml', 'utf8').includes('link: "/matchmaker/"'));
 console.log(`Matchmaker checks passed: rule regressions, source validation, ${data.events.length} real cards, ${checked} eligible recommendations, unique auto pairings, and page assets.`);

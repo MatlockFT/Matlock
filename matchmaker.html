@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Matchmaker: Book the Next Fight"
-description: "Build your post-event UFC matchmaking board with explained opponent recommendations, unique pairings, and shareable predictions."
+title: "Matchmaker"
+description: "Build your post-event UFC matchmaking board with opponent selections and shareable predictions."
 permalink: /matchmaker/
 page_styles:
   - /assets/matchmaker.css
@@ -11,7 +11,7 @@ page_scripts:
 ---
 
 <article class="mm" data-matchmaker data-feed="{{ '/assets/data/matchmaker/current.json' | relative_url }}" data-live-feed="https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/data/matchmaker/current.json">
-  <header class="mm-header"><div><p class="mm-eyebrow">MMA MATLOCK / THE WAR ROOM</p><h1>Matchmaker</h1><p>Pick a fighter. Make your case. Lock the next fight.</p></div><div class="mm-stamp">YOUR CARD.<br>YOUR CALL.</div></header>
+  <header class="mm-header"><h1>Matchmaker</h1></header>
   <p class="mm-notice" data-mm-status role="status">Loading verified event results and roster…</p>
   <noscript><p>This interactive tool needs JavaScript. <a href="https://www.ufc.com/events">View official UFC event results</a>.</p></noscript>
   <div data-mm-app hidden>
@@ -22,11 +22,11 @@ page_scripts:
     </section>
     <div class="mm-workspace">
       <aside class="mm-roster"><div class="mm-section-title"><h2>Event fighters</h2><span data-mm-fighter-count></span></div><div data-mm-fighters></div></aside>
-      <section class="mm-desk" aria-label="Matchmaking board"><div class="mm-section-title"><h2>The next move</h2><span data-mm-division></span></div><div class="mm-connections" data-mm-connections><svg aria-hidden="true" data-mm-strings></svg><div data-mm-selected></div><div class="mm-candidates" data-mm-candidates></div></div><div class="mm-manual"><label>Find another opponent<input type="search" data-mm-search placeholder="Search this division…" maxlength="80"></label><div data-mm-search-results></div></div></section>
+      <section class="mm-desk" aria-label="Matchmaking board"><div class="mm-section-title"><h2>Opponents</h2><span data-mm-division></span></div><div class="mm-connections" data-mm-connections><svg aria-hidden="true" data-mm-strings></svg><div data-mm-selected></div><div class="mm-candidates" data-mm-candidates></div></div><div class="mm-manual"><label>Find another opponent<input type="search" data-mm-search placeholder="Search this division…" maxlength="80"></label><div data-mm-search-results></div></div></section>
     </div>
-    <details class="mm-settings"><summary>Matchmaking rules & board overrides</summary><p>Recommendations use current availability and rankings. Missing historical ranks stay unknown. UFC profile history can be incomplete; every matchup shows its evidence.</p><div class="mm-settings-grid"><label><input type="checkbox" data-mm-rematch> Allow rematches for the selected fighter</label><label>Move selected fighter to<select data-mm-division-override></select></label><label>Mark selected fighter unavailable<input data-mm-exclude placeholder="Reason: injury, retirement, etc." maxlength="120"></label><button data-mm-apply>Apply overrides</button></div><div data-mm-overrides></div><details><summary>How suggestions are scored</summary><p>Hierarchy fit 30 · trajectory 20 · availability 15 · fresh matchup 15 · progression 10 · timing 5 · story 5. Rematches require a documented case or your override. Booked, inactive, unavailable and incompatible-division fighters are excluded. Auto matchmaking uses a deterministic best-first search with a bounded search budget; it does not guarantee the global optimum.</p></details></details>
-    <footer class="mm-sources" data-mm-sources></footer>
+    <details class="mm-settings"><summary>Board settings</summary><div class="mm-settings-grid"><label><input type="checkbox" data-mm-rematch> Allow rematches for the selected fighter</label><label>Move selected fighter to<select data-mm-division-override></select></label><label>Mark selected fighter unavailable<input data-mm-exclude placeholder="Reason: injury, retirement, etc." maxlength="120"></label><button data-mm-apply>Apply overrides</button></div><div data-mm-overrides></div></details>
+    <details class="mm-sources"><summary>Data & sources</summary><div data-mm-sources></div></details>
   </div>
   <dialog class="mm-dialog" data-mm-detail><button class="mm-close" data-mm-close aria-label="Close matchup details">Close ×</button><div data-mm-detail-body></div></dialog>
-  <dialog class="mm-dialog mm-board-dialog" data-mm-board><button class="mm-close" data-mm-close aria-label="Close completed board">Close ×</button><p class="mm-eyebrow">MMA MATLOCK / MATCHMAKER</p><h2>Your matchmaking board</h2><div data-mm-board-body></div><div class="mm-actions"><button data-mm-freeze>Freeze prediction</button><button data-mm-share>Copy share URL</button><button data-mm-download>Download 4:5 image</button><button data-mm-json>Export board JSON</button></div><p data-mm-board-status role="status"></p><p class="mm-small">Boards save on this device. Freezing preserves your prediction and its timestamp. Share links carry a copy; they are not independently verified publication records.</p><div data-mm-archives></div></dialog>
+  <dialog class="mm-dialog mm-board-dialog" data-mm-board><button class="mm-close" data-mm-close aria-label="Close completed board">Close ×</button><p class="mm-eyebrow">MMA MATLOCK / MATCHMAKER</p><h2>Your matchmaking board</h2><div data-mm-board-body></div><div class="mm-actions"><button data-mm-freeze>Freeze prediction</button><button data-mm-share>Copy share URL</button><button data-mm-download>Download 4:5 image</button><button data-mm-json>Export board JSON</button></div><p data-mm-board-status role="status"></p><p class="mm-small">Saved on this device.</p><div data-mm-archives></div></dialog>
 </article>
