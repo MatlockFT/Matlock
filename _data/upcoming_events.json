@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-11T17:21:58.630Z",
+  "generated_at": "2026-09-11T19:54:04.874Z",
   "events": [
     {
       "id": "noche-ufc-2026-09-12-fight-card",
@@ -1704,6 +1704,27 @@
             {
               "order": 2,
               "label": "Co-Main Event",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Cody Chovancek",
+                  "initials": "CC",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/CHOVANCEK_CODY_R_09-16.png?itok=v2G8Yooy",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "SuYoung You",
+                  "initials": "SY",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/YOU_SUYOUNG_L_03-15.png?itok=Mfh4XApl",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
               "weight_class": "Women's Flyweight Bout",
               "fighters": [
                 {
@@ -1723,16 +1744,16 @@
               ]
             },
             {
-              "order": 3,
+              "order": 4,
               "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
                 {
                   "name": "Javad Mahjoub",
                   "initials": "JM",
-                  "image": "",
-                  "image_source": "",
-                  "image_framing": ""
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
                 },
                 {
                   "name": "Louie Sutherland",
@@ -1744,7 +1765,7 @@
               ]
             },
             {
-              "order": 4,
+              "order": 5,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -1765,7 +1786,7 @@
               ]
             },
             {
-              "order": 5,
+              "order": 6,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -1786,7 +1807,7 @@
               ]
             },
             {
-              "order": 6,
+              "order": 7,
               "label": "",
               "weight_class": "Women's Flyweight Bout",
               "fighters": [
@@ -1807,7 +1828,7 @@
               ]
             },
             {
-              "order": 7,
+              "order": 8,
               "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
@@ -1828,7 +1849,7 @@
               ]
             },
             {
-              "order": 8,
+              "order": 9,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
@@ -1849,7 +1870,7 @@
               ]
             },
             {
-              "order": 9,
+              "order": 10,
               "label": "",
               "weight_class": "Women's Bantamweight Bout",
               "fighters": [
@@ -1870,7 +1891,7 @@
               ]
             },
             {
-              "order": 10,
+              "order": 11,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -1891,7 +1912,7 @@
               ]
             },
             {
-              "order": 11,
+              "order": 12,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
