@@ -1,33 +1,25 @@
 {
   "schema_version": 1,
   "source_totals": {
-    "major": 12,
+    "major": 11,
     "regional": 130
   },
   "map_totals": {
     "mapped": 131,
-    "quarantined": 11
+    "quarantined": 10
   },
   "source_precision": {
     "venue": 0,
     "source-coordinates": 0,
     "city": 131,
     "structured": 0,
-    "unresolved": 11
+    "unresolved": 10
   },
   "mapped_precision": {
     "city": 131
   },
-  "unresolved_count": 11,
+  "unresolved_count": 10,
   "unresolved": [
-    {
-      "id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
-      "title": "ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り",
-      "date": "2026-09-10",
-      "promotion": "RIZIN",
-      "venue": "京セラドーム大阪",
-      "dataset": "major"
-    },
     {
       "id": "noche-ufc-2026-09-12-fight-card",
       "title": "Silva vs Delgado",
@@ -112,17 +104,6 @@
   "suspicious_count": 0,
   "suspicious": [],
   "quarantined": [
-    {
-      "id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
-      "title": "ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り",
-      "date": "2026-09-10",
-      "promotion": "RIZIN",
-      "venue": "京セラドーム大阪",
-      "location": "",
-      "country": "",
-      "kind": "major",
-      "reason": "unresolved-us-location"
-    },
     {
       "id": "noche-ufc-2026-09-12-fight-card",
       "title": "Silva vs Delgado",

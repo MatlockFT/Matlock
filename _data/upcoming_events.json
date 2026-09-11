@@ -1,197 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-11T09:18:32.424Z",
+  "generated_at": "2026-09-11T13:40:41.020Z",
   "events": [
-    {
-      "id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
-      "promotion_key": "rizin",
-      "promotion": "RIZIN",
-      "title": "ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り",
-      "date": "2026-09-10",
-      "date_label": "Thursday · September 10, 2026",
-      "venue": "京セラドーム大阪",
-      "broadcast": "RIZIN 100 CLUB · RIZIN LIVE · ABEMA · Sky PerfecTV",
-      "official_url": "https://jp.rizinff.com/_ct/17834937",
-      "updated_label": "September 11, 2026",
-      "sections": [
-        {
-          "kind": "main",
-          "title": "Fight Card",
-          "time": "3:00 AM EDT · 16:00 JST",
-          "bouts": [
-            {
-              "order": 1,
-              "label": "Main Event",
-              "weight_class": "66.0 kg",
-              "fighters": [
-                {
-                  "name": "Razhabali Shaidulloev",
-                  "initials": "RS",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/05/07/bee7540df7d5ea4a115a8c2694d1aeaca454b46f_large.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "AJ McKee",
-                  "initials": "AM",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2022/10/26/936f8a367cdc934159751986b85dedb94dae87de_large.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 2,
-              "label": "",
-              "weight_class": "71.0 kg",
-              "fighters": [
-                {
-                  "name": "Mikuru Asakura",
-                  "initials": "MA",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/05/24/5bd5a5ff98d12967709d9a95387d60a2342e7235_large.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Shinya Aoki",
-                  "initials": "SA",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2017/02/28/51550c31f4ed8dbc7e8483a50beaeb8ebe92e6eb.png",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 3,
-              "label": "",
-              "weight_class": "66.0 kg",
-              "fighters": [
-                {
-                  "name": "Karshyga Dautbek",
-                  "initials": "KD",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2018/10/29/4b70792bda469b3051114e4bf7ea64130ed4c2e9_xlarge.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Ren Hiramoto",
-                  "initials": "RH",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/05/24/39084a8d1660342c806986c626cb3cf483c2588a_large.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 4,
-              "label": "",
-              "weight_class": "71.0 kg",
-              "fighters": [
-                {
-                  "name": "Roberto Satoshi Souza",
-                  "initials": "RSS",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/01/15/6b8325af30ff7329c3cab4c64b6b2ea5cfe4a7f9_large.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Shunta Nomura",
-                  "initials": "SN",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/01/30/b9dcae7203fa6eaed123a429332f3663534638c3_large.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
-              "weight_class": "66.0 kg",
-              "fighters": [
-                {
-                  "name": "Yutaka Saito",
-                  "initials": "YS",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2021/10/27/c1de0df17c25dd8db14b6896a0a6c7c68d3df693_large.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "YA-MAN",
-                  "initials": "Y",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/12/17/8b4e138e0ef8c56a2816da9c35e679ee3c1d59b8_large.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 6,
-              "label": "",
-              "weight_class": "66.0 kg",
-              "fighters": [
-                {
-                  "name": "Vugar Karamov",
-                  "initials": "VK",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/11/04/c819ff554b788615276974e307835eb91a75ca8f_large.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Ryo Takagi",
-                  "initials": "RT",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/02/02/6bef6bf97e74307d6353a44299cd54563d27e16d_large.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 7,
-              "label": "",
-              "weight_class": "49.0 kg",
-              "fighters": [
-                {
-                  "name": "RENA",
-                  "initials": "R",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2018/05/31/cd6a56341d0c87d7cbbea47596b40904de29a791_xlarge.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Natasha Kuziutina",
-                  "initials": "NK",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/02/12/f9dd2dc7a4135ed124bd8c861114913eb048d480_large.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 8,
-              "label": "",
-              "weight_class": "71.0 kg",
-              "fighters": [
-                {
-                  "name": "“ブラックパンサー”ベイノア",
-                  "initials": "“",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2021/12/09/f63875d5f13d4e0b71e94ef3b6f58e1f1431efb1_large.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Hide Meison Usami",
-                  "initials": "HMU",
-                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/04/15/ffd0143fefa3a4ed527223c20128ed66780b63d9_large.jpg",
-                  "image_source": "rizin",
-                  "image_framing": "safe"
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "source_card_url": "https://jp.rizinff.com/_ct/17853585"
-    },
     {
       "id": "noche-ufc-2026-09-12-fight-card",
       "promotion_key": "ufc",
@@ -277,6 +87,27 @@
             {
               "order": 4,
               "label": "",
+              "weight_class": "Women's Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Manon Fiorot",
+                  "initials": "MF",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/FIOROT_MANON_L_10-18.png?itok=sDMApWTC",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Alexa Grasso",
+                  "initials": "AG",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/GRASSO_ALEXA_L_03-28.png?itok=O9csNdaV",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
                 {
@@ -296,7 +127,7 @@
               ]
             },
             {
-              "order": 5,
+              "order": 6,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -324,7 +155,7 @@
           "time": "2:00 PM ET",
           "bouts": [
             {
-              "order": 6,
+              "order": 7,
               "label": "",
               "weight_class": "Catchweight Bout",
               "fighters": [
@@ -345,7 +176,7 @@
               ]
             },
             {
-              "order": 7,
+              "order": 8,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -366,7 +197,7 @@
               ]
             },
             {
-              "order": 8,
+              "order": 9,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -387,7 +218,7 @@
               ]
             },
             {
-              "order": 9,
+              "order": 10,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
@@ -408,7 +239,7 @@
               ]
             },
             {
-              "order": 10,
+              "order": 11,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
@@ -429,7 +260,7 @@
               ]
             },
             {
-              "order": 11,
+              "order": 12,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -450,7 +281,7 @@
               ]
             },
             {
-              "order": 12,
+              "order": 13,
               "label": "",
               "weight_class": "Women's Flyweight Bout",
               "fighters": [
