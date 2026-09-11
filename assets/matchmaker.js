@@ -14,7 +14,7 @@
   const ctx = () => ({ event, asOf: data.generatedAt, locks, overrides });
   const fighter = id => data.fighters.find(f => f.id === id);
   const rankText = f => { const r = E.rank(f, ctx()); return r === 0 ? 'Champion' : r === null ? 'Unranked' : `#${r}`; };
-  const participants = () => event.bouts.flatMap(b => b.fighters);
+  const participants = () => event.bouts.flatMap(b => b.fighters).filter(f => fighter(f.id)?.active);
   const visible = () => participants().filter(f => filter === 'all' || filter === 'open' && !locks.some(p => p.a === f.id || p.b === f.id) || f.result === filter);
   const avatar = (f, large = false) => f.image ? `<img class="${large ? 'mm-portrait' : 'mm-avatar'}" src="${safeUrl(f.image)}" alt="" width="${large ? 240 : 48}" height="${large ? 180 : 58}" loading="lazy" decoding="async" data-mm-image>` : '';
   function bindImages() { root.querySelectorAll('[data-mm-image]').forEach(img => { img.onerror = () => { img.hidden = true; }; }); }
@@ -27,7 +27,7 @@
   function setEvent(id) {
     event = data.events.find(e => e.id === id) || data.events[0];
     const saved = store.boards[event.id]; locks = []; overrides = {}; undo = [];
-    if (saved) try { E.validateBoard(saved, data); locks = saved.locks; overrides = cleanOverrides(saved.overrides); } catch { status('A saved board could not be restored. Its exported copies remain independent.'); }
+    if (saved) try { E.validateBoard(saved, data); locks = saved.locks.filter(p => fighter(p.a)?.active && fighter(p.b)?.active); overrides = cleanOverrides(saved.overrides); } catch { status('Could not restore this board.'); }
     selected = participants().some(f => f.id === saved?.selected) ? saved.selected : participants().find(f => !E.availability(fighter(f.id), ctx()))?.id || participants()[0]?.id;
     $('[data-mm-event]').value = event.id;
     const sourceLink = $('[data-mm-event-source]'); if (sourceLink) sourceLink.href = event.source;
@@ -39,18 +39,16 @@
     $('[data-mm-fighter-count]').textContent = `${list.length} / ${participants().length}`;
     $('[data-mm-fighters]').innerHTML = list.length ? list.map(entry => {
       const item = fighter(entry.id), paired = locks.find(p => p.a === entry.id || p.b === entry.id);
-      return `<button class="mm-fighter" data-select="${esc(item.id)}" aria-pressed="${item.id === selected}">${avatar(item)}<span><strong>${esc(item.name)}</strong><span class="mm-result ${esc(entry.result)}">${entry.result === 'W' ? 'WIN' : entry.result === 'L' ? 'LOSS' : esc(entry.result)}${paired ? ' · LOCKED' : ''}</span><span class="mm-meta">${esc(rankText(item))} · ${esc(E.division(item, ctx()))}</span></span></button>`;
+      return `<button class="mm-fighter" data-select="${esc(item.id)}" aria-pressed="${item.id === selected}">${avatar(item)}<span><strong>${esc(item.name)}</strong><span class="mm-meta">${esc(item.record || '—')} · ${esc(rankText(item))}</span><span class="mm-result ${esc(entry.result)}">${entry.result === 'W' ? 'WIN' : entry.result === 'L' ? 'LOSS' : esc(entry.result)}${paired ? ' · LOCKED' : ''}</span></span></button>`;
     }).join('') : '<p class="mm-empty">No fighters in this view.</p>';
     $('[data-mm-division]').textContent = E.division(f, ctx());
-    const h = f.history || [], listedWins = h.filter(h => h.result === 'W').length, listedLosses = h.filter(h => h.result === 'L').length;
-    const historical = event.rankingsBeforeEvent?.rankings.find(r => r.id === f.id && E.normalize(r.division) === E.normalize(E.division(f, ctx())));
-    $('[data-mm-selected]').innerHTML = `<div class="mm-card" data-mm-anchor><p class="mm-eyebrow">${esc(rankText(f))} / TIER ${esc(E.tier(f, ctx()))}</p>${avatar(f, true)}<h3>${esc(f.name)}</h3><p>${esc(f.record || 'Record unavailable')} overall<br>${listedWins}–${listedLosses} listed UFC bouts</p><div class="mm-tags">${E.tags(f, ctx()).map(t => `<span class="mm-tag">${esc(t)}</span>`).join('')}</div><p class="mm-meta">Before this event: ${historical ? historical.rank === 0 ? 'Champion' : '#' + historical.rank : 'rank snapshot unavailable'}<br>Last listed fight: ${esc(f.lastFight || 'unknown')}</p></div>`;
+    $('[data-mm-selected]').innerHTML = `<div class="mm-card mm-selected-card" data-mm-anchor>${avatar(f, true)}<h3>${esc(f.name)}</h3><p class="mm-record">${esc(f.record || '—')} <span>· ${esc(rankText(f))}</span></p></div>`;
     const paired = locks.find(p => p.a === f.id || p.b === f.id), unavailable = E.availability(f, ctx());
-    if (paired) $('[data-mm-candidates]').innerHTML = `<div class="mm-card"><p class="mm-eyebrow">LOCKED MATCH</p><h3>${esc(fighter(paired.a === f.id ? paired.b : paired.a).name)}</h3><p>${esc(paired.rationale || 'Selected on your board.')}</p><button data-unlock="${esc(E.pairKey(paired.a, paired.b))}">Unlock match</button></div>`;
+    if (paired) { const opponent = fighter(paired.a === f.id ? paired.b : paired.a); $('[data-mm-candidates]').innerHTML = `<div class="mm-card mm-locked-card">${avatar(opponent)}<h3>${esc(opponent.name)}</h3><p class="mm-record">${esc(opponent.record || '—')} · ${esc(rankText(opponent))}</p><button data-unlock="${esc(E.pairKey(paired.a, paired.b))}">Unlock match</button></div>`; }
     else if (unavailable) $('[data-mm-candidates]').innerHTML = `<div class="mm-empty">${esc(unavailable)}</div>`;
     else {
       const recs = E.recommendations(f, data.fighters, ctx());
-      $('[data-mm-candidates]').innerHTML = recs.length ? recs.map(r => `<button class="mm-card mm-candidate" data-candidate="${esc(r.fighter.id)}">${avatar(r.fighter)}<p class="mm-eyebrow">${esc(r.label)}</p><h3>${esc(r.fighter.name)}</h3><span class="mm-meta">${esc(rankText(r.fighter))} · ${esc(r.fighter.record || 'Record unavailable')}</span><p>${esc(r.rationale)}</p><span class="mm-result">MAKE THE CASE →</span></button>`).join('') : '<p class="mm-empty">No eligible opponent found. Review your overrides or try manual search.</p>';
+      $('[data-mm-candidates]').innerHTML = recs.length ? recs.map(r => `<button class="mm-card mm-candidate" data-candidate="${esc(r.fighter.id)}" aria-label="Choose ${esc(r.fighter.name)}">${avatar(r.fighter)}<div><h3>${esc(r.fighter.name)}</h3><span class="mm-meta">${esc(r.fighter.record || '—')} · ${esc(rankText(r.fighter))}</span></div></button>`).join('') : '<p class="mm-empty">No available opponents.</p>';
     }
     $('[data-mm-count]').textContent = locks.length;
     $('[data-mm-undo]').disabled = !undo.length;
@@ -71,14 +69,15 @@
   function showDetail(id, manual = false) {
     const a = fighter(selected), b = fighter(id); if (!b) return;
     detailId = { id, manual }; const r = E.evaluate(a, b, ctx(), manual);
-    $('[data-mm-detail-body]').innerHTML = `<p class="mm-eyebrow">${manual ? 'YOUR PICK' : 'THE MATCHUP'}</p><h2>${esc(a.name)} <span style="color:#ff4a54">vs</span> ${esc(b.name)}</h2>${r.eligible ? `<p>${esc(r.rationale)}</p><ul class="mm-evidence">${r.evidence.map(e => `<li>${esc(e)}</li>`).join('')}</ul><details><summary>Scoring evidence (${r.score}/100)</summary><div class="mm-score">${Object.entries(r.parts).map(([name, value]) => `<span>${esc(name)}</span><span>${Math.round(value * 10) / 10} / ${E.WEIGHTS[name]}</span>`).join('')}</div></details><p><a href="${safeUrl(a.source)}" target="_blank" rel="noopener">${esc(a.name)} · UFC history</a><br><a href="${safeUrl(b.source)}" target="_blank" rel="noopener">${esc(b.name)} · UFC history</a></p><button class="mm-lock" data-mm-lock>Lock match</button>` : `<p class="mm-empty">${esc(r.reason)}</p>`}`;
+    $('[data-mm-detail-body]').innerHTML = `<h2>Lock matchup</h2><div class="mm-matchup-pair">${[a,b].map(f => `<div>${avatar(f,true)}<h3>${esc(f.name)}</h3><p>${esc(f.record || '—')} · ${esc(rankText(f))}</p></div>`).join('<span class="mm-vs">vs</span>')}</div>${r.eligible ? '<button class="mm-lock" data-mm-lock>Lock match</button>' : `<p class="mm-empty">${esc(r.reason)}</p>`}`;
+    bindImages();
     $('[data-mm-detail]').showModal();
   }
   function search() {
     const query = E.normalize($('[data-mm-search]').value); if (!query) { $('[data-mm-search-results]').innerHTML = ''; return; }
     const a = fighter(selected);
-    const matches = data.fighters.filter(f => f.id !== a.id && E.normalize(f.name).includes(query) && E.normalize(E.division(f, ctx())) === E.normalize(E.division(a, ctx()))).slice(0, 20);
-    $('[data-mm-search-results]').innerHTML = matches.length ? matches.map(f => { const r = E.evaluate(a, f, ctx(), true); return `<button class="mm-search-row" draggable="${r.eligible}" data-manual="${esc(f.id)}"><span>${esc(f.name)}<span class="mm-meta">${esc(r.eligible ? rankText(f) + ' · Available in collected schedule' : r.reason)}</span></span><span>View →</span></button>`; }).join('') : '<p>No fighters found in this division.</p>';
+    const matches = data.fighters.filter(f => f.active && f.id !== a.id && E.normalize(f.name).includes(query) && E.normalize(E.division(f, ctx())) === E.normalize(E.division(a, ctx()))).slice(0, 20);
+    $('[data-mm-search-results]').innerHTML = matches.length ? matches.map(f => { const r = E.evaluate(a, f, ctx(), true); return `<button class="mm-search-row" draggable="${r.eligible}" data-manual="${esc(f.id)}"><span>${esc(f.name)}<span class="mm-meta">${esc(f.record || '—')} · ${esc(rankText(f))}</span></span><span>${r.eligible ? 'Select' : 'Unavailable'}</span></button>`; }).join('') : '<p>No fighters found.</p>';
   }
   function bookingStatus(pair, createdAt) {
     const matching = data.bookings.filter(b => b.pairKey === E.pairKey(pair.a, pair.b));
@@ -89,7 +88,7 @@
   }
   function boardData() { return { version: 1, eventId: event.id, eventTitle: event.title, createdAt: new Date().toISOString(), dataAsOf: data.generatedAt, locks: clone(locks), overrides: clone(overrides) }; }
   function renderBoard() {
-    $('[data-mm-board-body]').innerHTML = `<p>${esc(event.title)} · ${esc(event.date)} · ${locks.length} locked matches</p>${locks.length ? locks.map(p => `<div class="mm-board-row"><div><strong>${esc(fighter(p.a).name)} <span style="color:#ff7d85">vs</span> ${esc(fighter(p.b).name)}</strong><small>${esc(p.rationale || 'Selected matchup')}</small></div><button data-unlock="${esc(E.pairKey(p.a, p.b))}">Unlock</button></div>`).join('') : '<p class="mm-empty">Select a fighter and lock a match to begin.</p>'}`;
+    $('[data-mm-board-body]').innerHTML = `<p>${esc(event.title)} · ${esc(event.date)} · ${locks.length} matches</p>${locks.length ? locks.map(p => `<div class="mm-board-row"><div>${[fighter(p.a),fighter(p.b)].map(f => `<strong>${esc(f.name)}</strong><small>${esc(f.record || '—')} · ${esc(rankText(f))}</small>`).join('<span class="mm-board-vs">vs</span>')}</div><button data-unlock="${esc(E.pairKey(p.a, p.b))}">Unlock</button></div>`).join('') : '<p class="mm-empty">No matches locked yet.</p>'}`;
     $('[data-mm-freeze]').disabled = !locks.length; $('[data-mm-download]').disabled = !locks.length;
     const archives = store.archives.filter(b => b.eventId === event.id);
     $('[data-mm-archives]').innerHTML = archives.length ? `<h3>Frozen predictions on this device</h3>${archives.slice().reverse().map(b => { const hits = b.locks.filter(p => bookingStatus(p, b.createdAt)?.later).length; return `<details class="mm-archive"><summary>${esc(new Date(b.createdAt).toLocaleString())} · ${hits}/${b.locks.length} later observed bookings</summary><p class="mm-small">Frozen using data from ${esc(b.dataAsOf)}. Observation dates reflect when our collector first saw a booking.</p>${b.locks.map(p => `<p>${esc(fighter(p.a)?.name || p.a)} vs ${esc(fighter(p.b)?.name || p.b)}<br><small class="mm-frozen">${esc(bookingStatus(p, b.createdAt)?.text || 'No matching official booking observed.')}</small></p>`).join('')}</details>`; }).join('')}` : '';
@@ -144,7 +143,7 @@
     }
     setEvent(eventId); $('[data-mm-app]').hidden = false;
     const age = Math.floor((Date.now() - Date.parse(data.generatedAt)) / 86400000);
-    status(`${age > 2 ? 'Data is ' + age + ' days old; bookings may have changed. ' : ''}Current matchmaking using data collected ${new Date(data.generatedAt).toLocaleDateString()}. ${data.fighters.filter(f => f.active).length} active roster profiles. Results are verified; historical ranking gaps are labeled.${sharedMessage}${!storageOK ? ' Device saving unavailable.' : ''}`);
+    status(`${age > 2 ? 'Data is ' + age + ' days old; bookings may have changed.' : ''}${sharedMessage}${!storageOK ? ' Device saving unavailable.' : ''}`);
     $('[data-mm-sources]').innerHTML = `Sources: <a href="${safeUrl(data.sources.rankings.url)}">UFC rankings</a> · <a href="${safeUrl(data.sources.roster.url)}">Verified site roster</a> · <a href="${safeUrl(event.source)}" data-mm-event-source>Official event results</a> · <a href="https://www.ufc.com/events">Upcoming UFC cards</a><br>Rankings collected ${esc(data.sources.rankings.checkedAt.slice(0, 10))}; roster checked ${esc(data.sources.roster.checkedAt.slice(0, 10))}. Profile history is partial evidence. Boards save on this device; no account required.`;
     new ResizeObserver(drawStrings).observe($('[data-mm-connections]'));
   } catch (error) { status(error.message || 'The Matchmaker could not load. Please try again shortly.'); }

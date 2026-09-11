@@ -92,7 +92,11 @@ for (const e of roster.eventCardMonitor?.events || []) if (e.startAt?.slice(0, 1
 for (const e of schedule.events.filter(e => e.promotion_key === 'ufc' && e.date >= today)) for (const b of e.sections.flatMap(s => s.bouts)) {
   for (const entry of b.fighters) { const f = fighters.find(f => key(f.name) === key(entry.name)); if (f) booked.set(f.id, { event: e.title, date: e.date, source: e.official_url }); }
 }
-for (const f of fighters) f.booking = booked.get(f.id) || null;
+const rosterOverrides = await read('_data/matchmaker-roster-overrides.json', {});
+for (const f of fighters) {
+  f.booking = booked.get(f.id) || null;
+  if (rosterOverrides[f.id]?.active === false) f.active = false;
+}
 const snapshotsDir = path.join(root, 'rankings'); await fs.mkdir(snapshotsDir, { recursive: true });
 const snapshots = (await fs.readdir(snapshotsDir)).filter(f => f.endsWith('.json')).sort();
 const events = retainedEvents;
