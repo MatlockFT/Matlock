@@ -3,6 +3,15 @@ export const clean = (s = '') => String(s).replace(/<script\b[\s\S]*?<\/script>/
 export const key = s => clean(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
 export const slug = u => u?.match(/\/athlete\/([^/?#"\s]+)/)?.[1] || '';
 const field = (html, cls) => clean(html.match(new RegExp(`class="[^"]*\\b${cls}[^\"]*"[^>]*>([\\s\\S]*?)<\\/[^>]+>`))?.[1]);
+export function eventDate(html, timestamp) {
+  const start = new Date(+timestamp * 1000), label = field(html, 'c-hero__headline-suffix');
+  const parts = label.match(/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{1,2})\b/);
+  if (!parts) throw new Error('Missing published calendar date; cannot infer event day from UTC alone');
+  const month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].indexOf(parts[1]);
+  const dates = [-1, 0, 1].map(offset => new Date(Date.UTC(start.getUTCFullYear() + offset, month, +parts[2]))).sort((a,b) => Math.abs(a-start)-Math.abs(b-start));
+  if (Math.abs(dates[0]-start) > 2 * 86400000) throw new Error('Published date conflicts with event timestamp');
+  return dates[0].toISOString().slice(0,10);
+}
 export function parseRankings(html) {
   const rankings = [];
   for (const block of html.split('<div class="view-grouping">').slice(1)) {
@@ -26,7 +35,7 @@ export function parseRankings(html) {
 export function parseEvent(html, url) {
   const timestamp = html.match(/data-timestamp="(\d{10})"/)?.[1];
   if (!timestamp) throw new Error(`Missing event date: ${url}`);
-  const date = new Date(+timestamp * 1000).toISOString().slice(0, 10);
+  const date = eventDate(html, timestamp);
   const title = clean(html.match(/<meta property="og:title" content="([^"]+)"/)?.[1] || html.match(/<title>(.*?)<\/title>/)?.[1]).replace(/\s*\|.*$/, '');
   const bouts = [];
   for (const block of html.split(/<div class="c-listing-fight"/).slice(1)) {
@@ -58,6 +67,7 @@ export function parseProfile(html, fighter, checkedAt) {
     if (!dateParts || !/^UFC\b/i.test(text)) continue; // Excludes DWCS, TUF exhibition records.
     const year = +dateParts[3] < 100 ? 2000 + +dateParts[3] : +dateParts[3];
     const date = `${year}-${dateParts[1].padStart(2, '0')}-${dateParts[2].padStart(2, '0')}`;
+    if (date > checkedAt.slice(0, 10)) continue;
     const result = /no contest|overturned/i.test(text) ? 'NC' : /draw/i.test(text) ? 'D' : /\blost\b|was (?:defeated|stopped|submitted|knocked out|disqualified)|\bloss\b/i.test(text) ? 'L' : /\bwon\b|\bdefeated\b|\bstopped\b|\bsubmitted\b|\bknocked out\b/i.test(text) ? 'W' : null;
     history.push({ date, result, text, opponentIds: [] });
   }

@@ -5,6 +5,8 @@ import { validateData } from './matchmaker/validate.mjs';
 const root = path.resolve('assets/data/matchmaker');
 const now = new Date(), checkedAt = now.toISOString(), today = checkedAt.slice(0, 10);
 const cacheDir = process.env.MATCHMAKER_CACHE || path.resolve('.cache/matchmaker');
+const retrievedAt = new Map();
+const fresh = value => Number.isFinite(Date.parse(value)) && Date.now() - Date.parse(value) <= 3 * 86400000;
 await fs.mkdir(cacheDir, { recursive: true });
 await fs.mkdir(root, { recursive: true });
 const read = async (file, fallback) => JSON.parse(await fs.readFile(file, 'utf8').catch(() => JSON.stringify(fallback)));
@@ -12,13 +14,14 @@ const previous = await read(path.join(root, 'current.json'), null);
 async function get(url, maxAge = 0) {
   const file = path.join(cacheDir, Buffer.from(url).toString('base64url') + '.json');
   const cached = await read(file, null);
-  if (cached && Date.now() - cached.at < maxAge) return cached.body;
+  if (cached && Date.now() - cached.at < maxAge) { retrievedAt.set(url, new Date(cached.at).toISOString()); return cached.body; }
   let error;
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
       const response = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MMAMatlockMatchmaker/1.0; +https://mmamatlock.com/)' }, signal: AbortSignal.timeout(25000) });
       if (!response.ok) throw new Error(`HTTP ${response.status}: ${url}`);
       const body = await response.text();
+      retrievedAt.set(url, new Date().toISOString());
       await fs.writeFile(file, JSON.stringify({ at: Date.now(), body }));
       return body;
     } catch (e) { error = e; }
@@ -32,7 +35,7 @@ async function mapLimit(items, limit, fn) {
 }
 const rosterUrl = 'https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json';
 const roster = JSON.parse(await get(rosterUrl));
-if (!Array.isArray(roster.canonicalFighters) || roster.activeCount < 500 || Date.now() - Date.parse(roster.checkedAt) > 3 * 86400000) throw new Error('Missing, undersized, or stale active roster. No update published.');
+if (!Array.isArray(roster.canonicalFighters) || roster.activeCount < 500 || !fresh(roster.checkedAt) || !fresh(roster.eventCardMonitor?.checkedAt)) throw new Error('Missing, undersized, or stale active roster/booking monitor. No update published.');
 const rankings = parseRankings(await get('https://www.ufc.com/rankings'));
 const eventIndex = await get('https://www.ufc.com/events');
 const eventUrls = [...new Set([...eventIndex.matchAll(/href="(?:https:\/\/www\.ufc\.com)?(\/event\/[^"#?]+)(?:#[^"]*)?"/g)].map(m => 'https://www.ufc.com' + m[1]))].slice(0, 30);
@@ -48,7 +51,7 @@ const byAlias = new Map(registry.flatMap(f => [f.id, ...f.aliases].map(id => [id
 const resolve = id => byAlias.get(id) || id;
 for (const e of parsedEvents.filter(Boolean)) for (const b of e.bouts) for (const f of b.fighters) f.id = resolve(f.id);
 for (const r of rankings) r.id = resolve(r.id);
-const retainedEvents = [...completed, ...(previous?.events || []).filter(e => !completed.some(c => c.id === e.id))].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 30);
+const retainedEvents = [...completed, ...(previous?.events || []).filter(e => !completed.some(c => c.id === e.id))].sort((a, b) => b.date.localeCompare(a.date));
 const participants = new Set(retainedEvents.flatMap(e => e.bouts.flatMap(b => b.fighters.map(f => f.id))));
 for (const entry of retainedEvents.flatMap(e => e.bouts.flatMap(b => b.fighters))) if (!registry.some(f => f.id === entry.id)) registry.push({ id: entry.id, name: entry.name, active: false, source: `https://www.ufc.com/athlete/${entry.id}`, aliases: [] });
 const wanted = registry.filter(f => f.active || participants.has(f.id));
@@ -58,7 +61,7 @@ console.log(`Updating ${wanted.length} fighter profiles and ${completed.length} 
 const fighters = await mapLimit(wanted, 6, async (f, i) => {
   const ranking = rankings.find(r => r.id === f.id);
   let profile;
-  try { profile = parseProfile(await get(f.source, participants.has(f.id) || ranking ? 1800000 : 3 * 86400000), f, checkedAt); }
+  try { const html = await get(f.source, participants.has(f.id) || ranking ? 1800000 : 3 * 86400000); profile = parseProfile(html, f, retrievedAt.get(f.source)); }
   catch (e) { failed++; profile = oldFighters.get(f.id) ? { ...oldFighters.get(f.id), ...f } : { ...f, division: ranking?.division || null, record: null, history: [], historyCoverage: 'Unavailable', lastFight: null, checkedAt: null }; }
   if (i % 100 === 0) console.log(`Profiles processed: ${i + 1}/${wanted.length}`);
   const image = Object.entries(images).find(([name]) => key(name) === key(f.name))?.[1]?.url || completed.flatMap(e => e.bouts.flatMap(b => b.fighters)).find(x => x.id === f.id)?.image || null;
@@ -72,14 +75,14 @@ for (const f of fighters) for (const h of f.history) h.opponentIds = nameKeys.fi
 for (const e of completed) for (const b of e.bouts) for (const entry of b.fighters) {
   const fighter = fighters.find(f => f.id === entry.id), other = b.fighters.find(f => f.id !== entry.id);
   if (!fighter) throw new Error(`Event fighter missing from canonical roster: ${entry.name}`);
-  const h = fighter.history.find(h => h.date === e.date);
+  const h = fighter.history.find(h => h.date === e.date || h.opponentIds.includes(other.id) && Math.abs(Date.parse(h.date)-Date.parse(e.date)) <= 86400000);
   if (h) { h.result = entry.result; h.opponentIds = [...new Set([...h.opponentIds, other.id])]; }
   else fighter.history.push({ date: e.date, result: entry.result, opponentIds: [other.id], text: `${e.title}: ${entry.name} vs ${other.name}. ${entry.result}. ${b.method || ''}`, source: e.source });
   fighter.history.sort((a, b) => b.date.localeCompare(a.date)); fighter.lastFight = fighter.history[0]?.date || null;
 }
 // Both the site schedule and roster monitor exclude bookings, even if no opponent is known yet.
 const schedule = await read('_data/upcoming_events.json', { events: [] });
-if (Date.now() - Date.parse(schedule.generated_at) > 3 * 86400000) throw new Error('Upcoming schedule is stale');
+if (!fresh(schedule.generated_at)) throw new Error('Upcoming schedule is stale or undated');
 const booked = new Map(), bookings = [];
 const oldBookings = new Map((previous?.bookings || []).map(b => [b.bookingKey || `${b.pairKey}|${b.source}`, b]));
 for (const e of parsedEvents.filter(e => e && !e.completed && e.date >= today)) {

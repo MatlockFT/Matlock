@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { createRequire } from 'node:module';
 import { validateData } from './matchmaker/validate.mjs';
-import { parseEvent, parseRankings, parseProfile } from './matchmaker/sources/ufc.mjs';
+import { parseEvent, parseRankings, parseProfile, eventDate } from './matchmaker/sources/ufc.mjs';
 const require = createRequire(import.meta.url), E = require('../assets/matchmaker-engine.js');
 const bout = (date, result = 'W', opponentIds = [], text = '') => ({ date, result, opponentIds, text });
 const make = (id, rank = 8, extra = {}) => ({ id, name: id.toUpperCase(), active: true, division: 'Flyweight', rank, lastFight: '2026-08-01', history: [bout('2026-08-01'), bout('2026-05-01'), bout('2026-02-01')], ...extra });
@@ -35,6 +35,8 @@ assert.throws(() => E.validateBoard({ version: 1, eventId: 'test', locks: [{ a: 
 assert.throws(() => parseEvent('<html>Blocked</html>', 'https://www.ufc.com/event/test'));
 assert.throws(() => parseRankings('<html>Missing rankings</html>'));
 assert.throws(() => parseProfile('<html>No athlete data</html>', a, '2026-09-10'));
+assert.equal(eventDate('<div class="c-hero__headline-suffix">Sat, Aug 15 / 9:00 PM EDT</div>', '1786842000'), '2026-08-15');
+assert.throws(() => eventDate('<html>No local date</html>', '1786842000'));
 const data = JSON.parse(fs.readFileSync('assets/data/matchmaker/current.json', 'utf8'));
 validateData(data);
 let checked = 0;
@@ -42,6 +44,7 @@ for (const event of data.events) {
   const ctx = { ...context, event, asOf: data.generatedAt };
   for (const entry of event.bouts.flatMap(b => b.fighters)) {
     const fighter = data.fighters.find(f => f.id === entry.id), before = JSON.stringify(fighter);
+    for (let i=1;i<fighter.history.length;i++) { const a=fighter.history[i-1], b=fighter.history[i]; if (Math.abs(Date.parse(a.date)-Date.parse(b.date)) <= 86400000) assert(!a.opponentIds.some(id => b.opponentIds.includes(id)), 'One fight was counted twice across a UTC calendar boundary'); }
     const recs = E.recommendations(fighter, data.fighters, ctx);
     assert(recs.length <= 3); assert.equal(new Set(recs.map(r => r.fighter.id)).size, recs.length);
     for (const r of recs) { assert(r.eligible && !r.fighter.booking && r.fighter.active); assert(r.score >= 0 && r.score <= 100); assert(r.rationale && r.evidence.length >= 4); checked++; }
