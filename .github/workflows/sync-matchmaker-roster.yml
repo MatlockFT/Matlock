@@ -1,0 +1,38 @@
+name: Sync Matchmaker roster
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [Update UFC roster tracker]
+    types: [completed]
+  push:
+    paths: ['_data/matchmaker-roster-overrides.json']
+    branches: [main]
+permissions:
+  contents: write
+concurrency:
+  group: matchmaker-data
+  cancel-in-progress: false
+jobs:
+  sync:
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/sync-matchmaker-roster.mjs
+      - run: node scripts/check-matchmaker.mjs
+      - name: Commit availability changes
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- assets/data/matchmaker/current.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Sync Matchmaker roster availability"
+          git pull --rebase origin main
+          git push origin HEAD:main
