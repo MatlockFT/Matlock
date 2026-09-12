@@ -5,8 +5,12 @@ on:
     workflows: [Update UFC roster tracker]
     types: [completed]
   push:
-    paths: ['_data/matchmaker-roster-overrides.json']
     branches: [main]
+    paths:
+      - '_data/matchmaker-roster-overrides.json'
+      - 'scripts/sync-matchmaker-roster.mjs'
+      - 'scripts/matchmaker/**'
+      - '.github/workflows/sync-matchmaker-roster.yml'
 permissions:
   contents: write
 concurrency:
