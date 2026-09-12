@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-09-12T15:46:12.090Z"
+      "checkedAt": "2026-09-12T20:24:42.044Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-12T17:52:14.497Z"
+      "checkedAt": "2026-09-12T20:25:03.037Z"
     },
     "history": {
       "url": "https://www.ufc.com/athletes",
@@ -9556,7 +9556,7 @@
       "rankings": [],
       "booking": {
         "event": "UFC 333",
-        "date": "2026-09-12",
+        "date": "2026-10-24",
         "source": "https://www.ufc.com/event/ufc-333"
       },
       "rosterEligibility": {
@@ -10404,7 +10404,13 @@
       "interim": false,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-10/ANHELIGER_CHAD_L_11-02.png?itok=ezY1YMKO",
       "rankings": [],
-      "booking": null,
+      "booking": {
+        "event": "Buckley vs Malott",
+        "date": "2026-10-17",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Steven Koslow",
+        "opponentId": "steven-koslow"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -23117,7 +23123,13 @@
       "interim": false,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-02/URBINA_GILBERT_L_02-03.png?itok=rua26OyB",
       "rankings": [],
-      "booking": null,
+      "booking": {
+        "event": "Buckley vs Malott",
+        "date": "2026-10-17",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Julien Leblanc",
+        "opponentId": "julien-leblanc"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -36362,7 +36374,13 @@
       "interim": false,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/5/CERMINARA_KATLYN_L_03-09.png?itok=L1T9rkza",
       "rankings": [],
-      "booking": null,
+      "booking": {
+        "event": "Buckley vs Malott",
+        "date": "2026-10-17",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Jamey-Lyn Horth",
+        "opponentId": "jamey-lyn-horth"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -66604,7 +66622,13 @@
       "interim": false,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2021-10/71799%252Fprofile-galery%252Ffullbodyright-picture%252FMACHADO_VALESCA_R.png?itok=VJN-8B59",
       "rankings": [],
-      "booking": null,
+      "booking": {
+        "event": "Jr. vs Barcelos",
+        "date": "2026-09-26",
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Melissa Amaya",
+        "opponentId": "melissa-amaya"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -66781,7 +66805,13 @@
       "interim": false,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-04/DEMOPOULOS_VANESSA_L_04-05.png?itok=mEN09m_H",
       "rankings": [],
-      "booking": null,
+      "booking": {
+        "event": "Jr. vs Barcelos",
+        "date": "2026-09-26",
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Yazmin Jauregui",
+        "opponentId": "yazmin-jauregui"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
