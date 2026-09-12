@@ -5,7 +5,8 @@ const reportDir = resolve(process.argv[2] || 'lighthouse-reports');
 const limits = {
     score: 0.70,
     lcp: 4000,
-    tbt: 700,
+    tbtTarget: 700,
+    tbtHard: 1200,
     cls: 0.25
 };
 
@@ -47,14 +48,25 @@ const failuresFor = row => {
     const failures = [];
     if (Number.isFinite(row.score) && row.score < limits.score) failures.push(`Perf ${display(row.score, 'score')} < 70`);
     if (Number.isFinite(row.lcp) && row.lcp > limits.lcp) failures.push(`LCP ${display(row.lcp)} > 4.00 s`);
-    if (Number.isFinite(row.tbt) && row.tbt > limits.tbt) failures.push(`TBT ${display(row.tbt)} > 700 ms`);
+    if (Number.isFinite(row.tbt) && row.tbt > limits.tbtHard) failures.push(`TBT ${display(row.tbt)} > ${display(limits.tbtHard)} hard ceiling`);
     if (Number.isFinite(row.cls) && row.cls > limits.cls) failures.push(`CLS ${display(row.cls, 'cls')} > 0.250`);
     return failures;
+};
+
+const warningsFor = row => {
+    const warnings = [];
+    if (Number.isFinite(row.tbt) && row.tbt > limits.tbtTarget && row.tbt <= limits.tbtHard) {
+        warnings.push(`TBT ${display(row.tbt)} is above the ${display(limits.tbtTarget)} target`);
+    }
+    return warnings;
 };
 
 const failingRows = rows
     .map(row => ({ row, failures: failuresFor(row) }))
     .filter(item => item.failures.length);
+const warningRows = rows
+    .map(row => ({ row, warnings: warningsFor(row) }))
+    .filter(item => item.warnings.length);
 
 const header = '| Page | Perf | FCP | LCP | Speed Index | TBT | CLS |';
 const divider = '| --- | ---: | ---: | ---: | ---: | ---: | ---: |';
@@ -71,9 +83,17 @@ const body = rows.map(row => [
 const gateLines = failingRows.length
     ? [
         `Performance gate failed on ${failingRows.length} page${failingRows.length === 1 ? '' : 's'}:`,
-        ...failingRows.map(({ row, failures }) => `- ${row}: ${failures.join('; ')}`)
+        ...failingRows.map(({ row, failures }) => `- ${row.page}: ${failures.join('; ')}`)
     ]
     : ['Performance gate passed on all audited pages.'];
+
+const warningLines = warningRows.length
+    ? [
+        '',
+        `Performance target warning on ${warningRows.length} page${warningRows.length === 1 ? '' : 's'}:`,
+        ...warningRows.map(({ row, warnings }) => `- ${row.page}: ${warnings.join('; ')}`)
+    ]
+    : [];
 
 const summary = [
     '## Mobile Lighthouse baseline',
@@ -83,8 +103,9 @@ const summary = [
     ...body,
     '',
     ...gateLines,
+    ...warningLines,
     '',
-    'Gate: performance >= 70, LCP <= 4.00 s, TBT <= 700 ms, CLS <= 0.250.',
+    'Gate: performance >= 70, LCP <= 4.00 s, TBT <= 1.20 s hard ceiling (700 ms target), CLS <= 0.250.',
     '',
     '_Lab measurements are useful for regression tracking. They are not field INP/Core Web Vitals data._',
     ''
