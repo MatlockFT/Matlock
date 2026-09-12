@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-09-12T12:24:16.648Z"
+      "checkedAt": "2026-09-12T15:46:12.090Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-12T12:24:41.031Z"
+      "checkedAt": "2026-09-12T15:46:43.838Z"
     },
     "history": {
       "url": "https://www.ufc.com/athletes",
@@ -18336,7 +18336,13 @@
       "interim": false,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/CHOI_DOOHO_L_05-16.png?itok=pN8VMyeW",
       "rankings": [],
-      "booking": null,
+      "booking": {
+        "event": "Crypto.com UFC 331",
+        "date": "2026-09-19",
+        "source": "https://www.ufc.com/event/cryptocom-ufc-331",
+        "opponent": "Patricio Pitbull",
+        "opponentId": null
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
