@@ -11,13 +11,21 @@ export function reconcileBookings(data, roster, schedule, now = Date.now()) {
   for (const f of data.fighters) { const name = key(f.name); names.set(name, names.has(name) ? null : f.id); }
   const refreshed = new Set(), bookings = new Map();
   const put = (id, booking) => { if (id && (!bookings.has(id) || booking.date < bookings.get(id).date)) bookings.set(id, booking); };
+  let completeEvents = 0;
+  let skippedEvents = 0;
   for (const event of monitor.events) {
     const date = event.startAt?.slice(0, 10);
-    if (!date || !event.url || !Array.isArray(event.athletes) || !event.athletes.length) throw new Error('Incomplete monitored event');
+    if (!date || !event.url || !Array.isArray(event.athletes) || !event.athletes.length) {
+      skippedEvents++;
+      continue;
+    }
+    completeEvents++;
     refreshed.add(event.url);
     if (date < today) continue;
     for (const url of event.athletes) put(ids.get(slug(url)), { event: event.title, date, source: event.url });
   }
+  if (!completeEvents) throw new Error('Booking monitor has no complete events; retaining published bookings.');
+  if (skippedEvents) console.warn(`Booking monitor skipped ${skippedEvents} incomplete event${skippedEvents === 1 ? '' : 's'}; existing bookings for those cards were preserved.`);
   // Schedule bouts provide actual pairings; the monitor only supplies an athlete list.
   if (fresh(schedule?.generated_at)) for (const event of schedule.events || []) {
     if (event.promotion_key !== 'ufc' || event.date < today) continue;
