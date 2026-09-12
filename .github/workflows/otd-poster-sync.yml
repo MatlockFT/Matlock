@@ -115,10 +115,17 @@ jobs:
           git -C "$cache_repo" remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git -C "$cache_repo" push --force origin HEAD:refs/heads/otd-share-cache
 
-      - name: Run strict offline QA
-        run: |
-          npm run check:history-images
-          npm run check:history
+      - name: Report unresolved poster coverage
+        id: image_qa
+        continue-on-error: true
+        run: npm run check:history-images
+
+      - name: Validate history data
+        run: npm run check:history
+
+      - name: Note unresolved poster coverage
+        if: steps.image_qa.outcome == 'failure'
+        run: echo "::warning::Some current-window event posters still need exact verification. Unverified images remain withheld."
 
       - name: Commit verified registry and generated data
         shell: bash

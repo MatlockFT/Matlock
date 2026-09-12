@@ -68,6 +68,14 @@
     border-color: var(--accent, #ff4a54);
 }
 
+/* Keep the below-the-fold card deck out of the initial mobile layout pass. */
+@supports (content-visibility: auto) {
+    .news-more {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 900px;
+    }
+}
+
 @media (max-width: 620px) {
     .news-matlock-latest {
         grid-template-columns: 1fr auto;

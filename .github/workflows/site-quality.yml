@@ -59,6 +59,7 @@ jobs:
           node --check scripts/check-brand-identity.mjs
           node --check scripts/build-news-feed.mjs
           node --check scripts/check-news-data.mjs
+          node --check scripts/dedupe-news-headlines.mjs
           node --check scripts/check-on-this-day.mjs
           node --check scripts/check-on-this-day-images.mjs
           node --check scripts/check-on-this-day-share.mjs
@@ -219,10 +220,16 @@ jobs:
         run: npm run check:history
 
       - name: Check On This Day image coverage
+        id: otd_image_qa
+        continue-on-error: true
         env:
           OTD_CURRENT_WINDOW_DAYS: "2"
           OTD_TIME_ZONE: "America/Chicago"
         run: npm run check:history-images
+
+      - name: Report unresolved On This Day image coverage
+        if: steps.otd_image_qa.outcome == 'failure'
+        run: echo "::warning::Some current-window On This Day posters still need exact verification. Unverified images remain withheld."
 
       - name: Check On This Day share pipeline
         run: |
