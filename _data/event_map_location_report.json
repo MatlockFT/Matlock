@@ -1,33 +1,25 @@
 {
   "schema_version": 1,
   "source_totals": {
-    "major": 11,
+    "major": 10,
     "regional": 109
   },
   "map_totals": {
     "mapped": 110,
-    "quarantined": 10
+    "quarantined": 9
   },
   "source_precision": {
     "venue": 0,
     "source-coordinates": 0,
     "city": 110,
     "structured": 0,
-    "unresolved": 10
+    "unresolved": 9
   },
   "mapped_precision": {
     "city": 110
   },
-  "unresolved_count": 10,
+  "unresolved_count": 9,
   "unresolved": [
-    {
-      "id": "noche-ufc-2026-09-12-fight-card",
-      "title": "Silva vs Delgado",
-      "date": "2026-09-12",
-      "promotion": "Noche UFC",
-      "venue": "Venue TBA",
-      "dataset": "major"
-    },
     {
       "id": "ufc-2026-09-19-crypto-com-ufc-331",
       "title": "Crypto.com UFC 331",
@@ -104,17 +96,6 @@
   "suspicious_count": 0,
   "suspicious": [],
   "quarantined": [
-    {
-      "id": "noche-ufc-2026-09-12-fight-card",
-      "title": "Silva vs Delgado",
-      "date": "2026-09-12",
-      "promotion": "Noche UFC",
-      "venue": "Venue TBA",
-      "location": "",
-      "country": "",
-      "kind": "major",
-      "reason": "unresolved-us-location"
-    },
     {
       "id": "ufc-2026-09-19-crypto-com-ufc-331",
       "title": "Crypto.com UFC 331",

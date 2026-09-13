@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-12T12:57:26.484Z",
+  "generated_at": "2026-09-13T06:03:35.508Z",
   "changes": [
+    {
+      "id": "2026-09-13T06:03:35.508Z|noche-ufc-2026-09-12-fight-card|event_removed|1",
+      "at": "2026-09-13T06:03:35.508Z",
+      "type": "event_removed",
+      "event_id": "noche-ufc-2026-09-12-fight-card",
+      "promotion": "Noche UFC",
+      "event_title": "Silva vs Delgado",
+      "event_date": "2026-09-12",
+      "summary": "Noche UFC Silva vs Delgado removed from Upcoming Events.",
+      "details": {
+        "bout_count": 13,
+        "venue": "Venue TBA",
+        "date": "2026-09-12"
+      }
+    },
     {
       "id": "2026-09-12T12:57:26.484Z|ufc-2026-09-19-crypto-com-ufc-331|bout_moved|1",
       "at": "2026-09-12T12:57:26.484Z",
@@ -4638,21 +4653,6 @@
         "bout_count": 5,
         "venue": "Meta APEX · Las Vegas, Nevada",
         "date": "2026-08-25"
-      }
-    },
-    {
-      "id": "2026-08-25T23:43:52.333Z|ufc-fight-night-2026-11-07-fight-card|event_added|1",
-      "at": "2026-08-25T23:43:52.333Z",
-      "type": "event_added",
-      "event_id": "ufc-fight-night-2026-11-07-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Bonfim vs Brady",
-      "event_date": "2026-11-07",
-      "summary": "UFC Fight Night Bonfim vs Brady added to Upcoming Events.",
-      "details": {
-        "bout_count": 1,
-        "venue": "Venue TBA",
-        "date": "2026-11-07"
       }
     }
   ]
