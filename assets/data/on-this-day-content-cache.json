@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 2,
-  "updatedAt": "2026-09-11T13:48:37.022Z",
+  "updatedAt": "2026-09-13T13:52:37.448Z",
   "entries": {
     "pancrase:2013-04-21:pancrase-sakaguchi-dojo-vs-pancrase": {
       "strategyVersion": 2,
@@ -15319,6 +15319,14 @@
       "status": "no-main-event",
       "sourceType": "wikipedia-structured",
       "wikipediaTitle": "2026 in Rizin Fighting Federation"
+    },
+    "ufc:2026-09-12:ufc-fight-night-silva-vs-delgado": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-13T13:52:37.448Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Silva vs. Delgado",
+      "mainEvent": "Silva vs. Delgado"
     }
   }
 }
