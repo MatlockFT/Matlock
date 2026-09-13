@@ -1,0 +1,881 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-13T05:12:19.508Z",
+  "refreshIntervalMs": 300000,
+  "sourceCount": 17,
+  "sources": [
+    {
+      "name": "MMA Fighting",
+      "url": "https://www.mmafighting.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "Uncrowned",
+      "url": "https://sports.yahoo.com/mma/",
+      "storyCount": 48
+    },
+    {
+      "name": "UFC",
+      "url": "https://www.ufc.com/news",
+      "storyCount": 30
+    },
+    {
+      "name": "TMZ Sports",
+      "url": "https://www.tmz.com/categories/ufc/",
+      "storyCount": 6
+    },
+    {
+      "name": "Sherdog",
+      "url": "https://www.sherdog.com/",
+      "storyCount": 50
+    },
+    {
+      "name": "MMAWeekly",
+      "url": "https://www.mmaweekly.com/",
+      "storyCount": 50
+    },
+    {
+      "name": "MMA Mania",
+      "url": "https://www.mmamania.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "Bloody Elbow",
+      "url": "https://bloodyelbow.com/",
+      "storyCount": 20
+    },
+    {
+      "name": "Cageside Press",
+      "url": "https://cagesidepress.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "LowKick MMA",
+      "url": "https://www.lowkickmma.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "ONE Championship",
+      "url": "https://www.onefc.com/news/",
+      "storyCount": 10
+    },
+    {
+      "name": "Combat Press",
+      "url": "https://combatpress.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "MMA Prospect Vault",
+      "url": "https://mmaprospectvault.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "Movement Martials",
+      "url": "https://movementmartials.com/",
+      "storyCount": 3
+    },
+    {
+      "name": "Mixing Martial Arts",
+      "url": "https://www.mixingmartialarts.com/",
+      "storyCount": 2
+    },
+    {
+      "name": "Cage Warriors",
+      "url": "https://cagewarriors.com/",
+      "storyCount": 1
+    },
+    {
+      "name": "LFA",
+      "url": "https://www.lfa.com/",
+      "storyCount": 4
+    }
+  ],
+  "topStory": {
+    "id": "738c3fe73e29b142",
+    "title": "Jean Silva Finishes Jose Miguel Delgado At Noche UFC",
+    "url": "https://sports.yahoo.com/articles/jean-silva-finishes-jose-miguel-033912933.html",
+    "source": "Uncrowned",
+    "sourceUrl": "https://sports.yahoo.com/mma/",
+    "publishedAt": "2026-09-13T03:39:12.000Z",
+    "excerpt": "Jean Silva avenged himself for his loss last year during Noche UFC. The Brazilian featherweight contender took on Jose Miguel Delgado in the main event tonight and won in the third round via…",
+    "image": "https://www1-cdn.sherdog.com/_images/headers/20260913124509_GettyImages2294960443.JPG",
+    "coverageCount": 4,
+    "relatedSources": [
+      "LowKick MMA",
+      "Cageside Press",
+      "Sherdog"
+    ],
+    "imageCredit": {
+      "source": "Sherdog",
+      "url": "https://www.sherdog.com/news/news/Jean-Silva-Submits-Jose-Delgado-in-Noche-UFC-4-Main-Event-202773"
+    }
+  },
+  "stories": [
+    {
+      "id": "d56d808ba65ca8ca",
+      "title": "Dana White shuts down reports Oscar De La Hoya was denied access to Ryan Garcia v Conor Benn",
+      "url": "https://bloodyelbow.com/2026/09/13/dana-white-shuts-down-reports-oscar-de-la-hoya-was-denied-access-to-ryan-garcia-v-conor-benn/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-13T04:50:12.000Z",
+      "excerpt": "Dana White insists that Oscar De La Hoya was not stopped from coming to tonight’s fight in Las Vegas. De La Hoya and Golden Boy ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/09/GettyImages-2294604037-2-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "55af5028a186ce8f",
+      "title": "Noche UFC Post Show: Reaction to Jean Silva’s big win, Tommy McMillen’s rise",
+      "url": "https://sports.yahoo.com/articles/noche-ufc-post-show-reaction-044205169.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-13T04:42:05.000Z",
+      "excerpt": "Jean Silva submitted Jose Miguel Delgado at Noche UFC",
+      "image": "https://media.zenfs.com/en/sb_nation_articles_115/74fc8d782ce5b7a4e52223e81d488673.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "c796bb0b43e0d2fe",
+      "title": "The Best Pictures From The Inner Circle 30",
+      "url": "https://www.onefc.com/features/the-best-pictures-from-the-inner-circle-30/",
+      "source": "ONE Championship",
+      "sourceUrl": "https://www.onefc.com/news/",
+      "publishedAt": "2026-09-13T04:28:11.000Z",
+      "excerpt": "Relive a night of triumph and farewell at Lumpinee Stadium through the lenses of our ringside photographers.",
+      "image": "https://cdn.onefc.com/wp-content/uploads/2026/09/Seksan-vs-Muangthai-at-The-Inner-Circle-30-35-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "7833c498d52a3c97",
+      "title": "Highlights! Ryan Garcia destroys Conor Benn, retains WBC title with massive second-round TKO | video",
+      "url": "https://www.mmamania.com/zuffa-boxing-news/471806/highlights-ryan-garcia-destroys-conor-benn-retains-title-with-massive-second-round-tko-video",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-09-13T04:01:23.000Z",
+      "excerpt": "Ryan Garcia and Conor Benn threw down last night (Sat., Sept. 12, 2026) inside T-Mobile Arena in Las Vegas, Nevada for “King Ry’s” WBC Welterweight strap in what was his first attempt to…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/09/gettyimages-2294977156.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 2,
+      "relatedSources": [
+        "Bloody Elbow"
+      ]
+    },
+    {
+      "id": "d8852bfde04cbd45",
+      "title": "Noche UFC Bonuses Revealed Following Card",
+      "url": "https://sports.yahoo.com/articles/noche-ufc-bonuses-revealed-following-034818681.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-13T03:48:18.000Z",
+      "excerpt": "Following the Noche UFC card, the world’s leading MMA promotion revealed who took home the post-fight bonuses. Noche UFC took place on Saturday, September 12, at Desert Diamond Arena in…",
+      "image": "https://media.zenfs.com/en/heavy_214/100dfdec61280fd4b477a285e3c6265f.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "b3f749f1e6c9ac84",
+      "title": "'Premature stoppage': 'Fighters react to Ryan Garcia's TKO of Conor Benn",
+      "url": "https://sports.yahoo.com/articles/premature-stoppage-fighters-react-ryan-034428472.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-13T03:44:28.000Z",
+      "excerpt": "Ryan Garcia sent the social media world abuzz with his huge fight-ending punch vs. Conor Benn to defend his title.",
+      "image": "https://s.yimg.com/lo/mysterio/api/a5aa2f2b579c33922b3a75ffc112078b0e22d9cdbccc1db518127203d680e450/lightyear_networkapi/resizefill_w816_h478%3Bquality_80%3Bformat_webp/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Fmma_junkie_usa_today_articles_344%2F5845b660de7b24a755b9c1b4b95753f2.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "981d710f1e7f0d12",
+      "title": "Ryan Garcia eases to victory over Conor Benn, secures round 2 knockout",
+      "url": "https://sports.yahoo.com/articles/ryan-garcia-eases-victory-over-033805938.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-13T03:38:05.000Z",
+      "excerpt": "Ryan Garcia delivered on his promise, knocking Conor Benn out in the second round.",
+      "image": "https://www.mmaweekly.com/.image/Mjk6MDAwMDAwMDAwMTExNTUx/ryan-garcia-getty-1600.jpg?profile=rss",
+      "imageCredit": {
+        "source": "MMAWeekly",
+        "url": "https://www.mmaweekly.com/news/ryan-garcia-eases-to-victory-over-conor-benn-secures-round-2-knockout"
+      },
+      "coverageCount": 3,
+      "relatedSources": [
+        "MMAWeekly",
+        "MMA Fighting"
+      ]
+    },
+    {
+      "id": "e497b378c5b548a5",
+      "title": "Ryan Garcia vs. Conor Benn live streaming results, video highlights | Paramount+",
+      "url": "https://www.mmamania.com/zuffa-boxing-news/470478/ryan-garcia-vs-conor-benn-live-streaming-results-video-highlights-paramount",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-09-13T03:33:21.000Z",
+      "excerpt": "Ryan Garcia will defend his WBC Welterweight title for the first time later TONIGHT (Sat., Sept. 12, 2026) against British brawler, Conor Benn, inside T-Mobile Arena in Las Vegas, Nevada in…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/09/gettyimages-2294801171.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "3f06aef426d7d51d",
+      "title": "Jai Opetaia doesn’t win WBC belt despite knocking out Noel Mikaelian amid Don King legal dispute",
+      "url": "https://bloodyelbow.com/2026/09/12/jai-opetaia-doesnt-win-wbc-belt-despite-knocking-out-noel-mikaelian-amid-don-king-legal-dispute/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-13T03:16:26.000Z",
+      "excerpt": "Jai Opetaia scored a massive stoppage of Noel Mikaelian tonight in Las Vegas, but remains without a major governing body belt. Back in March, Opetaia ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/09/APA04500_5FXLLjJW-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "cfb2206e88687cb4",
+      "title": "Jai Opetaia wins by Round 9 knockout",
+      "url": "https://sports.yahoo.com/articles/jai-opetaia-wins-round-9-025932631.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-13T02:59:32.000Z",
+      "excerpt": "Jai Opetaia defeats Noel Mikaelian in second Zuffa Boxing bout.",
+      "image": "https://www.mmaweekly.com/.image/Mjk6MDAwMDAwMDAwMTIyMzAw/jai-opetaia.png?profile=rss",
+      "imageCredit": {
+        "source": "MMAWeekly",
+        "url": "https://www.mmaweekly.com/news/jai-opetaia-wins-by-round-9-knockout"
+      },
+      "coverageCount": 2,
+      "relatedSources": [
+        "MMAWeekly"
+      ]
+    },
+    {
+      "id": "33c8373eb6eb5304",
+      "title": "Ryan Garcia smokes Conor Benn with ferocious right hand, but was it an early stoppage?",
+      "url": "https://www.mmamania.com/zuffa-boxing-news/471789/ryan-garcia-vs-conor-benn-live-fight-stream-highlights",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-09-13T02:53:16.000Z",
+      "excerpt": "Ryan Garcia will attempt to defend his WBC Welterweight title for the first time against England’s Conor Benn TONIGHT (Sat., Sept. 12, 2026) inside T-Mobile Arena in Las Vegas, Nevada, in…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/09/gettyimages-2294420998.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "bb52dde438b0b727",
+      "title": "Noche UFC: Alexa Grasso Calls New Gen of Mexicans “Complete Fighters”",
+      "url": "https://cagesidepress.com/2026/09/12/noche-ufc-alexa-grasso-new-gen/",
+      "source": "Cageside Press",
+      "sourceUrl": "https://cagesidepress.com/",
+      "publishedAt": "2026-09-13T02:36:44.000Z",
+      "excerpt": "Glendale — Former women’s flyweight champ Alexa Grasso put on a surprisingly dominant, in-your-face performance against Manon Fiorot at Noche UFC on Saturday. Grasso (18-5-1), who launched…",
+      "image": "https://cagesidepress.com/wp-content/uploads/2026/09/Alexa-Grasso-1.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "3f449451faf46f03",
+      "title": "Jean Silva comforted by Noche UFC win after memory loss from last year",
+      "url": "https://sports.yahoo.com/articles/jean-silva-comforted-noche-ufc-023048605.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-13T02:30:48.000Z",
+      "excerpt": "Jean Silva said he pulled his team aside just before walkouts to reveal a secret he'd been hiding.",
+      "image": "https://s.yimg.com/lo/mysterio/api/5f83ac44f2814f3f4e1e2b11df1ef23eb32fcac4edbad49836ef3fc6e2ecc69f/lightyear_networkapi/resizefit_w1200%3Bquality_80%3Bformat_webp/https%3A%2F%2Fs.yimg.com%2Fcv%2Fapiv2%2Fsocial%2Fimages%2Fyahoo_default_logo-1200x1200.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "e463597cdd6bdec8",
+      "title": "Results + Scorecards | Garcia vs Benn",
+      "url": "https://www.ufc.com/news/garcia-vs-benn-results",
+      "source": "UFC",
+      "sourceUrl": "https://www.ufc.com/news",
+      "publishedAt": "2026-09-13T02:30:00.000Z",
+      "excerpt": "Live Results, Highlights, Post-Fight Interviews, Scorecards And More From Garcia vs Benn In Las Vegas On Saturday, September 12 Read the Full Article Here",
+      "image": "https://ufc.com/images/styles/card/s3/2026-09/091226-garcia-vs-benn-results-HERO.jpg?itok=2xwk7UxF",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "9543adfd0b5d34e5",
+      "title": "At Noche UFC, fighters McMillen, Grasso stand out as fan favorites",
+      "url": "https://sports.yahoo.com/articles/noche-ufc-fighters-mcmillen-grasso-022655824.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-13T02:26:55.000Z",
+      "excerpt": "UFC brought its annual Noche UFC event to Arizona in celebration of Mexican Independence Day on Saturday, Sept. 12.",
+      "image": "https://s.yimg.com/lo/mysterio/api/409ee90e35b11500499ea32af2f20928e3280f2fecda10f5de4c2da7939fae98/lightyear_networkapi/resizefill_w1200%3Bquality_80%3Bformat_webp/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Fazcentral-the-arizona-republic%2Fabddf348ded9abbfde24c9ff97543e3f.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "be6c255d37191181",
+      "title": "McMillen-Rahiki War Pockets Fight of the Night at Noche UFC",
+      "url": "https://cagesidepress.com/2026/09/12/mcmillen-rahiki-war-pockets-fight-night-noche-ufc/",
+      "source": "Cageside Press",
+      "sourceUrl": "https://cagesidepress.com/",
+      "publishedAt": "2026-09-13T02:14:58.000Z",
+      "excerpt": "Somehow, Tommy McMillen vs. Marwan Rahiki was even better than advertised. The featherweight fight was a prominent one on the Noche UFC card, an early pick for Fight of the Night ahead of…",
+      "image": "https://cagesidepress.com/wp-content/uploads/2026/04/UFC-Vegas-115-weigh-in-02.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "a6aeef6f02938994",
+      "title": "Complete Noche UFC Results & Highlights: Jean Silva Steals The Show",
+      "url": "https://sports.yahoo.com/articles/live-noche-ufc-silva-vs-140000229.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-13T01:48:32.000Z",
+      "excerpt": "On Saturday the action continues in the West Coast as the leading MMA promotion presents another edition of UFC Fight […]",
+      "image": "https://media.zenfs.com/en/sportsnaut_articles_397/4e30dd7a796e4dd802e18dd032bb9ebb.jpg",
+      "coverageCount": 2,
+      "relatedSources": [
+        "MMA Mania"
+      ]
+    },
+    {
+      "id": "23d51db66bdcac6b",
+      "title": "Noche UFC Results: Jean Silva Submits Jose Miguel Delgado With Vicious One-Arm Rear-Naked Choke",
+      "url": "https://sports.yahoo.com/articles/noche-ufc-results-jean-silva-014446329.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-13T01:44:46.000Z",
+      "excerpt": "In the main event of the 4th annual Noche UFC event, Jean Silva came one step closer to the 145lbs gold with a brutal submission win.",
+      "image": "https://media.zenfs.com/en/ny_fights_228/c5b36be87f94ecd65b5b19f7f7a4b0cd.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "190ec5c9a20191ad",
+      "title": "Noche UFC Bonus Winners Revealed Following Thrilling Finishes",
+      "url": "https://www.lowkickmma.com/noche-ufc-bonus-winners-revealed-following-thrilling-finishes/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-09-13T01:43:04.000Z",
+      "excerpt": "Noche UFC 2026, which was headlined by a featherweight clash between Jean Silva and Jose Miguel Delgado, just wrapped...",
+      "image": "https://cdn.lowkickmma.com/2026/09/gettyimages-2294952869-612x612-1.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "aaa5819b24cbb529",
+      "title": "Ryan Garcia’s brother Sean Garcia lands knockdown while scoring first win in almost three years",
+      "url": "https://bloodyelbow.com/2026/09/12/ryan-garcias-brother-sean-garcia-lands-knockdown-while-scoring-first-win-in-almost-three-years/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-13T01:33:36.000Z",
+      "excerpt": "Ryan Garcia’s family are off to a winning start tonight as his brother Sean scored a big comeback victory to open the show in Las ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/09/EM1_3930_5zOLtcuN-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "eef871e0630f7d11",
+      "title": "Noche UFC bonuses: Slick Silva sub snags six figures",
+      "url": "https://sports.yahoo.com/articles/noche-ufc-bonuses-slick-silva-013250148.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-13T01:32:50.000Z",
+      "excerpt": "After months of events with tons of finishes, Noche UFC hit a slowdown with just four stoppages in Arizona.",
+      "image": "https://media.zenfs.com/en/mma_junkie_usa_today_articles_344/27e4f0636b53792e2a3076e3e3c7d39e.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "61e413170a363932",
+      "title": "Noche UFC Post-Fight Press Conference Video",
+      "url": "https://sports.yahoo.com/articles/noche-ufc-post-fight-press-012219401.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-13T01:22:19.000Z",
+      "excerpt": "Watch the Noche UFC Post-Fight Press Conference.",
+      "image": "https://www.mmaweekly.com/.image/Mjk6MDAwMDAwMDAwMTIyMjk1/jean-silva-noche-ufc-press-conference.png?profile=rss",
+      "imageCredit": {
+        "source": "MMAWeekly",
+        "url": "https://www.mmaweekly.com/news/noche-ufc-post-fight-press-conference-video"
+      },
+      "coverageCount": 3,
+      "relatedSources": [
+        "MMAWeekly",
+        "MMA Mania"
+      ]
+    },
+    {
+      "id": "49ba9ac484982d1c",
+      "title": "What time will Ryan Garcia and Conor Benn make their official ring walks?",
+      "url": "https://www.mmamania.com/zuffa-boxing-news/471538/what-time-with-ryan-garcia-and-conor-benn-make-their-official-ring-walks",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-09-13T01:22:13.000Z",
+      "excerpt": "One of the biggest boxing matches of the year will unfold later tonight (Sat., Sept. 12, 2026) LIVE on Paramount+ from inside T-Mobile Arena in Las Vegas, Nevada, as Ryan Garcia (25-2) puts…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/09/gettyimages-1409242837.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "aaf358ad0febab58",
+      "title": "Why Did Jean Silva Take Off His Gloves After Noche UFC Victory?",
+      "url": "https://www.lowkickmma.com/why-did-jean-silva-take-off-his-gloves-after-ufc-noche-win/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-09-13T01:19:02.000Z",
+      "excerpt": "Jean Silva confused fans worldwide when he became desperate to take off his gloves following his UFC Noche win....",
+      "image": "https://cdn.lowkickmma.com/2026/09/gettyimages-2294962430-612x612-1.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "20aa391d8ed74345",
+      "title": "Noche UFC 4 Bonuses! McMillen Banks $100K Yet Again",
+      "url": "https://sports.yahoo.com/articles/noche-ufc-4-bonuses-mcmillen-010332928.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-13T01:03:32.000Z",
+      "excerpt": "Jean Silva had to push through some early adversity earlier tonight (Sat., Sept. 12, 2026) at Noche UFC 4 LIVE on Paramount+ from inside Desert Diamond Arena in Glendale, Arizona, but the…",
+      "image": "https://media.zenfs.com/en/sb_nation_articles_115/69282af72a4b3d641eb1d8b653debeaf.jpg",
+      "coverageCount": 2,
+      "relatedSources": [
+        "Sherdog"
+      ]
+    },
+    {
+      "id": "7e7026873f4269d3",
+      "title": "Bonuses! Tommy McMillen banks another $100K for incredible three-round slugfest | Noche UFC 4",
+      "url": "https://www.mmamania.com/ufc-bonuses-and-awards/471619/official-noche-ufc-4-post-fight-bonus-winners-results-paramount-silva-delgado-mcmillen",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-09-13T01:03:32.000Z",
+      "excerpt": "Jean Silva had to push through some early adversity earlier tonight (Sat., Sept. 12, 2026) at Noche UFC 4 LIVE on Paramount+ from inside Desert Diamond Arena in Glendale, Arizona, but the…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/09/gettyimages-2294954177.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "e6e8fd318d8242c8",
+      "title": "Bonus Coverage | Noche UFC",
+      "url": "https://www.ufc.com/news/bonus-coverage-noche-ufc-glendale-2026",
+      "source": "UFC",
+      "sourceUrl": "https://www.ufc.com/news",
+      "publishedAt": "2026-09-13T01:00:25.000Z",
+      "excerpt": "The Performances Awarded An Extra Bonus At Desert Diamond Arena, Glendale, AZ On September 12, 2026 Read the Full Article Here",
+      "image": "https://ufc.com/images/styles/card/s3/2026-09/BrowserPreview_tmp-1.gif?itok=9t-TJ-v1",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "42aa279ac6283c5d",
+      "title": "Power Slap 23 Takes Over Texas This Thursday",
+      "url": "https://www.ufc.com/news/power-slap-23-wolverine-vs-greenhalgh-takes-over-lubbock-texas-thursday-september-17",
+      "source": "UFC",
+      "sourceUrl": "https://www.ufc.com/news",
+      "publishedAt": "2026-09-13T01:00:00.000Z",
+      "excerpt": "Double Eagle Energy Power Slap 23: Wolverine vs Greenhalgh Takes Place Thursday, September 17 At United Supermarkets Arena In Lubbock, Texas Read the Full Article Here",
+      "image": "https://ufc.com/images/styles/card/s3/2026-09/091726-power-slap-23-keyart.jpg?itok=9NP1WyJN",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "e4cac91f0fecd2b5",
+      "title": "How To Watch Garcia vs Benn",
+      "url": "https://www.ufc.com/news/how-to-watch-garcia-vs-benn",
+      "source": "UFC",
+      "sourceUrl": "https://www.ufc.com/news",
+      "publishedAt": "2026-09-13T01:00:00.000Z",
+      "excerpt": "Find Start Times, Streaming Information, Fight Card Details And More For Garcia vs Benn, Live From T-Mobile Arena In Las Vegas On September 12, 2026 Read the Full Article Here",
+      "image": "https://ufc.com/images/styles/card/s3/2026-09/091026-garcia-benn-how-to-watch-hero.jpg?itok=WQ4TbrmO",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "9666aad7b9d30711",
+      "title": "Sean King Surprised by “How Calm I Was” at Noche UFC",
+      "url": "https://cagesidepress.com/2026/09/12/sean-king-noche-ufc-calm/",
+      "source": "Cageside Press",
+      "sourceUrl": "https://cagesidepress.com/",
+      "publishedAt": "2026-09-13T00:50:00.000Z",
+      "excerpt": "Glendale — Sean King III had arguably the most violent finish on the Noche UFC card, when he landed a slam and follow-up punches on fellow newcomer Jessie Rosas as part of Saturday’s…",
+      "image": "https://cagesidepress.com/wp-content/uploads/2026/09/Sean-King.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "c3347c51ee25b142",
+      "title": "Noche UFC 4 Highlights! Silva Steals The Show With Slick One-Arm Choke",
+      "url": "https://sports.yahoo.com/articles/noche-ufc-4-highlights-silva-004635977.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-13T00:46:35.000Z",
+      "excerpt": "Jean Silva reminded the featherweight division just how good he is earlier today (Sat., Sept. 12, 2026) at Noche UFC 4 LIVE on Paramount+ from inside Desert Diamond Arena in Glendale,…",
+      "image": "https://media.zenfs.com/en/sb_nation_articles_115/add4ea1104c2f56b9d9b882623218a14.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "5907a78270e82a33",
+      "title": "Jean Silva taps out Jose Miguel Delgado with one-armed submission to cap off Noche UFC main event",
+      "url": "https://sports.yahoo.com/articles/jean-silva-taps-jose-miguel-004408254.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-13T00:44:08.000Z",
+      "excerpt": "Jean Silva started slow but finished with a nasty submission in the Noche UFC main event",
+      "image": "https://media.zenfs.com/en/sb_nation_articles_115/299979e6a028ae0cedb6bbed4f0d9f81.jpg",
+      "coverageCount": 2,
+      "relatedSources": [
+        "Bloody Elbow"
+      ]
+    },
+    {
+      "id": "5d493977cd557fb5",
+      "title": "'We can fight': Fighters react to Jean Silva's finish of Jose Delgado at Noche UFC",
+      "url": "https://sports.yahoo.com/articles/fight-fighters-react-jean-silvas-004054107.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-13T00:40:54.000Z",
+      "excerpt": "The MMA community reacted to Jean Silva's submission of Jose Delgado in the Noche UFC main event.",
+      "image": "https://s.yimg.com/lo/mysterio/api/5f83ac44f2814f3f4e1e2b11df1ef23eb32fcac4edbad49836ef3fc6e2ecc69f/lightyear_networkapi/resizefit_w1200%3Bquality_80%3Bformat_webp/https%3A%2F%2Fs.yimg.com%2Fcv%2Fapiv2%2Fsocial%2Fimages%2Fyahoo_default_logo-1200x1200.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "f4662bca1064bd50",
+      "title": "Main Card Results | Noche UFC",
+      "url": "https://www.ufc.com/news/noche-ufc-results-silva-vs-delgado",
+      "source": "UFC",
+      "sourceUrl": "https://www.ufc.com/news",
+      "publishedAt": "2026-09-13T00:36:00.000Z",
+      "excerpt": "Noche UFC: Silva vs Delgado Results, Highlights, Post-Fight Interviews With The Main Card Winners And More, Live From Desert Diamond Arena In Glendale On Saturday, September 12 Read the Full…",
+      "image": "https://ufc.com/images/styles/card/s3/2026-08/091226-ufc-fight-night-silva-vs-delgado-EVENT-ART.jpg?itok=5UKSXYYX",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "4e92e8e5d20c4c09",
+      "title": "Noche UFC 4 results: Crazy Jean Silva survives early scare to flatten Jose Delgado",
+      "url": "https://www.mmamania.com/ufc-results/471845/noche-ufc-4-results-crazy-jean-silva-survives-early-scare-to-flatten-jose-delgado",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-09-13T00:35:48.000Z",
+      "excerpt": "Jean Silva vs. Jose Delgado squared off in a Featherweight bout earlier this morning (Sat., Sept. 12, 2026) inside Desert Diamond Arena in Glendale, Ariz., for Noche UFC 4. After a terrible…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/09/gettyimages-2294960374.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "6424eaf5ac507a56",
+      "title": "Former UFC title challengers reportedly finally set to meet following several failed bookings",
+      "url": "https://bloodyelbow.com/2026/09/12/former-ufc-title-challengers-reportedly-finally-set-to-meet-following-several-failed-bookings/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-13T00:30:00.000Z",
+      "excerpt": "Tatiana Suarez and Virna Jandiroba have somehow eluded each other for some time. Mackenzie Dern was left unsatisfied with the successful title defense that solidified ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2025/02/GettyImages-2198470162-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "524532cde16ef1af",
+      "title": "Noche UFC results: Brandon Moreno snaps skid with split decision vs. Joseph Morales",
+      "url": "https://sports.yahoo.com/articles/noche-ufc-results-brandon-moreno-000502534.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-13T00:05:02.000Z",
+      "excerpt": "The judges were divided on it, but Brandon Moreno finally got a win at Noche UFC on Saturday.",
+      "image": "https://s.yimg.com/lo/mysterio/api/5f83ac44f2814f3f4e1e2b11df1ef23eb32fcac4edbad49836ef3fc6e2ecc69f/lightyear_networkapi/resizefit_w1200%3Bquality_80%3Bformat_webp/https%3A%2F%2Fs.yimg.com%2Fcv%2Fapiv2%2Fsocial%2Fimages%2Fyahoo_default_logo-1200x1200.png",
+      "coverageCount": 2,
+      "relatedSources": [
+        "Cageside Press"
+      ]
+    },
+    {
+      "id": "7d49754f29d7b311",
+      "title": "Brandon Moreno Outstrikes Joseph Morales to Finally Snap Two-Fight Skid at Noche UFC",
+      "url": "https://www.lowkickmma.com/brandon-moreno-outstrikes-joseph-morales-to-finally-snap-two-fight-skid-at-noche-ufc/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-09-13T00:01:47.000Z",
+      "excerpt": "Earlier tonight in front of his fans, former two-time UFC flyweight champion Brandon Moreno finally snapped his two-fight losing...",
+      "image": "https://cdn.lowkickmma.com/2026/09/gettyimages-2294955953-612x612-1.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "6873bb8b7f555f24",
+      "title": "Matches to make after Noche UFC 4",
+      "url": "https://sports.yahoo.com/articles/matches-noche-ufc-4-235712086.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-12T23:57:12.000Z",
+      "excerpt": "For the fourth consecutive year, the Ultimate Fighting Championship celebrated Mexico’s Independence Day with solid mixed martial arts action.",
+      "image": "https://s.yimg.com/lo/mysterio/api/5f83ac44f2814f3f4e1e2b11df1ef23eb32fcac4edbad49836ef3fc6e2ecc69f/lightyear_networkapi/resizefit_w1200%3Bquality_80%3Bformat_webp/https%3A%2F%2Fs.yimg.com%2Fcv%2Fapiv2%2Fsocial%2Fimages%2Fyahoo_default_logo-1200x1200.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "ac92d1b4251c18d8",
+      "title": "LIVE! Watch Noche UFC 4 Post-Fight Presser Here",
+      "url": "https://sports.yahoo.com/articles/live-watch-noche-ufc-4-234310433.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-12T23:43:10.000Z",
+      "excerpt": "Now that the action is in the books from Noche UFC 4 earlier tonight (Sat., Sept. 12, 2026) LIVE on Paramount+ from inside Desert Diamond Arena in Glendale, Arizona, fight fans can check out…",
+      "image": "https://media.zenfs.com/en/sb_nation_articles_115/6ed86dc877ba08551be2c45f4e4f61ae.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "e148c3509630343a",
+      "title": "Noche UFC results: Tommy McMillen vs. Marwan Rahiki breaks into chaotic Fight of the Year candidate",
+      "url": "https://sports.yahoo.com/articles/noche-ufc-results-tommy-mcmillen-233453847.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-12T23:34:53.000Z",
+      "excerpt": "These two UFC prospects sold the fight – and they delivered with absolute insanity.",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/09/gettyimages-2294953371.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "imageCredit": {
+        "source": "MMA Mania",
+        "url": "https://www.mmamania.com/ufc-paramount-plus-news-hub-fight-cards-schedule/471608/watch-official-noche-ufc-4-video-highlights-results-paramount-mcmillen-rahiki-fight-of-the-year"
+      },
+      "coverageCount": 2,
+      "relatedSources": [
+        "MMA Mania"
+      ]
+    },
+    {
+      "id": "c553196c319f4e1e",
+      "title": "Tommy McMillen weathers early storm for comeback-of-the-year win at Noche UFC",
+      "url": "https://sports.yahoo.com/articles/tommy-mcmillen-weathers-early-storm-232802883.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-12T23:28:02.000Z",
+      "excerpt": "Tommy McMillen earns win during all-timer fight against Marwan Rahiki at Noche UFC.",
+      "image": "https://www.mmaweekly.com/.image/Mjk6MDAwMDAwMDAwMTIyMjg1/tommy-mcmillen.png?profile=rss",
+      "imageCredit": {
+        "source": "MMAWeekly",
+        "url": "https://www.mmaweekly.com/news/tommy-mcmillen-weathers-early-storm-for-comeback-of-the-year-win-at-noche-ufc"
+      },
+      "coverageCount": 2,
+      "relatedSources": [
+        "MMAWeekly"
+      ]
+    },
+    {
+      "id": "30f81a4b383a36be",
+      "title": "Tommy McMillen and Marwan Rahiki Deliver Action-Packed Slugfest at Noche UFC",
+      "url": "https://www.lowkickmma.com/tommy-mcmillen-and-marwan-rahiki-deliver-action-packed-slugfest-at-noche-ufc/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-09-12T23:26:40.000Z",
+      "excerpt": "Earlier tonight at Noche UFC, Tommy McMillen and Marwan Rahiki delivered a Fight of the Year contender. Fight recap...",
+      "image": "https://cdn.lowkickmma.com/2026/09/gettyimages-2294953629-612x612-1.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "211012c2822f5784",
+      "title": "Tommy McMillen Digs Deep, Wins Wild Fight Against Marwan Rahiki at Noche UFC",
+      "url": "https://cagesidepress.com/2026/09/12/tommy-mcmillen-digs-deep-wins-wild-fight-against-marwan-rahiki-at-noche-ufc/",
+      "source": "Cageside Press",
+      "sourceUrl": "https://cagesidepress.com/",
+      "publishedAt": "2026-09-12T23:20:16.000Z",
+      "excerpt": "Two bright undefeated 145-pound prospects collided at Noche UFC as Tommy McMillen returned to the UFC Octagon facing dangerous striker Marwan Rahiki. The first round began with McMillen…",
+      "image": "https://cagesidepress.com/wp-content/uploads/2026/09/Tommy-McMillen-vs.-Marwan-Rahiki.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "cd0fabd079548763",
+      "title": "Official Scorecards | Noche UFC",
+      "url": "https://www.ufc.com/news/noche-ufc-official-scorecards-silva-vs-delgado",
+      "source": "UFC",
+      "sourceUrl": "https://www.ufc.com/news",
+      "publishedAt": "2026-09-12T23:18:00.000Z",
+      "excerpt": "See How The Judges Score Every Round Of Every Fight From Noche UFC: Silva vs Delgado, Live From Desert Diamond Arena In Glendale On Saturday, September 12 Read the Full Article Here",
+      "image": "https://ufc.com/images/styles/card/s3/2026-09/091326-bruce-buffer-announcement-hero.jpg?itok=yDwCcJ21",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "50ea2db849b88b51",
+      "title": "Tommy McMillen survives heavy knockdown to win Fight of the Year contender at Noche UFC",
+      "url": "https://bloodyelbow.com/2026/09/12/tommy-mcmillen-survives-heavy-knockdown-to-win-fight-of-the-year-contender-at-noche-ufc/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-12T23:17:27.000Z",
+      "excerpt": "Tommy McMillen and Marwan Rahiki settled their beef in the Octagon on Saturday night. The undefeated prospects had multiple fight week run-ins ahead of their ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/09/GettyImages-2294953325-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "508f7a99d1f2657f",
+      "title": "Noche UFC 4 results: Tommy McMillen hype train keeps rolling with bloody victory over Marwan Rahiki",
+      "url": "https://www.mmamania.com/ufc-results/471700/noche-ufc-4-results-tommy-mcmillen-hype-train-keeps-rolling-with-bloody-victory-over-marwan-rahiki",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-09-12T23:16:05.000Z",
+      "excerpt": "Tommy McMillen vs. Marwan Rahiki squared off in a Featherweight bout earlier this morning (Sat., Sept. 12, 2026) inside Desert Diamond Arena in Glendale, Arizona for Noche UFC 4. After a…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/09/gettyimages-2294953607.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "5ef5586317e70d4a",
+      "title": "Alexa Grasso Claims Dominant Victory Over Manon Fiorot in High-Stakes Noche UFC Clash",
+      "url": "https://www.lowkickmma.com/alexa-grasso-claims-dominant-victory-over-manon-fiorot-in-high-stakes-noche-ufc-clash/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-09-12T22:54:18.000Z",
+      "excerpt": "Earlier tonight at Noche UFC, after the Curtis Blaydes vs. Waldo Cortes Acosta snoozefest, fans were craving a back-and-forth...",
+      "image": "https://cdn.lowkickmma.com/2026/09/gettyimages-2294950252-612x612-1.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "1f8d085b2234d49d",
+      "title": "Noche UFC results: Alexa Grasso drops Manon Fiorot, wins decision",
+      "url": "https://sports.yahoo.com/articles/noche-ufc-results-alexa-grasso-225121394.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-12T22:51:21.000Z",
+      "excerpt": "Alexa Grasso become just the second person to beat Manon Fiorot in the octagon at Noche UFC – and impressed in doing so.",
+      "image": "https://platform.mmafighting.com/wp-content/uploads/sites/109/2026/09/gettyimages-2294950252.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": [],
+      "imageCredit": {
+        "source": "MMA Fighting",
+        "url": "https://www.mmafighting.com/ufc/509873/noche-ufc-results-alexa-grasso-comes-out-guns-blazing-to-win-decision-over-manon-fiorot"
+      }
+    },
+    {
+      "id": "ef5b8d87267d8629",
+      "title": "Jade Jones calls out MMA GOAT after stopping Power Slap’s biggest star to win Misfits title",
+      "url": "https://bloodyelbow.com/2026/09/12/jade-jones-calls-out-mma-goat-after-stopping-power-slaps-biggest-star-to-win-misfits-title/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-12T22:48:56.000Z",
+      "excerpt": "Two-time Olympic gold medalist Jade Jones has continued her winning start to life as a boxer. The taekwondo legend kicked off her new career by ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/09/GettyImages-2265297532-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "d82ed82a1d2813cc",
+      "title": "Noche UFC: Fun Fight Sees Alexa Grasso Get the Better of Manon Fiorot",
+      "url": "https://cagesidepress.com/2026/09/12/noche-ufc-fun-fight-sees-alexa-grasso-get-the-better-of-manon-fiorot/",
+      "source": "Cageside Press",
+      "sourceUrl": "https://cagesidepress.com/",
+      "publishedAt": "2026-09-12T22:41:07.000Z",
+      "excerpt": "Arguably the most consequential fight of the 2026 Noche UFC card found Manon Fiorot and Alexa Grasso battling it out for a possible shot at gold. Fiorot had revealed during Fight Week that…",
+      "image": "https://cagesidepress.com/wp-content/uploads/2026/09/Manon-Fiorot-vs.-Alexa-Grasso-e1789228149479.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "417fd45e3a8bb702",
+      "title": "Noche UFC results: Curtis Blaydes outpoints Waldo Cortes Acosta in lackluster outing",
+      "url": "https://sports.yahoo.com/articles/noche-ufc-results-curtis-blaydes-223048175.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-12T22:30:48.000Z",
+      "excerpt": "Noche UFC proved an accurate name as athletes and fans alike were looking sleepy during this one.",
+      "image": "https://s.yimg.com/lo/mysterio/api/38f32615ab6234af75df726791253ddef72d2a559fcae3eda80cb01e3f63becb/lightyear_networkapi/resizefill_w1200%3Bquality_80%3Bformat_webp/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Fmma_junkie_usa_today_articles_344%2F9f61d1bcb2fb8b32c8604e2fb4ad18be.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "e5f5f5c0ddf6b74f",
+      "title": "Curtis Blaydes Secures Decision Win Over Waldo Cortes Acosta in Low-Action Affair",
+      "url": "https://www.lowkickmma.com/curtis-blaydes-secures-decision-win-over-waldo-cortes-acosta-in-low-action-affair/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-09-12T22:21:05.000Z",
+      "excerpt": "Earlier tonight at Noche UFC, heavyweight contenders Curtis Blaydes and Waldo Cortes Acosta did not give fans the fight...",
+      "image": "https://cdn.lowkickmma.com/2026/09/gettyimages-2294946182-612x612-1.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "089afe2c2409c993",
+      "title": "Justin Gaethje Blames Arman Tsarukyan for His Title Woes, Still Backs Him to Win at UFC 331",
+      "url": "https://sports.yahoo.com/articles/justin-gaethje-blames-arman-tsarukyan-221622499.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-12T22:16:22.000Z",
+      "excerpt": "Justin Gaethje weighs in on the potential #1 contender's bout between Arman Tsarukyan and Mauricio Ruffy at UFC 331.",
+      "image": "https://media.zenfs.com/en/ny_fights_228/7ee6e0130aa7ca0755934b6d046bfda4.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "7c46110b9c371537",
+      "title": "Noche UFC: Curtis Blaydes Defeats Waldo Cortes-Acosta In Fight That Leaves Crowd Frustrated",
+      "url": "https://cagesidepress.com/2026/09/12/noche-ufc-curtis-blaydes-defeats-waldo-cortes-acosta-in-fight-that-leaves-crowd-frustrated/",
+      "source": "Cageside Press",
+      "sourceUrl": "https://cagesidepress.com/",
+      "publishedAt": "2026-09-12T22:11:21.000Z",
+      "excerpt": "A pair of UFC heavyweight contenders were looking to bounce back as part of the Noche UFC main card on Saturday. Waldo Cortes-Acosta had suffered defeat at the hands of Russia’s Alexander…",
+      "image": "https://cagesidepress.com/wp-content/uploads/2026/09/Curtis-Blaydes-vs.-Waldo-Cortes-Acosta.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "f412f3f006cfe0e0",
+      "title": "David Martinez Extends Win Streak to 11 With Tactical Victory Over Dan Ige",
+      "url": "https://www.lowkickmma.com/david-martinez-extends-win-streak-to-11-with-tactical-victory-over-dan-ige/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-09-12T21:49:17.000Z",
+      "excerpt": "Earlier tonight at Noche UFC, David Martinez extended his win streak to 11 by securing a unanimous win over...",
+      "image": "https://cdn.lowkickmma.com/2026/09/gettyimages-2294943515-612x612-1.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "af482347ce003f06",
+      "title": "Jordan McCann vs Big Stacks result: Misfits grudge match ends in doctor stoppage",
+      "url": "https://bloodyelbow.com/2026/09/12/jordan-mccann-vs-big-stacks-result-misfits-grudge-match-ends-in-doctor-stoppage/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-12T21:49:09.000Z",
+      "excerpt": "Jordan McCann and Big Stacks settled their beef in the ring on Saturday night. Their rivalry dates back to a Misfits card headlined by Tommy ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/09/Big-Stacks-Jordan-McCann.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "8ea734ef74e5b8ad",
+      "title": "Prelim Results | Noche UFC",
+      "url": "https://www.ufc.com/news/noche-ufc-prelim-results-silva-vs-delgado",
+      "source": "UFC",
+      "sourceUrl": "https://www.ufc.com/news",
+      "publishedAt": "2026-09-12T21:37:00.000Z",
+      "excerpt": "Noche UFC: Silva vs Delgado Results, Highlights, Post-Fight Interviews With The Prelim Winners And More, Live From Desert Diamond Arena In Glendale On Saturday, September 12 Read the Full…",
+      "image": "https://ufc.com/images/styles/card/s3/2026-09/091326-Noche-UFC-General-Octagon-GettyImages-2236134032-2.jpg?itok=fEJt2S8a",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "204aac5004d879a8",
+      "title": "Tim Elliott Battles Through Chaos To Outlast Edgar Chairez In Brutal Flyweight War At Noche UFC",
+      "url": "https://www.lowkickmma.com/tim-elliott-edgar-chairez-noche-ufc/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-09-12T21:22:50.000Z",
+      "excerpt": "Tim Elliott survived an early scare from Edgar Chairez before turning the tables and grinding his way to a...",
+      "image": "https://cdn.lowkickmma.com/2026/09/Tim-Elliott-Battles-Through-Chaos-To-Outlast-Edgar-Chairez-At-Noche-UFC.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "b0abc44cd17cac09",
+      "title": "Conor Benn’s brother Harley Benn escapes with DQ win after headbutt ends Misfits Boxing debut early",
+      "url": "https://bloodyelbow.com/2026/09/12/conor-benns-brother-harley-benn-escapes-with-dq-win-after-headbutt-ends-misfits-boxing-debut-early/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-12T21:22:43.000Z",
+      "excerpt": "Conor Benn’s family are 1-0 for the night already after a farcical DQ win for his brother Harley in Newcastle. Harley Benn, the half-brother of ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/09/Harley-Benn-win.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    }
+  ]
+}
