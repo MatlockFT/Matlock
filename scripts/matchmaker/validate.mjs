@@ -42,8 +42,13 @@ export function validateData(data) {
       assert(Array.isArray(f.profileHistory), `Fighter missing preserved profile history: ${f.id}`);
       assert(f.meetingCoverage && typeof f.meetingCoverage.verified === 'boolean', `Fighter missing v2 coverage record: ${f.id}`);
       if (f.meetingCoverage.verified) {
-        assert(/^[a-f0-9]{16}$/i.test(f.meetingCoverage.ufcStatsId || ''), `Verified fighter missing stable UFCStats ID: ${f.id}`);
-        assert(['stable-ufcstats-id', 'exact-name', 'unique-alias'].includes(f.meetingCoverage.identityMethod), `Invalid identity method for ${f.id}`);
+        const method = f.meetingCoverage.identityMethod;
+        assert(['stable-ufcstats-id', 'exact-name', 'unique-alias', 'fight-signature', 'ledger-name'].includes(method), `Invalid identity method for ${f.id}`);
+        if (method === 'ledger-name') {
+          assert(!f.meetingCoverage.ufcStatsId && typeof f.meetingCoverage.ledgerNameKey === 'string' && f.meetingCoverage.ledgerNameKey.length >= 3, `Ledger-name identity is incomplete for ${f.id}`);
+        } else {
+          assert(/^[a-f0-9]{16}$/i.test(f.meetingCoverage.ufcStatsId || ''), `Verified fighter missing stable UFCStats ID: ${f.id}`);
+        }
         assert(f.history.length === f.verifiedMeetings.length, `Canonical history length differs from verified ledger for ${f.id}`);
         assert((f.history[0]?.date || null) === (f.lastFight || null), `Canonical last-fight date mismatch for ${f.id}`);
         for (let i = 0; i < f.history.length; i++) {
