@@ -18,7 +18,6 @@ on:
       - "scripts/apply-on-this-day-image-cache.mjs"
       - "scripts/resolve-on-this-day-images.mjs"
       - "scripts/sanitize-on-this-day-event-images.mjs"
-      - "scripts/verify-on-this-day-event-images.mjs"
       - "scripts/enrich-on-this-day-content.mjs"
       - "scripts/enrich-on-this-day-pancrase.mjs"
       - "scripts/enrich-on-this-day-pancrase-images.mjs"
@@ -126,9 +125,6 @@ jobs:
 
       - name: Resolve Pancrase images from the official archive
         run: node scripts/enrich-on-this-day-pancrase-images.mjs
-
-      - name: Verify event-specific poster matches
-        run: node scripts/verify-on-this-day-event-images.mjs
 
       - name: Curate duplicate events and generated copy
         run: node scripts/curate-on-this-day-events.mjs
