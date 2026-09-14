@@ -140,8 +140,6 @@ jobs:
         run: node scripts/finalize-on-this-day-image-metadata.mjs
 
       - name: Enforce current-window and birthday image QA
-        id: image_qa
-        continue-on-error: true
         run: npm run check:history-images
 
       - name: Build browser runtime immediately
@@ -206,9 +204,3 @@ jobs:
           git push --force origin HEAD:refs/heads/otd-share-cache
           cd - >/dev/null
           rm -rf .otd-share-cache "$cache_repo"
-
-      - name: Report unresolved image QA blockers
-        if: steps.image_qa.outcome == 'failure'
-        run: |
-          echo "The improved OTD data and share images were published, but strict image QA still found unresolved current-window entries or birthday image blockers."
-          exit 1
