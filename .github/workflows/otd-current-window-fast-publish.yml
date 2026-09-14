@@ -13,6 +13,7 @@ on:
       - "scripts/resolve-on-this-day-tapology-posters.mjs"
       - "scripts/resolve-on-this-day-event-posters.mjs"
       - "scripts/sanitize-on-this-day-tapology-posters.mjs"
+      - "scripts/prune-on-this-day-poster-registry.mjs"
       - "scripts/finalize-on-this-day-image-metadata.mjs"
       - "scripts/check-on-this-day-images.mjs"
       - "scripts/build-on-this-day-runtime.mjs"
@@ -78,6 +79,7 @@ jobs:
           node --check scripts/resolve-on-this-day-tapology-posters.mjs
           node --check scripts/resolve-on-this-day-event-posters.mjs
           node --check scripts/sanitize-on-this-day-tapology-posters.mjs
+          node --check scripts/prune-on-this-day-poster-registry.mjs
           node --check scripts/finalize-on-this-day-image-metadata.mjs
           node --check scripts/check-on-this-day-images.mjs
           node --check scripts/build-on-this-day-runtime.mjs
@@ -137,6 +139,9 @@ jobs:
 
       - name: Recover exact Wikipedia event posters
         run: node scripts/resolve-on-this-day-event-posters.mjs
+
+      - name: Prune stale poster registry records
+        run: node scripts/prune-on-this-day-poster-registry.mjs
 
       - name: Finalize public image metadata
         run: node scripts/finalize-on-this-day-image-metadata.mjs
