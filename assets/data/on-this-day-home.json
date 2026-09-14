@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-09-14T18:13:10.987Z",
+  "generatedAt": "2026-09-14T18:14:33.540Z",
   "timeZone": "America/Chicago",
   "key": "09-14",
   "entry": {
@@ -12,14 +12,14 @@
     "source": "Tapology",
     "sourceUrl": "https://www.tapology.com/search?term=UFC%20Fight%20Night%3A%20Cowboy%20vs.%20Gaethje",
     "weight": 52,
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/1/17/UFC_on_ESPN%2B_16.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-    "imageAlt": "UFC Fight Night: Cowboy vs. Gaethje event image",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/1/17/UFC_on_ESPN%2B_16.jpg",
+    "imageAlt": "UFC Fight Night: Cowboy vs. Gaethje event poster",
     "imageCredit": "Wikipedia",
-    "imageSourceUrl": "https://en.wikipedia.org/wiki/UFC_Fight_Night:_Cowboy_vs._Gaethje",
-    "imageSourceType": "existing-image",
-    "imageConfidence": 0.7,
+    "imageSourceUrl": "https://en.wikipedia.org/wiki/UFC_Fight_Night%3A_Cowboy_vs._Gaethje",
+    "imageSourceType": "wikipedia-event-poster",
+    "imageConfidence": 0.99,
     "imageSubjectType": "event",
-    "imageMatchReason": "Existing resolved image retained with cached provenance metadata.",
+    "imageMatchReason": "Exact UFC Fight Night: Cowboy vs. Gaethje Wikipedia event page identifies the September 14, 2019 event and its poster file UFC on ESPN+ 16.jpg; the direct Wikimedia poster URL was independently verified.",
     "imageStatus": "resolved"
   }
 }
