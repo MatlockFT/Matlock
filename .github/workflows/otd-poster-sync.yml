@@ -28,6 +28,7 @@ jobs:
     timeout-minutes: 45
     env:
       OTD_TAPOLOGY_POSTER_LIMIT: ${{ inputs.limit || '24' }}
+      OTD_EVENT_POSTER_LIMIT: "2500"
       OTD_POSTER_REFRESH: ${{ inputs.refresh && '1' || '0' }}
       OTD_CURRENT_WINDOW_DAYS: "2"
       OTD_TIME_ZONE: "America/Chicago"
@@ -74,6 +75,12 @@ jobs:
 
       - name: Resolve and byte-verify exact event posters
         run: npm run resolve:history-posters
+
+      - name: Apply curated non-Tapology poster fallbacks
+        run: npm run apply:history-poster-fallbacks
+
+      - name: Recover exact Wikipedia event posters
+        run: npm run resolve:history-event-posters
 
       - name: Validate poster identity registry
         run: npm run check:poster-registry
@@ -125,7 +132,7 @@ jobs:
 
       - name: Note unresolved poster coverage
         if: steps.image_qa.outcome == 'failure'
-        run: echo "::warning::Some current-window event posters still need exact verification. Unverified images remain withheld."
+        run: echo "::warning::Some current-window event posters still need exact verification. Event cards still render a labeled archive-poster fallback while authentic artwork is sourced."
 
       - name: Commit verified registry and generated data
         shell: bash
