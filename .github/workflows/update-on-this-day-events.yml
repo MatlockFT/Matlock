@@ -48,7 +48,7 @@ jobs:
       OTD_CONTENT_ENRICH_LIMIT: "80"
       OTD_CONTENT_CONCURRENCY: "1"
       OTD_PANCRASE_ENRICH_LIMIT: "24"
-      OTD_PANCRASE_IMAGE_LIMIT: "80"
+      OTD_PANCRASE_IMAGE_LIMIT: ${{ github.event_name == 'push' && '20' || '80' }}
       OTD_SHARE_WINDOW_DAYS: "2"
       OTD_SHARE_MAX_PER_DAY: "12"
       OTD_SHARE_CONCURRENCY: "3"
