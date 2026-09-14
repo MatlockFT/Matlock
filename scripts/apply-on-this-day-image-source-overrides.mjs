@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 
 const HISTORY_PATH = process.argv[2] || 'assets/data/on-this-day.json';
 const OVERRIDES_PATH = process.argv[3] || 'assets/data/on-this-day-image-source-overrides.json';
-const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD/1.3';
+const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD/1.4';
 const REQUEST_TIMEOUT_MS = 20000;
 const REQUEST_ATTEMPTS = 3;
 
@@ -188,6 +188,7 @@ let applied = 0;
 let retained = 0;
 let fallbackApplied = 0;
 let posterMetadataRepaired = 0;
+let deferredEventBindings = 0;
 const failures = [];
 
 for (const override of overrides) {
@@ -209,22 +210,40 @@ for (const override of overrides) {
     continue;
   }
 
+  // Event source-page bindings are metadata for the stricter poster resolvers.
+  // Do not crawl those pages here: doing so duplicates Tapology/Wikipedia work,
+  // can spend minutes retrying bot-blocked pages, and may promote generic event art.
+  // Direct image URLs remain eligible so manually verified/official assets still apply instantly.
+  const hasDirectPrimary = usableImage(override?.imageUrl);
+  const hasDirectFallback = usableImage(override?.fallbackImageUrl);
+  if (isEvent(entry) && !hasDirectPrimary && !hasDirectFallback) {
+    deferredEventBindings += 1;
+    continue;
+  }
+
   let result;
   let usedFallback = false;
   let primaryError = '';
-  try {
-    result = await resolveFromSource(override?.imageUrl, override?.sourceUrl, entry, override);
-  } catch (error) {
-    primaryError = clean(error?.message || error);
-    if (clean(override?.fallbackImageUrl) || clean(override?.fallbackSourceUrl)) {
-      try {
-        result = await resolveFromSource(override?.fallbackImageUrl, override?.fallbackSourceUrl, entry, override);
-        usedFallback = true;
-      } catch (fallbackError) {
-        failures.push(`${label}: primary ${primaryError}; fallback ${clean(fallbackError?.message || fallbackError)}`);
+
+  if (isEvent(entry) && !hasDirectPrimary && hasDirectFallback) {
+    result = await resolveFromSource(override?.fallbackImageUrl, override?.fallbackSourceUrl, entry, override);
+    usedFallback = true;
+    primaryError = 'event page binding deferred to dedicated poster resolver';
+  } else {
+    try {
+      result = await resolveFromSource(override?.imageUrl, override?.sourceUrl, entry, override);
+    } catch (error) {
+      primaryError = clean(error?.message || error);
+      if (clean(override?.fallbackImageUrl) || clean(override?.fallbackSourceUrl)) {
+        try {
+          result = await resolveFromSource(override?.fallbackImageUrl, override?.fallbackSourceUrl, entry, override);
+          usedFallback = true;
+        } catch (fallbackError) {
+          failures.push(`${label}: primary ${primaryError}; fallback ${clean(fallbackError?.message || fallbackError)}`);
+        }
+      } else {
+        failures.push(`${label}: ${primaryError}`);
       }
-    } else {
-      failures.push(`${label}: ${primaryError}`);
     }
   }
 
@@ -266,7 +285,8 @@ for (const override of overrides) {
 
 history.imageSourceOverrideVersion = Number(overridesData?.version || 1);
 history.imageSourceOverridesAppliedAt = nowIso;
+history.imageSourceOverridePolicy = 'direct assets and non-event sources only; event page bindings are deferred to dedicated poster resolvers';
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
 
-console.log(`On This Day verified source overrides: ${applied} applied (${fallbackApplied} fallback), ${retained} already protected, ${posterMetadataRepaired} poster metadata repaired, ${failures.length} unresolved.`);
+console.log(`On This Day verified source overrides: ${applied} applied (${fallbackApplied} fallback), ${retained} already protected, ${posterMetadataRepaired} poster metadata repaired, ${deferredEventBindings} event binding(s) deferred, ${failures.length} unresolved.`);
 if (failures.length) console.warn(failures.map(item => `- ${item}`).join('\n'));
