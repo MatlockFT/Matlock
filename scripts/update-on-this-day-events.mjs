@@ -232,13 +232,37 @@ function looksLikeEventTitle(title) {
     return /[a-z]/i.test(title);
 }
 
+const VERIFIED_POSTER_FIELDS = [
+    "imageUrl", "imageAlt", "imageCredit", "imagePosition", "imageSourceUrl",
+    "imageSourceType", "imageConfidence", "imageSubjectType", "imageMatchReason",
+    "imageStatus", "imageArtifactType", "imagePosterVerified", "imageFallback",
+    "imageExactMatch", "imageTapologyBinding", "imageTapologyPageUrl",
+    "imageManualVisualVerified", "imageTapologyRegistryKey", "imagePosterSha256",
+    "imageWidth", "imageHeight", "imageResolvedAt", "imageFileTitle",
+    "imageWikipediaTitle", "imageWikipediaFileTitle", "imageFallbackExactAvailable",
+    "imagePosterStatus"
+];
+
 function copyStoredImage(entry, stored) {
-    if (!stored?.imageUrl) return false;
-    entry.imageUrl = stored.imageUrl;
-    entry.imageAlt = stored.imageAlt || `${entry.title.replace(/\s+took place$/i, "")} event image`;
-    if (stored.imageCredit) entry.imageCredit = stored.imageCredit;
-    if (stored.imagePosition) entry.imagePosition = stored.imagePosition;
+    if (!/^https:\/\//i.test(clean(stored?.imageUrl))) return false;
+
+    const verifiedPoster = stored?.imagePosterVerified === true && clean(stored?.imageArtifactType) === "event-poster";
+    if (verifiedPoster) {
+        for (const field of VERIFIED_POSTER_FIELDS) {
+            if (stored[field] !== undefined && stored[field] !== null && stored[field] !== "") entry[field] = stored[field];
+        }
+    } else {
+        entry.imageUrl = stored.imageUrl;
+        entry.imageAlt = stored.imageAlt || `${entry.title.replace(/\s+took place$/i, "")} event image`;
+        if (stored.imageCredit) entry.imageCredit = stored.imageCredit;
+        if (stored.imagePosition) entry.imagePosition = stored.imagePosition;
+    }
+
+    if (!entry.imageAlt) entry.imageAlt = `${entry.title.replace(/\s+took place$/i, "")} event image`;
     if (!entry.wikipediaTitle && stored.wikipediaTitle) entry.wikipediaTitle = stored.wikipediaTitle;
+    for (const field of ["tapologyUrl", "archiveSourceUrl", "originalSourceUrl"]) {
+        if (!entry[field] && stored?.[field]) entry[field] = stored[field];
+    }
     return true;
 }
 
@@ -261,10 +285,12 @@ async function hydrateWikipediaImages(entries, previousEntries) {
 
     const pending = [];
     let reused = 0;
+    let verifiedPostersPreserved = 0;
 
     for (const entry of entries) {
         if (copyStoredImage(entry, previousByKey.get(entry.autoKey))) {
             reused += 1;
+            if (entry?.imagePosterVerified === true && clean(entry?.imageArtifactType) === "event-poster") verifiedPostersPreserved += 1;
             continue;
         }
 
@@ -316,7 +342,7 @@ async function hydrateWikipediaImages(entries, previousEntries) {
         }
     }
 
-    console.log(`On This Day images: ${reused} reused, ${fetched} fetched, ${entries.length - reused - fetched} without a Wikipedia image.`);
+    console.log(`On This Day images: ${reused} reused (${verifiedPostersPreserved} verified poster record(s) preserved), ${fetched} fetched, ${entries.length - reused - fetched} without a Wikipedia image.`);
 }
 
 function eventRowsFromHtml(html, source) {
