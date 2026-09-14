@@ -4,9 +4,13 @@ import { resolve } from "node:path";
 const file = resolve("assets/data/on-this-day.json");
 const pageFile = resolve("on-this-day.html");
 const runtimeFile = resolve("assets/on-this-day-stable.js");
+const eventPosterFallbackRuntimeFile = resolve("assets/otd-event-poster-fallback.js");
+const eventPosterFallbackStyleFile = resolve("assets/otd-event-poster-fallback.css");
 const data = JSON.parse(await readFile(file, "utf8"));
 const page = await readFile(pageFile, "utf8");
 const runtime = await readFile(runtimeFile, "utf8");
+const eventPosterFallbackRuntime = await readFile(eventPosterFallbackRuntimeFile, "utf8");
+const eventPosterFallbackStyle = await readFile(eventPosterFallbackStyleFile, "utf8");
 const entries = Array.isArray(data?.entries) ? data.entries : [];
 const allowedKinds = new Set([
     "fight",
@@ -58,6 +62,12 @@ if (!page.includes("/assets/on-this-day-stable.js")) {
 if (!page.includes("/assets/on-this-day.bundle.css")) {
     failures.push("on-this-day.html must load the generated On This Day stylesheet bundle");
 }
+if (!page.includes("/assets/otd-event-poster-fallback.js")) {
+    failures.push("on-this-day.html must load the event poster fallback renderer");
+}
+if (!page.includes("/assets/otd-event-poster-fallback.css")) {
+    failures.push("on-this-day.html must load the event poster fallback stylesheet");
+}
 if (!page.includes("data-history-index-url") || !page.includes("data-history-fallback-url")) {
     failures.push("on-this-day.html must provide optimized history data and a full-archive fallback");
 }
@@ -77,6 +87,12 @@ if (/\bMutationObserver\b/.test(runtime) || /\bIntersectionObserver\b/.test(runt
 }
 for (const marker of ["COLLAPSE_LIMIT", "significanceScore", "openLightbox", "dataset.otdEntryLink", "classifyImage"]) {
     if (!runtime.includes(marker)) failures.push(`stable On This Day runtime is missing QoL marker: ${marker}`);
+}
+for (const marker of [".otd-entry--event", ".otd-entry-media.is-fallback", "is-event-poster-fallback", "Original poster pending", "MutationObserver"]) {
+    if (!eventPosterFallbackRuntime.includes(marker)) failures.push(`event poster fallback runtime is missing required marker: ${marker}`);
+}
+for (const marker of ["has-event-poster-fallback", "aspect-ratio: 4 / 5", "otd-event-poster-title", "otd-event-poster-status"]) {
+    if (!eventPosterFallbackStyle.includes(marker)) failures.push(`event poster fallback stylesheet is missing required marker: ${marker}`);
 }
 
 for (const [index, entry] of entries.entries()) {
@@ -201,4 +217,4 @@ if (failures.length) {
 
 console.log(`On This Day data valid: ${entries.length} entries (${eventArchiveCount} auto events, ${birthdayCount} birthdays)`);
 console.log(`On This Day generated coverage: ${generatedWithImages}/${eventArchiveCount} images, ${generatedWithDetails}/${eventArchiveCount} concise details.`);
-console.log("On This Day runtime regression checks passed: one stable renderer, QoL controls present, observer loops absent, representative event images intact.");
+console.log("On This Day runtime regression checks passed: one stable renderer, QoL controls present, observer loops absent from the stable runtime, representative event images intact, and event-specific poster fallback assets loaded.");
