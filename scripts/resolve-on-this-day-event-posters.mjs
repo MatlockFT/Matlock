@@ -3,14 +3,22 @@ import fs from 'node:fs/promises';
 const HISTORY_PATH = process.argv[2] || 'assets/data/on-this-day.json';
 const TIME_ZONE = process.env.OTD_TIME_ZONE || 'America/Chicago';
 const LIMIT = Math.max(1, Number(process.env.OTD_EVENT_POSTER_LIMIT || 220));
-const REQUEST_TIMEOUT_MS = 7000;
-const REQUEST_ATTEMPTS = 1;
-const WIKIPEDIA_BATCH_SIZE = 25;
-const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD-Posters/6.0';
+const REQUEST_TIMEOUT_MS = Math.max(5000, Number(process.env.OTD_WIKIPEDIA_TIMEOUT_MS || 20000));
+const REQUEST_ATTEMPTS = Math.max(1, Number(process.env.OTD_WIKIPEDIA_REQUEST_ATTEMPTS || 4));
+const WIKIPEDIA_BATCH_SIZE = Math.max(1, Math.min(20, Number(process.env.OTD_WIKIPEDIA_BATCH_SIZE || 10)));
+const REQUEST_PAUSE_MS = Math.max(100, Number(process.env.OTD_WIKIPEDIA_REQUEST_PAUSE_MS || 250));
+const USER_AGENT = 'MMA-Matlock-OTD-Posters/7.0 (https://mmamatlock.com/on-this-day/; poster recovery; contact via site)';
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
-const norm = value => clean(value).normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const norm = value => clean(value)
+  .normalize('NFKD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, ' ')
+  .replace(/\b(ufc|wec|bellator|pride|pancrase|rizin|pfl|wsof)(\d{1,4})\b/g, '$1 $2')
+  .replace(/\s+/g, ' ')
+  .trim();
 const http = value => /^https:\/\//i.test(clean(value));
 const trustedTapologyBindings = new Set(['direct-event-page','bing-image-exact-event-page','manual-exact-event-page','legacy-filename-exact']);
 const trustedPosterTypes = new Set([
@@ -37,19 +45,20 @@ function promotionKey(entry) {
   if (text.includes('pride')) return 'pride';
   if (text.includes('pancrase')) return 'pancrase';
   if (text.includes('rizin')) return 'rizin';
+  if (text.includes('world series of fighting') || /\bwsof\b/.test(text)) return 'wsof';
   if (text.includes('professional fighters league') || /\bpfl\b/.test(text)) return 'pfl';
   if (text.includes('one championship')) return 'one';
   return '';
 }
 
 function eventNumber(entry) {
-  return norm(eventName(entry)).match(/\b(?:ufc|wec|bellator|pfl|rizin|one|pride|pancrase)\s*(?:fight\s*night\s*)?(\d{1,4})\b/)?.[1] || '';
+  return norm(eventName(entry)).match(/\b(?:ufc|wec|bellator|pfl|wsof|rizin|one|pride|pancrase)\s*(?:fight\s*night\s*)?(\d{1,4})\b/)?.[1] || '';
 }
 
 function eventTokens(entry) {
   const stop = new Set([
     'the','and','with','from','into','versus','fight','fighting','night','event','championship','championships',
-    'ufc','wec','bellator','pride','pancrase','rizin','pfl','one','strikeforce'
+    'ufc','wec','bellator','pride','pancrase','rizin','pfl','wsof','one','strikeforce','world','series'
   ]);
   return norm(eventName(entry)).split(' ').filter(token => token.length >= 3 && !stop.has(token));
 }
@@ -65,6 +74,7 @@ function eventMatch(value, entry) {
     const compact = haystack.replace(/\s+/g, '');
     if (compact.includes(`${promo}${number}`)) return true;
     if (haystack.includes(promo) && new RegExp(`\\b${number}\\b`).test(haystack)) return true;
+    if (promo === 'wsof' && haystack.includes('world series of fighting') && new RegExp(`\\b${number}\\b`).test(haystack)) return true;
   }
   const tokens = eventTokens(entry);
   return tokens.length >= 2 && tokens.filter(token => haystack.includes(token)).length >= Math.min(3, tokens.length);
@@ -115,19 +125,50 @@ function distance(entry) {
   return Math.min(direct, 366 - direct);
 }
 
+function retryDelay(response, attempt) {
+  const retryAfter = Number(response?.headers?.get?.('retry-after') || 0);
+  if (Number.isFinite(retryAfter) && retryAfter > 0) return Math.min(10000, retryAfter * 1000);
+  return Math.min(8000, 600 * (2 ** (attempt - 1)));
+}
+
 async function fetchJson(url) {
   let lastError;
   for (let attempt = 1; attempt <= REQUEST_ATTEMPTS; attempt += 1) {
+    let response;
     try {
-      const response = await fetch(url, {
+      response = await fetch(url, {
         redirect: 'follow',
         signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
-        headers: { 'user-agent': USER_AGENT, accept: 'application/json' }
+        headers: {
+          'user-agent': USER_AGENT,
+          accept: 'application/json',
+          'accept-language': 'en-US,en;q=0.9'
+        }
       });
-      if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-      return response.json();
+      if (!response.ok) {
+        const error = new Error(`${response.status} ${response.statusText}`);
+        if (![408, 425, 429, 500, 502, 503, 504].includes(response.status) || attempt === REQUEST_ATTEMPTS) throw error;
+        lastError = error;
+        await sleep(retryDelay(response, attempt));
+        continue;
+      }
+      const data = await response.json();
+      if (data?.error) {
+        const code = clean(data.error.code);
+        const info = clean(data.error.info);
+        const error = new Error(`Wikipedia API ${code || 'error'}${info ? `: ${info}` : ''}`);
+        if (code !== 'maxlag' || attempt === REQUEST_ATTEMPTS) throw error;
+        lastError = error;
+        await sleep(retryDelay(response, attempt));
+        continue;
+      }
+      return data;
     } catch (error) {
       lastError = error;
+      if (attempt < REQUEST_ATTEMPTS) {
+        await sleep(retryDelay(response, attempt));
+        continue;
+      }
     }
   }
   throw lastError || new Error(`Unable to fetch ${url}`);
@@ -149,7 +190,7 @@ function deterministicWikipediaTitles(entry) {
   };
 
   add(entry?.wikipediaTitle);
-  for (const value of [entry?.archiveSourceUrl, entry?.originalSourceUrl, entry?.imageSourceUrl]) add(wikipediaTitleFromUrl(value));
+  for (const value of [entry?.archiveSourceUrl, entry?.originalSourceUrl, entry?.imageSourceUrl, entry?.sourceUrl]) add(wikipediaTitleFromUrl(value));
 
   const name = eventName(entry);
   const promo = promotionKey(entry);
@@ -160,8 +201,14 @@ function deterministicWikipediaTitles(entry) {
     add(`${label} ${number}`);
   }
 
+  if (promo === 'wsof' && number) {
+    const suffix = clean(name.replace(/^WSOF\s*\d+\s*:?\s*/i, ''));
+    if (suffix) add(`World Series of Fighting ${number}: ${suffix}`);
+    add(`World Series of Fighting ${number}`);
+  }
+
   if (promo !== 'pancrase') add(name);
-  return titles.slice(0, 4);
+  return titles.slice(0, 6);
 }
 
 function filenamePosterEvidence(fileName, entry) {
@@ -177,12 +224,17 @@ function filenamePosterEvidence(fileName, entry) {
   if (!number && compactTitle.length >= 12 && compactFile.includes(compactTitle)) return true;
 
   if (promo && number) {
-    const compactKey = `${promo}${number}`;
-    const hasExactKey = compactFile.includes(compactKey) || (file.includes(promo) && new RegExp(`\\b${number}\\b`).test(file));
+    const keys = [`${promo}${number}`];
+    if (promo === 'wsof') keys.push(`worldseriesoffighting${number}`);
+    const hasExactKey = keys.some(key => compactFile.includes(key)) ||
+      (file.includes(promo) && new RegExp(`\\b${number}\\b`).test(file)) ||
+      (promo === 'wsof' && file.includes('world series of fighting') && new RegExp(`\\b${number}\\b`).test(file));
     if (!hasExactKey) return false;
     if (explicitPoster) return true;
 
-    const keyPattern = new RegExp(`${promo}\\s*${number}\\b`, 'i');
+    const keyPattern = promo === 'wsof'
+      ? new RegExp(`(?:wsof|world\\s+series\\s+of\\s+fighting)\\s*${number}\\b`, 'i')
+      : new RegExp(`${promo}\\s*${number}\\b`, 'i');
     const leftovers = file
       .replace(keyPattern, ' ')
       .split(' ')
@@ -268,12 +320,60 @@ function chunks(values, size) {
   return output;
 }
 
+async function wikipediaPages(titles) {
+  const url = new URL('https://en.wikipedia.org/w/api.php');
+  url.searchParams.set('action', 'query');
+  url.searchParams.set('format', 'json');
+  url.searchParams.set('formatversion', '2');
+  url.searchParams.set('redirects', '1');
+  url.searchParams.set('maxlag', '5');
+  url.searchParams.set('prop', 'pageimages|info');
+  url.searchParams.set('piprop', 'name|thumbnail|original');
+  url.searchParams.set('pithumbsize', '1400');
+  url.searchParams.set('inprop', 'url');
+  url.searchParams.set('titles', titles.join('|'));
+  const data = await fetchJson(url);
+  return Array.isArray(data?.query?.pages) ? data.query.pages : [];
+}
+
 async function resolveWikipediaPostersBatch(entries) {
   const resolved = new Map();
   const titleLists = new Map(entries.map(entry => [entry, deterministicWikipediaTitles(entry)]));
   const maxRounds = Math.max(0, ...entries.map(entry => titleLists.get(entry)?.length || 0));
   let requests = 0;
   let failedRequests = 0;
+  const terminalFailures = [];
+
+  async function resolveBatch(batch) {
+    if (!batch.length) return;
+    const titles = [...new Set(batch.map(item => item.title))];
+    if (!titles.length) return;
+
+    try {
+      const pages = await wikipediaPages(titles);
+      requests += 1;
+      for (const { entry } of batch) {
+        if (resolved.has(entry)) continue;
+        for (const page of pages) {
+          const poster = wikipediaPosterFromPage(page, entry);
+          if (poster) {
+            resolved.set(entry, poster);
+            break;
+          }
+        }
+      }
+    } catch (error) {
+      failedRequests += 1;
+      if (batch.length > 1) {
+        const middle = Math.ceil(batch.length / 2);
+        await resolveBatch(batch.slice(0, middle));
+        await sleep(REQUEST_PAUSE_MS);
+        await resolveBatch(batch.slice(middle));
+        return;
+      }
+      terminalFailures.push(`${batch[0]?.title || '(unknown title)'}: ${clean(error?.message) || 'request failed'}`);
+    }
+  }
 
   for (let round = 0; round < maxRounds; round += 1) {
     const candidates = entries
@@ -282,42 +382,12 @@ async function resolveWikipediaPostersBatch(entries) {
       .filter(item => item.title);
 
     for (const batch of chunks(candidates, WIKIPEDIA_BATCH_SIZE)) {
-      const titles = [...new Set(batch.map(item => item.title))];
-      if (!titles.length) continue;
-
-      try {
-        const url = new URL('https://en.wikipedia.org/w/api.php');
-        url.searchParams.set('action', 'query');
-        url.searchParams.set('format', 'json');
-        url.searchParams.set('formatversion', '2');
-        url.searchParams.set('redirects', '1');
-        url.searchParams.set('prop', 'pageimages|info');
-        url.searchParams.set('piprop', 'name|thumbnail|original');
-        url.searchParams.set('pithumbsize', '1400');
-        url.searchParams.set('inprop', 'url');
-        url.searchParams.set('titles', titles.join('|'));
-        const data = await fetchJson(url);
-        requests += 1;
-        const pages = Array.isArray(data?.query?.pages) ? data.query.pages : [];
-
-        for (const { entry } of batch) {
-          if (resolved.has(entry)) continue;
-          for (const page of pages) {
-            const poster = wikipediaPosterFromPage(page, entry);
-            if (poster) {
-              resolved.set(entry, poster);
-              break;
-            }
-          }
-        }
-      } catch {
-        failedRequests += 1;
-      }
-      await sleep(140);
+      await resolveBatch(batch);
+      await sleep(REQUEST_PAUSE_MS);
     }
   }
 
-  return { resolved, requests, failedRequests };
+  return { resolved, requests, failedRequests, terminalFailures };
 }
 
 function applyPoster(entry, poster, nowIso) {
@@ -403,13 +473,17 @@ for (const entry of wikipediaTargets) {
   }
 }
 
-history.eventPosterResolverVersion = 6;
+history.eventPosterResolverVersion = 7;
 history.eventPosterResolverUpdatedAt = nowIso;
 history.eventPosterPriority = ['tapology-exact-bound', 'trusted-explicit-poster', 'stored-exact-wikipedia-poster', 'wikipedia-exact-event-poster-evidence', 'stored-relevant-fallback'];
-history.eventPosterSearchPolicy = 'no-unbound-image-search; no generic event-image promotion; no orientation-only verification; Wikipedia page and filename must identify event/poster; batched exact-page lookup';
+history.eventPosterSearchPolicy = 'poster-only browser output; no generic event-image promotion; no orientation-only verification; Wikipedia page and filename must identify event/poster; retried batched exact-page lookup with split recovery';
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
 
 const verified = events.filter(entry => exactBoundTapologyPoster(entry) || trustedExistingPoster(entry)).length;
-console.log(`OTD event-poster resolver v6: ${targets.length} reviewed; ${tapologyRetained} exact-bound Tapology, ${trustedRetained} trusted existing posters, ${storedWikipediaPromoted} stored Wikipedia posters promoted, ${wikipediaResolved} Wikipedia posters fetched, ${fallbackPreserved} stored fallbacks preserved, ${unresolved} unresolved.`);
-console.log(`Wikipedia poster recovery used ${wikipediaBatch.requests} successful batched request(s) and ${wikipediaBatch.failedRequests} failed batch(es).`);
+console.log(`OTD event-poster resolver v7: ${targets.length} reviewed; ${tapologyRetained} exact-bound Tapology, ${trustedRetained} trusted existing posters, ${storedWikipediaPromoted} stored Wikipedia posters promoted, ${wikipediaResolved} Wikipedia posters fetched, ${fallbackPreserved} stored fallbacks preserved, ${unresolved} unresolved.`);
+console.log(`Wikipedia poster recovery used ${wikipediaBatch.requests} successful request(s), ${wikipediaBatch.failedRequests} failed request(s), and ${wikipediaBatch.terminalFailures.length} terminal single-title failure(s).`);
+if (wikipediaBatch.terminalFailures.length) {
+  console.warn('Wikipedia poster requests still failing after retry/split recovery:');
+  for (const failure of wikipediaBatch.terminalFailures.slice(0, 20)) console.warn(`- ${failure}`);
+}
 console.log(`Verified event-poster coverage after safe pass: ${verified}/${events.length}. Stored and fetched Wikipedia posters require an exact event page plus event-identifying poster filename.`);
