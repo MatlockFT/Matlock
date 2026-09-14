@@ -18,6 +18,7 @@ on:
       - "scripts/apply-on-this-day-image-cache.mjs"
       - "scripts/resolve-on-this-day-images.mjs"
       - "scripts/sanitize-on-this-day-event-images.mjs"
+      - "scripts/prune-on-this-day-poster-registry.mjs"
       - "scripts/enrich-on-this-day-content.mjs"
       - "scripts/enrich-on-this-day-pancrase.mjs"
       - "scripts/enrich-on-this-day-pancrase-images.mjs"
@@ -84,6 +85,7 @@ jobs:
           node --check scripts/check-on-this-day-poster-registry.mjs
           node --check scripts/resolve-on-this-day-event-posters.mjs
           node --check scripts/sanitize-on-this-day-event-images.mjs
+          node --check scripts/prune-on-this-day-poster-registry.mjs
           node --check scripts/finalize-on-this-day-image-metadata.mjs
           node --check scripts/check-on-this-day-images.mjs
           node --check scripts/verify-on-this-day-event-images.mjs
@@ -146,6 +148,9 @@ jobs:
 
       - name: Apply verified current-window poster fallbacks
         run: node scripts/apply-on-this-day-current-poster-fallbacks.mjs
+
+      - name: Prune stale poster registry records
+        run: node scripts/prune-on-this-day-poster-registry.mjs
 
       - name: Normalize image provenance metadata
         run: node scripts/finalize-on-this-day-image-metadata.mjs
