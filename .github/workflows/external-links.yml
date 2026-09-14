@@ -2,15 +2,28 @@ name: External link check
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/external-links.yml"
+      - "scripts/check-external-links.mjs"
+      - "mma-yellowpages.html"
+      - "_data/**"
   schedule:
     - cron: "23 13 * * 1"
 
 permissions:
   contents: read
 
+concurrency:
+  group: external-link-check-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Check out repository
