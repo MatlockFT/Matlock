@@ -820,21 +820,6 @@
       "transport": "tapology-via-public-reader-v1",
       "verifiedAt": "2026-09-10T04:06:29.147Z"
     },
-    "2002-09-07::cage rage holds its first event in london": {
-      "key": "2002-09-07::cage rage holds its first event in london",
-      "status": "verified-unavailable",
-      "date": "2002-09-07",
-      "title": "Cage Rage holds its first event in London",
-      "eventTitle": "Cage Rage 1: The Beginning",
-      "eventDate": "2002-09-07",
-      "dateMatch": "exact",
-      "eventUrl": "https://www.tapology.com/fightcenter/events/2151-cage-rage-1-the-beginning",
-      "titleScore": 100,
-      "rejectedAssetUrl": "https://images.tapology.com/poster_images/2151/profile/images.jpg?1541840419",
-      "transport": "tapology-via-public-reader-v1",
-      "checkedAt": "2026-09-10T04:08:27.232Z",
-      "reason": "The exact event page was verified, but its only poster asset was unusable: Poster byte length 5994 is outside the safe range."
-    },
     "1997-10-11::pride 1": {
       "key": "1997-10-11::pride 1",
       "status": "verified-unavailable",
@@ -1252,6 +1237,6 @@
       "reason": "The exact Tapology event page was verified by title and date but exposes no event poster."
     }
   },
-  "updatedAt": "2026-09-14T20:47:49.493Z",
+  "updatedAt": "2026-09-14T21:03:46.098Z",
   "policy": "Exact Tapology title and date; unique search result; event-bound poster path; image bytes dimension-checked and SHA-256 pinned; verified bytes mirrored to otd-poster-cache; failures preserve last known-good records."
 }

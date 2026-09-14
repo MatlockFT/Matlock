@@ -91,13 +91,13 @@
       "source": "Tapology",
       "sourceUrl": "https://www.tapology.com/fightcenter/events/2151-cage-rage-1-the-beginning",
       "weight": 86,
-      "imageSubjectType": "event",
-      "imageStatus": "unresolved",
-      "imageMatchReason": "The exact Tapology event page matched this event by title and date but did not publish a poster. No substitute image is used.",
-      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/2151-cage-rage-1-the-beginning",
-      "imageSourceType": "verified-no-poster",
-      "imageConfidence": 1,
-      "imageExactMatch": true,
+      "imageSubjectType": "fighter",
+      "imageStatus": "resolved",
+      "imageMatchReason": "Tapology event artwork was temporarily inaccessible; Cage Rage 1 main-event fighter Jean Silva is used as a deterministic related-fighter fallback.",
+      "imageSourceUrl": "https://www.sherdog.com/fighter/Jean-Silva-4180",
+      "imageSourceType": "related-fighter-fallback",
+      "imageConfidence": 0.78,
+      "imageExactMatch": false,
       "imageFallback": true,
       "imagePrimarySourceUrl": "https://www.tapology.com/fightcenter/events/2151-cage-rage-1-the-beginning",
       "imagePrimaryFailureReason": "403 Forbidden",
@@ -105,7 +105,11 @@
       "imageArtifactType": "event-poster-unavailable",
       "imagePosterVerified": false,
       "imageTapologyPageUrl": "https://www.tapology.com/fightcenter/events/2151-cage-rage-1-the-beginning",
-      "imagePosterUnavailableVerified": true
+      "imagePosterUnavailableVerified": true,
+      "imageUrl": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20090907061302_jeansilva.JPG",
+      "imageAlt": "Cage Rage holds its first event in London image",
+      "imageCredit": "Sherdog",
+      "imageResolvedAt": "2026-09-14T21:03:32.055Z"
     },
     {
       "date": "2002-09-07",
@@ -125,7 +129,7 @@
       "imageSourceUrl": "https://en.wikipedia.org/wiki/Kiyoshi_Tamura",
       "imageSourceType": "wikipedia-fighter-fallback",
       "imageConfidence": 0.82,
-      "imageResolvedAt": "2026-09-14T21:02:02.484Z",
+      "imageResolvedAt": "2026-09-14T21:03:32.055Z",
       "imageExactMatch": false,
       "imageFallback": true,
       "imagePrimarySourceUrl": "https://www.tapology.com/fightcenter/bouts/4779-deep-6-impact-kiyoshi-tamura-vs-minowaman-ikuhisa-minowa",
@@ -24722,7 +24726,7 @@
       "imageUrl": "https://images.tapology.com/poster_images/19438/profile/Bellator_99_Poster.jpg?1379101839",
       "imageAlt": "Bellator 99 event poster",
       "imageCredit": "Tapology",
-      "imageResolvedAt": "2026-09-14T21:02:14.427Z"
+      "imageResolvedAt": "2026-09-14T21:03:39.203Z"
     },
     {
       "date": "2013-09-14",
@@ -24757,7 +24761,7 @@
       "imageUrl": "https://images.tapology.com/poster_images/19388/profile/World_Series_of_Fighting_5_Poster.jpg?1376880235",
       "imageAlt": "WSOF5: Arlovski vs. Kyle event poster",
       "imageCredit": "Tapology",
-      "imageResolvedAt": "2026-09-14T21:02:14.427Z"
+      "imageResolvedAt": "2026-09-14T21:03:39.203Z"
     },
     {
       "date": "2013-09-20",
@@ -27074,7 +27078,7 @@
       "imageUrl": "https://images.tapology.com/poster_images/25740/profile/WSOF_13_Moraes_vs._Bollinger_Poster.png?1410621128",
       "imageAlt": "WSOF13: Moraes vs. Bollinger event poster",
       "imageCredit": "Tapology",
-      "imageResolvedAt": "2026-09-14T21:02:14.427Z"
+      "imageResolvedAt": "2026-09-14T21:03:39.203Z"
     },
     {
       "date": "2014-09-19",
@@ -55473,11 +55477,11 @@
   "imageCacheApplicationVersion": 3,
   "imageCacheAppliedAt": "2026-09-14T21:01:56.099Z",
   "imageSourceOverrideVersion": 7,
-  "imageSourceOverridesAppliedAt": "2026-09-14T21:01:56.167Z",
+  "imageSourceOverridesAppliedAt": "2026-09-14T21:03:32.055Z",
   "imageResolverVersion": 8,
   "imageResolverUpdatedAt": "2026-09-14T21:02:02.484Z",
   "imageMetadataVersion": 2,
-  "imageMetadataFinalizedAt": "2026-09-14T21:02:14.640Z",
+  "imageMetadataFinalizedAt": "2026-09-14T21:03:46.143Z",
   "pancraseImageResolverVersion": 3,
   "pancraseImageResolverUpdatedAt": "2026-09-14T21:01:51.486Z",
   "trustedEventImageGateVersion": 1,
@@ -55486,13 +55490,13 @@
   "tapologyPosterResolverUpdatedAt": "2026-09-14T20:47:49.493Z",
   "publicEventReferencePolicy": "tapology",
   "tapologyPosterSanitizerVersion": 3,
-  "tapologyPosterSanitizedAt": "2026-09-14T21:02:02.673Z",
+  "tapologyPosterSanitizedAt": "2026-09-14T21:03:39.103Z",
   "currentPosterFallbackVersion": 7,
-  "currentPosterFallbackUpdatedAt": "2026-09-14T21:02:14.427Z",
+  "currentPosterFallbackUpdatedAt": "2026-09-14T21:03:39.203Z",
   "tapologyPosterBindingPolicy": "exact-event-page-only",
   "currentPosterFallbackPolicy": "direct-image-only",
   "eventPosterResolverVersion": 7,
-  "eventPosterResolverUpdatedAt": "2026-09-14T21:02:02.763Z",
+  "eventPosterResolverUpdatedAt": "2026-09-14T21:03:39.308Z",
   "eventPosterPriority": [
     "tapology-exact-bound",
     "trusted-explicit-poster",
