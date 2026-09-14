@@ -21,6 +21,8 @@
     "update:history-events": "node scripts/update-on-this-day-events.mjs",
     "publish:scheduled": "node scripts/publish-scheduled-posts.mjs",
     "resolve:history-posters": "node scripts/resolve-on-this-day-tapology-posters.mjs",
+    "resolve:history-event-posters": "node scripts/resolve-on-this-day-event-posters.mjs",
+    "apply:history-poster-fallbacks": "node scripts/apply-on-this-day-current-poster-fallbacks.mjs",
     "check:poster-registry": "node scripts/check-on-this-day-poster-registry.mjs"
   },
   "devDependencies": {
