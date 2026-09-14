@@ -83,21 +83,14 @@ const compactEntry = entry => {
         compact.wikipediaTitle = ' ';
 
         if (!verifiedEventPoster(entry)) {
-            compact.imagePosterVerified = false;
-            if (distance(entry) <= WINDOW_DAYS) {
-                // The visible/current window is correctness-first: if the
-                // actual poster is not verified, show text rather than a
-                // related, editorial, fighter, or historically stale image.
-                removeVisibleImage(compact);
-            } else if (hasHttpsImage(entry)) {
-                // Deep archive may retain a stored relevant fallback while an
-                // exact poster is still being backfilled. It is never labeled
-                // or surfaced as a verified event poster.
-                compact.imageArtifactType = 'event-fallback';
-                compact.imageFallback = true;
-            } else {
-                removeVisibleImage(compact);
-            }
+            // Event rows are poster-only everywhere in the archive. A stored
+            // fighter photo, action shot, landscape event image, or merely
+            // relevant fallback remains available in the source dataset for
+            // research, but it is never exposed as the visible event artwork.
+            // The browser therefore falls through to the event-specific
+            // archive-poster card until an authentic poster/key-art source is
+            // verified by the poster pipeline.
+            removeVisibleImage(compact);
         }
     }
 
@@ -155,4 +148,4 @@ for (const [file, expected] of files) {
 }
 
 if (stale) process.exitCode = 1;
-else if (!CHECK_ONLY) console.log(`Built ${entries.length} runtime entries across 12 monthly shards. Current-window events expose only verified posters; archive fallbacks remain separate and unverified.`);
+else if (!CHECK_ONLY) console.log(`Built ${entries.length} runtime entries across 12 monthly shards. Event rows expose verified posters only; every unverified event falls through to the event-specific archive-poster card.`);
