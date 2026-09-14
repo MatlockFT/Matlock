@@ -56,16 +56,19 @@ for (const event of data.events) {
   const auto = E.autoMatch(data.fighters, ctx, event.bouts.flatMap(b => b.fighters.map(f => f.id)), 1000);
   const ids = auto.pairs.flatMap(p => [p.a, p.b]); assert.equal(new Set(ids).size, ids.length, 'Auto matching double-booked a fighter');
 }
+
 const page = fs.readFileSync('matchmaker.html', 'utf8');
-assert(!/YOUR CARD|YOUR CALL|Make your case|Pick a fighter/i.test(page), 'Removed slogans must stay removed');
-for (const asset of ['assets/matchmaker.js', 'assets/matchmaker-engine.js', 'assets/matchmaker.css', 'assets/matchmaker-warroom.js', 'assets/matchmaker-warroom.css', 'assets/matchmaker-doctrine.css']) assert(page.includes('/' + asset) && fs.existsSync(asset));
-for (const marker of ['data-warroom-version="2"', 'mm-command-deck', 'mm-doctrine', 'data-mm-progress-bar', 'data-mm-stat-locked', 'Recommended targets', 'War Room / Matchmaking Desk', 'Hierarchy', 'Trajectory']) assert(page.includes(marker), `Missing Matchmaker war-room marker: ${marker}`);
-const warroomJs = fs.readFileSync('assets/matchmaker-warroom.js', 'utf8');
-assert.doesNotThrow(() => new Function(warroomJs), 'Matchmaker war-room enhancement JavaScript must parse');
-for (const marker of ['MatlockMatchmakerWarRoomData', 'E.WEIGHTS', 'mm-candidate-intel', 'mm-casefile', 'mm-board-intel', 'MutationObserver']) assert(warroomJs.includes(marker), `Missing Matchmaker war-room behavior: ${marker}`);
-const warroomCss = fs.readFileSync('assets/matchmaker-warroom.css', 'utf8');
-for (const marker of ['.mm-warroom-header', '.mm-command-deck', '.mm-candidate-intel', '.mm-casefile', '.mm-strings-path', 'prefers-reduced-motion']) assert(warroomCss.includes(marker), `Missing Matchmaker war-room style: ${marker}`);
-const doctrineCss = fs.readFileSync('assets/matchmaker-doctrine.css', 'utf8');
-for (const marker of ['.mm-doctrine', '.mm-doctrine-grid', '.mm-doctrine-item']) assert(doctrineCss.includes(marker), `Missing Matchmaker doctrine style: ${marker}`);
+for (const asset of ['assets/matchmaker-engine.js', 'assets/matchmaker-simple.js', 'assets/matchmaker-simple.css']) assert(page.includes('/' + asset) && fs.existsSync(asset), `Missing simplified Matchmaker asset: ${asset}`);
+for (const retired of ['assets/matchmaker.js', 'assets/matchmaker-warroom.js', 'assets/matchmaker-warroom.css', 'assets/matchmaker-doctrine.css']) assert(!page.includes('/' + retired), `Retired interactive Matchmaker asset should not load: ${retired}`);
+for (const marker of ['data-matchmaker-simple', 'mm-simple-eventbar', 'data-mm-grid', 'Plausible next UFC matchups', 'Matchmaking War Room']) assert(page.includes(marker), `Missing simplified Matchmaker marker: ${marker}`);
+for (const control of ['data-mm-auto', 'data-mm-undo', 'data-mm-rematch', 'data-mm-search', 'data-mm-freeze', 'data-mm-download', 'data-mm-board']) assert(!page.includes(control), `Overbuilt Matchmaker control returned: ${control}`);
+
+const simpleJs = fs.readFileSync('assets/matchmaker-simple.js', 'utf8');
+assert.doesNotThrow(() => new Function(simpleJs), 'Simplified Matchmaker JavaScript must parse');
+for (const marker of ['E.recommendations', 'BEST FIT', 'ALSO MAKES SENSE', 'ANOTHER OPTION', 'renderEvent']) assert(simpleJs.includes(marker), `Missing simplified Matchmaker behavior: ${marker}`);
+assert(!/localStorage|showModal|data-mm-lock|autoMatch\(/.test(simpleJs), 'Read-only Matchmaker presentation must not restore board-building behavior');
+
+const simpleCss = fs.readFileSync('assets/matchmaker-simple.css', 'utf8');
+for (const marker of ['.mm-simple-hero', '.mm-simple-eventbar', '.mm-simple-board', '.mm-simple-file', '.mm-simple-match', 'prefers-reduced-motion']) assert(simpleCss.includes(marker), `Missing simplified Matchmaker style: ${marker}`);
 assert(fs.readFileSync('_config.yml', 'utf8').includes('link: "/matchmaker/"'));
-console.log(`Matchmaker checks passed: rule regressions, source validation, ${data.events.length} real cards, ${checked} eligible recommendations, unique auto pairings, war-room UI assets, scoring doctrine, and page markers.`);
+console.log(`Matchmaker checks passed: rule regressions, source validation, ${data.events.length} real cards, ${checked} eligible recommendations, unique auto pairings, and simplified read-only next-fight presentation.`);
