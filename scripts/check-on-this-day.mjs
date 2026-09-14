@@ -88,7 +88,7 @@ if (/\bMutationObserver\b/.test(runtime) || /\bIntersectionObserver\b/.test(runt
 for (const marker of ["COLLAPSE_LIMIT", "significanceScore", "openLightbox", "dataset.otdEntryLink", "classifyImage"]) {
     if (!runtime.includes(marker)) failures.push(`stable On This Day runtime is missing QoL marker: ${marker}`);
 }
-for (const marker of [".otd-entry--event", ".otd-entry-media.is-fallback", "is-event-poster-fallback", "Original poster pending", "MutationObserver"]) {
+for (const marker of ["otd-entry--event", ".otd-entry-media.is-fallback", "is-event-poster-fallback", "Original poster pending", "MutationObserver"]) {
     if (!eventPosterFallbackRuntime.includes(marker)) failures.push(`event poster fallback runtime is missing required marker: ${marker}`);
 }
 for (const marker of ["has-event-poster-fallback", "aspect-ratio: 4 / 5", "otd-event-poster-title", "otd-event-poster-status"]) {
