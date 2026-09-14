@@ -1,28 +1,40 @@
 # Matchmaker
 
-The `/matchmaker/` route uses the existing Jekyll layout and main navigation. It requires no server or new dependencies.
+The `/matchmaker/` route is intentionally simple: choose a completed UFC card and read the most plausible next opponents for each fighter. Visitors do not build or manage a fantasy booking board. The complexity belongs in the data and recommendation engine, not in the interface.
 
 ## Run and verify
 
-Run `node scripts/update-matchmaker.mjs` to fetch official data, then `node scripts/check-matchmaker.mjs` for the deterministic-engine regressions and real-card checks. The scheduled **Update Matchmaker data** workflow runs twice daily and supports manual dispatch. Collection fails closed if the roster, divisions, event results, or profile coverage fails validation; the last valid snapshot stays published.
+Run `node scripts/update-matchmaker.mjs` to refresh source data, then `node scripts/check-matchmaker.mjs` for deterministic-engine regressions and real-card checks. The **Update Matchmaker data** workflow runs twice daily, supports manual dispatch, and also runs when Matchmaker engine/source code changes. Collection is atomic: validation failure leaves the previous good dataset published.
 
-`assets/matchmaker-engine.js` is a reusable browser/CommonJS engine. `scripts/matchmaker/sources/ufc.mjs` holds the official UFC event, rankings, and profile adapters. The existing site's canonical roster release, upcoming schedule, and portrait registry are reused. No visitor triggers source scraping. The browser reads the normalized JSON from the main branch, with the bundled Pages JSON as a fallback, so data-only bot commits do not require another Pages deployment.
+`assets/matchmaker-engine.js` is the deterministic recommendation engine. `scripts/matchmaker/sources/ufc.mjs` handles UFC event results, rankings and athlete-profile context. `scripts/matchmaker/sources/ufcstats.mjs` supplies structured prior-opponent history for rematch detection. The site's canonical UFC roster, upcoming schedule and portrait registry are reused. Visitors never trigger source scraping; the browser only reads normalized published JSON.
 
-## Data and limitations
+## Engine principles
 
-- Completed cards require verified results for every bout. UFC 331 was still upcoming at initial collection and is intentionally absent from completed events.
-- Rankings are captured without overwriting daily snapshots. Pre-event ranks remain null until a real snapshot from before that event exists. An event page retrieved later is not treated as a historical rankings source.
-- UFC profile narrative histories may be incomplete. Unresolved or missing histories are disclosed; profiles with no listed UFC bouts are excluded from recommendations. Overall records are sourced from athlete profiles; the displayed UFC record explicitly counts **listed** bouts.
-- The existing active-roster collector is authoritative for roster membership. Recent event participants missing from it remain visible but unavailable; no active status is invented.
-- Bookings use both official upcoming event cards and the existing site's schedule/roster monitor. Booked fighters are excluded on both sides, including manual picks. Injury and division overrides are local board decisions, not medical/roster assertions.
-- Rematches are excluded unless supported by a draw/NC, an eligible 1–1 trilogy, an old matchup plus subsequent wins, or an explicit override. Unknown controversy, injuries, and title claims are not invented.
-- Auto matchmaking maximizes event-fighter coverage before quality using a bounded deterministic search over the ten best candidates per fighter. It enforces unique pairings but does not promise a globally optimal matching.
-- Source and collection dates are visible. A stale-data notice appears after two days. Availability is only as current as collected source data.
+The engine separates hard facts from matchmaking judgment.
 
-## Boards and prediction records
+Hard eligibility facts are checked before scoring: active-roster status, announced bookings, division, prior UFC meetings and basic competitive-range constraints. A pair that fails a hard rule is not allowed into the recommendation ranking just because its score would otherwise be high.
 
-Working boards, undo, overrides, and frozen snapshots are stored on the visitor's device. Freezing makes an independent copy; subsequent changes do not alter it. Share URLs encode a validated working copy. JSON exports retain full reasoning and timestamps. The PNG export is 1080×1350 and uses text rather than cross-origin portraits so canvas exports remain reliable.
+Prior meetings receive special treatment because a false first-meeting claim is unacceptable. UFC.com athlete biography/history text remains useful for recent form and record context, but it is not treated as authoritative proof that two fighters have never met. Displayed event participants are cross-checked against structured UFCStats fighter histories. A verified prior meeting blocks an ordinary fresh-matchup recommendation unless the engine can establish a documented rematch case. When structured history coverage is unavailable, the engine labels the history as incomplete and reduces freshness confidence rather than claiming a first meeting.
 
-Official booking observations are retained across updates, even after the scheduled event passes. Frozen boards report matches first observed after their timestamp. This is **collector observation time**, not independently verified announcement time. Device-local timestamps and share URLs are not public, tamper-proof predictions. Site-wide editorial hit rates require a committed prediction archive; this version does not manufacture one or pool visitor data.
+The known Jean Silva / Diego Lopes fight on September 13, 2025 is a permanent regression case: the test suite must detect that meeting and reject Lopes as a normal fresh recommendation for Silva.
 
-The source adapters are designed to be extended with UFC Stats or other verified history sources later. They deliberately do not silently fall back to synthetic records if a source blocks access.
+## Recommendation model
+
+After hard eligibility checks, eligible opponents are ranked by a deterministic fit model using division hierarchy, trajectory, availability, freshness, progression, timing and limited story context. The score describes how defensible a booking is; it is not a fight-win probability.
+
+The public page intentionally exposes only the useful result: up to three plausible opponents with concise reasoning. Internal score components and source evidence remain available to tests and the engine without turning the page into an operator dashboard.
+
+Rematches are conservative. A previous meeting normally excludes the matchup. Exceptions require an explicit supported case such as a draw/no contest, a qualifying 1–1 series with subsequent wins, or a sufficiently old matchup where both fighters have rebuilt with multiple wins. The presentation layer does not let visitors override these facts.
+
+## Data quality and failure behavior
+
+- Completed cards require verified results for every bout.
+- Current rankings are captured as dated snapshots; later data is not retroactively treated as a historical ranking.
+- Active-roster membership comes from the canonical roster collector. The engine does not invent active status.
+- Upcoming UFC cards and the site's schedule/roster monitor are used to exclude already-booked fighters.
+- UFCStats prior-opponent records are source-attributed and date-stamped. The normalized dataset records per-fighter verification coverage.
+- The dataset validator checks structured meeting dates, results, source URLs, duplicate meetings and canonical opponent IDs.
+- Once the structured history source is enabled, broad UFCStats coverage failure aborts publication rather than silently converting unknown history into "no previous meeting."
+- Source outages retain the last valid published snapshot; they do not manufacture replacement history.
+
+The goal is a low-friction page backed by a comparatively strict engine: the visitor should be able to glance at the recommendations, while the collector and tests do the work required to make those recommendations defensible.
