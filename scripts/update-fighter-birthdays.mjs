@@ -3,7 +3,7 @@ import fs from "node:fs/promises";
 const HISTORY_PATH = process.argv[2] || "assets/data/on-this-day.json";
 const SEEDS_PATH = process.argv[3] || "assets/data/fighter-birthday-seeds.json";
 const PORTRAITS_PATH = process.argv[4] || "assets/fighter-portraits.json";
-const USER_AGENT = "MMA-Matlock-BirthdayArchive/1.1 (+https://mmamatlock.com/on-this-day/)";
+const USER_AGENT = "MMA-Matlock-BirthdayArchive/1.2 (+https://mmamatlock.com/on-this-day/)";
 const REQUEST_ATTEMPTS = 5;
 const REQUEST_TIMEOUT_MS = 20000;
 const WIKIPEDIA_BATCH = 40;
@@ -19,6 +19,23 @@ const key = value => clean(value)
 const slug = value => key(value).replace(/\s+/g, "-") || "fighter";
 const chunks = (items, size) => Array.from({ length: Math.ceil(items.length / size) }, (_, index) => items.slice(index * size, (index + 1) * size));
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+const IMAGE_METADATA_FIELDS = [
+    "imageUrl",
+    "imageAlt",
+    "imageCredit",
+    "imagePosition",
+    "imageSourceUrl",
+    "imageSourceType",
+    "imageConfidence",
+    "imageSubjectType",
+    "imageMatchReason",
+    "imageResolvedAt",
+    "imageStatus",
+    "imageExactMatch",
+    "imageWikipediaTitle",
+    "imageWikipediaFileTitle"
+];
 
 async function readJson(path, fallback = null) {
     try {
@@ -176,7 +193,18 @@ function portraitFor(name, portraits) {
     return portrait;
 }
 
-function birthdayEntry(record, birthDate, portraits) {
+function preservePreviousImage(entry, previous) {
+    if (!previous || !/^https:\/\//i.test(clean(previous.imageUrl))) return false;
+    for (const field of IMAGE_METADATA_FIELDS) {
+        if (previous[field] !== undefined && previous[field] !== null && previous[field] !== "") entry[field] = previous[field];
+    }
+    entry.imageAlt ||= `${entry.fighter} portrait`;
+    entry.imageSubjectType ||= "fighter";
+    entry.imageStatus ||= "resolved";
+    return true;
+}
+
+function birthdayEntry(record, birthDate, portraits, previous) {
     const portrait = portraitFor(record.seed.name, portraits);
     const entry = {
         date: birthDate,
@@ -194,6 +222,8 @@ function birthdayEntry(record, birthDate, portraits) {
         entry.imageAlt = `${record.seed.name} portrait`;
         entry.imageCredit = clean(portrait.source || "").toUpperCase();
         entry.imagePosition = portrait.framing === "safe" ? "50% 18%" : "50% 50%";
+    } else {
+        preservePreviousImage(entry, previous);
     }
 
     return entry;
@@ -216,17 +246,20 @@ const previousBirthdays = new Map(
 
 const birthdayEntries = [];
 const unresolved = [];
+let preservedImages = 0;
 
 for (const seed of seeds) {
     const seedKey = slug(seed.name);
+    const previous = previousBirthdays.get(seedKey);
     const record = wikipedia.get(seedKey);
     const birthDate = record ? birthClaims.get(record.qid) : "";
     if (record && birthDate) {
-        birthdayEntries.push(birthdayEntry(record, birthDate, portraits));
+        const refreshed = birthdayEntry(record, birthDate, portraits, previous);
+        if (!portraitFor(seed.name, portraits) && /^https:\/\//i.test(clean(refreshed.imageUrl))) preservedImages += 1;
+        birthdayEntries.push(refreshed);
         continue;
     }
 
-    const previous = previousBirthdays.get(seedKey);
     if (previous) birthdayEntries.push(previous);
     else unresolved.push(seed.name);
 }
@@ -247,5 +280,5 @@ const output = {
 };
 
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(output, null, 2)}\n`, "utf8");
-console.log(`Fighter birthdays refreshed: ${birthdayEntries.length}/${seeds.length} seeded fighters.`);
+console.log(`Fighter birthdays refreshed: ${birthdayEntries.length}/${seeds.length} seeded fighters; ${preservedImages} verified image record(s) preserved across date refresh.`);
 if (unresolved.length) console.warn(`No verified day-level birth date for: ${unresolved.join(", ")}`);
