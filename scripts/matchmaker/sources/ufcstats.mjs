@@ -87,6 +87,7 @@ export function parseFighterHistory(html, profileUrl, checkedAt = new Date().toI
     const date = parseDate(text);
     if (!date || date > cutoff) continue;
     const event = eventLink(row);
+    if (!event.title || !/^UFC\b/i.test(event.title)) continue; // Excludes DWCS/TUF exhibitions from UFC rematch history.
     meetings.push({
       opponentStatsId: opponent.id,
       opponentName: opponent.name,
