@@ -1,6 +1,14 @@
 name: Update Matchmaker data
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'assets/matchmaker-engine.js'
+      - 'scripts/update-matchmaker.mjs'
+      - 'scripts/matchmaker/**'
+      - '.github/workflows/update-matchmaker.yml'
   schedule:
     - cron: '37 6,18 * * *'
 permissions:
