@@ -16,8 +16,16 @@ on:
       - "scripts/check-on-this-day-images.mjs"
       - "scripts/build-on-this-day-runtime.mjs"
       - "scripts/build-on-this-day-home.mjs"
+      - "scripts/build-on-this-day-leads.mjs"
       - "scripts/build-on-this-day-share-images.mjs"
       - "scripts/build-on-this-day-share-safe.mjs"
+      - "scripts/share-title-layout.mjs"
+      - "scripts/share-card-composition.mjs"
+      - "scripts/check-on-this-day-share.mjs"
+      - "assets/share-gobold.mjs"
+      - "assets/textures/otd-gaffer-tape-v1.png"
+      - "assets/textures/otd-xerox-paper-v1.webp"
+      - "assets/data/on-this-day-share-sources.json"
       - "assets/data/on-this-day-image-source-overrides.json"
       - "assets/data/on-this-day-current-poster-fallbacks.json"
 
@@ -75,6 +83,7 @@ jobs:
           node --check scripts/build-on-this-day-leads.mjs
           node --check scripts/build-on-this-day-share-images.mjs
           node --check scripts/build-on-this-day-share-safe.mjs
+          node --check scripts/share-title-layout.mjs
           node --check scripts/check-on-this-day-share.mjs
 
       - name: Validate deterministic current poster fallback registry
