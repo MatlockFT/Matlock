@@ -1,98 +1,48 @@
 ---
 layout: default
 title: "Matchmaker"
-description: "Build your post-event UFC matchmaking board with opponent selections and shareable predictions."
+description: "See the most plausible next UFC matchups after a completed card."
 permalink: /matchmaker/
 page_styles:
-  - /assets/matchmaker.css
-  - /assets/matchmaker-warroom.css
-  - /assets/matchmaker-doctrine.css
+  - /assets/matchmaker-simple.css
 page_scripts:
   - /assets/matchmaker-engine.js
-  - /assets/matchmaker-warroom.js
-  - /assets/matchmaker.js
+  - /assets/matchmaker-simple.js
 ---
 
-<article class="mm" data-matchmaker data-warroom-version="2" data-feed="{{ '/assets/data/matchmaker/current.json' | relative_url }}" data-live-feed="https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/data/matchmaker/current.json">
-  <header class="mm-header mm-warroom-header">
-    <div class="mm-header-copy">
-      <p class="mm-kicker"><span>Post-fight</span> War Room / Matchmaking Desk</p>
-      <h1><span>Match</span>maker</h1>
-      <p class="mm-header-deck">Select a completed card, open a fighter file, inspect the best realistic next opponents, then lock your own post-event board. Rankings, trajectory, availability, rematches and timing stay visible instead of disappearing behind a black-box pick.</p>
-    </div>
-    <button class="mm-board-trigger" data-mm-completed aria-label="Open locked matchmaking board"><span data-mm-count>0</span></button>
+<article class="mm-simple" data-matchmaker-simple data-feed="{{ '/assets/data/matchmaker/current.json' | relative_url }}" data-live-feed="https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/data/matchmaker/current.json">
+  <header class="mm-simple-hero">
+    <p class="mm-simple-kicker"><span>Post-fight</span> Matchmaking War Room</p>
+    <h1><span>Match</span>maker</h1>
+    <p class="mm-simple-deck">The card is over. Here are the next fights that make the most sense. No fantasy booking board to manage — just realistic opponents based on division hierarchy, recent form, availability, timing and prior matchups.</p>
   </header>
 
-  <p class="mm-notice" data-mm-status role="status">Loading verified event results and roster…</p>
-  <noscript><p>This interactive tool needs JavaScript. <a href="https://www.ufc.com/events">View official UFC event results</a>.</p></noscript>
+  <p class="mm-simple-status" data-mm-status role="status">Loading matchup recommendations…</p>
+  <noscript><p>This page needs JavaScript to build the matchup recommendations.</p></noscript>
 
   <div data-mm-app hidden>
-    <section class="mm-command-deck" aria-label="War room status">
-      <div class="mm-event-file">
+    <section class="mm-simple-eventbar" aria-label="Completed UFC event">
+      <label>Completed event
+        <select data-mm-event aria-label="Choose completed UFC event"></select>
+      </label>
+      <div class="mm-simple-event-copy">
         <small>Active event file</small>
         <strong data-mm-event-name>Completed UFC event</strong>
         <span data-mm-event-date>—</span>
-        <a data-mm-event-source href="https://www.ufc.com/events" target="_blank" rel="noopener">SOURCE FILE ↗</a>
       </div>
-      <div class="mm-command-stat" data-kind="fighters"><small>Event fighters</small><strong data-mm-stat-fighters>—</strong></div>
-      <div class="mm-command-stat" data-kind="open"><small>Open files</small><strong data-mm-stat-open>—</strong></div>
-      <div class="mm-command-stat" data-kind="locked"><small>Locked fights</small><strong data-mm-stat-locked>0</strong></div>
-      <div class="mm-command-stat" data-kind="asof"><small>Intel as of</small><strong data-mm-stat-asof>—</strong></div>
-      <div class="mm-board-progress"><span data-mm-progress-copy>0 EVENT FIGHTERS ASSIGNED</span><div class="mm-progress-track" aria-hidden="true"><i data-mm-progress-bar></i></div></div>
-    </section>
-
-    <nav class="mm-flow" aria-label="Matchmaking workflow">
-      <div class="mm-step" data-mm-step><b>01</b><span>Choose completed event</span></div>
-      <div class="mm-step" data-mm-step><b>02</b><span>Open fighter file</span></div>
-      <div class="mm-step" data-mm-step><b>03</b><span>Inspect targets & lock fight</span></div>
-      <div class="mm-step" data-mm-step><b>04</b><span>Freeze & share board</span></div>
-    </nav>
-
-    <section class="mm-toolbar" aria-label="Board controls">
-      <label>Completed event<select data-mm-event></select></label>
-      <div class="mm-actions"><button data-mm-auto>Run board sweep</button><button data-mm-undo>Undo last order</button><button data-mm-refresh>Refresh intel</button></div>
-    </section>
-
-    <section class="mm-doctrine" aria-label="Matchmaking score doctrine">
-      <div class="mm-doctrine-copy">
-        <small>How the board thinks</small>
-        <strong>100-point matchup fit</strong>
-        <p>The score measures how defensible the booking is, not who would win the fight. Open a target file for the full evidence sheet.</p>
-      </div>
-      <div class="mm-doctrine-grid" aria-label="Matchmaking score weights">
-        <div class="mm-doctrine-item"><b>Hierarchy</b><strong>30</strong></div>
-        <div class="mm-doctrine-item"><b>Trajectory</b><strong>20</strong></div>
-        <div class="mm-doctrine-item"><b>Availability</b><strong>15</strong></div>
-        <div class="mm-doctrine-item"><b>Freshness</b><strong>15</strong></div>
-        <div class="mm-doctrine-item"><b>Progression</b><strong>10</strong></div>
-        <div class="mm-doctrine-item"><b>Timing</b><strong>5</strong></div>
-        <div class="mm-doctrine-item"><b>Story</b><strong>5</strong></div>
+      <div class="mm-simple-event-meta">
+        <span data-mm-count>— FIGHTERS</span>
+        <a data-mm-event-source href="https://www.ufc.com/events" target="_blank" rel="noopener">OFFICIAL RESULT ↗</a>
       </div>
     </section>
 
-    <div class="mm-workspace">
-      <aside class="mm-roster">
-        <div class="mm-section-title"><h2>Fighter files</h2><span data-mm-fighter-count></span></div>
-        <label class="mm-roster-filter">File view<select data-mm-filter><option value="all">Entire card</option><option value="available">Available</option><option value="open">Unmatched</option><option value="W">Winners</option><option value="L">Losers</option><option value="booked">Booked</option></select></label>
-        <div data-mm-fighters></div>
-      </aside>
+    <section class="mm-simple-board" aria-label="Plausible next UFC matchups">
+      <div class="mm-simple-grid" data-mm-grid></div>
+    </section>
 
-      <section class="mm-desk" aria-label="Matchmaking war room board">
-        <div class="mm-section-title"><h2>Active file</h2><span data-mm-division></span></div>
-        <div class="mm-connections" data-mm-connections>
-          <svg aria-hidden="true" data-mm-strings></svg>
-          <div data-mm-selected></div>
-          <div class="mm-opponent-heading"><h2>Recommended targets</h2><button data-mm-next>Next fighter →</button></div>
-          <div class="mm-candidates" data-mm-candidates></div>
-        </div>
-        <div class="mm-manual"><label>Search division files<input type="search" data-mm-search placeholder="Fighter name…" maxlength="80"></label><div data-mm-search-results></div></div>
-      </section>
-    </div>
-
-    <details class="mm-settings"><summary>War room settings</summary><div class="mm-settings-grid"><label><input type="checkbox" data-mm-rematch> Allow rematches for the selected fighter</label><label>Move selected fighter to<select data-mm-division-override></select></label><label>Mark selected fighter unavailable<input data-mm-exclude placeholder="Reason: injury, retirement, etc." maxlength="120"></label><button data-mm-apply>Apply overrides</button></div><div data-mm-overrides></div></details>
-    <details class="mm-sources"><summary>Data & sources</summary><div data-mm-sources></div></details>
+    <footer class="mm-simple-foot">
+      <p>These are matchmaking suggestions, not fight predictions. The order reflects how sensible each booking looks from the current roster and event context.</p>
+      <p>Matchup data updates with the published UFC roster and event feed.</p>
+    </footer>
   </div>
-
-  <dialog class="mm-dialog" data-mm-detail><button class="mm-close" data-mm-close aria-label="Close matchup details">Close ×</button><div data-mm-detail-body></div></dialog>
-  <dialog class="mm-dialog mm-board-dialog" data-mm-board><button class="mm-close" data-mm-close aria-label="Close completed board">Close ×</button><h2>Locked board</h2><div data-mm-board-body></div><div class="mm-actions"><button data-mm-freeze>Freeze prediction</button><button data-mm-share>Copy share URL</button><button data-mm-download>Download 4:5 image</button><button data-mm-json>Export board JSON</button></div><p data-mm-board-status role="status"></p><p class="mm-small">Saved on this device.</p><div data-mm-archives></div></dialog>
 </article>
