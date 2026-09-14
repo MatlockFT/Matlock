@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "entries": [
     {
       "date": "1994-09-09",
@@ -10,6 +10,16 @@
       "credit": "Wikipedia",
       "confidence": 0.99,
       "matchReason": "Deterministic direct URL for the UFC 3 promotional poster from the exact UFC 3 Wikipedia event page. Used only after Tapology cannot supply an exact-bound poster."
+    },
+    {
+      "date": "2010-09-15",
+      "title": "UFC Fight Night: Marquardt vs. Palhares",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/04/UFC_now_FP.jpg",
+      "sourceUrl": "https://en.wikipedia.org/wiki/UFC_Fight_Night%3A_Marquardt_vs._Palhares",
+      "sourceType": "wikipedia-event-poster",
+      "credit": "Wikipedia",
+      "confidence": 0.99,
+      "matchReason": "Exact UFC Fight Night: Marquardt vs. Palhares Wikipedia event page identifies the September 15, 2010 event and its infobox poster file UFC now FP.jpg; the direct Wikimedia poster URL was independently verified."
     },
     {
       "date": "2011-09-10",
@@ -50,6 +60,26 @@
       "credit": "Pancrase",
       "confidence": 0.99,
       "matchReason": "Exact official PANCRASE299 event poster from the promotion's September 9, 2018 event page."
+    },
+    {
+      "date": "2018-09-15",
+      "title": "UFC Fight Night: Hunt vs. Oleinik",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/e/e3/UFC_Fight_Night_136_Poster.jpg",
+      "sourceUrl": "https://en.wikipedia.org/wiki/UFC_Fight_Night%3A_Hunt_vs._Oleinik",
+      "sourceType": "wikipedia-event-poster",
+      "credit": "Wikipedia",
+      "confidence": 0.99,
+      "matchReason": "Exact UFC Fight Night: Hunt vs. Oleinik Wikipedia event page identifies the September 15, 2018 event and its poster file UFC Fight Night 136 Poster.jpg; the direct Wikimedia poster URL was independently verified."
+    },
+    {
+      "date": "2019-09-14",
+      "title": "UFC Fight Night: Cowboy vs. Gaethje",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/1/17/UFC_on_ESPN%2B_16.jpg",
+      "sourceUrl": "https://en.wikipedia.org/wiki/UFC_Fight_Night%3A_Cowboy_vs._Gaethje",
+      "sourceType": "wikipedia-event-poster",
+      "credit": "Wikipedia",
+      "confidence": 0.99,
+      "matchReason": "Exact UFC Fight Night: Cowboy vs. Gaethje Wikipedia event page identifies the September 14, 2019 event and its poster file UFC on ESPN+ 16.jpg; the direct Wikimedia poster URL was independently verified."
     },
     {
       "date": "2022-09-10",
