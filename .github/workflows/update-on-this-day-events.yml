@@ -10,37 +10,19 @@ on:
       - ".github/workflows/update-on-this-day-events.yml"
       - "assets/data/on-this-day-event-sources.json"
       - "assets/data/on-this-day-pancrase-cache.json"
-      - "assets/data/on-this-day-image-source-overrides.json"
       - "assets/data/fighter-birthday-seeds.json"
       - "assets/fighter-portraits.json"
       - "scripts/update-fighter-birthdays.mjs"
       - "scripts/update-on-this-day-events.mjs"
       - "scripts/normalize-on-this-day-titles.mjs"
       - "scripts/apply-on-this-day-image-cache.mjs"
-      - "scripts/apply-on-this-day-image-source-overrides.mjs"
-      - "scripts/apply-on-this-day-current-poster-fallbacks.mjs"
       - "scripts/resolve-on-this-day-images.mjs"
-      - "scripts/resolve-on-this-day-event-posters.mjs"
       - "scripts/sanitize-on-this-day-event-images.mjs"
-      - "scripts/finalize-on-this-day-image-metadata.mjs"
-      - "scripts/check-on-this-day-images.mjs"
       - "scripts/verify-on-this-day-event-images.mjs"
       - "scripts/enrich-on-this-day-content.mjs"
       - "scripts/enrich-on-this-day-pancrase.mjs"
       - "scripts/enrich-on-this-day-pancrase-images.mjs"
       - "scripts/curate-on-this-day-events.mjs"
-      - "scripts/build-on-this-day-home.mjs"
-      - "scripts/build-on-this-day-leads.mjs"
-      - "scripts/build-on-this-day-runtime.mjs"
-      - "scripts/build-on-this-day-share-images.mjs"
-      - "scripts/build-on-this-day-share-safe.mjs"
-      - "scripts/share-title-layout.mjs"
-      - "scripts/share-card-composition.mjs"
-      - "assets/share-gobold.mjs"
-      - "assets/textures/otd-gaffer-tape-v1.png"
-      - "scripts/check-on-this-day-share.mjs"
-      - "assets/data/on-this-day-share-sources.json"
-      - "assets/textures/otd-xerox-paper-v1.webp"
       - "scripts/report-on-this-day-coverage.mjs"
       - "scripts/check-on-this-day.mjs"
   schedule:
@@ -59,17 +41,15 @@ jobs:
     timeout-minutes: 30
     env:
       OTD_TARGET_PROMOTIONS: "ufc,wec,strikeforce,pfl,one,pancrase,bellator,rizin,pride"
-      # Pushes validate the current-priority queues quickly. Scheduled/manual runs keep
-      # doing the deeper archive backfill so CI speed never trades away long-term coverage.
-      OTD_IMAGE_VERIFY_LIMIT: ${{ github.event_name == 'push' && '30' || '100' }}
-      OTD_IMAGE_RESOLVE_LIMIT: ${{ github.event_name == 'push' && '80' || '180' }}
-      OTD_EVENT_POSTER_LIMIT: ${{ github.event_name == 'push' && '120' || '2500' }}
+      OTD_IMAGE_VERIFY_LIMIT: "100"
+      OTD_IMAGE_RESOLVE_LIMIT: "180"
+      OTD_EVENT_POSTER_LIMIT: ${{ github.event_name == 'schedule' && '2500' || '220' }}
       OTD_CURRENT_WINDOW_DAYS: "2"
       OTD_TIME_ZONE: "America/Chicago"
-      OTD_CONTENT_ENRICH_LIMIT: ${{ github.event_name == 'push' && '20' || '80' }}
+      OTD_CONTENT_ENRICH_LIMIT: "80"
       OTD_CONTENT_CONCURRENCY: "1"
-      OTD_PANCRASE_ENRICH_LIMIT: ${{ github.event_name == 'push' && '8' || '24' }}
-      OTD_PANCRASE_IMAGE_LIMIT: ${{ github.event_name == 'push' && '30' || '80' }}
+      OTD_PANCRASE_ENRICH_LIMIT: "24"
+      OTD_PANCRASE_IMAGE_LIMIT: "80"
       OTD_SHARE_WINDOW_DAYS: "2"
       OTD_SHARE_MAX_PER_DAY: "12"
       OTD_SHARE_CONCURRENCY: "3"
@@ -175,8 +155,6 @@ jobs:
         run: node scripts/finalize-on-this-day-image-metadata.mjs
 
       - name: Enforce current-window, birthday, and event-poster QA
-        id: image_qa
-        continue-on-error: true
         run: npm run check:history-images
 
       - name: Build optimized browser history shards
@@ -253,7 +231,3 @@ jobs:
           git commit -m "Refresh On This Day event archive"
           git pull --rebase origin main
           git push origin HEAD:main
-
-      - name: Report unresolved image QA blockers
-        if: steps.image_qa.outcome == 'failure'
-        run: echo "::warning::Resolved OTD data was safely published, but some current-window posters still need exact verification."
