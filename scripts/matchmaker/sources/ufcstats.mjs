@@ -6,7 +6,7 @@ const MONTHS = {
   oct: '10', october: '10', nov: '11', november: '11', dec: '12', december: '12'
 };
 
-export const statsId = url => String(url || '').match(/\/fighter-details\/([a-f0-9]+)/i)?.[1] || '';
+export const statsId = url => String(url || '').match(/\/fighter-details\/([a-f0-9]+)/i)?.[1]?.toLowerCase() || '';
 
 function rows(html) {
   return [...String(html || '').matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map(match => match[1]);
@@ -54,7 +54,7 @@ function resultCode(text) {
 }
 
 function isUfcEvent(title) {
-  return /^(?:UFC\b|Noche UFC\b)/i.test(clean(title));
+  return /^(?:UFC\b|Noche UFC\b|The Ultimate Fighter\b)/i.test(clean(title));
 }
 
 export function parseFighterDirectory(html) {
@@ -92,20 +92,22 @@ export function parseFighterHistory(html, profileUrl, checkedAt = new Date().toI
     if (!date || date > cutoff) continue;
     const event = eventLink(row);
     if (!event.title || !isUfcEvent(event.title)) continue;
+    const sourceUrl = fightLink(row) || event.url || profileUrl;
     meetings.push({
+      fightStatsId: String(sourceUrl).match(/\/fight-details\/([a-f0-9]+)/i)?.[1]?.toLowerCase() || null,
       opponentStatsId: opponent.id,
       opponentName: opponent.name,
       date,
       result,
       event: event.title,
       source: 'UFCStats',
-      sourceUrl: fightLink(row) || event.url || profileUrl
+      sourceUrl
     });
   }
 
   const unique = new Map();
   for (const meeting of meetings) {
-    const id = `${meeting.date}|${meeting.opponentStatsId}`;
+    const id = meeting.fightStatsId || `${meeting.date}|${meeting.opponentStatsId}`;
     if (!unique.has(id)) unique.set(id, meeting);
   }
   return [...unique.values()].sort((a, b) => b.date.localeCompare(a.date));
@@ -134,6 +136,25 @@ export function parseCsv(text) {
   return records.filter(values => values.some(Boolean)).map(values => Object.fromEntries(headers.map((header, index) => [header, clean(values[index] || '')])));
 }
 
+export function parseMirrorFighters(fighterCsv) {
+  const fighters = new Map();
+  for (const row of parseCsv(fighterCsv)) {
+    const id = statsId(row.URL);
+    const name = clean([row.FIRST, row.LAST].filter(Boolean).join(' '));
+    if (!id || !name) continue;
+    const candidate = {
+      id,
+      name,
+      nickname: clean(row.NICKNAME),
+      key: key(name),
+      url: `https://ufcstats.com/fighter-details/${id}`
+    };
+    const existing = fighters.get(id);
+    if (!existing || candidate.name.length > existing.name.length) fighters.set(id, candidate);
+  }
+  return [...fighters.values()];
+}
+
 export function parseMirrorHistory(fightCsv, eventCsv, cutoff = new Date().toISOString().slice(0, 10)) {
   const eventRows = parseCsv(eventCsv);
   const eventDates = new Map();
@@ -154,14 +175,22 @@ export function parseMirrorHistory(fightCsv, eventCsv, cutoff = new Date().toISO
     const names = clean(row.BOUT).split(/\s+vs\.?\s+/i).map(clean);
     const outcomes = clean(row.OUTCOME).split('/').map(value => value.toUpperCase());
     if (names.length !== 2 || outcomes.length !== 2 || outcomes.some(value => !['W', 'L', 'D', 'NC'].includes(value))) continue;
-    const sourceId = sourceUrl.match(/fight-details\/([a-f0-9]+)/i)?.[1] || `${date}|${key(names[0])}|${key(names[1])}`;
+    const fightStatsId = sourceUrl.match(/fight-details\/([a-f0-9]+)/i)?.[1]?.toLowerCase() || null;
+    const sourceId = fightStatsId || `${date}|${key(names[0])}|${key(names[1])}`;
     if (!fights.has(sourceId)) fights.set(sourceId, {
+      fightStatsId,
       date,
       event,
       aName: names[0],
       bName: names[1],
       aResult: outcomes[0],
       bResult: outcomes[1],
+      weightClass: clean(row.WEIGHTCLASS) || null,
+      method: clean(row.METHOD) || null,
+      round: Number(row.ROUND) || null,
+      time: clean(row.TIME) || null,
+      referee: clean(row.REFEREE) || null,
+      details: clean(row.DETAILS) || null,
       source: 'UFCStats',
       sourceUrl
     });

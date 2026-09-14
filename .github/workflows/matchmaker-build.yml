@@ -24,6 +24,7 @@ jobs:
         run: |
           node --check assets/matchmaker.js
           node --check assets/matchmaker-engine.js
+          node --check scripts/matchmaker/enrich-verified-history.mjs
           node scripts/check-matchmaker.mjs
       - name: Build Jekyll site
         uses: actions/jekyll-build-pages@v1

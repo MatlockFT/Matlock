@@ -32,6 +32,8 @@ jobs:
           restore-keys: matchmaker-profiles-
       - name: Collect and atomically validate official data
         run: node scripts/update-matchmaker.mjs
+      - name: Canonicalize verified UFC fight history
+        run: node scripts/matchmaker/enrich-verified-history.mjs
       - name: Check engine against refreshed data
         run: node scripts/check-matchmaker.mjs
       - name: Commit verified snapshots
