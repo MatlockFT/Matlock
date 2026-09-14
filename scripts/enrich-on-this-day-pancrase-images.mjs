@@ -1,14 +1,31 @@
 import fs from 'node:fs/promises';
 
 const HISTORY_PATH = process.argv[2] || 'assets/data/on-this-day.json';
+const CACHE_PATH = process.argv[3] || 'assets/data/on-this-day-pancrase-cache.json';
 const LIMIT = Math.max(1, Number(process.env.OTD_PANCRASE_IMAGE_LIMIT || 80));
 const TIME_ZONE = process.env.OTD_TIME_ZONE || 'America/Chicago';
 const REQUEST_TIMEOUT_MS = 18000;
-const USER_AGENT = 'MMA-Matlock-OnThisDay-PancrasePosters/2.0 (+https://mmamatlock.com/on-this-day/)';
+const USER_AGENT = 'MMA-Matlock-OnThisDay-PancrasePosters/3.0 (+https://mmamatlock.com/on-this-day/)';
+const POSTER_STRATEGY_VERSION = 3;
+const FAILED_RECHECK_DAYS = 7;
 
 const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
 const norm = value => clean(value).normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+async function readJson(filePath, fallback) {
+  try {
+    return JSON.parse(await fs.readFile(filePath, 'utf8'));
+  } catch (error) {
+    if (error?.code === 'ENOENT') return fallback;
+    throw error;
+  }
+}
+
+function ageDays(record) {
+  const checkedAt = Date.parse(record?.checkedAt || '');
+  return Number.isFinite(checkedAt) ? (Date.now() - checkedAt) / 86400000 : Infinity;
+}
 
 function attr(tag, name) {
   const safe = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -37,13 +54,18 @@ async function fetchHtml(url) {
       'accept-language': 'ja,en-US;q=0.8,en;q=0.7'
     }
   });
+  if (response.status === 404) return { html: '', finalUrl: response.url || url, status: 404 };
   if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-  return { html: await response.text(), finalUrl: response.url || url };
+  return { html: await response.text(), finalUrl: response.url || url, status: response.status };
 }
 
 function pancraseEntry(entry) {
   if (!(entry?.kind === 'event' || entry?.generatedBy === 'wikipedia-event-index')) return false;
   return /pancrase/i.test(`${entry?.promotion || ''} ${entry?.title || ''}`);
+}
+
+function eventKey(entry) {
+  return clean(entry?.autoKey) || `${clean(entry?.date)}::${norm(entry?.title)}`;
 }
 
 function eventNumber(entry) {
@@ -109,55 +131,139 @@ function distance(entry) {
   return Math.min(direct, 366 - direct);
 }
 
-const history = JSON.parse(await fs.readFile(HISTORY_PATH, 'utf8'));
+function verifiedPoster(entry) {
+  return entry?.imagePosterVerified === true && clean(entry?.imageArtifactType) === 'event-poster' && /^https:\/\//i.test(clean(entry?.imageUrl));
+}
+
+function applyResolvedPoster(entry, record, resolvedAt = record?.checkedAt) {
+  if (!record || record.strategyVersion !== POSTER_STRATEGY_VERSION || record.status !== 'resolved' || !/^https:\/\//i.test(clean(record.imageUrl))) return false;
+  entry.imageUrl = record.imageUrl;
+  entry.imageAlt = clean(record.imageAlt) || `${clean(entry.title)} event poster`;
+  entry.imageCredit = 'Pancrase';
+  entry.imageSourceUrl = clean(record.sourceUrl) || officialResultUrl(entry);
+  entry.imageSourceType = 'official-promotion-event-poster';
+  entry.imageConfidence = 0.99;
+  entry.imageSubjectType = 'event';
+  entry.imageArtifactType = 'event-poster';
+  entry.imagePosterVerified = true;
+  entry.imageMatchReason = 'Exact official Pancrase event page supplied the event poster/key art.';
+  entry.imageResolvedAt = resolvedAt || new Date().toISOString();
+  entry.imageStatus = 'resolved';
+  entry.imageExactMatch = true;
+  delete entry.imageUnresolved;
+  return true;
+}
+
+function cachedNegativeFresh(record) {
+  if (!record || record.strategyVersion !== POSTER_STRATEGY_VERSION) return false;
+  if (record.status === 'no-poster' || record.status === 'not-found') return true;
+  return record.status === 'failed' && ageDays(record) < FAILED_RECHECK_DAYS;
+}
+
+const history = await readJson(HISTORY_PATH, { entries: [] });
+const pancraseCache = await readJson(CACHE_PATH, { version: 1, strategyVersion: 1, updatedAt: null, fighters: {}, entries: {} });
 const entries = Array.isArray(history?.entries) ? history.entries : [];
+if (!pancraseCache.posters || typeof pancraseCache.posters !== 'object') pancraseCache.posters = {};
 const nowIso = new Date().toISOString();
 
-const targets = entries
+let cacheRestored = 0;
+for (const entry of entries.filter(pancraseEntry)) {
+  if (verifiedPoster(entry)) continue;
+  if (applyResolvedPoster(entry, pancraseCache.posters[eventKey(entry)])) cacheRestored += 1;
+}
+
+let cachedNegativeSkipped = 0;
+const candidates = entries
   .filter(pancraseEntry)
-  .filter(entry => !(entry?.imagePosterVerified === true && clean(entry?.imageArtifactType) === 'event-poster' && /^https:\/\//i.test(clean(entry?.imageUrl))))
-  .sort((a, b) => distance(a) - distance(b) || Number(b?.weight || 0) - Number(a?.weight || 0))
-  .slice(0, LIMIT);
+  .filter(entry => !verifiedPoster(entry))
+  .filter(entry => {
+    if (!cachedNegativeFresh(pancraseCache.posters[eventKey(entry)])) return true;
+    cachedNegativeSkipped += 1;
+    return false;
+  })
+  .sort((a, b) => distance(a) - distance(b) || Number(b?.weight || 0) - Number(a?.weight || 0));
+const targets = candidates.slice(0, LIMIT);
 
 let resolved = 0;
 let missed = 0;
+let notFound = 0;
 let failed = 0;
+let cacheChanged = false;
+const pageCache = new Map();
 
 for (const entry of targets) {
+  const key = eventKey(entry);
   const sourceUrl = officialResultUrl(entry);
-  if (!sourceUrl) { missed += 1; continue; }
+  if (!sourceUrl) {
+    pancraseCache.posters[key] = { strategyVersion: POSTER_STRATEGY_VERSION, checkedAt: nowIso, status: 'no-source' };
+    cacheChanged = true;
+    missed += 1;
+    continue;
+  }
+
   try {
-    const { html, finalUrl } = await fetchHtml(sourceUrl);
-    const poster = exactPoster(html, finalUrl, entry);
-    if (!poster) {
-      missed += 1;
-      await sleep(120);
+    if (!pageCache.has(sourceUrl)) pageCache.set(sourceUrl, fetchHtml(sourceUrl));
+    const { html, finalUrl, status } = await pageCache.get(sourceUrl);
+    if (status === 404) {
+      pancraseCache.posters[key] = {
+        strategyVersion: POSTER_STRATEGY_VERSION,
+        checkedAt: nowIso,
+        status: 'not-found',
+        sourceUrl: finalUrl || sourceUrl
+      };
+      cacheChanged = true;
+      notFound += 1;
       continue;
     }
 
-    entry.imageUrl = poster.url;
-    entry.imageAlt = poster.alt || `${clean(entry.title)} event poster`;
-    entry.imageCredit = 'Pancrase';
-    entry.imageSourceUrl = finalUrl;
-    entry.imageSourceType = 'official-promotion-event-poster';
-    entry.imageConfidence = 0.99;
-    entry.imageSubjectType = 'event';
-    entry.imageArtifactType = 'event-poster';
-    entry.imagePosterVerified = true;
-    entry.imageMatchReason = 'Exact official Pancrase event page supplied the event poster/key art.';
-    entry.imageResolvedAt = nowIso;
-    entry.imageStatus = 'resolved';
-    entry.imageExactMatch = true;
-    delete entry.imageUnresolved;
+    const poster = exactPoster(html, finalUrl, entry);
+    if (!poster) {
+      pancraseCache.posters[key] = {
+        strategyVersion: POSTER_STRATEGY_VERSION,
+        checkedAt: nowIso,
+        status: 'no-poster',
+        sourceUrl: finalUrl || sourceUrl
+      };
+      cacheChanged = true;
+      missed += 1;
+      continue;
+    }
+
+    const record = {
+      strategyVersion: POSTER_STRATEGY_VERSION,
+      checkedAt: nowIso,
+      status: 'resolved',
+      sourceUrl: finalUrl || sourceUrl,
+      imageUrl: poster.url,
+      imageAlt: poster.alt || `${clean(entry.title)} event poster`
+    };
+    pancraseCache.posters[key] = record;
+    cacheChanged = true;
+    applyResolvedPoster(entry, record, nowIso);
     resolved += 1;
   } catch (error) {
+    const message = clean(error?.message || error);
+    pancraseCache.posters[key] = {
+      strategyVersion: POSTER_STRATEGY_VERSION,
+      checkedAt: nowIso,
+      status: 'failed',
+      sourceUrl,
+      error: message.slice(0, 180)
+    };
+    cacheChanged = true;
     failed += 1;
-    console.warn(`${entry.date} ${entry.title}: ${clean(error?.message || error)}`);
+    console.warn(`${entry.date} ${entry.title}: ${message}`);
   }
   await sleep(120);
 }
 
-history.pancraseImageResolverVersion = 2;
-history.pancraseImageResolverUpdatedAt = nowIso;
+const strategyChanged = Number(history.pancraseImageResolverVersion || 0) !== POSTER_STRATEGY_VERSION || Number(pancraseCache.posterStrategyVersion || 0) !== POSTER_STRATEGY_VERSION;
+history.pancraseImageResolverVersion = POSTER_STRATEGY_VERSION;
+if (targets.length || cacheRestored || strategyChanged) history.pancraseImageResolverUpdatedAt = nowIso;
+pancraseCache.version = Math.max(Number(pancraseCache.version || 1), 2);
+pancraseCache.posterStrategyVersion = POSTER_STRATEGY_VERSION;
+if (cacheChanged || strategyChanged) pancraseCache.posterUpdatedAt = nowIso;
+
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
-console.log(`Pancrase poster enrichment: ${targets.length} reviewed; ${resolved} verified event posters, ${missed} without poster art, ${failed} failed. Fighter-photo fallbacks are disabled for event entries.`);
+await fs.writeFile(CACHE_PATH, `${JSON.stringify(pancraseCache, null, 2)}\n`, 'utf8');
+console.log(`Pancrase poster enrichment v3: ${targets.length} new/retry event(s) reviewed; ${resolved} verified posters, ${missed} without poster art, ${notFound} missing official pages, ${failed} transient failures; ${cachedNegativeSkipped} cached negative(s) skipped, ${cacheRestored} cached poster(s) restored. Fighter-photo fallbacks remain disabled for event entries.`);
