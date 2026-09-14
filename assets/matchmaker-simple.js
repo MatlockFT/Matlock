@@ -75,10 +75,14 @@
     const fighter = fighterIndex.get(entry.id);
     if (!fighter || !fighter.active) return '';
     const ctx = context(event);
-    const recommendations = E.recommendations(fighter, data.fighters, ctx).slice(0, 3);
-    const matchups = recommendations.length
-      ? recommendations.map((recommendation, index) => opponentRow(recommendation, event, index)).join('')
-      : '<li class="mm-simple-no-match">No clear available matchup right now.</li>';
+    const structuredHistoryEnabled = Boolean(data.sources?.meetings);
+    const historyVerified = !structuredHistoryEnabled || fighter.meetingCoverage?.verified === true;
+    const recommendations = historyVerified ? E.recommendations(fighter, data.fighters, ctx).slice(0, 3) : [];
+    const matchups = !historyVerified
+      ? '<li class="mm-simple-no-match">Prior-opponent history is still being verified for this fighter.</li>'
+      : recommendations.length
+        ? recommendations.map((recommendation, index) => opponentRow(recommendation, event, index)).join('')
+        : '<li class="mm-simple-no-match">No clear available matchup right now.</li>';
 
     return `
       <article class="mm-simple-file">
