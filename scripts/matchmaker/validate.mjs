@@ -16,7 +16,8 @@ export function validateData(data) {
       for (const meeting of f.verifiedMeetings) {
         assert(Number.isFinite(Date.parse(meeting.date)) && meeting.date <= data.generatedAt.slice(0, 10), `Invalid verified meeting date for ${f.id}`);
         assert(['W', 'L', 'D', 'NC'].includes(meeting.result), `Invalid verified meeting result for ${f.id}`);
-        assert(meeting.source === 'UFCStats' && /^https:\/\/ufcstats\.com\//i.test(meeting.sourceUrl || ''), `Untrusted verified meeting source for ${f.id}`);
+        const sourceOk = meeting.source === 'UFCStats' && /^https:\/\/ufcstats\.com\/fight-details\//i.test(meeting.sourceUrl || '') || meeting.source === 'UFC.com' && /^https:\/\/(?:www\.)?ufc\.com\/event\//i.test(meeting.sourceUrl || '');
+        assert(sourceOk, `Untrusted verified meeting source for ${f.id}`);
         assert(typeof meeting.opponentName === 'string' && meeting.opponentName.trim(), `Missing verified opponent name for ${f.id}`);
         assert(meeting.opponentId === null || meeting.opponentId === undefined || ids.has(meeting.opponentId), `Unknown canonical opponent in verified history for ${f.id}`);
         const meetingKey = `${meeting.date}|${meeting.opponentStatsId || meeting.opponentId || meeting.opponentName}`;
@@ -25,8 +26,8 @@ export function validateData(data) {
       }
     }
     if (f.meetingCoverage !== undefined && f.meetingCoverage !== null) {
-      assert(f.meetingCoverage.source === 'UFCStats', `Invalid meeting coverage source for ${f.id}`);
-      assert(/^https:\/\/ufcstats\.com\/fighter-details\//i.test(f.meetingCoverage.sourceUrl || ''), `Invalid meeting coverage URL for ${f.id}`);
+      assert(/^UFCStats/.test(f.meetingCoverage.source || ''), `Invalid meeting coverage source for ${f.id}`);
+      assert(/^https:\/\/raw\.githubusercontent\.com\/Greco1899\/scrape_ufc_stats\//i.test(f.meetingCoverage.sourceUrl || '') || /^https:\/\/ufcstats\.com\//i.test(f.meetingCoverage.sourceUrl || ''), `Invalid meeting coverage URL for ${f.id}`);
       assert(Number.isFinite(Date.parse(f.meetingCoverage.checkedAt)), `Invalid meeting coverage timestamp for ${f.id}`);
       assert(typeof f.meetingCoverage.verified === 'boolean', `Invalid meeting coverage flag for ${f.id}`);
       if (f.meetingCoverage.verified) assert(Array.isArray(f.verifiedMeetings), `Verified coverage without structured history for ${f.id}`);
@@ -48,13 +49,10 @@ export function validateData(data) {
 
   assert(new Set(data.rankingsCurrent.map(r => r.division)).size >= 11, 'Incomplete division rankings');
 
-  // Once the structured meeting source has been introduced, fail closed on broad source/parser breakage.
-  // Individual uncovered fighters can still be withheld by the recommendation layer, but a bad UFCStats
-  // scrape must never silently republish as if "no prior meeting" were verified.
   if (data.sources?.meetings) {
-    assert(/^https:\/\/ufcstats\.com\//i.test(data.sources.meetings.url || ''), 'Invalid structured meeting source');
+    assert(/^https:\/\/raw\.githubusercontent\.com\/Greco1899\/scrape_ufc_stats\//i.test(data.sources.meetings.url || '') || /^https:\/\/ufcstats\.com\//i.test(data.sources.meetings.url || ''), 'Invalid structured meeting source');
     const participantFighters = [...participants].map(id => data.fighters.find(f => f.id === id)).filter(Boolean);
-    const verified = participantFighters.filter(f => f.meetingCoverage?.source === 'UFCStats' && f.meetingCoverage?.verified === true).length;
+    const verified = participantFighters.filter(f => /^UFCStats/.test(f.meetingCoverage?.source || '') && f.meetingCoverage?.verified === true).length;
     const ratio = participantFighters.length ? verified / participantFighters.length : 0;
     assert(verified > 0 && ratio >= 0.75, `Structured prior-opponent coverage too low: ${verified}/${participantFighters.length}`);
   }
