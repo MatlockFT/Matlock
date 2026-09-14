@@ -1222,8 +1222,36 @@
       "discovery": "tapology-search-unique-title-date",
       "transport": "tapology-via-public-reader-v1",
       "verifiedAt": "2026-09-14T17:00:07.342Z"
+    },
+    "2000-10-31::pancrase trans 6": {
+      "key": "2000-10-31::pancrase trans 6",
+      "status": "verified-unavailable",
+      "date": "2000-10-31",
+      "title": "Pancrase: Trans 6",
+      "eventTitle": "Pancrase 89: Trans 6",
+      "eventDate": "2000-10-31",
+      "dateMatch": "exact",
+      "eventUrl": "https://www.tapology.com/fightcenter/events/4116-pancrase-89-trans-6",
+      "titleScore": 86,
+      "transport": "tapology-via-public-reader-v1",
+      "checkedAt": "2026-09-14T19:03:56.623Z",
+      "reason": "The exact Tapology event page was verified by title and date but exposes no event poster."
+    },
+    "2000-12-09::pancrase trans 8": {
+      "key": "2000-12-09::pancrase trans 8",
+      "status": "verified-unavailable",
+      "date": "2000-12-09",
+      "title": "Pancrase: Trans 8",
+      "eventTitle": "Pancrase 91: Trans 8",
+      "eventDate": "2000-12-09",
+      "dateMatch": "exact",
+      "eventUrl": "https://www.tapology.com/fightcenter/events/7340-pancrase-91-trans-8",
+      "titleScore": 86,
+      "transport": "tapology-via-public-reader-v1",
+      "checkedAt": "2026-09-14T19:04:26.223Z",
+      "reason": "The exact Tapology event page was verified by title and date but exposes no event poster."
     }
   },
-  "updatedAt": "2026-09-14T18:17:30.535Z",
+  "updatedAt": "2026-09-14T19:05:14.094Z",
   "policy": "Exact Tapology title and date; unique search result; event-bound poster path; image bytes dimension-checked and SHA-256 pinned; verified bytes mirrored to otd-poster-cache; failures preserve last known-good records."
 }
