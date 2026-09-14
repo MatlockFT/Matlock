@@ -58,6 +58,12 @@ for (const event of data.events) {
 }
 const page = fs.readFileSync('matchmaker.html', 'utf8');
 assert(!/YOUR CARD|YOUR CALL|Make your case|Pick a fighter/i.test(page), 'Removed slogans must stay removed');
-for (const asset of ['assets/matchmaker.js', 'assets/matchmaker-engine.js', 'assets/matchmaker.css']) assert(page.includes('/' + asset) && fs.existsSync(asset));
+for (const asset of ['assets/matchmaker.js', 'assets/matchmaker-engine.js', 'assets/matchmaker.css', 'assets/matchmaker-warroom.js', 'assets/matchmaker-warroom.css']) assert(page.includes('/' + asset) && fs.existsSync(asset));
+for (const marker of ['data-warroom-version="2"', 'mm-command-deck', 'data-mm-progress-bar', 'data-mm-stat-locked', 'Recommended targets', 'War Room / Matchmaking Desk']) assert(page.includes(marker), `Missing Matchmaker war-room marker: ${marker}`);
+const warroomJs = fs.readFileSync('assets/matchmaker-warroom.js', 'utf8');
+assert.doesNotThrow(() => new Function(warroomJs), 'Matchmaker war-room enhancement JavaScript must parse');
+for (const marker of ['MatlockMatchmakerWarRoomData', 'E.WEIGHTS', 'mm-candidate-intel', 'mm-casefile', 'mm-board-intel', 'MutationObserver']) assert(warroomJs.includes(marker), `Missing Matchmaker war-room behavior: ${marker}`);
+const warroomCss = fs.readFileSync('assets/matchmaker-warroom.css', 'utf8');
+for (const marker of ['.mm-warroom-header', '.mm-command-deck', '.mm-candidate-intel', '.mm-casefile', '.mm-strings-path', 'prefers-reduced-motion']) assert(warroomCss.includes(marker), `Missing Matchmaker war-room style: ${marker}`);
 assert(fs.readFileSync('_config.yml', 'utf8').includes('link: "/matchmaker/"'));
-console.log(`Matchmaker checks passed: rule regressions, source validation, ${data.events.length} real cards, ${checked} eligible recommendations, unique auto pairings, and page assets.`);
+console.log(`Matchmaker checks passed: rule regressions, source validation, ${data.events.length} real cards, ${checked} eligible recommendations, unique auto pairings, war-room UI assets, and page markers.`);
