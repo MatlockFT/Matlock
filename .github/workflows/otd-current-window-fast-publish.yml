@@ -191,8 +191,13 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
+          if [ -f "$OTD_SHARE_OUTPUT_DIR/.reuse-complete" ]; then
+            echo "Share render inputs are unchanged; keeping the existing otd-share-cache branch."
+            rm -rf "$OTD_SHARE_OUTPUT_DIR"
+            exit 0
+          fi
           cache_repo="$(mktemp -d)"
-          cp -R .otd-share-cache/. "$cache_repo/"
+          cp -R "$OTD_SHARE_OUTPUT_DIR"/. "$cache_repo/"
           cd "$cache_repo"
           git init
           git checkout -b otd-share-cache
@@ -203,4 +208,4 @@ jobs:
           git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git push --force origin HEAD:refs/heads/otd-share-cache
           cd - >/dev/null
-          rm -rf .otd-share-cache "$cache_repo"
+          rm -rf "$OTD_SHARE_OUTPUT_DIR" "$cache_repo"
