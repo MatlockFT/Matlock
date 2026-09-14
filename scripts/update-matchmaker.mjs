@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { clean, key, slug, parseEvent, parseProfile, parseRankings } from './matchmaker/sources/ufc.mjs';
+import { parseFighterDirectory, parseFighterHistory } from './matchmaker/sources/ufcstats.mjs';
 import { validateData } from './matchmaker/validate.mjs';
 import { reconcileRoster } from './matchmaker/roster.mjs';
 import { reconcileBookings } from './matchmaker/bookings.mjs';
@@ -62,20 +63,27 @@ let failed = 0;
 console.log(`Updating ${wanted.length} fighter profiles and ${completed.length} completed cards…`);
 const fighters = await mapLimit(wanted, 6, async (f, i) => {
   const ranking = rankings.find(r => r.id === f.id);
+  const old = oldFighters.get(f.id);
   let profile;
   try { const html = await get(f.source, participants.has(f.id) || ranking ? 1800000 : 3 * 86400000); profile = parseProfile(html, f, retrievedAt.get(f.source)); }
-  catch (e) { failed++; profile = oldFighters.get(f.id) ? { ...oldFighters.get(f.id), ...f } : { ...f, division: ranking?.division || null, record: null, history: [], historyCoverage: 'Unavailable', lastFight: null, checkedAt: null }; }
+  catch (e) { failed++; profile = old ? { ...old, ...f } : { ...f, division: ranking?.division || null, record: null, history: [], historyCoverage: 'Unavailable', lastFight: null, checkedAt: null }; }
   if (i % 100 === 0) console.log(`Profiles processed: ${i + 1}/${wanted.length}`);
-  // Missing status markup is not evidence that a previously inactive athlete returned.
-  profile.profileStatus ||= oldFighters.get(f.id)?.profileStatus || null;
+  profile.profileStatus ||= old?.profileStatus || null;
   const image = Object.entries(images).find(([name]) => key(name) === key(f.name))?.[1]?.url || completed.flatMap(e => e.bouts.flatMap(b => b.fighters)).find(x => x.id === f.id)?.image || null;
-  return { ...profile, rank: ranking?.rank ?? null, champion: ranking?.rank === 0, interim: ranking?.interim || false, image, rankings: rankings.filter(r => r.id === f.id).map(({ division, rank }) => ({ division, rank })) };
+  return {
+    ...profile,
+    rank: ranking?.rank ?? null,
+    champion: ranking?.rank === 0,
+    interim: ranking?.interim || false,
+    image,
+    rankings: rankings.filter(r => r.id === f.id).map(({ division, rank }) => ({ division, rank })),
+    verifiedMeetings: Array.isArray(old?.verifiedMeetings) ? old.verifiedMeetings : [],
+    meetingCoverage: old?.meetingCoverage || null
+  };
 });
 if (failed > wanted.length * .1) throw new Error(`${failed} profiles failed; aborting rather than replacing the roster with incomplete data.`);
-// Resolve names against the canonical registry, including known inactive opponents.
 const nameKeys = registry.map(f => ({ id: f.id, name: key(f.name) })).filter(f => f.name.length > 5);
 for (const f of fighters) for (const h of f.history) h.opponentIds = nameKeys.filter(n => n.id !== f.id && key(h.text).includes(n.name)).map(n => n.id);
-// Result pages are stronger evidence than occasionally delayed athlete bios.
 for (const e of completed) for (const b of e.bouts) for (const entry of b.fighters) {
   const fighter = fighters.find(f => f.id === entry.id), other = b.fighters.find(f => f.id !== entry.id);
   if (!fighter) throw new Error(`Event fighter missing from canonical roster: ${entry.name}`);
@@ -84,6 +92,55 @@ for (const e of completed) for (const b of e.bouts) for (const entry of b.fighte
   else fighter.history.push({ date: e.date, result: entry.result, opponentIds: [other.id], text: `${e.title}: ${entry.name} vs ${other.name}. ${entry.result}. ${b.method || ''}`, source: e.source });
   fighter.history.sort((a, b) => b.date.localeCompare(a.date)); fighter.lastFight = fighter.history[0]?.date || null;
 }
+
+// Verify prior opponents with structured UFCStats fighter histories. The UFC.com narrative history above remains
+// useful for form and record context, but is not strong enough by itself to make a factual "never fought" claim.
+const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+const directoryPages = await mapLimit(letters, 6, async letter => {
+  const url = `https://ufcstats.com/statistics/fighters?char=${letter}&page=all`;
+  try { return parseFighterDirectory(await get(url, 7 * 86400000)); }
+  catch (e) { console.warn(`UFCStats directory ${letter}: ${e.message}`); return []; }
+});
+const statsDirectory = directoryPages.flat();
+const statsByName = new Map();
+for (const entry of statsDirectory) {
+  const k = key(entry.name);
+  if (!k) continue;
+  const list = statsByName.get(k) || [];
+  if (!list.some(item => item.id === entry.id)) list.push(entry);
+  statsByName.set(k, list);
+}
+const canonicalByName = new Map();
+for (const entry of registry) {
+  const k = key(entry.name);
+  const existing = canonicalByName.get(k);
+  if (!existing) canonicalByName.set(k, entry);
+  else if (existing.id !== entry.id) canonicalByName.set(k, null);
+}
+const historyTargets = fighters.filter(f => participants.has(f.id));
+let statsVerified = 0, statsFailures = 0, statsMisses = 0;
+await mapLimit(historyTargets, 5, async f => {
+  const matches = statsByName.get(key(f.name)) || [];
+  const profile = matches.length === 1 ? matches[0] : null;
+  if (!profile) { statsMisses++; return; }
+  try {
+    const html = await get(profile.url, 12 * 3600000);
+    const sourceCheckedAt = retrievedAt.get(profile.url) || checkedAt;
+    const meetings = parseFighterHistory(html, profile.url, sourceCheckedAt).map(meeting => {
+      const canonical = canonicalByName.get(key(meeting.opponentName));
+      return { ...meeting, opponentId: canonical?.id || null };
+    });
+    if (f.history.length && !meetings.length) throw new Error('parsed zero completed UFC bouts for a fighter with listed UFC history');
+    f.verifiedMeetings = meetings;
+    f.meetingCoverage = { source: 'UFCStats', sourceUrl: profile.url, checkedAt: sourceCheckedAt, verified: true, bouts: meetings.length };
+    statsVerified++;
+  } catch (e) {
+    statsFailures++;
+    console.warn(`UFCStats history ${f.name}: ${e.message}`);
+  }
+});
+console.log(`UFCStats prior-opponent verification: ${statsVerified}/${historyTargets.length} participant profiles verified; ${statsMisses} unmatched names; ${statsFailures} fetch/parse failures.`);
+
 // Both the site schedule and roster monitor exclude bookings, even if no opponent is known yet.
 const schedule = await read('_data/upcoming_events.json', { events: [] });
 if (!fresh(schedule.generated_at)) throw new Error('Upcoming schedule is stale or undated');
@@ -109,12 +166,33 @@ for (const e of events) {
   e.rankingsBeforeEvent = previous?.events.find(old => old.id === e.id)?.rankingsBeforeEvent || (prior ? await read(path.join(snapshotsDir, prior), null) : null);
 }
 for (const b of bookings) oldBookings.set(b.bookingKey, b);
-const data = { schemaVersion: 1, generatedAt: checkedAt, sources: { rankings: { url: 'https://www.ufc.com/rankings', checkedAt }, roster: { url: rosterUrl, checkedAt: roster.checkedAt }, bookings: { url: 'https://www.ufc.com/events', checkedAt }, history: { url: 'https://www.ufc.com/athletes', checkedAt, note: 'Official UFC profile histories; listed bouts may be incomplete.' } }, fighters, events, rankingsCurrent: rankings, bookings: [...oldBookings.values()], coverage: { profileFailures: failed, activeFighters: fighters.filter(f => f.active).length } };
+const data = {
+  schemaVersion: 1,
+  generatedAt: checkedAt,
+  sources: {
+    rankings: { url: 'https://www.ufc.com/rankings', checkedAt },
+    roster: { url: rosterUrl, checkedAt: roster.checkedAt },
+    bookings: { url: 'https://www.ufc.com/events', checkedAt },
+    history: { url: 'https://www.ufc.com/athletes', checkedAt, note: 'Official UFC profile histories; listed bouts may be incomplete.' },
+    meetings: { url: 'https://ufcstats.com/statistics/fighters', checkedAt, note: 'UFCStats fighter histories verify prior UFC opponents for displayed event participants.' }
+  },
+  fighters,
+  events,
+  rankingsCurrent: rankings,
+  bookings: [...oldBookings.values()],
+  coverage: {
+    profileFailures: failed,
+    activeFighters: fighters.filter(f => f.active).length,
+    participantHistoriesRequested: historyTargets.length,
+    verifiedParticipantHistories: statsVerified,
+    ufcStatsNameMisses: statsMisses,
+    ufcStatsFailures: statsFailures
+  }
+};
 validateData(data);
 reconcileRoster(data, roster, rosterOverrides);
 reconcileBookings(data, roster, schedule);
-// Write all validated output atomically; never rewrite an existing daily snapshot.
 await fs.writeFile(path.join(snapshotsDir, `${today}.json`), JSON.stringify({ capturedAt: checkedAt, rankings }, null, 2) + '\n', { flag: 'wx' }).catch(e => { if (e.code !== 'EEXIST') throw e; });
 await fs.writeFile(path.join(root, 'current.json.tmp'), JSON.stringify(data, null, 2) + '\n');
 await fs.rename(path.join(root, 'current.json.tmp'), path.join(root, 'current.json'));
-console.log(`Validated: ${fighters.length} fighters, ${events.length} cards, ${bookings.length} announced pairings. Profile failures: ${failed}.`);
+console.log(`Validated: ${fighters.length} fighters, ${events.length} cards, ${bookings.length} announced pairings. Profile failures: ${failed}. UFCStats verified: ${statsVerified}/${historyTargets.length}.`);
