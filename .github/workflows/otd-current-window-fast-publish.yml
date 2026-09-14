@@ -9,6 +9,7 @@ on:
       - ".github/workflows/otd-current-window-fast-publish.yml"
       - "scripts/apply-on-this-day-image-source-overrides.mjs"
       - "scripts/apply-on-this-day-current-poster-fallbacks.mjs"
+      - "scripts/resolve-current-on-this-day-tapology-posters.mjs"
       - "scripts/resolve-on-this-day-tapology-posters.mjs"
       - "scripts/resolve-on-this-day-event-posters.mjs"
       - "scripts/sanitize-on-this-day-tapology-posters.mjs"
@@ -73,6 +74,7 @@ jobs:
         run: |
           node --check scripts/apply-on-this-day-image-source-overrides.mjs
           node --check scripts/apply-on-this-day-current-poster-fallbacks.mjs
+          node --check scripts/resolve-current-on-this-day-tapology-posters.mjs
           node --check scripts/resolve-on-this-day-tapology-posters.mjs
           node --check scripts/resolve-on-this-day-event-posters.mjs
           node --check scripts/sanitize-on-this-day-tapology-posters.mjs
@@ -111,7 +113,7 @@ jobs:
           echo "OTD_POSTER_OUTPUT_DIR=$cache_dir" >> "$GITHUB_ENV"
 
       - name: Resolve and byte-verify current-window Tapology posters
-        run: node scripts/resolve-on-this-day-tapology-posters.mjs
+        run: node scripts/resolve-current-on-this-day-tapology-posters.mjs
 
       - name: Publish immutable Tapology poster bytes
         shell: bash
