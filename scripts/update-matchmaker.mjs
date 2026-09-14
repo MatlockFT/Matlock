@@ -56,6 +56,12 @@ for (const e of parsedEvents.filter(Boolean)) for (const b of e.bouts) for (cons
 for (const r of rankings) r.id = resolve(r.id);
 const retainedEvents = [...completed, ...(previous?.events || []).filter(e => !completed.some(c => c.id === e.id))].sort((a, b) => b.date.localeCompare(a.date));
 const participants = new Set(retainedEvents.flatMap(e => e.bouts.flatMap(b => b.fighters.map(f => f.id))));
+const eventNamesById = new Map();
+for (const e of retainedEvents) for (const b of e.bouts) for (const entry of b.fighters) {
+  const names = eventNamesById.get(entry.id) || new Set();
+  if (entry.name) names.add(entry.name);
+  eventNamesById.set(entry.id, names);
+}
 for (const entry of retainedEvents.flatMap(e => e.bouts.flatMap(b => b.fighters))) if (!registry.some(f => f.id === entry.id)) registry.push({ id: entry.id, name: entry.name, active: false, source: `https://www.ufc.com/athlete/${entry.id}`, aliases: [] });
 const wanted = registry.filter(f => f.active || participants.has(f.id));
 const oldFighters = new Map((previous?.fighters || []).map(f => [f.id, f]));
@@ -91,15 +97,15 @@ for (const f of fighters) for (const h of f.history) h.opponentIds = nameKeys.fi
 for (const e of completed) for (const b of e.bouts) for (const entry of b.fighters) {
   const fighter = fighters.find(f => f.id === entry.id), other = b.fighters.find(f => f.id !== entry.id);
   if (!fighter) throw new Error(`Event fighter missing from canonical roster: ${entry.name}`);
-  const h = fighter.history.find(h => h.date === e.date || h.opponentIds.includes(other.id) && Math.abs(Date.parse(h.date)-Date.parse(e.date)) <= 86400000);
+  const h = fighter.history.find(h => h.date === e.date || h.opponentIds.includes(other.id) && Math.abs(Date.parse(h.date) - Date.parse(e.date)) <= 86400000);
   if (h) { h.result = entry.result; h.opponentIds = [...new Set([...h.opponentIds, other.id])]; }
   else fighter.history.push({ date: e.date, result: entry.result, opponentIds: [other.id], text: `${e.title}: ${entry.name} vs ${other.name}. ${entry.result}. ${b.method || ''}`, source: e.source });
   fighter.history.sort((a, b) => b.date.localeCompare(a.date)); fighter.lastFight = fighter.history[0]?.date || null;
 }
 
 // Prior-opponent verification uses a GitHub-hosted mirror of UFCStats because UFCStats itself serves a
-// browser challenge to GitHub Actions. The mirror supplies the full historical ledger and original
-// UFCStats fight-detail URLs. Official UFC result pages above then reconcile the newest cards.
+// browser challenge to GitHub Actions. The mirror supplies the historical ledger and original UFCStats
+// fight-detail URLs. Official UFC result pages above reconcile the newest cards.
 const mirrorFightUrl = 'https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fight_results.csv';
 const mirrorEventUrl = 'https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_event_details.csv';
 const [fightCsv, eventCsv] = await Promise.all([get(mirrorFightUrl, 6 * 3600000), get(mirrorEventUrl, 6 * 3600000)]);
@@ -133,7 +139,7 @@ for (const fight of mirrorFights) {
   addLedger(fight.bName, { opponentId: aCanonical?.id || null, opponentName: fight.aName, date: fight.date, result: fight.bResult, event: fight.event, source: 'UFCStats', sourceUrl: fight.sourceUrl });
 }
 
-// Patch/overwrite recent ledger entries with the official UFC result pages already fetched this run.
+// Patch/overwrite recent ledger entries with official UFC result pages already fetched this run.
 for (const e of completed) for (const b of e.bouts) {
   const [left, right] = b.fighters;
   const leftFighter = fighters.find(f => f.id === left.id);
@@ -145,8 +151,10 @@ for (const e of completed) for (const b of e.bouts) {
 
 const historyTargets = fighters.filter(f => participants.has(f.id));
 let statsVerified = 0, statsMisses = 0;
+const statsMissNames = [];
 for (const f of historyTargets) {
-  const rawMeetings = ledgerByName.get(key(f.name)) || [];
+  const lookupKeys = new Set([key(f.name), ...[...(eventNamesById.get(f.id) || [])].map(key)].filter(Boolean));
+  const rawMeetings = [...lookupKeys].flatMap(nameKey => ledgerByName.get(nameKey) || []);
   const unique = new Map();
   for (const meeting of rawMeetings) {
     const meetingKey = `${meeting.date}|${meeting.opponentId || key(meeting.opponentName)}`;
@@ -154,10 +162,17 @@ for (const f of historyTargets) {
     if (!existing || meeting.source === 'UFC.com') unique.set(meetingKey, meeting);
   }
   const meetings = [...unique.values()].sort((a, b) => b.date.localeCompare(a.date));
-  if (f.history.length && !meetings.length) { statsMisses++; continue; }
+  if (f.history.length && !meetings.length) {
+    statsMisses++;
+    statsMissNames.push(`${f.name} [${[...lookupKeys].join('|')}]`);
+    f.verifiedMeetings = [];
+    f.meetingCoverage = { source: 'UFCStats', transport: 'GitHubMirror+UFC.com', sourceUrl: mirrorFightUrl, checkedAt, verified: false, bouts: 0, mirrorThrough: mirrorLatest, officialThrough: completed[0]?.date || mirrorLatest };
+    continue;
+  }
   f.verifiedMeetings = meetings;
   f.meetingCoverage = {
-    source: 'UFCStatsMirror+UFC.com',
+    source: 'UFCStats',
+    transport: 'GitHubMirror+UFC.com',
     sourceUrl: mirrorFightUrl,
     checkedAt,
     verified: true,
@@ -168,6 +183,7 @@ for (const f of historyTargets) {
   statsVerified++;
 }
 console.log(`Structured prior-opponent ledger: ${mirrorFights.length} historical fights (${mirrorEarliest}–${mirrorLatest}); ${statsVerified}/${historyTargets.length} event participants verified; ${statsMisses} name misses.`);
+if (statsMissNames.length) console.warn(`Unverified participant histories: ${statsMissNames.join(', ')}`);
 
 // Both the site schedule and roster monitor exclude bookings, even if no opponent is known yet.
 const schedule = await read('_data/upcoming_events.json', { events: [] });
@@ -202,7 +218,7 @@ const data = {
     roster: { url: rosterUrl, checkedAt: roster.checkedAt },
     bookings: { url: 'https://www.ufc.com/events', checkedAt },
     history: { url: 'https://www.ufc.com/athletes', checkedAt, note: 'Official UFC profile histories provide form context; narrative bout lists may be incomplete.' },
-    meetings: { url: mirrorFightUrl, checkedAt, mirrorThrough: mirrorLatest, officialThrough: completed[0]?.date || mirrorLatest, note: 'Historical UFCStats fight ledger mirrored on GitHub, reconciled through the newest official UFC result pages.' }
+    meetings: { source: 'UFCStats', transport: 'GitHub mirror + official UFC result reconciliation', url: mirrorFightUrl, checkedAt, mirrorThrough: mirrorLatest, officialThrough: completed[0]?.date || mirrorLatest, note: 'Historical UFCStats fight ledger mirrored on GitHub, reconciled through the newest official UFC result pages.' }
   },
   fighters,
   events,
@@ -214,6 +230,7 @@ const data = {
     participantHistoriesRequested: historyTargets.length,
     verifiedParticipantHistories: statsVerified,
     ufcStatsNameMisses: statsMisses,
+    ufcStatsMissNames: statsMissNames,
     mirrorFightCount: mirrorFights.length
   }
 };
