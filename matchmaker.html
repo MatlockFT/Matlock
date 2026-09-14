@@ -6,6 +6,7 @@ permalink: /matchmaker/
 page_styles:
   - /assets/matchmaker.css
   - /assets/matchmaker-warroom.css
+  - /assets/matchmaker-doctrine.css
 page_scripts:
   - /assets/matchmaker-engine.js
   - /assets/matchmaker-warroom.js
@@ -50,6 +51,23 @@ page_scripts:
     <section class="mm-toolbar" aria-label="Board controls">
       <label>Completed event<select data-mm-event></select></label>
       <div class="mm-actions"><button data-mm-auto>Run board sweep</button><button data-mm-undo>Undo last order</button><button data-mm-refresh>Refresh intel</button></div>
+    </section>
+
+    <section class="mm-doctrine" aria-label="Matchmaking score doctrine">
+      <div class="mm-doctrine-copy">
+        <small>How the board thinks</small>
+        <strong>100-point matchup fit</strong>
+        <p>The score measures how defensible the booking is, not who would win the fight. Open a target file for the full evidence sheet.</p>
+      </div>
+      <div class="mm-doctrine-grid" aria-label="Matchmaking score weights">
+        <div class="mm-doctrine-item"><b>Hierarchy</b><strong>30</strong></div>
+        <div class="mm-doctrine-item"><b>Trajectory</b><strong>20</strong></div>
+        <div class="mm-doctrine-item"><b>Availability</b><strong>15</strong></div>
+        <div class="mm-doctrine-item"><b>Freshness</b><strong>15</strong></div>
+        <div class="mm-doctrine-item"><b>Progression</b><strong>10</strong></div>
+        <div class="mm-doctrine-item"><b>Timing</b><strong>5</strong></div>
+        <div class="mm-doctrine-item"><b>Story</b><strong>5</strong></div>
+      </div>
     </section>
 
     <div class="mm-workspace">
