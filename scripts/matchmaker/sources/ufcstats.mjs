@@ -53,6 +53,10 @@ function resultCode(text) {
   return null;
 }
 
+function isUfcEvent(title) {
+  return /^(?:UFC\b|Noche UFC\b)/i.test(clean(title));
+}
+
 export function parseFighterDirectory(html) {
   const found = [];
   for (const row of rows(html)) {
@@ -83,11 +87,11 @@ export function parseFighterHistory(html, profileUrl, checkedAt = new Date().toI
     if (!opponent) continue;
     const text = clean(row);
     const result = resultCode(text);
-    if (!result) continue; // Skips upcoming "next" rows.
+    if (!result) continue;
     const date = parseDate(text);
     if (!date || date > cutoff) continue;
     const event = eventLink(row);
-    if (!event.title || !/^UFC\b/i.test(event.title)) continue; // Excludes DWCS/TUF exhibitions from UFC rematch history.
+    if (!event.title || !isUfcEvent(event.title)) continue;
     meetings.push({
       opponentStatsId: opponent.id,
       opponentName: opponent.name,
@@ -105,4 +109,62 @@ export function parseFighterHistory(html, profileUrl, checkedAt = new Date().toI
     if (!unique.has(id)) unique.set(id, meeting);
   }
   return [...unique.values()].sort((a, b) => b.date.localeCompare(a.date));
+}
+
+// Small RFC-4180-compatible reader used for the GitHub-hosted UFCStats mirror. It deliberately
+// returns strings only; source-specific validation happens after parsing.
+export function parseCsv(text) {
+  const records = [];
+  let row = [], field = '', quoted = false;
+  const input = String(text || '').replace(/^\uFEFF/, '');
+  for (let i = 0; i < input.length; i++) {
+    const char = input[i];
+    if (quoted) {
+      if (char === '"' && input[i + 1] === '"') { field += '"'; i++; }
+      else if (char === '"') quoted = false;
+      else field += char;
+    } else if (char === '"') quoted = true;
+    else if (char === ',') { row.push(field); field = ''; }
+    else if (char === '\n') { row.push(field.replace(/\r$/, '')); records.push(row); row = []; field = ''; }
+    else field += char;
+  }
+  if (field.length || row.length) { row.push(field.replace(/\r$/, '')); records.push(row); }
+  if (!records.length) return [];
+  const headers = records.shift().map(header => clean(header));
+  return records.filter(values => values.some(Boolean)).map(values => Object.fromEntries(headers.map((header, index) => [header, clean(values[index] || '')])));
+}
+
+export function parseMirrorHistory(fightCsv, eventCsv, cutoff = new Date().toISOString().slice(0, 10)) {
+  const eventRows = parseCsv(eventCsv);
+  const eventDates = new Map();
+  for (const row of eventRows) {
+    const title = clean(row.EVENT);
+    const date = parseDate(row.DATE);
+    if (!title || !date || date > cutoff || !isUfcEvent(title)) continue;
+    const existing = eventDates.get(title);
+    if (!existing || date > existing) eventDates.set(title, date);
+  }
+
+  const fights = new Map();
+  for (const row of parseCsv(fightCsv)) {
+    const event = clean(row.EVENT);
+    const date = eventDates.get(event);
+    const sourceUrl = String(row.URL || '').replace(/^http:/i, 'https:');
+    if (!event || !date || !isUfcEvent(event) || !/^https:\/\/ufcstats\.com\/fight-details\/[a-f0-9]+/i.test(sourceUrl)) continue;
+    const names = clean(row.BOUT).split(/\s+vs\.?\s+/i).map(clean);
+    const outcomes = clean(row.OUTCOME).split('/').map(value => value.toUpperCase());
+    if (names.length !== 2 || outcomes.length !== 2 || outcomes.some(value => !['W', 'L', 'D', 'NC'].includes(value))) continue;
+    const sourceId = sourceUrl.match(/fight-details\/([a-f0-9]+)/i)?.[1] || `${date}|${key(names[0])}|${key(names[1])}`;
+    if (!fights.has(sourceId)) fights.set(sourceId, {
+      date,
+      event,
+      aName: names[0],
+      bName: names[1],
+      aResult: outcomes[0],
+      bResult: outcomes[1],
+      source: 'UFCStats',
+      sourceUrl
+    });
+  }
+  return [...fights.values()].sort((a, b) => b.date.localeCompare(a.date) || a.sourceUrl.localeCompare(b.sourceUrl));
 }
