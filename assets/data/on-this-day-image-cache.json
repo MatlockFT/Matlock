@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-09-14T16:01:26.788Z",
+  "updatedAt": "2026-09-14T17:01:25.006Z",
   "entries": {
     "ufc:2018-09-08:ufc-228-woodley-vs-till": {
       "strategyVersion": 7,
@@ -625,16 +625,23 @@
     },
     "ufc:2014-09-13:ufc-fight-night-bigfoot-vs-arlovski": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-14T16:01:26.788Z",
+      "checkedAt": "2026-09-14T16:59:10.222Z",
       "entryClass": "event",
       "imageStatus": "resolved",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/5/51/UFN_51_event_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "imageCredit": "Wikipedia",
-      "imageSourceUrl": "https://en.wikipedia.org/wiki/UFC_Fight_Night:_Bigfoot_vs._Arlovski",
-      "imageSourceType": "existing-image",
-      "imageConfidence": 0.7,
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2014-09-13-ufc-fight-night-bigfoot-vs-arlovski-51cda4ca530ea4cf.jpg",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/24352-ufc-fight-night",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
       "imageSubjectType": "event",
-      "imageMatchReason": "Existing resolved image retained with cached provenance metadata."
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "imageAlt": "UFC Fight Night: Bigfoot vs. Arlovski event poster",
+      "artworkType": "poster",
+      "sourceType": "tapology-event-poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/24352-ufc-fight-night",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "51cda4ca530ea4cf3c61ebe57dbb5d64b14d15dd3c8237b16edeab1968900e64",
+      "posterRegistryKey": "2014-09-13::ufc fight night bigfoot vs arlovski"
     },
     "ufc:2016-09-03:ufc-fight-night-arlovski-vs-barnett": {
       "strategyVersion": 6,
@@ -19506,16 +19513,23 @@
     },
     "ufc:2026-09-12:ufc-fight-night-silva-vs-delgado": {
       "strategyVersion": 7,
-      "checkedAt": "2026-09-14T16:01:26.788Z",
+      "checkedAt": "2026-09-14T17:00:07.342Z",
       "entryClass": "event",
       "imageStatus": "resolved",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/69/UFC_Fight_Night_288.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "imageCredit": "Wikipedia",
-      "imageSourceUrl": "https://en.wikipedia.org/wiki/UFC_Fight_Night:_Silva_vs._Delgado",
-      "imageSourceType": "existing-image",
-      "imageConfidence": 0.7,
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2026-09-12-ufc-fight-night-silva-vs-delgado-be3154a736cbbc5c.jpg",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/145702-ufc-fight-night",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
       "imageSubjectType": "event",
-      "imageMatchReason": "Existing resolved image retained with cached provenance metadata."
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "imageAlt": "UFC Fight Night: Silva vs. Delgado event poster",
+      "artworkType": "poster",
+      "sourceType": "tapology-event-poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/145702-ufc-fight-night",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "be3154a736cbbc5cf30e914b797bcecfb02226a6231bd1d412d8eb0c9d822352",
+      "posterRegistryKey": "2026-09-12::ufc fight night silva vs delgado"
     }
   },
   "strategyVersion": 7,
