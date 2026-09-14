@@ -30,11 +30,11 @@ concurrency:
 jobs:
   fast-publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     env:
       OTD_TIME_ZONE: "America/Chicago"
       OTD_TAPOLOGY_POSTER_LIMIT: "48"
-      OTD_EVENT_POSTER_LIMIT: "220"
+      OTD_EVENT_POSTER_LIMIT: "2500"
       OTD_CURRENT_WINDOW_DAYS: "2"
       OTD_SHARE_WINDOW_DAYS: "2"
       OTD_SHARE_MAX_PER_DAY: "12"
