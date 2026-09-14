@@ -59,15 +59,17 @@ jobs:
     timeout-minutes: 30
     env:
       OTD_TARGET_PROMOTIONS: "ufc,wec,strikeforce,pfl,one,pancrase,bellator,rizin,pride"
-      OTD_IMAGE_VERIFY_LIMIT: "100"
-      OTD_IMAGE_RESOLVE_LIMIT: "180"
-      OTD_EVENT_POSTER_LIMIT: ${{ github.event_name == 'schedule' && '2500' || '220' }}
+      # Pushes validate the current-priority queues quickly. Scheduled/manual runs keep
+      # doing the deeper archive backfill so CI speed never trades away long-term coverage.
+      OTD_IMAGE_VERIFY_LIMIT: ${{ github.event_name == 'push' && '30' || '100' }}
+      OTD_IMAGE_RESOLVE_LIMIT: ${{ github.event_name == 'push' && '80' || '180' }}
+      OTD_EVENT_POSTER_LIMIT: ${{ github.event_name == 'push' && '120' || '2500' }}
       OTD_CURRENT_WINDOW_DAYS: "2"
       OTD_TIME_ZONE: "America/Chicago"
-      OTD_CONTENT_ENRICH_LIMIT: "80"
+      OTD_CONTENT_ENRICH_LIMIT: ${{ github.event_name == 'push' && '20' || '80' }}
       OTD_CONTENT_CONCURRENCY: "1"
-      OTD_PANCRASE_ENRICH_LIMIT: "24"
-      OTD_PANCRASE_IMAGE_LIMIT: "80"
+      OTD_PANCRASE_ENRICH_LIMIT: ${{ github.event_name == 'push' && '8' || '24' }}
+      OTD_PANCRASE_IMAGE_LIMIT: ${{ github.event_name == 'push' && '30' || '80' }}
       OTD_SHARE_WINDOW_DAYS: "2"
       OTD_SHARE_MAX_PER_DAY: "12"
       OTD_SHARE_CONCURRENCY: "3"
