@@ -12,6 +12,22 @@ const norm = value => clean(value)
   .trim();
 const eventKey = entry => `${clean(entry?.date)}::${norm(entry?.title)}`;
 
+function tapologyEventUrl(value) {
+  try {
+    const url = new URL(clean(value));
+    return url.protocol === 'https:' && /(^|\.)tapology\.com$/i.test(url.hostname) && /\/fightcenter\/events\//i.test(url.pathname);
+  } catch {
+    return false;
+  }
+}
+
+function isPublishedEvent(entry) {
+  return entry?.kind === 'event' ||
+    entry?.generatedBy === 'wikipedia-event-index' ||
+    clean(entry?.imageArtifactType) === 'event-poster' ||
+    (clean(entry?.imageSubjectType) === 'event' && tapologyEventUrl(entry?.tapologyUrl || entry?.imageSourceUrl || entry?.sourceUrl));
+}
+
 const history = JSON.parse(await fs.readFile(HISTORY_PATH, 'utf8'));
 const entries = Array.isArray(history) ? history : history.entries;
 if (!Array.isArray(entries)) throw new Error(`${HISTORY_PATH} does not contain an entries array.`);
@@ -21,7 +37,10 @@ registry.records = registry.records && typeof registry.records === 'object' && !
   ? registry.records
   : {};
 
-const publishedKeys = new Set(entries.map(eventKey));
+// Keep the pruning identity deliberately identical to check-on-this-day-poster-registry.mjs.
+// A historical moment may share a date/title with an old registry record without being a
+// publishable event row; those records must not survive merely because the text still exists.
+const publishedKeys = new Set(entries.filter(isPublishedEvent).map(eventKey));
 let removed = 0;
 for (const key of Object.keys(registry.records)) {
   if (publishedKeys.has(key)) continue;
@@ -34,4 +53,4 @@ if (removed) {
   await fs.writeFile(REGISTRY_PATH, `${JSON.stringify(registry, null, 2)}\n`, 'utf8');
 }
 
-console.log(`On This Day poster registry prune: ${removed} stale record(s) removed; ${Object.keys(registry.records).length} active record(s) retained.`);
+console.log(`On This Day poster registry prune: ${removed} stale record(s) removed; ${Object.keys(registry.records).length} active event record(s) retained.`);
