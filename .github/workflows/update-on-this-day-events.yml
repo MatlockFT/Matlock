@@ -11,7 +11,6 @@ on:
       - "assets/data/on-this-day-event-sources.json"
       - "assets/data/on-this-day-pancrase-cache.json"
       - "assets/data/on-this-day-image-source-overrides.json"
-      - "assets/data/on-this-day-current-poster-fallbacks.json"
       - "assets/data/fighter-birthday-seeds.json"
       - "assets/fighter-portraits.json"
       - "scripts/update-fighter-birthdays.mjs"
@@ -62,7 +61,7 @@ jobs:
       OTD_TARGET_PROMOTIONS: "ufc,wec,strikeforce,pfl,one,pancrase,bellator,rizin,pride"
       OTD_IMAGE_VERIFY_LIMIT: "100"
       OTD_IMAGE_RESOLVE_LIMIT: "180"
-      OTD_EVENT_POSTER_LIMIT: "220"
+      OTD_EVENT_POSTER_LIMIT: ${{ github.event_name == 'schedule' && '2500' || '220' }}
       OTD_CURRENT_WINDOW_DAYS: "2"
       OTD_TIME_ZONE: "America/Chicago"
       OTD_CONTENT_ENRICH_LIMIT: "80"
