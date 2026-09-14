@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "entries": [
     {
       "date": "1994-09-09",
@@ -32,6 +32,39 @@
       "matchReason": "Deterministic direct URL for the exact Strikeforce: Barnett vs. Kharitonov event poster."
     },
     {
+      "date": "2013-09-13",
+      "title": "Bellator 99",
+      "imageUrl": "https://images.tapology.com/poster_images/19438/profile/Bellator_99_Poster.jpg?1379101839",
+      "sourceUrl": "https://www.wrestling-infos.de/83626.html",
+      "sourceType": "verified-manual-event-poster",
+      "credit": "Tapology",
+      "confidence": 0.99,
+      "manualVisualVerified": true,
+      "matchReason": "Contemporary September 2013 event listing embeds the exact Bellator 99 poster asset. The asset filename identifies Bellator 99 and the HTTPS Tapology CDN endpoint was independently validated as a JPEG image."
+    },
+    {
+      "date": "2013-09-14",
+      "title": "WSOF5: Arlovski vs. Kyle",
+      "imageUrl": "https://images.tapology.com/poster_images/19388/profile/World_Series_of_Fighting_5_Poster.jpg?1376880235",
+      "sourceUrl": "https://www.wrestling-infos.de/83626.html",
+      "sourceType": "verified-manual-event-poster",
+      "credit": "Tapology",
+      "confidence": 0.99,
+      "manualVisualVerified": true,
+      "matchReason": "Contemporary September 2013 event listing embeds the exact World Series of Fighting 5 poster asset. The filename identifies WSOF 5 and the HTTPS Tapology CDN endpoint was independently validated as a JPEG image."
+    },
+    {
+      "date": "2014-09-13",
+      "title": "WSOF13: Moraes vs. Bollinger",
+      "imageUrl": "https://images.tapology.com/poster_images/25740/profile/WSOF_13_Moraes_vs._Bollinger_Poster.png?1410621128",
+      "sourceUrl": "https://www.wrestling-infos.de/99853.html",
+      "sourceType": "verified-manual-event-poster",
+      "credit": "Tapology",
+      "confidence": 0.99,
+      "manualVisualVerified": true,
+      "matchReason": "Contemporary September 2014 event listing embeds the exact WSOF 13 Moraes vs. Bollinger poster asset. The filename identifies the event and the HTTPS Tapology CDN endpoint was independently validated as a PNG image."
+    },
+    {
       "date": "2016-09-11",
       "title": "Pancrase: 280",
       "imageUrl": "https://www.pancrase.co.jp/data/result/2016/0911/main.jpg",
@@ -40,6 +73,17 @@
       "credit": "Pancrase",
       "confidence": 0.99,
       "matchReason": "Exact official PANCRASE280 event poster from the promotion's September 11, 2016 result page."
+    },
+    {
+      "date": "2016-09-16",
+      "title": "Bellator 161",
+      "imageUrl": "https://www.mmaweekly.com/.image/w_3840%2Cq_auto%3Agood%2Cc_limit/MTk4NTI0MjM5NjU3MDUyMDcx/bellator-161-kongo-vs-johnson-fight-poster.jpg",
+      "sourceUrl": "https://www.mmaweekly.com/news/bellator-161-kongo-vs-johnson-weigh-in-video-and-results",
+      "sourceType": "verified-manual-event-poster",
+      "credit": "Bellator via MMAWeekly",
+      "confidence": 0.99,
+      "manualVisualVerified": true,
+      "matchReason": "The contemporary Bellator 161 weigh-in article labels this image 'Bellator 161 Kongo vs Johnson Fight Poster' and credits Bellator. The direct HTTPS image endpoint was independently validated as an image payload."
     },
     {
       "date": "2018-09-08",
