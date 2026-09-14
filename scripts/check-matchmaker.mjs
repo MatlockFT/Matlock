@@ -6,6 +6,7 @@ import { createRequire } from 'node:module';
 import { validateData } from './matchmaker/validate.mjs';
 import { parseEvent, parseRankings, parseProfile, eventDate } from './matchmaker/sources/ufc.mjs';
 import { parseFighterDirectory, parseFighterHistory, parseMirrorHistory } from './matchmaker/sources/ufcstats.mjs';
+import { reconcileProfileHistory } from './matchmaker/history-reconcile.mjs';
 const require = createRequire(import.meta.url), E = require('../assets/matchmaker-engine.js');
 const bout = (date, result = 'W', opponentIds = [], text = '') => ({ date, result, opponentIds, text });
 const make = (id, rank = 8, extra = {}) => ({ id, name: id.toUpperCase(), active: true, division: 'Flyweight', rank, lastFight: '2026-08-01', history: [bout('2026-08-01'), bout('2026-05-01'), bout('2026-02-01')], ...extra });
@@ -29,10 +30,9 @@ assert(E.rematchCase({ ...a, history: [bout('2026-08-01', 'D', ['bravo'])] }, b,
 assert(!E.rematchCase({ ...a, history: [bout('2026-08-01', 'W', ['bravo'])] }, b, context).allowed);
 assert.equal(E.rank({ ...a, rankings: [{ division: 'Flyweight', rank: 8 }] }, { ...context, overrides: { alpha: { division: 'Bantamweight' } } }), null);
 
-// A verified prior meeting is a hard eligibility rule, even when the weaker UFC.com narrative history missed it.
+// A verified prior meeting is a hard eligibility rule, even when weaker UFC.com profile prose missed it.
 const jeanFixture = make('jean-silva', 6, {
-  name: 'Jean Silva',
-  division: 'Featherweight',
+  name: 'Jean Silva', division: 'Featherweight',
   verifiedMeetings: [{ opponentId: 'diego-lopes', opponentName: 'Diego Lopes', date: '2025-09-13', result: 'L', source: 'UFCStats', sourceUrl: 'https://ufcstats.com/fight-details/de1a3734be60e6a1' }],
   meetingCoverage: { source: 'UFCStats', verified: true, checkedAt: '2026-09-10T00:00:00Z' }
 });
@@ -43,7 +43,7 @@ assert.equal(jeanDiego.eligible, false, 'A verified Jean Silva vs Diego Lopes pr
 assert.match(jeanDiego.reason, /Previously fought on 2025-09-13/);
 const uncertain = E.evaluate(make('uncertain', 7, { name: 'Uncertain Fighter' }), make('fresh', 8, { name: 'Fresh Fighter' }), context);
 assert(uncertain.eligible);
-assert(!/no previous meeting found/i.test(uncertain.rationale), 'Incomplete history must never be phrased as proof that two fighters never met');
+assert(!/no previous meeting found/i.test(uncertain.rationale, 'Incomplete history must never be phrased as proof that two fighters never met'));
 assert.match(uncertain.rationale, /no prior meeting detected/i);
 
 // Direct UFCStats parser fixtures remain covered even though production uses a GitHub-hosted mirror.
@@ -60,17 +60,54 @@ assert.equal(parsedJeanHistory[0].opponentName, 'Diego Lopes');
 assert.equal(parsedJeanHistory[0].date, '2025-09-13');
 assert.equal(parsedJeanHistory[0].result, 'L');
 
-// Mirror parser regression: Noche UFC must count as UFC history and retain the original UFCStats fight URL.
-const mirrorEventsFixture = 'EVENT,URL,DATE,LOCATION\n"Noche UFC: Lopes vs. Silva","http://ufcstats.com/event-details/5efaaf313b652dd7","September 13, 2025","San Antonio, Texas, USA"\n';
-const mirrorFightsFixture = 'EVENT,BOUT,OUTCOME,WEIGHTCLASS,METHOD,ROUND,TIME,TIME FORMAT,REFEREE,DETAILS,URL\n"Noche UFC: Lopes vs. Silva","Diego Lopes vs. Jean Silva","W/L","Featherweight Bout","KO/TKO","2","4:48","5-5","Mike Beltran","Punches","http://ufcstats.com/fight-details/de1a3734be60e6a1"\n';
+// Mirror regression: standard UFC, Noche UFC and Road to UFC rows are retained with provenance.
+const mirrorEventsFixture = [
+  'EVENT,URL,DATE,LOCATION',
+  '"Noche UFC: Lopes vs. Silva","http://ufcstats.com/event-details/5efaaf313b652dd7","September 13, 2025","San Antonio, Texas, USA"',
+  '"Road to UFC 2.7","http://ufcstats.com/event-details/cce79e827569f26e","February 03, 2024","Las Vegas, Nevada, USA"'
+].join('\n') + '\n';
+const mirrorFightsFixture = [
+  'EVENT,BOUT,OUTCOME,WEIGHTCLASS,METHOD,ROUND,TIME,TIME FORMAT,REFEREE,DETAILS,URL',
+  '"Noche UFC: Lopes vs. Silva","Diego Lopes vs. Jean Silva","W/L","Featherweight Bout","KO/TKO","2","4:48","5-5","Mike Beltran","Punches","http://ufcstats.com/fight-details/de1a3734be60e6a1"',
+  '"Road to UFC 2.7","Rei Tsuruya vs. Jiniushiyue","W/L","Flyweight Bout","KO/TKO","1","4:59","5-5","Test Ref","Punches","http://ufcstats.com/fight-details/aaaaaaaaaaaaaaaa"'
+].join('\n') + '\n';
 const mirrorLedger = parseMirrorHistory(mirrorFightsFixture, mirrorEventsFixture, '2026-09-10');
-assert.equal(mirrorLedger.length, 1);
-assert.equal(mirrorLedger[0].date, '2025-09-13');
-assert.equal(mirrorLedger[0].aName, 'Diego Lopes');
-assert.equal(mirrorLedger[0].bName, 'Jean Silva');
-assert.equal(mirrorLedger[0].aResult, 'W');
-assert.equal(mirrorLedger[0].bResult, 'L');
-assert.equal(mirrorLedger[0].sourceUrl, 'https://ufcstats.com/fight-details/de1a3734be60e6a1');
+assert.equal(mirrorLedger.length, 2);
+const noche = mirrorLedger.find(row => row.aName === 'Diego Lopes');
+assert.equal(noche.date, '2025-09-13');
+assert.equal(noche.aResult, 'W');
+assert.equal(noche.bResult, 'L');
+assert.equal(noche.competitionClass, 'ufc');
+assert.equal(noche.sourceUrl, 'https://ufcstats.com/fight-details/de1a3734be60e6a1');
+const road = mirrorLedger.find(row => row.aName === 'Rei Tsuruya');
+assert(road, 'Road to UFC history must remain available for prior-meeting verification');
+assert.equal(road.competitionClass, 'road-to-ufc');
+assert.equal(road.date, '2024-02-03');
+
+// UFC.com biography prose contains known date/result errors. Reconciliation must prefer a structured
+// opponent-linked fight rather than either discarding the fighter or silently accepting the prose date.
+const rakicProfileTypo = [{ date: '2024-10-30', result: 'L', opponentIds: ['magomed-ankalaev'], text: 'UFC 308 (10/30/24) Rakic lost a decision to Magomed Ankalaev' }];
+const rakicVerified = [{ date: '2024-10-26', result: 'L', opponentId: 'magomed-ankalaev', opponentName: 'Magomed Ankalaev', sourceUrl: 'https://ufcstats.com/fight-details/test' }];
+const rakicReconciled = reconcileProfileHistory(rakicProfileTypo, rakicVerified);
+assert.equal(rakicReconciled.missing.length, 0, 'A verified opponent match must reconcile a bad profile date');
+assert(rakicReconciled.discrepancies.some(item => item.type === 'profile-date' && item.verifiedDate === '2024-10-26'));
+const perezYearTypo = reconcileProfileHistory(
+  [{ date: '2025-06-15', result: 'L', opponentIds: ['tatsuro-taira'], text: 'Perez was stopped by Tatsuro Taira' }],
+  [{ date: '2024-06-15', result: 'L', opponentId: 'tatsuro-taira', opponentName: 'Tatsuro Taira', sourceUrl: 'https://ufcstats.com/fight-details/test2' }]
+);
+assert.equal(perezYearTypo.missing.length, 0, 'An exact opponent/result must survive a one-year UFC.com profile typo');
+assert(perezYearTypo.discrepancies.some(item => item.type === 'profile-date'));
+const resultConflict = reconcileProfileHistory(
+  [{ date: '2026-03-21', result: 'L', opponentIds: ['shanelle-dyer'], text: 'Oliveira was stopped by Shanelle Dyer' }],
+  [{ date: '2026-03-21', result: 'W', opponentId: 'shanelle-dyer', opponentName: 'Shanelle Dyer', sourceUrl: 'https://ufcstats.com/fight-details/test3' }]
+);
+assert.equal(resultConflict.missing.length, 0, 'Exact opponent evidence should reconcile contradictory profile prose');
+assert(resultConflict.discrepancies.some(item => item.type === 'profile-result'));
+const unrelated = reconcileProfileHistory(
+  [{ date: '2025-01-01', result: 'W', opponentIds: ['one'], text: 'Fighter defeated One' }],
+  [{ date: '2025-08-01', result: 'W', opponentId: 'two', opponentName: 'Two', sourceUrl: 'https://ufcstats.com/fight-details/test4' }]
+);
+assert.equal(unrelated.missing.length, 1, 'Reconciliation must not invent a match between unrelated fights');
 
 const lock = E.lock(a, b, context);
 assert.throws(() => E.lock(a, b, { ...context, locks: [lock] }), /Reserved/);
@@ -101,6 +138,7 @@ if (data.sources?.meetings) {
 }
 
 let checked = 0;
+const historyV2 = Number(data.sources?.meetings?.historyModelVersion || 0) >= 2;
 for (const event of data.events) {
   const ctx = { ...context, event, asOf: data.generatedAt };
   for (const entry of event.bouts.flatMap(bout => bout.fighters)) {
@@ -111,7 +149,11 @@ for (const event of data.events) {
     }
     const recs = data.sources?.meetings && fighter.meetingCoverage?.verified !== true ? [] : E.recommendations(fighter, data.fighters, ctx);
     assert(recs.length <= 3); assert.equal(new Set(recs.map(r => r.fighter.id)).size, recs.length);
-    for (const r of recs) { assert(r.eligible && !r.fighter.booking && r.fighter.active); assert(r.score >= 0 && r.score <= 100); assert(r.rationale && r.evidence.length >= 4); checked++; }
+    for (const r of recs) {
+      assert(r.eligible && !r.fighter.booking && r.fighter.active);
+      if (historyV2) assert.equal(r.fighter.meetingCoverage?.verified, true, `Unverified candidate leaked into recommendations: ${r.fighter.name}`);
+      assert(r.score >= 0 && r.score <= 100); assert(r.rationale && r.evidence.length >= 4); checked++;
+    }
     assert.equal(JSON.stringify(fighter), before, 'Engine must not mutate source records');
   }
   const autoPairs = E.autoMatch(data.fighters, ctx, event.bouts.flatMap(bout => bout.fighters.map(f => f.id)), 1000);
@@ -132,4 +174,4 @@ assert(!/localStorage|showModal|data-mm-lock|autoMatch\(/.test(simpleJs), 'Read-
 const simpleCss = fs.readFileSync('assets/matchmaker-simple.css', 'utf8');
 for (const marker of ['.mm-simple-hero', '.mm-simple-eventbar', '.mm-simple-board', '.mm-simple-file', '.mm-simple-match', 'prefers-reduced-motion']) assert(simpleCss.includes(marker), `Missing simplified Matchmaker style: ${marker}`);
 assert(fs.readFileSync('_config.yml', 'utf8').includes('link: "/matchmaker/"'));
-console.log(`Matchmaker checks passed: hard rematch regression, UFCStats mirror parsing, source validation, ${data.events.length} real cards, ${checked} eligible recommendations, fail-closed unverified histories, and simplified read-only next-fight presentation.`);
+console.log(`Matchmaker checks passed: hard rematch regression, structured-history source reconciliation, UFCStats/Road-to-UFC mirror parsing, ${data.events.length} real cards, ${checked} eligible recommendations, fail-closed unverified histories, and simplified read-only next-fight presentation.`);

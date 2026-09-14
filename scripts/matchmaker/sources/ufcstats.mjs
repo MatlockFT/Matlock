@@ -53,8 +53,17 @@ function resultCode(text) {
   return null;
 }
 
-function isUfcEvent(title) {
-  return /^(?:UFC\b|Noche UFC\b|The Ultimate Fighter\b)/i.test(clean(title));
+export function competitionClass(title) {
+  const value = clean(title);
+  if (/Dana White(?:'|’)?s Contender Series|\bDWCS\b/i.test(value)) return 'dwcs';
+  if (/Road to UFC/i.test(value)) return 'road-to-ufc';
+  if (/^The Ultimate Fighter\b/i.test(value)) return 'tuf';
+  if (/^(?:UFC\b|Noche UFC\b)/i.test(value)) return 'ufc';
+  return null;
+}
+
+function isTrackedEvent(title) {
+  return Boolean(competitionClass(title));
 }
 
 export function parseFighterDirectory(html) {
@@ -91,7 +100,8 @@ export function parseFighterHistory(html, profileUrl, checkedAt = new Date().toI
     const date = parseDate(text);
     if (!date || date > cutoff) continue;
     const event = eventLink(row);
-    if (!event.title || !isUfcEvent(event.title)) continue;
+    const eventClass = competitionClass(event.title);
+    if (!event.title || !eventClass) continue;
     const sourceUrl = fightLink(row) || event.url || profileUrl;
     meetings.push({
       fightStatsId: String(sourceUrl).match(/\/fight-details\/([a-f0-9]+)/i)?.[1]?.toLowerCase() || null,
@@ -100,6 +110,7 @@ export function parseFighterHistory(html, profileUrl, checkedAt = new Date().toI
       date,
       result,
       event: event.title,
+      competitionClass: eventClass,
       source: 'UFCStats',
       sourceUrl
     });
@@ -142,13 +153,7 @@ export function parseMirrorFighters(fighterCsv) {
     const id = statsId(row.URL);
     const name = clean([row.FIRST, row.LAST].filter(Boolean).join(' '));
     if (!id || !name) continue;
-    const candidate = {
-      id,
-      name,
-      nickname: clean(row.NICKNAME),
-      key: key(name),
-      url: `https://ufcstats.com/fighter-details/${id}`
-    };
+    const candidate = { id, name, nickname: clean(row.NICKNAME), key: key(name), url: `https://ufcstats.com/fighter-details/${id}` };
     const existing = fighters.get(id);
     if (!existing || candidate.name.length > existing.name.length) fighters.set(id, candidate);
   }
@@ -161,26 +166,28 @@ export function parseMirrorHistory(fightCsv, eventCsv, cutoff = new Date().toISO
   for (const row of eventRows) {
     const title = clean(row.EVENT);
     const date = parseDate(row.DATE);
-    if (!title || !date || date > cutoff || !isUfcEvent(title)) continue;
+    const eventClass = competitionClass(title);
+    if (!title || !date || date > cutoff || !eventClass) continue;
     const existing = eventDates.get(title);
-    if (!existing || date > existing) eventDates.set(title, date);
+    if (!existing || date > existing.date) eventDates.set(title, { date, competitionClass: eventClass });
   }
 
   const fights = new Map();
   for (const row of parseCsv(fightCsv)) {
     const event = clean(row.EVENT);
-    const date = eventDates.get(event);
+    const eventInfo = eventDates.get(event);
     const sourceUrl = String(row.URL || '').replace(/^http:/i, 'https:');
-    if (!event || !date || !isUfcEvent(event) || !/^https:\/\/ufcstats\.com\/fight-details\/[a-f0-9]+/i.test(sourceUrl)) continue;
+    if (!event || !eventInfo || !isTrackedEvent(event) || !/^https:\/\/ufcstats\.com\/fight-details\/[a-f0-9]+/i.test(sourceUrl)) continue;
     const names = clean(row.BOUT).split(/\s+vs\.?\s+/i).map(clean);
     const outcomes = clean(row.OUTCOME).split('/').map(value => value.toUpperCase());
     if (names.length !== 2 || outcomes.length !== 2 || outcomes.some(value => !['W', 'L', 'D', 'NC'].includes(value))) continue;
     const fightStatsId = sourceUrl.match(/fight-details\/([a-f0-9]+)/i)?.[1]?.toLowerCase() || null;
-    const sourceId = fightStatsId || `${date}|${key(names[0])}|${key(names[1])}`;
+    const sourceId = fightStatsId || `${eventInfo.date}|${key(names[0])}|${key(names[1])}`;
     if (!fights.has(sourceId)) fights.set(sourceId, {
       fightStatsId,
-      date,
+      date: eventInfo.date,
       event,
+      competitionClass: eventInfo.competitionClass,
       aName: names[0],
       bName: names[1],
       aResult: outcomes[0],

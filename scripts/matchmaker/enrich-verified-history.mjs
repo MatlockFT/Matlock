@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { clean, key } from './sources/ufc.mjs';
 import { parseMirrorFighters, parseMirrorHistory } from './sources/ufcstats.mjs';
+import { reconcileProfileHistory } from './history-reconcile.mjs';
 import { validateData } from './validate.mjs';
 
 const DATA_PATH = path.resolve('assets/data/matchmaker/current.json');
@@ -20,7 +21,7 @@ async function getText(url) {
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
       const response = await fetch(url, {
-        headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MMAMatlockMatchmaker/2.0; +https://mmamatlock.com/)' },
+        headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MMAMatlockMatchmaker/2.1; +https://mmamatlock.com/)' },
         signal: AbortSignal.timeout(30000)
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}: ${url}`);
@@ -117,6 +118,7 @@ function rawMeeting(fight, opponentStats, opponentName, result) {
     date: fight.date,
     result,
     event: fight.event,
+    competitionClass: fight.competitionClass || 'ufc',
     weightClass: fight.weightClass || null,
     method: fight.method || null,
     round: fight.round || null,
@@ -209,8 +211,7 @@ for (const fighter of data.fighters) if (!identities.has(fighter.id)) {
 }
 
 // Last-resort source-native identity for brand-new fighters whose UFCStats bout exists before the
-// fighter-directory mirror catches up. It is only accepted when the fighter's UFC profile dates are
-// completely accounted for by one unique ledger name.
+// fighter-directory mirror catches up. It is only accepted when profile dates/results all reconcile.
 function ledgerIdentity(fighter) {
   const profileBouts = profileHistoryOf(fighter).filter(isProfileUfcBout).slice(0, 10);
   const candidates = new Set();
@@ -220,7 +221,7 @@ function ledgerIdentity(fighter) {
   }
   const viable = [...candidates].filter(ledgerKey => {
     const meetings = rawByLedgerName.get(ledgerKey) || [];
-    return profileBouts.every(bout => !bout.date || meetings.some(meeting => nearDate(meeting.date, bout.date) && meeting.result === bout.result));
+    return reconcileProfileHistory(profileBouts, meetings).missing.length === 0;
   });
   return viable.length === 1 ? { statsId: null, ledgerKey: viable[0], method: 'ledger-name' } : null;
 }
@@ -285,6 +286,7 @@ for (const event of data.events || []) for (const bout of event.bouts || []) {
       date: event.date,
       result: self.result,
       event: event.title,
+      competitionClass: 'ufc',
       weightClass: bout.division || null,
       method: bout.method || null,
       round: bout.round || null,
@@ -311,40 +313,63 @@ function dedupeMeetings(meetings) {
   return [...unique.values()].sort((a, b) => b.date.localeCompare(a.date) || String(a.opponentName).localeCompare(String(b.opponentName)));
 }
 
+function canonicalEntry(fighter, meeting) {
+  return {
+    date: meeting.date,
+    result: meeting.result,
+    opponentIds: meeting.opponentId ? [meeting.opponentId] : [],
+    opponentStatsId: meeting.opponentStatsId || null,
+    opponentName: meeting.opponentName,
+    event: meeting.event,
+    competitionClass: meeting.competitionClass || 'ufc',
+    weightClass: meeting.weightClass || null,
+    method: meeting.method || null,
+    round: meeting.round || null,
+    time: meeting.time || null,
+    fightStatsId: meeting.fightStatsId || null,
+    source: meeting.source,
+    sourceUrl: meeting.sourceUrl,
+    text: `${meeting.event}: ${fighter.name} vs ${meeting.opponentName}. ${meeting.result}. ${meeting.method || ''}`.trim()
+  };
+}
+
 let verified = 0;
 let participantVerified = 0;
 let activePopulation = 0;
 let activeVerified = 0;
 let identityMisses = 0;
-let ambiguousOrMissing = 0;
 let canonicalOpponentLinks = 0;
 let unresolvedOpponentLinks = 0;
+let sourceDiscrepancyCount = 0;
 const missNames = [];
 const participantMissNames = [];
+const discrepancyExamples = [];
 
 for (const fighter of data.fighters) {
   const identity = identities.get(fighter.id) || null;
   const profileHistory = profileHistoryOf(fighter);
   const meetings = dedupeMeetings(ledgerByCanonical.get(fighter.id) || []);
   const profileUfc = profileHistory.filter(isProfileUfcBout);
-  const recentProfile = profileUfc.slice(0, 12);
-  const missingProfileDates = recentProfile.filter(entry => entry.date && !meetings.some(meeting => nearDate(meeting.date, entry.date) && meeting.result === entry.result)).map(entry => entry.date);
-  const latestProfile = profileUfc[0]?.date || null;
-  const latestStructured = meetings[0]?.date || null;
-  const latestCovered = !latestProfile || latestStructured && (latestStructured >= latestProfile || nearDate(latestStructured, latestProfile));
+  const reconciliation = reconcileProfileHistory(profileUfc.slice(0, 12), meetings);
   const duplicateIdentity = identity?.statsId && canonicalByStatsId.get(identity.statsId) === null || identity?.ledgerKey && canonicalByLedgerKey.get(identity.ledgerKey) === null;
-  const coverageVerified = Boolean(identity && !duplicateIdentity && latestCovered && missingProfileDates.length === 0 && (meetings.length > 0 || profileUfc.length === 0));
+  const coverageVerified = Boolean(identity && !duplicateIdentity && reconciliation.missing.length === 0 && (meetings.length > 0 || profileUfc.length === 0));
+  const matchedMeetings = new Set(reconciliation.matches.map(match => match.meeting));
+  const canonicalMeetings = meetings.filter(meeting => meeting.source === 'UFC.com' || ['ufc', 'tuf'].includes(meeting.competitionClass) || matchedMeetings.has(meeting));
 
   if (!identity) {
     identityMisses++;
-    ambiguousOrMissing++;
     if (fighter.active || participants.has(fighter.id)) missNames.push(`${fighter.name} (not-found)`);
     if (participants.has(fighter.id)) participantMissNames.push(`${fighter.name} (not-found)`);
   } else if (duplicateIdentity || !coverageVerified) {
-    if (fighter.active || participants.has(fighter.id)) missNames.push(`${fighter.name} (${duplicateIdentity ? 'identity-collision' : 'history-gap'})`);
-    if (participants.has(fighter.id)) participantMissNames.push(`${fighter.name} (${duplicateIdentity ? 'identity-collision' : `history-gap:${missingProfileDates.join('|')}`})`);
+    const missing = reconciliation.missing.map(entry => `${entry.date}:${entry.result || '?'}`).join('|');
+    if (fighter.active || participants.has(fighter.id)) missNames.push(`${fighter.name} (${duplicateIdentity ? 'identity-collision' : `history-gap:${missing}`})`);
+    if (participants.has(fighter.id)) participantMissNames.push(`${fighter.name} (${duplicateIdentity ? 'identity-collision' : `history-gap:${missing}`})`);
   }
 
+  sourceDiscrepancyCount += reconciliation.discrepancies.length;
+  for (const discrepancy of reconciliation.discrepancies.slice(0, 3)) {
+    if (discrepancyExamples.length < 20) discrepancyExamples.push(`${fighter.name}: ${discrepancy.type} ${JSON.stringify(discrepancy)}`);
+  }
   for (const meeting of meetings) {
     if (meeting.opponentId) canonicalOpponentLinks++;
     else unresolvedOpponentLinks++;
@@ -364,36 +389,28 @@ for (const fighter of data.fighters) {
     ledgerNameKey: identity?.ledgerKey || null,
     identityMethod: identity?.method || 'not-found',
     bouts: meetings.length,
+    canonicalBouts: coverageVerified ? canonicalMeetings.length : 0,
     canonicalOpponentLinks: meetings.filter(meeting => meeting.opponentId).length,
     unresolvedOpponentLinks: meetings.filter(meeting => !meeting.opponentId).length,
     profileUfcBouts: profileUfc.length,
-    missingProfileDates,
+    missingProfileBouts: reconciliation.missing.map(entry => ({ date: entry.date, result: entry.result || null, text: entry.text || null })),
+    sourceDiscrepancies: reconciliation.discrepancies,
     mirrorThrough: mirrorLatest,
     officialThrough: (data.events || []).map(event => event.date).sort().at(-1) || mirrorLatest
   };
 
-  fighter.history = coverageVerified ? meetings.map(meeting => ({
-    date: meeting.date,
-    result: meeting.result,
-    opponentIds: meeting.opponentId ? [meeting.opponentId] : [],
-    opponentStatsId: meeting.opponentStatsId || null,
-    opponentName: meeting.opponentName,
-    event: meeting.event,
-    weightClass: meeting.weightClass || null,
-    method: meeting.method || null,
-    round: meeting.round || null,
-    time: meeting.time || null,
-    fightStatsId: meeting.fightStatsId || null,
-    source: meeting.source,
-    sourceUrl: meeting.sourceUrl,
-    text: `${meeting.event}: ${fighter.name} vs ${meeting.opponentName}. ${meeting.result}. ${meeting.method || ''}`.trim()
-  })) : [];
+  // Engine-facing history is canonical UFC competitive history. Verified feeder meetings remain in
+  // verifiedMeetings for rematch detection, but do not inflate UFC streak/experience unless UFC.com
+  // itself lists the bout as part of the fighter's UFC history.
+  fighter.history = coverageVerified ? canonicalMeetings.map(meeting => canonicalEntry(fighter, meeting)) : [];
   fighter.lastFight = coverageVerified ? fighter.history[0]?.date || null : null;
-  fighter.historyCoverage = coverageVerified ? 'Canonical UFCStats fight ledger reconciled with recent official UFC event results.' : 'Structured UFC fight history could not be verified; matchmaking is withheld.';
+  fighter.historyCoverage = coverageVerified
+    ? 'Canonical UFCStats fight ledger reconciled with official UFC event results; UFC.com profile prose is retained as a fallible cross-check.'
+    : 'Structured UFC fight history could not be verified; matchmaking is withheld.';
 
   if (coverageVerified) verified++;
   if (participants.has(fighter.id) && coverageVerified) participantVerified++;
-  if (fighter.active && (profileUfc.length > 0 || meetings.length > 0 || participants.has(fighter.id))) {
+  if (fighter.active && (profileUfc.length > 0 || canonicalMeetings.length > 0 || participants.has(fighter.id))) {
     activePopulation++;
     if (coverageVerified) activeVerified++;
   }
@@ -402,8 +419,10 @@ for (const fighter of data.fighters) {
 const participantCount = participants.size;
 const activeRatio = activePopulation ? activeVerified / activePopulation : 0;
 console.log(`History-v2 preflight: participants ${participantVerified}/${participantCount}; active population ${activeVerified}/${activePopulation} (${(activeRatio * 100).toFixed(1)}%).`);
+console.log(`Profile cross-check: ${sourceDiscrepancyCount} source discrepancy record(s) reconciled without letting profile prose override structured history.`);
+if (discrepancyExamples.length) console.log(`Source discrepancy examples: ${discrepancyExamples.join(' || ')}`);
 if (participantVerified !== participantCount) throw new Error(`Verified history must cover every displayed event fighter: ${participantVerified}/${participantCount}. Missing: ${participantMissNames.join(', ')}`);
-if (activePopulation && activeRatio < 0.8) throw new Error(`Verified history coverage is too low for the active matchmaking population: ${activeVerified}/${activePopulation} (${(activeRatio * 100).toFixed(1)}%).`);
+if (activePopulation && activeRatio < 0.9) throw new Error(`Verified history coverage is too low for the active matchmaking population: ${activeVerified}/${activePopulation} (${(activeRatio * 100).toFixed(1)}%).`);
 
 data.sources ||= {};
 data.sources.meetings = {
@@ -416,7 +435,7 @@ data.sources.meetings = {
   mirrorThrough: mirrorLatest,
   mirrorFrom: mirrorEarliest,
   officialThrough: (data.events || []).map(event => event.date).sort().at(-1) || mirrorLatest,
-  note: 'Canonical structured UFC fight histories for the matchmaking roster. Stable UFCStats fighter IDs are preferred; fight-signature and source-native ledger identity resolve verified naming differences; recent official UFC results reconcile the newest cards.'
+  note: 'Canonical structured fight histories for the matchmaking roster. Stable UFCStats fighter IDs are preferred; fight-signature and source-native ledger identity resolve naming differences; profile prose is cross-checked but cannot override structured fight records.'
 };
 data.coverage = {
   ...(data.coverage || {}),
@@ -429,10 +448,10 @@ data.coverage = {
   participantHistoriesRequested: participantCount,
   verifiedParticipantHistories: participantVerified,
   ufcStatsIdentityMisses: identityMisses,
-  ufcStatsAmbiguousIdentities: ambiguousOrMissing,
   ufcStatsMissNames: missNames,
   canonicalOpponentLinks,
   unresolvedOpponentLinks,
+  sourceDiscrepancyCount,
   mirrorFightCount: mirrorFights.length,
   mirrorFighterCount: statsFighters.length
 };
@@ -441,6 +460,6 @@ validateData(data);
 const tmp = `${DATA_PATH}.verified-history-v2.tmp`;
 await fs.writeFile(tmp, JSON.stringify(data, null, 2) + '\n');
 await fs.rename(tmp, DATA_PATH);
-console.log(`Verified history v2: ${verified}/${data.fighters.length} roster records; ${activeVerified}/${activePopulation} active matchmaking histories (${(activeRatio * 100).toFixed(1)}%); ${participantVerified}/${participantCount} displayed-event fighters; ${mirrorFights.length} UFC fights; ${statsFighters.length} UFCStats identities.`);
+console.log(`Verified history v2: ${verified}/${data.fighters.length} roster records; ${activeVerified}/${activePopulation} active matchmaking histories (${(activeRatio * 100).toFixed(1)}%); ${participantVerified}/${participantCount} displayed-event fighters; ${mirrorFights.length} tracked fights; ${statsFighters.length} UFCStats identities.`);
 console.log(`Opponent identity links: ${canonicalOpponentLinks} canonical / ${unresolvedOpponentLinks} historical-only.`);
 if (missNames.length) console.warn(`Withheld histories (${missNames.length} relevant): ${missNames.slice(0, 30).join(', ')}${missNames.length > 30 ? ', …' : ''}`);

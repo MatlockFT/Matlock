@@ -24,6 +24,7 @@ export function validateData(data) {
         assert(meeting.opponentId === null || meeting.opponentId === undefined || ids.has(meeting.opponentId), `Unknown canonical opponent in verified history for ${f.id}`);
         assert(meeting.opponentStatsId === null || meeting.opponentStatsId === undefined || /^[a-f0-9]{16}$/i.test(meeting.opponentStatsId), `Invalid UFCStats opponent ID for ${f.id}`);
         assert(meeting.fightStatsId === null || meeting.fightStatsId === undefined || /^[a-f0-9]{16}$/i.test(meeting.fightStatsId), `Invalid UFCStats fight ID for ${f.id}`);
+        assert(['ufc', 'tuf', 'road-to-ufc', 'dwcs', undefined, null].includes(meeting.competitionClass), `Invalid competition class for ${f.id}`);
         const meetingKey = `${meeting.date}|${meeting.opponentId || meeting.opponentStatsId || meeting.opponentName}`;
         assert(!seen.has(meetingKey), `Duplicate verified meeting for ${f.id}: ${meetingKey}`);
         seen.add(meetingKey);
@@ -41,6 +42,8 @@ export function validateData(data) {
       assert(f.historyModelVersion === 2, `Fighter missing history model v2 marker: ${f.id}`);
       assert(Array.isArray(f.profileHistory), `Fighter missing preserved profile history: ${f.id}`);
       assert(f.meetingCoverage && typeof f.meetingCoverage.verified === 'boolean', `Fighter missing v2 coverage record: ${f.id}`);
+      assert(Array.isArray(f.meetingCoverage.sourceDiscrepancies), `Fighter missing source-discrepancy ledger: ${f.id}`);
+      assert(Array.isArray(f.meetingCoverage.missingProfileBouts), `Fighter missing profile reconciliation status: ${f.id}`);
       if (f.meetingCoverage.verified) {
         const method = f.meetingCoverage.identityMethod;
         assert(['stable-ufcstats-id', 'exact-name', 'unique-alias', 'fight-signature', 'ledger-name'].includes(method), `Invalid identity method for ${f.id}`);
@@ -49,13 +52,14 @@ export function validateData(data) {
         } else {
           assert(/^[a-f0-9]{16}$/i.test(f.meetingCoverage.ufcStatsId || ''), `Verified fighter missing stable UFCStats ID: ${f.id}`);
         }
-        assert(f.history.length === f.verifiedMeetings.length, `Canonical history length differs from verified ledger for ${f.id}`);
+        assert(f.meetingCoverage.missingProfileBouts.length === 0, `Verified fighter still has unreconciled UFC profile bouts: ${f.id}`);
+        assert(Number(f.meetingCoverage.canonicalBouts) === f.history.length, `Canonical bout count mismatch for ${f.id}`);
         assert((f.history[0]?.date || null) === (f.lastFight || null), `Canonical last-fight date mismatch for ${f.id}`);
-        for (let i = 0; i < f.history.length; i++) {
-          const historyEntry = f.history[i], meeting = f.verifiedMeetings[i];
-          assert(historyEntry.date === meeting.date && historyEntry.result === meeting.result, `Canonical history diverged from verified ledger for ${f.id}`);
+        for (const historyEntry of f.history) {
+          assert(['ufc', 'tuf', 'road-to-ufc'].includes(historyEntry.competitionClass), `Engine history contains non-UFC feeder bout for ${f.id}`);
           assert(Array.isArray(historyEntry.opponentIds), `Canonical history missing opponent IDs for ${f.id}`);
-          assert(historyEntry.source === meeting.source && historyEntry.sourceUrl === meeting.sourceUrl, `Canonical history lost source provenance for ${f.id}`);
+          const matching = f.verifiedMeetings.find(meeting => meeting.date === historyEntry.date && meeting.result === historyEntry.result && meeting.source === historyEntry.source && meeting.sourceUrl === historyEntry.sourceUrl && (meeting.opponentId || null) === (historyEntry.opponentIds[0] || null));
+          assert(matching, `Canonical history entry lacks verified provenance for ${f.id}: ${historyEntry.date}`);
         }
       } else {
         assert(f.history.length === 0, `Unverified fighter must fail closed with empty canonical history: ${f.id}`);
@@ -79,7 +83,8 @@ export function validateData(data) {
         for (const [self, opponent] of [[left, right], [right, left]]) {
           const fighter = fighterById.get(self.id);
           assert(fighter?.meetingCoverage?.verified === true, `Displayed fighter lacks verified canonical history: ${self.id}`);
-          assert(fighter.verifiedMeetings.some(meeting => meeting.opponentId === opponent.id && meeting.date === e.date && meeting.result === self.result), `Official event result missing from canonical history: ${self.id} vs ${opponent.id} on ${e.date}`);
+          assert(fighter.verifiedMeetings.some(meeting => meeting.opponentId === opponent.id && meeting.date === e.date && meeting.result === self.result), `Official event result missing from verified history: ${self.id} vs ${opponent.id} on ${e.date}`);
+          assert(fighter.history.some(meeting => meeting.opponentIds.includes(opponent.id) && meeting.date === e.date && meeting.result === self.result), `Official event result missing from engine history: ${self.id} vs ${opponent.id} on ${e.date}`);
         }
       }
     }
@@ -99,10 +104,11 @@ export function validateData(data) {
     assert(/^https:\/\/raw\.githubusercontent\.com\/Greco1899\/scrape_ufc_stats\/main\/ufc_fighter_details\.csv$/i.test(data.sources.meetings.fighterDirectoryUrl || ''), 'Missing trusted UFCStats fighter identity directory');
     const activePopulation = Number(data.coverage?.activeHistoryPopulation || 0);
     const activeVerified = Number(data.coverage?.verifiedActiveHistories || 0);
-    assert(activePopulation > 0 && activeVerified / activePopulation >= 0.8, `Verified active-history coverage below v2 floor: ${activeVerified}/${activePopulation}`);
+    assert(activePopulation > 0 && activeVerified / activePopulation >= 0.9, `Verified active-history coverage below v2 floor: ${activeVerified}/${activePopulation}`);
     assert(Number(data.coverage?.verifiedParticipantHistories) === participants.size, `V2 participant coverage must be 100%: ${data.coverage?.verifiedParticipantHistories}/${participants.size}`);
     assert(Number(data.coverage?.mirrorFightCount) >= 8000, 'V2 UFCStats mirror fight count is implausibly low');
     assert(Number(data.coverage?.mirrorFighterCount) >= 3000, 'V2 UFCStats fighter identity count is implausibly low');
+    assert(Number(data.coverage?.sourceDiscrepancyCount) >= 0, 'Missing profile/source discrepancy count');
 
     const inverseResult = value => value === 'W' ? 'L' : value === 'L' ? 'W' : value;
     for (const fighter of data.fighters.filter(f => f.meetingCoverage?.verified)) {
