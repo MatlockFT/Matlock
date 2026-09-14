@@ -5,7 +5,7 @@ import fs from 'node:fs';
 import { createRequire } from 'node:module';
 import { validateData } from './matchmaker/validate.mjs';
 import { parseEvent, parseRankings, parseProfile, eventDate } from './matchmaker/sources/ufc.mjs';
-import { parseFighterDirectory, parseFighterHistory } from './matchmaker/sources/ufcstats.mjs';
+import { parseFighterDirectory, parseFighterHistory, parseMirrorHistory } from './matchmaker/sources/ufcstats.mjs';
 const require = createRequire(import.meta.url), E = require('../assets/matchmaker-engine.js');
 const bout = (date, result = 'W', opponentIds = [], text = '') => ({ date, result, opponentIds, text });
 const make = (id, rank = 8, extra = {}) => ({ id, name: id.toUpperCase(), active: true, division: 'Flyweight', rank, lastFight: '2026-08-01', history: [bout('2026-08-01'), bout('2026-05-01'), bout('2026-02-01')], ...extra });
@@ -33,7 +33,7 @@ assert.equal(E.rank({ ...a, rankings: [{ division: 'Flyweight', rank: 8 }] }, { 
 const jeanFixture = make('jean-silva', 6, {
   name: 'Jean Silva',
   division: 'Featherweight',
-  verifiedMeetings: [{ opponentId: 'diego-lopes', opponentName: 'Diego Lopes', date: '2025-09-13', result: 'L', source: 'UFCStats', sourceUrl: 'https://ufcstats.com/fight-details/test' }],
+  verifiedMeetings: [{ opponentId: 'diego-lopes', opponentName: 'Diego Lopes', date: '2025-09-13', result: 'L', source: 'UFCStats', sourceUrl: 'https://ufcstats.com/fight-details/de1a3734be60e6a1' }],
   meetingCoverage: { source: 'UFCStats', verified: true, checkedAt: '2026-09-10T00:00:00Z' }
 });
 const diegoFixture = make('diego-lopes', 2, { name: 'Diego Lopes', division: 'Featherweight' });
@@ -46,7 +46,7 @@ assert(uncertain.eligible);
 assert(!/no previous meeting found/i.test(uncertain.rationale), 'Incomplete history must never be phrased as proof that two fighters never met');
 assert.match(uncertain.rationale, /no prior meeting detected/i);
 
-// UFCStats parser fixtures protect the structured prior-opponent layer from markup regressions.
+// Direct UFCStats parser fixtures remain covered even though production uses a GitHub-hosted mirror.
 const statsJean = '52ef95b5860fb28c', statsDiego = 'f166e93d04a8c274';
 const directoryFixture = `<table><tr><td><a href="http://ufcstats.com/fighter-details/${statsJean}">Jean</a> <a href="http://ufcstats.com/fighter-details/${statsJean}">Silva</a></td></tr><tr><td><a href="http://ufcstats.com/fighter-details/${statsDiego}">Diego</a> <a href="http://ufcstats.com/fighter-details/${statsDiego}">Lopes</a></td></tr></table>`;
 const directory = parseFighterDirectory(directoryFixture);
@@ -59,7 +59,18 @@ assert.equal(parsedJeanHistory[0].opponentStatsId, statsDiego);
 assert.equal(parsedJeanHistory[0].opponentName, 'Diego Lopes');
 assert.equal(parsedJeanHistory[0].date, '2025-09-13');
 assert.equal(parsedJeanHistory[0].result, 'L');
-assert.equal(parsedJeanHistory[0].event, 'UFC Fight Night: Lopes vs. Silva');
+
+// Mirror parser regression: Noche UFC must count as UFC history and retain the original UFCStats fight URL.
+const mirrorEventsFixture = 'EVENT,URL,DATE,LOCATION\n"Noche UFC: Lopes vs. Silva","http://ufcstats.com/event-details/5efaaf313b652dd7","September 13, 2025","San Antonio, Texas, USA"\n';
+const mirrorFightsFixture = 'EVENT,BOUT,OUTCOME,WEIGHTCLASS,METHOD,ROUND,TIME,TIME FORMAT,REFEREE,DETAILS,URL\n"Noche UFC: Lopes vs. Silva","Diego Lopes vs. Jean Silva","W/L","Featherweight Bout","KO/TKO","2","4:48","5-5","Mike Beltran","Punches","http://ufcstats.com/fight-details/de1a3734be60e6a1"\n';
+const mirrorLedger = parseMirrorHistory(mirrorFightsFixture, mirrorEventsFixture, '2026-09-10');
+assert.equal(mirrorLedger.length, 1);
+assert.equal(mirrorLedger[0].date, '2025-09-13');
+assert.equal(mirrorLedger[0].aName, 'Diego Lopes');
+assert.equal(mirrorLedger[0].bName, 'Jean Silva');
+assert.equal(mirrorLedger[0].aResult, 'W');
+assert.equal(mirrorLedger[0].bResult, 'L');
+assert.equal(mirrorLedger[0].sourceUrl, 'https://ufcstats.com/fight-details/de1a3734be60e6a1');
 
 const lock = E.lock(a, b, context);
 assert.throws(() => E.lock(a, b, { ...context, locks: [lock] }), /Reserved/);
@@ -98,7 +109,7 @@ for (const event of data.events) {
       const left = fighter.history[i - 1], right = fighter.history[i];
       if (Math.abs(Date.parse(left.date) - Date.parse(right.date)) <= 86400000) assert(!left.opponentIds.some(id => right.opponentIds.includes(id)), 'One fight was counted twice across a UTC calendar boundary');
     }
-    const recs = E.recommendations(fighter, data.fighters, ctx);
+    const recs = data.sources?.meetings && fighter.meetingCoverage?.verified !== true ? [] : E.recommendations(fighter, data.fighters, ctx);
     assert(recs.length <= 3); assert.equal(new Set(recs.map(r => r.fighter.id)).size, recs.length);
     for (const r of recs) { assert(r.eligible && !r.fighter.booking && r.fighter.active); assert(r.score >= 0 && r.score <= 100); assert(r.rationale && r.evidence.length >= 4); checked++; }
     assert.equal(JSON.stringify(fighter), before, 'Engine must not mutate source records');
@@ -115,10 +126,10 @@ for (const control of ['data-mm-auto', 'data-mm-undo', 'data-mm-rematch', 'data-
 
 const simpleJs = fs.readFileSync('assets/matchmaker-simple.js', 'utf8');
 assert.doesNotThrow(() => new Function(simpleJs), 'Simplified Matchmaker JavaScript must parse');
-for (const marker of ['E.recommendations', 'BEST FIT', 'ALSO MAKES SENSE', 'ANOTHER OPTION', 'renderEvent']) assert(simpleJs.includes(marker), `Missing simplified Matchmaker behavior: ${marker}`);
+for (const marker of ['E.recommendations', 'BEST FIT', 'ALSO MAKES SENSE', 'ANOTHER OPTION', 'renderEvent', 'meetingCoverage?.verified', 'Prior-opponent history is still being verified']) assert(simpleJs.includes(marker), `Missing simplified Matchmaker behavior: ${marker}`);
 assert(!/localStorage|showModal|data-mm-lock|autoMatch\(/.test(simpleJs), 'Read-only Matchmaker presentation must not restore board-building behavior');
 
 const simpleCss = fs.readFileSync('assets/matchmaker-simple.css', 'utf8');
 for (const marker of ['.mm-simple-hero', '.mm-simple-eventbar', '.mm-simple-board', '.mm-simple-file', '.mm-simple-match', 'prefers-reduced-motion']) assert(simpleCss.includes(marker), `Missing simplified Matchmaker style: ${marker}`);
 assert(fs.readFileSync('_config.yml', 'utf8').includes('link: "/matchmaker/"'));
-console.log(`Matchmaker checks passed: rule regressions, UFCStats prior-opponent parsing, source validation, ${data.events.length} real cards, ${checked} eligible recommendations, hard rematch exclusions, and simplified read-only next-fight presentation.`);
+console.log(`Matchmaker checks passed: hard rematch regression, UFCStats mirror parsing, source validation, ${data.events.length} real cards, ${checked} eligible recommendations, fail-closed unverified histories, and simplified read-only next-fight presentation.`);
