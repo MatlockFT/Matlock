@@ -133,13 +133,12 @@
     setWidth('[data-mm-progress-bar]', `${percent}%`);
 
     const steps = [...root.querySelectorAll('[data-mm-step]')];
-    steps.forEach(step => step.classList.remove('is-current', 'is-complete'));
-    if (steps[0]) steps[0].classList.add('is-complete');
-    if (steps[1]) steps[1].classList.toggle('is-complete', Boolean(selected));
-    if (steps[2]) steps[2].classList.toggle('is-complete', assigned > 0);
-    if (steps[3]) steps[3].classList.toggle('is-complete', open === 0 && total > 0);
     const current = !selected ? 1 : open === 0 && total > 0 ? 3 : assigned > 0 ? 2 : 1;
-    if (steps[current]) steps[current].classList.add('is-current');
+    const complete = [true, Boolean(selected), assigned > 0, open === 0 && total > 0];
+    steps.forEach((step, index) => {
+      step.classList.toggle('is-complete', complete[index]);
+      step.classList.toggle('is-current', index === current);
+    });
   }
 
   function enhanceSelected(fighter, ctx) {
