@@ -1,0 +1,441 @@
+/* Matchmaker — stripped-back war-room presentation. Read-only, bold, and focused on plausible next fights. */
+
+.mm-simple {
+  --mm-ink: #17130f;
+  --mm-black: #0f0e0c;
+  --mm-paper: #e6dcc5;
+  --mm-paper-deep: #cdbb98;
+  --mm-red: #b21f24;
+  --mm-red-bright: #e03538;
+  --mm-cork: #5d402a;
+  --mm-muted: #8f836d;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: clamp(14px, 2vw, 28px) clamp(10px, 2vw, 26px) 70px;
+  color: #ece3d2;
+}
+
+.mm-simple button,
+.mm-simple select { font: inherit; }
+
+.mm-simple-hero {
+  position: relative;
+  min-height: 245px;
+  margin-bottom: 14px;
+  padding: clamp(30px, 5vw, 62px) clamp(22px, 4vw, 58px) clamp(26px, 4vw, 46px);
+  overflow: hidden;
+  border: 1px solid #30281f;
+  border-left: 7px solid var(--mm-red);
+  background:
+    linear-gradient(90deg, rgba(178,31,36,.11) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,.024) 1px, transparent 1px),
+    radial-gradient(circle at 86% 18%, rgba(178,31,36,.24), transparent 30%),
+    linear-gradient(140deg, #171513 0%, #0d0c0b 70%, #17110f 100%);
+  background-size: 34px 34px, 34px 34px, auto, auto;
+  box-shadow: 0 24px 60px rgba(0,0,0,.34), inset 0 0 70px rgba(0,0,0,.28);
+}
+
+.mm-simple-hero::after {
+  content: "POST-FIGHT MATCHMAKING / PLAUSIBLE NEXT FIGHTS";
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  color: rgba(230,220,197,.16);
+  font: 800 9px/1.2 "Courier New", monospace;
+  letter-spacing: .17em;
+}
+
+.mm-simple-kicker {
+  margin: 0 0 12px;
+  color: #baad95;
+  font: 900 11px/1 "Courier New", monospace;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.mm-simple-kicker span {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 7px 9px 6px;
+  color: #fff2de;
+  background: var(--mm-red);
+  transform: rotate(-1deg);
+  box-shadow: 3px 3px 0 rgba(0,0,0,.35);
+}
+
+.mm-simple-hero h1 {
+  margin: 0;
+  color: #f1e8d7;
+  font-family: Gobold, Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(72px, 11vw, 168px);
+  font-weight: 900;
+  line-height: .8;
+  letter-spacing: -.045em;
+  text-transform: uppercase;
+  text-shadow: 0 5px 0 rgba(0,0,0,.5);
+}
+
+.mm-simple-hero h1 span { color: var(--mm-red-bright); }
+
+.mm-simple-deck {
+  max-width: 760px;
+  margin: 22px 0 0;
+  color: #c6bca8;
+  font: 700 clamp(13px, 1.2vw, 16px)/1.55 "Courier New", monospace;
+}
+
+.mm-simple-status {
+  margin: 0 0 12px;
+  padding: 9px 12px;
+  border: 1px solid rgba(217,200,164,.22);
+  border-left: 4px solid var(--mm-red);
+  color: #cfc5b1;
+  background: #171410;
+  font: 700 11px/1.4 "Courier New", monospace;
+}
+
+.mm-simple-eventbar {
+  display: grid;
+  grid-template-columns: minmax(260px, .9fr) minmax(0, 1.4fr) auto;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 16px 18px;
+  border: 1px solid #8d7a5c;
+  color: var(--mm-ink);
+  background: var(--mm-paper);
+  box-shadow: 7px 8px 0 rgba(0,0,0,.2);
+  transform: rotate(-.12deg);
+}
+
+.mm-simple-eventbar label {
+  color: #4c402f;
+  font: 900 9px/1.2 "Courier New", monospace;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.mm-simple-eventbar select {
+  display: block;
+  width: 100%;
+  margin-top: 7px;
+  padding: 10px 11px;
+  border: 1px solid #776347;
+  border-radius: 0;
+  color: #17130f;
+  background: rgba(255,251,237,.58);
+  font: 800 12px/1.2 "Courier New", monospace;
+}
+
+.mm-simple-event-copy small {
+  display: block;
+  color: #7b6d57;
+  font: 900 9px/1 "Courier New", monospace;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.mm-simple-event-copy strong {
+  display: block;
+  margin: 6px 0 4px;
+  font: 900 clamp(21px, 2.4vw, 34px)/.95 Gobold, Impact, sans-serif;
+  text-transform: uppercase;
+}
+
+.mm-simple-event-copy span {
+  color: #675b49;
+  font: 800 11px/1.2 "Courier New", monospace;
+}
+
+.mm-simple-event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+  color: #6c5e49;
+  font: 900 9px/1 "Courier New", monospace;
+  letter-spacing: .09em;
+}
+
+.mm-simple-event-meta a {
+  color: #7a171a;
+  text-decoration: none;
+}
+
+.mm-simple-board {
+  position: relative;
+  padding: clamp(16px, 2.5vw, 30px);
+  border: 10px solid #32251a;
+  outline: 1px solid #7d6042;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(255,255,255,.035), transparent 18%),
+    radial-gradient(circle at 75% 70%, rgba(0,0,0,.08), transparent 25%),
+    #60452f;
+  box-shadow: 0 26px 70px rgba(0,0,0,.34), inset 0 0 80px rgba(45,27,16,.35);
+}
+
+.mm-simple-board::before {
+  content: "NEXT FIGHTS";
+  position: absolute;
+  top: -18px;
+  left: 28px;
+  padding: 6px 10px 5px;
+  color: #fff1de;
+  background: var(--mm-red);
+  font: 900 10px/1 "Courier New", monospace;
+  letter-spacing: .14em;
+  box-shadow: 3px 3px 0 rgba(0,0,0,.3);
+  transform: rotate(-1deg);
+}
+
+.mm-simple-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 24px);
+}
+
+.mm-simple-file {
+  position: relative;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #8f7a58;
+  color: var(--mm-ink);
+  background:
+    linear-gradient(90deg, rgba(76,58,36,.035) 1px, transparent 1px),
+    linear-gradient(rgba(76,58,36,.035) 1px, transparent 1px),
+    var(--mm-paper);
+  background-size: 22px 22px, 22px 22px, auto;
+  box-shadow: 8px 9px 0 rgba(43,27,16,.3);
+}
+
+.mm-simple-file:nth-child(4n+1) { transform: rotate(-.28deg); }
+.mm-simple-file:nth-child(4n+2) { transform: rotate(.22deg); }
+.mm-simple-file:nth-child(4n+3) { transform: rotate(.12deg); }
+.mm-simple-file:nth-child(4n+4) { transform: rotate(-.18deg); }
+
+.mm-simple-pin {
+  position: absolute;
+  top: 9px;
+  right: 11px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #a51b20;
+  box-shadow: inset -2px -2px 2px rgba(0,0,0,.3), 1px 2px 3px rgba(0,0,0,.28);
+}
+
+.mm-simple-fighter-head {
+  display: grid;
+  grid-template-columns: 116px minmax(0, 1fr);
+  gap: 15px;
+  align-items: center;
+  min-height: 132px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid rgba(50,38,27,.23);
+}
+
+.mm-simple-fighter-photo,
+.mm-simple-placeholder {
+  display: block;
+  width: 116px;
+  height: 132px;
+  object-fit: cover;
+  object-position: center top;
+  border: 5px solid #f4ead3;
+  outline: 1px solid #887658;
+  background: #b9a98b;
+  box-shadow: 4px 5px 0 rgba(53,39,24,.22);
+  transform: rotate(-1deg);
+}
+
+.mm-simple-placeholder svg { width: 100%; height: 100%; fill: rgba(54,43,30,.45); }
+
+.mm-simple-result {
+  display: inline-block;
+  margin: 0 0 8px;
+  padding: 5px 7px 4px;
+  color: #fff3df;
+  background: #242019;
+  font: 900 9px/1 "Courier New", monospace;
+  letter-spacing: .13em;
+}
+
+.mm-simple-result-w { background: #252119; }
+.mm-simple-result-l { color: #d5c7ad; background: #544c40; }
+
+.mm-simple-fighter-head h2 {
+  margin: 0 24px 5px 0;
+  font: 900 clamp(27px, 3vw, 44px)/.88 Gobold, Impact, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -.015em;
+}
+
+.mm-simple-fighter-meta,
+.mm-simple-division {
+  margin: 0;
+  color: #665945;
+  font: 800 11px/1.35 "Courier New", monospace;
+}
+
+.mm-simple-division {
+  margin-top: 4px;
+  color: #8f1c20;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.mm-simple-next-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0 10px;
+  color: #6d5e48;
+  font: 900 9px/1 "Courier New", monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.mm-simple-next-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(72,54,36,.25);
+}
+
+.mm-simple-matches {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mm-simple-match {
+  position: relative;
+  display: grid;
+  grid-template-columns: 30px 58px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  min-height: 86px;
+  padding: 9px 10px 9px 8px;
+  border: 1px solid rgba(68,52,34,.19);
+  border-left: 3px solid #8c7b60;
+  background: rgba(248,240,220,.56);
+}
+
+.mm-simple-match.is-primary {
+  border-left-color: var(--mm-red);
+  background: rgba(255,247,227,.86);
+  box-shadow: 3px 3px 0 rgba(81,57,31,.11);
+}
+
+.mm-simple-match-order {
+  color: #a59578;
+  font: 900 18px/1 Gobold, Impact, sans-serif;
+  text-align: center;
+}
+
+.mm-simple-match.is-primary .mm-simple-match-order { color: var(--mm-red); }
+
+.mm-simple-opponent-photo,
+.mm-simple-match .mm-simple-placeholder {
+  display: block;
+  width: 58px;
+  height: 68px;
+  object-fit: cover;
+  object-position: center top;
+  border: 3px solid #f1e5cc;
+  outline: 1px solid #99876a;
+  background: #c2b092;
+  box-shadow: 2px 2px 0 rgba(0,0,0,.12);
+  transform: rotate(.6deg);
+}
+
+.mm-simple-match .mm-simple-placeholder svg { width: 100%; height: 100%; fill: rgba(54,43,30,.42); }
+
+.mm-simple-match-copy { min-width: 0; }
+.mm-simple-match-copy small {
+  display: block;
+  margin-bottom: 3px;
+  color: #8f7f65;
+  font: 900 8px/1 "Courier New", monospace;
+  letter-spacing: .1em;
+}
+
+.mm-simple-match.is-primary .mm-simple-match-copy small { color: #9c191e; }
+
+.mm-simple-match-copy strong {
+  display: block;
+  overflow: hidden;
+  color: #1b1712;
+  font: 900 19px/.95 Gobold, Impact, sans-serif;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.mm-simple-match-copy > span {
+  display: block;
+  margin-top: 3px;
+  color: #75664f;
+  font: 800 9px/1.2 "Courier New", monospace;
+}
+
+.mm-simple-match-copy p {
+  margin: 5px 0 0;
+  color: #473d30;
+  font: 700 10px/1.35 "Courier New", monospace;
+}
+
+.mm-simple-no-match,
+.mm-simple-empty {
+  padding: 18px;
+  border: 1px dashed rgba(63,48,31,.3);
+  color: #625643;
+  background: rgba(247,238,216,.55);
+  font: 800 11px/1.4 "Courier New", monospace;
+}
+
+.mm-simple-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 14px;
+  padding: 12px 2px;
+  color: #8f846f;
+  font: 700 10px/1.45 "Courier New", monospace;
+}
+
+.mm-simple-foot p { margin: 0; max-width: 720px; }
+
+@media (max-width: 900px) {
+  .mm-simple-grid { grid-template-columns: 1fr; }
+  .mm-simple-eventbar { grid-template-columns: 1fr; gap: 12px; transform: none; }
+  .mm-simple-event-meta { align-items: flex-start; }
+  .mm-simple-file { transform: none !important; }
+}
+
+@media (max-width: 600px) {
+  .mm-simple { padding-left: 8px; padding-right: 8px; }
+  .mm-simple-hero { min-height: 205px; padding: 34px 18px 24px; }
+  .mm-simple-hero::after { display: none; }
+  .mm-simple-hero h1 { font-size: clamp(62px, 22vw, 102px); }
+  .mm-simple-deck { margin-top: 16px; font-size: 12px; }
+  .mm-simple-board { padding: 14px 10px 12px; border-width: 7px; }
+  .mm-simple-file { padding: 12px; box-shadow: 5px 6px 0 rgba(43,27,16,.25); }
+  .mm-simple-fighter-head { grid-template-columns: 88px minmax(0, 1fr); min-height: 106px; }
+  .mm-simple-fighter-photo,
+  .mm-simple-fighter-head > .mm-simple-placeholder { width: 88px; height: 106px; }
+  .mm-simple-fighter-head h2 { font-size: clamp(25px, 9vw, 38px); }
+  .mm-simple-match { grid-template-columns: 23px 50px minmax(0, 1fr); gap: 8px; padding: 8px 7px; }
+  .mm-simple-opponent-photo,
+  .mm-simple-match .mm-simple-placeholder { width: 50px; height: 60px; }
+  .mm-simple-match-copy strong { font-size: 17px; }
+  .mm-simple-match-copy p { font-size: 9px; }
+  .mm-simple-foot { display: block; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mm-simple *, .mm-simple *::before, .mm-simple *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+  .mm-simple-file, .mm-simple-eventbar, .mm-simple-fighter-photo, .mm-simple-opponent-photo { transform: none !important; }
+}
