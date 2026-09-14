@@ -1,0 +1,109 @@
+/* Matchmaker scoring doctrine — a compact war-room legend for the engine's 100-point fit score. */
+.mm-doctrine {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(210px, .7fr) minmax(0, 2.3fr);
+  gap: 18px;
+  align-items: center;
+  margin: 0 0 14px;
+  padding: 14px 16px;
+  border: 1px solid #8d795a;
+  border-left: 5px solid #a51f1f;
+  color: #201912;
+  background:
+    linear-gradient(94deg, rgba(81,60,36,.045) 0 1px, transparent 1px 100%),
+    #d8c9a8;
+  background-size: 31px 100%, auto;
+  box-shadow: 6px 7px 0 rgba(0,0,0,.2);
+  transform: rotate(.08deg);
+}
+
+.mm-doctrine::after {
+  content: "SCORING DOCTRINE / REV. 01";
+  position: absolute;
+  right: 13px;
+  top: -7px;
+  padding: 3px 6px;
+  border: 1px solid #7f6e53;
+  color: #756044;
+  background: #e8ddc1;
+  font: 900 8px/1 "Courier New", monospace;
+  letter-spacing: .1em;
+  transform: rotate(1deg);
+}
+
+.mm-doctrine-copy small {
+  display: block;
+  margin-bottom: 5px;
+  color: #9b241f;
+  font: 900 8px/1 "Courier New", monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.mm-doctrine-copy strong {
+  display: block;
+  font: 900 23px/.95 Gobold, Impact, sans-serif;
+  letter-spacing: .015em;
+  text-transform: uppercase;
+}
+
+.mm-doctrine-copy p {
+  margin: 7px 0 0;
+  color: #655540;
+  font: 700 9px/1.35 "Courier New", monospace;
+}
+
+.mm-doctrine-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(74px, 1fr));
+  gap: 5px;
+}
+
+.mm-doctrine-item {
+  min-height: 54px;
+  padding: 8px 7px 7px;
+  border: 1px solid rgba(76,58,38,.32);
+  background: rgba(255,250,232,.3);
+}
+
+.mm-doctrine-item b {
+  display: block;
+  margin-bottom: 5px;
+  color: #6b5b45;
+  font: 900 7px/1.1 "Courier New", monospace;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+
+.mm-doctrine-item strong {
+  color: #241b13;
+  font: 900 23px/.85 Gobold, Impact, sans-serif;
+}
+
+.mm-doctrine-item:first-child {
+  border-color: rgba(145,31,28,.55);
+  background: rgba(165,31,31,.08);
+}
+
+.mm-doctrine-item:first-child strong { color: #9e201e; }
+
+@media (max-width: 1050px) {
+  .mm-doctrine { grid-template-columns: 1fr; }
+  .mm-doctrine-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (max-width: 620px) {
+  .mm-doctrine { padding: 13px 11px 11px; transform: none; }
+  .mm-doctrine::after { position: static; grid-row: 1; justify-self: start; margin-bottom: -6px; }
+  .mm-doctrine-copy { grid-row: 2; }
+  .mm-doctrine-grid {
+    grid-row: 3;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding: 2px 1px 6px;
+    scroll-snap-type: x proximity;
+  }
+  .mm-doctrine-item { flex: 0 0 105px; scroll-snap-align: start; }
+}
