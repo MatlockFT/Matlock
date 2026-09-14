@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "entries": [
     {
       "date": "1994-09-09",
@@ -12,6 +12,16 @@
       "matchReason": "Deterministic direct URL for the UFC 3 promotional poster from the exact UFC 3 Wikipedia event page. Used only after Tapology cannot supply an exact-bound poster."
     },
     {
+      "date": "2006-09-16",
+      "title": "Pancrase: Blow 7",
+      "imageUrl": "https://www.pancrase.co.jp/tourarchive/2006/0916/img/main.jpg",
+      "sourceUrl": "https://www.pancrase.co.jp/tourarchive/2006/0916/index.html",
+      "sourceType": "official-promotion-event-poster",
+      "credit": "Pancrase",
+      "confidence": 0.99,
+      "matchReason": "Exact official Pancrase archive page for the September 16, 2006 BLOW TOUR event exposes this file as its main event artwork. The direct official image endpoint was independently byte-validated as a JPEG."
+    },
+    {
       "date": "2010-09-15",
       "title": "UFC Fight Night: Marquardt vs. Palhares",
       "imageUrl": "https://upload.wikimedia.org/wikipedia/en/0/04/UFC_now_FP.jpg",
@@ -20,6 +30,17 @@
       "credit": "Wikipedia",
       "confidence": 0.99,
       "matchReason": "Exact UFC Fight Night: Marquardt vs. Palhares Wikipedia event page identifies the September 15, 2010 event and its infobox poster file UFC now FP.jpg; the direct Wikimedia poster URL was independently verified."
+    },
+    {
+      "date": "2010-09-16",
+      "title": "Bellator 29",
+      "imageUrl": "https://3.bp.blogspot.com/_CidG1Uy6Fvg/TIUeZgFRXCI/AAAAAAAABLc/-sA84ePwKvc/s640/bell.jpeg-001-001.jpg",
+      "sourceUrl": "https://www.fight24.pl/bellator-29-rozpiska/",
+      "sourceType": "verified-manual-event-poster",
+      "credit": "Fight24 archive",
+      "confidence": 0.99,
+      "manualVisualVerified": true,
+      "matchReason": "Contemporary September 14, 2010 Bellator 29 event listing embeds this image with the title 'Bellator 29'. The direct image endpoint was independently byte-validated as a 156 KB JPEG."
     },
     {
       "date": "2011-09-10",
