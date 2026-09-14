@@ -3,11 +3,11 @@ import fs from 'node:fs/promises';
 const HISTORY_PATH = process.argv[2] || 'assets/data/on-this-day.json';
 const CACHE_PATH = process.argv[3] || 'assets/data/on-this-day-image-cache.json';
 const PORTRAITS_PATH = process.argv[4] || 'assets/fighter-portraits.json';
-const USER_AGENT = 'MMA-Matlock-OnThisDay-Resolver/2.0 (+https://mmamatlock.com/on-this-day/)';
+const USER_AGENT = 'MMA-Matlock-OnThisDay-Resolver/3.0 (+https://mmamatlock.com/on-this-day/)';
 const TIME_ZONE = process.env.OTD_TIME_ZONE || 'America/Chicago';
 const RESOLVE_LIMIT = Math.max(1, Number(process.env.OTD_IMAGE_RESOLVE_LIMIT || 120));
 const REQUEST_TIMEOUT_MS = 18000;
-const STRATEGY_VERSION = 7;
+const STRATEGY_VERSION = 8;
 
 const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
 const norm = value => clean(value).normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
@@ -58,16 +58,11 @@ function htmlMeta(html, property) {
   return '';
 }
 
-function htmlTitle(html) {
-  return htmlMeta(html, 'og:title') || decodeHtml(/<title[^>]*>([\s\S]*?)<\/title>/i.exec(html)?.[1] || '');
-}
-
 function sourceKind(url) {
   try {
     const host = new URL(url).hostname.toLowerCase().replace(/^www\./, '');
-    if (host === 'tapology.com') return 'tapology-event-page';
     if (host.endsWith('wikipedia.org') || host === 'wikimedia.org' || host.endsWith('wikimedia.org')) return 'wikipedia';
-    if (host === 'web.archive.org') return 'archived-promotion-page';
+    if (host === 'web.archive.org') return 'archived-source-page';
     if (/^(ufc\.com|bellator\.com|pflmma\.com|onefc\.com|rizinff\.com|pancrase\.co\.jp|wec\.tv|strikeforce\.com)$/.test(host)) return 'official-promotion-page';
     return 'source-page';
   } catch { return 'source-page'; }
@@ -78,7 +73,7 @@ function sourceCredit(url, fallback = '') {
     const host = new URL(url).hostname.toLowerCase().replace(/^www\./, '');
     const labels = {
       'ufc.com': 'UFC', 'bellator.com': 'Bellator', 'pflmma.com': 'PFL', 'onefc.com': 'ONE Championship',
-      'rizinff.com': 'RIZIN', 'pancrase.co.jp': 'Pancrase', 'tapology.com': 'Tapology', 'en.wikipedia.org': 'Wikipedia'
+      'rizinff.com': 'RIZIN', 'pancrase.co.jp': 'Pancrase', 'en.wikipedia.org': 'Wikipedia'
     };
     return labels[host] || clean(fallback) || host;
   } catch { return clean(fallback) || 'Source'; }
@@ -102,42 +97,8 @@ function entryKey(entry) {
   return clean(entry?.autoKey || entry?.birthdayKey || `${entry?.date || 'unknown'}:${entry?.kind || 'note'}:${slug(entry?.title)}`);
 }
 
-function eventName(entry) { return clean(String(entry?.title || '').replace(/\s+took place$/i, '')); }
-function fighterName(entry) { return clean(entry?.fighter || String(entry?.title || '').replace(/\s+was born$/i, '')); }
-
-function numberedEvent(entry) {
-  return norm(eventName(entry)).match(/\b(?:ufc|wec|bellator|pfl|rizin|one|pride|pancrase)\s*(?:fight\s*night\s*)?(\d{1,4})\b/i)?.[1] || '';
-}
-
-function promotionKey(entry) {
-  const p = norm(entry?.promotion);
-  if (p.includes('ultimate fighting') || p === 'ufc') return 'ufc';
-  if (p.includes('world extreme') || p === 'wec') return 'wec';
-  if (p.includes('strikeforce')) return 'strikeforce';
-  if (p.includes('bellator')) return 'bellator';
-  if (p.includes('professional fighters league') || p === 'pfl') return 'pfl';
-  if (p.includes('one championship') || p === 'one') return 'one';
-  if (p.includes('rizin')) return 'rizin';
-  if (p.includes('pride')) return 'pride';
-  if (p.includes('pancrase')) return 'pancrase';
-  return p;
-}
-
-const officialDomains = {
-  ufc: 'ufc.com', bellator: 'bellator.com', pfl: 'pflmma.com', one: 'onefc.com', rizin: 'rizinff.com', pancrase: 'pancrase.co.jp',
-  wec: 'ufc.com', strikeforce: 'ufc.com', pride: 'ufc.com'
-};
-
-function eventMatch(pageTitle, entry) {
-  const page = norm(pageTitle);
-  const name = norm(eventName(entry));
-  if (!page || !name) return false;
-  if (page.includes(name) || name.includes(page)) return true;
-  const promo = promotionKey(entry);
-  const number = numberedEvent(entry);
-  if (promo && number && page.includes(promo) && new RegExp(`\\b${number}\\b`).test(page)) return true;
-  const tokens = name.split(' ').filter(token => token.length >= 3 && !['the','and','vs','versus','fight','night','event'].includes(token));
-  return tokens.length >= 2 && tokens.filter(token => page.includes(token)).length >= Math.min(3, tokens.length);
+function fighterName(entry) {
+  return clean(entry?.fighter || String(entry?.title || '').replace(/\s+was born$/i, ''));
 }
 
 function usableImageUrl(url) {
@@ -145,53 +106,20 @@ function usableImageUrl(url) {
   return !/(?:logo|favicon|sprite|placeholder|default)[._\-/]/i.test(url);
 }
 
-function candidateFromPage(pageUrl, html, entry, { exact = false, reason = '' } = {}) {
+function candidateFromPage(pageUrl, html, entry, reason = '') {
   const imageUrl = htmlMeta(html, 'og:image') || htmlMeta(html, 'twitter:image');
-  const pageTitle = htmlTitle(html);
   if (!usableImageUrl(imageUrl)) return null;
   const type = sourceKind(pageUrl);
-  const cls = entryClass(entry);
-  const matched = cls === 'event' ? eventMatch(pageTitle, entry) : true;
-  if (cls === 'event' && exact && !matched) return null;
-  const base = type === 'official-promotion-page' ? 0.98 : type === 'tapology-event-page' ? 0.94 : type === 'archived-promotion-page' ? 0.92 : 0.78;
+  const base = type === 'official-promotion-page' ? 0.96 : type === 'archived-source-page' ? 0.88 : 0.78;
   return {
     imageUrl,
     imageCredit: sourceCredit(pageUrl, entry?.source),
     imageSourceUrl: pageUrl,
     imageSourceType: type,
-    imageConfidence: Math.max(0.5, Math.min(0.99, base - (matched ? 0 : 0.12))),
+    imageConfidence: base,
     imageSubjectType: subjectType(entry),
-    imageMatchReason: reason || (matched ? 'Exact source page matched the entry and supplied its primary image.' : 'Source page supplied the most relevant primary image.'),
-    pageTitle
+    imageMatchReason: reason || 'The entry source page supplied its primary image.'
   };
-}
-
-function ddgResultUrls(html) {
-  const output = [];
-  for (const match of html.matchAll(/href=["']([^"']+)["']/gi)) {
-    let href = decodeHtml(match[1]);
-    try {
-      if (href.startsWith('//')) href = `https:${href}`;
-      const parsed = new URL(href, 'https://html.duckduckgo.com');
-      if (parsed.hostname.includes('duckduckgo.com') && parsed.searchParams.get('uddg')) href = decodeURIComponent(parsed.searchParams.get('uddg'));
-      if (/^https:\/\//i.test(href) && !href.includes('duckduckgo.com')) output.push(href);
-    } catch {}
-  }
-  return [...new Set(output)];
-}
-
-async function discoverPages(query, allowedHosts = []) {
-  const url = new URL('https://html.duckduckgo.com/html/');
-  url.searchParams.set('q', query);
-  const html = await fetchText(url);
-  const urls = ddgResultUrls(html);
-  if (!allowedHosts.length) return urls.slice(0, 8);
-  return urls.filter(value => {
-    try {
-      const host = new URL(value).hostname.toLowerCase().replace(/^www\./, '');
-      return allowedHosts.some(allowed => host === allowed || host.endsWith(`.${allowed}`));
-    } catch { return false; }
-  }).slice(0, 6);
 }
 
 async function wikipediaLead(title) {
@@ -237,14 +165,13 @@ async function resolveWikipedia(entry) {
   const cls = entryClass(entry);
   let title = wikipediaTitleFromUrl(entry?.sourceUrl || '') || clean(entry?.wikipediaTitle || '');
   if (!title) {
-    const query = cls === 'birthday' ? fighterName(entry) : eventName(entry) || clean(entry?.title);
+    const query = cls === 'birthday' ? fighterName(entry) : clean(entry?.title);
     const results = await wikipediaSearchTitle(query);
-    title = results.find(item => cls !== 'event' || eventMatch(item, entry)) || results[0] || '';
+    title = results[0] || '';
   }
   const lead = await wikipediaLead(title);
   if (!lead) return null;
-  if (cls === 'event' && !eventMatch(lead.pageTitle, entry)) return null;
-  const confidence = cls === 'event' ? 0.88 : cls === 'birthday' ? 0.9 : 0.74;
+  const confidence = cls === 'birthday' ? 0.9 : 0.74;
   return {
     imageUrl: lead.imageUrl,
     imageCredit: 'Wikipedia / Wikimedia Commons',
@@ -252,7 +179,7 @@ async function resolveWikipedia(entry) {
     imageSourceType: 'wikipedia',
     imageConfidence: confidence,
     imageSubjectType: subjectType(entry),
-    imageMatchReason: cls === 'event' ? 'Exact Wikipedia event page supplied the event image.' : cls === 'birthday' ? 'Exact fighter Wikipedia page supplied the fighter image.' : 'Wikipedia supplied the closest directly related image.'
+    imageMatchReason: cls === 'birthday' ? 'Exact fighter Wikipedia page supplied the fighter image.' : 'Wikipedia supplied the closest directly related image.'
   };
 }
 
@@ -261,58 +188,15 @@ async function resolveDirectSource(entry) {
   if (!/^https:\/\//i.test(url) || sourceKind(url) === 'wikipedia') return null;
   try {
     const html = await fetchText(url);
-    return candidateFromPage(url, html, entry, { exact: entryClass(entry) === 'event', reason: 'The entry source page supplied its primary image.' });
+    return candidateFromPage(url, html, entry);
   } catch { return null; }
-}
-
-async function resolveOfficialEvent(entry) {
-  const promo = promotionKey(entry);
-  const domain = officialDomains[promo];
-  if (!domain) return null;
-  const name = eventName(entry);
-  const number = numberedEvent(entry);
-  const queries = [
-    `site:${domain} \"${name}\"`,
-    number ? `site:${domain} ${promo.toUpperCase()} ${number} poster` : ''
-  ].filter(Boolean);
-  for (const query of queries) {
-    let pages = [];
-    try { pages = await discoverPages(query, [domain]); } catch {}
-    for (const pageUrl of pages) {
-      try {
-        const html = await fetchText(pageUrl);
-        const candidate = candidateFromPage(pageUrl, html, entry, { exact: true, reason: 'Exact official promotion event page supplied the event art.' });
-        if (candidate) return candidate;
-      } catch {}
-      await sleep(80);
-    }
-  }
-  return null;
-}
-
-async function resolveTapologyEvent(entry) {
-  const name = eventName(entry);
-  const queries = [`site:tapology.com/fightcenter/events \"${name}\"`, `${name} Tapology`];
-  for (const query of queries) {
-    let pages = [];
-    try { pages = await discoverPages(query, ['tapology.com']); } catch {}
-    for (const pageUrl of pages.filter(url => /\/fightcenter\/events\//.test(url))) {
-      try {
-        const html = await fetchText(pageUrl);
-        const candidate = candidateFromPage(pageUrl, html, entry, { exact: true, reason: 'Exact Tapology event page supplied the event poster or primary event image.' });
-        if (candidate) return candidate;
-      } catch {}
-      await sleep(80);
-    }
-  }
-  return null;
 }
 
 function existingCandidate(entry) {
   if (!usableImageUrl(entry?.imageUrl)) return null;
   const inferredType = clean(entry?.imageSourceType) || (String(entry?.imageCredit || '').toLowerCase().includes('wikipedia') ? 'wikipedia' : 'existing-image');
   const cls = entryClass(entry);
-  const confidence = Number(entry?.imageConfidence || (cls === 'event' && /poster|artwork/i.test(entry?.imageAlt || '') ? 0.84 : 0.7));
+  const confidence = Number(entry?.imageConfidence || 0.7);
   return {
     imageUrl: entry.imageUrl,
     imageCredit: clean(entry.imageCredit || entry.source || 'Source'),
@@ -320,7 +204,8 @@ function existingCandidate(entry) {
     imageSourceType: inferredType,
     imageConfidence: Math.max(0.4, Math.min(0.99, confidence)),
     imageSubjectType: clean(entry.imageSubjectType || subjectType(entry)),
-    imageMatchReason: clean(entry.imageMatchReason || 'Previously resolved image retained as the best available match.')
+    imageMatchReason: clean(entry.imageMatchReason || 'Previously resolved image retained as the best available match.'),
+    entryClass: cls
   };
 }
 
@@ -345,22 +230,15 @@ async function resolveEntry(entry, portraits) {
   const cls = entryClass(entry);
   const existing = existingCandidate(entry);
 
+  // Event art is intentionally excluded from this resolver. The dedicated event-poster
+  // pipeline applies stricter event/page/filename verification and owns those records.
+  if (cls === 'event') return existing;
+
   if (cls === 'birthday') {
     const portrait = portraitCandidate(entry, portraits);
     if (portrait?.imageSourceType === 'official-athlete-image') return portrait;
     const wiki = await resolveWikipedia(entry).catch(() => null);
     return wiki || portrait || existing;
-  }
-
-  if (cls === 'event') {
-    const direct = await resolveDirectSource(entry);
-    if (direct?.imageSourceType === 'official-promotion-page') return direct;
-    const official = await resolveOfficialEvent(entry);
-    if (official) return official;
-    const tapology = await resolveTapologyEvent(entry);
-    if (tapology) return tapology;
-    const wiki = await resolveWikipedia(entry).catch(() => null);
-    return wiki || direct || existing;
   }
 
   const direct = await resolveDirectSource(entry);
@@ -378,7 +256,7 @@ function applyCandidate(entry, candidate, nowIso) {
     return;
   }
   entry.imageUrl = candidate.imageUrl;
-  entry.imageAlt ||= entryClass(entry) === 'event' ? `${eventName(entry)} event image` : entryClass(entry) === 'birthday' ? `${fighterName(entry)} photo` : `${clean(entry.title)} image`;
+  entry.imageAlt ||= entryClass(entry) === 'birthday' ? `${fighterName(entry)} photo` : `${clean(entry.title)} image`;
   entry.imageCredit = candidate.imageCredit;
   entry.imageSourceUrl = candidate.imageSourceUrl;
   entry.imageSourceType = candidate.imageSourceType;
@@ -418,6 +296,7 @@ const entries = Array.isArray(history?.entries) ? history.entries : [];
 const nowIso = new Date().toISOString();
 
 for (const entry of entries) {
+  if (entryClass(entry) === 'event') continue;
   const existing = existingCandidate(entry);
   if (existing) applyCandidate(entry, existing, nowIso);
   else {
@@ -430,8 +309,9 @@ for (const entry of entries) {
 const eligible = entries
   .filter(entry => {
     const cls = entryClass(entry);
+    if (cls === 'event') return false;
     const missing = !usableImageUrl(entry?.imageUrl);
-    const weak = Number(entry?.imageConfidence || 0) < (cls === 'event' ? 0.9 : cls === 'birthday' ? 0.88 : 0.72);
+    const weak = Number(entry?.imageConfidence || 0) < (cls === 'birthday' ? 0.88 : 0.72);
     return missing || weak || entry?.imageUnresolved;
   })
   .sort((a, b) => {
@@ -474,10 +354,11 @@ cache.strategyVersion = STRATEGY_VERSION;
 cache.updatedAt = nowIso;
 history.imageResolverVersion = STRATEGY_VERSION;
 history.imageResolverUpdatedAt = nowIso;
+history.imageResolverPolicy = 'non-event-only; event images are exclusively handled by the dedicated verified poster pipeline';
 
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
 await fs.writeFile(CACHE_PATH, `${JSON.stringify(cache, null, 2)}\n`, 'utf8');
 
 const withImages = entries.filter(entry => usableImageUrl(entry.imageUrl)).length;
-console.log(`On This Day universal image resolver: ${eligible.length} reviewed; ${resolved} resolved/retained, ${unresolved} unresolved.`);
-console.log(`Overall OTD image coverage: ${withImages}/${entries.length}. Current-window and birthday QA runs separately as a publish gate.`);
+console.log(`On This Day non-event image resolver v${STRATEGY_VERSION}: ${eligible.length} reviewed; ${resolved} resolved/retained, ${unresolved} unresolved. Event rows skipped by design.`);
+console.log(`Overall OTD image coverage: ${withImages}/${entries.length}. Dedicated event-poster and birthday QA runs separately as publish gates.`);
