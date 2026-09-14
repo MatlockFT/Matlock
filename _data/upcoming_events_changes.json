@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-13T06:03:35.508Z",
+  "generated_at": "2026-09-14T13:04:39.717Z",
   "changes": [
+    {
+      "id": "2026-09-14T13:04:39.717Z|rizin-rizin-55-2026-11-08|event_added|1",
+      "at": "2026-09-14T13:04:39.717Z",
+      "type": "event_added",
+      "event_id": "rizin-rizin-55-2026-11-08",
+      "promotion": "RIZIN",
+      "event_title": "RIZIN.55",
+      "event_date": "2026-11-08",
+      "summary": "RIZIN RIZIN.55 added to Upcoming Events.",
+      "details": {
+        "bout_count": 5,
+        "venue": "LaLa arena TOKYO-BAY",
+        "date": "2026-11-08"
+      }
+    },
     {
       "id": "2026-09-13T06:03:35.508Z|noche-ufc-2026-09-12-fight-card|event_removed|1",
       "at": "2026-09-13T06:03:35.508Z",
@@ -4638,21 +4653,6 @@
         "bout_count": 5,
         "venue": "Meta APEX · Las Vegas, Nevada",
         "date": "2026-09-01"
-      }
-    },
-    {
-      "id": "2026-08-26T10:23:12.035Z|dwcs-season-10-week-3-2026-08-25|event_removed|2",
-      "at": "2026-08-26T10:23:12.035Z",
-      "type": "event_removed",
-      "event_id": "dwcs-season-10-week-3-2026-08-25",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 3",
-      "event_date": "2026-08-25",
-      "summary": "DWCS Season 10 · Week 3 removed from Upcoming Events.",
-      "details": {
-        "bout_count": 5,
-        "venue": "Meta APEX · Las Vegas, Nevada",
-        "date": "2026-08-25"
       }
     }
   ]

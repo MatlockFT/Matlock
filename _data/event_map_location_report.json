@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
   "source_totals": {
-    "major": 10,
+    "major": 11,
     "regional": 119
   },
   "map_totals": {
     "mapped": 120,
-    "quarantined": 9
+    "quarantined": 10
   },
   "source_precision": {
     "venue": 0,
     "source-coordinates": 0,
     "city": 120,
     "structured": 0,
-    "unresolved": 9
+    "unresolved": 10
   },
   "mapped_precision": {
     "city": 120
   },
-  "unresolved_count": 9,
+  "unresolved_count": 10,
   "unresolved": [
     {
       "id": "ufc-2026-09-19-crypto-com-ufc-331",
@@ -90,6 +90,14 @@
       "date": "2026-11-07",
       "promotion": "UFC Fight Night",
       "venue": "Venue TBA",
+      "dataset": "major"
+    },
+    {
+      "id": "rizin-rizin-55-2026-11-08",
+      "title": "RIZIN.55",
+      "date": "2026-11-08",
+      "promotion": "RIZIN",
+      "venue": "LaLa arena TOKYO-BAY",
       "dataset": "major"
     }
   ],
@@ -190,6 +198,17 @@
       "date": "2026-11-07",
       "promotion": "UFC Fight Night",
       "venue": "Venue TBA",
+      "location": "",
+      "country": "",
+      "kind": "major",
+      "reason": "unresolved-us-location"
+    },
+    {
+      "id": "rizin-rizin-55-2026-11-08",
+      "title": "RIZIN.55",
+      "date": "2026-11-08",
+      "promotion": "RIZIN",
+      "venue": "LaLa arena TOKYO-BAY",
       "location": "",
       "country": "",
       "kind": "major",

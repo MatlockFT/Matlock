@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-14T06:10:25.708Z",
+  "generated_at": "2026-09-14T13:03:51.299Z",
   "events": [
     {
       "id": "dwcs-season-10-week-6-2026-09-15",
@@ -1960,6 +1960,133 @@
           ]
         }
       ]
+    },
+    {
+      "id": "rizin-rizin-55-2026-11-08",
+      "promotion_key": "rizin",
+      "promotion": "RIZIN",
+      "title": "RIZIN.55",
+      "date": "2026-11-08",
+      "date_label": "Sunday · November 8, 2026",
+      "venue": "LaLa arena TOKYO-BAY",
+      "broadcast": "RIZIN 100 CLUB",
+      "official_url": "https://jp.rizinff.com/_ct/17852466",
+      "updated_label": "September 14, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Fight Card",
+          "time": "12:00 AM EST · 14:00 JST",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "57.0 kg",
+              "fighters": [
+                {
+                  "name": "フライ級タイトルマッチ／神龍誠",
+                  "initials": "フ",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                },
+                {
+                  "name": "Tony Laramie",
+                  "initials": "TL",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/01/30/a58bb8171d66fc00ea33a1ecc22c372ee4bb210a_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "",
+              "weight_class": "61.0 kg",
+              "fighters": [
+                {
+                  "name": "Ryuya Fukuda",
+                  "initials": "RF",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/08/09/8d1920474214a4a5966db1848c992c2ae14b7001_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Soo Chul Kim",
+                  "initials": "SCK",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2024/08/26/0865964dac9f59f9e2ea21e33a475e5fd58c817e_normal.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "61.0 kg",
+              "fighters": [
+                {
+                  "name": "Jinnosuke Kashimura",
+                  "initials": "JK",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/05/09/2639ac166c1a9dcade761706f32bf01e43926af0_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Shinobu Ota",
+                  "initials": "SO",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2023/05/24/edadba4b068467ba0f4b010af3a686084d016751_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Abijah Kaleo Meheula",
+                  "initials": "AKM",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2026/02/12/3594da5e29c5ae4050dc074e451cec9115ff9138_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Kazuki Aimoto",
+                  "initials": "KA",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2025/12/31/58b6b1e5007512c5c1239daf4f722f963d729b6d_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "66.0 kg",
+              "fighters": [
+                {
+                  "name": "Hiroaki Suzuki",
+                  "initials": "HS",
+                  "image": "https://d1uzk9o9cg136f.cloudfront.net/f/portal/16777301/rc/2022/05/31/7663e07d556d3dde827dd18b07e3eacfc784b097_large.jpg",
+                  "image_source": "rizin",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "千春",
+                  "initials": "千",
+                  "image": "",
+                  "image_source": "",
+                  "image_framing": ""
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "source_card_url": "https://jp.rizinff.com/_ct/17864056"
     }
   ]
 }

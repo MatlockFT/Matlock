@@ -166,9 +166,56 @@
       "local_prelim_count": 0,
       "verdict_prelim_count": 1,
       "confirmed_local_bouts": 1
+    },
+    {
+      "event_id": "rizin-rizin-55-2026-11-08",
+      "promotion": "rizin",
+      "date": "2026-11-08",
+      "title": "RIZIN.55",
+      "status": "matched",
+      "verdict_event_id": "1974",
+      "verdict_url": "https://verdictmma.com/event/1974",
+      "verdict_date": "2026-11-08",
+      "local_fight_count": 5,
+      "verdict_fight_count": null,
+      "local_main_count": 5,
+      "verdict_main_count": null,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": null,
+      "confirmed_local_bouts": 2
     }
   ],
   "discrepancies": [
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-55-2026-11-08",
+      "verdict_event_id": "1974",
+      "order": 1,
+      "fighters": [
+        "フライ級タイトルマッチ／神龍誠",
+        "Tony Laramie"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-55-2026-11-08",
+      "verdict_event_id": "1974",
+      "order": 4,
+      "fighters": [
+        "Abijah Kaleo Meheula",
+        "Kazuki Aimoto"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-55-2026-11-08",
+      "verdict_event_id": "1974",
+      "order": 5,
+      "fighters": [
+        "Hiroaki Suzuki",
+        "千春"
+      ]
+    },
     {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-332-2026-10-03-fight-card",
