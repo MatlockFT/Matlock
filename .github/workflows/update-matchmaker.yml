@@ -48,12 +48,14 @@ jobs:
         run: node scripts/matchmaker/report-unverified-active.mjs
       - name: Snapshot temporal roster and booking state
         run: node scripts/matchmaker/snapshot-temporal-state.mjs
+      - name: Build historical UFC candidate universe
+        run: node scripts/matchmaker/build-historical-universe.mjs
       - name: Check engine against refreshed data
         run: node scripts/check-matchmaker.mjs
       - name: Audit published recommendations
         run: node scripts/matchmaker/audit-recommendations.mjs
       - name: Backtest recent next-fight recommendations
-        run: node scripts/matchmaker/backtest-recommendations.mjs
+        run: node scripts/matchmaker/backtest-recommendations-v4.mjs
       - name: Commit verified snapshots
         run: |
           set -euo pipefail
