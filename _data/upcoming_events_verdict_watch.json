@@ -31,9 +31,9 @@
       "verdict_url": "https://verdictmma.com/event/1946",
       "verdict_date": "2026-09-19",
       "local_fight_count": 12,
-      "verdict_fight_count": 13,
+      "verdict_fight_count": 12,
       "local_main_count": 5,
-      "verdict_main_count": 5,
+      "verdict_main_count": 4,
       "local_prelim_count": 7,
       "verdict_prelim_count": 8,
       "confirmed_local_bouts": 12
@@ -217,18 +217,11 @@
       ]
     },
     {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
-      "verdict_event_id": "1946",
-      "local_fight_count": 12,
-      "verdict_fight_count": 13
-    },
-    {
       "type": "section_count_mismatch",
       "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
       "verdict_event_id": "1946",
       "local_main_count": 5,
-      "verdict_main_count": 5,
+      "verdict_main_count": 4,
       "local_prelim_count": 7,
       "verdict_prelim_count": 8
     },
