@@ -1235,8 +1235,31 @@
       "transport": "tapology-via-public-reader-v1",
       "checkedAt": "2026-09-14T19:04:26.223Z",
       "reason": "The exact Tapology event page was verified by title and date but exposes no event poster."
+    },
+    "2001-03-25::pride 13": {
+      "key": "2001-03-25::pride 13",
+      "status": "verified",
+      "date": "2001-03-25",
+      "title": "Pride 13",
+      "eventTitle": "Pride 13: Collision Course",
+      "eventDate": "2001-03-25",
+      "dateMatch": "exact",
+      "eventUrl": "https://www.tapology.com/fightcenter/events/pride-13-collision-course",
+      "originPosterUrl": "https://images.tapology.com/poster_images/238/profile/pride13.jpg?1551278668",
+      "posterUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2001-03-25-pride-13-7af9d0dcae5d73e7.jpg",
+      "sha256": "7af9d0dcae5d73e7423f7537f16523cde7861b7a2d2b5f23623143ac6bcce814",
+      "width": 338,
+      "height": 473,
+      "bytes": 39220,
+      "format": "jpeg",
+      "alt": "Pride 13",
+      "titleScore": 99,
+      "eventIdBound": false,
+      "discovery": "tapology-search-unique-title-date",
+      "transport": "tapology-via-public-reader-v1",
+      "verifiedAt": "2026-09-15T15:36:23.751Z"
     }
   },
-  "updatedAt": "2026-09-14T21:03:46.098Z",
+  "updatedAt": "2026-09-15T15:36:43.741Z",
   "policy": "Exact Tapology title and date; unique search result; event-bound poster path; image bytes dimension-checked and SHA-256 pinned; verified bytes mirrored to otd-poster-cache; failures preserve last known-good records."
 }

@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-09-14T21:04:30.601Z",
+  "updatedAt": "2026-09-15T15:36:43.741Z",
   "entries": {
     "ufc:2018-09-08:ufc-228-woodley-vs-till": {
       "strategyVersion": 7,
@@ -19530,6 +19530,24 @@
       "tapologyBinding": "direct-event-page",
       "posterSha256": "be3154a736cbbc5cf30e914b797bcecfb02226a6231bd1d412d8eb0c9d822352",
       "posterRegistryKey": "2026-09-12::ufc fight night silva vs delgado"
+    },
+    "pride:2001-03-25:pride-13": {
+      "checkedAt": "2026-09-15T15:36:23.751Z",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2001-03-25-pride-13-7af9d0dcae5d73e7.jpg",
+      "imageAlt": "Pride 13 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/pride-13-collision-course",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "sourceType": "tapology-event-poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/pride-13-collision-course",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "7af9d0dcae5d73e7423f7537f16523cde7861b7a2d2b5f23623143ac6bcce814",
+      "posterRegistryKey": "2001-03-25::pride 13"
     }
   },
   "strategyVersion": 8,
