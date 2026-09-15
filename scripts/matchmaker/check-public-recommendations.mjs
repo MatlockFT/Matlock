@@ -83,10 +83,10 @@ assert.equal(P.PUBLIC_CANDIDATE_POOL, 8, 'The public page should compare a small
 
 const fakeEngine = {
   candidates: () => [
-    oneSidedNearTie,
-    { ...mutualNearTie, fighter: peer },
-    { fighter: fighter('third', 7, 'W'), score: 84, rankingScore: 84, confidence: 'high', opportunityCost: { reciprocalRank: 1 } },
-    { fighter: fighter('fourth', 8, 'W'), score: 83, rankingScore: 83, confidence: 'high', opportunityCost: { reciprocalRank: 1 } }
+    { ...oneSidedNearTie, publishable: true },
+    { fighter: fighter('second-one-sided', 6, 'W'), score: 87, rankingScore: 87, confidence: 'high', publishable: true, opportunityCost: { reciprocalRank: 6 } },
+    { fighter: fighter('third-one-sided', 7, 'W'), score: 86.5, rankingScore: 86.5, confidence: 'high', publishable: true, opportunityCost: { reciprocalRank: 6 } },
+    { fighter: fighter('fourth-mutual', 8, 'W'), score: 86, rankingScore: 86, confidence: 'high', publishable: true, opportunityCost: { reciprocalRank: 1 } }
   ],
   rank: E.rank,
   titleClaim: E.titleClaim,
@@ -94,6 +94,7 @@ const fakeEngine = {
 };
 const selected = P.selectRecommendations(winner, [], fakeEngine, ctx);
 assert.equal(selected.length, 3, 'Public selection must still cap the page at three recommendations.');
-assert(selected.some(item => item.fighter.id === 'fourth'), 'The public selector should be able to promote a mutually stronger fourth engine candidate into the final three.');
+assert(selected.some(item => item.fighter.id === 'fourth-mutual'), 'The public selector should be able to promote a close mutually stronger fourth engine candidate into the final three.');
+assert(!selected.some(item => item.fighter.id === 'third-one-sided'), 'A weaker one-sided near-tie should be the candidate displaced by mutual booking fit.');
 
 console.log('Matchmaker public recommendation filters: OK');
