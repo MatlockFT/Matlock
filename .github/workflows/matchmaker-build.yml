@@ -40,6 +40,8 @@ jobs:
           node --check scripts/matchmaker/check-opportunity-cost.mjs
           node --check scripts/matchmaker/check-contextual-rematches.mjs
           node --check scripts/matchmaker/check-turnaround-timing.mjs
+          node --check scripts/matchmaker/audit-recommendations.mjs
+          node --check scripts/matchmaker/backtest-recommendations.mjs
           node scripts/matchmaker/enrich-official-portraits.mjs --self-test
           node scripts/matchmaker/check-verified-history-v2.mjs
           node scripts/matchmaker/check-career-lanes.mjs
