@@ -46,6 +46,8 @@ jobs:
         run: node scripts/matchmaker/check-verified-history-v2.mjs
       - name: Report unverified active histories
         run: node scripts/matchmaker/report-unverified-active.mjs
+      - name: Snapshot temporal roster and booking state
+        run: node scripts/matchmaker/snapshot-temporal-state.mjs
       - name: Check engine against refreshed data
         run: node scripts/check-matchmaker.mjs
       - name: Audit published recommendations
