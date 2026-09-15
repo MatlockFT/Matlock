@@ -3,7 +3,8 @@
 
   const root = document.querySelector('[data-matchmaker-simple]');
   const E = window.MatlockMatchmaker;
-  if (!root || !E) return;
+  const P = window.MatlockMatchmakerPublic;
+  if (!root || !E || !P) return;
 
   const $ = selector => root.querySelector(selector);
   const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
@@ -17,7 +18,6 @@
   };
 
   const labels = ['BEST FIT', 'ALSO MAKES SENSE', 'ANOTHER OPTION'];
-  const MAX_MEDIUM_ALTERNATIVE_GAP = 12;
   let data;
   let fighterIndex = new Map();
 
@@ -58,14 +58,9 @@
   }
 
   function publicRecommendations(fighter, event) {
-    const recommendations = E.recommendations(fighter, data.fighters, context(event)).slice(0, 3);
-    if (recommendations.length < 2) return recommendations;
-
-    const bestScore = recommendations[0].score;
-    return recommendations.filter((recommendation, index) => {
-      if (index === 0 || recommendation.confidence === 'high') return true;
-      return recommendation.score >= bestScore - MAX_MEDIUM_ALTERNATIVE_GAP;
-    });
+    const ctx = context(event);
+    const recommendations = E.recommendations(fighter, data.fighters, ctx).slice(0, 3);
+    return P.filterRecommendations(fighter, recommendations, E, ctx);
   }
 
   function opponentRow(recommendation, event, index) {
