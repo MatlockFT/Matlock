@@ -183,7 +183,7 @@ if (delgado && mcmillen) {
   }
 }
 
-let checked = 0, withheldLowConfidence = 0;
+let checked = 0, lowConfidencePublished = 0;
 const historyV2 = Number(data.sources?.meetings?.historyModelVersion || 0) >= 2;
 for (const event of data.events) {
   const ctx = { ...context, event, asOf: data.generatedAt, fighterIndex: dataIndex };
@@ -194,14 +194,14 @@ for (const event of data.events) {
       if (Math.abs(Date.parse(left.date) - Date.parse(right.date)) <= 86400000) assert(!left.opponentIds.some(id => right.opponentIds.includes(id)), 'One fight was counted twice across a UTC calendar boundary');
     }
     const allCandidates = historyV2 && fighter.meetingCoverage?.verified === true ? E.candidates(fighter, data.fighters, ctx) : [];
-    withheldLowConfidence += allCandidates.filter(candidate => !candidate.publishable).length;
+    lowConfidencePublished += allCandidates.filter(candidate => candidate.publishable && candidate.confidence === 'low').length;
     const recs = data.sources?.meetings && fighter.meetingCoverage?.verified !== true ? [] : E.recommendations(fighter, data.fighters, ctx);
     assert(recs.length <= 3); assert.equal(new Set(recs.map(r => r.fighter.id)).size, recs.length);
     for (const r of recs) {
       assert(r.eligible && !r.fighter.booking && r.fighter.active);
       if (historyV2) assert.equal(r.fighter.meetingCoverage?.verified, true, `Unverified candidate leaked into recommendations: ${r.fighter.name}`);
       assert(r.score >= 0 && r.score <= 100);
-      assert(r.publishable && ['medium', 'high'].includes(r.confidence), `Low-confidence matchup leaked into recommendations: ${fighter.name} vs ${r.fighter.name}`);
+      assert(r.publishable && ['low', 'medium', 'high'].includes(r.confidence), `Recommendation lost publication/confidence state: ${fighter.name} vs ${r.fighter.name}`);
       assert(r.case?.code && r.case?.reasons?.length >= 2, `Recommendation lacks a substantive matchmaking case: ${fighter.name} vs ${r.fighter.name}`);
       assert(!/(?:no prior|no previous).*meeting/i.test(r.rationale), `Recommendation rationale fell back to history verification: ${fighter.name} vs ${r.fighter.name}`);
       assert(r.rationale && r.evidence.length >= 5); checked++;
@@ -211,7 +211,7 @@ for (const event of data.events) {
   const autoPairs = E.autoMatch(data.fighters, ctx, event.bouts.flatMap(bout => bout.fighters.map(f => f.id)), 1000);
   const ids = autoPairs.pairs.flatMap(p => [p.a, p.b]); assert.equal(new Set(ids).size, ids.length, 'Auto matching double-booked a fighter');
 }
-assert(withheldLowConfidence > 0, 'Confidence gate should withhold at least some technically eligible but weak pairings');
+assert(lowConfidencePublished > 0, 'Production data should exercise at least one hard-eligible low-confidence pairing');
 
 const page = fs.readFileSync('matchmaker.html', 'utf8');
 for (const asset of ['assets/matchmaker-engine.js', 'assets/matchmaker-simple.js', 'assets/matchmaker-simple.css']) assert(page.includes('/' + asset) && fs.existsSync(asset), `Missing simplified Matchmaker asset: ${asset}`);
@@ -227,4 +227,4 @@ assert(!/localStorage|showModal|data-mm-lock|autoMatch\(/.test(simpleJs), 'Read-
 const simpleCss = fs.readFileSync('assets/matchmaker-simple.css', 'utf8');
 for (const marker of ['.mm-simple-hero', '.mm-simple-eventbar', '.mm-simple-board', '.mm-simple-file', '.mm-simple-match', 'prefers-reduced-motion']) assert(simpleCss.includes(marker), `Missing simplified Matchmaker style: ${marker}`);
 assert(fs.readFileSync('_config.yml', 'utf8').includes('link: "/matchmaker/"'));
-console.log(`Matchmaker checks passed: opponent-adjusted two-sided V2 scoring, substantive case rationales, confidence gating (${withheldLowConfidence} weak candidates withheld), hard rematch regression, structured-history reconciliation, ${data.events.length} real cards, ${checked} published recommendations, and simplified read-only next-fight presentation.`);
+console.log(`Matchmaker checks passed: opponent-adjusted two-sided V2 scoring, substantive case rationales, hard eligibility with diagnostic confidence (${lowConfidencePublished} low-confidence eligible candidates retained), hard rematch regression, structured-history reconciliation, ${data.events.length} real cards, ${checked} published recommendations, and simplified read-only next-fight presentation.`);
