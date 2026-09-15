@@ -1,114 +1,35 @@
 {
-  "generatedAt": "2026-09-15T01:11:13.816Z",
+  "generatedAt": "2026-09-15T01:17:08.348Z",
   "engineVersion": 2,
   "subjects": 182,
-  "publishedRecommendations": 500,
+  "publishedRecommendations": 494,
   "recommendationSlots": {
-    "0": 12,
+    "0": 13,
     "1": 2,
-    "2": 6,
-    "3": 162
+    "2": 9,
+    "3": 158
   },
   "caseCounts": {
     "rebound-pairing": 207,
     "rising-vs-rising": 165,
-    "ranking-opportunity": 40,
+    "ranking-opportunity": 41,
     "step-up-vs-rebound": 40,
-    "rankings-progression": 26,
-    "divisional-sorting": 11,
-    "prospect-test": 4,
+    "rankings-progression": 28,
+    "prospect-test": 6,
     "title-case": 4,
     "title-eliminator": 3
   },
   "confidenceCounts": {
     "high": 472,
-    "medium": 28
+    "medium": 22
   },
   "averageRecentOpponentLinkCoverage": 0.906,
   "sameCardRecommendations": 33,
-  "sameCardRecommendationRatio": 0.066,
-  "asymmetricTopThreeRecommendations": 154,
-  "asymmetricTopThreeRatio": 0.308,
-  "genericDivisionalSortingRecommendations": 11,
-  "genericExamples": [
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Alexa Grasso",
-      "opponent": "Rose Namajunas",
-      "score": 76,
-      "rationale": "Alexa Grasso and Rose Namajunas occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Waldo Cortes Acosta",
-      "opponent": "Josh Hokit",
-      "score": 83,
-      "rationale": "Waldo Cortes Acosta and Josh Hokit occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Hooker vs Parnasse",
-      "fighter": "Nora Cornolle",
-      "opponent": "Miesha Tate",
-      "score": 81,
-      "rationale": "Nora Cornolle and Miesha Tate occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Hooker vs Parnasse",
-      "fighter": "Klaudia Sygula",
-      "opponent": "Nina Milosevic",
-      "score": 80,
-      "rationale": "Klaudia Sygula and Nina Milosevic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Hooker vs Parnasse",
-      "fighter": "Matthieu Letho Duclos",
-      "opponent": "Eric McConico",
-      "score": 87,
-      "rationale": "Matthieu Letho Duclos and Eric McConico occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Nurmagomedov vs Song",
-      "fighter": "Umar Nurmagomedov",
-      "opponent": "Sean Omalley",
-      "score": 81,
-      "rationale": "Umar Nurmagomedov and Sean Omalley occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Nurmagomedov vs Song",
-      "fighter": "Song Yadong",
-      "opponent": "Cory Sandhagen",
-      "score": 75,
-      "rationale": "Song Yadong and Cory Sandhagen occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Nurmagomedov vs Song",
-      "fighter": "Denise Gomes",
-      "opponent": "Gillian Robertson",
-      "score": 82,
-      "rationale": "Denise Gomes and Gillian Robertson occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Hernandez vs Rodrigues",
-      "fighter": "Vitor Petrino",
-      "opponent": "Ante Delija",
-      "score": 72,
-      "rationale": "Vitor Petrino and Ante Delija occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Medic vs Rodriguez",
-      "fighter": "Nina Milosevic",
-      "opponent": "Klaudia Sygula",
-      "score": 80,
-      "rationale": "Nina Milosevic and Klaudia Sygula occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
-      "event": "UFC Fight Night: Medic vs Rodriguez",
-      "fighter": "Nina Milosevic",
-      "opponent": "Dariya Zheleznyakova",
-      "score": 76,
-      "rationale": "Nina Milosevic and Dariya Zheleznyakova occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    }
-  ],
+  "sameCardRecommendationRatio": 0.0668,
+  "asymmetricTopThreeRecommendations": 151,
+  "asymmetricTopThreeRatio": 0.3057,
+  "genericDivisionalSortingRecommendations": 0,
+  "genericExamples": [],
   "asymmetricExamples": [
     {
       "event": "Noche UFC: Silva vs Delgado",
@@ -291,7 +212,7 @@
       "opponent": "Valter Walker",
       "pairScore": 66,
       "case": "step-up-vs-rebound",
-      "fighterRank": "Another option",
+      "fighterRank": "Alternative",
       "opponentTopThree": [
         {
           "opponent": "Ante Delija",
@@ -299,14 +220,39 @@
           "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Tyrell Fortune",
-          "score": 86,
-          "case": "divisional-sorting"
-        },
-        {
           "opponent": "Serghei Spivac",
           "score": 82,
           "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Mario Pinto",
+          "score": 81,
+          "case": "rankings-progression"
+        }
+      ]
+    },
+    {
+      "event": "Noche UFC: Silva vs Delgado",
+      "fighter": "Waldo Cortes Acosta",
+      "opponent": "Jon Jones",
+      "pairScore": 65,
+      "case": "ranking-opportunity",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Serghei Spivac",
+          "score": 81,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Ante Delija",
+          "score": 77,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Tyrell Fortune",
+          "score": 76,
+          "case": "ranking-opportunity"
         }
       ]
     },
@@ -706,31 +652,6 @@
         {
           "opponent": "Veronica Hardy",
           "score": 93,
-          "case": "ranking-opportunity"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Regina Malpica Rivera",
-      "opponent": "Juliana Miller",
-      "pairScore": 84,
-      "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Dione Barbosa",
-          "score": 93,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Gabriella Fernandes",
-          "score": 93,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Jj Aldrich",
-          "score": 86,
           "case": "ranking-opportunity"
         }
       ]
