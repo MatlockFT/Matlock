@@ -1,58 +1,207 @@
 {
-  "generatedAt": "2026-09-15T02:15:04.449Z",
+  "generatedAt": "2026-09-15T05:50:04.934Z",
   "engineVersion": 2,
   "subjects": 182,
-  "publishedRecommendations": 494,
+  "publishedRecommendations": 511,
   "recommendationSlots": {
-    "0": 13,
-    "1": 2,
-    "2": 9,
-    "3": 158
+    "0": 11,
+    "1": 0,
+    "2": 2,
+    "3": 169
   },
   "caseCounts": {
-    "rebound-pairing": 205,
-    "rising-vs-rising": 164,
+    "rebound-pairing": 206,
+    "rising-vs-rising": 161,
+    "step-up-vs-rebound": 50,
     "ranking-opportunity": 43,
-    "step-up-vs-rebound": 42,
-    "rankings-progression": 28,
+    "rankings-progression": 24,
+    "divisional-sorting": 13,
+    "title-case": 6,
     "prospect-test": 5,
-    "title-case": 4,
     "title-eliminator": 3
   },
   "confidenceCounts": {
-    "high": 472,
-    "medium": 22
+    "high": 480,
+    "low": 16,
+    "medium": 15
   },
   "averageRecentOpponentLinkCoverage": 0.906,
-  "sameCardRecommendations": 32,
-  "sameCardRecommendationRatio": 0.0648,
-  "asymmetricTopThreeRecommendations": 150,
-  "asymmetricTopThreeRatio": 0.3036,
+  "sameCardRecommendations": 28,
+  "sameCardRecommendationRatio": 0.0548,
+  "asymmetricTopThreeRecommendations": 186,
+  "asymmetricTopThreeRatio": 0.364,
+  "publicPublishedRecommendations": 496,
+  "publicAsymmetricTopThreeRecommendations": 141,
+  "publicAsymmetricTopThreeRatio": 0.2843,
+  "engineGenericDivisionalSortingRecommendations": 13,
   "genericDivisionalSortingRecommendations": 0,
-  "genericExamples": [],
+  "genericExamples": [
+    {
+      "event": "Noche UFC: Silva vs Delgado",
+      "fighter": "Joseph Morales",
+      "opponent": "Jose Ochoa",
+      "score": 90,
+      "rationale": "Joseph Morales and Jose Ochoa occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "Noche UFC: Silva vs Delgado",
+      "fighter": "Manon Fiorot",
+      "opponent": "Tracy Cortez",
+      "score": 55,
+      "rationale": "Manon Fiorot and Tracy Cortez occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "Noche UFC: Silva vs Delgado",
+      "fighter": "Alexa Grasso",
+      "opponent": "Tracy Cortez",
+      "score": 47,
+      "rationale": "Alexa Grasso and Tracy Cortez occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "Noche UFC: Silva vs Delgado",
+      "fighter": "Waldo Cortes Acosta",
+      "opponent": "Ciryl Gane",
+      "score": 75,
+      "rationale": "Waldo Cortes Acosta and Ciryl Gane occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Hooker vs Parnasse",
+      "fighter": "Salahdine Parnasse",
+      "opponent": "Gabe Green",
+      "score": 49,
+      "rationale": "Salahdine Parnasse and Gabe Green occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Hooker vs Parnasse",
+      "fighter": "Salahdine Parnasse",
+      "opponent": "Lance Gibson Jr.",
+      "score": 48,
+      "rationale": "Salahdine Parnasse and Lance Gibson Jr. occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Hooker vs Parnasse",
+      "fighter": "Klaudia Sygula",
+      "opponent": "Nina Milosevic",
+      "score": 80,
+      "rationale": "Klaudia Sygula and Nina Milosevic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Hooker vs Parnasse",
+      "fighter": "Matthieu Letho Duclos",
+      "opponent": "Eric McConico",
+      "score": 88,
+      "rationale": "Matthieu Letho Duclos and Eric McConico occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Nurmagomedov vs Song",
+      "fighter": "Song Yadong",
+      "opponent": "Aiemann Zahabi",
+      "score": 67,
+      "rationale": "Song Yadong and Aiemann Zahabi occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Nurmagomedov vs Song",
+      "fighter": "Kevin Borjas",
+      "opponent": "Alibi Idiris",
+      "score": 92,
+      "rationale": "Kevin Borjas and Alibi Idiris occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC 330: Makhachev vs Machado Garry",
+      "fighter": "Ian Machado Garry",
+      "opponent": "Leon Edwards",
+      "score": 52,
+      "rationale": "Ian Machado Garry and Leon Edwards occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Medic vs Rodriguez",
+      "fighter": "Nina Milosevic",
+      "opponent": "Klaudia Sygula",
+      "score": 80,
+      "rationale": "Nina Milosevic and Klaudia Sygula occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Medic vs Rodriguez",
+      "fighter": "Nina Milosevic",
+      "opponent": "Dariya Zheleznyakova",
+      "score": 77,
+      "rationale": "Nina Milosevic and Dariya Zheleznyakova occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    }
+  ],
+  "publicGenericExamples": [],
   "asymmetricExamples": [
     {
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Jean Silva",
-      "opponent": "Aljamain Sterling",
+      "opponent": "Youssef Zalal",
+      "pairScore": 83,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Mairon Santos Alves",
+          "score": 90,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Steve Garcia",
+          "score": 89,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Kevin Vallejos",
+          "score": 88,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "Noche UFC: Silva vs Delgado",
+      "fighter": "Brandon Moreno",
+      "opponent": "Asu Almabayev",
+      "pairScore": 83,
+      "case": "rankings-progression",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Tatsuro Taira",
+          "score": 95,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Kyoji Horiguchi",
+          "score": 93,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Amir Albazi",
+          "score": 91,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "Noche UFC: Silva vs Delgado",
+      "fighter": "Brandon Moreno",
+      "opponent": "Tim Elliott",
       "pairScore": 74,
       "case": "rankings-progression",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Yair Rodriguez",
-          "score": 83,
-          "case": "title-eliminator"
-        },
-        {
-          "opponent": "Lerone Murphy",
-          "score": 82,
+          "opponent": "Amir Albazi",
+          "score": 86,
           "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Diego Lopes",
-          "score": 77,
-          "case": "title-eliminator"
+          "opponent": "Alessandro Costa",
+          "score": 81,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Tagir Ulanbekov",
+          "score": 80,
+          "case": "step-up-vs-rebound"
         }
       ]
     },
@@ -60,9 +209,9 @@
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Joseph Morales",
       "opponent": "Nyamjargal Tumendemberel",
-      "pairScore": 86,
+      "pairScore": 87,
       "case": "step-up-vs-rebound",
-      "fighterRank": "Alternative",
+      "fighterRank": "Another option",
       "opponentTopThree": [
         {
           "opponent": "Alibi Idiris",
@@ -70,38 +219,13 @@
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Edgar Chairez",
-          "score": 87,
-          "case": "step-up-vs-rebound"
+          "opponent": "Kevin Borjas",
+          "score": 89,
+          "case": "prospect-test"
         },
         {
           "opponent": "Lucas Rocha",
-          "score": 87,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Joseph Morales",
-      "opponent": "Bilal Hasan",
-      "pairScore": 84,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Fabia Sintes",
-          "score": 95,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Hyunsung Park",
-          "score": 87,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Donghun Choi",
-          "score": 84,
+          "score": 89,
           "case": "rising-vs-rising"
         }
       ]
@@ -110,23 +234,23 @@
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Tommy McMillen",
       "opponent": "Bogdan Grad",
-      "pairScore": 91,
+      "pairScore": 90,
       "case": "rising-vs-rising",
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Yadier Del Valle",
-          "score": 92,
-          "case": "rising-vs-rising"
+          "opponent": "David Onama",
+          "score": 93,
+          "case": "ranking-opportunity"
         },
         {
-          "opponent": "Felipe Lima",
-          "score": 91,
+          "opponent": "Yadier Del Valle",
+          "score": 93,
           "case": "rising-vs-rising"
         },
         {
           "opponent": "Gaston Bolanos",
-          "score": 91,
+          "score": 92,
           "case": "rising-vs-rising"
         }
       ]
@@ -141,17 +265,17 @@
       "opponentTopThree": [
         {
           "opponent": "Bogdan Grad",
-          "score": 92,
+          "score": 93,
           "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "David Onama",
+          "score": 91,
+          "case": "ranking-opportunity"
         },
         {
           "opponent": "Gaston Bolanos",
           "score": 91,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Felipe Lima",
-          "score": 90,
           "case": "rising-vs-rising"
         }
       ]
@@ -166,17 +290,17 @@
       "opponentTopThree": [
         {
           "opponent": "Damien Anderson",
-          "score": 94,
+          "score": 95,
           "case": "rebound-pairing"
         },
         {
           "opponent": "Otari Tanzilovi",
-          "score": 94,
+          "score": 95,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Robert Ruchala",
-          "score": 94,
+          "opponent": "Zhu Kangjie",
+          "score": 95,
           "case": "rebound-pairing"
         }
       ]
@@ -185,23 +309,23 @@
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Marwan Rahiki",
       "opponent": "Damien Anderson",
-      "pairScore": 93,
+      "pairScore": 92,
       "case": "rebound-pairing",
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
           "opponent": "Austin Bashi",
-          "score": 94,
+          "score": 95,
           "case": "rebound-pairing"
         },
         {
           "opponent": "Otari Tanzilovi",
-          "score": 94,
+          "score": 95,
           "case": "rebound-pairing"
         },
         {
           "opponent": "Robert Ruchala",
-          "score": 94,
+          "score": 95,
           "case": "rebound-pairing"
         }
       ]
@@ -210,74 +334,124 @@
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Marwan Rahiki",
       "opponent": "Otari Tanzilovi",
-      "pairScore": 93,
+      "pairScore": 92,
       "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
           "opponent": "Austin Bashi",
-          "score": 94,
+          "score": 95,
           "case": "rebound-pairing"
         },
         {
           "opponent": "Damien Anderson",
-          "score": 94,
+          "score": 95,
           "case": "rebound-pairing"
         },
         {
           "opponent": "Robert Ruchala",
-          "score": 94,
+          "score": 95,
           "case": "rebound-pairing"
         }
       ]
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Waldo Cortes Acosta",
-      "opponent": "Valter Walker",
-      "pairScore": 66,
-      "case": "step-up-vs-rebound",
+      "fighter": "Manon Fiorot",
+      "opponent": "Tracy Cortez",
+      "pairScore": 55,
+      "case": "divisional-sorting",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Karine Silva",
+          "score": 86,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Miranda Maverick",
+          "score": 85,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Carli Judice",
+          "score": 80,
+          "case": "ranking-opportunity"
+        }
+      ]
+    },
+    {
+      "event": "Noche UFC: Silva vs Delgado",
+      "fighter": "Alexa Grasso",
+      "opponent": "Tracy Cortez",
+      "pairScore": 47,
+      "case": "divisional-sorting",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Karine Silva",
+          "score": 86,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Miranda Maverick",
+          "score": 85,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Carli Judice",
+          "score": 80,
+          "case": "ranking-opportunity"
+        }
+      ]
+    },
+    {
+      "event": "Noche UFC: Silva vs Delgado",
+      "fighter": "Curtis Blaydes",
+      "opponent": "Vitor Petrino",
+      "pairScore": 71,
+      "case": "rankings-progression",
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Ante Delija",
-          "score": 87,
+          "opponent": "Waldo Cortes Acosta",
+          "score": 89,
           "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Serghei Spivac",
+          "opponent": "Ante Delija",
           "score": 82,
           "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Mario Pinto",
-          "score": 81,
+          "opponent": "Josh Hokit",
+          "score": 76,
           "case": "rankings-progression"
         }
       ]
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Waldo Cortes Acosta",
-      "opponent": "Jon Jones",
-      "pairScore": 65,
-      "case": "ranking-opportunity",
+      "fighter": "Curtis Blaydes",
+      "opponent": "Serghei Spivac",
+      "pairScore": 70,
+      "case": "step-up-vs-rebound",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Serghei Spivac",
+          "opponent": "Aleksandar Rakic",
+          "score": 88,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Jon Jones",
           "score": 81,
           "case": "ranking-opportunity"
         },
         {
-          "opponent": "Ante Delija",
-          "score": 77,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Tyrell Fortune",
-          "score": 76,
-          "case": "ranking-opportunity"
+          "opponent": "Valter Walker",
+          "score": 80,
+          "case": "step-up-vs-rebound"
         }
       ]
     },
@@ -285,23 +459,23 @@
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Dan Ige",
       "opponent": "Julian Erosa",
-      "pairScore": 80,
+      "pairScore": 82,
       "case": "rebound-pairing",
-      "fighterRank": "Best match",
+      "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Douglas Silva De Andrade",
-          "score": 90,
+          "opponent": "Nathaniel Wood",
+          "score": 92,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Nathaniel Wood",
-          "score": 90,
+          "opponent": "Douglas Silva De Andrade",
+          "score": 91,
           "case": "rebound-pairing"
         },
         {
           "opponent": "Andre Fili",
-          "score": 87,
+          "score": 88,
           "case": "rebound-pairing"
         }
       ]
@@ -312,7 +486,7 @@
       "opponent": "Jordan Leavitt",
       "pairScore": 79,
       "case": "rebound-pairing",
-      "fighterRank": "Alternative",
+      "fighterRank": "Another option",
       "opponentTopThree": [
         {
           "opponent": "Muhammad Naimov",
@@ -325,33 +499,8 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Jack Jenkins",
+          "opponent": "Chepe Mariscal",
           "score": 89,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Dan Ige",
-      "opponent": "Melsik Baghdasaryan",
-      "pairScore": 78,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Dennis Buzukja",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Hyder Amil",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Jose Miguel Delgado",
-          "score": 92,
           "case": "rebound-pairing"
         }
       ]
@@ -359,50 +508,75 @@
     {
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Tim Elliott",
-      "opponent": "Charles Johnson",
-      "pairScore": 79,
-      "case": "rankings-progression",
+      "opponent": "Tagir Ulanbekov",
+      "pairScore": 80,
+      "case": "step-up-vs-rebound",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Steve Erceg",
+          "opponent": "Rei Tsuruya",
           "score": 94,
           "case": "ranking-opportunity"
         },
         {
-          "opponent": "Tagir Ulanbekov",
-          "score": 88,
+          "opponent": "Jose Ochoa",
+          "score": 93,
           "case": "ranking-opportunity"
         },
         {
-          "opponent": "Rei Tsuruya",
-          "score": 85,
-          "case": "rising-vs-rising"
+          "opponent": "Sumudaerji",
+          "score": 92,
+          "case": "step-up-vs-rebound"
         }
       ]
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Edgar Chairez",
-      "opponent": "Kevin Borjas",
+      "opponent": "Alibi Idiris",
       "pairScore": 88,
-      "case": "rebound-pairing",
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Kevin Borjas",
+          "score": 92,
+          "case": "divisional-sorting"
+        },
+        {
+          "opponent": "Nyamjargal Tumendemberel",
+          "score": 92,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Lucas Rocha",
+          "score": 89,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Noche UFC: Silva vs Delgado",
+      "fighter": "Ignacio Bahamondes",
+      "opponent": "Charles Radtke",
+      "pairScore": 90,
+      "case": "rising-vs-rising",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Luis Gurule",
+          "opponent": "Daniel Rodriguez",
+          "score": 92,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Sam Patterson",
+          "score": 92,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Chidi Njokuani",
           "score": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Hyunsung Park",
-          "score": 90,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Ode Osbourne",
-          "score": 89,
-          "case": "rebound-pairing"
+          "case": "rising-vs-rising"
         }
       ]
     },
@@ -415,12 +589,12 @@
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Donte Johnson",
-          "score": 94,
+          "opponent": "Jackson McVey",
+          "score": 95,
           "case": "rising-vs-rising"
         },
         {
-          "opponent": "Jackson McVey",
+          "opponent": "Donte Johnson",
           "score": 94,
           "case": "rising-vs-rising"
         },
@@ -433,26 +607,26 @@
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Thomas Gantt",
-      "opponent": "Matheus Camilo",
-      "pairScore": 91,
-      "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
+      "fighter": "Drakkar Klose",
+      "opponent": "Mason Jones",
+      "pairScore": 92,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Marquel Mederos",
-          "score": 93,
-          "case": "rising-vs-rising"
+          "opponent": "Kody Steele",
+          "score": 94,
+          "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Axel Sola",
-          "score": 92,
-          "case": "rising-vs-rising"
+          "opponent": "Mike Davis",
+          "score": 94,
+          "case": "rebound-pairing"
         },
         {
-          "opponent": "Chris Padilla",
-          "score": 92,
-          "case": "rising-vs-rising"
+          "opponent": "Nikolas Motta",
+          "score": 94,
+          "case": "rebound-pairing"
         }
       ]
     },
@@ -460,9 +634,9 @@
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Thomas Gantt",
       "opponent": "Kody Steele",
-      "pairScore": 90,
+      "pairScore": 92,
       "case": "rising-vs-rising",
-      "fighterRank": "Another option",
+      "fighterRank": "Alternative",
       "opponentTopThree": [
         {
           "opponent": "Chris Duncan",
@@ -471,7 +645,7 @@
         },
         {
           "opponent": "Mason Jones",
-          "score": 95,
+          "score": 94,
           "case": "step-up-vs-rebound"
         },
         {
@@ -483,26 +657,51 @@
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Rafa Garcia",
-      "opponent": "Drakkar Klose",
+      "fighter": "Thomas Gantt",
+      "opponent": "Matheus Camilo",
       "pairScore": 91,
-      "case": "rebound-pairing",
+      "case": "rising-vs-rising",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Fares Ziam",
-          "score": 92,
-          "case": "rebound-pairing"
+          "opponent": "Chris Padilla",
+          "score": 93,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Terrance McKinney",
-          "score": 92,
-          "case": "rebound-pairing"
+          "opponent": "Marquel Mederos",
+          "score": 93,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Tofiq Musayev",
+          "score": 93,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Noche UFC: Silva vs Delgado",
+      "fighter": "Rafa Garcia",
+      "opponent": "Kody Steele",
+      "pairScore": 92,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Chris Duncan",
+          "score": 95,
+          "case": "step-up-vs-rebound"
         },
         {
           "opponent": "Mason Jones",
-          "score": 91,
-          "case": "rebound-pairing"
+          "score": 94,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Manuel Torres",
+          "score": 93,
+          "case": "step-up-vs-rebound"
         }
       ]
     },
@@ -512,17 +711,17 @@
       "opponent": "Jalin Turner",
       "pairScore": 88,
       "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
+      "fighterRank": "Best match",
       "opponentTopThree": [
         {
-          "opponent": "Mateusz Gamrot",
-          "score": 93,
-          "case": "ranking-opportunity"
+          "opponent": "Joaquim Silva",
+          "score": 92,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Joaquim Silva",
-          "score": 89,
-          "case": "rising-vs-rising"
+          "opponent": "Mateusz Gamrot",
+          "score": 92,
+          "case": "ranking-opportunity"
         },
         {
           "opponent": "Diego Ferreira",
@@ -534,128 +733,28 @@
     {
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Rongzhu",
-      "opponent": "Mateusz Gamrot",
-      "pairScore": 87,
-      "case": "ranking-opportunity",
-      "fighterRank": "Another option",
+      "opponent": "Drew Dober",
+      "pairScore": 85,
+      "case": "rising-vs-rising",
+      "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Renato Moicano",
-          "score": 94,
-          "case": "step-up-vs-rebound"
+          "opponent": "Diego Ferreira",
+          "score": 90,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Dan Hooker",
+          "score": 87,
+          "case": "ranking-opportunity"
         },
         {
           "opponent": "Jalin Turner",
-          "score": 93,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Joaquim Silva",
-          "score": 89,
-          "case": "ranking-opportunity"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Sean King III",
-      "opponent": "Shane Collins",
-      "pairScore": 95,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Ezra Elliot",
-          "score": 95,
+          "score": 87,
           "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Jose Delano",
-          "score": 95,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Rodrigo Vera",
-          "score": 95,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Jj Aldrich",
-      "opponent": "Dione Barbosa",
-      "pairScore": 87,
-      "case": "ranking-opportunity",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Gabriella Fernandes",
-          "score": 94,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Juliana Miller",
-          "score": 93,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Carli Judice",
-          "score": 88,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Jj Aldrich",
-      "opponent": "Carli Judice",
-      "pairScore": 84,
-      "case": "prospect-test",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Dione Barbosa",
-          "score": 88,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Karine Silva",
-          "score": 86,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Miranda Maverick",
-          "score": 85,
-          "case": "ranking-opportunity"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Regina Malpica Rivera",
-      "opponent": "Gabriella Fernandes",
-      "pairScore": 88,
-      "case": "ranking-opportunity",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Dione Barbosa",
-          "score": 94,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Juliana Miller",
-          "score": 93,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Veronica Hardy",
-          "score": 93,
-          "case": "ranking-opportunity"
         }
       ]
     }
   ],
-  "note": "Top-three asymmetry is diagnostic, not automatically an error: one symmetric fight score can rank fourth or lower for the other fighter because that fighter has stronger alternatives."
+  "note": "Engine Top-3 asymmetry and generic fallback usage remain diagnostics rather than automatic errors. Public Top-3 asymmetry measures the shortlist visitors actually see after reciprocal near-tie ordering. Generic divisional-sorting cases are not allowed on the public shortlist."
 }
