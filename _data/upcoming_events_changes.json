@@ -1,7 +1,68 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T10:13:29.338Z",
+  "generated_at": "2026-09-15T15:07:47.939Z",
   "changes": [
+    {
+      "id": "2026-09-15T15:07:47.939Z|ufc-fight-night-2026-10-31-fight-card|title_changed|1",
+      "at": "2026-09-15T15:07:47.939Z",
+      "type": "title_changed",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Moicano vs Nolan",
+      "event_date": "2026-10-31",
+      "summary": "UFC Fight Night Moicano vs Nolan: title changed.",
+      "details": {
+        "from": "Szabova vs Lisboa",
+        "to": "Moicano vs Nolan"
+      }
+    },
+    {
+      "id": "2026-09-15T15:07:47.939Z|ufc-fight-night-2026-10-31-fight-card|bout_moved|2",
+      "at": "2026-09-15T15:07:47.939Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Moicano vs Nolan",
+      "event_date": "2026-10-31",
+      "summary": "Lucia Szabova vs Tainara Lisboa moved on Moicano vs Nolan.",
+      "details": {
+        "from_order": 1,
+        "to_order": 2,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-15T15:07:47.939Z|ufc-fight-night-2026-10-31-fight-card|bout_moved|3",
+      "at": "2026-09-15T15:07:47.939Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Moicano vs Nolan",
+      "event_date": "2026-10-31",
+      "summary": "Nick Klein vs Joseph Kropschot moved on Moicano vs Nolan.",
+      "details": {
+        "from_order": 2,
+        "to_order": 3,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-15T15:07:47.939Z|ufc-fight-night-2026-10-31-fight-card|bout_added|4",
+      "at": "2026-09-15T15:07:47.939Z",
+      "type": "bout_added",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Moicano vs Nolan",
+      "event_date": "2026-10-31",
+      "summary": "Renato Moicano vs Tom Nolan added to Moicano vs Nolan.",
+      "details": {
+        "order": 1,
+        "section": "Main Card",
+        "weight_class": "Lightweight Bout"
+      }
+    },
     {
       "id": "2026-09-15T10:13:29.338Z|rizin-rizin-55-2026-11-08|bout_changed|1",
       "at": "2026-09-15T10:13:29.338Z",
@@ -4606,69 +4667,6 @@
         "to_order": 11,
         "from_section": "Main Card",
         "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-08-26T22:21:04.277Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|8",
-      "at": "2026-08-26T22:21:04.277Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Nora Cornolle vs Klaudia Sygula moved on Hooker vs Parnasse.",
-      "details": {
-        "from_order": 11,
-        "to_order": 12,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-08-26T22:21:04.277Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|9",
-      "at": "2026-08-26T22:21:04.277Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Matthieu Letho Duclos vs Luis Felipe Dias moved on Hooker vs Parnasse.",
-      "details": {
-        "from_order": 12,
-        "to_order": 13,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-08-26T22:21:04.277Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|10",
-      "at": "2026-08-26T22:21:04.277Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Delphine Benouaich vs Sofia Montenegro moved on Hooker vs Parnasse.",
-      "details": {
-        "from_order": 13,
-        "to_order": 14,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-08-26T22:21:04.277Z|ufc-fight-night-2026-09-05-fight-card|bout_added|11",
-      "at": "2026-08-26T22:21:04.277Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Daniil Donchenko vs Punahele Soriano added to Hooker vs Parnasse.",
-      "details": {
-        "order": 4,
-        "section": "Main Card",
-        "weight_class": "Welterweight Bout"
       }
     }
   ]

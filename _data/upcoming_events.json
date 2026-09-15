@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T10:12:15.962Z",
+  "generated_at": "2026-09-15T15:06:58.673Z",
   "events": [
     {
       "id": "dwcs-season-10-week-6-2026-09-15",
@@ -1835,7 +1835,7 @@
       "id": "ufc-fight-night-2026-10-31-fight-card",
       "promotion_key": "ufc",
       "promotion": "UFC Fight Night",
-      "title": "Szabova vs Lisboa",
+      "title": "Moicano vs Nolan",
       "date": "2026-10-31",
       "date_label": "Saturday · October 31, 2026",
       "starts_at": "",
@@ -1853,6 +1853,27 @@
             {
               "order": 1,
               "label": "Main Event",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Renato Moicano",
+                  "initials": "RM",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/MOICANO_RENATO_L_04-04.png?itok=2zj_9GSb",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Tom Nolan",
+                  "initials": "TN",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/NOLAN_TOM_L_09-27.png?itok=MyU46nSD",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
               "weight_class": "Women's Flyweight Bout",
               "fighters": [
                 {
@@ -1872,8 +1893,8 @@
               ]
             },
             {
-              "order": 2,
-              "label": "Co-Main Event",
+              "order": 3,
+              "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
                 {
