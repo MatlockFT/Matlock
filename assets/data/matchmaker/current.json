@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-09-15T17:02:35.940Z"
+      "checkedAt": "2026-09-15T20:10:22.967Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-15T17:02:58.540Z",
+      "checkedAt": "2026-09-15T20:10:50.130Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -23727,7 +23727,13 @@
         "mirrorThrough": "2026-09-12",
         "officialThrough": "2026-09-12"
       },
-      "booking": null,
+      "booking": {
+        "event": "Silva vs Cong",
+        "date": "2026-10-03",
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Lucas Armand",
+        "opponentId": null
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
