@@ -3,14 +3,18 @@ import path from 'node:path';
 import { clean, key } from './sources/ufc.mjs';
 import { parseMirrorFighters, parseMirrorHistory } from './sources/ufcstats.mjs';
 import { reconcileProfileHistory } from './history-reconcile.mjs';
+import { classifyProfileContradictions } from './profile-contradictions.mjs';
 import { validateData } from './validate.mjs';
 
 const DATA_PATH = path.resolve('assets/data/matchmaker/current.json');
+const EVIDENCE_PATH = path.resolve('scripts/matchmaker/verified-history-evidence.json');
 const FIGHT_URL = 'https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fight_results.csv';
 const EVENT_URL = 'https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_event_details.csv';
 const FIGHTER_URL = 'https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_details.csv';
 const DAY = 86400000;
 const SUFFIXES = new Set(['jr', 'junior', 'sr', 'senior', 'ii', 'iii', 'iv', 'filho', 'neto']);
+const RESULTS = new Set(['W', 'L', 'D', 'NC']);
+const CLASSES = new Set(['ufc', 'tuf', 'road-to-ufc', 'dwcs']);
 
 const data = JSON.parse(await fs.readFile(DATA_PATH, 'utf8'));
 const checkedAt = data.generatedAt || new Date().toISOString();
@@ -21,7 +25,7 @@ async function getText(url) {
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
       const response = await fetch(url, {
-        headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MMAMatlockMatchmaker/2.1; +https://mmamatlock.com/)' },
+        headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MMAMatlockMatchmaker/2.2; +https://mmamatlock.com/)' },
         signal: AbortSignal.timeout(30000)
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}: ${url}`);
@@ -59,7 +63,7 @@ const [fightCsv, eventCsv, fighterCsv] = await Promise.all([getText(FIGHT_URL), 
 const statsFighters = parseMirrorFighters(fighterCsv);
 const mirrorFights = parseMirrorHistory(fightCsv, eventCsv, cutoff);
 if (statsFighters.length < 3000) throw new Error(`UFCStats fighter directory is implausibly small: ${statsFighters.length}`);
-if (mirrorFights.length < 8000) throw new Error(`UFCStats fight ledger is implausibly small: ${mirrorFights.length}`);
+if (mirrorFights.length < 8000) throw new Error(`UFCStats fight ledger is implausibly small: only ${mirrorFights.length} unique fights.`);
 const mirrorLatest = mirrorFights[0]?.date;
 const mirrorEarliest = mirrorFights.at(-1)?.date;
 if (!mirrorLatest || !mirrorEarliest) throw new Error('UFCStats mirror has no usable date span.');
@@ -81,6 +85,57 @@ function resolveStatsName(name) {
   }
   return candidates.size === 1 ? statsById.get([...candidates][0]) : null;
 }
+
+// The primary mirror deliberately joins fight rows through its event table. Some source-native
+// UFCStats feeder rows (notably Road to UFC) are present on fighter/fight pages but absent from that
+// event table. A tiny audited evidence ledger fills only those transport gaps and never overwrites a
+// fight already present in the mirror.
+const evidence = JSON.parse(await fs.readFile(EVIDENCE_PATH, 'utf8'));
+if (evidence?.version !== 1 || !Array.isArray(evidence.supplementalMeetings)) throw new Error('Verified-history evidence ledger is missing or has an unsupported schema.');
+function validateSupplementalFight(row) {
+  const fightStatsId = String(row.fightStatsId || '').toLowerCase();
+  const sourceUrl = String(row.sourceUrl || '');
+  const aStatsId = String(row.aStatsId || '').toLowerCase();
+  const bStatsId = String(row.bStatsId || '').toLowerCase();
+  if (!/^[a-f0-9]{16}$/.test(fightStatsId) || sourceUrl !== `https://ufcstats.com/fight-details/${fightStatsId}`) throw new Error(`Invalid supplemental UFCStats fight provenance: ${fightStatsId || '?'}`);
+  if (!statsById.has(aStatsId) || !statsById.has(bStatsId) || aStatsId === bStatsId) throw new Error(`Supplemental fight has unresolved UFCStats identities: ${fightStatsId}`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(row.date || '') || row.date > cutoff) throw new Error(`Supplemental fight has invalid/future date: ${fightStatsId}`);
+  if (!RESULTS.has(row.aResult) || !RESULTS.has(row.bResult)) throw new Error(`Supplemental fight has invalid result: ${fightStatsId}`);
+  if (!((row.aResult === 'W' && row.bResult === 'L') || (row.aResult === 'L' && row.bResult === 'W') || (row.aResult === row.bResult && ['D', 'NC'].includes(row.aResult)))) throw new Error(`Supplemental fight results are not reciprocal: ${fightStatsId}`);
+  if (!CLASSES.has(row.competitionClass)) throw new Error(`Supplemental fight has invalid competition class: ${fightStatsId}`);
+  if (key(statsById.get(aStatsId).name) !== key(row.aName) || key(statsById.get(bStatsId).name) !== key(row.bName)) throw new Error(`Supplemental fight names do not match UFCStats IDs: ${fightStatsId}`);
+  return {
+    fightStatsId,
+    date: row.date,
+    event: clean(row.event),
+    competitionClass: row.competitionClass,
+    aName: clean(row.aName),
+    bName: clean(row.bName),
+    aResult: row.aResult,
+    bResult: row.bResult,
+    weightClass: clean(row.weightClass) || null,
+    method: clean(row.method) || null,
+    round: Number(row.round) || null,
+    time: clean(row.time) || null,
+    referee: clean(row.referee) || null,
+    details: clean(row.details) || null,
+    source: 'UFCStats',
+    sourceUrl,
+    archiveUrl: row.archiveUrl || null,
+    evidenceReason: row.reason || null
+  };
+}
+const trackedByFightId = new Map(mirrorFights.map(fight => [fight.fightStatsId || fight.sourceUrl, fight]));
+let supplementalApplied = 0;
+for (const row of evidence.supplementalMeetings) {
+  const fight = validateSupplementalFight(row);
+  const id = fight.fightStatsId || fight.sourceUrl;
+  if (!trackedByFightId.has(id)) {
+    trackedByFightId.set(id, fight);
+    supplementalApplied++;
+  }
+}
+const trackedFights = [...trackedByFightId.values()].sort((a, b) => b.date.localeCompare(a.date) || a.sourceUrl.localeCompare(b.sourceUrl));
 
 const eventNamesById = new Map();
 const participants = new Set();
@@ -129,7 +184,7 @@ function rawMeeting(fight, opponentStats, opponentName, result) {
     sourceUrl: fight.sourceUrl
   };
 }
-for (const fight of mirrorFights) {
+for (const fight of trackedFights) {
   const aStats = resolveStatsName(fight.aName);
   const bStats = resolveStatsName(fight.bName);
   const a = rawMeeting(fight, bStats, fight.bName, fight.aResult);
@@ -341,6 +396,7 @@ let identityMisses = 0;
 let canonicalOpponentLinks = 0;
 let unresolvedOpponentLinks = 0;
 let sourceDiscrepancyCount = 0;
+let profileContradictionCount = 0;
 const missNames = [];
 const participantMissNames = [];
 const discrepancyExamples = [];
@@ -350,10 +406,23 @@ for (const fighter of data.fighters) {
   const profileHistory = profileHistoryOf(fighter);
   const meetings = dedupeMeetings(ledgerByCanonical.get(fighter.id) || []);
   const profileUfc = profileHistory.filter(isProfileUfcBout);
-  const reconciliation = reconcileProfileHistory(profileUfc.slice(0, 12), meetings);
+  const baseReconciliation = reconcileProfileHistory(profileUfc.slice(0, 12), meetings);
+  const contradictionReview = classifyProfileContradictions({
+    fighter,
+    missing: baseReconciliation.missing,
+    selfMeetings: meetings,
+    fighters: data.fighters,
+    getMeetings: id => dedupeMeetings(ledgerByCanonical.get(id) || []),
+    knownNames: allKnownNames
+  });
+  const reconciliation = {
+    ...baseReconciliation,
+    missing: contradictionReview.unresolved,
+    discrepancies: [...baseReconciliation.discrepancies, ...contradictionReview.contradictions]
+  };
   const duplicateIdentity = identity?.statsId && canonicalByStatsId.get(identity.statsId) === null || identity?.ledgerKey && canonicalByLedgerKey.get(identity.ledgerKey) === null;
   const coverageVerified = Boolean(identity && !duplicateIdentity && reconciliation.missing.length === 0 && (meetings.length > 0 || profileUfc.length === 0));
-  const matchedMeetings = new Set(reconciliation.matches.map(match => match.meeting));
+  const matchedMeetings = new Set(baseReconciliation.matches.map(match => match.meeting));
   const canonicalMeetings = meetings.filter(meeting => meeting.source === 'UFC.com' || ['ufc', 'tuf'].includes(meeting.competitionClass) || matchedMeetings.has(meeting));
 
   if (!identity) {
@@ -366,6 +435,7 @@ for (const fighter of data.fighters) {
     if (participants.has(fighter.id)) participantMissNames.push(`${fighter.name} (${duplicateIdentity ? 'identity-collision' : `history-gap:${missing}`})`);
   }
 
+  profileContradictionCount += contradictionReview.contradictions.length;
   sourceDiscrepancyCount += reconciliation.discrepancies.length;
   for (const discrepancy of reconciliation.discrepancies.slice(0, 3)) {
     if (discrepancyExamples.length < 20) discrepancyExamples.push(`${fighter.name}: ${discrepancy.type} ${JSON.stringify(discrepancy)}`);
@@ -380,9 +450,10 @@ for (const fighter of data.fighters) {
   fighter.historyModelVersion = 2;
   fighter.meetingCoverage = {
     source: 'UFCStats',
-    transport: 'GitHubMirror+UFC.com',
+    transport: 'GitHubMirror+AuditedGapLedger+UFC.com',
     sourceUrl: FIGHT_URL,
     fighterDirectoryUrl: FIGHTER_URL,
+    evidenceLedger: 'scripts/matchmaker/verified-history-evidence.json',
     checkedAt,
     verified: coverageVerified,
     ufcStatsId: identity?.statsId || null,
@@ -394,6 +465,7 @@ for (const fighter of data.fighters) {
     unresolvedOpponentLinks: meetings.filter(meeting => !meeting.opponentId).length,
     profileUfcBouts: profileUfc.length,
     missingProfileBouts: reconciliation.missing.map(entry => ({ date: entry.date, result: entry.result || null, text: entry.text || null })),
+    contradictedProfileBouts: contradictionReview.contradictions,
     sourceDiscrepancies: reconciliation.discrepancies,
     mirrorThrough: mirrorLatest,
     officialThrough: (data.events || []).map(event => event.date).sort().at(-1) || mirrorLatest
@@ -405,7 +477,7 @@ for (const fighter of data.fighters) {
   fighter.history = coverageVerified ? canonicalMeetings.map(meeting => canonicalEntry(fighter, meeting)) : [];
   fighter.lastFight = coverageVerified ? fighter.history[0]?.date || null : null;
   fighter.historyCoverage = coverageVerified
-    ? 'Canonical UFCStats fight ledger reconciled with official UFC event results; UFC.com profile prose is retained as a fallible cross-check.'
+    ? 'Canonical UFCStats fight ledger reconciled with audited source-native gap evidence and official UFC event results; UFC.com profile prose is retained as a fallible cross-check.'
     : 'Structured UFC fight history could not be verified; matchmaking is withheld.';
 
   if (coverageVerified) verified++;
@@ -419,6 +491,7 @@ for (const fighter of data.fighters) {
 const participantCount = participants.size;
 const activeRatio = activePopulation ? activeVerified / activePopulation : 0;
 console.log(`History-v2 preflight: participants ${participantVerified}/${participantCount}; active population ${activeVerified}/${activePopulation} (${(activeRatio * 100).toFixed(1)}%).`);
+console.log(`Gap evidence: ${supplementalApplied}/${evidence.supplementalMeetings.length} supplemental UFCStats fight(s) applied; ${profileContradictionCount} impossible UFC.com profile claim(s) rejected by structured same-date evidence.`);
 console.log(`Profile cross-check: ${sourceDiscrepancyCount} source discrepancy record(s) reconciled without letting profile prose override structured history.`);
 if (discrepancyExamples.length) console.log(`Source discrepancy examples: ${discrepancyExamples.join(' || ')}`);
 if (participantVerified !== participantCount) throw new Error(`Verified history must cover every displayed event fighter: ${participantVerified}/${participantCount}. Missing: ${participantMissNames.join(', ')}`);
@@ -428,14 +501,16 @@ data.sources ||= {};
 data.sources.meetings = {
   source: 'UFCStats',
   historyModelVersion: 2,
-  transport: 'GitHub mirrors + official UFC result reconciliation',
+  transport: 'GitHub mirrors + audited source-native gap ledger + official UFC result reconciliation',
   url: FIGHT_URL,
   fighterDirectoryUrl: FIGHTER_URL,
+  evidenceLedger: 'scripts/matchmaker/verified-history-evidence.json',
   checkedAt,
   mirrorThrough: mirrorLatest,
   mirrorFrom: mirrorEarliest,
   officialThrough: (data.events || []).map(event => event.date).sort().at(-1) || mirrorLatest,
-  note: 'Canonical structured fight histories for the matchmaking roster. Stable UFCStats fighter IDs are preferred; fight-signature and source-native ledger identity resolve naming differences; profile prose is cross-checked but cannot override structured fight records.'
+  supplementalFightCount: supplementalApplied,
+  note: 'Canonical structured fight histories for the matchmaking roster. Stable UFCStats fighter IDs are preferred; fight-signature and source-native ledger identity resolve naming differences; audited source-native gap evidence repairs mirror transport omissions; profile prose is cross-checked but cannot override structured fight records.'
 };
 data.coverage = {
   ...(data.coverage || {}),
@@ -452,6 +527,9 @@ data.coverage = {
   canonicalOpponentLinks,
   unresolvedOpponentLinks,
   sourceDiscrepancyCount,
+  profileContradictionCount,
+  supplementalFightCount: supplementalApplied,
+  trackedFightCount: trackedFights.length,
   mirrorFightCount: mirrorFights.length,
   mirrorFighterCount: statsFighters.length
 };
@@ -460,6 +538,6 @@ validateData(data);
 const tmp = `${DATA_PATH}.verified-history-v2.tmp`;
 await fs.writeFile(tmp, JSON.stringify(data, null, 2) + '\n');
 await fs.rename(tmp, DATA_PATH);
-console.log(`Verified history v2: ${verified}/${data.fighters.length} roster records; ${activeVerified}/${activePopulation} active matchmaking histories (${(activeRatio * 100).toFixed(1)}%); ${participantVerified}/${participantCount} displayed-event fighters; ${mirrorFights.length} tracked fights; ${statsFighters.length} UFCStats identities.`);
+console.log(`Verified history v2: ${verified}/${data.fighters.length} roster records; ${activeVerified}/${activePopulation} active matchmaking histories (${(activeRatio * 100).toFixed(1)}%); ${participantVerified}/${participantCount} displayed-event fighters; ${trackedFights.length} tracked fights (${mirrorFights.length} mirror + ${supplementalApplied} gap evidence); ${statsFighters.length} UFCStats identities.`);
 console.log(`Opponent identity links: ${canonicalOpponentLinks} canonical / ${unresolvedOpponentLinks} historical-only.`);
 if (missNames.length) console.warn(`Withheld histories (${missNames.length} relevant): ${missNames.slice(0, 30).join(', ')}${missNames.length > 30 ? ', …' : ''}`);

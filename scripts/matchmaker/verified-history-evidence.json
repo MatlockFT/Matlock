@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "note": "Strictly sourced gap evidence for UFCStats rows that exist on source-native fighter/fight pages but are omitted by the primary GitHub event mirror. These records supplement; they never overwrite a mirror row with the same UFCStats fight ID.",
+  "supplementalMeetings": [
+    {
+      "fightStatsId": "58a314edcfe1d23a",
+      "date": "2024-02-03",
+      "event": "Road to UFC 2.7",
+      "competitionClass": "road-to-ufc",
+      "aStatsId": "2f43a3e82661fa99",
+      "aName": "Rei Tsuruya",
+      "aResult": "W",
+      "bStatsId": "c14a683dac2ebc4c",
+      "bName": "Jiniushiyue",
+      "bResult": "L",
+      "weightClass": "Flyweight Bout",
+      "method": "KO/TKO",
+      "round": 1,
+      "time": "4:59",
+      "details": "Punches",
+      "source": "UFCStats",
+      "sourceUrl": "https://ufcstats.com/fight-details/58a314edcfe1d23a",
+      "archiveUrl": "https://github.com/RE-Mednikov/UFC-ML-Predictor/blob/442f00724d8438b89e61cdde08c9964c2c0aacdf/data/raw_html/fighters/2f43a3e82661fa99.html",
+      "reason": "The source-native UFCStats fighter page contains the Road to UFC 2.7 row, but the primary event-details mirror omits that event and therefore drops the fight during the event/date join."
+    }
+  ]
+}

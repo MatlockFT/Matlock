@@ -34,6 +34,8 @@ jobs:
         run: node scripts/update-matchmaker.mjs
       - name: Canonicalize verified UFC fight history
         run: node scripts/matchmaker/enrich-verified-history.mjs
+      - name: Check verified history invariants
+        run: node scripts/matchmaker/check-verified-history-v2.mjs
       - name: Check engine against refreshed data
         run: node scripts/check-matchmaker.mjs
       - name: Commit verified snapshots
