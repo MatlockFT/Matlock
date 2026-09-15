@@ -125,19 +125,65 @@
   // Rematch progression is UFC competitive history, not feeder-series wins that are retained only for prior-meeting detection.
   const completeResults = f => history(f);
 
+  function rematchProfile(a, b, ctx, meetings = priorMeetings(a, b)) {
+    if (!meetings.length) return { meetings, latest: null, yearsSince: Infinity, titleBout: false, closeDecision: false, finish: false, earlyFinish: false, seriesWins: 0, seriesLosses: 0, balancedSeries: false, subsequentWins: { a: 0, b: 0 } };
+    const latest = meetings[0];
+    const method = String(latest.method || latest.text || '');
+    const titleBout = latest.competitionClass === 'ufc' && /\btitle bout\b/i.test(String(latest.weightClass || ''));
+    const closeDecision = /decision\s*-\s*(split|majority)/i.test(method) || /\b(split|majority) decision\b/i.test(method);
+    const finish = /\b(ko|tko|submission)\b/i.test(method);
+    const round = Number(latest.round);
+    const earlyFinish = finish && Number.isFinite(round) && round <= 2;
+    const series = meetings.filter(meeting => ['W', 'L'].includes(meeting.result));
+    const seriesWins = series.filter(meeting => meeting.result === 'W').length;
+    const seriesLosses = series.filter(meeting => meeting.result === 'L').length;
+    const winsAfter = f => completeResults(f).filter(h => h.date > latest.date && h.result === 'W').length;
+    return {
+      meetings,
+      latest,
+      yearsSince: Math.max(0, (Date.parse(ctx.asOf) - Date.parse(latest.date)) / (365 * DAY)),
+      titleBout,
+      closeDecision,
+      finish,
+      earlyFinish,
+      seriesWins,
+      seriesLosses,
+      balancedSeries: series.length === 2 && seriesWins === 1 && seriesLosses === 1,
+      subsequentWins: { a: winsAfter(a), b: winsAfter(b) }
+    };
+  }
+
   function rematchCase(a, b, ctx) {
     const meetings = priorMeetings(a, b);
     const verifiedCoverage = hasVerifiedCoverage(a) && hasVerifiedCoverage(b);
     if (!meetings.length) return { allowed: true, meetings, verifiedCoverage, reason: verifiedCoverage ? 'No prior meeting in the verified fight ledger.' : 'Prior-meeting verification is incomplete.' };
     if (ctx.overrides?.[a.id]?.allowRematch || ctx.overrides?.[b.id]?.allowRematch) return { allowed: true, meetings, verifiedCoverage, reason: 'Rematch explicitly allowed by an override.' };
     if (['D', 'NC'].includes(meetings[0].result)) return { allowed: true, meetings, verifiedCoverage, reason: 'The previous meeting ended in a draw or no contest.' };
-    const subsequentWins = f => completeResults(f).filter(h => h.date > meetings[0].date && h.result === 'W').length;
-    if (Date.parse(ctx.asOf) - Date.parse(meetings[0].date) > 3 * 365 * DAY && subsequentWins(a) >= 3 && subsequentWins(b) >= 3) return { allowed: true, meetings, verifiedCoverage, reason: 'More than three years apart, with at least three subsequent UFC wins for each fighter.' };
-    const series = meetings.filter(meeting => ['W', 'L', 'D', 'NC'].includes(meeting.result));
-    if (series.length === 2 && series.some(h => h.result === 'W') && series.some(h => h.result === 'L') && subsequentWins(a) >= 1 && subsequentWins(b) >= 1) return { allowed: true, meetings, verifiedCoverage, reason: 'A 1–1 series, with both fighters winning again in the UFC since their last meeting.' };
-    if (ctx.rematchCases?.[pairKey(a.id, b.id)]) return { allowed: true, meetings, verifiedCoverage, reason: ctx.rematchCases[pairKey(a.id, b.id)] };
+
+    const profile = rematchProfile(a, b, ctx, meetings);
+    const currentChampionInvolved = rank(a, ctx) === 0 || rank(b, ctx) === 0;
+    if (meetings.length === 1 && profile.titleBout && profile.closeDecision && currentChampionInvolved) {
+      return { allowed: true, meetings, verifiedCoverage, profile, reason: 'The previous meeting was a close UFC title decision and the championship remains involved, supporting an immediate rematch.' };
+    }
+    if (profile.balancedSeries && profile.titleBout && currentChampionInvolved) {
+      return { allowed: true, meetings, verifiedCoverage, profile, reason: 'The series is 1–1 in championship competition, supporting a deciding title trilogy.' };
+    }
+    if (profile.balancedSeries && profile.subsequentWins.a >= 1 && profile.subsequentWins.b >= 1) {
+      return { allowed: true, meetings, verifiedCoverage, profile, reason: 'The series is 1–1 and both fighters have won again in the UFC since their last meeting.' };
+    }
+    if (!profile.finish && profile.yearsSince >= 3 && profile.subsequentWins.a >= 2 && profile.subsequentWins.b >= 2) {
+      return { allowed: true, meetings, verifiedCoverage, profile, reason: 'The prior decision is at least three years old and both fighters have earned at least two UFC wins since, creating meaningful competitive separation.' };
+    }
+    if (profile.finish && profile.yearsSince >= 5 && profile.subsequentWins.a >= 3 && profile.subsequentWins.b >= 3) {
+      return { allowed: true, meetings, verifiedCoverage, profile, reason: 'The prior finish is at least five years old and both fighters have rebuilt with at least three UFC wins since.' };
+    }
+    if (!profile.finish && profile.yearsSince >= 3 && profile.subsequentWins.a >= 3 && profile.subsequentWins.b >= 3) {
+      return { allowed: true, meetings, verifiedCoverage, profile, reason: 'More than three years apart, with at least three subsequent UFC wins for each fighter.' };
+    }
+    if (ctx.rematchCases?.[pairKey(a.id, b.id)]) return { allowed: true, meetings, verifiedCoverage, profile, reason: ctx.rematchCases[pairKey(a.id, b.id)] };
     const source = meetings[0].verified ? 'verified fight history' : 'canonical UFC history';
-    return { allowed: false, meetings, verifiedCoverage, reason: `Previously fought on ${meetings[0].date} (${source}); no rematch case is currently supported.` };
+    const context = profile.earlyFinish ? ' The prior meeting ended in an early finish, so the automatic model requires substantial time and rebuilding before recycling it.' : profile.finish ? ' The prior meeting ended in a finish, so the automatic model requires more separation than it does after a decision.' : '';
+    return { allowed: false, meetings, verifiedCoverage, profile, reason: `Previously fought on ${meetings[0].date} (${source}); no rematch case is currently supported.${context}` };
   }
 
   function availability(f, ctx) {
@@ -734,5 +780,5 @@
     return board;
   }
 
-  return { VERSION, WEIGHTS, pairKey, normalize, division, rank, titleExperience, titleClaim, careerLane, careerStage, streak, tier, tags, eventResult, priorMeetings, rematchCase, availability, targetRange, baseCompetitiveState, scheduleStrength, recentForm, competitiveState, rankedHierarchy, directionalFit, careerLaneMismatch, evaluatePair, evaluate, opportunityCost, candidates, recommendations, lock, autoMatch, validateBoard };
+  return { VERSION, WEIGHTS, pairKey, normalize, division, rank, titleExperience, titleClaim, careerLane, careerStage, streak, tier, tags, eventResult, priorMeetings, rematchProfile, rematchCase, availability, targetRange, baseCompetitiveState, scheduleStrength, recentForm, competitiveState, rankedHierarchy, directionalFit, careerLaneMismatch, evaluatePair, evaluate, opportunityCost, candidates, recommendations, lock, autoMatch, validateBoard };
 });
