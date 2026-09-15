@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'assets/matchmaker-engine.js'
+      - 'assets/matchmaker-public.js'
       - 'scripts/update-matchmaker.mjs'
       - 'scripts/check-matchmaker.mjs'
       - 'scripts/matchmaker/**'
@@ -49,6 +50,8 @@ jobs:
         run: node scripts/check-matchmaker.mjs
       - name: Audit published recommendations
         run: node scripts/matchmaker/audit-recommendations.mjs
+      - name: Backtest recent next-fight recommendations
+        run: node scripts/matchmaker/backtest-recommendations.mjs
       - name: Commit verified snapshots
         run: |
           set -euo pipefail
