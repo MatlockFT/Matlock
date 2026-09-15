@@ -1,7 +1,11 @@
 /* Public Matchmaker recommendation filters shared by browser and tests. */
 (function (root, factory) {
-  if (typeof module === 'object' && module.exports) module.exports = factory();
-  else root.MatlockMatchmakerPublic = factory();
+  const api = factory();
+  if (typeof module === 'object' && module.exports) module.exports = api;
+  else {
+    root.MatlockMatchmakerPublic = api;
+    api.install(root.MatlockMatchmaker);
+  }
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
 
@@ -71,6 +75,21 @@
     });
   }
 
+  function selectRecommendations(fighter, fighters, engine, ctx) {
+    if (!engine || typeof engine.candidates !== 'function') return [];
+    const pool = engine.candidates(fighter, fighters, ctx)
+      .filter(recommendation => recommendation.publishable)
+      .slice(0, PUBLIC_CANDIDATE_POOL);
+    return filterRecommendations(fighter, pool, engine, ctx);
+  }
+
+  function install(engine) {
+    if (!engine || typeof engine.candidates !== 'function' || engine.__matlockPublicOrderingInstalled) return false;
+    engine.recommendations = (fighter, fighters, ctx) => selectRecommendations(fighter, fighters, engine, ctx);
+    Object.defineProperty(engine, '__matlockPublicOrderingInstalled', { value: true, configurable: false, enumerable: false });
+    return true;
+  }
+
   return {
     MAX_MEDIUM_ALTERNATIVE_GAP,
     PUBLIC_CANDIDATE_POOL,
@@ -80,6 +99,8 @@
     reciprocalAdjustment,
     publicPriority,
     orderForPublic,
-    filterRecommendations
+    filterRecommendations,
+    selectRecommendations,
+    install
   };
 });
