@@ -1,6 +1,9 @@
+import { readFileSync } from 'node:fs';
 import { key, slug } from './sources/ufc.mjs';
 
-export function reconcileBookings(data, roster, schedule, now = Date.now()) {
+const defaultOverrides = JSON.parse(readFileSync(new URL('./booking-overrides.json', import.meta.url), 'utf8'));
+
+export function reconcileBookings(data, roster, schedule, now = Date.now(), overrides = defaultOverrides) {
   const monitor = roster.eventCardMonitor;
   const fresh = value => Number.isFinite(Date.parse(value)) && now - Date.parse(value) <= 86400000 && Date.parse(value) <= now + 300000;
   if (!fresh(monitor?.checkedAt) || !Array.isArray(monitor.events) || !monitor.events.length) throw new Error('Booking monitor is stale or incomplete; retaining published bookings.');
@@ -41,6 +44,23 @@ export function reconcileBookings(data, roster, schedule, now = Date.now()) {
       }
     }
   }
+
+  // Curated overrides cover newly announced bookings while official UFC feeds are still stale.
+  // They live outside the engine and expire automatically once their fight date passes.
+  const curated = overrides?.bookings;
+  if (curated !== undefined && !Array.isArray(curated)) throw new Error('Booking overrides must contain a bookings array.');
+  let activeOverrides = 0;
+  for (const entry of curated || []) {
+    if (!entry || entry.status === 'canceled' || entry.date < today) continue;
+    if (!entry.event || !entry.date || !entry.source || !Array.isArray(entry.fighters) || entry.fighters.length !== 2) throw new Error('Invalid curated booking override.');
+    const pair = entry.fighters.map(id => data.fighters.find(f => f.id === id));
+    if (pair.some(f => !f)) throw new Error(`Curated booking override references an unknown fighter: ${entry.fighters.join(' vs ')}`);
+    const [left, right] = pair;
+    bookings.set(left.id, { event: entry.event, date: entry.date, source: entry.source, opponent: right.name, opponentId: right.id });
+    bookings.set(right.id, { event: entry.event, date: entry.date, source: entry.source, opponent: left.name, opponentId: left.id });
+    activeOverrides++;
+  }
+
   let changed = 0;
   for (const f of data.fighters) {
     const old = f.booking;
@@ -48,6 +68,6 @@ export function reconcileBookings(data, roster, schedule, now = Date.now()) {
     if (JSON.stringify(old) !== JSON.stringify(booking)) changed++;
     f.booking = booking;
   }
-  data.sources.bookings = { url: monitor.source || 'https://www.ufc.com/events', checkedAt: monitor.checkedAt };
+  data.sources.bookings = { url: monitor.source || 'https://www.ufc.com/events', checkedAt: monitor.checkedAt, curatedOverrides: activeOverrides };
   return changed;
 }
