@@ -68,7 +68,7 @@
     const ordered = orderForPublic(titleEligible).slice(0, 3);
     if (ordered.length < 2) return ordered;
 
-    const bestScore = ordered[0].score;
+    const bestScore = Math.max(...ordered.map(recommendation => Number(recommendation.score) || 0));
     return ordered.filter((recommendation, index) => {
       if (index === 0 || recommendation.confidence === 'high') return true;
       return recommendation.score >= bestScore - MAX_MEDIUM_ALTERNATIVE_GAP;
