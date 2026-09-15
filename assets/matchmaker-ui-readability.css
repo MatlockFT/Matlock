@@ -9,12 +9,24 @@
 }
 
 .mm-simple-match-order {
+  grid-column: 1;
   padding-top: 24px;
   font-size: 16px;
 }
 
+.mm-simple-opponent-slot {
+  grid-column: 2;
+  display: block;
+  width: 58px;
+  min-width: 58px;
+  min-height: 68px;
+  background: #c2b092;
+}
+
 .mm-simple-match-copy {
+  grid-column: 3;
   min-width: 0;
+  width: 100%;
   padding-top: 1px;
 }
 
@@ -28,7 +40,9 @@
   text-overflow: clip;
   text-transform: uppercase;
   white-space: normal;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
 }
 
 .mm-simple-match-copy > span {
@@ -38,6 +52,7 @@
 }
 
 .mm-simple-match-copy p {
+  max-width: 62ch;
   margin-top: 7px;
   font-size: 11px;
   line-height: 1.45;
@@ -48,17 +63,39 @@
   align-self: start;
 }
 
+.mm-simple-fighter-slot {
+  grid-column: 1;
+  display: block;
+  width: 116px;
+  min-width: 116px;
+  min-height: 132px;
+  background: #b9a98b;
+}
+
+.mm-simple-fighter-head > div {
+  grid-column: 2;
+  min-width: 0;
+}
+
 .mm-simple-fighter-head h2 {
   overflow: visible;
   max-width: 100%;
   line-height: .94;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
 }
 
 @media (max-width: 1100px) and (min-width: 901px) {
   .mm-simple-match {
     grid-template-columns: 22px 52px minmax(0, 1fr);
     gap: 9px;
+  }
+
+  .mm-simple-opponent-slot {
+    width: 52px;
+    min-width: 52px;
+    min-height: 64px;
   }
 
   .mm-simple-opponent-photo,
@@ -87,6 +124,7 @@
   }
 
   .mm-simple-match-order {
+    grid-column: auto;
     grid-area: order;
     align-self: start;
     padding-top: 0;
@@ -94,14 +132,22 @@
     text-align: left;
   }
 
+  .mm-simple-opponent-slot {
+    grid-column: auto;
+    grid-area: photo;
+    width: 44px;
+    min-width: 44px;
+    min-height: 54px;
+  }
+
   .mm-simple-opponent-photo,
   .mm-simple-match .mm-simple-placeholder {
-    grid-area: photo;
     width: 44px;
     height: 54px;
   }
 
   .mm-simple-match-copy {
+    grid-column: auto;
     grid-area: copy;
     padding-top: 0;
   }
@@ -116,8 +162,15 @@
   }
 
   .mm-simple-match-copy p {
+    max-width: none;
     font-size: 10px;
     line-height: 1.4;
+  }
+
+  .mm-simple-fighter-slot {
+    width: 88px;
+    min-width: 88px;
+    min-height: 106px;
   }
 
   .mm-simple-fighter-head h2 {
