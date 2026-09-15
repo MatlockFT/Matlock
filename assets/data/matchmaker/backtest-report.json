@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "generatedAt": "2026-09-15T06:21:48.785Z",
+  "generatedAt": "2026-09-15T06:25:18.320Z",
   "engineVersion": 2,
   "mode": "temporal-hybrid-v3",
   "lookbackDays": 730,
@@ -42,9 +42,9 @@
     }
   },
   "temporalStateCoverage": {
-    "archiveStart": null,
-    "archiveEnd": null,
-    "snapshotsAvailable": 0,
+    "archiveStart": "2026-09-15",
+    "archiveEnd": "2026-09-15",
+    "snapshotsAvailable": 1,
     "maxSnapshotAgeDays": 7,
     "sampledCasesWithSnapshot": 0,
     "sampledCasesWithoutSnapshot": 120,
@@ -1991,7 +1991,7 @@
   ],
   "limitations": [
     "The ranking snapshot archive currently spans 2026-09-10 through 2026-09-15. Earlier cases remain intentionally unranked until contemporaneous snapshots exist; current rankings are never backfilled into them.",
-    "The daily roster/booking state archive currently spans no snapshots through no snapshots. Earlier active-roster state therefore uses a two-year UFC fight-recency fallback rather than today's roster flag.",
+    "The daily roster/booking state archive currently spans 2026-09-15 through 2026-09-15. Earlier active-roster state therefore uses a two-year UFC fight-recency fallback rather than today's roster flag.",
     "Historical booking reconstruction from the accumulated ledger covers explicit pairings persisted by Matchmaker. It does not retroactively invent announcement times for monitor-only or otherwise unpersisted bookings.",
     "The candidate universe is survivor-biased to fighters present in the current Matchmaker dataset; former UFC fighters absent from the current dataset cannot be reconstructed.",
     "The backtest uses each fighter's most recent completed next-fight pair inside the lookback window, not every historical UFC booking.",
