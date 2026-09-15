@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T02:01:30.031Z",
+  "generatedAt": "2026-09-15T02:15:04.449Z",
   "engineVersion": 2,
   "subjects": 182,
   "publishedRecommendations": 494,
@@ -10,12 +10,12 @@
     "3": 158
   },
   "caseCounts": {
-    "rebound-pairing": 207,
-    "rising-vs-rising": 165,
-    "ranking-opportunity": 41,
-    "step-up-vs-rebound": 40,
+    "rebound-pairing": 205,
+    "rising-vs-rising": 164,
+    "ranking-opportunity": 43,
+    "step-up-vs-rebound": 42,
     "rankings-progression": 28,
-    "prospect-test": 6,
+    "prospect-test": 5,
     "title-case": 4,
     "title-eliminator": 3
   },
@@ -24,10 +24,10 @@
     "medium": 22
   },
   "averageRecentOpponentLinkCoverage": 0.906,
-  "sameCardRecommendations": 33,
-  "sameCardRecommendationRatio": 0.0668,
-  "asymmetricTopThreeRecommendations": 152,
-  "asymmetricTopThreeRatio": 0.3077,
+  "sameCardRecommendations": 32,
+  "sameCardRecommendationRatio": 0.0648,
+  "asymmetricTopThreeRecommendations": 150,
+  "asymmetricTopThreeRatio": 0.3036,
   "genericDivisionalSortingRecommendations": 0,
   "genericExamples": [],
   "asymmetricExamples": [
@@ -58,51 +58,51 @@
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Jose Miguel Delgado",
-      "opponent": "Daniel Santos",
-      "pairScore": 92,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
+      "fighter": "Joseph Morales",
+      "opponent": "Nyamjargal Tumendemberel",
+      "pairScore": 86,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Ezra Elliot",
-          "score": 94,
+          "opponent": "Alibi Idiris",
+          "score": 92,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Edgar Chairez",
+          "score": 87,
           "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Rodrigo Vera",
-          "score": 94,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Sean King III",
-          "score": 94,
-          "case": "step-up-vs-rebound"
+          "opponent": "Lucas Rocha",
+          "score": 87,
+          "case": "rising-vs-rising"
         }
       ]
     },
     {
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Joseph Morales",
-      "opponent": "Kevin Borjas",
-      "pairScore": 87,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
+      "opponent": "Bilal Hasan",
+      "pairScore": 84,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Luis Gurule",
-          "score": 91,
-          "case": "rebound-pairing"
+          "opponent": "Fabia Sintes",
+          "score": 95,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Ode Osbourne",
-          "score": 89,
-          "case": "rebound-pairing"
+          "opponent": "Hyunsung Park",
+          "score": 87,
+          "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "Alibi Idiris",
-          "score": 88,
-          "case": "prospect-test"
+          "opponent": "Donghun Choi",
+          "score": 84,
+          "case": "rising-vs-rising"
         }
       ]
     },
@@ -387,7 +387,7 @@
       "opponent": "Kevin Borjas",
       "pairScore": 88,
       "case": "rebound-pairing",
-      "fighterRank": "Alternative",
+      "fighterRank": "Another option",
       "opponentTopThree": [
         {
           "opponent": "Luis Gurule",
@@ -395,39 +395,14 @@
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Ode Osbourne",
-          "score": 89,
+          "opponent": "Hyunsung Park",
+          "score": 90,
           "case": "rebound-pairing"
         },
         {
-          "opponent": "Alibi Idiris",
-          "score": 88,
-          "case": "prospect-test"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Edgar Chairez",
-      "opponent": "Alibi Idiris",
-      "pairScore": 87,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Nyamjargal Tumendemberel",
-          "score": 91,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Kevin Borjas",
-          "score": 88,
-          "case": "prospect-test"
-        },
-        {
-          "opponent": "Lucas Rocha",
-          "score": 88,
-          "case": "rising-vs-rising"
+          "opponent": "Ode Osbourne",
+          "score": 89,
+          "case": "rebound-pairing"
         }
       ]
     },
@@ -435,7 +410,7 @@
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Yousri Belgaroui",
       "opponent": "Robert Valentin Frey",
-      "pairScore": 93,
+      "pairScore": 92,
       "case": "rising-vs-rising",
       "fighterRank": "Another option",
       "opponentTopThree": [
@@ -652,6 +627,31 @@
         {
           "opponent": "Miranda Maverick",
           "score": 85,
+          "case": "ranking-opportunity"
+        }
+      ]
+    },
+    {
+      "event": "Noche UFC: Silva vs Delgado",
+      "fighter": "Regina Malpica Rivera",
+      "opponent": "Gabriella Fernandes",
+      "pairScore": 88,
+      "case": "ranking-opportunity",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Dione Barbosa",
+          "score": 94,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Juliana Miller",
+          "score": 93,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Veronica Hardy",
+          "score": 93,
           "case": "ranking-opportunity"
         }
       ]
