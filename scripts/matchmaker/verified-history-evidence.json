@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "note": "Strictly sourced gap evidence for UFCStats rows that exist on source-native fighter/fight pages but are omitted by the primary GitHub event mirror. These records supplement; they never overwrite a mirror row with the same UFCStats fight ID.",
+  "note": "Audited evidence that persists across source refreshes. supplementalMeetings contains source-native UFCStats fights omitted by the primary mirror. profileContradictions records UFC.com biography claims that were observed and then disproved by structured fight evidence. Neither class may overwrite structured history without explicit source evidence.",
   "supplementalMeetings": [
     {
       "fightStatsId": "58a314edcfe1d23a",
@@ -22,6 +22,23 @@
       "sourceUrl": "https://ufcstats.com/fight-details/58a314edcfe1d23a",
       "archiveUrl": "https://github.com/RE-Mednikov/UFC-ML-Predictor/blob/442f00724d8438b89e61cdde08c9964c2c0aacdf/data/raw_html/fighters/2f43a3e82661fa99.html",
       "reason": "The source-native UFCStats fighter page contains the Road to UFC 2.7 row, but the primary event-details mirror omits that event and therefore drops the fight during the event/date join."
+    }
+  ],
+  "profileContradictions": [
+    {
+      "fighterId": "ravena-oliveira",
+      "fighterName": "Ravena Oliveira",
+      "profileDate": "2026-02-21",
+      "profileResult": "L",
+      "claimedOpponentId": "juliana-miller",
+      "claimedOpponentName": "Juliana Miller",
+      "claimText": "UFC Fight Night (2/21/26) Oliveira was submitted by Juliana Miller via rear-naked choke at 1:38 of the second round",
+      "contradictionSide": "claimed-opponent",
+      "verifiedOpponentName": "Carli Judice",
+      "verifiedDate": "2026-02-21",
+      "source": "UFCStats",
+      "sourceUrl": "https://ufcstats.com/fight-details/6e78d874097a3d22",
+      "reason": "The UFC.com athlete biography claim was observed during Matchmaker history reconciliation, but structured UFCStats evidence shows Juliana Miller fought Carli Judice on the claimed date. The false biography row must never be promoted into Ravena Oliveira's canonical fight history, even if UFC.com later edits or intermittently omits the sentence."
     }
   ]
 }
