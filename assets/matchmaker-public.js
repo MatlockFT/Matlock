@@ -17,6 +17,7 @@
     if (!oneChampion) return true;
 
     const challenger = fighterRank === 0 ? opponent : fighter;
+    if (typeof engine.titleClaim === 'function') return engine.titleClaim(challenger, ctx).eligible;
     return engine.eventResult(challenger, ctx) === 'W';
   }
 
