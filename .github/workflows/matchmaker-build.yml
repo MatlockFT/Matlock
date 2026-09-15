@@ -23,6 +23,7 @@ jobs:
       - name: Validate Matchmaker
         run: |
           node --check assets/matchmaker.js
+          node --check assets/matchmaker-public.js
           node --check assets/matchmaker-simple.js
           node --check assets/matchmaker-engine.js
           node --check scripts/matchmaker/enrich-verified-history.mjs
@@ -30,6 +31,7 @@ jobs:
           node --check scripts/matchmaker/profile-contradictions.mjs
           node --check scripts/matchmaker/check-verified-history-v2.mjs
           node scripts/matchmaker/check-verified-history-v2.mjs
+          node scripts/matchmaker/check-public-recommendations.mjs
           node scripts/check-matchmaker.mjs
       - name: Build Jekyll site
         uses: actions/jekyll-build-pages@v1
