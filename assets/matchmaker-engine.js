@@ -348,8 +348,8 @@
   }
 
   function confidenceFor(score, weakerSide, balanceGap, caseFile) {
-    // A numeric fit is not enough. If the engine cannot identify a specific matchmaking thesis,
-    // keep the pairing as an internal diagnostic but do not endorse it publicly.
+    // Confidence describes the strength of the fit after eligibility. It is diagnostic only;
+    // hard eligibility decides whether an automatic pairing can be recommended.
     if (caseFile.code === 'divisional-sorting') return 'low';
     if (score >= 78 && weakerSide >= 70 && balanceGap <= 14) return 'high';
     if (score >= 64 && weakerSide >= 58 && balanceGap <= 20) return 'medium';
@@ -406,7 +406,7 @@
       score,
       pairScore: score,
       confidence,
-      publishable: confidence !== 'low',
+      publishable: true,
       parts: { a: aFit.parts, b: bFit.parts, balanceGap: Number(balanceGap.toFixed(2)), weakerSide: Number(weakerSide.toFixed(2)) },
       directional: { a: aFit, b: bFit },
       case: caseFile,
