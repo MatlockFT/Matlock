@@ -73,7 +73,6 @@
           <small>${labels[index]}</small>
           <strong>${esc(opponent.name)}</strong>
           <span>${esc(opponent.record || '—')} · ${esc(rankText(opponent, event))}</span>
-          <p>${esc(recommendation.rationale || 'A realistic next step in the division.')}</p>
         </div>
       </li>`;
   }
@@ -136,7 +135,7 @@
     const url = new URL(location.href);
     url.searchParams.set('event', event.id);
     history.replaceState(null, '', url);
-    status(`Showing realistic next-fight options for ${event.title}.`);
+    status('');
   }
 
   async function load() {
