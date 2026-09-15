@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 4,
-  "generatedAt": "2026-09-15T06:58:55.382Z",
+  "schemaVersion": 5,
+  "generatedAt": "2026-09-15T07:07:54.052Z",
   "engineVersion": 2,
-  "mode": "temporal-historical-universe-v4",
+  "mode": "temporal-historical-universe-v5",
   "lookbackDays": 730,
   "maxCases": 120,
   "availableCases": 572,
@@ -43,26 +43,28 @@
     "future-newcomer-booking": 15,
     "engine-ranking-miss-near": 11,
     "engine-top3-hit": 11,
-    "coverage-failure": 10,
+    "future-opponent-division-change": 9,
     "hard-rule-disagreement": 9,
     "future-division-change": 5,
+    "coverage-failure": 1,
     "known-availability-conflict": 1
   },
   "reasons": {
     "actual-opponent-had-no-pre-cutoff-ufc-history": 15,
     "Too large a UFC experience gap for an automatic recommendation.": 5,
-    "historical-division-mismatch:Bantamweight": 3,
+    "actual-opponent-moved-from:Bantamweight:to:Flyweight": 2,
+    "actual-opponent-moved-from:Welterweight:to:Middleweight": 2,
     "Cody Garbrandt is in a championship-legacy career lane; automatic matchmaking keeps unranked legacy title fighters against ranked, UFC title-experienced, or high-level unranked opposition.": 2,
     "future-target-division:Flyweight": 2,
-    "historical-division-mismatch:Welterweight": 2,
+    "actual-opponent-moved-from:Bantamweight:to:Featherweight": 1,
+    "actual-opponent-moved-from:Featherweight:to:Bantamweight": 1,
+    "actual-opponent-moved-from:Light Heavyweight:to:Heavyweight": 1,
+    "actual-opponent-moved-from:Lightweight:to:Featherweight": 1,
+    "actual-opponent-moved-from:Women's Strawweight:to:Women's Flyweight": 1,
     "Alexa Grasso is in a championship-legacy career lane; automatic matchmaking keeps unranked legacy title fighters against ranked, UFC title-experienced, or high-level unranked opposition.": 1,
     "future-target-division:Bantamweight": 1,
     "future-target-division:Middleweight": 1,
     "future-target-division:Women's Flyweight": 1,
-    "historical-division-mismatch:Featherweight": 1,
-    "historical-division-mismatch:Light Heavyweight": 1,
-    "historical-division-mismatch:Lightweight": 1,
-    "historical-division-mismatch:Women's Strawweight": 1,
     "Jan Blachowicz is in a championship-legacy career lane; automatic matchmaking keeps unranked legacy title fighters against ranked, UFC title-experienced, or high-level unranked opposition.": 1,
     "no-historical-division": 1,
     "Not on the verified active roster.": 1
@@ -513,9 +515,10 @@
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "coverage-failure",
-      "reason": "historical-division-mismatch:Welterweight",
-      "excludedFromAccuracy": true
+      "classification": "future-opponent-division-change",
+      "reason": "actual-opponent-moved-from:Welterweight:to:Middleweight",
+      "excludedFromAccuracy": true,
+      "actualHistoricalDivision": "Welterweight"
     },
     {
       "cutoff": "2026-06-27",
@@ -1206,9 +1209,10 @@
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "coverage-failure",
-      "reason": "historical-division-mismatch:Bantamweight",
-      "excludedFromAccuracy": true
+      "classification": "future-opponent-division-change",
+      "reason": "actual-opponent-moved-from:Bantamweight:to:Flyweight",
+      "excludedFromAccuracy": true,
+      "actualHistoricalDivision": "Bantamweight"
     },
     {
       "cutoff": "2026-05-02",
@@ -1778,9 +1782,10 @@
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "coverage-failure",
-      "reason": "historical-division-mismatch:Bantamweight",
-      "excludedFromAccuracy": true
+      "classification": "future-opponent-division-change",
+      "reason": "actual-opponent-moved-from:Bantamweight:to:Flyweight",
+      "excludedFromAccuracy": true,
+      "actualHistoricalDivision": "Bantamweight"
     },
     {
       "cutoff": "2026-04-25",
@@ -3211,9 +3216,10 @@
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "coverage-failure",
-      "reason": "historical-division-mismatch:Women's Strawweight",
-      "excludedFromAccuracy": true
+      "classification": "future-opponent-division-change",
+      "reason": "actual-opponent-moved-from:Women's Strawweight:to:Women's Flyweight",
+      "excludedFromAccuracy": true,
+      "actualHistoricalDivision": "Women's Strawweight"
     },
     {
       "cutoff": "2026-03-21",
@@ -3350,9 +3356,10 @@
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "coverage-failure",
-      "reason": "historical-division-mismatch:Lightweight",
-      "excludedFromAccuracy": true
+      "classification": "future-opponent-division-change",
+      "reason": "actual-opponent-moved-from:Lightweight:to:Featherweight",
+      "excludedFromAccuracy": true,
+      "actualHistoricalDivision": "Lightweight"
     },
     {
       "cutoff": "2026-05-30",
@@ -4574,9 +4581,10 @@
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "coverage-failure",
-      "reason": "historical-division-mismatch:Light Heavyweight",
-      "excludedFromAccuracy": true
+      "classification": "future-opponent-division-change",
+      "reason": "actual-opponent-moved-from:Light Heavyweight:to:Heavyweight",
+      "excludedFromAccuracy": true,
+      "actualHistoricalDivision": "Light Heavyweight"
     },
     {
       "cutoff": "2026-03-14",
@@ -4691,9 +4699,10 @@
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "coverage-failure",
-      "reason": "historical-division-mismatch:Welterweight",
-      "excludedFromAccuracy": true
+      "classification": "future-opponent-division-change",
+      "reason": "actual-opponent-moved-from:Welterweight:to:Middleweight",
+      "excludedFromAccuracy": true,
+      "actualHistoricalDivision": "Welterweight"
     },
     {
       "cutoff": "2026-02-21",
@@ -4948,9 +4957,10 @@
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "coverage-failure",
-      "reason": "historical-division-mismatch:Featherweight",
-      "excludedFromAccuracy": true
+      "classification": "future-opponent-division-change",
+      "reason": "actual-opponent-moved-from:Featherweight:to:Bantamweight",
+      "excludedFromAccuracy": true,
+      "actualHistoricalDivision": "Featherweight"
     },
     {
       "cutoff": "2026-03-21",
@@ -4965,9 +4975,10 @@
       "actualOpponentHistoricalOnly": false,
       "rankingSnapshotDate": null,
       "stateSnapshotDate": null,
-      "classification": "coverage-failure",
-      "reason": "historical-division-mismatch:Bantamweight",
-      "excludedFromAccuracy": true
+      "classification": "future-opponent-division-change",
+      "reason": "actual-opponent-moved-from:Bantamweight:to:Featherweight",
+      "excludedFromAccuracy": true,
+      "actualHistoricalDivision": "Bantamweight"
     },
     {
       "cutoff": "2026-05-02",
@@ -6054,12 +6065,17 @@
     "Roster/booking state is used only from snapshots captured on or before the cutoff and no more than 7 days old.",
     "Persisted bookings are restored only when firstSeen is at or before the cutoff and the booked fight occurs after the cutoff.",
     "The eventual next-fight division is never used to score candidates. It is consulted only after scoring to classify an unannounced future division change as outside the clean evaluation set.",
-    "An opponent with no UFC history before the cutoff is classified as a future-newcomer booking instead of an engine miss."
+    "An opponent with no UFC history before the cutoff is classified as a future-newcomer booking instead of an engine miss.",
+    "Opponent-side future division changes are identified only after scoring from the eventual bout weight class; they are excluded from accuracy and never used to alter the candidate ranking."
   ],
   "limitations": [
     "Pre-archive roster membership still uses UFC fight-recency as a fallback; it cannot prove the exact date of every historical release or re-signing.",
     "Historical UFCStats name collisions that cannot be resolved to a unique source-native identity are omitted rather than guessed.",
     "A hard-rule disagreement is not automatically an engine error: some UFC bookings are short-notice, promotional, contractual or intentionally unusual. Outlier-review flags identify cases that need manual judgment.",
     "The full-state clean set requires both ranking and roster snapshots and will remain small until those archives mature."
-  ]
+  ],
+  "classificationRefinement": {
+    "opponentDivisionMovesReclassified": 9,
+    "note": "If the eventual bout stayed in the subject cutoff division but the opponent was historically in another division at the cutoff, the case is classified as a future opponent division change rather than a data-coverage failure."
+  }
 }
