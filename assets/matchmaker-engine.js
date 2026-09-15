@@ -23,6 +23,25 @@
   const hasVerifiedCoverage = f => f.meetingCoverage?.verified === true && f.meetingCoverage?.source === 'UFCStats';
   const invertResult = result => result === 'W' ? 'L' : result === 'L' ? 'W' : result;
 
+  function titleExperience(f) {
+    const bouts = verifiedHistory(f).filter(meeting => meeting.competitionClass === 'ufc' && /\btitle bout\b/i.test(String(meeting.weightClass || '')));
+    return {
+      appearances: bouts.length,
+      wins: bouts.filter(meeting => meeting.result === 'W').length,
+      latest: bouts[0]?.date || null
+    };
+  }
+
+  function careerLane(f, ctx) {
+    const r = rank(f, ctx);
+    const titles = titleExperience(f);
+    if (r === 0) return 'current-champion';
+    if (r !== null) return 'ranked';
+    if (titles.wins >= 2 || titles.appearances >= 3) return 'championship-legacy';
+    if (titles.appearances >= 1) return 'title-experienced';
+    return 'standard-unranked';
+  }
+
   function streak(f) {
     const h = history(f);
     let n = 0;
@@ -42,11 +61,13 @@
 
   function tags(f, ctx) {
     const result = [];
+    const titles = titleExperience(f);
     if (streak(f) >= 3) result.push('RISING');
     if (streak(f) <= -2) result.push('FALLING');
     if (history(f).length <= 1) result.push('NEW TO UFC');
     if (history(f).length >= 15) result.push('VETERAN');
-    if (f.formerChampion) result.push('FORMER CHAMP');
+    if ((f.formerChampion || titles.wins > 0) && rank(f, ctx) !== 0) result.push('FORMER CHAMP');
+    if (careerLane(f, ctx) === 'championship-legacy') result.push('CHAMPIONSHIP LEGACY');
     if (tier(f, ctx) === 'U+') result.push('PROSPECT');
     if (f.interim) result.push('INTERIM CHAMPION');
     return result;
@@ -120,10 +141,13 @@
     const s = streak(f);
     const result = eventResult(f, ctx);
     const experience = history(f).length;
+    const titles = titleExperience(f);
+    const lane = careerLane(f, ctx);
+    const formerChampion = Boolean(f.formerChampion || titles.wins > 0);
     let level;
     if (r === 0) level = 100;
     else if (r !== null) level = clamp(98 - (r - 1) * 2.55, 60, 98);
-    else level = clamp(40 + Math.min(experience, 8) * 1.8 + Math.max(0, s) * 3 - Math.max(0, -s) * 3 + (result === 'W' ? 4 : result === 'L' ? -3 : 0) + (f.formerChampion ? 6 : 0), 28, 68);
+    else level = clamp(40 + Math.min(experience, 8) * 1.8 + Math.max(0, s) * 3 - Math.max(0, -s) * 3 + (result === 'W' ? 4 : result === 'L' ? -3 : 0) + (formerChampion ? 6 : 0), 28, 68);
 
     let type;
     if (r === 0) type = 'champion';
@@ -132,13 +156,15 @@
     else if (r !== null && s >= 2) type = 'ranked-riser';
     else if (r !== null && r <= 10) type = 'ranked-contender';
     else if (r !== null) type = 'fringe-ranked';
+    else if (lane === 'championship-legacy') type = 'championship-legacy';
+    else if (lane === 'title-experienced') type = 'title-experienced-veteran';
     else if (s >= 3 && experience <= 7) type = 'surging-prospect';
     else if (experience <= 3 && result === 'W') type = 'developing-prospect';
     else if (experience >= 8 && result === 'L') type = 'rebuilding-veteran';
     else if (experience >= 7) type = 'unranked-veteran';
     else if (result === 'L') type = 'rebuilding';
     else type = 'high-end-unranked';
-    return { type, level, rank: r, streak: s, result, experience };
+    return { type, level, rank: r, streak: s, result, experience, titleExperience: titles, careerLane: lane, formerChampion };
   }
 
   function scheduleStrength(f, ctx, limit = 5) {
@@ -330,6 +356,17 @@
     return 'low';
   }
 
+  function careerLaneMismatch(a, b, A, B) {
+    if (A.rank !== null || B.rank !== null) return null;
+    const aLegacy = A.careerLane === 'championship-legacy';
+    const bLegacy = B.careerLane === 'championship-legacy';
+    const aStandard = A.titleExperience.appearances === 0;
+    const bStandard = B.titleExperience.appearances === 0;
+    if (aLegacy && bStandard) return `${a.name} is in a championship-legacy career lane; automatic matchmaking keeps unranked legacy title fighters against ranked or UFC title-experienced opposition.`;
+    if (bLegacy && aStandard) return `${b.name} is in a championship-legacy career lane; automatic matchmaking keeps unranked legacy title fighters against ranked or UFC title-experienced opposition.`;
+    return null;
+  }
+
   function evaluatePair(a, b, ctx, manual = false, requireVerified = false) {
     const reject = reason => ({ eligible: false, reason, fighter: b });
     if (a.id === b.id) return reject('A fighter cannot face themselves.');
@@ -341,6 +378,8 @@
     if (!rematch.allowed) return reject(rematch.reason);
 
     const A = competitiveState(a, ctx), B = competitiveState(b, ctx);
+    const laneMismatch = careerLaneMismatch(a, b, A, B);
+    if (!manual && laneMismatch) return reject(laneMismatch);
     if (!manual && (A.experience >= 7 && B.experience < 2 || B.experience >= 7 && A.experience < 2)) return reject('Too large a UFC experience gap for an automatic recommendation.');
     if (!manual && ((A.rank === 0 && (B.rank === null || B.rank > 7)) || (B.rank === 0 && (A.rank === null || A.rank > 7)) || (A.rank !== null && B.rank !== null && Math.abs(A.rank - B.rank) > 8) || (A.rank !== null && A.rank < 8 && B.rank === null && B.level < 62) || (B.rank !== null && B.rank < 8 && A.rank === null && A.level < 62))) return reject('Outside a defensible competitive range.');
 
@@ -439,5 +478,5 @@
     return board;
   }
 
-  return { VERSION, WEIGHTS, pairKey, normalize, division, rank, streak, tier, tags, eventResult, priorMeetings, rematchCase, availability, targetRange, baseCompetitiveState, scheduleStrength, competitiveState, directionalFit, evaluatePair, evaluate, candidates, recommendations, lock, autoMatch, validateBoard };
+  return { VERSION, WEIGHTS, pairKey, normalize, division, rank, titleExperience, careerLane, streak, tier, tags, eventResult, priorMeetings, rematchCase, availability, targetRange, baseCompetitiveState, scheduleStrength, competitiveState, directionalFit, careerLaneMismatch, evaluatePair, evaluate, candidates, recommendations, lock, autoMatch, validateBoard };
 });
