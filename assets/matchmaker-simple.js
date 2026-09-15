@@ -73,7 +73,6 @@
           <small>${labels[index]}</small>
           <strong>${esc(opponent.name)}</strong>
           <span>${esc(opponent.record || '—')} · ${esc(rankText(opponent, event))}</span>
-          <p>${esc(recommendation.rationale || 'A realistic next step in the division.')}</p>
         </div>
       </li>`;
   }
