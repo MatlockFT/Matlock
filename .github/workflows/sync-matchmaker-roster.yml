@@ -38,5 +38,7 @@ jobs:
           git add -- assets/data/matchmaker/current.json
           git diff --cached --quiet && exit 0
           git commit -m "Sync Matchmaker roster availability"
-          git pull --rebase origin main
+          # This commit only contains generated roster availability. Preserve the just-validated
+          # snapshot if main moved while the job was running, while retaining upstream code changes.
+          git pull --rebase -X theirs origin main
           git push origin HEAD:main
