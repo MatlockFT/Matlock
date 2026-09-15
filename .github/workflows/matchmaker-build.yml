@@ -23,6 +23,7 @@ jobs:
       - name: Validate Matchmaker
         run: |
           node --check assets/matchmaker.js
+          node --check assets/matchmaker-simple.js
           node --check assets/matchmaker-engine.js
           node --check scripts/matchmaker/enrich-verified-history.mjs
           node --check scripts/matchmaker/history-reconcile.mjs
