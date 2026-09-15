@@ -22,7 +22,9 @@ The known Jean Silva / Diego Lopes fight on September 13, 2025 is a permanent re
 
 After hard eligibility checks, eligible opponents are ranked by a deterministic fit model using division hierarchy, trajectory, availability, freshness, progression, timing and limited story context. The score describes how defensible a booking is; it is not a fight-win probability.
 
-The public page intentionally exposes only the useful result: up to three plausible opponents with concise reasoning. Internal score components and source evidence remain available to tests and the engine without turning the page into an operator dashboard.
+The public page intentionally exposes only the useful result: up to three plausible opponents with concise factual context. Internal score components and source evidence remain available to tests and the engine without turning the page into an operator dashboard.
+
+The public shortlist compares a small pool of the engine's strongest candidates before choosing the final three. When two matchups are already close, reciprocal booking fit can act as a modest ordering nudge: a matchup that also ranks highly in the proposed opponent's own queue can move ahead of a slightly stronger but one-sided option. Reciprocal fit is not a hard eligibility rule and cannot override a clearly stronger matchup, title-claim rules, prior-meeting rules, bookings or other hard constraints.
 
 Rematches are conservative. A previous meeting normally excludes the matchup. Exceptions require an explicit supported case such as a draw/no contest, a qualifying 1–1 series with subsequent wins, or a sufficiently old matchup where both fighters have rebuilt with multiple wins. The presentation layer does not let visitors override these facts.
 
