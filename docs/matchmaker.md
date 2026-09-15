@@ -34,20 +34,26 @@ Rematches are conservative. A previous meeting normally excludes the matchup. Ex
 
 ## Temporal backtesting
 
-Historical validation must not leak present-day information backward. The backtest truncates each fighter's history and verified meeting ledger at the case cutoff date, reconstructs the record from only those bouts, clears current bookings and current champion-state flags, reconstructs active status from fight recency, and infers division only from source-native fight weight classes known at the cutoff.
+Historical validation must not leak present-day information backward. The backtest truncates each fighter's history and verified meeting ledger at the case cutoff date, reconstructs the record from only those bouts, removes current champion-state flags, and infers division only from source-native fight weight classes known at the cutoff.
 
-Dated ranking snapshots under `assets/data/matchmaker/rankings/` are now part of the historical state. For each case, the backtest uses only the newest snapshot whose date is on or before the cutoff and is no more than 14 days old. If no qualifying snapshot exists, that case is deliberately evaluated unranked rather than applying today's rankings to an older booking. The report separates snapshot-backed cases from unranked cases so the historical score becomes more representative automatically as the archive grows.
+Dated ranking snapshots under `assets/data/matchmaker/rankings/` are part of the historical state. For each case, the backtest uses only the newest snapshot whose capture is on or before the cutoff and is no more than 14 days old. If no qualifying snapshot exists, that case is deliberately evaluated unranked rather than applying today's rankings to an older booking. The report separates snapshot-backed cases from unranked cases so the historical score becomes more representative automatically as the archive grows.
+
+The refresh workflow also creates an immutable daily roster-and-booking snapshot under `assets/data/matchmaker/state/`. A backtest case may use one only when it was captured on or before the cutoff and is no more than seven days old. When no qualifying state snapshot exists, historical active status falls back to pre-cutoff UFC fight recency rather than today's active-roster flag.
+
+Historical booking state is reconstructed conservatively. Matchmaker's cumulative explicit-pairing ledger preserves each booking's earliest `firstSeen` timestamp. A booking is restored only when `firstSeen` is at or before the historical cutoff and the booked fight occurs after that cutoff; a qualifying daily state snapshot can also supply a booking known at that time. Cases where the subject was already booked are excluded from recommendation hit-rate denominators. If that booking was the fighter's eventual next opponent, it is classified as already-known information rather than credited as a prediction hit.
 
 The backtest also records why a real next opponent could not be reconstructed. Missing pre-cutoff UFC history, unverified history, missing historical division and division mismatches are counted separately rather than collapsed into a single missing-roster bucket. This keeps data-coverage failures distinct from actual matchmaking-model misses.
 
-The historical candidate universe remains survivor-biased because it can only reconstruct fighters present in the current normalized Matchmaker dataset. The report records those coverage limits, missing targets, ineligible real bookings and representative misses so future changes can target systemic failure patterns instead of overfitting individual fights.
+The historical candidate universe remains survivor-biased because it can only reconstruct fighters present in the current normalized Matchmaker dataset. The report records those coverage limits, missing targets, known-at-cutoff bookings, ineligible real bookings and representative misses so future changes can target systemic failure patterns instead of overfitting individual fights.
 
 ## Data quality and failure behavior
 
 - Completed cards require verified results for every bout.
 - Current rankings are captured as dated snapshots; later data is not retroactively treated as a historical ranking.
-- Active-roster membership comes from the canonical roster collector. The engine does not invent active status.
+- Daily active-roster and booking state is captured immutably for future temporal tests.
+- Active-roster membership comes from the canonical roster collector. The live engine does not invent active status.
 - Upcoming UFC cards and the site's schedule/roster monitor are used to exclude already-booked fighters.
+- Historical booking reconstruction uses only timestamped evidence that existed by the cutoff; announcement times are not guessed retroactively.
 - UFCStats prior-opponent records are source-attributed and date-stamped. The normalized dataset records per-fighter verification coverage.
 - The dataset validator checks structured meeting dates, results, source URLs, duplicate meetings and canonical opponent IDs.
 - Once the structured history source is enabled, broad UFCStats coverage failure aborts publication rather than silently converting unknown history into "no previous meeting."
