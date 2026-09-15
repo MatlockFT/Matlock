@@ -12,7 +12,7 @@ const confidenceCounts = new Map();
 const slotCounts = new Map([[0, 0], [1, 0], [2, 0], [3, 0]]);
 const genericExamples = [];
 const asymmetricExamples = [];
-let subjects = 0, published = 0, sameCard = 0, asymmetric = 0;
+let subjects = 0, published = 0, sameCard = 0, asymmetric = 0, genericPublished = 0;
 let scheduleCoverageTotal = 0, scheduleCoverageSubjects = 0;
 
 function bump(map, key) { map.set(key, (map.get(key) || 0) + 1); }
@@ -36,7 +36,10 @@ for (const event of data.events || []) {
       bump(caseCounts, rec.case?.code || 'missing');
       bump(confidenceCounts, rec.confidence || 'missing');
       if (eventIds.has(rec.fighter.id)) sameCard++;
-      if (rec.case?.code === 'divisional-sorting' && genericExamples.length < 20) genericExamples.push({ event: event.title, fighter: fighter.name, opponent: rec.fighter.name, score: rec.score, rationale: rec.rationale });
+      if (rec.case?.code === 'divisional-sorting') {
+        genericPublished++;
+        if (genericExamples.length < 20) genericExamples.push({ event: event.title, fighter: fighter.name, opponent: rec.fighter.name, score: rec.score, rationale: rec.rationale });
+      }
 
       const reverse = E.recommendations(rec.fighter, data.fighters, ctx);
       const reverseRank = reverse.findIndex(item => item.fighter.id === fighter.id);
@@ -69,7 +72,7 @@ const report = {
   sameCardRecommendationRatio: published ? Number((sameCard / published).toFixed(4)) : 0,
   asymmetricTopThreeRecommendations: asymmetric,
   asymmetricTopThreeRatio: published ? Number((asymmetric / published).toFixed(4)) : 0,
-  genericDivisionalSortingRecommendations: genericExamples.length,
+  genericDivisionalSortingRecommendations: genericPublished,
   genericExamples,
   asymmetricExamples,
   note: 'Top-three asymmetry is diagnostic, not automatically an error: one symmetric fight score can rank fourth or lower for the other fighter because that fighter has stronger alternatives.'
@@ -79,4 +82,4 @@ await fs.writeFile(REPORT_PATH, JSON.stringify(report, null, 2) + '\n');
 console.log(`Matchmaker recommendation audit: ${subjects} event fighters, ${published} published recommendations.`);
 console.log(`Slots: ${[0,1,2,3].map(slot => `${slot}=${slotCounts.get(slot) || 0}`).join(', ')}. Cases: ${[...caseCounts].sort((a,b)=>b[1]-a[1]).map(([name,count])=>`${name}=${count}`).join(', ') || 'none'}.`);
 console.log(`Confidence: ${[...confidenceCounts].map(([name,count])=>`${name}=${count}`).join(', ') || 'none'}; same-card ${sameCard}/${published || 0}; asymmetric Top 3 ${asymmetric}/${published || 0}; recent-opponent link coverage ${(report.averageRecentOpponentLinkCoverage * 100).toFixed(1)}%.`);
-if (genericExamples.length) console.warn(`Audit warning: ${genericExamples.length}${genericExamples.length === 20 ? '+' : ''} published recommendation(s) still rely on the generic divisional-sorting case.`);
+if (genericPublished) throw new Error(`${genericPublished} public recommendation(s) still rely on the generic divisional-sorting fallback. Public matchups require a specific matchmaking thesis.`);
