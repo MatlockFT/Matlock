@@ -128,7 +128,7 @@
     return null;
   }
 
-  // Retained as a public diagnostic. V2 pair scoring does not treat this range as the decision model.
+  // Ranked fighters use this as their actual hierarchy target; unranked values remain diagnostic.
   function targetRange(a, ctx) {
     const r = rank(a, ctx), result = eventResult(a, ctx);
     if (r === 0) return [1, 5];
@@ -223,6 +223,20 @@
     return 0;
   }
 
+  function rankedHierarchy(a, b, ctx, self = competitiveState(a, ctx), opponent = competitiveState(b, ctx)) {
+    if (self.rank === null || opponent.rank === null || self.rank === 0 || opponent.rank === 0) return null;
+    const band = targetRange(a, ctx);
+    const distance = bandDistance(opponent.rank, band);
+    const rankGap = Math.abs(self.rank - opponent.rank);
+    const direction = distance === 0 ? 20 : distance === 1 ? 18 : distance <= 3 ? 14 : 8;
+    let trajectory = 9;
+    if (self.result === 'W' && opponent.result === 'L' || self.result === 'L' && opponent.result === 'W') trajectory = distance <= 1 ? 15 : distance <= 3 ? 12 : 8;
+    else if (self.result === 'W' && opponent.result === 'W') trajectory = rankGap <= 5 ? 13 : 9;
+    else if (self.result === 'L' && opponent.result === 'L') trajectory = rankGap <= 5 ? 12 : 7;
+    else if (opponent.streak >= 3 && self.result !== 'W') trajectory = 13;
+    return { band, distance, rankGap, direction, trajectory };
+  }
+
   function opponentQualityFit(self, opponent) {
     const selfSchedule = self.schedule?.average;
     const opponentSchedule = opponent.schedule?.average;
@@ -238,27 +252,34 @@
   function directionalFit(a, b, ctx) {
     const self = competitiveState(a, ctx);
     const opponent = competitiveState(b, ctx);
-    const band = desiredLevelBand(self);
-    const distance = bandDistance(opponent.level, band);
-    const levelFit = clamp(WEIGHTS.competitiveLevel - distance * 2, 0, WEIGHTS.competitiveLevel);
+    const hierarchy = rankedHierarchy(a, b, ctx, self, opponent);
+    const band = hierarchy?.band || desiredLevelBand(self);
+    const distance = hierarchy ? hierarchy.distance : bandDistance(opponent.level, band);
+    const levelFit = hierarchy
+      ? clamp(WEIGHTS.competitiveLevel - distance * 4, 0, WEIGHTS.competitiveLevel)
+      : clamp(WEIGHTS.competitiveLevel - distance * 2, 0, WEIGHTS.competitiveLevel);
 
-    let direction = 14;
-    if (self.result === 'W') {
-      if (opponent.level >= self.level - 3 && opponent.level <= self.level + 14) direction = 20;
-      else if (opponent.level < self.level - 10) direction = 6;
-      else direction = 12;
-    } else if (self.result === 'L') {
-      if (opponent.level >= self.level - 14 && opponent.level <= self.level + 5) direction = 20;
-      else if (opponent.level > self.level + 10) direction = 7;
-      else direction = 13;
-    } else direction = Math.abs(opponent.level - self.level) <= 10 ? 18 : 11;
+    let direction = hierarchy?.direction ?? 14;
+    if (!hierarchy) {
+      if (self.result === 'W') {
+        if (opponent.level >= self.level - 3 && opponent.level <= self.level + 14) direction = 20;
+        else if (opponent.level < self.level - 10) direction = 6;
+        else direction = 12;
+      } else if (self.result === 'L') {
+        if (opponent.level >= self.level - 14 && opponent.level <= self.level + 5) direction = 20;
+        else if (opponent.level > self.level + 10) direction = 7;
+        else direction = 13;
+      } else direction = Math.abs(opponent.level - self.level) <= 10 ? 18 : 11;
+    }
 
-    let trajectory = 9;
-    if (self.result === 'W' && opponent.result === 'L' && opponent.level >= self.level - 2) trajectory = 15;
-    else if (self.result === 'L' && opponent.result === 'W' && opponent.level <= self.level + 8) trajectory = 15;
-    else if (self.result === 'W' && opponent.result === 'W') trajectory = Math.abs(opponent.level - self.level) <= 14 ? 13 : 9;
-    else if (self.result === 'L' && opponent.result === 'L') trajectory = Math.abs(opponent.level - self.level) <= 14 ? 12 : 7;
-    else if (opponent.streak >= 3 && self.result !== 'W') trajectory = 13;
+    let trajectory = hierarchy?.trajectory ?? 9;
+    if (!hierarchy) {
+      if (self.result === 'W' && opponent.result === 'L' && opponent.level >= self.level - 2) trajectory = 15;
+      else if (self.result === 'L' && opponent.result === 'W' && opponent.level <= self.level + 8) trajectory = 15;
+      else if (self.result === 'W' && opponent.result === 'W') trajectory = Math.abs(opponent.level - self.level) <= 14 ? 13 : 9;
+      else if (self.result === 'L' && opponent.result === 'L') trajectory = Math.abs(opponent.level - self.level) <= 14 ? 12 : 7;
+      else if (opponent.streak >= 3 && self.result !== 'W') trajectory = 13;
+    }
 
     const opponentQuality = opponentQualityFit(self, opponent);
     const experienceGap = Math.abs(self.experience - opponent.experience);
@@ -269,7 +290,18 @@
       timing = days <= 120 ? 5 : days <= 240 ? 3 : days <= 365 ? 2 : 1;
     }
     const parts = { competitiveLevel: levelFit, careerDirection: direction, trajectory, opponentQuality, experience, timing };
-    return { fighter: a, opponent: b, state: self, opponentState: opponent, band, distance, parts, score: Object.values(parts).reduce((sum, value) => sum + value, 0) };
+    return {
+      fighter: a,
+      opponent: b,
+      state: self,
+      opponentState: opponent,
+      band,
+      distance,
+      hierarchySource: hierarchy ? 'rank' : 'competitive-level',
+      rankGap: hierarchy?.rankGap ?? null,
+      parts,
+      score: Object.values(parts).reduce((sum, value) => sum + value, 0)
+    };
   }
 
   function scheduleComparison(aState, bState) {
@@ -282,6 +314,8 @@
   function matchupCase(a, b, ctx, aFit, bFit) {
     const A = aFit.state, B = bFit.state;
     const levelGap = Math.abs(A.level - B.level);
+    const rankedPair = A.rank !== null && B.rank !== null && A.rank > 0 && B.rank > 0;
+    const rankGap = rankedPair ? Math.abs(A.rank - B.rank) : null;
     const scheduleGap = scheduleComparison(A, B);
     let code = 'divisional-sorting';
     let rationale;
@@ -306,24 +340,34 @@
       const winnerSchedule = winnerState.schedule?.average;
       const loserSchedule = loserState.schedule?.average;
       const strongerSchedule = winnerSchedule !== null && winnerSchedule !== undefined && loserSchedule !== null && loserSchedule !== undefined && (winnerState.schedule?.coverage || 0) >= 0.35 && (loserState.schedule?.coverage || 0) >= 0.35 && loserSchedule >= winnerSchedule + 5;
-      if (loserState.level >= winnerState.level - 2) {
+      const rankedProgression = winnerState.rank !== null && loserState.rank !== null && winnerState.rank > 0 && loserState.rank > 0
+        && bandDistance(loserState.rank, targetRange(winner, ctx)) <= 2
+        && bandDistance(winnerState.rank, targetRange(loser, ctx)) <= 2;
+      const levelProgression = !rankedPair && loserState.level >= winnerState.level - 2;
+      if (rankedProgression || levelProgression) {
         code = loserState.rank !== null && winnerState.rank === null ? 'ranking-opportunity' : 'step-up-vs-rebound';
         rationale = `${winner.name} is coming off a win and is ready for stronger opposition; ${loser.name} is coming off ${strongerSchedule ? 'the stronger recent UFC schedule' : 'higher or comparable competition'}, giving ${winner.name} a meaningful step up while giving ${loser.name} a credible rebound fight.`;
-        reasons = [`${winner.name} is coming off a win${winnerState.streak > 1 ? ` with a ${winnerState.streak}-fight winning streak` : ''}.`, `${loser.name} is coming off a loss but remains in a ${loserState.rank !== null ? `ranked (#${loserState.rank})` : 'comparable'} competitive tier.`, strongerSchedule ? `${loser.name}'s recent linked opponents grade stronger than ${winner.name}'s.` : 'The pairing advances one trajectory without forcing the other fighter into an artificial drop.'];
+        reasons = [
+          `${winner.name} is coming off a win${winnerState.streak > 1 ? ` with a ${winnerState.streak}-fight winning streak` : ''}.`,
+          rankedProgression ? `${winner.name} is ranked #${winnerState.rank}; ${loser.name} is ranked #${loserState.rank}.` : `${loser.name} is coming off a loss but remains in a ${loserState.rank !== null ? `ranked (#${loserState.rank})` : 'comparable'} competitive tier.`,
+          strongerSchedule ? `${loser.name}'s recent linked opponents grade stronger than ${winner.name}'s.` : 'The pairing advances one trajectory without forcing the other fighter into an artificial drop.'
+        ];
       }
     }
 
-    if (!rationale && A.result === 'W' && B.result === 'W' && levelGap <= 14) {
+    const comparableWins = rankedPair ? rankGap <= 5 : levelGap <= 14;
+    if (!rationale && A.result === 'W' && B.result === 'W' && comparableWins) {
       code = A.rank === null && B.rank === null ? 'rising-vs-rising' : 'rankings-progression';
       const scheduleDetail = scheduleGap !== null && Math.abs(scheduleGap) >= 6 ? `${scheduleGap > 0 ? a.name : b.name} has faced the stronger recent UFC schedule, adding a real step in opposition for the other fighter.` : 'Neither fighter has to make an artificial jump or drop for the matchup.';
       rationale = `${a.name} and ${b.name} are both moving forward at a similar competitive level. Matching them now separates two upward trajectories and moves the winner toward the next tier.`;
-      reasons = ['Both are coming off wins.', `Their competitive-level gap is ${Math.round(levelGap)} points on the engine scale.`, scheduleDetail];
+      reasons = ['Both are coming off wins.', rankedPair ? `Their rankings are #${A.rank} and #${B.rank}.` : `Their competitive-level gap is ${Math.round(levelGap)} points on the engine scale.`, scheduleDetail];
     }
 
-    if (!rationale && A.result === 'L' && B.result === 'L' && levelGap <= 14) {
+    const comparableLosses = rankedPair ? rankGap <= 5 : levelGap <= 14;
+    if (!rationale && A.result === 'L' && B.result === 'L' && comparableLosses) {
       code = 'rebound-pairing';
       rationale = `${a.name} and ${b.name} are both coming off setbacks at a similar level. This is a logical reset fight that keeps the winner relevant without dropping either fighter too far down the division.`;
-      reasons = ['Both are coming off losses.', `Their competitive-level gap is ${Math.round(levelGap)} points on the engine scale.`, 'Both need a credible rebound opportunity.'];
+      reasons = ['Both are coming off losses.', rankedPair ? `Their rankings are #${A.rank} and #${B.rank}.` : `Their competitive-level gap is ${Math.round(levelGap)} points on the engine scale.`, 'Both need a credible rebound opportunity.'];
     }
 
     if (!rationale) {
@@ -341,7 +385,11 @@
 
     if (!rationale) {
       rationale = `${a.name} and ${b.name} occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down.`;
-      reasons = [`${a.name}: ${A.rank === null ? 'unranked' : A.rank === 0 ? 'champion' : `#${A.rank}`}, ${A.result || 'no recent result'} trajectory.`, `${b.name}: ${B.rank === null ? 'unranked' : B.rank === 0 ? 'champion' : `#${B.rank}`}, ${B.result || 'no recent result'} trajectory.`, `Competitive-level gap: ${Math.round(levelGap)}.`];
+      reasons = [
+        `${a.name}: ${A.rank === null ? 'unranked' : A.rank === 0 ? 'champion' : `#${A.rank}`}, ${A.result || 'no recent result'} trajectory.`,
+        `${b.name}: ${B.rank === null ? 'unranked' : B.rank === 0 ? 'champion' : `#${B.rank}`}, ${B.result || 'no recent result'} trajectory.`,
+        rankedPair ? `Ranking gap: ${rankGap}.` : `Competitive-level gap: ${Math.round(levelGap)}.`
+      ];
     }
 
     return { code, rationale, reasons };
@@ -478,5 +526,5 @@
     return board;
   }
 
-  return { VERSION, WEIGHTS, pairKey, normalize, division, rank, titleExperience, careerLane, streak, tier, tags, eventResult, priorMeetings, rematchCase, availability, targetRange, baseCompetitiveState, scheduleStrength, competitiveState, directionalFit, careerLaneMismatch, evaluatePair, evaluate, candidates, recommendations, lock, autoMatch, validateBoard };
+  return { VERSION, WEIGHTS, pairKey, normalize, division, rank, titleExperience, careerLane, streak, tier, tags, eventResult, priorMeetings, rematchCase, availability, targetRange, baseCompetitiveState, scheduleStrength, competitiveState, rankedHierarchy, directionalFit, careerLaneMismatch, evaluatePair, evaluate, candidates, recommendations, lock, autoMatch, validateBoard };
 });
