@@ -7,7 +7,7 @@
 
   const VERSION = 2;
   // Eligibility never earns points. These weights measure why the fight makes sense competitively.
-  const WEIGHTS = { competitiveLevel: 40, careerDirection: 25, trajectory: 20, experience: 10, timing: 5 };
+  const WEIGHTS = { competitiveLevel: 30, careerDirection: 20, trajectory: 15, opponentQuality: 20, experience: 10, timing: 5 };
   const DAY = 86400000;
   const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
   const pairKey = (a, b) => [a, b].sort().join('|');
@@ -70,16 +70,16 @@
     const found = [...directVerified, ...inverseVerified, ...directCanonical, ...inverseCanonical];
     const deduped = new Map();
     for (const meeting of found) {
-      const id = meeting.fightStatsId || `${meeting.date || ''}|${normalize(meeting.opponentName || '')}` || meeting.sourceUrl || JSON.stringify(meeting);
+      const datedOpponent = meeting.date && (meeting.opponentId || meeting.opponentName) ? `${meeting.date}|${meeting.opponentId || normalize(meeting.opponentName)}` : null;
+      const id = meeting.fightStatsId || datedOpponent || meeting.sourceUrl || JSON.stringify(meeting);
       const existing = deduped.get(id);
       if (!existing || meeting.verified && !existing.verified) deduped.set(id, meeting);
     }
     return [...deduped.values()].sort((x, y) => String(y.date || '').localeCompare(String(x.date || '')));
   }
 
-  function completeResults(f) {
-    return hasVerifiedCoverage(f) ? verifiedHistory(f) : history(f);
-  }
+  // Rematch progression is UFC competitive history, not feeder-series wins that are retained only for prior-meeting detection.
+  const completeResults = f => history(f);
 
   function rematchCase(a, b, ctx) {
     const meetings = priorMeetings(a, b);
@@ -88,9 +88,9 @@
     if (ctx.overrides?.[a.id]?.allowRematch || ctx.overrides?.[b.id]?.allowRematch) return { allowed: true, meetings, verifiedCoverage, reason: 'Rematch explicitly allowed by an override.' };
     if (['D', 'NC'].includes(meetings[0].result)) return { allowed: true, meetings, verifiedCoverage, reason: 'The previous meeting ended in a draw or no contest.' };
     const subsequentWins = f => completeResults(f).filter(h => h.date > meetings[0].date && h.result === 'W').length;
-    if (Date.parse(ctx.asOf) - Date.parse(meetings[0].date) > 3 * 365 * DAY && subsequentWins(a) >= 3 && subsequentWins(b) >= 3) return { allowed: true, meetings, verifiedCoverage, reason: 'More than three years apart, with at least three subsequent wins for each fighter.' };
+    if (Date.parse(ctx.asOf) - Date.parse(meetings[0].date) > 3 * 365 * DAY && subsequentWins(a) >= 3 && subsequentWins(b) >= 3) return { allowed: true, meetings, verifiedCoverage, reason: 'More than three years apart, with at least three subsequent UFC wins for each fighter.' };
     const series = meetings.filter(meeting => ['W', 'L', 'D', 'NC'].includes(meeting.result));
-    if (series.length === 2 && series.some(h => h.result === 'W') && series.some(h => h.result === 'L') && subsequentWins(a) >= 1 && subsequentWins(b) >= 1) return { allowed: true, meetings, verifiedCoverage, reason: 'A 1–1 series, with both fighters winning again since their last meeting.' };
+    if (series.length === 2 && series.some(h => h.result === 'W') && series.some(h => h.result === 'L') && subsequentWins(a) >= 1 && subsequentWins(b) >= 1) return { allowed: true, meetings, verifiedCoverage, reason: 'A 1–1 series, with both fighters winning again in the UFC since their last meeting.' };
     if (ctx.rematchCases?.[pairKey(a.id, b.id)]) return { allowed: true, meetings, verifiedCoverage, reason: ctx.rematchCases[pairKey(a.id, b.id)] };
     const source = meetings[0].verified ? 'verified fight history' : 'canonical UFC history';
     return { allowed: false, meetings, verifiedCoverage, reason: `Previously fought on ${meetings[0].date} (${source}); no rematch case is currently supported.` };
@@ -107,7 +107,7 @@
     return null;
   }
 
-  // Retained as a public diagnostic, but V2 pair scoring no longer treats an artificial target range as the decision model.
+  // Retained as a public diagnostic. V2 pair scoring does not treat this range as the decision model.
   function targetRange(a, ctx) {
     const r = rank(a, ctx), result = eventResult(a, ctx);
     if (r === 0) return [1, 5];
@@ -115,7 +115,7 @@
     return result === 'W' ? [Math.max(1, r - (r >= 11 ? 5 : 4)), Math.min(16, r + 1)] : [Math.max(1, r - 1), Math.min(21, r + 5)];
   }
 
-  function competitiveState(f, ctx) {
+  function baseCompetitiveState(f, ctx) {
     const r = rank(f, ctx);
     const s = streak(f);
     const result = eventResult(f, ctx);
@@ -138,8 +138,50 @@
     else if (experience >= 7) type = 'unranked-veteran';
     else if (result === 'L') type = 'rebuilding';
     else type = 'high-end-unranked';
-
     return { type, level, rank: r, streak: s, result, experience };
+  }
+
+  function scheduleStrength(f, ctx, limit = 5) {
+    const index = ctx.fighterIndex instanceof Map ? ctx.fighterIndex : null;
+    const recent = history(f).filter(bout => ['W', 'L', 'D', 'NC'].includes(bout.result)).slice(0, limit);
+    const weights = [1, 0.85, 0.7, 0.55, 0.45];
+    let possibleWeight = 0, linkedWeight = 0, levelTotal = 0, winWeight = 0, winLevelTotal = 0, linkedBouts = 0;
+    for (let i = 0; i < recent.length; i++) {
+      const bout = recent[i], weight = weights[i] ?? 0.4;
+      possibleWeight += weight;
+      if (!index) continue;
+      const opponentId = (bout.opponentIds || []).find(id => index.has(id));
+      const opponent = opponentId ? index.get(opponentId) : null;
+      if (!opponent) continue;
+      const opponentLevel = baseCompetitiveState(opponent, ctx).level;
+      levelTotal += opponentLevel * weight;
+      linkedWeight += weight;
+      linkedBouts++;
+      if (bout.result === 'W') {
+        winLevelTotal += opponentLevel * weight;
+        winWeight += weight;
+      }
+    }
+    return {
+      average: linkedWeight ? levelTotal / linkedWeight : null,
+      winAverage: winWeight ? winLevelTotal / winWeight : null,
+      coverage: possibleWeight ? linkedWeight / possibleWeight : 0,
+      linkedBouts,
+      sampledBouts: recent.length
+    };
+  }
+
+  function competitiveState(f, ctx) {
+    const base = baseCompetitiveState(f, ctx);
+    const schedule = scheduleStrength(f, ctx);
+    let scheduleAdjustment = 0;
+    // Current rankings dominate ranked fighters. For unranked fighters, verified opposition quality
+    // separates proven UFC competition from shallow records that would otherwise look identical.
+    if (base.rank === null && schedule.average !== null && schedule.coverage >= 0.25) {
+      const winLevel = schedule.winAverage ?? schedule.average;
+      scheduleAdjustment = clamp(((schedule.average - 50) * 0.14 + (winLevel - 50) * 0.06) * schedule.coverage, -6, 8);
+    }
+    return { ...base, baseLevel: base.level, level: clamp(base.level + scheduleAdjustment, 28, 100), scheduleAdjustment, schedule };
   }
 
   function desiredLevelBand(state) {
@@ -155,31 +197,44 @@
     return 0;
   }
 
+  function opponentQualityFit(self, opponent) {
+    const selfSchedule = self.schedule?.average;
+    const opponentSchedule = opponent.schedule?.average;
+    if (opponentSchedule === null || opponentSchedule === undefined) return 10;
+    const target = (selfSchedule ?? self.level) + (self.result === 'W' ? 5 : self.result === 'L' ? -5 : 0);
+    const raw = clamp(20 - Math.abs(opponentSchedule - target) * 0.55, 4, 20);
+    const coverage = selfSchedule === null || selfSchedule === undefined
+      ? (opponent.schedule?.coverage || 0) * 0.6
+      : Math.min(self.schedule?.coverage || 0, opponent.schedule?.coverage || 0);
+    return clamp(10 + (raw - 10) * coverage, 4, 20);
+  }
+
   function directionalFit(a, b, ctx) {
     const self = competitiveState(a, ctx);
     const opponent = competitiveState(b, ctx);
     const band = desiredLevelBand(self);
     const distance = bandDistance(opponent.level, band);
-    const levelFit = clamp(WEIGHTS.competitiveLevel - distance * 2.5, 0, WEIGHTS.competitiveLevel);
+    const levelFit = clamp(WEIGHTS.competitiveLevel - distance * 2, 0, WEIGHTS.competitiveLevel);
 
-    let direction = 17;
+    let direction = 14;
     if (self.result === 'W') {
-      if (opponent.level >= self.level - 3 && opponent.level <= self.level + 14) direction = 25;
-      else if (opponent.level < self.level - 10) direction = 7;
-      else direction = 15;
+      if (opponent.level >= self.level - 3 && opponent.level <= self.level + 14) direction = 20;
+      else if (opponent.level < self.level - 10) direction = 6;
+      else direction = 12;
     } else if (self.result === 'L') {
-      if (opponent.level >= self.level - 14 && opponent.level <= self.level + 5) direction = 25;
-      else if (opponent.level > self.level + 10) direction = 8;
-      else direction = 16;
-    } else direction = Math.abs(opponent.level - self.level) <= 10 ? 22 : 14;
+      if (opponent.level >= self.level - 14 && opponent.level <= self.level + 5) direction = 20;
+      else if (opponent.level > self.level + 10) direction = 7;
+      else direction = 13;
+    } else direction = Math.abs(opponent.level - self.level) <= 10 ? 18 : 11;
 
-    let trajectory = 12;
-    if (self.result === 'W' && opponent.result === 'L' && opponent.level >= self.level - 2) trajectory = 20;
-    else if (self.result === 'L' && opponent.result === 'W' && opponent.level <= self.level + 8) trajectory = 20;
-    else if (self.result === 'W' && opponent.result === 'W') trajectory = Math.abs(opponent.level - self.level) <= 14 ? 18 : 12;
-    else if (self.result === 'L' && opponent.result === 'L') trajectory = Math.abs(opponent.level - self.level) <= 14 ? 17 : 10;
-    else if (opponent.streak >= 3 && self.result !== 'W') trajectory = 17;
+    let trajectory = 9;
+    if (self.result === 'W' && opponent.result === 'L' && opponent.level >= self.level - 2) trajectory = 15;
+    else if (self.result === 'L' && opponent.result === 'W' && opponent.level <= self.level + 8) trajectory = 15;
+    else if (self.result === 'W' && opponent.result === 'W') trajectory = Math.abs(opponent.level - self.level) <= 14 ? 13 : 9;
+    else if (self.result === 'L' && opponent.result === 'L') trajectory = Math.abs(opponent.level - self.level) <= 14 ? 12 : 7;
+    else if (opponent.streak >= 3 && self.result !== 'W') trajectory = 13;
 
+    const opponentQuality = opponentQualityFit(self, opponent);
     const experienceGap = Math.abs(self.experience - opponent.experience);
     const experience = experienceGap <= 3 ? 10 : experienceGap <= 6 ? 8 : experienceGap <= 10 ? 5 : 2;
     let timing = 0;
@@ -187,13 +242,21 @@
       const days = Math.abs(Date.parse(a.lastFight) - Date.parse(b.lastFight)) / DAY;
       timing = days <= 120 ? 5 : days <= 240 ? 3 : days <= 365 ? 2 : 1;
     }
-    const parts = { competitiveLevel: levelFit, careerDirection: direction, trajectory, experience, timing };
+    const parts = { competitiveLevel: levelFit, careerDirection: direction, trajectory, opponentQuality, experience, timing };
     return { fighter: a, opponent: b, state: self, opponentState: opponent, band, distance, parts, score: Object.values(parts).reduce((sum, value) => sum + value, 0) };
+  }
+
+  function scheduleComparison(aState, bState) {
+    const a = aState.schedule?.average, b = bState.schedule?.average;
+    if (a === null || a === undefined || b === null || b === undefined) return null;
+    if ((aState.schedule?.coverage || 0) < 0.35 || (bState.schedule?.coverage || 0) < 0.35) return null;
+    return a - b;
   }
 
   function matchupCase(a, b, ctx, aFit, bFit) {
     const A = aFit.state, B = bFit.state;
     const levelGap = Math.abs(A.level - B.level);
+    const scheduleGap = scheduleComparison(A, B);
     let code = 'divisional-sorting';
     let rationale;
     let reasons;
@@ -203,7 +266,7 @@
     const challengerState = champion?.id === a.id ? B : champion ? A : null;
     if (champion && challenger && challengerState.rank !== null && challengerState.rank <= 5) {
       code = 'title-case';
-      rationale = `${challenger.name} is already in the top contender tier, so ${champion.name} is a defensible next title matchup rather than a rankings detour.`;
+      rationale = `${challenger.name} is already in the top contender tier, making a fight with champion ${champion.name} a defensible next title booking rather than a rankings detour.`;
       reasons = [`${challenger.name} is ranked #${challengerState.rank}.`, `${champion.name} is the champion.`, 'The pairing keeps the title fight inside the current contender tier.'];
     } else if (A.rank !== null && B.rank !== null && A.rank <= 5 && B.rank <= 5 && A.result === 'W' && B.result === 'W') {
       code = 'title-eliminator';
@@ -214,17 +277,21 @@
       const loser = winner.id === a.id ? b : a;
       const winnerState = winner.id === a.id ? A : B;
       const loserState = winner.id === a.id ? B : A;
+      const winnerSchedule = winnerState.schedule?.average;
+      const loserSchedule = loserState.schedule?.average;
+      const strongerSchedule = winnerSchedule !== null && winnerSchedule !== undefined && loserSchedule !== null && loserSchedule !== undefined && (winnerState.schedule?.coverage || 0) >= 0.35 && (loserState.schedule?.coverage || 0) >= 0.35 && loserSchedule >= winnerSchedule + 5;
       if (loserState.level >= winnerState.level - 2) {
         code = loserState.rank !== null && winnerState.rank === null ? 'ranking-opportunity' : 'step-up-vs-rebound';
-        rationale = `${winner.name} is coming off a win and is ready for stronger opposition; ${loser.name} is coming off higher or comparable competition, giving ${winner.name} a meaningful step up while giving ${loser.name} a credible rebound fight.`;
-        reasons = [`${winner.name} is coming off a win${winnerState.streak > 1 ? ` with a ${winnerState.streak}-fight winning streak` : ''}.`, `${loser.name} is coming off a loss but remains in a ${loserState.rank !== null ? `ranked (#${loserState.rank})` : 'comparable'} competitive tier.`, 'The pairing advances one trajectory without forcing the other fighter into an artificial drop.'];
+        rationale = `${winner.name} is coming off a win and is ready for stronger opposition; ${loser.name} is coming off ${strongerSchedule ? 'the stronger recent UFC schedule' : 'higher or comparable competition'}, giving ${winner.name} a meaningful step up while giving ${loser.name} a credible rebound fight.`;
+        reasons = [`${winner.name} is coming off a win${winnerState.streak > 1 ? ` with a ${winnerState.streak}-fight winning streak` : ''}.`, `${loser.name} is coming off a loss but remains in a ${loserState.rank !== null ? `ranked (#${loserState.rank})` : 'comparable'} competitive tier.`, strongerSchedule ? `${loser.name}'s recent linked opponents grade stronger than ${winner.name}'s.` : 'The pairing advances one trajectory without forcing the other fighter into an artificial drop.'];
       }
     }
 
     if (!rationale && A.result === 'W' && B.result === 'W' && levelGap <= 14) {
       code = A.rank === null && B.rank === null ? 'rising-vs-rising' : 'rankings-progression';
+      const scheduleDetail = scheduleGap !== null && Math.abs(scheduleGap) >= 6 ? `${scheduleGap > 0 ? a.name : b.name} has faced the stronger recent UFC schedule, adding a real step in opposition for the other fighter.` : 'Neither fighter has to make an artificial jump or drop for the matchup.';
       rationale = `${a.name} and ${b.name} are both moving forward at a similar competitive level. Matching them now separates two upward trajectories and moves the winner toward the next tier.`;
-      reasons = ['Both are coming off wins.', `Their competitive-level gap is ${Math.round(levelGap)} points on the engine scale.`, 'Neither fighter has to make an artificial jump or drop for the matchup.'];
+      reasons = ['Both are coming off wins.', `Their competitive-level gap is ${Math.round(levelGap)} points on the engine scale.`, scheduleDetail];
     }
 
     if (!rationale && A.result === 'L' && B.result === 'L' && levelGap <= 14) {
@@ -237,9 +304,12 @@
       const prospect = ['surging-prospect', 'developing-prospect'].includes(A.type) ? a : ['surging-prospect', 'developing-prospect'].includes(B.type) ? b : null;
       const veteran = prospect?.id === a.id && B.experience >= 6 ? b : prospect?.id === b.id && A.experience >= 6 ? a : null;
       if (prospect && veteran) {
+        const veteranState = veteran.id === a.id ? A : B;
+        const prospectState = prospect.id === a.id ? A : B;
+        const provenSchedule = veteranState.schedule?.average !== null && veteranState.schedule?.average !== undefined && prospectState.schedule?.average !== null && prospectState.schedule?.average !== undefined && (veteranState.schedule?.coverage || 0) >= 0.35 && veteranState.schedule.average > prospectState.schedule.average + 4;
         code = 'prospect-test';
-        rationale = `${prospect.name} needs a deeper UFC test; ${veteran.name}'s experience and current divisional level make this a credible measuring stick without skipping multiple tiers.`;
-        reasons = [`${prospect.name} is classified as a ${prospect.id === a.id ? A.type : B.type}.`, `${veteran.name} has ${veteran.id === a.id ? A.experience : B.experience} canonical UFC bouts.`, 'The competitive-level gap remains inside a defensible range.'];
+        rationale = `${prospect.name} needs a deeper UFC test; ${veteran.name}'s ${provenSchedule ? 'stronger recent opposition and ' : ''}experience make this a credible measuring stick without skipping multiple tiers.`;
+        reasons = [`${prospect.name} is classified as a ${prospect.id === a.id ? A.type : B.type}.`, `${veteran.name} has ${veteranState.experience} canonical UFC bouts.`, provenSchedule ? `${veteran.name} has faced the stronger recent linked UFC schedule.` : 'The competitive-level gap remains inside a defensible range.'];
       }
     }
 
@@ -249,6 +319,13 @@
     }
 
     return { code, rationale, reasons };
+  }
+
+  function confidenceFor(score, weakerSide, balanceGap, caseFile) {
+    const specific = caseFile.code !== 'divisional-sorting';
+    if (score >= 78 && weakerSide >= 70 && balanceGap <= 14 && (specific || score >= 84)) return 'high';
+    if (score >= 64 && weakerSide >= 58 && balanceGap <= 20 && (specific || score >= 72)) return 'medium';
+    return 'low';
   }
 
   function evaluatePair(a, b, ctx, manual = false, requireVerified = false) {
@@ -272,11 +349,13 @@
     const balanceGap = Math.abs(aFit.score - bFit.score);
     const score = Math.round(clamp(harmonic * 0.7 + weakerSide * 0.3 - balanceGap * 0.12, 0, 100));
     const caseFile = matchupCase(a, b, ctx, aFit, bFit);
+    const confidence = confidenceFor(score, weakerSide, balanceGap, caseFile);
     const sameEvent = ctx.event?.bouts?.flatMap(bout => bout.fighters || []).some(f => f.id === b.id);
     const evidence = [
       ...caseFile.reasons,
       `Two-sided fit: ${a.name} ${Math.round(aFit.score)}/100; ${b.name} ${Math.round(bFit.score)}/100.`,
       `Pair balance: ${balanceGap.toFixed(1)} points; weaker-side fit ${Math.round(weakerSide)}/100.`,
+      `Recent-opposition coverage: ${Math.round((aFit.state.schedule?.coverage || 0) * 100)}% / ${Math.round((bFit.state.schedule?.coverage || 0) * 100)}%.`,
       `Timing: last listed fights ${a.lastFight || 'unknown'} / ${b.lastFight || 'unknown'}${sameEvent ? ' (same card)' : ''}.`,
       rematch.meetings.length ? rematch.reason : 'Freshness passed the verified prior-meeting gate.'
     ];
@@ -285,6 +364,8 @@
       fighter: b,
       score,
       pairScore: score,
+      confidence,
+      publishable: confidence !== 'low',
       parts: { a: aFit.parts, b: bFit.parts, balanceGap: Number(balanceGap.toFixed(2)), weakerSide: Number(weakerSide.toFixed(2)) },
       directional: { a: aFit, b: bFit },
       case: caseFile,
@@ -299,13 +380,18 @@
     return evaluatePair(a, b, ctx, manual, false);
   }
 
+  function rosterContext(fighters, ctx) {
+    return ctx.fighterIndex instanceof Map ? ctx : { ...ctx, fighterIndex: new Map(fighters.map(fighter => [fighter.id, fighter])) };
+  }
+
   function candidates(a, fighters, ctx) {
+    const scoped = rosterContext(fighters, ctx);
     const requireVerified = fighters.some(f => Number(f.historyModelVersion || 0) >= 2);
-    return fighters.map(b => evaluatePair(a, b, ctx, false, requireVerified)).filter(r => r.eligible).sort((x, y) => y.score - x.score || x.fighter.id.localeCompare(y.fighter.id));
+    return fighters.map(b => evaluatePair(a, b, scoped, false, requireVerified)).filter(r => r.eligible).sort((x, y) => y.score - x.score || x.fighter.id.localeCompare(y.fighter.id));
   }
 
   function recommendations(a, fighters, ctx) {
-    return candidates(a, fighters, ctx).slice(0, 3).map((r, i) => ({ ...r, label: ['Best match', 'Alternative', 'Another option'][i] }));
+    return candidates(a, fighters, ctx).filter(r => r.publishable).slice(0, 3).map((r, i) => ({ ...r, label: ['Best match', 'Alternative', 'Another option'][i] }));
   }
 
   function lock(a, b, ctx, manual = false) {
@@ -315,9 +401,10 @@
   }
 
   function autoMatch(fighters, ctx, targetIds, limit = 20000) {
-    const targets = new Set(targetIds), used = new Set((ctx.locks || []).flatMap(p => [p.a, p.b]));
-    const remaining = fighters.filter(f => targets.has(f.id) && !availability(f, ctx));
-    const choices = new Map(remaining.map(a => [a.id, candidates(a, fighters, ctx).slice(0, 10).map(r => ({ a: a.id, b: r.fighter.id, score: r.score, rationale: r.rationale, evidence: r.evidence, manual: false, createdAt: new Date().toISOString() }))]));
+    const scoped = rosterContext(fighters, ctx);
+    const targets = new Set(targetIds), used = new Set((scoped.locks || []).flatMap(p => [p.a, p.b]));
+    const remaining = fighters.filter(f => targets.has(f.id) && !availability(f, scoped));
+    const choices = new Map(remaining.map(a => [a.id, candidates(a, fighters, scoped).filter(r => r.publishable).slice(0, 10).map(r => ({ a: a.id, b: r.fighter.id, score: r.score, rationale: r.rationale, evidence: r.evidence, manual: false, createdAt: new Date().toISOString() }))]));
     remaining.sort((a, b) => choices.get(a.id).length - choices.get(b.id).length || a.id.localeCompare(b.id));
     let best = [], bestValue = -1, visited = 0;
     function search(index, pairs, value) {
@@ -337,7 +424,7 @@
       search(index + 1, pairs, value);
     }
     search(0, [], 0);
-    return { pairs: best, searched: Math.min(visited, limit), optimal: false, method: 'Bounded search over ten best two-sided eligible matchups per fighter' };
+    return { pairs: best, searched: Math.min(visited, limit), optimal: false, method: 'Bounded search over ten publishable two-sided matchups per fighter' };
   }
 
   function validateBoard(board, data) {
@@ -350,5 +437,5 @@
     return board;
   }
 
-  return { VERSION, WEIGHTS, pairKey, normalize, division, rank, streak, tier, tags, eventResult, priorMeetings, rematchCase, availability, targetRange, competitiveState, directionalFit, evaluatePair, evaluate, candidates, recommendations, lock, autoMatch, validateBoard };
+  return { VERSION, WEIGHTS, pairKey, normalize, division, rank, streak, tier, tags, eventResult, priorMeetings, rematchCase, availability, targetRange, baseCompetitiveState, scheduleStrength, competitiveState, directionalFit, evaluatePair, evaluate, candidates, recommendations, lock, autoMatch, validateBoard };
 });
