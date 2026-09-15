@@ -23,7 +23,9 @@
 
   function status(message) {
     const node = $('[data-mm-status]');
-    if (node) node.textContent = message;
+    if (!node) return;
+    node.textContent = message;
+    node.hidden = !message;
   }
 
   function context(event) {
@@ -135,7 +137,6 @@
     const url = new URL(location.href);
     url.searchParams.set('event', event.id);
     history.replaceState(null, '', url);
-    status(`Showing realistic next-fight options for ${event.title}.`);
   }
 
   async function load() {
@@ -160,6 +161,7 @@
     const requested = new URL(location.href).searchParams.get('event');
     renderEvent(data.events.some(event => event.id === requested) ? requested : data.events[0]?.id);
     root.querySelector('[data-mm-app]').hidden = false;
+    status('');
   }
 
   try {
