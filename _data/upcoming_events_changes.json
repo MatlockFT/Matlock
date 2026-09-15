@@ -1,7 +1,166 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-14T13:04:39.717Z",
+  "generated_at": "2026-09-15T00:33:42.682Z",
   "changes": [
+    {
+      "id": "2026-09-15T00:33:42.682Z|ufc-2026-09-19-crypto-com-ufc-331|bout_moved|1",
+      "at": "2026-09-15T00:33:42.682Z",
+      "type": "bout_moved",
+      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
+      "promotion": "UFC",
+      "event_title": "Crypto.com UFC 331",
+      "event_date": "2026-09-19",
+      "summary": "Alonzo Menifield vs Iwo Baraniewski moved on Crypto.com UFC 331.",
+      "details": {
+        "from_order": 5,
+        "to_order": 4,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-15T00:33:42.682Z|ufc-2026-09-19-crypto-com-ufc-331|bout_moved|2",
+      "at": "2026-09-15T00:33:42.682Z",
+      "type": "bout_moved",
+      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
+      "promotion": "UFC",
+      "event_title": "Crypto.com UFC 331",
+      "event_date": "2026-09-19",
+      "summary": "Gable Steveson vs Sean Sharaf moved on Crypto.com UFC 331.",
+      "details": {
+        "from_order": 6,
+        "to_order": 5,
+        "from_section": "Prelims",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-15T00:33:42.682Z|ufc-2026-09-19-crypto-com-ufc-331|bout_moved|3",
+      "at": "2026-09-15T00:33:42.682Z",
+      "type": "bout_moved",
+      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
+      "promotion": "UFC",
+      "event_title": "Crypto.com UFC 331",
+      "event_date": "2026-09-19",
+      "summary": "Marlon Vera vs Charles Jourdain moved on Crypto.com UFC 331.",
+      "details": {
+        "from_order": 7,
+        "to_order": 6,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-15T00:33:42.682Z|ufc-2026-09-19-crypto-com-ufc-331|bout_moved|4",
+      "at": "2026-09-15T00:33:42.682Z",
+      "type": "bout_moved",
+      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
+      "promotion": "UFC",
+      "event_title": "Crypto.com UFC 331",
+      "event_date": "2026-09-19",
+      "summary": "Tai Tuivasa vs Robelis Despaigne moved on Crypto.com UFC 331.",
+      "details": {
+        "from_order": 8,
+        "to_order": 7,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-15T00:33:42.682Z|ufc-2026-09-19-crypto-com-ufc-331|bout_moved|5",
+      "at": "2026-09-15T00:33:42.682Z",
+      "type": "bout_moved",
+      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
+      "promotion": "UFC",
+      "event_title": "Crypto.com UFC 331",
+      "event_date": "2026-09-19",
+      "summary": "Michael Aswell Jr. vs JooSang Yoo moved on Crypto.com UFC 331.",
+      "details": {
+        "from_order": 9,
+        "to_order": 8,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-15T00:33:42.682Z|ufc-2026-09-19-crypto-com-ufc-331|bout_moved|6",
+      "at": "2026-09-15T00:33:42.682Z",
+      "type": "bout_moved",
+      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
+      "promotion": "UFC",
+      "event_title": "Crypto.com UFC 331",
+      "event_date": "2026-09-19",
+      "summary": "Ryan Gandra vs Ozzy Diaz moved on Crypto.com UFC 331.",
+      "details": {
+        "from_order": 10,
+        "to_order": 9,
+        "from_section": "Early Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-15T00:33:42.682Z|ufc-2026-09-19-crypto-com-ufc-331|bout_moved|7",
+      "at": "2026-09-15T00:33:42.682Z",
+      "type": "bout_moved",
+      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
+      "promotion": "UFC",
+      "event_title": "Crypto.com UFC 331",
+      "event_date": "2026-09-19",
+      "summary": "Edmen Shahbazyan vs Brunno Ferreira moved on Crypto.com UFC 331.",
+      "details": {
+        "from_order": 11,
+        "to_order": 10,
+        "from_section": "Early Prelims",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-09-15T00:33:42.682Z|ufc-2026-09-19-crypto-com-ufc-331|bout_moved|8",
+      "at": "2026-09-15T00:33:42.682Z",
+      "type": "bout_moved",
+      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
+      "promotion": "UFC",
+      "event_title": "Crypto.com UFC 331",
+      "event_date": "2026-09-19",
+      "summary": "Casey O'Neill vs Eduarda Moura moved on Crypto.com UFC 331.",
+      "details": {
+        "from_order": 12,
+        "to_order": 11,
+        "from_section": "Early Prelims",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-09-15T00:33:42.682Z|ufc-2026-09-19-crypto-com-ufc-331|bout_moved|9",
+      "at": "2026-09-15T00:33:42.682Z",
+      "type": "bout_moved",
+      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
+      "promotion": "UFC",
+      "event_title": "Crypto.com UFC 331",
+      "event_date": "2026-09-19",
+      "summary": "Giga Chikadze vs Joanderson Brito moved on Crypto.com UFC 331.",
+      "details": {
+        "from_order": 13,
+        "to_order": 12,
+        "from_section": "Early Prelims",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-09-15T00:33:42.682Z|ufc-2026-09-19-crypto-com-ufc-331|bout_removed|10",
+      "at": "2026-09-15T00:33:42.682Z",
+      "type": "bout_removed",
+      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
+      "promotion": "UFC",
+      "event_title": "Crypto.com UFC 331",
+      "event_date": "2026-09-19",
+      "summary": "Renato Moicano vs Brian Ortega removed from Crypto.com UFC 331.",
+      "details": {
+        "order": 4,
+        "section": "Main Card",
+        "weight_class": "Lightweight Bout"
+      }
+    },
     {
       "id": "2026-09-14T13:04:39.717Z|rizin-rizin-55-2026-11-08|event_added|1",
       "at": "2026-09-14T13:04:39.717Z",
@@ -4503,156 +4662,6 @@
         "order": 2,
         "section": "Main Card",
         "weight_class": "Women's Strawweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-26T22:21:04.277Z|ufc-fight-night-2026-09-26-fight-card|bout_added|13",
-      "at": "2026-08-26T22:21:04.277Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Mehemmedeli Osmanli vs Ilimbek Akylbek Uulu added to Jr. vs Barcelos.",
-      "details": {
-        "order": 3,
-        "section": "Main Card",
-        "weight_class": "Bantamweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-26T22:21:04.277Z|ufc-fight-night-2026-09-26-fight-card|bout_added|14",
-      "at": "2026-08-26T22:21:04.277Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Montel Jackson vs Ricky Simon added to Jr. vs Barcelos.",
-      "details": {
-        "order": 4,
-        "section": "Main Card",
-        "weight_class": "Bantamweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-26T22:21:04.277Z|ufc-fight-night-2026-09-26-fight-card|bout_added|15",
-      "at": "2026-08-26T22:21:04.277Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Rodolfo Bellato vs Christian Edwards added to Jr. vs Barcelos.",
-      "details": {
-        "order": 5,
-        "section": "Main Card",
-        "weight_class": "Light Heavyweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-26T22:21:04.277Z|ufc-fight-night-2026-09-26-fight-card|bout_added|16",
-      "at": "2026-08-26T22:21:04.277Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Rodolfo Vieira vs Robert Bryczek added to Jr. vs Barcelos.",
-      "details": {
-        "order": 6,
-        "section": "Main Card",
-        "weight_class": "Middleweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-26T22:21:04.277Z|ufc-fight-night-2026-09-26-fight-card|bout_added|17",
-      "at": "2026-08-26T22:21:04.277Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Brady Hiestand vs Rinya Nakamura added to Jr. vs Barcelos.",
-      "details": {
-        "order": 7,
-        "section": "Main Card",
-        "weight_class": "Bantamweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-26T22:21:04.277Z|ufc-fight-night-2026-09-26-fight-card|bout_added|18",
-      "at": "2026-08-26T22:21:04.277Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "John Castaneda vs Alatengheili added to Jr. vs Barcelos.",
-      "details": {
-        "order": 8,
-        "section": "Main Card",
-        "weight_class": "Bantamweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-26T22:21:04.277Z|ufc-fight-night-2026-09-26-fight-card|bout_added|19",
-      "at": "2026-08-26T22:21:04.277Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Josiah Harrell vs Elves Brener added to Jr. vs Barcelos.",
-      "details": {
-        "order": 9,
-        "section": "Main Card",
-        "weight_class": "Lightweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-26T22:21:04.277Z|ufc-fight-night-2026-09-26-fight-card|bout_added|20",
-      "at": "2026-08-26T22:21:04.277Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Norma Dumont vs Ailin Perez added to Jr. vs Barcelos.",
-      "details": {
-        "order": 10,
-        "section": "Main Card",
-        "weight_class": "Women's Bantamweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-26T22:21:04.277Z|ufc-fight-night-2026-09-26-fight-card|bout_added|21",
-      "at": "2026-08-26T22:21:04.277Z",
-      "type": "bout_added",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Vanessa Demopoulos vs Yazmin Jauregui added to Jr. vs Barcelos.",
-      "details": {
-        "order": 11,
-        "section": "Main Card",
-        "weight_class": "Women's Strawweight Bout"
-      }
-    },
-    {
-      "id": "2026-08-26T10:23:12.035Z|dwcs-season-10-week-4-2026-09-01|event_added|1",
-      "at": "2026-08-26T10:23:12.035Z",
-      "type": "event_added",
-      "event_id": "dwcs-season-10-week-4-2026-09-01",
-      "promotion": "DWCS",
-      "event_title": "Season 10 · Week 4",
-      "event_date": "2026-09-01",
-      "summary": "DWCS Season 10 · Week 4 added to Upcoming Events.",
-      "details": {
-        "bout_count": 5,
-        "venue": "Meta APEX · Las Vegas, Nevada",
-        "date": "2026-09-01"
       }
     }
   ]

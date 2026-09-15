@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-14T22:02:51.839Z",
+  "generated_at": "2026-09-15T00:33:07.454Z",
   "events": [
     {
       "id": "dwcs-season-10-week-6-2026-09-15",
@@ -223,27 +223,6 @@
             {
               "order": 4,
               "label": "",
-              "weight_class": "Lightweight Bout",
-              "fighters": [
-                {
-                  "name": "Renato Moicano",
-                  "initials": "RM",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/MOICANO_RENATO_L_04-04.png?itok=2zj_9GSb",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Brian Ortega",
-                  "initials": "BO",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/ORTEGA_BRIAN_L_08-23.png?itok=OQf_S2Es",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
               "weight_class": "Light Heavyweight Bout",
               "fighters": [
                 {
@@ -261,16 +240,9 @@
                   "image_framing": "safe"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "kind": "prelims",
-          "title": "Prelims",
-          "time": "5:00 PM ET",
-          "bouts": [
+            },
             {
-              "order": 6,
+              "order": 5,
               "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
@@ -289,9 +261,16 @@
                   "image_framing": "safe"
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "5:00 PM ET",
+          "bouts": [
             {
-              "order": 7,
+              "order": 6,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -312,7 +291,7 @@
               ]
             },
             {
-              "order": 8,
+              "order": 7,
               "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
@@ -333,7 +312,7 @@
               ]
             },
             {
-              "order": 9,
+              "order": 8,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
@@ -352,16 +331,9 @@
                   "image_framing": "safe"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "kind": "early",
-          "title": "Early Prelims",
-          "time": "5:00 PM ET",
-          "bouts": [
+            },
             {
-              "order": 10,
+              "order": 9,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -380,9 +352,16 @@
                   "image_framing": "safe"
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "kind": "early",
+          "title": "Early Prelims",
+          "time": "5:00 PM ET",
+          "bouts": [
             {
-              "order": 11,
+              "order": 10,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -403,7 +382,7 @@
               ]
             },
             {
-              "order": 12,
+              "order": 11,
               "label": "",
               "weight_class": "Women's Flyweight Bout",
               "fighters": [
@@ -424,7 +403,7 @@
               ]
             },
             {
-              "order": 13,
+              "order": 12,
               "label": "",
               "weight_class": "Featherweight Bout",
               "fighters": [
