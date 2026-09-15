@@ -8,6 +8,8 @@ Run `node scripts/update-matchmaker.mjs` to refresh source data, then `node scri
 
 `assets/matchmaker-engine.js` is the deterministic recommendation engine. `scripts/matchmaker/sources/ufc.mjs` handles UFC event results, rankings and athlete-profile context. `scripts/matchmaker/sources/ufcstats.mjs` supplies structured prior-opponent history for rematch detection. The site's canonical UFC roster, upcoming schedule and portrait registry are reused. Visitors never trigger source scraping; the browser only reads normalized published JSON.
 
+The refresh workflow also runs two recommendation-level validation passes. `scripts/matchmaker/audit-recommendations.mjs` audits the current engine and the actual public shortlist separately, including reciprocal-fit asymmetry and generic fallback usage. `scripts/matchmaker/backtest-recommendations.mjs` reconstructs recent pre-fight states and compares the engine's recommendations with the fighter's eventual next UFC opponent. The backtest is diagnostic calibration evidence, not an instruction to imitate every UFC booking.
+
 ## Engine principles
 
 The engine separates hard facts from matchmaking judgment.
@@ -26,7 +28,17 @@ The public page intentionally exposes only the useful result: up to three plausi
 
 The public shortlist compares a small pool of the engine's strongest candidates before choosing the final three. When two matchups are already close, reciprocal booking fit can act as a modest ordering nudge: a matchup that also ranks highly in the proposed opponent's own queue can move ahead of a slightly stronger but one-sided option. Reciprocal fit is not a hard eligibility rule and cannot override a clearly stronger matchup, title-claim rules, prior-meeting rules, bookings or other hard constraints.
 
+A generic `divisional-sorting` fallback may still exist inside the engine as a diagnostic signal that no stronger matchmaking thesis was found, but it is not public-eligible. Every matchup shown to visitors must have a specific engine case such as hierarchy progression, rebound pairing, prospect progression, contender positioning or a supported rematch/title case.
+
 Rematches are conservative. A previous meeting normally excludes the matchup. Exceptions require an explicit supported case such as a draw/no contest, a qualifying 1–1 series with subsequent wins, or a sufficiently old matchup where both fighters have rebuilt with multiple wins. The presentation layer does not let visitors override these facts.
+
+## Temporal backtesting
+
+Historical validation must not leak present-day information backward. The baseline backtest truncates each fighter's history and verified meeting ledger at the case cutoff date, reconstructs the record from only those bouts, clears current bookings and current champion-state flags, reconstructs active status from fight recency, and infers division only from source-native fight weight classes known at the cutoff.
+
+Historical UFC ranking snapshots are not yet complete enough to use safely across the full sample. Until they are, the baseline deliberately strips rankings rather than applying today's rankings to an older booking. That makes the first report an **unranked temporal baseline**. It is useful for finding failures in eligibility, career-state, rematch, timing and general opponent-fit logic, but it is not the final historical calibration score.
+
+The historical candidate universe is also survivor-biased because it can only reconstruct fighters present in the current normalized Matchmaker dataset. The report records those coverage limits, missing targets, ineligible real bookings and representative misses so future changes can target systemic failure patterns instead of overfitting individual fights.
 
 ## Data quality and failure behavior
 
