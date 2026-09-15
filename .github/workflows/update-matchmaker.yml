@@ -39,6 +39,8 @@ jobs:
         run: node scripts/matchmaker/enrich-verified-history.mjs
       - name: Check verified history invariants
         run: node scripts/matchmaker/check-verified-history-v2.mjs
+      - name: Report unverified active histories
+        run: node scripts/matchmaker/report-unverified-active.mjs
       - name: Check engine against refreshed data
         run: node scripts/check-matchmaker.mjs
       - name: Audit published recommendations
