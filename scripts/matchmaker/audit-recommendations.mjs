@@ -12,10 +12,11 @@ const caseCounts = new Map();
 const confidenceCounts = new Map();
 const slotCounts = new Map([[0, 0], [1, 0], [2, 0], [3, 0]]);
 const genericExamples = [];
+const publicGenericExamples = [];
 const asymmetricExamples = [];
 const publicCache = new Map();
-let subjects = 0, published = 0, sameCard = 0, asymmetric = 0, genericPublished = 0;
-let publicPublished = 0, publicAsymmetric = 0;
+let subjects = 0, published = 0, sameCard = 0, asymmetric = 0, engineGenericPublished = 0;
+let publicPublished = 0, publicAsymmetric = 0, publicGenericPublished = 0;
 let scheduleCoverageTotal = 0, scheduleCoverageSubjects = 0;
 
 function bump(map, key) { map.set(key, (map.get(key) || 0) + 1); }
@@ -46,7 +47,7 @@ for (const event of data.events || []) {
       bump(confidenceCounts, rec.confidence || 'missing');
       if (eventIds.has(rec.fighter.id)) sameCard++;
       if (rec.case?.code === 'divisional-sorting') {
-        genericPublished++;
+        engineGenericPublished++;
         if (genericExamples.length < 20) genericExamples.push({ event: event.title, fighter: fighter.name, opponent: rec.fighter.name, score: rec.score, rationale: rec.rationale });
       }
 
@@ -69,6 +70,10 @@ for (const event of data.events || []) {
     const publicRecs = publicRecommendations(fighter, ctx);
     publicPublished += publicRecs.length;
     for (const rec of publicRecs) {
+      if (rec.case?.code === 'divisional-sorting') {
+        publicGenericPublished++;
+        if (publicGenericExamples.length < 20) publicGenericExamples.push({ event: event.title, fighter: fighter.name, opponent: rec.fighter.name, score: rec.score, rationale: rec.rationale });
+      }
       const reversePublic = publicRecommendations(rec.fighter, ctx);
       if (!reversePublic.some(item => item.fighter.id === fighter.id)) publicAsymmetric++;
     }
@@ -91,14 +96,16 @@ const report = {
   publicPublishedRecommendations: publicPublished,
   publicAsymmetricTopThreeRecommendations: publicAsymmetric,
   publicAsymmetricTopThreeRatio: publicPublished ? Number((publicAsymmetric / publicPublished).toFixed(4)) : 0,
-  genericDivisionalSortingRecommendations: genericPublished,
+  engineGenericDivisionalSortingRecommendations: engineGenericPublished,
+  genericDivisionalSortingRecommendations: publicGenericPublished,
   genericExamples,
+  publicGenericExamples,
   asymmetricExamples,
-  note: 'Engine Top-3 asymmetry remains diagnostic rather than an automatic error. Public Top-3 asymmetry separately measures the shortlist visitors actually see after reciprocal near-tie ordering.'
+  note: 'Engine Top-3 asymmetry and generic fallback usage remain diagnostics rather than automatic errors. Public Top-3 asymmetry measures the shortlist visitors actually see after reciprocal near-tie ordering. Generic divisional-sorting cases are not allowed on the public shortlist.'
 };
 
 await fs.writeFile(REPORT_PATH, JSON.stringify(report, null, 2) + '\n');
 console.log(`Matchmaker recommendation audit: ${subjects} event fighters, ${published} engine recommendations, ${publicPublished} public recommendations.`);
 console.log(`Slots: ${[0,1,2,3].map(slot => `${slot}=${slotCounts.get(slot) || 0}`).join(', ')}. Cases: ${[...caseCounts].sort((a,b)=>b[1]-a[1]).map(([name,count])=>`${name}=${count}`).join(', ') || 'none'}.`);
-console.log(`Confidence: ${[...confidenceCounts].map(([name,count])=>`${name}=${count}`).join(', ') || 'none'}; same-card ${sameCard}/${published || 0}; engine asymmetric Top 3 ${asymmetric}/${published || 0}; public asymmetric Top 3 ${publicAsymmetric}/${publicPublished || 0}; recent-opponent link coverage ${(report.averageRecentOpponentLinkCoverage * 100).toFixed(1)}%.`);
-if (genericPublished) throw new Error(`${genericPublished} public recommendation(s) still rely on the generic divisional-sorting fallback. Public matchups require a specific matchmaking thesis.`);
+console.log(`Confidence: ${[...confidenceCounts].map(([name,count])=>`${name}=${count}`).join(', ') || 'none'}; same-card ${sameCard}/${published || 0}; engine asymmetric Top 3 ${asymmetric}/${published || 0}; public asymmetric Top 3 ${publicAsymmetric}/${publicPublished || 0}; engine generic ${engineGenericPublished}; public generic ${publicGenericPublished}; recent-opponent link coverage ${(report.averageRecentOpponentLinkCoverage * 100).toFixed(1)}%.`);
+if (publicGenericPublished) throw new Error(`${publicGenericPublished} public recommendation(s) still rely on the generic divisional-sorting fallback. Public matchups require a specific matchmaking thesis.`);
