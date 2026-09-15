@@ -60,10 +60,17 @@
       "promotion": "rizin",
       "date": "2026-10-03",
       "title": "RIZIN LANDMARK 16 in NAGASAKI",
-      "status": "coverage_gap",
+      "status": "matched",
+      "verdict_event_id": "1975",
+      "verdict_url": "https://verdictmma.com/event/1975",
+      "verdict_date": "2026-10-03",
       "local_fight_count": 14,
+      "verdict_fight_count": null,
       "local_main_count": 14,
-      "local_prelim_count": 0
+      "verdict_main_count": null,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": null,
+      "confirmed_local_bouts": 4
     },
     {
       "event_id": "ufc-332-2026-10-03-fight-card",
@@ -74,11 +81,11 @@
       "verdict_event_id": "1952",
       "verdict_url": "https://verdictmma.com/event/1952",
       "verdict_date": "2026-10-03",
-      "local_fight_count": 12,
+      "local_fight_count": 13,
       "verdict_fight_count": 12,
       "local_main_count": 5,
       "verdict_main_count": 5,
-      "local_prelim_count": 7,
+      "local_prelim_count": 8,
       "verdict_prelim_count": 7,
       "confirmed_local_bouts": 11
     },
@@ -217,6 +224,106 @@
       ]
     },
     {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "verdict_event_id": "1975",
+      "order": 10,
+      "fighters": [
+        "Mac Papalii",
+        "Alboury Ndiaye"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "verdict_event_id": "1975",
+      "order": 11,
+      "fighters": [
+        "OPENING FIGHT 大木良太",
+        "Hunt Rangers"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "verdict_event_id": "1975",
+      "order": 12,
+      "fighters": [
+        "OPENING FIGHT 今村流星",
+        "Reon Uemura"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "verdict_event_id": "1975",
+      "order": 13,
+      "fighters": [
+        "OPENING FIGHT 森孝太郎",
+        "Yuki"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "verdict_event_id": "1975",
+      "order": 14,
+      "fighters": [
+        "OPENING FIGHT KAKERU",
+        "Ayuto"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "verdict_event_id": "1975",
+      "order": 4,
+      "fighters": [
+        "Kate Lotus",
+        "NOEL"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "verdict_event_id": "1975",
+      "order": 6,
+      "fighters": [
+        "Hinotori",
+        "Masatoshi Ueda"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "verdict_event_id": "1975",
+      "order": 7,
+      "fighters": [
+        "杉山廣平",
+        "Kaito Oda"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "verdict_event_id": "1975",
+      "order": 8,
+      "fighters": [
+        "荒東“怪獣キラー”英貴",
+        "Ken Hasegawa"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "verdict_event_id": "1975",
+      "order": 9,
+      "fighters": [
+        "アラン“ヒロ”ヤマニハ",
+        "Seigo Yamamoto"
+      ]
+    },
+    {
       "type": "section_count_mismatch",
       "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
       "verdict_event_id": "1946",
@@ -224,6 +331,13 @@
       "verdict_main_count": 4,
       "local_prelim_count": 7,
       "verdict_prelim_count": 8
+    },
+    {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "verdict_event_id": "1952",
+      "local_fight_count": 13,
+      "verdict_fight_count": 12
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -234,6 +348,25 @@
         "Marcus McGhee",
         "Benardo Sopaj"
       ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "verdict_event_id": "1952",
+      "order": 9,
+      "fighters": [
+        "Anthony Wint",
+        "Lucas Armand"
+      ]
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "verdict_event_id": "1952",
+      "local_main_count": 5,
+      "verdict_main_count": 5,
+      "local_prelim_count": 8,
+      "verdict_prelim_count": 7
     },
     {
       "type": "bout_count_mismatch",
