@@ -26,16 +26,8 @@ UFC 331 is upon us, and I feel like it arrived rather quickly. This card leaves 
 
 If I'm ranking what I'm most excited for on the main card, it would be:
 
-#
-
 1. Choi vs. Pitbull
-
-#
-
 2. Van vs. Pantoja
-
-#
-
 3. Tsarukyan vs. Ruffy
 
 The UFC has Menifeld vs. Baraniewski as the main card opener, and it really should be Gable Steveson vs. Sean Sharaf.
