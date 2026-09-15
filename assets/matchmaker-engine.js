@@ -600,7 +600,31 @@
     return ctx.fighterIndex instanceof Map ? ctx : { ...ctx, fighterIndex: new Map(fighters.map(fighter => [fighter.id, fighter])) };
   }
 
-  function opportunityCost(a, match, fighters, ctx, requireVerified = false) {
+  function pairCacheSignature(fighters, ctx, requireVerified) {
+    const eventKey = ctx.event?.id || ctx.event?.date || '';
+    const locks = (ctx.locks || []).map(pair => pairKey(pair.a, pair.b)).sort().join(',');
+    const overrides = Object.keys(ctx.overrides || {}).sort().map(id => `${id}:${JSON.stringify(ctx.overrides[id])}`).join('|');
+    const rosterState = fighters.map(fighter => `${fighter.id}:${fighter.active ? 1 : 0}:${fighter.booking?.date || ''}:${fighter.booking?.opponent || ''}`).join(';');
+    return `${ctx.asOf || ''}|${eventKey}|${requireVerified ? 1 : 0}|${locks}|${overrides}|${rosterState}`;
+  }
+
+  function pairEvaluationCache(fighters, ctx, requireVerified) {
+    const store = pairEvaluationCache.store || (pairEvaluationCache.store = new WeakMap());
+    const signature = pairCacheSignature(fighters, ctx, requireVerified);
+    const existing = store.get(fighters);
+    if (existing?.signature === signature) return existing.map;
+    const map = new Map();
+    store.set(fighters, { signature, map });
+    return map;
+  }
+
+  function cachedAutomaticPair(a, b, fighters, ctx, requireVerified, cache) {
+    const key = `${a.id}>${b.id}`;
+    if (!cache.has(key)) cache.set(key, evaluatePair(a, b, ctx, false, requireVerified));
+    return cache.get(key);
+  }
+
+  function opportunityCost(a, match, fighters, ctx, requireVerified = false, cache = null) {
     const proposedScore = Number(match?.score ?? 0);
     const b = match?.fighter;
     const neutral = {
@@ -614,6 +638,7 @@
     };
     if (!b || rank(a, ctx) === 0 || rank(b, ctx) === 0) return neutral;
 
+    const pairCache = cache || pairEvaluationCache(fighters, ctx, requireVerified);
     const sameDivision = fighters.filter(candidate =>
       candidate.id !== a.id &&
       candidate.id !== b.id &&
@@ -621,7 +646,7 @@
       !availability(candidate, ctx)
     );
     const alternatives = sameDivision
-      .map(candidate => evaluatePair(b, candidate, ctx, false, requireVerified))
+      .map(candidate => cachedAutomaticPair(b, candidate, fighters, ctx, requireVerified, pairCache))
       .filter(result => result.eligible && result.publishable)
       .sort((x, y) => y.score - x.score || x.fighter.id.localeCompare(y.fighter.id));
     if (!alternatives.length) return neutral;
@@ -647,15 +672,16 @@
   function candidates(a, fighters, ctx) {
     const scoped = rosterContext(fighters, ctx);
     const requireVerified = fighters.some(f => Number(f.historyModelVersion || 0) >= 2);
-    const evaluated = fighters.map(b => evaluatePair(a, b, scoped, false, requireVerified)).filter(r => r.eligible);
+    const cache = pairEvaluationCache(fighters, scoped, requireVerified);
+    const evaluated = fighters.map(b => cachedAutomaticPair(a, b, fighters, scoped, requireVerified, cache)).filter(r => r.eligible);
     if (rank(a, scoped) === 0) {
       return evaluated
-        .map(result => ({ ...result, opportunityCost: opportunityCost(a, result, fighters, scoped, requireVerified), rankingScore: result.score }))
+        .map(result => ({ ...result, opportunityCost: opportunityCost(a, result, fighters, scoped, requireVerified, cache), rankingScore: result.score }))
         .sort((x, y) => titleClaim(y.fighter, scoped).score - titleClaim(x.fighter, scoped).score || y.score - x.score || x.fighter.id.localeCompare(y.fighter.id));
     }
     return evaluated
       .map(result => {
-        const cost = opportunityCost(a, result, fighters, scoped, requireVerified);
+        const cost = opportunityCost(a, result, fighters, scoped, requireVerified, cache);
         return { ...result, opportunityCost: cost, rankingScore: cost.rankingScore };
       })
       .sort((x, y) => y.rankingScore - x.rankingScore || y.score - x.score || x.fighter.id.localeCompare(y.fighter.id));
