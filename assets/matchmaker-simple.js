@@ -46,7 +46,7 @@
   function photo(fighter, event, className, width, height) {
     const src = participantImage(event, fighter.id) || fighter.image;
     if (!src) return placeholder(className);
-    return `<img class="${className}" src="${safeUrl(src)}" alt="" width="${width}" height="${height}" loading="lazy" decoding="async" onerror="this.outerHTML=''">`;
+    return `<img class="${className}" src="${safeUrl(src)}" alt="" width="${width}" height="${height}" loading="lazy" decoding="async" onerror="this.hidden=true">`;
   }
 
   function resultText(value) {
@@ -68,7 +68,7 @@
     return `
       <li class="mm-simple-match${index === 0 ? ' is-primary' : ''}">
         <span class="mm-simple-match-order">0${index + 1}</span>
-        ${photo(opponent, event, 'mm-simple-opponent-photo', 58, 68)}
+        <span class="mm-simple-opponent-slot" aria-hidden="true">${photo(opponent, event, 'mm-simple-opponent-photo', 58, 68)}</span>
         <div class="mm-simple-match-copy">
           <small>${labels[index]}</small>
           <strong>${esc(opponent.name)}</strong>
@@ -95,7 +95,7 @@
       <article class="mm-simple-file">
         <span class="mm-simple-pin" aria-hidden="true"></span>
         <header class="mm-simple-fighter-head">
-          ${photo(fighter, event, 'mm-simple-fighter-photo', 116, 132)}
+          <span class="mm-simple-fighter-slot" aria-hidden="true">${photo(fighter, event, 'mm-simple-fighter-photo', 116, 132)}</span>
           <div>
             <p class="mm-simple-result mm-simple-result-${esc(String(entry.result || '').toLowerCase())}">${esc(resultText(entry.result))}</p>
             <h2>${esc(fighter.name)}</h2>
