@@ -34,6 +34,19 @@ assert(!P.titleQueueEligible(champion, { fighter: loser }, E, ctx), 'The champio
 assert(P.titleQueueEligible(champion, { fighter: winner }, E, ctx), 'The champion view can recommend a challenger coming off a win.');
 assert(P.titleQueueEligible(winner, { fighter: peer }, E, ctx), 'Non-title matchmaking must not be affected by the title-queue rule.');
 
+const supportedTitleRematch = {
+  fighter: loser,
+  score: 82,
+  confidence: 'high',
+  rematch: {
+    allowed: true,
+    profile: { titleBout: true, closeDecision: true, balancedSeries: false }
+  }
+};
+assert(P.contextualTitleRematch(supportedTitleRematch), 'Supported close title rematch fixture must be recognized by the public filter.');
+assert(P.titleQueueEligible(champion, supportedTitleRematch, E, ctx), 'A verified contextual title rematch must survive the public title queue even though the challenger is coming off the title loss.');
+assert(!P.titleQueueEligible(champion, { ...supportedTitleRematch, rematch: { allowed: true, profile: { titleBout: true, closeDecision: false, balancedSeries: false } } }, E, ctx), 'An ordinary prior title fight must not bypass the title-claim rule.');
+
 const filtered = P.filterRecommendations(winner, [
   { fighter: champion, score: 90, confidence: 'high' },
   { fighter: peer, score: 87, confidence: 'high' },

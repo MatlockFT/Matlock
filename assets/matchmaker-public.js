@@ -7,6 +7,11 @@
 
   const MAX_MEDIUM_ALTERNATIVE_GAP = 12;
 
+  function contextualTitleRematch(recommendation) {
+    const rematch = recommendation?.rematch;
+    return Boolean(rematch?.allowed && rematch.profile?.titleBout && (rematch.profile.closeDecision || rematch.profile.balancedSeries));
+  }
+
   function titleQueueEligible(fighter, recommendation, engine, ctx) {
     const opponent = recommendation?.fighter;
     if (!opponent) return false;
@@ -15,6 +20,7 @@
     const opponentRank = engine.rank(opponent, ctx);
     const oneChampion = (fighterRank === 0) !== (opponentRank === 0);
     if (!oneChampion) return true;
+    if (contextualTitleRematch(recommendation)) return true;
 
     const challenger = fighterRank === 0 ? opponent : fighter;
     if (typeof engine.titleClaim === 'function') return engine.titleClaim(challenger, ctx).eligible;
@@ -32,5 +38,5 @@
     });
   }
 
-  return { MAX_MEDIUM_ALTERNATIVE_GAP, titleQueueEligible, filterRecommendations };
+  return { MAX_MEDIUM_ALTERNATIVE_GAP, contextualTitleRematch, titleQueueEligible, filterRecommendations };
 });
