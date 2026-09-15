@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 
-// Public-page regression coverage for title-queue and weak-alternative filtering.
+// Public-page regression coverage for title-queue, weak-alternative and mutual-fit filtering.
 const require = createRequire(import.meta.url);
 const E = require('../../assets/matchmaker-engine.js');
 const P = require('../../assets/matchmaker-public.js');
@@ -53,5 +53,47 @@ const filtered = P.filterRecommendations(winner, [
   { fighter: fighter('weak-alt', 6, 'W'), score: 70, confidence: 'medium' }
 ], E, ctx);
 assert.deepEqual(filtered.map(item => item.fighter.id), ['champion', 'peer'], 'Weak medium-confidence filler must still be removed after applying the title-queue filter.');
+
+const oneSidedNearTie = {
+  fighter: fighter('one-sided-near-tie', 5, 'W'),
+  score: 88,
+  rankingScore: 88,
+  confidence: 'high',
+  opportunityCost: { reciprocalRank: 7 }
+};
+const mutualNearTie = {
+  fighter: fighter('mutual-near-tie', 6, 'W'),
+  score: 86,
+  rankingScore: 86,
+  confidence: 'high',
+  opportunityCost: { reciprocalRank: 2 }
+};
+const mutualOrder = P.orderForPublic([oneSidedNearTie, mutualNearTie]);
+assert.equal(mutualOrder[0].fighter.id, mutualNearTie.fighter.id, 'A close alternative that is also high in the opponent queue should beat a slightly stronger one-sided pairing.');
+
+const clearlyStrongerOneSided = {
+  ...oneSidedNearTie,
+  fighter: fighter('clearly-stronger', 5, 'W'),
+  score: 92,
+  rankingScore: 92
+};
+const strongOrder = P.orderForPublic([clearlyStrongerOneSided, mutualNearTie]);
+assert.equal(strongOrder[0].fighter.id, clearlyStrongerOneSided.fighter.id, 'Reciprocal fit must remain a modest ordering nudge and must not erase a clearly stronger matchup.');
+assert.equal(P.PUBLIC_CANDIDATE_POOL, 8, 'The public page should compare a small broader pool before choosing its final three.');
+
+const fakeEngine = {
+  candidates: () => [
+    oneSidedNearTie,
+    { ...mutualNearTie, fighter: peer },
+    { fighter: fighter('third', 7, 'W'), score: 84, rankingScore: 84, confidence: 'high', opportunityCost: { reciprocalRank: 1 } },
+    { fighter: fighter('fourth', 8, 'W'), score: 83, rankingScore: 83, confidence: 'high', opportunityCost: { reciprocalRank: 1 } }
+  ],
+  rank: E.rank,
+  titleClaim: E.titleClaim,
+  eventResult: E.eventResult
+};
+const selected = P.selectRecommendations(winner, [], fakeEngine, ctx);
+assert.equal(selected.length, 3, 'Public selection must still cap the page at three recommendations.');
+assert(selected.some(item => item.fighter.id === 'fourth'), 'The public selector should be able to promote a mutually stronger fourth engine candidate into the final three.');
 
 console.log('Matchmaker public recommendation filters: OK');
