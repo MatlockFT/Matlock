@@ -12,6 +12,17 @@ assert.equal(tsuruyaEvidence.bStatsId, 'c14a683dac2ebc4c');
 assert.equal(tsuruyaEvidence.date, '2024-02-03');
 assert.equal(tsuruyaEvidence.competitionClass, 'road-to-ufc');
 
+// Contradictions already observed and disproved are permanent audit evidence. A later UFC.com edit
+// must not erase the fact that the bad biography row existed or tempt a future parser to restore it.
+const ravenaEvidence = evidence.profileContradictions?.find(row => row.fighterId === 'ravena-oliveira' && row.profileDate === '2026-02-21');
+assert(ravenaEvidence, 'Ravena Oliveira profile contradiction must remain in the persistent evidence ledger');
+assert.equal(ravenaEvidence.claimedOpponentId, 'juliana-miller');
+assert.equal(ravenaEvidence.claimedOpponentName, 'Juliana Miller');
+assert.equal(ravenaEvidence.verifiedOpponentName, 'Carli Judice');
+assert.equal(ravenaEvidence.verifiedDate, '2026-02-21');
+assert.equal(ravenaEvidence.sourceUrl, 'https://ufcstats.com/fight-details/6e78d874097a3d22');
+assert.match(ravenaEvidence.claimText, /Juliana Miller/i);
+
 // A bad UFC.com biography claim must not become a fabricated fight-history row. This fixture mirrors
 // the Ravena Oliveira profile problem: the prose claims Juliana Miller on a date when structured
 // records prove Miller fought somebody else.
@@ -54,9 +65,10 @@ if (historyV2) {
   const ravena = data.fighters.find(fighter => fighter.name === 'Ravena Oliveira');
   assert(ravena, 'Ravena Oliveira must resolve in the Matchmaker roster');
   assert.equal(ravena.meetingCoverage?.verified, true, 'Ravena Oliveira history must remain verified after rejecting bad profile prose');
-  const contradiction = ravena.meetingCoverage?.sourceDiscrepancies?.find(item => item.type === 'profile-contradiction' && item.profileDate === '2026-02-21');
-  assert(contradiction, 'Ravena Oliveira bad 2026-02-21 profile claim must remain explicitly recorded as a contradiction');
-  assert.equal(contradiction.claimedOpponentName, 'Juliana Miller');
+  // The live UFC.com page may later correct or omit the bad sentence. If it is still present, the
+  // current refresh should classify it; regardless, the persistent evidence ledger above retains it.
+  const currentContradiction = ravena.meetingCoverage?.sourceDiscrepancies?.find(item => item.type === 'profile-contradiction' && item.profileDate === '2026-02-21');
+  if (currentContradiction) assert.equal(currentContradiction.claimedOpponentName, 'Juliana Miller');
   assert(!ravena.history.some(row => row.date === '2026-02-21'), 'Ravena Oliveira canonical history must not fabricate the false 2026-02-21 Juliana Miller bout');
   const actualMiller = ravena.history.find(row => row.opponentName === 'Juliana Miller');
   assert(actualMiller, 'Ravena Oliveira canonical history must retain the real Juliana Miller fight');
@@ -79,5 +91,5 @@ if (historyV2) {
 }
 
 console.log(historyV2
-  ? `Verified-history V2 checks passed: ${data.coverage.verifiedParticipantHistories}/${data.coverage.participantHistoriesRequested} displayed fighters, Rei source-gap repair, Ravena contradiction rejection, and reciprocal ledgers.`
+  ? `Verified-history V2 checks passed: ${data.coverage.verifiedParticipantHistories}/${data.coverage.participantHistoriesRequested} displayed fighters, Rei source-gap repair, persistent Ravena contradiction evidence, and reciprocal ledgers.`
   : 'Verified-history V2 fixtures passed; published snapshot has not migrated to V2 yet.');
