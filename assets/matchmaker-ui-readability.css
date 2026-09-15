@@ -23,6 +23,13 @@
   background: #c2b092;
 }
 
+.mm-simple-opponent-slot > .mm-simple-opponent-photo,
+.mm-simple-opponent-slot > .mm-simple-placeholder {
+  width: 100%;
+  height: 68px;
+  box-sizing: border-box;
+}
+
 .mm-simple-match-copy {
   grid-column: 3;
   min-width: 0;
@@ -58,11 +65,6 @@
   line-height: 1.45;
 }
 
-.mm-simple-opponent-photo,
-.mm-simple-match .mm-simple-placeholder {
-  align-self: start;
-}
-
 .mm-simple-fighter-slot {
   grid-column: 1;
   display: block;
@@ -70,6 +72,13 @@
   min-width: 116px;
   min-height: 132px;
   background: #b9a98b;
+}
+
+.mm-simple-fighter-slot > .mm-simple-fighter-photo,
+.mm-simple-fighter-slot > .mm-simple-placeholder {
+  width: 100%;
+  height: 132px;
+  box-sizing: border-box;
 }
 
 .mm-simple-fighter-head > div {
@@ -98,9 +107,8 @@
     min-height: 64px;
   }
 
-  .mm-simple-opponent-photo,
-  .mm-simple-match .mm-simple-placeholder {
-    width: 52px;
+  .mm-simple-opponent-slot > .mm-simple-opponent-photo,
+  .mm-simple-opponent-slot > .mm-simple-placeholder {
     height: 64px;
   }
 
@@ -140,9 +148,8 @@
     min-height: 54px;
   }
 
-  .mm-simple-opponent-photo,
-  .mm-simple-match .mm-simple-placeholder {
-    width: 44px;
+  .mm-simple-opponent-slot > .mm-simple-opponent-photo,
+  .mm-simple-opponent-slot > .mm-simple-placeholder {
     height: 54px;
   }
 
@@ -171,6 +178,11 @@
     width: 88px;
     min-width: 88px;
     min-height: 106px;
+  }
+
+  .mm-simple-fighter-slot > .mm-simple-fighter-photo,
+  .mm-simple-fighter-slot > .mm-simple-placeholder {
+    height: 106px;
   }
 
   .mm-simple-fighter-head h2 {
