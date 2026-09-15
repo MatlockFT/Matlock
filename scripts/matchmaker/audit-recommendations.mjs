@@ -3,6 +3,7 @@ import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 const E = require('../../assets/matchmaker-engine.js');
+const P = require('../../assets/matchmaker-public.js');
 const DATA_PATH = 'assets/data/matchmaker/current.json';
 const REPORT_PATH = 'assets/data/matchmaker/recommendation-audit.json';
 const data = JSON.parse(await fs.readFile(DATA_PATH, 'utf8'));
@@ -12,11 +13,19 @@ const confidenceCounts = new Map();
 const slotCounts = new Map([[0, 0], [1, 0], [2, 0], [3, 0]]);
 const genericExamples = [];
 const asymmetricExamples = [];
+const publicCache = new Map();
 let subjects = 0, published = 0, sameCard = 0, asymmetric = 0, genericPublished = 0;
+let publicPublished = 0, publicAsymmetric = 0;
 let scheduleCoverageTotal = 0, scheduleCoverageSubjects = 0;
 
 function bump(map, key) { map.set(key, (map.get(key) || 0) + 1); }
 function eventParticipants(event) { return [...new Set((event.bouts || []).flatMap(bout => (bout.fighters || []).map(fighter => fighter.id)))]; }
+function publicRecommendations(fighter, ctx) {
+  const eventKey = ctx.event?.id || ctx.event?.date || 'event';
+  const key = `${eventKey}:${fighter.id}`;
+  if (!publicCache.has(key)) publicCache.set(key, P.selectRecommendations(fighter, data.fighters, E, ctx));
+  return publicCache.get(key);
+}
 
 for (const event of data.events || []) {
   const eventIds = new Set(eventParticipants(event));
@@ -56,6 +65,13 @@ for (const event of data.events || []) {
         });
       }
     }
+
+    const publicRecs = publicRecommendations(fighter, ctx);
+    publicPublished += publicRecs.length;
+    for (const rec of publicRecs) {
+      const reversePublic = publicRecommendations(rec.fighter, ctx);
+      if (!reversePublic.some(item => item.fighter.id === fighter.id)) publicAsymmetric++;
+    }
   }
 }
 
@@ -72,14 +88,17 @@ const report = {
   sameCardRecommendationRatio: published ? Number((sameCard / published).toFixed(4)) : 0,
   asymmetricTopThreeRecommendations: asymmetric,
   asymmetricTopThreeRatio: published ? Number((asymmetric / published).toFixed(4)) : 0,
+  publicPublishedRecommendations: publicPublished,
+  publicAsymmetricTopThreeRecommendations: publicAsymmetric,
+  publicAsymmetricTopThreeRatio: publicPublished ? Number((publicAsymmetric / publicPublished).toFixed(4)) : 0,
   genericDivisionalSortingRecommendations: genericPublished,
   genericExamples,
   asymmetricExamples,
-  note: 'Top-three asymmetry is diagnostic, not automatically an error: one symmetric fight score can rank fourth or lower for the other fighter because that fighter has stronger alternatives.'
+  note: 'Engine Top-3 asymmetry remains diagnostic rather than an automatic error. Public Top-3 asymmetry separately measures the shortlist visitors actually see after reciprocal near-tie ordering.'
 };
 
 await fs.writeFile(REPORT_PATH, JSON.stringify(report, null, 2) + '\n');
-console.log(`Matchmaker recommendation audit: ${subjects} event fighters, ${published} published recommendations.`);
+console.log(`Matchmaker recommendation audit: ${subjects} event fighters, ${published} engine recommendations, ${publicPublished} public recommendations.`);
 console.log(`Slots: ${[0,1,2,3].map(slot => `${slot}=${slotCounts.get(slot) || 0}`).join(', ')}. Cases: ${[...caseCounts].sort((a,b)=>b[1]-a[1]).map(([name,count])=>`${name}=${count}`).join(', ') || 'none'}.`);
-console.log(`Confidence: ${[...confidenceCounts].map(([name,count])=>`${name}=${count}`).join(', ') || 'none'}; same-card ${sameCard}/${published || 0}; asymmetric Top 3 ${asymmetric}/${published || 0}; recent-opponent link coverage ${(report.averageRecentOpponentLinkCoverage * 100).toFixed(1)}%.`);
+console.log(`Confidence: ${[...confidenceCounts].map(([name,count])=>`${name}=${count}`).join(', ') || 'none'}; same-card ${sameCard}/${published || 0}; engine asymmetric Top 3 ${asymmetric}/${published || 0}; public asymmetric Top 3 ${publicAsymmetric}/${publicPublished || 0}; recent-opponent link coverage ${(report.averageRecentOpponentLinkCoverage * 100).toFixed(1)}%.`);
 if (genericPublished) throw new Error(`${genericPublished} public recommendation(s) still rely on the generic divisional-sorting fallback. Public matchups require a specific matchmaking thesis.`);
