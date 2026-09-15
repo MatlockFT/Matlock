@@ -1,0 +1,876 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-15T20:15:52.471Z",
+  "refreshIntervalMs": 300000,
+  "sourceCount": 17,
+  "sources": [
+    {
+      "name": "MMA Fighting",
+      "url": "https://www.mmafighting.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "Uncrowned",
+      "url": "https://sports.yahoo.com/mma/",
+      "storyCount": 50
+    },
+    {
+      "name": "UFC",
+      "url": "https://www.ufc.com/news",
+      "storyCount": 30
+    },
+    {
+      "name": "TMZ Sports",
+      "url": "https://www.tmz.com/categories/ufc/",
+      "storyCount": 4
+    },
+    {
+      "name": "Sherdog",
+      "url": "https://www.sherdog.com/",
+      "storyCount": 50
+    },
+    {
+      "name": "MMAWeekly",
+      "url": "https://www.mmaweekly.com/",
+      "storyCount": 50
+    },
+    {
+      "name": "MMA Mania",
+      "url": "https://www.mmamania.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "Bloody Elbow",
+      "url": "https://bloodyelbow.com/",
+      "storyCount": 20
+    },
+    {
+      "name": "Cageside Press",
+      "url": "https://cagesidepress.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "LowKick MMA",
+      "url": "https://www.lowkickmma.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "ONE Championship",
+      "url": "https://www.onefc.com/news/",
+      "storyCount": 10
+    },
+    {
+      "name": "Combat Press",
+      "url": "https://combatpress.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "MMA Prospect Vault",
+      "url": "https://mmaprospectvault.com/",
+      "storyCount": 10
+    },
+    {
+      "name": "Movement Martials",
+      "url": "https://movementmartials.com/",
+      "storyCount": 3
+    },
+    {
+      "name": "Mixing Martial Arts",
+      "url": "https://www.mixingmartialarts.com/",
+      "storyCount": 1
+    },
+    {
+      "name": "Cage Warriors",
+      "url": "https://cagewarriors.com/",
+      "storyCount": 2
+    },
+    {
+      "name": "LFA",
+      "url": "https://www.lfa.com/",
+      "storyCount": 3
+    }
+  ],
+  "topStory": {
+    "id": "ddcca8723b193517",
+    "title": "Brian Ortega out of UFC 331; Renato Moicano gets new opponent",
+    "url": "https://sports.yahoo.com/articles/brian-ortega-ufc-331-renato-042043904.html",
+    "source": "Uncrowned",
+    "sourceUrl": "https://sports.yahoo.com/mma/",
+    "publishedAt": "2026-09-15T04:20:43.000Z",
+    "excerpt": "Renato Moicano vs. Brian Ortega is no longer part of the upcoming Ultimate Fighting Championship numbered event.",
+    "image": "https://www.mmaweekly.com/.image/MjA3NDc2ODY2NTE5NDEwMTE5/brian-ortega-ufc303w-1600.jpg?profile=rss",
+    "imageCredit": {
+      "source": "MMAWeekly",
+      "url": "https://www.mmaweekly.com/news/brian-ortega-out-of-ufc-331-fight-with-injury-renato-moicano-gets-new-opponent"
+    },
+    "coverageCount": 5,
+    "relatedSources": [
+      "Sherdog",
+      "MMAWeekly",
+      "Cageside Press",
+      "MMA Fighting"
+    ]
+  },
+  "stories": [
+    {
+      "id": "162fc09889f1b193",
+      "title": "Week 6 Results + Scorecards | Dana White's Contender Series, Season 10",
+      "url": "https://www.ufc.com/news/dana-whites-contender-series-season-10-week-6-results",
+      "source": "UFC",
+      "sourceUrl": "https://www.ufc.com/news",
+      "publishedAt": "2026-09-15T20:15:48.997Z",
+      "excerpt": "Live Results, Official Scorecards, Fight Recaps And More From Week 6 Of Dana White's Contender Series Season 10, Live From Meta APEX In Las Vegas On September 15, 2026 Read the Full Article…",
+      "image": "https://ufc.com/images/styles/card/s3/image/2024-08/081324_DWCS_S8_GENERIC_RESULTS_HERO_DANA.jpg?itok=3Y8vnCXQ",
+      "coverageCount": 4,
+      "relatedSources": [
+        "Cageside Press",
+        "MMA Prospect Vault",
+        "Combat Press"
+      ]
+    },
+    {
+      "id": "a4e0d2c8e8ff5dcc",
+      "title": "Tom Aspinall’s lost year: Inside the false dawns that led him to vacate the UFC heavyweight title",
+      "url": "https://sports.yahoo.com/mma/article/tom-aspinalls-lost-year-inside-the-false-dawns-that-led-him-to-vacate-the-ufc-heavyweight-title-200536001.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T20:05:36.000Z",
+      "excerpt": "Tom Aspinall’s vacating of the UFC heavyweight title came after a failed 11-month odyssey to regain fight-worthy vision. Yet the disappointment felt around the MMA space does not come close…",
+      "image": "https://media-mbst-pub-ue1.s3.amazonaws.com/creatr-uploaded-images/2025-12/8f6ed370-cfc4-11f0-bafb-18016d6efeda",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "f585dcc1cb7d1c2b",
+      "title": "‘I wouldn’t take that risk’ – Former UFC champ thinks Tom Aspinall is done",
+      "url": "https://www.mmamania.com/ufc-news/472511/i-wouldnt-take-that-risk-former-ufc-champ-thinks-tom-aspinall-is-done",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-09-15T20:00:00.000Z",
+      "excerpt": "Demetrious Johnson might be the best out there when it comes to fighters turned content creators. He’s very active and has got his production values down. He’s also very good with flashy…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/09/gettyimages-2264478839.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "89ef0e9468351beb",
+      "title": "Only man to beat Tom Aspinall inside the Octagon climbs heavyweight rankings after Noche UFC",
+      "url": "https://bloodyelbow.com/2026/09/15/only-man-to-beat-tom-aspinall-inside-the-octagon-climbs-heavyweight-rankings-after-noche-ufc/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-15T20:00:00.000Z",
+      "excerpt": "Curtis Blaydes is the biggest beneficiary of the latest rankings update. Tom Aspinall has been told to let his eye recover until January after choosing ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2024/03/GettyImages-1410523524-1-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "42ab6ea871be9ff0",
+      "title": "In Photos: Arman Tsarukyan Gets New Custom Shorts Ahead of UFC 331 Mauricio Ruffy Clash",
+      "url": "https://www.lowkickmma.com/in-photos-arman-tsarukyan-new-custom-shorts-ufc-331/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-09-15T19:43:02.000Z",
+      "excerpt": "Top 155-pound contender Arman Tsarukyan will be donning new custom shorts for his upcoming fight. Tsarukyan is going to...",
+      "image": "https://cdn.lowkickmma.com/2026/09/Untitled-design-1-3.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "b210b8a0329f2e43",
+      "title": "Nate Diaz still sees trilogy with 'f*cker' Conor McGregor happening",
+      "url": "https://sports.yahoo.com/articles/nate-diaz-still-sees-trilogy-193020928.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T19:30:20.000Z",
+      "excerpt": "More than a decade later, Nate Diaz still sees himself completing his trilogy with Conor McGregor.",
+      "image": "https://www.mmaweekly.com/.image/Mjk6MDAwMDAwMDAwMTIyNDg5/mcgregor-vs-diaz-ufc-196.png?profile=rss",
+      "imageCredit": {
+        "source": "MMAWeekly",
+        "url": "https://www.mmaweekly.com/news/nate-diaz-still-hoping-for-conor-mcgregor-trilogy"
+      },
+      "coverageCount": 2,
+      "relatedSources": [
+        "MMAWeekly"
+      ]
+    },
+    {
+      "id": "55090166dad45d22",
+      "title": "Michael Page expected low-ball offer from UFC after going 5-1",
+      "url": "https://www.mmamania.com/latest-news/472510/michael-page-expected-low-ball-offer-from-ufc-after-going-5-1",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-09-15T19:00:00.000Z",
+      "excerpt": "Michael Page is a free agent. We know this because Dana White said, very publicly, that UFC wasn’t interested in signing Page after he improved to 5-1 in the promotion with a decision over…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/03/gettyimages-2267740523.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "761e573343514345",
+      "title": "UFC 334 adds its third fight with the promotion’s return to MSG now taking shape",
+      "url": "https://bloodyelbow.com/2026/09/15/ufc-334-adds-its-third-fight-with-the-promotions-return-to-msg-now-taking-shape/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-15T19:00:00.000Z",
+      "excerpt": "UFC 334 is beginning to take shape.",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/08/GettyImages-2246903806-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "6b6e3e20d8faddee",
+      "title": "UFC legend would be 'shocked' if Tom Aspinall fights again",
+      "url": "https://sports.yahoo.com/articles/ufc-legend-shocked-tom-aspinall-184022312.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T18:40:22.000Z",
+      "excerpt": "Is it took risky for Tom Aspinall to return from a serious eye injury? One former longtime UFC champion suggests it is.",
+      "image": "https://s.yimg.com/lo/mysterio/api/727cacf343ee1c083dcc73f7c296cc63b287ece86b1d48f056a8689dbe4c531f/lightyear_networkapi/resizefill_w1200%3Bquality_80%3Bformat_webp/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Fmma_junkie_usa_today_articles_344%2F967b5ca321cfe07def335d99b7ae1c60.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "54ec810bddd6eabc",
+      "title": "UFC Featherweight Rankings 2025",
+      "url": "https://sports.yahoo.com/articles/ufc-featherweight-rankings-alexander-volkanovski-193016113.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T18:40:10.000Z",
+      "excerpt": "The UFC featherweight rankings showcase some of the best fighters in the entire sport. Where lightweight was once considered the […]",
+      "image": "https://media.zenfs.com/en/sportsnaut_articles_397/76510c4459b012eb9716bfb05580fabb.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "738c9217870533fd",
+      "title": "Khabib Nurmagomedov’s cousin set for first MMA fight in 3 years since UFC release",
+      "url": "https://bloodyelbow.com/2026/09/15/khabib-nurmagomedovs-cousin-set-for-first-mma-fight-in-3-years-since-ufc-release/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-15T18:30:00.000Z",
+      "excerpt": "The Nurmagomedov cousin is set to return.",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/08/GettyImages-1435614015-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "a79d7fc3b0d23b1a",
+      "title": "UFC Flyweight Rankings: Who Are the 10 Best 125ers in the World Right Now?",
+      "url": "https://sports.yahoo.com/articles/ufc-flyweight-rankings-joshua-van-223326661.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T18:28:46.000Z",
+      "excerpt": "The UFC flyweight rankings showcase the very best fighters in the 125-pound division. While this weight class may often not […]",
+      "image": "https://media.zenfs.com/en/sportsnaut_articles_397/26c01d566bf66c801fe266da9e024540.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "34b4354715dbf2fb",
+      "title": "Henry Cejudo’s Boxing Debut Set Against Javon Walton, Who Starred in Euphoria, Utopia & The Umbrella Academy",
+      "url": "https://www.lowkickmma.com/henry-cejudos-boxing-debut-set-against-javon-walton-who-starred-in-euphoria-utopia-the-umbrella-academy/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-09-15T18:12:24.000Z",
+      "excerpt": "Former UFC double champion Henry Cejudo was going to make his boxing debut on August 19 under the Misfits...",
+      "image": "https://www.youtube.com/embed/NvxDtD4XVLg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "5f680f782c6c5276",
+      "title": "UFC 331 'Embedded,' No. 2: Arman Tsarukyan finds a new running buddy",
+      "url": "https://sports.yahoo.com/articles/ufc-331-embedded-no-2-180124743.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T18:01:24.000Z",
+      "excerpt": "On the second episode of \"Embedded\" for UFC 331, Arman Tsarukyan meets a guy who lost 110 pounds from running.",
+      "image": "https://s.yimg.com/lo/mysterio/api/5f83ac44f2814f3f4e1e2b11df1ef23eb32fcac4edbad49836ef3fc6e2ecc69f/lightyear_networkapi/resizefit_w1200%3Bquality_80%3Bformat_webp/https%3A%2F%2Fs.yimg.com%2Fcv%2Fapiv2%2Fsocial%2Fimages%2Fyahoo_default_logo-1200x1200.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "810fcc50d5efbceb",
+      "title": "Islam Makhachev not backing down from Jon Jones feud",
+      "url": "https://sports.yahoo.com/articles/islam-makhachev-not-backing-down-180000313.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T18:00:00.000Z",
+      "excerpt": "Islam Makhachev has responded to Jon Jones, keeping their social media feud alive.",
+      "image": "https://www.mmaweekly.com/.image/Mjk6MDAwMDAwMDAwMTIyNTAz/jon-jones-islam-makhachev.png?profile=rss",
+      "imageCredit": {
+        "source": "MMAWeekly",
+        "url": "https://www.mmaweekly.com/news/islam-makhachev-not-backing-down-from-jon-jones-feud"
+      },
+      "coverageCount": 2,
+      "relatedSources": [
+        "MMAWeekly"
+      ]
+    },
+    {
+      "id": "cc735afcc021c858",
+      "title": "Conor McGregor thinks UFC 329 fight was an early stoppage",
+      "url": "https://www.mmamania.com/ufc-news/472509/conor-mcgregor-thinks-ufc-329-fight-was-an-early-stoppage",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-09-15T18:00:00.000Z",
+      "excerpt": "Conor McGregor is on one of his YouTube channels talking about the disaster that was his UFC 329 main event fight opposite Max Holloway. The video is here, but I’m going to tell you the most…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/09/gettyimages-2285712598.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "ec3e3e03504fa0e4",
+      "title": "Arman Tsarukyan and Joshua Van become the latest fighters to receive custom shorts ahead of UFC 331",
+      "url": "https://bloodyelbow.com/2026/09/15/arman-tsarukyan-and-joshua-van-become-the-latest-fighters-to-receive-custom-shorts-ahead-of-ufc-331/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-15T18:00:00.000Z",
+      "excerpt": "The latest pair to receive custom shorts.",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/09/arman-tsarukyan-joshua-van-1789491583964-1.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "b2cad572bd6d3973",
+      "title": "'Euphoria' actor steps in to fight Henry Cejudo in ex-UFC champ's boxing debut",
+      "url": "https://sports.yahoo.com/articles/euphoria-actor-steps-fight-henry-172520077.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T17:25:20.000Z",
+      "excerpt": "Former UFC champion Henry Cejudo is transitioning from MMA to boxing and will fight “Euphoria” actor Javon “Wanna” Walton on Sept. 26 in Miami.",
+      "image": "https://s.yimg.com/lo/mysterio/api/0fa288aff6f6cc632d628f4adaa75eaccb36e7518f71287d38f4ef5ed2fe35dd/lightyear_networkapi/resizefill_w900_h600%3Bquality_80%3Bformat_webp/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Fmma_junkie_usa_today_articles_344%2F6b65b9adadd8e0fb3351a8115edcf09a.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "17472a4d16ecba7b",
+      "title": "Bantamweight Barnburner Added to UFC 334 in New York",
+      "url": "https://sports.yahoo.com/articles/bantamweight-barnburner-added-ufc-334-171948504.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T17:19:48.000Z",
+      "excerpt": "The UFC has added an absolute barnburner to the UFC 334 event in New York on November 14. In the bantamweight division, Adrian Yañez returns to the Octagon to take on Juan Díaz. The event…",
+      "image": "https://media.zenfs.com/en/heavy_214/8f5d12c3150089b25306c6c4c6834dc4.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "1738700f3392be05",
+      "title": "Ryan Garcia shows off injury from crazy street fight",
+      "url": "https://sports.yahoo.com/articles/ryan-garcia-shows-off-injury-170956378.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T17:09:56.000Z",
+      "excerpt": "Ryan Garcia sustains injury from crazy street fight.",
+      "image": "https://www.mmaweekly.com/.image/Mjk6MDAwMDAwMDAwMTIyMTQy/ryan-garcia.png?profile=rss",
+      "imageCredit": {
+        "source": "MMAWeekly",
+        "url": "https://www.mmaweekly.com/news/ryan-garcia-shows-off-injury-from-crazy-street-fight"
+      },
+      "coverageCount": 2,
+      "relatedSources": [
+        "MMAWeekly"
+      ]
+    },
+    {
+      "id": "2e385f29a0eccd97",
+      "title": "Michael Page doesn't hold back on 'quite disrespectful' UFC departure",
+      "url": "https://sports.yahoo.com/articles/michael-page-doesnt-hold-back-170104000.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T17:01:04.000Z",
+      "excerpt": "Michael Page was hoping to at least have a conversation with the UFC brass before leaving.",
+      "image": "https://s.yimg.com/lo/mysterio/api/8536cac99393e986315bb61283255832a815fc92c1a7455d6b579cf0dd093b6c/lightyear_networkapi/resizefill_w1024_h683%3Bquality_80%3Bformat_webp/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Fmma_junkie_usa_today_articles_344%2Fcdc6a4412a0393abc8bb634a1b9b4a94.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "4a8ad33e30ab9abc",
+      "title": "Michael Page Feels Disrespected by UFC Release",
+      "url": "https://sports.yahoo.com/articles/michael-page-feels-disrespected-ufc-165636370.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T16:56:36.000Z",
+      "excerpt": "Former UFC middleweight fighter Michael Page says that he felt disrespected by the UFC giving him his release.After going 5-1 in six UFC fights, the world’s leading MMA promotion opted not…",
+      "image": "https://media.zenfs.com/en/heavy_214/8239534e7c12ebb30bea59fc48c85fdf.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "39f24ad36d7f831e",
+      "title": "David Tetreault Explains Why JoJo Diaz’s UK Debut Gives BKB 60 a Different Feel",
+      "url": "https://www.lowkickmma.com/david-tetreault-explains-why-jojo-diazs-uk-debut-gives-bkb-60-a-different-feel/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-09-15T16:56:10.000Z",
+      "excerpt": "BKB CEO David Tetreault sees Joseph “JoJo” Diaz Jr.’s first fight in the United Kingdom as a key part...",
+      "image": "https://www.youtube.com/embed/mGw6ys28Pto",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "e285ca468db9ad4a",
+      "title": "UFC 331 Betting Breakdown: Doo Ho Choi Favored Over Patricio Pitbull",
+      "url": "https://www.lowkickmma.com/ufc-331-betting-breakdown-doo-ho-choi-favored-over-patricio-pitbull/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-09-15T16:48:34.000Z",
+      "excerpt": "Doo Ho Choi is the betting favorite to beat Patricio Pitbull when they meet in a three-round featherweight fight...",
+      "image": "https://cdn.lowkickmma.com/2024/12/doo-ho-choi-2.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "98fe8ee6ab053e92",
+      "title": "Brian Ortega Issues Statement After Pulling Out of UFC 331",
+      "url": "https://sports.yahoo.com/articles/brian-ortega-issues-statement-pulling-164450124.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T16:44:50.000Z",
+      "excerpt": "Long-time UFC veteran Brian Ortega issued a statement after he was forced to pull out of the upcoming UFC 331 card.Ortega was set to fight Renato Moicano in a rematch on the UFC 331 main…",
+      "image": "https://media.zenfs.com/en/heavy_214/fb23164987c32644fec2bbe12a989da9.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "8996b6c7c97063bf",
+      "title": "Raul Rosas Jr. vs. Raoni Barcelos Odds: Heavy Money Lands on Rosas for UFC Fight Night Main Event",
+      "url": "https://www.lowkickmma.com/raul-rosas-jr-vs-raoni-barcelos-odds-heavy-money-lands-on-rosas-for-ufc-fight-night-main-event/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-09-15T16:39:54.000Z",
+      "excerpt": "Raul Rosas Jr. has become a huge betting favorite over Raoni Barcelos ahead of their UFC bantamweight main event...",
+      "image": "https://cdn.lowkickmma.com/2024/09/raul-rosas-jr-scaled-1-1536x1024.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "a50b19de37a0da00",
+      "title": "Dana White’s Contender Series Week 6 2026 Odds, Picks, Predictions for Tuesday, September 15",
+      "url": "https://sports.yahoo.com/articles/dana-white-contender-series-week-163700213.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T16:37:00.000Z",
+      "excerpt": "Read my preview for all DWCS Week 6 fights on Tuesday, September 15, including my best bets.",
+      "image": "https://media.zenfs.com/en/action_network_147/35768fe853877071e057b1e304b122a0.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "867b578d3d16a24d",
+      "title": "Gable Steveson Elevated to UFC 331 Main Card",
+      "url": "https://sports.yahoo.com/articles/gable-steveson-elevated-ufc-331-162927972.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T16:29:27.000Z",
+      "excerpt": "With Renato Moicano vs. Brian Ortega 2 removed from UFC 331, Gable Steveson has been elevated to the main card.Due to injury, Ortega is out of his UFC 331 rematch against Moicano, who was…",
+      "image": "https://media.zenfs.com/en/heavy_214/93f65f3f2a9ef138e6ba8ddc2d7aa451.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "fff541cde630a5a4",
+      "title": "UFC Legend Believes Tom Aspinall Will Not Fight Again: “Would Bust That Fu**ing Eye Out”",
+      "url": "https://www.lowkickmma.com/ufc-legend-believes-tom-aspinall-will-not-fight-again/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-09-15T16:26:40.000Z",
+      "excerpt": "An all-time MMA great believes Tom Aspinall will never enter the octagon again. Aspinall most recently decided to vacate...",
+      "image": "https://cdn.lowkickmma.com/2026/09/Untitled-design-1789489177.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "a3fdeeba4a28e4e5",
+      "title": "UFC Legend Says Josh Hokit Should Get Heavyweight Title Shot",
+      "url": "https://sports.yahoo.com/articles/ufc-legend-says-josh-hokit-161744354.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T16:17:44.000Z",
+      "excerpt": "UFC legend Daniel Cormier said that Josh Hokit should get the next heavyweight title shot against Ciryl Gane.With Tom Aspinall vacating the UFC heavyweight title, Gane’s interim belt will…",
+      "image": "https://media.zenfs.com/en/heavy_214/274a3ca9dbc05f6366451bdab76a9e3e.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "f3b5c90f2e91255c",
+      "title": "Coach Conversation | Crypto.com UFC 331: Joshua Van vs Alexandre Pantoja 2",
+      "url": "https://www.ufc.com/news/coach-conversation-cryptocom-ufc-331-joshua-van-vs-alexandre-pantoja-2",
+      "source": "UFC",
+      "sourceUrl": "https://www.ufc.com/news",
+      "publishedAt": "2026-09-15T16:15:00.000Z",
+      "excerpt": "New England Cartel Leader Tyson Chartier Returns To Discuss Saturday’s Flyweight Title Rematch Read the Full Article Here",
+      "image": "https://ufc.com/images/styles/card/s3/2026-09/120526-Pantoja-Van-Faceoff-GettyImages-2250242472.jpg?itok=gqBYaNUq",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "04cf52ade4044441",
+      "title": "UFC analyst makes compelling case for Josh Hokit title shot: 'No doubt in my mind'",
+      "url": "https://sports.yahoo.com/articles/ufc-analyst-makes-compelling-case-161027810.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T16:10:27.000Z",
+      "excerpt": "Does it make sense for Josh Hokit to fight Ciryl Gane for the heavyweight title after Tom Aspinall vacated?",
+      "image": "https://s.yimg.com/lo/mysterio/api/96888bd8b0cb4009c66423d47e59e5bf5e06ece014be580b66aa24b8309eb4a8/lightyear_networkapi/resizefill_w1200%3Bquality_80%3Bformat_webp/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Fmma_junkie_usa_today_articles_344%2Fa03e329d26ef5e27b7cb8ffc2f18c4dc.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "705f9f75c0915301",
+      "title": "Nate Diaz mocks ‘punching bag’ Ilia Topuria for UFC White House loss",
+      "url": "https://sports.yahoo.com/articles/nate-diaz-mocks-punching-bag-160000811.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T16:00:00.000Z",
+      "excerpt": "Nate Diaz calls out ‘lame’ Ilia Topuria",
+      "image": "https://media.zenfs.com/en/sb_nation_articles_115/09e95a2f654589d12e4d0e975318c82b.jpg",
+      "coverageCount": 2,
+      "relatedSources": [
+        "MMA Mania"
+      ]
+    },
+    {
+      "id": "d6cf0588a24c460e",
+      "title": "Henry Cejudo faces new opponent for Misfits boxing debut after Deen The Great backs out",
+      "url": "https://www.mmamania.com/boxing/472535/henry-cejudo-faces-new-opponent-for-misfits-boxing-debut-after-deen-the-great-backs-out",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-09-15T16:00:00.000Z",
+      "excerpt": "Henry Cejudo is headed to Misfits Boxing next week where he’ll face off with the actor who plays Ashtray from Euphoria. Yes, you read that correctly. “Triple C,” who has an Olympic gold…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/09/gettyimages-2250445317.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "2eb113df3e9d6ff6",
+      "title": "New UFC 331 bout order official as Gable Steveson gets first main card spot following cancellation",
+      "url": "https://bloodyelbow.com/2026/09/15/new-ufc-331-bout-order-official-as-gable-steveson-gets-first-main-card-spot-following-cancelation/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-15T16:00:00.000Z",
+      "excerpt": "Gable Steveson has been moved up a spot following Brian Ortega’s update. The UFC 331 main card has taken a hit due to Ortega confirming ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/07/GettyImages-2285697849-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "1f0795b4636ff587",
+      "title": "Brian Ortega shares graphic image of cut that forced him out of UFC 331",
+      "url": "https://sports.yahoo.com/articles/brian-ortega-shares-graphic-image-155600801.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T15:56:00.000Z",
+      "excerpt": "Brian Ortega has been forced out of UFC 331 with a nasty cut.",
+      "image": "https://www.mmaweekly.com/.image/Mjk6MDAwMDAwMDAwMTIyNTE2/brian-ortega-shares-the-image-of-his-cut.png?profile=rss",
+      "imageCredit": {
+        "source": "MMAWeekly",
+        "url": "https://www.mmaweekly.com/news/brian-ortega-shares-graphic-image-of-cut-that-forced-him-out-of-ufc-331"
+      },
+      "coverageCount": 2,
+      "relatedSources": [
+        "MMAWeekly"
+      ]
+    },
+    {
+      "id": "a057f691940487a2",
+      "title": "Michael Bisping empathizes with Tom Aspinall, hopes ex-UFC champ fights again",
+      "url": "https://sports.yahoo.com/articles/michael-bisping-empathizes-tom-aspinall-152031609.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T15:20:31.000Z",
+      "excerpt": "Michael Bisping believes Tom Aspinall still can fight again, but \"he's just got to take his time.\"",
+      "image": "https://s.yimg.com/lo/mysterio/api/75ba6151df47d1d751b072e6da867d8756a1f8d648acc3f155504d0709780de0/lightyear_networkapi/resizefill_w1200%3Bquality_80%3Bformat_webp/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Fmma_junkie_usa_today_articles_344%2F8df140a4790efd7bd43728a745499a20.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "07f9d8a6c77a6b90",
+      "title": "How Fighters Prepare for Opponents They May Never Face",
+      "url": "https://combatpress.com/2026/09/how-fighters-prepare-for-opponents-they-may-never-face/",
+      "source": "Combat Press",
+      "sourceUrl": "https://combatpress.com/",
+      "publishedAt": "2026-09-15T14:42:34.000Z",
+      "excerpt": "A fighter can name a preferred opponent for the final while still preparing seriously for the opening bout. That choice tells fans which matchup appeals, but little about how the camp…",
+      "image": "https://combatpress.com/wp-content/uploads/2026/09/image.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "a0762806c68471fe",
+      "title": "Nate Diaz open to joining new Ki MMA promotion",
+      "url": "https://sports.yahoo.com/articles/nate-diaz-open-joining-ki-143157464.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T14:31:57.000Z",
+      "excerpt": "Nate Diaz has shared an interest in Ki MMA.",
+      "image": "https://www.mmaweekly.com/.image/MjAxMDU1OTE5NjcxMzU0NDYx/nate-diaz-1600-01.jpg?profile=rss",
+      "imageCredit": {
+        "source": "MMAWeekly",
+        "url": "https://www.mmaweekly.com/news/nate-diaz-open-to-joining-new-ki-mma-promotion"
+      },
+      "coverageCount": 2,
+      "relatedSources": [
+        "MMAWeekly"
+      ]
+    },
+    {
+      "id": "daf1a3c4b2e82412",
+      "title": "Conor McGregor: Max Holloway needed to 'finish the f*cking fight' at UFC 329",
+      "url": "https://sports.yahoo.com/articles/conor-mcgregor-max-holloway-needed-143033179.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T14:30:33.000Z",
+      "excerpt": "Conor McGregor takes umbrage with the fact that Max Holloway was looking to go easy on him after he injured his knee.",
+      "image": "https://s.yimg.com/lo/mysterio/api/5f83ac44f2814f3f4e1e2b11df1ef23eb32fcac4edbad49836ef3fc6e2ecc69f/lightyear_networkapi/resizefit_w1200%3Bquality_80%3Bformat_webp/https%3A%2F%2Fs.yimg.com%2Fcv%2Fapiv2%2Fsocial%2Fimages%2Fyahoo_default_logo-1200x1200.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "bd5d66d836a266d9",
+      "title": "Deen The Great vs Henry Cejudo off: Main event replaced with UFC legend now facing Euphoria star Javon Walton",
+      "url": "https://bloodyelbow.com/2026/09/15/deen-the-great-vs-henry-cejudo-off-main-event-replaced-with-ufc-legend-now-facing-euphoria-star-javon-walton/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-15T14:29:36.000Z",
+      "excerpt": "Misfits Boxing have announced a switch for their upcoming event in Miami, Florida. Fans were surprised to learn that Henry Cejudo would be making his ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/02/GettyImages-1736778215-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "d006497e5181f4af",
+      "title": "Dana White announces new 50k ‘Proper Chaos’ bonus for UFC 331",
+      "url": "https://www.mmamania.com/ufc-bonuses-and-awards/472484/dana-white-announces-new-50k-proper-chaos-bonus-for-ufc-331",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-09-15T14:00:00.000Z",
+      "excerpt": "UFC CEO Dana White is adding another bonus into the mix for UFC 331 this weekend. UFC 331 goes down Saturday September 19th from the Crypto.com Arena in Los Angeles, California and features…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/09/gettyimages-2294604037.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "ba9366fa52d6894e",
+      "title": "New Tom Aspinall recovery timeline revealed after injury canceled Ciryl Gane rematch at UFC 334",
+      "url": "https://bloodyelbow.com/2026/09/15/new-tom-aspinall-recovery-timeline-revealed-after-injury-canceled-ciryl-gane-rematch-at-ufc-334/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-15T14:00:00.000Z",
+      "excerpt": "Tom Aspinall could require a fourth surgery if his eye isn’t healed by next January. Dana White said the UFC would be talking about Aspinall ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/03/Tom-Aspinall-Dana-White-1.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "1e42d6cd91697c28",
+      "title": "From Underdog to Champion to Brand Ambassador: Joshua Van’s Rise Continues with Rainbet Deal",
+      "url": "https://www.lowkickmma.com/from-underdog-to-champion-to-brand-ambassador-joshua-vans-rise-continues-with-rainbet-deal/",
+      "source": "LowKick MMA",
+      "sourceUrl": "https://www.lowkickmma.com/",
+      "publishedAt": "2026-09-15T13:48:58.000Z",
+      "excerpt": "Joshua Van is a unique presence in the world of MMA. The reigning UFC Flyweight Champion had one of...",
+      "image": "https://cdn.lowkickmma.com/2026/09/Joshua-Vans-Rise-Continues-with-Rainbet-Deal.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "c6cd88daa170df2e",
+      "title": "Jon Jones, Islam Makhachev trade barbs over validity of UFC greatness",
+      "url": "https://sports.yahoo.com/articles/jon-jones-islam-makhachev-trade-134029066.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T13:40:29.000Z",
+      "excerpt": "Jon Jones wasn't about to tolerate disrespect coming from Islam Makhachev without putting him in check.",
+      "image": "https://s.yimg.com/lo/mysterio/api/1a56bd35b2009324a0ae4f6098a6db8bbc1eb518e7a3ebf555f5dd79a3df067d/lightyear_networkapi/resizefill_w900_h600%3Bquality_80%3Bformat_webp/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Fmma_junkie_usa_today_articles_344%2F431fffbeaf458c657e5d21dce27da9bc.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "ae478d292899e53b",
+      "title": "3 Compelling Reasons To Tune Into The Inner Circle 31 On September 18",
+      "url": "https://www.onefc.com/features/3-compelling-reasons-to-tune-into-the-inner-circle-31-on-september-18/",
+      "source": "ONE Championship",
+      "sourceUrl": "https://www.onefc.com/news/",
+      "publishedAt": "2026-09-15T13:30:29.000Z",
+      "excerpt": "Kiamran Nabati and Nontachai Jitmuangnon headline a stacked card in Bangkok this Friday.",
+      "image": "https://cdn.onefc.com/wp-content/uploads/2025/10/Nontachai-Jitmuangnon-Soner-Sen-ONE-Friday-Fights-130-3-1-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "d6111efc758519a6",
+      "title": "Open Thread, September 15, 2026: Any opinions on the Emmy winners?",
+      "url": "https://www.mmamania.com/daily_mania_ufc_mma/472489/open-thread-september-15-2026-any-opinions-on-the-emmy-winners",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-09-15T13:05:00.000Z",
+      "excerpt": "Here’s your open thread for Tuesday! Also, we got an app! MMA ADJACENT Two of the most violent rikishi in the sport squared off last night with Gonoyama vs. Fujinokawa. They didn’t…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/09/gettyimages-2295316141.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "bb3951223e89ee48",
+      "title": "Matt Brown argues Tom Aspinall vacating heavyweight title creates more problems than it solves",
+      "url": "https://sports.yahoo.com/articles/matt-brown-argues-tom-aspinall-130000530.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T13:00:00.000Z",
+      "excerpt": "Tom Aspinall is no longer UFC heavyweight champion but what does that do for the rest of the division?",
+      "image": "https://media.zenfs.com/en/sb_nation_articles_115/aef407ca6a8bb8789c6388683df02b87.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "4e84f6cb480cfd75",
+      "title": "Islam Makhachev responds to Jon Jones referencing his KO loss in longest UFC win streak debate",
+      "url": "https://bloodyelbow.com/2026/09/15/islam-makhachev-responds-to-jon-jones-referencing-his-ko-loss-in-longest-ufc-win-streak-debate/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-15T13:00:00.000Z",
+      "excerpt": "Islam Makhachev and Jon Jones have been trading comments over their streaks. Dana White said Makhachev could be the greatest of all time before the ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2026/08/GettyImages-2290665649-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "00e024b20b6ccb4d",
+      "title": "UFC power rankings following Fight Night 288 Noche in Glendale, AZ",
+      "url": "https://sports.yahoo.com/articles/ufc-power-rankings-following-fight-125700649.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T12:57:00.000Z",
+      "excerpt": "Updated men's UFC power rankings after Fight Night 288.",
+      "image": "https://media.zenfs.com/en/the_big_lead_articles_114/6aa9736a04bc873db0fb4845ada4fdd6.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "7f847a8258cbf365",
+      "title": "Menifield Vs. Baraniewski Odds, Full Fight Preview & Prediction",
+      "url": "https://sports.yahoo.com/articles/menifield-vs-baraniewski-odds-full-125500671.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T12:55:00.000Z",
+      "excerpt": "Ultimate Fighting Championship (UFC) Light Heavyweight finishers Alonzo Menifield vs. Iwo Baraniewski will clash this weekend (Sat., Sept. 19, 2026) inside Crypto.com Arena in Los Angeles,…",
+      "image": "https://media.zenfs.com/en/sb_nation_articles_115/10290ad17e6f5aed55269026526f92e2.jpg",
+      "coverageCount": 2,
+      "relatedSources": [
+        "MMA Mania"
+      ]
+    },
+    {
+      "id": "f1bdae047287475d",
+      "title": "UFC 331 broadcast team set: Lead trio with Joe Rogan calls return to L.A.",
+      "url": "https://sports.yahoo.com/articles/ufc-331-broadcast-team-set-125029907.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T12:50:29.000Z",
+      "excerpt": "The usual numbered event team of Jon Anik, Daniel Cormier and Joe Rogan will call the action at UFC 331.",
+      "image": "https://s.yimg.com/lo/mysterio/api/83d01f8b862050ee3f19eb536b170726eaeab871f7ec26274891c93330b23b6b/lightyear_networkapi/resizefill_w1200%3Bquality_80%3Bformat_webp/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Fmma_junkie_usa_today_articles_344%2F73f508ed1d7ea67910dc010fe9814f42.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "1438f82f7aac98ee",
+      "title": "Matheus Camilo plans to respect Jai Herbert's experience at UFC Vegas 122",
+      "url": "https://sports.yahoo.com/articles/matheus-camilo-plans-respect-jai-120052523.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T12:00:52.000Z",
+      "excerpt": "Jai Herbert has been around the UFC for a minute, and Matheus Camilo said he respects that. But that won't stop him from showing his own upside.",
+      "image": "https://s.yimg.com/lo/mysterio/api/5f83ac44f2814f3f4e1e2b11df1ef23eb32fcac4edbad49836ef3fc6e2ecc69f/lightyear_networkapi/resizefit_w1200%3Bquality_80%3Bformat_webp/https%3A%2F%2Fs.yimg.com%2Fcv%2Fapiv2%2Fsocial%2Fimages%2Fyahoo_default_logo-1200x1200.png",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "7cb891c00e55ac00",
+      "title": "Renato Moicano unhappy after losing ‘easiest fight in the division’ against Brian Ortega at UFC 331",
+      "url": "https://www.mmamania.com/ufc-paramount-plus-news-hub-fight-cards-schedule/472475/renato-moicano-not-happy-after-losing-the-easiest-fight-in-the-division-against-brian-ortega-at-ufc-331",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-09-15T12:00:00.000Z",
+      "excerpt": "Renato Moicano is not happy that his 155-pound showdown with Brian Ortega has been called off (again) at UFC 331. Moicano vs. Ortega were originally booked to fight at UFC 326 back in March…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/04/gettyimages-2269863379.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 2,
+      "relatedSources": [
+        "Bloody Elbow"
+      ]
+    },
+    {
+      "id": "366c2aa4a5b965d6",
+      "title": "Nate Diaz ‘100%’ interested in signing for new UFC rival after turning Octagon return down",
+      "url": "https://bloodyelbow.com/2026/09/15/nate-diaz-100-interested-in-signing-for-new-ufc-rival-after-turning-octagon-return-down/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-15T12:00:00.000Z",
+      "excerpt": "Nate Diaz is keeping his options open and planning to ‘fight everywhere’ for the foreseeable future. Earlier this year, Diaz turned down the option to ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2025/05/GettyImages-1240327135-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "c3166ceb5f84a1ab",
+      "title": "Ki MMA’s Rich Chou: “We Don’t Have to Have Eight Weight Classes”",
+      "url": "https://cagesidepress.com/2026/09/15/ki-mmas-rich-chou-dont-have-eight-weight-classes/",
+      "source": "Cageside Press",
+      "sourceUrl": "https://cagesidepress.com/",
+      "publishedAt": "2026-09-15T11:51:06.000Z",
+      "excerpt": "New York — Monday marked the official launch of Ki MMA, the latest promotion envisioned and founded by longtime industry leader Scott Coker. The Strikeforce founder and former Bellator MMA…",
+      "image": "https://cagesidepress.com/wp-content/uploads/2026/09/KI-MMA-LOGO.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "3f3ee6f215d4b913",
+      "title": "UFC 331: Van vs Pantoja start time, undercard and how to watch fights this weekend",
+      "url": "https://sports.yahoo.com/articles/ufc-331-van-vs-pantoja-155339508.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T11:19:13.000Z",
+      "excerpt": "Alexandre Pantoja aims to regain the flyweight title from Joshua Van, having suffered an injury in their first meeting",
+      "image": "https://media.zenfs.com/en/the_independent_us_sports_articles_270/4a97eb23ea0cc9dda983a06bee48def4.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "c05576a2f6983892",
+      "title": "Jon Jones freaks out over Islam Makhachev’s PED allegations: ‘Keep telling yourself it was steroids’",
+      "url": "https://www.mmamania.com/ufc-news/472471/jon-jones-freaks-out-over-islam-makhachevs-ped-allegations-keep-telling-yourself-it-was-steroids",
+      "source": "MMA Mania",
+      "sourceUrl": "https://www.mmamania.com/",
+      "publishedAt": "2026-09-15T11:12:26.000Z",
+      "excerpt": "Jon Jones is still out there ready to respond whenever someone says anything about his GOAT status, especially other fighters who are starting to bite at his heels. Jones is widely…",
+      "image": "https://platform.mmamania.com/wp-content/uploads/sites/110/2026/08/gettyimages-2292557030.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "a7eb3904b69e123e",
+      "title": "Jon Jones taunts Tom Aspinall as old rival gives up UFC title",
+      "url": "https://sports.yahoo.com/articles/jon-jones-taunts-tom-aspinall-110911738.html",
+      "source": "Uncrowned",
+      "sourceUrl": "https://sports.yahoo.com/mma/",
+      "publishedAt": "2026-09-15T11:11:13.000Z",
+      "excerpt": "Aspinall has vacated the heavyweight title due to an ongoing eye injury, more than a year after Jones gave up the same belt to avoid facing the Briton",
+      "image": "https://media.zenfs.com/en/the_independent_us_sports_articles_270/b89b75c12e893eac222640d3e31bfff2.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    },
+    {
+      "id": "9d4231bc11627e61",
+      "title": "UFC 331 loses main card matchup on fight week as star releases statement: ‘This one hurts’",
+      "url": "https://bloodyelbow.com/2026/09/15/ufc-331-loses-main-card-matchup-on-fight-week-as-star-releases-statement-this-one-hurts/",
+      "source": "Bloody Elbow",
+      "sourceUrl": "https://bloodyelbow.com/",
+      "publishedAt": "2026-09-15T11:00:00.000Z",
+      "excerpt": "Brian Ortega has posted on social media following the news he won’t be fighting this weekend. Dana White will be awarding an extra $50,000 bonus ...",
+      "image": "https://bloodyelbow.com/wp-content/uploads/1/2024/06/GettyImages-1342590052-scaled.jpg",
+      "coverageCount": 1,
+      "relatedSources": []
+    }
+  ]
+}
