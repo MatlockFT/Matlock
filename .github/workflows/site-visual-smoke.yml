@@ -69,7 +69,7 @@ jobs:
 
       - name: Upload viewport screenshots
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: site-visual-smoke-${{ github.run_id }}
           path: artifacts/site-visual-smoke
