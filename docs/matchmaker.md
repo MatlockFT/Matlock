@@ -34,11 +34,13 @@ Rematches are conservative. A previous meeting normally excludes the matchup. Ex
 
 ## Temporal backtesting
 
-Historical validation must not leak present-day information backward. The baseline backtest truncates each fighter's history and verified meeting ledger at the case cutoff date, reconstructs the record from only those bouts, clears current bookings and current champion-state flags, reconstructs active status from fight recency, and infers division only from source-native fight weight classes known at the cutoff.
+Historical validation must not leak present-day information backward. The backtest truncates each fighter's history and verified meeting ledger at the case cutoff date, reconstructs the record from only those bouts, clears current bookings and current champion-state flags, reconstructs active status from fight recency, and infers division only from source-native fight weight classes known at the cutoff.
 
-Historical UFC ranking snapshots are not yet complete enough to use safely across the full sample. Until they are, the baseline deliberately strips rankings rather than applying today's rankings to an older booking. That makes the first report an **unranked temporal baseline**. It is useful for finding failures in eligibility, career-state, rematch, timing and general opponent-fit logic, but it is not the final historical calibration score.
+Dated ranking snapshots under `assets/data/matchmaker/rankings/` are now part of the historical state. For each case, the backtest uses only the newest snapshot whose date is on or before the cutoff and is no more than 14 days old. If no qualifying snapshot exists, that case is deliberately evaluated unranked rather than applying today's rankings to an older booking. The report separates snapshot-backed cases from unranked cases so the historical score becomes more representative automatically as the archive grows.
 
-The historical candidate universe is also survivor-biased because it can only reconstruct fighters present in the current normalized Matchmaker dataset. The report records those coverage limits, missing targets, ineligible real bookings and representative misses so future changes can target systemic failure patterns instead of overfitting individual fights.
+The backtest also records why a real next opponent could not be reconstructed. Missing pre-cutoff UFC history, unverified history, missing historical division and division mismatches are counted separately rather than collapsed into a single missing-roster bucket. This keeps data-coverage failures distinct from actual matchmaking-model misses.
+
+The historical candidate universe remains survivor-biased because it can only reconstruct fighters present in the current normalized Matchmaker dataset. The report records those coverage limits, missing targets, ineligible real bookings and representative misses so future changes can target systemic failure patterns instead of overfitting individual fights.
 
 ## Data quality and failure behavior
 
