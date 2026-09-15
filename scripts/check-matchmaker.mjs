@@ -12,6 +12,8 @@ const bout = (date, result = 'W', opponentIds = [], text = '') => ({ date, resul
 const make = (id, rank = 8, extra = {}) => ({ id, name: id.toUpperCase(), active: true, division: 'Flyweight', rank, lastFight: '2026-08-01', history: [bout('2026-08-01'), bout('2026-05-01'), bout('2026-02-01')], ...extra });
 const context = { asOf: '2026-09-10', event: { date: '2026-08-01', bouts: [{ fighters: [{ id: 'alpha', result: 'W' }, { id: 'bravo', result: 'L' }] }] }, locks: [], overrides: {} };
 const a = make('alpha'), b = make('bravo', 6);
+assert.equal(E.VERSION, 2, 'Matchmaker V2 must remain active');
+assert.deepEqual(Object.keys(E.WEIGHTS), ['competitiveLevel', 'careerDirection', 'trajectory', 'experience', 'timing'], 'Eligibility/freshness/story must not masquerade as scoring weights');
 assert.deepEqual(E.targetRange(a, context), [4, 9]);
 assert.deepEqual(E.targetRange(a, { ...context, event: { date: '2026-09-01', bouts: [{ fighters: [{ id: 'alpha', result: 'L' }] }] } }), [7, 13]);
 assert.deepEqual(E.targetRange(make('novice', null, { history: [bout('2026-08-01')] }), context), [16, 26]);
@@ -30,6 +32,15 @@ assert(E.rematchCase({ ...a, history: [bout('2026-08-01', 'D', ['bravo'])] }, b,
 assert(!E.rematchCase({ ...a, history: [bout('2026-08-01', 'W', ['bravo'])] }, b, context).allowed);
 assert.equal(E.rank({ ...a, rankings: [{ division: 'Flyweight', rank: 8 }] }, { ...context, overrides: { alpha: { division: 'Bantamweight' } } }), null);
 
+// Pair scoring must represent the fight, not whichever fighter happened to be the subject.
+const forwardPair = E.evaluatePair(a, b, context);
+const reversePair = E.evaluatePair(b, a, context);
+assert(forwardPair.eligible && reversePair.eligible);
+assert.equal(forwardPair.score, reversePair.score, 'A↔B must have one symmetric overall fight score');
+assert.equal(forwardPair.case.code, reversePair.case.code, 'A↔B must resolve to the same matchmaking case');
+assert(!/(?:no prior|no previous).*meeting/i.test(forwardPair.rationale), 'Freshness/verification must not be used as the public WHY for a matchup');
+assert(forwardPair.parts.a && forwardPair.parts.b && Number.isFinite(forwardPair.parts.weakerSide), 'Pair scoring must expose both fighters’ directional fit');
+
 // A verified prior meeting is a hard eligibility rule, even when weaker UFC.com profile prose missed it.
 const jeanFixture = make('jean-silva', 6, {
   name: 'Jean Silva', division: 'Featherweight',
@@ -43,8 +54,8 @@ assert.equal(jeanDiego.eligible, false, 'A verified Jean Silva vs Diego Lopes pr
 assert.match(jeanDiego.reason, /Previously fought on 2025-09-13/);
 const uncertain = E.evaluate(make('uncertain', 7, { name: 'Uncertain Fighter' }), make('fresh', 8, { name: 'Fresh Fighter' }), context);
 assert(uncertain.eligible);
-assert(!/no previous meeting found/i.test(uncertain.rationale, 'Incomplete history must never be phrased as proof that two fighters never met'));
-assert.match(uncertain.rationale, /no prior meeting detected/i);
+assert(!/(?:no prior|no previous).*meeting/i.test(uncertain.rationale), 'Incomplete history must not become the explanatory WHY for a matchup');
+assert(uncertain.case?.code && uncertain.case?.reasons?.length >= 2, 'Every eligible V2 matchup must have a substantive matchmaking case');
 
 // Direct UFCStats parser fixtures remain covered even though production uses a GitHub-hosted mirror.
 const statsJean = '52ef95b5860fb28c', statsDiego = 'f166e93d04a8c274';
@@ -137,6 +148,25 @@ if (data.sources?.meetings) {
   assert(!E.recommendations(jean, data.fighters, ctx).some(r => r.fighter.id === 'diego-lopes'), 'Diego Lopes must not appear as a normal fresh recommendation for Jean Silva');
 }
 
+// The Delgado/McMillen example must be one fight in the engine, not two unrelated directional scores.
+const delgado = data.fighters.find(f => f.name === 'Jose Miguel Delgado');
+const mcmillen = data.fighters.find(f => f.name === 'Tommy McMillen');
+if (delgado && mcmillen) {
+  const pairEvent = data.events.find(event => {
+    const ids = new Set(event.bouts.flatMap(bout => bout.fighters || []).map(f => f.id));
+    return ids.has(delgado.id) && ids.has(mcmillen.id);
+  }) || data.events[0];
+  const pairCtx = { ...context, event: pairEvent, asOf: data.generatedAt };
+  const dm = E.evaluatePair(delgado, mcmillen, pairCtx);
+  const md = E.evaluatePair(mcmillen, delgado, pairCtx);
+  assert.equal(dm.eligible, md.eligible, 'Delgado/McMillen eligibility must be symmetric');
+  if (dm.eligible) {
+    assert.equal(dm.score, md.score, 'Delgado/McMillen must have one shared fight-plausibility score');
+    assert.equal(dm.case.code, md.case.code, 'Delgado/McMillen must have one shared matchmaking case');
+    assert(!/(?:no prior|no previous).*meeting/i.test(dm.rationale), 'Delgado/McMillen rationale must explain matchmaking merit, not history verification');
+  }
+}
+
 let checked = 0;
 const historyV2 = Number(data.sources?.meetings?.historyModelVersion || 0) >= 2;
 for (const event of data.events) {
@@ -152,7 +182,10 @@ for (const event of data.events) {
     for (const r of recs) {
       assert(r.eligible && !r.fighter.booking && r.fighter.active);
       if (historyV2) assert.equal(r.fighter.meetingCoverage?.verified, true, `Unverified candidate leaked into recommendations: ${r.fighter.name}`);
-      assert(r.score >= 0 && r.score <= 100); assert(r.rationale && r.evidence.length >= 4); checked++;
+      assert(r.score >= 0 && r.score <= 100);
+      assert(r.case?.code && r.case?.reasons?.length >= 2, `Recommendation lacks a substantive matchmaking case: ${fighter.name} vs ${r.fighter.name}`);
+      assert(!/(?:no prior|no previous).*meeting/i.test(r.rationale), `Recommendation rationale fell back to history verification: ${fighter.name} vs ${r.fighter.name}`);
+      assert(r.rationale && r.evidence.length >= 4); checked++;
     }
     assert.equal(JSON.stringify(fighter), before, 'Engine must not mutate source records');
   }
@@ -174,4 +207,4 @@ assert(!/localStorage|showModal|data-mm-lock|autoMatch\(/.test(simpleJs), 'Read-
 const simpleCss = fs.readFileSync('assets/matchmaker-simple.css', 'utf8');
 for (const marker of ['.mm-simple-hero', '.mm-simple-eventbar', '.mm-simple-board', '.mm-simple-file', '.mm-simple-match', 'prefers-reduced-motion']) assert(simpleCss.includes(marker), `Missing simplified Matchmaker style: ${marker}`);
 assert(fs.readFileSync('_config.yml', 'utf8').includes('link: "/matchmaker/"'));
-console.log(`Matchmaker checks passed: hard rematch regression, structured-history source reconciliation, UFCStats/Road-to-UFC mirror parsing, ${data.events.length} real cards, ${checked} eligible recommendations, fail-closed unverified histories, and simplified read-only next-fight presentation.`);
+console.log(`Matchmaker checks passed: two-sided V2 pair scoring, substantive case rationales, hard rematch regression, structured-history reconciliation, ${data.events.length} real cards, ${checked} eligible recommendations, fail-closed unverified histories, and simplified read-only next-fight presentation.`);
