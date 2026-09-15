@@ -23,29 +23,29 @@ const fighter = (id, name, rank, latestResult) => ({
   meetingCoverage: coverage
 });
 
-// Mirrors the failure mode behind Grasso/Rose: a fresh, close-ranked matchup can be
-// eligible while the descriptive confidence model still calls it low confidence.
-const grasso = fighter('alexa-grasso', 'Alexa Grasso', 3, 'W');
-const rose = fighter('rose-namajunas', 'Rose Namajunas', 5, 'L');
-const roster = [grasso, rose];
+// Confidence remains diagnostic only. Use a wider but still hard-eligible ranked pairing
+// so this regression stays independent of the separate close-ranked hierarchy test.
+const rankThree = fighter('rank-three', 'Rank Three', 3, 'W');
+const rankNine = fighter('rank-nine', 'Rank Nine', 9, 'L');
+const roster = [rankThree, rankNine];
 const ctx = {
   asOf: '2026-09-15T00:00:00Z',
   event: {
     date: '2026-09-12',
-    bouts: [{ fighters: [{ id: grasso.id, result: 'W' }] }]
+    bouts: [{ fighters: [{ id: rankThree.id, result: 'W' }] }]
   },
   locks: [],
   overrides: {}
 };
 
-const pair = E.evaluatePair(grasso, rose, { ...ctx, fighterIndex: new Map(roster.map(f => [f.id, f])) }, false, true);
-assert.equal(pair.eligible, true, 'Close-ranked fresh matchup should pass hard eligibility');
+const pair = E.evaluatePair(rankThree, rankNine, { ...ctx, fighterIndex: new Map(roster.map(f => [f.id, f])) }, false, true);
+assert.equal(pair.eligible, true, 'Fixture must pass hard eligibility');
 assert.equal(pair.case.code, 'divisional-sorting', 'Fixture must exercise the generic low-confidence case');
 assert.equal(pair.confidence, 'low', 'Fixture must remain low confidence so confidence cannot silently become eligibility');
 assert.equal(pair.publishable, true, 'An eligible automatic matchup must not be vetoed by confidence');
 
-const recommendations = E.recommendations(grasso, roster, ctx);
+const recommendations = E.recommendations(rankThree, roster, ctx);
 assert.equal(recommendations.length, 1, 'Eligible matchup should produce a recommendation instead of an empty card');
-assert.equal(recommendations[0].fighter.id, rose.id, 'The eligible opponent must survive recommendation publication');
+assert.equal(recommendations[0].fighter.id, rankNine.id, 'The eligible opponent must survive recommendation publication');
 
 console.log('Eligible recommendation gate: low confidence no longer vetoes a hard-eligible matchup.');
