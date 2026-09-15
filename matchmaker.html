@@ -6,6 +6,7 @@ permalink: /matchmaker/
 page_styles:
   - /assets/matchmaker-simple.css
   - /assets/matchmaker-ui-readability.css
+  - /assets/matchmaker-compact.css
 page_scripts:
   - /assets/matchmaker-engine.js
   - /assets/matchmaker-public.js
@@ -14,7 +15,7 @@ page_scripts:
 
 <article class="mm-simple" data-matchmaker-simple data-feed="{{ '/assets/data/matchmaker/current.json' | relative_url }}" data-live-feed="https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/data/matchmaker/current.json">
   <header class="mm-simple-hero">
-    <p class="mm-simple-kicker"><span>Post-fight</span> Matchmaking War Room</p>
+    <p class="mm-simple-kicker" hidden>Matchmaking War Room</p>
     <h1><span>Match</span>maker</h1>
   </header>
 
@@ -23,27 +24,22 @@ page_scripts:
 
   <div data-mm-app hidden>
     <section class="mm-simple-eventbar" aria-label="Completed UFC event">
-      <label>Completed event
+      <label>Event
         <select data-mm-event aria-label="Choose completed UFC event"></select>
       </label>
-      <div class="mm-simple-event-copy">
+      <div class="mm-simple-event-copy" hidden>
         <small>Active event file</small>
         <strong data-mm-event-name>Completed UFC event</strong>
         <span data-mm-event-date>—</span>
       </div>
       <div class="mm-simple-event-meta">
         <span data-mm-count>— FIGHTERS</span>
-        <a data-mm-event-source href="https://www.ufc.com/events" target="_blank" rel="noopener">OFFICIAL RESULT ↗</a>
+        <a data-mm-event-source href="https://www.ufc.com/events" target="_blank" rel="noopener">UFC RESULT ↗</a>
       </div>
     </section>
 
     <section class="mm-simple-board" aria-label="Plausible next UFC matchups">
       <div class="mm-simple-grid" data-mm-grid></div>
     </section>
-
-    <footer class="mm-simple-foot">
-      <p>These are matchmaking suggestions, not fight predictions. The order reflects how sensible each booking looks from the current roster and event context.</p>
-      <p>Matchup data updates with the published UFC roster and event feed.</p>
-    </footer>
   </div>
 </article>
