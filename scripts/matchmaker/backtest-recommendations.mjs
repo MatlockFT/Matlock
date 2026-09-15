@@ -7,9 +7,11 @@ const P = require('../../assets/matchmaker-public.js');
 
 const DATA_PATH = 'assets/data/matchmaker/current.json';
 const REPORT_PATH = 'assets/data/matchmaker/backtest-report.json';
+const RANKING_DIR = 'assets/data/matchmaker/rankings';
 const DAY = 86400000;
 const DEFAULT_LOOKBACK_DAYS = 730;
 const DEFAULT_MAX_CASES = 120;
+const DEFAULT_MAX_RANKING_SNAPSHOT_AGE_DAYS = 14;
 
 function argument(name, fallback) {
   const index = process.argv.indexOf(name);
@@ -18,6 +20,7 @@ function argument(name, fallback) {
 
 const lookbackDays = Math.max(90, Number(argument('--lookback-days', DEFAULT_LOOKBACK_DAYS)) || DEFAULT_LOOKBACK_DAYS);
 const maxCases = Math.max(10, Number(argument('--max-cases', DEFAULT_MAX_CASES)) || DEFAULT_MAX_CASES);
+const maxRankingSnapshotAgeDays = Math.max(0, Number(argument('--max-ranking-snapshot-age-days', DEFAULT_MAX_RANKING_SNAPSHOT_AGE_DAYS)) || DEFAULT_MAX_RANKING_SNAPSHOT_AGE_DAYS);
 const data = JSON.parse(await fs.readFile(DATA_PATH, 'utf8'));
 const generatedDay = String(data.generatedAt || '').slice(0, 10);
 if (!/^\d{4}-\d{2}-\d{2}$/.test(generatedDay)) throw new Error('Backtest requires a valid Matchmaker generatedAt timestamp.');
@@ -35,6 +38,48 @@ function normalize(value) {
 function dayDiff(later, earlier) {
   const a = Date.parse(later), b = Date.parse(earlier);
   return Number.isFinite(a) && Number.isFinite(b) ? (a - b) / DAY : Infinity;
+}
+
+async function loadRankingSnapshots() {
+  let entries = [];
+  try {
+    entries = await fs.readdir(RANKING_DIR, { withFileTypes: true });
+  } catch (error) {
+    if (error?.code === 'ENOENT') return [];
+    throw error;
+  }
+
+  const snapshots = [];
+  for (const entry of entries) {
+    const match = entry.isFile() && entry.name.match(/^(\d{4}-\d{2}-\d{2})\.json$/);
+    if (!match) continue;
+    try {
+      const raw = JSON.parse(await fs.readFile(`${RANKING_DIR}/${entry.name}`, 'utf8'));
+      const payload = typeof raw?.content === 'string' ? JSON.parse(raw.content) : raw;
+      if (!Array.isArray(payload?.rankings)) continue;
+      snapshots.push({
+        date: match[1],
+        capturedAt: payload.capturedAt || `${match[1]}T00:00:00Z`,
+        rankings: payload.rankings
+      });
+    } catch (error) {
+      console.warn(`Skipping unreadable ranking snapshot ${entry.name}: ${error.message}`);
+    }
+  }
+  return snapshots.sort((a, b) => a.date.localeCompare(b.date));
+}
+
+const rankingSnapshots = await loadRankingSnapshots();
+
+function rankingSnapshotForCutoff(cutoff) {
+  for (let i = rankingSnapshots.length - 1; i >= 0; i--) {
+    const snapshot = rankingSnapshots[i];
+    if (snapshot.date > cutoff) continue;
+    const ageDays = dayDiff(cutoff, snapshot.date);
+    if (ageDays <= maxRankingSnapshotAgeDays) return { ...snapshot, ageDays };
+    break;
+  }
+  return null;
 }
 
 function divisionFromWeightClass(weightClass) {
@@ -67,34 +112,55 @@ function reconstructRecord(history) {
   return `${counts.W}-${counts.L}-${counts.D}`;
 }
 
-function freezeFighter(fighter, cutoff) {
-  if (!fighter?.id || fighter.meetingCoverage?.verified !== true) return null;
+function snapshotRanking(fighter, division, snapshot) {
+  if (!snapshot) return null;
+  const byId = snapshot.rankings.find(item => item.id === fighter.id && normalize(item.division) === normalize(division));
+  const byName = byId || snapshot.rankings.find(item => normalize(item.name) === normalize(fighter.name) && normalize(item.division) === normalize(division));
+  if (!byName || !Number.isFinite(Number(byName.rank))) return null;
+  return {
+    division,
+    rank: Number(byName.rank),
+    interim: Boolean(byName.interim)
+  };
+}
+
+function freezeFighterResult(fighter, cutoff, snapshot = null) {
+  if (!fighter?.id) return { fighter: null, reason: 'missing-fighter-id' };
+  if (fighter.meetingCoverage?.verified !== true) return { fighter: null, reason: 'unverified-fight-history' };
   const history = [...(fighter.history || [])]
     .filter(bout => bout.date && bout.date <= cutoff)
     .sort((a, b) => String(b.date).localeCompare(String(a.date)));
-  if (!history.length) return null;
+  if (!history.length) return { fighter: null, reason: 'no-pre-cutoff-ufc-history' };
   const verifiedMeetings = [...(fighter.verifiedMeetings || [])]
     .filter(meeting => meeting.date && meeting.date <= cutoff)
     .sort((a, b) => String(b.date).localeCompare(String(a.date)));
   const division = historicalDivision(fighter, cutoff);
-  if (!division) return null;
+  if (!division) return { fighter: null, reason: 'no-historical-division' };
   const lastFight = history[0]?.date || null;
   const active = Boolean(lastFight && dayDiff(cutoff, lastFight) <= 730);
+  const historicalRanking = snapshotRanking(fighter, division, snapshot);
   return {
-    ...fighter,
-    active,
-    division,
-    rank: null,
-    rankings: [],
-    booking: null,
-    formerChampion: false,
-    interim: false,
-    history,
-    verifiedMeetings,
-    lastFight,
-    record: reconstructRecord(history),
-    meetingCoverage: { ...(fighter.meetingCoverage || {}), verified: true }
+    fighter: {
+      ...fighter,
+      active,
+      division,
+      rank: historicalRanking?.rank ?? null,
+      rankings: historicalRanking ? [{ division, rank: historicalRanking.rank }] : [],
+      booking: null,
+      formerChampion: false,
+      interim: historicalRanking?.interim || false,
+      history,
+      verifiedMeetings,
+      lastFight,
+      record: reconstructRecord(history),
+      meetingCoverage: { ...(fighter.meetingCoverage || {}), verified: true }
+    },
+    reason: null
   };
+}
+
+function freezeFighter(fighter, cutoff, snapshot = null) {
+  return freezeFighterResult(fighter, cutoff, snapshot).fighter;
 }
 
 function linkedOpponentId(fighter, bout) {
@@ -161,30 +227,70 @@ function rate(numerator, denominator) {
   return denominator ? Number((numerator / denominator).toFixed(4)) : 0;
 }
 
+function emptyHitStats() {
+  return { evaluated: 0, eligibleTarget: 0, engineTop1: 0, engineTop3: 0, engineTop8: 0, publicTop3: 0 };
+}
+
+function finalizeHitStats(stats) {
+  return {
+    ...stats,
+    engineTop1Rate: rate(stats.engineTop1, stats.evaluated),
+    engineTop3Rate: rate(stats.engineTop3, stats.evaluated),
+    engineTop8Rate: rate(stats.engineTop8, stats.evaluated),
+    publicTop3Rate: rate(stats.publicTop3, stats.evaluated)
+  };
+}
+
 const availableCases = candidateCases();
 const cases = balancedSample(availableCases, maxCases);
 const missReasons = {};
+const missingTargetReasons = {};
 const byDivision = {};
 const examples = [];
+const snapshotStats = {
+  snapshotBacked: emptyHitStats(),
+  unranked: emptyHitStats()
+};
 let evaluatedCases = 0;
 let eligibleTargetCases = 0;
 let engineTop1 = 0, engineTop3 = 0, engineTop8 = 0, publicTop3 = 0;
 let targetMissingFromFrozenRoster = 0;
 let targetUnavailableAtCutoff = 0;
 let targetIneligible = 0;
+let casesWithRankingSnapshot = 0;
+let casesWithoutRankingSnapshot = 0;
 
 for (const item of cases) {
-  const frozen = data.fighters.map(fighter => freezeFighter(fighter, item.cutoff)).filter(Boolean);
+  const snapshot = rankingSnapshotForCutoff(item.cutoff);
+  if (snapshot) casesWithRankingSnapshot++;
+  else casesWithoutRankingSnapshot++;
+  const subset = snapshot ? snapshotStats.snapshotBacked : snapshotStats.unranked;
+
+  const frozenResults = data.fighters.map(fighter => ({ source: fighter, ...freezeFighterResult(fighter, item.cutoff, snapshot) }));
+  const frozen = frozenResults.filter(result => result.fighter).map(result => result.fighter);
+  const allFrozenIndex = new Map(frozen.map(fighter => [fighter.id, fighter]));
   const roster = frozen.filter(fighter => normalize(fighter.division) === normalize(item.division));
   const index = new Map(roster.map(fighter => [fighter.id, fighter]));
   const subject = index.get(item.fighterId);
   const actual = index.get(item.actualOpponentId);
-  const divisionStats = byDivision[item.division] || (byDivision[item.division] = { sampled: 0, evaluated: 0, eligibleTarget: 0, engineTop1: 0, engineTop3: 0, publicTop3: 0 });
+  const divisionStats = byDivision[item.division] || (byDivision[item.division] = { sampled: 0, evaluated: 0, eligibleTarget: 0, engineTop1: 0, engineTop3: 0, engineTop8: 0, publicTop3: 0 });
   divisionStats.sampled++;
 
   if (!subject || !actual) {
     targetMissingFromFrozenRoster++;
-    bump(missReasons, 'target-missing-from-frozen-roster');
+    let reason = 'target-missing-from-frozen-roster';
+    if (!subject) {
+      const result = frozenResults.find(entry => entry.source.id === item.fighterId);
+      reason = `subject-${result?.reason || 'missing-from-frozen-roster'}`;
+    } else if (!allFrozenIndex.has(item.actualOpponentId)) {
+      const result = frozenResults.find(entry => entry.source.id === item.actualOpponentId);
+      reason = result?.reason || 'actual-opponent-missing-from-frozen-roster';
+    } else {
+      const frozenActual = allFrozenIndex.get(item.actualOpponentId);
+      reason = `actual-opponent-division-mismatch:${frozenActual?.division || 'unknown'}`;
+    }
+    bump(missingTargetReasons, reason);
+    bump(missReasons, reason);
     continue;
   }
 
@@ -209,25 +315,45 @@ for (const item of cases) {
   const publicRank = publicRecommendations.findIndex(recommendation => recommendation.fighter.id === actual.id);
 
   evaluatedCases++;
+  subset.evaluated++;
   divisionStats.evaluated++;
   if (actualPair.eligible && actualPair.publishable) {
     eligibleTargetCases++;
+    subset.eligibleTarget++;
     divisionStats.eligibleTarget++;
   } else {
     targetIneligible++;
     bump(missReasons, actualPair.reason || 'actual-opponent-ineligible');
   }
 
-  if (engineRank === 0) { engineTop1++; divisionStats.engineTop1++; }
-  if (engineRank >= 0 && engineRank < 3) { engineTop3++; divisionStats.engineTop3++; }
-  if (engineRank >= 0 && engineRank < 8) engineTop8++;
-  if (publicRank >= 0 && publicRank < 3) { publicTop3++; divisionStats.publicTop3++; }
+  if (engineRank === 0) {
+    engineTop1++;
+    subset.engineTop1++;
+    divisionStats.engineTop1++;
+  }
+  if (engineRank >= 0 && engineRank < 3) {
+    engineTop3++;
+    subset.engineTop3++;
+    divisionStats.engineTop3++;
+  }
+  if (engineRank >= 0 && engineRank < 8) {
+    engineTop8++;
+    subset.engineTop8++;
+    divisionStats.engineTop8++;
+  }
+  if (publicRank >= 0 && publicRank < 3) {
+    publicTop3++;
+    subset.publicTop3++;
+    divisionStats.publicTop3++;
+  }
 
   if ((engineRank < 0 || engineRank >= 3 || publicRank < 0) && examples.length < 30) {
     examples.push({
       cutoff: item.cutoff,
       targetDate: item.targetDate,
       division: item.division,
+      rankingSnapshotDate: snapshot?.date || null,
+      rankingSnapshotAgeDays: snapshot?.ageDays ?? null,
       fighter: item.fighterName,
       actualOpponent: actual.name,
       targetEligible: Boolean(actualPair.eligible && actualPair.publishable),
@@ -253,22 +379,34 @@ for (const item of cases) {
 for (const stats of Object.values(byDivision)) {
   stats.engineTop1Rate = rate(stats.engineTop1, stats.evaluated);
   stats.engineTop3Rate = rate(stats.engineTop3, stats.evaluated);
+  stats.engineTop8Rate = rate(stats.engineTop8, stats.evaluated);
   stats.publicTop3Rate = rate(stats.publicTop3, stats.evaluated);
 }
 
 const report = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   generatedAt: data.generatedAt,
   engineVersion: E.VERSION,
-  mode: 'temporal-unranked-v1',
+  mode: 'temporal-hybrid-v2',
   lookbackDays,
   maxCases,
   availableCases: availableCases.length,
   sampledCases: cases.length,
   evaluatedCases,
   eligibleTargetCases,
+  rankingSnapshotCoverage: {
+    archiveStart: rankingSnapshots[0]?.date || null,
+    archiveEnd: rankingSnapshots.at(-1)?.date || null,
+    snapshotsAvailable: rankingSnapshots.length,
+    maxSnapshotAgeDays: maxRankingSnapshotAgeDays,
+    sampledCasesWithSnapshot: casesWithRankingSnapshot,
+    sampledCasesWithoutSnapshot: casesWithoutRankingSnapshot,
+    snapshotBackedMetrics: finalizeHitStats(snapshotStats.snapshotBacked),
+    unrankedMetrics: finalizeHitStats(snapshotStats.unranked)
+  },
   coverage: {
     targetMissingFromFrozenRoster,
+    missingTargetReasons: Object.fromEntries(Object.entries(missingTargetReasons).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))),
     targetUnavailableAtCutoff,
     targetIneligible
   },
@@ -296,12 +434,13 @@ const report = {
   examples,
   leakageControls: [
     'Each fighter history and verified meeting ledger is truncated at the case cutoff date.',
-    'Current rankings, ranking arrays, bookings, active-roster flags, former-champion flags and interim-champion flags are removed before scoring.',
+    `A dated UFC ranking snapshot is used only when its snapshot date is on or before the case cutoff and no more than ${maxRankingSnapshotAgeDays} days old. Cases without a qualifying snapshot are evaluated unranked rather than using present-day rankings.`,
+    'Current bookings, active-roster flags, former-champion flags and current interim-champion flags are removed before scoring; interim status is restored only when present in the qualifying historical ranking snapshot.',
     'Historical division is inferred only from source-native fight weight classes known by the cutoff date; current division is not used as a fallback.',
     'Active status is reconstructed only from whether the fighter had verified UFC history and had fought within the preceding two years.'
   ],
   limitations: [
-    'Historical UFC ranking snapshots are not yet stored, so this baseline intentionally evaluates the engine with rankings stripped rather than leaking present-day rankings backward.',
+    `The ranking snapshot archive currently spans ${rankingSnapshots[0]?.date || 'no snapshots'} through ${rankingSnapshots.at(-1)?.date || 'no snapshots'}. Earlier cases remain intentionally unranked until contemporaneous snapshots exist; current rankings are never backfilled into them.`,
     'The candidate universe is survivor-biased to fighters present in the current Matchmaker dataset; former UFC fighters absent from the current dataset cannot be reconstructed.',
     'The backtest uses each fighter\'s most recent completed next-fight pair inside the lookback window, not every historical UFC booking.',
     'A UFC booking is not automatically ground truth for quality. The report measures booking resemblance and exposes misses for review; it must not be used as an optimization target by itself.'
@@ -311,4 +450,5 @@ const report = {
 await fs.writeFile(REPORT_PATH, JSON.stringify(report, null, 2) + '\n');
 console.log(`Matchmaker temporal backtest: ${evaluatedCases}/${cases.length} sampled cases evaluated from ${availableCases.length} available recent cases.`);
 console.log(`Engine Top 1 ${engineTop1}/${evaluatedCases || 0} (${(report.metrics.overall.engineTop1Rate * 100).toFixed(1)}%), Top 3 ${engineTop3}/${evaluatedCases || 0} (${(report.metrics.overall.engineTop3Rate * 100).toFixed(1)}%), Top 8 ${engineTop8}/${evaluatedCases || 0} (${(report.metrics.overall.engineTop8Rate * 100).toFixed(1)}%); public Top 3 ${publicTop3}/${evaluatedCases || 0} (${(report.metrics.overall.publicTop3Rate * 100).toFixed(1)}%).`);
-console.log(`Leakage-safe baseline strips historical rankings/current bookings/current roster state. Eligible actual targets: ${eligibleTargetCases}/${evaluatedCases || 0}.`);
+console.log(`Ranking snapshots: ${casesWithRankingSnapshot}/${cases.length} sampled cases backed by a <=${maxRankingSnapshotAgeDays}-day pre-cutoff snapshot; archive ${rankingSnapshots[0]?.date || 'empty'} to ${rankingSnapshots.at(-1)?.date || 'empty'}.`);
+console.log(`Eligible actual targets: ${eligibleTargetCases}/${evaluatedCases || 0}; missing target reasons: ${Object.entries(missingTargetReasons).map(([reason, count]) => `${reason}=${count}`).join(', ') || 'none'}.`);
