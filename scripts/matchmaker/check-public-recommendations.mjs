@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { createRequire } from 'node:module';
 
+// Public-page regression coverage for title-queue and weak-alternative filtering.
 const require = createRequire(import.meta.url);
 const E = require('../../assets/matchmaker-engine.js');
 const P = require('../../assets/matchmaker-public.js');
