@@ -48,9 +48,9 @@ assert(P.titleQueueEligible(champion, supportedTitleRematch, E, ctx), 'A verifie
 assert(!P.titleQueueEligible(champion, { ...supportedTitleRematch, rematch: { allowed: true, profile: { titleBout: true, closeDecision: false, balancedSeries: false } } }, E, ctx), 'An ordinary prior title fight must not bypass the title-claim rule.');
 
 const filtered = P.filterRecommendations(winner, [
-  { fighter: champion, score: 90, confidence: 'high' },
-  { fighter: peer, score: 87, confidence: 'high' },
-  { fighter: fighter('weak-alt', 6, 'W'), score: 70, confidence: 'medium' }
+  { fighter: champion, score: 90, confidence: 'high', case: { code: 'title-case' } },
+  { fighter: peer, score: 87, confidence: 'high', case: { code: 'ranking-opportunity' } },
+  { fighter: fighter('weak-alt', 6, 'W'), score: 70, confidence: 'medium', case: { code: 'ranking-opportunity' } }
 ], E, ctx);
 assert.deepEqual(filtered.map(item => item.fighter.id), ['champion', 'peer'], 'Weak medium-confidence filler must still be removed after applying the title-queue filter.');
 
@@ -59,6 +59,7 @@ const oneSidedNearTie = {
   score: 88,
   rankingScore: 88,
   confidence: 'high',
+  case: { code: 'ranking-opportunity' },
   opportunityCost: { reciprocalRank: 7 }
 };
 const mutualNearTie = {
@@ -66,6 +67,7 @@ const mutualNearTie = {
   score: 86,
   rankingScore: 86,
   confidence: 'high',
+  case: { code: 'ranking-opportunity' },
   opportunityCost: { reciprocalRank: 2 }
 };
 const mutualOrder = P.orderForPublic([oneSidedNearTie, mutualNearTie]);
@@ -80,13 +82,15 @@ const clearlyStrongerOneSided = {
 const strongOrder = P.orderForPublic([clearlyStrongerOneSided, mutualNearTie]);
 assert.equal(strongOrder[0].fighter.id, clearlyStrongerOneSided.fighter.id, 'Reciprocal fit must remain a modest ordering nudge and must not erase a clearly stronger matchup.');
 assert.equal(P.PUBLIC_CANDIDATE_POOL, 8, 'The public page should compare a small broader pool before choosing its final three.');
+assert(!P.hasSpecificCase({ case: { code: 'divisional-sorting' } }), 'The generic divisional-sorting fallback must not qualify for the public page.');
+assert(P.hasSpecificCase({ case: { code: 'rebound-pairing' } }), 'A specific matchmaking thesis must remain public-eligible.');
 
 const fakeEngine = {
   candidates: () => [
     { ...oneSidedNearTie, publishable: true },
-    { fighter: fighter('second-one-sided', 6, 'W'), score: 87, rankingScore: 87, confidence: 'high', publishable: true, opportunityCost: { reciprocalRank: 6 } },
-    { fighter: fighter('third-one-sided', 7, 'W'), score: 86.5, rankingScore: 86.5, confidence: 'high', publishable: true, opportunityCost: { reciprocalRank: 6 } },
-    { fighter: fighter('fourth-mutual', 8, 'W'), score: 86, rankingScore: 86, confidence: 'high', publishable: true, opportunityCost: { reciprocalRank: 1 } }
+    { fighter: fighter('second-one-sided', 6, 'W'), score: 87, rankingScore: 87, confidence: 'high', publishable: true, case: { code: 'ranking-opportunity' }, opportunityCost: { reciprocalRank: 6 } },
+    { fighter: fighter('third-one-sided', 7, 'W'), score: 86.5, rankingScore: 86.5, confidence: 'high', publishable: true, case: { code: 'ranking-opportunity' }, opportunityCost: { reciprocalRank: 6 } },
+    { fighter: fighter('fourth-mutual', 8, 'W'), score: 86, rankingScore: 86, confidence: 'high', publishable: true, case: { code: 'ranking-opportunity' }, opportunityCost: { reciprocalRank: 1 } }
   ],
   rank: E.rank,
   titleClaim: E.titleClaim,
@@ -96,5 +100,18 @@ const selected = P.selectRecommendations(winner, [], fakeEngine, ctx);
 assert.equal(selected.length, 3, 'Public selection must still cap the page at three recommendations.');
 assert(selected.some(item => item.fighter.id === 'fourth-mutual'), 'The public selector should be able to promote a close mutually stronger fourth engine candidate into the final three.');
 assert(!selected.some(item => item.fighter.id === 'third-one-sided'), 'A weaker one-sided near-tie should be the candidate displaced by mutual booking fit.');
+
+const genericCandidate = {
+  fighter: fighter('generic-fallback', 9, 'W'),
+  score: 95,
+  rankingScore: 95,
+  confidence: 'high',
+  publishable: true,
+  case: { code: 'divisional-sorting' },
+  opportunityCost: { reciprocalRank: 1 }
+};
+const selectedWithoutGeneric = P.selectRecommendations(winner, [], { ...fakeEngine, candidates: () => [genericCandidate, ...fakeEngine.candidates()] }, ctx);
+assert(!selectedWithoutGeneric.some(item => item.fighter.id === genericCandidate.fighter.id), 'Generic divisional-sorting fallback must never occupy a public recommendation slot.');
+assert.equal(selectedWithoutGeneric.length, 3, 'Removing a generic fallback must still allow specific lower-ranked candidates to fill the public shortlist.');
 
 console.log('Matchmaker public recommendation filters: OK');
