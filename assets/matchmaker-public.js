@@ -17,6 +17,10 @@
     return Boolean(rematch?.allowed && rematch.profile?.titleBout && (rematch.profile.closeDecision || rematch.profile.balancedSeries));
   }
 
+  function hasSpecificCase(recommendation) {
+    return Boolean(recommendation?.case?.code && recommendation.case.code !== 'divisional-sorting');
+  }
+
   function titleQueueEligible(fighter, recommendation, engine, ctx) {
     const opponent = recommendation?.fighter;
     if (!opponent) return false;
@@ -64,7 +68,8 @@
   }
 
   function filterRecommendations(fighter, recommendations, engine, ctx) {
-    const titleEligible = recommendations.filter(recommendation => titleQueueEligible(fighter, recommendation, engine, ctx));
+    const specific = recommendations.filter(hasSpecificCase);
+    const titleEligible = specific.filter(recommendation => titleQueueEligible(fighter, recommendation, engine, ctx));
     const ordered = orderForPublic(titleEligible).slice(0, 3);
     if (ordered.length < 2) return ordered;
 
@@ -78,7 +83,7 @@
   function selectRecommendations(fighter, fighters, engine, ctx) {
     if (!engine || typeof engine.candidates !== 'function') return [];
     const pool = engine.candidates(fighter, fighters, ctx)
-      .filter(recommendation => recommendation.publishable)
+      .filter(recommendation => recommendation.publishable && hasSpecificCase(recommendation))
       .slice(0, PUBLIC_CANDIDATE_POOL);
     return filterRecommendations(fighter, pool, engine, ctx);
   }
@@ -94,6 +99,7 @@
     MAX_MEDIUM_ALTERNATIVE_GAP,
     PUBLIC_CANDIDATE_POOL,
     contextualTitleRematch,
+    hasSpecificCase,
     titleQueueEligible,
     reciprocalRank,
     reciprocalAdjustment,
