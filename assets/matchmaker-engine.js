@@ -197,9 +197,45 @@
     };
   }
 
+  function recentForm(f, ctx, limit = 5) {
+    const index = ctx.fighterIndex instanceof Map ? ctx.fighterIndex : null;
+    const recent = history(f).filter(bout => ['W', 'L', 'D', 'NC'].includes(bout.result)).slice(0, limit);
+    const verified = verifiedHistory(f);
+    const weights = [1, 0.82, 0.66, 0.52, 0.4];
+    let possibleWeight = 0, linkedWeight = 0, weightedTotal = 0, titleBouts = 0;
+    const bouts = recent.map((bout, i) => {
+      const weight = weights[i] ?? 0.35;
+      possibleWeight += weight;
+      const opponentId = (bout.opponentIds || []).find(id => index?.has(id));
+      const opponent = opponentId && index ? index.get(opponentId) : null;
+      if (opponent) linkedWeight += weight;
+      const opponentLevel = opponent ? baseCompetitiveState(opponent, ctx).level : 50;
+      const meeting = verified.find(item => item.date === bout.date && (
+        (item.opponentId && (bout.opponentIds || []).includes(item.opponentId)) ||
+        (!item.opponentId && item.opponentName && normalize(bout.text).includes(normalize(item.opponentName)))
+      ));
+      const titleBout = Boolean(meeting && meeting.competitionClass === 'ufc' && /\btitle bout\b/i.test(String(meeting.weightClass || '')));
+      if (titleBout) titleBouts++;
+      const resultBase = bout.result === 'W' ? 62 : bout.result === 'L' ? 38 : 50;
+      const titleContext = titleBout ? (['W', 'L'].includes(bout.result) ? 5 : 2) : 0;
+      const value = clamp(resultBase + (opponentLevel - 50) * 0.28 + titleContext, 20, 85);
+      weightedTotal += value * weight;
+      return { date: bout.date, result: bout.result, opponentId: opponentId || meeting?.opponentId || null, opponentLevel, titleBout, value, weight };
+    });
+    return {
+      score: possibleWeight ? weightedTotal / possibleWeight : 50,
+      coverage: possibleWeight ? linkedWeight / possibleWeight : 0,
+      sampledBouts: recent.length,
+      linkedBouts: bouts.filter(bout => bout.opponentId && index?.has(bout.opponentId)).length,
+      titleBouts,
+      bouts
+    };
+  }
+
   function competitiveState(f, ctx) {
     const base = baseCompetitiveState(f, ctx);
     const schedule = scheduleStrength(f, ctx);
+    const form = recentForm(f, ctx);
     let scheduleAdjustment = 0;
     // Current rankings dominate ranked fighters. For unranked fighters, verified opposition quality
     // separates proven UFC competition from shallow records that would otherwise look identical.
@@ -207,7 +243,7 @@
       const winLevel = schedule.winAverage ?? schedule.average;
       scheduleAdjustment = clamp(((schedule.average - 50) * 0.14 + (winLevel - 50) * 0.06) * schedule.coverage, -6, 8);
     }
-    return { ...base, baseLevel: base.level, level: clamp(base.level + scheduleAdjustment, 28, 100), scheduleAdjustment, schedule };
+    return { ...base, baseLevel: base.level, level: clamp(base.level + scheduleAdjustment, 28, 100), scheduleAdjustment, schedule, form };
   }
 
   function desiredLevelBand(state) {
@@ -235,6 +271,16 @@
     else if (self.result === 'L' && opponent.result === 'L') trajectory = rankGap <= 5 ? 12 : 7;
     else if (opponent.streak >= 3 && self.result !== 'W') trajectory = 13;
     return { band, distance, rankGap, direction, trajectory };
+  }
+
+  function recentFormTrajectoryFit(self, opponent) {
+    const selfScore = self.form?.score ?? 50;
+    const opponentScore = opponent.form?.score ?? 50;
+    const target = self.result === 'W' ? selfScore + 4 : self.result === 'L' ? selfScore - 4 : selfScore;
+    let fit = clamp(15 - Math.abs(opponentScore - target) * 0.22, 6, 15);
+    if (self.result === 'W' && opponentScore < 45) fit -= 1.5;
+    if (self.result === 'L' && opponentScore > 65) fit -= 1.5;
+    return clamp(fit, 5, 15);
   }
 
   function opponentQualityFit(self, opponent) {
@@ -280,6 +326,8 @@
       else if (self.result === 'L' && opponent.result === 'L') trajectory = Math.abs(opponent.level - self.level) <= 14 ? 12 : 7;
       else if (opponent.streak >= 3 && self.result !== 'W') trajectory = 13;
     }
+    const formTrajectory = recentFormTrajectoryFit(self, opponent);
+    trajectory = Number(clamp(trajectory * 0.6 + formTrajectory * 0.4, 4, 15).toFixed(2));
 
     const opponentQuality = opponentQualityFit(self, opponent);
     const experienceGap = Math.abs(self.experience - opponent.experience);
@@ -299,6 +347,7 @@
       distance,
       hierarchySource: hierarchy ? 'rank' : 'competitive-level',
       rankGap: hierarchy?.rankGap ?? null,
+      formTrajectory,
       parts,
       score: Object.values(parts).reduce((sum, value) => sum + value, 0)
     };
@@ -444,6 +493,7 @@
       ...caseFile.reasons,
       `Two-sided fit: ${a.name} ${Math.round(aFit.score)}/100; ${b.name} ${Math.round(bFit.score)}/100.`,
       `Pair balance: ${balanceGap.toFixed(1)} points; weaker-side fit ${Math.round(weakerSide)}/100.`,
+      `Recent-form quality: ${a.name} ${aFit.state.form.score.toFixed(1)}/100; ${b.name} ${bFit.state.form.score.toFixed(1)}/100.`,
       `Recent-opposition coverage: ${Math.round((aFit.state.schedule?.coverage || 0) * 100)}% / ${Math.round((bFit.state.schedule?.coverage || 0) * 100)}%.`,
       `Timing: last listed fights ${a.lastFight || 'unknown'} / ${b.lastFight || 'unknown'}${sameEvent ? ' (same card)' : ''}.`,
       rematch.meetings.length ? rematch.reason : 'Freshness passed the verified prior-meeting gate.'
@@ -526,5 +576,5 @@
     return board;
   }
 
-  return { VERSION, WEIGHTS, pairKey, normalize, division, rank, titleExperience, careerLane, streak, tier, tags, eventResult, priorMeetings, rematchCase, availability, targetRange, baseCompetitiveState, scheduleStrength, competitiveState, rankedHierarchy, directionalFit, careerLaneMismatch, evaluatePair, evaluate, candidates, recommendations, lock, autoMatch, validateBoard };
+  return { VERSION, WEIGHTS, pairKey, normalize, division, rank, titleExperience, careerLane, streak, tier, tags, eventResult, priorMeetings, rematchCase, availability, targetRange, baseCompetitiveState, scheduleStrength, recentForm, competitiveState, rankedHierarchy, directionalFit, careerLaneMismatch, evaluatePair, evaluate, candidates, recommendations, lock, autoMatch, validateBoard };
 });
