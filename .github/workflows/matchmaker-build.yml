@@ -26,10 +26,12 @@ jobs:
           node --check assets/matchmaker-public.js
           node --check assets/matchmaker-simple.js
           node --check assets/matchmaker-engine.js
+          node --check scripts/matchmaker/enrich-official-portraits.mjs
           node --check scripts/matchmaker/enrich-verified-history.mjs
           node --check scripts/matchmaker/history-reconcile.mjs
           node --check scripts/matchmaker/profile-contradictions.mjs
           node --check scripts/matchmaker/check-verified-history-v2.mjs
+          node scripts/matchmaker/enrich-official-portraits.mjs --self-test
           node scripts/matchmaker/check-verified-history-v2.mjs
           node scripts/matchmaker/check-public-recommendations.mjs
           node scripts/matchmaker/check-ui-readability.mjs
