@@ -153,6 +153,10 @@
     };
   }
 
+  function isContextualTitleRematch(rematch) {
+    return Boolean(rematch?.allowed && rematch.profile?.titleBout && (rematch.profile.closeDecision || rematch.profile.balancedSeries));
+  }
+
   function rematchCase(a, b, ctx) {
     const meetings = priorMeetings(a, b);
     const verifiedCoverage = hasVerifiedCoverage(a) && hasVerifiedCoverage(b);
@@ -171,14 +175,11 @@
     if (profile.balancedSeries && profile.subsequentWins.a >= 1 && profile.subsequentWins.b >= 1) {
       return { allowed: true, meetings, verifiedCoverage, profile, reason: 'The series is 1–1 and both fighters have won again in the UFC since their last meeting.' };
     }
-    if (!profile.finish && profile.yearsSince >= 3 && profile.subsequentWins.a >= 2 && profile.subsequentWins.b >= 2) {
+    if (meetings.length === 1 && !profile.finish && profile.yearsSince >= 3 && profile.subsequentWins.a >= 2 && profile.subsequentWins.b >= 2) {
       return { allowed: true, meetings, verifiedCoverage, profile, reason: 'The prior decision is at least three years old and both fighters have earned at least two UFC wins since, creating meaningful competitive separation.' };
     }
-    if (profile.finish && profile.yearsSince >= 5 && profile.subsequentWins.a >= 3 && profile.subsequentWins.b >= 3) {
+    if (meetings.length === 1 && profile.finish && profile.yearsSince >= 5 && profile.subsequentWins.a >= 3 && profile.subsequentWins.b >= 3) {
       return { allowed: true, meetings, verifiedCoverage, profile, reason: 'The prior finish is at least five years old and both fighters have rebuilt with at least three UFC wins since.' };
-    }
-    if (!profile.finish && profile.yearsSince >= 3 && profile.subsequentWins.a >= 3 && profile.subsequentWins.b >= 3) {
-      return { allowed: true, meetings, verifiedCoverage, profile, reason: 'More than three years apart, with at least three subsequent UFC wins for each fighter.' };
     }
     if (ctx.rematchCases?.[pairKey(a.id, b.id)]) return { allowed: true, meetings, verifiedCoverage, profile, reason: ctx.rematchCases[pairKey(a.id, b.id)] };
     const source = meetings[0].verified ? 'verified fight history' : 'canonical UFC history';
@@ -469,7 +470,7 @@
     return a - b;
   }
 
-  function matchupCase(a, b, ctx, aFit, bFit) {
+  function matchupCase(a, b, ctx, aFit, bFit, rematch = null) {
     const A = aFit.state, B = bFit.state;
     const levelGap = Math.abs(A.level - B.level);
     const rankedPair = A.rank !== null && B.rank !== null && A.rank > 0 && B.rank > 0;
@@ -483,10 +484,15 @@
     const challenger = champion?.id === a.id ? b : champion ? a : null;
     const challengerState = champion?.id === a.id ? B : champion ? A : null;
     const challengerClaim = challenger ? titleClaim(challenger, ctx) : null;
-    if (champion && challenger && challengerClaim?.eligible) {
+    const titleRematch = isContextualTitleRematch(rematch);
+    if (champion && challenger && (challengerClaim?.eligible || titleRematch)) {
       code = 'title-case';
-      rationale = `${challenger.name} has a credible current title claim against champion ${champion.name}.`;
-      reasons = [`${challenger.name} is ranked #${challengerState.rank}.`, `Title-claim score: ${challengerClaim.score}/100.`, 'Recent form and title history clear the automatic title-shot gate.'];
+      rationale = titleRematch
+        ? `${champion.name} and ${challenger.name} have a supported championship rematch case based on their prior title meeting or series.`
+        : `${challenger.name} has a credible current title claim against champion ${champion.name}.`;
+      reasons = titleRematch
+        ? [rematch.reason, `${champion.name} is the current champion.`, 'The rematch exception is based on verified title-fight context, not generic repeat-booking preference.']
+        : [`${challenger.name} is ranked #${challengerState.rank}.`, `Title-claim score: ${challengerClaim.score}/100.`, 'Recent form and title history clear the automatic title-shot gate.'];
     } else if (A.rank !== null && B.rank !== null && A.rank <= 5 && B.rank <= 5 && A.result === 'W' && B.result === 'W') {
       code = 'title-eliminator';
       rationale = `${a.name} and ${b.name} are both winning inside the top contender tier; pairing them directly clarifies the title queue.`;
@@ -598,7 +604,7 @@
     if (!manual && champion) {
       const challenger = champion.id === a.id ? b : a;
       const claim = titleClaim(challenger, ctx);
-      if (!claim.eligible) return reject(`No credible automatic title claim: ${claim.reason}`);
+      if (!claim.eligible && !isContextualTitleRematch(rematch)) return reject(`No credible automatic title claim: ${claim.reason}`);
     }
     if (!manual && (A.experience >= 7 && B.experience < 2 || B.experience >= 7 && A.experience < 2)) return reject('Too large a UFC experience gap for an automatic recommendation.');
     if (!manual && ((A.rank === 0 && (B.rank === null || B.rank > 7)) || (B.rank === 0 && (A.rank === null || A.rank > 7)) || (A.rank !== null && B.rank !== null && Math.abs(A.rank - B.rank) > 8) || (A.rank !== null && A.rank < 8 && B.rank === null && B.level < 62) || (B.rank !== null && B.rank < 8 && A.rank === null && A.level < 62))) return reject('Outside a defensible competitive range.');
@@ -609,7 +615,7 @@
     const weakerSide = Math.min(aFit.score, bFit.score);
     const balanceGap = Math.abs(aFit.score - bFit.score);
     const score = Math.round(clamp(harmonic * 0.7 + weakerSide * 0.3 - balanceGap * 0.12, 0, 100));
-    const caseFile = matchupCase(a, b, ctx, aFit, bFit);
+    const caseFile = matchupCase(a, b, ctx, aFit, bFit, rematch);
     const confidence = confidenceFor(score, weakerSide, balanceGap, caseFile);
     const sameEvent = ctx.event?.bouts?.flatMap(bout => bout.fighters || []).some(f => f.id === b.id);
     const evidence = [
