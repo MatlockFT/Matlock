@@ -270,6 +270,45 @@
     return { ...base, baseLevel: base.level, level: clamp(base.level + scheduleAdjustment, 28, 100), scheduleAdjustment, schedule, form };
   }
 
+  function titleClaim(f, ctx) {
+    const state = competitiveState(f, ctx);
+    const r = state.rank;
+    if (r === null || r === 0) return { eligible: false, score: 0, reason: 'A title challenger must be a ranked non-champion.', rank: r };
+    if (r > 5) return { eligible: false, score: 0, reason: `Rank #${r} is outside the automatic title-challenger tier.`, rank: r };
+    if (state.result !== 'W') return { eligible: false, score: 0, reason: 'Automatic title challengers must be coming off a UFC win.', rank: r };
+
+    const titleLosses = verifiedHistory(f).filter(meeting => meeting.competitionClass === 'ufc' && meeting.result === 'L' && /\btitle bout\b/i.test(String(meeting.weightClass || '')));
+    const latestTitleLoss = titleLosses[0] || null;
+    const winsSinceTitleLoss = latestTitleLoss ? history(f).filter(bout => bout.date > latestTitleLoss.date && bout.result === 'W').length : null;
+    const latestWin = state.form?.bouts?.find(bout => bout.result === 'W') || null;
+    const latestWinQuality = latestWin?.opponentLevel ?? state.schedule?.winAverage ?? 50;
+    const strongRecentWin = latestWinQuality >= 68;
+    const formQualified = (state.form?.score ?? 50) >= 58;
+    const momentumQualified = state.streak >= 2;
+    const rankQualified = r <= 2;
+    const claimQualified = rankQualified || momentumQualified || strongRecentWin || formQualified;
+    if (!claimQualified) return { eligible: false, score: 0, reason: `Rank #${r} has not built enough recent form or win quality for an automatic title shot.`, rank: r, winsSinceTitleLoss, latestWinQuality };
+    if (latestTitleLoss && winsSinceTitleLoss === 0) return { eligible: false, score: 0, reason: 'A recent title-fight loss requires a subsequent UFC win before another automatic title shot.', rank: r, winsSinceTitleLoss, latestWinQuality };
+
+    const rankPoints = clamp(46 - (r - 1) * 6, 22, 46);
+    const streakPoints = clamp(Math.max(state.streak, 0) * 5, 0, 15);
+    const formPoints = clamp(((state.form?.score ?? 50) - 45) * 0.45, 0, 18);
+    const qualityPoints = clamp((latestWinQuality - 50) * 0.35, 0, 14);
+    const titlePenalty = latestTitleLoss && winsSinceTitleLoss === 1 ? 8 : 0;
+    const score = Math.round(clamp(rankPoints + streakPoints + formPoints + qualityPoints - titlePenalty, 0, 100));
+    return {
+      eligible: true,
+      score,
+      rank: r,
+      streak: state.streak,
+      formScore: Number((state.form?.score ?? 50).toFixed(2)),
+      latestWinQuality: Number(latestWinQuality.toFixed(2)),
+      latestTitleLoss: latestTitleLoss?.date || null,
+      winsSinceTitleLoss,
+      reason: 'Current rank, recent wins, opponent quality, and title history support a credible title claim.'
+    };
+  }
+
   function desiredLevelBand(state) {
     if (state.rank === 0) return [78, 98];
     if (state.result === 'W') return state.streak >= 3 ? [state.level - 3, state.level + 12] : [state.level - 5, state.level + 10];
@@ -397,10 +436,11 @@
     const champion = A.rank === 0 ? a : B.rank === 0 ? b : null;
     const challenger = champion?.id === a.id ? b : champion ? a : null;
     const challengerState = champion?.id === a.id ? B : champion ? A : null;
-    if (champion && challenger && challengerState.rank !== null && challengerState.rank <= 5) {
+    const challengerClaim = challenger ? titleClaim(challenger, ctx) : null;
+    if (champion && challenger && challengerClaim?.eligible) {
       code = 'title-case';
-      rationale = `${challenger.name} is already in the top contender tier, making a fight with champion ${champion.name} a defensible next title booking rather than a rankings detour.`;
-      reasons = [`${challenger.name} is ranked #${challengerState.rank}.`, `${champion.name} is the champion.`, 'The pairing keeps the title fight inside the current contender tier.'];
+      rationale = `${challenger.name} has a credible current title claim against champion ${champion.name}.`;
+      reasons = [`${challenger.name} is ranked #${challengerState.rank}.`, `Title-claim score: ${challengerClaim.score}/100.`, 'Recent form and title history clear the automatic title-shot gate.'];
     } else if (A.rank !== null && B.rank !== null && A.rank <= 5 && B.rank <= 5 && A.result === 'W' && B.result === 'W') {
       code = 'title-eliminator';
       rationale = `${a.name} and ${b.name} are both winning inside the top contender tier; pairing them directly clarifies the title queue.`;
@@ -508,6 +548,12 @@
     const A = competitiveState(a, ctx), B = competitiveState(b, ctx);
     const laneMismatch = careerLaneMismatch(a, b, A, B);
     if (!manual && laneMismatch) return reject(laneMismatch);
+    const champion = A.rank === 0 ? a : B.rank === 0 ? b : null;
+    if (!manual && champion) {
+      const challenger = champion.id === a.id ? b : a;
+      const claim = titleClaim(challenger, ctx);
+      if (!claim.eligible) return reject(`No credible automatic title claim: ${claim.reason}`);
+    }
     if (!manual && (A.experience >= 7 && B.experience < 2 || B.experience >= 7 && A.experience < 2)) return reject('Too large a UFC experience gap for an automatic recommendation.');
     if (!manual && ((A.rank === 0 && (B.rank === null || B.rank > 7)) || (B.rank === 0 && (A.rank === null || A.rank > 7)) || (A.rank !== null && B.rank !== null && Math.abs(A.rank - B.rank) > 8) || (A.rank !== null && A.rank < 8 && B.rank === null && B.level < 62) || (B.rank !== null && B.rank < 8 && A.rank === null && A.level < 62))) return reject('Outside a defensible competitive range.');
 
@@ -557,7 +603,11 @@
   function candidates(a, fighters, ctx) {
     const scoped = rosterContext(fighters, ctx);
     const requireVerified = fighters.some(f => Number(f.historyModelVersion || 0) >= 2);
-    return fighters.map(b => evaluatePair(a, b, scoped, false, requireVerified)).filter(r => r.eligible).sort((x, y) => y.score - x.score || x.fighter.id.localeCompare(y.fighter.id));
+    const evaluated = fighters.map(b => evaluatePair(a, b, scoped, false, requireVerified)).filter(r => r.eligible);
+    if (rank(a, scoped) === 0) {
+      return evaluated.sort((x, y) => titleClaim(y.fighter, scoped).score - titleClaim(x.fighter, scoped).score || y.score - x.score || x.fighter.id.localeCompare(y.fighter.id));
+    }
+    return evaluated.sort((x, y) => y.score - x.score || x.fighter.id.localeCompare(y.fighter.id));
   }
 
   function recommendations(a, fighters, ctx) {
@@ -607,5 +657,5 @@
     return board;
   }
 
-  return { VERSION, WEIGHTS, pairKey, normalize, division, rank, titleExperience, careerLane, careerStage, streak, tier, tags, eventResult, priorMeetings, rematchCase, availability, targetRange, baseCompetitiveState, scheduleStrength, recentForm, competitiveState, rankedHierarchy, directionalFit, careerLaneMismatch, evaluatePair, evaluate, candidates, recommendations, lock, autoMatch, validateBoard };
+  return { VERSION, WEIGHTS, pairKey, normalize, division, rank, titleExperience, titleClaim, careerLane, careerStage, streak, tier, tags, eventResult, priorMeetings, rematchCase, availability, targetRange, baseCompetitiveState, scheduleStrength, recentForm, competitiveState, rankedHierarchy, directionalFit, careerLaneMismatch, evaluatePair, evaluate, candidates, recommendations, lock, autoMatch, validateBoard };
 });
