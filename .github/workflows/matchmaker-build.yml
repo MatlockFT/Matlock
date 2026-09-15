@@ -32,6 +32,7 @@ jobs:
           node --check scripts/matchmaker/check-verified-history-v2.mjs
           node scripts/matchmaker/check-verified-history-v2.mjs
           node scripts/matchmaker/check-public-recommendations.mjs
+          node scripts/matchmaker/check-ui-readability.mjs
           node scripts/check-matchmaker.mjs
       - name: Build Jekyll site
         uses: actions/jekyll-build-pages@v1
