@@ -17,7 +17,7 @@ async function getText(url) {
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
       const response = await fetch(url, {
-        headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MMAMatlockMatchmaker/2.3; +https://matlockfighttalk.com/)' },
+        headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MMAMatlockMatchmaker/2.3; +https://github.com/MatlockFT/Matlock)' },
         signal: AbortSignal.timeout(30000)
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}: ${url}`);
