@@ -23,6 +23,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -49,5 +51,7 @@ jobs:
           git add -- assets/data/matchmaker
           git diff --cached --quiet && exit 0
           git commit -m "Refresh verified Matchmaker data"
-          git pull --rebase origin main
+          # Only generated Matchmaker data is committed here. If main advanced during collection,
+          # rebase onto upstream code while favoring this freshly validated generated snapshot.
+          git pull --rebase -X theirs origin main
           git push origin HEAD:main
