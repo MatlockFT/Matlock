@@ -187,10 +187,76 @@
     return { allowed: false, meetings, verifiedCoverage, profile, reason: `Previously fought on ${meetings[0].date} (${source}); no rematch case is currently supported.${context}` };
   }
 
+  function latestFightContext(f) {
+    const canonical = history(f)[0] || null;
+    const date = f.lastFight || canonical?.date || null;
+    const verified = date ? verifiedHistory(f).find(meeting => meeting.competitionClass === 'ufc' && meeting.date === date) : null;
+    const method = String(verified?.method || canonical?.method || verified?.text || canonical?.text || '');
+    const roundValue = Number(verified?.round ?? canonical?.round);
+    const round = Number.isFinite(roundValue) ? roundValue : null;
+    const titleBout = Boolean(verified && /\btitle bout\b/i.test(String(verified.weightClass || '')));
+    const decision = /\bdecision\b/i.test(method);
+    const finish = /\b(ko|tko|submission)\b/i.test(method);
+    const earlyFinish = finish && round !== null && round <= 2;
+    const fiveRound = titleBout || round !== null && round >= 4;
+    return { date, verified: Boolean(verified), method, round, titleBout, decision, finish, earlyFinish, fiveRound };
+  }
+
+  function turnaroundWindow(f, ctx) {
+    const fight = latestFightContext(f);
+    const fightTime = Date.parse(fight.date || '');
+    const asOf = Date.parse(ctx.asOf || '');
+    if (!Number.isFinite(fightTime)) return { known: false, fight, minDays: null, idealDays: null, readyAt: null, idealAt: null, daysSince: null, currentlyReady: null };
+
+    let minDays = 60;
+    if (fight.earlyFinish) minDays = 45;
+    if (fight.decision) minDays = 75;
+    if (fight.fiveRound) minDays = Math.max(minDays, 90);
+    if (fight.titleBout && fight.earlyFinish) minDays = 60;
+    if (fight.titleBout && fight.decision) minDays = 105;
+    const idealDays = minDays + 30;
+    const readyTime = fightTime + minDays * DAY;
+    const idealTime = fightTime + idealDays * DAY;
+    return {
+      known: true,
+      fight,
+      minDays,
+      idealDays,
+      readyAt: new Date(readyTime).toISOString().slice(0, 10),
+      idealAt: new Date(idealTime).toISOString().slice(0, 10),
+      daysSince: Number.isFinite(asOf) ? Math.max(0, (asOf - fightTime) / DAY) : null,
+      currentlyReady: Number.isFinite(asOf) ? asOf >= readyTime : null
+    };
+  }
+
+  function turnaroundFit(a, b, ctx) {
+    const A = turnaroundWindow(a, ctx);
+    const B = turnaroundWindow(b, ctx);
+    const asOf = Date.parse(ctx.asOf || '');
+    if (!A.known || !B.known || !Number.isFinite(asOf)) return { score: 0, gapDays: null, bookingDate: null, a: A, b: B, layoffPenalty: 0 };
+    const aReady = Math.max(asOf, Date.parse(A.readyAt));
+    const bReady = Math.max(asOf, Date.parse(B.readyAt));
+    const gapDays = Math.abs(aReady - bReady) / DAY;
+    let score = gapDays <= 21 ? 5 : gapDays <= 45 ? 4.5 : gapDays <= 75 ? 4 : gapDays <= 120 ? 3 : gapDays <= 180 ? 2 : 1;
+    const longestLayoff = Math.max(A.daysSince || 0, B.daysSince || 0);
+    const layoffPenalty = longestLayoff > 540 ? 1 : longestLayoff > 365 ? 0.5 : 0;
+    score = Number(clamp(score - layoffPenalty, 1, 5).toFixed(2));
+    return {
+      score,
+      gapDays: Number(gapDays.toFixed(1)),
+      bookingDate: new Date(Math.max(aReady, bReady)).toISOString().slice(0, 10),
+      a: A,
+      b: B,
+      layoffPenalty
+    };
+  }
+
   function availability(f, ctx) {
     if (!f.active) return 'Not on the verified active roster.';
     if (f.booking) return `Booked${f.booking.opponent ? ' vs ' + f.booking.opponent : ''}: ${f.booking.event} (${f.booking.date}).`;
     if (ctx.overrides?.[f.id]?.unavailable) return `Unavailable: ${ctx.overrides[f.id].unavailable}`;
+    const unavailableUntil = ctx.overrides?.[f.id]?.unavailableUntil;
+    if (unavailableUntil && Date.parse(unavailableUntil) > Date.parse(ctx.asOf || '')) return `Unavailable until ${unavailableUntil}.`;
     if ((ctx.locks || []).some(p => p.a === f.id || p.b === f.id)) return 'Reserved in a locked matchup.';
     if (f.lastFight && Date.parse(ctx.asOf) - Date.parse(f.lastFight) > 730 * DAY) return 'No listed fight in the last two years.';
     if (!division(f, ctx)) return 'Division has not been verified.';
@@ -442,11 +508,8 @@
     const opponentQuality = opponentQualityFit(self, opponent);
     const experienceGap = Math.abs(self.experience - opponent.experience);
     const experience = experienceGap <= 3 ? 10 : experienceGap <= 6 ? 8 : experienceGap <= 10 ? 5 : 2;
-    let timing = 0;
-    if (a.lastFight && b.lastFight) {
-      const days = Math.abs(Date.parse(a.lastFight) - Date.parse(b.lastFight)) / DAY;
-      timing = days <= 120 ? 5 : days <= 240 ? 3 : days <= 365 ? 2 : 1;
-    }
+    const turnaround = turnaroundFit(a, b, ctx);
+    const timing = turnaround.score;
     const parts = { competitiveLevel: levelFit, careerDirection: direction, trajectory, opponentQuality, experience, timing };
     return {
       fighter: a,
@@ -458,6 +521,7 @@
       hierarchySource: hierarchy ? 'rank' : 'competitive-level',
       rankGap: hierarchy?.rankGap ?? null,
       formTrajectory,
+      turnaround,
       parts,
       score: Object.values(parts).reduce((sum, value) => sum + value, 0)
     };
@@ -617,14 +681,15 @@
     const score = Math.round(clamp(harmonic * 0.7 + weakerSide * 0.3 - balanceGap * 0.12, 0, 100));
     const caseFile = matchupCase(a, b, ctx, aFit, bFit, rematch);
     const confidence = confidenceFor(score, weakerSide, balanceGap, caseFile);
-    const sameEvent = ctx.event?.bouts?.flatMap(bout => bout.fighters || []).some(f => f.id === b.id);
     const evidence = [
       ...caseFile.reasons,
       `Two-sided fit: ${a.name} ${Math.round(aFit.score)}/100; ${b.name} ${Math.round(bFit.score)}/100.`,
       `Pair balance: ${balanceGap.toFixed(1)} points; weaker-side fit ${Math.round(weakerSide)}/100.`,
       `Recent-form quality: ${a.name} ${aFit.state.form.score.toFixed(1)}/100; ${b.name} ${bFit.state.form.score.toFixed(1)}/100.`,
       `Recent-opposition coverage: ${Math.round((aFit.state.schedule?.coverage || 0) * 100)}% / ${Math.round((bFit.state.schedule?.coverage || 0) * 100)}%.`,
-      `Timing: last listed fights ${a.lastFight || 'unknown'} / ${b.lastFight || 'unknown'}${sameEvent ? ' (same card)' : ''}.`,
+      aFit.turnaround.bookingDate
+        ? `Timing readiness: ${a.name} ${aFit.turnaround.a.readyAt}; ${b.name} ${aFit.turnaround.b.readyAt}; shared booking window ${aFit.turnaround.bookingDate} (${aFit.turnaround.gapDays}-day readiness gap).`
+        : 'Timing readiness could not be fully resolved from listed fight dates.',
       rematch.meetings.length ? rematch.reason : 'Freshness passed the verified prior-meeting gate.'
     ];
     return {
@@ -656,7 +721,7 @@
     const eventKey = ctx.event?.id || ctx.event?.date || '';
     const locks = (ctx.locks || []).map(pair => pairKey(pair.a, pair.b)).sort().join(',');
     const overrides = Object.keys(ctx.overrides || {}).sort().map(id => `${id}:${JSON.stringify(ctx.overrides[id])}`).join('|');
-    const rosterState = fighters.map(fighter => `${fighter.id}:${fighter.active ? 1 : 0}:${fighter.booking?.date || ''}:${fighter.booking?.opponent || ''}`).join(';');
+    const rosterState = fighters.map(fighter => `${fighter.id}:${fighter.active ? 1 : 0}:${fighter.lastFight || ''}:${fighter.booking?.date || ''}:${fighter.booking?.opponent || ''}`).join(';');
     return `${ctx.asOf || ''}|${eventKey}|${requireVerified ? 1 : 0}|${locks}|${overrides}|${rosterState}`;
   }
 
@@ -786,5 +851,5 @@
     return board;
   }
 
-  return { VERSION, WEIGHTS, pairKey, normalize, division, rank, titleExperience, titleClaim, careerLane, careerStage, streak, tier, tags, eventResult, priorMeetings, rematchProfile, rematchCase, availability, targetRange, baseCompetitiveState, scheduleStrength, recentForm, competitiveState, rankedHierarchy, directionalFit, careerLaneMismatch, evaluatePair, evaluate, opportunityCost, candidates, recommendations, lock, autoMatch, validateBoard };
+  return { VERSION, WEIGHTS, pairKey, normalize, division, rank, titleExperience, titleClaim, careerLane, careerStage, streak, tier, tags, eventResult, priorMeetings, rematchProfile, rematchCase, latestFightContext, turnaroundWindow, turnaroundFit, availability, targetRange, baseCompetitiveState, scheduleStrength, recentForm, competitiveState, rankedHierarchy, directionalFit, careerLaneMismatch, evaluatePair, evaluate, opportunityCost, candidates, recommendations, lock, autoMatch, validateBoard };
 });
