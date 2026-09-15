@@ -79,6 +79,29 @@
     return latest?.date > (ctx.event?.date || '') ? latest.result : fromEvent?.result || latest?.result;
   }
 
+  function careerStage(f, ctx) {
+    const r = rank(f, ctx);
+    const s = streak(f);
+    const result = eventResult(f, ctx);
+    const experience = history(f).length;
+    const titles = titleExperience(f);
+    if (r === 0) return 'champion';
+    if (r !== null) {
+      if (r <= 5) return 'title-contender';
+      if (s >= 2 || (result === 'W' && experience <= 5)) return 'rising-ranked';
+      if (r <= 10) return 'established-ranked';
+      return 'fringe-ranked';
+    }
+    if (titles.wins >= 2 || titles.appearances >= 3) return 'championship-legacy';
+    if (titles.appearances >= 1) return 'title-experienced-veteran';
+    if (experience <= 5 && (s >= 2 || (result === 'W' && experience <= 3))) return 'prospect';
+    if (experience >= 8 && (result === 'L' || s <= -2)) return 'rebuilding-veteran';
+    if (experience >= 8) return 'veteran';
+    if (result === 'L') return 'rebuilding';
+    if (result === 'W' && experience >= 4) return 'high-level-unranked';
+    return 'standard-unranked';
+  }
+
   function meetingMatches(meeting, opponent) {
     return meeting.opponentId === opponent.id || normalize(meeting.opponentName) === normalize(opponent.name);
   }
@@ -143,6 +166,7 @@
     const experience = history(f).length;
     const titles = titleExperience(f);
     const lane = careerLane(f, ctx);
+    const stage = careerStage(f, ctx);
     const formerChampion = Boolean(f.formerChampion || titles.wins > 0);
     let level;
     if (r === 0) level = 100;
@@ -164,7 +188,7 @@
     else if (experience >= 7) type = 'unranked-veteran';
     else if (result === 'L') type = 'rebuilding';
     else type = 'high-end-unranked';
-    return { type, level, rank: r, streak: s, result, experience, titleExperience: titles, careerLane: lane, formerChampion };
+    return { type, level, rank: r, streak: s, result, experience, titleExperience: titles, careerLane: lane, careerStage: stage, formerChampion };
   }
 
   function scheduleStrength(f, ctx, limit = 5) {
@@ -454,13 +478,20 @@
   }
 
   function careerLaneMismatch(a, b, A, B) {
-    if (A.rank !== null || B.rank !== null) return null;
-    const aLegacy = A.careerLane === 'championship-legacy';
-    const bLegacy = B.careerLane === 'championship-legacy';
-    const aStandard = A.titleExperience.appearances === 0;
-    const bStandard = B.titleExperience.appearances === 0;
-    if (aLegacy && bStandard) return `${a.name} is in a championship-legacy career lane; automatic matchmaking keeps unranked legacy title fighters against ranked or UFC title-experienced opposition.`;
-    if (bLegacy && aStandard) return `${b.name} is in a championship-legacy career lane; automatic matchmaking keeps unranked legacy title fighters against ranked or UFC title-experienced opposition.`;
+    if (A.rank !== null && B.rank !== null) return null;
+    const aStage = A.careerStage;
+    const bStage = B.careerStage;
+    const legacyPool = new Set(['championship-legacy', 'title-experienced-veteran', 'title-contender', 'established-ranked', 'rising-ranked', 'fringe-ranked', 'high-level-unranked']);
+    const lowUnranked = new Set(['standard-unranked', 'veteran', 'rebuilding', 'rebuilding-veteran']);
+
+    if (aStage === 'championship-legacy' && !legacyPool.has(bStage)) return `${a.name} is in a championship-legacy career lane; automatic matchmaking keeps unranked legacy title fighters against ranked, UFC title-experienced, or high-level unranked opposition.`;
+    if (bStage === 'championship-legacy' && !legacyPool.has(aStage)) return `${b.name} is in a championship-legacy career lane; automatic matchmaking keeps unranked legacy title fighters against ranked, UFC title-experienced, or high-level unranked opposition.`;
+
+    if (aStage === 'title-contender' && B.rank === null && lowUnranked.has(bStage)) return `${a.name} is a top-five title contender while ${b.name} is in a ${bStage} career state; automatic matchmaking does not bridge that career-stage gap.`;
+    if (bStage === 'title-contender' && A.rank === null && lowUnranked.has(aStage)) return `${b.name} is a top-five title contender while ${a.name} is in a ${aStage} career state; automatic matchmaking does not bridge that career-stage gap.`;
+
+    if (aStage === 'established-ranked' && B.rank === null && lowUnranked.has(bStage)) return `${a.name} is an established ranked fighter while ${b.name} is in a ${bStage} career state; automatic matchmaking keeps that unranked pool below established contenders.`;
+    if (bStage === 'established-ranked' && A.rank === null && lowUnranked.has(aStage)) return `${b.name} is an established ranked fighter while ${a.name} is in a ${aStage} career state; automatic matchmaking keeps that unranked pool below established contenders.`;
     return null;
   }
 
@@ -576,5 +607,5 @@
     return board;
   }
 
-  return { VERSION, WEIGHTS, pairKey, normalize, division, rank, titleExperience, careerLane, streak, tier, tags, eventResult, priorMeetings, rematchCase, availability, targetRange, baseCompetitiveState, scheduleStrength, recentForm, competitiveState, rankedHierarchy, directionalFit, careerLaneMismatch, evaluatePair, evaluate, candidates, recommendations, lock, autoMatch, validateBoard };
+  return { VERSION, WEIGHTS, pairKey, normalize, division, rank, titleExperience, careerLane, careerStage, streak, tier, tags, eventResult, priorMeetings, rematchCase, availability, targetRange, baseCompetitiveState, scheduleStrength, recentForm, competitiveState, rankedHierarchy, directionalFit, careerLaneMismatch, evaluatePair, evaluate, candidates, recommendations, lock, autoMatch, validateBoard };
 });

@@ -32,12 +32,14 @@ jobs:
           node --check scripts/matchmaker/profile-contradictions.mjs
           node --check scripts/matchmaker/check-verified-history-v2.mjs
           node --check scripts/matchmaker/check-career-lanes.mjs
+          node --check scripts/matchmaker/check-career-states.mjs
           node --check scripts/matchmaker/check-eligible-recommendations.mjs
           node --check scripts/matchmaker/check-ranked-hierarchy.mjs
           node --check scripts/matchmaker/check-recent-form-quality.mjs
           node scripts/matchmaker/enrich-official-portraits.mjs --self-test
           node scripts/matchmaker/check-verified-history-v2.mjs
           node scripts/matchmaker/check-career-lanes.mjs
+          node scripts/matchmaker/check-career-states.mjs
           node scripts/matchmaker/check-eligible-recommendations.mjs
           node scripts/matchmaker/check-ranked-hierarchy.mjs
           node scripts/matchmaker/check-recent-form-quality.mjs
