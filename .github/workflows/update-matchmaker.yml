@@ -39,6 +39,8 @@ jobs:
         run: node scripts/matchmaker/check-verified-history-v2.mjs
       - name: Check engine against refreshed data
         run: node scripts/check-matchmaker.mjs
+      - name: Audit published recommendations
+        run: node scripts/matchmaker/audit-recommendations.mjs
       - name: Commit verified snapshots
         run: |
           set -euo pipefail
