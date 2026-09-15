@@ -17,6 +17,7 @@
   };
 
   const labels = ['BEST FIT', 'ALSO MAKES SENSE', 'ANOTHER OPTION'];
+  const MAX_MEDIUM_ALTERNATIVE_GAP = 12;
   let data;
   let fighterIndex = new Map();
 
@@ -56,6 +57,17 @@
     return String(value || 'RESULT');
   }
 
+  function publicRecommendations(fighter, event) {
+    const recommendations = E.recommendations(fighter, data.fighters, context(event)).slice(0, 3);
+    if (recommendations.length < 2) return recommendations;
+
+    const bestScore = recommendations[0].score;
+    return recommendations.filter((recommendation, index) => {
+      if (index === 0 || recommendation.confidence === 'high') return true;
+      return recommendation.score >= bestScore - MAX_MEDIUM_ALTERNATIVE_GAP;
+    });
+  }
+
   function opponentRow(recommendation, event, index) {
     const opponent = recommendation.fighter;
     return `
@@ -77,7 +89,7 @@
     const ctx = context(event);
     const structuredHistoryEnabled = Boolean(data.sources?.meetings);
     const historyVerified = !structuredHistoryEnabled || fighter.meetingCoverage?.verified === true;
-    const recommendations = historyVerified ? E.recommendations(fighter, data.fighters, ctx).slice(0, 3) : [];
+    const recommendations = historyVerified ? publicRecommendations(fighter, event) : [];
     const matchups = !historyVerified
       ? '<li class="mm-simple-no-match">Prior-opponent history is still being verified for this fighter.</li>'
       : recommendations.length
