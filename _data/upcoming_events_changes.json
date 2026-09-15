@@ -1,7 +1,69 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T18:59:33.394Z",
+  "generated_at": "2026-09-15T22:11:42.967Z",
   "changes": [
+    {
+      "id": "2026-09-15T22:11:42.967Z|ufc-2026-09-19-crypto-com-ufc-331|start_time_changed|1",
+      "at": "2026-09-15T22:11:42.967Z",
+      "type": "start_time_changed",
+      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
+      "promotion": "UFC",
+      "event_title": "Crypto.com UFC 331",
+      "event_date": "2026-09-19",
+      "summary": "UFC Crypto.com UFC 331: Prelims start time changed.",
+      "details": {
+        "section": "Prelims",
+        "from": "5:00 PM ET",
+        "to": "5:30 PM ET"
+      }
+    },
+    {
+      "id": "2026-09-15T22:11:42.967Z|ufc-2026-09-19-crypto-com-ufc-331|start_time_changed|2",
+      "at": "2026-09-15T22:11:42.967Z",
+      "type": "start_time_changed",
+      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
+      "promotion": "UFC",
+      "event_title": "Crypto.com UFC 331",
+      "event_date": "2026-09-19",
+      "summary": "UFC Crypto.com UFC 331: Early Prelims start time changed.",
+      "details": {
+        "section": "Early Prelims",
+        "from": "5:00 PM ET",
+        "to": "5:30 PM ET"
+      }
+    },
+    {
+      "id": "2026-09-15T22:11:42.967Z|ufc-2026-09-19-crypto-com-ufc-331|bout_moved|3",
+      "at": "2026-09-15T22:11:42.967Z",
+      "type": "bout_moved",
+      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
+      "promotion": "UFC",
+      "event_title": "Crypto.com UFC 331",
+      "event_date": "2026-09-19",
+      "summary": "Gable Steveson vs Sean Sharaf moved on Crypto.com UFC 331.",
+      "details": {
+        "from_order": 5,
+        "to_order": 4,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-15T22:11:42.967Z|ufc-2026-09-19-crypto-com-ufc-331|bout_moved|4",
+      "at": "2026-09-15T22:11:42.967Z",
+      "type": "bout_moved",
+      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
+      "promotion": "UFC",
+      "event_title": "Crypto.com UFC 331",
+      "event_date": "2026-09-19",
+      "summary": "Alonzo Menifield vs Iwo Baraniewski moved on Crypto.com UFC 331.",
+      "details": {
+        "from_order": 4,
+        "to_order": 5,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
     {
       "id": "2026-09-15T18:59:33.394Z|ufc-332-2026-10-03-fight-card|bout_moved|1",
       "at": "2026-09-15T18:59:33.394Z",
@@ -4604,68 +4666,6 @@
         "order": 12,
         "section": "Fight Card",
         "weight_class": "57.0 kg"
-      }
-    },
-    {
-      "id": "2026-08-30T08:19:12.679Z|rizin-rizin-landmark-16-in-nagasaki-2026-10-03|bout_added|14",
-      "at": "2026-08-30T08:19:12.679Z",
-      "type": "bout_added",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
-      "promotion": "RIZIN",
-      "event_title": "RIZIN LANDMARK 16 in NAGASAKI",
-      "event_date": "2026-10-03",
-      "summary": "OPENING FIGHT 森孝太郎 vs Yuki added to RIZIN LANDMARK 16 in NAGASAKI.",
-      "details": {
-        "order": 13,
-        "section": "Fight Card",
-        "weight_class": "100.0 kg"
-      }
-    },
-    {
-      "id": "2026-08-30T08:19:12.679Z|rizin-rizin-landmark-16-in-nagasaki-2026-10-03|bout_added|15",
-      "at": "2026-08-30T08:19:12.679Z",
-      "type": "bout_added",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
-      "promotion": "RIZIN",
-      "event_title": "RIZIN LANDMARK 16 in NAGASAKI",
-      "event_date": "2026-10-03",
-      "summary": "OPENING FIGHT KAKERU vs Ayuto added to RIZIN LANDMARK 16 in NAGASAKI.",
-      "details": {
-        "order": 14,
-        "section": "Fight Card",
-        "weight_class": "65.0 kg"
-      }
-    },
-    {
-      "id": "2026-08-26T22:21:04.277Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|1",
-      "at": "2026-08-26T22:21:04.277Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Morgan Charriere vs Felipe Lima moved on Hooker vs Parnasse.",
-      "details": {
-        "from_order": 4,
-        "to_order": 5,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-08-26T22:21:04.277Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|2",
-      "at": "2026-08-26T22:21:04.277Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Losene Keita vs Muhammad Naimov moved on Hooker vs Parnasse.",
-      "details": {
-        "from_order": 5,
-        "to_order": 6,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
       }
     }
   ]

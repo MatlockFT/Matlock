@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T18:58:16.291Z",
+  "generated_at": "2026-09-15T22:10:37.100Z",
   "events": [
     {
       "id": "dwcs-season-10-week-6-2026-09-15",
@@ -223,27 +223,6 @@
             {
               "order": 4,
               "label": "",
-              "weight_class": "Light Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Alonzo Menifield",
-                  "initials": "AM",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/MENIFIELD_ALONZO_L_06-14.png?itok=2VKbZoXE",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Iwo Baraniewski",
-                  "initials": "IB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/BARANIEWSKI_IWO_L_06-06.png?itok=zp1QNRHk",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
                 {
@@ -261,13 +240,34 @@
                   "image_framing": "safe"
                 }
               ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Light Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Alonzo Menifield",
+                  "initials": "AM",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/MENIFIELD_ALONZO_L_06-14.png?itok=2VKbZoXE",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Iwo Baraniewski",
+                  "initials": "IB",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/BARANIEWSKI_IWO_L_06-06.png?itok=zp1QNRHk",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                }
+              ]
             }
           ]
         },
         {
           "kind": "prelims",
           "title": "Prelims",
-          "time": "5:00 PM ET",
+          "time": "5:30 PM ET",
           "bouts": [
             {
               "order": 6,
@@ -358,7 +358,7 @@
         {
           "kind": "early",
           "title": "Early Prelims",
-          "time": "5:00 PM ET",
+          "time": "5:30 PM ET",
           "bouts": [
             {
               "order": 10,
