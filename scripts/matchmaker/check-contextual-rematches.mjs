@@ -53,11 +53,15 @@ function pair({ date, method, round = 3, weightClass = 'Lightweight Bout', aRank
   assert.equal(result.allowed, true, 'A close title decision with the current champion involved should support an immediate rematch.');
   assert.equal(result.profile.closeDecision, true);
   assert.equal(result.profile.titleBout, true);
+  const evaluated = E.evaluatePair(a, b, ctx);
+  assert.equal(evaluated.eligible, true, 'A supported close title rematch must survive the normal title-claim veto.');
+  assert.equal(evaluated.case.code, 'title-case');
 }
 
 {
   const [a, b] = pair({ date: '2026-08-01', method: 'Decision - Unanimous', round: 5, weightClass: 'Lightweight Title Bout', aRank: 0, bRank: 1 });
   assert.equal(E.rematchCase(a, b, ctx).allowed, false, 'An ordinary recent unanimous title decision must not automatically create an immediate rematch.');
+  assert.equal(E.evaluatePair(a, b, ctx).eligible, false, 'The ordinary unanimous title rematch must remain excluded end-to-end.');
 }
 
 {
@@ -89,6 +93,9 @@ function pair({ date, method, round = 3, weightClass = 'Lightweight Bout', aRank
   const result = E.rematchCase(a, b, ctx);
   assert.equal(result.allowed, true, 'A 1-1 championship series should support a deciding trilogy while the title remains involved.');
   assert.equal(result.profile.balancedSeries, true);
+  const evaluated = E.evaluatePair(a, b, ctx);
+  assert.equal(evaluated.eligible, true, 'A supported title trilogy must survive the title-claim gate.');
+  assert.equal(evaluated.case.code, 'title-case');
 }
 
 console.log('Contextual rematch checks passed: close title rematches, title trilogies, old decisions, and stricter prior-finish recycling.');
