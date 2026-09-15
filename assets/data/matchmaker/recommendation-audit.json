@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-15T01:35:20.619Z",
+  "generatedAt": "2026-09-15T01:41:34.355Z",
   "engineVersion": 2,
   "subjects": 182,
   "publishedRecommendations": 494,
@@ -26,11 +26,36 @@
   "averageRecentOpponentLinkCoverage": 0.906,
   "sameCardRecommendations": 33,
   "sameCardRecommendationRatio": 0.0668,
-  "asymmetricTopThreeRecommendations": 151,
-  "asymmetricTopThreeRatio": 0.3057,
+  "asymmetricTopThreeRecommendations": 152,
+  "asymmetricTopThreeRatio": 0.3077,
   "genericDivisionalSortingRecommendations": 0,
   "genericExamples": [],
   "asymmetricExamples": [
+    {
+      "event": "Noche UFC: Silva vs Delgado",
+      "fighter": "Jean Silva",
+      "opponent": "Aljamain Sterling",
+      "pairScore": 74,
+      "case": "rankings-progression",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Yair Rodriguez",
+          "score": 83,
+          "case": "title-eliminator"
+        },
+        {
+          "opponent": "Lerone Murphy",
+          "score": 82,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Diego Lopes",
+          "score": 77,
+          "case": "title-eliminator"
+        }
+      ]
+    },
     {
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Jose Miguel Delgado",
@@ -627,31 +652,6 @@
         {
           "opponent": "Miranda Maverick",
           "score": 85,
-          "case": "ranking-opportunity"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Regina Malpica Rivera",
-      "opponent": "Gabriella Fernandes",
-      "pairScore": 88,
-      "case": "ranking-opportunity",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Dione Barbosa",
-          "score": 94,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Juliana Miller",
-          "score": 93,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Veronica Hardy",
-          "score": 93,
           "case": "ranking-opportunity"
         }
       ]
