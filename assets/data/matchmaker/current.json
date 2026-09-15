@@ -12,7 +12,8 @@
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-15T01:48:23.752Z"
+      "checkedAt": "2026-09-15T01:48:23.752Z",
+      "curatedOverrides": 1
     },
     "history": {
       "url": "https://www.ufc.com/athletes",
@@ -263969,7 +263970,13 @@
         "mirrorThrough": "2026-09-12",
         "officialThrough": "2026-09-12"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night: Moicano vs. Nolan",
+        "date": "2026-10-31",
+        "source": "https://www.mmafighting.com/ufc/510318/renato-moicano-vs-brian-ortega-scrapped-from-ufc-331-moicano-gets-moved-to-new-card",
+        "opponent": "Tom Nolan",
+        "opponentId": "tom-nolan"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -304938,7 +304945,13 @@
         "mirrorThrough": "2026-09-12",
         "officialThrough": "2026-09-12"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night: Moicano vs. Nolan",
+        "date": "2026-10-31",
+        "source": "https://www.mmafighting.com/ufc/510318/renato-moicano-vs-brian-ortega-scrapped-from-ufc-331-moicano-gets-moved-to-new-card",
+        "opponent": "Renato Moicano",
+        "opponentId": "renato-moicano"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
