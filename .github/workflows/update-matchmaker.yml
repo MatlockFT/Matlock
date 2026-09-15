@@ -56,6 +56,8 @@ jobs:
         run: node scripts/matchmaker/audit-recommendations.mjs
       - name: Backtest recent next-fight recommendations
         run: node scripts/matchmaker/backtest-recommendations-v4.mjs
+      - name: Refine historical booking classifications
+        run: node scripts/matchmaker/refine-backtest-classifications.mjs
       - name: Commit verified snapshots
         run: |
           set -euo pipefail
