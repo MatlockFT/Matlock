@@ -1,7 +1,37 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-16T05:12:42.231Z",
+  "generated_at": "2026-09-16T10:06:33.380Z",
   "changes": [
+    {
+      "id": "2026-09-16T10:06:33.380Z|dwcs-season-10-week-7-2026-09-22|event_added|1",
+      "at": "2026-09-16T10:06:33.380Z",
+      "type": "event_added",
+      "event_id": "dwcs-season-10-week-7-2026-09-22",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 7",
+      "event_date": "2026-09-22",
+      "summary": "DWCS Season 10 · Week 7 added to Upcoming Events.",
+      "details": {
+        "bout_count": 5,
+        "venue": "Meta APEX · Las Vegas, Nevada",
+        "date": "2026-09-22"
+      }
+    },
+    {
+      "id": "2026-09-16T10:06:33.380Z|dwcs-season-10-week-6-2026-09-15|event_removed|2",
+      "at": "2026-09-16T10:06:33.380Z",
+      "type": "event_removed",
+      "event_id": "dwcs-season-10-week-6-2026-09-15",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 6",
+      "event_date": "2026-09-15",
+      "summary": "DWCS Season 10 · Week 6 removed from Upcoming Events.",
+      "details": {
+        "bout_count": 5,
+        "venue": "Meta APEX · Las Vegas, Nevada",
+        "date": "2026-09-15"
+      }
+    },
     {
       "id": "2026-09-16T05:12:42.231Z|rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03|title_changed|1",
       "at": "2026-09-16T05:12:42.231Z",
@@ -4632,36 +4662,6 @@
       "summary": "荒東“怪獣キラー”英貴 vs Ken Hasegawa added to RIZIN LANDMARK 16 in NAGASAKI.",
       "details": {
         "order": 8,
-        "section": "Fight Card",
-        "weight_class": "120.0 kg"
-      }
-    },
-    {
-      "id": "2026-08-30T08:19:12.679Z|rizin-rizin-landmark-16-in-nagasaki-2026-10-03|bout_added|10",
-      "at": "2026-08-30T08:19:12.679Z",
-      "type": "bout_added",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
-      "promotion": "RIZIN",
-      "event_title": "RIZIN LANDMARK 16 in NAGASAKI",
-      "event_date": "2026-10-03",
-      "summary": "アラン“ヒロ”ヤマニハ vs Seigo Yamamoto added to RIZIN LANDMARK 16 in NAGASAKI.",
-      "details": {
-        "order": 9,
-        "section": "Fight Card",
-        "weight_class": "61.0 kg"
-      }
-    },
-    {
-      "id": "2026-08-30T08:19:12.679Z|rizin-rizin-landmark-16-in-nagasaki-2026-10-03|bout_added|11",
-      "at": "2026-08-30T08:19:12.679Z",
-      "type": "bout_added",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
-      "promotion": "RIZIN",
-      "event_title": "RIZIN LANDMARK 16 in NAGASAKI",
-      "event_date": "2026-10-03",
-      "summary": "Mac Papalii vs Alboury Ndiaye added to RIZIN LANDMARK 16 in NAGASAKI.",
-      "details": {
-        "order": 10,
         "section": "Fight Card",
         "weight_class": "120.0 kg"
       }
