@@ -9,7 +9,9 @@
     const liveNewsUrl = root.dataset.newsUrl;
     const fallbackNewsUrl = root.dataset.newsFallbackUrl;
     const historyUrl = root.dataset.historyUrl;
+    const historyRuntimeBase = root.dataset.historyRuntimeBase;
     const rosterUrl = root.dataset.rosterUrl;
+    const historyTimeZone = 'America/Chicago';
 
     const element = (tag, className, text) => {
         const node = document.createElement(tag);
@@ -51,7 +53,7 @@
                 seen.add(key);
                 return true;
             })
-            .slice(0, 4);
+            .slice(0, 3);
     };
 
     const sectionLink = (label, href) => {
@@ -93,6 +95,33 @@
         renderNews({ stories: [] });
     }
 
+    const currentHistoryKey = () => {
+        const parts = Object.fromEntries(
+            new Intl.DateTimeFormat('en-US', {
+                timeZone: historyTimeZone,
+                month: '2-digit',
+                day: '2-digit'
+            })
+                .formatToParts(new Date())
+                .filter(part => part.type !== 'literal')
+                .map(part => [part.type, part.value])
+        );
+        return `${parts.month}-${parts.day}`;
+    };
+
+    const latestHistoryEntry = (entries, key) => {
+        const todays = entries.filter(entry => String(entry?.date || '').slice(5) === key);
+        const events = todays.filter(entry => entry?.kind === 'event');
+        const candidates = events.length ? events : todays;
+        return candidates.sort((a, b) => {
+            const dateOrder = String(b?.date || '').localeCompare(String(a?.date || ''));
+            if (dateOrder) return dateOrder;
+            const imageOrder = Number(Boolean(b?.imageUrl)) - Number(Boolean(a?.imageUrl));
+            if (imageOrder) return imageOrder;
+            return Number(b?.weight || 0) - Number(a?.weight || 0);
+        })[0] || null;
+    };
+
     function renderOnThisDay(entry, key) {
         if (!otdBody) return;
         otdBody.replaceChildren();
@@ -130,21 +159,24 @@
 
     async function loadOnThisDay() {
         if (!otdBody || !historyUrl) return;
+        const key = currentHistoryKey();
+
         try {
-            const data = await fetchJson(historyUrl, 'force-cache');
-            if (data?.entry !== undefined) {
-                renderOnThisDay(data.entry, data.key);
+            const snapshot = await fetchJson(historyUrl, 'no-store');
+            if (snapshot?.entry !== undefined && snapshot?.key === key) {
+                renderOnThisDay(snapshot.entry, key);
                 return;
             }
+        } catch {}
+
+        try {
+            const month = key.slice(0, 2);
+            const runtimeUrl = historyRuntimeBase ? `${historyRuntimeBase}${month}.json` : '';
+            const data = await fetchJson(runtimeUrl, 'no-store');
             const entries = Array.isArray(data) ? data : Array.isArray(data?.entries) ? data.entries : [];
-            const now = new Date();
-            const key = `${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-            const todays = entries
-                .filter(entry => String(entry?.date || '').slice(5) === key)
-                .sort((a, b) => Number(Boolean(b?.imageUrl)) - Number(Boolean(a?.imageUrl)) || Number(b?.weight || 0) - Number(a?.weight || 0));
-            renderOnThisDay(todays[0], key);
+            renderOnThisDay(latestHistoryEntry(entries, key), key);
         } catch {
-            renderOnThisDay(null, '');
+            renderOnThisDay(null, key);
         }
     }
 
@@ -193,8 +225,8 @@
 
     const startDeferredLoads = () => {
         runWhenIdle(loadNews, 0, 650);
-        runWhenIdle(loadOnThisDay, 280, 1000);
-        runWhenIdle(loadRoster, 480, 1200);
+        runWhenIdle(loadOnThisDay, 180, 900);
+        runWhenIdle(loadRoster, 360, 1100);
     };
 
     if (document.readyState === 'complete') startDeferredLoads();
