@@ -135,8 +135,11 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   await page.click('[data-show-library]');
   await expect(page.locator('[data-library-list]')).toContainText('Writer Production Smoke Test', { timeout: 10000 });
   await page.locator('[data-library-path]').filter({ hasText: 'Writer Production Smoke Test' }).locator('[data-library-edit]').click();
-  await expect(page.locator('.writer-meta')).not.toHaveAttribute('open', '');
+  const articleDetails = page.locator('.writer-meta');
+  await expect(articleDetails).not.toHaveAttribute('open', '');
   await expect(page.locator('#writer-body')).toHaveValue(/Closing section/);
+  await articleDetails.locator('summary').click();
+  await expect(articleDetails).toHaveAttribute('open', '');
 
   await page.fill('[data-field="description"]', '');
   await page.click('[data-publish]');
