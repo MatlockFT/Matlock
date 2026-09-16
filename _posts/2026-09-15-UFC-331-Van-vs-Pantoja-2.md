@@ -23,6 +23,44 @@ listing_visibility: normal
 spoiler_warning: false
 published: true
 ---
+<style>
+#article-content.post-body p {
+  margin: 0 0 1.45rem;
+}
+
+#article-content.post-body table {
+  margin: 1.65rem 0 2.25rem;
+}
+
+#article-content.post-body iframe {
+  display: block;
+  max-width: 100%;
+  margin: 1.35rem 0 2.1rem;
+}
+
+#article-content.post-body hr {
+  margin: 2.65rem 0;
+}
+
+@media (max-width: 700px) {
+  #article-content.post-body p {
+    margin-bottom: 1.3rem;
+  }
+
+  #article-content.post-body table {
+    margin: 1.35rem 0 1.9rem;
+  }
+
+  #article-content.post-body iframe {
+    margin: 1.1rem 0 1.75rem;
+  }
+
+  #article-content.post-body hr {
+    margin: 2.2rem 0;
+  }
+}
+</style>
+
 UFC 331 is upon us, and I feel like it arrived rather quickly. This card leaves a lot to be desired, and it took another hit when Moicano vs. Ortega fell off, with Ortega suffering a deep cut on his brow. Personally, that leaves me with very little interest in the event.
 
 **Fight Predictions**
