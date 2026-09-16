@@ -28,6 +28,10 @@
   const metaDetails = app.querySelector('.writer-meta');
   const htmlBlockRail = app.querySelector('[data-html-block-rail]');
   const splitter = app.querySelector('[data-writer-splitter]');
+  const publishCheckDialog = app.querySelector('[data-publish-check-dialog]');
+  const publishCheckSummary = app.querySelector('[data-publish-check-summary]');
+  const publishCheckList = app.querySelector('[data-publish-check-list]');
+  const publishCheckProceed = app.querySelector('[data-publish-check-proceed]');
 
   let githubCredential = '';
   let githubLogin = '';
@@ -1069,6 +1073,81 @@ function scheduleAutosave() {
     }
   }
 
+  function isAllowedPublishUrl(value) {
+    const url = String(value || '').trim();
+    if (!url) return false;
+    if (/^(\/|#|mailto:)/i.test(url)) return true;
+    try {
+      const parsed = new URL(url);
+      return parsed.protocol === 'http:' || parsed.protocol === 'https:';
+    } catch { return false; }
+  }
+
+  function collectPublishChecks() {
+    const issues = [];
+    const body = bodyEditor.value || '';
+    const expandedBody = expandHtmlBlocks(body);
+    const description = fields.description.value.trim();
+    const filename = fields.filename.value.trim();
+    const articleDate = fields.date.value;
+
+    const add = (level, title, detail = '') => issues.push({ level, title, detail });
+
+    if (!description) add('warning', 'Description is empty', 'The article can publish, but its listing and social summary will have no description.');
+    if (!expandedBody.trim()) add('warning', 'Article body is empty', 'There is no article content below the front matter.');
+    if (fields.imagePath.value.trim() && !fields.imageAlt.value.trim()) add('warning', 'Featured image alt text is missing', 'Add a short description of the featured image for accessibility.');
+    if (articleDate && filename && !filename.startsWith(`${articleDate}-`)) add('warning', 'Filename date does not match article date', `Article date is ${articleDate}, but the filename is ${filename}.`);
+    if (/!\[\s*\]\([^)]+\)/.test(body)) add('warning', 'Inline image is missing alt text', 'At least one Markdown image uses ![](...) with no description.');
+
+    const tokenMatches = [...body.matchAll(/^\[HTML VISUAL · .*? · #([A-Za-z0-9_-]+)\]\s*$/gm)];
+    for (const match of tokenMatches) {
+      if (!htmlBlocks.has(match[1])) add('blocker', 'HTML visual reference is broken', `Writer cannot find the saved HTML for block #${match[1]}.`);
+    }
+    for (const block of htmlBlocks.values()) {
+      const code = String(block.code || '').trim();
+      if (!/^<section\b[\s\S]*<\/section>\s*$/i.test(code)) add('blocker', `HTML visual is malformed: ${cleanHtmlLabel(block.label)}`, 'Each visual must be one complete <section>...</section> block.');
+      if (/<script\b/i.test(code)) add('blocker', `HTML visual contains a script: ${cleanHtmlLabel(block.label)}`, 'Script tags are not supported in article visuals.');
+    }
+    if (/^\[HTML VISUAL · .*? · #[A-Za-z0-9_-]+\]\s*$/m.test(expandedBody)) add('blocker', 'An HTML visual would publish as a placeholder', 'One or more compact Writer HTML blocks could not be expanded back into their original code.');
+
+    const badLinks = new Set();
+    for (const match of body.matchAll(/!?\[[^\]\n]*\]\(([^)\s]+)(?:\s+["'][^"']*["'])?\)/g)) {
+      const url = match[1].trim();
+      if (!isAllowedPublishUrl(url)) badLinks.add(url || '(empty URL)');
+    }
+    for (const line of body.split('\n')) {
+      if (/\[[^\]\n]+\]\([^)]*$/.test(line)) badLinks.add('(incomplete Markdown link)');
+    }
+    for (const match of expandedBody.matchAll(/<a\b[^>]*href=["']([^"']*)["']/gi)) {
+      const url = match[1].trim();
+      if (!isAllowedPublishUrl(url)) badLinks.add(url || '(empty href)');
+    }
+    if (badLinks.size) add('blocker', 'Unsafe or malformed link', [...badLinks].slice(0, 3).join(', '));
+
+    return issues;
+  }
+
+  function renderPublishChecks(issues) {
+    const blockers = issues.filter(item => item.level === 'blocker');
+    const warnings = issues.filter(item => item.level === 'warning');
+    publishCheckSummary.className = `writer-publish-check-summary ${blockers.length ? 'has-blockers' : 'has-warnings'}`;
+    publishCheckSummary.innerHTML = blockers.length
+      ? `<strong>${blockers.length} item${blockers.length === 1 ? '' : 's'} must be fixed before publishing.</strong><span>${warnings.length ? `${warnings.length} additional warning${warnings.length === 1 ? '' : 's'} can be reviewed too.` : 'Writer will not publish until the blocking issue is fixed.'}</span>`
+      : `<strong>${warnings.length} warning${warnings.length === 1 ? '' : 's'} found.</strong><span>Nothing here blocks publication; review the items or publish anyway.</span>`;
+    publishCheckList.innerHTML = issues.map(item => `<div class="writer-publish-check-item is-${item.level}"><span class="writer-publish-check-icon" aria-hidden="true">${item.level === 'blocker' ? '!' : 'i'}</span><div><strong>${escapeHtml(item.title)}</strong>${item.detail ? `<p>${escapeHtml(item.detail)}</p>` : ''}</div></div>`).join('');
+    publishCheckProceed.hidden = blockers.length > 0;
+    publishCheckProceed.disabled = blockers.length > 0;
+    publishCheckDialog.showModal();
+  }
+
+  function requestPublishWithChecks() {
+    try { validateForSave('publish'); }
+    catch (error) { showToast(error.message); return; }
+    const issues = collectPublishChecks();
+    if (!issues.length) { saveArticle('publish'); return; }
+    renderPublishChecks(issues);
+  }
+
   function validateForSave(mode) {
     if (!fields.title.value.trim()) throw new Error('Add a title first.');
     if (!fields.date.value) throw new Error('Choose an article date.');
@@ -1441,8 +1520,9 @@ Object.values(fields).forEach(el => {
   app.querySelector('[data-github-connect]').addEventListener('click', () => connectDialog.showModal());
   app.querySelector('[data-github-authorize]').addEventListener('click', connectGitHub);
   saveDraftButton.addEventListener('click', () => saveArticle('save'));
-  publishButton.addEventListener('click', () => saveArticle('publish'));
+  publishButton.addEventListener('click', requestPublishWithChecks);
   scheduleButton.addEventListener('click', () => saveArticle('schedule'));
+  publishCheckProceed.addEventListener('click', () => { publishCheckDialog.close(); saveArticle('publish'); });
   uploadButton.addEventListener('click', uploadFeaturedImage);
   app.querySelector('[data-history]').addEventListener('click', loadHistory);
   app.querySelector('[data-copy-markdown]').addEventListener('click', copyMarkdown);

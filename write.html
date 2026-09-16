@@ -426,5 +426,19 @@ Stance</textarea></label>
     </form>
   </dialog>
 
+  <dialog class="writer-dialog writer-publish-check-dialog" data-publish-check-dialog>
+    <form method="dialog">
+      <header><div><p class="eyebrow">Publish safety check</p><h2>Before you publish</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
+      <div class="writer-dialog-body">
+        <div class="writer-publish-check-summary" data-publish-check-summary></div>
+        <div class="writer-publish-check-list" data-publish-check-list></div>
+      </div>
+      <footer class="writer-dialog-actions">
+        <button class="writer-button writer-button-subtle" value="cancel">Back to editor</button>
+        <button class="writer-button writer-button-primary" type="button" data-publish-check-proceed>Publish anyway</button>
+      </footer>
+    </form>
+  </dialog>
+
   <div class="writer-toast" data-toast role="status" aria-live="polite" hidden></div>
 </section>
