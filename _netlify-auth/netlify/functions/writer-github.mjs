@@ -5,6 +5,12 @@ function sessionId(request) {
   return request.headers.get('x-writer-session') || '';
 }
 
+function normalizeApiPath(value) {
+  let path = String(value || '');
+  try { path = decodeURIComponent(path); } catch {}
+  return path;
+}
+
 function allowedPath(path, method) {
   const value = String(path || '');
   if (method === 'GET') {
@@ -24,7 +30,8 @@ function allowedPath(path, method) {
 
 function contentPathFromApiPath(path) {
   const match = String(path || '').match(/^\/contents\/(.*?)(?:\?.*)?$/);
-  return match ? decodeURIComponent(match[1]) : '';
+  if (!match) return '';
+  try { return decodeURIComponent(match[1]); } catch { return match[1]; }
 }
 
 function validateWriteBody(apiPath, body) {
@@ -58,7 +65,8 @@ export default async function handler(request) {
     return Response.json({ message: 'Origin not allowed' }, { status: 403, headers });
   }
 
-  const apiPath = new URL(request.url).searchParams.get('path') || '';
+  const rawApiPath = new URL(request.url).searchParams.get('path') || '';
+  const apiPath = normalizeApiPath(rawApiPath);
   if (!allowedPath(apiPath, request.method)) {
     return Response.json({ message: 'Writer is not allowed to access that GitHub resource.' }, { status: 403, headers });
   }
