@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-09-15T15:36:43.741Z",
+  "updatedAt": "2026-09-16T15:28:36.176Z",
   "entries": {
     "ufc:2018-09-08:ufc-228-woodley-vs-till": {
       "strategyVersion": 7,
@@ -8863,12 +8863,23 @@
     "ufc:2022-09-17:ufc-fight-night-sandhagen-vs-song": {
       "strategyVersion": 6,
       "status": "pageimage-kept",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T23:27:41.867Z",
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-09-16T15:26:56.587Z",
       "wikipediaTitle": "UFC Fight Night: Sandhagen vs. Song",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/en/a/a1/UFC_Cory_vs_Song_official_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "imageAlt": "UFC Fight Night: Sandhagen vs. Song event image",
-      "imageCredit": "Wikipedia"
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2022-09-17-ufc-fight-night-sandhagen-vs-song-9da0094ae95ce9d9.jpg",
+      "imageAlt": "UFC Fight Night: Sandhagen vs. Song event poster",
+      "imageCredit": "Tapology",
+      "imageStatus": "resolved",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/90191-ufc-fight-night",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/90191-ufc-fight-night",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "9da0094ae95ce9d97ecc9166a590a68cca2ea59b8c82ee2b376e66b86ad8fe78",
+      "posterRegistryKey": "2022-09-17::ufc fight night sandhagen vs song"
     },
     "ufc:2009-08-29:ufc-102-couture-vs-nogueira": {
       "strategyVersion": 6,
@@ -19548,6 +19559,24 @@
       "tapologyBinding": "direct-event-page",
       "posterSha256": "7af9d0dcae5d73e7423f7537f16523cde7861b7a2d2b5f23623143ac6bcce814",
       "posterRegistryKey": "2001-03-25::pride 13"
+    },
+    "pride:2000-10-31:pride-11": {
+      "checkedAt": "2026-09-16T15:28:19.384Z",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2000-10-31-pride-11-090f55bb7b153b55.jpg",
+      "imageAlt": "Pride 11 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/pride-11-battle-of-the-rising-sun",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "sourceType": "tapology-event-poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/pride-11-battle-of-the-rising-sun",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "090f55bb7b153b55b6b22d45717386af68589cc20634225d56d3b2521f853e42",
+      "posterRegistryKey": "2000-10-31::pride 11"
     }
   },
   "strategyVersion": 8,
