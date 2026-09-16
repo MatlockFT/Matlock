@@ -57,13 +57,6 @@ content:
         order: desc
 
     actions:
-      - name: preview-article
-        label: Build visual preview
-        scope: entry
-        workflow: pages-cms-preview-article.yml
-        ref: current
-        confirm: false
-
       - name: validate-article
         label: Run article checks
         scope: entry
@@ -307,6 +300,8 @@ content:
         description: >-
           Use Editor mode for normal writing. Switch to Source mode for
           Markdown tables, embeds, custom links, and precise formatting.
+          For instant real-site preview and direct publishing, use
+          mmamatlock.com/write/.
         options:
           format: markdown
           switcher: true
