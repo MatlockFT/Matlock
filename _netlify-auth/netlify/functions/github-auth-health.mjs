@@ -1,4 +1,4 @@
-import { REPO_FULL_NAME, corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mjs';
+import { REPO_FULL_NAME, corsHeaders, getAppConfig, isAllowedOrigin, normalizeOrigin } from './_github-auth.mjs';
 
 export default async function handler(request) {
   const origin = normalizeOrigin(request.headers.get('origin'));
@@ -24,12 +24,15 @@ export default async function handler(request) {
     return Response.json({ ok: false, message: 'Origin not allowed' }, { status: 403, headers });
   }
 
-  const configured = Boolean(process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET);
+  const appConfig = await getAppConfig();
+  const configured = Boolean(appConfig?.clientId && appConfig?.clientSecret);
   return Response.json({
     ok: true,
     configured,
     repo: REPO_FULL_NAME,
-    auth: 'github-app-oauth-pkce'
+    auth: 'github-app-oauth-pkce',
+    appSlug: configured ? (appConfig.appSlug || null) : null,
+    source: configured ? appConfig.source : null
   }, { status: configured ? 200 : 503, headers });
 }
 
