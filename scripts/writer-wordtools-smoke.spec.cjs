@@ -44,7 +44,7 @@ test('Writer word processor tools work in production', async ({ page }) => {
   await page.click('[data-wordtool="outline"]');
   await expect(page.locator('[data-wordtools-outline]')).toBeVisible();
   await expect(page.locator('[data-wordtools-outline-list]')).toContainText('Section one');
-  await page.locator('[data-wordtools-outline-item]').filter({ hasText: 'Section one' }).click();
+  await page.locator('.writer-wordtools-outline-item').filter({ hasText: 'Section one' }).click();
   await expect.poll(async () => editor.evaluate(el => el.selectionStart)).toBe(0);
 
   await editor.fill('Alpha fighter opens. Alpha fighter closes.');
