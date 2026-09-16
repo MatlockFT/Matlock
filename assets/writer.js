@@ -1060,7 +1060,13 @@
   async function uploadAsset(file, preferredName = '') {
     if (!githubCredential) throw new Error('Sign in with GitHub before uploading images.');
     const optimized = await optimizeImage(file);
-    const safeName = (preferredName || optimized.name).replace(/[^A-Za-z0-9._-]+/g,'-');
+    let uploadName = preferredName || optimized.name;
+    const optimizedExtension = optimized.name.match(/\.[^.]+$/)?.[0] || '';
+    const preferredExtension = uploadName.match(/\.[^.]+$/)?.[0] || '';
+    if (preferredName && optimizedExtension && preferredExtension.toLowerCase() !== optimizedExtension.toLowerCase()) {
+      uploadName = `${preferredName.replace(/\.[^.]+$/, '')}${optimizedExtension}`;
+    }
+    const safeName = uploadName.replace(/[^A-Za-z0-9._-]+/g,'-');
     const path = `assets/uploads/${safeName}`;
     const bytes = new Uint8Array(await optimized.blob.arrayBuffer());
     let binary = '';
