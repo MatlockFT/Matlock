@@ -1,5 +1,6 @@
 name: Writer production smoke
 
+# Exercises the deployed Writer against a mocked GitHub publishing lifecycle.
 on:
   workflow_dispatch:
   push:
