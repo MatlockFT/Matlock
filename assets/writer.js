@@ -1087,17 +1087,37 @@ function scheduleAutosave() {
     const issues = [];
     const body = bodyEditor.value || '';
     const expandedBody = expandHtmlBlocks(body);
+    const title = fields.title.value.trim();
     const description = fields.description.value.trim();
     const filename = fields.filename.value.trim();
     const articleDate = fields.date.value;
 
     const add = (level, title, detail = '') => issues.push({ level, title, detail });
 
+    if (!title) add('blocker', 'Title is missing', 'Add the article title before publishing.');
+    if (!articleDate) add('blocker', 'Article date is missing', 'Choose the article date before publishing.');
+    if (!filename) {
+      add('blocker', 'Filename is missing', 'Add a Jekyll post filename before publishing.');
+    } else if (!/^\d{4}-\d{2}-\d{2}-.+\.md$/i.test(filename)) {
+      add('blocker', 'Filename format is invalid', 'Use YYYY-MM-DD-article-name.md.');
+    } else {
+      if (articleDate && !filename.startsWith(`${articleDate}-`)) add('warning', 'Filename date does not match article date', `Article date is ${articleDate}, but the filename is ${filename}.`);
+      if (!/^\d{4}-\d{2}-\d{2}-[a-z0-9]+(?:-[a-z0-9]+)*\.md$/.test(filename)) {
+        add('warning', 'Filename looks unusual', 'Lowercase words separated by single hyphens are safest for the public article URL.');
+      }
+      const slug = filename.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/i, '');
+      if (/^(?:article|untitled|draft|test|new-article|copy)(?:-\d+)?$/i.test(slug)) {
+        add('warning', 'Filename looks temporary', `The filename is ${filename}. Make sure this is the public URL slug you want.`);
+      }
+    }
+
     if (!description) add('warning', 'Description is empty', 'The article can publish, but its listing and social summary will have no description.');
     if (!expandedBody.trim()) add('warning', 'Article body is empty', 'There is no article content below the front matter.');
     if (fields.imagePath.value.trim() && !fields.imageAlt.value.trim()) add('warning', 'Featured image alt text is missing', 'Add a short description of the featured image for accessibility.');
-    if (articleDate && filename && !filename.startsWith(`${articleDate}-`)) add('warning', 'Filename date does not match article date', `Article date is ${articleDate}, but the filename is ${filename}.`);
     if (/!\[\s*\]\([^)]+\)/.test(body)) add('warning', 'Inline image is missing alt text', 'At least one Markdown image uses ![](...) with no description.');
+    if (dirty) add('warning', 'Unsaved local changes', currentPath
+      ? 'This article has changes that have not yet been saved to GitHub. Publishing will save the current version.'
+      : 'This new article has not yet been saved to GitHub. Publishing will save the current version.');
 
     const tokenMatches = [...body.matchAll(/^\[HTML VISUAL · .*? · #([A-Za-z0-9_-]+)\]\s*$/gm)];
     for (const match of tokenMatches) {
@@ -1141,8 +1161,6 @@ function scheduleAutosave() {
   }
 
   function requestPublishWithChecks() {
-    try { validateForSave('publish'); }
-    catch (error) { showToast(error.message); return; }
     const issues = collectPublishChecks();
     if (!issues.length) { saveArticle('publish'); return; }
     renderPublishChecks(issues);

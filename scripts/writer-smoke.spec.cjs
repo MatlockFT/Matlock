@@ -178,6 +178,24 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await page.click('[data-github-authorize]');
   await expect(page.locator('[data-github-status]')).toContainText('Connected to MatlockFT/Matlock', { timeout: 10000 });
 
+  const cleanFilename = await page.locator('[data-field="filename"]').inputValue();
+  await page.fill('[data-field="filename"]', `${date}-draft.md`);
+  await page.click('[data-publish]');
+  await expect(page.locator('[data-publish-check-dialog]')).toBeVisible();
+  await expect(page.locator('[data-publish-check-list]')).toContainText('Filename looks temporary');
+  await expect(page.locator('[data-publish-check-list]')).toContainText('Unsaved local changes');
+  await expect(page.locator('[data-publish-check-proceed]')).toBeVisible();
+  await page.locator('[data-publish-check-dialog]').getByRole('button', { name: 'Back to editor' }).click();
+  await page.fill('[data-field="filename"]', cleanFilename);
+
+  await page.fill('[data-field="title"]', '');
+  await page.click('[data-publish]');
+  await expect(page.locator('[data-publish-check-dialog]')).toBeVisible();
+  await expect(page.locator('[data-publish-check-list]')).toContainText('Title is missing');
+  await expect(page.locator('[data-publish-check-proceed]')).toBeHidden();
+  await page.locator('[data-publish-check-dialog]').getByRole('button', { name: 'Back to editor' }).click();
+  await page.fill('[data-field="title"]', 'Writer Production Smoke Test');
+
   await page.click('[data-save-draft]');
   await expect(page.locator('[data-save-state]')).toContainText('Saved', { timeout: 10000 });
   await expect.poll(() => Boolean(remote && /published:\s*false/.test(remote.text))).toBe(true);
