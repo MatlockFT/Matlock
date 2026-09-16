@@ -83,12 +83,6 @@ jobs:
           print(f'preview_url={preview_url}')
           PY
 
-      - name: Build normal site
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
-
       - name: Make selected article renderable for preview
         shell: bash
         env:
@@ -123,11 +117,11 @@ jobs:
           destination: ./_site-draft
           future: true
 
-      - name: Add selected article to visual preview path
+      - name: Isolate rendered article
         shell: bash
         env:
           RENDERED_PATH: ${{ steps.context.outputs.rendered_path }}
-          PREVIEW_PATH: ${{ steps.context.outputs.preview_path }}
+          ARTICLE_PATH: ${{ steps.context.outputs.article_path }}
         run: |
           if [[ ! -f "$RENDERED_PATH" ]]; then
             echo "Rendered article was not found at $RENDERED_PATH" >&2
@@ -135,8 +129,23 @@ jobs:
             exit 1
           fi
 
+          cp "$RENDERED_PATH" /tmp/matlock-article-preview.html
+          rm -rf _site-draft
+          git checkout -- "$ARTICLE_PATH"
+
+      - name: Build normal site
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Add selected article to visual preview path
+        shell: bash
+        env:
+          PREVIEW_PATH: ${{ steps.context.outputs.preview_path }}
+        run: |
           mkdir -p "$(dirname "$PREVIEW_PATH")"
-          cp "$RENDERED_PATH" "$PREVIEW_PATH"
+          cp /tmp/matlock-article-preview.html "$PREVIEW_PATH"
 
           python3 <<'PY'
           import os
