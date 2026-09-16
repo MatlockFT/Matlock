@@ -223,6 +223,17 @@
   }
   if (signOutButton) signOutButton.addEventListener('click', signOut);
 
+  window.addEventListener('matlock-writer:auth-expired', () => {
+    clearServerSessionLocal();
+    sessionWrite(PAT_KEY, '');
+    window.clearInterval(connectionMonitor);
+    connectionMonitor = 0;
+    connectButton.disabled = false;
+    connectButton.textContent = 'Sign in with GitHub';
+    if (signOutButton) signOutButton.hidden = true;
+    setStatus('Your GitHub session expired. Sign in again to save or publish.', 'error');
+  });
+
   async function checkBridge() {
     bridgeReady = false;
     if (!authBase) return;

@@ -43,6 +43,9 @@
   let pendingConflictMode = '';
   let pendingRemoteSha = '';
   let linkMode = 'link';
+  let saveInFlight = false;
+  let previewTimer = 0;
+  let librarySearchTimer = 0;
 
   const controlledKeys = [
     'layout','title','description','date','category','author','image','tags',
@@ -530,14 +533,34 @@
   }
 
   function isServerSession() {
-    return githubCredential.startsWith('session:');
-  }
+  return githubCredential.startsWith('session:');
+}
 
-  async function githubFetch(path, options = {}, requireAuth = false) {
-    const method = options.method || 'GET';
-    if (requireAuth && !githubCredential) throw new Error('Sign in with GitHub first.');
+function setPublishingControls(enabled) {
+  const active = Boolean(enabled) && !saveInFlight;
+  saveDraftButton.disabled = !active;
+  publishButton.disabled = !active;
+  scheduleButton.disabled = !active;
+  uploadButton.disabled = !active || !selectedImageFile;
+}
 
-    let response;
+function expireGithubConnection(message = 'GitHub session expired. Sign in again to save or publish.') {
+  githubCredential = '';
+  githubLogin = '';
+  setPublishingControls(false);
+  app.querySelector('[data-github-status]').textContent = 'GitHub session expired';
+  const topConnect = app.querySelector('[data-github-connect]');
+  if (topConnect) topConnect.textContent = 'Sign in with GitHub';
+  window.dispatchEvent(new CustomEvent('matlock-writer:auth-expired'));
+  showToast(message, 6000);
+}
+
+async function githubFetch(path, options = {}, requireAuth = false) {
+  const method = options.method || 'GET';
+  if (requireAuth && !githubCredential) throw new Error('Sign in with GitHub first.');
+
+  let response;
+  try {
     if (githubCredential && isServerSession()) {
       if (!authBase) throw new Error('Writer auth bridge is unavailable.');
       const id = githubCredential.slice('session:'.length);
@@ -548,48 +571,54 @@
       if (githubCredential) headers.Authorization = `Bearer ${githubCredential}`;
       response = await fetch(`https://api.github.com/repos/${repo}${path}`, { ...options, method, headers });
     }
-
-    if (!response.ok) {
-      let message = `${response.status} ${response.statusText}`;
-      try { const data = await response.json(); if (data.message || data.error) message = data.message || data.error; } catch {}
-      if (response.status === 401 && isServerSession()) {
-        try { localStorage.removeItem('matlock-writer:server-session'); localStorage.removeItem('matlock-writer:server-login'); } catch {}
-      }
-      throw new Error(message);
-    }
-    return response.status === 204 ? null : response.json();
+  } catch (error) {
+    if (error?.message === 'Writer auth bridge is unavailable.') throw error;
+    throw new Error(navigator.onLine === false
+      ? 'You appear to be offline. Your local autosave is safe.'
+      : 'Could not reach GitHub. Your local autosave is safe; try again in a moment.');
   }
+
+  if (!response.ok) {
+    let message = `${response.status} ${response.statusText}`;
+    try {
+      const data = await response.json();
+      if (data.message || data.error) message = data.message || data.error;
+    } catch {}
+    if (response.status === 401 && githubCredential) expireGithubConnection();
+    const error = new Error(message);
+    error.status = response.status;
+    throw error;
+  }
+  return response.status === 204 ? null : response.json();
+}
 
   async function connectGitHub() {
-    const credential = tokenInput.value.trim();
-    if (!credential) { showToast('Sign in with GitHub or enter a fine-grained token.'); return; }
-    const button = app.querySelector('[data-github-authorize]');
-    button.disabled = true;
-    button.textContent = 'Connecting…';
-    try {
-      githubCredential = credential;
-      const info = await githubFetch('', {}, true);
-      githubLogin = info.owner?.login || 'GitHub';
-      tokenInput.value = '';
-      if (connectDialog.open) connectDialog.close();
-      app.querySelector('[data-github-status]').textContent = `Connected to ${repo} as ${githubLogin}`;
-      const topConnect = app.querySelector('[data-github-connect]');
-      if (topConnect) topConnect.textContent = 'GitHub connected';
-      saveDraftButton.disabled = false;
-      publishButton.disabled = false;
-      scheduleButton.disabled = false;
-      uploadButton.disabled = !selectedImageFile;
-      window.dispatchEvent(new CustomEvent('matlock-writer:auth', { detail: { login: githubLogin } }));
-      hydrateLibrary();
-      showToast('GitHub connected.');
-    } catch (error) {
-      githubCredential = '';
-      showToast(`Could not connect: ${error.message}`, 5000);
-    } finally {
-      button.disabled = false;
-      button.textContent = 'Connect with token';
-    }
+  const credential = tokenInput.value.trim();
+  if (!credential) { showToast('Sign in with GitHub or enter a fine-grained token.'); return; }
+  const button = app.querySelector('[data-github-authorize]');
+  button.disabled = true;
+  button.textContent = 'Connecting…';
+  try {
+    githubCredential = credential;
+    const info = await githubFetch('', {}, true);
+    githubLogin = info.owner?.login || 'GitHub';
+    tokenInput.value = '';
+    if (connectDialog.open) connectDialog.close();
+    app.querySelector('[data-github-status]').textContent = `Connected to ${repo} as ${githubLogin}`;
+    const topConnect = app.querySelector('[data-github-connect]');
+    if (topConnect) topConnect.textContent = 'GitHub connected';
+    setPublishingControls(true);
+    window.dispatchEvent(new CustomEvent('matlock-writer:auth', { detail: { login: githubLogin } }));
+    showToast('GitHub connected.');
+  } catch (error) {
+    githubCredential = '';
+    setPublishingControls(false);
+    showToast(`Could not connect: ${error.message}`, 5000);
+  } finally {
+    button.disabled = false;
+    button.textContent = 'Connect with token';
   }
+}
 
   function showLibrary() {
     if (dirty && !window.confirm('Leave the editor with unsaved changes? Your local autosave will remain available.')) return;
@@ -608,17 +637,20 @@
 
   function localKey() { return `matlock-writer:${currentPath || 'new'}`; }
 
-  function scheduleAutosave() {
-    dirty = true;
-    setSaveState('Unsaved changes');
-    window.clearTimeout(autosaveTimer);
-    autosaveTimer = window.setTimeout(() => {
-      try {
-        localStorage.setItem(localKey(), JSON.stringify(getState()));
-        app.querySelector('[data-local-status]').textContent = `Autosaved locally at ${new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}.`;
-      } catch {}
-    }, 700);
-  }
+function persistLocalAutosave() {
+  if (!dirty) return;
+  try {
+    localStorage.setItem(localKey(), JSON.stringify(getState()));
+    app.querySelector('[data-local-status]').textContent = `Autosaved locally at ${new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}.`;
+  } catch {}
+}
+
+function scheduleAutosave() {
+  dirty = true;
+  setSaveState('Unsaved changes');
+  window.clearTimeout(autosaveTimer);
+  autosaveTimer = window.setTimeout(persistLocalAutosave, 500);
+}
 
   function maybeRestoreLocal(key, remoteState = null) {
     try {
@@ -883,82 +915,100 @@
   }
 
   async function checkRemoteConflict(mode) {
-    if (!currentPath || !currentSha) return false;
-    try {
-      const remote = await githubFetch(`/contents/${encodeURIComponent(currentPath).replace(/%2F/g,'/')}?ref=main`);
-      if (remote.sha && remote.sha !== currentSha) {
-        pendingConflictMode = mode;
-        pendingRemoteSha = remote.sha;
-        conflictDialog.showModal();
-        return true;
+  if (!currentPath || !currentSha) return false;
+  try {
+    const remote = await githubFetch(`/contents/${encodeURIComponent(currentPath).replace(/%2F/g,'/')}?ref=main`);
+    if (remote.sha && remote.sha !== currentSha) {
+      pendingConflictMode = mode;
+      pendingRemoteSha = remote.sha;
+      conflictDialog.showModal();
+      return true;
+    }
+  } catch (error) {
+    if (error.status !== 404) throw error;
+  }
+  return false;
+}
+
+async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
+  if (saveInFlight) { showToast('A save is already in progress.'); return; }
+  try { validateForSave(mode); } catch (error) { showToast(error.message); return; }
+  if (!githubCredential) { connectDialog.showModal(); return; }
+
+  const desiredPublished = mode === 'publish' ? true : mode === 'schedule' ? false : currentPublished;
+  const filename = fields.filename.value.trim();
+  const path = currentPath || `_posts/${filename}`;
+  const autosaveKeyBeforeSave = localKey();
+  const button = mode === 'publish' ? publishButton : mode === 'schedule' ? scheduleButton : saveDraftButton;
+  const oldLabel = button.textContent;
+  const clearSchedule = mode === 'publish';
+
+  saveInFlight = true;
+  setPublishingControls(false);
+  button.textContent = mode === 'publish' ? 'Publishing…' : mode === 'schedule' ? 'Scheduling…' : 'Saving…';
+  setSaveState(button.textContent);
+
+  try {
+    if (!skipConflict && await checkRemoteConflict(mode)) return;
+
+    if (!currentPath && !skipConflict) {
+      try {
+        await githubFetch(`/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}?ref=main`);
+        showToast('That filename already exists. Change the filename before saving.', 6000);
+        return;
+      } catch (error) {
+        if (error.status !== 404) throw new Error(`Could not verify the filename: ${error.message}`);
       }
-    } catch (error) {
-      if (!/404/.test(error.message)) throw error;
-    }
-    return false;
-  }
-
-  async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
-    try { validateForSave(mode); } catch (error) { showToast(error.message); return; }
-    if (!githubCredential) { connectDialog.showModal(); return; }
-
-    if (!skipConflict) {
-      try { if (await checkRemoteConflict(mode)) return; }
-      catch (error) { showToast(`Could not verify remote version: ${error.message}`, 5000); return; }
     }
 
-    const desiredPublished = mode === 'publish' ? true : mode === 'schedule' ? false : currentPublished;
-    const filename = fields.filename.value.trim();
-    const path = currentPath || `_posts/${filename}`;
-    const button = mode === 'publish' ? publishButton : mode === 'schedule' ? scheduleButton : saveDraftButton;
-    const oldLabel = button.textContent;
-    const clearSchedule = mode === 'publish';
-    button.disabled = true;
-    button.textContent = mode === 'publish' ? 'Publishing…' : mode === 'schedule' ? 'Scheduling…' : 'Saving…';
-    setSaveState(button.textContent);
+    const payload = {
+      message: `${mode === 'publish' ? 'Publish' : mode === 'schedule' ? 'Schedule' : 'Update'} ${filename}`,
+      content: encodeBase64(fullMarkdown(desiredPublished, { clearSchedule })),
+      branch: 'main'
+    };
+    if (currentSha) payload.sha = currentSha;
+    const result = await githubFetch(`/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}`, {
+      method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+    }, true);
 
+    currentPath = path;
+    currentSha = result.content?.sha || currentSha;
+    currentPublished = desiredPublished;
+    if (clearSchedule) fields.publishAt.value = '';
+    originalFrontmatter = buildFrontmatter(desiredPublished, { clearSchedule });
+    fields.filename.disabled = true;
+    filenameTouched = true;
+    dirty = false;
+    window.clearTimeout(autosaveTimer);
     try {
-      const payload = {
-        message: `${mode === 'publish' ? 'Publish' : mode === 'schedule' ? 'Schedule' : 'Update'} ${filename}`,
-        content: encodeBase64(fullMarkdown(desiredPublished, { clearSchedule })),
-        branch: 'main'
-      };
-      if (currentSha) payload.sha = currentSha;
-      const result = await githubFetch(`/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}`, {
-        method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
-      }, true);
-
-      currentPath = path;
-      currentSha = result.content?.sha || currentSha;
-      currentPublished = desiredPublished;
-      if (clearSchedule) fields.publishAt.value = '';
-      originalFrontmatter = buildFrontmatter(desiredPublished, { clearSchedule });
-      fields.filename.disabled = true;
-      filenameTouched = true;
-      dirty = false;
-      try { localStorage.removeItem(localKey()); } catch {}
-      updateUrlPath();
-      updateSaveButtonLabel();
-      updateLiveLink();
-      updateDocumentStatus();
-      const stamp = new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
-      setSaveState(mode === 'publish' ? `Published • ${stamp}` : mode === 'schedule' ? `Scheduled • ${stamp}` : `Saved • ${stamp}`);
-      app.querySelector('[data-local-status]').textContent = `GitHub saved at ${stamp}.`;
-      showToast(mode === 'publish'
-        ? 'Published to GitHub. The public site is deploying now.'
-        : mode === 'schedule'
-          ? `Scheduled for ${formatDateTime(localInputToIso(fields.publishAt.value))}. GitHub checks due posts about every 15 minutes.`
-          : 'Saved to GitHub.');
-      loadLibrary({ hydrate: true });
-    } catch (error) {
-      setSaveState('Save failed');
-      showToast(`Save failed: ${error.message}`, 6000);
-    } finally {
-      button.disabled = false;
-      if (button.textContent.endsWith('…')) button.textContent = oldLabel;
-      updateSaveButtonLabel();
-    }
+      localStorage.removeItem(autosaveKeyBeforeSave);
+      localStorage.removeItem(localKey());
+      if (autosaveKeyBeforeSave === 'matlock-writer:new') localStorage.removeItem('matlock-writer:new');
+    } catch {}
+    updateUrlPath();
+    updateSaveButtonLabel();
+    updateLiveLink();
+    updateDocumentStatus();
+    const stamp = new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
+    setSaveState(mode === 'publish' ? `Published • ${stamp}` : mode === 'schedule' ? `Scheduled • ${stamp}` : `Saved • ${stamp}`);
+    app.querySelector('[data-local-status]').textContent = `GitHub saved at ${stamp}.`;
+    showToast(mode === 'publish'
+      ? 'Published to GitHub. The public site is deploying now.'
+      : mode === 'schedule'
+        ? `Scheduled for ${formatDateTime(localInputToIso(fields.publishAt.value))}. GitHub checks due posts about every 15 minutes.`
+        : 'Saved to GitHub.');
+    loadLibrary({ hydrate: true });
+  } catch (error) {
+    persistLocalAutosave();
+    setSaveState('Save failed • local copy safe');
+    showToast(`Save failed: ${error.message}`, 6000);
+  } finally {
+    saveInFlight = false;
+    setPublishingControls(Boolean(githubCredential));
+    if (button.textContent.endsWith('…')) button.textContent = oldLabel;
+    updateSaveButtonLabel();
   }
+}
 
   function liveUrl() {
     if (!currentPath || !currentPublished) return '';
@@ -982,22 +1032,38 @@
   }
 
   function insertAtCursor(before, after = '', placeholder = '') {
-    const start = bodyEditor.selectionStart;
-    const end = bodyEditor.selectionEnd;
-    const selected = bodyEditor.value.slice(start, end) || placeholder;
-    bodyEditor.setRangeText(`${before}${selected}${after}`, start, end, 'end');
-    bodyEditor.focus();
-    scheduleAutosave();
-    updatePreview();
+  const start = bodyEditor.selectionStart;
+  const end = bodyEditor.selectionEnd;
+  const hasSelection = end > start;
+  const selected = bodyEditor.value.slice(start, end) || placeholder;
+  const inserted = `${before}${selected}${after}`;
+  bodyEditor.setRangeText(inserted, start, end, 'end');
+  bodyEditor.focus();
+  if (!hasSelection && placeholder) {
+    bodyEditor.setSelectionRange(start + before.length, start + before.length + placeholder.length);
+  } else {
+    const cursor = start + inserted.length;
+    bodyEditor.setSelectionRange(cursor, cursor);
   }
+  scheduleAutosave();
+  updatePreview();
+}
 
-  function insertBlock(text) {
-    const start = bodyEditor.selectionStart;
-    bodyEditor.setRangeText(`\n\n${String(text).trim()}\n\n`, start, bodyEditor.selectionEnd, 'end');
-    bodyEditor.focus();
-    scheduleAutosave();
-    updatePreview();
-  }
+function insertBlock(text) {
+  const start = bodyEditor.selectionStart;
+  const end = bodyEditor.selectionEnd;
+  const before = bodyEditor.value.slice(0, start);
+  const after = bodyEditor.value.slice(end);
+  const prefix = !before ? '' : before.endsWith('\n\n') ? '' : before.endsWith('\n') ? '\n' : '\n\n';
+  const suffix = !after ? '' : after.startsWith('\n\n') ? '' : after.startsWith('\n') ? '\n' : '\n\n';
+  const inserted = `${prefix}${String(text).trim()}${suffix}`;
+  bodyEditor.setRangeText(inserted, start, end, 'end');
+  bodyEditor.focus();
+  const cursor = start + inserted.length;
+  bodyEditor.setSelectionRange(cursor, cursor);
+  scheduleAutosave();
+  updatePreview();
+}
 
   function youtubeId(value) {
     try {
@@ -1150,19 +1216,24 @@
     window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
-  Object.values(fields).forEach(el => {
-    el.addEventListener('input', () => {
-      if (el === fields.filename && !currentPath) filenameTouched = true;
-      updatePreview();
-      updateDocumentStatus();
-      scheduleAutosave();
-    });
-    el.addEventListener('change', () => {
-      updatePreview();
-      updateDocumentStatus();
-      scheduleAutosave();
-    });
+  function schedulePreview() {
+  window.clearTimeout(previewTimer);
+  previewTimer = window.setTimeout(updatePreview, 45);
+}
+
+Object.values(fields).forEach(el => {
+  el.addEventListener('input', () => {
+    if (el === fields.filename && !currentPath) filenameTouched = true;
+    schedulePreview();
+    updateDocumentStatus();
+    scheduleAutosave();
   });
+  el.addEventListener('change', () => {
+    schedulePreview();
+    updateDocumentStatus();
+    scheduleAutosave();
+  });
+});
 
   app.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
     workspace.dataset.viewMode = button.dataset.view;
@@ -1193,7 +1264,11 @@
   app.querySelector('[data-history]').addEventListener('click', loadHistory);
   app.querySelector('[data-copy-markdown]').addEventListener('click', copyMarkdown);
   app.querySelector('[data-download-markdown]').addEventListener('click', downloadMarkdown);
-  librarySearch.addEventListener('input', () => { renderLibrary(); hydrateEditedTimes(); });
+  librarySearch.addEventListener('input', () => {
+    renderLibrary();
+    window.clearTimeout(librarySearchTimer);
+    librarySearchTimer = window.setTimeout(hydrateEditedTimes, 300);
+  });
 
   libraryList.addEventListener('click', event => {
     const card = event.target.closest('[data-library-path]');
@@ -1328,26 +1403,48 @@
   });
 
   bodyEditor.addEventListener('keydown', event => {
-    if (event.key === 'Enter') {
-      const command = removeSlashCommand();
-      if (command) {
-        event.preventDefault();
-        if (command === 'divider') handleSimpleInsert('divider');
-        else openTool(command === 'pick' ? 'prediction' : command);
-      }
-    }
-  });
-
-  window.addEventListener('beforeunload', event => {
-    if (!dirty) return;
+  const modifier = event.metaKey || event.ctrlKey;
+  const key = event.key.toLowerCase();
+  if (modifier && key === 'b') { event.preventDefault(); handleSimpleInsert('bold'); return; }
+  if (modifier && key === 'i') { event.preventDefault(); handleSimpleInsert('italic'); return; }
+  if (modifier && key === 'k') { event.preventDefault(); openTool('link'); return; }
+  if (event.key === 'Tab' && !modifier) {
     event.preventDefault();
-    event.returnValue = '';
-  });
+    insertAtCursor('  ');
+    return;
+  }
+  if (event.key === 'Enter') {
+    const command = removeSlashCommand();
+    if (command) {
+      event.preventDefault();
+      if (command === 'divider') handleSimpleInsert('divider');
+      else openTool(command === 'pick' ? 'prediction' : command);
+    }
+  }
+});
 
-  window.addEventListener('matlock-writer:auth', () => {
-    uploadButton.disabled = !selectedImageFile;
-    hydrateLibrary();
-  });
+window.addEventListener('keydown', event => {
+  if (!(event.metaKey || event.ctrlKey) || event.key.toLowerCase() !== 's') return;
+  event.preventDefault();
+  if (!editorView.hidden) saveArticle('save');
+});
+
+window.addEventListener('beforeunload', event => {
+  if (!dirty) return;
+  persistLocalAutosave();
+  event.preventDefault();
+  event.returnValue = '';
+});
+window.addEventListener('pagehide', persistLocalAutosave);
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') persistLocalAutosave();
+});
+
+window.addEventListener('matlock-writer:auth', () => {
+  setPublishingControls(true);
+  loadLibrary({ hydrate: true });
+});
+window.addEventListener('matlock-writer:auth-expired', () => setPublishingControls(false));
 
   fields.date.value = today();
   fields.category.value = 'Breakdown';
