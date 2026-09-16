@@ -192,13 +192,14 @@ page_scripts:
             <button type="button" data-tool="table" title="Build table">Table</button>
             <button type="button" data-tool="tale" title="Tale of the Tape">Tale of Tape</button>
             <button type="button" data-tool="prediction" title="Fight prediction">Pick</button>
+            <button type="button" data-tool="html" title="Insert or edit a self-contained HTML visual">HTML</button>
             <button type="button" data-tool="template" title="Article template">Template</button>
           </div>
         </div>
 
         <label class="writer-body-label" for="writer-body">Article</label>
         <div class="writer-editor-dropzone" data-editor-dropzone>
-          <textarea id="writer-body" class="writer-body-editor" data-field="body" spellcheck="true" placeholder="Start writing…  Try /table, /tale, /pick, /youtube, /image, /source or /template"></textarea>
+          <textarea id="writer-body" class="writer-body-editor" data-field="body" spellcheck="true" placeholder="Start writing…  Try /table, /tale, /pick, /youtube, /image, /html, /source or /template"></textarea>
           <div class="writer-drop-hint" data-drop-hint hidden>Drop image to upload and insert</div>
         </div>
 
@@ -369,6 +370,21 @@ Stance</textarea></label>
         <label class="writer-field writer-field-wide"><span>Confidence <small>optional</small></span><input type="number" min="1" max="10" data-pick-confidence placeholder="7"></label>
       </div>
       <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-pick-insert>Insert pick</button></footer>
+    </form>
+  </dialog>
+
+  <dialog class="writer-dialog writer-dialog-wide writer-html-dialog" data-html-dialog>
+    <form method="dialog">
+      <header><div><p class="eyebrow">Visual block</p><h2 data-html-dialog-title>Insert HTML visual</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
+      <div class="writer-dialog-body writer-dialog-grid">
+        <label class="writer-field writer-field-wide"><span>Visual name <small>shown only inside Writer</small></span><input type="text" data-html-label placeholder="KI MMA World Grand Prix"></label>
+        <label class="writer-field writer-field-wide"><span>HTML + CSS</span><textarea class="writer-html-code" rows="16" data-html-code spellcheck="false" placeholder='&lt;section class="my-visual"&gt;&#10;  &lt;style&gt;...&lt;/style&gt;&#10;  ...&#10;&lt;/section&gt;'></textarea></label>
+        <p class="writer-dialog-note writer-field-wide">Use one self-contained &lt;section&gt; block. Writer keeps the full code here while the article editor shows only one compact placeholder line. Preview and publish use the full HTML.</p>
+      </div>
+      <footer class="writer-dialog-actions writer-dialog-actions-spread">
+        <button class="writer-button writer-button-danger" type="button" data-html-delete hidden>Remove visual</button>
+        <div><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-html-insert>Insert visual</button></div>
+      </footer>
     </form>
   </dialog>
 

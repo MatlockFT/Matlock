@@ -46,6 +46,8 @@
   let saveInFlight = false;
   let previewTimer = 0;
   let librarySearchTimer = 0;
+  let htmlBlocks = new Map();
+  let editingHtmlBlockId = '';
 
   const controlledKeys = [
     'layout','title','description','date','category','author','image','tags',
@@ -236,7 +238,7 @@
   }
 
   function fullMarkdown(publishedValue = currentPublished, options = {}) {
-    return `---\n${buildFrontmatter(publishedValue, options)}\n---\n\n${bodyEditor.value.replace(/^\s+/, '')}`;
+    return `---\n${buildFrontmatter(publishedValue, options)}\n---\n\n${expandHtmlBlocks(bodyEditor.value).replace(/^\s+/, '')}`;
   }
 
   function slugify(value) {
@@ -254,6 +256,90 @@
     const url = String(value || '').trim();
     if (/^(https?:\/\/|\/|#|mailto:)/i.test(url)) return url.replace(/"/g, '&quot;');
     return '#';
+  }
+
+  function htmlBlockId() {
+    if (window.crypto?.randomUUID) return window.crypto.randomUUID().replace(/-/g, '').slice(0, 8);
+    return Math.random().toString(36).slice(2, 10);
+  }
+
+  function cleanHtmlLabel(value) {
+    return String(value || 'HTML visual').replace(/[\]\r\n]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 80) || 'HTML visual';
+  }
+
+  function inferHtmlLabel(code) {
+    const heading = String(code || '').match(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/i);
+    if (heading) {
+      const label = heading[1].replace(/<[^>]+>/g, ' ').replace(/&nbsp;/gi, ' ').replace(/\s+/g, ' ').trim();
+      if (label) return cleanHtmlLabel(label);
+    }
+    const sectionClass = String(code || '').match(/<section\b[^>]*class=["']([^"']+)["']/i);
+    if (sectionClass) return cleanHtmlLabel(sectionClass[1].split(/\s+/).join(' '));
+    return 'HTML visual';
+  }
+
+  function htmlBlockToken(block) {
+    return `[HTML VISUAL · ${cleanHtmlLabel(block.label)} · #${block.id}]`;
+  }
+
+  function htmlTokenMatch(line) {
+    return String(line || '').trim().match(/^\[HTML VISUAL · .*? · #([A-Za-z0-9_-]+)\]$/);
+  }
+
+  function expandHtmlBlocks(text) {
+    return String(text || '').replace(/^\[HTML VISUAL · .*? · #([A-Za-z0-9_-]+)\]\s*$/gm, (token, id) => htmlBlocks.get(id)?.code || token);
+  }
+
+  function collapseRawHtmlSections(text) {
+    return String(text || '').replace(/<section\b[\s\S]*?<\/section>/gi, code => {
+      const id = htmlBlockId();
+      const block = { id, label: inferHtmlLabel(code), code: code.trim() };
+      htmlBlocks.set(id, block);
+      return htmlBlockToken(block);
+    });
+  }
+
+  function prepareEditorBody(body, savedBlocks = []) {
+    htmlBlocks = new Map();
+    for (const item of Array.isArray(savedBlocks) ? savedBlocks : []) {
+      if (!item?.id || !item?.code) continue;
+      htmlBlocks.set(String(item.id), { id: String(item.id), label: cleanHtmlLabel(item.label), code: String(item.code) });
+    }
+    const source = String(body || '');
+    if (htmlBlocks.size) return source;
+    return collapseRawHtmlSections(source);
+  }
+
+  function htmlBlockAtCursor() {
+    const value = bodyEditor.value;
+    const cursor = bodyEditor.selectionStart;
+    const start = value.lastIndexOf('\n', Math.max(0, cursor - 1)) + 1;
+    const next = value.indexOf('\n', cursor);
+    const end = next === -1 ? value.length : next;
+    const line = value.slice(start, end);
+    const match = htmlTokenMatch(line);
+    if (!match) return null;
+    const block = htmlBlocks.get(match[1]);
+    return block ? { block, start, end } : null;
+  }
+
+  function replaceHtmlToken(id, replacement) {
+    const escaped = String(id).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const re = new RegExp(`^\\[HTML VISUAL · .*? · #${escaped}\\]\\s*$`, 'm');
+    bodyEditor.value = bodyEditor.value.replace(re, replacement);
+  }
+
+  function openHtmlDialog() {
+    const dialog = app.querySelector('[data-html-dialog]');
+    const current = htmlBlockAtCursor();
+    editingHtmlBlockId = current?.block?.id || '';
+    dialog.querySelector('[data-html-dialog-title]').textContent = current ? 'Edit HTML visual' : 'Insert HTML visual';
+    dialog.querySelector('[data-html-label]').value = current?.block?.label || '';
+    dialog.querySelector('[data-html-code]').value = current?.block?.code || '';
+    dialog.querySelector('[data-html-insert]').textContent = current ? 'Save changes' : 'Insert visual';
+    dialog.querySelector('[data-html-delete]').hidden = !current;
+    dialog.showModal();
+    window.setTimeout(() => dialog.querySelector('[data-html-code]').focus(), 0);
   }
 
   function inlineMarkdown(text) {
@@ -409,7 +495,8 @@
     const category = fields.category.value.trim() || 'Breakdown';
     const date = fields.date.value || today();
     const tags = fields.tags.value.split(',').map(v => v.trim()).filter(Boolean);
-    const words = countWords(bodyEditor.value);
+    const expandedBody = expandHtmlBlocks(bodyEditor.value);
+    const words = countWords(expandedBody);
     const minutes = Math.max(1, Math.ceil(words / 200));
 
     const previewTitle = app.querySelector('[data-preview-title]');
@@ -438,7 +525,7 @@
     }
 
     app.querySelector('[data-preview-spoiler]').hidden = !fields.spoilerWarning.checked;
-    previewContent.innerHTML = renderMarkdown(bodyEditor.value) || '<p class="writer-preview-empty">Start writing on the left. Your article will appear here immediately.</p>';
+    previewContent.innerHTML = renderMarkdown(expandedBody) || '<p class="writer-preview-empty">Start writing on the left. Your article will appear here immediately.</p>';
 
     const topics = app.querySelector('[data-preview-topics]');
     app.querySelector('[data-preview-tags]').innerHTML = tags.map(tag => `<li>${escapeHtml(tag)}</li>`).join('');
@@ -463,6 +550,7 @@
       spoilerWarning: fields.spoilerWarning.checked,
       pinned: fields.pinned.checked,
       body: bodyEditor.value,
+      htmlBlocks: [...htmlBlocks.values()].map(block => ({ ...block })),
       currentPath,
       currentSha,
       originalFrontmatter,
@@ -485,7 +573,7 @@
     fields.showToc.checked = Boolean(state.showToc);
     fields.spoilerWarning.checked = Boolean(state.spoilerWarning);
     fields.pinned.checked = Boolean(state.pinned);
-    bodyEditor.value = state.body || '';
+    bodyEditor.value = prepareEditorBody(state.body || '', state.htmlBlocks || []);
     if (remote) {
       currentPath = state.currentPath || '';
       currentSha = state.currentSha || '';
@@ -1102,6 +1190,10 @@ function insertBlock(text) {
       dialog.querySelector('[data-link-url]').focus();
       return;
     }
+    if (type === 'html') {
+      openHtmlDialog();
+      return;
+    }
     const map = {
       image: '[data-image-dialog]', youtube: '[data-youtube-dialog]', table: '[data-table-dialog]',
       tale: '[data-tale-dialog]', prediction: '[data-pick-dialog]', template: '[data-template-dialog]'
@@ -1205,7 +1297,7 @@ function insertBlock(text) {
     const before = bodyEditor.value.slice(0, cursor);
     const lineStart = before.lastIndexOf('\n') + 1;
     const line = before.slice(lineStart).trim();
-    if (!/^\/(table|tale|pick|youtube|image|source|template|divider)$/.test(line)) return '';
+    if (!/^\/(table|tale|pick|youtube|image|html|source|template|divider)$/.test(line)) return '';
     bodyEditor.setRangeText('', lineStart, cursor, 'end');
     return line.slice(1);
   }
@@ -1336,6 +1428,45 @@ Object.values(fields).forEach(el => {
     }
   });
 
+  app.querySelector('[data-html-insert]').addEventListener('click', () => {
+    const dialog = app.querySelector('[data-html-dialog]');
+    const code = dialog.querySelector('[data-html-code]').value.trim();
+    if (!code) { showToast('Paste the HTML for the visual first.'); return; }
+    if (/<script\b/i.test(code)) { showToast('Script tags are not supported in article HTML visuals.', 5000); return; }
+    if (!/^<section\b[\s\S]*<\/section>\s*$/i.test(code)) { showToast('Wrap the visual in one self-contained <section>...</section> block.', 5500); return; }
+    const label = cleanHtmlLabel(dialog.querySelector('[data-html-label]').value || inferHtmlLabel(code));
+
+    if (editingHtmlBlockId && htmlBlocks.has(editingHtmlBlockId)) {
+      const block = htmlBlocks.get(editingHtmlBlockId);
+      block.label = label;
+      block.code = code;
+      replaceHtmlToken(editingHtmlBlockId, htmlBlockToken(block));
+      showToast('HTML visual updated.');
+    } else {
+      const id = htmlBlockId();
+      const block = { id, label, code };
+      htmlBlocks.set(id, block);
+      insertBlock(htmlBlockToken(block));
+      showToast('HTML visual inserted as a compact block.');
+    }
+
+    editingHtmlBlockId = '';
+    dialog.close();
+    scheduleAutosave();
+    updatePreview();
+  });
+
+  app.querySelector('[data-html-delete]').addEventListener('click', () => {
+    if (!editingHtmlBlockId || !htmlBlocks.has(editingHtmlBlockId)) return;
+    replaceHtmlToken(editingHtmlBlockId, '');
+    htmlBlocks.delete(editingHtmlBlockId);
+    editingHtmlBlockId = '';
+    app.querySelector('[data-html-dialog]').close();
+    scheduleAutosave();
+    updatePreview();
+    showToast('HTML visual removed.');
+  });
+
   app.querySelector('[data-table-insert]').addEventListener('click', () => {
     const dialog = app.querySelector('[data-table-dialog]');
     const headers = dialog.querySelector('[data-table-headers]').value.split(',').map(v => v.trim()).filter(Boolean);
@@ -1408,6 +1539,22 @@ Object.values(fields).forEach(el => {
     if (!file) return;
     event.preventDefault();
     await insertInlineImage(file);
+  });
+
+  bodyEditor.addEventListener('paste', event => {
+    const pasted = event.clipboardData?.getData('text/plain')?.trim() || '';
+    if (!/^<section\b[\s\S]*<\/section>\s*$/i.test(pasted)) return;
+    if (/<script\b/i.test(pasted)) { event.preventDefault(); showToast('Script tags are not supported in article HTML visuals.', 5000); return; }
+    event.preventDefault();
+    const id = htmlBlockId();
+    const block = { id, label: inferHtmlLabel(pasted), code: pasted };
+    htmlBlocks.set(id, block);
+    insertBlock(htmlBlockToken(block));
+    showToast('HTML visual collapsed into one Writer block. Double-click it to edit.');
+  });
+
+  bodyEditor.addEventListener('dblclick', () => {
+    if (htmlBlockAtCursor()) openHtmlDialog();
   });
 
   bodyEditor.addEventListener('keydown', event => {
