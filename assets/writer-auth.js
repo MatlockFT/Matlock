@@ -21,6 +21,7 @@
 
   let popup = null;
   let popupWatch = 0;
+  let bridgeReady = false;
 
   function setStatus(message, state = '') {
     if (!oauthStatus) return;
@@ -39,12 +40,12 @@
 
   function openFallback(message) {
     setStatus(message, 'error');
-    connectDialog.showModal();
+    if (!connectDialog.open) connectDialog.showModal();
   }
 
   function beginGithubSignIn() {
-    if (!authBase) {
-      openFallback('GitHub sign-in is not configured yet. You can still use the advanced token fallback below.');
+    if (!authBase || !bridgeReady) {
+      openFallback('GitHub sign-in is not ready yet. You can still use the advanced token fallback below.');
       return;
     }
 
@@ -117,6 +118,7 @@
   });
 
   async function checkBridge() {
+    bridgeReady = false;
     if (!authBase) {
       setStatus('GitHub sign-in bridge is not configured. Advanced token fallback is available.', '');
       return;
@@ -133,6 +135,7 @@
       if (!response.ok || !data.ok || !data.configured) {
         throw new Error(data.message || 'Auth bridge is not configured');
       }
+      bridgeReady = true;
       setStatus('GitHub sign-in is ready.', 'success');
     } catch {
       setStatus('GitHub sign-in bridge is not ready yet. Advanced token fallback is still available.', '');
