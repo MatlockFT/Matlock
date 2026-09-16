@@ -88,12 +88,33 @@
     toastTimer = window.setTimeout(() => { toast.hidden = true; }, ms);
   }
 
+  function saveStateKind(message) {
+    const value = String(message || '').toLowerCase();
+    if (/failed|expired|error/.test(value)) return 'error';
+    if (/unsaved/.test(value)) return 'dirty';
+    if (/saving|publishing|scheduling|loading|restoring/.test(value)) return 'working';
+    if (/saved|published|scheduled/.test(value)) return 'saved';
+    return 'neutral';
+  }
+
   function setSaveState(message) {
-    app.querySelector('[data-save-state]').textContent = message;
+    const el = app.querySelector('[data-save-state]');
+    el.textContent = message;
+    el.dataset.state = saveStateKind(message);
   }
 
   function setDocumentStatus(message) {
-    app.querySelector('[data-document-status]').textContent = message;
+    const el = app.querySelector('[data-document-status]');
+    el.textContent = message;
+    el.dataset.state = String(message || 'document').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'document';
+  }
+
+  function setLocalStatus(message, state = 'saved') {
+    const el = app.querySelector('[data-local-status]');
+    if (!el) return;
+    const text = el.querySelector('span') || el;
+    text.textContent = message;
+    el.dataset.state = state;
   }
 
   function escapeHtml(value) {
@@ -513,6 +534,12 @@
     app.querySelector('[data-read-time]').textContent = `${minutes} min read`;
     app.querySelector('[data-title-count]').textContent = fields.title.value.length;
     app.querySelector('[data-description-count]').textContent = `${fields.description.value.length} / 160`;
+    const metaSummary = app.querySelector('[data-meta-summary]');
+    if (metaSummary) {
+      const summaryBits = [category, formatDate(date)];
+      if (fields.filename.value.trim()) summaryBits.push(fields.filename.value.trim().replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/i, ''));
+      metaSummary.textContent = summaryBits.filter(Boolean).join(' · ');
+    }
 
     const shell = app.querySelector('[data-preview-image-shell]');
     const image = app.querySelector('[data-preview-image]');
@@ -737,13 +764,17 @@ function persistLocalAutosave() {
   if (!dirty) return;
   try {
     localStorage.setItem(localKey(), JSON.stringify(getState()));
-    app.querySelector('[data-local-status]').textContent = `Autosaved locally at ${new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}.`;
-  } catch {}
+    const stamp = new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
+    setLocalStatus(`Saved locally · ${stamp}`, 'saved');
+  } catch {
+    setLocalStatus('Local autosave unavailable', 'error');
+  }
 }
 
 function scheduleAutosave() {
   dirty = true;
   setSaveState('Unsaved changes');
+  setLocalStatus('Saving locally…', 'working');
   window.clearTimeout(autosaveTimer);
   autosaveTimer = window.setTimeout(persistLocalAutosave, 500);
 }
@@ -1087,7 +1118,7 @@ async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
     updateDocumentStatus();
     const stamp = new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
     setSaveState(mode === 'publish' ? `Published • ${stamp}` : mode === 'schedule' ? `Scheduled • ${stamp}` : `Saved • ${stamp}`);
-    app.querySelector('[data-local-status]').textContent = `GitHub saved at ${stamp}.`;
+    setLocalStatus(`Saved to GitHub · ${stamp}`, 'github');
     showToast(mode === 'publish'
       ? 'Published to GitHub. The public site is deploying now.'
       : mode === 'schedule'

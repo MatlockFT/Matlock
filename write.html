@@ -19,25 +19,31 @@ page_scripts:
     </div>
 
     <div class="writer-top-actions">
-      <span class="writer-save-state" data-save-state>Library</span>
-      <button class="writer-button writer-button-subtle" type="button" data-show-library>Library</button>
-      <button class="writer-button writer-button-subtle" type="button" data-new-article>New</button>
-      <button class="writer-button writer-button-subtle" type="button" data-github-connect>Sign in with GitHub</button>
-      <button class="writer-button" type="button" data-save-draft disabled>Save</button>
-      <button class="writer-button" type="button" data-schedule disabled>Schedule</button>
-      <button class="writer-button writer-button-primary" type="button" data-publish disabled>Publish</button>
+      <div class="writer-top-secondary">
+        <button class="writer-button writer-button-subtle" type="button" data-show-library>Library</button>
+        <button class="writer-button writer-button-subtle" type="button" data-new-article>New</button>
+        <button class="writer-button writer-button-subtle" type="button" data-github-connect>Sign in with GitHub</button>
+      </div>
+      <div class="writer-publish-actions">
+        <span class="writer-save-state" data-save-state data-state="neutral">Library</span>
+        <button class="writer-button" type="button" data-save-draft disabled>Save</button>
+        <button class="writer-button" type="button" data-schedule disabled>Schedule</button>
+        <button class="writer-button writer-button-primary" type="button" data-publish disabled>Publish</button>
+      </div>
     </div>
   </header>
 
   <div class="writer-statusbar" aria-live="polite">
-    <span data-github-status>GitHub not connected</span>
-    <span aria-hidden="true">•</span>
-    <span data-document-status>Library</span>
-    <span aria-hidden="true">•</span>
-    <span data-word-count>0 words</span>
-    <span aria-hidden="true">•</span>
-    <span data-read-time>1 min read</span>
-    <a href="#" data-live-link hidden target="_blank" rel="noopener noreferrer">Open live article ↗</a>
+    <div class="writer-status-primary">
+      <span class="writer-connection-chip"><i aria-hidden="true"></i><span data-github-status>GitHub not connected</span></span>
+      <span class="writer-document-chip" data-document-status data-state="library">Library</span>
+    </div>
+    <div class="writer-status-meta">
+      <span class="writer-autosave-chip" data-local-status data-state="ready"><i aria-hidden="true"></i><span>Local autosave ready</span></span>
+      <span class="writer-status-stat" data-word-count>0 words</span>
+      <span class="writer-status-stat" data-read-time>1 min read</span>
+      <a href="#" data-live-link hidden target="_blank" rel="noopener noreferrer">Open live ↗</a>
+    </div>
   </div>
 
   <section class="writer-library" data-library-view>
@@ -95,7 +101,7 @@ page_scripts:
     <div class="writer-workspace" data-workspace data-view-mode="split">
       <section class="writer-editor-pane" aria-label="Article editor">
         <details class="writer-meta" open>
-          <summary>Article details</summary>
+          <summary><span>Article details</span><span class="writer-meta-summary" data-meta-summary>Title, publishing and media</span></summary>
 
           <div class="writer-meta-grid">
             <label class="writer-field writer-field-wide">
@@ -204,7 +210,7 @@ page_scripts:
         </div>
 
         <footer class="writer-editor-footer">
-          <span data-local-status>Autosaves locally in this browser.</span>
+          <span class="writer-shortcut-hint">Local autosave is automatic · Ctrl/Cmd+S saves to GitHub</span>
           <div>
             <button class="writer-text-button" type="button" data-copy-markdown>Copy Markdown</button>
             <button class="writer-text-button" type="button" data-download-markdown>Download .md</button>
