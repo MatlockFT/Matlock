@@ -93,7 +93,7 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   await page.fill('[data-html-code]', '<section class="writer-smoke-visual"><style>.writer-smoke-visual{padding:12px}</style><h2>Smoke Visual</h2><p>Rendered HTML visual.</p></section>');
   await page.click('[data-html-insert]');
   await expect(page.locator('[data-html-block-rail]')).toBeVisible();
-  await expect(page.locator('[data-html-block-card]')).toContainText('Smoke visual');
+  await expect(page.locator('[data-html-block-edit]')).toContainText('Smoke visual');
   await expect(page.locator('[data-preview-content]')).toContainText('Rendered HTML visual');
   await expect(page.locator('[data-local-status]')).toContainText('Saved locally', { timeout: 5000 });
 
