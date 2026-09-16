@@ -1,0 +1,60 @@
+name: Writer raw HTML once
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/writer-raw-html-once.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.12.0"
+      - name: Add self-contained HTML visual preview support
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('assets/writer.js')
+          text = path.read_text()
+
+          old = """  function renderMarkdown(markdown) {\n    let source = String(markdown || '').replace(/\\r\\n?/g, '\\n');\n    const embeds = [];\n    source = source.replace(/<div[^>]*>\\s*(<iframe[\\s\\S]*?<\\/iframe>)\\s*<\\/div>/gi, '$1');\n"""
+          new = """  function renderMarkdown(markdown) {\n    let source = String(markdown || '').replace(/\\r\\n?/g, '\\n');\n    const rawHtmlBlocks = [];\n    source = source.replace(/<section\\b[\\s\\S]*?<\\/section>/gi, html => {\n      const safe = html.replace(/<script[\\s\\S]*?<\\/script>/gi, '');\n      rawHtmlBlocks.push(safe);\n      return `\\n@@RAWHTML${rawHtmlBlocks.length - 1}@@\\n`;\n    });\n    const embeds = [];\n    source = source.replace(/<div[^>]*>\\s*(<iframe[\\s\\S]*?<\\/iframe>)\\s*<\\/div>/gi, '$1');\n"""
+          if old not in text:
+              raise SystemExit('renderMarkdown opening block not found')
+          text = text.replace(old, new, 1)
+
+          old = """    const special = line => /^\\s*(#{1,6}\\s|```|>|[-*+]\\s+|\\d+\\.\\s+|(?:---+|___+|\\*\\*\\*+)\\s*$|@@EMBED\\d+@@\\s*$)/.test(line);\n"""
+          new = """    const special = line => /^\\s*(#{1,6}\\s|```|>|[-*+]\\s+|\\d+\\.\\s+|(?:---+|___+|\\*\\*\\*+)\\s*$|@@(?:EMBED|RAWHTML)\\d+@@\\s*$)/.test(line);\n"""
+          if old not in text:
+              raise SystemExit('special-line matcher not found')
+          text = text.replace(old, new, 1)
+
+          old = """      const embed = line.trim().match(/^@@EMBED(\\d+)@@$/);\n      if (embed) { out.push(embeds[Number(embed[1])] || ''); i += 1; continue; }\n"""
+          new = """      const rawHtml = line.trim().match(/^@@RAWHTML(\\d+)@@$/);\n      if (rawHtml) { out.push(rawHtmlBlocks[Number(rawHtml[1])] || ''); i += 1; continue; }\n      const embed = line.trim().match(/^@@EMBED(\\d+)@@$/);\n      if (embed) { out.push(embeds[Number(embed[1])] || ''); i += 1; continue; }\n"""
+          if old not in text:
+              raise SystemExit('embed handler not found')
+          text = text.replace(old, new, 1)
+
+          path.write_text(text)
+          PY
+          node --check assets/writer.js
+          grep -q 'rawHtmlBlocks' assets/writer.js
+          grep -q '@@RAWHTML' assets/writer.js
+      - name: Commit Writer fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/writer.js
+          git commit -m "Render self-contained HTML visuals in Writer preview"
+          git push origin HEAD:main
