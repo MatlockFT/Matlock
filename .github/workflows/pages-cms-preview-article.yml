@@ -72,7 +72,7 @@ jobs:
 
           year, month, day = date.split('-')
           slug = filename_match.group(1)
-          preview_key = filename
+          preview_key = re.sub(r'[^A-Za-z0-9._-]+', '-', filename).strip('-')
           rendered_path = f'_site-draft/{year}/{month}/{day}/{slug}.html'
           preview_path = f'_site/preview/{preview_key}/index.html'
           preview_url = f'https://mmamatlock.com/preview/{preview_key}/'
@@ -130,7 +130,10 @@ jobs:
           fi
 
           cp "$RENDERED_PATH" /tmp/matlock-article-preview.html
-          rm -rf _site-draft
+
+          # jekyll-build-pages runs in a container and leaves root-owned output.
+          # Use sudo for cleanup so the preview does not fail on file ownership.
+          sudo rm -rf _site-draft
           git checkout -- "$ARTICLE_PATH"
 
       - name: Build normal site
@@ -138,6 +141,13 @@ jobs:
         with:
           source: ./
           destination: ./_site
+
+      - name: Prepare normal build for preview injection
+        shell: bash
+        run: |
+          # The Jekyll action creates root-owned files. Hand ownership back to
+          # the runner before adding the temporary preview page.
+          sudo chown -R "$(id -u):$(id -g)" _site
 
       - name: Add selected article to visual preview path
         shell: bash
@@ -156,7 +166,14 @@ jobs:
           html = path.read_text(encoding='utf-8')
 
           robots = '<meta name="robots" content="noindex,nofollow,noarchive">'
-          if robots not in html:
+          html, robots_count = re.subn(
+              r'<meta\s+name=["\']robots["\'][^>]*>',
+              robots,
+              html,
+              count=1,
+              flags=re.I,
+          )
+          if robots_count == 0:
               html = html.replace('</head>', f'  {robots}\n</head>', 1)
 
           banner = '''<div id="matlock-preview-banner" style="position:fixed;right:14px;top:14px;z-index:2147483647;background:#111;color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:8px;padding:9px 12px;font:700 12px/1.2 Arial,sans-serif;letter-spacing:.08em;box-shadow:0 4px 18px rgba(0,0,0,.35);">VISUAL PREVIEW</div>'''
@@ -174,6 +191,15 @@ jobs:
           path.write_text(html, encoding='utf-8')
           PY
 
+      - name: Verify preview artifact
+        shell: bash
+        env:
+          PREVIEW_PATH: ${{ steps.context.outputs.preview_path }}
+        run: |
+          test -s "$PREVIEW_PATH"
+          grep -q 'id="matlock-preview-banner"' "$PREVIEW_PATH"
+          grep -q 'noindex,nofollow,noarchive' "$PREVIEW_PATH"
+
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -183,7 +209,27 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
+      - name: Verify deployed preview
+        shell: bash
+        env:
+          PREVIEW_URL: ${{ steps.context.outputs.preview_url }}
+        run: |
+          for attempt in $(seq 1 18); do
+            status="$(curl -L -sS -o /tmp/deployed-preview.html -w '%{http_code}' "$PREVIEW_URL" || true)"
+            if [[ "$status" == "200" ]] && grep -q 'id="matlock-preview-banner"' /tmp/deployed-preview.html; then
+              echo "Preview is live: $PREVIEW_URL"
+              exit 0
+            fi
+
+            echo "Preview not ready yet (attempt $attempt/18, HTTP ${status:-error})."
+            sleep 5
+          done
+
+          echo "Preview deployment completed, but the preview URL did not become readable in time." >&2
+          exit 1
+
       - name: Show preview link
+        if: always()
         shell: bash
         run: |
           {
@@ -193,5 +239,5 @@ jobs:
             echo ""
             echo "Article: \`${{ steps.context.outputs.article_path }}\`"
             echo ""
-            echo "This preview is marked noindex and is replaced by the next normal site deployment."
+            echo "The preview is noindex and is replaced by the next normal site deployment."
           } >> "$GITHUB_STEP_SUMMARY"
