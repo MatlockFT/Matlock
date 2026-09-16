@@ -1,9 +1,13 @@
 import { createHash, createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
+import { getStore } from '@netlify/blobs';
 
 export const REPO_FULL_NAME = process.env.GITHUB_REPOSITORY || 'MatlockFT/Matlock';
 export const REPO_ID = process.env.GITHUB_REPOSITORY_ID || '925864034';
 export const ALLOWED_LOGIN = (process.env.GITHUB_ALLOWED_LOGIN || 'MatlockFT').trim();
 export const COOKIE_NAME = 'matlock_writer_oauth';
+export const SETUP_COOKIE_NAME = 'matlock_writer_app_setup';
+const STORE_NAME = 'matlock-writer-auth';
+const CONFIG_KEY = 'github-app';
 
 export function allowedOrigins() {
   return (process.env.WRITER_ORIGINS || 'https://mmamatlock.com,https://www.mmamatlock.com')
@@ -26,20 +30,57 @@ export function isAllowedOrigin(origin) {
   return allowedOrigins().includes(normalizeOrigin(origin));
 }
 
-export function authSecret() {
-  return process.env.MATLOCK_OAUTH_STATE_SECRET || process.env.GITHUB_CLIENT_SECRET || '';
+export async function getAppConfig() {
+  const envClientId = process.env.GITHUB_CLIENT_ID || '';
+  const envClientSecret = process.env.GITHUB_CLIENT_SECRET || '';
+  if (envClientId && envClientSecret) {
+    return {
+      clientId: envClientId,
+      clientSecret: envClientSecret,
+      appId: process.env.GITHUB_APP_ID || '',
+      appSlug: process.env.GITHUB_APP_SLUG || '',
+      ownerLogin: ALLOWED_LOGIN,
+      stateSecret: process.env.MATLOCK_OAUTH_STATE_SECRET || envClientSecret,
+      source: 'environment'
+    };
+  }
+
+  try {
+    const store = getStore({ name: STORE_NAME, consistency: 'strong' });
+    const stored = await store.get(CONFIG_KEY, { type: 'json', consistency: 'strong' });
+    if (!stored?.clientId || !stored?.clientSecret) return null;
+    return { ...stored, source: 'netlify-blobs' };
+  } catch {
+    return null;
+  }
 }
 
-export function encodeSession(session) {
-  const secret = authSecret();
+export async function saveAppConfig(config) {
+  const store = getStore({ name: STORE_NAME, consistency: 'strong' });
+  await store.setJSON(CONFIG_KEY, {
+    clientId: config.clientId,
+    clientSecret: config.clientSecret,
+    appId: config.appId || '',
+    appSlug: config.appSlug || '',
+    htmlUrl: config.htmlUrl || '',
+    ownerLogin: config.ownerLogin || ALLOWED_LOGIN,
+    stateSecret: config.stateSecret || randomToken(48),
+    createdAt: config.createdAt || new Date().toISOString()
+  });
+}
+
+export function stateSecret(config) {
+  return process.env.MATLOCK_OAUTH_STATE_SECRET || config?.stateSecret || config?.clientSecret || '';
+}
+
+export function encodeSession(session, secret) {
   if (!secret) throw new Error('Auth state secret is not configured.');
   const payload = Buffer.from(JSON.stringify(session)).toString('base64url');
   const signature = createHmac('sha256', secret).update(payload).digest('base64url');
   return `${payload}.${signature}`;
 }
 
-export function decodeSession(value) {
-  const secret = authSecret();
+export function decodeSession(value, secret) {
   if (!secret || !value || !value.includes('.')) return null;
   const [payload, signature] = value.split('.', 2);
   const expected = createHmac('sha256', secret).update(payload).digest('base64url');
@@ -76,6 +117,14 @@ export function clearSessionCookie() {
   return `${COOKIE_NAME}=; Path=/auth/github; Max-Age=0; HttpOnly; Secure; SameSite=Lax`;
 }
 
+export function setupCookie(value, maxAge = 3600) {
+  return `${SETUP_COOKIE_NAME}=${encodeURIComponent(value)}; Path=/setup/github-app; Max-Age=${maxAge}; HttpOnly; Secure; SameSite=Lax`;
+}
+
+export function clearSetupCookie() {
+  return `${SETUP_COOKIE_NAME}=; Path=/setup/github-app; Max-Age=0; HttpOnly; Secure; SameSite=Lax`;
+}
+
 export function randomToken(bytes = 32) {
   return randomBytes(bytes).toString('base64url');
 }
@@ -109,6 +158,15 @@ export function corsHeaders(request) {
 
 export function escapeScriptJson(value) {
   return JSON.stringify(value).replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026');
+}
+
+export function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
 export function popupResponse({ origin, payload, status = 200, clearCookie = true }) {
