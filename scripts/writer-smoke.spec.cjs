@@ -30,7 +30,7 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   await page.route('https://mmamatlock-writer-auth.netlify.app/**', async route => {
     const url = new URL(route.request().url());
     if (url.pathname.endsWith('/auth/github/health')) {
-      return route.fulfill({ status: 200, headers: { ...corsHeaders(), 'access-control-allow-origin': '*' }, body: JSON.stringify({ ok: true, configured: true }) });
+      return route.fulfill({ status: 200, headers: { ...corsHeaders(), 'access-control-allow-origin': '*' }, body: JSON.stringify({ ok: true, configured: false }) });
     }
     return route.fulfill({ status: 401, headers: { ...corsHeaders(), 'access-control-allow-origin': '*' }, body: JSON.stringify({ ok: false }) });
   });
