@@ -35,7 +35,15 @@ test('Writer production workflow survives long-form editing, restore, schedule a
     return route.fulfill({ status: 401, headers: { ...corsHeaders(), 'access-control-allow-origin': '*' }, body: JSON.stringify({ ok: false }) });
   });
 
-  await page.route('https://api.github.com/repos/MatlockFT/Matlock**', async route => {
+  await page.route('https://api.github.com/repos/MatlockFT/Matlock', async route => {
+    const method = route.request().method();
+    const headers = corsHeaders();
+    if (method === 'OPTIONS') return route.fulfill({ status: 204, headers, body: '' });
+    if (method === 'GET') return route.fulfill({ status: 200, headers, body: JSON.stringify({ owner: { login: 'MatlockFT' }, name: 'Matlock' }) });
+    return route.fulfill({ status: 405, headers, body: JSON.stringify({ message: `Unhandled repo root method: ${method}` }) });
+  });
+
+  await page.route('https://api.github.com/repos/MatlockFT/Matlock/**', async route => {
     const request = route.request();
     const url = new URL(request.url());
     const method = request.method();
@@ -43,9 +51,6 @@ test('Writer production workflow survives long-form editing, restore, schedule a
     if (method === 'OPTIONS') return route.fulfill({ status: 204, headers, body: '' });
 
     const repoRoot = '/repos/MatlockFT/Matlock';
-    if (url.pathname === repoRoot && method === 'GET') {
-      return route.fulfill({ status: 200, headers, body: JSON.stringify({ owner: { login: 'MatlockFT' }, name: 'Matlock' }) });
-    }
     if (url.pathname === `${repoRoot}/contents/_posts` && method === 'GET') {
       const list = remote ? [{ type: 'file', name: remote.name, path: remote.path, sha: remote.sha }] : [];
       return route.fulfill({ status: 200, headers, body: JSON.stringify(list) });
