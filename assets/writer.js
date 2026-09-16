@@ -25,6 +25,9 @@
   const historyDialog = app.querySelector('[data-history-dialog]');
   const historyList = app.querySelector('[data-history-list]');
   const conflictDialog = app.querySelector('[data-conflict-dialog]');
+  const metaDetails = app.querySelector('.writer-meta');
+  const htmlBlockRail = app.querySelector('[data-html-block-rail]');
+  const splitter = app.querySelector('[data-writer-splitter]');
 
   let githubCredential = '';
   let githubLogin = '';
@@ -48,6 +51,7 @@
   let librarySearchTimer = 0;
   let htmlBlocks = new Map();
   let editingHtmlBlockId = '';
+  let splitRatio = 50;
 
   const controlledKeys = [
     'layout','title','description','date','category','author','image','tags',
@@ -350,9 +354,9 @@
     bodyEditor.value = bodyEditor.value.replace(re, replacement);
   }
 
-  function openHtmlDialog() {
+  function openHtmlDialog(blockId = '') {
     const dialog = app.querySelector('[data-html-dialog]');
-    const current = htmlBlockAtCursor();
+    const current = blockId && htmlBlocks.has(blockId) ? { block: htmlBlocks.get(blockId) } : htmlBlockAtCursor();
     editingHtmlBlockId = current?.block?.id || '';
     dialog.querySelector('[data-html-dialog-title]').textContent = current ? 'Edit HTML visual' : 'Insert HTML visual';
     dialog.querySelector('[data-html-label]').value = current?.block?.label || '';
@@ -361,6 +365,50 @@
     dialog.querySelector('[data-html-delete]').hidden = !current;
     dialog.showModal();
     window.setTimeout(() => dialog.querySelector('[data-html-code]').focus(), 0);
+  }
+
+  function renderHtmlBlockRail() {
+    if (!htmlBlockRail) return;
+    const blocks = [...htmlBlocks.values()];
+    htmlBlockRail.hidden = blocks.length === 0;
+    if (!blocks.length) { htmlBlockRail.innerHTML = ''; return; }
+    htmlBlockRail.innerHTML = `<div class="writer-html-block-rail-head"><span>Embedded visuals</span><small>${blocks.length} ${blocks.length === 1 ? 'block' : 'blocks'}</small></div><div class="writer-html-block-list">${blocks.map(block => `<button type="button" class="writer-html-block-card" data-html-block-edit="${escapeHtml(block.id)}" title="Edit ${escapeHtml(block.label)}"><span class="writer-html-block-badge">HTML</span><strong>${escapeHtml(block.label)}</strong><span class="writer-html-block-action">Edit</span></button>`).join('')}</div>`;
+  }
+
+  function focusHtmlBlockToken(id) {
+    const block = htmlBlocks.get(id);
+    if (!block) return false;
+    const token = htmlBlockToken(block);
+    const index = bodyEditor.value.indexOf(token);
+    if (index >= 0) {
+      bodyEditor.focus({ preventScroll: true });
+      bodyEditor.setSelectionRange(index, index + token.length);
+    }
+    return true;
+  }
+
+  function openHtmlBlockById(id) {
+    if (!focusHtmlBlockToken(id)) return;
+    openHtmlDialog(id);
+  }
+
+  function setArticleDetailsOpen(open) {
+    if (metaDetails) metaDetails.open = Boolean(open);
+  }
+
+  function applySplitRatio(value, { persist = false } = {}) {
+    const next = Math.max(32, Math.min(68, Number(value) || 50));
+    splitRatio = next;
+    workspace.style.setProperty('--writer-split', `${next}%`);
+    if (splitter) splitter.setAttribute('aria-valuenow', String(Math.round(next)));
+    if (persist) {
+      try { localStorage.setItem('matlock-writer:split-ratio', String(next)); } catch {}
+    }
+  }
+
+  function restoreSplitRatio() {
+    try { applySplitRatio(Number(localStorage.getItem('matlock-writer:split-ratio') || 50)); }
+    catch { applySplitRatio(50); }
   }
 
   function inlineMarkdown(text) {
@@ -601,6 +649,7 @@
     fields.spoilerWarning.checked = Boolean(state.spoilerWarning);
     fields.pinned.checked = Boolean(state.pinned);
     bodyEditor.value = prepareEditorBody(state.body || '', state.htmlBlocks || []);
+    renderHtmlBlockRail();
     if (remote) {
       currentPath = state.currentPath || '';
       currentSha = state.currentSha || '';
@@ -814,6 +863,7 @@ function scheduleAutosave() {
       initial.body = templateBodies[template].body;
     }
     applyState(initial, { remote: true });
+    setArticleDetailsOpen(true);
     showEditor();
     history.replaceState(null, '', '/write/');
     if (!template) maybeRestoreLocal('matlock-writer:new');
@@ -983,6 +1033,7 @@ function scheduleAutosave() {
       const restored = maybeRestoreLocal(`matlock-writer:${path}`, state);
       if (!restored) dirty = false;
       showEditor();
+      if ((state.body || '').trim() || state.title) setArticleDetailsOpen(false);
       setSaveState(currentPublished ? 'Published article' : fields.publishAt.value ? 'Scheduled article' : 'Draft article');
       showToast('Article loaded.');
     } catch (error) {
@@ -1008,6 +1059,7 @@ function scheduleAutosave() {
       currentPublished = false;
       fields.filename.disabled = false;
       filenameTouched = true;
+      setArticleDetailsOpen(true);
       showEditor();
       dirty = true;
       setSaveState('Duplicated • unsaved');
@@ -1472,12 +1524,14 @@ Object.values(fields).forEach(el => {
       block.label = label;
       block.code = code;
       replaceHtmlToken(editingHtmlBlockId, htmlBlockToken(block));
+      renderHtmlBlockRail();
       showToast('HTML visual updated.');
     } else {
       const id = htmlBlockId();
       const block = { id, label, code };
       htmlBlocks.set(id, block);
       insertBlock(htmlBlockToken(block));
+      renderHtmlBlockRail();
       showToast('HTML visual inserted as a compact block.');
     }
 
@@ -1491,6 +1545,7 @@ Object.values(fields).forEach(el => {
     if (!editingHtmlBlockId || !htmlBlocks.has(editingHtmlBlockId)) return;
     replaceHtmlToken(editingHtmlBlockId, '');
     htmlBlocks.delete(editingHtmlBlockId);
+    renderHtmlBlockRail();
     editingHtmlBlockId = '';
     app.querySelector('[data-html-dialog]').close();
     scheduleAutosave();
@@ -1581,12 +1636,49 @@ Object.values(fields).forEach(el => {
     const block = { id, label: inferHtmlLabel(pasted), code: pasted };
     htmlBlocks.set(id, block);
     insertBlock(htmlBlockToken(block));
-    showToast('HTML visual collapsed into one Writer block. Double-click it to edit.');
+    renderHtmlBlockRail();
+    showToast('HTML visual collapsed into one Writer block. Use Embedded visuals to edit it.');
   });
 
   bodyEditor.addEventListener('dblclick', () => {
     if (htmlBlockAtCursor()) openHtmlDialog();
   });
+
+  if (htmlBlockRail) htmlBlockRail.addEventListener('click', event => {
+    const button = event.target.closest('[data-html-block-edit]');
+    if (!button) return;
+    openHtmlBlockById(button.dataset.htmlBlockEdit);
+  });
+
+  if (splitter) {
+    splitter.addEventListener('pointerdown', event => {
+      if (workspace.dataset.viewMode !== 'split' || window.innerWidth <= 1100) return;
+      event.preventDefault();
+      splitter.setPointerCapture?.(event.pointerId);
+      document.body.classList.add('writer-is-resizing');
+      const rect = workspace.getBoundingClientRect();
+      const move = moveEvent => {
+        const percent = ((moveEvent.clientX - rect.left) / rect.width) * 100;
+        applySplitRatio(percent);
+      };
+      const finish = () => {
+        splitter.removeEventListener('pointermove', move);
+        splitter.removeEventListener('pointerup', finish);
+        splitter.removeEventListener('pointercancel', finish);
+        document.body.classList.remove('writer-is-resizing');
+        applySplitRatio(splitRatio, { persist: true });
+      };
+      splitter.addEventListener('pointermove', move);
+      splitter.addEventListener('pointerup', finish);
+      splitter.addEventListener('pointercancel', finish);
+    });
+    splitter.addEventListener('keydown', event => {
+      if (!['ArrowLeft','ArrowRight','Home'].includes(event.key)) return;
+      event.preventDefault();
+      if (event.key === 'Home') applySplitRatio(50, { persist: true });
+      else applySplitRatio(splitRatio + (event.key === 'ArrowRight' ? 2 : -2), { persist: true });
+    });
+  }
 
   bodyEditor.addEventListener('keydown', event => {
   const modifier = event.metaKey || event.ctrlKey;
@@ -1635,6 +1727,7 @@ window.addEventListener('matlock-writer:auth-expired', () => setPublishingContro
   fields.date.value = today();
   fields.category.value = 'Breakdown';
   fields.imagePosition.value = 'center center';
+  restoreSplitRatio();
   updatePreview();
   updateSaveButtonLabel();
   loadLibrary({ hydrate: false });
