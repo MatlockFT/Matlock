@@ -7,21 +7,22 @@ page_styles:
   - /assets/writer.css
 page_scripts:
   - /assets/writer.js
+  - /assets/writer-auth.js
 ---
 
-<section class="writer-app" data-writer-app data-repo="MatlockFT/Matlock">
+<section class="writer-app" data-writer-app data-repo="MatlockFT/Matlock" data-auth-base="https://mmamatlock-writer-auth.netlify.app">
   <header class="writer-topbar">
     <div>
       <p class="eyebrow">Private-ish publishing workspace</p>
       <h1>MMA Matlock Writer</h1>
-      <p class="writer-kicker">Write and preview instantly. Connect GitHub only when you want to save or publish.</p>
+      <p class="writer-kicker">Write and preview instantly. Sign in to GitHub only when you want to save or publish.</p>
     </div>
 
     <div class="writer-top-actions">
       <span class="writer-save-state" data-save-state>New article</span>
       <button class="writer-button writer-button-subtle" type="button" data-new-article>New</button>
       <button class="writer-button writer-button-subtle" type="button" data-open-article>Open</button>
-      <button class="writer-button writer-button-subtle" type="button" data-github-connect>Connect GitHub</button>
+      <button class="writer-button writer-button-subtle" type="button" data-github-connect>Sign in with GitHub</button>
       <button class="writer-button" type="button" data-save-draft disabled>Save draft</button>
       <button class="writer-button writer-button-primary" type="button" data-publish disabled>Publish</button>
     </div>
@@ -227,21 +228,30 @@ page_scripts:
       <header>
         <div>
           <p class="eyebrow">Direct publishing</p>
-          <h2>Connect GitHub</h2>
+          <h2>GitHub publishing</h2>
         </div>
         <button class="writer-dialog-close" value="cancel" aria-label="Close">×</button>
       </header>
       <div class="writer-dialog-body">
-        <p>Use a fine-grained GitHub token with <strong>Contents: Read and write</strong> access to <strong>MatlockFT/Matlock</strong>. The token stays in memory only and disappears when this tab closes.</p>
-        <label class="writer-field writer-field-wide">
-          <span>Fine-grained token</span>
-          <input type="password" data-github-token autocomplete="off" spellcheck="false" placeholder="github_pat_…">
-        </label>
-        <p class="writer-dialog-note">Do not use a broad classic token. This page never writes the token to localStorage or the repository.</p>
+        <div class="writer-auth-primary">
+          <p>Sign in through the MMA Matlock GitHub App. The app is intended to have access only to <strong>MatlockFT/Matlock</strong>, and the resulting user token stays in this browser tab only.</p>
+          <button class="writer-button writer-button-primary" type="button" data-github-oauth>Sign in with GitHub</button>
+          <p class="writer-dialog-note" data-oauth-status>Checking GitHub sign-in…</p>
+        </div>
+
+        <details class="writer-token-fallback">
+          <summary>Advanced: use a fine-grained token instead</summary>
+          <p>Use a fine-grained GitHub token with <strong>Contents: Read and write</strong> access to <strong>MatlockFT/Matlock</strong>. The token stays in memory only and disappears when this tab closes.</p>
+          <label class="writer-field writer-field-wide">
+            <span>Fine-grained token</span>
+            <input type="password" data-github-token autocomplete="off" spellcheck="false" placeholder="github_pat_…">
+          </label>
+          <p class="writer-dialog-note">Do not use a broad classic token. This page never writes the token to localStorage or the repository.</p>
+          <button class="writer-button writer-button-subtle" type="button" data-github-authorize>Connect with token</button>
+        </details>
       </div>
       <footer class="writer-dialog-actions">
-        <button class="writer-button writer-button-subtle" value="cancel">Cancel</button>
-        <button class="writer-button writer-button-primary" type="button" data-github-authorize>Connect</button>
+        <button class="writer-button writer-button-subtle" value="cancel">Close</button>
       </footer>
     </form>
   </dialog>
