@@ -1,3 +1,7 @@
+settings:
+  content:
+    merge: true
+
 media:
   input: assets/uploads
   output: /assets/uploads
@@ -26,6 +30,11 @@ content:
       template: "{year}-{month}-{day}-{primary}.md"
       field: create
 
+    operations:
+      create: true
+      rename: false
+      delete: true
+
     view:
       primary: title
       fields:
@@ -38,20 +47,25 @@ content:
       sort:
         - date
         - title
+      search:
+        - title
+        - description
+        - tags
+        - category
       default:
         sort: date
         order: desc
 
     actions:
       - name: preview-article
-        label: Build article preview
+        label: Build visual preview
         scope: entry
         workflow: pages-cms-preview-article.yml
         ref: current
         confirm: false
 
       - name: validate-article
-        label: Validate article
+        label: Run article checks
         scope: entry
         workflow: pages-cms-validate-article.yml
         ref: current
@@ -144,6 +158,27 @@ content:
               Optional visible caption, attribution, or additional context.
             options:
               maxlength: 220
+
+          - name: position
+            label: Image Crop Focus
+            type: select
+            required: false
+            default: "center center"
+            description: >-
+              Choose which part of the featured image should stay visible
+              when the site crops it into cards or wide layouts.
+            options:
+              values:
+                - name: "center center"
+                  label: Center
+                - name: "center top"
+                  label: Top
+                - name: "center bottom"
+                  label: Bottom
+                - name: "left center"
+                  label: Left
+                - name: "right center"
+                  label: Right
 
       - name: tags
         label: Fighters and Topics
@@ -269,6 +304,9 @@ content:
         label: Article
         type: rich-text
         required: true
+        description: >-
+          Use Editor mode for normal writing. Switch to Source mode for
+          Markdown tables, embeds, custom links, and precise formatting.
         options:
           format: markdown
           switcher: true
