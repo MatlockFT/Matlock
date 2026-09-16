@@ -146,7 +146,7 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   await expect(page.locator('[data-publish-check-dialog]')).toBeVisible();
   await expect(page.locator('[data-publish-check-list]')).toContainText('Description is empty');
   await expect(page.locator('[data-publish-check-proceed]')).toBeVisible();
-  await page.locator('[data-publish-check-dialog] button[value="cancel"]').click();
+  await page.locator('[data-publish-check-dialog]').getByRole('button', { name: 'Back to editor' }).click();
 
   await page.fill('[data-field="description"]', 'Production validation article for the MMA Matlock Writer workflow.');
   const bodyWithVisual = await page.locator('#writer-body').inputValue();
@@ -154,7 +154,7 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   await page.click('[data-publish]');
   await expect(page.locator('[data-publish-check-list]')).toContainText('Unsafe or malformed link');
   await expect(page.locator('[data-publish-check-proceed]')).toBeHidden();
-  await page.locator('[data-publish-check-dialog] button[value="cancel"]').click();
+  await page.locator('[data-publish-check-dialog]').getByRole('button', { name: 'Back to editor' }).click();
   await page.fill('#writer-body', bodyWithVisual);
 
   const future = new Date(Date.now() + 2 * 60 * 60 * 1000);
