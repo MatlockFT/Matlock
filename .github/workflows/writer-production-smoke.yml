@@ -11,7 +11,10 @@ on:
       - "assets/writer.js"
       - "assets/writer.css"
       - "assets/writer-auth.js"
+      - "assets/writer-wordtools.js"
+      - "assets/writer-wordtools.css"
       - "scripts/writer-smoke.spec.cjs"
+      - "scripts/writer-wordtools-smoke.spec.cjs"
       - ".github/workflows/writer-production-smoke.yml"
 
 permissions:
@@ -38,13 +41,19 @@ jobs:
         run: |
           local_js="$(sha256sum assets/writer.js | awk '{print $1}')"
           local_css="$(sha256sum assets/writer.css | awk '{print $1}')"
+          local_word_js="$(sha256sum assets/writer-wordtools.js | awk '{print $1}')"
+          local_word_css="$(sha256sum assets/writer-wordtools.css | awk '{print $1}')"
           ready=0
           for attempt in $(seq 1 48); do
             curl -fsSL "https://mmamatlock.com/assets/writer.js?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer.js || true
             curl -fsSL "https://mmamatlock.com/assets/writer.css?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer.css || true
+            curl -fsSL "https://mmamatlock.com/assets/writer-wordtools.js?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer-wordtools.js || true
+            curl -fsSL "https://mmamatlock.com/assets/writer-wordtools.css?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer-wordtools.css || true
             live_js="$(sha256sum /tmp/live-writer.js 2>/dev/null | awk '{print $1}')"
             live_css="$(sha256sum /tmp/live-writer.css 2>/dev/null | awk '{print $1}')"
-            if [ "$live_js" = "$local_js" ] && [ "$live_css" = "$local_css" ]; then
+            live_word_js="$(sha256sum /tmp/live-writer-wordtools.js 2>/dev/null | awk '{print $1}')"
+            live_word_css="$(sha256sum /tmp/live-writer-wordtools.css 2>/dev/null | awk '{print $1}')"
+            if [ "$live_js" = "$local_js" ] && [ "$live_css" = "$local_css" ] && [ "$live_word_js" = "$local_word_js" ] && [ "$live_word_css" = "$local_word_css" ]; then
               echo "Current Writer assets are live."
               ready=1
               break
@@ -65,4 +74,4 @@ jobs:
       - name: Exercise production Writer workflow
         env:
           WRITER_BASE_URL: https://mmamatlock.com/write/
-        run: npx playwright test scripts/writer-smoke.spec.cjs --workers=1 --reporter=line
+        run: npx playwright test scripts/writer-smoke.spec.cjs scripts/writer-wordtools-smoke.spec.cjs --workers=1 --reporter=line
