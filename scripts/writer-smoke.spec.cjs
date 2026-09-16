@@ -19,7 +19,7 @@ function encodeBase64(value) {
   return Buffer.from(String(value || ''), 'utf8').toString('base64');
 }
 
-test('Writer production workflow survives long-form editing, restore, schedule and publish', async ({ page }) => {
+test('Writer production workflow survives long-form editing, rich blocks, restore, schedule and publish', async ({ page }) => {
   test.setTimeout(120000);
   const pageErrors = [];
   page.on('pageerror', error => pageErrors.push(error.message));
@@ -93,6 +93,44 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   await expect(page.locator('[data-save-state]')).toContainText('Unsaved');
   await expect(page.locator('[data-local-status]')).toContainText('Saved locally', { timeout: 5000 });
 
+  const editor = page.locator('#writer-body');
+  await editor.evaluate(el => { el.focus(); el.setSelectionRange(250, 250); });
+  await page.keyboard.type(' CURSOR_SENTINEL ');
+  const cursorAfterTyping = await editor.evaluate(el => el.selectionStart);
+  await page.waitForTimeout(700);
+  expect(await editor.evaluate(el => el.selectionStart)).toBe(cursorAfterTyping);
+  await expect(editor).toHaveValue(/CURSOR_SENTINEL/);
+
+  await page.click('[data-tool="image"]');
+  await page.fill('[data-inline-image-url]', 'https://example.com/writer-smoke.jpg');
+  await page.fill('[data-inline-image-alt]', 'Writer smoke image');
+  await page.click('[data-image-insert]');
+  await expect(page.locator('[data-preview-content] img[alt="Writer smoke image"]')).toHaveAttribute('src', 'https://example.com/writer-smoke.jpg');
+
+  await page.click('[data-tool="youtube"]');
+  await page.fill('[data-youtube-url]', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+  await page.fill('[data-youtube-title]', 'Writer smoke YouTube');
+  await page.click('[data-youtube-insert]');
+  await expect(page.locator('[data-preview-content] iframe')).toHaveAttribute('src', /youtube\.com\/embed\/dQw4w9WgXcQ/);
+
+  await page.click('[data-tool="table"]');
+  await page.fill('[data-table-headers]', 'Metric, Alpha, Beta');
+  await page.fill('[data-table-rows]', 'Record\nReach');
+  await page.click('[data-table-insert]');
+  await expect(page.locator('[data-preview-content]')).toContainText('Metric');
+  await expect(page.locator('[data-preview-content]')).toContainText('Reach');
+
+  await page.click('[data-tool="tale"]');
+  await page.fill('[data-tale-a]', 'Alpha Fighter');
+  await page.fill('[data-tale-b]', 'Beta Fighter');
+  await page.fill('[data-tale-row="record"][data-side="a"]', '10-1');
+  await page.fill('[data-tale-row="record"][data-side="b"]', '9-2');
+  await page.fill('[data-tale-row="reach"][data-side="a"]', '72 in');
+  await page.fill('[data-tale-row="reach"][data-side="b"]', '70 in');
+  await page.click('[data-tale-insert]');
+  await expect(page.locator('[data-preview-content]')).toContainText('ALPHA FIGHTER');
+  await expect(page.locator('[data-preview-content]')).toContainText('10-1');
+
   await page.click('[data-tool="html"]');
   await page.fill('[data-html-label]', 'Smoke visual');
   await page.fill('[data-html-code]', '<section class="writer-smoke-visual"><style>.writer-smoke-visual{padding:12px}</style><h2>Smoke Visual</h2><p>Rendered HTML visual.</p></section>');
@@ -101,6 +139,15 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   await expect(page.locator('[data-html-block-edit]')).toContainText('Smoke visual');
   await expect(page.locator('[data-preview-content]')).toContainText('Rendered HTML visual');
   await expect(page.locator('[data-local-status]')).toContainText('Saved locally', { timeout: 5000 });
+
+  const previewContent = page.locator('[data-preview-content]');
+  const desktopHtml = await previewContent.innerHTML();
+  await page.click('[data-preview-size="mobile"]');
+  await expect(page.locator('[data-preview-frame]')).toHaveAttribute('data-preview-size', 'mobile');
+  expect(await previewContent.innerHTML()).toBe(desktopHtml);
+  await page.click('[data-preview-size="desktop"]');
+  await expect(page.locator('[data-preview-frame]')).toHaveAttribute('data-preview-size', 'desktop');
+  expect(await previewContent.innerHTML()).toBe(desktopHtml);
 
   const splitter = page.locator('[data-writer-splitter]');
   await splitter.focus();
@@ -112,7 +159,12 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   await expect(page.locator('[data-editor-view]')).toBeVisible();
   await expect(page.locator('[data-field="title"]')).toHaveValue('Writer Production Smoke Test');
   await expect(page.locator('#writer-body')).toHaveValue(/Closing section/);
+  await expect(page.locator('#writer-body')).toHaveValue(/Writer smoke image/);
+  await expect(page.locator('#writer-body')).toHaveValue(/youtube\.com\/embed\/dQw4w9WgXcQ/);
+  await expect(page.locator('#writer-body')).toHaveValue(/ALPHA FIGHTER/);
   await expect(page.locator('[data-html-block-rail]')).toBeVisible();
+  await expect(page.locator('[data-preview-content] img[alt="Writer smoke image"]')).toBeVisible();
+  await expect(page.locator('[data-preview-content] iframe')).toHaveAttribute('src', /youtube\.com\/embed\/dQw4w9WgXcQ/);
 
   await page.click('[data-github-connect]');
   const connectDialog = page.locator('[data-connect-dialog]');
@@ -131,6 +183,10 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   await expect.poll(() => Boolean(remote && /published:\s*false/.test(remote.text))).toBe(true);
   expect(remote.text).toContain('<section class="writer-smoke-visual">');
   expect(remote.text).not.toContain('[HTML VISUAL');
+  expect(remote.text).toContain('![Writer smoke image](https://example.com/writer-smoke.jpg)');
+  expect(remote.text).toContain('youtube.com/embed/dQw4w9WgXcQ');
+  expect(remote.text).toContain('| Metric | Alpha | Beta |');
+  expect(remote.text).toContain('ALPHA FIGHTER');
 
   await page.click('[data-show-library]');
   await expect(page.locator('[data-library-list]')).toContainText('Writer Production Smoke Test', { timeout: 10000 });
@@ -138,6 +194,9 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   const articleDetails = page.locator('.writer-meta');
   await expect(articleDetails).not.toHaveAttribute('open', '');
   await expect(page.locator('#writer-body')).toHaveValue(/Closing section/);
+  await expect(page.locator('#writer-body')).toHaveValue(/Writer smoke image/);
+  await expect(page.locator('#writer-body')).toHaveValue(/ALPHA FIGHTER/);
+  await expect(page.locator('[data-preview-content]')).toContainText('Rendered HTML visual');
   await articleDetails.locator('summary').click();
   await expect(articleDetails).toHaveAttribute('open', '');
 
@@ -174,6 +233,9 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   await expect.poll(() => Boolean(remote && /published:\s*true/.test(remote.text))).toBe(true);
   expect(remote.text).toContain('Writer Production Smoke Test');
   expect(remote.text).toContain('Rendered HTML visual.');
+  expect(remote.text).toContain('Writer smoke image');
+  expect(remote.text).toContain('dQw4w9WgXcQ');
+  expect(remote.text).toContain('ALPHA FIGHTER');
 
   expect(pageErrors).toEqual([]);
 });
