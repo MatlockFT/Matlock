@@ -1,0 +1,250 @@
+---
+layout: default
+title: MMA Matlock Writer
+permalink: /write/
+noindex: true
+page_styles:
+  - /assets/writer.css
+page_scripts:
+  - /assets/writer.js
+---
+
+<section class="writer-app" data-writer-app data-repo="MatlockFT/Matlock">
+  <header class="writer-topbar">
+    <div>
+      <p class="eyebrow">Private-ish publishing workspace</p>
+      <h1>MMA Matlock Writer</h1>
+      <p class="writer-kicker">Write and preview instantly. Connect GitHub only when you want to save or publish.</p>
+    </div>
+
+    <div class="writer-top-actions">
+      <span class="writer-save-state" data-save-state>New article</span>
+      <button class="writer-button writer-button-subtle" type="button" data-new-article>New</button>
+      <button class="writer-button writer-button-subtle" type="button" data-open-article>Open</button>
+      <button class="writer-button writer-button-subtle" type="button" data-github-connect>Connect GitHub</button>
+      <button class="writer-button" type="button" data-save-draft disabled>Save draft</button>
+      <button class="writer-button writer-button-primary" type="button" data-publish disabled>Publish</button>
+    </div>
+  </header>
+
+  <div class="writer-statusbar" aria-live="polite">
+    <span data-github-status>GitHub not connected</span>
+    <span aria-hidden="true">•</span>
+    <span data-word-count>0 words</span>
+    <span aria-hidden="true">•</span>
+    <span data-read-time>1 min read</span>
+    <a href="#" data-live-link hidden target="_blank" rel="noopener noreferrer">Open live article ↗</a>
+  </div>
+
+  <div class="writer-modebar" role="toolbar" aria-label="Writer view">
+    <div class="writer-segmented" data-view-switcher>
+      <button type="button" data-view="write" aria-pressed="false">Write</button>
+      <button type="button" data-view="split" aria-pressed="true">Split</button>
+      <button type="button" data-view="preview" aria-pressed="false">Preview</button>
+    </div>
+
+    <div class="writer-segmented writer-preview-size" data-preview-size-switcher>
+      <button type="button" data-preview-size="desktop" aria-pressed="true">Desktop</button>
+      <button type="button" data-preview-size="mobile" aria-pressed="false">Mobile</button>
+    </div>
+  </div>
+
+  <div class="writer-workspace" data-workspace data-view-mode="split">
+    <section class="writer-editor-pane" aria-label="Article editor">
+      <details class="writer-meta" open>
+        <summary>Article details</summary>
+
+        <div class="writer-meta-grid">
+          <label class="writer-field writer-field-wide">
+            <span>Title <em data-title-count>0</em></span>
+            <input type="text" data-field="title" maxlength="140" placeholder="UFC 332: ...">
+          </label>
+
+          <label class="writer-field writer-field-wide">
+            <span>Description <em data-description-count>0 / 160</em></span>
+            <textarea data-field="description" rows="2" maxlength="220" placeholder="One clean sentence describing the article."></textarea>
+          </label>
+
+          <label class="writer-field">
+            <span>Date</span>
+            <input type="date" data-field="date">
+          </label>
+
+          <label class="writer-field">
+            <span>Category</span>
+            <input type="text" data-field="category" list="writer-categories" placeholder="Breakdown">
+            <datalist id="writer-categories">
+              <option value="Breakdown"></option>
+              <option value="Opinion"></option>
+              <option value="News"></option>
+              <option value="History"></option>
+              <option value="Results"></option>
+            </datalist>
+          </label>
+
+          <label class="writer-field writer-field-wide">
+            <span>Tags <small>comma separated</small></span>
+            <input type="text" data-field="tags" placeholder="UFC 332, Fighter Name, Lightweight">
+          </label>
+
+          <label class="writer-field writer-field-wide">
+            <span>Featured image</span>
+            <div class="writer-image-row">
+              <input type="text" data-field="imagePath" placeholder="/assets/uploads/article-image.jpg">
+              <label class="writer-file-button">
+                Choose image
+                <input type="file" data-image-file accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+              </label>
+              <button class="writer-button writer-button-subtle" type="button" data-upload-image disabled>Upload</button>
+            </div>
+          </label>
+
+          <label class="writer-field writer-field-wide">
+            <span>Image alt text</span>
+            <input type="text" data-field="imageAlt" placeholder="Describe the featured image">
+          </label>
+
+          <label class="writer-field">
+            <span>Image crop focus</span>
+            <select data-field="imagePosition">
+              <option value="center center">Center</option>
+              <option value="center top">Top</option>
+              <option value="center bottom">Bottom</option>
+              <option value="left center">Left</option>
+              <option value="right center">Right</option>
+            </select>
+          </label>
+
+          <label class="writer-field">
+            <span>Filename</span>
+            <input type="text" data-field="filename" spellcheck="false" placeholder="2026-09-16-my-article.md">
+          </label>
+        </div>
+
+        <div class="writer-flags">
+          <label><input type="checkbox" data-field="showToc"> Table of contents</label>
+          <label><input type="checkbox" data-field="spoilerWarning"> Spoiler warning</label>
+          <label><input type="checkbox" data-field="pinned"> Pin article</label>
+        </div>
+      </details>
+
+      <div class="writer-toolbar" role="toolbar" aria-label="Formatting">
+        <button type="button" data-insert="h2" title="Heading">H2</button>
+        <button type="button" data-insert="bold" title="Bold"><strong>B</strong></button>
+        <button type="button" data-insert="italic" title="Italic"><em>I</em></button>
+        <button type="button" data-insert="link" title="Link">Link</button>
+        <button type="button" data-insert="quote" title="Quote">Quote</button>
+        <button type="button" data-insert="divider" title="Divider">Divider</button>
+        <button type="button" data-insert="table" title="Table">Table</button>
+        <button type="button" data-insert="youtube" title="YouTube embed">YouTube</button>
+        <button type="button" data-insert="citation" title="Source link">Source</button>
+        <button type="button" data-insert="prediction" title="Fight prediction">Pick</button>
+      </div>
+
+      <label class="writer-body-label" for="writer-body">Article</label>
+      <textarea id="writer-body" class="writer-body-editor" data-field="body" spellcheck="true" placeholder="Start writing..."></textarea>
+
+      <footer class="writer-editor-footer">
+        <span data-local-status>Autosaves locally in this browser.</span>
+        <button class="writer-text-button" type="button" data-copy-markdown>Copy full Markdown</button>
+        <button class="writer-text-button" type="button" data-download-markdown>Download .md</button>
+      </footer>
+    </section>
+
+    <section class="writer-preview-pane" aria-label="Live article preview">
+      <div class="writer-preview-frame" data-preview-frame data-preview-size="desktop">
+        <article class="post-page writer-preview-article" aria-labelledby="writer-preview-title">
+          <nav class="post-breadcrumbs" aria-label="Preview breadcrumb">
+            <ol>
+              <li><span>Home</span></li>
+              <li aria-hidden="true">/</li>
+              <li><span>Breakdowns</span></li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" data-preview-breadcrumb>Untitled article</li>
+            </ol>
+          </nav>
+
+          <header class="post-header">
+            <p class="eyebrow" data-preview-category>Breakdown</p>
+            <h1 id="writer-preview-title" class="post-title" data-preview-title>Untitled article</h1>
+            <p class="post-description" data-preview-description hidden></p>
+            <div class="post-meta">
+              <span>By <span>MMA Matlock</span></span>
+              <span aria-hidden="true">•</span>
+              <time data-preview-date></time>
+              <span class="post-meta-separator" aria-hidden="true">•</span>
+              <span class="post-reading-time" data-preview-read-time>1 min read</span>
+            </div>
+          </header>
+
+          <figure class="post-featured-image writer-preview-featured" data-preview-image-shell hidden>
+            <img data-preview-image alt="">
+          </figure>
+
+          <aside class="article-notice article-spoiler-notice" data-preview-spoiler hidden>
+            <strong>Spoiler warning</strong>
+            <p>This article discusses fight results and may contain spoilers.</p>
+          </aside>
+
+          <div id="writer-preview-content" class="post-body" data-preview-content>
+            <p class="writer-preview-empty">Start writing on the left. Your article will appear here immediately.</p>
+          </div>
+
+          <footer class="post-footer writer-preview-footer">
+            <section class="post-topics" data-preview-topics hidden>
+              <h2>Topics</h2>
+              <ul data-preview-tags></ul>
+            </section>
+          </footer>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <dialog class="writer-dialog" data-open-dialog>
+    <form method="dialog">
+      <header>
+        <div>
+          <p class="eyebrow">Repository</p>
+          <h2>Open article</h2>
+        </div>
+        <button class="writer-dialog-close" value="cancel" aria-label="Close">×</button>
+      </header>
+      <div class="writer-dialog-body">
+        <label class="writer-field writer-field-wide">
+          <span>Filter</span>
+          <input type="search" data-article-filter placeholder="Search filenames">
+        </label>
+        <div class="writer-article-list" data-article-list>
+          <p>Loading articles…</p>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="writer-dialog writer-connect-dialog" data-connect-dialog>
+    <form method="dialog">
+      <header>
+        <div>
+          <p class="eyebrow">Direct publishing</p>
+          <h2>Connect GitHub</h2>
+        </div>
+        <button class="writer-dialog-close" value="cancel" aria-label="Close">×</button>
+      </header>
+      <div class="writer-dialog-body">
+        <p>Use a fine-grained GitHub token with <strong>Contents: Read and write</strong> access to <strong>MatlockFT/Matlock</strong>. The token stays in memory only and disappears when this tab closes.</p>
+        <label class="writer-field writer-field-wide">
+          <span>Fine-grained token</span>
+          <input type="password" data-github-token autocomplete="off" spellcheck="false" placeholder="github_pat_…">
+        </label>
+        <p class="writer-dialog-note">Do not use a broad classic token. This page never writes the token to localStorage or the repository.</p>
+      </div>
+      <footer class="writer-dialog-actions">
+        <button class="writer-button writer-button-subtle" value="cancel">Cancel</button>
+        <button class="writer-button writer-button-primary" type="button" data-github-authorize>Connect</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <div class="writer-toast" data-toast role="status" aria-live="polite" hidden></div>
+</section>
