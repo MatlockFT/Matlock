@@ -1,0 +1,52 @@
+name: Writer ergonomics once
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/writer-ergonomics-once.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.12.0"
+      - name: Apply Writer ergonomics pass
+        run: |
+          python .github/scripts/patch_writer_ergonomics.py
+          node --check assets/writer.js
+          grep -q 'data-writer-splitter' write.html
+          grep -q 'data-html-block-rail' write.html
+          grep -q 'applySplitRatio' assets/writer.js
+          grep -q 'renderHtmlBlockRail' assets/writer.js
+          grep -q 'Writer ergonomics pass 2026-09-16' assets/writer.css
+      - name: Stress check long article handling
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const source = fs.readFileSync('assets/writer.js','utf8');
+          if (!source.includes('expandHtmlBlocks(bodyEditor.value)')) throw new Error('HTML expansion missing');
+          const words = Array.from({length: 6200}, (_, i) => `word${i}`).join(' ');
+          const visual = '<section class="stress"><style>.stress{display:grid}</style><div>Visual</div></section>';
+          const body = `${words}\n\n[HTML VISUAL · Stress visual · #stress01]\n\n${words.slice(0, 12000)}`;
+          const expanded = body.replace(/^\[HTML VISUAL · .*? · #([A-Za-z0-9_-]+)\]\s*$/gm, visual);
+          if (!expanded.includes('<section class="stress">')) throw new Error('HTML stress expansion failed');
+          if (body.length < 50000) throw new Error('Stress body unexpectedly small');
+          console.log(`Stress body ${body.length.toLocaleString()} chars; HTML expansion OK`);
+          NODE
+      - name: Commit Writer ergonomics
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add write.html assets/writer.js assets/writer.css
+          git commit -m "Improve Writer ergonomics for long articles"
+          git push origin HEAD:main
