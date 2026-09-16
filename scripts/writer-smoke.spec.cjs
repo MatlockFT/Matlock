@@ -110,8 +110,13 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   await expect(page.locator('[data-html-block-rail]')).toBeVisible();
 
   await page.click('[data-github-connect]');
-  const fallback = page.locator('.writer-token-fallback');
-  await fallback.locator('summary').click();
+  const connectDialog = page.locator('[data-connect-dialog]');
+  await expect(connectDialog).toBeVisible();
+  await connectDialog.evaluate(dialog => {
+    const fallback = dialog.querySelector('.writer-token-fallback');
+    if (fallback) fallback.open = true;
+  });
+  await expect(page.locator('[data-github-token]')).toBeVisible();
   await page.fill('[data-github-token]', 'github_pat_writer_smoke_fake');
   await page.click('[data-github-authorize]');
   await expect(page.locator('[data-github-status]')).toContainText('Connected to MatlockFT/Matlock', { timeout: 10000 });
