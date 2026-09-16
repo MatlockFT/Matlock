@@ -3,10 +3,12 @@ import {
   REPO_ID,
   callbackUrl,
   decodeSession,
+  getAppConfig,
   isAllowedOrigin,
   parseCookies,
   popupResponse,
   securityHeaders,
+  stateSecret,
   verifyGitHubToken
 } from './_github-auth.mjs';
 
@@ -15,12 +17,21 @@ export default async function handler(request) {
     return new Response('Method not allowed', { status: 405, headers: securityHeaders({ Allow: 'GET' }) });
   }
 
+  const appConfig = await getAppConfig();
+  if (!appConfig?.clientId || !appConfig?.clientSecret) {
+    return popupResponse({
+      origin: 'https://mmamatlock.com',
+      payload: { ok: false, error: 'The Writer GitHub App has not been configured yet.' },
+      status: 503
+    });
+  }
+
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get('code') || '';
   const returnedState = requestUrl.searchParams.get('state') || '';
   const githubError = requestUrl.searchParams.get('error') || '';
   const cookies = parseCookies(request);
-  const session = decodeSession(cookies[COOKIE_NAME] || '');
+  const session = decodeSession(cookies[COOKIE_NAME] || '', stateSecret(appConfig));
 
   if (!session || !isAllowedOrigin(session.origin)) {
     return popupResponse({
@@ -54,23 +65,13 @@ export default async function handler(request) {
     });
   }
 
-  const clientId = process.env.GITHUB_CLIENT_ID || '';
-  const clientSecret = process.env.GITHUB_CLIENT_SECRET || '';
-  if (!clientId || !clientSecret) {
-    return popupResponse({
-      origin: session.origin,
-      payload: { ok: false, error: 'The Writer GitHub App is not fully configured yet.' },
-      status: 503
-    });
-  }
-
   try {
     const redirectUri = callbackUrl(request);
     if (redirectUri !== session.redirectUri) throw new Error('OAuth callback URL changed during sign-in.');
 
     const form = new URLSearchParams({
-      client_id: clientId,
-      client_secret: clientSecret,
+      client_id: appConfig.clientId,
+      client_secret: appConfig.clientSecret,
       code,
       redirect_uri: redirectUri,
       code_verifier: session.verifier,
