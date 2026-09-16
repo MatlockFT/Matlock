@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-09-16T19:03:12.838Z"
+      "checkedAt": "2026-09-16T22:04:06.032Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-16T19:03:35.655Z",
+      "checkedAt": "2026-09-16T22:04:31.505Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -195751,7 +195751,7 @@
     {
       "id": "lyman-good",
       "name": "Lyman Good",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/lyman-good",
       "aliases": [
         "lyman-good"
@@ -196013,9 +196013,9 @@
       },
       "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-09-16T19:03:12.838Z"
+        "checkedAt": "2026-09-16T22:04:06.032Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/lyman-good",
@@ -218147,7 +218147,7 @@
     {
       "id": "michael-aswell",
       "name": "Michael Aswell",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/michael-aswell",
       "aliases": [
         "michael-aswell"
@@ -218341,9 +218341,9 @@
       },
       "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-09-16T19:03:12.838Z"
+        "checkedAt": "2026-09-16T22:04:06.032Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/michael-aswell",
@@ -334516,7 +334516,7 @@
   ],
   "coverage": {
     "profileFailures": 28,
-    "activeFighters": 989,
+    "activeFighters": 987,
     "participantHistoriesRequested": 182,
     "verifiedParticipantHistories": 182,
     "ufcStatsNameMisses": 0,
