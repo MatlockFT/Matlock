@@ -16,16 +16,19 @@ const parts = Object.fromEntries(
 );
 const key = `${parts.month}-${parts.day}`;
 
-const kindBonus = new Map([
-    ['title', 12], ['fight', 10], ['incident', 8], ['debut', 7],
-    ['signing', 6], ['death', 5], ['news', 4], ['birthday', 2], ['event', 0]
-]);
 const hasImage = entry => /^https:\/\//i.test(String(entry?.imageUrl || '').trim());
-const score = entry => Number(entry?.weight || 0) + (kindBonus.get(entry?.kind) || 0) + (hasImage(entry) ? 1000 : 0);
+const todays = entries.filter(entry => String(entry?.date || '').slice(5) === key);
+const events = todays.filter(entry => entry?.kind === 'event');
+const candidates = events.length ? events : todays;
 
-const best = entries
-    .filter(entry => String(entry?.date || '').slice(5) === key)
-    .sort((a, b) => score(b) - score(a))[0] || null;
+const best = candidates
+    .sort((a, b) => {
+        const dateOrder = String(b?.date || '').localeCompare(String(a?.date || ''));
+        if (dateOrder) return dateOrder;
+        const imageOrder = Number(hasImage(b)) - Number(hasImage(a));
+        if (imageOrder) return imageOrder;
+        return Number(b?.weight || 0) - Number(a?.weight || 0);
+    })[0] || null;
 
 const compactEntry = best ? {
     date: best.date,
