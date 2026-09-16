@@ -10,36 +10,32 @@
   const tokenInput = app.querySelector('[data-github-token]');
   const manualAuthorizeButton = app.querySelector('[data-github-authorize]');
   const githubStatus = app.querySelector('[data-github-status]');
+  const signOutButton = app.querySelector('[data-github-signout]');
 
   if (!originalConnectButton || !connectDialog || !tokenInput || !manualAuthorizeButton) return;
 
-  const SESSION_TOKEN_KEY = 'matlock-writer:github-token';
-  const SESSION_LOGIN_KEY = 'matlock-writer:github-login';
+  const SESSION_ID_KEY = 'matlock-writer:server-session';
+  const SESSION_LOGIN_KEY = 'matlock-writer:server-login';
+  const PAT_KEY = 'matlock-writer:pat-session';
 
-  function readSession(key) {
+  function localRead(key) {
+    try { return localStorage.getItem(key) || ''; } catch { return ''; }
+  }
+  function localWrite(key, value) {
+    try { value ? localStorage.setItem(key, value) : localStorage.removeItem(key); } catch {}
+  }
+  function sessionRead(key) {
     try { return sessionStorage.getItem(key) || ''; } catch { return ''; }
   }
-
-  function writeSession(key, value) {
-    try {
-      if (value) sessionStorage.setItem(key, value);
-      else sessionStorage.removeItem(key);
-    } catch {}
+  function sessionWrite(key, value) {
+    try { value ? sessionStorage.setItem(key, value) : sessionStorage.removeItem(key); } catch {}
   }
 
-  function clearSession() {
-    writeSession(SESSION_TOKEN_KEY, '');
-    writeSession(SESSION_LOGIN_KEY, '');
+  function clearServerSessionLocal() {
+    localWrite(SESSION_ID_KEY, '');
+    localWrite(SESSION_LOGIN_KEY, '');
   }
 
-  function saveSession(token, login = '') {
-    writeSession(SESSION_TOKEN_KEY, token);
-    if (login) writeSession(SESSION_LOGIN_KEY, login);
-  }
-
-  // writer.js attached the old manual-token click handler before this module ran.
-  // Replacing the top-level button removes that handler while preserving the same
-  // selector, so writer.js can still update its label after authorization succeeds.
   const connectButton = originalConnectButton.cloneNode(true);
   originalConnectButton.replaceWith(connectButton);
   connectButton.textContent = 'Sign in with GitHub';
@@ -56,44 +52,37 @@
   }
 
   function authOrigin() {
-    if (!authBase) return '';
-    try {
-      return new URL(authBase).origin;
-    } catch {
-      return '';
-    }
+    try { return new URL(authBase).origin; } catch { return ''; }
   }
 
-  function openFallback(message) {
-    setStatus(message, 'error');
+  function openDialog(message = '') {
+    if (message) setStatus(message, 'error');
     if (!connectDialog.open) connectDialog.showModal();
   }
 
-  function monitorConnectionAttempt(login = '') {
+  function monitorConnectionAttempt(login = '', { server = false } = {}) {
     window.clearInterval(connectionMonitor);
     const started = Date.now();
-
     connectionMonitor = window.setInterval(() => {
-      // writer.js clears the password input only after it has successfully
-      // verified the token against the Matlock repository.
       if (!tokenInput.value) {
         window.clearInterval(connectionMonitor);
         connectionMonitor = 0;
-        const resolvedLogin = login || readSession(SESSION_LOGIN_KEY) || 'GitHub user';
-        if (resolvedLogin && resolvedLogin !== 'GitHub user') writeSession(SESSION_LOGIN_KEY, resolvedLogin);
+        const resolvedLogin = login || localRead(SESSION_LOGIN_KEY) || 'GitHub user';
         connectButton.disabled = false;
         connectButton.textContent = 'GitHub connected';
-        setStatus(`Signed in as ${resolvedLogin}. Refreshing this tab will keep you signed in.`, 'success');
+        if (server) localWrite(SESSION_LOGIN_KEY, resolvedLogin);
+        setStatus(server
+          ? `Signed in as ${resolvedLogin}. This browser will stay signed in until you sign out or the session expires.`
+          : `Connected as ${resolvedLogin} for this browser tab.`, 'success');
+        if (signOutButton) signOutButton.hidden = false;
         return;
       }
 
-      // connectGitHub() re-enables its authorize button after both success and
-      // failure. If the token input is still populated at that point, validation
-      // failed, so do not keep a bad credential in sessionStorage.
-      if (!manualAuthorizeButton.disabled && Date.now() - started > 350) {
+      if (!manualAuthorizeButton.disabled && Date.now() - started > 500) {
         window.clearInterval(connectionMonitor);
         connectionMonitor = 0;
-        clearSession();
+        if (server) clearServerSessionLocal();
+        else sessionWrite(PAT_KEY, '');
         tokenInput.value = '';
         connectButton.disabled = false;
         connectButton.textContent = 'Sign in with GitHub';
@@ -102,59 +91,78 @@
     }, 150);
   }
 
-  function authorizeToken(token, login = '', { restoring = false } = {}) {
-    if (!token) return false;
-    saveSession(token, login);
-    tokenInput.value = token;
+  function authorizeCredential(value, login = '', { restoring = false, server = false } = {}) {
+    if (!value) return;
+    tokenInput.value = value;
     connectButton.disabled = true;
     connectButton.textContent = restoring ? 'Restoring GitHub…' : 'Connecting…';
     setStatus(restoring ? 'Restoring your GitHub session…' : `Authorized as ${login || 'GitHub user'}. Connecting Writer…`, 'working');
-    monitorConnectionAttempt(login);
+    monitorConnectionAttempt(login, { server });
     manualAuthorizeButton.click();
-    return true;
   }
 
-  function restoreGithubSession() {
-    const token = readSession(SESSION_TOKEN_KEY);
-    if (!token) return false;
-    return authorizeToken(token, readSession(SESSION_LOGIN_KEY), { restoring: true });
+  async function verifyServerSession(id) {
+    if (!id || !authBase) return null;
+    try {
+      const response = await fetch(`${authBase}/api/writer/session`, {
+        method: 'GET',
+        mode: 'cors',
+        cache: 'no-store',
+        headers: { Accept: 'application/json', 'X-Writer-Session': id }
+      });
+      const data = await response.json().catch(() => ({}));
+      return response.ok && data.ok ? data : null;
+    } catch { return null; }
+  }
+
+  async function restoreSession() {
+    const id = localRead(SESSION_ID_KEY);
+    if (id) {
+      setStatus('Restoring your GitHub session…', 'working');
+      const status = await verifyServerSession(id);
+      if (status) {
+        localWrite(SESSION_LOGIN_KEY, status.login || 'GitHub user');
+        authorizeCredential(`session:${id}`, status.login || '', { restoring: true, server: true });
+        return true;
+      }
+      clearServerSessionLocal();
+    }
+
+    const pat = sessionRead(PAT_KEY);
+    if (pat) {
+      authorizeCredential(pat, '', { restoring: true, server: false });
+      return true;
+    }
+    return false;
   }
 
   function beginGithubSignIn() {
-    const alreadyConnected = Boolean(readSession(SESSION_TOKEN_KEY)) && githubStatus?.textContent?.startsWith('Connected to ');
-    if (alreadyConnected) {
+    if (githubStatus?.textContent?.startsWith('Connected to ')) {
       if (!connectDialog.open) connectDialog.showModal();
-      setStatus(`Signed in as ${readSession(SESSION_LOGIN_KEY) || 'GitHub user'}. This session survives refreshes in the current tab.`, 'success');
+      setStatus(`Signed in as ${localRead(SESSION_LOGIN_KEY) || 'GitHub user'}.`, 'success');
       return;
     }
-
     if (!authBase || !bridgeReady) {
-      openFallback('GitHub sign-in is not ready yet. You can still use the advanced token fallback below.');
+      openDialog('GitHub sign-in is not ready yet. The advanced token fallback remains available.');
       return;
     }
 
     const url = `${authBase}/auth/github/start?origin=${encodeURIComponent(location.origin)}`;
-    popup = window.open(
-      url,
-      'matlock-writer-github-auth',
-      'popup=yes,width=720,height=820,resizable=yes,scrollbars=yes'
-    );
-
+    popup = window.open(url, 'matlock-writer-github-auth', 'popup=yes,width=720,height=820,resizable=yes,scrollbars=yes');
     if (!popup) {
-      openFallback('Your browser blocked the GitHub sign-in window. Allow popups for this page and try again.');
+      openDialog('Your browser blocked the GitHub sign-in window. Allow popups for this page and try again.');
       return;
     }
 
     setStatus('Waiting for GitHub authorization…', 'working');
     connectButton.disabled = true;
     connectButton.textContent = 'Signing in…';
-
     window.clearInterval(popupWatch);
     popupWatch = window.setInterval(() => {
       if (!popup || popup.closed) {
         window.clearInterval(popupWatch);
         popupWatch = 0;
-        if (!tokenInput.value && !readSession(SESSION_TOKEN_KEY)) {
+        if (!tokenInput.value && !localRead(SESSION_ID_KEY)) {
           connectButton.disabled = false;
           connectButton.textContent = 'Sign in with GitHub';
           setStatus('Sign-in window closed.', '');
@@ -166,20 +174,16 @@
   connectButton.addEventListener('click', beginGithubSignIn);
   if (oauthButton) oauthButton.addEventListener('click', beginGithubSignIn);
 
-  // The advanced manual-token fallback gets the same refresh behavior. The token
-  // is kept in sessionStorage, not localStorage, so it is not a durable browser
-  // credential and is discarded when the tab/browser session ends.
   manualAuthorizeButton.addEventListener('click', () => {
-    const token = tokenInput.value.trim();
-    if (!token) return;
-    saveSession(token);
-    monitorConnectionAttempt();
+    const credential = tokenInput.value.trim();
+    if (!credential || credential.startsWith('session:')) return;
+    sessionWrite(PAT_KEY, credential);
+    monitorConnectionAttempt('', { server: false });
   }, { capture: true });
 
   window.addEventListener('message', event => {
     const expectedOrigin = authOrigin();
     if (!expectedOrigin || event.origin !== expectedOrigin) return;
-
     const message = event.data;
     if (!message || message.type !== 'matlock-writer-github-auth') return;
 
@@ -187,51 +191,52 @@
     popupWatch = 0;
     if (popup && !popup.closed) popup.close();
     popup = null;
-
     connectButton.disabled = false;
 
-    if (!message.ok || !message.token) {
-      clearSession();
+    if (!message.ok || !message.sessionId) {
+      clearServerSessionLocal();
       connectButton.textContent = 'Sign in with GitHub';
-      openFallback(message.error || 'GitHub sign-in did not complete.');
+      openDialog(message.error || 'GitHub sign-in did not complete.');
       return;
     }
 
-    authorizeToken(message.token, message.login || 'GitHub user');
+    localWrite(SESSION_ID_KEY, message.sessionId);
+    localWrite(SESSION_LOGIN_KEY, message.login || 'GitHub user');
+    sessionWrite(PAT_KEY, '');
+    authorizeCredential(`session:${message.sessionId}`, message.login || '', { server: true });
   });
+
+  async function signOut() {
+    const id = localRead(SESSION_ID_KEY);
+    if (id && authBase) {
+      try {
+        await fetch(`${authBase}/api/writer/session`, {
+          method: 'DELETE',
+          mode: 'cors',
+          headers: { 'X-Writer-Session': id }
+        });
+      } catch {}
+    }
+    clearServerSessionLocal();
+    sessionWrite(PAT_KEY, '');
+    location.reload();
+  }
+  if (signOutButton) signOutButton.addEventListener('click', signOut);
 
   async function checkBridge() {
     bridgeReady = false;
-    if (!authBase) {
-      if (!readSession(SESSION_TOKEN_KEY)) setStatus('GitHub sign-in bridge is not configured. Advanced token fallback is available.', '');
-      return;
-    }
-
+    if (!authBase) return;
     try {
-      const response = await fetch(`${authBase}/auth/github/health`, {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-store',
-        headers: { Accept: 'application/json' }
-      });
+      const response = await fetch(`${authBase}/auth/github/health`, { method: 'GET', mode: 'cors', cache: 'no-store', headers: { Accept: 'application/json' } });
       const data = await response.json().catch(() => ({}));
-      if (!response.ok || !data.ok || !data.configured) {
-        throw new Error(data.message || 'Auth bridge is not configured');
-      }
+      if (!response.ok || !data.ok || !data.configured) throw new Error('Auth bridge is not configured');
       bridgeReady = true;
-      if (!readSession(SESSION_TOKEN_KEY)) setStatus('GitHub sign-in is ready.', 'success');
+      if (!localRead(SESSION_ID_KEY) && !sessionRead(PAT_KEY)) setStatus('GitHub sign-in is ready.', 'success');
     } catch {
-      if (!readSession(SESSION_TOKEN_KEY)) setStatus('GitHub sign-in bridge is not ready yet. Advanced token fallback is still available.', '');
+      if (!localRead(SESSION_ID_KEY) && !sessionRead(PAT_KEY)) setStatus('GitHub sign-in bridge is unavailable. Advanced token fallback is still available.', '');
     }
   }
 
-  const restored = restoreGithubSession();
+  restoreSession();
   checkBridge();
-
-  if (restored) {
-    // The token never touches localStorage. It survives ordinary refreshes only
-    // for this browser tab/session, which is the intended balance between UX and
-    // keeping a long-lived publishing credential off persistent storage.
-    setStatus('Restoring your GitHub session…', 'working');
-  }
 })();
