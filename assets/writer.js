@@ -292,6 +292,12 @@
 
   function renderMarkdown(markdown) {
     let source = String(markdown || '').replace(/\r\n?/g, '\n');
+    const rawHtmlBlocks = [];
+    source = source.replace(/<section\b[\s\S]*?<\/section>/gi, html => {
+      const safe = html.replace(/<script[\s\S]*?<\/script>/gi, '');
+      rawHtmlBlocks.push(safe);
+      return `\n@@RAWHTML${rawHtmlBlocks.length - 1}@@\n`;
+    });
     const embeds = [];
     source = source.replace(/<div[^>]*>\s*(<iframe[\s\S]*?<\/iframe>)\s*<\/div>/gi, '$1');
     source = source.replace(/<iframe[\s\S]*?<\/iframe>/gi, html => {
@@ -305,11 +311,13 @@
     const lines = source.split('\n');
     const out = [];
     let i = 0;
-    const special = line => /^\s*(#{1,6}\s|```|>|[-*+]\s+|\d+\.\s+|(?:---+|___+|\*\*\*+)\s*$|@@EMBED\d+@@\s*$)/.test(line);
+    const special = line => /^\s*(#{1,6}\s|```|>|[-*+]\s+|\d+\.\s+|(?:---+|___+|\*\*\*+)\s*$|@@(?:EMBED|RAWHTML)\d+@@\s*$)/.test(line);
 
     while (i < lines.length) {
       const line = lines[i];
       if (!line.trim()) { i += 1; continue; }
+      const rawHtml = line.trim().match(/^@@RAWHTML(\d+)@@$/);
+      if (rawHtml) { out.push(rawHtmlBlocks[Number(rawHtml[1])] || ''); i += 1; continue; }
       const embed = line.trim().match(/^@@EMBED(\d+)@@$/);
       if (embed) { out.push(embeds[Number(embed[1])] || ''); i += 1; continue; }
       const fence = line.match(/^\s*```([^\s]*)\s*$/);
