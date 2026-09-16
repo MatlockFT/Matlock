@@ -25,6 +25,7 @@ page_scripts:
     data-news-url="https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-news.json"
     data-news-fallback-url="{{ '/assets/data/mma-news.json' | relative_url }}?v={{ site.asset_version }}"
     data-history-url="{{ '/assets/data/on-this-day-home.json' | relative_url }}?v={{ homepage_data_version }}"
+    data-history-runtime-base="{{ '/assets/data/on-this-day-runtime/' | relative_url }}"
     data-roster-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/ufc-roster-data"
 >
     <h1 class="home-dashboard-sr-only">MMA Matlock</h1>
@@ -40,7 +41,7 @@ page_scripts:
         <section class="featured-section" aria-labelledby="latest-breakdown-title">
             <header class="section-header">
                 <h2>Latest Article</h2>
-                <a href="{{ '/breakdowns/' | relative_url }}">Breakdowns</a>
+                <a href="{{ '/breakdowns/' | relative_url }}">All articles</a>
             </header>
 
             <article class="featured-article{% if latest_image %} featured-article-with-image{% endif %}">
@@ -107,9 +108,9 @@ page_scripts:
     {% endif %}
 
     <section class="home-live-grid" aria-label="MMA news and history">
-        <section class="home-panel">
+        <section class="home-panel home-news-panel">
             <header class="home-panel-heading">
-                <h2>Latest News</h2>
+                <h2>News Wire</h2>
                 <a href="{{ '/news/' | relative_url }}">All news</a>
             </header>
             <div class="home-news-list" data-home-news-list>
@@ -139,57 +140,4 @@ page_scripts:
             </section>
         </div>
     </section>
-
-    {% if homepage_posts.size > 1 %}
-        <section class="latest-section" aria-labelledby="latest-breakdowns-title">
-            <header class="section-header">
-                <h2 id="latest-breakdowns-title">Latest Articles</h2>
-                <a href="{{ '/breakdowns/' | relative_url }}">Breakdowns</a>
-            </header>
-
-            <div class="article-grid">
-                {% for post in homepage_posts offset: 1 limit: 6 %}
-                    {% assign post_image = post.image.path | default: post.image %}
-                    {% assign post_alt = post.image.alt | default: post.image_alt | default: post.title %}
-                    {% assign post_responsive = site.data.responsive_images[post_image] %}
-                    {% assign post_src = post_responsive.small | default: post_image %}
-                    {% assign post_width = post_responsive.width | default: post.image.width %}
-                    {% assign post_height = post_responsive.height | default: post.image.height %}
-
-                    <article class="article-card" aria-labelledby="homepage-post-{{ forloop.index }}-title">
-                        {% if post_image %}
-                            <a class="article-card-image" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}" data-image-shell>
-                                <img
-                                    src="{{ post_src | relative_url }}"
-                                    {% if post_responsive.srcset %}
-                                        srcset="{{ post_responsive.srcset }}"
-                                        sizes="(max-width: 760px) calc(100vw - 1.7rem), 33vw"
-                                    {% endif %}
-                                    alt="{{ post_alt | escape }}"
-                                    {% if post_width %}width="{{ post_width }}"{% endif %}
-                                    {% if post_height %}height="{{ post_height }}"{% endif %}
-                                    data-hide-broken
-                                    loading="lazy"
-                                    decoding="async"
-                                >
-                            </a>
-                        {% endif %}
-
-                        <div class="article-card-content">
-                            <p class="article-date">
-                                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %d, %Y" }}</time>
-                            </p>
-                            <h3 id="homepage-post-{{ forloop.index }}-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-                            {% if post.description %}
-                                <p>{{ post.description | strip_html }}</p>
-                            {% elsif post.excerpt %}
-                                <p>{{ post.excerpt | strip_html | normalize_whitespace | truncate: 160 }}</p>
-                            {% endif %}
-                            <a class="card-link" href="{{ post.url | relative_url }}">Read article</a>
-                        </div>
-                    </article>
-                {% endfor %}
-            </div>
-        </section>
-    {% endif %}
 </div>
