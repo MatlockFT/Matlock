@@ -114,7 +114,7 @@
         if (!line.trim()) return line;
         if (allBulleted) return line.replace(/^(\s*)[-*+]\s+/, '$1');
         const indent = line.match(/^\s*/)?.[0] || '';
-        return `${indent}- ${line.trimStart().replace(/^[-*+]\s+/, '')}`;
+        return `${indent}- ${line.trimStart().replace(/^(?:[-*+]|\d+[.)])\s+/, '')}`;
       });
     });
   }
@@ -128,7 +128,7 @@
         if (!line.trim()) return line;
         if (allNumbered) return line.replace(/^(\s*)\d+[.)]\s+/, '$1');
         const indent = line.match(/^\s*/)?.[0] || '';
-        const content = line.trimStart().replace(/^\d+[.)]\s+/, '');
+        const content = line.trimStart().replace(/^(?:\d+[.)]|[-*+])\s+/, '');
         return `${indent}${n++}. ${content}`;
       });
     });
@@ -270,6 +270,14 @@
       const children = () => renderChildren(node);
       if (['script','style','meta','link','svg'].includes(tag)) return '';
       if (tag === 'br') return '\n';
+      if (tag === 'span') {
+        let value = children();
+        const style = String(node.getAttribute('style') || '').toLowerCase();
+        if (/font-weight\s*:\s*(?:bold|[6-9]00)/.test(style)) value = `**${value.trim()}**`;
+        if (/font-style\s*:\s*italic/.test(style)) value = `*${value.trim()}*`;
+        if (/text-decoration[^;]*line-through/.test(style)) value = `~~${value.trim()}~~`;
+        return value;
+      }
       if (['strong','b'].includes(tag)) return `**${children().trim()}**`;
       if (['em','i'].includes(tag)) return `*${children().trim()}*`;
       if (['s','strike','del'].includes(tag)) return `~~${children().trim()}~~`;
@@ -383,7 +391,7 @@
   function openFindDialog(replace = false) {
     const selected = editor.value.slice(editor.selectionStart, editor.selectionEnd).trim();
     if (selected && !selected.includes('\n') && selected.length <= 120) findInput.value = selected;
-    findDialog.showModal();
+    if (!findDialog.open) findDialog.showModal();
     requestAnimationFrame(() => (replace ? replaceInput : findInput).focus());
   }
 
@@ -592,6 +600,7 @@
       return;
     }
     if (event.key === 'Escape') {
+      if (findDialog.open) return;
       if (document.body.classList.contains('writer-wordtools-fullscreen')) toggleFullscreen();
       else if (app.classList.contains('writer-wordtools-focus')) toggleFocusMode();
     }

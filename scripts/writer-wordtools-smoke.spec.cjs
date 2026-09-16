@@ -39,7 +39,7 @@ test('Writer word processor tools work in production', async ({ page }) => {
   await page.click('[data-wordtool="bullets"]');
   await expect(editor).toHaveValue(/- First item\n- Second item/);
   await page.click('[data-wordtool="numbers"]');
-  await expect(editor).toHaveValue(/1\. - First item\n2\. - Second item/);
+  await expect(editor).toHaveValue(/1\. First item\n2\. Second item/);
 
   await page.click('[data-wordtool="outline"]');
   await expect(page.locator('[data-wordtools-outline]')).toBeVisible();
@@ -56,7 +56,7 @@ test('Writer word processor tools work in production', async ({ page }) => {
   await page.click('[data-wordtools-replace-all]');
   await expect(editor).toHaveValue('Beta fighter opens. Beta fighter closes.');
   await expect(page.locator('[data-wordtools-find-status]')).toContainText('Replaced 2 matches');
-  await findDialog.getByRole('button', { name: 'Close' }).click();
+  await findDialog.locator('.writer-dialog-actions button[value="cancel"]').click();
 
   await page.click('[data-wordtool="undo"]');
   await expect(editor).toHaveValue('Alpha fighter opens. Alpha fighter closes.');
