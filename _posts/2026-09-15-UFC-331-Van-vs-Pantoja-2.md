@@ -25,7 +25,7 @@ published: true
 ---
 UFC 331 is upon us, and I feel like it arrived rather quickly. This card leaves a lot to be desired, and Moicano vs. Ortega has fallen off, with Ortega suffering a deep cut on his brow. Personally, that leaves me with little interest in this card.
 
-## Table of Contents
+**Fight Predictions**
 
 - [Choi Doo-ho vs. Patricio Pitbull](#choi-doo-ho-vs-patricio-pitbull)
 - [Joshua Van vs. Alexandre Pantoja II](#joshua-van-vs-alexandre-pantoja-ii)
@@ -39,6 +39,8 @@ If I'm ranking what I'm most excited for on the main card, it would be:
 The UFC has Menifeld vs. Baraniewski as the main card opener, and it really should be Gable Steveson vs. Sean Sharaf.
 
 Remember when pay-per-view would get us a solid, quality card way back in the day? Then they started charging $80 for slop? Now we've traded all that in for free, insert-sponsor-here numbered events that are tough to distinguish from a Fight Night card.
+
+---
 
 ## Choi Doo-ho vs. Patricio Pitbull
 
@@ -94,7 +96,7 @@ Do I favor that outcome? No. Does anyone else?
 
 Choi is the strong favorite at -270, with Pitbull at +224.
 
-| Outcome | Odds | Market read |
+| **Outcome** | **Odds** | **Market Read** |
 | --------------------- | ----- | ---------------------------- |
 | Choi by KO/TKO/DQ | +130 | Most likely specific outcome |
 | Choi by decision | +185 | Second-most likely |
@@ -119,17 +121,25 @@ My body is ready.
 
 **Pick: Choi Doo-ho by KO/TKO, Round 1**
 
+---
+
 ## Joshua Van vs. Alexandre Pantoja II
 
 Speaking of banger fights, Pantoja and Van were heating up to be one for the 30 seconds it lasted. Pantoja brought the fight right to Van, smashing the lead leg, following up with combinations and eating the shots coming back at him. As Pantoja pressed forward with a throwaway 1-2, he followed with a head kick that glanced off Van's shoulder, allowing Van to catch it and dump Pantoja on the mat. As Pantoja went to post on his arm, his elbow dislocated and the fight was waved off.
 
-At the time of that fight, I really felt Van's run was going to come to a temporary halt, as Pantoja seemed poised to ride his own momentum as champion while working toward a fifth title defense. Tragic outcome. Not the ideal situation when you have to fight to regain a title you never truly lost through defeat, especially at 36 years old. Van has all the momentum and all the youth, with the added benefit of knowing Pantoja doesn't have the element of surprise anymore. Pantoja can no longer come in with that much aggression and those specific lead-leg attacks without Van now having an immediate answer for them. At least, in my opinion, we can't assume Pantoja can do the exact same thing and expect Van not to have an answer.
+At the time of that fight, I really felt Van's run was going to come to a temporary halt, as Pantoja seemed poised to ride his own momentum as champion while working toward a fifth title defense. Tragic outcome.
 
-Van has always struck me as someone more comfortable with instinct than analysis. Especially being so young, his coaches can work on new patterns and reactions, and tweak his game without old habits interfering too much. The young pup is learning new tricks, and with a second chance against Pantoja, this may prove even more useful to his coaches. All this time to re-analyze the first fight, reapproach it and keep instilling the old game plan with minor tweaks? This is a phenomenal opportunity for Van. Of course, Pantoja gets the same advantages, but with two caveats: he's older and coming off an injury.
+Not the ideal situation when you have to fight to regain a title you never truly lost through defeat, especially at 36 years old. Van has all the momentum and all the youth, with the added benefit of knowing Pantoja doesn't have the element of surprise anymore. Pantoja can no longer come in with that much aggression and those specific lead-leg attacks without Van now having an immediate answer for them. At least, in my opinion, we can't assume Pantoja can do the exact same thing and expect Van not to have an answer.
+
+Van has always struck me as someone more comfortable with instinct than analysis. Especially being so young, his coaches can work on new patterns and reactions, and tweak his game without old habits interfering too much.
+
+The young pup is learning new tricks, and with a second chance against Pantoja, this may prove even more useful to his coaches. All this time to re-analyze the first fight, reapproach it and keep instilling the old game plan with minor tweaks? This is a phenomenal opportunity for Van. Of course, Pantoja gets the same advantages, but with two caveats: he's older and coming off an injury.
 
 It's very hard to pick against Van, even for me, who picked against him in the first fight. I'm not really even sold on Van as a championship fighter at this stage. I'm in the bucket that is still quite skeptical of his potential to stay at the top. But there are a few things that are undeniable about his skills, and his performance against Taira (who I also picked to defeat Van) gives me just enough reason to pick him to defeat Pantoja.
 
-For Pantoja, regaining his title is not the only achievement here. [UFC.com notes that a win would make Pantoja only the third flyweight in UFC history to reclaim the championship, after Brandon Moreno and Deiveson Figueiredo.](https://www.ufc.com/news/flyweight-champion-joshua-van-set-rematch-alexandre-pantoja-cryptocom-ufc-331) Moreover, if Pantoja beats Van, it would be only the fourth time in UFC history that a fighter at least 10 years older has dethroned an undisputed champion, and Pantoja would be the first fighter besides Randy Couture to do it.
+For Pantoja, regaining his title is not the only achievement here. UFC.com notes that a win would put Pantoja alongside Brandon Moreno and Deiveson Figueiredo as the only flyweights to lose and later regain the UFC championship. ([Source](https://www.ufc.com/news/flyweight-champion-joshua-van-set-rematch-alexandre-pantoja-cryptocom-ufc-331))
+
+Moreover, if Pantoja beats Van, it would be only the fourth time in UFC history that a fighter at least 10 years older has dethroned an undisputed champion, and Pantoja would be the first fighter besides Randy Couture to do it.
 
 A tough one to call, and the odds reflect that, with Pantoja starting off as a favorite and now a slight underdog. In a post-USADA world, I see nothing wrong with taking Pantoja at these odds. For me, I'd rather enjoy this one.
 
