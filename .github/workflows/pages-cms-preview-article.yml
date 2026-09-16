@@ -19,9 +19,19 @@ jobs:
       - name: Check out current branch
         uses: actions/checkout@v4
 
+      - name: Read Pages CMS article context
+        id: context
+        shell: bash
+        env:
+          PAGES_CMS_PAYLOAD: ${{ inputs.payload }}
+        run: |
+          article_path="$(printf '%s' "$PAGES_CMS_PAYLOAD" | jq -r '.context.path // empty')"
+          echo "article_path=$article_path" >> "$GITHUB_OUTPUT"
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
+          ruby-version: '3.3'
           bundler-cache: true
 
       - name: Build draft preview
@@ -35,4 +45,15 @@ jobs:
           retention-days: 3
 
       - name: Explain preview access
-        run: echo "Download the article-preview artifact from this workflow run and open index.html or the article path locally." >> "$GITHUB_STEP_SUMMARY"
+        shell: bash
+        run: |
+          {
+            echo "## Article preview built"
+            if [ -n "${{ steps.context.outputs.article_path }}" ]; then
+              echo ""
+              echo "Pages CMS entry: \`${{ steps.context.outputs.article_path }}\`"
+            fi
+            echo ""
+            echo "Download the **article-preview** artifact from this workflow run."
+            echo "The artifact contains the full Jekyll preview build, including unpublished and future-dated posts."
+          } >> "$GITHUB_STEP_SUMMARY"
