@@ -95,6 +95,7 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   await expect(page.locator('[data-html-block-rail]')).toBeVisible();
   await expect(page.locator('[data-html-block-card]')).toContainText('Smoke visual');
   await expect(page.locator('[data-preview-content]')).toContainText('Rendered HTML visual');
+  await expect(page.locator('[data-local-status]')).toContainText('Saved locally', { timeout: 5000 });
 
   const splitter = page.locator('[data-writer-splitter]');
   await splitter.focus();
@@ -128,7 +129,6 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   await expect(page.locator('#writer-body')).toContainText('Closing section');
 
   await page.fill('[data-field="description"]', '');
-  await page.evaluate(() => { document.querySelector('[data-publish]').disabled = false; });
   await page.click('[data-publish]');
   await expect(page.locator('[data-publish-check-dialog]')).toBeVisible();
   await expect(page.locator('[data-publish-check-list]')).toContainText('Description is empty');
@@ -136,13 +136,13 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   await page.locator('[data-publish-check-dialog] button[value="cancel"]').click();
 
   await page.fill('[data-field="description"]', 'Production validation article for the MMA Matlock Writer workflow.');
-  await page.fill('#writer-body', longBody + '\n\n[Bad link](javascript:alert(1))');
-  await page.evaluate(() => { document.querySelector('[data-publish]').disabled = false; });
+  const bodyWithVisual = await page.locator('#writer-body').inputValue();
+  await page.fill('#writer-body', bodyWithVisual + '\n\n[Bad link](javascript:alert(1))');
   await page.click('[data-publish]');
   await expect(page.locator('[data-publish-check-list]')).toContainText('Unsafe or malformed link');
   await expect(page.locator('[data-publish-check-proceed]')).toBeHidden();
   await page.locator('[data-publish-check-dialog] button[value="cancel"]').click();
-  await page.fill('#writer-body', longBody);
+  await page.fill('#writer-body', bodyWithVisual);
 
   const future = new Date(Date.now() + 2 * 60 * 60 * 1000);
   const localFuture = new Date(future.getTime() - future.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
