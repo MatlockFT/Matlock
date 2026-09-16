@@ -25,6 +25,11 @@ published: true
 ---
 UFC 331 is upon us, and I feel like it arrived rather quickly. This card leaves a lot to be desired, and Moicano vs. Ortega has fallen off, with Ortega suffering a deep cut on his brow. Personally, that leaves me with little interest in this card.
 
+## Table of Contents
+
+- [Choi Doo-ho vs. Patricio Pitbull](#choi-doo-ho-vs-patricio-pitbull)
+- [Joshua Van vs. Alexandre Pantoja II](#joshua-van-vs-alexandre-pantoja-ii)
+
 If I'm ranking what I'm most excited for on the main card, it would be:
 
 1. Choi vs. Pitbull
@@ -114,7 +119,7 @@ My body is ready.
 
 **Pick: Choi Doo-ho by KO/TKO, Round 1**
 
-## Joshua Van vs. Pantoja II
+## Joshua Van vs. Alexandre Pantoja II
 
 Speaking of banger fights, Pantoja and Van were heating up to be one for the 30 seconds it lasted. Pantoja brought the fight right to Van, smashing the lead leg, following up with combinations and eating the shots coming back at him. As Pantoja pressed forward with a throwaway 1-2, he followed with a head kick that glanced off Van's shoulder, allowing Van to catch it and dump Pantoja on the mat. As Pantoja went to post on his arm, his elbow dislocated and the fight was waved off.
 
@@ -124,10 +129,10 @@ Van has always struck me as someone more comfortable with instinct than analysis
 
 It's very hard to pick against Van, even for me, who picked against him in the first fight. I'm not really even sold on Van as a championship fighter at this stage. I'm in the bucket that is still quite skeptical of his potential to stay at the top. But there are a few things that are undeniable about his skills, and his performance against Taira (who I also picked to defeat Van) gives me just enough reason to pick him to defeat Pantoja.
 
-For Pantoja, regaining his title is not the only achievement here. He now looks to become just the third flyweight in UFC history to reclaim the championship, joining Brandon Moreno and Deiveson Figueiredo. Moreover, if Pantoja beats Van, he would appear to become only the fourth UFC fighter ever to dethrone an undisputed champion while being 10+ years older and the first person not named Randy Couture to do it.
+For Pantoja, regaining his title is not the only achievement here. He now looks to become just the third flyweight in UFC history to reclaim the championship, joining Brandon Moreno and Deiveson Figueiredo. Moreover, if Pantoja beats Van, it would be only the fourth time in UFC history that a fighter at least 10 years older has dethroned an undisputed champion, and Pantoja would be the first fighter besides Randy Couture to do it.
 
 A tough one to call, and the odds reflect that, with Pantoja starting off as a favorite and now a slight underdog. In a post-USADA world, I see nothing wrong with taking Pantoja at these odds. For me, I'd rather enjoy this one.
 
 In the flyweight division, 16 title fights have ended inside the distance. Of those, 62.5% were submissions and 37.5% were KO/TKOs. I think Van is going to add to the KO/TKO percentage this weekend.
 
-Official pick: Joshua Van via KO/TKO in Round 1 to make it official this time.
+**Pick: Joshua Van via KO/TKO in Round 1 to make it official this time.**
