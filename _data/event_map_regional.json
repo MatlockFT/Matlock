@@ -856,15 +856,15 @@
       "source_label": "Sherdog regional discovery"
     },
     {
-      "id": "nitro-wfc-198-avi-09-26-2026-09-26",
+      "id": "nitro-wfc-198-avi-2026-09-26",
       "promotion": "World Fighting Championship",
       "promotion_key": "nitro",
-      "title": "WFC 198: AVI - 09/26",
+      "title": "WFC 198: AVI",
       "date": "2026-09-26",
       "venue": "AVI Resort & Casino",
       "location": "Laughlin, NV",
       "broadcast": "",
-      "official_url": "https://www.nitrotickets.com/event/1210/wfc-198-avi-0926",
+      "official_url": "https://www.nitrotickets.com/event/1210/wfc-198-avi",
       "regional": true,
       "level": "regional",
       "source_key": "nitro",
@@ -1432,6 +1432,23 @@
       "longitude": -118.2437
     },
     {
+      "id": "sherdog-caged-aggression-42-the-perfect-storm-night-1-2026-10-16-davenport",
+      "promotion": "Caged Aggression",
+      "promotion_key": "sherdog_discovery",
+      "title": "Caged Aggression 42: The Perfect Storm Night 1",
+      "date": "2026-10-16",
+      "venue": "The RiverCenter",
+      "location": "Davenport, IA",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Caged-Aggression-42-The-Perfect-Storm-Night-1-114464",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery",
+      "latitude": 41.5236,
+      "longitude": -90.5776
+    },
+    {
       "id": "nitro-fury-fs-6-hostile-territory-10-17-2026-10-17",
       "promotion": "Fury Fight Series",
       "promotion_key": "nitro",
@@ -1556,23 +1573,6 @@
       "longitude": -106.485
     },
     {
-      "id": "camomma-fxc-firepower-2026-10-24",
-      "promotion": "FXC FIREPOWER",
-      "promotion_key": "camomma",
-      "title": "FXC FIREPOWER",
-      "date": "2026-10-24",
-      "venue": "THUNDER STUDIOS",
-      "location": "LONG BEACH, CA",
-      "broadcast": "",
-      "official_url": "https://camomma.org/amateur-mma-events/E1929/FXC-FIREPOWER",
-      "regional": true,
-      "level": "amateur",
-      "source_key": "camomma",
-      "source_label": "California Amateur Mixed Martial Arts Organization",
-      "latitude": 33.7701,
-      "longitude": -118.1937
-    },
-    {
       "id": "nitro-capitol-city-punishment-10-24-2026-10-24",
       "promotion": "GE Fights",
       "promotion_key": "nitro",
@@ -1635,6 +1635,24 @@
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1302/1788195524_cttVd.jpg"
+    },
+    {
+      "id": "nitro-throne-mma-fargo-2026-10-24",
+      "promotion": "Throne MMA",
+      "promotion_key": "nitro",
+      "title": "THRONE MMA: FARGO",
+      "date": "2026-10-24",
+      "venue": "Scheels Arena",
+      "location": "Fargo, ND",
+      "broadcast": "",
+      "official_url": "https://www.nitrotickets.com/event/1317/throne-mma-fargo",
+      "regional": true,
+      "level": "regional",
+      "source_key": "nitro",
+      "source_label": "Nitro Tickets",
+      "latitude": 46.8772,
+      "longitude": -96.7898,
+      "poster_url": "https://www.nitrotickets.com/storage/advertimage/1317/1789517745_RKOpA.jpg"
     },
     {
       "id": "camomma-559-fights-128-2026-10-30",
