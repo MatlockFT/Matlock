@@ -2,11 +2,13 @@ import {
   REPO_ID,
   callbackUrl,
   encodeSession,
+  getAppConfig,
   isAllowedOrigin,
   pkceChallenge,
   randomToken,
   securityHeaders,
-  sessionCookie
+  sessionCookie,
+  stateSecret
 } from './_github-auth.mjs';
 
 export default async function handler(request) {
@@ -20,9 +22,9 @@ export default async function handler(request) {
     return new Response('Writer origin is not allowed.', { status: 403, headers: securityHeaders() });
   }
 
-  const clientId = process.env.GITHUB_CLIENT_ID || '';
-  if (!clientId) {
-    return new Response('GitHub App client ID is not configured.', { status: 503, headers: securityHeaders() });
+  const appConfig = await getAppConfig();
+  if (!appConfig?.clientId || !appConfig?.clientSecret) {
+    return new Response('The MMA Matlock Writer GitHub App has not been configured yet.', { status: 503, headers: securityHeaders() });
   }
 
   const state = randomToken(32);
@@ -35,10 +37,10 @@ export default async function handler(request) {
     redirectUri,
     repositoryId: REPO_ID,
     createdAt: Date.now()
-  });
+  }, stateSecret(appConfig));
 
   const authorize = new URL('https://github.com/login/oauth/authorize');
-  authorize.searchParams.set('client_id', clientId);
+  authorize.searchParams.set('client_id', appConfig.clientId);
   authorize.searchParams.set('redirect_uri', redirectUri);
   authorize.searchParams.set('state', state);
   authorize.searchParams.set('code_challenge', pkceChallenge(verifier));
