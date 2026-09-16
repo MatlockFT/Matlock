@@ -129,7 +129,7 @@ Van has always struck me as someone more comfortable with instinct than analysis
 
 It's very hard to pick against Van, even for me, who picked against him in the first fight. I'm not really even sold on Van as a championship fighter at this stage. I'm in the bucket that is still quite skeptical of his potential to stay at the top. But there are a few things that are undeniable about his skills, and his performance against Taira (who I also picked to defeat Van) gives me just enough reason to pick him to defeat Pantoja.
 
-For Pantoja, regaining his title is not the only achievement here. He now looks to become just the third flyweight in UFC history to reclaim the championship, joining Brandon Moreno and Deiveson Figueiredo. Moreover, if Pantoja beats Van, it would be only the fourth time in UFC history that a fighter at least 10 years older has dethroned an undisputed champion, and Pantoja would be the first fighter besides Randy Couture to do it.
+For Pantoja, regaining his title is not the only achievement here. [UFC.com notes that a win would make Pantoja only the third flyweight in UFC history to reclaim the championship, after Brandon Moreno and Deiveson Figueiredo.](https://www.ufc.com/news/flyweight-champion-joshua-van-set-rematch-alexandre-pantoja-cryptocom-ufc-331) Moreover, if Pantoja beats Van, it would be only the fourth time in UFC history that a fighter at least 10 years older has dethroned an undisputed champion, and Pantoja would be the first fighter besides Randy Couture to do it.
 
 A tough one to call, and the odds reflect that, with Pantoja starting off as a favorite and now a slight underdog. In a post-USADA world, I see nothing wrong with taking Pantoja at these odds. For me, I'd rather enjoy this one.
 
