@@ -22,7 +22,7 @@ listing_visibility: normal
 spoiler_warning: false
 published: true
 ---
-UFC 331 is upon us, and I feel like it arrived rather quickly. This card leaves a lot to be desired, and Moicano vs. Ortega has fallen off the card, with Ortega suffering a deep cut on his brow. Personally, that leaves me with little interest in this card.
+UFC 331 is upon us, and I feel like it arrived rather quickly. This card leaves a lot to be desired, and Moicano vs. Ortega has fallen off, with Ortega suffering a deep cut on his brow. Personally, that leaves me with little interest in this card.
 
 If I'm ranking what I'm most excited for on the main card, it would be:
 
@@ -57,11 +57,11 @@ I believe he has tightened this up quite a bit and has analyzed the risk vs. rew
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Ka4IJz5iMJY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-I think Choi's style could really present some interesting challenges and opportunities for Pitbull. His style is much more that of a counter fighter these days. Perhaps I should say years, because he's been fighting this karate style for quite some time now—a steady evolution from his earlier style as more of a pressure boxer.
+I think Choi's style could really present some interesting challenges and opportunities for Pitbull. Pitbull is much more of a counter fighter these days. Perhaps I should say years, because he's been fighting this karate style for quite some time now—a steady evolution from his earlier days as more of a pressure boxer.
 
 This makes me wonder what is going on in Pitbull's mind for this fight. He's had three UFC fights, two of them losses. He's 2-3 in his last five fights. He's 39 years old and at an age, height, and reach disadvantage.
 
-Speaking of age, he's 39 years old. He's a tough, savvy veteran who has accomplished a lot in his career, a certified OG who started in 2004. One can debate "OG" with me, but '04 is still very early. He's nearly in the 50 Fight Club!
+Speaking of age, he's a tough, savvy veteran who has accomplished a lot in his career, a certified OG who started in 2004. One can debate "OG" with me, but '04 is still very early. He's nearly in the 50 Fight Club!
 
 All this to say, he's up against it here.
 
@@ -80,9 +80,9 @@ Given Choi's circumstances, this is really the best he's looked in a while—may
 | Takedown Defense | **74%** | **59%** |
 | Submission Avg. / 15 min. | **0.5** | **0.5** |
 
-I think, as much as Pitbull is good at setting traps and countering, Choi's volume and pressure might be enough to turn the tide. But if it isn't enough, Choi's power and damage will probably be the factor to either get him the scorecard or finish the fight.
+I think that, as good as Pitbull is at setting traps and countering, Choi's volume and pressure might be enough to turn the tide. If it isn't, Choi's power and damage will probably be the difference, either getting him the scorecards or finishing the fight.
 
-I would be lying if I said I wasn't a little worried about Choi getting a little reckless and walking into something he doesn't see. Even if he survived a hellacious onslaught from Daniel Santos, that doesn't exempt him from getting his lights put out by a clean counter strike.
+I would be lying if I said I wasn't a little worried about Choi getting reckless and walking into something he doesn't see. Even if he survived a hellacious onslaught from Daniel Santos, that doesn't exempt him from getting his lights put out by a clean counter strike.
 
 Do I favor that outcome? No. Does anyone else?
 
