@@ -3,23 +3,30 @@
   if (!app) return;
 
   const repo = app.dataset.repo || 'MatlockFT/Matlock';
+  const authBase = String(app.dataset.authBase || '').replace(/\/$/, '');
   const fields = Object.fromEntries([...app.querySelectorAll('[data-field]')].map(el => [el.dataset.field, el]));
   const bodyEditor = fields.body;
+  const libraryView = app.querySelector('[data-library-view]');
+  const editorView = app.querySelector('[data-editor-view]');
   const workspace = app.querySelector('[data-workspace]');
   const previewFrame = app.querySelector('[data-preview-frame]');
   const previewContent = app.querySelector('[data-preview-content]');
   const saveDraftButton = app.querySelector('[data-save-draft]');
   const publishButton = app.querySelector('[data-publish]');
+  const scheduleButton = app.querySelector('[data-schedule]');
   const uploadButton = app.querySelector('[data-upload-image]');
   const imageFileInput = app.querySelector('[data-image-file]');
-  const openDialog = app.querySelector('[data-open-dialog]');
   const connectDialog = app.querySelector('[data-connect-dialog]');
   const tokenInput = app.querySelector('[data-github-token]');
-  const articleList = app.querySelector('[data-article-list]');
-  const filterInput = app.querySelector('[data-article-filter]');
   const toast = app.querySelector('[data-toast]');
+  const libraryList = app.querySelector('[data-library-list]');
+  const librarySearch = app.querySelector('[data-library-search]');
+  const libraryStats = app.querySelector('[data-library-stats]');
+  const historyDialog = app.querySelector('[data-history-dialog]');
+  const historyList = app.querySelector('[data-history-list]');
+  const conflictDialog = app.querySelector('[data-conflict-dialog]');
 
-  let githubToken = '';
+  let githubCredential = '';
   let githubLogin = '';
   let currentPath = '';
   let currentSha = '';
@@ -28,12 +35,38 @@
   let selectedImageFile = null;
   let localImageUrl = '';
   let filenameTouched = false;
-  let articleEntries = [];
   let toastTimer = 0;
   let autosaveTimer = 0;
   let dirty = false;
+  let libraryEntries = [];
+  let libraryFilter = 'all';
+  let pendingConflictMode = '';
+  let pendingRemoteSha = '';
+  let linkMode = 'link';
 
-  const controlledKeys = ['layout','title','description','date','category','author','image','tags','show_toc','pinned','listing_visibility','spoiler_warning','published'];
+  const controlledKeys = [
+    'layout','title','description','date','category','author','image','tags',
+    'show_toc','pinned','listing_visibility','spoiler_warning','publish_at','published'
+  ];
+
+  const templateBodies = {
+    breakdown: {
+      category: 'Breakdown',
+      body: `## Fighter A vs. Fighter B\n\n|  | FIGHTER A | FIGHTER B |\n| --- | ---: | ---: |\n| Record |  |  |\n| Age |  |  |\n| Height |  |  |\n| Reach |  |  |\n| Weight |  |  |\n| Stance |  |  |\n\nStart with the style matchup and the question the fight is really asking.\n\nThen work through the specific technical edges, where each fighter is vulnerable, and what could change the fight.\n\n**Pick: Fighter A by KO/TKO, Round 1**\n`
+    },
+    card: {
+      category: 'Breakdown',
+      body: `Opening thoughts on the event and what matters most on the card.\n\n**Fight Predictions**\n\n- [Fighter A vs. Fighter B](#fighter-a-vs-fighter-b)\n- [Fighter C vs. Fighter D](#fighter-c-vs-fighter-d)\n\n---\n\n## Fighter A vs. Fighter B\n\nBreak down the matchup here.\n\n**Pick: Fighter A by Decision**\n\n---\n\n## Fighter C vs. Fighter D\n\nBreak down the matchup here.\n\n**Pick: Fighter C by KO/TKO, Round 2**\n`
+    },
+    news: {
+      category: 'News',
+      body: `Lead with the actual news in plain English.\n\nAdd the most important context: who said it, when it happened, and why it matters.\n\n([Source](https://example.com))\n\nClose with what is known, what is not known, and what happens next.\n`
+    },
+    opinion: {
+      category: 'Opinion',
+      body: `State the point clearly up front.\n\nExplain why you see it that way, using the strongest concrete examples first.\n\nAddress the most reasonable counterpoint without turning the article into a debate transcript.\n\nFinish with the consequence or larger point rather than repeating the opening sentence.\n`
+    }
+  };
 
   const today = () => {
     const d = new Date();
@@ -54,6 +87,19 @@
     app.querySelector('[data-save-state]').textContent = message;
   }
 
+  function setDocumentStatus(message) {
+    app.querySelector('[data-document-status]').textContent = message;
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
   function scalar(value) {
     if (value === undefined || value === null) return '';
     let v = String(value).trim();
@@ -67,7 +113,7 @@
   }
 
   function parseFrontmatter(text) {
-    const normalized = text.replace(/\r\n?/g, '\n');
+    const normalized = String(text || '').replace(/\r\n?/g, '\n');
     const match = normalized.match(/^---\n([\s\S]*?)\n---\n?/);
     if (!match) return { meta: {}, body: normalized, frontmatter: '' };
     const frontmatter = match[1];
@@ -99,7 +145,6 @@
         meta[key] = `${meta[key]} ${line.trim()}`.trim();
       }
     }
-
     return { meta, body: normalized.slice(match[0].length), frontmatter };
   }
 
@@ -129,12 +174,27 @@
     return blocks;
   }
 
-  function buildControlledBlocks(publishedValue) {
+  function localInputToIso(value) {
+    if (!value) return '';
+    const d = new Date(value);
+    return Number.isNaN(d.getTime()) ? '' : d.toISOString();
+  }
+
+  function isoToLocalInput(value) {
+    if (!value) return '';
+    const d = new Date(value);
+    if (Number.isNaN(d.getTime())) return '';
+    const offset = d.getTimezoneOffset();
+    return new Date(d.getTime() - offset * 60000).toISOString().slice(0, 16);
+  }
+
+  function buildControlledBlocks(publishedValue, { clearSchedule = false } = {}) {
     const tags = fields.tags.value.split(',').map(v => v.trim()).filter(Boolean);
     const imagePath = fields.imagePath.value.trim();
     const imageAlt = fields.imageAlt.value.trim();
     const imagePosition = fields.imagePosition.value;
-    const blocks = {
+    const publishIso = clearSchedule ? '' : localInputToIso(fields.publishAt.value);
+    return {
       layout: ['layout: post'],
       title: [`title: ${yamlQuote(fields.title.value.trim())}`],
       description: [`description: ${yamlQuote(fields.description.value.trim())}`],
@@ -147,39 +207,37 @@
       pinned: [`pinned: ${fields.pinned.checked ? 'true' : 'false'}`],
       listing_visibility: ['listing_visibility: normal'],
       spoiler_warning: [`spoiler_warning: ${fields.spoilerWarning.checked ? 'true' : 'false'}`],
+      publish_at: publishIso && !publishedValue ? [`publish_at: ${yamlQuote(publishIso)}`] : [],
       published: [`published: ${publishedValue ? 'true' : 'false'}`]
     };
-    return blocks;
   }
 
-  function buildFrontmatter(publishedValue = currentPublished) {
-    const replacements = buildControlledBlocks(publishedValue);
+  function buildFrontmatter(publishedValue = currentPublished, options = {}) {
+    const replacements = buildControlledBlocks(publishedValue, options);
     const existing = blockMap(originalFrontmatter);
     const used = new Set();
     const output = [];
 
     for (const block of existing) {
-      if (replacements[block.key]) {
+      if (Object.prototype.hasOwnProperty.call(replacements, block.key)) {
         output.push(...replacements[block.key]);
         used.add(block.key);
       } else {
         output.push(...block.lines);
       }
     }
-
     for (const key of controlledKeys) {
-      if (!used.has(key) && replacements[key]) output.push(...replacements[key]);
+      if (!used.has(key) && Object.prototype.hasOwnProperty.call(replacements, key)) output.push(...replacements[key]);
     }
-
     return output.join('\n').replace(/\n{3,}/g, '\n\n').trim();
   }
 
-  function fullMarkdown(publishedValue = currentPublished) {
-    return `---\n${buildFrontmatter(publishedValue)}\n---\n\n${bodyEditor.value.replace(/^\s+/, '')}`;
+  function fullMarkdown(publishedValue = currentPublished, options = {}) {
+    return `---\n${buildFrontmatter(publishedValue, options)}\n---\n\n${bodyEditor.value.replace(/^\s+/, '')}`;
   }
 
   function slugify(value) {
-    return value.toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80) || 'article';
+    return String(value || '').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80) || 'article';
   }
 
   function suggestFilename() {
@@ -193,10 +251,6 @@
     const url = String(value || '').trim();
     if (/^(https?:\/\/|\/|#|mailto:)/i.test(url)) return url.replace(/"/g, '&quot;');
     return '#';
-  }
-
-  function escapeHtml(value) {
-    return String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
   }
 
   function inlineMarkdown(text) {
@@ -253,10 +307,8 @@
     while (i < lines.length) {
       const line = lines[i];
       if (!line.trim()) { i += 1; continue; }
-
       const embed = line.trim().match(/^@@EMBED(\d+)@@$/);
       if (embed) { out.push(embeds[Number(embed[1])] || ''); i += 1; continue; }
-
       const fence = line.match(/^\s*```([^\s]*)\s*$/);
       if (fence) {
         const code = [];
@@ -266,18 +318,14 @@
         out.push(`<pre><code${fence[1] ? ` class="language-${escapeHtml(fence[1])}"` : ''}>${escapeHtml(code.join('\n'))}</code></pre>`);
         continue;
       }
-
       const heading = line.match(/^\s*(#{1,6})\s+(.+)$/);
       if (heading) {
         const level = heading[1].length;
-        const text = heading[2].replace(/\s+#+\s*$/, '');
-        out.push(`<h${level}>${inlineMarkdown(text)}</h${level}>`);
+        out.push(`<h${level}>${inlineMarkdown(heading[2].replace(/\s+#+\s*$/, ''))}</h${level}>`);
         i += 1;
         continue;
       }
-
       if (/^\s*(---+|___+|\*\*\*+)\s*$/.test(line)) { out.push('<hr>'); i += 1; continue; }
-
       if (i + 1 < lines.length && line.includes('|') && isTableSeparator(lines[i + 1])) {
         const headers = splitCells(line);
         i += 2;
@@ -289,28 +337,24 @@
         out.push(`<table><thead><tr>${headers.map(c => `<th>${inlineMarkdown(c)}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${headers.map((_, idx) => `<td>${inlineMarkdown(row[idx] || '')}</td>`).join('')}</tr>`).join('')}</tbody></table>`);
         continue;
       }
-
       if (/^\s*>/.test(line)) {
         const parts = [];
         while (i < lines.length && /^\s*>/.test(lines[i])) { parts.push(lines[i].replace(/^\s*>\s?/, '')); i += 1; }
         out.push(`<blockquote><p>${inlineMarkdown(parts.join(' '))}</p></blockquote>`);
         continue;
       }
-
       if (/^\s*[-*+]\s+/.test(line)) {
         const items = [];
         while (i < lines.length && /^\s*[-*+]\s+/.test(lines[i])) { items.push(lines[i].replace(/^\s*[-*+]\s+/, '')); i += 1; }
         out.push(`<ul>${items.map(item => `<li>${inlineMarkdown(item)}</li>`).join('')}</ul>`);
         continue;
       }
-
       if (/^\s*\d+\.\s+/.test(line)) {
         const items = [];
         while (i < lines.length && /^\s*\d+\.\s+/.test(lines[i])) { items.push(lines[i].replace(/^\s*\d+\.\s+/, '')); i += 1; }
         out.push(`<ol>${items.map(item => `<li>${inlineMarkdown(item)}</li>`).join('')}</ol>`);
         continue;
       }
-
       const para = [line.trim()];
       i += 1;
       while (i < lines.length && lines[i].trim() && !special(lines[i]) && !(i + 1 < lines.length && lines[i].includes('|') && isTableSeparator(lines[i + 1]))) {
@@ -319,7 +363,6 @@
       }
       out.push(`<p>${inlineMarkdown(para.join(' '))}</p>`);
     }
-
     return out.join('\n');
   }
 
@@ -327,6 +370,13 @@
     if (!/^\d{4}-\d{2}-\d{2}$/.test(dateString || '')) return '';
     const [y,m,d] = dateString.split('-').map(Number);
     return new Intl.DateTimeFormat('en-US',{month:'long',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(Date.UTC(y,m-1,d)));
+  }
+
+  function formatDateTime(value) {
+    if (!value) return '';
+    const d = new Date(value);
+    if (Number.isNaN(d.getTime())) return '';
+    return new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}).format(d);
   }
 
   function normalizeImagePath(path) {
@@ -351,8 +401,9 @@
     const words = countWords(bodyEditor.value);
     const minutes = Math.max(1, Math.ceil(words / 200));
 
-    app.querySelector('[data-preview-title]').textContent = title;
-    app.querySelector('[data-preview-title]').className = `post-title${title.length > 58 ? ' post-title-long' : title.length > 38 ? ' post-title-medium' : ''}`;
+    const previewTitle = app.querySelector('[data-preview-title]');
+    previewTitle.textContent = title;
+    previewTitle.className = `post-title${title.length > 58 ? ' post-title-long' : title.length > 38 ? ' post-title-medium' : ''}`;
     app.querySelector('[data-preview-breadcrumb]').textContent = title;
     app.querySelector('[data-preview-category]').textContent = category;
     const desc = app.querySelector('[data-preview-description]');
@@ -376,12 +427,10 @@
     }
 
     app.querySelector('[data-preview-spoiler]').hidden = !fields.spoilerWarning.checked;
-    const rendered = renderMarkdown(bodyEditor.value);
-    previewContent.innerHTML = rendered || '<p class="writer-preview-empty">Start writing on the left. Your article will appear here immediately.</p>';
+    previewContent.innerHTML = renderMarkdown(bodyEditor.value) || '<p class="writer-preview-empty">Start writing on the left. Your article will appear here immediately.</p>';
 
     const topics = app.querySelector('[data-preview-topics]');
-    const tagList = app.querySelector('[data-preview-tags]');
-    tagList.innerHTML = tags.map(tag => `<li>${escapeHtml(tag)}</li>`).join('');
+    app.querySelector('[data-preview-tags]').innerHTML = tags.map(tag => `<li>${escapeHtml(tag)}</li>`).join('');
     topics.hidden = tags.length === 0;
     suggestFilename();
     updateLiveLink();
@@ -398,6 +447,7 @@
       imageAlt: fields.imageAlt.value,
       imagePosition: fields.imagePosition.value,
       filename: fields.filename.value,
+      publishAt: fields.publishAt.value,
       showToc: fields.showToc.checked,
       spoilerWarning: fields.spoilerWarning.checked,
       pinned: fields.pinned.checked,
@@ -420,6 +470,7 @@
     fields.imageAlt.value = state.imageAlt || '';
     fields.imagePosition.value = state.imagePosition || 'center center';
     fields.filename.value = state.filename || '';
+    fields.publishAt.value = state.publishAt || '';
     fields.showToc.checked = Boolean(state.showToc);
     fields.spoilerWarning.checked = Boolean(state.spoilerWarning);
     fields.pinned.checked = Boolean(state.pinned);
@@ -432,58 +483,11 @@
       filenameTouched = Boolean(currentPath);
       fields.filename.disabled = Boolean(currentPath);
       dirty = false;
-      setSaveState(currentPath ? (currentPublished ? 'Published article' : 'Draft article') : 'New article');
       updateSaveButtonLabel();
       updateUrlPath();
     }
     updatePreview();
-  }
-
-  function localKey() { return `matlock-writer:${currentPath || 'new'}`; }
-
-  function scheduleAutosave() {
-    dirty = true;
-    setSaveState('Unsaved changes');
-    window.clearTimeout(autosaveTimer);
-    autosaveTimer = window.setTimeout(() => {
-      try {
-        localStorage.setItem(localKey(), JSON.stringify(getState()));
-        app.querySelector('[data-local-status]').textContent = `Autosaved locally at ${new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}.`;
-      } catch {}
-    }, 700);
-  }
-
-  function maybeRestoreLocal(key, remoteState = null) {
-    try {
-      const raw = localStorage.getItem(key);
-      if (!raw) return false;
-      const saved = JSON.parse(raw);
-      if (remoteState && saved.currentSha !== remoteState.currentSha) return false;
-      const hasWork = (saved.title || saved.body || '').trim();
-      if (!hasWork) return false;
-      if (remoteState && !window.confirm('A newer local edit exists for this article. Restore the local version?')) return false;
-      applyState(saved, { remote: Boolean(remoteState) });
-      dirty = true;
-      setSaveState('Restored local changes');
-      showToast('Restored your local autosave.');
-      return true;
-    } catch { return false; }
-  }
-
-  function resetNewArticle() {
-    if (dirty && !window.confirm('Start a new article and leave the current unsaved changes?')) return;
-    if (localImageUrl) URL.revokeObjectURL(localImageUrl);
-    localImageUrl = '';
-    selectedImageFile = null;
-    currentPath = '';
-    currentSha = '';
-    originalFrontmatter = '';
-    currentPublished = false;
-    filenameTouched = false;
-    fields.filename.disabled = false;
-    applyState({ date: today(), category: 'Breakdown', imagePosition: 'center center' }, { remote: true });
-    history.replaceState(null, '', '/write/');
-    maybeRestoreLocal('matlock-writer:new');
+    updateDocumentStatus();
   }
 
   function stateFromFile(text, path, sha) {
@@ -500,6 +504,7 @@
       imageAlt: image.alt || '',
       imagePosition: image.position || 'center center',
       filename: path.split('/').pop(),
+      publishAt: isoToLocalInput(m.publish_at || ''),
       showToc: Boolean(m.show_toc),
       spoilerWarning: Boolean(m.spoiler_warning),
       pinned: Boolean(m.pinned),
@@ -524,65 +529,293 @@
     return new TextDecoder().decode(bytes);
   }
 
+  function isServerSession() {
+    return githubCredential.startsWith('session:');
+  }
+
   async function githubFetch(path, options = {}, requireAuth = false) {
-    const headers = { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', ...(options.headers || {}) };
-    if (githubToken) headers.Authorization = `Bearer ${githubToken}`;
-    if (requireAuth && !githubToken) throw new Error('Connect GitHub first.');
-    const response = await fetch(`https://api.github.com/repos/${repo}${path}`, { ...options, headers });
+    const method = options.method || 'GET';
+    if (requireAuth && !githubCredential) throw new Error('Sign in with GitHub first.');
+
+    let response;
+    if (githubCredential && isServerSession()) {
+      if (!authBase) throw new Error('Writer auth bridge is unavailable.');
+      const id = githubCredential.slice('session:'.length);
+      const headers = { Accept: 'application/json', 'X-Writer-Session': id, ...(options.headers || {}) };
+      response = await fetch(`${authBase}/api/writer/github?path=${encodeURIComponent(path)}`, { ...options, method, headers, mode: 'cors' });
+    } else {
+      const headers = { Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', ...(options.headers || {}) };
+      if (githubCredential) headers.Authorization = `Bearer ${githubCredential}`;
+      response = await fetch(`https://api.github.com/repos/${repo}${path}`, { ...options, method, headers });
+    }
+
     if (!response.ok) {
       let message = `${response.status} ${response.statusText}`;
-      try { const data = await response.json(); if (data.message) message = data.message; } catch {}
+      try { const data = await response.json(); if (data.message || data.error) message = data.message || data.error; } catch {}
+      if (response.status === 401 && isServerSession()) {
+        try { localStorage.removeItem('matlock-writer:server-session'); localStorage.removeItem('matlock-writer:server-login'); } catch {}
+      }
       throw new Error(message);
     }
     return response.status === 204 ? null : response.json();
   }
 
   async function connectGitHub() {
-    const token = tokenInput.value.trim();
-    if (!token) { showToast('Enter a fine-grained token.'); return; }
+    const credential = tokenInput.value.trim();
+    if (!credential) { showToast('Sign in with GitHub or enter a fine-grained token.'); return; }
     const button = app.querySelector('[data-github-authorize]');
     button.disabled = true;
     button.textContent = 'Connecting…';
     try {
-      githubToken = token;
+      githubCredential = credential;
       const info = await githubFetch('', {}, true);
       githubLogin = info.owner?.login || 'GitHub';
       tokenInput.value = '';
-      connectDialog.close();
+      if (connectDialog.open) connectDialog.close();
       app.querySelector('[data-github-status]').textContent = `Connected to ${repo} as ${githubLogin}`;
-      app.querySelector('[data-github-connect]').textContent = 'GitHub connected';
+      const topConnect = app.querySelector('[data-github-connect]');
+      if (topConnect) topConnect.textContent = 'GitHub connected';
       saveDraftButton.disabled = false;
       publishButton.disabled = false;
+      scheduleButton.disabled = false;
       uploadButton.disabled = !selectedImageFile;
-      showToast('GitHub connected for this tab only.');
+      window.dispatchEvent(new CustomEvent('matlock-writer:auth', { detail: { login: githubLogin } }));
+      hydrateLibrary();
+      showToast('GitHub connected.');
     } catch (error) {
-      githubToken = '';
+      githubCredential = '';
       showToast(`Could not connect: ${error.message}`, 5000);
     } finally {
       button.disabled = false;
-      button.textContent = 'Connect';
+      button.textContent = 'Connect with token';
     }
   }
 
-  async function listArticles() {
-    articleList.innerHTML = '<p>Loading articles…</p>';
+  function showLibrary() {
+    if (dirty && !window.confirm('Leave the editor with unsaved changes? Your local autosave will remain available.')) return;
+    libraryView.hidden = false;
+    editorView.hidden = true;
+    setSaveState('Library');
+    setDocumentStatus('Library');
+    history.replaceState(null, '', '/write/');
+    renderLibrary();
+  }
+
+  function showEditor() {
+    libraryView.hidden = true;
+    editorView.hidden = false;
+  }
+
+  function localKey() { return `matlock-writer:${currentPath || 'new'}`; }
+
+  function scheduleAutosave() {
+    dirty = true;
+    setSaveState('Unsaved changes');
+    window.clearTimeout(autosaveTimer);
+    autosaveTimer = window.setTimeout(() => {
+      try {
+        localStorage.setItem(localKey(), JSON.stringify(getState()));
+        app.querySelector('[data-local-status]').textContent = `Autosaved locally at ${new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})}.`;
+      } catch {}
+    }, 700);
+  }
+
+  function maybeRestoreLocal(key, remoteState = null) {
     try {
-      const data = await githubFetch('/contents/_posts?ref=main');
-      articleEntries = data.filter(item => item.type === 'file' && /\.md$/i.test(item.name)).sort((a,b) => b.name.localeCompare(a.name));
-      renderArticleList();
+      const raw = localStorage.getItem(key);
+      if (!raw) return false;
+      const saved = JSON.parse(raw);
+      if (remoteState && saved.currentSha !== remoteState.currentSha) return false;
+      const hasWork = (saved.title || saved.body || '').trim();
+      if (!hasWork) return false;
+      if (remoteState && !window.confirm('A local autosave exists for this article. Restore it?')) return false;
+      applyState(saved, { remote: Boolean(remoteState) });
+      dirty = true;
+      showEditor();
+      setSaveState('Restored local changes');
+      showToast('Restored your local autosave.');
+      return true;
+    } catch { return false; }
+  }
+
+  function resetNewArticle({ template = '' } = {}) {
+    if (dirty && !window.confirm('Start a new article and leave the current unsaved changes?')) return;
+    if (localImageUrl) URL.revokeObjectURL(localImageUrl);
+    localImageUrl = '';
+    selectedImageFile = null;
+    currentPath = '';
+    currentSha = '';
+    originalFrontmatter = '';
+    currentPublished = false;
+    filenameTouched = false;
+    fields.filename.disabled = false;
+    const initial = { date: today(), category: 'Breakdown', imagePosition: 'center center' };
+    if (template && templateBodies[template]) {
+      initial.category = templateBodies[template].category;
+      initial.body = templateBodies[template].body;
+    }
+    applyState(initial, { remote: true });
+    showEditor();
+    history.replaceState(null, '', '/write/');
+    if (!template) maybeRestoreLocal('matlock-writer:new');
+    setSaveState(template ? 'New article from template' : 'New article');
+  }
+
+  function articleStatus(meta) {
+    if (meta.published !== false) return 'published';
+    const when = meta.publish_at ? Date.parse(meta.publish_at) : NaN;
+    return !Number.isNaN(when) && when > Date.now() ? 'scheduled' : 'draft';
+  }
+
+  function loadLibraryCache() {
+    try { return JSON.parse(localStorage.getItem('matlock-writer:library-cache') || '{}'); } catch { return {}; }
+  }
+
+  function saveLibraryCache(cache) {
+    try { localStorage.setItem('matlock-writer:library-cache', JSON.stringify(cache)); } catch {}
+  }
+
+  async function mapLimit(items, limit, worker) {
+    const results = new Array(items.length);
+    let index = 0;
+    async function run() {
+      while (index < items.length) {
+        const i = index++;
+        results[i] = await worker(items[i], i);
+      }
+    }
+    await Promise.all(Array.from({ length: Math.min(limit, items.length) }, run));
+    return results;
+  }
+
+  async function loadLibrary({ hydrate = Boolean(githubCredential) } = {}) {
+    libraryList.innerHTML = '<div class="writer-library-empty">Loading article library…</div>';
+    try {
+      const files = await githubFetch('/contents/_posts?ref=main');
+      const markdownFiles = files.filter(item => item.type === 'file' && /\.md$/i.test(item.name)).sort((a,b) => b.name.localeCompare(a.name));
+      const cache = loadLibraryCache();
+      libraryEntries = markdownFiles.map(item => {
+        const cached = cache[item.path];
+        if (cached?.sha === item.sha) return { ...cached, path: item.path, name: item.name, sha: item.sha };
+        return {
+          path: item.path,
+          name: item.name,
+          sha: item.sha,
+          title: item.name.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/i,'').replace(/-/g,' '),
+          date: item.name.slice(0,10),
+          category: '', tags: [], imagePath: '', status: 'unknown', publishAt: '', editedAt: ''
+        };
+      });
+      renderLibrary();
+      if (hydrate) await hydrateLibrary();
     } catch (error) {
-      articleList.innerHTML = `<p>Could not load articles: ${escapeHtml(error.message)}</p>`;
+      libraryList.innerHTML = `<div class="writer-library-empty">Could not load articles: ${escapeHtml(error.message)}</div>`;
     }
   }
 
-  function renderArticleList() {
-    const query = (filterInput.value || '').trim().toLowerCase();
-    const filtered = articleEntries.filter(item => item.name.toLowerCase().includes(query));
-    articleList.innerHTML = filtered.length ? filtered.map(item => `<button class="writer-article-item" type="button" data-article-path="${escapeHtml(item.path)}"><span>${escapeHtml(item.name.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.md$/i,''))}</span><small>${escapeHtml(item.name.slice(0,10))}</small></button>`).join('') : '<p>No matching articles.</p>';
+  async function hydrateLibrary() {
+    if (!libraryEntries.length || !githubCredential) return;
+    const cache = loadLibraryCache();
+    const needs = libraryEntries.filter(entry => !cache[entry.path] || cache[entry.path].sha !== entry.sha || cache[entry.path].status === 'unknown');
+    if (!needs.length) { renderLibrary(); hydrateEditedTimes(); return; }
+
+    await mapLimit(needs, 6, async entry => {
+      try {
+        const data = await githubFetch(`/contents/${encodeURIComponent(entry.path).replace(/%2F/g,'/')}?ref=main`);
+        const parsed = parseFrontmatter(decodeBase64(data.content));
+        const m = parsed.meta;
+        const image = (m.image && typeof m.image === 'object') ? m.image : { path: typeof m.image === 'string' ? m.image : '' };
+        const summary = {
+          path: entry.path,
+          name: entry.name,
+          sha: data.sha || entry.sha,
+          title: m.title || entry.title,
+          description: m.description || '',
+          date: String(m.date || entry.date).slice(0,10),
+          category: m.category || '',
+          tags: Array.isArray(m.tags) ? m.tags : (m.tags ? [m.tags] : []),
+          imagePath: image.path || '',
+          status: articleStatus(m),
+          publishAt: m.publish_at || '',
+          editedAt: cache[entry.path]?.editedAt || ''
+        };
+        cache[entry.path] = summary;
+        const idx = libraryEntries.findIndex(item => item.path === entry.path);
+        if (idx >= 0) libraryEntries[idx] = summary;
+      } catch {}
+    });
+    saveLibraryCache(cache);
+    renderLibrary();
+    hydrateEditedTimes();
   }
 
-  async function loadArticle(path) {
-    if (dirty && !window.confirm('Open another article and leave the current unsaved changes?')) return;
+  async function hydrateEditedTimes() {
+    if (!githubCredential) return;
+    const cache = loadLibraryCache();
+    const visible = filteredLibraryEntries().slice(0, 24).filter(entry => !entry.editedAt);
+    await mapLimit(visible, 4, async entry => {
+      try {
+        const commits = await githubFetch(`/commits?path=${encodeURIComponent(entry.path)}&per_page=1`);
+        const editedAt = commits?.[0]?.commit?.committer?.date || commits?.[0]?.commit?.author?.date || '';
+        if (!editedAt) return;
+        entry.editedAt = editedAt;
+        if (cache[entry.path]) cache[entry.path].editedAt = editedAt;
+      } catch {}
+    });
+    saveLibraryCache(cache);
+    renderLibrary();
+  }
+
+  function filteredLibraryEntries() {
+    const query = (librarySearch.value || '').trim().toLowerCase();
+    return libraryEntries.filter(entry => {
+      if (libraryFilter !== 'all' && entry.status !== libraryFilter) return false;
+      if (!query) return true;
+      return [entry.title, entry.name, entry.category, ...(entry.tags || [])].join(' ').toLowerCase().includes(query);
+    });
+  }
+
+  function libraryLiveUrl(entry) {
+    if (entry.status !== 'published') return '';
+    const match = entry.name.replace(/\.md$/i,'').match(/^(\d{4})-(\d{2})-(\d{2})-(.+)$/);
+    return match ? `/${match[1]}/${match[2]}/${match[3]}/${match[4]}.html` : '';
+  }
+
+  function renderLibrary() {
+    const counts = {
+      total: libraryEntries.length,
+      draft: libraryEntries.filter(x => x.status === 'draft').length,
+      scheduled: libraryEntries.filter(x => x.status === 'scheduled').length,
+      published: libraryEntries.filter(x => x.status === 'published').length
+    };
+    libraryStats.innerHTML = `<span><strong>${counts.total}</strong> total</span><span><strong>${counts.draft}</strong> drafts</span><span><strong>${counts.scheduled}</strong> scheduled</span><span><strong>${counts.published}</strong> published</span>`;
+
+    const entries = filteredLibraryEntries();
+    if (!entries.length) {
+      libraryList.innerHTML = '<div class="writer-library-empty">No matching articles.</div>';
+      return;
+    }
+
+    libraryList.innerHTML = entries.map(entry => {
+      const image = normalizeImagePath(entry.imagePath);
+      const status = entry.status || 'unknown';
+      const statusText = status === 'scheduled' ? `Scheduled ${formatDateTime(entry.publishAt)}` : status === 'published' ? 'Published' : status === 'draft' ? 'Draft' : 'Loading';
+      const edited = entry.editedAt ? `Edited ${formatDateTime(entry.editedAt)}` : entry.date ? `Dated ${formatDate(entry.date)}` : '';
+      const live = libraryLiveUrl(entry);
+      return `<article class="writer-library-card" data-library-path="${escapeHtml(entry.path)}">
+        <div class="writer-library-thumb">${image ? `<img src="${escapeHtml(image)}" alt="" loading="lazy">` : '<span>MATLOCK</span>'}</div>
+        <div class="writer-library-card-body">
+          <div class="writer-library-card-meta"><span class="writer-status-badge is-${status}">${escapeHtml(statusText)}</span>${entry.category ? `<span>${escapeHtml(entry.category)}</span>` : ''}</div>
+          <h3>${escapeHtml(entry.title || entry.name)}</h3>
+          <p>${escapeHtml(entry.description || edited || entry.name)}</p>
+          <div class="writer-library-card-foot"><span>${escapeHtml(edited)}</span><div class="writer-library-actions"><button type="button" data-library-edit>Edit</button><button type="button" data-library-duplicate>Duplicate</button>${live ? `<a href="${escapeHtml(live)}" target="_blank" rel="noopener noreferrer">View live</a>` : ''}</div></div>
+        </div>
+      </article>`;
+    }).join('');
+  }
+
+  async function loadArticle(path, { force = false } = {}) {
+    if (!force && dirty && !window.confirm('Open another article and leave the current unsaved changes?')) return;
     setSaveState('Loading…');
     try {
       const data = await githubFetch(`/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}?ref=main`);
@@ -590,7 +823,8 @@
       applyState(state, { remote: true });
       const restored = maybeRestoreLocal(`matlock-writer:${path}`, state);
       if (!restored) dirty = false;
-      if (openDialog.open) openDialog.close();
+      showEditor();
+      setSaveState(currentPublished ? 'Published article' : fields.publishAt.value ? 'Scheduled article' : 'Draft article');
       showToast('Article loaded.');
     } catch (error) {
       setSaveState('Load failed');
@@ -598,41 +832,107 @@
     }
   }
 
-  function validateForSave() {
+  async function duplicateArticle(path) {
+    if (dirty && !window.confirm('Duplicate another article and leave the current unsaved changes?')) return;
+    try {
+      const data = await githubFetch(`/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}?ref=main`);
+      const state = stateFromFile(decodeBase64(data.content), path, data.sha);
+      state.title = `${state.title} — Copy`;
+      state.filename = `${today()}-${slugify(state.title.replace(/— Copy$/, '').trim())}-copy.md`;
+      state.publishAt = '';
+      state.currentPath = '';
+      state.currentSha = '';
+      state.currentPublished = false;
+      applyState(state, { remote: true });
+      currentPath = '';
+      currentSha = '';
+      currentPublished = false;
+      fields.filename.disabled = false;
+      filenameTouched = true;
+      showEditor();
+      dirty = true;
+      setSaveState('Duplicated • unsaved');
+      showToast('Article duplicated into a new draft.');
+    } catch (error) {
+      showToast(`Could not duplicate article: ${error.message}`, 5000);
+    }
+  }
+
+  function validateForSave(mode) {
     if (!fields.title.value.trim()) throw new Error('Add a title first.');
-    if (!fields.date.value) throw new Error('Choose a publication date.');
+    if (!fields.date.value) throw new Error('Choose an article date.');
     if (!fields.filename.value.trim()) throw new Error('Add a filename.');
     if (!/^\d{4}-\d{2}-\d{2}-.+\.md$/i.test(fields.filename.value.trim())) throw new Error('Filename must look like YYYY-MM-DD-article-name.md.');
+    if (mode === 'schedule') {
+      const when = new Date(fields.publishAt.value);
+      if (!fields.publishAt.value || Number.isNaN(when.getTime())) throw new Error('Choose a valid publication date and time first.');
+      if (when.getTime() <= Date.now() + 60 * 1000) throw new Error('Scheduled publication must be in the future.');
+    }
   }
 
   function updateSaveButtonLabel() {
     saveDraftButton.textContent = currentPublished ? 'Save changes' : 'Save draft';
   }
 
-  async function saveArticle(publishNow) {
-    try { validateForSave(); } catch (error) { showToast(error.message); return; }
-    if (!githubToken) { connectDialog.showModal(); return; }
-    const desiredPublished = publishNow ? true : currentPublished;
+  function updateDocumentStatus() {
+    if (!editorView || editorView.hidden) return;
+    if (currentPublished) setDocumentStatus('Published');
+    else if (fields.publishAt.value) setDocumentStatus(`Scheduled ${formatDateTime(localInputToIso(fields.publishAt.value))}`);
+    else if (currentPath) setDocumentStatus('Draft');
+    else setDocumentStatus('New article');
+  }
+
+  async function checkRemoteConflict(mode) {
+    if (!currentPath || !currentSha) return false;
+    try {
+      const remote = await githubFetch(`/contents/${encodeURIComponent(currentPath).replace(/%2F/g,'/')}?ref=main`);
+      if (remote.sha && remote.sha !== currentSha) {
+        pendingConflictMode = mode;
+        pendingRemoteSha = remote.sha;
+        conflictDialog.showModal();
+        return true;
+      }
+    } catch (error) {
+      if (!/404/.test(error.message)) throw error;
+    }
+    return false;
+  }
+
+  async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
+    try { validateForSave(mode); } catch (error) { showToast(error.message); return; }
+    if (!githubCredential) { connectDialog.showModal(); return; }
+
+    if (!skipConflict) {
+      try { if (await checkRemoteConflict(mode)) return; }
+      catch (error) { showToast(`Could not verify remote version: ${error.message}`, 5000); return; }
+    }
+
+    const desiredPublished = mode === 'publish' ? true : mode === 'schedule' ? false : currentPublished;
     const filename = fields.filename.value.trim();
     const path = currentPath || `_posts/${filename}`;
-    const button = publishNow ? publishButton : saveDraftButton;
+    const button = mode === 'publish' ? publishButton : mode === 'schedule' ? scheduleButton : saveDraftButton;
     const oldLabel = button.textContent;
+    const clearSchedule = mode === 'publish';
     button.disabled = true;
-    button.textContent = publishNow ? 'Publishing…' : 'Saving…';
-    setSaveState(publishNow ? 'Publishing…' : 'Saving…');
+    button.textContent = mode === 'publish' ? 'Publishing…' : mode === 'schedule' ? 'Scheduling…' : 'Saving…';
+    setSaveState(button.textContent);
 
     try {
       const payload = {
-        message: `${publishNow ? 'Publish' : 'Update'} ${filename}`,
-        content: encodeBase64(fullMarkdown(desiredPublished)),
+        message: `${mode === 'publish' ? 'Publish' : mode === 'schedule' ? 'Schedule' : 'Update'} ${filename}`,
+        content: encodeBase64(fullMarkdown(desiredPublished, { clearSchedule })),
         branch: 'main'
       };
       if (currentSha) payload.sha = currentSha;
-      const result = await githubFetch(`/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }, true);
+      const result = await githubFetch(`/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}`, {
+        method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+      }, true);
+
       currentPath = path;
       currentSha = result.content?.sha || currentSha;
       currentPublished = desiredPublished;
-      originalFrontmatter = buildFrontmatter(desiredPublished);
+      if (clearSchedule) fields.publishAt.value = '';
+      originalFrontmatter = buildFrontmatter(desiredPublished, { clearSchedule });
       fields.filename.disabled = true;
       filenameTouched = true;
       dirty = false;
@@ -640,44 +940,23 @@
       updateUrlPath();
       updateSaveButtonLabel();
       updateLiveLink();
-      setSaveState(currentPublished ? 'Published • deployment started' : 'Draft saved');
-      showToast(currentPublished ? 'Published to GitHub. The public site is deploying now.' : 'Draft saved to GitHub.');
+      updateDocumentStatus();
+      const stamp = new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
+      setSaveState(mode === 'publish' ? `Published • ${stamp}` : mode === 'schedule' ? `Scheduled • ${stamp}` : `Saved • ${stamp}`);
+      app.querySelector('[data-local-status]').textContent = `GitHub saved at ${stamp}.`;
+      showToast(mode === 'publish'
+        ? 'Published to GitHub. The public site is deploying now.'
+        : mode === 'schedule'
+          ? `Scheduled for ${formatDateTime(localInputToIso(fields.publishAt.value))}. GitHub checks due posts about every 15 minutes.`
+          : 'Saved to GitHub.');
+      loadLibrary({ hydrate: true });
     } catch (error) {
       setSaveState('Save failed');
       showToast(`Save failed: ${error.message}`, 6000);
     } finally {
       button.disabled = false;
-      if (button.textContent === 'Saving…' || button.textContent === 'Publishing…') button.textContent = oldLabel;
+      if (button.textContent.endsWith('…')) button.textContent = oldLabel;
       updateSaveButtonLabel();
-    }
-  }
-
-  async function uploadImage() {
-    if (!selectedImageFile) { showToast('Choose an image first.'); return; }
-    if (!githubToken) { connectDialog.showModal(); return; }
-    if (selectedImageFile.size > 20 * 1024 * 1024) { showToast('Keep uploads under 20 MB.'); return; }
-    const filename = fields.imagePath.value.trim().split('/').pop() || selectedImageFile.name;
-    const path = `assets/uploads/${filename.replace(/[^A-Za-z0-9._-]+/g,'-')}`;
-    uploadButton.disabled = true;
-    uploadButton.textContent = 'Uploading…';
-    try {
-      const bytes = new Uint8Array(await selectedImageFile.arrayBuffer());
-      let binary = '';
-      for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
-      let existingSha = '';
-      try { const existing = await githubFetch(`/contents/${path}?ref=main`); existingSha = existing.sha || ''; } catch {}
-      const payload = { message: `Upload article image ${filename}`, content: btoa(binary), branch: 'main' };
-      if (existingSha) payload.sha = existingSha;
-      await githubFetch(`/contents/${path}`, { method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) }, true);
-      fields.imagePath.value = `/${path}`;
-      showToast('Image uploaded. Responsive image generation will run automatically.');
-      scheduleAutosave();
-    } catch (error) {
-      showToast(`Image upload failed: ${error.message}`, 6000);
-    } finally {
-      uploadButton.textContent = 'Upload';
-      uploadButton.disabled = false;
-      updatePreview();
     }
   }
 
@@ -685,8 +964,7 @@
     if (!currentPath || !currentPublished) return '';
     const file = currentPath.split('/').pop().replace(/\.md$/i,'');
     const match = file.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)$/);
-    if (!match) return '';
-    return `/${match[1]}/${match[2]}/${match[3]}/${match[4]}.html`;
+    return match ? `/${match[1]}/${match[2]}/${match[3]}/${match[4]}.html` : '';
   }
 
   function updateLiveLink() {
@@ -713,6 +991,14 @@
     updatePreview();
   }
 
+  function insertBlock(text) {
+    const start = bodyEditor.selectionStart;
+    bodyEditor.setRangeText(`\n\n${String(text).trim()}\n\n`, start, bodyEditor.selectionEnd, 'end');
+    bodyEditor.focus();
+    scheduleAutosave();
+    updatePreview();
+  }
+
   function youtubeId(value) {
     try {
       const u = new URL(value);
@@ -723,39 +1009,129 @@
     } catch { return /^[A-Za-z0-9_-]{6,}$/.test(value) ? value : ''; }
   }
 
-  function handleInsert(type) {
+  function handleSimpleInsert(type) {
     if (type === 'h2') return insertAtCursor('## ', '', 'Section heading');
     if (type === 'bold') return insertAtCursor('**', '**', 'bold text');
     if (type === 'italic') return insertAtCursor('*', '*', 'italic text');
     if (type === 'quote') return insertAtCursor('> ', '', 'Quote');
-    if (type === 'divider') return insertAtCursor('\n\n---\n\n');
-    if (type === 'table') return insertAtCursor('\n\n|  | Fighter A | Fighter B |\n| --- | ---: | ---: |\n| Record | 0-0 | 0-0 |\n| Age | 0 | 0 |\n\n');
-    if (type === 'prediction') return insertAtCursor('\n\n**Pick: ', '**\n\n', 'Fighter by KO/TKO, Round 1');
+    if (type === 'divider') return insertBlock('---');
+  }
+
+  function openTool(type) {
     if (type === 'link' || type === 'citation') {
-      const url = window.prompt(type === 'citation' ? 'Source URL:' : 'Link URL:');
-      if (!url) return;
-      const selected = bodyEditor.value.slice(bodyEditor.selectionStart, bodyEditor.selectionEnd);
-      const label = selected || (type === 'citation' ? 'Source' : 'link text');
-      return insertAtCursor('[', `](${url.trim()})`, label);
+      linkMode = type;
+      const dialog = app.querySelector('[data-link-dialog]');
+      dialog.querySelector('[data-link-dialog-title]').textContent = type === 'citation' ? 'Add source' : 'Add link';
+      dialog.querySelector('[data-link-label]').value = bodyEditor.value.slice(bodyEditor.selectionStart, bodyEditor.selectionEnd) || (type === 'citation' ? 'Source' : '');
+      dialog.querySelector('[data-link-url]').value = '';
+      dialog.showModal();
+      dialog.querySelector('[data-link-url]').focus();
+      return;
     }
-    if (type === 'youtube') {
-      const value = window.prompt('YouTube URL or video ID:');
-      if (!value) return;
-      const id = youtubeId(value.trim());
-      if (!id) { showToast('I could not read that YouTube URL.'); return; }
-      return insertAtCursor(`\n\n<iframe src="https://www.youtube.com/embed/${id}" title="YouTube video" allowfullscreen></iframe>\n\n`);
+    const map = {
+      image: '[data-image-dialog]', youtube: '[data-youtube-dialog]', table: '[data-table-dialog]',
+      tale: '[data-tale-dialog]', prediction: '[data-pick-dialog]', template: '[data-template-dialog]'
+    };
+    const dialog = app.querySelector(map[type]);
+    if (dialog) dialog.showModal();
+  }
+
+  async function optimizeImage(file) {
+    if (!file || !file.type.startsWith('image/')) throw new Error('Choose an image file.');
+    if (file.type === 'image/gif') {
+      if (file.size > 5 * 1024 * 1024) throw new Error('Keep GIF uploads under 5 MB.');
+      return { blob: file, name: file.name };
+    }
+    if (file.size <= 4 * 1024 * 1024) return { blob: file, name: file.name };
+
+    const bitmap = await createImageBitmap(file);
+    const maxDimension = 2400;
+    const scale = Math.min(1, maxDimension / Math.max(bitmap.width, bitmap.height));
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.max(1, Math.round(bitmap.width * scale));
+    canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+    canvas.getContext('2d').drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+    bitmap.close();
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/webp', 0.88));
+    if (!blob) throw new Error('Could not optimize image.');
+    return { blob, name: `${file.name.replace(/\.[^.]+$/, '')}.webp` };
+  }
+
+  async function uploadAsset(file, preferredName = '') {
+    if (!githubCredential) throw new Error('Sign in with GitHub before uploading images.');
+    const optimized = await optimizeImage(file);
+    const safeName = (preferredName || optimized.name).replace(/[^A-Za-z0-9._-]+/g,'-');
+    const path = `assets/uploads/${safeName}`;
+    const bytes = new Uint8Array(await optimized.blob.arrayBuffer());
+    let binary = '';
+    for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+    let existingSha = '';
+    try { const existing = await githubFetch(`/contents/${path}?ref=main`); existingSha = existing.sha || ''; } catch {}
+    const payload = { message: `Upload article image ${safeName}`, content: btoa(binary), branch: 'main' };
+    if (existingSha) payload.sha = existingSha;
+    await githubFetch(`/contents/${path}`, { method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) }, true);
+    return `/${path}`;
+  }
+
+  async function uploadFeaturedImage() {
+    if (!selectedImageFile) { showToast('Choose an image first.'); return; }
+    uploadButton.disabled = true;
+    uploadButton.textContent = 'Uploading…';
+    try {
+      const preferred = fields.imagePath.value.trim().split('/').pop() || selectedImageFile.name;
+      const path = await uploadAsset(selectedImageFile, preferred);
+      fields.imagePath.value = path;
+      showToast('Featured image uploaded.');
+      scheduleAutosave();
+      updatePreview();
+    } catch (error) {
+      showToast(`Image upload failed: ${error.message}`, 6000);
+    } finally {
+      uploadButton.textContent = 'Upload';
+      uploadButton.disabled = !selectedImageFile || !githubCredential;
     }
   }
 
-  async function copyMarkdown() {
-    const text = fullMarkdown(currentPublished);
+  async function insertInlineImage(file, alt = '') {
     try {
-      await navigator.clipboard.writeText(text);
-      showToast('Full Markdown copied.');
-    } catch {
-      bodyEditor.focus();
-      showToast('Clipboard access was blocked. Use Download .md instead.');
+      const path = await uploadAsset(file);
+      insertBlock(`![${alt || file.name.replace(/\.[^.]+$/, '')}](${path})`);
+      showToast('Image uploaded and inserted.');
+      return path;
+    } catch (error) {
+      showToast(`Image insert failed: ${error.message}`, 6000);
+      throw error;
     }
+  }
+
+  async function loadHistory() {
+    if (!currentPath) { showToast('Save the article before viewing history.'); return; }
+    historyList.innerHTML = '<p>Loading history…</p>';
+    historyDialog.showModal();
+    try {
+      const commits = await githubFetch(`/commits?path=${encodeURIComponent(currentPath)}&per_page=12`);
+      historyList.innerHTML = commits.length ? commits.map(commit => {
+        const message = commit.commit?.message?.split('\n')[0] || 'Update';
+        const date = commit.commit?.committer?.date || commit.commit?.author?.date || '';
+        return `<a class="writer-history-item" href="${escapeHtml(commit.html_url)}" target="_blank" rel="noopener noreferrer"><strong>${escapeHtml(message)}</strong><span>${escapeHtml(formatDateTime(date))} • ${escapeHtml(commit.sha.slice(0,7))}</span></a>`;
+      }).join('') : '<p>No revision history found.</p>';
+    } catch (error) {
+      historyList.innerHTML = `<p>Could not load history: ${escapeHtml(error.message)}</p>`;
+    }
+  }
+
+  function removeSlashCommand() {
+    const cursor = bodyEditor.selectionStart;
+    const before = bodyEditor.value.slice(0, cursor);
+    const lineStart = before.lastIndexOf('\n') + 1;
+    const line = before.slice(lineStart).trim();
+    if (!/^\/(table|tale|pick|youtube|image|source|template|divider)$/.test(line)) return '';
+    bodyEditor.setRangeText('', lineStart, cursor, 'end');
+    return line.slice(1);
+  }
+
+  function copyMarkdown() {
+    navigator.clipboard.writeText(fullMarkdown(currentPublished)).then(() => showToast('Full Markdown copied.')).catch(() => showToast('Clipboard access was blocked.'));
   }
 
   function downloadMarkdown() {
@@ -772,39 +1148,53 @@
     el.addEventListener('input', () => {
       if (el === fields.filename && !currentPath) filenameTouched = true;
       updatePreview();
+      updateDocumentStatus();
       scheduleAutosave();
     });
     el.addEventListener('change', () => {
       updatePreview();
+      updateDocumentStatus();
       scheduleAutosave();
     });
   });
 
   app.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => {
-    const mode = button.dataset.view;
-    workspace.dataset.viewMode = mode;
+    workspace.dataset.viewMode = button.dataset.view;
     app.querySelectorAll('[data-view]').forEach(btn => btn.setAttribute('aria-pressed', String(btn === button)));
   }));
-
   app.querySelectorAll('[data-preview-size]').forEach(button => button.addEventListener('click', () => {
     previewFrame.dataset.previewSize = button.dataset.previewSize;
     app.querySelectorAll('[data-preview-size]').forEach(btn => btn.setAttribute('aria-pressed', String(btn === button)));
   }));
+  app.querySelectorAll('[data-library-filter]').forEach(button => button.addEventListener('click', () => {
+    libraryFilter = button.dataset.libraryFilter;
+    app.querySelectorAll('[data-library-filter]').forEach(btn => btn.setAttribute('aria-pressed', String(btn === button)));
+    renderLibrary();
+    hydrateEditedTimes();
+  }));
 
-  app.querySelectorAll('[data-insert]').forEach(button => button.addEventListener('click', () => handleInsert(button.dataset.insert)));
-  app.querySelector('[data-new-article]').addEventListener('click', resetNewArticle);
-  app.querySelector('[data-open-article]').addEventListener('click', () => { openDialog.showModal(); listArticles(); });
+  app.querySelectorAll('[data-insert]').forEach(button => button.addEventListener('click', () => handleSimpleInsert(button.dataset.insert)));
+  app.querySelectorAll('[data-tool]').forEach(button => button.addEventListener('click', () => openTool(button.dataset.tool)));
+  app.querySelector('[data-show-library]').addEventListener('click', showLibrary);
+  app.querySelector('[data-new-article]').addEventListener('click', () => resetNewArticle());
+  app.querySelector('[data-library-new]').addEventListener('click', () => resetNewArticle());
   app.querySelector('[data-github-connect]').addEventListener('click', () => connectDialog.showModal());
   app.querySelector('[data-github-authorize]').addEventListener('click', connectGitHub);
-  saveDraftButton.addEventListener('click', () => saveArticle(false));
-  publishButton.addEventListener('click', () => saveArticle(true));
-  uploadButton.addEventListener('click', uploadImage);
+  saveDraftButton.addEventListener('click', () => saveArticle('save'));
+  publishButton.addEventListener('click', () => saveArticle('publish'));
+  scheduleButton.addEventListener('click', () => saveArticle('schedule'));
+  uploadButton.addEventListener('click', uploadFeaturedImage);
+  app.querySelector('[data-history]').addEventListener('click', loadHistory);
   app.querySelector('[data-copy-markdown]').addEventListener('click', copyMarkdown);
   app.querySelector('[data-download-markdown]').addEventListener('click', downloadMarkdown);
-  filterInput.addEventListener('input', renderArticleList);
-  articleList.addEventListener('click', event => {
-    const button = event.target.closest('[data-article-path]');
-    if (button) loadArticle(button.dataset.articlePath);
+  librarySearch.addEventListener('input', () => { renderLibrary(); hydrateEditedTimes(); });
+
+  libraryList.addEventListener('click', event => {
+    const card = event.target.closest('[data-library-path]');
+    if (!card) return;
+    const path = card.dataset.libraryPath;
+    if (event.target.closest('[data-library-edit]')) loadArticle(path);
+    if (event.target.closest('[data-library-duplicate]')) duplicateArticle(path);
   });
 
   imageFileInput.addEventListener('change', () => {
@@ -812,9 +1202,134 @@
     if (localImageUrl) URL.revokeObjectURL(localImageUrl);
     localImageUrl = selectedImageFile ? URL.createObjectURL(selectedImageFile) : '';
     if (selectedImageFile && !fields.imagePath.value.trim()) fields.imagePath.value = `/assets/uploads/${selectedImageFile.name.replace(/[^A-Za-z0-9._-]+/g,'-')}`;
-    uploadButton.disabled = !selectedImageFile || !githubToken;
+    uploadButton.disabled = !selectedImageFile || !githubCredential;
     updatePreview();
     scheduleAutosave();
+  });
+
+  app.querySelector('[data-link-insert]').addEventListener('click', () => {
+    const dialog = app.querySelector('[data-link-dialog]');
+    const label = dialog.querySelector('[data-link-label]').value.trim() || (linkMode === 'citation' ? 'Source' : 'link');
+    const url = dialog.querySelector('[data-link-url]').value.trim();
+    if (!/^https?:\/\//i.test(url) && !url.startsWith('/')) { showToast('Enter a valid URL.'); return; }
+    insertAtCursor('[', `](${url})`, label);
+    dialog.close();
+  });
+
+  app.querySelector('[data-youtube-insert]').addEventListener('click', () => {
+    const dialog = app.querySelector('[data-youtube-dialog]');
+    const id = youtubeId(dialog.querySelector('[data-youtube-url]').value.trim());
+    if (!id) { showToast('I could not read that YouTube URL.'); return; }
+    const title = dialog.querySelector('[data-youtube-title]').value.trim() || 'YouTube video';
+    insertBlock(`<iframe src="https://www.youtube.com/embed/${id}" title="${title.replace(/"/g,'&quot;')}" allowfullscreen></iframe>`);
+    dialog.close();
+  });
+
+  app.querySelector('[data-image-insert]').addEventListener('click', async () => {
+    const dialog = app.querySelector('[data-image-dialog]');
+    const file = dialog.querySelector('[data-inline-image-file]').files?.[0];
+    const url = dialog.querySelector('[data-inline-image-url]').value.trim();
+    const alt = dialog.querySelector('[data-inline-image-alt]').value.trim();
+    const button = dialog.querySelector('[data-image-insert]');
+    button.disabled = true;
+    button.textContent = file ? 'Uploading…' : 'Inserting…';
+    try {
+      if (file) await insertInlineImage(file, alt);
+      else if (url) insertBlock(`![${alt}](${url})`);
+      else { showToast('Choose an image or enter an image URL.'); return; }
+      dialog.querySelector('[data-inline-image-file]').value = '';
+      dialog.querySelector('[data-inline-image-url]').value = '';
+      dialog.querySelector('[data-inline-image-alt]').value = '';
+      dialog.close();
+    } finally {
+      button.disabled = false;
+      button.textContent = 'Upload & insert';
+    }
+  });
+
+  app.querySelector('[data-table-insert]').addEventListener('click', () => {
+    const dialog = app.querySelector('[data-table-dialog]');
+    const headers = dialog.querySelector('[data-table-headers]').value.split(',').map(v => v.trim()).filter(Boolean);
+    const rows = dialog.querySelector('[data-table-rows]').value.split('\n').map(v => v.trim()).filter(Boolean);
+    if (headers.length < 2) { showToast('Add at least two column headers.'); return; }
+    const table = [
+      `| ${headers.join(' | ')} |`,
+      `| ${headers.map(() => '---').join(' | ')} |`,
+      ...rows.map(label => `| ${[label, ...Array(headers.length - 1).fill('')].join(' | ')} |`)
+    ].join('\n');
+    insertBlock(table);
+    dialog.close();
+  });
+
+  app.querySelector('[data-tale-insert]').addEventListener('click', () => {
+    const dialog = app.querySelector('[data-tale-dialog]');
+    const a = dialog.querySelector('[data-tale-a]').value.trim() || 'FIGHTER A';
+    const b = dialog.querySelector('[data-tale-b]').value.trim() || 'FIGHTER B';
+    const labels = { record:'Record', age:'Age', height:'Height', reach:'Reach', weight:'Weight', stance:'Stance', ko:'KO/TKO Wins', sub:'Submission Wins', dec:'Decision Wins', r1:'1st-Round Finishes' };
+    const rows = Object.entries(labels).map(([key,label]) => {
+      const va = dialog.querySelector(`[data-tale-row="${key}"][data-side="a"]`).value.trim();
+      const vb = dialog.querySelector(`[data-tale-row="${key}"][data-side="b"]`).value.trim();
+      return `| ${label} | ${va} | ${vb} |`;
+    });
+    insertBlock([`|  | ${a.toUpperCase()} | ${b.toUpperCase()} |`, '| --- | ---: | ---: |', ...rows].join('\n'));
+    dialog.close();
+  });
+
+  app.querySelector('[data-pick-insert]').addEventListener('click', () => {
+    const dialog = app.querySelector('[data-pick-dialog]');
+    const fighter = dialog.querySelector('[data-pick-fighter]').value.trim();
+    if (!fighter) { showToast('Add the fighter you are picking.'); return; }
+    const method = dialog.querySelector('[data-pick-method]').value;
+    const round = dialog.querySelector('[data-pick-round]').value;
+    const confidence = dialog.querySelector('[data-pick-confidence]').value.trim();
+    const pick = `**Pick: ${fighter} by ${method}${round ? `, ${round}` : ''}**${confidence ? `\n\nConfidence: ${confidence}/10` : ''}`;
+    insertBlock(pick);
+    dialog.close();
+  });
+
+  app.querySelectorAll('[data-template]').forEach(button => button.addEventListener('click', () => {
+    app.querySelector('[data-template-dialog]').close();
+    resetNewArticle({ template: button.dataset.template });
+  }));
+
+  app.querySelector('[data-conflict-reload]').addEventListener('click', () => {
+    conflictDialog.close();
+    loadArticle(currentPath, { force: true });
+  });
+  app.querySelector('[data-conflict-overwrite]').addEventListener('click', () => {
+    conflictDialog.close();
+    if (pendingRemoteSha) currentSha = pendingRemoteSha;
+    const mode = pendingConflictMode || 'save';
+    pendingRemoteSha = '';
+    pendingConflictMode = '';
+    saveArticle(mode, { skipConflict: true });
+  });
+
+  const dropzone = app.querySelector('[data-editor-dropzone]');
+  const dropHint = app.querySelector('[data-drop-hint]');
+  ['dragenter','dragover'].forEach(type => dropzone.addEventListener(type, event => {
+    if ([...(event.dataTransfer?.items || [])].some(item => item.type.startsWith('image/'))) {
+      event.preventDefault();
+      dropHint.hidden = false;
+    }
+  }));
+  ['dragleave','drop'].forEach(type => dropzone.addEventListener(type, () => { dropHint.hidden = true; }));
+  dropzone.addEventListener('drop', async event => {
+    const file = [...(event.dataTransfer?.files || [])].find(item => item.type.startsWith('image/'));
+    if (!file) return;
+    event.preventDefault();
+    await insertInlineImage(file);
+  });
+
+  bodyEditor.addEventListener('keydown', event => {
+    if (event.key === 'Enter') {
+      const command = removeSlashCommand();
+      if (command) {
+        event.preventDefault();
+        if (command === 'divider') handleSimpleInsert('divider');
+        else openTool(command === 'pick' ? 'prediction' : command);
+      }
+    }
   });
 
   window.addEventListener('beforeunload', event => {
@@ -823,16 +1338,33 @@
     event.returnValue = '';
   });
 
+  window.addEventListener('matlock-writer:auth', () => {
+    uploadButton.disabled = !selectedImageFile;
+    hydrateLibrary();
+  });
+
   fields.date.value = today();
   fields.category.value = 'Breakdown';
   fields.imagePosition.value = 'center center';
   updatePreview();
   updateSaveButtonLabel();
+  loadLibrary({ hydrate: false });
 
   const path = new URLSearchParams(location.search).get('path');
   if (path && /^_posts\/.+\.md$/i.test(path)) {
     loadArticle(path);
-  } else if (!maybeRestoreLocal('matlock-writer:new')) {
-    setSaveState('New article');
+  } else {
+    const hasNewDraft = (() => {
+      try {
+        const saved = JSON.parse(localStorage.getItem('matlock-writer:new') || 'null');
+        return Boolean(saved && ((saved.title || '') + (saved.body || '')).trim());
+      } catch { return false; }
+    })();
+    if (hasNewDraft) {
+      showEditor();
+      maybeRestoreLocal('matlock-writer:new');
+    } else {
+      showLibrary();
+    }
   }
 })();
