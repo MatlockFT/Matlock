@@ -106,7 +106,7 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   await page.reload({ waitUntil: 'domcontentloaded' });
   await expect(page.locator('[data-editor-view]')).toBeVisible();
   await expect(page.locator('[data-field="title"]')).toHaveValue('Writer Production Smoke Test');
-  await expect(page.locator('#writer-body')).toContainText('Closing section');
+  await expect(page.locator('#writer-body')).toHaveValue(/Closing section/);
   await expect(page.locator('[data-html-block-rail]')).toBeVisible();
 
   await page.click('[data-github-connect]');
@@ -126,7 +126,7 @@ test('Writer production workflow survives long-form editing, restore, schedule a
   await expect(page.locator('[data-library-list]')).toContainText('Writer Production Smoke Test', { timeout: 10000 });
   await page.locator('[data-library-path]').filter({ hasText: 'Writer Production Smoke Test' }).locator('[data-library-edit]').click();
   await expect(page.locator('.writer-meta')).not.toHaveAttribute('open', '');
-  await expect(page.locator('#writer-body')).toContainText('Closing section');
+  await expect(page.locator('#writer-body')).toHaveValue(/Closing section/);
 
   await page.fill('[data-field="description"]', '');
   await page.click('[data-publish]');
