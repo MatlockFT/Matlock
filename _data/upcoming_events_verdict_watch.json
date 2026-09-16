@@ -5,23 +5,6 @@
   "mode": "read-only-watchdog",
   "coverage": [
     {
-      "event_id": "dwcs-season-10-week-6-2026-09-15",
-      "promotion": "dwcs",
-      "date": "2026-09-15",
-      "title": "Season 10 · Week 6",
-      "status": "matched",
-      "verdict_event_id": "1931",
-      "verdict_url": "https://verdictmma.com/event/1931",
-      "verdict_date": "2026-09-15",
-      "local_fight_count": 5,
-      "verdict_fight_count": null,
-      "local_main_count": 5,
-      "verdict_main_count": null,
-      "local_prelim_count": 0,
-      "verdict_prelim_count": null,
-      "confirmed_local_bouts": 5
-    },
-    {
       "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
       "promotion": "ufc",
       "date": "2026-09-19",
@@ -56,10 +39,10 @@
       "confirmed_local_bouts": 11
     },
     {
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
       "promotion": "rizin",
       "date": "2026-10-03",
-      "title": "RIZIN LANDMARK 16 in NAGASAKI",
+      "title": "『abc presents RIZIN LANDMARK 16 in NAGASAKI』",
       "status": "matched",
       "verdict_event_id": "1975",
       "verdict_url": "https://verdictmma.com/event/1975",
@@ -175,10 +158,10 @@
       "confirmed_local_bouts": 1
     },
     {
-      "event_id": "rizin-rizin-55-2026-11-08",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
       "promotion": "rizin",
       "date": "2026-11-08",
-      "title": "RIZIN.55",
+      "title": "『abc presents RIZIN.55』",
       "status": "matched",
       "verdict_event_id": "1974",
       "verdict_url": "https://verdictmma.com/event/1974",
@@ -195,7 +178,7 @@
   "discrepancies": [
     {
       "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-rizin-55-2026-11-08",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
       "verdict_event_id": "1974",
       "order": 1,
       "fighters": [
@@ -205,7 +188,7 @@
     },
     {
       "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-rizin-55-2026-11-08",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
       "verdict_event_id": "1974",
       "order": 4,
       "fighters": [
@@ -215,7 +198,7 @@
     },
     {
       "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-rizin-55-2026-11-08",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
       "verdict_event_id": "1974",
       "order": 5,
       "fighters": [
@@ -225,7 +208,7 @@
     },
     {
       "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
       "verdict_event_id": "1975",
       "order": 10,
       "fighters": [
@@ -235,7 +218,7 @@
     },
     {
       "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
       "verdict_event_id": "1975",
       "order": 11,
       "fighters": [
@@ -245,7 +228,7 @@
     },
     {
       "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
       "verdict_event_id": "1975",
       "order": 12,
       "fighters": [
@@ -255,7 +238,7 @@
     },
     {
       "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
       "verdict_event_id": "1975",
       "order": 13,
       "fighters": [
@@ -265,7 +248,7 @@
     },
     {
       "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
       "verdict_event_id": "1975",
       "order": 14,
       "fighters": [
@@ -275,7 +258,7 @@
     },
     {
       "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
       "verdict_event_id": "1975",
       "order": 4,
       "fighters": [
@@ -285,7 +268,7 @@
     },
     {
       "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
       "verdict_event_id": "1975",
       "order": 6,
       "fighters": [
@@ -295,7 +278,7 @@
     },
     {
       "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
       "verdict_event_id": "1975",
       "order": 7,
       "fighters": [
@@ -305,7 +288,7 @@
     },
     {
       "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
       "verdict_event_id": "1975",
       "order": 8,
       "fighters": [
@@ -315,7 +298,7 @@
     },
     {
       "type": "local_bout_not_found_on_verdict",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
       "verdict_event_id": "1975",
       "order": 9,
       "fighters": [

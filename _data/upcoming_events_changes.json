@@ -1,7 +1,35 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-15T22:11:42.967Z",
+  "generated_at": "2026-09-16T05:12:42.231Z",
   "changes": [
+    {
+      "id": "2026-09-16T05:12:42.231Z|rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03|title_changed|1",
+      "at": "2026-09-16T05:12:42.231Z",
+      "type": "title_changed",
+      "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
+      "promotion": "RIZIN",
+      "event_title": "『abc presents RIZIN LANDMARK 16 in NAGASAKI』",
+      "event_date": "2026-10-03",
+      "summary": "RIZIN 『abc presents RIZIN LANDMARK 16 in NAGASAKI』: title changed.",
+      "details": {
+        "from": "RIZIN LANDMARK 16 in NAGASAKI",
+        "to": "『abc presents RIZIN LANDMARK 16 in NAGASAKI』"
+      }
+    },
+    {
+      "id": "2026-09-16T05:12:42.231Z|rizin-abc-presents-rizin-55-2026-11-08|title_changed|2",
+      "at": "2026-09-16T05:12:42.231Z",
+      "type": "title_changed",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
+      "promotion": "RIZIN",
+      "event_title": "『abc presents RIZIN.55』",
+      "event_date": "2026-11-08",
+      "summary": "RIZIN 『abc presents RIZIN.55』: title changed.",
+      "details": {
+        "from": "RIZIN.55",
+        "to": "『abc presents RIZIN.55』"
+      }
+    },
     {
       "id": "2026-09-15T22:11:42.967Z|ufc-2026-09-19-crypto-com-ufc-331|start_time_changed|1",
       "at": "2026-09-15T22:11:42.967Z",
@@ -4636,36 +4664,6 @@
         "order": 10,
         "section": "Fight Card",
         "weight_class": "120.0 kg"
-      }
-    },
-    {
-      "id": "2026-08-30T08:19:12.679Z|rizin-rizin-landmark-16-in-nagasaki-2026-10-03|bout_added|12",
-      "at": "2026-08-30T08:19:12.679Z",
-      "type": "bout_added",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
-      "promotion": "RIZIN",
-      "event_title": "RIZIN LANDMARK 16 in NAGASAKI",
-      "event_date": "2026-10-03",
-      "summary": "OPENING FIGHT 大木良太 vs Hunt Rangers added to RIZIN LANDMARK 16 in NAGASAKI.",
-      "details": {
-        "order": 11,
-        "section": "Fight Card",
-        "weight_class": "71.0 kg"
-      }
-    },
-    {
-      "id": "2026-08-30T08:19:12.679Z|rizin-rizin-landmark-16-in-nagasaki-2026-10-03|bout_added|13",
-      "at": "2026-08-30T08:19:12.679Z",
-      "type": "bout_added",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
-      "promotion": "RIZIN",
-      "event_title": "RIZIN LANDMARK 16 in NAGASAKI",
-      "event_date": "2026-10-03",
-      "summary": "OPENING FIGHT 今村流星 vs Reon Uemura added to RIZIN LANDMARK 16 in NAGASAKI.",
-      "details": {
-        "order": 12,
-        "section": "Fight Card",
-        "weight_class": "57.0 kg"
       }
     }
   ]
