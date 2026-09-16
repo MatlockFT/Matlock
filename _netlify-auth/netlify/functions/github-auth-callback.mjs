@@ -11,6 +11,7 @@ import {
   stateSecret,
   verifyGitHubToken
 } from './_github-auth.mjs';
+import { createWriterSession } from './_writer-session.mjs';
 
 export default async function handler(request) {
   if (request.method !== 'GET') {
@@ -95,15 +96,22 @@ export default async function handler(request) {
     }
 
     const verified = await verifyGitHubToken(tokenData.access_token);
+    const writerSessionId = await createWriterSession({
+      token: tokenData.access_token,
+      login: verified.login,
+      repo: verified.repo,
+      expiresIn: tokenData.expires_in || null,
+      refreshToken: tokenData.refresh_token || '',
+      refreshTokenExpiresIn: tokenData.refresh_token_expires_in || null
+    });
 
     return popupResponse({
       origin: session.origin,
       payload: {
         ok: true,
-        token: tokenData.access_token,
+        sessionId: writerSessionId,
         login: verified.login,
-        repo: verified.repo,
-        expiresIn: tokenData.expires_in || null
+        repo: verified.repo
       }
     });
   } catch (error) {
