@@ -1,0 +1,38 @@
+name: Writer HTML block run
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/writer-html-block-run.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.12.0"
+      - name: Apply Writer HTML block patch
+        run: |
+          python .github/scripts/patch_writer_html_blocks.py
+          node --check assets/writer.js
+          grep -q 'data-tool="html"' write.html
+          grep -q 'data-html-dialog' write.html
+          grep -q 'htmlBlocks = new Map' assets/writer.js
+          grep -q 'expandHtmlBlocks(bodyEditor.value)' assets/writer.js
+          grep -q 'writer-html-code' assets/writer.css
+      - name: Commit Writer HTML block editor
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add write.html assets/writer.js assets/writer.css
+          git commit -m "Add compact HTML visual editor to Writer"
+          git push origin HEAD:main
