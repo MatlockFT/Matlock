@@ -19,7 +19,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: site-image-optimization-${{ github.ref }}
+  group: pages
   cancel-in-progress: false
 
 jobs:
