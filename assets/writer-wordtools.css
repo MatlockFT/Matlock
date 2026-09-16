@@ -1,0 +1,100 @@
+/* Lightweight word-processor controls layered onto the Markdown Writer. */
+.writer-toolbar button[data-wordtool="undo"],
+.writer-toolbar button[data-wordtool="redo"]{color:#b8b8b9}
+.writer-toolbar button[data-wordtool="undo"]:disabled,
+.writer-toolbar button[data-wordtool="redo"]:disabled{opacity:.32;cursor:not-allowed;transform:none}
+.writer-toolbar button[data-wordtool="strike"] s{text-decoration-thickness:1.5px;text-decoration-color:currentColor}
+
+.writer-wordtools-outline{
+  margin:0 0 .55rem;
+  border:1px solid var(--writer-line);
+  border-radius:11px;
+  overflow:hidden;
+  background:linear-gradient(180deg,#101011,#0b0b0c);
+  box-shadow:0 7px 24px rgba(0,0,0,.12);
+}
+.writer-wordtools-outline>header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.75rem;
+  padding:.52rem .68rem;
+  border-bottom:1px solid rgba(255,255,255,.065);
+}
+.writer-wordtools-outline>header>div{display:flex;align-items:baseline;gap:.55rem;min-width:0}
+.writer-wordtools-outline>header strong{font-size:.72rem;color:#d7d7d5}
+.writer-wordtools-outline>header span{font-size:.64rem;color:#69696a}
+.writer-wordtools-outline nav{display:grid;max-height:220px;overflow:auto;padding:.35rem}
+.writer-wordtools-outline-item{
+  appearance:none;
+  width:100%;
+  min-width:0;
+  display:grid;
+  grid-template-columns:30px minmax(0,1fr);
+  align-items:center;
+  gap:.45rem;
+  border:0;
+  border-radius:7px;
+  background:transparent;
+  color:#b7b7b8;
+  padding:.42rem .5rem;
+  text-align:left;
+  cursor:pointer;
+}
+.writer-wordtools-outline-item:hover{background:#171718;color:#fff}
+.writer-wordtools-outline-item.level-3{padding-left:1.25rem;color:#919192}
+.writer-wordtools-outline-item>span{font-size:.55rem;font-weight:850;letter-spacing:.05em;color:#5f5f60}
+.writer-wordtools-outline-item>strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.71rem;font-weight:680}
+.writer-wordtools-outline-empty{margin:0;padding:.8rem;color:#6f6f70;font-size:.72rem}
+
+.writer-wordtools-selection-stat{
+  display:inline-flex;
+  align-items:center;
+  min-height:24px;
+  padding:.22rem .48rem;
+  border:1px solid rgba(255,255,255,.085);
+  border-radius:999px;
+  background:#0b0b0c;
+  color:#969697;
+  font-size:.66rem;
+  font-variant-numeric:tabular-nums;
+}
+
+.writer-wordtools-find-dialog{width:min(620px,calc(100vw - 2rem))}
+.writer-wordtools-find-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
+.writer-wordtools-find-options{display:flex;gap:1rem;flex-wrap:wrap;margin-top:.7rem;color:#8f8f90;font-size:.72rem}
+.writer-wordtools-find-options label{display:inline-flex;align-items:center;gap:.38rem;cursor:pointer}
+.writer-wordtools-find-options input{accent-color:#ececea}
+.writer-wordtools-find-status{min-height:1.2em;margin:.65rem 0 0;color:#777;font-size:.7rem}
+
+.writer-app.writer-wordtools-focus .writer-topbar,
+.writer-app.writer-wordtools-focus .writer-statusbar,
+.writer-app.writer-wordtools-focus .writer-meta,
+.writer-app.writer-wordtools-focus .writer-preview-pane,
+.writer-app.writer-wordtools-focus .writer-splitter{display:none!important}
+.writer-app.writer-wordtools-focus .writer-workspace{display:block!important}
+.writer-app.writer-wordtools-focus .writer-editor-pane{width:min(920px,100%);margin:0 auto}
+.writer-app.writer-wordtools-focus .writer-modebar{width:min(920px,100%);margin-left:auto;margin-right:auto}
+.writer-app.writer-wordtools-focus .writer-body-editor{min-height:68vh}
+
+body.writer-wordtools-fullscreen{overflow:hidden!important}
+body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{
+  position:fixed;
+  inset:0;
+  z-index:100000;
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:.75rem;
+  overflow:auto;
+  background:var(--writer-bg,#090909);
+}
+body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app .writer-topbar{margin-top:0}
+body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app .writer-body-editor{min-height:calc(100vh - 310px)}
+body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app.writer-wordtools-focus .writer-body-editor{min-height:calc(100vh - 145px)}
+
+@media (max-width:900px){
+  .writer-wordtools-find-grid{grid-template-columns:1fr}
+  .writer-wordtools-outline nav{max-height:180px}
+  body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{padding:.45rem}
+}
