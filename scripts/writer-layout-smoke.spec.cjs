@@ -33,9 +33,10 @@ test('Writer shell adapts to desktop and ultrawide viewports without stretching 
   expect(box.width).toBeGreaterThanOrEqual(2998);
   expect(box.width).toBeLessThanOrEqual(3002);
 
+  // Below the adaptive desktop breakpoint, preserve the existing compact shell.
   await page.setViewportSize({ width: 1024, height: 900 });
   box = await app.boundingBox();
   expect(box).not.toBeNull();
-  expect(box.width).toBeGreaterThan(980);
-  expect(box.width).toBeLessThan(1000);
+  expect(box.width).toBeGreaterThanOrEqual(950);
+  expect(box.width).toBeLessThanOrEqual(970);
 });
