@@ -1,4 +1,17 @@
 /* Writer usability layer: compact controls, active states, width modes and slash palette. */
+
+/* Let the application chrome use the display while keeping readable text widths separate. */
+.writer-app{
+  --writer-shell-max:3000px;
+  --writer-shell-gutter:clamp(16px,1.5vw,30px);
+}
+@media(min-width:1200px){
+  .writer-app{
+    width:min(var(--writer-shell-max),calc(100vw - (var(--writer-shell-gutter) * 2)));
+    max-width:none;
+  }
+}
+
 .writer-ux-toolbar{align-items:flex-start}
 .writer-ux-toolbar .writer-toolbar-group:first-child{position:relative}
 .writer-toolbar button.is-active,
