@@ -30,10 +30,10 @@
 .writer-ux-width-switcher{flex:0 0 auto}
 .writer-app[data-writer-ux-width="normal"] .writer-body-label,
 .writer-app[data-writer-ux-width="normal"] .writer-editor-dropzone,
-.writer-app[data-writer-ux-width="normal"] .writer-editor-footer{width:min(760px,100%);margin-left:auto;margin-right:auto}
+.writer-app[data-writer-ux-width="normal"] .writer-editor-footer{width:min(1200px,96%);margin-left:auto;margin-right:auto}
 .writer-app[data-writer-ux-width="wide"] .writer-body-label,
 .writer-app[data-writer-ux-width="wide"] .writer-editor-dropzone,
-.writer-app[data-writer-ux-width="wide"] .writer-editor-footer{width:min(980px,100%);margin-left:auto;margin-right:auto}
+.writer-app[data-writer-ux-width="wide"] .writer-editor-footer{width:min(1500px,100%);margin-left:auto;margin-right:auto}
 .writer-app[data-writer-ux-width="full"] .writer-body-label,
 .writer-app[data-writer-ux-width="full"] .writer-editor-dropzone,
 .writer-app[data-writer-ux-width="full"] .writer-editor-footer{width:100%;max-width:none}
