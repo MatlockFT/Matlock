@@ -1,0 +1,46 @@
+/* Writer usability layer: compact controls, active states, width modes and slash palette. */
+.writer-ux-toolbar{align-items:flex-start}
+.writer-ux-toolbar .writer-toolbar-group:first-child{position:relative}
+.writer-toolbar button.is-active,
+.writer-ux-toolbar button[aria-pressed="true"]{background:#202022;color:#f3f3f1;box-shadow:inset 0 0 0 1px rgba(255,255,255,.085)}
+.writer-ux-more{position:relative;display:inline-flex;align-items:center}
+.writer-ux-more>summary{list-style:none;min-height:29px;display:inline-flex;align-items:center;padding:.4rem .52rem;border:0;border-radius:6px;color:#a2a2a3;font-size:.69rem;cursor:pointer;user-select:none}
+.writer-ux-more>summary::-webkit-details-marker{display:none}
+.writer-ux-more>summary::after{content:"▾";font-size:.55rem;margin-left:.35rem;color:#666}
+.writer-ux-more[open]>summary,.writer-ux-more>summary:hover{background:#171718;color:#f1f1ef}
+.writer-ux-more-panel{position:absolute;top:calc(100% + 7px);right:0;z-index:80;min-width:180px;display:grid;gap:2px;padding:5px;border:1px solid rgba(255,255,255,.1);border-radius:9px;background:#0b0b0c;box-shadow:0 16px 44px rgba(0,0,0,.48)}
+.writer-ux-more-panel button{width:100%;justify-content:flex-start;text-align:left;padding:.48rem .6rem}
+.writer-ux-width-switcher{flex:0 0 auto}
+.writer-app[data-writer-ux-width="normal"] .writer-body-label,
+.writer-app[data-writer-ux-width="normal"] .writer-editor-dropzone,
+.writer-app[data-writer-ux-width="normal"] .writer-editor-footer{width:min(760px,100%);margin-left:auto;margin-right:auto}
+.writer-app[data-writer-ux-width="wide"] .writer-body-label,
+.writer-app[data-writer-ux-width="wide"] .writer-editor-dropzone,
+.writer-app[data-writer-ux-width="wide"] .writer-editor-footer{width:min(980px,100%);margin-left:auto;margin-right:auto}
+.writer-app[data-writer-ux-width="full"] .writer-body-label,
+.writer-app[data-writer-ux-width="full"] .writer-editor-dropzone,
+.writer-app[data-writer-ux-width="full"] .writer-editor-footer{width:100%;max-width:none}
+.writer-wordtools-outline.writer-ux-outline-rail{position:sticky;top:.45rem;z-index:20;box-shadow:0 12px 30px rgba(0,0,0,.26)}
+.writer-wordtools-outline.writer-ux-outline-rail nav{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2px 8px;max-height:180px}
+.writer-wordtools-outline.writer-ux-outline-rail .writer-wordtools-outline-item.level-3{margin-left:12px;width:calc(100% - 12px)}
+.writer-editor-dropzone{position:relative}
+.writer-ux-slash-menu{position:absolute;z-index:70;width:min(370px,calc(100% - 24px));max-height:286px;overflow:hidden;border:1px solid rgba(255,255,255,.11);border-radius:11px;background:#0b0b0c;box-shadow:0 18px 50px rgba(0,0,0,.52)}
+.writer-ux-slash-head,.writer-ux-slash-foot{display:flex;align-items:center;justify-content:space-between;gap:.5rem;padding:.48rem .6rem;color:#737374;font-size:.62rem}
+.writer-ux-slash-head{border-bottom:1px solid rgba(255,255,255,.065)}
+.writer-ux-slash-head strong{color:#bdbdbe;font-size:.68rem}
+.writer-ux-slash-foot{border-top:1px solid rgba(255,255,255,.055);justify-content:flex-start}
+.writer-ux-slash-list{max-height:225px;overflow:auto;padding:4px}
+.writer-ux-slash-list button{appearance:none;width:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:.7rem;align-items:center;padding:.52rem .58rem;border:0;border-radius:7px;background:transparent;color:#b7b7b8;text-align:left;cursor:pointer}
+.writer-ux-slash-list button:hover,.writer-ux-slash-list button.is-active{background:#1a1a1c;color:#f5f5f3}
+.writer-ux-slash-list button>span{min-width:0;display:flex;align-items:baseline;gap:.45rem}
+.writer-ux-slash-list strong{font-size:.72rem}
+.writer-ux-slash-list small{color:#646465;font-size:.58rem}
+.writer-ux-slash-list em{min-width:0;overflow:hidden;color:#7f7f80;font-size:.64rem;font-style:normal;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:900px){
+  .writer-ux-toolbar{overflow-x:auto;flex-wrap:nowrap!important;scrollbar-width:thin}
+  .writer-ux-toolbar>.writer-toolbar-group{flex:0 0 auto;flex-wrap:nowrap}
+  .writer-ux-width-switcher{display:none}
+  .writer-wordtools-outline.writer-ux-outline-rail{position:relative;top:auto}
+  .writer-wordtools-outline.writer-ux-outline-rail nav{grid-template-columns:1fr;max-height:180px}
+  .writer-ux-more-panel{right:auto;left:0}
+}
