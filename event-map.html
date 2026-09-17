@@ -1,14 +1,16 @@
 ---
 layout: default
 title: "MMA Event Map: Upcoming MMA Events Near You"
-description: "Explore upcoming MMA events across the United States, browse nearby fight cards, and find event dates, venues, promotions, and ticket links on the MMA Matlock Event Map."
+description: "Explore upcoming MMA events across the United States plus official Grand Sumo tournaments in Japan, with event dates, venues, promotions, and source links."
 permalink: /event-map/
 page_styles:
   - /assets/event-map.css
   - /assets/event-map-detail.css
+  - /assets/event-map-sumo.css
 page_scripts:
   - /assets/event-map-v2.js
   - /assets/event-map-deferred.js
+  - /assets/event-map-sumo.js
 ---
 
 <script>
@@ -117,6 +119,51 @@ page_scripts:
             </article>
         </aside>
     </div>
+
+    <section
+        class="event-map-sumo"
+        data-sumo-event-map
+        data-events-url="{{ '/assets/data/upcoming-events-live.json' | relative_url }}?v={{ site.asset_version }}"
+        aria-labelledby="event-map-sumo-title"
+    >
+        <header class="event-map-sumo-header">
+            <h2 id="event-map-sumo-title">GRAND SUMO / JAPAN</h2>
+            <p>Official honbasho schedule · Japan Sumo Association</p>
+        </header>
+
+        <div class="event-map-sumo-layout">
+            <div class="event-map-sumo-stage">
+                <div class="event-map-sumo-loading" data-sumo-map-loading>Loading Grand Sumo map…</div>
+                <svg
+                    class="event-map-sumo-svg"
+                    data-sumo-map-svg
+                    viewBox="0 0 720 440"
+                    role="img"
+                    aria-label="Japan map with upcoming Grand Sumo tournament venue pins"
+                ></svg>
+            </div>
+
+            <aside class="event-map-sumo-detail" aria-live="polite">
+                <div class="event-map-sumo-detail-topline">
+                    <span>HONBASHO</span>
+                    <span>15 DAYS</span>
+                </div>
+                <h3 data-sumo-detail-title>Grand Sumo</h3>
+                <p data-sumo-detail-dates></p>
+                <p data-sumo-detail-venue></p>
+                <p data-sumo-detail-city></p>
+                <a
+                    class="event-map-sumo-source"
+                    data-sumo-detail-source
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    hidden
+                >Official JSA schedule</a>
+                <p class="event-map-sumo-empty" data-sumo-empty hidden></p>
+                <div class="event-map-sumo-list" data-sumo-event-list></div>
+            </aside>
+        </div>
+    </section>
 
     <section class="event-map-results" aria-labelledby="event-map-results-title">
         <header>
