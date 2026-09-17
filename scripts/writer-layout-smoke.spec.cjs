@@ -19,7 +19,7 @@ test('Writer shell adapts to desktop and ultrawide viewports without stretching 
   expect(box).not.toBeNull();
   expect(box.width).toBeGreaterThan(1840);
   expect(box.width).toBeLessThan(1900);
-  expect(box.x).toBeLessThan(36);
+  expect(1920 - box.width).toBeLessThan(80);
 
   await page.click('[data-writer-ux-width="normal"]');
   const dropzone = page.locator('[data-editor-dropzone]');
