@@ -11,6 +11,20 @@ async function openWriter(page) {
   return app;
 }
 
+async function expectCenteredWithoutOverflow(page, box) {
+  const viewport = await page.evaluate(() => ({
+    clientWidth: document.documentElement.clientWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+  }));
+  const leftGap = box.x;
+  const rightGap = viewport.clientWidth - (box.x + box.width);
+
+  expect(leftGap).toBeGreaterThanOrEqual(0);
+  expect(rightGap).toBeGreaterThanOrEqual(0);
+  expect(Math.abs(leftGap - rightGap)).toBeLessThanOrEqual(2);
+  expect(viewport.scrollWidth - viewport.clientWidth).toBeLessThanOrEqual(1);
+}
+
 test('Writer shell adapts to desktop and ultrawide viewports without stretching normal text', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   const app = await openWriter(page);
@@ -20,6 +34,7 @@ test('Writer shell adapts to desktop and ultrawide viewports without stretching 
   expect(box.width).toBeGreaterThan(1840);
   expect(box.width).toBeLessThan(1900);
   expect(1920 - box.width).toBeLessThan(80);
+  await expectCenteredWithoutOverflow(page, box);
 
   await page.click('[data-writer-ux-width="normal"]');
   const dropzone = page.locator('[data-editor-dropzone]');
@@ -32,6 +47,7 @@ test('Writer shell adapts to desktop and ultrawide viewports without stretching 
   expect(box).not.toBeNull();
   expect(box.width).toBeGreaterThanOrEqual(2998);
   expect(box.width).toBeLessThanOrEqual(3002);
+  await expectCenteredWithoutOverflow(page, box);
 
   // Below the adaptive desktop breakpoint, preserve the existing compact shell.
   await page.setViewportSize({ width: 1024, height: 900 });
@@ -39,4 +55,5 @@ test('Writer shell adapts to desktop and ultrawide viewports without stretching 
   expect(box).not.toBeNull();
   expect(box.width).toBeGreaterThanOrEqual(950);
   expect(box.width).toBeLessThanOrEqual(970);
+  await expectCenteredWithoutOverflow(page, box);
 });
