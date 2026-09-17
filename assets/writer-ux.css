@@ -6,8 +6,12 @@
   --writer-shell-gutter:clamp(16px,1.5vw,30px);
 }
 @media(min-width:1200px){
+  .site-main:has(> .writer-app){
+    width:100%;
+    max-width:none;
+  }
   .writer-app{
-    width:min(var(--writer-shell-max),calc(100vw - (var(--writer-shell-gutter) * 2)));
+    width:min(var(--writer-shell-max),calc(100% - (var(--writer-shell-gutter) * 2)));
     max-width:none;
   }
 }
