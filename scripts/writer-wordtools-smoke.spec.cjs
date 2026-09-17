@@ -15,7 +15,8 @@ async function openArticleEditor(page) {
 async function openMore(page) {
   const more = page.locator('[data-writer-ux-more]');
   await expect(more).toHaveCount(1);
-  if (!(await more.getAttribute('open'))) await more.locator('summary').click();
+  const isOpen = await more.evaluate(element => element.open);
+  if (!isOpen) await more.locator('summary').click();
   await expect(more.locator('.writer-ux-more-panel')).toBeVisible();
 }
 
@@ -245,7 +246,7 @@ test('Writer usability layer keeps long-form editing compact and predictable', a
   const outline = page.locator('[data-wordtools-outline]');
   if (!(await outline.isVisible())) await page.click('[data-wordtool="outline"]');
   await expect(outline).toBeVisible();
-  expect(await page.evaluate(() => localStorage.getItem('mma-writer-outline-open'))).toBe('1');
+  await expect.poll(() => page.evaluate(() => localStorage.getItem('mma-writer-outline-open'))).toBe('1');
   await expect(outline).toHaveClass(/writer-ux-outline-rail/);
   await expect(outline.locator('.writer-wordtools-outline-item.level-3')).toContainText('Two');
 
