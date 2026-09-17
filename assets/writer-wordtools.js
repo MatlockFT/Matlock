@@ -18,18 +18,14 @@
   let lastInputType = '';
   let outlineTimer = 0;
 
-  function snapshot() {
-    return {
-      value: editor.value,
-      start: editor.selectionStart,
-      end: editor.selectionEnd,
-      scrollTop: editor.scrollTop
-    };
-  }
+  const snapshot = () => ({
+    value: editor.value,
+    start: editor.selectionStart,
+    end: editor.selectionEnd,
+    scrollTop: editor.scrollTop
+  });
 
-  function sameSnapshot(a, b) {
-    return Boolean(a && b && a.value === b.value && a.start === b.start && a.end === b.end);
-  }
+  const sameSnapshot = (a, b) => Boolean(a && b && a.value === b.value && a.start === b.start && a.end === b.end);
 
   function pushUndo(state = snapshot()) {
     const previous = undoStack[undoStack.length - 1];
@@ -37,7 +33,6 @@
     undoStack.push(state);
     if (undoStack.length > MAX_HISTORY) undoStack.shift();
     redoStack.length = 0;
-    updateHistoryButtons();
   }
 
   function applySnapshot(state) {
@@ -51,6 +46,7 @@
     applyingHistory = false;
     scheduleOutline();
     updateSelectionStat();
+    updateOutlineActive();
   }
 
   function undo() {
@@ -59,7 +55,6 @@
     const target = undoStack.pop();
     if (!sameSnapshot(current, target)) redoStack.push(current);
     applySnapshot(target);
-    updateHistoryButtons();
   }
 
   function redo() {
@@ -68,13 +63,13 @@
     const target = redoStack.pop();
     undoStack.push(current);
     applySnapshot(target);
-    updateHistoryButtons();
   }
 
   function dispatchEdit() {
     editor.dispatchEvent(new Event('input', { bubbles: true }));
     scheduleOutline();
     updateSelectionStat();
+    updateOutlineActive();
   }
 
   function lineBounds(start = editor.selectionStart, end = editor.selectionEnd) {
@@ -100,9 +95,8 @@
   function toggleHeading(level) {
     replaceLines(lines => lines.map(line => {
       const stripped = line.replace(/^\s{0,3}#{1,6}\s+/, '');
-      const prefix = '#'.repeat(level) + ' ';
       if (new RegExp(`^\\s{0,3}#{${level}}\\s+`).test(line)) return stripped;
-      return prefix + stripped;
+      return `${'#'.repeat(level)} ${stripped}`;
     }));
   }
 
@@ -134,6 +128,34 @@
     });
   }
 
+  function isMarkdownBlockLine(line) {
+    return /^\s*(?:[-*+]\s+|\d+[.)]\s+|>\s?)/.test(line);
+  }
+
+  function selectionIsMarkdownBlock() {
+    const { lineStart, lineEnd } = lineBounds();
+    const lines = editor.value.slice(lineStart, lineEnd).split('\n').filter(line => line.trim());
+    return lines.length > 0 && lines.every(isMarkdownBlockLine);
+  }
+
+  function indentMarkdown() {
+    replaceLines(lines => lines.map(line => {
+      if (!line.trim()) return line;
+      if (/^\s*>\s?/.test(line)) return line.replace(/^(\s*)/, '$1> ');
+      if (/^\s*(?:[-*+]\s+|\d+[.)]\s+)/.test(line)) return `  ${line}`;
+      return line;
+    }));
+  }
+
+  function outdentMarkdown() {
+    replaceLines(lines => lines.map(line => {
+      if (!line.trim()) return line;
+      if (/^\s*>\s?/.test(line)) return line.replace(/^(\s*)>\s?/, '$1');
+      if (/^ {1,2}(?=(?:[-*+]\s+|\d+[.)]\s+))/.test(line)) return line.replace(/^ {1,2}/, '');
+      return line;
+    }));
+  }
+
   function toggleWrap(marker, placeholder) {
     pushUndo();
     const start = editor.selectionStart;
@@ -147,11 +169,97 @@
     } else {
       const content = selected || placeholder;
       editor.setRangeText(`${marker}${content}${marker}`, start, end, 'end');
-      const contentStart = start + marker.length;
-      editor.setSelectionRange(contentStart, contentStart + content.length);
+      editor.setSelectionRange(start + marker.length, start + marker.length + content.length);
     }
     editor.focus();
     dispatchEdit();
+  }
+
+  function stripMarkdown(text) {
+    return String(text || '')
+      .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1')
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/\*\*([\s\S]*?)\*\*/g, '$1')
+      .replace(/__([\s\S]*?)__/g, '$1')
+      .replace(/~~([\s\S]*?)~~/g, '$1')
+      .replace(/`([^`]+)`/g, '$1')
+      .replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1$2')
+      .replace(/(^|[^_])_([^_\n]+)_(?!_)/g, '$1$2')
+      .replace(/^\s{0,3}#{1,6}\s+/gm, '')
+      .replace(/^\s*>\s?/gm, '')
+      .replace(/^\s*(?:[-*+]\s+|\d+[.)]\s+)/gm, '');
+  }
+
+  function clearFormatting() {
+    pushUndo();
+    let start = editor.selectionStart;
+    let end = editor.selectionEnd;
+    if (start === end) {
+      const bounds = lineBounds(start, end);
+      start = bounds.lineStart;
+      end = bounds.lineEnd;
+    }
+    const next = stripMarkdown(editor.value.slice(start, end));
+    editor.setRangeText(next, start, end, 'select');
+    editor.focus();
+    dispatchEdit();
+  }
+
+  function paragraphRanges(value) {
+    const ranges = [];
+    const lines = value.split('\n');
+    let offset = 0;
+    let start = null;
+    for (const line of lines) {
+      if (line.trim()) {
+        if (start === null) start = offset;
+      } else if (start !== null) {
+        ranges.push({ start, end: Math.max(start, offset - 1) });
+        start = null;
+      }
+      offset += line.length + 1;
+    }
+    if (start !== null) ranges.push({ start, end: value.length });
+    return ranges;
+  }
+
+  function paragraphIndexAt(ranges, position) {
+    let exact = ranges.findIndex(range => position >= range.start && position <= range.end);
+    if (exact !== -1) return exact;
+    exact = ranges.findIndex(range => range.start > position);
+    return exact === -1 ? ranges.length - 1 : exact;
+  }
+
+  function moveParagraph(direction) {
+    const value = editor.value;
+    const ranges = paragraphRanges(value);
+    if (ranges.length < 2) return;
+    const index = paragraphIndexAt(ranges, editor.selectionStart);
+    const otherIndex = index + direction;
+    if (index < 0 || otherIndex < 0 || otherIndex >= ranges.length) return;
+    const current = ranges[index];
+    if (editor.selectionEnd > current.end) return;
+    const other = ranges[otherIndex];
+    pushUndo();
+    const relativeStart = editor.selectionStart - current.start;
+    const relativeEnd = editor.selectionEnd - current.start;
+
+    if (direction < 0) {
+      const separator = value.slice(other.end, current.start);
+      const replacement = value.slice(current.start, current.end) + separator + value.slice(other.start, other.end);
+      editor.value = value.slice(0, other.start) + replacement + value.slice(current.end);
+      editor.setSelectionRange(other.start + relativeStart, other.start + relativeEnd);
+    } else {
+      const separator = value.slice(current.end, other.start);
+      const currentText = value.slice(current.start, current.end);
+      const otherText = value.slice(other.start, other.end);
+      editor.value = value.slice(0, current.start) + otherText + separator + currentText + value.slice(other.end);
+      const newStart = current.start + otherText.length + separator.length;
+      editor.setSelectionRange(newStart + relativeStart, newStart + relativeEnd);
+    }
+    editor.focus({ preventScroll: true });
+    dispatchEdit();
+    scrollEditorToOffset(editor.selectionStart);
   }
 
   function countWords(text) {
@@ -215,6 +323,26 @@
     outlineList.innerHTML = headings.map((item, index) => (
       `<button type="button" class="writer-wordtools-outline-item level-${item.level}" data-wordtools-outline-offset="${item.offset}"><span>${item.level === 2 ? 'H2' : 'H3'}</span><strong>${escapeHtml(item.text || `Section ${index + 1}`)}</strong></button>`
     )).join('');
+    updateOutlineActive();
+  }
+
+  function updateOutlineActive() {
+    if (!outlineList) return;
+    const buttons = [...outlineList.querySelectorAll('[data-wordtools-outline-offset]')];
+    if (!buttons.length) return;
+    const caret = editor.selectionStart;
+    let active = buttons[0];
+    for (const button of buttons) {
+      if ((Number(button.dataset.wordtoolsOutlineOffset) || 0) <= caret) active = button;
+      else break;
+    }
+    for (const button of buttons) {
+      const selected = button === active;
+      button.classList.toggle('is-active', selected);
+      if (selected) button.setAttribute('aria-current', 'location');
+      else button.removeAttribute('aria-current');
+    }
+    if (!outlinePanel.hidden && active) active.scrollIntoView({ block: 'nearest' });
   }
 
   function safeLink(url) {
@@ -226,10 +354,14 @@
   function cleanPastedText(text) {
     return String(text || '')
       .replace(/\r\n?/g, '\n')
+      .replace(/[\u2028\u2029]/g, '\n')
       .replace(/[\u00a0\u2007\u202f]/g, ' ')
-      .replace(/[\u200b\ufeff]/g, '')
+      .replace(/[\u00ad\u200b\ufeff]/g, '')
+      .replace(/[\v\f]/g, '')
       .replace(/\t/g, '  ')
-      .replace(/[ \t]+$/gm, '')
+      .split('\n')
+      .map(line => line.replace(/^(\s*)[•◦▪‣]\s+/, '$1- ').replace(/[ \t]+$/g, ''))
+      .join('\n')
       .replace(/\n{3,}/g, '\n\n');
   }
 
@@ -256,7 +388,7 @@
       clone.querySelectorAll(':scope > ul, :scope > ol').forEach(list => list.remove());
       const body = cleanPastedText(renderChildren(clone)).replace(/\n+/g, ' ').trim();
       const nested = [...node.children]
-        .filter(child => ['UL','OL'].includes(child.tagName))
+        .filter(child => ['UL', 'OL'].includes(child.tagName))
         .map(child => renderNode(child).split('\n').filter(Boolean).map(line => `  ${line}`).join('\n'))
         .filter(Boolean)
         .join('\n');
@@ -268,8 +400,9 @@
       if (node.nodeType !== Node.ELEMENT_NODE) return '';
       const tag = node.tagName.toLowerCase();
       const children = () => renderChildren(node);
-      if (['script','style','meta','link','svg'].includes(tag)) return '';
+      if (['script', 'style', 'meta', 'link', 'svg', 'iframe'].includes(tag)) return '';
       if (tag === 'br') return '\n';
+      if (['mark', 'u', 'small', 'sup', 'sub'].includes(tag)) return children();
       if (tag === 'span') {
         let value = children();
         const style = String(node.getAttribute('style') || '').toLowerCase();
@@ -278,9 +411,9 @@
         if (/text-decoration[^;]*line-through/.test(style)) value = `~~${value.trim()}~~`;
         return value;
       }
-      if (['strong','b'].includes(tag)) return `**${children().trim()}**`;
-      if (['em','i'].includes(tag)) return `*${children().trim()}*`;
-      if (['s','strike','del'].includes(tag)) return `~~${children().trim()}~~`;
+      if (['strong', 'b'].includes(tag)) return `**${children().trim()}**`;
+      if (['em', 'i'].includes(tag)) return `*${children().trim()}*`;
+      if (['s', 'strike', 'del'].includes(tag)) return `~~${children().trim()}~~`;
       if (tag === 'code' && node.parentElement?.tagName.toLowerCase() !== 'pre') return `\`${children().trim()}\``;
       if (tag === 'pre') return `\n\n\`\`\`\n${cleanPastedText(node.textContent).trim()}\n\`\`\`\n\n`;
       if (/^h[1-6]$/.test(tag)) return `\n\n${'#'.repeat(Number(tag.slice(1)))} ${cleanPastedText(node.textContent).trim()}\n\n`;
@@ -294,12 +427,14 @@
         if (!src) return '';
         return `![${cleanPastedText(node.getAttribute('alt') || '')}](${src})`;
       }
+      if (tag === 'figcaption') return `\n*${cleanPastedText(children()).trim()}*\n`;
+      if (tag === 'figure') return `\n\n${children().trim()}\n\n`;
       if (tag === 'blockquote') return `\n\n${cleanPastedText(children()).trim().split('\n').map(line => `> ${line}`).join('\n')}\n\n`;
       if (tag === 'ul') return `\n${[...node.children].filter(child => child.tagName === 'LI').map(child => renderListItem(child, '- ')).join('\n')}\n`;
       if (tag === 'ol') return `\n${[...node.children].filter(child => child.tagName === 'LI').map((child, index) => renderListItem(child, `${index + 1}. `)).join('\n')}\n`;
       if (tag === 'table') return `\n\n${tableToMarkdown(node)}\n\n`;
       if (tag === 'hr') return '\n\n---\n\n';
-      if (['p','div','section','article','header','footer','aside'].includes(tag)) return `\n\n${children().trim()}\n\n`;
+      if (['p', 'div', 'section', 'article', 'header', 'footer', 'aside'].includes(tag)) return `\n\n${children().trim()}\n\n`;
       return children();
     }
 
@@ -354,6 +489,7 @@
     scrollEditorToOffset(match.index);
     updateFindStatus(wrapped ? 'Wrapped to the first match.' : 'Match selected.');
     updateSelectionStat();
+    updateOutlineActive();
     return match;
   }
 
@@ -414,7 +550,10 @@
     const open = outlinePanel.hidden;
     outlinePanel.hidden = !open;
     outlineButton.setAttribute('aria-pressed', String(open));
-    if (open) renderOutline();
+    if (open) {
+      renderOutline();
+      updateOutlineActive();
+    }
   }
 
   function updateSelectionStat() {
@@ -427,22 +566,20 @@
     selectionStat.textContent = `${words.toLocaleString()} ${words === 1 ? 'word' : 'words'} · ${selected.length.toLocaleString()} chars selected`;
   }
 
-  function updateHistoryButtons() {
-    undoButton.disabled = undoStack.length === 0;
-    redoButton.disabled = redoStack.length === 0;
-  }
-
-  primaryGroup.querySelector('[data-insert="h2"]')?.insertAdjacentHTML('beforebegin', `
-    <button type="button" data-wordtool="undo" title="Undo (Ctrl/Cmd+Z)" aria-label="Undo">Undo</button>
-    <button type="button" data-wordtool="redo" title="Redo (Ctrl/Cmd+Shift+Z)" aria-label="Redo">Redo</button>
-  `);
   primaryGroup.querySelector('[data-insert="h2"]')?.insertAdjacentHTML('afterend', '<button type="button" data-wordtool="h3" title="Heading 3">H3</button>');
   primaryGroup.querySelector('[data-insert="italic"]')?.insertAdjacentHTML('afterend', '<button type="button" data-wordtool="strike" title="Strikethrough"><s>S</s></button>');
   primaryGroup.querySelector('[data-insert="quote"]')?.insertAdjacentHTML('beforebegin', `
-    <button type="button" data-wordtool="bullets" title="Bulleted list">• List</button>
-    <button type="button" data-wordtool="numbers" title="Numbered list">1. List</button>
+    <button type="button" data-wordtool="bullets" title="Bulleted list (Ctrl/Cmd+Shift+8)">• List</button>
+    <button type="button" data-wordtool="numbers" title="Numbered list (Ctrl/Cmd+Shift+7)">1. List</button>
+    <button type="button" data-wordtool="outdent" title="Outdent list or quote (Shift+Tab)">Outdent</button>
+    <button type="button" data-wordtool="indent" title="Indent list or quote (Tab)">Indent</button>
   `);
-  primaryGroup.insertAdjacentHTML('beforeend', '<button type="button" data-wordtool="find" title="Find and replace (Ctrl/Cmd+F)">Find</button>');
+  primaryGroup.insertAdjacentHTML('beforeend', `
+    <button type="button" data-wordtool="clear" title="Clear Markdown formatting (Ctrl/Cmd+Space)">Clear</button>
+    <button type="button" data-wordtool="move-up" title="Move paragraph up (Alt+Shift+Up)">↑ Para</button>
+    <button type="button" data-wordtool="move-down" title="Move paragraph down (Alt+Shift+Down)">↓ Para</button>
+    <button type="button" data-wordtool="find" title="Find and replace (Ctrl/Cmd+H)">Replace</button>
+  `);
 
   modeActions.insertAdjacentHTML('afterbegin', `
     <button class="writer-text-button" type="button" data-wordtool="outline" aria-pressed="false">Outline</button>
@@ -485,8 +622,6 @@
     </dialog>
   `);
 
-  const undoButton = app.querySelector('[data-wordtool="undo"]');
-  const redoButton = app.querySelector('[data-wordtool="redo"]');
   const outlineButton = app.querySelector('[data-wordtool="outline"]');
   const focusButton = app.querySelector('[data-wordtool="focus"]');
   const fullscreenButton = app.querySelector('[data-wordtool="fullscreen"]');
@@ -499,22 +634,31 @@
   const replaceInput = app.querySelector('[data-wordtools-replace]');
   const findStatus = app.querySelector('[data-wordtools-find-status]');
 
-  updateHistoryButtons();
+  const style = document.createElement('style');
+  style.dataset.writerWordtoolsEnhancements = '';
+  style.textContent = `
+    .writer-wordtools-outline-item.level-3{margin-left:18px;width:calc(100% - 18px)}
+    .writer-wordtools-outline-item.is-active{box-shadow:inset 3px 0 0 currentColor;background:rgba(255,255,255,.07)}
+  `;
+  document.head.appendChild(style);
+
   renderOutline();
 
   app.addEventListener('click', event => {
     const button = event.target.closest('[data-wordtool]');
     if (!button) return;
     const action = button.dataset.wordtool;
-    if (action === 'undo') undo();
-    else if (action === 'redo') redo();
-    else if (action === 'h3') toggleHeading(3);
+    if (action === 'h3') toggleHeading(3);
     else if (action === 'strike') toggleWrap('~~', 'strikethrough text');
     else if (action === 'bullets') toggleBullets();
     else if (action === 'numbers') toggleNumbered();
-    else if (action === 'find') openFindDialog(false);
-    else if (action === 'outline') toggleOutline();
-    else if (action === 'outline-close') toggleOutline();
+    else if (action === 'indent') indentMarkdown();
+    else if (action === 'outdent') outdentMarkdown();
+    else if (action === 'clear') clearFormatting();
+    else if (action === 'move-up') moveParagraph(-1);
+    else if (action === 'move-down') moveParagraph(1);
+    else if (action === 'find') openFindDialog(true);
+    else if (action === 'outline' || action === 'outline-close') toggleOutline();
     else if (action === 'focus') toggleFocusMode();
     else if (action === 'fullscreen') toggleFullscreen();
   });
@@ -527,6 +671,7 @@
     editor.setSelectionRange(offset, offset);
     scrollEditorToOffset(offset);
     updateSelectionStat();
+    updateOutlineActive();
   });
 
   app.querySelector('[data-wordtools-find-next]').addEventListener('click', () => findNext());
@@ -538,7 +683,7 @@
   editor.addEventListener('beforeinput', event => {
     if (applyingHistory || event.inputType === 'historyUndo' || event.inputType === 'historyRedo') return;
     const now = Date.now();
-    const typing = ['insertText','deleteContentBackward','deleteContentForward'].includes(event.inputType);
+    const typing = ['insertText', 'deleteContentBackward', 'deleteContentForward'].includes(event.inputType);
     const shouldCheckpoint = !typing || event.inputType !== lastInputType || now - lastTypingCheckpoint > 900;
     if (shouldCheckpoint) pushUndo(snapshot());
     if (typing) lastTypingCheckpoint = now;
@@ -549,16 +694,20 @@
     if (applyingHistory) return;
     scheduleOutline();
     updateSelectionStat();
+    updateOutlineActive();
   });
 
-  ['select','keyup','mouseup'].forEach(type => editor.addEventListener(type, updateSelectionStat));
+  ['select', 'keyup', 'mouseup'].forEach(type => editor.addEventListener(type, () => {
+    updateSelectionStat();
+    updateOutlineActive();
+  }));
 
   app.addEventListener('pointerdown', event => {
     if (!event.target.closest('button')) return;
     if (event.target.closest('[data-wordtool]')) return;
     if (event.target.closest('[data-insert],[data-link-insert],[data-youtube-insert],[data-image-insert],[data-html-insert],[data-html-delete],[data-table-insert],[data-tale-insert],[data-pick-insert],[data-template]')) {
       pushUndo(snapshot());
-      window.setTimeout(() => scheduleOutline(), 0);
+      window.setTimeout(scheduleOutline, 0);
     }
   }, true);
 
@@ -567,7 +716,7 @@
     const html = event.clipboardData?.getData('text/html') || '';
     if (!plain && !html) return;
     if (/^\s*<section\b[\s\S]*<\/section>\s*$/i.test(plain.trim())) return;
-    const converted = html && /<(?:p|div|h[1-6]|strong|b|em|i|ul|ol|table|a|blockquote|s|strike|del)\b/i.test(html)
+    const converted = html && /<(?:p|div|figure|figcaption|h[1-6]|strong|b|em|i|ul|ol|table|a|blockquote|s|strike|del)\b/i.test(html)
       ? htmlToMarkdown(html)
       : cleanPastedText(plain);
     if (!converted) return;
@@ -579,11 +728,7 @@
     const modifier = event.metaKey || event.ctrlKey;
     const key = event.key.toLowerCase();
     const editing = !editorView?.hidden && (document.activeElement === editor || app.contains(document.activeElement));
-    if (modifier && editing && key === 'f') {
-      event.preventDefault();
-      openFindDialog(false);
-      return;
-    }
+
     if (modifier && editing && key === 'h') {
       event.preventDefault();
       openFindDialog(true);
@@ -597,6 +742,36 @@
     if (modifier && document.activeElement === editor && key === 'y') {
       event.preventDefault();
       redo();
+      return;
+    }
+    if (modifier && event.shiftKey && document.activeElement === editor && key === '7') {
+      event.preventDefault();
+      toggleNumbered();
+      return;
+    }
+    if (modifier && event.shiftKey && document.activeElement === editor && key === '8') {
+      event.preventDefault();
+      toggleBullets();
+      return;
+    }
+    if (modifier && document.activeElement === editor && event.code === 'Space') {
+      event.preventDefault();
+      clearFormatting();
+      return;
+    }
+    if (event.altKey && event.shiftKey && document.activeElement === editor && event.key === 'ArrowUp') {
+      event.preventDefault();
+      moveParagraph(-1);
+      return;
+    }
+    if (event.altKey && event.shiftKey && document.activeElement === editor && event.key === 'ArrowDown') {
+      event.preventDefault();
+      moveParagraph(1);
+      return;
+    }
+    if (document.activeElement === editor && event.key === 'Tab' && selectionIsMarkdownBlock()) {
+      event.preventDefault();
+      if (event.shiftKey) outdentMarkdown(); else indentMarkdown();
       return;
     }
     if (event.key === 'Escape') {
