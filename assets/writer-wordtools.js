@@ -185,9 +185,9 @@
       .replace(/`([^`]+)`/g, '$1')
       .replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1$2')
       .replace(/(^|[^_])_([^_\n]+)_(?!_)/g, '$1$2')
-      .replace(/^\s{0,3}#{1,6}\s+/gm, '')
-      .replace(/^\s*>\s?/gm, '')
-      .replace(/^\s*(?:[-*+]\s+|\d+[.)]\s+)/gm, '');
+      .replace(/^[ \t]{0,3}#{1,6}[ \t]+/gm, '')
+      .replace(/^[ \t]*>[ \t]?/gm, '')
+      .replace(/^[ \t]*(?:[-*+][ \t]+|\d+[.)][ \t]+)/gm, '');
   }
 
   function clearFormatting() {
