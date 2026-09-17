@@ -1,9 +1,9 @@
 (() => {
-  const version = '20260917-ux1';
+  const version = '20260917-splitflow1';
   const head = document.head;
 
   function loadStyle(href) {
-    if (document.querySelector('link[data-writer-ux-style]')) return;
+    if (document.querySelector(`link[href^="${href}"]`)) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = `${href}?v=${version}`;
@@ -23,7 +23,9 @@
   }
 
   loadStyle('/assets/writer-ux.css');
+  loadStyle('/assets/writer-splitflow.css');
   loadScript('/assets/writer-wordtools-core.js')
     .then(() => loadScript('/assets/writer-ux.js'))
+    .then(() => loadScript('/assets/writer-splitflow.js'))
     .catch(error => console.error('[Writer]', error));
 })();

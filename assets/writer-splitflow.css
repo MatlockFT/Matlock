@@ -1,0 +1,52 @@
+/* Long-form split workflow: taller panes, sticky formatting controls and preview navigation. */
+.writer-splitflow{
+  --writer-splitflow-pane-height:clamp(620px,calc(100vh - 160px),980px);
+}
+
+@media(min-width:1101px){
+  .writer-splitflow .writer-toolbar{
+    position:sticky;
+    top:8px;
+    z-index:34;
+    box-shadow:0 10px 26px rgba(0,0,0,.32);
+    backdrop-filter:blur(12px);
+  }
+
+  .writer-splitflow .writer-editor-dropzone{
+    height:var(--writer-splitflow-pane-height);
+  }
+
+  .writer-splitflow .writer-body-editor{
+    width:100%;
+    height:100%;
+    min-height:0;
+    resize:none;
+  }
+
+  .writer-splitflow .writer-preview-pane{
+    height:var(--writer-splitflow-pane-height);
+    min-height:0;
+    overscroll-behavior:contain;
+  }
+}
+
+.writer-splitflow-sync[aria-pressed="true"]{
+  color:#f2f2ef;
+  background:#171718;
+}
+
+.writer-splitflow [data-preview-content] h2,
+.writer-splitflow [data-preview-content] h3{
+  cursor:pointer;
+}
+
+.writer-splitflow [data-preview-content] h2:hover,
+.writer-splitflow [data-preview-content] h3:hover{
+  text-decoration:underline;
+  text-decoration-thickness:1px;
+  text-underline-offset:4px;
+}
+
+@media(max-width:1100px){
+  .writer-splitflow-sync{display:none}
+}
