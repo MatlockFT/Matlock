@@ -25,7 +25,7 @@ async function expectCenteredWithoutOverflow(page, box) {
   expect(viewport.scrollWidth - viewport.clientWidth).toBeLessThanOrEqual(1);
 }
 
-test('Writer shell adapts to desktop and ultrawide viewports without stretching normal text', async ({ page }) => {
+test('Writer shell and editing surface adapt to desktop and ultrawide viewports', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   const app = await openWriter(page);
 
@@ -37,10 +37,15 @@ test('Writer shell adapts to desktop and ultrawide viewports without stretching 
   await expectCenteredWithoutOverflow(page, box);
 
   await page.click('[data-writer-ux-width="normal"]');
+  const editorPane = page.locator('.writer-editor-pane');
   const dropzone = page.locator('[data-editor-dropzone]');
+  const editorPaneBox = await editorPane.boundingBox();
   const normalBox = await dropzone.boundingBox();
+  expect(editorPaneBox).not.toBeNull();
   expect(normalBox).not.toBeNull();
-  expect(normalBox.width).toBeLessThanOrEqual(762);
+  const expectedNormalWidth = Math.min(1200, editorPaneBox.width * 0.96);
+  expect(normalBox.width).toBeGreaterThan(850);
+  expect(Math.abs(normalBox.width - expectedNormalWidth)).toBeLessThanOrEqual(3);
 
   await page.setViewportSize({ width: 3440, height: 1200 });
   box = await app.boundingBox();
