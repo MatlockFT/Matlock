@@ -222,7 +222,6 @@
       "latitude": 44.7133,
       "longitude": -93.4227,
       "poster_url": "https://www.lfa.com/wp-content/uploads/2026/07/LFA-242-Standard-Poster-WEB-scaled.jpg",
-      "ticket_url": "https://www.nitrotickets.com/event/1257/lfa-mystic-lake-0918",
       "city": "Prior Lake",
       "state": "MN",
       "state_code": "MN",
@@ -1242,19 +1241,25 @@
       "map_dataset": "regional"
     },
     {
-      "id": "sherdog-fusion-fight-league-billings-2026-09-26-billings",
+      "id": "sherdog-fusion-fight-league-willis-vs-angelos-2026-09-26-billings",
       "promotion": "Fusion Fight League",
       "promotion_key": "sherdog_discovery",
-      "title": "Fusion Fight League: Billings",
+      "title": "Fusion Fight League: Willis vs. Angelos",
       "date": "2026-09-26",
       "venue": "First Interstate Arena",
       "location": "Billings, MT",
       "broadcast": "",
-      "official_url": "https://www.sherdog.com/events/Fusion-Fight-League-Billings-114527",
+      "official_url": "https://www.sherdog.com/events/Fusion-Fight-League-Willis-vs-Angelos-114527",
       "regional": true,
       "level": "regional",
       "source_key": "sherdog_discovery",
       "source_label": "Sherdog regional discovery",
+      "main_event": {
+        "fighters": [
+          "Willis",
+          "Angelos"
+        ]
+      },
       "city": "Billings",
       "state": "MT",
       "state_code": "MT",
