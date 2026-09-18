@@ -1,7 +1,21 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T11:56:03.338Z",
+  "generated_at": "2026-09-18T19:08:05.927Z",
   "changes": [
+    {
+      "id": "2026-09-18T19:08:05.927Z|ufc-fight-night-2026-10-31-fight-card|title_changed|1",
+      "at": "2026-09-18T19:08:05.927Z",
+      "type": "title_changed",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Moicano vs Nolan",
+      "event_date": "2026-10-31",
+      "summary": "UFC Fight Night Moicano vs Nolan: title changed.",
+      "details": {
+        "from": "ファイトナイト・ラスベガス123",
+        "to": "Moicano vs Nolan"
+      }
+    },
     {
       "id": "2026-09-18T11:56:03.338Z|ufc-2026-10-31-123|title_changed|1",
       "at": "2026-09-18T11:56:03.338Z",
@@ -4647,21 +4661,6 @@
         "order": 5,
         "section": "Fight Card",
         "weight_class": "66.0 kg"
-      }
-    },
-    {
-      "id": "2026-08-30T08:19:12.679Z|rizin-rizin-landmark-16-in-nagasaki-2026-10-03|bout_added|7",
-      "at": "2026-08-30T08:19:12.679Z",
-      "type": "bout_added",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
-      "promotion": "RIZIN",
-      "event_title": "RIZIN LANDMARK 16 in NAGASAKI",
-      "event_date": "2026-10-03",
-      "summary": "Hinotori vs Masatoshi Ueda added to RIZIN LANDMARK 16 in NAGASAKI.",
-      "details": {
-        "order": 6,
-        "section": "Fight Card",
-        "weight_class": "57.0 kg"
       }
     }
   ]
