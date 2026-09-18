@@ -1,7 +1,21 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T06:45:36.642Z",
+  "generated_at": "2026-09-18T11:56:03.338Z",
   "changes": [
+    {
+      "id": "2026-09-18T11:56:03.338Z|ufc-2026-10-31-123|title_changed|1",
+      "at": "2026-09-18T11:56:03.338Z",
+      "type": "title_changed",
+      "event_id": "ufc-2026-10-31-123",
+      "promotion": "UFC",
+      "event_title": "ファイトナイト・ラスベガス123",
+      "event_date": "2026-10-31",
+      "summary": "UFC ファイトナイト・ラスベガス123: title changed.",
+      "details": {
+        "from": "Moicano vs Nolan",
+        "to": "ファイトナイト・ラスベガス123"
+      }
+    },
     {
       "id": "2026-09-18T06:45:36.642Z|rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03|broadcast_changed|1",
       "at": "2026-09-18T06:45:36.642Z",
@@ -4646,21 +4660,6 @@
       "summary": "Hinotori vs Masatoshi Ueda added to RIZIN LANDMARK 16 in NAGASAKI.",
       "details": {
         "order": 6,
-        "section": "Fight Card",
-        "weight_class": "57.0 kg"
-      }
-    },
-    {
-      "id": "2026-08-30T08:19:12.679Z|rizin-rizin-landmark-16-in-nagasaki-2026-10-03|bout_added|8",
-      "at": "2026-08-30T08:19:12.679Z",
-      "type": "bout_added",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
-      "promotion": "RIZIN",
-      "event_title": "RIZIN LANDMARK 16 in NAGASAKI",
-      "event_date": "2026-10-03",
-      "summary": "杉山廣平 vs Kaito Oda added to RIZIN LANDMARK 16 in NAGASAKI.",
-      "details": {
-        "order": 7,
         "section": "Fight Card",
         "weight_class": "57.0 kg"
       }

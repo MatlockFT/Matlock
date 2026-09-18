@@ -141,10 +141,10 @@
       "confirmed_local_bouts": 9
     },
     {
-      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "event_id": "ufc-2026-10-31-123",
       "promotion": "ufc",
       "date": "2026-10-31",
-      "title": "Moicano vs Nolan",
+      "title": "ファイトナイト・ラスベガス123",
       "status": "matched",
       "verdict_event_id": "1969",
       "verdict_url": "https://verdictmma.com/event/1969",
@@ -324,6 +324,16 @@
       ]
     },
     {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-2026-10-31-123",
+      "verdict_event_id": "1969",
+      "order": 3,
+      "fighters": [
+        "Nick Klein",
+        "Joseph Kropschot"
+      ]
+    },
+    {
       "type": "bout_count_mismatch",
       "event_id": "ufc-332-2026-10-03-fight-card",
       "verdict_event_id": "1952",
@@ -384,16 +394,6 @@
       "verdict_main_count": 5,
       "local_prelim_count": 0,
       "verdict_prelim_count": 6
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-10-31-fight-card",
-      "verdict_event_id": "1969",
-      "order": 3,
-      "fighters": [
-        "Nick Klein",
-        "Joseph Kropschot"
-      ]
     },
     {
       "type": "bout_count_mismatch",
