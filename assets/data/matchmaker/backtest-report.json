@@ -1,6 +1,6 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-09-16T21:35:20.170Z",
+  "generatedAt": "2026-09-19T15:21:18.179Z",
   "engineVersion": 2,
   "mode": "temporal-historical-universe-v5",
   "lookbackDays": 730,
@@ -8,9 +8,9 @@
   "availableCases": 572,
   "sampledCases": 120,
   "historicalUniverseCoverage": {
-    "currentDatasetFighters": 997,
-    "historicalOnlyFighters": 2020,
-    "combinedCandidateUniverse": 3017,
+    "currentDatasetFighters": 1000,
+    "historicalOnlyFighters": 2021,
+    "combinedCandidateUniverse": 3021,
     "trackedFights": 8876,
     "fightersWithTrackedHistory": 2749,
     "unresolvedFightSides": 63,
@@ -19,16 +19,16 @@
   },
   "rankingSnapshotCoverage": {
     "archiveStart": "2026-09-10",
-    "archiveEnd": "2026-09-16",
-    "snapshotsAvailable": 7,
+    "archiveEnd": "2026-09-19",
+    "snapshotsAvailable": 8,
     "sampledCasesWithSnapshot": 0,
     "sampledCasesWithoutSnapshot": 120,
     "maxSnapshotAgeDays": 14
   },
   "temporalStateCoverage": {
     "archiveStart": "2026-09-15",
-    "archiveEnd": "2026-09-16",
-    "snapshotsAvailable": 2,
+    "archiveEnd": "2026-09-19",
+    "snapshotsAvailable": 3,
     "sampledCasesWithSnapshot": 0,
     "sampledCasesWithoutSnapshot": 120,
     "maxSnapshotAgeDays": 7
@@ -4967,8 +4967,8 @@
       "targetDate": "2026-06-20",
       "division": "Featherweight",
       "targetDivision": "Featherweight",
-      "fighter": "Michael Aswell",
-      "fighterId": "michael-aswell",
+      "fighter": "Michael Aswell Jr.",
+      "fighterId": "michael-aswell-jr",
       "actualOpponent": "Gaston Bolanos",
       "actualOpponentId": "gaston-bolanos",
       "subjectHistoricalOnly": false,
