@@ -89,6 +89,16 @@ const fighters = await mapLimit(wanted, 6, async (f, i) => {
 });
 if (failed > wanted.length * .1) throw new Error(`${failed} profiles failed; aborting rather than replacing the roster with incomplete data.`);
 
+const publishedFighterIds = new Set(fighters.map(f => f.id));
+for (const fighter of fighters) {
+  if (!Array.isArray(fighter.verifiedMeetings)) continue;
+  fighter.verifiedMeetings = fighter.verifiedMeetings.map(meeting =>
+    meeting?.opponentId && !publishedFighterIds.has(meeting.opponentId)
+      ? { ...meeting, opponentId: null }
+      : meeting
+  );
+}
+
 // Narrative UFC profile history remains useful for form, but opponent IDs found here are best-effort only.
 const nameKeys = registry.map(f => ({ id: f.id, name: key(f.name) })).filter(f => f.name.length > 5);
 for (const f of fighters) for (const h of f.history) h.opponentIds = nameKeys.filter(n => n.id !== f.id && key(h.text).includes(n.name)).map(n => n.id);
@@ -119,6 +129,7 @@ if (officialWindowOldest && mirrorLatest < officialWindowOldest) throw new Error
 
 const canonicalByName = new Map();
 for (const entry of registry) {
+  if (!publishedFighterIds.has(entry.id)) continue;
   const k = key(entry.name);
   const existing = canonicalByName.get(k);
   if (!existing) canonicalByName.set(k, entry);
