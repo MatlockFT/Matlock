@@ -1,7 +1,71 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-18T19:08:05.927Z",
+  "generated_at": "2026-09-20T01:46:09.074Z",
   "changes": [
+    {
+      "id": "2026-09-20T01:46:09.074Z|dwcs-season-10-week-7-2026-09-22|bout_moved|1",
+      "at": "2026-09-20T01:46:09.074Z",
+      "type": "bout_moved",
+      "event_id": "dwcs-season-10-week-7-2026-09-22",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 7",
+      "event_date": "2026-09-22",
+      "summary": "Norbert Novenyi Jr. vs Theo Haig moved on Season 10 · Week 7.",
+      "details": {
+        "from_order": 3,
+        "to_order": 1,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
+    {
+      "id": "2026-09-20T01:46:09.074Z|dwcs-season-10-week-7-2026-09-22|bout_moved|2",
+      "at": "2026-09-20T01:46:09.074Z",
+      "type": "bout_moved",
+      "event_id": "dwcs-season-10-week-7-2026-09-22",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 7",
+      "event_date": "2026-09-22",
+      "summary": "Alvi Dasuyev vs Jaden Ortega moved on Season 10 · Week 7.",
+      "details": {
+        "from_order": 1,
+        "to_order": 2,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
+    {
+      "id": "2026-09-20T01:46:09.074Z|dwcs-season-10-week-7-2026-09-22|bout_moved|3",
+      "at": "2026-09-20T01:46:09.074Z",
+      "type": "bout_moved",
+      "event_id": "dwcs-season-10-week-7-2026-09-22",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 7",
+      "event_date": "2026-09-22",
+      "summary": "Marcos Degli vs Paris Moran moved on Season 10 · Week 7.",
+      "details": {
+        "from_order": 4,
+        "to_order": 3,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
+    {
+      "id": "2026-09-20T01:46:09.074Z|dwcs-season-10-week-7-2026-09-22|bout_moved|4",
+      "at": "2026-09-20T01:46:09.074Z",
+      "type": "bout_moved",
+      "event_id": "dwcs-season-10-week-7-2026-09-22",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 7",
+      "event_date": "2026-09-22",
+      "summary": "Piero Guaylupo vs Callum Connor moved on Season 10 · Week 7.",
+      "details": {
+        "from_order": 2,
+        "to_order": 4,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
     {
       "id": "2026-09-18T19:08:05.927Z|ufc-fight-night-2026-10-31-fight-card|title_changed|1",
       "at": "2026-09-18T19:08:05.927Z",
@@ -4601,66 +4665,6 @@
         "to_order": 8,
         "from_section": "Fight Card",
         "to_section": "Fight Card"
-      }
-    },
-    {
-      "id": "2026-08-30T08:19:12.679Z|rizin-angel-champagne-presents-rizin-5-2026-09-10|bout_added|3",
-      "at": "2026-08-30T08:19:12.679Z",
-      "type": "bout_added",
-      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
-      "promotion": "RIZIN",
-      "event_title": "ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り",
-      "event_date": "2026-09-10",
-      "summary": "【試合中止】冨澤大智 vs ドンマイ川端 added to ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り.",
-      "details": {
-        "order": 9,
-        "section": "Fight Card",
-        "weight_class": "59.0 kg"
-      }
-    },
-    {
-      "id": "2026-08-30T08:19:12.679Z|rizin-angel-champagne-presents-rizin-5-2026-09-10|bout_removed|4",
-      "at": "2026-08-30T08:19:12.679Z",
-      "type": "bout_removed",
-      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
-      "promotion": "RIZIN",
-      "event_title": "ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り",
-      "event_date": "2026-09-10",
-      "summary": "Daichi Tomizawa vs Don't mind Kawabata removed from ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り.",
-      "details": {
-        "order": 8,
-        "section": "Fight Card",
-        "weight_class": "59.0 kg"
-      }
-    },
-    {
-      "id": "2026-08-30T08:19:12.679Z|rizin-rizin-landmark-16-in-nagasaki-2026-10-03|bout_added|5",
-      "at": "2026-08-30T08:19:12.679Z",
-      "type": "bout_added",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
-      "promotion": "RIZIN",
-      "event_title": "RIZIN LANDMARK 16 in NAGASAKI",
-      "event_date": "2026-10-03",
-      "summary": "Kate Lotus vs NOEL added to RIZIN LANDMARK 16 in NAGASAKI.",
-      "details": {
-        "order": 4,
-        "section": "Fight Card",
-        "weight_class": "49.0 kg"
-      }
-    },
-    {
-      "id": "2026-08-30T08:19:12.679Z|rizin-rizin-landmark-16-in-nagasaki-2026-10-03|bout_added|6",
-      "at": "2026-08-30T08:19:12.679Z",
-      "type": "bout_added",
-      "event_id": "rizin-rizin-landmark-16-in-nagasaki-2026-10-03",
-      "promotion": "RIZIN",
-      "event_title": "RIZIN LANDMARK 16 in NAGASAKI",
-      "event_date": "2026-10-03",
-      "summary": "Ryan Cafaro vs Hyuma Yasui added to RIZIN LANDMARK 16 in NAGASAKI.",
-      "details": {
-        "order": 5,
-        "section": "Fight Card",
-        "weight_class": "66.0 kg"
       }
     }
   ]

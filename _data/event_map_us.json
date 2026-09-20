@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_major_generated_at": "2026-09-19T23:40:43.590Z",
+  "source_major_generated_at": "2026-09-20T01:45:13.418Z",
   "source_regional_updated_at": null,
   "major_total": 11,
   "major_mapped": 1,
@@ -582,48 +582,6 @@
             {
               "order": 1,
               "label": "Main Event",
-              "weight_class": "Welterweight",
-              "fighters": [
-                {
-                  "name": "Alvi Dasuyev",
-                  "initials": "AD",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1780666489alvidasuyev.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Jaden Ortega",
-                  "initials": "JO",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1715536267IMG_4501.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Lightweight",
-              "fighters": [
-                {
-                  "name": "Piero Guaylupo",
-                  "initials": "PG",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1779966455IMG_3420.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Callum Connor",
-                  "initials": "CC",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1729264512connor.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 3,
-              "label": "",
               "weight_class": "Middleweight",
               "fighters": [
                 {
@@ -643,7 +601,28 @@
               ]
             },
             {
-              "order": 4,
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Welterweight",
+              "fighters": [
+                {
+                  "name": "Alvi Dasuyev",
+                  "initials": "AD",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1780666489alvidasuyev.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Jaden Ortega",
+                  "initials": "JO",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1715536267IMG_4501.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
               "label": "",
               "weight_class": "Flyweight",
               "fighters": [
@@ -658,6 +637,27 @@
                   "name": "Paris Moran",
                   "initials": "PM",
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250817081609_Paris_Moran.JPG",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Lightweight",
+              "fighters": [
+                {
+                  "name": "Piero Guaylupo",
+                  "initials": "PG",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1779966455IMG_3420.jpeg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Callum Connor",
+                  "initials": "CC",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1729264512connor.jpg",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
