@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-20T01:46:09.074Z",
+  "generated_at": "2026-09-20T07:08:34.662Z",
   "changes": [
+    {
+      "id": "2026-09-20T07:08:34.662Z|ufc-2026-09-19-crypto-com-ufc-331|event_removed|1",
+      "at": "2026-09-20T07:08:34.662Z",
+      "type": "event_removed",
+      "event_id": "ufc-2026-09-19-crypto-com-ufc-331",
+      "promotion": "UFC",
+      "event_title": "Crypto.com UFC 331",
+      "event_date": "2026-09-19",
+      "summary": "UFC Crypto.com UFC 331 removed from Upcoming Events.",
+      "details": {
+        "bout_count": 12,
+        "venue": "Venue TBA",
+        "date": "2026-09-19"
+      }
+    },
     {
       "id": "2026-09-20T01:46:09.074Z|dwcs-season-10-week-7-2026-09-22|bout_moved|1",
       "at": "2026-09-20T01:46:09.074Z",
@@ -4649,22 +4664,6 @@
         "bout_count": 13,
         "venue": "Venue TBA",
         "date": "2026-08-29"
-      }
-    },
-    {
-      "id": "2026-08-30T08:19:12.679Z|rizin-angel-champagne-presents-rizin-5-2026-09-10|bout_moved|2",
-      "at": "2026-08-30T08:19:12.679Z",
-      "type": "bout_moved",
-      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
-      "promotion": "RIZIN",
-      "event_title": "ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り",
-      "event_date": "2026-09-10",
-      "summary": "“ブラックパンサー”ベイノア vs Hide Meison Usami moved on ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り.",
-      "details": {
-        "from_order": 9,
-        "to_order": 8,
-        "from_section": "Fight Card",
-        "to_section": "Fight Card"
       }
     }
   ]

@@ -1,296 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-20T01:45:13.418Z",
+  "generated_at": "2026-09-20T07:07:46.806Z",
   "events": [
-    {
-      "id": "ufc-2026-09-19-crypto-com-ufc-331",
-      "promotion_key": "ufc",
-      "promotion": "UFC",
-      "title": "Crypto.com UFC 331",
-      "date": "2026-09-19",
-      "date_label": "Saturday · September 19, 2026",
-      "starts_at": "",
-      "expires_at": "",
-      "venue": "Venue TBA",
-      "broadcast": "Paramount+ · UFC Fight Pass",
-      "official_url": "https://www.ufc.com/event/cryptocom-ufc-331",
-      "updated_label": "September 19, 2026",
-      "sections": [
-        {
-          "kind": "main",
-          "title": "Main Card",
-          "time": "9:00 PM ET",
-          "bouts": [
-            {
-              "order": 1,
-              "label": "Main Event",
-              "weight_class": "Flyweight Title Bout",
-              "fighters": [
-                {
-                  "name": "Joshua Van",
-                  "initials": "JV",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/VAN_JOSHUA_L_BELT_05-09.png?itok=emXQEdHo",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Alexandre Pantoja",
-                  "initials": "AP",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/PANTOJA_ALEXANDRE_L_07-08.png?itok=djxLt29b",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Lightweight Bout",
-              "fighters": [
-                {
-                  "name": "Arman Tsarukyan",
-                  "initials": "AT",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/TSARUKYAN_ARMAN_L_11-22.png?itok=19p_TvDH",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Mauricio Ruffy",
-                  "initials": "MR",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/RUFFY_MAURICIO_L_06-14.png?itok=CtSQD7Ui",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 3,
-              "label": "",
-              "weight_class": "Featherweight Bout",
-              "fighters": [
-                {
-                  "name": "Patricio Pitbull",
-                  "initials": "PP",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/PITBULL_PATRICIO_L_04-11.png?itok=9q7-vcVx",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Dooho Choi",
-                  "initials": "DC",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/CHOI_DOOHO_L_05-16.png?itok=pN8VMyeW",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 4,
-              "label": "",
-              "weight_class": "Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Gable Steveson",
-                  "initials": "GS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/STEVESON_GABLE_L_07-11.png?itok=wI4aCMq-",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Sean Sharaf",
-                  "initials": "SS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/SHERAF_SEAN_L_12-13.png?itok=d_MFnPGe",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
-              "weight_class": "Light Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Alonzo Menifield",
-                  "initials": "AM",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/MENIFIELD_ALONZO_L_06-14.png?itok=2VKbZoXE",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Iwo Baraniewski",
-                  "initials": "IB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/BARANIEWSKI_IWO_L_06-06.png?itok=zp1QNRHk",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "kind": "prelims",
-          "title": "Prelims",
-          "time": "5:30 PM ET",
-          "bouts": [
-            {
-              "order": 6,
-              "label": "",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Marlon Vera",
-                  "initials": "MV",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/VERA_MARLON_L_02-28.png?itok=1Ebcd42S",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Charles Jourdain",
-                  "initials": "CJ",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/JOURDAIN_CHARLES_L_10-18.png?itok=lbnIm7ba",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 7,
-              "label": "",
-              "weight_class": "Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Tai Tuivasa",
-                  "initials": "TT",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/TUIVASA_TAI_L_05-02.png?itok=XW0QZQmA",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Robelis Despaigne",
-                  "initials": "RD",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-10/5/DESPAIGNE_ROBELIS_L_03-09.png?itok=21z9xlCe",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 8,
-              "label": "",
-              "weight_class": "Featherweight Bout",
-              "fighters": [
-                {
-                  "name": "Michael Aswell Jr.",
-                  "initials": "MAJ",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/ASWELL_MICHAEL_R_05-31.png?itok=8ZDrUuaM",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "JooSang Yoo",
-                  "initials": "JY",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/YOO_JOOSANG_R_06-07.png?itok=sFYPXELB",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 9,
-              "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Ryan Gandra",
-                  "initials": "RG",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/GANDRA_RYAN_L_07-11.png?itok=NXosHWEP",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Ozzy Diaz",
-                  "initials": "OD",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/DIAZ_OZZY_R_03-08.png?itok=09cI1qBO",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "kind": "early",
-          "title": "Early Prelims",
-          "time": "5:30 PM ET",
-          "bouts": [
-            {
-              "order": 10,
-              "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Edmen Shahbazyan",
-                  "initials": "ES",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/SHAHBAZYAN_EDMEN_L_10-04.png?itok=f_qqD29S",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Brunno Ferreira",
-                  "initials": "BF",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/FERREIRA_BRUNNO_L_07-19.png?itok=rQPmgZMB",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 11,
-              "label": "",
-              "weight_class": "Women's Flyweight Bout",
-              "fighters": [
-                {
-                  "name": "Casey O'Neill",
-                  "initials": "CO",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/ONEILL_CASEY_L_03-28.png?itok=SrTyGo0-",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Eduarda Moura",
-                  "initials": "EM",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-11/MOURA_EDUARDA_L_06-08.png?itok=jiGCZaUM",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 12,
-              "label": "",
-              "weight_class": "Featherweight Bout",
-              "fighters": [
-                {
-                  "name": "Giga Chikadze",
-                  "initials": "GC",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/CHIKADZE_GIGA_L_12-13.png?itok=PAa40eRd",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Joanderson Brito",
-                  "initials": "JB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/BRITO_JOANDERSON_L_12-13.png?itok=MAvkv4Zx",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
     {
       "id": "dwcs-season-10-week-7-2026-09-22",
       "promotion_key": "dwcs",
@@ -302,7 +13,7 @@
       "broadcast": "Paramount+",
       "official_url": "https://www.ufc.com/dwcs#season-10-week-7",
       "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-7-112633",
-      "updated_label": "September 19, 2026",
+      "updated_label": "September 20, 2026",
       "sections": [
         {
           "kind": "main",
@@ -439,7 +150,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
-      "updated_label": "September 19, 2026",
+      "updated_label": "September 20, 2026",
       "sections": [
         {
           "kind": "main",
@@ -698,7 +409,7 @@
       "venue": "長崎スタジアムシティ HAPPINESS ARENA",
       "broadcast": "RIZIN 100 CLUB · RIZIN LIVE · ABEMA · Sky PerfecTV",
       "official_url": "https://jp.rizinff.com/_ct/17852438",
-      "updated_label": "September 19, 2026",
+      "updated_label": "September 20, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1016,7 +727,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · CBS · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-332",
-      "updated_label": "September 19, 2026",
+      "updated_label": "September 20, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1326,7 +1037,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
-      "updated_label": "September 19, 2026",
+      "updated_label": "September 20, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1370,7 +1081,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-      "updated_label": "September 19, 2026",
+      "updated_label": "September 20, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1645,7 +1356,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-333",
-      "updated_label": "September 19, 2026",
+      "updated_label": "September 20, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1864,7 +1575,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
-      "updated_label": "September 19, 2026",
+      "updated_label": "September 20, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1950,7 +1661,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-      "updated_label": "September 19, 2026",
+      "updated_label": "September 20, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1992,7 +1703,7 @@
       "venue": "LaLa arena TOKYO-BAY",
       "broadcast": "RIZIN 100 CLUB",
       "official_url": "https://jp.rizinff.com/_ct/17852466",
-      "updated_label": "September 19, 2026",
+      "updated_label": "September 20, 2026",
       "sections": [
         {
           "kind": "main",

@@ -1,33 +1,25 @@
 {
   "schema_version": 1,
   "source_totals": {
-    "major": 11,
+    "major": 10,
     "regional": 103
   },
   "map_totals": {
     "mapped": 104,
-    "quarantined": 10
+    "quarantined": 9
   },
   "source_precision": {
     "venue": 0,
     "source-coordinates": 0,
     "city": 104,
     "structured": 0,
-    "unresolved": 10
+    "unresolved": 9
   },
   "mapped_precision": {
     "city": 104
   },
-  "unresolved_count": 10,
+  "unresolved_count": 9,
   "unresolved": [
-    {
-      "id": "ufc-2026-09-19-crypto-com-ufc-331",
-      "title": "Crypto.com UFC 331",
-      "date": "2026-09-19",
-      "promotion": "UFC",
-      "venue": "Venue TBA",
-      "dataset": "major"
-    },
     {
       "id": "ufc-fight-night-2026-09-26-fight-card",
       "title": "Jr. vs Barcelos",
@@ -104,17 +96,6 @@
   "suspicious_count": 0,
   "suspicious": [],
   "quarantined": [
-    {
-      "id": "ufc-2026-09-19-crypto-com-ufc-331",
-      "title": "Crypto.com UFC 331",
-      "date": "2026-09-19",
-      "promotion": "UFC",
-      "venue": "Venue TBA",
-      "location": "",
-      "country": "",
-      "kind": "major",
-      "reason": "unresolved-us-location"
-    },
     {
       "id": "ufc-fight-night-2026-09-26-fight-card",
       "title": "Jr. vs Barcelos",
