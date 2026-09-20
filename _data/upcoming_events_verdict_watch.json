@@ -36,7 +36,7 @@
       "verdict_main_count": 6,
       "local_prelim_count": 5,
       "verdict_prelim_count": 5,
-      "confirmed_local_bouts": 11
+      "confirmed_local_bouts": 10
     },
     {
       "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
@@ -350,6 +350,16 @@
       "fighters": [
         "Arnold Allen",
         "Aaron Pico"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 9,
+      "fighters": [
+        "John Castaneda",
+        "Alatengheili"
       ]
     },
     {
