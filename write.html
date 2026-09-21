@@ -197,6 +197,7 @@ page_scripts:
           <div class="writer-toolbar-group writer-toolbar-rich">
             <button type="button" data-tool="image" title="Insert image">Image</button>
             <button type="button" data-tool="youtube" title="Insert YouTube">YouTube</button>
+            <button type="button" data-tool="x" title="Insert X / Twitter post">Tweet</button>
             <button type="button" data-tool="table" title="Build table">Table</button>
             <button type="button" data-tool="tale" title="Tale of the Tape">Tale of Tape</button>
             <button type="button" data-tool="prediction" title="Fight prediction">Pick</button>
@@ -209,7 +210,7 @@ page_scripts:
 
         <label class="writer-body-label" for="writer-body">Article</label>
         <div class="writer-editor-dropzone" data-editor-dropzone>
-          <textarea id="writer-body" class="writer-body-editor" data-field="body" spellcheck="true" placeholder="Start writing…  Try /table, /tale, /pick, /youtube, /image, /html, /source or /template"></textarea>
+          <textarea id="writer-body" class="writer-body-editor" data-field="body" spellcheck="true" placeholder="Start writing…  Try /table, /tale, /pick, /youtube, /tweet, /image, /html, /source or /template"></textarea>
           <div class="writer-drop-hint" data-drop-hint hidden>Drop image to upload and insert</div>
         </div>
 
@@ -317,6 +318,17 @@ page_scripts:
         <label class="writer-field writer-field-wide"><span>Title</span><input type="text" data-youtube-title value="YouTube video"></label>
       </div>
       <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-youtube-insert>Insert</button></footer>
+    </form>
+  </dialog>
+
+  <dialog class="writer-dialog" data-x-dialog>
+    <form method="dialog">
+      <header><div><p class="eyebrow">Media</p><h2>Insert X post</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
+      <div class="writer-dialog-body writer-dialog-grid">
+        <label class="writer-field writer-field-wide"><span>Tweet / post URL</span><input type="url" data-x-url placeholder="https://x.com/account/status/…"></label>
+        <p class="writer-dialog-note writer-field-wide">Paste the post URL only. You do not need X's embed HTML.</p>
+      </div>
+      <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-x-insert>Insert tweet</button></footer>
     </form>
   </dialog>
 
