@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T01:59:52.913Z",
+  "generatedAt": "2026-09-21T04:02:43.451Z",
   "engineVersion": 2,
   "subjects": 206,
   "publishedRecommendations": 578,
@@ -35,6 +35,81 @@
   "publicAsymmetricTopThreeRatio": 0.2758,
   "engineGenericDivisionalSortingRecommendations": 13,
   "genericDivisionalSortingRecommendations": 0,
+  "publicSafetyFailures": [],
+  "latestEventPublic": {
+    "id": "cryptocom-ufc-331",
+    "title": "Crypto.com UFC 331: Van vs Pantoja 2",
+    "date": "2026-09-19",
+    "subjects": 24,
+    "publicRecommendations": 66,
+    "noClearMatchupSubjects": 0
+  },
+  "eventPublicSummary": [
+    {
+      "id": "cryptocom-ufc-331",
+      "title": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "date": "2026-09-19",
+      "subjects": 24,
+      "publicRecommendations": 66,
+      "noClearMatchupSubjects": 0
+    },
+    {
+      "id": "ufc-fight-night-september-12-2026",
+      "title": "Noche UFC: Silva vs Delgado",
+      "date": "2026-09-12",
+      "subjects": 26,
+      "publicRecommendations": 73,
+      "noClearMatchupSubjects": 1
+    },
+    {
+      "id": "ufc-fight-night-september-05-2026",
+      "title": "UFC Fight Night: Hooker vs Parnasse",
+      "date": "2026-09-05",
+      "subjects": 28,
+      "publicRecommendations": 77,
+      "noClearMatchupSubjects": 1
+    },
+    {
+      "id": "ufc-fight-night-august-29-2026",
+      "title": "UFC Fight Night: Nurmagomedov vs Song",
+      "date": "2026-08-29",
+      "subjects": 26,
+      "publicRecommendations": 73,
+      "noClearMatchupSubjects": 1
+    },
+    {
+      "id": "ufc-fight-night-august-22-2026",
+      "title": "UFC Fight Night: Hernandez vs Rodrigues",
+      "date": "2026-08-22",
+      "subjects": 26,
+      "publicRecommendations": 74,
+      "noClearMatchupSubjects": 1
+    },
+    {
+      "id": "ufc-330",
+      "title": "UFC 330: Makhachev vs Machado Garry",
+      "date": "2026-08-15",
+      "subjects": 24,
+      "publicRecommendations": 63,
+      "noClearMatchupSubjects": 2
+    },
+    {
+      "id": "ufc-fight-night-august-08-2026",
+      "title": "UFC Fight Night: Gamrot vs Salkilld",
+      "date": "2026-08-08",
+      "subjects": 24,
+      "publicRecommendations": 60,
+      "noClearMatchupSubjects": 4
+    },
+    {
+      "id": "ufc-fight-night-august-01-2026",
+      "title": "UFC Fight Night: Medic vs Rodriguez",
+      "date": "2026-08-01",
+      "subjects": 28,
+      "publicRecommendations": 76,
+      "noClearMatchupSubjects": 2
+    }
+  ],
   "genericExamples": [
     {
       "event": "Noche UFC: Silva vs Delgado",
