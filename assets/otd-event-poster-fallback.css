@@ -34,7 +34,7 @@
     right: 0;
     width: 0.38rem;
     height: 100%;
-    background: var(--accent, var(--accent));
+    background: var(--accent);
     content: "";
     opacity: 0.9;
 }
