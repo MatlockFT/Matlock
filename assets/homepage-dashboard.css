@@ -80,7 +80,7 @@
 
 .home-next-promotion {
     margin: 0 0 .18rem;
-    color: var(--accent, #ff4a54);
+    color: var(--accent, var(--accent));
     font: 700 .625rem/1 "Courier New", monospace;
     letter-spacing: .09em;
     text-transform: uppercase;
@@ -149,7 +149,7 @@
 .home-next-actions a:focus-visible,
 .home-tool-link:hover,
 .home-tool-link:focus-visible {
-    border-color: var(--accent, #ff4a54);
+    border-color: var(--accent, var(--accent));
 }
 
 .home-tools-bar {
@@ -228,7 +228,7 @@
 
 .home-news-item a:hover,
 .home-news-item a:focus-visible {
-    color: var(--accent, #ff4a54);
+    color: var(--accent, var(--accent));
 }
 
 .home-news-item span {
@@ -277,7 +277,7 @@
 .home-otd-year {
     display: block;
     margin-bottom: .18rem;
-    color: var(--accent, #ff4a54);
+    color: var(--accent, var(--accent));
     font: 700 .625rem/1 "Courier New", monospace;
     letter-spacing: .06em;
     text-transform: uppercase;
@@ -316,7 +316,7 @@
 
 .home-side-link:hover,
 .home-side-link:focus-visible {
-    color: var(--accent, #ff4a54);
+    color: var(--accent, var(--accent));
 }
 
 @media (max-width: 820px) {
