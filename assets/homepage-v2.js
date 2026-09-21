@@ -5,8 +5,12 @@
     const newsList = root.querySelector('[data-home-news-list]');
     const otdBody = root.querySelector('[data-home-otd-body]');
     const rosterBody = root.querySelector('[data-home-roster-body]');
-    const cinemaHero = root.querySelector('[data-cinema-hero]');
-    const featurePanels = [...root.querySelectorAll('[data-feature-panel]')];
+    const immersiveSequence = root.querySelector('[data-immersive-sequence]');
+    const immersiveStage = root.querySelector('[data-immersive-stage]');
+    const immersiveSlides = [...root.querySelectorAll('[data-immersive-slide]')];
+    const sceneCounter = root.querySelector('[data-scene-counter]');
+    const sceneHint = root.querySelector('[data-scene-hint]');
+    const immersiveEdge = root.querySelector('.home-immersive-edge');
 
     const liveNewsUrl = root.dataset.newsUrl;
     const fallbackNewsUrl = root.dataset.newsFallbackUrl;
@@ -17,6 +21,10 @@
 
     const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
     const lerp = (start, end, amount) => start + (end - start) * amount;
+    const smooth = value => {
+        const t = clamp(value);
+        return t * t * (3 - 2 * t);
+    };
 
     const element = (tag, className, text) => {
         const node = document.createElement(tag);
@@ -81,7 +89,7 @@
                 if (!entry.isIntersecting) continue;
                 entry.target.animate(
                     [
-                        { opacity: 0, transform: 'translate3d(-24px, 0, 0)' },
+                        { opacity: 0, transform: 'translate3d(-22px, 0, 0)' },
                         { opacity: 1, transform: 'translate3d(0, 0, 0)' }
                     ],
                     {
@@ -291,93 +299,137 @@
         runWhenIdle(initWebGpuTexture, 520, 1400);
     };
 
-    const sectionProgress = section => {
-        if (!section) return 0;
-        const rect = section.getBoundingClientRect();
-        const travel = Math.max(1, section.offsetHeight - window.innerHeight);
-        return clamp(-rect.top / travel);
-    };
+    function setSlideState(slide, {
+        opacity,
+        y,
+        scale,
+        copyOpacity,
+        copyY,
+        inkOpacity,
+        shadeBottom,
+        z
+    }) {
+        slide.style.setProperty('--scene-opacity', opacity.toFixed(4));
+        slide.style.setProperty('--scene-y', `${y.toFixed(2)}vh`);
+        slide.style.setProperty('--scene-scale', scale.toFixed(4));
+        slide.style.setProperty('--copy-opacity', copyOpacity.toFixed(4));
+        slide.style.setProperty('--copy-y', `${copyY.toFixed(2)}px`);
+        slide.style.setProperty('--ink-opacity', inkOpacity.toFixed(4));
+        slide.style.setProperty('--shade-bottom', shadeBottom.toFixed(4));
+        slide.style.setProperty('--scene-z', String(z));
+    }
 
-    function updateHeroFlow() {
-        if (!cinemaHero) return;
-        const stage = cinemaHero.querySelector('[data-cinema-stage]');
-        if (!stage) return;
+    function initImmersiveFlow() {
+        if (!immersiveSequence || !immersiveStage || !immersiveSlides.length) return;
+
+        immersiveSlides.forEach((slide, index) => {
+            slide.style.setProperty('--scene-z', String(index));
+        });
 
         if (reduceMotion()) {
-            stage.style.setProperty('--hero-shift', '0px');
-            stage.style.setProperty('--hero-scale', '1');
-            stage.style.setProperty('--hero-image-opacity', '1');
-            stage.style.setProperty('--hero-copy-shift', '0px');
-            stage.style.setProperty('--hero-copy-opacity', '1');
-            stage.style.setProperty('--hero-vignette', '.74');
+            immersiveSlides.forEach((slide, index) => {
+                setSlideState(slide, {
+                    opacity: index === 0 ? 1 : 0,
+                    y: 0,
+                    scale: 1,
+                    copyOpacity: index === 0 ? 1 : 0,
+                    copyY: 0,
+                    inkOpacity: 0,
+                    shadeBottom: .78,
+                    z: index
+                });
+            });
             return;
         }
 
-        const progress = sectionProgress(cinemaHero);
-        const exit = clamp((progress - 0.42) / 0.58);
-        const copyExit = clamp((progress - 0.48) / 0.34);
-        const viewport = window.innerHeight;
-
-        stage.style.setProperty('--hero-shift', `${Math.round(lerp(0, -viewport * 0.28, exit))}px`);
-        stage.style.setProperty('--hero-scale', lerp(1, 1.075, exit).toFixed(4));
-        stage.style.setProperty('--hero-image-opacity', lerp(1, 0.2, exit).toFixed(3));
-        stage.style.setProperty('--hero-copy-shift', `${Math.round(lerp(0, -86, copyExit))}px`);
-        stage.style.setProperty('--hero-copy-opacity', lerp(1, 0, copyExit).toFixed(3));
-        stage.style.setProperty('--hero-vignette', lerp(0.74, 0.94, exit).toFixed(3));
-    }
-
-    function updateFeatureFlow(panel) {
-        if (!panel) return;
-        const stage = panel.querySelector('[data-feature-stage]');
-        if (!stage) return;
-
-        if (reduceMotion()) {
-            panel.style.setProperty('--feature-shift', '0px');
-            panel.style.setProperty('--feature-scale', '1');
-            panel.style.setProperty('--feature-opacity', '1');
-            panel.style.setProperty('--feature-copy-shift', '0px');
-            panel.style.setProperty('--feature-copy-opacity', '1');
-            panel.style.setProperty('--feature-wash-opacity', '.16');
-            panel.style.setProperty('--feature-progress-width', '100%');
-            return;
-        }
-
-        const progress = sectionProgress(panel);
-        const entry = clamp(progress / 0.22);
-        const settle = clamp((progress - 0.14) / 0.28);
-        const exit = clamp((progress - 0.67) / 0.33);
-        const viewport = window.innerHeight;
-
-        const imageShift = lerp(viewport * 0.035, 0, entry) + lerp(0, -viewport * 0.2, exit);
-        const imageScale = lerp(1.06, 1.015, settle) + exit * 0.035;
-        const imageOpacity = lerp(1, 0.32, exit);
-        const copyShift = lerp(42, 0, entry) + lerp(0, -50, exit);
-        const copyOpacity = entry * (1 - exit);
-        const washOpacity = 0.08 + settle * 0.11 + exit * 0.08;
-
-        panel.style.setProperty('--feature-shift', `${Math.round(imageShift)}px`);
-        panel.style.setProperty('--feature-scale', imageScale.toFixed(4));
-        panel.style.setProperty('--feature-opacity', imageOpacity.toFixed(3));
-        panel.style.setProperty('--feature-copy-shift', `${Math.round(copyShift)}px`);
-        panel.style.setProperty('--feature-copy-opacity', copyOpacity.toFixed(3));
-        panel.style.setProperty('--feature-wash-opacity', washOpacity.toFixed(3));
-        panel.style.setProperty('--feature-progress-width', `${(progress * 100).toFixed(2)}%`);
-    }
-
-    function initFlowEffects() {
-        if (!cinemaHero && !featurePanels.length) return;
-
-        let frame = 0;
+        let raf = 0;
+        let lastActive = -1;
 
         const update = () => {
-            frame = 0;
-            updateHeroFlow();
-            featurePanels.forEach(updateFeatureFlow);
+            raf = 0;
+
+            const rect = immersiveSequence.getBoundingClientRect();
+            const viewport = Math.max(window.innerHeight, 1);
+            const travel = Math.max(1, immersiveSequence.offsetHeight - viewport);
+            const scrollPx = clamp(-rect.top, 0, travel);
+            const sceneFloat = scrollPx / viewport;
+            const maxScene = immersiveSlides.length - 1;
+            const boundedScene = Math.min(sceneFloat, maxScene);
+            const activeIndex = Math.min(maxScene, Math.floor(boundedScene + .5));
+
+            for (let i = 0; i < immersiveSlides.length; i += 1) {
+                const slide = immersiveSlides[i];
+                const incomingRaw = i === 0 ? 1 : clamp(sceneFloat - (i - 1), 0, 1);
+                const incoming = i === 0 ? 1 : smooth(incomingRaw);
+                const nextRaw = i < maxScene ? clamp(sceneFloat - i, 0, 1) : 0;
+                const next = smooth(nextRaw);
+
+                const opacity = i === 0
+                    ? 1
+                    : clamp(lerp(0, 1, incoming));
+
+                const y = i === 0
+                    ? 0
+                    : lerp(13, 0, incoming);
+
+                const scale = i === 0
+                    ? lerp(1, 1.035, next * .5)
+                    : lerp(1.065, 1, incoming) + next * .018;
+
+                const copyIn = i === 0
+                    ? 1
+                    : smooth(clamp((incomingRaw - .38) / .42));
+
+                const copyOut = i < maxScene
+                    ? 1 - smooth(clamp((nextRaw - .18) / .52))
+                    : 1;
+
+                const copyOpacity = copyIn * copyOut;
+                const copyY = lerp(30, 0, copyIn) + lerp(0, -34, 1 - copyOut);
+                const inkOpacity = i === 0
+                    ? 0
+                    : Math.sin(incomingRaw * Math.PI) * .48;
+                const shadeBottom = lerp(.68, .82, copyIn);
+
+                setSlideState(slide, {
+                    opacity,
+                    y,
+                    scale,
+                    copyOpacity,
+                    copyY,
+                    inkOpacity,
+                    shadeBottom,
+                    z: i
+                });
+
+                slide.classList.toggle('is-active', i === activeIndex);
+            }
+
+            if (immersiveEdge) {
+                const transitionIndex = Math.min(maxScene, Math.max(1, Math.ceil(boundedScene)));
+                const local = transitionIndex > 0
+                    ? clamp(sceneFloat - (transitionIndex - 1), 0, 1)
+                    : 0;
+                const wave = Math.sin(local * Math.PI);
+                immersiveEdge.style.setProperty('--edge-opacity', (wave * .72).toFixed(4));
+                immersiveEdge.style.setProperty('--edge-y', `${lerp(92, -16, smooth(local)).toFixed(2)}vh`);
+            }
+
+            if (sceneCounter && activeIndex !== lastActive) {
+                sceneCounter.textContent =
+                    `${String(activeIndex + 1).padStart(2, '0')} / ${String(immersiveSlides.length).padStart(2, '0')}`;
+                lastActive = activeIndex;
+            }
+
+            if (sceneHint) {
+                const hintOpacity = 1 - smooth(clamp(sceneFloat / .55));
+                sceneHint.style.opacity = hintOpacity.toFixed(3);
+            }
         };
 
         const requestUpdate = () => {
-            if (frame) return;
-            frame = window.requestAnimationFrame(update);
+            if (raf) return;
+            raf = window.requestAnimationFrame(update);
         };
 
         window.addEventListener('scroll', requestUpdate, { passive: true });
@@ -395,9 +447,7 @@
         if (!canvas || reduceMotion() || !('gpu' in navigator)) return;
         if (navigator.connection?.saveData) return;
         if (navigator.deviceMemory && navigator.deviceMemory < 4) return;
-
-        const stage = canvas.closest('.home-cinema-stage');
-        if (!stage) return;
+        if (!immersiveStage) return;
 
         try {
             const adapter = await navigator.gpu.requestAdapter({ powerPreference: 'low-power' });
@@ -497,7 +547,7 @@ fn fs(@builtin(position) position: vec4f) -> @location(0) vec4f {
                 entries: [{ binding: 0, resource: { buffer: uniformBuffer } }]
             });
 
-            const pointer = { x: 0.5, y: 0.5 };
+            const pointer = { x: .5, y: .5 };
             let scrollSpeed = 0;
             let lastScrollY = window.scrollY;
             let lastScrollTime = performance.now();
@@ -507,15 +557,15 @@ fn fs(@builtin(position) position: vec4f) -> @location(0) vec4f {
             let lastFrame = 0;
 
             const resize = () => {
-                const rect = stage.getBoundingClientRect();
-                const scale = rect.width < 700 ? 0.32 : 0.46;
-                canvas.width = Math.max(1, Math.min(1050, Math.floor(rect.width * scale)));
-                canvas.height = Math.max(1, Math.min(720, Math.floor(rect.height * scale)));
+                const rect = immersiveStage.getBoundingClientRect();
+                const scale = rect.width < 700 ? .3 : .44;
+                canvas.width = Math.max(1, Math.min(1024, Math.floor(rect.width * scale)));
+                canvas.height = Math.max(1, Math.min(700, Math.floor(rect.height * scale)));
                 context.configure({ device, format, alphaMode: 'premultiplied' });
             };
 
             const resizeObserver = 'ResizeObserver' in window ? new ResizeObserver(resize) : null;
-            resizeObserver?.observe(stage);
+            resizeObserver?.observe(immersiveStage);
             window.addEventListener('resize', resize, { passive: true });
             resize();
 
@@ -528,7 +578,7 @@ fn fs(@builtin(position) position: vec4f) -> @location(0) vec4f {
                 const now = performance.now();
                 const deltaY = Math.abs(window.scrollY - lastScrollY);
                 const deltaTime = Math.max(16, now - lastScrollTime);
-                scrollSpeed = Math.min(1, (deltaY / deltaTime) * 0.48);
+                scrollSpeed = Math.min(1, (deltaY / deltaTime) * .48);
                 lastScrollY = window.scrollY;
                 lastScrollTime = now;
                 window.clearTimeout(settleTimer);
@@ -573,6 +623,7 @@ fn fs(@builtin(position) position: vec4f) -> @location(0) vec4f {
                         storeOp: 'store'
                     }]
                 });
+
                 pass.setPipeline(pipeline);
                 pass.setBindGroup(0, bindGroup);
                 pass.draw(3);
@@ -591,8 +642,8 @@ fn fs(@builtin(position) position: vec4f) -> @location(0) vec4f {
                 const observer = new IntersectionObserver(entries => {
                     active = entries.some(entry => entry.isIntersecting);
                     if (active) start();
-                }, { rootMargin: '15% 0px', threshold: 0.01 });
-                observer.observe(stage);
+                }, { rootMargin: '15% 0px', threshold: .01 });
+                observer.observe(immersiveStage);
             } else {
                 active = true;
             }
@@ -615,7 +666,7 @@ fn fs(@builtin(position) position: vec4f) -> @location(0) vec4f {
         }
     }
 
-    initFlowEffects();
+    initImmersiveFlow();
 
     if (document.readyState === 'complete') startDeferredLoads();
     else window.addEventListener('load', startDeferredLoads, { once: true });
