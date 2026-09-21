@@ -225,7 +225,8 @@ test.describe('Homepage V2 immersive scroll', () => {
     expect(pageErrors).toEqual([]);
   });
 });
-\ntest.describe('On This Day share builder', () => {
+
+test.describe('On This Day share builder', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 
   test('builds post and story cards without reopening the old lightbox', async ({ page }) => {
