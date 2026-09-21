@@ -7,23 +7,26 @@
 }
 
 :root {
-    --background: #080808;
-    --surface: #121212;
-    --surface-raised: #191919;
-    --border: #303030;
-    --border-bright: #4a4a4a;
-    --text: #f4f4f4;
-    --text-soft: #d0d0d0;
-    --muted: #929292;
-    --accent: #ff4a54;
-    --accent-soft: #ff8990;
-    --green: #3ddd78;
-    --content-width: 1240px;
-    --reading-width: 820px;
-    --radius-small: 8px;
-    --radius-medium: 14px;
-    --radius-large: 22px;
-    --shadow: 0 20px 60px rgba(0, 0, 0, 0.32);
+    /* Stable aliases used by existing component CSS. Actual skin values live
+       in theme.css so a future re-skin does not require component rewrites. */
+    --background: var(--theme-background, #080808);
+    --surface: var(--theme-surface, #121212);
+    --surface-raised: var(--theme-surface-raised, #191919);
+    --border: var(--theme-border, #303030);
+    --border-bright: var(--theme-border-bright, #4a4a4a);
+    --text: var(--theme-text, #f4f4f4);
+    --text-soft: var(--theme-text-soft, #d0d0d0);
+    --muted: var(--theme-muted, #929292);
+    --accent: var(--theme-accent, #ff4a54);
+    --accent-soft: var(--theme-accent-soft, #ff8990);
+    --accent-rgb: var(--theme-accent-rgb, 255, 74, 84);
+    --green: var(--theme-success, #3ddd78);
+    --content-width: var(--theme-content-width, 1240px);
+    --reading-width: var(--theme-reading-width, 820px);
+    --radius-small: var(--theme-radius-small, 8px);
+    --radius-medium: var(--theme-radius-medium, 14px);
+    --radius-large: var(--theme-radius-large, 22px);
+    --shadow: var(--theme-shadow, 0 20px 60px rgba(0, 0, 0, 0.32));
 }
 
 *,
