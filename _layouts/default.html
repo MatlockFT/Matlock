@@ -96,8 +96,10 @@
         crossorigin
     >
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5948515643609166"
-        crossorigin="anonymous"></script>
+    {% unless page.noindex %}
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5948515643609166"
+            crossorigin="anonymous"></script>
+    {% endunless %}
 
     {% seo %}
     {% feed_meta %}
