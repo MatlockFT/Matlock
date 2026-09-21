@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Matchmaker"
+title: "UFC Matchmaker: Plausible Next Fight Matchups"
 description: "See the most plausible next UFC matchups after a completed card."
 permalink: /matchmaker/
 page_styles:
@@ -16,8 +16,10 @@ page_scripts:
 <article class="mm-simple" data-matchmaker-simple data-feed="{{ '/assets/data/matchmaker/current.json' | relative_url }}" data-live-feed="https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/data/matchmaker/current.json">
   <header class="mm-simple-hero">
     <p class="mm-simple-kicker" hidden>Matchmaking War Room</p>
-    <h1><span>Match</span>maker</h1>
+    <h1><span>UFC Match</span>maker</h1>
   </header>
+
+  <p class="mm-simple-intro">Explore plausible next UFC matchups generated from completed cards, active-roster context and prior fight history. These are model-generated matchmaking ideas, not official UFC bookings.</p>
 
   <p class="mm-simple-status" data-mm-status role="status">Loading matchup recommendations…</p>
   <noscript><p>This page needs JavaScript to build the matchup recommendations.</p></noscript>
