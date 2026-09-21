@@ -23,10 +23,18 @@
     --green: var(--theme-success, #3ddd78);
     --content-width: var(--theme-content-width, 1240px);
     --reading-width: var(--theme-reading-width, 820px);
+    --font-display: var(--theme-font-display, "Gobold", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif);
+    --font-body: var(--theme-font-body, Arial, Helvetica, sans-serif);
+    --font-editorial: var(--theme-font-editorial, Georgia, "Times New Roman", serif);
+    --font-mono: var(--theme-font-mono, "Courier New", Courier, monospace);
     --radius-small: var(--theme-radius-small, 8px);
     --radius-medium: var(--theme-radius-medium, 14px);
     --radius-large: var(--theme-radius-large, 22px);
+    --radius-pill: var(--theme-radius-pill, 999px);
     --shadow: var(--theme-shadow, 0 20px 60px rgba(0, 0, 0, 0.32));
+    --shadow-card: var(--theme-shadow-card, 0 15px 38px rgba(0, 0, 0, 0.28));
+    --nav-blur: var(--theme-nav-blur, 14px);
+    --accent-wash: var(--theme-accent-wash, rgba(255, 74, 84, 0.1));
 }
 
 *,
