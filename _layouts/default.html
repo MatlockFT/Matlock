@@ -96,14 +96,8 @@
         crossorigin
     >
 
-    {% if page.ads and site.adsense.consent_manager_enabled and site.adsense.client and site.adsense.client != "" and site.adsense.banner_slot and site.adsense.banner_slot != "" %}
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com">
-        <script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsense.client }}"
-            crossorigin="anonymous"
-        ></script>
-    {% endif %}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5948515643609166"
+        crossorigin="anonymous"></script>
 
     {% seo %}
     {% feed_meta %}
