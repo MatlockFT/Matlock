@@ -50,7 +50,7 @@
 }
 
 .ufc-roster-live-status[data-state="error"] .ufc-roster-live-dot {
-    background: var(--accent, #ff4a54);
+    background: var(--accent, var(--accent));
 }
 
 .ufc-roster-stats {
@@ -69,7 +69,7 @@
     padding: 0.8rem 0.95rem;
     border: 1px solid var(--border);
     border-radius: 12px;
-    background: linear-gradient(145deg, rgba(255, 74, 84, 0.045), transparent 55%), var(--surface, #111);
+    background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.045), transparent 55%), var(--surface, #111);
 }
 
 .ufc-roster-stat strong {
@@ -199,7 +199,7 @@
 }
 
 .ufc-roster-card--removed .ufc-roster-event-pill {
-    border-color: rgba(255, 74, 84, 0.3);
+    border-color: rgba(var(--accent-rgb), 0.3);
     color: #ff8e95;
 }
 
