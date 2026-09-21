@@ -35,6 +35,9 @@ jobs:
       - name: Check current brand identity
         run: node scripts/check-brand-identity.mjs
 
+      - name: Check theme overhaul readiness
+        run: npm run check:theme
+
       - name: Check article content and image metadata
         run: npm run check:content
 
@@ -57,6 +60,7 @@ jobs:
           node --check assets/upcoming-events-jump.js
           node --check assets/upcoming-events-links.js
           node --check scripts/check-brand-identity.mjs
+          node --check scripts/check-theme-readiness.mjs
           node --check scripts/build-news-feed.mjs
           node --check scripts/check-news-data.mjs
           node --check scripts/dedupe-news-headlines.mjs
