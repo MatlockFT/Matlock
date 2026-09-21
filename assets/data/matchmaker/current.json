@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-09-21T13:13:10.850Z"
+      "checkedAt": "2026-09-21T17:57:46.948Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-21T13:13:31.732Z",
+      "checkedAt": "2026-09-21T17:58:30.617Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -116394,11 +116394,7 @@
         "mirrorThrough": "2026-09-19",
         "officialThrough": "2026-09-19"
       },
-      "booking": {
-        "event": "UFC Fight Night",
-        "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -153605,13 +153601,7 @@
         "mirrorThrough": "2026-09-19",
         "officialThrough": "2026-09-19"
       },
-      "booking": {
-        "event": "Jr. vs Barcelos",
-        "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
-        "opponent": "Alatengheili",
-        "opponentId": null
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
