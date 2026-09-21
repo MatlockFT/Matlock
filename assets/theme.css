@@ -24,8 +24,23 @@
     --theme-content-width: 1240px;
     --theme-reading-width: 820px;
 
+    /* Typography is deliberately tokenized even while the current fonts stay
+       the same. A future visual overhaul can replace the site's voice here. */
+    --theme-font-display: "Gobold", Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    --theme-font-body: Arial, Helvetica, sans-serif;
+    --theme-font-editorial: Georgia, "Times New Roman", serif;
+    --theme-font-mono: "Courier New", Courier, monospace;
+
+    /* Shape language. These currently reproduce the existing design exactly. */
     --theme-radius-small: 8px;
     --theme-radius-medium: 14px;
     --theme-radius-large: 22px;
+    --theme-radius-pill: 999px;
+
+    /* Effects are separate from palette so they can be removed entirely in a
+       flatter/newspaper/zine skin without touching component layout. */
     --theme-shadow: 0 20px 60px rgba(0, 0, 0, 0.32);
+    --theme-shadow-card: 0 15px 38px rgba(0, 0, 0, 0.28);
+    --theme-nav-blur: 14px;
+    --theme-accent-wash: rgba(255, 74, 84, 0.1);
 }
