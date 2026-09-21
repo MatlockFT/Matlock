@@ -61,7 +61,7 @@ body {
         ),
         var(--background);
     color: var(--text);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-body);
     font-size: 17px;
     line-height: 1.65;
 }
@@ -142,7 +142,7 @@ select:focus-visible {
     z-index: 100;
     border-bottom: 1px solid var(--border);
     background: rgba(12, 12, 12, 0.96);
-    backdrop-filter: blur(14px);
+    backdrop-filter: blur(var(--nav-blur));
 }
 
 .navigation-inner {
@@ -156,7 +156,7 @@ select:focus-visible {
 .mobile-brand {
     display: none;
     color: #ffffff;
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: 1.35rem;
     text-decoration: none;
     text-transform: uppercase;
@@ -322,7 +322,7 @@ select:focus-visible {
 .article-date {
     margin: 0 0 0.9rem;
     color: var(--muted);
-    font-family: "Courier New", monospace;
+    font-family: var(--font-mono);
     font-size: 0.8rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -331,7 +331,7 @@ select:focus-visible {
 .featured-content h2 {
     max-width: 860px;
     margin: 0 0 1.25rem;
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(2.55rem, 5.6vw, 5.35rem);
     line-height: 0.96;
     letter-spacing: 0.008em;
@@ -421,7 +421,7 @@ select:focus-visible {
 .archive-header h1,
 .contact-section-header h2 {
     margin: 0;
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(2.5rem, 5vw, 4.6rem);
     line-height: 0.95;
     text-transform: uppercase;
@@ -458,7 +458,7 @@ select:focus-visible {
 
 .article-card:hover {
     border-color: var(--border-bright);
-    box-shadow: 0 15px 38px rgba(0, 0, 0, 0.28);
+    box-shadow: var(--shadow-card);
     transform: translateY(-3px);
 }
 
@@ -491,7 +491,7 @@ select:focus-visible {
 .article-card h2,
 .article-card h3 {
     margin: 0 0 0.8rem;
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(1.55rem, 2.2vw, 2.1rem);
     line-height: 1.06;
     letter-spacing: 0.01em;
@@ -560,7 +560,7 @@ select:focus-visible {
     max-width: 930px;
     margin: 0 0 1.2rem;
     color: var(--accent);
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(2.75rem, 6.2vw, 5.8rem);
     line-height: 0.96;
     letter-spacing: 0.008em;
@@ -653,7 +653,7 @@ select:focus-visible {
     width: min(100%, var(--reading-width));
     margin: 0 auto;
     color: #e7e7e7;
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: var(--font-editorial);
     font-size: clamp(1.05rem, 1.6vw, 1.2rem);
     line-height: 1.82;
 }
@@ -665,7 +665,7 @@ select:focus-visible {
 .post-body h2,
 .post-body h3,
 .post-body h4 {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-body);
     line-height: 1.15;
 }
 
@@ -719,7 +719,7 @@ select:focus-visible {
     width: 100%;
     overflow-x: auto;
     border-collapse: collapse;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.9rem;
 }
 
@@ -813,7 +813,7 @@ select:focus-visible {
 .contact-hero-main h1 {
     margin: 0 0 1.3rem;
     color: var(--accent);
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(4rem, 9vw, 8rem);
     line-height: 0.86;
     text-transform: uppercase;
@@ -894,7 +894,7 @@ select:focus-visible {
     border-radius: 50%;
     background: #090909;
     color: var(--accent-soft);
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
 }
 
 .platform-card > span:nth-child(2) {
@@ -950,7 +950,7 @@ select:focus-visible {
 .footer-column h2 {
     margin: 0 0 0.9rem;
     color: #ffffff;
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: 1.3rem;
     text-transform: uppercase;
 }
@@ -1265,7 +1265,7 @@ select:focus-visible {
     max-width: 900px;
     margin: 0 0 1.4rem;
     color: var(--accent);
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(4rem, 9vw, 8rem);
     line-height: 0.86;
     text-transform: uppercase;
@@ -1323,7 +1323,7 @@ select:focus-visible {
 
 .about-channel-stats strong {
     color: var(--accent);
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(3rem, 6vw, 5.4rem);
     line-height: 0.88;
 }
@@ -1357,7 +1357,7 @@ select:focus-visible {
 .privacy-content h2 {
     margin: 0;
     color: #ffffff;
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(2.4rem, 5vw, 4.5rem);
     line-height: 0.96;
     text-transform: uppercase;
@@ -1425,14 +1425,14 @@ select:focus-visible {
     display: block;
     margin-bottom: 1.5rem;
     color: var(--accent);
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: 1.1rem;
 }
 
 .about-card h3 {
     margin: 0 0 0.8rem;
     color: #ffffff;
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(1.8rem, 3vw, 2.7rem);
     line-height: 1;
     text-transform: uppercase;
@@ -1581,7 +1581,7 @@ select:focus-visible {
 .privacy-hero h1 {
     margin: 0 0 1.2rem;
     color: var(--accent);
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(3.8rem, 8vw, 7.2rem);
     line-height: 0.88;
     text-transform: uppercase;
@@ -1647,7 +1647,7 @@ select:focus-visible {
     display: block;
     margin-bottom: 1rem;
     color: var(--accent);
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
 }
 
 .privacy-summary-grid h3 {
@@ -1723,7 +1723,7 @@ select:focus-visible {
 .privacy-section-number {
     margin: 0 0 0.45rem;
     color: var(--accent);
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: 1rem;
 }
 
@@ -1949,7 +1949,7 @@ select:focus-visible {
     max-width: 850px;
     margin: 0 0 1.25rem;
     color: var(--accent);
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(3.5rem, 8vw, 7rem);
     line-height: 0.9;
     text-transform: uppercase;
@@ -1983,7 +1983,7 @@ select:focus-visible {
 .simple-about-background h2 {
     margin: 0;
     color: #ffffff;
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(2.4rem, 5vw, 4.25rem);
     line-height: 0.96;
     text-transform: uppercase;
@@ -2005,7 +2005,7 @@ select:focus-visible {
 .simple-about-card h3 {
     margin: 0 0 0.8rem;
     color: var(--accent);
-    font-family: "Gobold", Impact, sans-serif;
+    font-family: var(--font-display);
     font-size: clamp(1.8rem, 3vw, 2.6rem);
     line-height: 1;
     text-transform: uppercase;
