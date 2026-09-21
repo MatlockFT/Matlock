@@ -605,6 +605,7 @@
 
     app.querySelector('[data-preview-spoiler]').hidden = !fields.spoilerWarning.checked;
     previewContent.innerHTML = renderMarkdown(expandedBody) || '<p class="writer-preview-empty">Start writing on the left. Your article will appear here immediately.</p>';
+    hydratePreviewXEmbeds();
 
     const topics = app.querySelector('[data-preview-topics]');
     app.querySelector('[data-preview-tags]').innerHTML = tags.map(tag => `<li>${escapeHtml(tag)}</li>`).join('');
@@ -1351,6 +1352,65 @@ function insertBlock(text) {
     } catch { return /^[A-Za-z0-9_-]{6,}$/.test(value) ? value : ''; }
   }
 
+  function xStatusUrl(value) {
+    try {
+      const u = new URL(value);
+      const host = u.hostname.toLowerCase();
+      const allowedHosts = ['x.com','www.x.com','twitter.com','www.twitter.com','mobile.twitter.com'];
+      if (!allowedHosts.includes(host)) return '';
+      const match = u.pathname.match(/^\/(.+?)\/status\/(\d+)/i);
+      if (!match) return '';
+      return `https://x.com/${match[1]}/status/${match[2]}`;
+    } catch {
+      return '';
+    }
+  }
+
+  function loadPreviewXWidgets(container) {
+    const render = () => {
+      if (window.twttr?.widgets) window.twttr.widgets.load(container);
+    };
+    if (window.twttr?.widgets) {
+      render();
+      return;
+    }
+    let script = document.querySelector('script[src="https://platform.x.com/widgets.js"]');
+    if (!script) {
+      script = document.createElement('script');
+      script.src = 'https://platform.x.com/widgets.js';
+      script.async = true;
+      script.charset = 'utf-8';
+      document.body.appendChild(script);
+    }
+    script.addEventListener('load', render, { once: true });
+  }
+
+  function hydratePreviewXEmbeds() {
+    if (!previewContent) return;
+    let found = false;
+    [...previewContent.querySelectorAll('a')].forEach(link => {
+      if (link.textContent.trim().toUpperCase() !== 'EMBED X') return;
+      const cleanUrl = xStatusUrl(link.href);
+      if (!cleanUrl) return;
+
+      const blockquote = document.createElement('blockquote');
+      blockquote.className = 'twitter-tweet';
+      blockquote.dataset.dnt = 'true';
+      blockquote.dataset.theme = 'dark';
+
+      const xLink = document.createElement('a');
+      xLink.href = cleanUrl;
+      xLink.textContent = 'View post on X';
+      blockquote.appendChild(xLink);
+
+      const paragraph = link.closest('p');
+      if (paragraph && paragraph.textContent.trim().toUpperCase() === 'EMBED X') paragraph.replaceWith(blockquote);
+      else link.replaceWith(blockquote);
+      found = true;
+    });
+    if (found) loadPreviewXWidgets(previewContent);
+  }
+
   function handleSimpleInsert(type) {
     if (type === 'h2') return insertAtCursor('## ', '', 'Section heading');
     if (type === 'bold') return insertAtCursor('**', '**', 'bold text');
@@ -1375,7 +1435,7 @@ function insertBlock(text) {
       return;
     }
     const map = {
-      image: '[data-image-dialog]', youtube: '[data-youtube-dialog]', table: '[data-table-dialog]',
+      image: '[data-image-dialog]', youtube: '[data-youtube-dialog]', x: '[data-x-dialog]', table: '[data-table-dialog]',
       tale: '[data-tale-dialog]', prediction: '[data-pick-dialog]', template: '[data-template-dialog]'
     };
     const dialog = app.querySelector(map[type]);
@@ -1587,6 +1647,15 @@ Object.values(fields).forEach(el => {
     dialog.close();
   });
 
+  app.querySelector('[data-x-insert]').addEventListener('click', () => {
+    const dialog = app.querySelector('[data-x-dialog]');
+    const url = xStatusUrl(dialog.querySelector('[data-x-url]').value.trim());
+    if (!url) { showToast('Paste a valid X or Twitter status URL.'); return; }
+    insertBlock(`[EMBED X](${url})`);
+    dialog.querySelector('[data-x-url]').value = '';
+    dialog.close();
+  });
+
   app.querySelector('[data-image-insert]').addEventListener('click', async () => {
     const dialog = app.querySelector('[data-image-dialog]');
     const file = dialog.querySelector('[data-inline-image-file]').files?.[0];
@@ -1613,7 +1682,13 @@ Object.values(fields).forEach(el => {
     const dialog = app.querySelector('[data-html-dialog]');
     const code = dialog.querySelector('[data-html-code]').value.trim();
     if (!code) { showToast('Paste the HTML for the visual first.'); return; }
-    if (/<script\b/i.test(code)) { showToast('Script tags are not supported in article HTML visuals.', 5000); return; }
+    if (/<script\b/i.test(code)) {
+      const isXEmbed = /twitter-tweet|platform\.(?:twitter|x)\.com\/widgets\.js/i.test(code);
+      showToast(isXEmbed
+        ? 'Use the Tweet button instead and paste only the X/Twitter post URL.'
+        : 'Script tags are not supported in article HTML visuals.', 5000);
+      return;
+    }
     if (!/^<section\b[\s\S]*<\/section>\s*$/i.test(code)) { showToast('Wrap the visual in one self-contained <section>...</section> block.', 5500); return; }
     const label = cleanHtmlLabel(dialog.querySelector('[data-html-label]').value || inferHtmlLabel(code));
 
