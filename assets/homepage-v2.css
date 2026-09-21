@@ -3,6 +3,8 @@
 
 html:has([data-home-flow]),
 body:has([data-home-flow]) {
+    max-width: 100%;
+    overflow-x: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
     overscroll-behavior-y: none;
@@ -33,6 +35,7 @@ body:has([data-home-flow])::-webkit-scrollbar {
     --home-green: #41ff74;
 
     width: 100%;
+    max-width: 100vw;
     overflow: clip;
     background: var(--home-ink);
     color: var(--home-paper);
