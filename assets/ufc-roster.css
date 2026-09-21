@@ -50,7 +50,7 @@
 }
 
 .ufc-roster-live-status[data-state="error"] .ufc-roster-live-dot {
-    background: var(--accent, var(--accent));
+    background: var(--accent);
 }
 
 .ufc-roster-stats {
