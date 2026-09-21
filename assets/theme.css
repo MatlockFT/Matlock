@@ -1,0 +1,31 @@
+/*
+ * MMA Matlock skin tokens.
+ *
+ * Keep structural/layout rules out of this file. A site-wide visual re-skin
+ * should start here: palette, widths, radii and shadow can change without
+ * rewriting page components.
+ */
+:root {
+    --theme-background: #080808;
+    --theme-surface: #121212;
+    --theme-surface-raised: #191919;
+    --theme-border: #303030;
+    --theme-border-bright: #4a4a4a;
+
+    --theme-text: #f4f4f4;
+    --theme-text-soft: #d0d0d0;
+    --theme-muted: #929292;
+
+    --theme-accent: #ff4a54;
+    --theme-accent-soft: #ff8990;
+    --theme-accent-rgb: 255, 74, 84;
+    --theme-success: #3ddd78;
+
+    --theme-content-width: 1240px;
+    --theme-reading-width: 820px;
+
+    --theme-radius-small: 8px;
+    --theme-radius-medium: 14px;
+    --theme-radius-large: 22px;
+    --theme-shadow: 0 20px 60px rgba(0, 0, 0, 0.32);
+}
