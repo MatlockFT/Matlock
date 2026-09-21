@@ -29,20 +29,20 @@ function attrValue(tag, name) {
 }
 
 function canonical(html) {
-  const tags = html.match(/<link\\b[^>]*>/gi) || [];
-  const tag = tags.find(value => /\\brel=["']canonical["']/i.test(value));
+  const tags = html.match(/<link\b[^>]*>/gi) || [];
+  const tag = tags.find(value => /\brel=["']canonical["']/i.test(value));
   return attrValue(tag, 'href');
 }
 
 function description(html) {
-  const tags = html.match(/<meta\\b[^>]*>/gi) || [];
-  const tag = tags.find(value => /\\bname=["']description["']/i.test(value));
+  const tags = html.match(/<meta\b[^>]*>/gi) || [];
+  const tag = tags.find(value => /\bname=["']description["']/i.test(value));
   return attrValue(tag, 'content');
 }
 
 function robots(html) {
-  const tags = html.match(/<meta\\b[^>]*>/gi) || [];
-  const tag = tags.find(value => /\\bname=["']robots["']/i.test(value));
+  const tags = html.match(/<meta\b[^>]*>/gi) || [];
+  const tag = tags.find(value => /\bname=["']robots["']/i.test(value));
   return attrValue(tag, 'content').toLowerCase();
 }
 
@@ -57,11 +57,14 @@ for (const required of ['robots.txt', 'sitemap.xml', 'ads.txt', 'about/index.htm
 
 const sitemapPath = join(root, 'sitemap.xml');
 const sitemap = existsSync(sitemapPath) ? readFileSync(sitemapPath, 'utf8') : '';
-const sitemapUrls = new Set([...sitemap.matchAll(/<loc>(https:\\/\\/mmamatlock\\.com[^<]*)<\\/loc>/g)].map(m => m[1]));
+const sitemapUrls = new Set();
+for (const match of sitemap.matchAll(new RegExp('<loc>(https://mmamatlock\\.com[^<]*)</loc>', 'g'))) {
+  sitemapUrls.add(match[1]);
+}
 
 const robotsText = existsSync(join(root, 'robots.txt')) ? readFileSync(join(root, 'robots.txt'), 'utf8') : '';
-if (!/User-agent:\\s*\\*/i.test(robotsText) || !/Allow:\\s*\\//i.test(robotsText)) failures.push('robots.txt must allow normal crawling');
-if (!/Sitemap:\\s*https:\\/\\/mmamatlock\\.com\\/sitemap\\.xml/i.test(robotsText)) failures.push('robots.txt must advertise the canonical sitemap');
+if (!/User-agent:\s*\*/i.test(robotsText) || !/Allow:\s*\//i.test(robotsText)) failures.push('robots.txt must allow normal crawling');
+if (!new RegExp('Sitemap:\\s*https://mmamatlock\\.com/sitemap\\.xml', 'i').test(robotsText)) failures.push('robots.txt must advertise the canonical sitemap');
 
 const adsText = existsSync(join(root, 'ads.txt')) ? readFileSync(join(root, 'ads.txt'), 'utf8').trim() : '';
 const expectedAds = 'google.com, pub-5948515643609166, DIRECT, f08c47fec0942fa0';
@@ -81,16 +84,16 @@ for (const file of walk(root)) {
 
   if (noindex) {
     if (inSitemap) failures.push(path + ': noindex page appears in sitemap');
-    if (/pagead2\\.googlesyndication\\.com\\/pagead\\/js\\/adsbygoogle\\.js/i.test(html)) {
+    if (/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js/i.test(html)) {
       failures.push(path + ': noindex page still loads AdSense');
     }
     continue;
   }
 
   indexableCount += 1;
-  if (/^\\/\\d{4}\\/\\d{2}\\/\\d{2}\\//.test(path)) postLikeCount += 1;
+  if (/^\/\d{4}\/\d{2}\/\d{2}\//.test(path)) postLikeCount += 1;
 
-  const title = html.match(/<title>([\\s\\S]*?)<\\/title>/i)?.[1]?.replace(/\\s+/g, ' ').trim() || '';
+  const title = html.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.replace(/\s+/g, ' ').trim() || '';
   const desc = description(html);
   const canon = canonical(html);
 
@@ -99,7 +102,7 @@ for (const file of walk(root)) {
   if (!canon) failures.push(path + ': missing canonical URL');
   else if (!canon.startsWith(SITE + '/')) failures.push(path + ': canonical points outside canonical host: ' + canon);
 
-  const h1s = (html.match(/<h1\\b/gi) || []).length;
+  const h1s = (html.match(/<h1\b/gi) || []).length;
   if (h1s === 0) warnings.push(path + ': no H1 found');
   if (h1s > 1) warnings.push(path + ': multiple H1 elements found (' + h1s + ')');
 
