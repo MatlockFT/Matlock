@@ -69,12 +69,12 @@
 }
 
 .event-map-sumo-pin-halo {
-    fill: var(--accent, #ff4a54);
+    fill: var(--accent, var(--accent));
     opacity: .16;
 }
 
 .event-map-sumo-pin-core {
-    fill: var(--accent, #ff4a54);
+    fill: var(--accent, var(--accent));
     stroke: #fff;
     stroke-width: 1.4;
 }
