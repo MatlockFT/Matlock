@@ -534,6 +534,7 @@ for (const fighter of data.fighters) {
 
 const participantCount = participants.size;
 const activeRatio = activePopulation ? activeVerified / activePopulation : 0;
+const ledgerAliasRepairs = [...aliasRepairCountByFighter.values()].reduce((sum, count) => sum + count, 0);
 console.log(`History-v2 preflight: participants ${participantVerified}/${participantCount}; active population ${activeVerified}/${activePopulation} (${(activeRatio * 100).toFixed(1)}%).`);
 console.log(`Gap evidence: ${supplementalApplied}/${evidence.supplementalMeetings.length} supplemental UFCStats fight(s) applied; ${profileContradictionCount} impossible UFC.com profile claim(s) rejected by structured same-date evidence.`);
 console.log(`Profile cross-check: ${sourceDiscrepancyCount} source discrepancy record(s) reconciled without letting profile prose override structured history.`);
@@ -573,7 +574,7 @@ data.coverage = {
   sourceDiscrepancyCount,
   profileContradictionCount,
   supplementalFightCount: supplementalApplied,
-  ledgerAliasRepairs: [...aliasRepairCountByFighter.values()].reduce((sum, count) => sum + count, 0),
+  ledgerAliasRepairs,
   trackedFightCount: trackedFights.length,
   mirrorFightCount: mirrorFights.length,
   mirrorFighterCount: statsFighters.length
@@ -584,5 +585,5 @@ const tmp = `${DATA_PATH}.verified-history-v2.tmp`;
 await fs.writeFile(tmp, JSON.stringify(data, null, 2) + '\n');
 await fs.rename(tmp, DATA_PATH);
 console.log(`Verified history v2: ${verified}/${data.fighters.length} roster records; ${activeVerified}/${activePopulation} active matchmaking histories (${(activeRatio * 100).toFixed(1)}%); ${participantVerified}/${participantCount} displayed-event fighters; ${trackedFights.length} tracked fights (${mirrorFights.length} mirror + ${supplementalApplied} gap evidence); ${statsFighters.length} UFCStats identities.`);
-console.log(`Opponent identity links: ${canonicalOpponentLinks} canonical / ${unresolvedOpponentLinks} historical-only. Alias-ledger repairs: ${[...aliasRepairCountByFighter.values()].reduce((sum, count) => sum + count, 0)}.`);
+console.log(`Opponent identity links: ${canonicalOpponentLinks} canonical / ${unresolvedOpponentLinks} historical-only. Alias-ledger repairs: ${ledgerAliasRepairs}.`);
 if (missNames.length) console.warn(`Withheld histories (${missNames.length} relevant): ${missNames.slice(0, 30).join(', ')}${missNames.length > 30 ? ', …' : ''}`);
