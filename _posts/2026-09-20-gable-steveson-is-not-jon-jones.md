@@ -693,7 +693,9 @@ He's a shorter heavyweight with exceptional speed and explosive power. Give him 
 
 Make everything else serve that.
 
-Instead, I'm watching him backpedal, clinch, jab, kick, and do Jon Jones shit that works because Jon Jones is Jon Jones.
+Alas, I'm neither a coach nor a fighter. In fact, I'm pretty certain I was saying to fast-track Gable to the UFC because the heavyweight division is so shit. I did express reservations, however, in his fight against Hugo Lezama outside of the UFC. I felt skeptical about his readiness to take a punch after his UFC debut, too. It just seemed the more I watched of Gable, the less I liked about his approach and the style he was developing.
+
+I'm watching him backpedal, clinch, jab, kick, and do Jon Jones shit that works because Jon Jones is Jon Jones.
 
 Some of those things are uniquely effective because of Jones' body type, instincts, experience, and the years of coaching that went into making him the fighter he became.
 
