@@ -127,9 +127,9 @@
     top: clamp(.7rem, 1.5vw, 1.25rem);
     right: clamp(.8rem, 2.2vw, 1.8rem);
     z-index: 4;
-    border: 2px solid currentColor;
+    border: 2px solid var(--home-ink);
     padding: .32rem .42rem .25rem;
-    background: currentColor;
+    background: var(--home-ink);
     color: var(--home-paper);
     font: 900 .625rem/1 var(--theme-font-mono, "Courier New", monospace);
     letter-spacing: .08em;
