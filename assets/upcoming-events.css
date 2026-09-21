@@ -9,7 +9,7 @@
 
 .upcoming-events-kicker {
     margin: 0 0 .2rem;
-    color: var(--accent, #ff4a54);
+    color: var(--accent, var(--accent));
     font: 700 .58rem "Courier New", monospace;
     letter-spacing: .14em;
     text-transform: uppercase;
@@ -23,7 +23,7 @@
     line-height: .92;
     letter-spacing: .01em;
     text-transform: uppercase;
-    text-shadow: 3px 0 0 rgba(255, 74, 84, .12);
+    text-shadow: 3px 0 0 rgba(var(--accent-rgb), .12);
 }
 
 .upcoming-events-list {
@@ -34,7 +34,7 @@
 .upcoming-event-card {
     overflow: hidden;
     border: 1px solid #ededed;
-    border-top: 2px solid var(--accent, #ff4a54);
+    border-top: 2px solid var(--accent, var(--accent));
     border-radius: 2px;
     background: #080808;
     color: #fff;
@@ -57,7 +57,7 @@
     position: absolute;
     inset: 0 auto 0 0;
     width: 3px;
-    background: var(--accent, #ff4a54);
+    background: var(--accent, var(--accent));
     content: "";
     opacity: .72;
 }
@@ -72,7 +72,7 @@
 
 .event-promotion {
     margin: 0 0 .14rem;
-    color: var(--accent, #ff4a54);
+    color: var(--accent, var(--accent));
     font-size: .56rem;
     font-weight: 700;
     letter-spacing: .14em;
@@ -123,7 +123,7 @@
     font-weight: 700;
     letter-spacing: .04em;
     text-decoration: underline;
-    text-decoration-color: rgba(255, 74, 84, .72);
+    text-decoration-color: rgba(var(--accent-rgb), .72);
     text-decoration-thickness: 1px;
     text-underline-offset: .16em;
     text-transform: uppercase;
@@ -132,7 +132,7 @@
 
 .event-card-meta a:hover,
 .event-card-meta a:focus-visible {
-    color: var(--accent, #ff4a54);
+    color: var(--accent, var(--accent));
 }
 
 .event-card-section {
@@ -166,7 +166,7 @@
     width: .42rem;
     height: .42rem;
     margin-right: .4rem;
-    background: var(--accent, #ff4a54);
+    background: var(--accent, var(--accent));
     content: "";
     transform: translateY(-.04rem);
 }
@@ -544,7 +544,7 @@
     .upcoming-event-card:hover {
         transform: translateY(-2px);
         border-color: #fff;
-        border-top-color: var(--accent, #ff4a54);
+        border-top-color: var(--accent, var(--accent));
         box-shadow: 0 18px 42px rgba(0,0,0,.34), 0 0 0 1px rgba(255,255,255,.07);
     }
 
