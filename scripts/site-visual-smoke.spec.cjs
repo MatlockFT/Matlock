@@ -180,7 +180,52 @@ for (const viewport of viewports) {
   });
 }
 
-test.describe('On This Day share builder', () => {
+
+
+test.describe('Homepage V2 immersive scroll', () => {
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('scroll advances the fixed story deck instead of moving the viewport content', async ({ page }) => {
+    const pageErrors = [];
+    page.on('pageerror', error => pageErrors.push(error.message));
+
+    await page.goto(targetUrl('/homepage-v2/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-immersive-stage]')).toBeVisible({ timeout: 30000 });
+    await page.evaluate(() => document.fonts?.ready).catch(() => {});
+    await page.waitForTimeout(150);
+
+    const initialCounter = (await page.locator('[data-scene-counter]').textContent() || '').trim();
+    expect(initialCounter).toMatch(/^01\s*\/\s*0?5$/);
+
+    const initialStageTop = await page.locator('[data-immersive-stage]').evaluate(node =>
+      Math.round(node.getBoundingClientRect().top)
+    );
+    expect(Math.abs(initialStageTop)).toBeLessThanOrEqual(2);
+
+    await page.evaluate(() => window.scrollBy({ top: window.innerHeight * 1.15, behavior: 'instant' }));
+    await page.waitForTimeout(180);
+
+    const secondCounter = (await page.locator('[data-scene-counter]').textContent() || '').trim();
+    expect(secondCounter).toMatch(/^02\s*\/\s*0?5$/);
+
+    const secondOpacity = await page.locator('[data-immersive-slide][data-scene-index="1"]').evaluate(node =>
+      Number.parseFloat(getComputedStyle(node).getPropertyValue('--scene-opacity')) || 0
+    );
+    expect(secondOpacity).toBeGreaterThan(0.9);
+
+    const stageTopAfterScroll = await page.locator('[data-immersive-stage]').evaluate(node =>
+      Math.round(node.getBoundingClientRect().top)
+    );
+    expect(Math.abs(stageTopAfterScroll)).toBeLessThanOrEqual(2);
+
+    const overflow = await page.evaluate(() =>
+      document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(2);
+    expect(pageErrors).toEqual([]);
+  });
+});
+\ntest.describe('On This Day share builder', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 
   test('builds post and story cards without reopening the old lightbox', async ({ page }) => {
