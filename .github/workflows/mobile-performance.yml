@@ -76,6 +76,7 @@ jobs:
               --output-path="lighthouse-reports/${slug}.json"
           done <<'PAGES'
           home|/
+          homepage-v2|/homepage-v2/
           news|/news/
           breakdowns|/breakdowns/
           fight-card-picker|/upcoming-events/
