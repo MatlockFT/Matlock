@@ -62,6 +62,19 @@ if (historyV2) {
   assert.equal(roadMeeting.competitionClass, 'road-to-ufc');
   assert.equal(roadMeeting.result, 'W');
 
+  const ufc331Present = (data.events || []).some(event => /UFC 331\b/i.test(event.title || ''));
+  if (ufc331Present) {
+    const patricio = data.fighters.find(fighter => fighter.id === 'patricio-freire');
+    assert(patricio, 'Patricio Freire must resolve in the Matchmaker roster');
+    assert.equal(patricio.meetingCoverage?.verified, true, 'Patricio history must survive UFCStats directory/bout display-name drift');
+    assert.equal(patricio.meetingCoverage?.ufcStatsId, '98a58c26c5b1ed17', 'Patricio stable UFCStats identity drifted');
+    assert((patricio.meetingCoverage?.ledgerAliasRepairs || 0) >= 2, 'Patricio renamed-ledger rows were not recovered through canonical aliases');
+    const ige = patricio.verifiedMeetings?.find(meeting => meeting.fightStatsId === 'acc961fd5cf5c62e');
+    const yair = patricio.verifiedMeetings?.find(meeting => meeting.fightStatsId === 'd3be5a4e0ec273e2');
+    assert(ige && ige.date === '2025-07-19' && ige.result === 'W', 'Patricio vs Dan Ige disappeared from verified history');
+    assert(yair && yair.date === '2025-04-12' && yair.result === 'L', 'Patricio vs Yair Rodriguez disappeared from verified history');
+  }
+
   const ravena = data.fighters.find(fighter => fighter.name === 'Ravena Oliveira');
   assert(ravena, 'Ravena Oliveira must resolve in the Matchmaker roster');
   assert.equal(ravena.meetingCoverage?.verified, true, 'Ravena Oliveira history must remain verified after rejecting bad profile prose');
