@@ -19,7 +19,7 @@
     background:
         radial-gradient(
             circle at 100% 0,
-            rgba(255, 74, 84, 0.2),
+            rgba(var(--accent-rgb), 0.2),
             transparent 430px
         ),
         linear-gradient(
@@ -112,7 +112,7 @@
 .mma-gallery-shuffle:hover,
 .mma-gallery-shuffle:focus-visible {
     border-color: var(--accent);
-    background: rgba(255, 74, 84, 0.1);
+    background: rgba(var(--accent-rgb), 0.1);
 }
 
 /* Masonry wall */
@@ -154,7 +154,7 @@
     border-color: var(--accent);
     box-shadow:
         0 18px 38px rgba(0, 0, 0, 0.42),
-        0 0 0 1px rgba(255, 74, 84, 0.18);
+        0 0 0 1px rgba(var(--accent-rgb), 0.18);
     transform: rotate(0) translateY(-4px);
 }
 
