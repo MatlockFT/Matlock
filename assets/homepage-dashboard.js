@@ -53,7 +53,7 @@
                 seen.add(key);
                 return true;
             })
-            .slice(0, 3);
+            .slice(0, 5);
     };
 
     const sectionLink = (label, href) => {
@@ -228,6 +228,86 @@
         runWhenIdle(loadOnThisDay, 180, 900);
         runWhenIdle(loadRoster, 360, 1100);
     };
+
+    const reduceMotion = () =>
+        document.documentElement.classList.contains('reduce-motion') ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function initFlowEffects() {
+        const scenes = [...root.querySelectorAll('[data-home-scene]')];
+        if (!scenes.length) return;
+
+        root.classList.add('home-flow-ready');
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(
+                entries => {
+                    for (const entry of entries) {
+                        entry.target.classList.toggle('is-in-view', entry.isIntersecting);
+                    }
+                },
+                {
+                    rootMargin: '-12% 0px -12% 0px',
+                    threshold: [0.08, 0.22, 0.5]
+                }
+            );
+            scenes.forEach(scene => observer.observe(scene));
+        } else {
+            scenes.forEach(scene => scene.classList.add('is-in-view'));
+        }
+
+        if (reduceMotion()) {
+            root.style.setProperty('--home-speed', '0');
+            root.style.setProperty('--home-pointer-x', '0px');
+            root.style.setProperty('--home-pointer-y', '0px');
+            return;
+        }
+
+        let pointerFrame = 0;
+        root.addEventListener('pointermove', event => {
+            if (pointerFrame) return;
+            pointerFrame = window.requestAnimationFrame(() => {
+                pointerFrame = 0;
+                const x = ((event.clientX / Math.max(window.innerWidth, 1)) - 0.5) * 8;
+                const y = ((event.clientY / Math.max(window.innerHeight, 1)) - 0.5) * 6;
+                root.style.setProperty('--home-pointer-x', `${x.toFixed(2)}px`);
+                root.style.setProperty('--home-pointer-y', `${y.toFixed(2)}px`);
+            });
+        }, { passive: true });
+
+        root.addEventListener('pointerleave', () => {
+            root.style.setProperty('--home-pointer-x', '0px');
+            root.style.setProperty('--home-pointer-y', '0px');
+        });
+
+        let lastY = window.scrollY;
+        let lastTime = performance.now();
+        let scrollFrame = 0;
+        let settleTimer = 0;
+
+        const settle = () => {
+            window.clearTimeout(settleTimer);
+            settleTimer = window.setTimeout(() => {
+                root.style.setProperty('--home-speed', '0');
+            }, 140);
+        };
+
+        window.addEventListener('scroll', () => {
+            if (scrollFrame) return;
+            scrollFrame = window.requestAnimationFrame(now => {
+                scrollFrame = 0;
+                const deltaY = Math.abs(window.scrollY - lastY);
+                const deltaTime = Math.max(16, now - lastTime);
+                const speed = Math.min(1, (deltaY / deltaTime) * 0.42);
+                root.style.setProperty('--home-speed', speed.toFixed(3));
+                lastY = window.scrollY;
+                lastTime = now;
+                settle();
+            });
+        }, { passive: true });
+    }
+
+    initFlowEffects();
 
     if (document.readyState === 'complete') startDeferredLoads();
     else window.addEventListener('load', startDeferredLoads, { once: true });
