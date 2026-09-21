@@ -104,46 +104,6 @@
   ],
   "events": [
     {
-      "id": "fury-fury-as-62-2026-09-20",
-      "promotion": "Fury FC",
-      "promotion_key": "fury",
-      "title": "FURY AS 62",
-      "date": "2026-09-20",
-      "venue": "IMAGEN VENUES",
-      "location": "Houston, TX",
-      "broadcast": "",
-      "official_url": "https://www.furyfc.tv/events",
-      "regional": true,
-      "level": "amateur",
-      "source_key": "fury",
-      "source_label": "Fury Fighting Championship",
-      "main_event": {
-        "fighters": [
-          "Whitehead",
-          "Abouzalam"
-        ]
-      },
-      "latitude": 29.7604,
-      "longitude": -95.3698
-    },
-    {
-      "id": "fury-fury-fc-124-2026-09-20",
-      "promotion": "Fury FC",
-      "promotion_key": "fury",
-      "title": "FURY FC 124",
-      "date": "2026-09-20",
-      "venue": "IMAGEN VENUES",
-      "location": "Houston, TX",
-      "broadcast": "",
-      "official_url": "https://www.furyfc.tv/events",
-      "regional": true,
-      "level": "professional",
-      "source_key": "fury",
-      "source_label": "Fury Fighting Championship",
-      "latitude": 29.7604,
-      "longitude": -95.3698
-    },
-    {
       "id": "tuff_n_uff-tuff-n-uff-157-jackson-vs-2026-09-25",
       "promotion": "Tuff-N-Uff",
       "promotion_key": "tuff_n_uff",
@@ -510,6 +470,7 @@
       "level": "regional",
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
+      "ticket_url": "https://www.nitrotickets.com/event/1210/wfc-198-avi",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1210/1788807894_PwR5D.jpg"
     },
     {
@@ -773,19 +734,40 @@
       "longitude": -118.3406
     },
     {
-      "id": "sherdog-kotc-king-of-the-cage-2026-10-08-couer-d-alene",
+      "id": "sherdog-kotc-zero-mercy-2026-10-08-couer-d-alene",
       "promotion": "KOTC",
       "promotion_key": "sherdog_discovery",
-      "title": "KOTC: King of the Cage",
+      "title": "KOTC: Zero Mercy",
       "date": "2026-10-08",
       "venue": "Couer D'Alene Casino",
       "location": "Couer D'Alene, ID",
       "broadcast": "",
-      "official_url": "https://www.sherdog.com/events/KOTC-King-of-the-Cage-114371",
+      "official_url": "https://www.sherdog.com/events/KOTC-Zero-Mercy-114371",
       "regional": true,
       "level": "regional",
       "source_key": "sherdog_discovery",
       "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-legends-of-combat-8-demers-vs-jones-2026-10-08-flint",
+      "promotion": "Legends of Combat",
+      "promotion_key": "sherdog_discovery",
+      "title": "Legends of Combat 8: Demers vs. Jones",
+      "date": "2026-10-08",
+      "venue": "810 Sports Complex",
+      "location": "Flint, MI",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Legends-of-Combat-8-Demers-vs-Jones-114610",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery",
+      "main_event": {
+        "fighters": [
+          "Demers",
+          "Jones"
+        ]
+      }
     },
     {
       "id": "sherdog-combat-fc-14-combat-fighting-championship-14-2026-10-09-wilmington",
@@ -1073,6 +1055,21 @@
       "longitude": -118.2437
     },
     {
+      "id": "sherdog-brandrisk-016-brand-risk-promotions-2026-10-16-miami",
+      "promotion": "BrandRisk",
+      "promotion_key": "sherdog_discovery",
+      "title": "BrandRisk 016: Brand Risk Promotions",
+      "date": "2026-10-16",
+      "venue": "Brand Risk Warehouse",
+      "location": "Miami, FL",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/BrandRisk-016-Brand-Risk-Promotions-114615",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "sherdog-caged-aggression-42-the-perfect-storm-night-1-2026-10-16-davenport",
       "promotion": "Caged Aggression",
       "promotion_key": "sherdog_discovery",
@@ -1120,6 +1117,23 @@
       "source_label": "Sherdog regional discovery",
       "latitude": 41.5236,
       "longitude": -90.5776
+    },
+    {
+      "id": "sherdog-cn-combat-night-kissimmee-2026-10-17-kissimmee",
+      "promotion": "CN",
+      "promotion_key": "sherdog_discovery",
+      "title": "CN: Combat Night: Kissimmee",
+      "date": "2026-10-17",
+      "venue": "Osceola Heritage Park",
+      "location": "Kissimmee, FL",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/CN-Combat-Night-Kissimmee-114617",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery",
+      "latitude": 28.292,
+      "longitude": -81.4076
     },
     {
       "id": "sherdog-full-contact-promotions-rage-in-the-cage-35-2026-10-17-rochester",
@@ -1204,6 +1218,21 @@
       "longitude": -122.2711
     },
     {
+      "id": "sherdog-saarfc-31-solid-as-a-rock-fighting-championship-31-fright-night-2026-10-17-fairbanks",
+      "promotion": "SAARFC",
+      "promotion_key": "sherdog_discovery",
+      "title": "SAARFC 31: Solid as a Rock Fighting Championship 31: Fright Night",
+      "date": "2026-10-17",
+      "venue": "Carlson Center Arena",
+      "location": "Fairbanks, AK",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/SAARFC-31-Solid-as-a-Rock-Fighting-Championship-31-Fright-Night-114619",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "nitro-wfc-199-eqc-10-17-2026-10-17",
       "promotion": "World Fighting Championship",
       "promotion_key": "nitro",
@@ -1217,6 +1246,7 @@
       "level": "regional",
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
+      "ticket_url": "https://www.nitrotickets.com/event/1297/wfc-199-eqc-1017",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1297/1789187498_AxOJy.jpg"
     },
     {
@@ -1589,6 +1619,23 @@
       "source_label": "California Amateur Mixed Martial Arts Organization",
       "latitude": 32.7157,
       "longitude": -117.1611
+    },
+    {
+      "id": "fury-fury-challenger-series-18-2026-11-20",
+      "promotion": "Fury FC",
+      "promotion_key": "fury",
+      "title": "FURY CHALLENGER SERIES 18",
+      "date": "2026-11-20",
+      "venue": "BAYOU CITY EVENT CENTER",
+      "location": "Houston, TX",
+      "broadcast": "",
+      "official_url": "https://www.furyfc.tv/events",
+      "regional": true,
+      "level": "regional",
+      "source_key": "fury",
+      "source_label": "Fury Fighting Championship",
+      "latitude": 29.7604,
+      "longitude": -95.3698
     },
     {
       "id": "camomma-209-beatdown-2026-11-21",
