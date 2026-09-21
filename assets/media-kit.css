@@ -29,7 +29,7 @@
     background:
         radial-gradient(
             circle at 95% 5%,
-            rgba(255, 74, 84, 0.24),
+            rgba(var(--accent-rgb), 0.24),
             transparent 430px
         ),
         linear-gradient(
@@ -65,7 +65,7 @@
 .media-kit-hero h1 {
     max-width: 850px;
     margin: 0 0 0.85rem;
-    color: var(--accent, #ff4a54);
+    color: var(--accent, var(--accent));
     font-family: "Gobold", Impact, sans-serif;
     font-size: clamp(4rem, 9vw, 7.2rem);
     line-height: 0.82;
@@ -141,8 +141,8 @@
 }
 
 .media-kit-primary-button {
-    border: 1px solid var(--accent, #ff4a54);
-    background: var(--accent, #ff4a54);
+    border: 1px solid var(--accent, var(--accent));
+    background: var(--accent, var(--accent));
     color: #070707;
 }
 
@@ -219,7 +219,7 @@
     background:
         linear-gradient(
             145deg,
-            rgba(255, 74, 84, 0.09),
+            rgba(var(--accent-rgb), 0.09),
             transparent 60%
         ),
         #0d0d0d;
@@ -228,7 +228,7 @@
 .media-kit-stat-platform {
     display: block;
     margin-bottom: 0.7rem;
-    color: var(--accent, #ff4a54);
+    color: var(--accent, var(--accent));
     font-size: 0.6rem;
     font-weight: 900;
     letter-spacing: 0.1em;
@@ -271,7 +271,7 @@
     background:
         linear-gradient(
             145deg,
-            rgba(255, 74, 84, 0.1),
+            rgba(var(--accent-rgb), 0.1),
             transparent 60%
         );
 }
@@ -283,7 +283,7 @@
 .media-kit-proof span {
     display: block;
     margin-bottom: 0.55rem;
-    color: var(--accent, #ff4a54);
+    color: var(--accent, var(--accent));
     font-size: 0.6rem;
     font-weight: 900;
     letter-spacing: 0.1em;
@@ -379,7 +379,7 @@
 .media-kit-value-grid span {
     display: block;
     margin-bottom: 0.75rem;
-    color: var(--accent, #ff4a54);
+    color: var(--accent, var(--accent));
     font-family: "Courier New", monospace;
     font-size: 0.66rem;
     font-weight: 900;
@@ -424,7 +424,7 @@
 
 .media-kit-content-list span {
     grid-row: 1 / 3;
-    color: var(--accent, #ff4a54);
+    color: var(--accent, var(--accent));
     font-family: "Courier New", monospace;
     font-size: 0.7rem;
     font-weight: 900;
@@ -469,7 +469,7 @@
     display: block;
     height: 4px;
     content: "";
-    background: var(--accent, #ff4a54);
+    background: var(--accent, var(--accent));
 }
 
 .media-kit-platform-header {
@@ -483,7 +483,7 @@
 .media-kit-platform-label {
     display: block;
     margin-bottom: 0.35rem;
-    color: var(--accent, #ff4a54);
+    color: var(--accent, var(--accent));
     font-size: 0.62rem;
     font-weight: 900;
     letter-spacing: 0.09em;
@@ -600,7 +600,7 @@
     position: absolute;
     top: 0.13rem;
     left: 0;
-    color: var(--accent, #ff4a54);
+    color: var(--accent, var(--accent));
     content: "✓";
     font-weight: 900;
 }
@@ -623,9 +623,9 @@
     place-items: center;
     width: 38px;
     height: 38px;
-    border: 1px solid var(--accent, #ff4a54);
+    border: 1px solid var(--accent, var(--accent));
     border-radius: 50%;
-    color: var(--accent, #ff4a54);
+    color: var(--accent, var(--accent));
     font-family: Georgia, serif;
     font-size: 1.2rem;
     font-style: italic;
@@ -660,12 +660,12 @@
     gap: 2rem;
     align-items: center;
     padding: clamp(1.5rem, 5vw, 3.5rem);
-    border: 1px solid var(--accent, #ff4a54);
+    border: 1px solid var(--accent, var(--accent));
     border-radius: var(--radius-large, 18px);
     background:
         radial-gradient(
             circle at 90% 20%,
-            rgba(255, 74, 84, 0.2),
+            rgba(var(--accent-rgb), 0.2),
             transparent 360px
         ),
         var(--surface, #141414);
@@ -683,7 +683,7 @@
 }
 
 .media-kit-email {
-    color: var(--accent, #ff4a54);
+    color: var(--accent, var(--accent));
     font-size: clamp(1rem, 2.5vw, 1.35rem);
     font-weight: 900;
     overflow-wrap: anywhere;
