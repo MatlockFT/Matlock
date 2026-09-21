@@ -67,6 +67,7 @@ jobs:
           node --check scripts/build-on-this-day-home.mjs
           node --check scripts/build-frontend-bundles.mjs
           node --check scripts/check-repository-integrity.mjs
+          node --check scripts/check-search-readiness.mjs
           node --check scripts/build-on-this-day-share-images.mjs
           node --check scripts/share-title-layout.mjs
           node --check scripts/update-fighter-birthdays.mjs
@@ -247,3 +248,6 @@ jobs:
 
       - name: Check internal links and assets
         run: node scripts/check-site.mjs _site
+
+      - name: Check search and AdSense readiness
+        run: npm run check:search
