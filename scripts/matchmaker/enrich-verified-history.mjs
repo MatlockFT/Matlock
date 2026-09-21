@@ -152,6 +152,17 @@ function allKnownNames(fighter) {
   return [...names].filter(Boolean);
 }
 
+// UFCStats fight rows and its fighter directory do not always use the same display name.
+// Only treat a site-known name/alias as a ledger alias when it belongs to exactly one canonical
+// Matchmaker fighter. This lets renamed fighters recover source-native rows without guessing.
+const canonicalNameOwners = new Map();
+for (const fighter of data.fighters) for (const name of allKnownNames(fighter)) {
+  const ledgerKey = key(name);
+  if (!ledgerKey) continue;
+  const existing = canonicalNameOwners.get(ledgerKey);
+  canonicalNameOwners.set(ledgerKey, existing && existing !== fighter.id ? null : fighter.id);
+}
+
 // Build a source-native ledger before canonical identity matching. This lets fight signatures resolve
 // renamed/ambiguous UFC.com identities without guessing from spelling alone.
 const rawByStatsId = new Map();
@@ -300,11 +311,43 @@ for (const fighter of data.fighters) {
   }
 }
 
-function rawMeetingsFor(identity) {
+const aliasRepairCountByFighter = new Map();
+function rawMeetingsFor(fighter, identity) {
   if (!identity) return [];
-  if (identity.statsId) return rawByStatsId.get(identity.statsId) || [];
-  if (identity.ledgerKey) return rawByLedgerName.get(identity.ledgerKey) || [];
-  return [];
+  if (!identity.statsId) return identity.ledgerKey ? rawByLedgerName.get(identity.ledgerKey) || [] : [];
+
+  const meetings = [...(rawByStatsId.get(identity.statsId) || [])];
+  const seen = new Set(meetings.map(meeting =>
+    meeting.fightStatsId || `${meeting.date}|${meeting.opponentStatsId || meeting.opponentLedgerKey || key(meeting.opponentName)}|${meeting.result}`
+  ));
+  const profileBouts = profileHistoryOf(fighter).filter(isProfileUfcBout).slice(0, 12);
+  let recovered = 0;
+
+  for (const name of allKnownNames(fighter)) {
+    const ledgerKey = key(name);
+    if (!ledgerKey || ledgerKey === identity.ledgerKey || canonicalNameOwners.get(ledgerKey) !== fighter.id) continue;
+    for (const meeting of rawByLedgerName.get(ledgerKey) || []) {
+      const meetingId = meeting.fightStatsId || `${meeting.date}|${meeting.opponentStatsId || meeting.opponentLedgerKey || key(meeting.opponentName)}|${meeting.result}`;
+      if (seen.has(meetingId)) continue;
+
+      // Alias-only rows are admitted only when they reconcile a UFC.com profile bout by
+      // date/result/opponent. That keeps the recovery path conservative if two historical
+      // fighters ever share a display name.
+      const reconcilesProfile = profileBouts.some(entry =>
+        entry.result === meeting.result &&
+        nearDate(entry.date, meeting.date) &&
+        opponentNameMatches(entry, meeting.opponentName)
+      );
+      if (!reconcilesProfile) continue;
+
+      meetings.push(meeting);
+      seen.add(meetingId);
+      recovered++;
+    }
+  }
+
+  aliasRepairCountByFighter.set(fighter.id, recovered);
+  return meetings;
 }
 function resolveOpponentId(meeting) {
   if (meeting.opponentStatsId) {
@@ -321,7 +364,7 @@ function resolveOpponentId(meeting) {
 const ledgerByCanonical = new Map();
 for (const fighter of data.fighters) {
   const identity = identities.get(fighter.id);
-  const meetings = rawMeetingsFor(identity).map(meeting => ({ ...meeting, opponentId: resolveOpponentId(meeting) }));
+  const meetings = rawMeetingsFor(fighter, identity).map(meeting => ({ ...meeting, opponentId: resolveOpponentId(meeting) }));
   ledgerByCanonical.set(fighter.id, meetings);
 }
 
@@ -459,6 +502,7 @@ for (const fighter of data.fighters) {
     ufcStatsId: identity?.statsId || null,
     ledgerNameKey: identity?.ledgerKey || null,
     identityMethod: identity?.method || 'not-found',
+    ledgerAliasRepairs: aliasRepairCountByFighter.get(fighter.id) || 0,
     bouts: meetings.length,
     canonicalBouts: coverageVerified ? canonicalMeetings.length : 0,
     canonicalOpponentLinks: meetings.filter(meeting => meeting.opponentId).length,
@@ -510,7 +554,7 @@ data.sources.meetings = {
   mirrorFrom: mirrorEarliest,
   officialThrough: (data.events || []).map(event => event.date).sort().at(-1) || mirrorLatest,
   supplementalFightCount: supplementalApplied,
-  note: 'Canonical structured fight histories for the matchmaking roster. Stable UFCStats fighter IDs are preferred; fight-signature and source-native ledger identity resolve naming differences; audited source-native gap evidence repairs mirror transport omissions; profile prose is cross-checked but cannot override structured fight records.'
+  note: 'Canonical structured fight histories for the matchmaking roster. Stable UFCStats fighter IDs are preferred; uniquely owned UFC roster/profile aliases may recover fight rows whose UFCStats bout display name differs from the fighter directory, but only when the row reconciles a UFC.com profile bout; fight-signature and source-native ledger identity resolve remaining naming differences; audited source-native gap evidence repairs mirror transport omissions; profile prose is cross-checked but cannot override structured fight records.'
 };
 data.coverage = {
   ...(data.coverage || {}),
@@ -529,6 +573,7 @@ data.coverage = {
   sourceDiscrepancyCount,
   profileContradictionCount,
   supplementalFightCount: supplementalApplied,
+  ledgerAliasRepairs: [...aliasRepairCountByFighter.values()].reduce((sum, count) => sum + count, 0),
   trackedFightCount: trackedFights.length,
   mirrorFightCount: mirrorFights.length,
   mirrorFighterCount: statsFighters.length
@@ -539,5 +584,5 @@ const tmp = `${DATA_PATH}.verified-history-v2.tmp`;
 await fs.writeFile(tmp, JSON.stringify(data, null, 2) + '\n');
 await fs.rename(tmp, DATA_PATH);
 console.log(`Verified history v2: ${verified}/${data.fighters.length} roster records; ${activeVerified}/${activePopulation} active matchmaking histories (${(activeRatio * 100).toFixed(1)}%); ${participantVerified}/${participantCount} displayed-event fighters; ${trackedFights.length} tracked fights (${mirrorFights.length} mirror + ${supplementalApplied} gap evidence); ${statsFighters.length} UFCStats identities.`);
-console.log(`Opponent identity links: ${canonicalOpponentLinks} canonical / ${unresolvedOpponentLinks} historical-only.`);
+console.log(`Opponent identity links: ${canonicalOpponentLinks} canonical / ${unresolvedOpponentLinks} historical-only. Alias-ledger repairs: ${[...aliasRepairCountByFighter.values()].reduce((sum, count) => sum + count, 0)}.`);
 if (missNames.length) console.warn(`Withheld histories (${missNames.length} relevant): ${missNames.slice(0, 30).join(', ')}${missNames.length > 30 ? ', …' : ''}`);
