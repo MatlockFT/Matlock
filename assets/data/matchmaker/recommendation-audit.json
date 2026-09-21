@@ -1,38 +1,38 @@
 {
-  "generatedAt": "2026-09-19T20:55:43.848Z",
+  "generatedAt": "2026-09-21T01:59:52.913Z",
   "engineVersion": 2,
-  "subjects": 182,
-  "publishedRecommendations": 508,
+  "subjects": 206,
+  "publishedRecommendations": 578,
   "recommendationSlots": {
     "0": 12,
-    "1": 0,
+    "1": 1,
     "2": 2,
-    "3": 168
+    "3": 191
   },
   "caseCounts": {
-    "rebound-pairing": 209,
-    "rising-vs-rising": 157,
-    "step-up-vs-rebound": 48,
-    "ranking-opportunity": 39,
-    "rankings-progression": 27,
+    "rebound-pairing": 238,
+    "rising-vs-rising": 169,
+    "step-up-vs-rebound": 66,
+    "ranking-opportunity": 45,
+    "rankings-progression": 32,
     "divisional-sorting": 13,
-    "title-case": 6,
-    "title-eliminator": 5,
-    "prospect-test": 4
+    "title-case": 8,
+    "title-eliminator": 6,
+    "prospect-test": 1
   },
   "confidenceCounts": {
-    "high": 475,
-    "medium": 18,
-    "low": 15
+    "high": 537,
+    "medium": 25,
+    "low": 16
   },
-  "averageRecentOpponentLinkCoverage": 0.906,
-  "sameCardRecommendations": 29,
-  "sameCardRecommendationRatio": 0.0571,
-  "asymmetricTopThreeRecommendations": 181,
-  "asymmetricTopThreeRatio": 0.3563,
-  "publicPublishedRecommendations": 496,
-  "publicAsymmetricTopThreeRecommendations": 137,
-  "publicAsymmetricTopThreeRatio": 0.2762,
+  "averageRecentOpponentLinkCoverage": 0.9076,
+  "sameCardRecommendations": 30,
+  "sameCardRecommendationRatio": 0.0519,
+  "asymmetricTopThreeRecommendations": 197,
+  "asymmetricTopThreeRatio": 0.3408,
+  "publicPublishedRecommendations": 562,
+  "publicAsymmetricTopThreeRecommendations": 155,
+  "publicAsymmetricTopThreeRatio": 0.2758,
   "engineGenericDivisionalSortingRecommendations": 13,
   "genericDivisionalSortingRecommendations": 0,
   "genericExamples": [
@@ -131,6 +131,606 @@
   "publicGenericExamples": [],
   "asymmetricExamples": [
     {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Alexandre Pantoja",
+      "opponent": "Tatsuro Taira",
+      "pairScore": 78,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Asu Almabayev",
+          "score": 95,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Kyoji Horiguchi",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Manel Kape",
+          "score": 88,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Alexandre Pantoja",
+      "opponent": "Kyoji Horiguchi",
+      "pairScore": 73,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Asu Almabayev",
+          "score": 93,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Tatsuro Taira",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Brandon Moreno",
+          "score": 90,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Mauricio Ruffy",
+      "opponent": "Max Holloway",
+      "pairScore": 72,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Paddy Pimblett",
+          "score": 86,
+          "case": "title-eliminator"
+        },
+        {
+          "opponent": "Arman Tsarukyan",
+          "score": 81,
+          "case": "title-eliminator"
+        },
+        {
+          "opponent": "Benoit Saint Denis",
+          "score": 81,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Patricio Freire",
+      "opponent": "Melquizael Costa",
+      "pairScore": 93,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Mairon Santos Alves",
+          "score": 97,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Joanderson Brito",
+          "score": 96,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Miles Johns",
+          "score": 95,
+          "case": "ranking-opportunity"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Patricio Freire",
+      "opponent": "Kaan Ofli",
+      "pairScore": 88,
+      "case": "rankings-progression",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "David Onama",
+          "score": 94,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Melquizael Costa",
+          "score": 93,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Christian Rodriguez",
+          "score": 92,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Dooho Choi",
+      "opponent": "Kurtis Campbell",
+      "pairScore": 93,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Losene Keita",
+          "score": 95,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Murtazali Magomedov",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Pavel Andrusca",
+          "score": 94,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Gable Steveson",
+      "opponent": "Alexander Poppeck",
+      "pairScore": 93,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Elisha Ellison",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Terrance Chatman",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Alvin Hines",
+          "score": 94,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Sean Sharaf",
+      "opponent": "Jose Montanha Da Silva",
+      "pairScore": 87,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Jovan Leka",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Gokhan Saricam",
+          "score": 93,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Rj Harris",
+          "score": 93,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Iwo Baraniewski",
+      "opponent": "Julius Walker",
+      "pairScore": 91,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Kevin Christian",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Luke Fernandez",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Oumar Sy",
+          "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Marlon Vera",
+      "opponent": "Umar Nurmagomedov",
+      "pairScore": 72,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Sean Omalley",
+          "score": 87,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "David Martinez",
+          "score": 81,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Aiemann Zahabi",
+          "score": 79,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Marlon Vera",
+      "opponent": "Farid Basharat",
+      "pairScore": 61,
+      "case": "rankings-progression",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Bryce Mitchell",
+          "score": 90,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Adrian Yanez",
+          "score": 85,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Victor Henry",
+          "score": 80,
+          "case": "rankings-progression"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Tai Tuivasa",
+      "opponent": "Alvin Hines",
+      "pairScore": 76,
+      "case": "rebound-pairing",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Elisha Ellison",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Alexander Poppeck",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Gable Steveson",
+          "score": 94,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Tai Tuivasa",
+      "opponent": "Elisha Ellison",
+      "pairScore": 76,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Alexander Poppeck",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Alvin Hines",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Terrance Chatman",
+          "score": 95,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Tai Tuivasa",
+      "opponent": "Guilherme Pat",
+      "pairScore": 75,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Gable Steveson",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Alexander Poppeck",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Alvin Hines",
+          "score": 94,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Robelis Despaigne",
+      "opponent": "Gokhan Saricam",
+      "pairScore": 86,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Jose Montanha Da Silva",
+          "score": 93,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Sean Sharaf",
+          "score": 93,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jovan Leka",
+          "score": 90,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Michael Aswell Jr.",
+      "opponent": "David Onama",
+      "pairScore": 95,
+      "case": "ranking-opportunity",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Christian Rodriguez",
+          "score": 98,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Joanderson Brito",
+          "score": 97,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Sean Woodson",
+          "score": 96,
+          "case": "ranking-opportunity"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Joosang Yoo",
+      "opponent": "Manolo Zecchini",
+      "pairScore": 92,
+      "case": "rebound-pairing",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Austin Bashi",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Damien Anderson",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Otari Tanzilovi",
+          "score": 94,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Joosang Yoo",
+      "opponent": "Ryan Kuse",
+      "pairScore": 92,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Ramon Taveras",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Damien Anderson",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Javier Reyes",
+          "score": 94,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Joosang Yoo",
+      "opponent": "Austin Bashi",
+      "pairScore": 91,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Damien Anderson",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Otari Tanzilovi",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Zhu Kangjie",
+          "score": 95,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Ryan Gandra",
+      "opponent": "Jackson McVey",
+      "pairScore": 93,
+      "case": "rising-vs-rising",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Robert Valentin Frey",
+          "score": 95,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Baisangur Susurkaev",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Yousri Belgaroui",
+          "score": 94,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Edmen Shahbazyan",
+      "opponent": "Shara Magomedov",
+      "pairScore": 85,
+      "case": "rankings-progression",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Bo Nickal",
+          "score": 92,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Tresean Gore",
+          "score": 89,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Dustin Stoltzfus",
+          "score": 88,
+          "case": "rankings-progression"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Brunno Ferreira",
+      "opponent": "Mansur Abdul Malik",
+      "pairScore": 89,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Azamat Bekoev",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Eric McConico",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Ryan Loder",
+          "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Brunno Ferreira",
+      "opponent": "Torrez Finney",
+      "pairScore": 89,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Marco Tulio",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Treston Vines",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Azamat Bekoev",
+          "score": 91,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Giga Chikadze",
+      "opponent": "Muhammad Naimov",
+      "pairScore": 86,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Jose Miguel Delgado",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Morgan Charriere",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Dooho Choi",
+          "score": 92,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Brandon Moreno",
       "opponent": "Asu Almabayev",
@@ -152,606 +752,6 @@
           "opponent": "Amir Albazi",
           "score": 91,
           "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Joseph Morales",
-      "opponent": "Nyamjargal Tumendemberel",
-      "pairScore": 87,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Alibi Idiris",
-          "score": 92,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Kevin Borjas",
-          "score": 89,
-          "case": "prospect-test"
-        },
-        {
-          "opponent": "Lucas Rocha",
-          "score": 89,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Tommy McMillen",
-      "opponent": "Bogdan Grad",
-      "pairScore": 90,
-      "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "David Onama",
-          "score": 93,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Yadier Del Valle",
-          "score": 93,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Gaston Bolanos",
-          "score": 92,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Tommy McMillen",
-      "opponent": "Yadier Del Valle",
-      "pairScore": 90,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Bogdan Grad",
-          "score": 93,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "David Onama",
-          "score": 91,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Gaston Bolanos",
-          "score": 91,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Marwan Rahiki",
-      "opponent": "Austin Bashi",
-      "pairScore": 93,
-      "case": "rebound-pairing",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Damien Anderson",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Otari Tanzilovi",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Zhu Kangjie",
-          "score": 95,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Marwan Rahiki",
-      "opponent": "Damien Anderson",
-      "pairScore": 92,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Austin Bashi",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Otari Tanzilovi",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Robert Ruchala",
-          "score": 95,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Marwan Rahiki",
-      "opponent": "Otari Tanzilovi",
-      "pairScore": 92,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Austin Bashi",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Damien Anderson",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Robert Ruchala",
-          "score": 95,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Manon Fiorot",
-      "opponent": "Tracy Cortez",
-      "pairScore": 59,
-      "case": "divisional-sorting",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Karine Silva",
-          "score": 86,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Miranda Maverick",
-          "score": 85,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Maycee Barber",
-          "score": 78,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Alexa Grasso",
-      "opponent": "Tracy Cortez",
-      "pairScore": 44,
-      "case": "divisional-sorting",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Karine Silva",
-          "score": 86,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Miranda Maverick",
-          "score": 85,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Maycee Barber",
-          "score": 78,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Curtis Blaydes",
-      "opponent": "Serghei Spivac",
-      "pairScore": 66,
-      "case": "divisional-sorting",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Aleksandar Rakic",
-          "score": 87,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Jon Jones",
-          "score": 80,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Valter Walker",
-          "score": 80,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Dan Ige",
-      "opponent": "Julian Erosa",
-      "pairScore": 82,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Nathaniel Wood",
-          "score": 92,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Douglas Silva De Andrade",
-          "score": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Andre Fili",
-          "score": 88,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Dan Ige",
-      "opponent": "Jordan Leavitt",
-      "pairScore": 79,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Muhammad Naimov",
-          "score": 91,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "William Gomis",
-          "score": 90,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Chepe Mariscal",
-          "score": 89,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Edgar Chairez",
-      "opponent": "Alibi Idiris",
-      "pairScore": 88,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Kevin Borjas",
-          "score": 92,
-          "case": "divisional-sorting"
-        },
-        {
-          "opponent": "Nyamjargal Tumendemberel",
-          "score": 92,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Lucas Rocha",
-          "score": 89,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Edgar Chairez",
-      "opponent": "Kevin Borjas",
-      "pairScore": 88,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Hyunsung Park",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Alibi Idiris",
-          "score": 92,
-          "case": "divisional-sorting"
-        },
-        {
-          "opponent": "Luis Gurule",
-          "score": 92,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Ignacio Bahamondes",
-      "opponent": "Charles Radtke",
-      "pairScore": 90,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Daniel Rodriguez",
-          "score": 92,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Sam Patterson",
-          "score": 92,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Chidi Njokuani",
-          "score": 91,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Yousri Belgaroui",
-      "opponent": "Robert Valentin Frey",
-      "pairScore": 92,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Jackson McVey",
-          "score": 95,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Donte Johnson",
-          "score": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Dustin Stoltzfus",
-          "score": 93,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Drakkar Klose",
-      "opponent": "Mason Jones",
-      "pairScore": 92,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Kody Steele",
-          "score": 94,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Mike Davis",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Nikolas Motta",
-          "score": 94,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Thomas Gantt",
-      "opponent": "Kody Steele",
-      "pairScore": 92,
-      "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Chris Duncan",
-          "score": 95,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Mason Jones",
-          "score": 94,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Manuel Torres",
-          "score": 93,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Thomas Gantt",
-      "opponent": "Matheus Camilo",
-      "pairScore": 91,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Chris Padilla",
-          "score": 93,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Marquel Mederos",
-          "score": 93,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Tofiq Musayev",
-          "score": 93,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Rafa Garcia",
-      "opponent": "Kody Steele",
-      "pairScore": 92,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Chris Duncan",
-          "score": 95,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Mason Jones",
-          "score": 94,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Manuel Torres",
-          "score": 93,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Rongzhu",
-      "opponent": "Jalin Turner",
-      "pairScore": 88,
-      "case": "rising-vs-rising",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Joaquim Silva",
-          "score": 92,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Mateusz Gamrot",
-          "score": 92,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Diego Ferreira",
-          "score": 88,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Rongzhu",
-      "opponent": "Drew Dober",
-      "pairScore": 85,
-      "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Diego Ferreira",
-          "score": 90,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Dan Hooker",
-          "score": 87,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Jalin Turner",
-          "score": 87,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Rongzhu",
-      "opponent": "Mateusz Gamrot",
-      "pairScore": 85,
-      "case": "ranking-opportunity",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Jalin Turner",
-          "score": 92,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Joaquim Silva",
-          "score": 91,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Chase Hooper",
-          "score": 86,
-          "case": "ranking-opportunity"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Sean King III",
-      "opponent": "Ezra Elliot",
-      "pairScore": 95,
-      "case": "rising-vs-rising",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Rodrigo Vera",
-          "score": 96,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Shane Collins",
-          "score": 96,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Jose Delano",
-          "score": 95,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Sean King III",
-      "opponent": "Rodrigo Vera",
-      "pairScore": 95,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Ezra Elliot",
-          "score": 96,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Shane Collins",
-          "score": 96,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Jose Delano",
-          "score": 95,
-          "case": "rising-vs-rising"
         }
       ]
     }
