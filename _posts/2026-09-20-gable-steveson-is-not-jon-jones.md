@@ -7,7 +7,7 @@ category: Results
 author: MMA Matlock
 image:
   path: /assets/uploads/Steveson.png
-  alt: GABLE STEVESON IS NOT JON JONES
+  alt: Gable Steveson getting kayoed by Sean Sharaf
   position: center center
 tags:
   - UFC 331
