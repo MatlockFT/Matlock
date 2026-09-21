@@ -50,7 +50,10 @@ page_scripts:
         {% assign latest_height = latest_responsive.height | default: latest_post.image.height %}
 
         <section class="home-scene home-hero-scene" data-home-scene="yellow" aria-labelledby="latest-breakdown-title">
-            <div class="home-scene-no">01 / LATEST</div>\n            <canvas class="home-gpu-layer" data-home-gpu aria-hidden="true"></canvas>\n\n            <div class="home-hero-layout">
+            <div class="home-scene-no">01 / LATEST</div>
+            <canvas class="home-gpu-layer" data-home-gpu aria-hidden="true"></canvas>
+
+            <div class="home-hero-layout">
                 {% if latest_image %}
                     <a
                         class="home-hero-media"
