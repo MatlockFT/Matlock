@@ -227,11 +227,246 @@
         runWhenIdle(loadNews, 0, 650);
         runWhenIdle(loadOnThisDay, 180, 900);
         runWhenIdle(loadRoster, 360, 1100);
+        runWhenIdle(initWebGpuTexture, 520, 1400);
     };
 
     const reduceMotion = () =>
         document.documentElement.classList.contains('reduce-motion') ||
         window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+    async function initWebGpuTexture() {
+        const canvas = root.querySelector('[data-home-gpu]');
+        if (!canvas || reduceMotion() || !('gpu' in navigator)) return;
+        if (navigator.connection?.saveData) return;
+        if (navigator.deviceMemory && navigator.deviceMemory < 4) return;
+
+        const hero = canvas.closest('.home-hero-scene');
+        if (!hero) return;
+
+        try {
+            const adapter = await navigator.gpu.requestAdapter({ powerPreference: 'low-power' });
+            if (!adapter) return;
+
+            const device = await adapter.requestDevice();
+            const context = canvas.getContext('webgpu');
+            if (!context) return;
+
+            const format = navigator.gpu.getPreferredCanvasFormat();
+            const shader = device.createShaderModule({
+                code: `
+struct Uniforms {
+    time: f32,
+    speed: f32,
+    pointerX: f32,
+    pointerY: f32,
+    width: f32,
+    height: f32,
+    scroll: f32,
+    pad: f32,
+};
+
+@group(0) @binding(0) var<uniform> u: Uniforms;
+
+fn hash2(p: vec2f) -> f32 {
+    return fract(sin(dot(p, vec2f(127.1, 311.7))) * 43758.5453123);
+}
+
+@vertex
+fn vs(@builtin(vertex_index) vertexIndex: u32) -> @builtin(position) vec4f {
+    var positions = array<vec2f, 3>(
+        vec2f(-1.0, -1.0),
+        vec2f(3.0, -1.0),
+        vec2f(-1.0, 3.0)
+    );
+    return vec4f(positions[vertexIndex], 0.0, 1.0);
+}
+
+@fragment
+fn fs(@builtin(position) position: vec4f) -> @location(0) vec4f {
+    let size = max(vec2f(u.width, u.height), vec2f(1.0));
+    let uv = position.xy / size;
+    let cell = floor(position.xy * 0.18 + vec2f(u.scroll * 0.018, 0.0));
+    let grain = hash2(cell + floor(u.time * 11.0));
+    let scan = step(0.86, fract(position.y * 0.19 + u.time * 1.9));
+    let diagonal = step(0.965, fract((position.x + position.y * 0.55) * 0.045 + u.scroll * 0.002));
+    let pointer = 1.0 - smoothstep(0.05, 0.55, distance(uv, vec2f(u.pointerX, u.pointerY)));
+    let pulse = 0.5 + 0.5 * sin(u.time * 2.2 + uv.y * 9.0);
+
+    let distortion = clamp(0.035 + u.speed * 0.19 + pointer * 0.025, 0.035, 0.24);
+    let mark = grain * 0.42 + scan * 0.35 + diagonal * 0.45 + pulse * 0.06;
+    let pinkBias = step(0.76, grain + pointer * 0.15);
+    let cyanBias = step(0.9, fract(grain * 1.73 + uv.x * 0.31));
+
+    let ink = mix(vec3f(0.015, 0.01, 0.02), vec3f(0.85, 0.0, 0.42), pinkBias * 0.58);
+    let color = mix(ink, vec3f(0.0, 0.55, 0.66), cyanBias * 0.22);
+    let alpha = clamp(mark * distortion, 0.0, 0.18);
+
+    return vec4f(color, alpha);
+}
+`
+            });
+
+            const pipeline = device.createRenderPipeline({
+                layout: 'auto',
+                vertex: {
+                    module: shader,
+                    entryPoint: 'vs'
+                },
+                fragment: {
+                    module: shader,
+                    entryPoint: 'fs',
+                    targets: [{
+                        format,
+                        blend: {
+                            color: {
+                                srcFactor: 'src-alpha',
+                                dstFactor: 'one-minus-src-alpha',
+                                operation: 'add'
+                            },
+                            alpha: {
+                                srcFactor: 'one',
+                                dstFactor: 'one-minus-src-alpha',
+                                operation: 'add'
+                            }
+                        }
+                    }]
+                },
+                primitive: { topology: 'triangle-list' }
+            });
+
+            const uniformBuffer = device.createBuffer({
+                size: 32,
+                usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST
+            });
+
+            const bindGroup = device.createBindGroup({
+                layout: pipeline.getBindGroupLayout(0),
+                entries: [{ binding: 0, resource: { buffer: uniformBuffer } }]
+            });
+
+            const pointer = { x: 0.5, y: 0.5 };
+            let scrollSpeed = 0;
+            let lastScrollY = window.scrollY;
+            let lastScrollTime = performance.now();
+            let settleTimer = 0;
+            let active = false;
+            let running = false;
+            let lastFrame = 0;
+
+            const resize = () => {
+                const rect = hero.getBoundingClientRect();
+                const shortSide = Math.max(1, Math.min(rect.width, window.innerWidth));
+                const scale = shortSide < 700 ? 0.34 : 0.48;
+                canvas.width = Math.max(1, Math.min(1100, Math.floor(rect.width * scale)));
+                canvas.height = Math.max(1, Math.min(900, Math.floor(hero.offsetHeight * scale)));
+                context.configure({
+                    device,
+                    format,
+                    alphaMode: 'premultiplied'
+                });
+            };
+
+            const resizeObserver = 'ResizeObserver' in window
+                ? new ResizeObserver(resize)
+                : null;
+            resizeObserver?.observe(hero);
+            window.addEventListener('resize', resize, { passive: true });
+            resize();
+
+            root.addEventListener('pointermove', event => {
+                pointer.x = Math.min(1, Math.max(0, event.clientX / Math.max(window.innerWidth, 1)));
+                pointer.y = Math.min(1, Math.max(0, event.clientY / Math.max(window.innerHeight, 1)));
+            }, { passive: true });
+
+            window.addEventListener('scroll', () => {
+                const now = performance.now();
+                const deltaY = Math.abs(window.scrollY - lastScrollY);
+                const deltaTime = Math.max(16, now - lastScrollTime);
+                scrollSpeed = Math.min(1, (deltaY / deltaTime) * 0.48);
+                lastScrollY = window.scrollY;
+                lastScrollTime = now;
+                window.clearTimeout(settleTimer);
+                settleTimer = window.setTimeout(() => {
+                    scrollSpeed = 0;
+                }, 150);
+            }, { passive: true });
+
+            const frame = now => {
+                if (!active || document.hidden || reduceMotion()) {
+                    running = false;
+                    return;
+                }
+
+                if (now - lastFrame < 32) {
+                    window.requestAnimationFrame(frame);
+                    return;
+                }
+                lastFrame = now;
+
+                const uniforms = new Float32Array([
+                    now / 1000,
+                    scrollSpeed,
+                    pointer.x,
+                    pointer.y,
+                    canvas.width,
+                    canvas.height,
+                    window.scrollY,
+                    0
+                ]);
+                device.queue.writeBuffer(uniformBuffer, 0, uniforms);
+
+                const encoder = device.createCommandEncoder();
+                const pass = encoder.beginRenderPass({
+                    colorAttachments: [{
+                        view: context.getCurrentTexture().createView(),
+                        clearValue: { r: 0, g: 0, b: 0, a: 0 },
+                        loadOp: 'clear',
+                        storeOp: 'store'
+                    }]
+                });
+                pass.setPipeline(pipeline);
+                pass.setBindGroup(0, bindGroup);
+                pass.draw(3);
+                pass.end();
+                device.queue.submit([encoder.finish()]);
+
+                window.requestAnimationFrame(frame);
+            };
+
+            const start = () => {
+                if (running || !active || document.hidden || reduceMotion()) return;
+                running = true;
+                window.requestAnimationFrame(frame);
+            };
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver(entries => {
+                    active = entries.some(entry => entry.isIntersecting);
+                    if (active) start();
+                }, { rootMargin: '20% 0px', threshold: 0.01 });
+                observer.observe(hero);
+            } else {
+                active = true;
+            }
+
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) start();
+            });
+
+            root.classList.add('has-webgpu');
+            start();
+
+            device.lost.then(() => {
+                root.classList.remove('has-webgpu');
+                active = false;
+                running = false;
+                resizeObserver?.disconnect();
+            }).catch(() => {});
+        } catch {
+            root.classList.remove('has-webgpu');
+        }
+    }
 
     function initFlowEffects() {
         const scenes = [...root.querySelectorAll('[data-home-scene]')];
