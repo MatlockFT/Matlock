@@ -27,6 +27,14 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   let remote = null;
   let shaCounter = 1;
 
+  await page.route('https://platform.x.com/widgets.js', async route => {
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/javascript',
+      body: 'window.twttr={widgets:{load:function(){}}};'
+    });
+  });
+
   await page.route('https://mmamatlock-writer-auth.netlify.app/**', async route => {
     const url = new URL(route.request().url());
     if (url.pathname.endsWith('/auth/github/health')) {
@@ -112,6 +120,12 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await page.fill('[data-youtube-title]', 'Writer smoke YouTube');
   await page.click('[data-youtube-insert]');
   await expect(page.locator('[data-preview-content] iframe')).toHaveAttribute('src', /youtube\.com\/embed\/dQw4w9WgXcQ/);
+
+  await page.click('[data-tool="x"]');
+  await page.fill('[data-x-url]', 'https://x.com/MMAMatlock/status/2100109052697051428?s=20');
+  await page.click('[data-x-insert]');
+  await expect(page.locator('#writer-body')).toHaveValue(/\[EMBED X\]\(https:\/\/x\.com\/MMAMatlock\/status\/2100109052697051428\)/);
+  await expect(page.locator('[data-preview-content] blockquote.twitter-tweet a')).toHaveAttribute('href', 'https://x.com/MMAMatlock/status/2100109052697051428');
 
   await page.click('[data-tool="table"]');
   await page.fill('[data-table-headers]', 'Metric, Alpha, Beta');
