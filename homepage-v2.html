@@ -21,6 +21,7 @@ page_scripts:
 {% endfor %}
 {% assign latest_post = homepage_posts.first %}
 {% assign more_posts = homepage_posts | slice: 1, 4 %}
+{% assign immersive_scene_count = more_posts.size | plus: 1 %}
 {% assign homepage_data_version = site.time | date: "%s" %}
 
 <div
@@ -43,72 +44,73 @@ page_scripts:
         {% assign latest_width = latest_responsive.width | default: latest_post.image.width %}
         {% assign latest_height = latest_responsive.height | default: latest_post.image.height %}
 
-        <section class="home-cinema-hero" data-cinema-hero aria-labelledby="latest-breakdown-title">
-            <div class="home-cinema-stage" data-cinema-stage>
-                {% if latest_image %}
-                    <a
-                        class="home-cinema-image"
-                        href="{{ latest_post.url | relative_url }}"
-                        aria-label="Read {{ latest_post.title | escape }}"
-                        data-image-shell
-                    >
-                        <img
-                            src="{{ latest_src | relative_url }}"
-                            {% if latest_responsive.srcset %}
-                                srcset="{{ latest_responsive.srcset }}"
-                                sizes="100vw"
-                            {% endif %}
-                            alt="{{ latest_alt | escape }}"
-                            {% if latest_width %}width="{{ latest_width }}"{% endif %}
-                            {% if latest_height %}height="{{ latest_height }}"{% endif %}
-                            data-hide-broken
-                            fetchpriority="high"
-                            decoding="async"
-                        >
-                    </a>
-                {% endif %}
-
+        <section
+            class="home-immersive-sequence"
+            data-immersive-sequence
+            style="--scene-count: {{ immersive_scene_count }};"
+            aria-label="Latest MMA Matlock stories"
+        >
+            <div class="home-immersive-stage" data-immersive-stage>
                 <canvas class="home-gpu-layer" data-home-gpu aria-hidden="true"></canvas>
-                <div class="home-cinema-vignette" aria-hidden="true"></div>
 
-                <div class="home-cinema-meta">
-                    <p class="home-cinema-kicker">Latest Article · {{ latest_post.date | date: "%b %d %Y" }}</p>
-                    <h2 id="latest-breakdown-title"><a href="{{ latest_post.url | relative_url }}">{{ latest_post.title }}</a></h2>
-                    {% if latest_post.description %}
-                        <p>{{ latest_post.description | strip_html | truncate: 190 }}</p>
-                    {% elsif latest_post.excerpt %}
-                        <p>{{ latest_post.excerpt | strip_html | normalize_whitespace | truncate: 190 }}</p>
+                <article class="home-immersive-slide is-first" data-immersive-slide data-scene-index="0">
+                    {% if latest_image %}
+                        <a
+                            class="home-immersive-image"
+                            href="{{ latest_post.url | relative_url }}"
+                            aria-label="Read {{ latest_post.title | escape }}"
+                            data-image-shell
+                        >
+                            <img
+                                src="{{ latest_src | relative_url }}"
+                                {% if latest_responsive.srcset %}
+                                    srcset="{{ latest_responsive.srcset }}"
+                                    sizes="100vw"
+                                {% endif %}
+                                alt="{{ latest_alt | escape }}"
+                                {% if latest_width %}width="{{ latest_width }}"{% endif %}
+                                {% if latest_height %}height="{{ latest_height }}"{% endif %}
+                                data-hide-broken
+                                fetchpriority="high"
+                                decoding="async"
+                            >
+                        </a>
                     {% endif %}
-                    <a class="home-cinema-read" href="{{ latest_post.url | relative_url }}">Read article →</a>
-                </div>
 
-                <div class="home-cinema-chrome" aria-hidden="true">
-                    <span>01 / LATEST</span>
-                    <span class="home-cinema-scroll">SCROLL ↓</span>
-                </div>
-            </div>
-        </section>
-    {% endif %}
+                    <div class="home-immersive-shade" aria-hidden="true"></div>
 
-    {% if more_posts and more_posts.size > 0 %}
-        <section class="home-feature-sequence" aria-label="More recent articles">
-            <div class="home-sequence-label">
-                <span>RECENT STORIES</span>
-                <a href="{{ '/breakdowns/' | relative_url }}">All articles →</a>
-            </div>
+                    <div class="home-immersive-copy">
+                        <p class="home-immersive-kicker">Latest Article · {{ latest_post.date | date: "%b %d %Y" }}</p>
+                        <h2><a href="{{ latest_post.url | relative_url }}">{{ latest_post.title }}</a></h2>
+                        {% if latest_post.description %}
+                            <p class="home-immersive-deck">{{ latest_post.description | strip_html | truncate: 190 }}</p>
+                        {% elsif latest_post.excerpt %}
+                            <p class="home-immersive-deck">{{ latest_post.excerpt | strip_html | normalize_whitespace | truncate: 190 }}</p>
+                        {% endif %}
+                        <a class="home-immersive-read" href="{{ latest_post.url | relative_url }}">Read article →</a>
+                    </div>
+                </article>
 
-            {% for post in more_posts %}
-                {% assign post_image = post.image.path | default: post.image %}
-                {% assign post_alt = post.image.alt | default: post.image_alt | default: post.title %}
-                {% assign post_responsive = site.data.responsive_images[post_image] %}
-                {% assign post_src = post_responsive.src | default: post_image %}
-                {% assign post_width = post_responsive.width | default: post.image.width %}
-                {% assign post_height = post_responsive.height | default: post.image.height %}
+                {% for post in more_posts %}
+                    {% assign post_image = post.image.path | default: post.image %}
+                    {% assign post_alt = post.image.alt | default: post.image_alt | default: post.title %}
+                    {% assign post_responsive = site.data.responsive_images[post_image] %}
+                    {% assign post_src = post_responsive.src | default: post_image %}
+                    {% assign post_width = post_responsive.width | default: post.image.width %}
+                    {% assign post_height = post_responsive.height | default: post.image.height %}
+                    {% assign scene_index = forloop.index %}
 
-                <article class="home-feature-panel" data-feature-panel data-feature-index="{{ forloop.index }}">
-                    <div class="home-feature-stage" data-feature-stage>
+                    <article
+                        class="home-immersive-slide"
+                        data-immersive-slide
+                        data-scene-index="{{ scene_index }}"
+                    >
                         {% if post_image %}
-                            <a class="home-feature-image" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">
+                            <a
+                                class="home-immersive-image"
+                                href="{{ post.url | relative_url }}"
+                                aria-label="Read {{ post.title | escape }}"
+                            >
                                 <img
                                     src="{{ post_src | relative_url }}"
                                     {% if post_responsive.srcset %}
@@ -125,23 +127,35 @@ page_scripts:
                             </a>
                         {% endif %}
 
-                        <div class="home-feature-wash" aria-hidden="true"></div>
+                        <div class="home-immersive-shade" aria-hidden="true"></div>
+                        <div class="home-immersive-ink" aria-hidden="true"></div>
 
-                        <div class="home-feature-copy">
-                            <p>{{ post.date | date: "%m.%d.%y" }} · STORY 0{{ forloop.index | plus: 1 }}</p>
-                            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+                        <div class="home-immersive-copy">
+                            <p class="home-immersive-kicker">{{ post.date | date: "%m.%d.%y" }} · STORY 0{{ scene_index | plus: 1 }}</p>
+                            <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
                             {% if post.description %}
-                                <div class="home-feature-deck">{{ post.description | strip_html | truncate: 155 }}</div>
+                                <p class="home-immersive-deck">{{ post.description | strip_html | truncate: 170 }}</p>
                             {% elsif post.excerpt %}
-                                <div class="home-feature-deck">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 155 }}</div>
+                                <p class="home-immersive-deck">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 170 }}</p>
                             {% endif %}
-                            <a class="home-feature-link" href="{{ post.url | relative_url }}">Read →</a>
+                            <a class="home-immersive-read" href="{{ post.url | relative_url }}">Read article →</a>
                         </div>
+                    </article>
+                {% endfor %}
 
-                        <div class="home-feature-progress" aria-hidden="true"><span></span></div>
-                    </div>
-                </article>
-            {% endfor %}
+                <div class="home-immersive-ui" aria-hidden="true">
+                    <span data-scene-counter>01 / 0{{ immersive_scene_count }}</span>
+                    <span data-scene-hint>SCROLL TO MOVE THROUGH STORIES ↓</span>
+                </div>
+
+                <div class="home-immersive-edge" aria-hidden="true"></div>
+            </div>
+
+            <div class="home-immersive-spacers" aria-hidden="true">
+                {% for i in (1..immersive_scene_count) %}
+                    <div class="home-immersive-spacer"></div>
+                {% endfor %}
+            </div>
         </section>
     {% endif %}
 
