@@ -22,7 +22,7 @@
 
 .event-map-kicker {
     margin: 0 0 .35rem;
-    color: var(--accent, var(--accent));
+    color: var(--accent);
     font: 900 .7rem "Courier New", monospace;
     letter-spacing: .13em;
 }
@@ -236,7 +236,7 @@
 }
 
 .event-map-pin-group[data-soon="true"] .event-map-pin {
-    fill: var(--accent, var(--accent));
+    fill: var(--accent);
     stroke: #000;
 }
 
@@ -266,7 +266,7 @@
 }
 
 .event-map-cluster[data-soon="true"] .event-map-pin {
-    fill: var(--accent, var(--accent));
+    fill: var(--accent);
 }
 
 .event-map-cluster .event-map-pin-count {
@@ -315,7 +315,7 @@
 
 .event-map-legend-pin--soon {
     border-color: #000;
-    background: var(--accent, var(--accent));
+    background: var(--accent);
 }
 
 .event-map-zoom-controls {
@@ -363,7 +363,7 @@
 
 .event-map-popover-label {
     margin-bottom: .24rem;
-    color: var(--accent, var(--accent));
+    color: var(--accent);
     font: 900 .54rem/1.2 "Courier New", monospace;
     letter-spacing: .08em;
     text-transform: uppercase;
@@ -519,7 +519,7 @@
 
 .event-map-detail-distance {
     margin: .1rem 0 .65rem;
-    color: var(--accent, var(--accent));
+    color: var(--accent);
     font: 800 .63rem "Courier New", monospace;
     text-transform: uppercase;
 }
@@ -717,7 +717,7 @@
 }
 
 .event-map-result[data-selected="true"] {
-    box-shadow: inset 3px 0 0 var(--accent, var(--accent));
+    box-shadow: inset 3px 0 0 var(--accent);
 }
 
 .event-map-result-date,
@@ -761,7 +761,7 @@
 }
 
 .event-map-result-distance {
-    color: var(--accent, var(--accent));
+    color: var(--accent);
     font-size: .59rem;
     font-weight: 900;
     white-space: nowrap;
