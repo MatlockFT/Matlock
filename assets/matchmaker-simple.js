@@ -61,8 +61,7 @@
 
   function publicRecommendations(fighter, event) {
     const ctx = context(event);
-    const recommendations = E.recommendations(fighter, data.fighters, ctx).slice(0, 3);
-    return P.filterRecommendations(fighter, recommendations, E, ctx);
+    return P.selectRecommendations(fighter, data.fighters, E, ctx);
   }
 
   function opponentRow(recommendation, event, index) {
