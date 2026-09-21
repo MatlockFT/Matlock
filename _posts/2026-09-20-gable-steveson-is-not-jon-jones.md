@@ -679,7 +679,9 @@ He doesn't have the same physical attributes. He doesn't have Jones' length. He 
 
 He tends to face everything head-on and rely on his athleticism.
 
-He simply hasn't had enough time to develop. He looks completely ill-prepared to be fighting at the highest level. If the UFC or Jon Jones cared about his development, Gable would be fighting the likes of Sean Sharaf in the regional scene so if he does loses its not with every casual mouth breathing donk as well as hardcore fan watching. 
+He simply hasn't had enough time to develop. He looks ill-prepared to be fighting at the highest level. If the UFC or Jon Jones cared about his development, Gable would be fighting the likes of Sean Sharaf on the regional scene, so if he does lose, it's not with every casual, mouth-breathing donk and hardcore fan watching. 
+
+It really is crazy to think about how the UFC has done so well diluting the talent pool with regional fighters of any caliber that its tough to distinguish what is considered "UFC-level" anymore. But what can you do? You have to put Gable on a UFC numbered event because of the credentials and hype he carries. 
 
 He needs more time to incubate.
 
