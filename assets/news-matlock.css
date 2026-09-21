@@ -12,7 +12,7 @@
 }
 
 .news-matlock-label {
-    color: var(--accent, var(--accent));
+    color: var(--accent);
     font: 700 .48rem/1 "Courier New", monospace;
     letter-spacing: .07em;
     text-transform: uppercase;
@@ -39,7 +39,7 @@
 
 .news-matlock-copy h2 a:hover,
 .news-matlock-copy h2 a:focus-visible {
-    color: var(--accent, var(--accent));
+    color: var(--accent);
 }
 
 .news-matlock-meta {
@@ -65,7 +65,7 @@
 
 .news-matlock-action:hover,
 .news-matlock-action:focus-visible {
-    border-color: var(--accent, var(--accent));
+    border-color: var(--accent);
 }
 
 /* Keep the below-the-fold card deck out of the initial mobile layout pass. */
