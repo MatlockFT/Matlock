@@ -9,7 +9,9 @@ on:
     paths:
       - '_data/matchmaker-roster-overrides.json'
       - 'scripts/sync-matchmaker-roster.mjs'
-      - 'scripts/matchmaker/**'
+      - 'scripts/matchmaker/roster.mjs'
+      - 'scripts/matchmaker/bookings.mjs'
+      - 'scripts/matchmaker/validate.mjs'
       - '.github/workflows/sync-matchmaker-roster.yml'
 permissions:
   contents: write
