@@ -305,9 +305,15 @@ for (const fighter of data.fighters) {
     const existing = canonicalByStatsId.get(identity.statsId);
     canonicalByStatsId.set(identity.statsId, existing && existing !== fighter.id ? null : fighter.id);
   }
-  if (identity.ledgerKey) {
-    const existing = canonicalByLedgerKey.get(identity.ledgerKey);
-    canonicalByLedgerKey.set(identity.ledgerKey, existing && existing !== fighter.id ? null : fighter.id);
+  const ledgerKeys = new Set();
+  if (identity.ledgerKey) ledgerKeys.add(identity.ledgerKey);
+  for (const name of allKnownNames(fighter)) {
+    const ledgerKey = key(name);
+    if (ledgerKey && canonicalNameOwners.get(ledgerKey) === fighter.id) ledgerKeys.add(ledgerKey);
+  }
+  for (const ledgerKey of ledgerKeys) {
+    const existing = canonicalByLedgerKey.get(ledgerKey);
+    canonicalByLedgerKey.set(ledgerKey, existing && existing !== fighter.id ? null : fighter.id);
   }
 }
 
