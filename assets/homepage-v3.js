@@ -10,6 +10,7 @@
   const fallbackNewsUrl = root.dataset.newsFallbackUrl;
   const historyUrl = root.dataset.historyUrl;
   const historyRuntimeBase = root.dataset.historyRuntimeBase;
+  const verdictProfileUrl = root.dataset.verdictProfileUrl;
   const historyTimeZone = 'America/Chicago';
 
   const el = (tag, className, text) => {
@@ -203,9 +204,33 @@
     }
   };
 
+  const loadVerdictProfileState = async () => {
+    if (!verdictProfileUrl) return;
+    try {
+      const response = await fetch(verdictProfileUrl, { cache: 'no-store' });
+      if (!response.ok) return;
+      const html = await response.text();
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const bodyText = doc.body?.textContent || '';
+      const upcomingState = root.querySelector('[data-verdict-upcoming-state]');
+      if (upcomingState && /DWCS10W7/i.test(bodyText)) {
+        const remaining = bodyText.match(/(\d+)\s+Picks? Remaining/i);
+        if (remaining) {
+          upcomingState.textContent = remaining[1] === '0'
+            ? 'Picks complete'
+            : `${remaining[1]} picks remaining`;
+        }
+      }
+    } catch {
+      // The public Verdict page may block cross-origin browser requests.
+      // Static fallback content remains visible when that happens.
+    }
+  };
+
   const start = () => {
     loadNews();
     window.setTimeout(loadHistory, 100);
+    window.setTimeout(loadVerdictProfileState, 160);
   };
 
   if (document.readyState === 'loading') {
