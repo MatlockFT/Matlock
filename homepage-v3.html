@@ -35,18 +35,12 @@ page_scripts:
   data-history-runtime-base="{{ '/assets/data/on-this-day-runtime/' | relative_url }}"
   data-roster-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/ufc-roster-data"
 >
-  <div class="v3-edition">
-    <span>EST. 2026</span>
-    <span>{{ site.time | date: "%A, %B %-d, %Y" }}</span>
-    <span>INDEPENDENT MMA COVERAGE</span>
+  <div class="v3-trending" aria-label="Trending">
+    <strong>Trending:</strong>
+    <div class="v3-trending-links" data-v3-trending>
+      <span>Loading…</span>
+    </div>
   </div>
-
-  <div class="v3-masthead" aria-label="MMA Matlock">
-    <span class="v3-masthead-main">MMA MATLOCK</span>
-    <span class="v3-masthead-sub">Fight Talk</span>
-  </div>
-
-  <div class="v3-rule v3-rule-double" aria-hidden="true"></div>
 
   {% if lead_post %}
     {% assign lead_image = lead_post.image.path | default: lead_post.image %}
@@ -58,7 +52,6 @@ page_scripts:
 
     <main class="v3-front" aria-label="MMA Matlock front page">
       <aside class="v3-left-rail" aria-label="More recent stories">
-        <div class="v3-rail-label">Latest analysis</div>
         {% for post in side_posts %}
           <article class="v3-rail-story">
             <p class="v3-label">{{ post.date | date: "%b %-d" }}</p>
@@ -73,7 +66,6 @@ page_scripts:
       </aside>
 
       <article class="v3-lead">
-        <p class="v3-label v3-label-red">Lead story</p>
         <h1><a href="{{ lead_post.url | relative_url }}">{{ lead_post.title }}</a></h1>
         {% if lead_post.description %}
           <p class="v3-lead-deck">{{ lead_post.description | strip_html | truncate: 225 }}</p>
@@ -159,7 +151,6 @@ page_scripts:
   <section class="v3-section v3-desk" aria-labelledby="v3-desk-title">
     <header class="v3-section-head">
       <h2 id="v3-desk-title">Fight Night Desk</h2>
-      <span class="v3-section-note">Tools, schedules and live context</span>
     </header>
 
     <div class="v3-desk-grid">
