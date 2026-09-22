@@ -1,0 +1,643 @@
+/*
+ * On This Day V3 demo.
+ * Existing history data, date navigation, filters, deep links and share builder
+ * stay intact. This layer changes presentation only.
+ */
+
+.otd-page-v3 {
+    width: min(calc(100% - 2rem), 1280px);
+    margin: 0 auto;
+    padding: .8rem 0 clamp(4rem, 7vw, 7rem);
+    background: var(--v3-paper);
+    color: var(--v3-ink);
+}
+
+/* Quiet page label + prominent date, matching the homepage editorial hierarchy. */
+.otd-page-v3 .otd-page-header {
+    display: grid;
+    gap: .45rem;
+    margin: 0 0 1rem;
+    padding: .82rem 0 .85rem;
+    border-top: 3px solid var(--v3-ink);
+    border-bottom: 1px solid var(--v3-rule);
+}
+
+.otd-page-v3 .otd-page-header h1 {
+    margin: 0;
+    color: var(--v3-muted);
+    font: 800 .59rem/1 var(--v3-sans);
+    letter-spacing: .065em;
+    text-transform: uppercase;
+}
+
+.otd-page-v3 .otd-page-date-row {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1.25rem;
+}
+
+.otd-page-v3 .otd-page-date {
+    color: var(--v3-ink);
+    font-family: "Herkey", Georgia, "Times New Roman", serif;
+    font-size: clamp(2.65rem, 5.8vw, 5.8rem);
+    font-weight: 400;
+    line-height: .82;
+    letter-spacing: -.018em;
+    text-transform: none;
+}
+
+.otd-page-v3 .otd-page-side {
+    display: flex;
+    align-items: end;
+    gap: .8rem;
+}
+
+.otd-page-v3 .otd-page-count {
+    margin: 0 0 .25rem;
+    color: var(--v3-muted);
+    font: 700 .62rem/1.15 var(--v3-sans);
+    text-transform: uppercase;
+}
+
+.otd-page-v3 .otd-page-actions {
+    display: flex;
+    gap: .35rem;
+}
+
+.otd-page-v3 .otd-mini-button {
+    min-height: 0;
+    padding: .42rem .55rem;
+    border: 1px solid var(--v3-rule);
+    border-radius: 0;
+    background: transparent;
+    color: var(--v3-ink);
+    font: 800 .55rem/1 var(--v3-sans);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.otd-page-v3 .otd-mini-button:hover,
+.otd-page-v3 .otd-mini-button:focus-visible {
+    border-color: var(--v3-ink);
+    background: var(--v3-ink);
+    color: var(--v3-paper);
+}
+
+/* Keep the history navigator useful, but dock it below the fixed site rail. */
+.otd-page-v3 .otd-nav-dock {
+    position: sticky;
+    z-index: 30;
+    top: var(--v3-fixed-rail-height, 80px);
+    margin: 0 0 1.25rem;
+    padding: .55rem 0 .6rem;
+    border-top: 0;
+    border-bottom: 1px solid var(--v3-rule);
+    background: color-mix(in srgb, var(--v3-paper) 96%, transparent);
+    box-shadow: none;
+    backdrop-filter: blur(10px);
+}
+
+/* Seven-day rail: dates first, decoration removed. */
+.otd-page-v3 .otd-week-strip {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 0;
+    margin: 0 0 .55rem;
+    border-top: 1px solid var(--v3-rule);
+    border-bottom: 1px solid var(--v3-rule);
+}
+
+.otd-page-v3 .otd-day-pill {
+    display: grid;
+    min-width: 0;
+    min-height: 58px;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto 1fr;
+    gap: .08rem .35rem;
+    align-items: center;
+    overflow: visible;
+    padding: .5rem .58rem;
+    border: 0;
+    border-right: 1px solid var(--v3-rule);
+    border-radius: 0;
+    background: transparent;
+    color: var(--v3-ink);
+    box-shadow: none;
+    text-align: left;
+}
+
+.otd-page-v3 .otd-day-pill:first-child {
+    border-left: 1px solid var(--v3-rule);
+}
+
+.otd-page-v3 .otd-day-pill:hover,
+.otd-page-v3 .otd-day-pill:focus-visible {
+    border-color: var(--v3-rule);
+    background: var(--v3-paper-deep);
+    box-shadow: none;
+    transform: none;
+}
+
+.otd-page-v3 .otd-day-pill.is-active {
+    background: var(--v3-ink);
+    color: var(--v3-paper);
+}
+
+.otd-page-v3 .otd-day-pill-image,
+.otd-page-v3 .otd-day-pill-summary {
+    display: none !important;
+}
+
+.otd-page-v3 .otd-day-pill-weekday {
+    color: currentColor;
+    font: 800 .52rem/1 var(--v3-sans);
+    letter-spacing: .05em;
+    text-transform: uppercase;
+}
+
+.otd-page-v3 .otd-day-pill-date {
+    color: currentColor;
+    font-family: "Herkey", Georgia, serif;
+    font-size: 1.65rem;
+    font-weight: 400;
+    line-height: .8;
+}
+
+.otd-page-v3 .otd-day-pill-today {
+    position: static !important;
+    grid-column: 1 / -1;
+    margin-top: .05rem;
+    color: var(--v3-red);
+    font: 800 .48rem/1 var(--v3-sans);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.otd-page-v3 .otd-day-pill.is-active .otd-day-pill-today {
+    color: #ff8b90;
+}
+
+/* Utility controls are flat, compact, and subordinate to the content. */
+.otd-page-v3 .otd-controls {
+    display: grid;
+    grid-template-columns: 38px minmax(160px, 220px) 38px auto;
+    gap: .4rem;
+    align-items: center;
+    margin: 0;
+}
+
+.otd-page-v3 .otd-control-button,
+.otd-page-v3 .otd-date-input {
+    min-height: 36px;
+    border: 1px solid var(--v3-rule);
+    border-radius: 0;
+    background: var(--v3-paper);
+    color: var(--v3-ink);
+    box-shadow: none;
+}
+
+.otd-page-v3 .otd-control-button {
+    min-width: 36px;
+    padding: .4rem .55rem;
+    font: 800 .58rem/1 var(--v3-sans);
+    letter-spacing: .04em;
+}
+
+.otd-page-v3 .otd-date-input {
+    padding: .4rem .55rem;
+    font: 700 .7rem/1 var(--v3-sans);
+}
+
+.otd-page-v3 .otd-control-button:hover,
+.otd-page-v3 .otd-control-button:focus-visible,
+.otd-page-v3 .otd-date-input:hover,
+.otd-page-v3 .otd-date-input:focus-visible {
+    border-color: var(--v3-ink);
+    background: var(--v3-paper-deep);
+}
+
+.otd-page-v3 .otd-filters {
+    display: flex;
+    gap: .3rem;
+    overflow-x: auto;
+    margin-top: .5rem;
+    padding: .5rem 0 0;
+    border-top: 1px solid var(--v3-rule);
+    scrollbar-width: none;
+}
+
+.otd-page-v3 .otd-filters[hidden] {
+    display: none;
+}
+
+.otd-page-v3 .otd-filters::-webkit-scrollbar {
+    display: none;
+}
+
+.otd-page-v3 .otd-filter-button,
+.otd-page-v3 .otd-view-button {
+    min-height: 28px;
+    padding: .35rem .52rem;
+    border: 1px solid var(--v3-rule);
+    border-radius: 0;
+    background: transparent;
+    color: var(--v3-muted);
+    font: 800 .53rem/1 var(--v3-sans);
+    letter-spacing: .035em;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.otd-page-v3 .otd-filter-button:hover,
+.otd-page-v3 .otd-filter-button:focus-visible,
+.otd-page-v3 .otd-view-button:hover,
+.otd-page-v3 .otd-view-button:focus-visible,
+.otd-page-v3 .otd-filter-button.is-active,
+.otd-page-v3 .otd-view-button.is-active {
+    border-color: var(--v3-ink);
+    background: var(--v3-ink);
+    color: var(--v3-paper);
+}
+
+.otd-page-v3 .otd-viewbar {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    margin-top: .45rem;
+    padding: .45rem 0 0;
+    border-top: 1px solid var(--v3-rule);
+}
+
+.otd-page-v3 .otd-view-toggle {
+    display: flex;
+    gap: .3rem;
+}
+
+.otd-page-v3 .otd-sort-control {
+    display: inline-flex;
+    align-items: center;
+    gap: .38rem;
+    margin-left: auto;
+    color: var(--v3-muted);
+    font: 800 .52rem/1 var(--v3-sans);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.otd-page-v3 .otd-sort-select {
+    min-height: 28px;
+    padding: .3rem 1.6rem .3rem .45rem;
+    border: 1px solid var(--v3-rule);
+    border-radius: 0;
+    background: var(--v3-paper);
+    color: var(--v3-ink);
+    font: 700 .6rem/1 var(--v3-sans);
+}
+
+.otd-page-v3 .otd-shortcut-hint {
+    color: var(--v3-muted);
+    font: 600 .52rem/1 var(--v3-sans);
+}
+
+/* History itself: strong lead story, then a disciplined chronological list. */
+.otd-page-v3 .otd-list {
+    display: grid;
+    gap: 0;
+}
+
+.otd-page-v3 .otd-entry {
+    display: grid;
+    grid-template-columns: 82px minmax(210px, 280px) minmax(0, 1fr);
+    gap: clamp(1rem, 2.3vw, 1.75rem);
+    align-items: start;
+    padding: 1.15rem 0 1.25rem;
+    border-top: 1px solid var(--v3-rule);
+    background: transparent;
+    box-shadow: none;
+}
+
+.otd-page-v3 .otd-entry:last-child {
+    border-bottom: 1px solid var(--v3-rule);
+}
+
+.otd-page-v3 .otd-entry--lead {
+    grid-template-columns: 96px minmax(300px, 440px) minmax(0, 1fr);
+    padding: 1.35rem 0 1.65rem;
+    border-top: 3px solid var(--v3-ink);
+}
+
+.otd-page-v3 .otd-entry.is-clickable:hover {
+    background: transparent;
+}
+
+.otd-page-v3 .otd-entry-year {
+    padding-top: .12rem;
+    color: var(--v3-red);
+    font-family: "Herkey", Georgia, serif;
+    font-size: clamp(1.5rem, 2.25vw, 2.2rem);
+    font-weight: 400;
+    line-height: .85;
+}
+
+.otd-page-v3 .otd-entry--fight .otd-entry-year {
+    color: var(--v3-ink);
+}
+
+.otd-page-v3 .otd-entry-media,
+.otd-page-v3 .otd-entry--lead .otd-entry-media {
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border: 0;
+    border-radius: 0;
+    background: var(--v3-paper-deep);
+}
+
+.otd-page-v3 .otd-entry-media::after {
+    display: none;
+}
+
+.otd-page-v3 .otd-entry-media img {
+    filter: none;
+    transition: opacity 180ms ease;
+}
+
+.otd-page-v3 .otd-entry:hover .otd-entry-media img {
+    opacity: .94;
+    filter: none;
+    transform: none;
+}
+
+.otd-page-v3 .otd-entry-body {
+    padding-top: 0;
+}
+
+.otd-page-v3 .otd-entry-meta {
+    gap: .42rem;
+}
+
+.otd-page-v3 .otd-age,
+.otd-page-v3 .otd-promotion,
+.otd-page-v3 .otd-kind {
+    color: var(--v3-muted);
+    font: 800 .53rem/1.15 var(--v3-sans);
+    letter-spacing: .05em;
+}
+
+.otd-page-v3 .otd-kind--fight,
+.otd-page-v3 .otd-kind--signing,
+.otd-page-v3 .otd-kind--debut,
+.otd-page-v3 .otd-kind--title {
+    color: var(--v3-red);
+}
+
+.otd-page-v3 .otd-entry-title {
+    margin: .42rem 0 0;
+    color: var(--v3-ink);
+    font-family: "Herkey", Georgia, "Times New Roman", serif;
+    font-size: clamp(1.55rem, 2.35vw, 2.3rem);
+    font-weight: 400;
+    line-height: .96;
+    letter-spacing: -.012em;
+}
+
+.otd-page-v3 .otd-entry--lead .otd-entry-title {
+    max-width: 18ch;
+    font-size: clamp(2.15rem, 3.6vw, 3.75rem);
+    line-height: .9;
+}
+
+.otd-page-v3 .otd-entry-detail {
+    max-width: 68ch;
+    margin: .6rem 0 0;
+    color: var(--v3-muted);
+    font: 500 .84rem/1.52 var(--v3-sans);
+}
+
+.otd-page-v3 .otd-entry-actions {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    margin-top: .7rem;
+}
+
+.otd-page-v3 .otd-entry-source,
+.otd-page-v3 .otd-entry-link {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--v3-red);
+    font: 800 .55rem/1 var(--v3-sans);
+    letter-spacing: .045em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.otd-page-v3 .otd-entry-source:hover,
+.otd-page-v3 .otd-entry-source:focus-visible,
+.otd-page-v3 .otd-entry-link:hover,
+.otd-page-v3 .otd-entry-link:focus-visible {
+    color: var(--v3-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.otd-page-v3 .otd-show-more-wrap,
+.otd-page-v3 .otd-empty {
+    padding: 1rem 0;
+    border-top: 1px solid var(--v3-rule);
+    border-bottom: 1px solid var(--v3-rule);
+}
+
+.otd-page-v3 .otd-show-more,
+.otd-page-v3 .otd-empty-jump {
+    min-height: 0;
+    padding: .55rem .7rem;
+    border: 1px solid var(--v3-ink);
+    border-radius: 0;
+    background: transparent;
+    color: var(--v3-ink);
+    font: 800 .58rem/1 var(--v3-sans);
+    text-transform: uppercase;
+}
+
+.otd-page-v3 .otd-show-more:hover,
+.otd-page-v3 .otd-show-more:focus-visible,
+.otd-page-v3 .otd-empty-jump:hover,
+.otd-page-v3 .otd-empty-jump:focus-visible {
+    background: var(--v3-ink);
+    color: var(--v3-paper);
+}
+
+.otd-page-v3 .otd-empty {
+    color: var(--v3-muted);
+}
+
+.otd-page-v3 .otd-empty strong {
+    color: var(--v3-ink);
+}
+
+/* Keep generated poster fallbacks readable without importing the legacy skin. */
+.otd-page-v3 .otd-media-year {
+    color: #fff;
+    font-family: "Herkey", Georgia, serif;
+    font-weight: 400;
+}
+
+.otd-page-v3 .otd-media-promotion {
+    color: #fff;
+    font-family: var(--v3-sans);
+}
+
+/* Same approved light/dark palette as the homepage demo. */
+html[data-theme="dark"] .otd-page-v3,
+html[data-theme="dark"] .otd-page-v3 .otd-nav-dock,
+html[data-theme="dark"] .otd-page-v3 .otd-control-button,
+html[data-theme="dark"] .otd-page-v3 .otd-date-input,
+html[data-theme="dark"] .otd-page-v3 .otd-sort-select {
+    background: var(--v3-paper);
+    color: var(--v3-ink);
+}
+
+html[data-theme="dark"] .otd-page-v3 .otd-entry-media {
+    background: #121212;
+}
+
+html.v3-theme-transitioning .otd-page-v3,
+html.v3-theme-transitioning .otd-page-v3 .otd-nav-dock,
+html.v3-theme-transitioning .otd-page-v3 .otd-day-pill,
+html.v3-theme-transitioning .otd-page-v3 .otd-entry {
+    transition:
+        background-color 360ms ease,
+        color 360ms ease,
+        border-color 360ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .otd-page-v3 *,
+    .otd-page-v3 *::before,
+    .otd-page-v3 *::after {
+        scroll-behavior: auto !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .otd-page-v3 .otd-entry,
+    .otd-page-v3 .otd-entry--lead {
+        grid-template-columns: 70px minmax(190px, 250px) minmax(0, 1fr);
+    }
+
+    .otd-page-v3 .otd-entry--lead .otd-entry-title {
+        font-size: clamp(1.9rem, 4.6vw, 3rem);
+    }
+
+    .otd-page-v3 .otd-shortcut-hint {
+        display: none;
+    }
+}
+
+@media (max-width: 760px) {
+    .otd-page-v3 {
+        width: min(calc(100% - 1.4rem), 1280px);
+    }
+
+    .otd-page-v3 .otd-page-date-row {
+        align-items: start;
+        flex-direction: column;
+        gap: .55rem;
+    }
+
+    .otd-page-v3 .otd-page-date {
+        font-size: clamp(2.5rem, 13vw, 4rem);
+    }
+
+    .otd-page-v3 .otd-page-side {
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .otd-page-v3 .otd-week-strip {
+        overflow-x: auto;
+        grid-template-columns: repeat(7, minmax(88px, 1fr));
+        scrollbar-width: none;
+    }
+
+    .otd-page-v3 .otd-week-strip::-webkit-scrollbar {
+        display: none;
+    }
+
+    .otd-page-v3 .otd-controls {
+        grid-template-columns: 38px minmax(0, 1fr) 38px;
+    }
+
+    .otd-page-v3 .otd-control-button[data-otd-today] {
+        grid-column: 1 / -1;
+    }
+
+    .otd-page-v3 .otd-entry,
+    .otd-page-v3 .otd-entry--lead {
+        grid-template-columns: 56px minmax(0, 1fr);
+        gap: .8rem;
+    }
+
+    .otd-page-v3 .otd-entry-year {
+        grid-column: 1;
+        grid-row: 1 / 3;
+        font-size: 1.3rem;
+    }
+
+    .otd-page-v3 .otd-entry-media,
+    .otd-page-v3 .otd-entry--lead .otd-entry-media {
+        grid-column: 2;
+        grid-row: 1;
+        width: min(100%, 560px);
+        aspect-ratio: 16 / 9;
+    }
+
+    .otd-page-v3 .otd-entry-body {
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .otd-page-v3 .otd-entry-title,
+    .otd-page-v3 .otd-entry--lead .otd-entry-title {
+        max-width: none;
+        font-size: clamp(1.55rem, 7vw, 2.35rem);
+    }
+}
+
+@media (max-width: 520px) {
+    .otd-page-v3 .otd-page-side {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .otd-page-v3 .otd-page-actions {
+        width: 100%;
+    }
+
+    .otd-page-v3 .otd-mini-button {
+        flex: 1;
+    }
+
+    .otd-page-v3 .otd-viewbar {
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .otd-page-v3 .otd-sort-control {
+        margin-left: 0;
+    }
+
+    .otd-page-v3 .otd-entry,
+    .otd-page-v3 .otd-entry--lead {
+        grid-template-columns: 46px minmax(0, 1fr);
+    }
+
+    .otd-page-v3 .otd-entry-year {
+        font-size: 1.12rem;
+    }
+}

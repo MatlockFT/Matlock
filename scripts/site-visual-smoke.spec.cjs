@@ -514,6 +514,85 @@ test.describe('Breakdowns V3 isolated migration', () => {
   });
 });
 
+test.describe('On This Day V3 isolated migration', () => {
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('preserves live history while the demo uses the editorial shell and date controls', async ({ page }) => {
+    await page.goto(targetUrl('/on-this-day/?date=09-08'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('.otd-page')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('[data-editorial-v3]')).toHaveCount(0);
+    await expect(page.locator('.site-theme-toggle')).toHaveCount(0);
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+
+    await page.goto(targetUrl('/on-this-day-v3/?date=09-08'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-editorial-v3]')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('.v3-wordmark')).toBeVisible();
+    await expect(page.locator('.site-theme-toggle')).toBeVisible();
+    await expect(page.locator('.v3-sticky-shell')).toHaveCount(1);
+    await expect(page.locator('.site-live-strip')).toBeVisible({ timeout: 10000 });
+
+    await page.waitForFunction(() => {
+      const list = document.querySelector('[data-otd-list]');
+      return list && list.getAttribute('aria-busy') === 'false' && list.children.length > 0;
+    }, null, { timeout: 30000 });
+
+    await page.evaluate(() => document.fonts?.ready).catch(() => {});
+
+    const dateFont = await page.locator('.otd-page-date').evaluate(node =>
+      getComputedStyle(node).fontFamily
+    );
+    const entryFont = await page.locator('.otd-entry-title').first().evaluate(node =>
+      getComputedStyle(node).fontFamily
+    );
+    expect(dateFont).toContain('Herkey');
+    expect(entryFont).toContain('Herkey');
+
+    const pillRadius = await page.locator('.otd-day-pill').first().evaluate(node =>
+      getComputedStyle(node).borderRadius
+    );
+    const entryRadius = await page.locator('.otd-entry-media').first().evaluate(node =>
+      getComputedStyle(node).borderRadius
+    );
+    expect(pillRadius).toBe('0px');
+    expect(entryRadius).toBe('0px');
+
+    const dock = await page.locator('.otd-nav-dock').evaluate(node => ({
+      position: getComputedStyle(node).position,
+      top: Math.round(parseFloat(getComputedStyle(node).top))
+    }));
+    expect(dock.position).toBe('sticky');
+    expect(dock.top).toBeGreaterThan(0);
+
+    const beforeDate = (await page.locator('.otd-page-date').textContent() || '').trim();
+    await page.locator('[data-otd-next]').click();
+    await expect.poll(async () =>
+      (await page.locator('.otd-page-date').textContent() || '').trim()
+    ).not.toBe(beforeDate);
+
+    const overflow = await page.evaluate(() =>
+      document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(2);
+
+    await page.evaluate(() => window.scrollTo({ top: 1400, behavior: 'instant' }));
+    await page.waitForTimeout(120);
+    const fixedTop = await page.locator('.v3-sticky-shell').evaluate(node =>
+      Math.round(node.getBoundingClientRect().top)
+    );
+    expect(Math.abs(fixedTop)).toBeLessThanOrEqual(2);
+
+    await page.locator('.site-theme-toggle').click();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    const darkBackground = await page.locator('.otd-page-v3').evaluate(node =>
+      getComputedStyle(node).backgroundColor
+    );
+    expect(darkBackground).toBe('rgb(11, 11, 11)');
+
+    const robots = await page.locator('meta[name="robots"]').getAttribute('content');
+    expect(robots).toContain('noindex');
+  });
+});
+
 test.describe('Homepage V2 immersive scroll', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 
