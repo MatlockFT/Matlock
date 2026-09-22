@@ -194,7 +194,8 @@ test.describe('Homepage V3 editorial shell', () => {
     await expect(page.locator('[data-globe-home]')).toBeVisible({ timeout: 30000 });
     await expect(page.locator('.site-logo')).toBeVisible();
     await expect(page.locator('.v3-trending')).toBeVisible();
-    await page.waitForTimeout(350);
+    await expect(page.locator('.site-live-strip-inner')).toBeVisible({ timeout: 10000 });
+    await page.waitForTimeout(200);
 
     const geometry = await page.evaluate(() => {
       const nav = document.querySelector('.navigation-inner')?.getBoundingClientRect();
