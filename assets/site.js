@@ -9,6 +9,8 @@
     const motionToggle = document.querySelector("[data-motion-toggle]");
     const motionLabel = document.querySelector("[data-motion-label]");
     const mobileNavigation = window.matchMedia("(max-width: 850px)");
+    const immersiveNavigation = Boolean(document.querySelector("[data-home-flow]"));
+    const panelNavigationActive = () => mobileNavigation.matches || immersiveNavigation;
     const systemReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const pageRegions = [
         document.querySelector(".logo-banner"),
@@ -214,8 +216,8 @@
     function setNavigationState(requestedOpen, returnFocus = false) {
         if (!navigationToggle || !navigationList || !navigationPanel) return;
 
-        const isOpen = requestedOpen && mobileNavigation.matches;
-        const panelIsHidden = mobileNavigation.matches && !isOpen;
+        const isOpen = requestedOpen && panelNavigationActive();
+        const panelIsHidden = panelNavigationActive() && !isOpen;
 
         navigationToggle.setAttribute("aria-expanded", String(isOpen));
         navigationToggle.setAttribute(
