@@ -485,26 +485,37 @@
 }
 
 .otd-page-v3 .otd-entry-source,
-.otd-page-v3 .otd-entry-link {
+.otd-page-v3 .otd-entry-link,
+.otd-page-v3 .otd-entry-share {
+    min-height: 0;
     margin: 0;
     padding: 0;
     border: 0;
+    border-radius: 0;
     background: transparent;
     color: var(--v3-red);
+    box-shadow: none;
     font: 800 .54rem/1 var(--v3-sans);
     letter-spacing: .045em;
     text-decoration: none;
     text-transform: uppercase;
     cursor: pointer;
+    appearance: none;
 }
 
 .otd-page-v3 .otd-entry-source:hover,
 .otd-page-v3 .otd-entry-source:focus-visible,
 .otd-page-v3 .otd-entry-link:hover,
-.otd-page-v3 .otd-entry-link:focus-visible {
+.otd-page-v3 .otd-entry-link:focus-visible,
+.otd-page-v3 .otd-entry-share:hover,
+.otd-page-v3 .otd-entry-share:focus-visible {
+    border: 0;
+    background: transparent;
     color: var(--v3-ink);
+    box-shadow: none;
     text-decoration: underline;
     text-underline-offset: 3px;
+    transform: none;
 }
 
 /* Media is editorial content, never a forced thumbnail crop. */

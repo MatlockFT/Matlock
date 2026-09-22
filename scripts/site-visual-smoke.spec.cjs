@@ -574,6 +574,17 @@ test.describe('On This Day V3 isolated migration', () => {
     expect(entryStyle.shadow).toBe('none');
     expect(entryStyle.background).toBe('rgba(0, 0, 0, 0)');
 
+    const entryShare = page.locator('.otd-entry-share').first();
+    await expect(entryShare).toBeVisible();
+    const entryShareStyle = await entryShare.evaluate(node => ({
+      radius: getComputedStyle(node).borderRadius,
+      background: getComputedStyle(node).backgroundColor,
+      shadow: getComputedStyle(node).boxShadow
+    }));
+    expect(entryShareStyle.radius).toBe('0px');
+    expect(entryShareStyle.background).toBe('rgba(0, 0, 0, 0)');
+    expect(entryShareStyle.shadow).toBe('none');
+
     const readyImage = page.locator('.otd-entry-media.is-image-ready img').first();
     if (await readyImage.count()) {
       await expect.poll(async () => readyImage.evaluate(img =>
