@@ -677,17 +677,7 @@ body:has([data-home-flow]) .navigation-panel-header::before {
 }
 
 body:has([data-home-flow]) .navigation-close {
-    position: fixed;
-    top: 16px;
-    right: 16px;
-    width: 46px;
-    height: 46px;
-    border: 0;
-    border-radius: 0;
-    background: transparent;
-    color: var(--v2-paper);
-    opacity: 0;
-    pointer-events: none;
+    display: none !important;
 }
 
 /* The INDEX trigger itself becomes the visible close control. */
@@ -1533,6 +1523,132 @@ body:has([data-home-flow]) .site-event-stack.is-open .site-event-drawer {
 
     .homepage-dashboard.has-webgpu .home-gpu-layer {
         opacity: .07;
+    }
+}
+
+
+/* Control-room index responsive composition. */
+@media (max-width: 900px) {
+    body:has([data-home-flow]) .navigation-panel {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 1rem;
+        align-content: start;
+        overflow-y: auto;
+        padding:
+            clamp(4.8rem, 9vh, 5.8rem)
+            clamp(.85rem, 4vw, 2rem)
+            calc(var(--v2-ticker-height) + 1.5rem);
+    }
+
+    body:has([data-home-flow]) .navigation-list,
+    body:has([data-home-flow]) .navigation-list.navigation-list-open {
+        grid-column: 1;
+        grid-row: 1;
+        max-width: none;
+    }
+
+    body:has([data-home-flow]) .navigation-list a {
+        min-height: 58px;
+        font-size: clamp(1.05rem, 4vw, 1.45rem);
+    }
+
+    body:has([data-home-flow]) .navigation-list li:nth-child(n+4) a {
+        min-height: 52px;
+        font-size: clamp(.95rem, 3.2vw, 1.15rem);
+    }
+
+    .navigation-v2-context {
+        grid-column: 1;
+        grid-row: 2;
+        padding: 1rem 0 0;
+        border-top: 1px solid rgba(238,233,223,.14);
+        border-left: 0;
+    }
+
+    .navigation-v2-now {
+        padding: .8rem 0;
+    }
+
+    .navigation-v2-preview {
+        min-height: 0;
+        padding: .9rem 0;
+    }
+
+    .navigation-v2-preview strong {
+        font-size: clamp(1.25rem, 4vw, 1.7rem);
+    }
+
+    body:has([data-home-flow]) .site-display-controls {
+        width: 100%;
+        grid-column: 1;
+        grid-row: 3;
+        padding: 0;
+    }
+}
+
+@media (max-width: 700px) {
+    body:has([data-home-flow]) .navigation-toggle {
+        min-width: 103px;
+        min-height: 40px;
+        grid-template-columns: 16px minmax(0,1fr) 18px;
+        gap: .42rem;
+        padding: .43rem .5rem .4rem;
+    }
+
+    .navigation-v2-trigger-mark {
+        width: 16px;
+        height: 16px;
+    }
+
+    .navigation-v2-trigger-mark > span {
+        width: 14px;
+    }
+
+    body:has([data-home-flow]) .navigation-panel {
+        padding-top: 4.4rem;
+    }
+
+    body:has([data-home-flow]) .navigation-panel-header {
+        top: 13px;
+        left: .85rem;
+    }
+
+    body:has([data-home-flow]) .navigation-list a {
+        grid-template-columns: 1.8rem minmax(0,1fr) 1.2rem;
+        min-height: 49px;
+        gap: .55rem;
+        padding: .58rem .3rem;
+        font-size: 1.02rem;
+    }
+
+    body:has([data-home-flow]) .navigation-list li:nth-child(n+4) a {
+        min-height: 45px;
+        font-size: .92rem;
+    }
+
+    body:has([data-home-flow]) .navigation-list a:hover,
+    body:has([data-home-flow]) .navigation-list a:focus-visible,
+    body:has([data-home-flow]) .navigation-list a[aria-current="page"] {
+        padding-left: .55rem;
+    }
+
+    .navigation-v2-preview {
+        display: none;
+    }
+
+    .navigation-v2-now {
+        grid-template-columns: minmax(0,1fr) auto;
+        border-bottom: 0;
+    }
+
+    .navigation-v2-now strong {
+        font-size: 1rem;
+    }
+
+    .navigation-v2-signal {
+        padding-top: .65rem;
+        font-size: .5rem;
     }
 }
 
