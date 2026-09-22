@@ -183,12 +183,21 @@
                     aria-haspopup="true"
                     aria-label="Open main navigation"
                 >
-                    <span class="navigation-toggle-icon" aria-hidden="true">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </span>
-                    <span class="navigation-toggle-label">Menu</span>
+                    {% if page.url == "/homepage-v2/" %}
+                        <span class="navigation-v2-trigger-mark" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                        </span>
+                        <span class="navigation-toggle-label">Index</span>
+                        <span class="navigation-v2-trigger-count" aria-hidden="true">07</span>
+                    {% else %}
+                        <span class="navigation-toggle-icon" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                        <span class="navigation-toggle-label">Menu</span>
+                    {% endif %}
                 </button>
 
                 {% assign current_url = page.url | default: "/" | remove: "index.html" %}
@@ -253,12 +262,70 @@
                                     {% endif %}
                                     {% if active %}aria-current="page"{% endif %}
                                 >
-                                    <span>{{ item.name }}</span>
-                                    {% if item.external %}<span aria-hidden="true">↗</span>{% endif %}
+                                    {% if page.url == "/homepage-v2/" %}
+                                        {% case item.name %}
+                                            {% when "News" %}
+                                                {% assign nav_description = "Live fight-world headlines and developing stories." %}
+                                            {% when "Breakdowns" %}
+                                                {% assign nav_description = "Original analysis, scouting, opinion and longform." %}
+                                            {% when "Fight Cards" %}
+                                                {% assign nav_description = "Upcoming cards, timing, picks and event tools." %}
+                                            {% when "Event Map" %}
+                                                {% assign nav_description = "Find combat sports events by location." %}
+                                            {% when "On This Day" %}
+                                                {% assign nav_description = "MMA history organized by date." %}
+                                            {% when "UFC Roster" %}
+                                                {% assign nav_description = "Track UFC additions, removals and roster movement." %}
+                                            {% when "Matchmaker" %}
+                                                {% assign nav_description = "Build and explore possible UFC matchups." %}
+                                            {% else %}
+                                                {% assign nav_description = "Open this section of MMA Matlock." %}
+                                        {% endcase %}
+                                        <span
+                                            class="navigation-v2-link-copy"
+                                            data-nav-preview-label="{{ item.name | escape }}"
+                                            data-nav-preview-description="{{ nav_description | escape }}"
+                                        >
+                                            {{ item.name }}
+                                        </span>
+                                        <span class="navigation-v2-link-arrow" aria-hidden="true">↗</span>
+                                    {% else %}
+                                        <span>{{ item.name }}</span>
+                                        {% if item.external %}<span aria-hidden="true">↗</span>{% endif %}
+                                    {% endif %}
                                 </a>
                             </li>
                         {% endfor %}
                     </ul>
+
+                    {% if page.url == "/homepage-v2/" %}
+                        <aside class="navigation-v2-context" aria-label="Site index context">
+                            <div class="navigation-v2-context-head">
+                                <span>CONTROL ROOM</span>
+                                <span>{{ site.time | date: "%m.%d.%y" }}</span>
+                            </div>
+
+                            <div class="navigation-v2-now">
+                                <span class="navigation-v2-context-label">NOW VIEWING</span>
+                                <strong data-nav-scene-title>Latest stories</strong>
+                                <span data-nav-scene-counter>01 / 05</span>
+                            </div>
+
+                            <div class="navigation-v2-preview" aria-live="polite">
+                                <span class="navigation-v2-context-label">INDEX PREVIEW</span>
+                                <strong data-nav-preview-title>Explore MMA Matlock</strong>
+                                <p data-nav-preview-copy>
+                                    Choose a destination to see what lives there.
+                                </p>
+                            </div>
+
+                            <div class="navigation-v2-signal" aria-hidden="true">
+                                <span><i></i> LIVE FEED</span>
+                                <span>07 DESTINATIONS</span>
+                                <span>MMA MATLOCK</span>
+                            </div>
+                        </aside>
+                    {% endif %}
 
                     <div class="site-display-controls" aria-label="Display preferences">
                         <button
