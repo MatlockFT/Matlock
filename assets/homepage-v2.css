@@ -195,7 +195,7 @@ body:has([data-home-flow]) {
     position: absolute;
     top: -7%;
     right: -5%;
-    bottom: calc(var(--home-caption-height) + var(--v2-ticker-height) - 4%);
+    bottom: calc(var(--home-caption-height) - 4%);
     left: -5%;
     z-index: 2;
     pointer-events: none;
@@ -1378,7 +1378,7 @@ body:has([data-home-flow]) .site-event-stack.is-open .site-event-drawer {
 
     .home-immersive-ui {
         right: .85rem;
-        bottom: calc(var(--v2-ticker-height) + var(--home-caption-height) - 22px);
+        bottom: calc(var(--home-caption-height) - 22px);
         font-size: .5rem;
     }
 
@@ -1539,9 +1539,9 @@ body:has([data-home-flow]) .site-event-stack.is-open .site-event-drawer {
         align-content: start;
         overflow-y: auto;
         padding:
-            clamp(4.8rem, 9vh, 5.8rem)
+            calc(var(--v2-ticker-height) + 4.2rem)
             clamp(.85rem, 4vw, 2rem)
-            calc(var(--v2-ticker-height) + 1.5rem);
+            1.5rem;
     }
 
     body:has([data-home-flow]) .navigation-list,
