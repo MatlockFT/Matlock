@@ -10,6 +10,8 @@
     const immersiveSlides = [...root.querySelectorAll('[data-immersive-slide]')];
     const sceneCounter = root.querySelector('[data-scene-counter]');
     const sceneHint = root.querySelector('[data-scene-hint]');
+    const navSceneCounter = document.querySelector('[data-nav-scene-counter]');
+    const navSceneTitle = document.querySelector('[data-nav-scene-title]');
     const immersiveEdge = root.querySelector('.home-immersive-edge');
 
     const liveNewsUrl = root.dataset.newsUrl;
@@ -447,9 +449,15 @@
                 }
             }
 
-            if (sceneCounter && activeIndex !== lastActive) {
-                sceneCounter.textContent =
+            if (activeIndex !== lastActive) {
+                const countText =
                     `${String(activeIndex + 1).padStart(2, '0')} / ${String(immersiveSlides.length).padStart(2, '0')}`;
+                if (sceneCounter) sceneCounter.textContent = countText;
+                if (navSceneCounter) navSceneCounter.textContent = countText;
+                if (navSceneTitle) {
+                    const currentTitle = immersiveSlides[activeIndex]?.querySelector('h2')?.textContent?.trim();
+                    navSceneTitle.textContent = currentTitle || 'Latest stories';
+                }
                 lastActive = activeIndex;
             }
 

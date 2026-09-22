@@ -224,6 +224,10 @@
             "aria-label",
             isOpen ? "Close main navigation" : "Open main navigation"
         );
+        if (immersiveNavigation) {
+            const toggleLabel = navigationToggle.querySelector(".navigation-toggle-label");
+            if (toggleLabel) toggleLabel.textContent = isOpen ? "Close" : "Index";
+        }
         navigationPanel.setAttribute("aria-hidden", String(panelIsHidden));
         navigationPanel.inert = panelIsHidden;
         navigationList.classList.toggle("navigation-list-open", isOpen);
@@ -237,7 +241,13 @@
             document.body.style.right = "0";
             document.body.style.left = "0";
             document.body.style.width = "100%";
-            window.requestAnimationFrame(() => navigationClose?.focus());
+            window.requestAnimationFrame(() => {
+                if (immersiveNavigation) {
+                    navigationList.querySelector("a[href]")?.focus();
+                } else {
+                    navigationClose?.focus();
+                }
+            });
         } else {
             unlockPageScroll();
         }
@@ -271,6 +281,32 @@
             event.preventDefault();
             first.focus();
         }
+    }
+
+    if (immersiveNavigation && navigationList) {
+        const previewTitle = document.querySelector("[data-nav-preview-title]");
+        const previewCopy = document.querySelector("[data-nav-preview-copy]");
+        const defaultTitle = previewTitle?.textContent || "Explore MMA Matlock";
+        const defaultCopy = previewCopy?.textContent || "Choose a destination to see what lives there.";
+
+        const setPreview = (label, description) => {
+            if (previewTitle) previewTitle.textContent = label || defaultTitle;
+            if (previewCopy) previewCopy.textContent = description || defaultCopy;
+        };
+
+        navigationList.querySelectorAll("[data-nav-preview-label]").forEach(labelNode => {
+            const link = labelNode.closest("a");
+            if (!link) return;
+
+            const label = labelNode.dataset.navPreviewLabel || labelNode.textContent.trim();
+            const description = labelNode.dataset.navPreviewDescription || defaultCopy;
+
+            link.addEventListener("pointerenter", () => setPreview(label, description));
+            link.addEventListener("focus", () => setPreview(label, description));
+            link.addEventListener("pointerleave", () => setPreview(defaultTitle, defaultCopy));
+        });
+
+        navigationPanel?.addEventListener("mouseleave", () => setPreview(defaultTitle, defaultCopy));
     }
 
     if (navigationToggle && navigationList && navigationPanel) {
