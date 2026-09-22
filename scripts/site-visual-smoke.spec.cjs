@@ -183,6 +183,19 @@ for (const viewport of viewports) {
 
 
 
+test.describe('Original site theme isolation', () => {
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('keeps the original homepage dark and free of V3 theme controls', async ({ page }) => {
+    await page.goto(targetUrl('/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    await expect(page.locator('.site-theme-toggle')).toHaveCount(0);
+    const scheme = await page.locator('meta[name="color-scheme"]').getAttribute('content');
+    expect(scheme).toBe('dark');
+  });
+});
+
+
 test.describe('Homepage V3 editorial shell', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 

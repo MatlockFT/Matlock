@@ -20,31 +20,46 @@
         >
     {% endif %}
 
-    <meta name="theme-color" content="{% if page.v3_text_masthead %}#fbfaf7{% else %}#080808{% endif %}">
-    <meta name="color-scheme" content="light dark">
+    {% if page.v3_text_masthead %}
+        <meta name="theme-color" content="#ffffff">
+        <meta name="color-scheme" content="light dark">
+        <script>
+            (() => {
+                const root = document.documentElement;
+                let theme = "light";
 
-    <script>
-        (() => {
-            const root = document.documentElement;
-            const defaultTheme = {% if page.v3_text_masthead %}"light"{% else %}"dark"{% endif %};
-            let theme = defaultTheme;
+                try {
+                    const storedTheme = localStorage.getItem("matlock-v3-theme");
+                    if (storedTheme === "light" || storedTheme === "dark") theme = storedTheme;
+                } catch {
+                    // Keep the V3 default when storage is unavailable.
+                }
 
-            try {
-                const storedTheme = localStorage.getItem("matlock-theme");
-                if (storedTheme === "light" || storedTheme === "dark") theme = storedTheme;
-            } catch {
-                // Use the page default when storage is unavailable.
-            }
+                root.dataset.theme = theme;
+                root.classList.toggle("dark-mode", theme === "dark");
+                root.classList.toggle("light-mode", theme === "light");
 
-            root.dataset.theme = theme;
-            root.classList.toggle("dark-mode", theme === "dark");
-            root.classList.toggle("light-mode", theme === "light");
+                if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                    root.classList.add("reduce-motion");
+                }
+            })();
+        </script>
+    {% else %}
+        <meta name="theme-color" content="#080808">
+        <meta name="color-scheme" content="dark">
+        <script>
+            (() => {
+                const root = document.documentElement;
+                root.dataset.theme = "dark";
+                root.classList.add("dark-mode");
+                root.classList.remove("light-mode");
 
-            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-                root.classList.add("reduce-motion");
-            }
-        })();
-    </script>
+                if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                    root.classList.add("reduce-motion");
+                }
+            })();
+        </script>
+    {% endif %}
 
     {% for origin in page.page_preconnects %}
         <link rel="preconnect" href="{{ origin }}" crossorigin>
@@ -338,20 +353,22 @@
                         </aside>
                     {% endif %}
 
-                    <div class="site-theme-control">
-                        <button
-                            class="site-theme-toggle"
-                            type="button"
-                            data-theme-toggle
-                            aria-pressed="false"
-                            aria-label="Turn on dark mode"
-                        >
-                            <span class="site-theme-toggle-track" aria-hidden="true">
-                                <span class="site-theme-toggle-knob"></span>
-                            </span>
-                            <span class="site-theme-toggle-label" data-theme-label>Dark</span>
-                        </button>
-                    </div>
+                    {% if page.v3_text_masthead %}
+                        <div class="site-theme-control">
+                            <button
+                                class="site-theme-toggle"
+                                type="button"
+                                data-theme-toggle
+                                aria-pressed="false"
+                                aria-label="Turn on dark mode"
+                            >
+                                <span class="site-theme-toggle-track" aria-hidden="true">
+                                    <span class="site-theme-toggle-knob"></span>
+                                </span>
+                                <span class="site-theme-toggle-label" data-theme-label>Dark</span>
+                            </button>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </nav>

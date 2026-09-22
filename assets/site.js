@@ -9,6 +9,7 @@
     const themeLabel = document.querySelector("[data-theme-label]");
     const mobileNavigation = window.matchMedia("(max-width: 850px)");
     const immersiveNavigation = Boolean(document.querySelector("[data-home-flow]"));
+    const v3ThemePage = Boolean(document.querySelector("[data-globe-home]"));
     const panelNavigationActive = () => mobileNavigation.matches || immersiveNavigation;
     const systemReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const pageRegions = [
@@ -65,18 +66,24 @@
         if (themeLabel) themeLabel.textContent = "Dark";
 
         const themeColor = document.querySelector('meta[name="theme-color"]');
-        if (themeColor) themeColor.setAttribute("content", nextTheme === "dark" ? "#080808" : "#fbfaf7");
+        if (themeColor) themeColor.setAttribute("content", nextTheme === "dark" ? "#080808" : "#ffffff");
         dispatchDisplayChange();
     }
 
-    const storedTheme = readPreference("matlock-theme");
-    syncThemeState(storedTheme || defaultTheme());
+    if (v3ThemePage) {
+        const storedTheme = readPreference("matlock-v3-theme");
+        syncThemeState(storedTheme || "light");
 
-    themeToggle?.addEventListener("click", () => {
-        const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
-        writePreference("matlock-theme", nextTheme);
-        syncThemeState(nextTheme);
-    });
+        themeToggle?.addEventListener("click", () => {
+            const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+            writePreference("matlock-v3-theme", nextTheme);
+            syncThemeState(nextTheme);
+        });
+    } else {
+        root.dataset.theme = "dark";
+        root.classList.add("dark-mode");
+        root.classList.remove("light-mode");
+    }
 
     root.classList.toggle("reduce-motion", systemReducedMotion.matches);
     systemReducedMotion.addEventListener?.("change", event => {
