@@ -55,19 +55,17 @@
     if (!trendingRail) return;
     trendingRail.replaceChildren();
 
-    stories.slice(0, 7).forEach((story, index) => {
+    const items = stories.slice(0, 5);
+    items.forEach((story, index) => {
       const link = el('a', '', story.title);
       link.href = story.url;
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
       link.title = story.title;
-      const short = story.title.length > 34
-        ? `${story.title.slice(0, 31).trim()}…`
-        : story.title;
-      link.textContent = short;
+      link.textContent = story.title;
       trendingRail.append(link);
-      if (index < Math.min(stories.length, 7) - 1) {
-        trendingRail.append(el('span', 'v3-trending-separator', '|'));
+      if (index < items.length - 1) {
+        trendingRail.append(el('span', 'v3-trending-separator', '•'));
       }
     });
   };
