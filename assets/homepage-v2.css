@@ -142,10 +142,7 @@ body:has([data-home-flow]) {
 
 .home-immersive-image {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: var(--home-caption-height);
-    left: 0;
+    inset: 0;
     z-index: 0;
     display: block;
     overflow: hidden;
@@ -166,15 +163,12 @@ body:has([data-home-flow]) {
 
 .home-immersive-shade {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: var(--home-caption-height);
-    left: 0;
+    inset: 0;
     z-index: 1;
     pointer-events: none;
     background:
-        linear-gradient(180deg, rgba(0,0,0,.16), transparent 30%, rgba(0,0,0,.08) 72%, rgba(0,0,0,.38)),
-        linear-gradient(90deg, rgba(0,0,0,.14), transparent 34%, transparent 72%, rgba(0,0,0,.11));
+        linear-gradient(180deg, rgba(0,0,0,.10), transparent 26%, transparent 66%, rgba(0,0,0,.18)),
+        linear-gradient(90deg, rgba(0,0,0,.08), transparent 34%, transparent 74%, rgba(0,0,0,.06));
 }
 
 .home-immersive-shade::after {
@@ -193,10 +187,7 @@ body:has([data-home-flow]) {
 
 .home-immersive-ink {
     position: absolute;
-    top: -7%;
-    right: -5%;
-    bottom: calc(var(--home-caption-height) - 4%);
-    left: -5%;
+    inset: -7% -5%;
     z-index: 2;
     pointer-events: none;
     opacity: var(--ink-opacity);
@@ -231,55 +222,56 @@ body:has([data-home-flow]) {
         linear-gradient(120deg, transparent 44%, rgba(255,63,164,.4) 62%, transparent 82%);
 }
 
-/* Caption band: no headline sits on top of the photography. */
+/* Article information floats over the full-bleed photograph. */
 .home-immersive-copy {
     position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    right: clamp(1rem, 4.5vw, 5rem);
+    bottom: clamp(2.15rem, 5.5vh, 4.5rem);
+    left: clamp(1rem, 4.5vw, 5rem);
     z-index: 5;
     display: grid;
-    min-height: var(--home-caption-height);
-    grid-template-columns: minmax(0, 1.18fr) minmax(240px, .72fr) auto;
+    grid-template-columns: minmax(0, 1.15fr) minmax(240px, .68fr) auto;
     grid-template-areas:
         "kicker deck action"
         "title  deck action";
     column-gap: clamp(1.2rem, 3vw, 3.25rem);
-    align-content: center;
-    align-items: center;
-    padding: clamp(1rem, 2.2vw, 1.7rem) clamp(1rem, 4.5vw, 5rem);
-    border-top: 1px solid var(--home-line);
-    background:
-        linear-gradient(90deg, rgba(36,76,255,.08), transparent 28%, transparent 72%, rgba(255,63,164,.06)),
-        #0a0a0a;
+    align-items: end;
     opacity: var(--copy-opacity);
     transform: translate3d(0, var(--copy-y), 0);
     will-change: opacity, transform;
+    pointer-events: none;
+}
+
+.home-immersive-copy > * {
+    pointer-events: auto;
 }
 
 .home-immersive-kicker {
     grid-area: kicker;
-    align-self: end;
     width: fit-content;
     margin: 0 0 .42rem;
     color: var(--home-yellow);
     font: 800 .63rem/1.2 var(--home-font-ui);
     letter-spacing: .065em;
     text-transform: uppercase;
+    text-shadow: 0 1px 7px rgba(0,0,0,.38);
 }
 
 .home-immersive-copy h2 {
     grid-area: title;
-    align-self: start;
-    max-width: 24ch;
+    max-width: 22ch;
     margin: 0;
+    color: #f4f0e7;
     font-family: var(--home-font-headline);
-    font-size: clamp(1.55rem, 2.85vw, 2.9rem);
+    font-size: clamp(1.75rem, 3.25vw, 3.35rem);
     font-weight: 700;
-    line-height: 1.02;
-    letter-spacing: -.018em;
+    line-height: .98;
+    letter-spacing: -.02em;
     text-transform: none;
     text-wrap: balance;
+    text-shadow:
+        0 1px 2px rgba(0,0,0,.52),
+        0 2px 9px rgba(0,0,0,.28);
 }
 
 .home-immersive-copy h2 a {
@@ -295,27 +287,34 @@ body:has([data-home-flow]) {
 
 .home-immersive-deck {
     grid-area: deck;
-    max-width: 47ch;
-    margin: 0;
-    color: #c7c3ba;
+    max-width: 42ch;
+    margin: 0 0 .12rem;
+    color: rgba(244,240,231,.88);
     font: 600 clamp(.82rem, 1vw, .96rem)/1.45 var(--home-font-body);
+    text-shadow:
+        0 1px 2px rgba(0,0,0,.58),
+        0 2px 7px rgba(0,0,0,.24);
 }
 
 .home-immersive-read {
     grid-area: action;
     display: inline-flex;
-    min-height: 42px;
+    min-height: 40px;
     align-items: center;
     justify-content: center;
-    align-self: center;
-    padding: .65rem .8rem .56rem;
-    border: 1px solid rgba(238,233,223,.5);
-    background: transparent;
-    font: 800 .66rem/1 var(--home-font-ui);
+    align-self: end;
+    margin-bottom: .1rem;
+    padding: .62rem .75rem .54rem;
+    border: 1px solid rgba(244,240,231,.68);
+    background: rgba(0,0,0,.08);
+    color: #f4f0e7;
+    backdrop-filter: blur(2px);
+    font: 800 .64rem/1 var(--home-font-ui);
     letter-spacing: .05em;
     text-decoration: none;
     text-transform: uppercase;
     white-space: nowrap;
+    text-shadow: 0 1px 5px rgba(0,0,0,.32);
 }
 
 .home-immersive-read:hover,
@@ -323,12 +322,13 @@ body:has([data-home-flow]) {
     border-color: var(--home-yellow);
     background: var(--home-yellow);
     color: var(--home-ink);
+    text-shadow: none;
 }
 
 .home-immersive-ui {
     position: absolute;
     right: clamp(1rem, 4.5vw, 5rem);
-    bottom: calc(var(--home-caption-height) - 26px);
+    bottom: clamp(10.4rem, 23vh, 13.4rem);
     z-index: 70;
     display: flex;
     gap: 1rem;
@@ -375,10 +375,7 @@ body:has([data-home-flow]) {
 
 .home-gpu-layer {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: var(--home-caption-height);
-    left: 0;
+    inset: 0;
     z-index: 60;
     display: block;
     width: 100%;
@@ -1304,10 +1301,6 @@ body:has([data-home-flow]) .site-event-stack.is-open .site-event-drawer {
    ========================================================= */
 
 @media (max-width: 900px) {
-    .homepage-dashboard {
-        --home-caption-height: clamp(190px, 27svh, 230px);
-    }
-
     .home-immersive-copy {
         grid-template-columns: minmax(0, 1fr) auto;
         grid-template-areas:
@@ -1316,10 +1309,12 @@ body:has([data-home-flow]) .site-event-stack.is-open .site-event-drawer {
             "deck   deck";
         row-gap: .45rem;
         column-gap: 1rem;
+        bottom: clamp(1.7rem, 4vh, 3rem);
     }
 
     .home-immersive-deck {
-        max-width: 62ch;
+        max-width: 58ch;
+        margin-top: .18rem;
     }
 
     .home-live-grid {
@@ -1341,14 +1336,12 @@ body:has([data-home-flow]) .site-event-stack.is-open .site-event-drawer {
         --v2-ticker-height: 36px;
     }
 
-    .homepage-dashboard {
-        --home-caption-height: clamp(218px, 31svh, 262px);
-    }
-
     .home-immersive-copy {
+        right: .85rem;
+        bottom: 1.15rem;
+        left: .85rem;
         display: block;
-        min-height: var(--home-caption-height);
-        padding: .9rem .85rem 1rem;
+        padding: 0;
     }
 
     .home-immersive-kicker {
@@ -1363,10 +1356,10 @@ body:has([data-home-flow]) .site-event-stack.is-open .site-event-drawer {
     }
 
     .home-immersive-deck {
-        max-width: 42ch;
-        margin-top: .55rem;
-        font-size: .78rem;
-        line-height: 1.4;
+        max-width: 38ch;
+        margin-top: .48rem;
+        font-size: .76rem;
+        line-height: 1.36;
     }
 
     .home-immersive-read {
@@ -1377,8 +1370,9 @@ body:has([data-home-flow]) .site-event-stack.is-open .site-event-drawer {
     }
 
     .home-immersive-ui {
+        top: calc(var(--v2-ticker-height) + 4.25rem);
         right: .85rem;
-        bottom: calc(var(--home-caption-height) - 22px);
+        bottom: auto;
         font-size: .5rem;
     }
 
