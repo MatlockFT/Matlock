@@ -326,22 +326,7 @@
             slide.style.setProperty('--scene-z', String(index));
         });
 
-        if (reduceMotion()) {
-            immersiveSlides.forEach((slide, index) => {
-                setSlideState(slide, {
-                    opacity: index === 0 ? 1 : 0,
-                    y: 0,
-                    scale: 1,
-                    copyOpacity: index === 0 ? 1 : 0,
-                    copyY: 0,
-                    inkOpacity: 0,
-                    shadeBottom: .78,
-                    z: index
-                });
-            });
-            return;
-        }
-
+        const motionReduced = reduceMotion();
         let raf = 0;
         let lastActive = -1;
 
@@ -359,6 +344,23 @@
 
             for (let i = 0; i < immersiveSlides.length; i += 1) {
                 const slide = immersiveSlides[i];
+
+                if (motionReduced) {
+                    const isActive = i === activeIndex;
+                    setSlideState(slide, {
+                        opacity: isActive ? 1 : 0,
+                        y: 0,
+                        scale: 1,
+                        copyOpacity: isActive ? 1 : 0,
+                        copyY: 0,
+                        inkOpacity: 0,
+                        shadeBottom: .78,
+                        z: i
+                    });
+                    slide.classList.toggle('is-active', isActive);
+                    continue;
+                }
+
                 const incomingRaw = i === 0 ? 1 : clamp(sceneFloat - (i - 1), 0, 1);
                 const incoming = i === 0 ? 1 : smooth(incomingRaw);
                 const nextRaw = i < maxScene ? clamp(sceneFloat - i, 0, 1) : 0;
@@ -406,13 +408,17 @@
             }
 
             if (immersiveEdge) {
-                const transitionIndex = Math.min(maxScene, Math.max(1, Math.ceil(boundedScene)));
-                const local = transitionIndex > 0
-                    ? clamp(sceneFloat - (transitionIndex - 1), 0, 1)
-                    : 0;
-                const wave = Math.sin(local * Math.PI);
-                immersiveEdge.style.setProperty('--edge-opacity', (wave * .72).toFixed(4));
-                immersiveEdge.style.setProperty('--edge-y', `${lerp(92, -16, smooth(local)).toFixed(2)}vh`);
+                if (motionReduced) {
+                    immersiveEdge.style.setProperty('--edge-opacity', '0');
+                } else {
+                    const transitionIndex = Math.min(maxScene, Math.max(1, Math.ceil(boundedScene)));
+                    const local = transitionIndex > 0
+                        ? clamp(sceneFloat - (transitionIndex - 1), 0, 1)
+                        : 0;
+                    const wave = Math.sin(local * Math.PI);
+                    immersiveEdge.style.setProperty('--edge-opacity', (wave * .72).toFixed(4));
+                    immersiveEdge.style.setProperty('--edge-y', `${lerp(92, -16, smooth(local)).toFixed(2)}vh`);
+                }
             }
 
             if (sceneCounter && activeIndex !== lastActive) {
@@ -422,8 +428,9 @@
             }
 
             if (sceneHint) {
-                const hintOpacity = 1 - smooth(clamp(sceneFloat / .55));
+                const hintOpacity = motionReduced ? 1 : 1 - smooth(clamp(sceneFloat / .55));
                 sceneHint.style.opacity = hintOpacity.toFixed(3);
+                if (motionReduced) sceneHint.textContent = 'SCROLL TO CHANGE STORY';
             }
         };
 
