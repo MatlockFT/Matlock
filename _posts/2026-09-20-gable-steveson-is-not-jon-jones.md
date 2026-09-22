@@ -707,7 +707,7 @@ Either he would do well enough on the feet to eventually get to his wrestling an
 
 Seconds before the fight, I tweeted:
 
-> Sean completely flying under the radar with little to no hype surrounding this fight, this would be a hilarious upset. Unlikely but would be belly achingly funny. And awesome [#UFC331](https://x.com/hashtag/UFC331?src=hashtag_click)
+[EMBED X](https://x.com/MMAMATLOCK/status/2101493400616755366)
 
 I did laugh out loud, for the record.
 
