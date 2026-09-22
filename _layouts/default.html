@@ -83,7 +83,7 @@
         href="{{ '/assets/favicon.ico' | relative_url }}"
     >
 
-    {% unless page.url == "/homepage-v3/" %}
+    {% unless page.v3_text_masthead %}
         <link
             rel="preload"
             href="{{ '/assets/generated/site/header-image-480.webp' | relative_url }}"
@@ -151,7 +151,7 @@
     <header class="site-header">
         <div class="logo-banner">
             <a href="{{ '/' | relative_url }}" aria-label="MMA Matlock home">
-                {% if page.url == "/homepage-v3/" %}
+                {% if page.v3_text_masthead %}
                     <span class="v3-wordmark">MATLOCK</span>
                 {% else %}
                     <img
