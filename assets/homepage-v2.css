@@ -20,7 +20,7 @@ body:has([data-home-flow])::-webkit-scrollbar {
 
 body:has([data-home-flow]) {
     --v2-ticker-height: 38px;
-    padding-bottom: var(--v2-ticker-height);
+    padding-bottom: 0;
     background: #070707;
 }
 
@@ -144,7 +144,7 @@ body:has([data-home-flow]) {
     position: absolute;
     top: 0;
     right: 0;
-    bottom: calc(var(--home-caption-height) + var(--v2-ticker-height));
+    bottom: var(--home-caption-height);
     left: 0;
     z-index: 0;
     display: block;
@@ -168,7 +168,7 @@ body:has([data-home-flow]) {
     position: absolute;
     top: 0;
     right: 0;
-    bottom: calc(var(--home-caption-height) + var(--v2-ticker-height));
+    bottom: var(--home-caption-height);
     left: 0;
     z-index: 1;
     pointer-events: none;
@@ -195,7 +195,7 @@ body:has([data-home-flow]) {
     position: absolute;
     top: -7%;
     right: -5%;
-    bottom: calc(var(--home-caption-height) + var(--v2-ticker-height) - 4%);
+    bottom: calc(var(--home-caption-height) - 4%);
     left: -5%;
     z-index: 2;
     pointer-events: none;
@@ -235,7 +235,7 @@ body:has([data-home-flow]) {
 .home-immersive-copy {
     position: absolute;
     right: 0;
-    bottom: var(--v2-ticker-height);
+    bottom: 0;
     left: 0;
     z-index: 5;
     display: grid;
@@ -328,7 +328,7 @@ body:has([data-home-flow]) {
 .home-immersive-ui {
     position: absolute;
     right: clamp(1rem, 4.5vw, 5rem);
-    bottom: calc(var(--v2-ticker-height) + var(--home-caption-height) - 26px);
+    bottom: calc(var(--home-caption-height) - 26px);
     z-index: 70;
     display: flex;
     gap: 1rem;
@@ -377,7 +377,7 @@ body:has([data-home-flow]) {
     position: absolute;
     top: 0;
     right: 0;
-    bottom: calc(var(--home-caption-height) + var(--v2-ticker-height));
+    bottom: var(--home-caption-height);
     left: 0;
     z-index: 60;
     display: block;
@@ -418,7 +418,7 @@ body:has([data-home-flow]) .site-header {
 
 body:has([data-home-flow]) .logo-banner {
     position: fixed;
-    top: 14px;
+    top: calc(var(--v2-ticker-height) + 14px);
     left: 16px;
     z-index: 175;
     display: flex;
@@ -466,7 +466,7 @@ body:has([data-home-flow]) .mobile-brand {
 /* The trigger reads as a site index control, not a generic hamburger button. */
 body:has([data-home-flow]) .navigation-toggle {
     position: fixed;
-    top: 15px;
+    top: calc(var(--v2-ticker-height) + 15px);
     right: 16px;
     z-index: 240;
     display: grid !important;
@@ -655,7 +655,7 @@ body.navigation-is-open:has([data-home-flow]) .navigation-panel::before {
 
 body:has([data-home-flow]) .navigation-panel-header {
     position: absolute;
-    top: 18px;
+    top: calc(var(--v2-ticker-height) + 18px);
     left: clamp(1.25rem, 6vw, 6.5rem);
     display: flex;
     min-height: 42px;
@@ -687,11 +687,13 @@ body.navigation-is-open:has([data-home-flow]) .navigation-toggle {
 
 body:has([data-home-flow]) .navigation-list,
 body:has([data-home-flow]) .navigation-list.navigation-list-open {
-    display: grid;
+    display: grid !important;
     align-self: center;
-    width: 100%;
+    width: 100% !important;
     max-width: 860px;
-    grid-column: 1;
+    grid-column: 1 !important;
+    flex-direction: column !important;
+    justify-content: stretch !important;
     grid-row: 1 / span 2;
     grid-template-columns: 1fr;
     gap: 0;
@@ -703,11 +705,12 @@ body:has([data-home-flow]) .navigation-list.navigation-list-open {
 
 body:has([data-home-flow]) .navigation-list li {
     position: relative;
+    width: 100% !important;
     border: 0;
     border-bottom: 1px solid rgba(238,233,223,.13);
     counter-increment: v2-nav;
-    opacity: 0;
-    transform: translate3d(34px, 0, 0);
+    opacity: 0 !important;
+    transform: translate3d(34px, 0, 0) !important;
     transition:
         opacity 260ms ease,
         transform 440ms cubic-bezier(.16,.82,.18,1),
@@ -715,8 +718,8 @@ body:has([data-home-flow]) .navigation-list li {
 }
 
 body.navigation-is-open:has([data-home-flow]) .navigation-list li {
-    opacity: 1;
-    transform: translate3d(0,0,0);
+    opacity: 1 !important;
+    transform: translate3d(0,0,0) !important;
 }
 
 body.navigation-is-open:has([data-home-flow]) .navigation-list li:nth-child(1) { transition-delay: 90ms; }
@@ -995,19 +998,19 @@ body:has([data-home-flow]) .navigation-backdrop {
 body:has([data-home-flow]) .site-live-strip {
     --site-ticker-font-size: .58rem;
     position: fixed;
-    top: auto;
+    top: 0;
     right: 0;
-    bottom: 0;
+    bottom: auto;
     left: 0;
     z-index: 190;
     display: block !important;
     width: 100%;
     min-height: var(--v2-ticker-height);
-    border-top: 1px solid rgba(238,233,223,.22);
-    border-bottom: 0;
+    border-top: 0;
+    border-bottom: 1px solid rgba(238,233,223,.22);
     background: rgba(5,5,5,.94);
     color: var(--v2-paper);
-    box-shadow: 0 -8px 28px rgba(0,0,0,.28);
+    box-shadow: 0 8px 28px rgba(0,0,0,.22);
     backdrop-filter: blur(9px);
 }
 
@@ -1042,11 +1045,11 @@ body:has([data-home-flow]) .site-news-item-source {
 }
 
 body:has([data-home-flow]) .site-event-drawer {
-    top: auto;
-    bottom: calc(100% + 1px);
-    border-top: 1px solid rgba(255,255,255,.16);
-    border-bottom: 0;
-    transform: translateY(5px);
+    top: calc(100% + 1px);
+    bottom: auto;
+    border-top: 0;
+    border-bottom: 1px solid rgba(255,255,255,.16);
+    transform: translateY(-5px);
 }
 
 body:has([data-home-flow]) .site-event-stack.is-open .site-event-drawer {
@@ -1375,7 +1378,7 @@ body:has([data-home-flow]) .site-event-stack.is-open .site-event-drawer {
 
     .home-immersive-ui {
         right: .85rem;
-        bottom: calc(var(--v2-ticker-height) + var(--home-caption-height) - 22px);
+        bottom: calc(var(--home-caption-height) - 22px);
         font-size: .5rem;
     }
 
@@ -1384,7 +1387,7 @@ body:has([data-home-flow]) .site-event-stack.is-open .site-event-drawer {
     }
 
     body:has([data-home-flow]) .logo-banner {
-        top: 10px;
+        top: calc(var(--v2-ticker-height) + 10px);
         left: 10px;
     }
 
@@ -1393,7 +1396,7 @@ body:has([data-home-flow]) .site-event-stack.is-open .site-event-drawer {
     }
 
     body:has([data-home-flow]) .navigation-toggle {
-        top: 10px;
+        top: calc(var(--v2-ticker-height) + 10px);
         right: 10px;
         min-height: 38px;
         padding: .48rem .58rem;
@@ -1458,16 +1461,16 @@ body:has([data-home-flow]) .site-event-stack.is-open .site-event-drawer {
     }
 
     body:has([data-home-flow]) .site-event-drawer {
-        top: auto;
+        top: calc(100% + 1px);
         right: auto;
-        bottom: calc(100% + 1px);
+        bottom: auto;
         left: 0;
         width: min(430px, calc(100vw - .5rem));
         max-height: min(62vh, 430px);
         overflow-y: auto;
-        border-top: 1px solid rgba(255,255,255,.16);
-        border-bottom: 0;
-        transform: translateY(5px);
+        border-top: 0;
+        border-bottom: 1px solid rgba(255,255,255,.16);
+        transform: translateY(-5px);
     }
 
     .home-wire {
@@ -1536,9 +1539,9 @@ body:has([data-home-flow]) .site-event-stack.is-open .site-event-drawer {
         align-content: start;
         overflow-y: auto;
         padding:
-            clamp(4.8rem, 9vh, 5.8rem)
+            calc(var(--v2-ticker-height) + 4.2rem)
             clamp(.85rem, 4vw, 2rem)
-            calc(var(--v2-ticker-height) + 1.5rem);
+            1.5rem;
     }
 
     body:has([data-home-flow]) .navigation-list,
@@ -1610,7 +1613,7 @@ body:has([data-home-flow]) .site-event-stack.is-open .site-event-drawer {
     }
 
     body:has([data-home-flow]) .navigation-panel-header {
-        top: 13px;
+        top: calc(var(--v2-ticker-height) + 13px);
         left: .85rem;
     }
 
@@ -1673,4 +1676,47 @@ html.reduce-motion .home-gpu-layer,
 html.reduce-motion .home-immersive-edge,
 html.reduce-motion .home-immersive-ink {
     display: none !important;
+}
+
+
+/* V2 cascade guards: site-tail.css loads after page CSS and contains desktop
+   navigation !important rules. These page-scoped !important declarations are
+   intentionally more specific so the immersive index cannot collapse into the
+   canonical horizontal desktop nav again. */
+body:has([data-home-flow]) .site-live-strip {
+    z-index: 245 !important;
+}
+
+body:has([data-home-flow]) .navigation-toggle {
+    z-index: 250 !important;
+}
+
+body:has([data-home-flow]) .navigation-panel .navigation-list,
+body:has([data-home-flow]) .navigation-panel .navigation-list.navigation-list-open {
+    display: grid !important;
+    width: 100% !important;
+    max-width: 860px !important;
+    grid-column: 1 !important;
+    flex-direction: column !important;
+    justify-content: stretch !important;
+    gap: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+body:has([data-home-flow]) .navigation-panel .navigation-list > li {
+    width: 100% !important;
+}
+
+body.navigation-is-open:has([data-home-flow]) .navigation-panel .navigation-list > li {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+@media (max-width: 900px) {
+    body:has([data-home-flow]) .navigation-panel .navigation-list,
+    body:has([data-home-flow]) .navigation-panel .navigation-list.navigation-list-open {
+        max-width: none !important;
+        grid-column: 1 !important;
+    }
 }
