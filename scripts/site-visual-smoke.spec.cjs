@@ -186,13 +186,14 @@ for (const viewport of viewports) {
 test.describe('Homepage V3 editorial shell', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 
-  test('uses the real logo, full-width navigation and ticker, and a clean trending rail', async ({ page }) => {
+  test('uses Edition masthead, image-led editorial hierarchy, and detached event drawer', async ({ page }) => {
     const pageErrors = [];
     page.on('pageerror', error => pageErrors.push(error.message));
 
     await page.goto(targetUrl('/homepage-v3/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
     await expect(page.locator('[data-globe-home]')).toBeVisible({ timeout: 30000 });
-    await expect(page.locator('.site-logo')).toBeVisible();
+    await expect(page.locator('.v3-wordmark')).toBeVisible();
+    await expect(page.locator('.site-logo')).toHaveCount(0);
     await expect(page.locator('.v3-trending')).toBeVisible();
     await expect(page.locator('.site-live-strip-inner')).toBeVisible({ timeout: 10000 });
     await page.waitForTimeout(200);
@@ -205,6 +206,7 @@ test.describe('Homepage V3 editorial shell', () => {
       const trending = document.querySelector('.v3-trending');
       const leadTitle = document.querySelector('.v3-lead h1');
       const leadDeck = document.querySelector('.v3-lead-deck');
+      const wordmark = document.querySelector('.v3-wordmark');
       const trendRect = trending?.getBoundingClientRect();
       return {
         viewport: document.documentElement.clientWidth,
@@ -216,23 +218,43 @@ test.describe('Homepage V3 editorial shell', () => {
         trendingScrollHeight: trending?.scrollHeight || 0,
         leadTitleAlign: leadTitle ? getComputedStyle(leadTitle).textAlign : null,
         leadDeckAlign: leadDeck ? getComputedStyle(leadDeck).textAlign : null,
+        leadFont: leadTitle ? getComputedStyle(leadTitle).fontFamily : null,
+        wordmarkFont: wordmark ? getComputedStyle(wordmark).fontFamily : null,
         pageText: document.querySelector('[data-globe-home]')?.textContent || ''
       };
     });
 
     expect(geometry.navWidth).toBeGreaterThanOrEqual(geometry.viewport - 4);
     expect(geometry.tickerWidth).toBeGreaterThanOrEqual(geometry.viewport - 4);
-    expect(geometry.eventColor).toBe('rgb(23, 23, 23)');
-    expect(geometry.countdownColor).toBe('rgb(23, 23, 23)');
+    expect(geometry.eventColor).toBe('rgb(17, 17, 17)');
+    expect(geometry.countdownColor).toBe('rgb(17, 17, 17)');
     expect(geometry.trendingScrollHeight).toBeLessThanOrEqual(geometry.trendingHeight + 2);
     expect(geometry.leadTitleAlign).toBe('left');
     expect(geometry.leadDeckAlign).toBe('left');
+    expect(geometry.leadFont).toContain('Edition Matlock');
+    expect(geometry.wordmarkFont).toContain('Edition Matlock');
     expect(geometry.pageText).not.toContain('EST. 2026');
     expect(geometry.pageText).not.toContain('Fight Talk');
     expect(geometry.pageText).not.toContain('Lead story');
+    expect(geometry.pageText).not.toContain('Fight Night Desk');
 
     await expect(page.locator('[data-v3-trending] a').first()).toBeVisible({ timeout: 10000 });
     await expect(page.locator('[data-v3-trending] a')).toHaveCount(5);
+    await expect(page.locator('.v3-rail-image')).toHaveCount(2);
+    await expect(page.locator('.v3-history-feature-card')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.v3-history-feature-image')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.v3-utility-strip a')).toHaveCount(4);
+
+    const tickerBottom = await page.locator('.site-live-strip').evaluate(node =>
+      Math.round(node.getBoundingClientRect().bottom)
+    );
+    await page.locator('.site-event-primary').click();
+    await expect(page.locator('.site-event-drawer')).toBeVisible();
+    const drawerTop = await page.locator('.site-event-drawer').evaluate(node =>
+      Math.round(node.getBoundingClientRect().top)
+    );
+    expect(drawerTop - tickerBottom).toBeGreaterThanOrEqual(10);
+
     expect(pageErrors).toEqual([]);
   });
 });
