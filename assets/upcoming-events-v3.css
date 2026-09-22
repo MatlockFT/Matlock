@@ -1,0 +1,618 @@
+/*
+ * Fight Cards V3 — isolated editorial presentation.
+ * Picker behavior remains in upcoming-events*.js; no legacy picker CSS is loaded.
+ */
+
+.upcoming-events-page-v3 {
+    width: min(calc(100% - 2rem), 1380px);
+    margin: 0 auto;
+    padding: .9rem 0 clamp(4rem, 7vw, 7rem);
+    color: var(--v3-ink);
+    font-family: var(--v3-sans);
+}
+
+.upcoming-events-page-v3 .upcoming-events-header {
+    margin: 0 0 1.4rem;
+    padding: .85rem 0 .8rem;
+    border-top: 3px solid var(--v3-ink);
+    border-bottom: 1px solid var(--v3-rule);
+}
+
+.upcoming-events-page-v3 .fight-cards-v3-eyebrow {
+    margin: 0 0 .3rem;
+    color: var(--v3-red);
+    font: 800 .55rem/1 var(--v3-sans);
+    letter-spacing: .065em;
+    text-transform: uppercase;
+}
+
+.upcoming-events-page-v3 .upcoming-events-header h1 {
+    margin: 0;
+    color: var(--v3-ink);
+    font-family: "Herkey", Georgia, "Times New Roman", serif;
+    font-size: clamp(2.1rem, 3.4vw, 3.5rem);
+    font-weight: 400;
+    line-height: .92;
+    letter-spacing: -.012em;
+    text-transform: none;
+}
+
+.upcoming-events-page-v3 .upcoming-events-list {
+    display: grid;
+    gap: clamp(3.2rem, 6vw, 5.5rem);
+}
+
+/* Each event is an editorial section, not a floating card. */
+.upcoming-events-page-v3 .upcoming-event-card {
+    min-width: 0;
+    overflow: visible;
+    border: 0;
+    border-top: 3px solid var(--v3-ink);
+    border-radius: 0;
+    background: transparent;
+    color: var(--v3-ink);
+    box-shadow: none;
+    transform: none;
+}
+
+.upcoming-events-page-v3 .upcoming-event-card:not(:first-child) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1550px;
+}
+
+.upcoming-events-page-v3 .event-card-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(260px, .75fr);
+    gap: clamp(1.2rem, 3vw, 3rem);
+    align-items: start;
+    padding: .75rem 0 .9rem;
+    border: 0;
+    border-bottom: 1px solid var(--v3-rule);
+    background: transparent;
+}
+
+.upcoming-events-page-v3 .event-card-header::before {
+    display: none;
+}
+
+.upcoming-events-page-v3 .event-promotion {
+    margin: 0 0 .22rem;
+    color: var(--v3-red);
+    font: 800 .54rem/1 var(--v3-sans);
+    letter-spacing: .065em;
+    text-transform: uppercase;
+}
+
+.upcoming-events-page-v3 .event-card-heading h2 {
+    max-width: 20ch;
+    margin: 0;
+    color: var(--v3-ink);
+    font-family: "Herkey", Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 3.8vw, 4rem);
+    font-weight: 400;
+    line-height: .9;
+    letter-spacing: -.014em;
+    text-transform: none;
+    text-wrap: balance;
+}
+
+.upcoming-events-page-v3 .event-date {
+    margin: .42rem 0 0;
+    color: var(--v3-muted);
+    font: 700 .66rem/1.2 var(--v3-sans);
+    letter-spacing: .035em;
+    text-transform: uppercase;
+}
+
+.upcoming-events-page-v3 .event-card-meta {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .3rem;
+    padding: .1rem 0 0 clamp(1rem, 2vw, 1.5rem);
+    border: 0;
+    border-left: 1px solid var(--v3-rule);
+}
+
+.upcoming-events-page-v3 .event-card-meta p {
+    margin: 0;
+    color: var(--v3-muted);
+    font: 600 .66rem/1.4 var(--v3-sans);
+}
+
+.upcoming-events-page-v3 .event-card-meta strong {
+    color: var(--v3-ink);
+    font-weight: 800;
+}
+
+.upcoming-events-page-v3 .event-card-meta a {
+    display: inline-block;
+    width: fit-content;
+    margin-top: .15rem;
+    color: var(--v3-red);
+    font: 800 .55rem/1 var(--v3-sans);
+    letter-spacing: .045em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.upcoming-events-page-v3 .event-card-meta a:hover,
+.upcoming-events-page-v3 .event-card-meta a:focus-visible {
+    color: var(--v3-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Card sections */
+.upcoming-events-page-v3 .event-card-section {
+    padding: 1rem 0 0;
+}
+
+.upcoming-events-page-v3 .event-card-section + .event-card-section {
+    margin-top: 1.45rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--v3-rule);
+}
+
+.upcoming-events-page-v3 .event-card-section-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0 0 .75rem;
+    padding: 0 0 .5rem;
+    border-bottom: 1px solid var(--v3-rule);
+}
+
+.upcoming-events-page-v3 .event-card-section-heading h3 {
+    margin: 0;
+    color: var(--v3-ink);
+    font-family: "Herkey", Georgia, serif;
+    font-size: clamp(1.4rem, 2.1vw, 2.1rem);
+    font-weight: 400;
+    line-height: .95;
+    text-transform: none;
+}
+
+.upcoming-events-page-v3 .event-card-section-heading h3::before {
+    display: none;
+}
+
+.upcoming-events-page-v3 .event-card-section-heading span {
+    color: var(--v3-muted);
+    font: 800 .53rem/1 var(--v3-sans);
+    letter-spacing: .045em;
+    text-transform: uppercase;
+}
+
+/* Matchup layout. Featured bouts get visual weight, everything else stays dense. */
+.upcoming-events-page-v3 .featured-bouts,
+.upcoming-events-page-v3 .main-card-bouts,
+.upcoming-events-page-v3 .prelim-bouts {
+    display: grid;
+    gap: 1rem;
+    align-items: stretch;
+}
+
+.upcoming-events-page-v3 .featured-bouts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 1rem;
+}
+
+.upcoming-events-page-v3 .main-card-bouts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.upcoming-events-page-v3 .prelim-bouts {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.upcoming-events-page-v3 .featured-bouts .bout-card,
+.upcoming-events-page-v3 .main-card-bouts .bout-card,
+.upcoming-events-page-v3 .prelim-bouts .bout-card {
+    width: auto;
+    max-width: none;
+    flex: none;
+}
+
+.upcoming-events-page-v3 .bout-card {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--v3-rule);
+    border-radius: 0;
+    background: var(--v3-paper);
+    color: var(--v3-ink);
+    box-shadow: none;
+    transform: none;
+}
+
+.upcoming-events-page-v3 .bout-card-featured {
+    border-top: 2px solid var(--v3-ink);
+}
+
+.upcoming-events-page-v3 .bout-label {
+    display: flex;
+    min-height: 25px;
+    align-items: center;
+    gap: .3rem;
+    padding: .28rem .4rem;
+    border-bottom: 1px solid var(--v3-rule);
+    color: var(--v3-muted);
+    font: 800 .49rem/1 var(--v3-sans);
+    letter-spacing: .045em;
+    text-transform: uppercase;
+}
+
+.upcoming-events-page-v3 .bout-label span {
+    color: var(--v3-red);
+}
+
+.upcoming-events-page-v3 .bout-fighters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.upcoming-events-page-v3 .fighter {
+    position: relative;
+    min-width: 0;
+    cursor: pointer;
+    outline: none;
+    background: transparent;
+}
+
+.upcoming-events-page-v3 .fighter + .fighter {
+    border-left: 1px solid var(--v3-rule);
+}
+
+.upcoming-events-page-v3 .fighter::after {
+    position: absolute;
+    z-index: 5;
+    inset: 0;
+    border: 2px solid transparent;
+    background: transparent;
+    content: "";
+    pointer-events: none;
+}
+
+.upcoming-events-page-v3 .fighter:hover::after,
+.upcoming-events-page-v3 .fighter:focus-visible::after {
+    border-color: var(--v3-ink);
+}
+
+.upcoming-events-page-v3 .fighter.is-pick::after {
+    border-color: #219653;
+    background: rgba(33, 150, 83, .13);
+    box-shadow: inset 0 0 0 1px rgba(33, 150, 83, .35);
+}
+
+.upcoming-events-page-v3 .fighter-photo {
+    position: relative;
+    display: grid;
+    width: 100%;
+    aspect-ratio: 1 / .95;
+    place-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--v3-paper-deep);
+}
+
+.upcoming-events-page-v3 .bout-card-featured .fighter-photo {
+    aspect-ratio: 1 / 1.02;
+}
+
+.upcoming-events-page-v3 .fighter-photo::before {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    background:
+        linear-gradient(to top, rgba(0,0,0,.12), transparent 45%),
+        var(--v3-paper-deep);
+    content: "";
+    pointer-events: none;
+}
+
+.upcoming-events-page-v3 .fighter-photo::after {
+    display: none;
+}
+
+.upcoming-events-page-v3 .fighter-photo img[data-fighter-photo] {
+    --portrait-scale: 1.34;
+    --portrait-y: 100%;
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: contain;
+    object-position: 50% var(--portrait-y);
+    transform: scale(var(--portrait-scale));
+    transform-origin: 50% var(--portrait-y);
+    filter: grayscale(1) contrast(1.18) brightness(.96);
+}
+
+.upcoming-events-page-v3 .bout-card-featured .fighter-photo img[data-fighter-photo] {
+    --portrait-scale: 1.4;
+}
+
+.upcoming-events-page-v3 .fighter-photo img[data-portrait-safe="true"] {
+    --portrait-scale: 1.05;
+    --portrait-y: 18%;
+}
+
+.upcoming-events-page-v3 .upcoming-event-card[data-regional="true"] .fighter-photo img[data-fighter-photo] {
+    --portrait-scale: 1.02;
+    --portrait-y: 15%;
+}
+
+.upcoming-events-page-v3 .upcoming-event-card[data-regional="true"] .fighter-photo img[data-portrait-override="true"] {
+    width: 76%;
+    height: 76%;
+    max-width: 76%;
+    object-fit: contain;
+    object-position: 50% var(--portrait-y, 50%);
+    transform: none !important;
+    transform-origin: 50% 50%;
+}
+
+.upcoming-events-page-v3 .fighter-fallback {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: transparent;
+    font-size: 0;
+}
+
+.upcoming-events-page-v3 .photo-missing .fighter-fallback {
+    background: url('/assets/fighter-silhouette.svg') center 78% / 70% auto no-repeat;
+    opacity: .74;
+}
+
+.upcoming-events-page-v3 .fighter-name {
+    display: flex;
+    min-height: 2.2rem;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: .35rem .3rem;
+    border-top: 1px solid var(--v3-rule);
+    background: var(--v3-paper);
+    color: var(--v3-ink);
+    font-family: "Herkey", Georgia, serif;
+    font-size: clamp(.82rem, 1.05vw, 1.05rem);
+    font-weight: 400;
+    line-height: .95;
+    text-align: center;
+    text-transform: none;
+    overflow-wrap: normal;
+    word-break: normal;
+}
+
+.upcoming-events-page-v3 .bout-card-featured .fighter-name {
+    min-height: 2.5rem;
+    font-size: clamp(.95rem, 1.3vw, 1.28rem);
+}
+
+.upcoming-events-page-v3 .fighter.is-pick .fighter-name {
+    background: rgba(33, 150, 83, .12);
+    color: var(--v3-ink);
+}
+
+.upcoming-events-page-v3 .bout-footer {
+    position: relative;
+    display: flex;
+    min-height: 27px;
+    align-items: center;
+    justify-content: center;
+    padding: .28rem 1.4rem;
+    border-top: 1px solid var(--v3-rule);
+    background: var(--v3-ink);
+    color: var(--v3-paper);
+    font: 800 .48rem/1 var(--v3-sans);
+    letter-spacing: .035em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.upcoming-events-page-v3 .bout-footer strong {
+    position: absolute;
+    right: .4rem;
+    color: var(--v3-paper);
+    font: 800 .48rem/1 var(--v3-sans);
+}
+
+/* The runtime moves these below each event. */
+.upcoming-events-page-v3 .event-card-note,
+.upcoming-events-page-v3 + .event-card-note,
+.upcoming-events-page-v3 .event-card-disclaimer {
+    margin: .65rem 0 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.upcoming-events-page-v3 .event-card-note p,
+.upcoming-events-page-v3 .event-card-disclaimer p {
+    margin: 0;
+    color: var(--v3-muted);
+    font: 600 .55rem/1.35 var(--v3-sans);
+    text-align: left;
+}
+
+.upcoming-events-page-v3 .prediction-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .45rem;
+    margin: .65rem 0 0;
+    padding-top: .65rem;
+    border-top: 1px solid var(--v3-rule);
+}
+
+.upcoming-events-page-v3 .prediction-status {
+    width: 100%;
+    margin: 0 0 .08rem;
+    color: var(--v3-muted);
+    font: 700 .57rem/1.2 var(--v3-sans);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.upcoming-events-page-v3 .prediction-button {
+    min-height: 34px;
+    padding: .45rem .62rem;
+    border: 1px solid var(--v3-ink);
+    border-radius: 0;
+    background: var(--v3-ink);
+    color: var(--v3-paper);
+    box-shadow: none;
+    font: 800 .55rem/1 var(--v3-sans);
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    cursor: pointer;
+    appearance: none;
+}
+
+.upcoming-events-page-v3 .prediction-button-clear {
+    background: transparent;
+    color: var(--v3-ink);
+}
+
+.upcoming-events-page-v3 .prediction-button:hover,
+.upcoming-events-page-v3 .prediction-button:focus-visible {
+    background: var(--v3-red);
+    border-color: var(--v3-red);
+    color: #fff;
+}
+
+.upcoming-events-page-v3 .prediction-button-clear:hover,
+.upcoming-events-page-v3 .prediction-button-clear:focus-visible {
+    background: var(--v3-ink);
+    border-color: var(--v3-ink);
+    color: var(--v3-paper);
+}
+
+.upcoming-events-page-v3 .prediction-button:disabled {
+    cursor: wait;
+    opacity: .55;
+}
+
+.upcoming-events-page-v3 .fighter-photo .export-portrait-canvas {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.upcoming-events-page-v3 .upcoming-event-card.is-exporting .fighter-photo img[data-fighter-photo] {
+    visibility: hidden;
+}
+
+html[data-theme="dark"] .upcoming-events-page-v3 .bout-card,
+html[data-theme="dark"] .upcoming-events-page-v3 .fighter-name,
+html[data-theme="dark"] .upcoming-events-page-v3 .fighter-photo {
+    background: var(--v3-paper);
+}
+
+html[data-theme="dark"] .upcoming-events-page-v3 .fighter-photo::before {
+    background:
+        linear-gradient(to top, rgba(0,0,0,.35), transparent 45%),
+        #121212;
+}
+
+html.v3-theme-transitioning .upcoming-events-page-v3,
+html.v3-theme-transitioning .upcoming-events-page-v3 .bout-card,
+html.v3-theme-transitioning .upcoming-events-page-v3 .fighter-name {
+    transition:
+        background-color 360ms ease,
+        color 360ms ease,
+        border-color 360ms ease;
+}
+
+@media (max-width: 1080px) {
+    .upcoming-events-page-v3 .prelim-bouts {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 860px) {
+    .upcoming-events-page-v3 .event-card-header {
+        grid-template-columns: 1fr;
+        gap: .7rem;
+    }
+
+    .upcoming-events-page-v3 .event-card-meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: .65rem 0 0;
+        border-top: 1px solid var(--v3-rule);
+        border-left: 0;
+    }
+
+    .upcoming-events-page-v3 .event-card-meta p:first-child,
+    .upcoming-events-page-v3 .event-card-meta a {
+        grid-column: 1 / -1;
+    }
+
+    .upcoming-events-page-v3 .main-card-bouts,
+    .upcoming-events-page-v3 .prelim-bouts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 620px) {
+    .upcoming-events-page-v3 {
+        width: min(calc(100% - 1.4rem), 1380px);
+    }
+
+    .upcoming-events-page-v3 .upcoming-events-header h1 {
+        font-size: clamp(2.1rem, 10vw, 3rem);
+    }
+
+    .upcoming-events-page-v3 .event-card-heading h2 {
+        font-size: clamp(1.8rem, 9vw, 2.8rem);
+    }
+
+    .upcoming-events-page-v3 .featured-bouts,
+    .upcoming-events-page-v3 .main-card-bouts,
+    .upcoming-events-page-v3 .prelim-bouts {
+        grid-template-columns: 1fr;
+    }
+
+    .upcoming-events-page-v3 .fighter-photo,
+    .upcoming-events-page-v3 .bout-card-featured .fighter-photo {
+        aspect-ratio: 1 / .8;
+    }
+
+    .upcoming-events-page-v3 .fighter-photo img[data-fighter-photo] {
+        --portrait-scale: 1.25;
+    }
+
+    .upcoming-events-page-v3 .fighter-photo img[data-portrait-safe="true"] {
+        --portrait-scale: 1.03;
+    }
+
+    .upcoming-events-page-v3 .upcoming-event-card[data-regional="true"] .fighter-photo img[data-fighter-photo] {
+        --portrait-scale: 1;
+    }
+
+    .upcoming-events-page-v3 .event-card-meta {
+        grid-template-columns: 1fr;
+    }
+
+    .upcoming-events-page-v3 .event-card-meta p:first-child,
+    .upcoming-events-page-v3 .event-card-meta a {
+        grid-column: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .upcoming-events-page-v3 *,
+    .upcoming-events-page-v3 *::before,
+    .upcoming-events-page-v3 *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}

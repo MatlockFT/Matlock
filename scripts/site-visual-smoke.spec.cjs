@@ -514,6 +514,80 @@ test.describe('Breakdowns V3 isolated migration', () => {
   });
 });
 
+test.describe('Fight Cards V3 isolated migration', () => {
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('keeps live Fight Cards untouched while the V3 picker uses the editorial shell', async ({ page }) => {
+    await page.goto(targetUrl('/upcoming-events/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('.upcoming-events-page')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('[data-editorial-v3]')).toHaveCount(0);
+    await expect(page.locator('.site-theme-toggle')).toHaveCount(0);
+
+    await page.goto(targetUrl('/upcoming-events-v3/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-editorial-v3]')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('.v3-wordmark')).toBeVisible();
+    await expect(page.locator('.site-theme-toggle')).toBeVisible();
+    await expect(page.locator('.v3-sticky-shell')).toHaveCount(1);
+
+    const stylesheetHrefs = await page.locator('link[rel="stylesheet"]').evaluateAll(nodes =>
+      nodes.map(node => node.getAttribute('href') || '')
+    );
+    expect(stylesheetHrefs.some(href => href.includes('upcoming-events.css'))).toBe(false);
+    expect(stylesheetHrefs.some(href => href.includes('upcoming-events-layout.css'))).toBe(false);
+    expect(stylesheetHrefs.some(href => href.includes('upcoming-events-portrait-fixes.css'))).toBe(false);
+    const v3Index = stylesheetHrefs.findIndex(href => href.includes('upcoming-events-v3.css'));
+    const tailIndex = stylesheetHrefs.findIndex(href => href.includes('site-tail.css'));
+    expect(v3Index).toBeGreaterThan(tailIndex);
+
+    await page.evaluate(() => document.fonts?.ready).catch(() => {});
+    const title = await page.locator('.upcoming-events-header h1').evaluate(node => ({
+      text: node.textContent.trim(),
+      font: getComputedStyle(node).fontFamily
+    }));
+    expect(title.text).toBe('Fight Cards');
+    expect(title.font).toContain('Herkey');
+
+    const firstEvent = page.locator('.upcoming-event-card').first();
+    await expect(firstEvent).toBeVisible();
+    const eventStyle = await firstEvent.evaluate(node => ({
+      radius: getComputedStyle(node).borderRadius,
+      shadow: getComputedStyle(node).boxShadow,
+      background: getComputedStyle(node).backgroundColor
+    }));
+    expect(eventStyle.radius).toBe('0px');
+    expect(eventStyle.shadow).toBe('none');
+    expect(eventStyle.background).toBe('rgba(0, 0, 0, 0)');
+
+    const firstBout = firstEvent.locator('.bout-card').first();
+    const boutRadius = await firstBout.evaluate(node => getComputedStyle(node).borderRadius);
+    expect(boutRadius).toBe('0px');
+
+    await expect(page.locator('.prediction-actions').first()).toBeVisible({ timeout: 15000 });
+    await expect(page.locator('.prediction-button').first()).toContainText('Download Picks');
+
+    const firstFighter = firstBout.locator('.fighter').first();
+    await firstFighter.click();
+    await expect(firstFighter).toHaveClass(/is-pick/);
+    await expect(firstFighter).toHaveAttribute('aria-pressed', 'true');
+
+    const eventId = await firstEvent.getAttribute('id');
+    expect(eventId).toBeTruthy();
+    await page.goto(targetUrl('/upcoming-events-v3/?event=' + encodeURIComponent(eventId)), {
+      waitUntil: 'domcontentloaded',
+      timeout: 45000
+    });
+    await expect(page.locator('#' + CSS.escape(eventId))).toBeVisible();
+
+    const overflow = await page.evaluate(() =>
+      document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(2);
+
+    const robots = await page.locator('meta[name="robots"]').getAttribute('content');
+    expect(robots).toContain('noindex');
+  });
+});
+
 test.describe('On This Day V3 isolated migration', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 

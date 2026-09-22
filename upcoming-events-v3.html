@@ -1,0 +1,38 @@
+---
+layout: default
+title: "MMA Fight Card Picker: Make and Export Fight Picks"
+description: "Pick winners for upcoming UFC and MMA fight cards, save selections in your browser, and export your picks as a shareable JPEG. Cards update automatically."
+permalink: /upcoming-events-v3/
+ads: false
+noindex: true
+sitemap: false
+v3_text_masthead: true
+page_styles:
+  - /assets/editorial-v3-shell.css
+page_scripts:
+  - /assets/editorial-v3-shell.js
+  - /assets/upcoming-events-bootstrap.js
+  - /assets/upcoming-events-jump.js
+  - /assets/upcoming-events-links.js
+---
+
+<link rel="stylesheet" href="{{ '/assets/upcoming-events-v3.css' | relative_url }}?v={{ site.asset_version }}" data-fight-cards-v3-final-style>
+
+<article
+  class="upcoming-events-page upcoming-events-page-v3"
+  data-globe-home
+  data-editorial-v3
+  data-event-map-url="{{ '/assets/data/event-map-live.json' | relative_url }}?v={{ site.asset_version }}"
+>
+  <header class="upcoming-events-header">
+    <p class="fight-cards-v3-eyebrow">Upcoming MMA</p>
+    <h1>Fight Cards</h1>
+  </header>
+
+  <div class="upcoming-events-list">
+    {% assign picker_events = site.data.upcoming_events.events | concat: site.data.upcoming_events_regional.events | sort: "date" %}
+    {% for event in picker_events %}
+      {% include fight-card-picker-event.html event=event priority=forloop.first %}
+    {% endfor %}
+  </div>
+</article>
