@@ -1,7 +1,133 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-22T16:55:39.794Z",
+  "generated_at": "2026-09-22T22:56:06.667Z",
   "changes": [
+    {
+      "id": "2026-09-22T22:56:06.667Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|1",
+      "at": "2026-09-22T22:56:06.667Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Louis Jourdain vs Timmy Cuamba moved on Buckley vs Malott.",
+      "details": {
+        "from_order": 5,
+        "to_order": 4,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-22T22:56:06.667Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|2",
+      "at": "2026-09-22T22:56:06.667Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Mandel Nallo vs Nate Landwehr moved on Buckley vs Malott.",
+      "details": {
+        "from_order": 4,
+        "to_order": 5,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-22T22:56:06.667Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|3",
+      "at": "2026-09-22T22:56:06.667Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Tanner Boser vs Jhonata Diniz moved on Buckley vs Malott.",
+      "details": {
+        "from_order": 10,
+        "to_order": 6,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-22T22:56:06.667Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|4",
+      "at": "2026-09-22T22:56:06.667Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Julien Leblanc vs Gilbert Urbina moved on Buckley vs Malott.",
+      "details": {
+        "from_order": 12,
+        "to_order": 7,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-22T22:56:06.667Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|5",
+      "at": "2026-09-22T22:56:06.667Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Javad Mahjoub vs Louie Sutherland moved on Buckley vs Malott.",
+      "details": {
+        "from_order": 7,
+        "to_order": 8,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-22T22:56:06.667Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|6",
+      "at": "2026-09-22T22:56:06.667Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Chad Anheliger vs Steven Koslow moved on Buckley vs Malott.",
+      "details": {
+        "from_order": 8,
+        "to_order": 10,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-22T22:56:06.667Z|ufc-fight-night-2026-10-17-fight-card|bout_moved|7",
+      "at": "2026-09-22T22:56:06.667Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Buckley vs Malott",
+      "event_date": "2026-10-17",
+      "summary": "Cody Chovancek vs SuYoung You moved on Buckley vs Malott.",
+      "details": {
+        "from_order": 6,
+        "to_order": 12,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-22T22:56:06.667Z|ufc-334-2026-11-14-fight-card|title_changed|8",
+      "at": "2026-09-22T22:56:06.667Z",
+      "type": "title_changed",
+      "event_id": "ufc-334-2026-11-14-fight-card",
+      "promotion": "UFC 334",
+      "event_title": "Gane vs Hokit",
+      "event_date": "2026-11-14",
+      "summary": "UFC 334 Gane vs Hokit: title changed.",
+      "details": {
+        "from": "Polymarket UFC 334",
+        "to": "Gane vs Hokit"
+      }
+    },
     {
       "id": "2026-09-22T16:55:39.794Z|ufc-2026-11-14-polymarket-ufc-334|event_added|1",
       "at": "2026-09-22T16:55:39.794Z",
@@ -4520,132 +4646,6 @@
         "from_order": 11,
         "to_order": 10,
         "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-04T18:21:00.530Z|noche-ufc-2026-09-12-fight-card|bout_moved|2",
-      "at": "2026-09-04T18:21:00.530Z",
-      "type": "bout_moved",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Silva vs Delgado",
-      "event_date": "2026-09-12",
-      "summary": "JJ Aldrich vs Regina Tarin moved on Silva vs Delgado.",
-      "details": {
-        "from_order": 12,
-        "to_order": 11,
-        "from_section": "Prelims",
-        "to_section": "Prelims"
-      }
-    },
-    {
-      "id": "2026-09-04T18:21:00.530Z|noche-ufc-2026-09-12-fight-card|bout_removed|3",
-      "at": "2026-09-04T18:21:00.530Z",
-      "type": "bout_removed",
-      "event_id": "noche-ufc-2026-09-12-fight-card",
-      "promotion": "Noche UFC",
-      "event_title": "Silva vs Delgado",
-      "event_date": "2026-09-12",
-      "summary": "Ramiro Jimenez vs Rodrigo Vera removed from Silva vs Delgado.",
-      "details": {
-        "order": 10,
-        "section": "Prelims",
-        "weight_class": "Featherweight Bout"
-      }
-    },
-    {
-      "id": "2026-09-03T11:41:21.860Z|rizin-angel-champagne-presents-rizin-5-2026-09-10|bout_moved|1",
-      "at": "2026-09-03T11:41:21.860Z",
-      "type": "bout_moved",
-      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
-      "promotion": "RIZIN",
-      "event_title": "ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り",
-      "event_date": "2026-09-10",
-      "summary": "Karshyga Dautbek vs Ren Hiramoto moved on ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り.",
-      "details": {
-        "from_order": 4,
-        "to_order": 3,
-        "from_section": "Fight Card",
-        "to_section": "Fight Card"
-      }
-    },
-    {
-      "id": "2026-09-03T11:41:21.860Z|rizin-angel-champagne-presents-rizin-5-2026-09-10|bout_moved|2",
-      "at": "2026-09-03T11:41:21.860Z",
-      "type": "bout_moved",
-      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
-      "promotion": "RIZIN",
-      "event_title": "ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り",
-      "event_date": "2026-09-10",
-      "summary": "Roberto Satoshi Souza vs Shunta Nomura moved on ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り.",
-      "details": {
-        "from_order": 3,
-        "to_order": 4,
-        "from_section": "Fight Card",
-        "to_section": "Fight Card"
-      }
-    },
-    {
-      "id": "2026-09-03T11:41:21.860Z|rizin-angel-champagne-presents-rizin-5-2026-09-10|bout_removed|3",
-      "at": "2026-09-03T11:41:21.860Z",
-      "type": "bout_removed",
-      "event_id": "rizin-angel-champagne-presents-rizin-5-2026-09-10",
-      "promotion": "RIZIN",
-      "event_title": "ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り",
-      "event_date": "2026-09-10",
-      "summary": "【試合中止】冨澤大智 vs ドンマイ川端 removed from ANGEL CHAMPAGNE presents 超RIZIN.5 浪速の超復活祭り.",
-      "details": {
-        "order": 9,
-        "section": "Fight Card",
-        "weight_class": "59.0 kg"
-      }
-    },
-    {
-      "id": "2026-09-02T18:49:07.489Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|1",
-      "at": "2026-09-02T18:49:07.489Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Kurtis Campbell vs Trevor Peek moved on Hooker vs Parnasse.",
-      "details": {
-        "from_order": 7,
-        "to_order": 5,
-        "from_section": "Prelims",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-02T18:49:07.489Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|2",
-      "at": "2026-09-02T18:49:07.489Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Losene Keita vs Muhammad Naimov moved on Hooker vs Parnasse.",
-      "details": {
-        "from_order": 5,
-        "to_order": 6,
-        "from_section": "Main Card",
-        "to_section": "Main Card"
-      }
-    },
-    {
-      "id": "2026-09-02T18:49:07.489Z|ufc-fight-night-2026-09-05-fight-card|bout_moved|3",
-      "at": "2026-09-02T18:49:07.489Z",
-      "type": "bout_moved",
-      "event_id": "ufc-fight-night-2026-09-05-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Hooker vs Parnasse",
-      "event_date": "2026-09-05",
-      "summary": "Morgan Charriere vs Felipe Lima moved on Hooker vs Parnasse.",
-      "details": {
-        "from_order": 6,
-        "to_order": 7,
-        "from_section": "Main Card",
         "to_section": "Prelims"
       }
     }

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-22T19:58:40.023Z",
+  "generated_at": "2026-09-22T22:55:31.451Z",
   "events": [
     {
       "id": "dwcs-season-10-week-7-2026-09-22",
@@ -1175,27 +1175,6 @@
             {
               "order": 4,
               "label": "",
-              "weight_class": "Lightweight Bout",
-              "fighters": [
-                {
-                  "name": "Mandel Nallo",
-                  "initials": "MN",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/NALLO_MANDEL_L_04-18.png?itok=7Z3AEAXw",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Nate Landwehr",
-                  "initials": "NL",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/LANDWEHR_NATE_L_07-12.png?itok=yAVkr3X6",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
                 {
@@ -1213,6 +1192,27 @@
                   "image_framing": "safe"
                 }
               ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Mandel Nallo",
+                  "initials": "MN",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/NALLO_MANDEL_L_04-18.png?itok=7Z3AEAXw",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Nate Landwehr",
+                  "initials": "NL",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/LANDWEHR_NATE_L_07-12.png?itok=yAVkr3X6",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                }
+              ]
             }
           ]
         },
@@ -1224,19 +1224,19 @@
             {
               "order": 6,
               "label": "",
-              "weight_class": "Bantamweight Bout",
+              "weight_class": "Heavyweight Bout",
               "fighters": [
                 {
-                  "name": "Cody Chovancek",
-                  "initials": "CC",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/CHOVANCEK_CODY_R_09-16.png?itok=v2G8Yooy",
+                  "name": "Tanner Boser",
+                  "initials": "TB",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/BOSER_TANNER_L_04-18.png?itok=_lraVPHf",
                   "image_source": "ufc",
                   "image_framing": "safe"
                 },
                 {
-                  "name": "SuYoung You",
-                  "initials": "SY",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/YOU_SUYOUNG_L_03-15.png?itok=Mfh4XApl",
+                  "name": "Jhonata Diniz",
+                  "initials": "JD",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/DINIZ_JHONATA_L_10-11.png?itok=a7w4jLAU",
                   "image_source": "ufc",
                   "image_framing": "safe"
                 }
@@ -1244,6 +1244,27 @@
             },
             {
               "order": 7,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Julien Leblanc",
+                  "initials": "JL",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/LEBLANC_JULIEN_L_04-18.png?itok=zBIsz0dB",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Gilbert Urbina",
+                  "initials": "GU",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-02/URBINA_GILBERT_L_02-03.png?itok=rua26OyB",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 8,
               "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
@@ -1258,27 +1279,6 @@
                   "name": "Louie Sutherland",
                   "initials": "LS",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/SUTHERLAND_LOUIE_L_08-08.png?itok=R72s_Sj2",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 8,
-              "label": "",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Chad Anheliger",
-                  "initials": "CA",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-10/ANHELIGER_CHAD_L_11-02.png?itok=ezY1YMKO",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Steven Koslow",
-                  "initials": "SK",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-01/KOSLOW_STEVEN_L_12-10.png?itok=pqAG6P4G",
                   "image_source": "ufc",
                   "image_framing": "safe"
                 }
@@ -1308,19 +1308,19 @@
             {
               "order": 10,
               "label": "",
-              "weight_class": "Heavyweight Bout",
+              "weight_class": "Bantamweight Bout",
               "fighters": [
                 {
-                  "name": "Tanner Boser",
-                  "initials": "TB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/BOSER_TANNER_L_04-18.png?itok=_lraVPHf",
+                  "name": "Chad Anheliger",
+                  "initials": "CA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-10/ANHELIGER_CHAD_L_11-02.png?itok=ezY1YMKO",
                   "image_source": "ufc",
                   "image_framing": "safe"
                 },
                 {
-                  "name": "Jhonata Diniz",
-                  "initials": "JD",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/DINIZ_JHONATA_L_10-11.png?itok=a7w4jLAU",
+                  "name": "Steven Koslow",
+                  "initials": "SK",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-01/KOSLOW_STEVEN_L_12-10.png?itok=pqAG6P4G",
                   "image_source": "ufc",
                   "image_framing": "safe"
                 }
@@ -1350,19 +1350,19 @@
             {
               "order": 12,
               "label": "",
-              "weight_class": "Middleweight Bout",
+              "weight_class": "Bantamweight Bout",
               "fighters": [
                 {
-                  "name": "Julien Leblanc",
-                  "initials": "JL",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/LEBLANC_JULIEN_L_04-18.png?itok=zBIsz0dB",
+                  "name": "Cody Chovancek",
+                  "initials": "CC",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/CHOVANCEK_CODY_R_09-16.png?itok=v2G8Yooy",
                   "image_source": "ufc",
                   "image_framing": "safe"
                 },
                 {
-                  "name": "Gilbert Urbina",
-                  "initials": "GU",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-02/URBINA_GILBERT_L_02-03.png?itok=rua26OyB",
+                  "name": "SuYoung You",
+                  "initials": "SY",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/YOU_SUYOUNG_L_03-15.png?itok=Mfh4XApl",
                   "image_source": "ufc",
                   "image_framing": "safe"
                 }
@@ -1849,10 +1849,10 @@
       "source_card_url": "https://jp.rizinff.com/_ct/17864056"
     },
     {
-      "id": "ufc-2026-11-14-polymarket-ufc-334",
+      "id": "ufc-334-2026-11-14-fight-card",
       "promotion_key": "ufc",
-      "promotion": "UFC",
-      "title": "Polymarket UFC 334",
+      "promotion": "UFC 334",
+      "title": "Gane vs Hokit",
       "date": "2026-11-14",
       "date_label": "Saturday · November 14, 2026",
       "starts_at": "",
