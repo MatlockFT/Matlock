@@ -194,6 +194,26 @@ test.describe('Homepage V2 immersive scroll', () => {
     await page.evaluate(() => document.fonts?.ready).catch(() => {});
     await page.waitForTimeout(150);
 
+    const fullBleedGeometry = await page.locator('[data-immersive-slide][data-scene-index="0"]').evaluate(node => {
+      const image = node.querySelector('.home-immersive-image');
+      const copy = node.querySelector('.home-immersive-copy');
+      const imageRect = image?.getBoundingClientRect();
+      const copyRect = copy?.getBoundingClientRect();
+      return {
+        viewportHeight: window.innerHeight,
+        imageTop: Math.round(imageRect?.top || 0),
+        imageBottom: Math.round(imageRect?.bottom || 0),
+        imageHeight: Math.round(imageRect?.height || 0),
+        copyTop: Math.round(copyRect?.top || 0),
+        copyBottom: Math.round(copyRect?.bottom || 0)
+      };
+    });
+    expect(Math.abs(fullBleedGeometry.imageTop)).toBeLessThanOrEqual(2);
+    expect(Math.abs(fullBleedGeometry.imageBottom - fullBleedGeometry.viewportHeight)).toBeLessThanOrEqual(2);
+    expect(fullBleedGeometry.imageHeight).toBeGreaterThanOrEqual(fullBleedGeometry.viewportHeight - 2);
+    expect(fullBleedGeometry.copyTop).toBeGreaterThan(0);
+    expect(fullBleedGeometry.copyBottom).toBeLessThanOrEqual(fullBleedGeometry.viewportHeight);
+
     const initialCounter = (await page.locator('[data-scene-counter]').textContent() || '').trim();
     expect(initialCounter).toMatch(/^01\s*\/\s*0?5$/);
 
