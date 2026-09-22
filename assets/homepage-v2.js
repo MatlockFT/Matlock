@@ -329,18 +329,41 @@
         const motionReduced = reduceMotion();
         let raf = 0;
         let lastActive = -1;
+        let visualSceneFloat = 0;
+        let springVelocity = 0;
 
-        const update = () => {
-            raf = 0;
-
+        const measuredSceneFloat = () => {
             const rect = immersiveSequence.getBoundingClientRect();
             const viewport = Math.max(window.innerHeight, 1);
             const travel = Math.max(1, immersiveSequence.offsetHeight - viewport);
             const scrollPx = clamp(-rect.top, 0, travel);
-            const sceneFloat = scrollPx / viewport;
+            return scrollPx / viewport;
+        };
+
+        const render = () => {
+            raf = 0;
+
+            const targetSceneFloat = measuredSceneFloat();
             const maxScene = immersiveSlides.length - 1;
-            const boundedScene = Math.min(sceneFloat, maxScene);
+
+            if (motionReduced) {
+                visualSceneFloat = targetSceneFloat;
+                springVelocity = 0;
+            } else {
+                const delta = targetSceneFloat - visualSceneFloat;
+                springVelocity = (springVelocity + delta * .22) * .68;
+                visualSceneFloat += springVelocity;
+
+                if (Math.abs(delta) < .0007 && Math.abs(springVelocity) < .0007) {
+                    visualSceneFloat = targetSceneFloat;
+                    springVelocity = 0;
+                }
+            }
+
+            const sceneFloat = visualSceneFloat;
+            const boundedScene = clamp(sceneFloat, 0, maxScene);
             const activeIndex = Math.min(maxScene, Math.floor(boundedScene + .5));
+            const momentum = motionReduced ? 0 : clamp(springVelocity * 7, -.32, .32);
 
             for (let i = 0; i < immersiveSlides.length; i += 1) {
                 const slide = immersiveSlides[i];
@@ -354,7 +377,7 @@
                         copyOpacity: isActive ? 1 : 0,
                         copyY: 0,
                         inkOpacity: 0,
-                        shadeBottom: .78,
+                        shadeBottom: .44,
                         z: i
                     });
                     slide.classList.toggle('is-active', isActive);
@@ -366,32 +389,29 @@
                 const nextRaw = i < maxScene ? clamp(sceneFloat - i, 0, 1) : 0;
                 const next = smooth(nextRaw);
 
-                const opacity = i === 0
-                    ? 1
-                    : clamp(lerp(0, 1, incoming));
-
+                const opacity = i === 0 ? 1 : incoming;
                 const y = i === 0
-                    ? 0
-                    : lerp(13, 0, incoming);
+                    ? momentum * -1.5
+                    : lerp(9, 0, incoming) - momentum * 3.2;
 
                 const scale = i === 0
-                    ? lerp(1, 1.035, next * .5)
-                    : lerp(1.065, 1, incoming) + next * .018;
+                    ? 1 + next * .018 + Math.abs(momentum) * .018
+                    : lerp(1.045, 1, incoming) + next * .012 + Math.abs(momentum) * .016;
 
                 const copyIn = i === 0
                     ? 1
-                    : smooth(clamp((incomingRaw - .38) / .42));
+                    : smooth(clamp((incomingRaw - .3) / .44));
 
                 const copyOut = i < maxScene
-                    ? 1 - smooth(clamp((nextRaw - .18) / .52))
+                    ? 1 - smooth(clamp((nextRaw - .2) / .5))
                     : 1;
 
                 const copyOpacity = copyIn * copyOut;
-                const copyY = lerp(30, 0, copyIn) + lerp(0, -34, 1 - copyOut);
+                const copyY = lerp(22, 0, copyIn) + lerp(0, -20, 1 - copyOut) - momentum * 10;
                 const inkOpacity = i === 0
                     ? 0
-                    : Math.sin(incomingRaw * Math.PI) * .48;
-                const shadeBottom = lerp(.68, .82, copyIn);
+                    : Math.sin(incomingRaw * Math.PI) * (.38 + Math.abs(momentum) * .3);
+                const shadeBottom = lerp(.34, .5, copyIn);
 
                 setSlideState(slide, {
                     opacity,
@@ -416,8 +436,14 @@
                         ? clamp(sceneFloat - (transitionIndex - 1), 0, 1)
                         : 0;
                     const wave = Math.sin(local * Math.PI);
-                    immersiveEdge.style.setProperty('--edge-opacity', (wave * .72).toFixed(4));
-                    immersiveEdge.style.setProperty('--edge-y', `${lerp(92, -16, smooth(local)).toFixed(2)}vh`);
+                    immersiveEdge.style.setProperty(
+                        '--edge-opacity',
+                        clamp(wave * .62 + Math.abs(momentum) * .3, 0, .86).toFixed(4)
+                    );
+                    immersiveEdge.style.setProperty(
+                        '--edge-y',
+                        `${lerp(88, -18, smooth(local)).toFixed(2)}vh`
+                    );
                 }
             }
 
@@ -428,15 +454,22 @@
             }
 
             if (sceneHint) {
-                const hintOpacity = motionReduced ? 1 : 1 - smooth(clamp(sceneFloat / .55));
+                const hintOpacity = motionReduced ? 1 : 1 - smooth(clamp(targetSceneFloat / .55));
                 sceneHint.style.opacity = hintOpacity.toFixed(3);
                 if (motionReduced) sceneHint.textContent = 'SCROLL TO CHANGE STORY';
+            }
+
+            if (!motionReduced) {
+                const delta = targetSceneFloat - visualSceneFloat;
+                if (Math.abs(delta) >= .0007 || Math.abs(springVelocity) >= .0007) {
+                    raf = window.requestAnimationFrame(render);
+                }
             }
         };
 
         const requestUpdate = () => {
             if (raf) return;
-            raf = window.requestAnimationFrame(update);
+            raf = window.requestAnimationFrame(render);
         };
 
         window.addEventListener('scroll', requestUpdate, { passive: true });
@@ -445,7 +478,7 @@
             if (!document.hidden) requestUpdate();
         });
 
-        update();
+        render();
         root.classList.add('home-flow-ready');
     }
 
