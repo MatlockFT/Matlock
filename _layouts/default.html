@@ -216,7 +216,7 @@
                     aria-hidden="false"
                 >
                     <div class="navigation-panel-header">
-                        <span>Menu</span>
+                        <span>{% if page.url == "/homepage-v2/" %}Site Index{% else %}Menu{% endif %}</span>
                         <button
                             class="navigation-close"
                             type="button"
