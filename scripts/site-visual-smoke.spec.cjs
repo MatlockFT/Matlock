@@ -291,6 +291,8 @@ test.describe('Homepage V3 editorial shell', () => {
     await expect(page.locator('.v3-pick-row')).toHaveCount(2);
     await expect(page.locator('.v3-utility-strip')).toHaveCount(0);
     await expect(page.locator('.v3-sticky-shell')).toHaveCount(1);
+    await expect(page.locator('.v3-sticky-shell > .site-navigation')).toHaveCount(1);
+    await expect(page.locator('.v3-sticky-shell > .site-live-strip')).toHaveCount(1);
     await expect(page.locator('.v3-footer-grid section')).toHaveCount(4);
     await expect(page.locator('body')).not.toContainText('Independent MMA coverage');
     await expect(page.locator('body')).not.toContainText('Austin, Texas');
@@ -340,11 +342,21 @@ test.describe('Homepage V3 editorial shell', () => {
     expect(Math.abs(stickyAfter)).toBeLessThanOrEqual(2);
 
 
+    const shellPosition = await page.locator('.v3-sticky-shell').evaluate(node =>
+      getComputedStyle(node).position
+    );
+    expect(shellPosition).toBe('fixed');
+
     const initialTheme = await page.locator('html').getAttribute('data-theme');
     expect(initialTheme).toBe('light');
     await page.locator('.site-theme-toggle').click();
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
     await expect(page.locator('.site-theme-toggle')).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('html')).toHaveClass(/v3-theme-transitioning/);
+    const darkTrendingColor = await page.locator('[data-v3-trending] a').first().evaluate(node =>
+      getComputedStyle(node).color
+    );
+    expect(darkTrendingColor).toBe('rgb(231, 228, 222)');
     await page.locator('.site-theme-toggle').click();
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
 

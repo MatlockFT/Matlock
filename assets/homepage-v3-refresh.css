@@ -203,9 +203,11 @@ body:has([data-globe-home]) .site-header {
 }
 
 .v3-sticky-shell {
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 500;
+    right: 0;
+    left: 0;
+    z-index: 1000;
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -587,8 +589,10 @@ body:has([data-globe-home]) .site-news-item-source {
 
 @media (max-width: 850px) {
     .v3-sticky-shell {
-        position: sticky;
+        position: fixed;
         top: 0;
+        right: 0;
+        left: 0;
     }
 
     body:has([data-globe-home]) .site-theme-control {
@@ -665,4 +669,77 @@ body:has([data-globe-home]) .site-news-item-source {
         width: min(72vw, 240px);
         justify-self: center;
     }
+}
+
+
+/* =========================================================
+   V3.5 — FIXED VIEWPORT RAIL / DARK TRENDING / THEME FADE
+   ========================================================= */
+
+body:has([data-globe-home]) .site-header {
+    margin-top: var(--v3-fixed-rail-height, 80px);
+}
+
+/* Trending rail stays legible in dark mode. */
+html[data-theme="dark"] body:has([data-globe-home]) .v3-trending-links a {
+    color: #e7e4de !important;
+}
+
+html[data-theme="dark"] body:has([data-globe-home]) .v3-trending-separator {
+    color: #85817a !important;
+}
+
+html[data-theme="dark"] body:has([data-globe-home]) .v3-trending {
+    border-color: #45423e;
+}
+
+/* Theme changes should read as a soft fade, not a hard flash. */
+html.v3-theme-transitioning body:has([data-globe-home]),
+html.v3-theme-transitioning body:has([data-globe-home]) .site-main,
+html.v3-theme-transitioning body:has([data-globe-home]) .site-header,
+html.v3-theme-transitioning body:has([data-globe-home]) .logo-banner,
+html.v3-theme-transitioning body:has([data-globe-home]) .v3-sticky-shell,
+html.v3-theme-transitioning body:has([data-globe-home]) .site-navigation,
+html.v3-theme-transitioning body:has([data-globe-home]) .site-live-strip,
+html.v3-theme-transitioning body:has([data-globe-home]) .site-event-stack,
+html.v3-theme-transitioning body:has([data-globe-home]) .site-event-primary,
+html.v3-theme-transitioning body:has([data-globe-home]) .site-event-drawer,
+html.v3-theme-transitioning body:has([data-globe-home]) .v3-home,
+html.v3-theme-transitioning body:has([data-globe-home]) .v3-footer,
+html.v3-theme-transitioning body:has([data-globe-home]) .v3-trending,
+html.v3-theme-transitioning body:has([data-globe-home]) .v3-pick-row,
+html.v3-theme-transitioning body:has([data-globe-home]) .v3-verdict-stats {
+    transition:
+        background-color 360ms ease,
+        color 360ms ease,
+        border-color 360ms ease,
+        box-shadow 360ms ease;
+}
+
+html.v3-theme-transitioning body:has([data-globe-home]) :is(
+    a,
+    p,
+    strong,
+    time,
+    h1,
+    h2,
+    h3,
+    .v3-trending-links a,
+    .v3-trending-separator,
+    .site-event-primary-name,
+    .site-event-primary-countdown,
+    .site-news-item,
+    .site-news-item > span,
+    .site-news-item-source
+) {
+    transition: color 360ms ease;
+}
+
+/* Keep the switch motion crisp while the rest of the palette eases. */
+html.v3-theme-transitioning body:has([data-globe-home]) .site-theme-toggle-track {
+    transition: background-color 260ms ease, border-color 260ms ease;
+}
+
+html.v3-theme-transitioning body:has([data-globe-home]) .site-theme-toggle-knob {
+    transition: transform 260ms ease, background-color 260ms ease;
 }
