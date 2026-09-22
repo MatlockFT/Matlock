@@ -224,6 +224,55 @@ test.describe('Homepage V2 immersive scroll', () => {
     expect(overflow).toBeLessThanOrEqual(2);
     expect(pageErrors).toEqual([]);
   });
+
+  test('site index opens as a vertical control-room index with ticker fixed at top', async ({ page }) => {
+    const pageErrors = [];
+    page.on('pageerror', error => pageErrors.push(error.message));
+
+    await page.goto(targetUrl('/homepage-v2/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('#navigation-toggle')).toBeVisible({ timeout: 30000 });
+    await page.waitForTimeout(120);
+
+    const tickerTop = await page.locator('.site-live-strip').evaluate(node =>
+      Math.round(node.getBoundingClientRect().top)
+    );
+    expect(Math.abs(tickerTop)).toBeLessThanOrEqual(2);
+
+    await page.locator('#navigation-toggle').click();
+    await expect(page.locator('body')).toHaveClass(/navigation-is-open/);
+    await expect(page.locator('#navigation-panel')).toBeVisible();
+
+    const links = page.locator('#navigation-list > li > a');
+    await expect(links).toHaveCount(7);
+
+    const boxes = await links.evaluateAll(nodes =>
+      nodes.map(node => {
+        const rect = node.getBoundingClientRect();
+        return {
+          top: Math.round(rect.top),
+          left: Math.round(rect.left),
+          width: Math.round(rect.width),
+          height: Math.round(rect.height)
+        };
+      })
+    );
+
+    for (let i = 1; i < boxes.length; i += 1) {
+      expect(boxes[i].top).toBeGreaterThan(boxes[i - 1].top + 20);
+      expect(Math.abs(boxes[i].left - boxes[0].left)).toBeLessThanOrEqual(4);
+    }
+
+    expect(boxes[0].width).toBeGreaterThan(420);
+
+    const openTickerTop = await page.locator('.site-live-strip').evaluate(node =>
+      Math.round(node.getBoundingClientRect().top)
+    );
+    expect(Math.abs(openTickerTop)).toBeLessThanOrEqual(2);
+
+    await page.locator('#navigation-toggle').click();
+    await expect(page.locator('body')).not.toHaveClass(/navigation-is-open/);
+    expect(pageErrors).toEqual([]);
+  });
 });
 
 test.describe('On This Day share builder', () => {
