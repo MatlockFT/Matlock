@@ -201,23 +201,38 @@ test.describe('Homepage V3 editorial shell', () => {
       const nav = document.querySelector('.navigation-inner')?.getBoundingClientRect();
       const ticker = document.querySelector('.site-live-strip-inner')?.getBoundingClientRect();
       const eventName = document.querySelector('.site-event-primary-name');
+      const eventCountdown = document.querySelector('.site-event-primary-countdown');
+      const trending = document.querySelector('.v3-trending');
+      const leadTitle = document.querySelector('.v3-lead h1');
+      const leadDeck = document.querySelector('.v3-lead-deck');
+      const trendRect = trending?.getBoundingClientRect();
       return {
         viewport: document.documentElement.clientWidth,
         navWidth: Math.round(nav?.width || 0),
         tickerWidth: Math.round(ticker?.width || 0),
         eventColor: eventName ? getComputedStyle(eventName).color : null,
+        countdownColor: eventCountdown ? getComputedStyle(eventCountdown).color : null,
+        trendingHeight: Math.round(trendRect?.height || 0),
+        trendingScrollHeight: trending?.scrollHeight || 0,
+        leadTitleAlign: leadTitle ? getComputedStyle(leadTitle).textAlign : null,
+        leadDeckAlign: leadDeck ? getComputedStyle(leadDeck).textAlign : null,
         pageText: document.querySelector('[data-globe-home]')?.textContent || ''
       };
     });
 
     expect(geometry.navWidth).toBeGreaterThanOrEqual(geometry.viewport - 4);
     expect(geometry.tickerWidth).toBeGreaterThanOrEqual(geometry.viewport - 4);
-    expect(geometry.eventColor).not.toBe('rgb(255, 255, 255)');
+    expect(geometry.eventColor).toBe('rgb(23, 23, 23)');
+    expect(geometry.countdownColor).toBe('rgb(23, 23, 23)');
+    expect(geometry.trendingScrollHeight).toBeLessThanOrEqual(geometry.trendingHeight + 2);
+    expect(geometry.leadTitleAlign).toBe('left');
+    expect(geometry.leadDeckAlign).toBe('left');
     expect(geometry.pageText).not.toContain('EST. 2026');
     expect(geometry.pageText).not.toContain('Fight Talk');
     expect(geometry.pageText).not.toContain('Lead story');
 
     await expect(page.locator('[data-v3-trending] a').first()).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('[data-v3-trending] a')).toHaveCount(5);
     expect(pageErrors).toEqual([]);
   });
 });
