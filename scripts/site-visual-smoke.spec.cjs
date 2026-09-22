@@ -288,12 +288,27 @@ test.describe('Homepage V3 editorial shell', () => {
     await expect(page.locator('.v3-rail-image')).toHaveCount(2);
     await expect(page.locator('.v3-history-feature-card')).toBeVisible({ timeout: 10000 });
     await expect(page.locator('.v3-history-feature-image')).toBeVisible({ timeout: 10000 });
-    await expect(page.locator('.v3-verdict-card')).toHaveCount(2);
-    await expect(page.locator('.v3-utility-strip a')).toHaveCount(4);
+    await expect(page.locator('.v3-pick-row')).toHaveCount(2);
+    await expect(page.locator('.v3-utility-strip')).toHaveCount(0);
+    await expect(page.locator('.v3-sticky-shell')).toHaveCount(1);
     await expect(page.locator('.v3-footer-grid section')).toHaveCount(4);
     await expect(page.locator('body')).not.toContainText('Independent MMA coverage');
     await expect(page.locator('body')).not.toContainText('Austin, Texas');
     await expect(page.locator('body')).not.toContainText('NO HYPE. JUST FIGHTS.');
+
+    const toggleSize = await page.locator('.site-theme-toggle').evaluate(node => {
+      const rect = node.getBoundingClientRect();
+      const label = node.querySelector('.site-theme-toggle-label');
+      return {
+        width: Math.round(rect.width),
+        height: Math.round(rect.height),
+        labelDisplay: label ? getComputedStyle(label).display : null
+      };
+    });
+    expect(toggleSize.width).toBeLessThanOrEqual(42);
+    expect(toggleSize.height).toBeLessThanOrEqual(24);
+    expect(toggleSize.labelDisplay).toBe('none');
+
 
     await expect.poll(async () => page.locator('.v3-history-feature-image img').evaluate(img =>
       Boolean(img.complete && img.naturalWidth > 0 && img.naturalHeight > 0)
@@ -307,6 +322,23 @@ test.describe('Homepage V3 editorial shell', () => {
       };
     });
     expect(Math.abs(historyImageRatio.natural - historyImageRatio.rendered)).toBeLessThan(0.03);
+
+    const historyRenderedWidth = await page.locator('.v3-history-feature-image img').evaluate(img =>
+      Math.round(img.getBoundingClientRect().width)
+    );
+    expect(historyRenderedWidth).toBeLessThanOrEqual(300);
+
+    const stickyBefore = await page.locator('.v3-sticky-shell').evaluate(node =>
+      Math.round(node.getBoundingClientRect().top)
+    );
+    await page.evaluate(() => window.scrollTo({ top: 1200, behavior: 'instant' }));
+    await page.waitForTimeout(120);
+    const stickyAfter = await page.locator('.v3-sticky-shell').evaluate(node =>
+      Math.round(node.getBoundingClientRect().top)
+    );
+    expect(Math.abs(stickyBefore)).toBeLessThanOrEqual(2);
+    expect(Math.abs(stickyAfter)).toBeLessThanOrEqual(2);
+
 
     const initialTheme = await page.locator('html').getAttribute('data-theme');
     expect(initialTheme).toBe('light');

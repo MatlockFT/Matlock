@@ -169,16 +169,85 @@ page_scripts:
     </div>
   </section>
 
-  <section class="v3-section v3-history-feature" aria-labelledby="v3-history-title">
-    <header class="v3-section-head">
-      <h2 id="v3-history-title">On This Day</h2>
-      <a href="{{ '/on-this-day/' | relative_url }}">Archive</a>
-    </header>
+  <div class="v3-lower-grid">
+    <section class="v3-section v3-history-feature" aria-labelledby="v3-history-title">
+      <header class="v3-section-head">
+        <h2 id="v3-history-title">On This Day</h2>
+        <a href="{{ '/on-this-day/' | relative_url }}">Archive</a>
+      </header>
 
-    <div data-v3-history>
-      <p class="v3-loading">Loading MMA history…</p>
-    </div>
-  </section>
+      <div data-v3-history>
+        <p class="v3-loading">Loading MMA history…</p>
+      </div>
+    </section>
+
+    <section class="v3-section v3-verdict" aria-labelledby="v3-verdict-title">
+      <header class="v3-section-head v3-verdict-head">
+        <h2 id="v3-verdict-title">Verdict Picks</h2>
+        <a
+          class="v3-verdict-follow"
+          href="https://verdictmma.com/profile/MMAMatlock"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Follow @MMAMatlock</a>
+      </header>
+
+      <div class="v3-verdict-stats" aria-label="Verdict profile totals">
+        <div>
+          <strong data-verdict-career-predictions>785</strong>
+          <span>Career predictions</span>
+        </div>
+        <div>
+          <strong data-verdict-rounds>1,107</strong>
+          <span>Rounds scored</span>
+        </div>
+        <div>
+          <strong>Black Belt + 1</strong>
+          <span>Current rank</span>
+        </div>
+      </div>
+
+      <article class="v3-verdict-event">
+        <div class="v3-verdict-event-head">
+          <span>Latest published picks</span>
+          <h3>UFC 331: Van vs. Pantoja 2</h3>
+          <p>Sep 19 · Los Angeles</p>
+        </div>
+
+        <div class="v3-pick-list" role="table" aria-label="Latest MMA Matlock picks">
+          <div class="v3-pick-head" role="row">
+            <span role="columnheader">Fight</span>
+            <span role="columnheader">Pick</span>
+            <span role="columnheader">Method</span>
+          </div>
+
+          <div class="v3-pick-row" role="row">
+            <div role="cell">
+              <span>Featherweight</span>
+              <strong>Doo Ho Choi vs. Patricio Pitbull</strong>
+            </div>
+            <strong role="cell">Doo Ho Choi</strong>
+            <span role="cell">KO/TKO · R1</span>
+          </div>
+
+          <div class="v3-pick-row" role="row">
+            <div role="cell">
+              <span>Flyweight title</span>
+              <strong>Joshua Van vs. Alexandre Pantoja</strong>
+            </div>
+            <strong role="cell">Joshua Van</strong>
+            <span role="cell">KO/TKO · R1</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="v3-verdict-next">
+        <span>Next card</span>
+        <strong>DWCS: Season 10, Week 7</strong>
+        <span data-verdict-next-state>Sep 22 · Las Vegas</span>
+      </div>
+    </section>
+  </div>
 
   {% if more_posts and more_posts.size > 0 %}
     <section class="v3-section v3-more" aria-labelledby="v3-more-title">
@@ -199,44 +268,4 @@ page_scripts:
       </div>
     </section>
   {% endif %}
-
-
-  <section class="v3-verdict" aria-labelledby="v3-verdict-title">
-    <div class="v3-verdict-head">
-      <h2 id="v3-verdict-title">Verdict Picks</h2>
-      <div class="v3-verdict-meta">
-        <span>785 career predictions</span>
-        <a href="https://verdictmma.com/profile/MMAMatlock" target="_blank" rel="noopener noreferrer">@MMAMatlock ↗</a>
-      </div>
-    </div>
-
-    <div class="v3-verdict-grid">
-      <article class="v3-verdict-card" data-verdict-upcoming>
-        <span class="v3-verdict-status">Upcoming</span>
-        <div>
-          <h3>DWCS: Season 10, Week 7</h3>
-          <p>Sep 22 · Las Vegas · 5 fights</p>
-        </div>
-        <strong data-verdict-upcoming-state>Upcoming card</strong>
-        <a href="https://verdictmma.com/event/dwcs-10w7-dana-whites-contender-series-season-10-week-7" target="_blank" rel="noopener noreferrer">Open card ↗</a>
-      </article>
-
-      <article class="v3-verdict-card" data-verdict-recent>
-        <span class="v3-verdict-status">Latest completed</span>
-        <div>
-          <h3>UFC 331: Van vs. Pantoja 2</h3>
-          <p>Sep 19 · Los Angeles</p>
-        </div>
-        <strong>Recent card</strong>
-        <a href="https://verdictmma.com/event/ufc--331-van-vs-pantoja-2" target="_blank" rel="noopener noreferrer">View on Verdict ↗</a>
-      </article>
-    </div>
-  </section>
-
-  <nav class="v3-utility-strip" aria-label="MMA Matlock tools">
-    <a href="{{ '/upcoming-events/' | relative_url }}"><span>Fight Cards</span><span aria-hidden="true">→</span></a>
-    <a href="{{ '/event-map/' | relative_url }}"><span>Event Map</span><span aria-hidden="true">→</span></a>
-    <a href="{{ '/ufc-roster/' | relative_url }}"><span>UFC Roster</span><span aria-hidden="true">→</span></a>
-    <a href="{{ '/matchmaker/' | relative_url }}"><span>Matchmaker</span><span aria-hidden="true">→</span></a>
-  </nav>
 </div>

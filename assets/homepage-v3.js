@@ -6,6 +6,28 @@
   const trendingRail = root.querySelector('[data-v3-trending]');
   const historyBox = root.querySelector('[data-v3-history]');
 
+  const setupStickyShell = () => {
+    const header = document.querySelector('.site-header');
+    const navigation = document.querySelector('.site-navigation');
+    if (!header || !navigation || document.querySelector('[data-v3-sticky-shell]')) return;
+
+    const shell = el('div', 'v3-sticky-shell');
+    shell.dataset.v3StickyShell = '';
+    header.insertAdjacentElement('beforebegin', shell);
+    shell.append(navigation);
+
+    header.querySelector('.site-live-strip-reserve')?.remove();
+
+    const adoptTicker = () => {
+      const ticker = document.querySelector('.site-live-strip');
+      if (ticker && ticker.parentElement !== shell) shell.prepend(ticker);
+    };
+
+    const observer = new MutationObserver(adoptTicker);
+    observer.observe(document.body, { childList: true, subtree: true });
+    adoptTicker();
+  };
+
   const liveNewsUrl = root.dataset.newsUrl;
   const fallbackNewsUrl = root.dataset.newsFallbackUrl;
   const historyUrl = root.dataset.historyUrl;
@@ -206,28 +228,31 @@
 
   const loadVerdictProfileState = async () => {
     if (!verdictProfileUrl) return;
+
     try {
       const response = await fetch(verdictProfileUrl, { cache: 'no-store' });
       if (!response.ok) return;
       const html = await response.text();
       const doc = new DOMParser().parseFromString(html, 'text/html');
-      const bodyText = doc.body?.textContent || '';
-      const upcomingState = root.querySelector('[data-verdict-upcoming-state]');
-      if (upcomingState && /DWCS10W7/i.test(bodyText)) {
-        const remaining = bodyText.match(/(\d+)\s+Picks? Remaining/i);
-        if (remaining) {
-          upcomingState.textContent = remaining[1] === '0'
-            ? 'Picks complete'
-            : `${remaining[1]} picks remaining`;
-        }
+      const bodyText = (doc.body?.textContent || '').replace(/\s+/g, ' ').trim();
+
+      const career = bodyText.match(
+        /Career\s+Since\s+\d{4}\s+([\d,]+)\s+Rounds Scored\s+([\d,]+)\s+Fights Predicted/i
+      );
+
+      if (career) {
+        const rounds = root.querySelector('[data-verdict-rounds]');
+        const predictions = root.querySelector('[data-verdict-career-predictions]');
+        if (rounds) rounds.textContent = career[1];
+        if (predictions) predictions.textContent = career[2];
       }
     } catch {
-      // The public Verdict page may block cross-origin browser requests.
-      // Static fallback content remains visible when that happens.
+      // Static verified profile totals remain visible when Verdict blocks cross-origin reads.
     }
   };
 
   const start = () => {
+    setupStickyShell();
     loadNews();
     window.setTimeout(loadHistory, 100);
     window.setTimeout(loadVerdictProfileState, 160);
