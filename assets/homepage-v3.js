@@ -5,13 +5,11 @@
   const newsList = root.querySelector('[data-v3-news-list]');
   const trendingRail = root.querySelector('[data-v3-trending]');
   const historyBox = root.querySelector('[data-v3-history]');
-  const rosterBox = root.querySelector('[data-v3-roster]');
 
   const liveNewsUrl = root.dataset.newsUrl;
   const fallbackNewsUrl = root.dataset.newsFallbackUrl;
   const historyUrl = root.dataset.historyUrl;
   const historyRuntimeBase = root.dataset.historyRuntimeBase;
-  const rosterUrl = root.dataset.rosterUrl;
   const historyTimeZone = 'America/Chicago';
 
   const el = (tag, className, text) => {
@@ -144,13 +142,13 @@
       return;
     }
 
-    const card = el('article', 'v3-history-card');
+    const card = el('article', 'v3-history-feature-card');
     const historyHref = `/on-this-day/?date=${encodeURIComponent(
       key || String(entry.date || '').slice(5)
     )}`;
 
     if (/^https:\/\//i.test(String(entry.imageUrl || ''))) {
-      const imageLink = el('a', 'v3-history-image');
+      const imageLink = el('a', 'v3-history-feature-image');
       imageLink.href = historyHref;
       const image = document.createElement('img');
       image.src = entry.imageUrl;
@@ -163,16 +161,18 @@
       card.append(imageLink);
     }
 
+    const copy = el('div', 'v3-history-feature-copy');
     const year = String(entry.date || '').slice(0, 4);
-    card.append(el('span', 'v3-history-year', year || 'On this day'));
-    card.append(el('h4', 'v3-history-title', entry.title || 'MMA history'));
+    copy.append(el('span', 'v3-history-feature-year', year || 'On this day'));
+    copy.append(el('h3', 'v3-history-feature-title', entry.title || 'MMA history'));
 
     const detail = entry.detail || entry.description || '';
-    if (detail) card.append(el('p', 'v3-history-copy', detail));
+    if (detail) copy.append(el('p', 'v3-history-feature-text', detail));
 
-    const link = el('a', 'v3-history-link', 'Open history →');
+    const link = el('a', 'v3-history-feature-link', 'Open the archive →');
     link.href = historyHref;
-    card.append(link);
+    copy.append(link);
+    card.append(copy);
     historyBox.append(card);
   };
 
@@ -203,68 +203,9 @@
     }
   };
 
-  const fighterName = fighter => {
-    const name = String(fighter?.name || '').replace(/\s+/g, ' ').trim();
-    if (
-      name &&
-      !/^(search results|search|athletes|all athletes|ufc|page not found|not found)$/i.test(name)
-    ) {
-      return name;
-    }
-
-    const slug = String(fighter?.slug || fighter?.url || '')
-      .split('/')
-      .filter(Boolean)
-      .at(-1) || '';
-
-    return slug
-      .split('-')
-      .filter(Boolean)
-      .map(part => part.charAt(0).toUpperCase() + part.slice(1))
-      .join(' ') || 'Recent addition';
-  };
-
-  const renderRoster = data => {
-    if (!rosterBox) return;
-    rosterBox.replaceChildren();
-
-    const addition = Array.isArray(data?.additions) ? data.additions[0] : null;
-    const removal = Array.isArray(data?.removals) ? data.removals[0] : null;
-    const fighter = addition || removal;
-
-    if (!fighter) {
-      rosterBox.append(el('p', 'v3-loading', 'No recent roster movement available.'));
-      return;
-    }
-
-    const card = el('article', 'v3-roster-card');
-    card.append(el('span', 'v3-roster-label', addition ? 'Recent addition' : 'Recent removal'));
-    card.append(el('h4', 'v3-roster-name', fighterName(fighter)));
-
-    const details = [fighter.division, fighter.record].filter(Boolean).join(' · ');
-    if (details) card.append(el('p', 'v3-roster-meta', details));
-
-    const link = el('a', 'v3-roster-link', 'Open roster →');
-    link.href = '/ufc-roster/';
-    card.append(link);
-    rosterBox.append(card);
-  };
-
-  const loadRoster = async () => {
-    if (!rosterBox || !rosterUrl) return;
-    try {
-      const release = await fetchJson(rosterUrl);
-      const data = JSON.parse(release?.body || '{}');
-      renderRoster(data);
-    } catch {
-      renderRoster({});
-    }
-  };
-
   const start = () => {
     loadNews();
     window.setTimeout(loadHistory, 100);
-    window.setTimeout(loadRoster, 200);
   };
 
   if (document.readyState === 'loading') {
