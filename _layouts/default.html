@@ -83,15 +83,17 @@
         href="{{ '/assets/favicon.ico' | relative_url }}"
     >
 
-    <link
-        rel="preload"
-        href="{{ '/assets/generated/site/header-image-480.webp' | relative_url }}"
-        as="image"
-        type="image/webp"
-        imagesrcset="{{ '/assets/generated/site/header-image-480.webp' | relative_url }} 480w, {{ '/assets/generated/site/header-image-800.webp' | relative_url }} 800w"
-        imagesizes="min(64vw, 260px)"
-        fetchpriority="high"
-    >
+    {% unless page.url == "/homepage-v3/" %}
+        <link
+            rel="preload"
+            href="{{ '/assets/generated/site/header-image-480.webp' | relative_url }}"
+            as="image"
+            type="image/webp"
+            imagesrcset="{{ '/assets/generated/site/header-image-480.webp' | relative_url }} 480w, {{ '/assets/generated/site/header-image-800.webp' | relative_url }} 800w"
+            imagesizes="min(64vw, 260px)"
+            fetchpriority="high"
+        >
+    {% endunless %}
 
     <link
         rel="preload"
@@ -149,18 +151,22 @@
     <header class="site-header">
         <div class="logo-banner">
             <a href="{{ '/' | relative_url }}" aria-label="MMA Matlock home">
-                <img
-                    src="{{ '/assets/generated/site/header-image-480.webp' | relative_url }}"
-                    srcset="{{ '/assets/generated/site/header-image-480.webp' | relative_url }} 480w, {{ '/assets/generated/site/header-image-800.webp' | relative_url }} 800w"
-                    sizes="min(64vw, 260px)"
-                    alt="MMA Matlock"
-                    class="site-logo"
-                    width="1600"
-                    height="640"
-                    loading="eager"
-                    fetchpriority="high"
-                    decoding="async"
-                >
+                {% if page.url == "/homepage-v3/" %}
+                    <span class="v3-wordmark">MATLOCK</span>
+                {% else %}
+                    <img
+                        src="{{ '/assets/generated/site/header-image-480.webp' | relative_url }}"
+                        srcset="{{ '/assets/generated/site/header-image-480.webp' | relative_url }} 480w, {{ '/assets/generated/site/header-image-800.webp' | relative_url }} 800w"
+                        sizes="min(64vw, 260px)"
+                        alt="MMA Matlock"
+                        class="site-logo"
+                        width="1600"
+                        height="640"
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
+                    >
+                {% endif %}
             </a>
         </div>
 
