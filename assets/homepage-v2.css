@@ -4,7 +4,7 @@
 html:has([data-home-flow]),
 body:has([data-home-flow]) {
     max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: visible;
     scrollbar-width: none;
     -ms-overflow-style: none;
     overscroll-behavior-y: none;
@@ -22,6 +22,7 @@ body:has([data-home-flow])::-webkit-scrollbar {
     max-width: none;
     margin: 0;
     padding: 0;
+    overflow: visible !important;
 }
 
 .homepage-dashboard {
