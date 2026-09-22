@@ -442,6 +442,78 @@ test.describe('News V3 isolated migration', () => {
   });
 });
 
+test.describe('Breakdowns V3 isolated migration', () => {
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('preserves the live archive while the demo uses the editorial shell and working filters', async ({ page }) => {
+    await page.goto(targetUrl('/breakdowns/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('.archive-page')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('[data-editorial-v3]')).toHaveCount(0);
+    await expect(page.locator('.site-theme-toggle')).toHaveCount(0);
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+
+    await page.goto(targetUrl('/breakdowns-v3/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-editorial-v3]')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('.v3-wordmark')).toBeVisible();
+    await expect(page.locator('.site-theme-toggle')).toBeVisible();
+    await expect(page.locator('.v3-sticky-shell')).toHaveCount(1);
+    await expect(page.locator('.site-live-strip')).toBeVisible({ timeout: 10000 });
+
+    const shellPosition = await page.locator('.v3-sticky-shell').evaluate(node =>
+      getComputedStyle(node).position
+    );
+    expect(shellPosition).toBe('fixed');
+
+    await page.evaluate(() => document.fonts?.ready).catch(() => {});
+    const titleFont = await page.locator('.archive-header h1').evaluate(node =>
+      getComputedStyle(node).fontFamily
+    );
+    expect(titleFont).toContain('Herkey');
+
+    const cards = page.locator('[data-archive-card]');
+    expect(await cards.count()).toBeGreaterThan(0);
+
+    const firstCard = cards.first();
+    const radius = await firstCard.evaluate(node => getComputedStyle(node).borderRadius);
+    expect(radius).toBe('0px');
+
+    const firstTitleFont = await firstCard.locator('h2').evaluate(node =>
+      getComputedStyle(node).fontFamily
+    );
+    expect(firstTitleFont).toContain('Herkey');
+
+    const search = page.locator('[data-archive-search]');
+    await search.fill('__no_article_should_match_this__');
+    await expect(page.locator('[data-archive-status]')).toContainText('Showing 0 articles');
+    await expect(page.locator('[data-archive-empty]')).toBeVisible();
+
+    await search.fill('');
+    await expect(page.locator('[data-archive-empty]')).toBeHidden();
+
+    const overflow = await page.evaluate(() =>
+      document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(2);
+
+    await page.evaluate(() => window.scrollTo({ top: 1200, behavior: 'instant' }));
+    await page.waitForTimeout(120);
+    const fixedTop = await page.locator('.v3-sticky-shell').evaluate(node =>
+      Math.round(node.getBoundingClientRect().top)
+    );
+    expect(Math.abs(fixedTop)).toBeLessThanOrEqual(2);
+
+    await page.locator('.site-theme-toggle').click();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    const darkBackground = await page.locator('.archive-page-v3').evaluate(node =>
+      getComputedStyle(node).backgroundColor
+    );
+    expect(darkBackground).toBe('rgb(11, 11, 11)');
+
+    const robots = await page.locator('meta[name="robots"]').getAttribute('content');
+    expect(robots).toContain('noindex');
+  });
+});
+
 test.describe('Homepage V2 immersive scroll', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 

@@ -1,0 +1,357 @@
+/*
+ * Breakdowns V3 demo.
+ * Archive/filter logic is unchanged; this file only changes presentation.
+ */
+
+.archive-page-v3 {
+    width: min(calc(100% - 2rem), 1380px);
+    margin: 0 auto;
+    padding: .8rem 0 clamp(4rem, 7vw, 7rem);
+    background: var(--v3-paper);
+    color: var(--v3-ink);
+}
+
+.archive-page-v3 .archive-header {
+    max-width: none;
+    margin: 0 0 .95rem;
+    padding: .82rem 0 .72rem;
+    border-top: 3px solid var(--v3-ink);
+    border-bottom: 1px solid var(--v3-rule);
+}
+
+.archive-page-v3 .archive-header h1 {
+    margin: 0;
+    color: var(--v3-ink);
+    font-family: "Herkey", Georgia, "Times New Roman", serif;
+    font-size: clamp(2rem, 3.25vw, 3.35rem);
+    font-weight: 400;
+    line-height: .92;
+    letter-spacing: -.012em;
+    text-transform: none;
+}
+
+/* Filters read as a newspaper utility row, not a form card. */
+.archive-page-v3 .archive-tools {
+    display: grid;
+    grid-template-columns: minmax(260px, 1.55fr) minmax(150px, .65fr) minmax(130px, .55fr) auto;
+    gap: .8rem 1rem;
+    align-items: end;
+    margin: 0 0 clamp(1.8rem, 3.5vw, 3rem);
+    padding: 0 0 .9rem;
+    border: 0;
+    border-bottom: 1px solid var(--v3-rule);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.archive-page-v3 .archive-tools label {
+    display: grid;
+    gap: .32rem;
+    min-width: 0;
+}
+
+.archive-page-v3 .archive-tools label > span {
+    color: var(--v3-muted);
+    font: 800 .55rem/1 var(--v3-sans);
+    letter-spacing: .055em;
+    text-transform: uppercase;
+}
+
+.archive-page-v3 .archive-tools input,
+.archive-page-v3 .archive-tools select {
+    width: 100%;
+    min-height: 38px;
+    padding: .48rem .58rem;
+    border: 1px solid var(--v3-rule);
+    border-radius: 0;
+    background: var(--v3-paper);
+    color: var(--v3-ink);
+    font: 600 .76rem/1.2 var(--v3-sans);
+    box-shadow: none;
+}
+
+.archive-page-v3 .archive-tools input::placeholder {
+    color: var(--v3-muted);
+    opacity: .78;
+}
+
+.archive-page-v3 .archive-tools input:focus,
+.archive-page-v3 .archive-tools select:focus {
+    border-color: var(--v3-ink);
+    outline: 1px solid var(--v3-ink);
+    outline-offset: 1px;
+}
+
+.archive-page-v3 .archive-status {
+    align-self: center;
+    margin: 0 0 .05rem;
+    color: var(--v3-muted);
+    font: 700 .61rem/1.25 var(--v3-sans);
+    white-space: nowrap;
+}
+
+/* Newspaper archive: asymmetric lead row, then three-column rhythm. */
+.archive-page-v3 .article-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: clamp(2rem, 3.5vw, 3.4rem) clamp(1.3rem, 2.5vw, 2.5rem);
+    align-items: start;
+}
+
+.archive-page-v3 .article-card {
+    grid-column: span 4;
+    display: block;
+    min-width: 0;
+    overflow: visible;
+    padding-top: .75rem;
+    border: 0;
+    border-top: 1px solid var(--v3-rule);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    transition: none;
+}
+
+.archive-page-v3 .article-card:first-child {
+    grid-column: span 8;
+    padding-top: 0;
+    border-top: 0;
+}
+
+.archive-page-v3 .article-card:nth-child(2) {
+    grid-column: span 4;
+    padding-top: 0;
+    border-top: 0;
+}
+
+.archive-page-v3 .article-card:hover {
+    border-color: var(--v3-rule);
+    box-shadow: none;
+    transform: none;
+}
+
+.archive-page-v3 .article-card-image {
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--v3-paper-deep);
+}
+
+.archive-page-v3 .article-card:first-child .article-card-image {
+    aspect-ratio: 16 / 8.6;
+}
+
+.archive-page-v3 .article-card-image img {
+    filter: none;
+    transition: opacity 180ms ease;
+}
+
+.archive-page-v3 .article-card-image:hover img {
+    opacity: .94;
+    transform: none;
+}
+
+.archive-page-v3 .article-card-content {
+    display: block;
+    padding: .72rem 0 0;
+}
+
+.archive-page-v3 .article-date {
+    margin: 0 0 .42rem;
+    color: var(--v3-muted);
+    font: 800 .54rem/1.15 var(--v3-sans);
+    letter-spacing: .045em;
+    text-transform: uppercase;
+}
+
+.archive-page-v3 .article-pin {
+    margin-right: .25rem;
+    font-size: .7rem;
+}
+
+.archive-page-v3 .article-card h2,
+.archive-page-v3 .article-card h3 {
+    margin: 0;
+    color: var(--v3-ink);
+    font-family: "Herkey", Georgia, "Times New Roman", serif;
+    font-size: clamp(1.45rem, 2vw, 1.95rem);
+    font-weight: 400;
+    line-height: .98;
+    letter-spacing: -.012em;
+    text-transform: none;
+    overflow-wrap: normal;
+}
+
+.archive-page-v3 .article-card:first-child h2,
+.archive-page-v3 .article-card:first-child h3 {
+    max-width: 17ch;
+    font-size: clamp(2.3rem, 4.2vw, 4.4rem);
+    line-height: .9;
+}
+
+.archive-page-v3 .article-card:nth-child(2) h2,
+.archive-page-v3 .article-card:nth-child(2) h3 {
+    font-size: clamp(1.75rem, 2.55vw, 2.5rem);
+    line-height: .94;
+}
+
+.archive-page-v3 .article-card h2 a,
+.archive-page-v3 .article-card h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.archive-page-v3 .article-card h2 a:hover,
+.archive-page-v3 .article-card h2 a:focus-visible,
+.archive-page-v3 .article-card h3 a:hover,
+.archive-page-v3 .article-card h3 a:focus-visible {
+    color: var(--v3-ink);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+.archive-page-v3 .article-card-content > p:not(.article-date) {
+    display: -webkit-box;
+    overflow: hidden;
+    max-width: 62ch;
+    margin: .55rem 0 0;
+    color: var(--v3-muted);
+    font: 500 .82rem/1.48 var(--v3-sans);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+
+.archive-page-v3 .article-card:first-child .article-card-content > p:not(.article-date) {
+    max-width: 72ch;
+    font-size: .9rem;
+    -webkit-line-clamp: 2;
+}
+
+.archive-page-v3 .card-link {
+    display: inline-block;
+    margin: .65rem 0 0;
+    color: var(--v3-red);
+    font: 800 .57rem/1 var(--v3-sans);
+    letter-spacing: .045em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.archive-page-v3 .card-link:hover,
+.archive-page-v3 .card-link:focus-visible {
+    color: var(--v3-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.archive-page-v3 .archive-empty {
+    margin: 2rem 0 0;
+    padding: 1rem 0;
+    border: 0;
+    border-top: 1px solid var(--v3-rule);
+    border-radius: 0;
+    color: var(--v3-muted);
+}
+
+/* Same approved dark palette as homepage/news V3. */
+html[data-theme="dark"] .archive-page-v3,
+html[data-theme="dark"] .archive-page-v3 .archive-tools input,
+html[data-theme="dark"] .archive-page-v3 .archive-tools select {
+    background: var(--v3-paper);
+    color: var(--v3-ink);
+}
+
+html[data-theme="dark"] .archive-page-v3 .article-card-image {
+    background: #121212;
+}
+
+html.v3-theme-transitioning .archive-page-v3,
+html.v3-theme-transitioning .archive-page-v3 .archive-tools input,
+html.v3-theme-transitioning .archive-page-v3 .archive-tools select,
+html.v3-theme-transitioning .archive-page-v3 .article-card {
+    transition:
+        background-color 360ms ease,
+        color 360ms ease,
+        border-color 360ms ease;
+}
+
+@media (max-width: 1000px) {
+    .archive-page-v3 .archive-tools {
+        grid-template-columns: minmax(240px, 1.4fr) repeat(2, minmax(130px, .6fr));
+    }
+
+    .archive-page-v3 .archive-status {
+        grid-column: 1 / -1;
+    }
+
+    .archive-page-v3 .article-card,
+    .archive-page-v3 .article-card:first-child,
+    .archive-page-v3 .article-card:nth-child(2) {
+        grid-column: span 6;
+    }
+
+    .archive-page-v3 .article-card:first-child h2,
+    .archive-page-v3 .article-card:first-child h3 {
+        font-size: clamp(2rem, 4.8vw, 3.3rem);
+    }
+}
+
+@media (max-width: 760px) {
+    .archive-page-v3 {
+        width: min(calc(100% - 1.4rem), 1380px);
+    }
+
+    .archive-page-v3 .archive-header {
+        padding-top: .7rem;
+    }
+
+    .archive-page-v3 .archive-header h1 {
+        font-size: clamp(2rem, 9vw, 2.8rem);
+    }
+
+    .archive-page-v3 .archive-tools {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: .7rem;
+        padding: 0 0 .85rem;
+    }
+
+    .archive-page-v3 .archive-tools label:first-child,
+    .archive-page-v3 .archive-status {
+        grid-column: 1 / -1;
+    }
+
+    .archive-page-v3 .archive-tools input,
+    .archive-page-v3 .archive-tools select {
+        min-height: 42px;
+        font-size: 16px;
+    }
+
+    .archive-page-v3 .article-grid {
+        gap: 2rem 1rem;
+    }
+}
+
+@media (max-width: 580px) {
+    .archive-page-v3 .article-card,
+    .archive-page-v3 .article-card:first-child,
+    .archive-page-v3 .article-card:nth-child(2) {
+        grid-column: 1 / -1;
+    }
+
+    .archive-page-v3 .article-card:first-child .article-card-image {
+        aspect-ratio: 16 / 9;
+    }
+
+    .archive-page-v3 .article-card:first-child h2,
+    .archive-page-v3 .article-card:first-child h3 {
+        font-size: clamp(2rem, 10vw, 2.8rem);
+    }
+
+    .archive-page-v3 .article-card:nth-child(2) h2,
+    .archive-page-v3 .article-card:nth-child(2) h3 {
+        font-size: clamp(1.65rem, 8vw, 2.25rem);
+    }
+}
