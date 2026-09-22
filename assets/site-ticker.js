@@ -57,7 +57,13 @@
             </div>
         </div>
     `;
-    navigation.insertAdjacentElement("afterend", strip);
+    const immersiveHomepage = document.querySelector("[data-home-flow]");
+    const siteHeader = document.querySelector(".site-header");
+    if (immersiveHomepage && siteHeader) {
+        siteHeader.insertAdjacentElement("afterend", strip);
+    } else {
+        navigation.insertAdjacentElement("afterend", strip);
+    }
 
     const eventStack = strip.querySelector("[data-event-stack]");
     const eventPrimary = strip.querySelector("[data-event-primary]");
