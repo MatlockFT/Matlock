@@ -3,6 +3,7 @@
   if (!root) return;
 
   const newsList = root.querySelector('[data-v3-news-list]');
+  const trendingRail = root.querySelector('[data-v3-trending]');
   const historyBox = root.querySelector('[data-v3-history]');
   const rosterBox = root.querySelector('[data-v3-roster]');
 
@@ -50,9 +51,31 @@
       .slice(0, 6);
   };
 
+  const renderTrending = stories => {
+    if (!trendingRail) return;
+    trendingRail.replaceChildren();
+
+    stories.slice(0, 7).forEach((story, index) => {
+      const link = el('a', '', story.title);
+      link.href = story.url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.title = story.title;
+      const short = story.title.length > 34
+        ? `${story.title.slice(0, 31).trim()}…`
+        : story.title;
+      link.textContent = short;
+      trendingRail.append(link);
+      if (index < Math.min(stories.length, 7) - 1) {
+        trendingRail.append(el('span', 'v3-trending-separator', '|'));
+      }
+    });
+  };
+
   const renderNews = data => {
     if (!newsList) return;
     const stories = newsStories(data);
+    renderTrending(stories);
     newsList.replaceChildren();
 
     if (!stories.length) {
