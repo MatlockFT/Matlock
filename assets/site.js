@@ -38,6 +38,15 @@
         return document.querySelector("[data-globe-home]") ? "light" : "dark";
     }
 
+    function dispatchDisplayChange() {
+        window.dispatchEvent(new CustomEvent("matlock:preferences", {
+            detail: {
+                theme: root.dataset.theme || defaultTheme(),
+                reducedMotion: systemReducedMotion.matches
+            }
+        }));
+    }
+
     function syncThemeState(theme) {
         const nextTheme = theme === "light" ? "light" : "dark";
         root.dataset.theme = nextTheme;
@@ -57,6 +66,7 @@
 
         const themeColor = document.querySelector('meta[name="theme-color"]');
         if (themeColor) themeColor.setAttribute("content", nextTheme === "dark" ? "#080808" : "#fbfaf7");
+        dispatchDisplayChange();
     }
 
     const storedTheme = readPreference("matlock-theme");
@@ -68,8 +78,10 @@
         syncThemeState(nextTheme);
     });
 
+    root.classList.toggle("reduce-motion", systemReducedMotion.matches);
     systemReducedMotion.addEventListener?.("change", event => {
         root.classList.toggle("reduce-motion", event.matches);
+        dispatchDisplayChange();
     });
 
     function setupLiveTickerClock() {
