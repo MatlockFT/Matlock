@@ -20,23 +20,28 @@
         >
     {% endif %}
 
-    <meta name="theme-color" content="#080808">
-    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="{% if page.v3_text_masthead %}#fbfaf7{% else %}#080808{% endif %}">
+    <meta name="color-scheme" content="light dark">
 
     <script>
         (() => {
-            try {
-                const root = document.documentElement;
-                const readable = localStorage.getItem("matlock-readable") === "true";
-                const userReducedMotion = localStorage.getItem("matlock-reduce-motion") === "true";
-                const systemReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            const root = document.documentElement;
+            const defaultTheme = {% if page.v3_text_masthead %}"light"{% else %}"dark"{% endif %};
+            let theme = defaultTheme;
 
-                if (readable) root.classList.add("readable-mode");
-                if (userReducedMotion || systemReducedMotion) root.classList.add("reduce-motion");
+            try {
+                const storedTheme = localStorage.getItem("matlock-theme");
+                if (storedTheme === "light" || storedTheme === "dark") theme = storedTheme;
             } catch {
-                if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-                    document.documentElement.classList.add("reduce-motion");
-                }
+                // Use the page default when storage is unavailable.
+            }
+
+            root.dataset.theme = theme;
+            root.classList.toggle("dark-mode", theme === "dark");
+            root.classList.toggle("light-mode", theme === "light");
+
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+                root.classList.add("reduce-motion");
             }
         })();
     </script>
