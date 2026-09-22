@@ -183,6 +183,44 @@ for (const viewport of viewports) {
 
 
 
+test.describe('Homepage V3 editorial shell', () => {
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('uses the real logo, full-width navigation and ticker, and a clean trending rail', async ({ page }) => {
+    const pageErrors = [];
+    page.on('pageerror', error => pageErrors.push(error.message));
+
+    await page.goto(targetUrl('/homepage-v3/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-globe-home]')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('.site-logo')).toBeVisible();
+    await expect(page.locator('.v3-trending')).toBeVisible();
+    await page.waitForTimeout(350);
+
+    const geometry = await page.evaluate(() => {
+      const nav = document.querySelector('.navigation-inner')?.getBoundingClientRect();
+      const ticker = document.querySelector('.site-live-strip-inner')?.getBoundingClientRect();
+      const eventName = document.querySelector('.site-event-primary-name');
+      return {
+        viewport: document.documentElement.clientWidth,
+        navWidth: Math.round(nav?.width || 0),
+        tickerWidth: Math.round(ticker?.width || 0),
+        eventColor: eventName ? getComputedStyle(eventName).color : null,
+        pageText: document.querySelector('[data-globe-home]')?.textContent || ''
+      };
+    });
+
+    expect(geometry.navWidth).toBeGreaterThanOrEqual(geometry.viewport - 4);
+    expect(geometry.tickerWidth).toBeGreaterThanOrEqual(geometry.viewport - 4);
+    expect(geometry.eventColor).not.toBe('rgb(255, 255, 255)');
+    expect(geometry.pageText).not.toContain('EST. 2026');
+    expect(geometry.pageText).not.toContain('Fight Talk');
+    expect(geometry.pageText).not.toContain('Lead story');
+
+    await expect(page.locator('[data-v3-trending] a').first()).toBeVisible({ timeout: 10000 });
+    expect(pageErrors).toEqual([]);
+  });
+});
+
 test.describe('Homepage V2 immersive scroll', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 
