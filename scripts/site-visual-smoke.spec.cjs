@@ -8,6 +8,7 @@ const SCREENSHOT_DIR = process.env.VISUAL_SMOKE_DIR || 'artifacts/site-visual-sm
 const pages = [
   { slug: 'home', path: '/', ready: '.homepage-dashboard' },
   { slug: 'homepage-v2', path: '/homepage-v2/', ready: '[data-home-flow]' },
+  { slug: 'homepage-v3', path: '/homepage-v3/', ready: '[data-globe-home]' },
   { slug: 'news', path: '/news/', ready: '.news-page' },
   { slug: 'fight-cards', path: '/upcoming-events/', ready: '.upcoming-events-page' },
   { slug: 'event-map', path: '/event-map/', ready: '.event-map-page' },

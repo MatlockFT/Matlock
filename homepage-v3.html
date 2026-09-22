@@ -1,0 +1,227 @@
+---
+layout: default
+title: "MMA Matlock — Editorial Homepage Test"
+description: "A newspaper-style MMA Matlock homepage test focused on editorial hierarchy, current stories, live news, fight tools, and MMA history."
+permalink: /homepage-v3/
+ads: false
+noindex: true
+sitemap: false
+page_styles:
+  - /assets/homepage-v3.css
+page_scripts:
+  - /assets/homepage-v3.js
+---
+
+{% assign homepage_posts = "" | split: "" %}
+{% for post in site.posts %}
+  {% assign visibility = post.listing_visibility | default: "normal" %}
+  {% unless visibility == "hide-home" or visibility == "direct-only" %}
+    {% assign homepage_posts = homepage_posts | push: post %}
+  {% endunless %}
+{% endfor %}
+
+{% assign lead_post = homepage_posts.first %}
+{% assign side_posts = homepage_posts | slice: 1, 2 %}
+{% assign feature_posts = homepage_posts | slice: 3, 3 %}
+{% assign more_posts = homepage_posts | slice: 6, 5 %}
+{% assign homepage_data_version = site.time | date: "%s" %}
+
+<div
+  class="v3-home"
+  data-globe-home
+  data-news-url="https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-news.json"
+  data-news-fallback-url="{{ '/assets/data/mma-news.json' | relative_url }}?v={{ site.asset_version }}"
+  data-history-url="{{ '/assets/data/on-this-day-home.json' | relative_url }}?v={{ homepage_data_version }}"
+  data-history-runtime-base="{{ '/assets/data/on-this-day-runtime/' | relative_url }}"
+  data-roster-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/ufc-roster-data"
+>
+  <div class="v3-edition">
+    <span>EST. 2026</span>
+    <span>{{ site.time | date: "%A, %B %-d, %Y" }}</span>
+    <span>INDEPENDENT MMA COVERAGE</span>
+  </div>
+
+  <div class="v3-masthead" aria-label="MMA Matlock">
+    <span class="v3-masthead-main">MMA MATLOCK</span>
+    <span class="v3-masthead-sub">Fight Talk</span>
+  </div>
+
+  <div class="v3-rule v3-rule-double" aria-hidden="true"></div>
+
+  {% if lead_post %}
+    {% assign lead_image = lead_post.image.path | default: lead_post.image %}
+    {% assign lead_alt = lead_post.image.alt | default: lead_post.image_alt | default: lead_post.title %}
+    {% assign lead_responsive = site.data.responsive_images[lead_image] %}
+    {% assign lead_src = lead_responsive.src | default: lead_image %}
+    {% assign lead_width = lead_responsive.width | default: lead_post.image.width %}
+    {% assign lead_height = lead_responsive.height | default: lead_post.image.height %}
+
+    <main class="v3-front" aria-label="MMA Matlock front page">
+      <aside class="v3-left-rail" aria-label="More recent stories">
+        <div class="v3-rail-label">Latest analysis</div>
+        {% for post in side_posts %}
+          <article class="v3-rail-story">
+            <p class="v3-label">{{ post.date | date: "%b %-d" }}</p>
+            <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+            {% if post.description %}
+              <p class="v3-summary">{{ post.description | strip_html | truncate: 135 }}</p>
+            {% elsif post.excerpt %}
+              <p class="v3-summary">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 135 }}</p>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </aside>
+
+      <article class="v3-lead">
+        <p class="v3-label v3-label-red">Lead story</p>
+        <h1><a href="{{ lead_post.url | relative_url }}">{{ lead_post.title }}</a></h1>
+        {% if lead_post.description %}
+          <p class="v3-lead-deck">{{ lead_post.description | strip_html | truncate: 225 }}</p>
+        {% elsif lead_post.excerpt %}
+          <p class="v3-lead-deck">{{ lead_post.excerpt | strip_html | normalize_whitespace | truncate: 225 }}</p>
+        {% endif %}
+
+        {% if lead_image %}
+          <a class="v3-lead-image" href="{{ lead_post.url | relative_url }}" aria-label="Read {{ lead_post.title | escape }}">
+            <img
+              src="{{ lead_src | relative_url }}"
+              {% if lead_responsive.srcset %}
+                srcset="{{ lead_responsive.srcset }}"
+                sizes="(min-width: 1100px) 55vw, 100vw"
+              {% endif %}
+              alt="{{ lead_alt | escape }}"
+              {% if lead_width %}width="{{ lead_width }}"{% endif %}
+              {% if lead_height %}height="{{ lead_height }}"{% endif %}
+              fetchpriority="high"
+              decoding="async"
+              data-hide-broken
+            >
+          </a>
+        {% endif %}
+
+        <div class="v3-byline">
+          <span>By MMA Matlock</span>
+          <time datetime="{{ lead_post.date | date_to_xmlschema }}">{{ lead_post.date | date: "%B %-d, %Y" }}</time>
+        </div>
+      </article>
+
+      <aside class="v3-right-rail" aria-labelledby="v3-latest-title">
+        <div class="v3-rail-head">
+          <h2 id="v3-latest-title">Latest</h2>
+          <a href="{{ '/news/' | relative_url }}">All news</a>
+        </div>
+        <div class="v3-news-list" data-v3-news-list>
+          <p class="v3-loading">Loading latest MMA news…</p>
+        </div>
+      </aside>
+    </main>
+  {% endif %}
+
+  <section class="v3-section" aria-labelledby="v3-breakdowns-title">
+    <header class="v3-section-head">
+      <h2 id="v3-breakdowns-title">Breakdowns & Commentary</h2>
+      <a href="{{ '/breakdowns/' | relative_url }}">View all</a>
+    </header>
+
+    <div class="v3-feature-grid">
+      {% for post in feature_posts %}
+        {% assign post_image = post.image.path | default: post.image %}
+        {% assign post_alt = post.image.alt | default: post.image_alt | default: post.title %}
+        {% assign post_responsive = site.data.responsive_images[post_image] %}
+        {% assign post_src = post_responsive.src | default: post_image %}
+
+        <article class="v3-feature">
+          {% if post_image %}
+            <a class="v3-feature-image" href="{{ post.url | relative_url }}">
+              <img
+                src="{{ post_src | relative_url }}"
+                {% if post_responsive.srcset %}
+                  srcset="{{ post_responsive.srcset }}"
+                  sizes="(min-width: 900px) 32vw, 100vw"
+                {% endif %}
+                alt="{{ post_alt | escape }}"
+                loading="lazy"
+                decoding="async"
+                data-hide-broken
+              >
+            </a>
+          {% endif %}
+          <p class="v3-label">{{ post.date | date: "%b %-d" }}</p>
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          {% if post.description %}
+            <p class="v3-summary">{{ post.description | strip_html | truncate: 145 }}</p>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="v3-section v3-desk" aria-labelledby="v3-desk-title">
+    <header class="v3-section-head">
+      <h2 id="v3-desk-title">Fight Night Desk</h2>
+      <span class="v3-section-note">Tools, schedules and live context</span>
+    </header>
+
+    <div class="v3-desk-grid">
+      <div class="v3-tool-column">
+        <a class="v3-tool-row" href="{{ '/upcoming-events/' | relative_url }}">
+          <span class="v3-tool-name">Fight Cards</span>
+          <span class="v3-tool-copy">Upcoming events, timing, picks and card details.</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        <a class="v3-tool-row" href="{{ '/event-map/' | relative_url }}">
+          <span class="v3-tool-name">Event Map</span>
+          <span class="v3-tool-copy">Find combat sports events by location.</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        <a class="v3-tool-row" href="{{ '/matchmaker/' | relative_url }}">
+          <span class="v3-tool-name">Matchmaker</span>
+          <span class="v3-tool-copy">Build and explore possible UFC matchups.</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <aside class="v3-history" aria-labelledby="v3-history-title">
+        <div class="v3-mini-head">
+          <h3 id="v3-history-title">On This Day</h3>
+          <a href="{{ '/on-this-day/' | relative_url }}">Archive</a>
+        </div>
+        <div data-v3-history>
+          <p class="v3-loading">Loading MMA history…</p>
+        </div>
+      </aside>
+
+      <aside class="v3-roster" aria-labelledby="v3-roster-title">
+        <div class="v3-mini-head">
+          <h3 id="v3-roster-title">Roster Watch</h3>
+          <a href="{{ '/ufc-roster/' | relative_url }}">Full roster</a>
+        </div>
+        <div data-v3-roster>
+          <p class="v3-loading">Loading roster movement…</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  {% if more_posts and more_posts.size > 0 %}
+    <section class="v3-section v3-more" aria-labelledby="v3-more-title">
+      <header class="v3-section-head">
+        <h2 id="v3-more-title">More From Matlock</h2>
+      </header>
+
+      <div class="v3-more-list">
+        {% for post in more_posts %}
+          <article class="v3-more-story">
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d" }}</time>
+            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            {% if post.description %}
+              <p>{{ post.description | strip_html | truncate: 155 }}</p>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  <div class="v3-end-rule" aria-hidden="true"></div>
+</div>
