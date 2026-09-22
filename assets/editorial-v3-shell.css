@@ -1,0 +1,23 @@
+/*
+ * Editorial V3 shell.
+ *
+ * Migration pages opt into the exact approved homepage V3 shell without
+ * modifying the legacy/global site skin. Keep page-specific layout in its own
+ * V3 stylesheet. The homepage assets are treated as the frozen visual reference.
+ */
+@import url("/assets/homepage-v3.css?v=160");
+@import url("/assets/homepage-v3-refresh.css?v=160");
+
+body:has([data-editorial-v3]) .site-main {
+    min-height: 60vh;
+}
+
+body:has([data-editorial-v3]) [data-editorial-v3] {
+    color: var(--v3-ink);
+    font-family: var(--v3-sans);
+}
+
+body:has([data-editorial-v3]) [data-editorial-v3] a:focus-visible {
+    outline: 2px solid var(--v3-red);
+    outline-offset: 3px;
+}

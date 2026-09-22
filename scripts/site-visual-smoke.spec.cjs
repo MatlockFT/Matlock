@@ -374,6 +374,72 @@ test.describe('Homepage V3 editorial shell', () => {
   });
 });
 
+
+test.describe('News V3 isolated migration', () => {
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('keeps live News legacy while the demo opts into the approved editorial shell', async ({ page }) => {
+    await page.goto(targetUrl('/news/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('.news-page')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('[data-editorial-v3]')).toHaveCount(0);
+    await expect(page.locator('.site-theme-toggle')).toHaveCount(0);
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+
+    await page.goto(targetUrl('/news-v3/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-editorial-v3]')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('.v3-wordmark')).toBeVisible();
+    await expect(page.locator('.site-theme-toggle')).toBeVisible();
+    await expect(page.locator('.v3-sticky-shell')).toHaveCount(1);
+    await expect(page.locator('.v3-sticky-shell > .site-navigation')).toHaveCount(1);
+    await expect(page.locator('.site-live-strip')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.v3-sticky-shell > .site-live-strip')).toHaveCount(1);
+
+    const shellPosition = await page.locator('.v3-sticky-shell').evaluate(node =>
+      getComputedStyle(node).position
+    );
+    expect(shellPosition).toBe('fixed');
+
+    await page.evaluate(() => document.fonts?.ready).catch(() => {});
+    const titleFont = await page.locator('.news-page-heading h1').evaluate(node =>
+      getComputedStyle(node).fontFamily
+    );
+    expect(titleFont).toContain('Herkey');
+
+    await expect(page.locator('.news-lead-card')).toBeVisible({ timeout: 15000 });
+    const leadRadius = await page.locator('.news-lead-card').evaluate(node =>
+      getComputedStyle(node).borderRadius
+    );
+    expect(leadRadius).toBe('0px');
+
+    const cardRadius = await page.locator('.news-card').first().evaluate(node =>
+      getComputedStyle(node).borderRadius
+    );
+    expect(cardRadius).toBe('0px');
+
+    const overflow = await page.evaluate(() =>
+      document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(2);
+
+    await page.evaluate(() => window.scrollTo({ top: 1200, behavior: 'instant' }));
+    await page.waitForTimeout(120);
+    const fixedTop = await page.locator('.v3-sticky-shell').evaluate(node =>
+      Math.round(node.getBoundingClientRect().top)
+    );
+    expect(Math.abs(fixedTop)).toBeLessThanOrEqual(2);
+
+    await page.locator('.site-theme-toggle').click();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    const darkBackground = await page.locator('.news-page-v3').evaluate(node =>
+      getComputedStyle(node).backgroundColor
+    );
+    expect(darkBackground).toBe('rgb(11, 11, 11)');
+
+    const robots = await page.locator('meta[name="robots"]').getAttribute('content');
+    expect(robots).toContain('noindex');
+  });
+});
+
 test.describe('Homepage V2 immersive scroll', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 
