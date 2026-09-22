@@ -1,24 +1,24 @@
 {
   "schema_version": 1,
   "source_totals": {
-    "major": 10,
+    "major": 11,
     "regional": 108
   },
   "map_totals": {
     "mapped": 109,
-    "quarantined": 9
+    "quarantined": 10
   },
   "source_precision": {
     "venue": 0,
     "source-coordinates": 0,
     "city": 109,
     "structured": 0,
-    "unresolved": 9
+    "unresolved": 10
   },
   "mapped_precision": {
     "city": 109
   },
-  "unresolved_count": 9,
+  "unresolved_count": 10,
   "unresolved": [
     {
       "id": "ufc-fight-night-2026-09-26-fight-card",
@@ -90,6 +90,14 @@
       "date": "2026-11-08",
       "promotion": "RIZIN",
       "venue": "LaLa arena TOKYO-BAY",
+      "dataset": "major"
+    },
+    {
+      "id": "ufc-2026-11-14-polymarket-ufc-334",
+      "title": "Polymarket UFC 334",
+      "date": "2026-11-14",
+      "promotion": "UFC",
+      "venue": "Venue TBA",
       "dataset": "major"
     }
   ],
@@ -190,6 +198,17 @@
       "date": "2026-11-08",
       "promotion": "RIZIN",
       "venue": "LaLa arena TOKYO-BAY",
+      "location": "",
+      "country": "",
+      "kind": "major",
+      "reason": "unresolved-us-location"
+    },
+    {
+      "id": "ufc-2026-11-14-polymarket-ufc-334",
+      "title": "Polymarket UFC 334",
+      "date": "2026-11-14",
+      "promotion": "UFC",
+      "venue": "Venue TBA",
       "location": "",
       "country": "",
       "kind": "major",

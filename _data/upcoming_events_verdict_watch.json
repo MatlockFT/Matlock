@@ -30,13 +30,13 @@
       "verdict_event_id": "1959",
       "verdict_url": "https://verdictmma.com/event/1959",
       "verdict_date": "2026-09-26",
-      "local_fight_count": 11,
+      "local_fight_count": 12,
       "verdict_fight_count": 11,
-      "local_main_count": 6,
+      "local_main_count": 5,
       "verdict_main_count": 6,
-      "local_prelim_count": 5,
+      "local_prelim_count": 7,
       "verdict_prelim_count": 5,
-      "confirmed_local_bouts": 10
+      "confirmed_local_bouts": 9
     },
     {
       "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
@@ -100,9 +100,9 @@
       "verdict_date": "2026-10-17",
       "local_fight_count": 12,
       "verdict_fight_count": 11,
-      "local_main_count": 12,
+      "local_main_count": 5,
       "verdict_main_count": 5,
-      "local_prelim_count": 0,
+      "local_prelim_count": 7,
       "verdict_prelim_count": 6,
       "confirmed_local_bouts": 11
     },
@@ -173,6 +173,23 @@
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
       "confirmed_local_bouts": 2
+    },
+    {
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "promotion": "ufc",
+      "date": "2026-11-14",
+      "title": "Polymarket UFC 334",
+      "status": "event_matched_card_unreadable",
+      "verdict_event_id": "1970",
+      "verdict_url": "https://verdictmma.com/event/1970",
+      "verdict_date": "2026-11-14",
+      "local_fight_count": 12,
+      "verdict_fight_count": null,
+      "local_main_count": 12,
+      "verdict_main_count": null,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": null,
+      "confirmed_local_bouts": null
     }
   ],
   "discrepancies": [
@@ -353,14 +370,50 @@
       ]
     },
     {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "local_fight_count": 12,
+      "verdict_fight_count": 11
+    },
+    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-09-26-fight-card",
       "verdict_event_id": "1959",
-      "order": 9,
+      "order": 10,
       "fighters": [
         "John Castaneda",
         "Alatengheili"
       ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 11,
+      "fighters": [
+        "Mickey Gall",
+        "Sedriques Dumas"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "order": 4,
+      "fighters": [
+        "Melissa Amaya",
+        "Tina Black"
+      ]
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "local_main_count": 5,
+      "verdict_main_count": 6,
+      "local_prelim_count": 7,
+      "verdict_prelim_count": 5
     },
     {
       "type": "bout_count_mismatch",
@@ -373,7 +426,7 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
       "verdict_event_id": "1936",
-      "order": 2,
+      "order": 6,
       "fighters": [
         "Cody Chovancek",
         "SuYoung You"
@@ -383,9 +436,9 @@
       "type": "section_count_mismatch",
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
       "verdict_event_id": "1936",
-      "local_main_count": 12,
+      "local_main_count": 5,
       "verdict_main_count": 5,
-      "local_prelim_count": 0,
+      "local_prelim_count": 7,
       "verdict_prelim_count": 6
     },
     {
