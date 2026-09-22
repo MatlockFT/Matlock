@@ -1409,10 +1409,6 @@ html body:has([data-globe-home]) .site-event-stack.is-open .site-event-primary {
     font-display: swap;
 }
 
-body:has([data-globe-home]) {
-    --v3-display: "Edition Matlock", Georgia, "Times New Roman", serif;
-}
-
 body:has([data-globe-home]) .logo-banner {
     min-height: clamp(118px, 13vw, 176px);
     padding: 1.2rem 1rem 1rem;
@@ -1425,28 +1421,10 @@ body:has([data-globe-home]) .logo-banner > a {
 
 .v3-wordmark {
     display: block;
-    font-family: var(--v3-display);
+    font-family: "Edition Matlock", Georgia, "Times New Roman", serif;
     font-size: clamp(5rem, 9.4vw, 9.2rem);
     font-weight: 400;
     line-height: .72;
-    letter-spacing: .005em;
-    text-transform: uppercase;
-}
-
-.v3-lead h1 {
-    max-width: 11.5ch;
-    font-family: var(--v3-display);
-    font-size: clamp(3.55rem, 5.9vw, 6rem);
-    font-weight: 400;
-    line-height: .84;
-    letter-spacing: .002em;
-}
-
-.v3-section-head h2 {
-    font-family: var(--v3-display);
-    font-size: clamp(2.8rem, 4vw, 4.6rem);
-    font-weight: 400;
-    line-height: .84;
     letter-spacing: .005em;
     text-transform: uppercase;
 }
@@ -1523,13 +1501,13 @@ body:has([data-globe-home]) .logo-banner > a {
 }
 
 .v3-history-feature-title {
-    max-width: 14ch;
+    max-width: 16ch;
     margin: 0;
-    font-family: var(--v3-display);
-    font-size: clamp(2.5rem, 4.2vw, 4.7rem);
-    font-weight: 400;
-    line-height: .86;
-    letter-spacing: .004em;
+    font-family: var(--v3-serif);
+    font-size: clamp(1.9rem, 3vw, 3.1rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -.025em;
     text-wrap: balance;
 }
 
@@ -1652,10 +1630,6 @@ html body:has([data-globe-home]) .site-event-more {
         font-size: clamp(4.6rem, 17vw, 7.2rem);
     }
 
-    .v3-lead h1 {
-        font-size: clamp(3.2rem, 10.5vw, 5rem);
-    }
-
     .v3-history-feature-card {
         grid-template-columns: 1fr;
         gap: 1.2rem;
@@ -1686,14 +1660,6 @@ html body:has([data-globe-home]) .site-event-more {
 
     .v3-wordmark {
         font-size: clamp(4rem, 22vw, 6rem);
-    }
-
-    .v3-lead h1 {
-        font-size: clamp(3rem, 15vw, 4.45rem);
-    }
-
-    .v3-section-head h2 {
-        font-size: clamp(2.5rem, 12vw, 3.7rem);
     }
 
     .v3-more-list {
