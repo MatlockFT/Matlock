@@ -2430,6 +2430,104 @@ html.reduce-motion .mma-gallery-image-button:hover img {
     }
 }
 
+
+/* =========================================================
+   THEME TOGGLE
+   ========================================================= */
+
+.site-theme-control {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-left: .6rem;
+    border-left: 1px solid var(--border);
+}
+
+.site-theme-toggle {
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+    gap: .42rem;
+    padding: .38rem .48rem;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font: 800 .63rem/1 Arial, Helvetica, sans-serif;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+
+.site-theme-toggle:hover,
+.site-theme-toggle:focus-visible {
+    color: var(--text);
+}
+
+.site-theme-toggle-track {
+    position: relative;
+    display: inline-block;
+    width: 31px;
+    height: 17px;
+    border: 1px solid var(--border-bright);
+    border-radius: 999px;
+    background: var(--surface-raised);
+}
+
+.site-theme-toggle-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--muted);
+    transition: transform 160ms ease, background-color 160ms ease;
+}
+
+.site-theme-toggle[aria-pressed="true"] .site-theme-toggle-knob {
+    background: var(--text);
+    transform: translateX(14px);
+}
+
+@media (min-width: 851px) {
+    .navigation-panel .site-theme-control {
+        position: static;
+        grid-column: 3;
+        justify-self: end;
+    }
+}
+
+@media (max-width: 850px) {
+    .site-theme-control {
+        padding: .85rem .75rem;
+        border-top: 1px solid var(--border);
+        border-left: 0;
+    }
+}
+
+html[data-theme="light"] body {
+    background: var(--background);
+    color: var(--text);
+}
+
+html[data-theme="light"] .site-header,
+html[data-theme="light"] .site-footer,
+html[data-theme="light"] .navigation-panel {
+    background: var(--surface);
+    color: var(--text);
+}
+
+html[data-theme="light"] .navigation-list a,
+html[data-theme="light"] .mobile-brand,
+html[data-theme="light"] .navigation-toggle {
+    color: var(--text);
+}
+
+html[data-theme="light"] .navigation-toggle {
+    background: var(--surface);
+    border-color: var(--border-bright);
+}
+
 /* Source: assets/site-ticker.css */
 /* =========================================================
    SITE-WIDE LIVE EVENT + NEWS TICKER

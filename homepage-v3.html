@@ -8,6 +8,7 @@ noindex: true
 sitemap: false
 v3_text_masthead: true
 page_styles:
+  - /assets/homepage-v3-fonts.css
   - /assets/homepage-v3.css
 page_scripts:
   - /assets/homepage-v3.js
@@ -34,6 +35,7 @@ page_scripts:
   data-news-fallback-url="{{ '/assets/data/mma-news.json' | relative_url }}?v={{ site.asset_version }}"
   data-history-url="{{ '/assets/data/on-this-day-home.json' | relative_url }}?v={{ homepage_data_version }}"
   data-history-runtime-base="{{ '/assets/data/on-this-day-runtime/' | relative_url }}"
+  data-verdict-profile-url="https://verdictmma.com/profile/MMAMatlock"
 >
   <div class="v3-trending" aria-label="Trending">
     <strong>Trending:</strong>
@@ -41,6 +43,38 @@ page_scripts:
       <span>Loading…</span>
     </div>
   </div>
+
+  <section class="v3-verdict" aria-labelledby="v3-verdict-title">
+    <div class="v3-verdict-head">
+      <h2 id="v3-verdict-title">Verdict Picks</h2>
+      <div class="v3-verdict-meta">
+        <span>785 career predictions</span>
+        <a href="https://verdictmma.com/profile/MMAMatlock" target="_blank" rel="noopener noreferrer">@MMAMatlock ↗</a>
+      </div>
+    </div>
+
+    <div class="v3-verdict-grid">
+      <article class="v3-verdict-card" data-verdict-upcoming>
+        <span class="v3-verdict-status">Upcoming</span>
+        <div>
+          <h3>DWCS: Season 10, Week 7</h3>
+          <p>Sep 22 · Las Vegas · 5 fights</p>
+        </div>
+        <strong data-verdict-upcoming-state>Upcoming card</strong>
+        <a href="https://verdictmma.com/event/dwcs-10w7-dana-whites-contender-series-season-10-week-7" target="_blank" rel="noopener noreferrer">Open card ↗</a>
+      </article>
+
+      <article class="v3-verdict-card" data-verdict-recent>
+        <span class="v3-verdict-status">Latest completed</span>
+        <div>
+          <h3>UFC 331: Van vs. Pantoja 2</h3>
+          <p>Sep 19 · Los Angeles</p>
+        </div>
+        <strong>Recent card</strong>
+        <a href="https://verdictmma.com/event/ufc--331-van-vs-pantoja-2" target="_blank" rel="noopener noreferrer">View on Verdict ↗</a>
+      </article>
+    </div>
+  </section>
 
   {% if lead_post %}
     {% assign lead_image = lead_post.image.path | default: lead_post.image %}

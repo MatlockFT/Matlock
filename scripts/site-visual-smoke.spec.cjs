@@ -196,6 +196,19 @@ test.describe('Homepage V3 editorial shell', () => {
     await expect(page.locator('.site-logo')).toHaveCount(0);
     await expect(page.locator('.v3-trending')).toBeVisible();
     await expect(page.locator('.site-live-strip-inner')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.site-theme-toggle')).toBeVisible();
+    await expect(page.locator('[data-readability-toggle]')).toHaveCount(0);
+    await expect(page.locator('[data-motion-toggle]')).toHaveCount(0);
+    await page.evaluate(() => document.fonts?.ready).catch(() => {});
+    const afficherLoaded = await page.evaluate(async () => {
+      try {
+        await document.fonts.load('700 32px "LT Afficher Neue Display"');
+        return document.fonts.check('700 32px "LT Afficher Neue Display"');
+      } catch {
+        return false;
+      }
+    });
+    expect(afficherLoaded).toBe(true);
     await page.waitForTimeout(200);
 
     const geometry = await page.evaluate(() => {
@@ -210,6 +223,8 @@ test.describe('Homepage V3 editorial shell', () => {
       const sectionHeading = document.querySelector('.v3-section-head h2');
       const historyTitle = document.querySelector('.v3-history-feature-title');
       const trendRect = trending?.getBoundingClientRect();
+      const navLink = document.querySelector('.navigation-list a');
+      const trendLink = document.querySelector('[data-v3-trending] a');
       return {
         viewport: document.documentElement.clientWidth,
         navWidth: Math.round(nav?.width || 0),
@@ -224,6 +239,10 @@ test.describe('Homepage V3 editorial shell', () => {
         sectionFont: sectionHeading ? getComputedStyle(sectionHeading).fontFamily : null,
         historyFont: historyTitle ? getComputedStyle(historyTitle).fontFamily : null,
         wordmarkFont: wordmark ? getComputedStyle(wordmark).fontFamily : null,
+        navPosition: getComputedStyle(document.querySelector('.site-navigation')).position,
+        tickerPosition: getComputedStyle(document.querySelector('.site-live-strip')).position,
+        navTransform: navLink ? getComputedStyle(navLink).textTransform : null,
+        trendingTransform: trendLink ? getComputedStyle(trendLink).textTransform : null,
         pageText: document.querySelector('[data-globe-home]')?.textContent || ''
       };
     });
@@ -236,9 +255,16 @@ test.describe('Homepage V3 editorial shell', () => {
     expect(geometry.leadTitleAlign).toBe('left');
     expect(geometry.leadDeckAlign).toBe('left');
     expect(geometry.wordmarkFont).toContain('Edition Matlock');
+    expect(geometry.leadFont).toContain('LT Afficher Neue Display');
+    expect(geometry.sectionFont).toContain('LT Afficher Neue Display');
+    expect(geometry.historyFont).toContain('LT Afficher Neue Display');
     expect(geometry.leadFont).not.toContain('Edition Matlock');
     expect(geometry.sectionFont).not.toContain('Edition Matlock');
     expect(geometry.historyFont).not.toContain('Edition Matlock');
+    expect(geometry.navPosition).toBe('static');
+    expect(geometry.tickerPosition).toBe('static');
+    expect(geometry.navTransform).toBe('uppercase');
+    expect(geometry.trendingTransform).toBe('uppercase');
     expect(geometry.pageText).not.toContain('EST. 2026');
     expect(geometry.pageText).not.toContain('Fight Talk');
     expect(geometry.pageText).not.toContain('Lead story');
@@ -249,7 +275,30 @@ test.describe('Homepage V3 editorial shell', () => {
     await expect(page.locator('.v3-rail-image')).toHaveCount(2);
     await expect(page.locator('.v3-history-feature-card')).toBeVisible({ timeout: 10000 });
     await expect(page.locator('.v3-history-feature-image')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.v3-verdict-card')).toHaveCount(2);
     await expect(page.locator('.v3-utility-strip a')).toHaveCount(4);
+    await expect(page.locator('.v3-footer-grid section')).toHaveCount(4);
+
+    await expect.poll(async () => page.locator('.v3-history-feature-image img').evaluate(img =>
+      Boolean(img.complete && img.naturalWidth > 0 && img.naturalHeight > 0)
+    ), { timeout: 10000 }).toBe(true);
+
+    const historyImageRatio = await page.locator('.v3-history-feature-image img').evaluate(img => {
+      const rect = img.getBoundingClientRect();
+      return {
+        natural: img.naturalWidth / img.naturalHeight,
+        rendered: rect.width / rect.height
+      };
+    });
+    expect(Math.abs(historyImageRatio.natural - historyImageRatio.rendered)).toBeLessThan(0.03);
+
+    const initialTheme = await page.locator('html').getAttribute('data-theme');
+    expect(initialTheme).toBe('light');
+    await page.locator('.site-theme-toggle').click();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    await expect(page.locator('.site-theme-toggle')).toHaveAttribute('aria-pressed', 'true');
+    await page.locator('.site-theme-toggle').click();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
 
     const tickerBottom = await page.locator('.site-live-strip').evaluate(node =>
       Math.round(node.getBoundingClientRect().bottom)

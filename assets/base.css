@@ -46,7 +46,7 @@
 html {
     min-height: 100%;
     background: var(--background);
-    color-scheme: dark;
+    color-scheme: light dark;
     scroll-behavior: smooth;
 }
 
@@ -84,7 +84,7 @@ a {
 }
 
 a:hover {
-    color: #ffffff;
+    color: var(--text);
 }
 
 a:focus-visible,
@@ -115,14 +115,14 @@ select:focus-visible {
 /* Header */
 
 .site-header {
-    background: #050505;
+    background: var(--surface);
 }
 
 .logo-banner {
     display: flex;
     justify-content: center;
     padding: 0.7rem 1.5rem;
-    border-bottom: 1px solid #202020;
+    border-bottom: 1px solid var(--border);
 }
 
 .logo-banner a {
@@ -141,7 +141,7 @@ select:focus-visible {
     top: 0;
     z-index: 100;
     border-bottom: 1px solid var(--border);
-    background: rgba(12, 12, 12, 0.96);
+    background: color-mix(in srgb, var(--surface) 96%, transparent);
     backdrop-filter: blur(var(--nav-blur));
 }
 
@@ -155,7 +155,7 @@ select:focus-visible {
 
 .mobile-brand {
     display: none;
-    color: #ffffff;
+    color: var(--text);
     font-family: var(--font-display);
     font-size: 1.35rem;
     text-decoration: none;
@@ -168,7 +168,7 @@ select:focus-visible {
     border: 1px solid var(--border-bright);
     border-radius: var(--radius-small);
     background: var(--surface);
-    color: #ffffff;
+    color: var(--text);
     font-weight: 700;
     cursor: pointer;
 }
@@ -200,12 +200,12 @@ select:focus-visible {
 
 .navigation-list a:hover,
 .navigation-list a:focus-visible {
-    color: #ffffff;
+    color: var(--text);
 }
 
 .navigation-list a[aria-current="page"] {
     border-bottom-color: var(--accent);
-    color: #ffffff;
+    color: var(--text);
 }
 
 /* Main */
@@ -257,14 +257,14 @@ select:focus-visible {
 .secondary-button {
     border: 1px solid var(--border-bright);
     background: var(--surface-raised);
-    color: #ffffff;
+    color: var(--text);
 }
 
 .secondary-button:hover,
 .secondary-button:focus-visible {
     border-color: var(--accent);
     background: rgba(255, 74, 84, 0.1);
-    color: #ffffff;
+    color: var(--text);
 }
 
 /* Featured article */
@@ -347,7 +347,7 @@ select:focus-visible {
 }
 
 .featured-content h2 a:hover {
-    color: #ffffff;
+    color: var(--text);
 }
 
 .featured-description {
@@ -509,7 +509,7 @@ select:focus-visible {
 
 .article-card h2 a:hover,
 .article-card h3 a:hover {
-    color: #ffffff;
+    color: var(--text);
 }
 
 .article-card-content > p:not(.article-date) {
@@ -671,7 +671,7 @@ select:focus-visible {
 
 .post-body h2 {
     margin: 2.8rem 0 1rem;
-    color: #ffffff;
+    color: var(--text);
     font-size: clamp(2rem, 4vw, 3rem);
 }
 
@@ -880,7 +880,7 @@ select:focus-visible {
 .platform-card:hover {
     border-color: var(--accent);
     background: var(--surface-raised);
-    color: #ffffff;
+    color: var(--text);
     transform: translateY(-3px);
 }
 
@@ -913,7 +913,7 @@ select:focus-visible {
 }
 
 .platform-card strong {
-    color: #ffffff;
+    color: var(--text);
     overflow-wrap: anywhere;
 }
 
@@ -949,7 +949,7 @@ select:focus-visible {
 
 .footer-column h2 {
     margin: 0 0 0.9rem;
-    color: #ffffff;
+    color: var(--text);
     font-family: var(--font-display);
     font-size: 1.3rem;
     text-transform: uppercase;
@@ -998,7 +998,7 @@ select:focus-visible {
 
 .footer-socials a:hover {
     background: var(--surface);
-    color: #ffffff;
+    color: var(--text);
 }
 
 .footer-socials img {
@@ -1307,7 +1307,7 @@ select:focus-visible {
             var(--surface-raised),
             #0e0e0e
         );
-    color: #ffffff;
+    color: var(--text);
     text-decoration: none;
     transition:
         transform 150ms ease,
@@ -1317,7 +1317,7 @@ select:focus-visible {
 .about-channel-stats a:hover,
 .about-channel-stats a:focus-visible {
     border-color: var(--accent);
-    color: #ffffff;
+    color: var(--text);
     transform: translateY(-3px);
 }
 
@@ -1356,7 +1356,7 @@ select:focus-visible {
 .privacy-summary h2,
 .privacy-content h2 {
     margin: 0;
-    color: #ffffff;
+    color: var(--text);
     font-family: var(--font-display);
     font-size: clamp(2.4rem, 5vw, 4.5rem);
     line-height: 0.96;
@@ -1431,7 +1431,7 @@ select:focus-visible {
 
 .about-card h3 {
     margin: 0 0 0.8rem;
-    color: #ffffff;
+    color: var(--text);
     font-family: var(--font-display);
     font-size: clamp(1.8rem, 3vw, 2.7rem);
     line-height: 1;
@@ -1618,7 +1618,7 @@ select:focus-visible {
 }
 
 .privacy-updated strong {
-    color: #ffffff;
+    color: var(--text);
 }
 
 .privacy-summary {
@@ -1652,7 +1652,7 @@ select:focus-visible {
 
 .privacy-summary-grid h3 {
     margin: 0 0 0.6rem;
-    color: #ffffff;
+    color: var(--text);
     font-size: 1rem;
 }
 
@@ -1681,7 +1681,7 @@ select:focus-visible {
 
 .privacy-navigation > p {
     margin: 0 0 0.75rem;
-    color: #ffffff;
+    color: var(--text);
     font-size: 0.72rem;
     font-weight: 900;
     letter-spacing: 0.09em;
@@ -1783,7 +1783,7 @@ select:focus-visible {
 }
 
 .privacy-email-card strong {
-    color: #ffffff;
+    color: var(--text);
     overflow-wrap: anywhere;
 }
 
@@ -1807,7 +1807,7 @@ select:focus-visible {
 .privacy-disclaimer strong {
     display: block;
     margin-bottom: 0.35rem;
-    color: #ffffff;
+    color: var(--text);
 }
 
 .privacy-disclaimer p {
@@ -1982,7 +1982,7 @@ select:focus-visible {
 .simple-about-heading h2,
 .simple-about-background h2 {
     margin: 0;
-    color: #ffffff;
+    color: var(--text);
     font-family: var(--font-display);
     font-size: clamp(2.4rem, 5vw, 4.25rem);
     line-height: 0.96;

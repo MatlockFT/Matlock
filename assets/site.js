@@ -5,9 +5,8 @@
     const navigationPanel = document.getElementById("navigation-panel");
     const navigationClose = document.querySelector("[data-navigation-close]");
     const navigationBackdrop = document.querySelector("[data-navigation-backdrop]");
-    const readabilityToggle = document.querySelector("[data-readability-toggle]");
-    const motionToggle = document.querySelector("[data-motion-toggle]");
-    const motionLabel = document.querySelector("[data-motion-label]");
+    const themeToggle = document.querySelector("[data-theme-toggle]");
+    const themeLabel = document.querySelector("[data-theme-label]");
     const mobileNavigation = window.matchMedia("(max-width: 850px)");
     const immersiveNavigation = Boolean(document.querySelector("[data-home-flow]"));
     const panelNavigationActive = () => mobileNavigation.matches || immersiveNavigation;
@@ -35,78 +34,43 @@
         }
     }
 
-    function dispatchPreferenceChange() {
-        window.dispatchEvent(new CustomEvent("matlock:preferences", {
-            detail: {
-                readable: root.classList.contains("readable-mode"),
-                reducedMotion: root.classList.contains("reduce-motion")
-            }
-        }));
+    function defaultTheme() {
+        return document.querySelector("[data-globe-home]") ? "light" : "dark";
     }
 
-    function syncReadabilityState() {
-        const readable = readPreference("matlock-readable") === "true";
-        root.classList.toggle("readable-mode", readable);
+    function syncThemeState(theme) {
+        const nextTheme = theme === "light" ? "light" : "dark";
+        root.dataset.theme = nextTheme;
+        root.classList.toggle("dark-mode", nextTheme === "dark");
+        root.classList.toggle("light-mode", nextTheme === "light");
 
-        if (readabilityToggle) {
-            readabilityToggle.setAttribute("aria-pressed", String(readable));
-            readabilityToggle.setAttribute(
+        if (themeToggle) {
+            const dark = nextTheme === "dark";
+            themeToggle.setAttribute("aria-pressed", String(dark));
+            themeToggle.setAttribute(
                 "aria-label",
-                readable ? "Turn off readability mode" : "Turn on readability mode"
-            );
-        }
-    }
-
-    function syncMotionState() {
-        const userReduced = readPreference("matlock-reduce-motion") === "true";
-        const deviceReduced = systemReducedMotion.matches;
-        const reduced = userReduced || deviceReduced;
-        root.classList.toggle("reduce-motion", reduced);
-
-        if (motionToggle) {
-            motionToggle.setAttribute("aria-pressed", String(reduced));
-            motionToggle.disabled = deviceReduced;
-            motionToggle.setAttribute(
-                "aria-label",
-                deviceReduced
-                    ? "Motion is reduced by your device settings"
-                    : reduced
-                        ? "Allow site motion"
-                        : "Reduce site motion"
+                dark ? "Turn off dark mode" : "Turn on dark mode"
             );
         }
 
-        if (motionLabel) {
-            motionLabel.textContent = deviceReduced
-                ? "Motion: device"
-                : reduced
-                    ? "Motion: reduced"
-                    : "Motion";
-        }
+        if (themeLabel) themeLabel.textContent = "Dark";
+
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        if (themeColor) themeColor.setAttribute("content", nextTheme === "dark" ? "#080808" : "#fbfaf7");
     }
 
-    readabilityToggle?.addEventListener("click", () => {
-        const nextValue = !root.classList.contains("readable-mode");
-        writePreference("matlock-readable", String(nextValue));
-        syncReadabilityState();
-        dispatchPreferenceChange();
+    const storedTheme = readPreference("matlock-theme");
+    syncThemeState(storedTheme || defaultTheme());
+
+    themeToggle?.addEventListener("click", () => {
+        const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+        writePreference("matlock-theme", nextTheme);
+        syncThemeState(nextTheme);
     });
 
-    motionToggle?.addEventListener("click", () => {
-        if (systemReducedMotion.matches) return;
-        const nextValue = !root.classList.contains("reduce-motion");
-        writePreference("matlock-reduce-motion", String(nextValue));
-        syncMotionState();
-        dispatchPreferenceChange();
+    systemReducedMotion.addEventListener?.("change", event => {
+        root.classList.toggle("reduce-motion", event.matches);
     });
-
-    systemReducedMotion.addEventListener?.("change", () => {
-        syncMotionState();
-        dispatchPreferenceChange();
-    });
-
-    syncReadabilityState();
-    syncMotionState();
 
     function setupLiveTickerClock() {
         let track = null;
@@ -115,7 +79,7 @@
         let phaseFrame = 0;
 
         function reducedMotion() {
-            return root.classList.contains("reduce-motion") || systemReducedMotion.matches;
+            return systemReducedMotion.matches;
         }
 
         function durationSeconds() {
@@ -185,7 +149,6 @@
         document.addEventListener("visibilitychange", () => {
             if (!document.hidden) queuePhaseSync();
         });
-        window.addEventListener("matlock:preferences", queuePhaseSync);
         window.addEventListener("pageshow", queuePhaseSync);
         window.addEventListener("pagehide", () => {
             trackObserver?.disconnect();

@@ -44,3 +44,23 @@
     --theme-nav-blur: 14px;
     --theme-accent-wash: rgba(255, 74, 84, 0.1);
 }
+
+
+/* User-selectable light theme. Existing pages remain dark by default; the
+   newspaper V3 opts into light by default in site.js. */
+html[data-theme="light"] {
+    --theme-background: #f7f5f0;
+    --theme-surface: #ffffff;
+    --theme-surface-raised: #f0ede7;
+    --theme-border: #d4d0c8;
+    --theme-border-bright: #a8a39a;
+    --theme-text: #151515;
+    --theme-text-soft: #403d38;
+    --theme-muted: #716d66;
+    --theme-accent: #a7191f;
+    --theme-accent-soft: #8f151a;
+    --theme-accent-rgb: 167, 25, 31;
+    --theme-shadow: 0 20px 60px rgba(0,0,0,.10);
+    --theme-shadow-card: 0 12px 30px rgba(0,0,0,.08);
+    --theme-accent-wash: rgba(167,25,31,.08);
+}

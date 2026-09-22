@@ -1691,3 +1691,457 @@ html body:has([data-globe-home]) .site-event-more {
         height: 12px;
     }
 }
+
+
+/* =========================================================
+   V3.3 — EDITORIAL TYPE / VERDICT / NATIVE POSTER / FOOTER
+   ========================================================= */
+
+/* Edition stays exclusive to the MATLOCK masthead. Afficher carries the
+   editorial hierarchy everywhere else. */
+.v3-lead h1,
+.v3-rail-story h2,
+.v3-news-item a,
+.v3-feature h3,
+.v3-section-head h2,
+.v3-history-feature-title,
+.v3-more-story h3,
+.v3-verdict-card h3 {
+    font-family: "LT Afficher Neue Display", Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    letter-spacing: -.018em;
+}
+
+.v3-lead h1 {
+    font-size: clamp(2.65rem, 4.9vw, 4.9rem);
+    line-height: .91;
+}
+
+.v3-section-head h2 {
+    font-size: clamp(2rem, 3.1vw, 3.15rem);
+    line-height: .95;
+    text-transform: none;
+}
+
+.v3-history-feature-title {
+    max-width: 15ch;
+    font-size: clamp(2.2rem, 3.6vw, 3.8rem);
+    line-height: .93;
+}
+
+/* Navigation and Trending are editorial rails: always uppercase. */
+body:has([data-globe-home]) .navigation-list a,
+body:has([data-globe-home]) .mobile-brand,
+.v3-trending,
+.v3-trending-links a {
+    text-transform: uppercase !important;
+}
+
+/* Navbar and ticker belong to normal document flow. */
+body:has([data-globe-home]) .site-navigation,
+body:has([data-globe-home]) .site-live-strip {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+}
+
+/* Verdict profile strip. No cards, rounded boxes, or invented score UI. */
+.v3-verdict {
+    margin: .25rem 0 clamp(1.8rem, 3vw, 2.7rem);
+    padding: .75rem 0 .9rem;
+    border-bottom: 1px solid #d8d5cf;
+}
+
+.v3-verdict-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: .65rem;
+}
+
+.v3-verdict-head h2 {
+    margin: 0;
+    color: var(--v3-ink);
+    font: 800 .67rem/1 var(--v3-sans);
+    letter-spacing: .055em;
+    text-transform: uppercase;
+}
+
+.v3-verdict-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: .35rem .8rem;
+    color: var(--v3-muted);
+    font: 700 .56rem/1.2 var(--v3-sans);
+    text-transform: uppercase;
+}
+
+.v3-verdict-meta a {
+    color: var(--v3-red);
+    text-decoration: none;
+}
+
+.v3-verdict-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid #d8d5cf;
+}
+
+.v3-verdict-card {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: 82px minmax(0, 1fr) auto;
+    grid-template-areas:
+        "status title state"
+        "status title link";
+    gap: .18rem 1rem;
+    align-items: center;
+    padding: .78rem 1rem .72rem 0;
+}
+
+.v3-verdict-card + .v3-verdict-card {
+    padding-right: 0;
+    padding-left: 1rem;
+    border-left: 1px solid #d8d5cf;
+}
+
+.v3-verdict-status {
+    grid-area: status;
+    align-self: start;
+    padding-top: .18rem;
+    color: var(--v3-red);
+    font: 800 .55rem/1.15 var(--v3-sans);
+    letter-spacing: .055em;
+    text-transform: uppercase;
+}
+
+.v3-verdict-card > div {
+    grid-area: title;
+}
+
+.v3-verdict-card h3 {
+    margin: 0;
+    color: var(--v3-ink);
+    font-size: clamp(1.15rem, 1.65vw, 1.55rem);
+    line-height: 1;
+}
+
+.v3-verdict-card p {
+    margin: .25rem 0 0;
+    color: var(--v3-muted);
+    font: 700 .58rem/1.25 var(--v3-sans);
+    text-transform: uppercase;
+}
+
+.v3-verdict-card > strong {
+    grid-area: state;
+    justify-self: end;
+    color: var(--v3-ink);
+    font: 800 .58rem/1.2 var(--v3-sans);
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.v3-verdict-card > a {
+    grid-area: link;
+    justify-self: end;
+    color: var(--v3-red);
+    font: 800 .56rem/1.2 var(--v3-sans);
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+/* The history art is a poster. Preserve the source image's intrinsic aspect
+   ratio instead of forcing it into the site's 16:9 article convention. */
+.v3-history-feature-card {
+    grid-template-columns: minmax(260px, .72fr) minmax(0, 1.28fr);
+    gap: clamp(1.8rem, 4vw, 4.2rem);
+    align-items: center;
+}
+
+.v3-history-feature-image {
+    width: min(100%, 590px);
+    justify-self: center;
+    overflow: visible;
+    background: transparent;
+}
+
+.v3-history-feature-image img {
+    display: block;
+    width: 100%;
+    height: auto !important;
+    max-height: none;
+    aspect-ratio: auto !important;
+    object-fit: contain !important;
+    object-position: center top;
+}
+
+.v3-history-feature-copy {
+    align-self: center;
+    max-width: 620px;
+}
+
+/* V3 footer: thin-rule newspaper directory, not the legacy dark card footer. */
+.v3-footer {
+    position: relative;
+    overflow: hidden;
+    margin-top: clamp(4rem, 8vw, 7rem);
+    border-top: 1px solid #a9a59e !important;
+    background: var(--v3-paper) !important;
+    color: var(--v3-ink) !important;
+}
+
+.v3-footer::before {
+    position: absolute;
+    right: 0;
+    bottom: 4.2rem;
+    left: 0;
+    z-index: 0;
+    content: "MMA MATLOCK";
+    color: rgba(17,17,17,.035);
+    font: 700 clamp(5rem, 13vw, 12rem)/.8 Georgia, "Times New Roman", serif;
+    letter-spacing: -.055em;
+    text-align: center;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.v3-footer-inner {
+    position: relative;
+    z-index: 1;
+    width: min(calc(100% - 2rem), 1380px);
+    margin: 0 auto;
+    padding: 1.8rem 0 1.1rem;
+}
+
+.v3-footer-top {
+    display: flex;
+    justify-content: center;
+    padding: 0 0 1.25rem;
+    border-bottom: 1px solid #b8b4ad;
+}
+
+.v3-footer-follow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem 1.25rem;
+    font: 700 .67rem/1 var(--v3-sans);
+    text-transform: uppercase;
+}
+
+.v3-footer-follow strong {
+    color: var(--v3-ink);
+    font-size: .72rem;
+}
+
+.v3-footer-follow a {
+    color: var(--v3-red) !important;
+    text-decoration: none;
+}
+
+.v3-footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(1.25rem, 3vw, 3rem);
+    padding: 1.35rem 0 1.55rem;
+}
+
+.v3-footer-grid section {
+    display: flex;
+    flex-direction: column;
+    gap: .38rem;
+}
+
+.v3-footer-grid h2 {
+    margin: 0 0 .25rem;
+    color: var(--v3-red);
+    font: 800 .62rem/1 var(--v3-sans);
+    letter-spacing: .045em;
+    text-transform: uppercase;
+}
+
+.v3-footer-grid a,
+.v3-footer-grid span {
+    width: fit-content;
+    color: var(--v3-ink) !important;
+    font: 600 .72rem/1.35 var(--v3-sans);
+    text-decoration: none;
+}
+
+.v3-footer-grid a:hover,
+.v3-footer-grid a:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.v3-footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: .85rem;
+    border-top: 1px solid #b8b4ad;
+    color: var(--v3-muted);
+    font: 700 .57rem/1.2 var(--v3-sans);
+    letter-spacing: .035em;
+    text-transform: uppercase;
+}
+
+/* V3 dark mode. Light remains the page default. */
+html[data-theme="dark"] body:has([data-globe-home]) {
+    --v3-paper: #0b0b0b;
+    --v3-paper-deep: #131313;
+    --v3-ink: #f1eee7;
+    --v3-muted: #aaa69e;
+    --v3-rule: #3b3935;
+    --v3-rule-dark: #cfcbc2;
+    --v3-red: #e05258;
+    background: var(--v3-paper);
+    color: var(--v3-ink);
+}
+
+html[data-theme="dark"] body:has([data-globe-home]) .site-main,
+html[data-theme="dark"] body:has([data-globe-home]) .site-header,
+html[data-theme="dark"] body:has([data-globe-home]) .logo-banner,
+html[data-theme="dark"] body:has([data-globe-home]) .site-navigation,
+html[data-theme="dark"] body:has([data-globe-home]) .navigation-panel,
+html[data-theme="dark"] body:has([data-globe-home]) .v3-home,
+html[data-theme="dark"] body:has([data-globe-home]) .v3-footer {
+    background: var(--v3-paper) !important;
+    color: var(--v3-ink) !important;
+}
+
+html[data-theme="dark"] body:has([data-globe-home]) .site-live-strip,
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-stack,
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-primary,
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer {
+    background: #101010 !important;
+    color: var(--v3-ink) !important;
+}
+
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-primary-name,
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-primary-countdown,
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-more,
+html[data-theme="dark"] body:has([data-globe-home]) .site-news-item,
+html[data-theme="dark"] body:has([data-globe-home]) .site-news-item > span,
+html[data-theme="dark"] body:has([data-globe-home]) .navigation-list a,
+html[data-theme="dark"] body:has([data-globe-home]) .mobile-brand {
+    color: var(--v3-ink) !important;
+}
+
+html[data-theme="dark"] body:has([data-globe-home]) .site-news-item-source {
+    color: #aaa69e !important;
+}
+
+html[data-theme="dark"] body:has([data-globe-home]) .v3-summary,
+html[data-theme="dark"] body:has([data-globe-home]) .v3-lead-deck,
+html[data-theme="dark"] body:has([data-globe-home]) .v3-history-feature-text,
+html[data-theme="dark"] body:has([data-globe-home]) .v3-feature .v3-summary,
+html[data-theme="dark"] body:has([data-globe-home]) .v3-more-story p {
+    color: #c0bbb2;
+}
+
+html[data-theme="dark"] .v3-footer::before {
+    color: rgba(255,255,255,.025);
+}
+
+html[data-theme="dark"] .v3-verdict,
+html[data-theme="dark"] .v3-verdict-grid,
+html[data-theme="dark"] .v3-verdict-card + .v3-verdict-card,
+html[data-theme="dark"] .v3-footer-top,
+html[data-theme="dark"] .v3-footer-bottom {
+    border-color: #3b3935;
+}
+
+body:has([data-globe-home]) .site-theme-control {
+    border-left-color: #c5c1ba;
+}
+
+body:has([data-globe-home]) .site-theme-toggle {
+    color: var(--v3-ink);
+}
+
+body:has([data-globe-home]) .site-theme-toggle-track {
+    border-color: #9f9b94;
+    background: transparent;
+}
+
+body:has([data-globe-home]) .site-theme-toggle-knob {
+    background: var(--v3-red);
+}
+
+@media (max-width: 900px) {
+    .v3-verdict-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .v3-verdict-card,
+    .v3-verdict-card + .v3-verdict-card {
+        padding: .78rem 0;
+        border-left: 0;
+    }
+
+    .v3-verdict-card + .v3-verdict-card {
+        border-top: 1px solid #d8d5cf;
+    }
+
+    .v3-history-feature-card {
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+    }
+
+    .v3-history-feature-image {
+        width: min(100%, 520px);
+        justify-self: start;
+    }
+
+    .v3-footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .v3-verdict-head,
+    .v3-footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .v3-verdict-meta {
+        justify-content: flex-start;
+    }
+
+    .v3-verdict-card {
+        grid-template-columns: 68px minmax(0, 1fr);
+        grid-template-areas:
+            "status title"
+            "state state"
+            "link link";
+        gap: .35rem .75rem;
+    }
+
+    .v3-verdict-card > strong,
+    .v3-verdict-card > a {
+        justify-self: start;
+    }
+
+    .v3-footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.4rem 1rem;
+    }
+
+    .v3-footer-follow {
+        justify-content: flex-start;
+    }
+
+    .v3-footer-top {
+        justify-content: flex-start;
+    }
+}
