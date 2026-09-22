@@ -21,11 +21,8 @@
 }
 
 .news-page-v3 .news-page-heading {
-    display: grid;
-    grid-template-columns: minmax(0, .9fr) minmax(320px, 1.1fr);
-    gap: clamp(1.5rem, 4vw, 4.5rem);
+    display: block;
     max-width: none;
-    align-items: end;
 }
 
 .news-page-v3 .news-page-heading h1,
@@ -44,17 +41,12 @@
 }
 
 .news-page-v3 .news-page-heading h1 {
+    margin: 0;
     color: var(--v3-ink);
-    font-size: clamp(3rem, 6.2vw, 6.3rem);
-    line-height: .83;
+    font-size: clamp(2rem, 3.25vw, 3.35rem);
+    line-height: .92;
 }
 
-.news-page-v3 .news-page-heading > p {
-    max-width: 62ch;
-    margin: 0 0 .08rem;
-    color: var(--v3-muted);
-    font: 500 clamp(.92rem, 1.15vw, 1.04rem)/1.5 var(--v3-sans);
-}
 
 /* Latest Matlock article becomes an editorial rail, not a dark utility box. */
 .news-page-v3 .news-matlock-latest {
@@ -610,15 +602,6 @@ html.v3-theme-transitioning .news-page-v3 .otd-compact-item {
 }
 
 @media (max-width: 980px) {
-    .news-page-v3 .news-page-heading {
-        grid-template-columns: 1fr;
-        gap: .65rem;
-    }
-
-    .news-page-v3 .news-page-heading > p {
-        max-width: 70ch;
-    }
-
     .news-page-v3 .news-lead-grid {
         grid-template-columns: minmax(0, 1.5fr) minmax(280px, .78fr);
     }
@@ -642,7 +625,7 @@ html.v3-theme-transitioning .news-page-v3 .otd-compact-item {
     }
 
     .news-page-v3 .news-page-heading h1 {
-        font-size: clamp(2.8rem, 15vw, 5rem);
+        font-size: clamp(2rem, 9vw, 2.8rem);
     }
 
     .news-page-v3 .news-matlock-latest {

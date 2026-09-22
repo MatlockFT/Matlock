@@ -388,6 +388,8 @@ test.describe('News V3 isolated migration', () => {
     await page.goto(targetUrl('/news-v3/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
     await expect(page.locator('[data-editorial-v3]')).toBeVisible({ timeout: 30000 });
     await expect(page.locator('.v3-wordmark')).toBeVisible();
+    await expect(page.locator('.news-page-heading > p')).toHaveCount(0);
+    await expect(page.locator('body')).not.toContainText('Current MMA and UFC headlines from trusted combat-sports sources');
     await expect(page.locator('.site-theme-toggle')).toBeVisible();
     await expect(page.locator('.v3-sticky-shell')).toHaveCount(1);
     await expect(page.locator('.v3-sticky-shell > .site-navigation')).toHaveCount(1);
