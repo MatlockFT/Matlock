@@ -200,15 +200,15 @@ test.describe('Homepage V3 editorial shell', () => {
     await expect(page.locator('[data-readability-toggle]')).toHaveCount(0);
     await expect(page.locator('[data-motion-toggle]')).toHaveCount(0);
     await page.evaluate(() => document.fonts?.ready).catch(() => {});
-    const afficherLoaded = await page.evaluate(async () => {
+    const herkeyLoaded = await page.evaluate(async () => {
       try {
-        await document.fonts.load('700 32px "LT Afficher Neue Display"');
-        return document.fonts.check('700 32px "LT Afficher Neue Display"');
+        await document.fonts.load('400 32px "Herkey"');
+        return document.fonts.check('400 32px "Herkey"');
       } catch {
         return false;
       }
     });
-    expect(afficherLoaded).toBe(true);
+    expect(herkeyLoaded).toBe(true);
     await page.waitForTimeout(200);
 
     const geometry = await page.evaluate(() => {
@@ -255,9 +255,9 @@ test.describe('Homepage V3 editorial shell', () => {
     expect(geometry.leadTitleAlign).toBe('left');
     expect(geometry.leadDeckAlign).toBe('left');
     expect(geometry.wordmarkFont).toContain('Edition Matlock');
-    expect(geometry.leadFont).toContain('LT Afficher Neue Display');
-    expect(geometry.sectionFont).toContain('LT Afficher Neue Display');
-    expect(geometry.historyFont).toContain('LT Afficher Neue Display');
+    expect(geometry.leadFont).toContain('Herkey');
+    expect(geometry.sectionFont).toContain('Herkey');
+    expect(geometry.historyFont).toContain('Herkey');
     expect(geometry.leadFont).not.toContain('Edition Matlock');
     expect(geometry.sectionFont).not.toContain('Edition Matlock');
     expect(geometry.historyFont).not.toContain('Edition Matlock');
@@ -278,6 +278,9 @@ test.describe('Homepage V3 editorial shell', () => {
     await expect(page.locator('.v3-verdict-card')).toHaveCount(2);
     await expect(page.locator('.v3-utility-strip a')).toHaveCount(4);
     await expect(page.locator('.v3-footer-grid section')).toHaveCount(4);
+    await expect(page.locator('body')).not.toContainText('Independent MMA coverage');
+    await expect(page.locator('body')).not.toContainText('Austin, Texas');
+    await expect(page.locator('body')).not.toContainText('NO HYPE. JUST FIGHTS.');
 
     await expect.poll(async () => page.locator('.v3-history-feature-image img').evaluate(img =>
       Boolean(img.complete && img.naturalWidth > 0 && img.naturalHeight > 0)
