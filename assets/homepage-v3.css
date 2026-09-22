@@ -1120,3 +1120,278 @@ body:has([data-globe-home]) .site-event-drawer {
         font-size: .61rem;
     }
 }
+
+
+/* =========================================================
+   V3 ALIGNMENT / RHYTHM CLEANUP
+   ========================================================= */
+
+/* Force light-skin ticker contrast after the later site-tail.css rules. */
+html body:has([data-globe-home]) .site-event-primary,
+html body:has([data-globe-home]) .site-event-primary-name,
+html body:has([data-globe-home]) .site-event-primary-countdown,
+html body:has([data-globe-home]) .site-event-more,
+html body:has([data-globe-home]) .site-news-item,
+html body:has([data-globe-home]) .site-news-item > span {
+    color: #171717 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
+
+html body:has([data-globe-home]) .site-news-item-source {
+    color: #6d6963 !important;
+    opacity: 1 !important;
+}
+
+html body:has([data-globe-home]) .site-event-primary-countdown[data-live="true"] {
+    color: var(--v3-red) !important;
+}
+
+html body:has([data-globe-home]) .site-event-primary:hover,
+html body:has([data-globe-home]) .site-event-primary:focus-visible,
+html body:has([data-globe-home]) .site-event-stack.is-open .site-event-primary {
+    background: #ece9e3 !important;
+}
+
+/* Trending is one calm editorial rail, not a wrapped headline cloud. */
+.v3-trending {
+    overflow: hidden;
+    margin-top: .2rem;
+    margin-bottom: 1.15rem;
+    padding: .48rem 0;
+    border-top: 0;
+    border-bottom: 1px solid #d8d5cf;
+}
+
+.v3-trending > strong {
+    margin-top: 1px;
+}
+
+.v3-trending-links {
+    gap: .65rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.v3-trending-links a {
+    display: block;
+    max-width: clamp(150px, 18vw, 245px);
+    overflow: hidden;
+    font-size: .66rem;
+    line-height: 1.15;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.v3-trending-separator {
+    color: #b0aca6;
+    font-size: .58rem;
+}
+
+/* Establish one editorial left edge and keep lead copy aligned to its image. */
+.v3-lead h1 {
+    max-width: 14ch;
+    margin-right: 0;
+    margin-left: 0;
+    text-align: left;
+}
+
+.v3-lead-deck {
+    max-width: 52ch;
+    margin-right: 0;
+    margin-left: 0;
+    text-align: left;
+}
+
+.v3-byline {
+    align-items: baseline;
+}
+
+.v3-section {
+    padding-top: clamp(2.7rem, 5vw, 4.2rem);
+}
+
+.v3-section-head {
+    margin-bottom: 1.35rem;
+    padding: 0;
+    border: 0;
+}
+
+.v3-section-head h2 {
+    line-height: .98;
+}
+
+.v3-section-head > a {
+    align-self: end;
+    padding-bottom: .18rem;
+}
+
+/* Use spacing and vertical structure instead of repeated horizontal bars. */
+.v3-front {
+    padding-bottom: 1.75rem;
+    border-bottom: 0;
+}
+
+.v3-rail-story {
+    padding: .95rem 0 1.15rem;
+    border-bottom: 0;
+}
+
+.v3-rail-story + .v3-rail-story {
+    margin-top: .2rem;
+    padding-top: 1.15rem;
+    border-top: 1px solid #dedbd5;
+}
+
+.v3-rail-head,
+.v3-mini-head {
+    padding-bottom: .45rem;
+    border-bottom: 1px solid #d8d5cf;
+}
+
+.v3-news-item {
+    padding: .78rem 0;
+    border-bottom: 0;
+}
+
+.v3-news-item + .v3-news-item {
+    border-top: 1px solid #e1ded8;
+}
+
+.v3-feature-grid {
+    gap: 0;
+    border: 0;
+}
+
+.v3-feature {
+    padding-bottom: .4rem;
+}
+
+.v3-desk-grid {
+    border: 0;
+}
+
+.v3-tool-column {
+    border-right-color: #ddd9d3;
+}
+
+.v3-tool-row {
+    min-height: 66px;
+    padding: .65rem 0;
+    border-bottom: 0;
+}
+
+.v3-tool-row + .v3-tool-row {
+    margin-top: .15rem;
+}
+
+.v3-history {
+    border-right-color: #ddd9d3;
+}
+
+.v3-more-list {
+    border: 0;
+}
+
+.v3-more-story {
+    padding: .8rem 0;
+    border-bottom: 0;
+}
+
+.v3-more-story + .v3-more-story {
+    border-top: 1px solid #e4e1dc;
+}
+
+.v3-end-rule {
+    display: none;
+}
+
+/* Better vertical rhythm in lower-page copy. */
+.v3-feature h3,
+.v3-more-story h3,
+.v3-history-title,
+.v3-roster-name,
+.v3-tool-name {
+    text-wrap: balance;
+}
+
+.v3-feature .v3-summary,
+.v3-more-story p,
+.v3-history-copy,
+.v3-roster-meta,
+.v3-tool-copy {
+    color: #5b5751;
+}
+
+/* Keep section internals aligned to the same content grid. */
+.v3-feature-grid,
+.v3-desk-grid,
+.v3-more-list {
+    width: 100%;
+}
+
+@media (max-width: 1050px) {
+    .v3-right-rail {
+        border-top: 0;
+    }
+
+    .v3-tool-column {
+        border-bottom: 0;
+    }
+}
+
+@media (max-width: 780px) {
+    .v3-lead {
+        border-bottom: 0;
+    }
+
+    .v3-left-rail {
+        border-bottom: 0;
+    }
+
+    .v3-rail-story + .v3-rail-story {
+        margin-top: 0;
+        padding-top: .7rem;
+        border-top: 0;
+    }
+
+    .v3-feature,
+    .v3-feature:first-child,
+    .v3-feature:last-child {
+        border-bottom: 0;
+    }
+
+    .v3-feature + .v3-feature {
+        margin-top: 1rem;
+        padding-top: 1.1rem;
+        border-top: 1px solid #e1ded8;
+    }
+
+    .v3-history,
+    .v3-roster {
+        border-bottom: 0;
+    }
+
+    .v3-history + .v3-roster {
+        border-top: 1px solid #e1ded8;
+    }
+
+    .v3-trending-links a {
+        max-width: min(58vw, 240px);
+    }
+}
+
+@media (max-width: 520px) {
+    .v3-trending {
+        gap: .45rem;
+    }
+
+    .v3-trending-links {
+        gap: .5rem;
+    }
+
+    .v3-lead h1 {
+        max-width: 12ch;
+    }
+}
