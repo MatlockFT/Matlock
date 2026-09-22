@@ -33,7 +33,6 @@ page_scripts:
   data-news-fallback-url="{{ '/assets/data/mma-news.json' | relative_url }}?v={{ site.asset_version }}"
   data-history-url="{{ '/assets/data/on-this-day-home.json' | relative_url }}?v={{ homepage_data_version }}"
   data-history-runtime-base="{{ '/assets/data/on-this-day-runtime/' | relative_url }}"
-  data-roster-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/ufc-roster-data"
 >
   <div class="v3-trending" aria-label="Trending">
     <strong>Trending:</strong>
@@ -53,13 +52,32 @@ page_scripts:
     <main class="v3-front" aria-label="MMA Matlock front page">
       <aside class="v3-left-rail" aria-label="More recent stories">
         {% for post in side_posts %}
+          {% assign side_image = post.image.path | default: post.image %}
+          {% assign side_alt = post.image.alt | default: post.image_alt | default: post.title %}
+          {% assign side_responsive = site.data.responsive_images[side_image] %}
+          {% assign side_src = side_responsive.src | default: side_image %}
           <article class="v3-rail-story">
+            {% if side_image %}
+              <a class="v3-rail-image" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">
+                <img
+                  src="{{ side_src | relative_url }}"
+                  {% if side_responsive.srcset %}
+                    srcset="{{ side_responsive.srcset }}"
+                    sizes="(min-width: 1100px) 18vw, 45vw"
+                  {% endif %}
+                  alt="{{ side_alt | escape }}"
+                  loading="lazy"
+                  decoding="async"
+                  data-hide-broken
+                >
+              </a>
+            {% endif %}
             <p class="v3-label">{{ post.date | date: "%b %-d" }}</p>
             <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
             {% if post.description %}
-              <p class="v3-summary">{{ post.description | strip_html | truncate: 135 }}</p>
+              <p class="v3-summary">{{ post.description | strip_html | truncate: 118 }}</p>
             {% elsif post.excerpt %}
-              <p class="v3-summary">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 135 }}</p>
+              <p class="v3-summary">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 118 }}</p>
             {% endif %}
           </article>
         {% endfor %}
@@ -148,49 +166,14 @@ page_scripts:
     </div>
   </section>
 
-  <section class="v3-section v3-desk" aria-labelledby="v3-desk-title">
+  <section class="v3-section v3-history-feature" aria-labelledby="v3-history-title">
     <header class="v3-section-head">
-      <h2 id="v3-desk-title">Fight Night Desk</h2>
+      <h2 id="v3-history-title">On This Day</h2>
+      <a href="{{ '/on-this-day/' | relative_url }}">Archive</a>
     </header>
 
-    <div class="v3-desk-grid">
-      <div class="v3-tool-column">
-        <a class="v3-tool-row" href="{{ '/upcoming-events/' | relative_url }}">
-          <span class="v3-tool-name">Fight Cards</span>
-          <span class="v3-tool-copy">Upcoming events, timing, picks and card details.</span>
-          <span aria-hidden="true">→</span>
-        </a>
-        <a class="v3-tool-row" href="{{ '/event-map/' | relative_url }}">
-          <span class="v3-tool-name">Event Map</span>
-          <span class="v3-tool-copy">Find combat sports events by location.</span>
-          <span aria-hidden="true">→</span>
-        </a>
-        <a class="v3-tool-row" href="{{ '/matchmaker/' | relative_url }}">
-          <span class="v3-tool-name">Matchmaker</span>
-          <span class="v3-tool-copy">Build and explore possible UFC matchups.</span>
-          <span aria-hidden="true">→</span>
-        </a>
-      </div>
-
-      <aside class="v3-history" aria-labelledby="v3-history-title">
-        <div class="v3-mini-head">
-          <h3 id="v3-history-title">On This Day</h3>
-          <a href="{{ '/on-this-day/' | relative_url }}">Archive</a>
-        </div>
-        <div data-v3-history>
-          <p class="v3-loading">Loading MMA history…</p>
-        </div>
-      </aside>
-
-      <aside class="v3-roster" aria-labelledby="v3-roster-title">
-        <div class="v3-mini-head">
-          <h3 id="v3-roster-title">Roster Watch</h3>
-          <a href="{{ '/ufc-roster/' | relative_url }}">Full roster</a>
-        </div>
-        <div data-v3-roster>
-          <p class="v3-loading">Loading roster movement…</p>
-        </div>
-      </aside>
+    <div data-v3-history>
+      <p class="v3-loading">Loading MMA history…</p>
     </div>
   </section>
 
@@ -214,5 +197,10 @@ page_scripts:
     </section>
   {% endif %}
 
-  <div class="v3-end-rule" aria-hidden="true"></div>
+  <nav class="v3-utility-strip" aria-label="MMA Matlock tools">
+    <a href="{{ '/upcoming-events/' | relative_url }}"><span>Fight Cards</span><span aria-hidden="true">→</span></a>
+    <a href="{{ '/event-map/' | relative_url }}"><span>Event Map</span><span aria-hidden="true">→</span></a>
+    <a href="{{ '/ufc-roster/' | relative_url }}"><span>UFC Roster</span><span aria-hidden="true">→</span></a>
+    <a href="{{ '/matchmaker/' | relative_url }}"><span>Matchmaker</span><span aria-hidden="true">→</span></a>
+  </nav>
 </div>
