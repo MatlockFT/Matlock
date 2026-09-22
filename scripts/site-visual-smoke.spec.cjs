@@ -207,6 +207,8 @@ test.describe('Homepage V3 editorial shell', () => {
       const leadTitle = document.querySelector('.v3-lead h1');
       const leadDeck = document.querySelector('.v3-lead-deck');
       const wordmark = document.querySelector('.v3-wordmark');
+      const sectionHeading = document.querySelector('.v3-section-head h2');
+      const historyTitle = document.querySelector('.v3-history-feature-title');
       const trendRect = trending?.getBoundingClientRect();
       return {
         viewport: document.documentElement.clientWidth,
@@ -219,6 +221,8 @@ test.describe('Homepage V3 editorial shell', () => {
         leadTitleAlign: leadTitle ? getComputedStyle(leadTitle).textAlign : null,
         leadDeckAlign: leadDeck ? getComputedStyle(leadDeck).textAlign : null,
         leadFont: leadTitle ? getComputedStyle(leadTitle).fontFamily : null,
+        sectionFont: sectionHeading ? getComputedStyle(sectionHeading).fontFamily : null,
+        historyFont: historyTitle ? getComputedStyle(historyTitle).fontFamily : null,
         wordmarkFont: wordmark ? getComputedStyle(wordmark).fontFamily : null,
         pageText: document.querySelector('[data-globe-home]')?.textContent || ''
       };
@@ -231,8 +235,10 @@ test.describe('Homepage V3 editorial shell', () => {
     expect(geometry.trendingScrollHeight).toBeLessThanOrEqual(geometry.trendingHeight + 2);
     expect(geometry.leadTitleAlign).toBe('left');
     expect(geometry.leadDeckAlign).toBe('left');
-    expect(geometry.leadFont).toContain('Edition Matlock');
     expect(geometry.wordmarkFont).toContain('Edition Matlock');
+    expect(geometry.leadFont).not.toContain('Edition Matlock');
+    expect(geometry.sectionFont).not.toContain('Edition Matlock');
+    expect(geometry.historyFont).not.toContain('Edition Matlock');
     expect(geometry.pageText).not.toContain('EST. 2026');
     expect(geometry.pageText).not.toContain('Fight Talk');
     expect(geometry.pageText).not.toContain('Lead story');
