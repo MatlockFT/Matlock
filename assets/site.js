@@ -54,6 +54,9 @@
         }
 
         if (themeLabel) themeLabel.textContent = "Dark";
+
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        if (themeColor) themeColor.setAttribute("content", nextTheme === "dark" ? "#080808" : "#fbfaf7");
     }
 
     const storedTheme = readPreference("matlock-theme");
@@ -63,6 +66,10 @@
         const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
         writePreference("matlock-theme", nextTheme);
         syncThemeState(nextTheme);
+    });
+
+    systemReducedMotion.addEventListener?.("change", event => {
+        root.classList.toggle("reduce-motion", event.matches);
     });
 
     function setupLiveTickerClock() {
