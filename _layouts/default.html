@@ -333,29 +333,20 @@
                         </aside>
                     {% endif %}
 
-                    <div class="site-display-controls" aria-label="Display preferences">
+                    <div class="site-theme-control">
                         <button
-                            class="site-display-button"
+                            class="site-theme-toggle"
                             type="button"
-                            data-readability-toggle
+                            data-theme-toggle
                             aria-pressed="false"
-                            aria-label="Toggle readability mode"
+                            aria-label="Turn on dark mode"
                         >
-                            <span class="site-display-icon" aria-hidden="true">Aa</span>
-                            <span class="site-display-label">Readable</span>
+                            <span class="site-theme-toggle-track" aria-hidden="true">
+                                <span class="site-theme-toggle-knob"></span>
+                            </span>
+                            <span class="site-theme-toggle-label" data-theme-label>Dark</span>
                         </button>
-
-                        <button
-                            class="site-display-button"
-                            type="button"
-                            data-motion-toggle
-                            aria-pressed="false"
-                            aria-label="Reduce motion"
-                        >
-                            <span class="site-display-icon" aria-hidden="true">◫</span>
-                            <span class="site-display-label" data-motion-label>Motion</span>
-                        </button>
-                    </div>
+                    </div>div>
                 </div>
             </div>
         </nav>
@@ -380,6 +371,59 @@
         {{ content }}
     </main>
 
+    {% if page.v3_text_masthead %}
+        <footer class="site-footer v3-footer">
+            <div class="v3-footer-inner">
+                <div class="v3-footer-top">
+                    <div class="v3-footer-follow">
+                        <strong>FOLLOW US</strong>
+                        <a href="https://x.com/MMAMatlock" target="_blank" rel="me noopener noreferrer">X</a>
+                        <a href="https://www.facebook.com/mmamatlock" target="_blank" rel="me noopener noreferrer">Facebook</a>
+                        <a href="https://www.instagram.com/mmamatlock/" target="_blank" rel="me noopener noreferrer">Instagram</a>
+                        <a href="https://www.youtube.com/@MMAMatlock" target="_blank" rel="me noopener noreferrer">YouTube</a>
+                    </div>
+                </div>
+
+                <div class="v3-footer-grid">
+                    <section>
+                        <h2>Explore</h2>
+                        <a href="{{ '/news/' | relative_url }}">News</a>
+                        <a href="{{ '/breakdowns/' | relative_url }}">Breakdowns</a>
+                        <a href="{{ '/upcoming-events/' | relative_url }}">Fight Cards</a>
+                        <a href="{{ '/on-this-day/' | relative_url }}">On This Day</a>
+                    </section>
+
+                    <section>
+                        <h2>Tools</h2>
+                        <a href="{{ '/event-map/' | relative_url }}">Event Map</a>
+                        <a href="{{ '/ufc-roster/' | relative_url }}">UFC Roster</a>
+                        <a href="{{ '/matchmaker/' | relative_url }}">Matchmaker</a>
+                        <a href="{{ '/mma-yellowpages' | relative_url }}">MMA Yellow Pages</a>
+                    </section>
+
+                    <section>
+                        <h2>Matlock</h2>
+                        <a href="{{ '/about/' | relative_url }}">About</a>
+                        <a href="{{ '/picture-gallery' | relative_url }}">Picture Gallery</a>
+                        <a href="{{ '/contact/' | relative_url }}">Contact</a>
+                        <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+                    </section>
+
+                    <section>
+                        <h2>Legal</h2>
+                        <a href="{{ '/privacy/' | relative_url }}">Privacy</a>
+                        <span>Independent MMA coverage</span>
+                        <span>Austin, Texas</span>
+                    </section>
+                </div>
+
+                <div class="v3-footer-bottom">
+                    <span>© {{ "now" | date: "%Y" }} {{ site.legal_name | default: site.title }}</span>
+                    <span>NO HYPE. JUST FIGHTS.</span>
+                </div>
+            </div>
+        </footer>
+    {% else %}
     <footer class="site-footer">
         <div class="footer-inner">
             <div class="footer-grid">
@@ -486,6 +530,7 @@
             </div>
         </div>
     </footer>
+    {% endif %}
 
     <script src="{{ '/assets/site.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
     <script src="{{ '/assets/site-ticker-bootstrap.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
