@@ -597,6 +597,23 @@ test.describe('On This Day V3 isolated migration', () => {
     );
     expect(Math.abs(dockTop - railHeight)).toBeLessThanOrEqual(2);
 
+    const desktopDir = path.join(SCREENSHOT_DIR, 'desktop');
+    fs.mkdirSync(desktopDir, { recursive: true });
+    await page.screenshot({
+      path: path.join(desktopDir, 'on-this-day-v3-rebuild.png'),
+      fullPage: true
+    });
+
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.waitForTimeout(120);
+    const mobileDir = path.join(SCREENSHOT_DIR, 'mobile-390');
+    fs.mkdirSync(mobileDir, { recursive: true });
+    await page.screenshot({
+      path: path.join(mobileDir, 'on-this-day-v3-rebuild.png'),
+      fullPage: true
+    });
+    await page.setViewportSize({ width: 1365, height: 900 });
+
     const beforeDate = (await page.locator('.otd-page-date').textContent() || '').trim();
     await page.locator('[data-otd-next]').click();
     await expect.poll(async () =>
