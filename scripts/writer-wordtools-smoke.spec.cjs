@@ -145,16 +145,46 @@ test('Writer word processor tools work in production', async ({ page }) => {
   await page.keyboard.press('Control+Shift+Z');
   await expect(editor).toHaveValue('Beta fighter opens. Beta fighter closes.');
 
+  // Bitmap clipboard paste is intercepted cleanly instead of falling through as text/HTML.
+  await editor.fill('Clipboard image anchor');
+  await editor.focus();
+  await editor.evaluate(el => {
+    el.setSelectionRange(el.value.length, el.value.length);
+    const transfer = new DataTransfer();
+    const file = new File([new Blob(['clipboard-image'], { type: 'image/png' })], 'image.png', { type: 'image/png' });
+    transfer.items.add(file);
+    el.dispatchEvent(new ClipboardEvent('paste', { clipboardData: transfer, bubbles: true, cancelable: true }));
+  });
+  await expect(page.locator('[data-connect-dialog]')).toBeVisible();
+  await expect(editor).toHaveValue('Clipboard image anchor');
+  await page.locator('[data-connect-dialog] .writer-dialog-close').click();
+  await expect(page.locator('[data-connect-dialog]')).not.toBeVisible();
+
+  // YouTube preview keeps the same iframe node while unrelated text is typed.
+  await page.click('[data-tool="youtube"]');
+  await page.fill('[data-youtube-url]', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+  await page.fill('[data-youtube-title]', 'Stable preview test');
+  await page.click('[data-youtube-insert]');
+  const stableFrame = page.locator('[data-preview-content] .writer-embed iframe');
+  await expect(stableFrame).toBeVisible();
+  await stableFrame.evaluate(el => { el.dataset.previewNodeSentinel = 'keep'; });
+  await editor.evaluate(el => { el.focus(); el.setSelectionRange(el.value.length, el.value.length); });
+  await page.keyboard.type(' More copy after the embed.');
+  await page.waitForTimeout(180);
+  await expect(page.locator('[data-preview-content] .writer-embed iframe')).toHaveAttribute('data-preview-node-sentinel', 'keep');
+
   // Smart Paste converts formatting, Unicode bullets, figures/captions and strips unsafe embeds.
   await editor.fill('');
   await editor.focus();
   await editor.evaluate(el => {
     const transfer = new DataTransfer();
     transfer.setData('text/plain', 'Bold text\n• Item one\n• Item two');
-    transfer.setData('text/html', '<p><strong>Bold text</strong></p><ul><li>Item one</li><li>Item two</li></ul><figure><img src="https://example.com/test.jpg" alt="Test image"><figcaption>Photo caption</figcaption></figure><iframe src="https://evil.example"></iframe>');
+    transfer.setData('text/html', '<p><strong>Bold text</strong></p><blockquote><p>Pasted quote one</p><p>Pasted quote two</p></blockquote><ul><li>Item one</li><li>Item two</li></ul><figure><img src="https://example.com/test.jpg" alt="Test image"><figcaption>Photo caption</figcaption></figure><iframe src="https://evil.example"></iframe>');
     el.dispatchEvent(new ClipboardEvent('paste', { clipboardData: transfer, bubbles: true, cancelable: true }));
   });
   await expect(editor).toHaveValue(/\*\*Bold text\*\*/);
+  await expect(editor).toHaveValue(/> Pasted quote one\n>\s*\n> Pasted quote two/);
+
   await expect(editor).toHaveValue(/- Item one\n- Item two/);
   await expect(editor).toHaveValue(/!\[Test image\]\(https:\/\/example\.com\/test\.jpg\)/);
   await expect(editor).toHaveValue(/\*Photo caption\*/);
