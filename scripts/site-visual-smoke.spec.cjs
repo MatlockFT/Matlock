@@ -241,6 +241,8 @@ test.describe('Live V3 site rollout', () => {
     expect(articleGeometry.bodyWidth).toBeGreaterThanOrEqual(730);
     expect(articleGeometry.bodyWidth).toBeLessThanOrEqual(765);
     expect(articleGeometry.railLeft - articleGeometry.bodyRight).toBeGreaterThanOrEqual(24);
+    const articleAccentColor = await page.locator('.post-header h1').evaluate(node => getComputedStyle(node).color);
+    expect(articleAccentColor).toBe('rgb(196, 95, 0)');
     await page.waitForFunction(() => {
       const list = document.querySelector('[data-post-news-list]');
       return list?.getAttribute('aria-busy') === 'false';
@@ -322,6 +324,16 @@ test.describe('Homepage V3 editorial shell', () => {
     expect(geometry.leadTitleAlign).toBe('left');
     expect(geometry.leadDeckAlign).toBe('left');
     expect(geometry.wordmarkFont).toContain('Edition Matlock');
+    const seasonalAccent = await page.evaluate(() => {
+      const heading = document.querySelector('.v3-section-head h2');
+      const wordmark = document.querySelector('.v3-wordmark');
+      return {
+        headingColor: heading ? getComputedStyle(heading).color : null,
+        pumpkin: wordmark ? getComputedStyle(wordmark, '::after').content : null
+      };
+    });
+    expect(seasonalAccent.headingColor).toBe('rgb(196, 95, 0)');
+    expect(seasonalAccent.pumpkin).toContain('🎃');
     expect(geometry.leadFont).toContain('Herkey');
     expect(geometry.sectionFont).toContain('Herkey');
     expect(geometry.historyFont).toContain('Herkey');
