@@ -35,7 +35,6 @@ page_scripts:
   data-news-fallback-url="{{ '/assets/data/mma-news.json' | relative_url }}?v={{ site.asset_version }}"
   data-history-url="{{ '/assets/data/on-this-day-home.json' | relative_url }}?v={{ homepage_data_version }}"
   data-history-runtime-base="{{ '/assets/data/on-this-day-runtime/' | relative_url }}"
-  data-verdict-profile-url="https://verdictmma.com/profile/MMAMatlock"
 >
   <div class="v3-trending" aria-label="Trending">
     <strong>Trending:</strong>
@@ -181,72 +180,7 @@ page_scripts:
       </div>
     </section>
 
-    <section class="v3-section v3-verdict" aria-labelledby="v3-verdict-title">
-      <header class="v3-section-head v3-verdict-head">
-        <h2 id="v3-verdict-title">Verdict Picks</h2>
-        <a
-          class="v3-verdict-follow"
-          href="https://verdictmma.com/profile/MMAMatlock"
-          target="_blank"
-          rel="noopener noreferrer"
-        >Follow @MMAMatlock</a>
-      </header>
 
-      <div class="v3-verdict-stats" aria-label="Verdict profile totals">
-        <div>
-          <strong data-verdict-career-predictions>785</strong>
-          <span>Career predictions</span>
-        </div>
-        <div>
-          <strong data-verdict-rounds>1,107</strong>
-          <span>Rounds scored</span>
-        </div>
-        <div>
-          <strong>Black Belt + 1</strong>
-          <span>Current rank</span>
-        </div>
-      </div>
-
-      <article class="v3-verdict-event">
-        <div class="v3-verdict-event-head">
-          <span>Latest published picks</span>
-          <h3>UFC 331: Van vs. Pantoja 2</h3>
-          <p>Sep 19 · Los Angeles</p>
-        </div>
-
-        <div class="v3-pick-list" role="table" aria-label="Latest MMA Matlock picks">
-          <div class="v3-pick-head" role="row">
-            <span role="columnheader">Fight</span>
-            <span role="columnheader">Pick</span>
-            <span role="columnheader">Method</span>
-          </div>
-
-          <div class="v3-pick-row" role="row">
-            <div role="cell">
-              <span>Featherweight</span>
-              <strong>Doo Ho Choi vs. Patricio Pitbull</strong>
-            </div>
-            <strong role="cell">Doo Ho Choi</strong>
-            <span role="cell">KO/TKO · R1</span>
-          </div>
-
-          <div class="v3-pick-row" role="row">
-            <div role="cell">
-              <span>Flyweight title</span>
-              <strong>Joshua Van vs. Alexandre Pantoja</strong>
-            </div>
-            <strong role="cell">Joshua Van</strong>
-            <span role="cell">KO/TKO · R1</span>
-          </div>
-        </div>
-      </article>
-
-      <div class="v3-verdict-next">
-        <span>Next card</span>
-        <strong>DWCS: Season 10, Week 7</strong>
-        <span data-verdict-next-state>Sep 22 · Las Vegas</span>
-      </div>
-    </section>
   </div>
 
   {% if more_posts and more_posts.size > 0 %}
