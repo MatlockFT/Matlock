@@ -23,7 +23,14 @@ Finally! The MMA Gods have listened to the collective prayers of casual and hard
 This controversial kick has been used by many but most notably by Anderson Silva, Jon Jones, and Khalil Rountree. It's no wonder in some circles its called the illegal kick because its impossible to block or counter. In fact, unlike a submission, you cannot even tap to it. Its truly amazing we've made it to 2026 without it being banned yet. 
 
 If you haven't felt a shiver up your spine at merely reading the words OBLIQUE KICK then that means you are unfamiliar with the devastating move. Worry not, for there is a video explaining it in perfect detail by the one who arguably made it most famous and used it most effectively. The one, the only Jonny Bones Jones.
+
 <iframe src="https://www.youtube.com/embed/6Lpf1vwr658" title="YouTube video" allowfullscreen></iframe>
+
+Before Jones made the oblique kick famous, the aforementioned Anderson Silva obliterated Thales Leites so horribly at UFC 97 that the Associate of Boxing Commissions committee had to review the legality of this lethal blow. Ultimately, the MMA Gods decided the ABC were not honorable enough to enact such a monumental change and decided for it to remain a legal technique in 2009. [ABC committee report](https://www.abcboxing.com/committee-report-on-unified-rules-for-mma/).
+
+[EMBED X](https://x.com/MMAMATLOCK/status/2102644311741387051)
+
+Who was on the committee in 2009, you ask?
 
 
 
