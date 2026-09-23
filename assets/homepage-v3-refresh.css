@@ -743,3 +743,125 @@ html.v3-theme-transitioning body:has([data-globe-home]) .site-theme-toggle-track
 html.v3-theme-transitioning body:has([data-globe-home]) .site-theme-toggle-knob {
     transition: transform 260ms ease, background-color 260ms ease;
 }
+
+
+/* =========================================================
+   SEASONAL ACCENT TYPE — HERKEY ONLY
+   Edition MATLOCK and ordinary serif/sans copy remain unchanged.
+   ========================================================= */
+body:has([data-globe-home]){--v3-accent-orange:#c45f00}
+html[data-theme="dark"] body:has([data-globe-home]){--v3-accent-orange:#f08a24}
+
+.archive-page-v3 .archive-header h1,
+.archive-page-v3 .article-card h2,
+.archive-page-v3 .article-card h3,
+.contact-page-v3 .contact-hero-main h1,
+.contact-page-v3 .contact-section-header h2,
+.contact-page-v3 .platform-card strong,
+.error-page-v3 h1,
+.event-map-page-v3 .event-map-cluster-card h2,
+.event-map-page-v3 .event-map-cluster-event strong,
+.event-map-page-v3 .event-map-detail-card h2,
+.event-map-page-v3 .event-map-detail-empty h2,
+.event-map-page-v3 .event-map-detail-fighters,
+.event-map-page-v3 .event-map-hero h1,
+.event-map-page-v3 .event-map-popover > strong,
+.event-map-page-v3 .event-map-result-copy strong,
+.event-map-page-v3 .event-map-results > header h2,
+.event-map-page-v3 .event-map-sumo-detail h3,
+.event-map-page-v3 .event-map-sumo-event strong,
+.event-map-page-v3 .event-map-sumo-header h2,
+.media-kit-page-v3 .media-kit-proof strong,
+.media-kit-page-v3 .media-kit-stat>strong,
+.media-kit-page-v3 .media-kit-value-grid>article>span,
+.media-kit-page-v3 h1,
+.media-kit-page-v3 h2,
+.media-kit-page-v3 h3,
+.mm-simple-v3 .mm-simple-fighter-head h2,
+.mm-simple-v3 .mm-simple-hero h1,
+.mm-simple-v3 .mm-simple-match-copy strong,
+.mm-simple-v3 .mm-simple-match-order,
+.mma-gallery-page-v3 .mma-gallery-caption p,
+.mma-gallery-page-v3 .mma-gallery-count strong,
+.mma-gallery-page-v3 h1,
+.mma-gallery-page-v3 h2,
+.mma-gallery-page-v3 h3,
+.news-page-v3 .news-card h3,
+.news-page-v3 .news-card-placeholder,
+.news-page-v3 .news-latest-header h2,
+.news-page-v3 .news-latest-title,
+.news-page-v3 .news-lead-card h2,
+.news-page-v3 .news-lead-placeholder,
+.news-page-v3 .news-matlock-copy h2,
+.news-page-v3 .news-page-heading h1,
+.news-page-v3 .news-section-heading h2,
+.news-page-v3 .otd-compact-item-title,
+.news-page-v3 .otd-compact-title,
+.otd-page-v3 .otd-day-pill-date,
+.otd-page-v3 .otd-empty strong,
+.otd-page-v3 .otd-entry-title,
+.otd-page-v3 .otd-entry-year,
+.otd-page-v3 .otd-event-poster-title,
+.otd-page-v3 .otd-page-date,
+.otd-page-v3 .otd-v3-title-block h1,
+.post-page-v3 .post-body h2,
+.post-page-v3 .post-body h3,
+.post-page-v3 .post-body h4,
+.post-page-v3 .post-header h1,
+.post-page-v3 .post-rail-article-copy h3,
+.post-page-v3 .post-rail-heading h2,
+.post-page-v3 .post-share-heading h2,
+.privacy-page-v3 h1,
+.privacy-page-v3 h2,
+.privacy-page-v3 h3,
+.simple-about-page-v3 .simple-about-background h2,
+.simple-about-page-v3 .simple-about-card h3,
+.simple-about-page-v3 .simple-about-heading h2,
+.simple-about-page-v3 .simple-about-hero h1,
+.ufc-roster-page-v3 .ufc-roster-hero h1,
+.ufc-roster-page-v3 .ufc-roster-name,
+.ufc-roster-page-v3 .ufc-roster-photo,
+.ufc-roster-page-v3 .ufc-roster-section-header h2,
+.ufc-roster-page-v3 .ufc-roster-stat strong,
+.upcoming-events-page-v3 .event-card-heading h2,
+.upcoming-events-page-v3 .event-card-section-heading h3,
+.upcoming-events-page-v3 .fighter-name,
+.upcoming-events-page-v3 .upcoming-events-header h1,
+.v3-feature h3,
+.v3-history-feature-title,
+.v3-lead h1,
+.v3-more-story h3,
+.v3-news-item a,
+.v3-rail-story h2,
+.v3-section-head h2,
+.v3-verdict-card h3,
+.v3-verdict-event-head h3,
+.v3-verdict-head h2,
+.v3-verdict-stats strong,
+.yellow-pages-page-v3 .yellow-pages-listing-name,
+.yellow-pages-page-v3 .yellow-pages-section-letter,
+.yellow-pages-page-v3 h1,
+.yellow-pages-page-v3 h2,
+.yellow-pages-page-v3 h3,
+body:has(.otd-page-v3) .otd-share-header h2{
+  color:var(--v3-accent-orange)!important;
+}
+
+/* Tiny decorative pumpkin beside the masthead without changing its centering. */
+.v3-wordmark{position:relative;display:inline-block}
+.v3-wordmark::after{
+  position:absolute;
+  top:-.18rem;
+  right:-1.15rem;
+  content:"🎃";
+  font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+  font-size:clamp(.68rem,.9vw,.9rem);
+  font-weight:400;
+  line-height:1;
+  letter-spacing:0;
+  pointer-events:none;
+  user-select:none;
+}
+@media(max-width:520px){
+  .v3-wordmark::after{top:-.08rem;right:-.88rem;font-size:.68rem}
+}
