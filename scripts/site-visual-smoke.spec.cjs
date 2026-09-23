@@ -456,6 +456,9 @@ test.describe('Homepage V3 editorial shell', () => {
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
     await expect(page.locator('html')).not.toHaveClass(/v3-theme-transitioning/, { timeout: 1200 });
 
+    await page.locator('.site-event-primary').click();
+    await expect(page.locator('.site-event-drawer')).toBeVisible();
+
     const eventRow = page.locator('.site-event-drawer .site-event-row').first();
     await eventRow.hover();
     const hoveredEventStyle = await eventRow.evaluate(node => ({
