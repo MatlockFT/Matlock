@@ -151,8 +151,8 @@ jobs:
           grep -q "data-roster-removals" ufc-roster.html
           grep -q "is-portrait" assets/on-this-day.js
           grep -q "animation-play-state: paused !important" assets/site-ticker.css
-          grep -q "home-live-grid" index.html
-          grep -q "data-home-otd-body" index.html
+          grep -q "data-globe-home" index.html
+          grep -q "v3-front" index.html
           grep -q "Shared optical row alignment" assets/site-consistency.css
           grep -q "ufc-active-absence-confirmed" assets/ufc-roster.js
           grep -q "REMOVAL_CONFIRMATION_MISSES = 3" scripts/update-ufc-roster-v4.mjs
@@ -165,10 +165,11 @@ jobs:
           grep -q 'fetchpriority="high"' breakdowns.html
           grep -q "/assets/on-this-day-stable.js" on-this-day.html
           grep -q "/assets/otd-share-bootstrap.js" on-this-day.html
-          grep -q "/assets/on-this-day.bundle.css" on-this-day.html
+          grep -q "/assets/on-this-day-v3.css" on-this-day.html
           grep -q "data-history-index-url" on-this-day.html
-          grep -q 'data-home-dashboard' index.html
-          grep -q '/assets/homepage-dashboard.js' index.html
+          grep -q 'data-globe-home' index.html
+          grep -q '/assets/homepage-v3.js' index.html
+          grep -q '/assets/homepage-v3.css' index.html
           grep -q '/assets/news-matlock.css' news.html
           grep -q 'news-matlock-latest' news.html
           grep -q '/assets/upcoming-events-links.js' upcoming-events.html
