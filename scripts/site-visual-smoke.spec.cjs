@@ -342,6 +342,27 @@ test.describe('Homepage V3 editorial shell', () => {
     expect(seasonalAccent.pumpkin).toContain('🎃');
     expect(seasonalAccent.pumpkinBottom).not.toBe('auto');
     expect(seasonalAccent.pumpkinSize).toBeGreaterThanOrEqual(18);
+    const darkDrawerHover = await page.evaluate(() => {
+      const html = document.documentElement;
+      html.setAttribute('data-theme', 'dark');
+      const row = document.querySelector('.site-event-drawer .site-event-row');
+      if (!row) return null;
+      row.classList.add('v3-test-hover');
+      const style = getComputedStyle(row);
+      const name = row.querySelector('.site-event-row-name');
+      const detail = row.querySelector('.site-event-row-detail');
+      return {
+        background: style.backgroundColor,
+        color: style.color,
+        nameColor: name ? getComputedStyle(name).color : null,
+        detailColor: detail ? getComputedStyle(detail).color : null
+      };
+    });
+    if (darkDrawerHover) {
+      expect(darkDrawerHover.background).not.toBe('rgb(255, 255, 255)');
+      expect(darkDrawerHover.color).toBe('rgb(255, 255, 255)');
+      expect(darkDrawerHover.nameColor).toBe('rgb(255, 255, 255)');
+    }
     expect(geometry.leadFont).toContain('Herkey');
     expect(geometry.sectionFont).toContain('Herkey');
     expect(geometry.historyFont).toContain('Herkey');
