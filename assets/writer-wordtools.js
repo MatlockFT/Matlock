@@ -1,5 +1,5 @@
 (() => {
-  const version = '20260917-splitflow1';
+  const version = '20260922-writerchrome4';
   const head = document.head;
 
   function loadStyle(href) {
