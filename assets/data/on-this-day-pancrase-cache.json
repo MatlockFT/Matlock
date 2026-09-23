@@ -1,7 +1,7 @@
 {
   "version": 2,
   "strategyVersion": 1,
-  "updatedAt": "2026-09-09T16:42:13.850Z",
+  "updatedAt": "2026-09-23T01:06:44.349Z",
   "fighters": {
     "船木誠勝": {
       "checkedAt": "2026-09-08T07:03:33.069Z",
@@ -10157,6 +10157,14 @@
         "checkedAt": "2026-09-09T16:42:13.850Z",
         "status": "no-headliner-image"
       }
+    },
+    "pancrase:2026-09-23:pancrase-366": {
+      "content": {
+        "strategyVersion": 1,
+        "checkedAt": "2026-09-23T01:06:44.349Z",
+        "status": "official-page-missing",
+        "sourceUrl": "https://www.pancrase.co.jp/data/result/2026/0923.html"
+      }
     }
   },
   "posters": {
@@ -12701,8 +12709,14 @@
       "checkedAt": "2026-09-22T14:10:07.300Z",
       "status": "no-poster",
       "sourceUrl": "https://www.pancrase.co.jp/data/result/2008/0323.html"
+    },
+    "pancrase:2026-09-23:pancrase-366": {
+      "strategyVersion": 3,
+      "checkedAt": "2026-09-23T01:06:45.729Z",
+      "status": "not-found",
+      "sourceUrl": "https://www.pancrase.co.jp/data/result/2026/0923.html"
     }
   },
   "posterStrategyVersion": 3,
-  "posterUpdatedAt": "2026-09-22T14:10:07.300Z"
+  "posterUpdatedAt": "2026-09-23T01:06:45.729Z"
 }
