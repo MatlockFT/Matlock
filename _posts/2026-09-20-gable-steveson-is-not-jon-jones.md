@@ -4,7 +4,7 @@ title: GABLE STEVESON IS NOT JON JONES
 description: It turns out that Jon Jones teaching Gable Steveson to be Jon Jones will NOT work out unless Gable Steveson is Jon Jones
 date: 2026-09-20
 category: Results
-author: MMA Matlock
+author: Matlock
 image:
   path: /assets/uploads/Steveson.png
   alt: Gable Steveson getting kayoed by Sean Sharaf
