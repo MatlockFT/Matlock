@@ -687,9 +687,6 @@
       const source = img.dataset.writerSource || original;
       if (!/^\/assets\/uploads\//i.test(source)) return;
 
-      const existingTimer = inlineImageRetryTimers.get(img);
-      if (existingTimer) window.clearTimeout(existingTimer);
-
       let attempt = Number(img.dataset.writerRetryAttempt || '0');
       const setSource = () => {
         img.setAttribute('src', writerPreviewAssetUrl(source, attempt));
