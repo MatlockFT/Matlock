@@ -126,6 +126,13 @@ test('Writer keeps embeds stable, quotes structured, and bitmap clipboard paste 
   await openWriter(page);
   const editor = page.locator('#writer-body');
 
+  // Normal Enter line breaks remain visible in preview while a blank line remains a paragraph break.
+  await editor.fill('Committee Chair Nick Lembo, New Jersey\nJim Erickson, Mille Lacs\nAndy Foster, Georgia\n\nFive years later.');
+  const previewParagraphs = page.locator('[data-preview-content] > p');
+  await expect(previewParagraphs).toHaveCount(2);
+  await expect(previewParagraphs.nth(0)).toHaveText('Committee Chair Nick Lembo, New Jersey\nJim Erickson, Mille Lacs\nAndy Foster, Georgia');
+  expect(await previewParagraphs.nth(0).evaluate(el => getComputedStyle(el).whiteSpace)).toBe('pre-line');
+
   // Quote is a real multi-paragraph block and toggles cleanly.
   await editor.fill('First quoted paragraph\n\nSecond quoted paragraph');
   await editor.evaluate(el => el.setSelectionRange(0, el.value.length));
