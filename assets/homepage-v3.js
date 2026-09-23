@@ -197,7 +197,31 @@
       key || String(entry.date || '').slice(5)
     )}`;
 
-    const imageLink = el('a', 'v3-history-feature-image');\n    imageLink.href = historyHref;\n\n    const renderHistoryPlaceholder = () => {\n      imageLink.classList.add('v3-history-feature-image--fallback');\n      imageLink.replaceChildren(\n        el('span', 'v3-history-feature-fallback', (entry.promotion || 'MMA') + ' / HISTORY')\n      );\n    };\n\n    if (/^https:\/\//i.test(String(entry.imageUrl || ''))) {\n      const image = document.createElement('img');\n      image.src = entry.imageUrl;\n      image.alt = entry.imageAlt || entry.title || 'MMA history image';\n      image.loading = 'lazy';\n      image.decoding = 'async';\n      image.referrerPolicy = 'no-referrer';\n      image.addEventListener('error', renderHistoryPlaceholder, { once: true });\n      imageLink.append(image);\n    } else {\n      renderHistoryPlaceholder();\n    }\n    card.append(imageLink);\n\n    const copy = el('div', 'v3-history-feature-copy');
+    const imageLink = el('a', 'v3-history-feature-image');
+    imageLink.href = historyHref;
+
+    const renderHistoryPlaceholder = () => {
+      imageLink.classList.add('v3-history-feature-image--fallback');
+      imageLink.replaceChildren(
+        el('span', 'v3-history-feature-fallback', (entry.promotion || 'MMA') + ' / HISTORY')
+      );
+    };
+
+    if (/^https:\/\//i.test(String(entry.imageUrl || ''))) {
+      const image = document.createElement('img');
+      image.src = entry.imageUrl;
+      image.alt = entry.imageAlt || entry.title || 'MMA history image';
+      image.loading = 'lazy';
+      image.decoding = 'async';
+      image.referrerPolicy = 'no-referrer';
+      image.addEventListener('error', renderHistoryPlaceholder, { once: true });
+      imageLink.append(image);
+    } else {
+      renderHistoryPlaceholder();
+    }
+    card.append(imageLink);
+
+    const copy = el('div', 'v3-history-feature-copy');
     const year = String(entry.date || '').slice(0, 4);
     copy.append(el('span', 'v3-history-feature-year', year || 'On this day'));
     copy.append(el('h3', 'v3-history-feature-title', entry.title || 'MMA history'));
