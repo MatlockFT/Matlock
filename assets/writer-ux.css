@@ -61,3 +61,433 @@
   .writer-wordtools-outline.writer-ux-outline-rail nav{grid-template-columns:1fr;max-height:180px}
   .writer-ux-more-panel{right:auto;left:0}
 }
+
+
+/* 2026-09-22 Writer chrome overhaul
+   One hierarchy, one control scale, minimal permanent chrome. */
+.writer-app{
+  --writer-control-font:11px;
+  --writer-control-height:28px;
+  --writer-control-weight:560;
+  --writer-control-muted:#767678;
+  --writer-control-active:#f0f0ee;
+}
+
+/* Compact primary command bar */
+.writer-app .writer-topbar{
+  min-height:44px;
+  padding:.34rem 0 .38rem;
+  gap:.75rem;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.075);
+  border-radius:0;
+  background:rgba(0,0,0,.82);
+  box-shadow:none;
+}
+.writer-app .writer-topbar h1{
+  font-size:.94rem;
+  font-weight:680;
+  line-height:1;
+  letter-spacing:-.018em;
+}
+.writer-app .writer-top-actions{
+  flex-wrap:nowrap;
+  gap:.05rem;
+}
+.writer-app .writer-top-secondary,
+.writer-app .writer-publish-actions{
+  display:flex;
+  align-items:center;
+  flex-wrap:nowrap;
+  gap:.02rem;
+}
+.writer-app .writer-top-secondary{
+  margin-right:.28rem;
+  padding-right:.3rem;
+  border-right:1px solid rgba(255,255,255,.075);
+}
+.writer-app .writer-top-actions .writer-button{
+  min-height:var(--writer-control-height);
+  padding:.3rem .42rem;
+  border:0;
+  border-radius:3px;
+  background:transparent;
+  box-shadow:none;
+  color:#89898a;
+  font-size:var(--writer-control-font);
+  font-weight:var(--writer-control-weight);
+  line-height:1;
+  letter-spacing:0;
+}
+.writer-app .writer-top-actions .writer-button:hover{
+  background:rgba(255,255,255,.055);
+  color:#f2f2ef;
+}
+.writer-app .writer-top-actions .writer-button-primary{
+  min-width:58px;
+  margin-left:.08rem;
+  background:#ededeb;
+  color:#0a0a0a;
+  font-weight:650;
+}
+.writer-app .writer-top-actions .writer-button-primary:hover{
+  background:#fff;
+  color:#000;
+}
+.writer-app .writer-save-state{
+  min-height:0;
+  padding:0 .38rem;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:#565658;
+  font-size:10px;
+  font-weight:520;
+}
+
+/* Remove the duplicate connection/document row. Keep only quiet telemetry. */
+.writer-app .writer-statusbar{
+  justify-content:flex-end;
+  min-height:24px;
+  margin:0 0 .22rem;
+  padding:.18rem 0 .2rem;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.04);
+  border-radius:0;
+  background:transparent;
+  font-size:10px;
+}
+.writer-app .writer-status-primary{display:none}
+.writer-app .writer-status-meta{
+  gap:.5rem;
+  margin-left:auto;
+  color:#555557;
+}
+.writer-app .writer-autosave-chip,
+.writer-app .writer-status-stat{
+  min-height:0;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:#5f5f61;
+  font-size:10px;
+  font-weight:500;
+}
+.writer-app .writer-autosave-chip i{
+  width:4px;
+  height:4px;
+  margin-right:.14rem;
+}
+
+/* Unified secondary editor bar */
+.writer-app .writer-modebar{
+  display:flex;
+  align-items:stretch;
+  justify-content:space-between;
+  gap:0;
+  min-height:34px;
+  margin:0 0 .35rem;
+  padding:0;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.075);
+  border-radius:0;
+  background:transparent;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:thin;
+}
+.writer-app .writer-modebar-actions{
+  display:flex;
+  align-items:stretch;
+  justify-content:flex-end;
+  gap:0;
+  flex-wrap:nowrap;
+  margin-left:auto;
+}
+.writer-app .writer-mode-group{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:.12rem;
+  min-height:34px;
+  padding:0 .45rem;
+  flex:0 0 auto;
+}
+.writer-app .writer-mode-group:first-child{padding-left:.05rem}
+.writer-app .writer-mode-group + .writer-mode-group::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:9px;
+  bottom:9px;
+  width:1px;
+  background:rgba(255,255,255,.065);
+}
+.writer-app .writer-mode-label{
+  margin-right:.16rem;
+  color:#444447;
+  font-size:9px;
+  font-weight:650;
+  line-height:1;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  user-select:none;
+}
+.writer-app .writer-mode-options{
+  display:flex;
+  align-items:stretch;
+  gap:0;
+}
+.writer-app .writer-mode-options button,
+.writer-app .writer-splitflow-sync{
+  position:relative;
+  min-height:33px;
+  padding:.02rem .36rem 0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  color:var(--writer-control-muted);
+  cursor:pointer;
+  font-size:var(--writer-control-font);
+  font-weight:var(--writer-control-weight);
+  line-height:1;
+  letter-spacing:0;
+  white-space:nowrap;
+}
+.writer-app .writer-mode-options button:hover,
+.writer-app .writer-splitflow-sync:hover{
+  background:transparent;
+  color:#c8c8c6;
+}
+.writer-app .writer-mode-options button[aria-pressed="true"],
+.writer-app .writer-splitflow-sync[aria-pressed="true"]{
+  background:transparent;
+  color:var(--writer-control-active);
+  box-shadow:none;
+}
+.writer-app .writer-mode-options button[aria-pressed="true"]::after,
+.writer-app .writer-splitflow-sync[aria-pressed="true"]::after{
+  content:"";
+  position:absolute;
+  right:.36rem;
+  bottom:0;
+  left:.36rem;
+  height:1px;
+  background:#d9d9d6;
+}
+.writer-app .writer-mode-tools .writer-mode-options{gap:.02rem}
+.writer-app .writer-preview-size{margin-left:.05rem}
+
+/* Formatting is one thin horizontal rail, never two stacked boxes. */
+.writer-app .writer-toolbar,
+.writer-app .writer-ux-toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  flex-wrap:nowrap!important;
+  gap:.18rem;
+  min-height:34px;
+  padding:.2rem 0;
+  border:0;
+  border-top:1px solid rgba(255,255,255,.045);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  border-radius:0;
+  background:rgba(3,3,3,.78);
+  box-shadow:none;
+  overflow-x:auto;
+  overflow-y:visible;
+  scrollbar-width:thin;
+}
+.writer-app .writer-toolbar-group,
+.writer-app .writer-ux-toolbar>.writer-toolbar-group{
+  display:flex;
+  align-items:center;
+  flex:0 0 auto;
+  flex-wrap:nowrap;
+  gap:.02rem;
+}
+.writer-app .writer-toolbar-rich{
+  margin-left:.22rem;
+  padding-left:.28rem;
+  border-left:1px solid rgba(255,255,255,.065);
+}
+.writer-app .writer-toolbar button{
+  min-height:27px;
+  padding:.25rem .36rem;
+  border:0;
+  border-radius:2px;
+  background:transparent;
+  box-shadow:none;
+  color:#777779;
+  font-size:10px;
+  font-weight:570;
+  line-height:1;
+  white-space:nowrap;
+}
+.writer-app .writer-toolbar button:hover{
+  background:rgba(255,255,255,.05);
+  color:#e5e5e2;
+}
+.writer-app .writer-toolbar button.is-active,
+.writer-app .writer-ux-toolbar button[aria-pressed="true"]{
+  background:rgba(255,255,255,.055);
+  color:#f1f1ee;
+  box-shadow:none;
+}
+.writer-app .writer-ux-more>summary{
+  min-height:27px;
+  padding:.25rem .36rem;
+  border-radius:2px;
+  color:#777779;
+  font-size:10px;
+  font-weight:570;
+}
+
+/* Writer surface: eliminate the last big rounded boxes. */
+.writer-app .writer-body-editor{
+  padding:.82rem .18rem 1rem;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.065);
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+.writer-app .writer-body-editor:focus{
+  border-color:rgba(255,255,255,.18);
+  background:transparent;
+  box-shadow:none;
+}
+.writer-app .writer-preview-pane{
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+.writer-app .writer-preview-article{
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.writer-app .writer-preview-frame[data-preview-size="mobile"]{
+  border-left:1px solid rgba(255,255,255,.055);
+  border-right:1px solid rgba(255,255,255,.055);
+}
+.writer-app .writer-meta{
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+.writer-app .writer-meta summary{
+  min-height:31px;
+  padding:.38rem .08rem;
+  font-size:10px;
+  font-weight:620;
+}
+.writer-app .writer-meta-grid{
+  padding:.48rem 0 .5rem;
+}
+.writer-app .writer-flags{
+  padding:.42rem 0 .5rem;
+  border-top:0;
+  font-size:10px;
+}
+.writer-app .writer-editor-footer{
+  padding:.3rem .06rem;
+  font-size:10px;
+}
+
+/* Library uses the same compact control scale. */
+.writer-app .writer-library-header{
+  margin-bottom:.4rem;
+  padding:.15rem 0 .5rem;
+}
+.writer-app .writer-library-header h2{
+  font-size:1.55rem;
+  font-weight:680;
+}
+.writer-app .writer-library-header p{
+  font-size:11px;
+}
+.writer-app .writer-library-header .writer-button{
+  min-height:28px;
+  padding:.34rem .48rem;
+  font-size:11px;
+  font-weight:620;
+}
+.writer-app .writer-library-search input{
+  font-size:11px;
+}
+.writer-app .writer-library-controls .writer-segmented button{
+  min-height:28px;
+  padding:.32rem .42rem;
+  font-size:10px;
+  font-weight:560;
+}
+
+/* Keep popup controls compact too. */
+.writer-app .writer-ux-more-panel{
+  min-width:160px;
+  padding:4px;
+  border-radius:6px;
+}
+.writer-app .writer-ux-more-panel button{
+  min-height:27px;
+  padding:.35rem .45rem;
+  font-size:10px;
+}
+.writer-app .writer-ux-slash-menu{
+  border-radius:7px;
+}
+
+/* Narrow screens keep one horizontally-scrollable chrome system. */
+@media(max-width:1100px){
+  .writer-app .writer-modebar{
+    justify-content:flex-start;
+  }
+  .writer-app .writer-modebar-actions{
+    margin-left:0;
+  }
+}
+@media(max-width:700px){
+  .writer-app .writer-topbar{
+    align-items:center;
+    flex-direction:row;
+    padding:.3rem 0;
+  }
+  .writer-app .writer-topbar h1{
+    font-size:.86rem;
+    white-space:nowrap;
+  }
+  .writer-app .writer-top-actions{
+    display:flex;
+    width:auto;
+    margin-left:auto;
+    overflow-x:auto;
+  }
+  .writer-app .writer-top-actions .writer-button{
+    width:auto;
+    padding:.28rem .34rem;
+    font-size:10px;
+  }
+  .writer-app .writer-save-state{display:none}
+  .writer-app .writer-statusbar{display:none}
+  .writer-app .writer-mode-label{display:none}
+  .writer-app .writer-mode-group{
+    padding:0 .3rem;
+  }
+  .writer-app .writer-mode-group:first-child{padding-left:0}
+  .writer-app .writer-mode-options button,
+  .writer-app .writer-splitflow-sync{
+    padding:0 .32rem;
+    font-size:10px;
+  }
+  .writer-app .writer-toolbar button,
+  .writer-app .writer-ux-more>summary{
+    font-size:9px;
+  }
+}
