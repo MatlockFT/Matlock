@@ -889,3 +889,21 @@ html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-eve
         max-width: 42px;
     }
 }
+
+
+/* Preserve the history feature’s image-led shape when a poster is unavailable. */
+.v3-history-feature-image--fallback {
+    display: grid;
+    min-height: 180px;
+    place-items: center;
+    padding: 1rem;
+    background: var(--v3-paper-deep);
+    color: var(--v3-red);
+    text-align: center;
+}
+
+.v3-history-feature-fallback {
+    font: 800 clamp(.7rem, 1vw, .95rem)/1.2 var(--v3-sans);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
