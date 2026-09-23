@@ -1,0 +1,269 @@
+/*
+ * About V3 — isolated editorial presentation.
+ * The live About page remains on the legacy shared CSS.
+ */
+
+.simple-about-page-v3 {
+    width: min(calc(100% - 2rem), 1180px);
+    margin: 0 auto;
+    padding: .9rem 0 clamp(4rem, 7vw, 7rem);
+    background: var(--v3-paper);
+    color: var(--v3-ink);
+    font-family: var(--v3-sans);
+}
+
+.simple-about-page-v3 .simple-about-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(250px, .65fr);
+    grid-template-areas:
+        "eyebrow actions"
+        "title actions"
+        "intro actions";
+    gap: 0 2rem;
+    align-items: end;
+    min-height: 0;
+    margin: 0 0 clamp(2.4rem, 5vw, 4.5rem);
+    padding: .85rem 0 1.15rem;
+    border: 0;
+    border-top: 3px solid var(--v3-ink);
+    border-bottom: 1px solid var(--v3-rule);
+    background: transparent;
+    box-shadow: none;
+}
+
+.simple-about-page-v3 .simple-about-eyebrow {
+    grid-area: eyebrow;
+    margin: 0 0 .3rem;
+    color: var(--v3-red);
+    font: 800 .55rem/1 var(--v3-sans);
+    letter-spacing: .065em;
+    text-transform: uppercase;
+}
+
+.simple-about-page-v3 .simple-about-hero h1 {
+    grid-area: title;
+    max-width: none;
+    margin: 0;
+    color: var(--v3-ink);
+    font-family: "Herkey", Georgia, "Times New Roman", serif;
+    font-size: clamp(2.6rem, 5.2vw, 5.4rem);
+    font-weight: 400;
+    line-height: .88;
+    letter-spacing: -.018em;
+    text-transform: none;
+    text-shadow: none;
+}
+
+.simple-about-page-v3 .simple-about-intro {
+    grid-area: intro;
+    max-width: 68ch;
+    margin: .85rem 0 0;
+    color: var(--v3-muted);
+    font: 500 clamp(.88rem, 1.2vw, 1.02rem)/1.62 var(--v3-sans);
+    text-wrap: pretty;
+}
+
+.simple-about-page-v3 .simple-about-actions {
+    grid-area: actions;
+    display: grid;
+    gap: .45rem;
+    align-self: end;
+    justify-self: stretch;
+    margin: 0;
+}
+
+.simple-about-page-v3 .simple-about-actions a {
+    display: flex;
+    min-height: 38px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: .58rem .65rem;
+    border: 1px solid var(--v3-rule);
+    border-radius: 0;
+    background: transparent;
+    color: var(--v3-ink);
+    box-shadow: none;
+    font: 800 .55rem/1 var(--v3-sans);
+    letter-spacing: .045em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transform: none;
+}
+
+.simple-about-page-v3 .simple-about-actions a::after {
+    color: var(--v3-red);
+    content: "→";
+}
+
+.simple-about-page-v3 .simple-about-actions a:hover,
+.simple-about-page-v3 .simple-about-actions a:focus-visible {
+    border-color: var(--v3-ink);
+    background: var(--v3-ink);
+    color: var(--v3-paper);
+    transform: none;
+}
+
+/* What I make */
+.simple-about-page-v3 .simple-about-work {
+    margin: 0 0 clamp(2.8rem, 5vw, 4.5rem);
+}
+
+.simple-about-page-v3 .simple-about-heading {
+    margin: 0 0 .7rem;
+    padding: 0 0 .5rem;
+    border-bottom: 1px solid var(--v3-rule);
+}
+
+.simple-about-page-v3 .simple-about-heading h2,
+.simple-about-page-v3 .simple-about-background h2 {
+    margin: 0;
+    color: var(--v3-ink);
+    font-family: "Herkey", Georgia, "Times New Roman", serif;
+    font-size: clamp(1.55rem, 2.7vw, 2.55rem);
+    font-weight: 400;
+    line-height: .95;
+    letter-spacing: -.01em;
+    text-transform: none;
+}
+
+.simple-about-page-v3 .simple-about-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 clamp(1.5rem, 3.5vw, 3.5rem);
+    margin: 0;
+}
+
+.simple-about-page-v3 .simple-about-card {
+    min-width: 0;
+    margin: 0;
+    padding: .95rem 0 1.1rem;
+    border: 0;
+    border-bottom: 1px solid var(--v3-rule);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+}
+
+.simple-about-page-v3 .simple-about-card h3 {
+    margin: 0 0 .45rem;
+    color: var(--v3-ink);
+    font-family: "Herkey", Georgia, serif;
+    font-size: clamp(1.25rem, 1.9vw, 1.8rem);
+    font-weight: 400;
+    line-height: .98;
+}
+
+.simple-about-page-v3 .simple-about-card p {
+    max-width: 62ch;
+    margin: 0;
+    color: var(--v3-muted);
+    font: 500 .82rem/1.58 var(--v3-sans);
+}
+
+/* Background and editorial approach use the same print-section rhythm. */
+.simple-about-page-v3 .simple-about-background {
+    display: grid;
+    grid-template-columns: minmax(180px, .42fr) minmax(0, 1.58fr);
+    gap: clamp(1.5rem, 4vw, 4rem);
+    margin: 0;
+    padding: 1rem 0 clamp(2.6rem, 5vw, 4.2rem);
+    border-top: 3px solid var(--v3-ink);
+}
+
+.simple-about-page-v3 .simple-about-background + .simple-about-background {
+    margin-top: 0;
+}
+
+.simple-about-page-v3 .simple-about-background-copy {
+    max-width: 760px;
+    min-width: 0;
+}
+
+.simple-about-page-v3 .simple-about-background-copy p {
+    margin: 0;
+    color: var(--v3-ink);
+    font: 500 .9rem/1.66 var(--v3-sans);
+    text-wrap: pretty;
+}
+
+.simple-about-page-v3 .simple-about-background-copy p + p {
+    margin-top: 1rem;
+}
+
+.simple-about-page-v3 .simple-about-background-copy a {
+    color: var(--v3-red);
+    font-weight: 700;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+.simple-about-page-v3 .simple-about-background-copy a:hover,
+.simple-about-page-v3 .simple-about-background-copy a:focus-visible {
+    color: var(--v3-ink);
+}
+
+/* Dark mode */
+html[data-theme="dark"] .simple-about-page-v3 {
+    background: var(--v3-paper);
+    color: var(--v3-ink);
+}
+
+html.v3-theme-transitioning .simple-about-page-v3,
+html.v3-theme-transitioning .simple-about-page-v3 .simple-about-card,
+html.v3-theme-transitioning .simple-about-page-v3 .simple-about-actions a {
+    transition:
+        background-color 360ms ease,
+        color 360ms ease,
+        border-color 360ms ease;
+}
+
+@media (max-width: 760px) {
+    .simple-about-page-v3 .simple-about-hero {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "eyebrow"
+            "title"
+            "intro"
+            "actions";
+        gap: 0;
+    }
+
+    .simple-about-page-v3 .simple-about-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 1rem;
+    }
+
+    .simple-about-page-v3 .simple-about-grid,
+    .simple-about-page-v3 .simple-about-background {
+        grid-template-columns: 1fr;
+    }
+
+    .simple-about-page-v3 .simple-about-background {
+        gap: .8rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .simple-about-page-v3 {
+        width: min(calc(100% - 1.4rem), 1180px);
+    }
+
+    .simple-about-page-v3 .simple-about-hero h1 {
+        font-size: clamp(2.6rem, 14vw, 4rem);
+    }
+
+    .simple-about-page-v3 .simple-about-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .simple-about-page-v3 *,
+    .simple-about-page-v3 *::before,
+    .simple-about-page-v3 *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}

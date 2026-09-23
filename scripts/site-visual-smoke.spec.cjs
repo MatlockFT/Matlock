@@ -588,6 +588,71 @@ test.describe('Fight Cards V3 isolated migration', () => {
   });
 });
 
+test.describe('About V3 isolated migration', () => {
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('keeps live About untouched while V3 uses the editorial shell and clean content sections', async ({ page }) => {
+    await page.goto(targetUrl('/about/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('.simple-about-page')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('[data-editorial-v3]')).toHaveCount(0);
+    await expect(page.locator('.site-theme-toggle')).toHaveCount(0);
+
+    await page.goto(targetUrl('/about-v3/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-editorial-v3]')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('.v3-wordmark')).toBeVisible();
+    await expect(page.locator('.site-theme-toggle')).toBeVisible();
+    await expect(page.locator('.v3-sticky-shell')).toHaveCount(1);
+
+    const stylesheetHrefs = await page.locator('link[rel="stylesheet"]').evaluateAll(nodes =>
+      nodes.map(node => node.getAttribute('href') || '')
+    );
+    const v3Index = stylesheetHrefs.findIndex(href => href.includes('about-v3.css'));
+    const tailIndex = stylesheetHrefs.findIndex(href => href.includes('site-tail.css'));
+    expect(v3Index).toBeGreaterThan(tailIndex);
+
+    await page.evaluate(() => document.fonts?.ready).catch(() => {});
+    const title = await page.locator('.simple-about-hero h1').evaluate(node => ({
+      text: node.textContent.trim(),
+      font: getComputedStyle(node).fontFamily
+    }));
+    expect(title.text).toBe('MMA Matlock');
+    expect(title.font).toContain('Herkey');
+
+    const cards = page.locator('.simple-about-card');
+    await expect(cards).toHaveCount(2);
+    const cardStyle = await cards.first().evaluate(node => ({
+      radius: getComputedStyle(node).borderRadius,
+      shadow: getComputedStyle(node).boxShadow,
+      background: getComputedStyle(node).backgroundColor,
+      transform: getComputedStyle(node).transform
+    }));
+    expect(cardStyle.radius).toBe('0px');
+    expect(cardStyle.shadow).toBe('none');
+    expect(cardStyle.background).toBe('rgba(0, 0, 0, 0)');
+    expect(cardStyle.transform).toBe('none');
+
+    const actionStyle = await page.locator('.simple-about-actions a').first().evaluate(node => ({
+      radius: getComputedStyle(node).borderRadius,
+      shadow: getComputedStyle(node).boxShadow
+    }));
+    expect(actionStyle.radius).toBe('0px');
+    expect(actionStyle.shadow).toBe('none');
+
+    const sectionFont = await page.locator('.simple-about-background h2').first().evaluate(node =>
+      getComputedStyle(node).fontFamily
+    );
+    expect(sectionFont).toContain('Herkey');
+
+    const overflow = await page.evaluate(() =>
+      document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(2);
+
+    const robots = await page.locator('meta[name="robots"]').getAttribute('content');
+    expect(robots).toContain('noindex');
+  });
+});
+
 test.describe('Matchmaker V3 isolated migration', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 
