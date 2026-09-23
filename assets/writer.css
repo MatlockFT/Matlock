@@ -538,3 +538,7 @@
   border-color:rgba(0,0,0,.18);
   color:#666;
 }
+
+
+.writer-preview-featured.is-loading img{visibility:hidden}
+.writer-preview-featured.is-loading{min-height:180px}
