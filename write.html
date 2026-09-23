@@ -85,18 +85,30 @@ page_scripts:
   </section>
 
   <section data-editor-view hidden>
-    <div class="writer-modebar" role="toolbar" aria-label="Writer view">
-      <div class="writer-segmented" data-view-switcher>
-        <button type="button" data-view="write" aria-pressed="false">Write</button>
-        <button type="button" data-view="split" aria-pressed="true">Split</button>
-        <button type="button" data-view="preview" aria-pressed="false">Preview</button>
+    <div class="writer-modebar" role="toolbar" aria-label="Writer controls">
+      <div class="writer-mode-group writer-view-group" data-mode-group="view">
+        <span class="writer-mode-label">View</span>
+        <div class="writer-mode-options" data-view-switcher>
+          <button type="button" data-view="write" aria-pressed="false">Write</button>
+          <button type="button" data-view="split" aria-pressed="true">Split</button>
+          <button type="button" data-view="preview" aria-pressed="false">Preview</button>
+        </div>
       </div>
 
       <div class="writer-modebar-actions">
-        <button class="writer-text-button" type="button" data-history>History</button>
-        <div class="writer-segmented writer-preview-size" data-preview-size-switcher>
-          <button type="button" data-preview-size="desktop" aria-pressed="true">Desktop</button>
-          <button type="button" data-preview-size="mobile" aria-pressed="false">Mobile</button>
+        <div class="writer-mode-group writer-mode-tools" data-mode-group="tools">
+          <span class="writer-mode-label">Tools</span>
+          <div class="writer-mode-options" data-writer-tool-actions>
+            <button type="button" data-history>History</button>
+          </div>
+        </div>
+
+        <div class="writer-mode-group writer-preview-size" data-mode-group="preview">
+          <span class="writer-mode-label">Preview</span>
+          <div class="writer-mode-options" data-preview-size-switcher>
+            <button type="button" data-preview-size="desktop" aria-pressed="true">Desktop</button>
+            <button type="button" data-preview-size="mobile" aria-pressed="false">Mobile</button>
+          </div>
         </div>
       </div>
     </div>
