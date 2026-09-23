@@ -1,0 +1,556 @@
+/*
+ * Matchmaker V3 — isolated editorial presentation.
+ * The deterministic Matchmaker engine and public recommendation filters are unchanged.
+ */
+
+.mm-simple-v3 {
+  width: min(calc(100% - 2rem), 1380px);
+  max-width: none;
+  margin: 0 auto;
+  padding: .9rem 0 clamp(4rem, 7vw, 7rem);
+  color: var(--v3-ink);
+  font-family: var(--v3-sans);
+}
+
+.mm-simple-v3 button,
+.mm-simple-v3 select {
+  font: inherit;
+}
+
+/* Header */
+.mm-simple-v3 .mm-simple-hero {
+  min-height: 0;
+  margin: 0 0 1rem;
+  padding: .85rem 0 .8rem;
+  overflow: visible;
+  border: 0;
+  border-top: 3px solid var(--v3-ink);
+  border-bottom: 1px solid var(--v3-rule);
+  background: transparent;
+  box-shadow: none;
+}
+
+.mm-simple-v3 .mm-simple-hero::after {
+  display: none;
+  content: none;
+}
+
+.mm-simple-v3 .mm-simple-kicker {
+  display: block;
+  margin: 0 0 .3rem;
+  color: var(--v3-red);
+  font: 800 .55rem/1 var(--v3-sans);
+  letter-spacing: .065em;
+  text-transform: uppercase;
+}
+
+.mm-simple-v3 .mm-simple-hero h1 {
+  margin: 0;
+  color: var(--v3-ink);
+  font-family: "Herkey", Georgia, "Times New Roman", serif;
+  font-size: clamp(2.1rem, 3.4vw, 3.5rem);
+  font-weight: 400;
+  line-height: .92;
+  letter-spacing: -.012em;
+  text-transform: none;
+  text-shadow: none;
+}
+
+.mm-simple-v3 .mm-simple-hero h1 span {
+  color: inherit;
+}
+
+.mm-simple-v3 .mm-simple-deck {
+  max-width: 52ch;
+  margin: .42rem 0 0;
+  color: var(--v3-muted);
+  font: 600 .7rem/1.4 var(--v3-sans);
+}
+
+/* Loading/error status only; hidden by runtime after success. */
+.mm-simple-v3 .mm-simple-status {
+  margin: 0 0 .9rem;
+  padding: .6rem 0;
+  border: 0;
+  border-top: 1px solid var(--v3-rule);
+  border-bottom: 1px solid var(--v3-rule);
+  color: var(--v3-muted);
+  background: transparent;
+  font: 700 .62rem/1.4 var(--v3-sans);
+}
+
+.mm-simple-v3 .mm-simple-status[hidden] {
+  display: none;
+}
+
+/* Event selector: a compact editorial utility row. */
+.mm-simple-v3 .mm-simple-eventbar {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) auto;
+  gap: 1rem;
+  align-items: end;
+  margin: 0 0 1.5rem;
+  padding: .7rem 0 .75rem;
+  border: 0;
+  border-top: 1px solid var(--v3-rule);
+  border-bottom: 1px solid var(--v3-rule);
+  color: var(--v3-ink);
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+.mm-simple-v3 .mm-simple-eventbar label {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: .55rem;
+  align-items: center;
+  color: var(--v3-muted);
+  font: 800 .53rem/1 var(--v3-sans);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.mm-simple-v3 .mm-simple-eventbar select {
+  display: block;
+  width: 100%;
+  min-height: 34px;
+  margin: 0;
+  padding: .42rem 1.8rem .42rem .5rem;
+  border: 1px solid var(--v3-rule);
+  border-radius: 0;
+  background: var(--v3-paper);
+  color: var(--v3-ink);
+  font: 700 .66rem/1.2 var(--v3-sans);
+}
+
+.mm-simple-v3 .mm-simple-eventbar select:hover,
+.mm-simple-v3 .mm-simple-eventbar select:focus-visible {
+  border-color: var(--v3-ink);
+}
+
+.mm-simple-v3 .mm-simple-event-copy {
+  display: none !important;
+}
+
+.mm-simple-v3 .mm-simple-event-meta {
+  display: flex;
+  flex-direction: row;
+  gap: .75rem;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--v3-muted);
+  font: 800 .52rem/1 var(--v3-sans);
+  letter-spacing: .045em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.mm-simple-v3 .mm-simple-event-meta a {
+  color: var(--v3-red);
+  text-decoration: none;
+}
+
+.mm-simple-v3 .mm-simple-event-meta a:hover,
+.mm-simple-v3 .mm-simple-event-meta a:focus-visible {
+  color: var(--v3-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Board is simply the recommendation ledger. */
+.mm-simple-v3 .mm-simple-board {
+  position: static;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mm-simple-v3 .mm-simple-board::before {
+  display: none;
+  content: none;
+}
+
+.mm-simple-v3 .mm-simple-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 3vw, 3rem);
+  border-top: 3px solid var(--v3-ink);
+}
+
+.mm-simple-v3 .mm-simple-file {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  padding: 1.15rem 0 1.4rem;
+  border: 0;
+  border-bottom: 1px solid var(--v3-rule);
+  color: var(--v3-ink);
+  background: transparent;
+  box-shadow: none;
+  transform: none !important;
+}
+
+.mm-simple-v3 .mm-simple-pin {
+  display: none;
+}
+
+/* Fighter record */
+.mm-simple-v3 .mm-simple-fighter-head {
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  min-height: 0;
+  padding: 0 0 .9rem;
+  border-bottom: 1px solid var(--v3-rule);
+}
+
+.mm-simple-v3 .mm-simple-fighter-slot {
+  display: block;
+  width: 92px;
+  min-width: 92px;
+  min-height: 106px;
+  background: var(--v3-paper-deep);
+}
+
+.mm-simple-v3 .mm-simple-fighter-photo,
+.mm-simple-v3 .mm-simple-fighter-head > .mm-simple-placeholder {
+  display: block;
+  width: 92px;
+  height: 106px;
+  box-sizing: border-box;
+  object-fit: cover;
+  object-position: center top;
+  border: 0;
+  outline: 0;
+  background: var(--v3-paper-deep);
+  box-shadow: none;
+  transform: none;
+  filter: grayscale(1) contrast(1.06);
+}
+
+.mm-simple-v3 .mm-simple-placeholder {
+  display: grid;
+  place-items: center;
+}
+
+.mm-simple-v3 .mm-simple-placeholder svg {
+  width: 100%;
+  height: 100%;
+  fill: color-mix(in srgb, var(--v3-muted) 55%, transparent);
+}
+
+.mm-simple-v3 .mm-simple-fighter-head > div {
+  min-width: 0;
+}
+
+.mm-simple-v3 .mm-simple-result {
+  display: inline-block;
+  margin: 0 0 .4rem;
+  padding: 0;
+  color: var(--v3-muted);
+  background: transparent;
+  font: 800 .5rem/1 var(--v3-sans);
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+
+.mm-simple-v3 .mm-simple-result-w {
+  color: #1b7f47;
+}
+
+.mm-simple-v3 .mm-simple-result-l {
+  color: var(--v3-red);
+}
+
+.mm-simple-v3 .mm-simple-fighter-head h2 {
+  max-width: none;
+  margin: 0;
+  overflow: visible;
+  color: var(--v3-ink);
+  font-family: "Herkey", Georgia, "Times New Roman", serif;
+  font-size: clamp(1.65rem, 2.45vw, 2.55rem);
+  font-weight: 400;
+  line-height: .92;
+  letter-spacing: -.012em;
+  text-transform: none;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
+}
+
+.mm-simple-v3 .mm-simple-fighter-meta,
+.mm-simple-v3 .mm-simple-division {
+  margin: .36rem 0 0;
+  color: var(--v3-muted);
+  font: 700 .58rem/1.3 var(--v3-sans);
+}
+
+.mm-simple-v3 .mm-simple-division {
+  color: var(--v3-red);
+  font-weight: 800;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+.mm-simple-v3 .mm-simple-next-label {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin: .9rem 0 .45rem;
+  color: var(--v3-muted);
+  font: 800 .5rem/1 var(--v3-sans);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.mm-simple-v3 .mm-simple-next-label::after {
+  flex: 1;
+  height: 1px;
+  background: var(--v3-rule);
+  content: "";
+}
+
+/* Matchup recommendations */
+.mm-simple-v3 .mm-simple-matches {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--v3-rule);
+}
+
+.mm-simple-v3 .mm-simple-match {
+  position: relative;
+  display: grid;
+  grid-template-columns: 30px 54px minmax(0, 1fr);
+  gap: .75rem;
+  align-items: center;
+  min-height: 78px;
+  padding: .68rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--v3-rule);
+  background: transparent;
+}
+
+.mm-simple-v3 .mm-simple-match.is-primary {
+  border-left: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.mm-simple-v3 .mm-simple-match-order {
+  padding: 0;
+  color: var(--v3-muted);
+  font-family: "Herkey", Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1;
+  text-align: left;
+}
+
+.mm-simple-v3 .mm-simple-match.is-primary .mm-simple-match-order {
+  color: var(--v3-red);
+}
+
+.mm-simple-v3 .mm-simple-opponent-slot {
+  display: block;
+  width: 54px;
+  min-width: 54px;
+  min-height: 64px;
+  background: var(--v3-paper-deep);
+}
+
+.mm-simple-v3 .mm-simple-opponent-photo,
+.mm-simple-v3 .mm-simple-match .mm-simple-placeholder {
+  display: block;
+  width: 54px;
+  height: 64px;
+  box-sizing: border-box;
+  object-fit: cover;
+  object-position: center top;
+  border: 0;
+  outline: 0;
+  background: var(--v3-paper-deep);
+  box-shadow: none;
+  transform: none;
+  filter: grayscale(1) contrast(1.06);
+}
+
+.mm-simple-v3 .mm-simple-match-copy {
+  min-width: 0;
+  width: 100%;
+  padding: 0;
+}
+
+.mm-simple-v3 .mm-simple-match-copy small {
+  display: block;
+  margin: 0 0 .2rem;
+  color: var(--v3-muted);
+  font: 800 .48rem/1 var(--v3-sans);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.mm-simple-v3 .mm-simple-match.is-primary .mm-simple-match-copy small {
+  color: var(--v3-red);
+}
+
+.mm-simple-v3 .mm-simple-match-copy strong {
+  display: block;
+  overflow: visible;
+  max-width: none;
+  color: var(--v3-ink);
+  font-family: "Herkey", Georgia, serif;
+  font-size: clamp(1.05rem, 1.45vw, 1.38rem);
+  font-weight: 400;
+  line-height: .98;
+  letter-spacing: -.008em;
+  text-overflow: clip;
+  text-transform: none;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.mm-simple-v3 .mm-simple-match-copy > span {
+  display: block;
+  margin-top: .25rem;
+  color: var(--v3-muted);
+  font: 650 .56rem/1.3 var(--v3-sans);
+}
+
+.mm-simple-v3 .mm-simple-match-copy p {
+  max-width: 62ch;
+  margin: .35rem 0 0;
+  color: var(--v3-muted);
+  font: 600 .63rem/1.4 var(--v3-sans);
+}
+
+.mm-simple-v3 .mm-simple-no-match,
+.mm-simple-v3 .mm-simple-empty {
+  padding: .8rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--v3-rule);
+  color: var(--v3-muted);
+  background: transparent;
+  font: 650 .65rem/1.4 var(--v3-sans);
+}
+
+.mm-simple-v3 .mm-simple-foot {
+  display: none !important;
+}
+
+/* Dark palette */
+html[data-theme="dark"] .mm-simple-v3,
+html[data-theme="dark"] .mm-simple-v3 .mm-simple-eventbar select,
+html[data-theme="dark"] .mm-simple-v3 .mm-simple-fighter-slot,
+html[data-theme="dark"] .mm-simple-v3 .mm-simple-opponent-slot,
+html[data-theme="dark"] .mm-simple-v3 .mm-simple-fighter-photo,
+html[data-theme="dark"] .mm-simple-v3 .mm-simple-opponent-photo,
+html[data-theme="dark"] .mm-simple-v3 .mm-simple-placeholder {
+  background: var(--v3-paper);
+  color: var(--v3-ink);
+}
+
+html[data-theme="dark"] .mm-simple-v3 .mm-simple-fighter-slot,
+html[data-theme="dark"] .mm-simple-v3 .mm-simple-opponent-slot,
+html[data-theme="dark"] .mm-simple-v3 .mm-simple-fighter-photo,
+html[data-theme="dark"] .mm-simple-v3 .mm-simple-opponent-photo,
+html[data-theme="dark"] .mm-simple-v3 .mm-simple-placeholder {
+  background: #121212;
+}
+
+html.v3-theme-transitioning .mm-simple-v3,
+html.v3-theme-transitioning .mm-simple-v3 .mm-simple-file,
+html.v3-theme-transitioning .mm-simple-v3 .mm-simple-match {
+  transition:
+    background-color 360ms ease,
+    color 360ms ease,
+    border-color 360ms ease;
+}
+
+@media (max-width: 900px) {
+  .mm-simple-v3 .mm-simple-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mm-simple-v3 .mm-simple-eventbar {
+    grid-template-columns: 1fr;
+    gap: .65rem;
+  }
+
+  .mm-simple-v3 .mm-simple-event-meta {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 600px) {
+  .mm-simple-v3 {
+    width: min(calc(100% - 1.4rem), 1380px);
+  }
+
+  .mm-simple-v3 .mm-simple-hero h1 {
+    font-size: clamp(2.1rem, 10vw, 3rem);
+  }
+
+  .mm-simple-v3 .mm-simple-eventbar label {
+    grid-template-columns: 1fr;
+    gap: .35rem;
+  }
+
+  .mm-simple-v3 .mm-simple-event-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .5rem;
+  }
+
+  .mm-simple-v3 .mm-simple-fighter-head {
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: .75rem;
+  }
+
+  .mm-simple-v3 .mm-simple-fighter-slot,
+  .mm-simple-v3 .mm-simple-fighter-photo,
+  .mm-simple-v3 .mm-simple-fighter-head > .mm-simple-placeholder {
+    width: 72px;
+    min-width: 72px;
+    height: 84px;
+    min-height: 84px;
+  }
+
+  .mm-simple-v3 .mm-simple-fighter-head h2 {
+    font-size: clamp(1.5rem, 8vw, 2.1rem);
+  }
+
+  .mm-simple-v3 .mm-simple-match {
+    grid-template-columns: 24px 46px minmax(0, 1fr);
+    gap: .55rem;
+  }
+
+  .mm-simple-v3 .mm-simple-opponent-slot,
+  .mm-simple-v3 .mm-simple-opponent-photo,
+  .mm-simple-v3 .mm-simple-match .mm-simple-placeholder {
+    width: 46px;
+    min-width: 46px;
+    height: 55px;
+    min-height: 55px;
+  }
+
+  .mm-simple-v3 .mm-simple-match-copy strong {
+    font-size: clamp(1rem, 5vw, 1.25rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mm-simple-v3 *,
+  .mm-simple-v3 *::before,
+  .mm-simple-v3 *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

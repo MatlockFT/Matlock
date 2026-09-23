@@ -588,6 +588,102 @@ test.describe('Fight Cards V3 isolated migration', () => {
   });
 });
 
+test.describe('Matchmaker V3 isolated migration', () => {
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('keeps live Matchmaker untouched while V3 preserves the recommendation engine', async ({ page }) => {
+    await page.goto(targetUrl('/matchmaker/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('.mm-simple')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('[data-editorial-v3]')).toHaveCount(0);
+    await expect(page.locator('.site-theme-toggle')).toHaveCount(0);
+
+    await page.goto(targetUrl('/matchmaker-v3/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-editorial-v3]')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('.v3-wordmark')).toBeVisible();
+    await expect(page.locator('.site-theme-toggle')).toBeVisible();
+    await expect(page.locator('.v3-sticky-shell')).toHaveCount(1);
+
+    const stylesheetHrefs = await page.locator('link[rel="stylesheet"]').evaluateAll(nodes =>
+      nodes.map(node => node.getAttribute('href') || '')
+    );
+    expect(stylesheetHrefs.some(href => href.includes('matchmaker-simple.css'))).toBe(false);
+    expect(stylesheetHrefs.some(href => href.includes('matchmaker-ui-readability.css'))).toBe(false);
+    expect(stylesheetHrefs.some(href => href.includes('matchmaker-compact.css'))).toBe(false);
+    const v3Index = stylesheetHrefs.findIndex(href => href.includes('matchmaker-v3.css'));
+    const tailIndex = stylesheetHrefs.findIndex(href => href.includes('site-tail.css'));
+    expect(v3Index).toBeGreaterThan(tailIndex);
+
+    await page.evaluate(() => document.fonts?.ready).catch(() => {});
+    const title = await page.locator('.mm-simple-hero h1').evaluate(node => ({
+      text: node.textContent.trim(),
+      font: getComputedStyle(node).fontFamily
+    }));
+    expect(title.text).toBe('Matchmaker');
+    expect(title.font).toContain('Herkey');
+
+    await expect(page.locator('[data-mm-app]')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('[data-mm-event]')).toBeVisible();
+
+    const files = page.locator('.mm-simple-file');
+    expect(await files.count()).toBeGreaterThan(0);
+
+    const firstFile = files.first();
+    const fileStyle = await firstFile.evaluate(node => ({
+      radius: getComputedStyle(node).borderRadius,
+      shadow: getComputedStyle(node).boxShadow,
+      transform: getComputedStyle(node).transform,
+      background: getComputedStyle(node).backgroundColor
+    }));
+    expect(fileStyle.radius).toBe('0px');
+    expect(fileStyle.shadow).toBe('none');
+    expect(fileStyle.transform).toBe('none');
+    expect(fileStyle.background).toBe('rgba(0, 0, 0, 0)');
+
+    const fighterNameFont = await firstFile.locator('.mm-simple-fighter-head h2').evaluate(node =>
+      getComputedStyle(node).fontFamily
+    );
+    expect(fighterNameFont).toContain('Herkey');
+
+    const matches = firstFile.locator('.mm-simple-match');
+    if (await matches.count()) {
+      const firstMatch = matches.first();
+      const matchStyle = await firstMatch.evaluate(node => ({
+        radius: getComputedStyle(node).borderRadius,
+        shadow: getComputedStyle(node).boxShadow,
+        background: getComputedStyle(node).backgroundColor
+      }));
+      expect(matchStyle.radius).toBe('0px');
+      expect(matchStyle.shadow).toBe('none');
+      expect(matchStyle.background).toBe('rgba(0, 0, 0, 0)');
+
+      const opponentFont = await firstMatch.locator('.mm-simple-match-copy strong').evaluate(node =>
+        getComputedStyle(node).fontFamily
+      );
+      expect(opponentFont).toContain('Herkey');
+    }
+
+    const select = page.locator('[data-mm-event]');
+    const options = await select.locator('option').count();
+    if (options > 1) {
+      const firstValue = await select.inputValue();
+      const secondValue = await select.locator('option').nth(1).getAttribute('value');
+      if (secondValue && secondValue !== firstValue) {
+        await select.selectOption(secondValue);
+        await expect(select).toHaveValue(secondValue);
+        await expect(page).toHaveURL(new RegExp('event=' + encodeURIComponent(secondValue)));
+      }
+    }
+
+    const overflow = await page.evaluate(() =>
+      document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(2);
+
+    const robots = await page.locator('meta[name="robots"]').getAttribute('content');
+    expect(robots).toContain('noindex');
+  });
+});
+
 test.describe('Event Map V3 isolated migration', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 
