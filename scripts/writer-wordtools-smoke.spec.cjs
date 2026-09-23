@@ -211,6 +211,17 @@ test('Writer usability layer keeps long-form editing compact and predictable', a
   await setCaret(editor, text.indexOf('linked words') + 2);
   await expect(page.locator('[data-tool="link"]')).toHaveAttribute('aria-pressed', 'true');
 
+  // Quote button handles multi-paragraph selections, preserves paragraph breaks, and toggles back off.
+  await editor.fill('First quoted paragraph\n\nSecond quoted paragraph');
+  await editor.evaluate(el => el.setSelectionRange(0, el.value.length));
+  await page.click('[data-insert="quote"]');
+  await expect(editor).toHaveValue('> First quoted paragraph\n>\n> Second quoted paragraph');
+  await expect(page.locator('[data-preview-content] blockquote > p')).toHaveCount(2);
+  await expect(page.locator('[data-preview-content] blockquote > p').nth(0)).toHaveText('First quoted paragraph');
+  await expect(page.locator('[data-preview-content] blockquote > p').nth(1)).toHaveText('Second quoted paragraph');
+  await page.click('[data-insert="quote"]');
+  await expect(editor).toHaveValue('First quoted paragraph\n\nSecond quoted paragraph');
+
   // Enter continues bullets, numbers and quotes; Enter on an empty item exits the block.
   await editor.fill('- One');
   await editor.focus();
