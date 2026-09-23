@@ -5,7 +5,7 @@ description: UFC 329 was a great card. For some, the main event was extremely
   disappointing. For me, not so much...
 date: 2026-07-12
 category: Opinion
-author: MMA Matlock
+author: Matlock
 image:
   path: /assets/uploads/mcgregor.png
   alt: "Conor McGregor collapsing to the canvas unable to stand on his leg. It
