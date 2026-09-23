@@ -799,3 +799,13 @@ html[data-theme="dark"] body:has([data-globe-home]) {
 .v3-news-meta {
     margin-left: 0;
 }
+
+
+/* Homepage lower feature returns to a single editorial column while Verdict integration is disabled. */
+.v3-lower-grid {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+.v3-lower-grid .v3-history-feature-card {
+    max-width: 920px;
+}
