@@ -523,3 +523,18 @@
 
 .writer-x-embed{margin:1.35rem 0 1.65rem}
 .writer-x-embed>.twitter-tweet{margin-top:0;margin-bottom:0}
+
+
+.writer-preview-featured.is-missing img{display:none}
+.writer-preview-image-error{
+  display:block;
+  margin:0;
+  padding:1rem;
+  border:1px dashed rgba(255,255,255,.18);
+  color:#b6b6b7;
+  font:700 .72rem/1.45 var(--writer-font-ui,Arial,sans-serif);
+}
+.writer-preview-frame[data-preview-theme="light"] .writer-preview-image-error{
+  border-color:rgba(0,0,0,.18);
+  color:#666;
+}
