@@ -5,7 +5,7 @@ description: "A solid night of fights and some good bets cashed! We have some
   quality talent to look forward to."
 date: 2025-09-03
 category: Opinion
-author: MMA Matlock
+author: Matlock
 image:
   path: /assets/uploads/mcmillen.png
   alt: Tommy McMillen featured for Dana White's Contender Series
