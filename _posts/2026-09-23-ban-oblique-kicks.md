@@ -46,7 +46,7 @@ Interesting.
 
 Speaking of interesting history, it is only fair that I mention the UFC OG who harnessed the power of Bruce Lee's stop kick, Keith Hackney. 
 
-[EMBED X](https://x.com/MMAMATLOCK/status/2102863707042685031)
+[EMBED X](https://x.com/MMAMATLOCK/status/2102869996133294391)
 
 <figure class="article-inline-image article-inline-image--break article-inline-image--center article-inline-image--full">
   <img src="/assets/uploads/ban-oblique-kicks-pasted-20260923-155757-570.png" alt="ban oblique kicks" loading="lazy">
@@ -54,7 +54,15 @@ Speaking of interesting history, it is only fair that I mention the UFC OG who h
 
 Five years later, the issue has returned to California’s athletic regulators. Following UFC 331, California State Athletic Commission executive director Andy Foster called for discussion of making lateral knee kicks a foul. The renewed attention followed Brunno Ferreira’s use of knee-directed kicks against Edmen Shahbazyan, who complained to the referee during their September 19 fight. The strikes were legal. Shahbazyan won by unanimous decision. [Sherdog’s report](https://www.sherdog.com/news/news/Controversial-MMA-technique-could-be-banned-following-UFC-331-202885/amp), [UFC’s result](https://www.ufc.com/video/160166).
 
-The dispute has a much longer history than either fight.
+Absolutely disgraceful. Is there no honor amongst fighters?
+
+Fighters and fans alike have endured years and years of watching this strike go unchecked. Jon Jones, Joe Rogan, and [Rampage Jackson have went on a decade-long competing marketing campaigns bringing awareness to the masses.](https://www.mmamania.com/2013/1/22/1536869/rampage-jackson-jon-jones-oblique-kick-illegal-banned-ufc-mma) Jon Jones obviously a proponent, Rampage Jackson in opposition as he was the one to suffer the most from Jon Jones using it against him, and Joe Rogan discussing it at length during Jon's fights and on his podcast more as a mediator. I do believe Joe Rogan does land on the side of supporting legalization of this sport as well as wanting MMA to take place in a basketball court.
+
+But despite all of Jon, Joe, and Rampage's marketing of this technique, no one has brought more viral awareness than Khalil Rountree when he shelved Modestas Bukauskas' career with perhaps the most effective use of the technique to date. Beware, this video is disturbing.
+
+[EMBED X](https://x.com/espnmma/status/1434259962138615809)
+
+Shameful. 
 
 In ordinary MMA usage, an **oblique kick** is a thrusting kick delivered with the sole or heel toward the opponent’s leg, usually at or just above the knee. Its path differs from the swinging motion of a conventional round kick. It can interrupt forward movement, upset an opponent’s stance and keep a puncher outside punching range. Jon Jones and coach Mike Winkeljohn demonstrated those applications in a 2015 instructional video. [Jones and Winkeljohn’s demonstration](https://www.youtube.com/watch?v=6Lpf1vwr658).
 
