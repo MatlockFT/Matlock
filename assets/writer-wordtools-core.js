@@ -713,6 +713,7 @@
   }, true);
 
   editor.addEventListener('paste', event => {
+    if (event.defaultPrevented) return;
     const plain = event.clipboardData?.getData('text/plain') || '';
     const html = event.clipboardData?.getData('text/html') || '';
     if (!plain && !html) return;
