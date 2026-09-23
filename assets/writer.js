@@ -52,6 +52,7 @@
   let pendingRemoteSha = '';
   let linkMode = 'link';
   let saveInFlight = false;
+  let imageUploadInFlight = false;
   let previewTimer = 0;
   let librarySearchTimer = 0;
   let htmlBlocks = new Map();
@@ -600,6 +601,29 @@
     return new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}).format(d);
   }
 
+  function writerPreviewAssetUrl(path) {
+    const normalized = normalizeImagePath(path);
+    if (/^\/assets\/uploads\//i.test(normalized)) {
+      return `https://raw.githubusercontent.com/${repo}/main${normalized}`;
+    }
+    return normalized;
+  }
+
+  function hydratePreviewImages() {
+    if (!previewContent) return;
+    previewContent.querySelectorAll('img').forEach(img => {
+      const original = img.dataset.writerSource || img.getAttribute('src') || '';
+      if (!img.dataset.writerSource && /^\/assets\/uploads\//i.test(original)) {
+        img.dataset.writerSource = original;
+      }
+      const source = img.dataset.writerSource || original;
+      if (/^\/assets\/uploads\//i.test(source)) {
+        const previewUrl = writerPreviewAssetUrl(source);
+        if (img.getAttribute('src') !== previewUrl) img.setAttribute('src', previewUrl);
+      }
+    });
+  }
+
   function normalizeImagePath(path) {
     const p = String(path || '').trim();
     if (!p) return '';
@@ -620,6 +644,11 @@
     }
     if (node.matches('.writer-x-embed[data-writer-x-url]')) {
       return `x:${node.getAttribute('data-writer-x-url') || ''}`;
+    }
+    if (node.matches('figure.article-inline-image')) {
+      const img = node.querySelector('img');
+      const source = img?.dataset.writerSource || img?.getAttribute('src') || '';
+      if (source) return `image:${source}`;
     }
     if (node.matches('p')) {
       const links = node.querySelectorAll('a');
@@ -713,13 +742,25 @@
     const imageSrc = localImageUrl || normalizeImagePath(fields.imagePath.value);
     shell.hidden = !imageSrc;
     if (imageSrc) {
-      image.src = imageSrc;
+      shell.classList.remove('is-missing');
+      const imageError = shell.querySelector('[data-preview-image-error]');
+      if (imageError) imageError.hidden = true;
+      image.onload = () => {
+        shell.classList.remove('is-missing');
+        if (imageError) imageError.hidden = true;
+      };
+      image.onerror = () => {
+        shell.classList.add('is-missing');
+        if (imageError) imageError.hidden = false;
+      };
+      image.src = localImageUrl || writerPreviewAssetUrl(imageSrc);
       image.alt = fields.imageAlt.value.trim() || title;
       image.style.objectPosition = fields.imagePosition.value || 'center center';
     }
 
     app.querySelector('[data-preview-spoiler]').hidden = !fields.spoilerWarning.checked;
     patchPreviewContent(renderMarkdown(expandedBody));
+    hydratePreviewImages();
     hydratePreviewXEmbeds();
 
     const topics = app.querySelector('[data-preview-topics]');
@@ -829,7 +870,7 @@
 }
 
 function setPublishingControls(enabled) {
-  const active = Boolean(enabled) && !saveInFlight;
+  const active = Boolean(enabled) && !saveInFlight && !imageUploadInFlight;
   saveDraftButton.disabled = !active;
   publishButton.disabled = !active;
   scheduleButton.disabled = !active;
@@ -910,6 +951,7 @@ async function githubFetch(path, options = {}, requireAuth = false) {
     setPublishingControls(true);
     window.dispatchEvent(new CustomEvent('matlock-writer:auth', { detail: { login: githubLogin } }));
     showToast('GitHub connected.');
+    if (selectedImageFile && !imageUploadInFlight) uploadFeaturedImage();
   } catch (error) {
     githubCredential = '';
     setPublishingControls(false);
@@ -1291,6 +1333,8 @@ function scheduleAutosave() {
   }
 
   function validateForSave(mode) {
+    if (imageUploadInFlight) throw new Error('Wait for the cover image upload to finish.');
+    if (selectedImageFile) throw new Error('Upload the selected cover image before saving.');
     if (!fields.title.value.trim()) throw new Error('Add a title first.');
     if (!fields.date.value) throw new Error('Choose an article date.');
     if (!fields.filename.value.trim()) throw new Error('Add a filename.');
@@ -1681,20 +1725,28 @@ function insertBlock(text) {
 
   async function uploadFeaturedImage() {
     if (!selectedImageFile) { showToast('Choose an image first.'); return; }
+    if (imageUploadInFlight) return;
+    imageUploadInFlight = true;
+    setPublishingControls(Boolean(githubCredential));
     uploadButton.disabled = true;
     uploadButton.textContent = 'Uploading…';
     try {
       const preferred = fields.imagePath.value.trim().split('/').pop() || selectedImageFile.name;
       const path = await uploadAsset(selectedImageFile, preferred);
       fields.imagePath.value = path;
-      showToast('Featured image uploaded.');
+      if (localImageUrl) URL.revokeObjectURL(localImageUrl);
+      localImageUrl = '';
+      selectedImageFile = null;
+      imageFileInput.value = '';
+      showToast('Featured image uploaded and verified in GitHub.');
       scheduleAutosave();
       updatePreview();
     } catch (error) {
       showToast(`Image upload failed: ${error.message}`, 6000);
     } finally {
+      imageUploadInFlight = false;
       uploadButton.textContent = 'Upload';
-      uploadButton.disabled = !selectedImageFile || !githubCredential;
+      setPublishingControls(Boolean(githubCredential));
     }
   }
 
@@ -1895,10 +1947,15 @@ Object.values(fields).forEach(el => {
     selectedImageFile = imageFileInput.files?.[0] || null;
     if (localImageUrl) URL.revokeObjectURL(localImageUrl);
     localImageUrl = selectedImageFile ? URL.createObjectURL(selectedImageFile) : '';
-    if (selectedImageFile && !fields.imagePath.value.trim()) fields.imagePath.value = `/assets/uploads/${selectedImageFile.name.replace(/[^A-Za-z0-9._-]+/g,'-')}`;
     uploadButton.disabled = !selectedImageFile || !githubCredential;
     updatePreview();
-    scheduleAutosave();
+
+    if (!selectedImageFile) return;
+    if (githubCredential) {
+      uploadFeaturedImage();
+    } else {
+      showToast('Cover selected locally. Connect GitHub to upload it before saving.', 6000);
+    }
   });
 
   app.querySelector('[data-link-insert]').addEventListener('click', () => {
