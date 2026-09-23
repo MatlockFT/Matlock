@@ -204,7 +204,7 @@ layout: default
 
             <div
                 id="article-content"
-                class="post-body"
+                class="post-body{% if page.preserve_line_breaks %} post-body-preserve-breaks{% endif %}"
             >
                 {{ content }}
             </div>
