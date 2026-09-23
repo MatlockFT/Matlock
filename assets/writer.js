@@ -470,12 +470,14 @@
       const u = new URL(srcMatch[1], location.origin);
       const okHost = ['youtube.com','www.youtube.com','youtube-nocookie.com','www.youtube-nocookie.com'].includes(u.hostname);
       if (!okHost || !/^\/embed\//.test(u.pathname)) return '';
-      return `<div class="writer-embed"><iframe src="${escapeHtml(u.href)}" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>`;
+      const src = escapeHtml(u.href);
+      return `<div class="writer-embed" data-writer-embed="youtube" data-writer-embed-src="${src}"><iframe src="${src}" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>`;
     } catch { return ''; }
   }
 
   function renderMarkdown(markdown) {
     let source = String(markdown || '').replace(/\r\n?/g, '\n');
+    source = source.replace(/<!--\s*WRITER_IMAGE_UPLOAD_[\w:-]+\s*-->/g, '');
     const rawHtmlBlocks = [];
     source = source.replace(/<section\b[\s\S]*?<\/section>/gi, html => {
       const safe = html.replace(/<script[\s\S]*?<\/script>/gi, '');
@@ -542,8 +544,23 @@
       }
       if (/^\s*>/.test(line)) {
         const parts = [];
-        while (i < lines.length && /^\s*>/.test(lines[i])) { parts.push(lines[i].replace(/^\s*>\s?/, '')); i += 1; }
-        out.push(`<blockquote><p>${inlineMarkdown(parts.join(' '))}</p></blockquote>`);
+        while (i < lines.length && /^\s*>/.test(lines[i])) {
+          parts.push(lines[i].replace(/^\s*>\s?/, ''));
+          i += 1;
+        }
+        const paragraphs = [];
+        let current = [];
+        const flush = () => {
+          if (!current.length) return;
+          paragraphs.push(current.join(' '));
+          current = [];
+        };
+        parts.forEach(part => {
+          if (!part.trim()) flush();
+          else current.push(part.trim());
+        });
+        flush();
+        out.push(`<blockquote>${(paragraphs.length ? paragraphs : ['']).map(part => `<p>${inlineMarkdown(part)}</p>`).join('')}</blockquote>`);
         continue;
       }
       if (/^\s*[-*+]\s+/.test(line)) {
@@ -595,6 +612,70 @@
     return words ? words.length : 0;
   }
 
+  function previewEmbedKey(node) {
+    if (!node || node.nodeType !== Node.ELEMENT_NODE) return '';
+    if (node.matches('.writer-embed[data-writer-embed-src]')) {
+      return `youtube:${node.getAttribute('data-writer-embed-src') || ''}`;
+    }
+    if (node.matches('.writer-x-embed[data-writer-x-url]')) {
+      return `x:${node.getAttribute('data-writer-x-url') || ''}`;
+    }
+    if (node.matches('p')) {
+      const links = node.querySelectorAll('a');
+      if (links.length === 1 && node.textContent.trim().toUpperCase() === 'EMBED X') {
+        const clean = xStatusUrl(links[0].href);
+        if (clean) return `x:${clean}`;
+      }
+    }
+    return '';
+  }
+
+  function patchPreviewContent(html) {
+    const template = document.createElement('template');
+    template.innerHTML = html || '<p class="writer-preview-empty">Start writing on the left. Your article will appear here immediately.</p>';
+    const nextElements = [...template.content.children];
+    const neededEmbedKeys = new Set(nextElements.map(previewEmbedKey).filter(Boolean));
+    let cursor = previewContent.firstElementChild;
+
+    for (const next of nextElements) {
+      const nextKey = previewEmbedKey(next);
+      if (nextKey) {
+        if (cursor && previewEmbedKey(cursor) === nextKey) {
+          cursor = cursor.nextElementSibling;
+          continue;
+        }
+        const existing = [...previewContent.children].find(child => previewEmbedKey(child) === nextKey);
+        if (existing) {
+          previewContent.insertBefore(existing, cursor || null);
+          cursor = existing.nextElementSibling;
+          continue;
+        }
+      }
+
+      if (cursor) {
+        const cursorKey = previewEmbedKey(cursor);
+        if (cursorKey && neededEmbedKeys.has(cursorKey)) {
+          previewContent.insertBefore(next, cursor);
+        } else {
+          const old = cursor;
+          cursor = old.nextElementSibling;
+          previewContent.replaceChild(next, old);
+        }
+      } else {
+        previewContent.appendChild(next);
+      }
+    }
+
+    while (cursor) {
+      const next = cursor.nextElementSibling;
+      cursor.remove();
+      cursor = next;
+    }
+    [...previewContent.childNodes].forEach(node => {
+      if (node.nodeType === Node.TEXT_NODE && !node.textContent.trim()) node.remove();
+    });
+  }
+
   function updatePreview() {
     const title = fields.title.value.trim() || 'Untitled article';
     const description = fields.description.value.trim();
@@ -637,7 +718,7 @@
     }
 
     app.querySelector('[data-preview-spoiler]').hidden = !fields.spoilerWarning.checked;
-    previewContent.innerHTML = renderMarkdown(expandedBody) || '<p class="writer-preview-empty">Start writing on the left. Your article will appear here immediately.</p>';
+    patchPreviewContent(renderMarkdown(expandedBody));
     hydratePreviewXEmbeds();
 
     const topics = app.querySelector('[data-preview-topics]');
@@ -1367,6 +1448,27 @@ async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
   updatePreview();
 }
 
+function insertQuoteBlock() {
+  const start = bodyEditor.selectionStart;
+  const end = bodyEditor.selectionEnd;
+  if (end <= start) return insertAtCursor('> ', '', 'Quote');
+
+  const selected = bodyEditor.value.slice(start, end).replace(/\r\n?/g, '\n');
+  const lines = selected.split('\n');
+  const meaningful = lines.filter(line => line.trim());
+  const alreadyQuoted = meaningful.length > 0 && meaningful.every(line => /^\s*>\s?/.test(line));
+  const transformed = lines.map(line => {
+    if (alreadyQuoted) return line.replace(/^(\s*)>\s?/, '$1');
+    if (!line.trim()) return '>';
+    return `> ${line}`;
+  }).join('\n');
+
+  bodyEditor.setRangeText(transformed, start, end, 'select');
+  bodyEditor.focus();
+  scheduleAutosave();
+  updatePreview();
+}
+
 function insertBlock(text) {
   const start = bodyEditor.selectionStart;
   const end = bodyEditor.selectionEnd;
@@ -1434,6 +1536,10 @@ function insertBlock(text) {
       const cleanUrl = xStatusUrl(link.href);
       if (!cleanUrl) return;
 
+      const wrapper = document.createElement('div');
+      wrapper.className = 'writer-x-embed';
+      wrapper.dataset.writerXUrl = cleanUrl;
+
       const blockquote = document.createElement('blockquote');
       blockquote.className = 'twitter-tweet';
       blockquote.dataset.dnt = 'true';
@@ -1443,10 +1549,11 @@ function insertBlock(text) {
       xLink.href = cleanUrl;
       xLink.textContent = 'View post on X';
       blockquote.appendChild(xLink);
+      wrapper.appendChild(blockquote);
 
       const paragraph = link.closest('p');
-      if (paragraph && paragraph.textContent.trim().toUpperCase() === 'EMBED X') paragraph.replaceWith(blockquote);
-      else link.replaceWith(blockquote);
+      if (paragraph && paragraph.textContent.trim().toUpperCase() === 'EMBED X') paragraph.replaceWith(wrapper);
+      else link.replaceWith(wrapper);
       found = true;
     });
     if (found) loadPreviewXWidgets(previewContent);
@@ -1456,7 +1563,7 @@ function insertBlock(text) {
     if (type === 'h2') return insertAtCursor('## ', '', 'Section heading');
     if (type === 'bold') return insertAtCursor('**', '**', 'bold text');
     if (type === 'italic') return insertAtCursor('*', '*', 'italic text');
-    if (type === 'quote') return insertAtCursor('> ', '', 'Quote');
+    if (type === 'quote') return insertQuoteBlock();
     if (type === 'divider') return insertBlock('---');
   }
 
@@ -1585,6 +1692,78 @@ function insertBlock(text) {
     } finally {
       uploadButton.textContent = 'Upload';
       uploadButton.disabled = !selectedImageFile || !githubCredential;
+    }
+  }
+
+  function clipboardImageFile(clipboardData) {
+    if (!clipboardData) return null;
+    const direct = [...(clipboardData.files || [])].find(file => file?.type?.startsWith('image/'));
+    if (direct) return direct;
+    for (const item of [...(clipboardData.items || [])]) {
+      if (item.kind !== 'file' || !item.type?.startsWith('image/')) continue;
+      const file = item.getAsFile?.();
+      if (file) return file;
+    }
+    return null;
+  }
+
+  function namedClipboardImage(file) {
+    const extensionByType = {
+      'image/png': 'png',
+      'image/jpeg': 'jpg',
+      'image/webp': 'webp',
+      'image/gif': 'gif',
+      'image/avif': 'avif'
+    };
+    const extension = extensionByType[file.type] || (file.name.match(/\.([A-Za-z0-9]+)$/)?.[1] || 'png').toLowerCase();
+    const now = new Date();
+    const stamp = [
+      now.getFullYear(),
+      String(now.getMonth() + 1).padStart(2, '0'),
+      String(now.getDate()).padStart(2, '0'),
+      '-',
+      String(now.getHours()).padStart(2, '0'),
+      String(now.getMinutes()).padStart(2, '0'),
+      String(now.getSeconds()).padStart(2, '0'),
+      '-',
+      String(now.getMilliseconds()).padStart(3, '0')
+    ].join('');
+    const articleStem = slugify(fields.title.value || 'article').slice(0, 42) || 'article';
+    return new File([file], `${articleStem}-pasted-${stamp}.${extension}`, {
+      type: file.type || `image/${extension}`,
+      lastModified: Date.now()
+    });
+  }
+
+  function replaceUploadToken(token, replacement) {
+    const index = bodyEditor.value.indexOf(token);
+    if (index < 0) return false;
+    bodyEditor.setRangeText(replacement, index, index + token.length, 'preserve');
+    bodyEditor.dispatchEvent(new Event('input', { bubbles: true }));
+    return true;
+  }
+
+  async function insertClipboardImage(file) {
+    if (!githubCredential) {
+      showToast('Connect GitHub before pasting images, then paste the image again.', 6000);
+      if (!connectDialog.open) connectDialog.showModal();
+      return;
+    }
+
+    const named = namedClipboardImage(file);
+    const token = `<!-- WRITER_IMAGE_UPLOAD_${Date.now()} -->`;
+    insertBlock(token);
+    showToast('Uploading pasted image…', 3000);
+
+    try {
+      const path = await uploadAsset(named);
+      const alt = named.name.replace(/-pasted-\d{8}-\d{9}\.[^.]+$/i, '').replace(/[-_]+/g, ' ').trim();
+      if (replaceUploadToken(token, inlineImageMarkup(path, alt))) {
+        showToast('Pasted image uploaded and placed.');
+      }
+    } catch (error) {
+      replaceUploadToken(token, '');
+      showToast(`Pasted image failed: ${error.message}`, 6000);
     }
   }
 
@@ -1905,6 +2084,14 @@ Object.values(fields).forEach(el => {
   });
 
   bodyEditor.addEventListener('paste', event => {
+    const clipboardImage = clipboardImageFile(event.clipboardData);
+    if (clipboardImage) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      insertClipboardImage(clipboardImage);
+      return;
+    }
+
     const pasted = event.clipboardData?.getData('text/plain')?.trim() || '';
     if (!/^<section\b[\s\S]*<\/section>\s*$/i.test(pasted)) return;
     if (/<script\b/i.test(pasted)) { event.preventDefault(); showToast('Script tags are not supported in article HTML visuals.', 5000); return; }
