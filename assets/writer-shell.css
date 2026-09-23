@@ -1072,3 +1072,22 @@ body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{
 .writer-shell .writer-preview-frame[data-preview-theme="dark"] .writer-preview-empty{
   color:var(--v3-muted)!important;
 }
+
+
+/* Dropdowns must escape the horizontally scrollable writer rails when open.
+   Without this, native <details> opens correctly but its absolute panel is clipped. */
+.writer-shell .writer-modebar:has(.writer-mode-more[open]),
+.writer-shell .writer-toolbar:has(.writer-ux-more[open]),
+.writer-shell .writer-ux-toolbar:has(.writer-ux-more[open]){
+  overflow:visible!important;
+  position:relative;
+  z-index:160;
+}
+.writer-shell .writer-mode-more[open],
+.writer-shell .writer-ux-more[open]{
+  z-index:170;
+}
+.writer-shell .writer-mode-more[open] .writer-mode-more-panel,
+.writer-shell .writer-ux-more[open] .writer-ux-more-panel{
+  z-index:180;
+}
