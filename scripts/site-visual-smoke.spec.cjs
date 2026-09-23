@@ -1,4 +1,5 @@
 const { test, expect } = require('@playwright/test');
+const sharp = require('sharp');
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -227,7 +228,11 @@ test.describe('Live V3 site rollout', () => {
     await expect(image).toBeVisible({ timeout: 30000 });
     expect(await image.evaluate(node => ({ complete: node.complete, width: node.naturalWidth, height: node.naturalHeight })))
       .toEqual(expect.objectContaining({ complete: true }));
-    expect(await image.evaluate(node => node.naturalWidth)).toBeGreaterThan(0);
+    expect(await image.evaluate(node => node.naturalWidth)).toBeGreaterThanOrEqual(800);
+    expect(await image.evaluate(node => node.naturalHeight)).toBeGreaterThanOrEqual(400);
+    const pixels = await sharp(await image.screenshot()).stats();
+    const visibleVariation = Math.max(...pixels.channels.slice(0, 3).map(channel => channel.stdev));
+    expect(visibleVariation, 'Fiziev–Gamrot poster should contain visible artwork, not a blank hotlink response').toBeGreaterThan(18);
     await expect(lead.locator('.otd-event-poster-status')).toHaveCount(0);
   });
 

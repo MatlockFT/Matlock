@@ -207,6 +207,7 @@
         image.alt = entry.imageAlt || `${entry.title || "MMA history"} image`;
         image.loading = priority ? "eager" : "lazy";
         image.decoding = "async";
+        image.referrerPolicy = "no-referrer";
         image.fetchPriority = priority ? "high" : "auto";
         if (entry.imagePosition) image.style.objectPosition = entry.imagePosition;
 
@@ -252,6 +253,7 @@
         image.alt = "";
         image.loading = "lazy";
         image.decoding = "async";
+        image.referrerPolicy = "no-referrer";
         image.addEventListener("load", () => button.classList.add("has-image"), { once: true });
         image.addEventListener("error", () => media.remove(), { once: true });
         media.append(image);
