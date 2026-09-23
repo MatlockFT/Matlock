@@ -4,11 +4,15 @@ title: "MMA News: Latest Headlines and Fight News"
 description: "Latest MMA news, UFC headlines, fight announcements, interviews, results, and major stories from trusted combat-sports sources, refreshed throughout the day."
 permalink: /news/
 ads: false
+v3_text_masthead: true
 page_styles:
+  - /assets/editorial-v3-shell.css
   - /assets/news.css
   - /assets/news-matlock.css
   - /assets/on-this-day.css
+  - /assets/news-v3.css
 page_scripts:
+  - /assets/editorial-v3-shell.js
   - /assets/news-feed.js
   - /assets/news-otd-deferred.js
 page_preconnects:
@@ -26,7 +30,9 @@ page_fetch_preloads:
 {% endfor %}
 
 <article
-    class="news-page"
+    class="news-page news-page-v3"
+    data-globe-home
+    data-editorial-v3
     data-news-feed
     data-feed-url="https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-news.json"
     data-api-fallback-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/mma-news-data"
@@ -37,7 +43,6 @@ page_fetch_preloads:
     <header class="news-page-header">
         <div class="news-page-heading">
             <h1>MMA News</h1>
-            <p>Current MMA and UFC headlines from trusted combat-sports sources, alongside the latest original MMA Matlock analysis. External stories open at the original publisher.</p>
         </div>
     </header>
 

@@ -3,15 +3,20 @@ layout: default
 title: "UFC Roster Updates: Recent UFC Additions"
 description: "Track recent additions to the UFC active roster, including newly detected UFC athlete pages and roster status updates."
 permalink: /ufc-roster/
+v3_text_masthead: true
 page_styles:
-  - /assets/ufc-roster.css
-  - /assets/dynamic-page-stability.css
+  - /assets/editorial-v3-shell.css
 page_scripts:
+  - /assets/editorial-v3-shell.js
   - /assets/ufc-roster.js
 ---
 
+<link rel="stylesheet" href="{{ '/assets/ufc-roster-v3.css' | relative_url }}?v={{ site.asset_version }}" data-ufc-roster-v3-final-style>
+
 <article
-    class="ufc-roster-page"
+    class="ufc-roster-page ufc-roster-page-v3"
+    data-globe-home
+    data-editorial-v3
     data-ufc-roster
     data-feed-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/ufc-roster-data"
     data-backfill-url="{{ '/assets/ufc-roster-backfill.json' | relative_url }}"
@@ -20,7 +25,7 @@ page_scripts:
     <header class="ufc-roster-hero">
         <div class="ufc-roster-hero-copy">
             <span class="ufc-roster-eyebrow">UFC roster tracker</span>
-            <h1>UFC Roster Changes</h1>
+            <h1>UFC Roster</h1>
         </div>
 
         <div class="ufc-roster-live-status" data-roster-live-status data-state="loading" aria-live="polite">
