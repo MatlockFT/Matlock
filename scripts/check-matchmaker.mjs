@@ -214,9 +214,9 @@ for (const event of data.events) {
 assert(lowConfidencePublished > 0, 'Production data should exercise at least one hard-eligible low-confidence pairing');
 
 const page = fs.readFileSync('matchmaker.html', 'utf8');
-for (const asset of ['assets/matchmaker-engine.js', 'assets/matchmaker-public.js', 'assets/matchmaker-simple.js', 'assets/matchmaker-simple.css']) assert(page.includes('/' + asset) && fs.existsSync(asset), `Missing simplified Matchmaker asset: ${asset}`);
+for (const asset of ['assets/matchmaker-engine.js', 'assets/matchmaker-public.js', 'assets/matchmaker-simple.js', 'assets/matchmaker-v3.css']) assert(page.includes('/' + asset) && fs.existsSync(asset), `Missing simplified Matchmaker asset: ${asset}`);
 for (const retired of ['assets/matchmaker.js', 'assets/matchmaker-warroom.js', 'assets/matchmaker-warroom.css', 'assets/matchmaker-doctrine.css']) assert(!page.includes('/' + retired), `Retired interactive Matchmaker asset should not load: ${retired}`);
-for (const marker of ['data-matchmaker-simple', 'mm-simple-eventbar', 'data-mm-grid', 'Plausible next UFC matchups', 'Matchmaking War Room']) assert(page.includes(marker), `Missing simplified Matchmaker marker: ${marker}`);
+for (const marker of ['data-matchmaker-simple', 'mm-simple-eventbar', 'data-mm-grid', 'Plausible next UFC matchups', 'Post-fight matchmaking']) assert(page.includes(marker), `Missing simplified Matchmaker marker: ${marker}`);
 for (const control of ['data-mm-auto', 'data-mm-undo', 'data-mm-rematch', 'data-mm-search', 'data-mm-freeze', 'data-mm-download', 'data-mm-board']) assert(!page.includes(control), `Overbuilt Matchmaker control returned: ${control}`);
 
 const simpleJs = fs.readFileSync('assets/matchmaker-simple.js', 'utf8');
@@ -224,7 +224,7 @@ assert.doesNotThrow(() => new Function(simpleJs), 'Simplified Matchmaker JavaScr
 for (const marker of ['P.selectRecommendations', 'BEST FIT', 'ALSO MAKES SENSE', 'ANOTHER OPTION', 'renderEvent', 'meetingCoverage?.verified', 'Prior-opponent history is still being verified']) assert(simpleJs.includes(marker), `Missing simplified Matchmaker behavior: ${marker}`);
 assert(!/localStorage|showModal|data-mm-lock|autoMatch\(/.test(simpleJs), 'Read-only Matchmaker presentation must not restore board-building behavior');
 
-const simpleCss = fs.readFileSync('assets/matchmaker-simple.css', 'utf8');
+const simpleCss = fs.readFileSync('assets/matchmaker-v3.css', 'utf8');
 for (const marker of ['.mm-simple-hero', '.mm-simple-eventbar', '.mm-simple-board', '.mm-simple-file', '.mm-simple-match', 'prefers-reduced-motion']) assert(simpleCss.includes(marker), `Missing simplified Matchmaker style: ${marker}`);
 assert(fs.readFileSync('_config.yml', 'utf8').includes('link: "/matchmaker/"'));
-console.log(`Matchmaker checks passed: opponent-adjusted two-sided V2 scoring, substantive case rationales, hard eligibility with diagnostic confidence (${lowConfidencePublished} low-confidence eligible candidates retained), hard rematch regression, structured-history reconciliation, ${data.events.length} real cards, ${checked} published recommendations, and simplified read-only next-fight presentation.`);
+console.log(`Matchmaker checks passed: opponent-adjusted two-sided V2 scoring, substantive case rationales, hard eligibility with diagnostic confidence (${lowConfidencePublished} low-confidence eligible candidates retained), hard rematch regression, structured-history reconciliation, ${data.events.length} real cards, ${checked} published recommendations, and V3 read-only next-fight presentation.`);
