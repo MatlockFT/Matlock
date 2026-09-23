@@ -718,3 +718,117 @@ body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{
   }
   .writer-shell .writer-preview-article{padding:.75rem .35rem}
 }
+
+
+/* Critical Writer chrome: lives in the shell so dynamic UX assets can never
+   expose unstyled native controls during deploys or stale-cache transitions. */
+.writer-shell .writer-app .writer-modebar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  min-height:32px;
+  margin:0 0 .3rem;
+  padding:0;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  border-radius:0;
+  background:transparent;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scrollbar-width:thin;
+}
+.writer-shell .writer-app .writer-modebar-actions{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:0;
+  margin-left:auto;
+  flex-wrap:nowrap;
+}
+.writer-shell .writer-app .writer-mode-group{
+  position:relative;
+  display:flex;
+  align-items:center;
+  min-height:31px;
+  padding:0 .4rem;
+  flex:0 0 auto;
+}
+.writer-shell .writer-app .writer-mode-group:first-child{padding-left:0}
+.writer-shell .writer-app .writer-mode-group + .writer-mode-group::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:10px;
+  bottom:10px;
+  width:1px;
+  background:rgba(255,255,255,.07);
+}
+.writer-shell .writer-app .writer-mode-label{
+  display:none!important;
+}
+.writer-shell .writer-app .writer-mode-options,
+.writer-shell .writer-app .writer-ux-width-switcher{
+  display:flex;
+  align-items:center;
+  gap:0;
+}
+.writer-shell .writer-app .writer-mode-options button,
+.writer-shell .writer-app .writer-splitflow-sync,
+.writer-shell .writer-app .writer-ux-width-switcher button{
+  appearance:none;
+  -webkit-appearance:none;
+  position:relative;
+  min-width:0;
+  min-height:30px;
+  margin:0;
+  padding:0 .38rem;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#747476!important;
+  font:560 11px/1 Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;
+  letter-spacing:0!important;
+  text-shadow:none!important;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.writer-shell .writer-app .writer-mode-options button:hover,
+.writer-shell .writer-app .writer-splitflow-sync:hover,
+.writer-shell .writer-app .writer-ux-width-switcher button:hover{
+  color:#c9c9c7!important;
+}
+.writer-shell .writer-app .writer-mode-options button[aria-pressed="true"],
+.writer-shell .writer-app .writer-splitflow-sync[aria-pressed="true"],
+.writer-shell .writer-app .writer-ux-width-switcher button[aria-pressed="true"]{
+  color:#f1f1ef!important;
+}
+.writer-shell .writer-app .writer-mode-options button[aria-pressed="true"]::after,
+.writer-shell .writer-app .writer-splitflow-sync[aria-pressed="true"]::after,
+.writer-shell .writer-app .writer-ux-width-switcher button[aria-pressed="true"]::after{
+  content:"";
+  position:absolute;
+  right:.38rem;
+  bottom:0;
+  left:.38rem;
+  height:1px;
+  background:#d8d8d5;
+}
+.writer-shell .writer-app .writer-view-group{
+  padding-right:.4rem;
+}
+.writer-shell .writer-app .writer-modebar-actions > .writer-mode-group:first-child::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:10px;
+  bottom:10px;
+  width:1px;
+  background:rgba(255,255,255,.07);
+}
+
+/* Same safeguard for the primary command row. */
+.writer-shell .writer-app .writer-top-actions button{
+  appearance:none;
+  -webkit-appearance:none;
+}
