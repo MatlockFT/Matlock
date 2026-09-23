@@ -25,7 +25,7 @@ This controversial kick has been used by many but most notably by Anderson Silva
 If you haven't felt a shiver up your spine at merely reading the words OBLIQUE KICK then that means you are unfamiliar with the devastating move. Worry not, for there is a video explaining it in perfect detail by the one who arguably made it most famous and used it most effectively. The one, the only Jonny Bones Jones.
 <iframe src="https://www.youtube.com/embed/6Lpf1vwr658" title="YouTube video" allowfullscreen></iframe>
 
-At UFC Vegas 36 on September 4, 2021, Khalil Rountree Jr. caught Modestas Bukauskas advancing with a jab and delivered a straight kick into his lead leg. Bukauskas collapsed, and referee Herb Dean stopped the fight at 2:30 of the second round. The finish became one of the clearest examples of the damage a knee-directed kick could cause—and a focal point for demands to outlaw it. [Contemporary fight report](https://www.mmafighting.com/2021/9/4/22657496/ufc-vegas-36-video-khalil-rountree-jr-destroys-modestas-bukauskas-knee-with-devastating-oblique-kick).
+
 
 Five years later, the issue has returned to California’s athletic regulators. Following UFC 331, California State Athletic Commission executive director Andy Foster called for discussion of making lateral knee kicks a foul. The renewed attention followed Brunno Ferreira’s use of knee-directed kicks against Edmen Shahbazyan, who complained to the referee during their September 19 fight. The strikes were legal. Shahbazyan won by unanimous decision. [Sherdog’s report](https://www.sherdog.com/news/news/Controversial-MMA-technique-could-be-banned-following-UFC-331-202885/amp), [UFC’s result](https://www.ufc.com/video/160166).
 
