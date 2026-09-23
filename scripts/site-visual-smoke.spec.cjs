@@ -342,27 +342,6 @@ test.describe('Homepage V3 editorial shell', () => {
     expect(seasonalAccent.pumpkin).toContain('🎃');
     expect(seasonalAccent.pumpkinBottom).not.toBe('auto');
     expect(seasonalAccent.pumpkinSize).toBeGreaterThanOrEqual(18);
-    const darkDrawerHover = await page.evaluate(() => {
-      const html = document.documentElement;
-      html.setAttribute('data-theme', 'dark');
-      const row = document.querySelector('.site-event-drawer .site-event-row');
-      if (!row) return null;
-      row.classList.add('v3-test-hover');
-      const style = getComputedStyle(row);
-      const name = row.querySelector('.site-event-row-name');
-      const detail = row.querySelector('.site-event-row-detail');
-      return {
-        background: style.backgroundColor,
-        color: style.color,
-        nameColor: name ? getComputedStyle(name).color : null,
-        detailColor: detail ? getComputedStyle(detail).color : null
-      };
-    });
-    if (darkDrawerHover) {
-      expect(darkDrawerHover.background).not.toBe('rgb(255, 255, 255)');
-      expect(darkDrawerHover.color).toBe('rgb(255, 255, 255)');
-      expect(darkDrawerHover.nameColor).toBe('rgb(255, 255, 255)');
-    }
     expect(geometry.leadFont).toContain('Herkey');
     expect(geometry.sectionFont).toContain('Herkey');
     expect(geometry.historyFont).toContain('Herkey');
@@ -459,12 +438,35 @@ test.describe('Homepage V3 editorial shell', () => {
     const tickerBottom = await page.locator('.site-live-strip').evaluate(node =>
       Math.round(node.getBoundingClientRect().bottom)
     );
+    const closedDrawerMotion = await page.locator('.site-event-drawer').evaluate(node => ({
+      transform: getComputedStyle(node).transform,
+      transitionDuration: getComputedStyle(node).transitionDuration
+    }));
+    expect(closedDrawerMotion.transform).not.toBe('none');
+    expect(closedDrawerMotion.transitionDuration).not.toBe('0s');
+
     await page.locator('.site-event-primary').click();
     await expect(page.locator('.site-event-drawer')).toBeVisible();
     const drawerTop = await page.locator('.site-event-drawer').evaluate(node =>
       Math.round(node.getBoundingClientRect().top)
     );
     expect(drawerTop - tickerBottom).toBeGreaterThanOrEqual(10);
+
+    await page.locator('.site-theme-toggle').click();
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    await expect(page.locator('html')).not.toHaveClass(/v3-theme-transitioning/, { timeout: 1200 });
+
+    const eventRow = page.locator('.site-event-drawer .site-event-row').first();
+    await eventRow.hover();
+    const hoveredEventStyle = await eventRow.evaluate(node => ({
+      background: getComputedStyle(node).backgroundColor,
+      color: getComputedStyle(node).color,
+      nameColor: getComputedStyle(node.querySelector('.site-event-row-name')).color,
+      detailColor: getComputedStyle(node.querySelector('.site-event-row-detail')).color
+    }));
+    expect(hoveredEventStyle.background).toBe('rgb(24, 24, 24)');
+    expect(hoveredEventStyle.color).toBe('rgb(255, 255, 255)');
+    expect(hoveredEventStyle.nameColor).toBe('rgb(255, 255, 255)');
 
     expect(pageErrors).toEqual([]);
   });
