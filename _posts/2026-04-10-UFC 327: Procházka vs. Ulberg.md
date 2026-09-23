@@ -4,7 +4,7 @@ title: "UFC 327: Procházka vs. Ulberg | Breakdown & Prediction"
 description: "I break down Cub Swanson’s final UFC fight and give my full-card picks."
 date: 2026-04-10
 category: Breakdown
-author: MMA Matlock
+author: Matlock
 image:
   path: /assets/uploads/ufc-327.jpg
   alt: Cub Swanson's final UFC fight
