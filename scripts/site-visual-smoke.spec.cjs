@@ -588,6 +588,83 @@ test.describe('Fight Cards V3 isolated migration', () => {
   });
 });
 
+test.describe('UFC Roster V3 isolated migration', () => {
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('keeps live roster untouched while V3 renders a flat editorial ledger', async ({ page }) => {
+    await page.goto(targetUrl('/ufc-roster/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('.ufc-roster-page')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('[data-editorial-v3]')).toHaveCount(0);
+    await expect(page.locator('.site-theme-toggle')).toHaveCount(0);
+
+    await page.goto(targetUrl('/ufc-roster-v3/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-editorial-v3]')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('.v3-wordmark')).toBeVisible();
+    await expect(page.locator('.site-theme-toggle')).toBeVisible();
+    await expect(page.locator('.v3-sticky-shell')).toHaveCount(1);
+
+    const stylesheetHrefs = await page.locator('link[rel="stylesheet"]').evaluateAll(nodes =>
+      nodes.map(node => node.getAttribute('href') || '')
+    );
+    expect(stylesheetHrefs.some(href => href.includes('ufc-roster.css'))).toBe(false);
+    expect(stylesheetHrefs.some(href => href.includes('dynamic-page-stability.css'))).toBe(false);
+    const v3Index = stylesheetHrefs.findIndex(href => href.includes('ufc-roster-v3.css'));
+    const tailIndex = stylesheetHrefs.findIndex(href => href.includes('site-tail.css'));
+    expect(v3Index).toBeGreaterThan(tailIndex);
+
+    await page.evaluate(() => document.fonts?.ready).catch(() => {});
+    const title = await page.locator('.ufc-roster-hero h1').evaluate(node => ({
+      text: node.textContent.trim(),
+      font: getComputedStyle(node).fontFamily
+    }));
+    expect(title.text).toBe('UFC Roster');
+    expect(title.font).toContain('Herkey');
+
+    const stats = page.locator('.ufc-roster-stat');
+    await expect(stats).toHaveCount(3);
+    const statStyle = await stats.first().evaluate(node => ({
+      radius: getComputedStyle(node).borderRadius,
+      shadow: getComputedStyle(node).boxShadow,
+      background: getComputedStyle(node).backgroundColor
+    }));
+    expect(statStyle.radius).toBe('0px');
+    expect(statStyle.shadow).toBe('none');
+    expect(statStyle.background).toBe('rgba(0, 0, 0, 0)');
+
+    await page.waitForFunction(() => {
+      const list = document.querySelector('[data-roster-list]');
+      return list && list.getAttribute('aria-busy') === 'false';
+    }, null, { timeout: 30000 });
+
+    const cards = page.locator('.ufc-roster-card');
+    if (await cards.count()) {
+      const cardStyle = await cards.first().evaluate(node => ({
+        radius: getComputedStyle(node).borderRadius,
+        shadow: getComputedStyle(node).boxShadow,
+        background: getComputedStyle(node).backgroundColor
+      }));
+      expect(cardStyle.radius).toBe('0px');
+      expect(cardStyle.shadow).toBe('none');
+      expect(cardStyle.background).toBe('rgba(0, 0, 0, 0)');
+
+      const nameFont = await cards.first().locator('.ufc-roster-name').evaluate(node =>
+        getComputedStyle(node).fontFamily
+      );
+      expect(nameFont).toContain('Herkey');
+    } else {
+      await expect(page.locator('.ufc-roster-empty')).toBeVisible();
+    }
+
+    const overflow = await page.evaluate(() =>
+      document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(2);
+
+    const robots = await page.locator('meta[name="robots"]').getAttribute('content');
+    expect(robots).toContain('noindex');
+  });
+});
+
 test.describe('On This Day V3 isolated migration', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 
