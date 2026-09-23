@@ -6,7 +6,7 @@ description: UFC 331 presents the Flyweight Championship rematch between Josh
   to be an epic and competitive fight.
 date: 2026-09-15
 category: Breakdown
-author: MMA Matlock
+author: Matlock
 image:
   path: /assets/uploads/ufc-331.png
   alt: Featuring Dooho Choi
