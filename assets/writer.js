@@ -1639,7 +1639,9 @@ function insertBlock(text) {
       if (file.size > 5 * 1024 * 1024) throw new Error('Keep GIF uploads under 5 MB.');
       return { blob: file, name: file.name };
     }
-    if (file.size <= 4 * 1024 * 1024) return { blob: file, name: file.name };
+
+    const directTypes = new Set(['image/png','image/jpeg','image/webp','image/avif']);
+    if (directTypes.has(file.type) && file.size <= 4 * 1024 * 1024) return { blob: file, name: file.name };
 
     const bitmap = await createImageBitmap(file);
     const maxDimension = 2400;
@@ -1757,7 +1759,7 @@ function insertBlock(text) {
 
     try {
       const path = await uploadAsset(named);
-      const alt = named.name.replace(/-pasted-\d{8}-\d{9}\.[^.]+$/i, '').replace(/[-_]+/g, ' ').trim();
+      const alt = named.name.replace(/-pasted-\d{8}-\d{6}-\d{3}\.[^.]+$/i, '').replace(/[-_]+/g, ' ').trim();
       if (replaceUploadToken(token, inlineImageMarkup(path, alt))) {
         showToast('Pasted image uploaded and placed.');
       }
