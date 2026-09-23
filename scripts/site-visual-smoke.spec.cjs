@@ -277,6 +277,7 @@ test.describe('Homepage V3 editorial shell', () => {
         tickerWidth: Math.round(ticker?.width || 0),
         eventColor: eventName ? getComputedStyle(eventName).color : null,
         countdownColor: eventCountdown ? getComputedStyle(eventCountdown).color : null,
+        countdownLive: eventCountdown?.getAttribute('data-live') === 'true',
         trendingHeight: Math.round(trendRect?.height || 0),
         trendingScrollHeight: trending?.scrollHeight || 0,
         leadTitleAlign: leadTitle ? getComputedStyle(leadTitle).textAlign : null,
@@ -296,7 +297,7 @@ test.describe('Homepage V3 editorial shell', () => {
     expect(geometry.navWidth).toBeGreaterThanOrEqual(geometry.viewport - 4);
     expect(geometry.tickerWidth).toBeGreaterThanOrEqual(geometry.viewport - 4);
     expect(geometry.eventColor).toBe('rgb(17, 17, 17)');
-    expect(geometry.countdownColor).toBe('rgb(17, 17, 17)');
+    expect(geometry.countdownColor).toBe(geometry.countdownLive ? 'rgb(167, 25, 31)' : 'rgb(17, 17, 17)');
     expect(geometry.trendingScrollHeight).toBeLessThanOrEqual(geometry.trendingHeight + 2);
     expect(geometry.leadTitleAlign).toBe('left');
     expect(geometry.leadDeckAlign).toBe('left');
