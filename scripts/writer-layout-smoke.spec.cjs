@@ -111,3 +111,66 @@ test('Writer dropdowns and YouTube embeds keep their spacing at narrow desktop w
   expect(spacing.iframeTop).toBe(0);
   expect(spacing.iframeBottom).toBe(0);
 });
+
+
+test('Writer keeps embeds stable, quotes structured, and bitmap clipboard paste intentional', async ({ page }) => {
+  await page.route('https://platform.x.com/widgets.js', async route => {
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/javascript',
+      body: 'window.twttr={widgets:{load:function(){}}};'
+    });
+  });
+
+  await page.setViewportSize({ width: 1100, height: 900 });
+  await openWriter(page);
+  const editor = page.locator('#writer-body');
+
+  // Quote is a real multi-paragraph block and toggles cleanly.
+  await editor.fill('First quoted paragraph\n\nSecond quoted paragraph');
+  await editor.evaluate(el => el.setSelectionRange(0, el.value.length));
+  await page.click('[data-insert="quote"]');
+  await expect(editor).toHaveValue('> First quoted paragraph\n>\n> Second quoted paragraph');
+  await expect(page.locator('[data-preview-content] blockquote > p')).toHaveCount(2);
+  await page.click('[data-insert="quote"]');
+  await expect(editor).toHaveValue('First quoted paragraph\n\nSecond quoted paragraph');
+
+  // YouTube stays the same iframe node when unrelated copy changes.
+  await editor.fill('Copy before embed.');
+  await editor.evaluate(el => { el.focus(); el.setSelectionRange(el.value.length, el.value.length); });
+  await page.click('[data-tool="youtube"]');
+  await page.fill('[data-youtube-url]', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ');
+  await page.fill('[data-youtube-title]', 'Stable YouTube');
+  await page.click('[data-youtube-insert]');
+  const frame = page.locator('[data-preview-content] .writer-embed iframe');
+  await expect(frame).toBeVisible();
+  await frame.evaluate(el => { el.dataset.keepNode = 'youtube'; });
+  await editor.evaluate(el => { el.focus(); el.setSelectionRange(el.value.length, el.value.length); });
+  await page.keyboard.type(' Copy after embed.');
+  await page.waitForTimeout(180);
+  await expect(page.locator('[data-preview-content] .writer-embed iframe')).toHaveAttribute('data-keep-node', 'youtube');
+
+  // X preview wrapper is also preserved instead of being rebuilt on each keystroke.
+  await page.click('[data-tool="x"]');
+  await page.fill('[data-x-url]', 'https://x.com/MMAMatlock/status/2100109052697051428');
+  await page.click('[data-x-insert]');
+  const xEmbed = page.locator('[data-preview-content] .writer-x-embed');
+  await expect(xEmbed).toBeVisible();
+  await xEmbed.evaluate(el => { el.dataset.keepNode = 'x'; });
+  await editor.evaluate(el => { el.focus(); el.setSelectionRange(el.value.length, el.value.length); });
+  await page.keyboard.type(' More article copy.');
+  await page.waitForTimeout(180);
+  await expect(page.locator('[data-preview-content] .writer-x-embed')).toHaveAttribute('data-keep-node', 'x');
+
+  // A bitmap clipboard image is claimed by the image workflow, not mangled into text.
+  const beforePaste = await editor.inputValue();
+  await editor.evaluate(el => {
+    el.focus();
+    el.setSelectionRange(el.value.length, el.value.length);
+    const transfer = new DataTransfer();
+    transfer.items.add(new File([new Blob(['clipboard-image'], { type: 'image/png' })], 'image.png', { type: 'image/png' }));
+    el.dispatchEvent(new ClipboardEvent('paste', { clipboardData: transfer, bubbles: true, cancelable: true }));
+  });
+  await expect(page.locator('[data-connect-dialog]')).toBeVisible();
+  await expect(editor).toHaveValue(beforePaste);
+});
