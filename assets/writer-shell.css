@@ -1,0 +1,67 @@
+/*
+ * Standalone Writer shell.
+ *
+ * /write/ is intentionally detached from the public-site chrome and skin.
+ * Keep this file neutral and functional so changes to the main site do not
+ * visually reshape the publishing workspace.
+ */
+
+html.writer-shell-root {
+  --theme-background:#000;
+  --theme-surface:#0b0b0b;
+  --theme-surface-raised:#111;
+  --theme-border:#292929;
+  --theme-border-bright:#454545;
+  --theme-text:#f4f4f2;
+  --theme-text-soft:#c8c8c6;
+  --theme-muted:#858585;
+  --theme-accent:#f2f2ef;
+  --theme-accent-soft:#b9b9b7;
+  --theme-accent-rgb:242,242,239;
+  --theme-success:#9dc9ad;
+  --theme-shadow:none;
+  --theme-shadow-card:none;
+  --theme-nav-blur:0;
+  --theme-accent-wash:rgba(255,255,255,.04);
+  background:#000;
+  color-scheme:dark;
+}
+
+body.writer-shell {
+  min-height:100vh;
+  margin:0;
+  background:#000;
+  color:#f4f4f2;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+.writer-shell-main {
+  width:100%;
+  min-height:100vh;
+  margin:0;
+  padding:0;
+}
+
+.writer-shell .writer-app {
+  margin-top:.75rem;
+}
+
+.writer-shell .writer-app .eyebrow {
+  color:#808080;
+}
+
+.writer-shell .writer-app a {
+  color:#cfcfcd;
+}
+
+.writer-shell .writer-app a:hover,
+.writer-shell .writer-app a:focus-visible {
+  color:#fff;
+}
+
+@media (max-width:700px) {
+  .writer-shell .writer-app {
+    width:min(100% - 1rem,1600px);
+    margin-top:.5rem;
+  }
+}
