@@ -5,7 +5,7 @@ description: "I've been busy so I'm providing an update since UFC 314 took
   place. Let's take a look at my overall pick percentage."
 date: 2025-08-22
 category: Opinion
-author: MMA Matlock
+author: Matlock
 image:
   path: /assets/uploads/volk-2.png
   alt: Alexander Volkanovski celebrating after a UFC fight
