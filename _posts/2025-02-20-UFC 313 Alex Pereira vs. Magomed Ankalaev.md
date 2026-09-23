@@ -5,7 +5,7 @@ description: "A breakdown of Alex Pereira vs. Magomed Ankalaev in the UFC 313
   light heavyweight main event."
 date: 2025-02-20
 category: Breakdown
-author: MMA Matlock
+author: Matlock
 image:
   path: /assets/uploads/magomed.png
   alt: Magomed Ankalaev looks to take the UFC Light Heavyweight title
