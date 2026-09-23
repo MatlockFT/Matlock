@@ -112,21 +112,25 @@
 
   function addWidthControl() {
     if (modeActions.querySelector('[data-writer-ux-width-switcher]')) return;
-    const shell = document.createElement('div');
-    shell.className = 'writer-segmented writer-ux-width-switcher';
-    shell.dataset.writerUxWidthSwitcher = '';
-    shell.setAttribute('aria-label', 'Writing width');
-    shell.innerHTML = `
-      <button type="button" data-writer-ux-width="normal" aria-pressed="false" title="Comfortable reading width">Normal</button>
-      <button type="button" data-writer-ux-width="wide" aria-pressed="false" title="Wider editor">Wide</button>
-      <button type="button" data-writer-ux-width="full" aria-pressed="false" title="Use all available editor width">Full</button>
+    const group = document.createElement('div');
+    group.className = 'writer-mode-group writer-ux-width-group';
+    group.dataset.modeGroup = 'width';
+    group.innerHTML = `
+      <span class="writer-mode-label">Width</span>
+      <div class="writer-mode-options writer-ux-width-switcher" data-writer-ux-width-switcher aria-label="Writing width">
+        <button type="button" data-writer-ux-width="normal" aria-pressed="false" title="Comfortable reading width">Normal</button>
+        <button type="button" data-writer-ux-width="wide" aria-pressed="false" title="Wider editor">Wide</button>
+        <button type="button" data-writer-ux-width="full" aria-pressed="false" title="Use all available editor width">Full</button>
+      </div>
     `;
-    modeActions.insertAdjacentElement('afterbegin', shell);
+    const toolsGroup = modeActions.querySelector('[data-mode-group="tools"]');
+    if (toolsGroup) toolsGroup.insertAdjacentElement('beforebegin', group);
+    else modeActions.insertAdjacentElement('afterbegin', group);
 
     const stored = localStorage.getItem(WIDTH_KEY);
     setWidth(['normal', 'wide', 'full'].includes(stored) ? stored : 'normal');
 
-    shell.addEventListener('click', event => {
+    group.addEventListener('click', event => {
       const button = event.target.closest('[data-writer-ux-width]');
       if (button) setWidth(button.dataset.writerUxWidth);
     });
