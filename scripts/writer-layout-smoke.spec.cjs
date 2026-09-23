@@ -70,3 +70,44 @@ test('Writer shell and editing surface adapt to desktop and ultrawide viewports'
   expect(box.width).toBeLessThanOrEqual(970);
   await expectCenteredWithoutOverflow(page, box);
 });
+
+
+test('Writer dropdowns and YouTube embeds keep their spacing at narrow desktop widths', async ({ page }) => {
+  await page.setViewportSize({ width: 820, height: 900 });
+  await openWriter(page);
+
+  const modeMore = page.locator('[data-writer-mode-more]');
+  await modeMore.locator('summary').click();
+  await expect(modeMore.locator('[data-writer-mode-more-panel]')).toBeVisible();
+  expect(await page.locator('.writer-modebar').evaluate(el => getComputedStyle(el).overflowY)).toBe('visible');
+  await modeMore.locator('summary').click();
+
+  const formatMore = page.locator('[data-writer-ux-more]');
+  await expect(formatMore).toHaveCount(1);
+  await formatMore.locator('summary').click();
+  await expect(formatMore.locator('.writer-ux-more-panel')).toBeVisible();
+  expect(await page.locator('.writer-toolbar').evaluate(el => getComputedStyle(el).overflowY)).toBe('visible');
+
+  const editor = page.locator('#writer-body');
+  await editor.fill('Paragraph before the video.\n<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video" allowfullscreen></iframe>\n\nParagraph after the video.');
+  const embed = page.locator('[data-preview-content] .writer-embed');
+  const iframe = embed.locator('iframe');
+  await expect(iframe).toBeVisible();
+
+  const spacing = await embed.evaluate(el => {
+    const frame = el.querySelector('iframe');
+    const wrap = getComputedStyle(el);
+    const inner = getComputedStyle(frame);
+    return {
+      wrapTop: parseFloat(wrap.marginTop),
+      wrapBottom: parseFloat(wrap.marginBottom),
+      iframeTop: parseFloat(inner.marginTop),
+      iframeBottom: parseFloat(inner.marginBottom)
+    };
+  });
+
+  expect(spacing.wrapTop).toBeGreaterThan(0);
+  expect(spacing.wrapBottom).toBeGreaterThan(spacing.wrapTop);
+  expect(spacing.iframeTop).toBe(0);
+  expect(spacing.iframeBottom).toBe(0);
+});
