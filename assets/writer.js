@@ -621,7 +621,9 @@
   }
 
   function clearLocalFeaturedPreview() {
-    clearLocalFeaturedPreview();
+    if (localImageUrl) URL.revokeObjectURL(localImageUrl);
+    localImageUrl = '';
+    selectedImageFile = null;
     if (imageFileInput) imageFileInput.value = '';
     clearFeaturedImageRetry();
   }
@@ -1088,9 +1090,7 @@ function scheduleAutosave() {
 
   function resetNewArticle({ template = '' } = {}) {
     if (dirty && !window.confirm('Start a new article and leave the current unsaved changes?')) return;
-    if (localImageUrl) URL.revokeObjectURL(localImageUrl);
-    localImageUrl = '';
-    selectedImageFile = null;
+    clearLocalFeaturedPreview();
     currentPath = '';
     currentSha = '';
     originalFrontmatter = '';
