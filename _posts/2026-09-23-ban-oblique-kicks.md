@@ -3,14 +3,21 @@ layout: post
 title: BAN OBLIQUE KICKS
 description: ""
 date: 2026-09-23
-category: Breakdown
+category: Opinion
 author: Matlock
 image:
   path: /assets/uploads/obkick.png
   alt: "Tim Elliott , Steve Erceg,  Ed Mulholland"
   position: center center
 tags:
-  - "[]"
+  - Oblique Kick
+  - Side Kick
+  - CSAC
+  - Jon Jones
+  - Andy Foster
+  - Khalil Rountree
+  - Anderson Silva
+  - Dana White
 show_toc: false
 pinned: false
 listing_visibility: normal
