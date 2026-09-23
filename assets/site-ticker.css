@@ -141,18 +141,20 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transform: translateY(-5px);
+    transform-origin: top left;
+    transform: translateY(-8px) scale(.985);
     transition:
-        opacity 150ms ease,
-        transform 190ms cubic-bezier(.2,.75,.25,1),
-        visibility 0s linear 190ms;
+        opacity 160ms ease,
+        transform 210ms cubic-bezier(.2,.75,.25,1),
+        visibility 0s linear 210ms;
+    will-change: opacity, transform;
 }
 
 .site-event-stack.is-open .site-event-drawer {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
     transition-delay: 0s;
 }
 
@@ -194,6 +196,32 @@
 .site-event-row:hover,
 .site-event-row:focus-visible {
     background: rgba(255,255,255,.05);
+}
+
+html[data-theme="dark"] .site-event-drawer .site-event-row:hover,
+html[data-theme="dark"] .site-event-drawer .site-event-row:focus-visible {
+    background: #181818 !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .site-event-drawer .site-event-row:hover .site-event-row-name,
+html[data-theme="dark"] .site-event-drawer .site-event-row:focus-visible .site-event-row-name {
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] .site-event-drawer .site-event-row:hover .site-event-row-detail,
+html[data-theme="dark"] .site-event-drawer .site-event-row:focus-visible .site-event-row-detail {
+    color: #a8a8a8 !important;
+}
+
+html[data-theme="dark"] .site-event-drawer .site-event-row:hover .site-event-row-countdown,
+html[data-theme="dark"] .site-event-drawer .site-event-row:focus-visible .site-event-row-countdown {
+    color: #d8d8d8 !important;
+}
+
+html[data-theme="dark"] .site-event-drawer .site-event-row:hover .site-event-row-countdown[data-live="true"],
+html[data-theme="dark"] .site-event-drawer .site-event-row:focus-visible .site-event-row-countdown[data-live="true"] {
+    color: #ff6670 !important;
 }
 
 .site-event-row:focus-visible {
@@ -453,7 +481,7 @@
         max-height: min(62vh, 430px);
         overflow-y: auto;
         border-top: 0;
-        transform: translateY(-5px);
+        transform: translateY(-7px) scale(.99);
     }
 }
 
@@ -478,6 +506,10 @@
     .site-event-drawer,
     .site-event-row {
         transition: none !important;
+    }
+
+    .site-event-drawer {
+        transform: none !important;
     }
 }
 
