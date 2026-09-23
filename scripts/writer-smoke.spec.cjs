@@ -88,6 +88,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('[data-editor-view]')).toBeVisible();
   await expect(page.locator('.writer-preview-article')).toHaveClass(/post-page-v3/);
   await expect(page.locator('.writer-preview-article')).toHaveAttribute('data-editorial-v3', '');
+  await expect(page.locator('[data-preview-author]')).toHaveText('Matlock');
   expect(await page.locator('.writer-preview-article .post-breadcrumbs ol').evaluate(el => getComputedStyle(el).listStyleType)).toBe('none');
 
   const more = page.locator('[data-writer-mode-more]');
