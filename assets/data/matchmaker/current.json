@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-09-23T00:41:30.565Z"
+      "checkedAt": "2026-09-23T05:14:37.611Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-23T00:41:56.913Z",
+      "checkedAt": "2026-09-23T05:15:08.770Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -4711,7 +4711,13 @@
         "mirrorThrough": "2026-09-19",
         "officialThrough": "2026-09-19"
       },
-      "booking": null,
+      "booking": {
+        "event": "Silva vs Cong",
+        "date": "2026-10-03",
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Imanol Rodriguez",
+        "opponentId": "imanol-rodriguez"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -45433,7 +45439,13 @@
         "mirrorThrough": "2026-09-19",
         "officialThrough": "2026-09-19"
       },
-      "booking": null,
+      "booking": {
+        "event": "Gane vs Hokit",
+        "date": "2026-11-14",
+        "source": "https://www.ufc.com/event/ufc-334",
+        "opponent": "Yousri Belgaroui",
+        "opponentId": "yousri-belgaroui"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -120878,7 +120890,13 @@
         "mirrorThrough": "2026-09-19",
         "officialThrough": "2026-09-19"
       },
-      "booking": null,
+      "booking": {
+        "event": "Silva vs Cong",
+        "date": "2026-10-03",
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Alden Coria",
+        "opponentId": "alden-coria"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -324880,7 +324898,13 @@
         "mirrorThrough": "2026-09-19",
         "officialThrough": "2026-09-19"
       },
-      "booking": null,
+      "booking": {
+        "event": "Gane vs Hokit",
+        "date": "2026-11-14",
+        "source": "https://www.ufc.com/event/ufc-334",
+        "opponent": "Caio Borralho",
+        "opponentId": "caio-borralho"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
