@@ -1,3 +1,5 @@
+---
+---
 /*
  * Editorial V3 shell.
  *
@@ -5,8 +7,8 @@
  * modifying the legacy/global site skin. Keep page-specific layout in its own
  * V3 stylesheet. The homepage assets are treated as the frozen visual reference.
  */
-@import url("/assets/homepage-v3.css?v=175");
-@import url("/assets/homepage-v3-refresh.css?v=175");
+@import url("{{ '/assets/homepage-v3.css' | relative_url }}?v={{ site.asset_version }}");
+@import url("{{ '/assets/homepage-v3-refresh.css' | relative_url }}?v={{ site.asset_version }}");
 
 body:has([data-editorial-v3]) .site-main {
     min-height: 60vh;

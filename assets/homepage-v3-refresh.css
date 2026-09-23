@@ -596,11 +596,46 @@ body:has([data-globe-home]) .site-news-item-source {
     }
 
     body:has([data-globe-home]) .site-theme-control {
-        position: absolute;
-        top: 9px;
-        right: .55rem;
-        z-index: 5;
+        position: static;
+        align-self: flex-end;
+        flex: 0 0 auto;
         padding: 0 !important;
+    }
+
+    body:has([data-globe-home]) .site-theme-toggle {
+        width: 44px;
+        min-width: 44px;
+        height: 44px;
+        min-height: 44px;
+    }
+
+    body:has([data-globe-home]) .navigation-panel {
+        background: var(--v3-paper) !important;
+        color: var(--v3-ink) !important;
+        border-color: var(--v3-rule-dark);
+    }
+
+    body:has([data-globe-home]) .navigation-panel-header {
+        color: var(--v3-ink);
+        border-color: var(--v3-rule);
+    }
+
+    body:has([data-globe-home]) .navigation-list a {
+        min-height: 48px;
+        justify-content: flex-start;
+        font-size: .85rem;
+    }
+
+    body:has([data-globe-home]) .navigation-toggle,
+    body:has([data-globe-home]) .navigation-close {
+        border: 1px solid var(--v3-rule-dark);
+        border-radius: 0;
+        background: var(--v3-paper);
+        color: var(--v3-ink);
+    }
+
+    body:has([data-globe-home]) .navigation-toggle-icon > span {
+        background: currentColor;
     }
 
     body:has([data-globe-home]) .site-live-strip-inner,
