@@ -616,3 +616,231 @@ html.v3-theme-transitioning .upcoming-events-page-v3 .fighter-name {
         animation: none !important;
     }
 }
+
+
+/* 2026-09 visual hierarchy pass — keep the editorial shell, give the cards more structure. */
+.upcoming-events-page-v3 .upcoming-events-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(260px, .65fr);
+    column-gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: end;
+    border-bottom: 0;
+}
+
+.upcoming-events-page-v3 .fight-cards-v3-eyebrow,
+.upcoming-events-page-v3 .upcoming-events-header h1 {
+    grid-column: 1;
+}
+
+.upcoming-events-page-v3 .fight-cards-v3-deck {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    max-width: 42ch;
+    margin: 0 0 .05rem;
+    color: var(--v3-muted);
+    font: 650 .72rem/1.5 var(--v3-sans);
+}
+
+.upcoming-events-page-v3 .upcoming-event-card {
+    position: relative;
+    border-top: 0;
+}
+
+.upcoming-events-page-v3 .event-card-header {
+    position: relative;
+    padding: 1rem clamp(.85rem, 1.8vw, 1.35rem) 1.05rem;
+    border-top: 3px solid var(--v3-ink);
+    border-bottom: 0;
+    background: linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--v3-paper-deep) 48%, transparent),
+        transparent 82%
+    );
+}
+
+.upcoming-events-page-v3 .event-card-heading {
+    position: relative;
+    padding-left: .85rem;
+}
+
+.upcoming-events-page-v3 .event-card-heading::before {
+    position: absolute;
+    top: .1rem;
+    bottom: .15rem;
+    left: 0;
+    width: 3px;
+    background: var(--v3-red);
+    content: "";
+}
+
+.upcoming-events-page-v3 .event-card-meta {
+    align-self: stretch;
+    justify-content: center;
+    padding: .2rem 0 .2rem clamp(1rem, 2vw, 1.5rem);
+}
+
+.upcoming-events-page-v3 .event-card-section {
+    padding-top: 1.15rem;
+}
+
+.upcoming-events-page-v3 .event-card-section + .event-card-section {
+    margin-top: 1.7rem;
+    padding-top: 0;
+    border-top: 0;
+}
+
+.upcoming-events-page-v3 .event-card-section-heading {
+    align-items: center;
+    margin-bottom: .8rem;
+    padding: .48rem .62rem .5rem;
+    border: 0;
+    background: var(--v3-ink);
+}
+
+.upcoming-events-page-v3 .event-card-section-heading h3 {
+    color: var(--v3-paper);
+    font-size: clamp(1.25rem, 1.8vw, 1.75rem);
+}
+
+.upcoming-events-page-v3 .event-card-section-heading span {
+    color: color-mix(in srgb, var(--v3-paper) 70%, transparent);
+}
+
+.upcoming-events-page-v3 .featured-bouts,
+.upcoming-events-page-v3 .main-card-bouts,
+.upcoming-events-page-v3 .prelim-bouts {
+    gap: .8rem;
+}
+
+.upcoming-events-page-v3 .prelim-bouts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.upcoming-events-page-v3 .bout-card {
+    border-color: color-mix(in srgb, var(--v3-rule) 82%, var(--v3-ink));
+    box-shadow: 0 1px 0 color-mix(in srgb, var(--v3-ink) 10%, transparent);
+}
+
+.upcoming-events-page-v3 .bout-card-featured {
+    border-top: 3px solid var(--v3-ink);
+}
+
+.upcoming-events-page-v3 .featured-bouts .bout-card:first-child {
+    border-top-color: var(--v3-red);
+}
+
+.upcoming-events-page-v3 .bout-label {
+    min-height: 29px;
+    padding: .34rem .5rem;
+    background: color-mix(in srgb, var(--v3-paper-deep) 42%, var(--v3-paper));
+}
+
+.upcoming-events-page-v3 .featured-bouts .bout-label {
+    min-height: 32px;
+    font-size: .52rem;
+}
+
+.upcoming-events-page-v3 .bout-fighters {
+    position: relative;
+}
+
+.upcoming-events-page-v3 .bout-fighters::after {
+    position: absolute;
+    z-index: 6;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    width: 28px;
+    height: 28px;
+    place-items: center;
+    border: 2px solid var(--v3-paper);
+    border-radius: 50%;
+    background: var(--v3-ink);
+    color: var(--v3-paper);
+    content: "VS";
+    font: 900 .43rem/1 var(--v3-sans);
+    letter-spacing: .03em;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.upcoming-events-page-v3 .bout-card-featured .bout-fighters::after {
+    width: 34px;
+    height: 34px;
+    font-size: .48rem;
+}
+
+.upcoming-events-page-v3 .fighter-name {
+    min-height: 2.45rem;
+    padding: .42rem .35rem;
+}
+
+.upcoming-events-page-v3 .bout-card-featured .fighter-name {
+    min-height: 2.8rem;
+}
+
+.upcoming-events-page-v3 .fighter:hover {
+    background: color-mix(in srgb, var(--v3-paper-deep) 24%, transparent);
+}
+
+.upcoming-events-page-v3 .fighter.is-pick::after {
+    border-width: 3px;
+}
+
+.upcoming-events-page-v3 .bout-footer {
+    min-height: 29px;
+    padding: .34rem .6rem;
+}
+
+.upcoming-events-page-v3 .bout-card-featured .bout-footer {
+    min-height: 32px;
+}
+
+.upcoming-events-page-v3 .bout-footer strong {
+    display: none;
+}
+
+.upcoming-events-page-v3 .event-card-note {
+    margin-top: .8rem;
+}
+
+@media (max-width: 1080px) {
+    .upcoming-events-page-v3 .prelim-bouts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 860px) {
+    .upcoming-events-page-v3 .upcoming-events-header {
+        grid-template-columns: 1fr;
+        row-gap: .55rem;
+    }
+
+    .upcoming-events-page-v3 .fight-cards-v3-deck {
+        grid-column: 1;
+        grid-row: auto;
+        max-width: 60ch;
+    }
+
+    .upcoming-events-page-v3 .event-card-header {
+        padding-inline: .8rem;
+    }
+
+    .upcoming-events-page-v3 .event-card-meta {
+        padding: .7rem 0 0;
+    }
+}
+
+@media (max-width: 620px) {
+    .upcoming-events-page-v3 .fight-cards-v3-deck {
+        font-size: .66rem;
+    }
+
+    .upcoming-events-page-v3 .event-card-section-heading {
+        padding: .45rem .52rem;
+    }
+
+    .upcoming-events-page-v3 .prelim-bouts {
+        grid-template-columns: 1fr;
+    }
+}
