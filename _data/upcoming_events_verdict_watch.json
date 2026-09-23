@@ -14,12 +14,12 @@
       "verdict_url": "https://verdictmma.com/event/1959",
       "verdict_date": "2026-09-26",
       "local_fight_count": 12,
-      "verdict_fight_count": 11,
+      "verdict_fight_count": 12,
       "local_main_count": 5,
-      "verdict_main_count": 6,
+      "verdict_main_count": 5,
       "local_prelim_count": 7,
-      "verdict_prelim_count": 5,
-      "confirmed_local_bouts": 9
+      "verdict_prelim_count": 7,
+      "confirmed_local_bouts": 11
     },
     {
       "event_id": "dwcs-season-10-week-8-2026-09-29",
@@ -36,7 +36,7 @@
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
-      "confirmed_local_bouts": 1
+      "confirmed_local_bouts": 5
     },
     {
       "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
@@ -59,18 +59,18 @@
       "event_id": "ufc-332-2026-10-03-fight-card",
       "promotion": "ufc",
       "date": "2026-10-03",
-      "title": "Figueiredo vs Talbott",
+      "title": "Silva vs Cong",
       "status": "matched",
       "verdict_event_id": "1952",
       "verdict_url": "https://verdictmma.com/event/1952",
       "verdict_date": "2026-10-03",
-      "local_fight_count": 12,
-      "verdict_fight_count": 12,
-      "local_main_count": 4,
+      "local_fight_count": 13,
+      "verdict_fight_count": 13,
+      "local_main_count": 5,
       "verdict_main_count": 5,
       "local_prelim_count": 8,
-      "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 10
+      "verdict_prelim_count": 8,
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "ufc-fight-night-2026-10-10-fight-card",
@@ -99,12 +99,12 @@
       "verdict_url": "https://verdictmma.com/event/1936",
       "verdict_date": "2026-10-17",
       "local_fight_count": 12,
-      "verdict_fight_count": 11,
+      "verdict_fight_count": 12,
       "local_main_count": 5,
       "verdict_main_count": 5,
       "local_prelim_count": 7,
-      "verdict_prelim_count": 6,
-      "confirmed_local_bouts": 11
+      "verdict_prelim_count": 7,
+      "confirmed_local_bouts": 12
     },
     {
       "event_id": "ufc-333-2026-10-24-fight-card",
@@ -121,7 +121,7 @@
       "verdict_main_count": 5,
       "local_prelim_count": 4,
       "verdict_prelim_count": 4,
-      "confirmed_local_bouts": 8
+      "confirmed_local_bouts": 9
     },
     {
       "event_id": "ufc-fight-night-2026-10-31-fight-card",
@@ -175,11 +175,11 @@
       "confirmed_local_bouts": 2
     },
     {
-      "event_id": "ufc-334-2026-11-14-fight-card",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
       "promotion": "ufc",
       "date": "2026-11-14",
-      "title": "Gane vs Hokit",
-      "status": "event_matched_card_unreadable",
+      "title": "Polymarket UFC 334",
+      "status": "matched",
       "verdict_event_id": "1970",
       "verdict_url": "https://verdictmma.com/event/1970",
       "verdict_date": "2026-11-14",
@@ -189,50 +189,10 @@
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
-      "confirmed_local_bouts": null
+      "confirmed_local_bouts": 5
     }
   ],
   "discrepancies": [
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "dwcs-season-10-week-8-2026-09-29",
-      "verdict_event_id": "1933",
-      "order": 1,
-      "fighters": [
-        "Camila Reynoso",
-        "Aieza Ramos Bertolso"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "dwcs-season-10-week-8-2026-09-29",
-      "verdict_event_id": "1933",
-      "order": 3,
-      "fighters": [
-        "Luca Borando",
-        "Ian Escuza"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "dwcs-season-10-week-8-2026-09-29",
-      "verdict_event_id": "1933",
-      "order": 4,
-      "fighters": [
-        "Ilias Bulaid",
-        "Erick Visconde"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "dwcs-season-10-week-8-2026-09-29",
-      "verdict_event_id": "1933",
-      "order": 5,
-      "fighters": [
-        "Zaurbek Sabanov",
-        "Adama Diop"
-      ]
-    },
     {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
@@ -365,12 +325,72 @@
     },
     {
       "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "verdict_event_id": "1952",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "verdict_event_id": "1970",
+      "order": 10,
+      "fighters": [
+        "Macy Chiasson",
+        "Bia Mesquita"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "verdict_event_id": "1970",
+      "order": 11,
+      "fighters": [
+        "Adrian Yanez",
+        "Juan Diaz"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "verdict_event_id": "1970",
+      "order": 12,
+      "fighters": [
+        "Nazim Sadykhov",
+        "Jefferson Nascimento"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "verdict_event_id": "1970",
+      "order": 6,
+      "fighters": [
+        "Drew Dober",
+        "Chris Duncan"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "verdict_event_id": "1970",
       "order": 7,
       "fighters": [
-        "Marcus McGhee",
-        "Benardo Sopaj"
+        "Stephen Thompson",
+        "Charles Radtke"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "verdict_event_id": "1970",
+      "order": 8,
+      "fighters": [
+        "Donte Johnson",
+        "Baisangur Susurkaev"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-2026-11-14-polymarket-ufc-334",
+      "verdict_event_id": "1970",
+      "order": 9,
+      "fighters": [
+        "Jim Miller",
+        "Terrance McKinney"
       ]
     },
     {
@@ -379,35 +399,9 @@
       "verdict_event_id": "1952",
       "order": 8,
       "fighters": [
-        "Anthony Wint",
-        "Lucas Armand"
+        "Marcus McGhee",
+        "Benardo Sopaj"
       ]
-    },
-    {
-      "type": "section_count_mismatch",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "verdict_event_id": "1952",
-      "local_main_count": 4,
-      "verdict_main_count": 5,
-      "local_prelim_count": 8,
-      "verdict_prelim_count": 7
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "verdict_event_id": "1955",
-      "order": 5,
-      "fighters": [
-        "Arnold Allen",
-        "Aaron Pico"
-      ]
-    },
-    {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "verdict_event_id": "1959",
-      "local_fight_count": 12,
-      "verdict_fight_count": 11
     },
     {
       "type": "local_bout_not_found_on_verdict",
@@ -418,61 +412,6 @@
         "John Castaneda",
         "Alatengheili"
       ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "verdict_event_id": "1959",
-      "order": 11,
-      "fighters": [
-        "Mickey Gall",
-        "Sedriques Dumas"
-      ]
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "verdict_event_id": "1959",
-      "order": 4,
-      "fighters": [
-        "Melissa Amaya",
-        "Tina Black"
-      ]
-    },
-    {
-      "type": "section_count_mismatch",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "verdict_event_id": "1959",
-      "local_main_count": 5,
-      "verdict_main_count": 6,
-      "local_prelim_count": 7,
-      "verdict_prelim_count": 5
-    },
-    {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "verdict_event_id": "1936",
-      "local_fight_count": 12,
-      "verdict_fight_count": 11
-    },
-    {
-      "type": "local_bout_not_found_on_verdict",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "verdict_event_id": "1936",
-      "order": 12,
-      "fighters": [
-        "Cody Chovancek",
-        "SuYoung You"
-      ]
-    },
-    {
-      "type": "section_count_mismatch",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "verdict_event_id": "1936",
-      "local_main_count": 5,
-      "verdict_main_count": 5,
-      "local_prelim_count": 7,
-      "verdict_prelim_count": 6
     },
     {
       "type": "local_bout_not_found_on_verdict",

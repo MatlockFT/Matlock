@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-23T12:10:18.256Z",
+  "generated_at": "2026-09-23T17:16:18.805Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-09-26-fight-card",
@@ -740,7 +740,7 @@
       "id": "ufc-332-2026-10-03-fight-card",
       "promotion_key": "ufc",
       "promotion": "UFC 332",
-      "title": "Figueiredo vs Talbott",
+      "title": "Silva vs Cong",
       "date": "2026-10-03",
       "date_label": "Saturday · October 3, 2026",
       "starts_at": "",
@@ -758,6 +758,27 @@
             {
               "order": 1,
               "label": "Main Event",
+              "weight_class": "Women's Flyweight Title Bout",
+              "fighters": [
+                {
+                  "name": "Natalia Silva",
+                  "initials": "NS",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/SILVA_NATALIA_L_01-24.png?itok=A5iY_ScW",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Wang Cong",
+                  "initials": "WC",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/CONG_WANG_L_02-07.png?itok=LBnTljRc",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
               "weight_class": "Bantamweight Bout",
               "fighters": [
                 {
@@ -777,8 +798,8 @@
               ]
             },
             {
-              "order": 2,
-              "label": "Co-Main Event",
+              "order": 3,
+              "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
                 {
@@ -798,7 +819,7 @@
               ]
             },
             {
-              "order": 3,
+              "order": 4,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -819,7 +840,7 @@
               ]
             },
             {
-              "order": 4,
+              "order": 5,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -847,7 +868,7 @@
           "time": "4:00 PM ET",
           "bouts": [
             {
-              "order": 5,
+              "order": 6,
               "label": "",
               "weight_class": "Flyweight Bout",
               "fighters": [
@@ -868,7 +889,7 @@
               ]
             },
             {
-              "order": 6,
+              "order": 7,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -889,7 +910,7 @@
               ]
             },
             {
-              "order": 7,
+              "order": 8,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -910,7 +931,7 @@
               ]
             },
             {
-              "order": 8,
+              "order": 9,
               "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
@@ -938,7 +959,7 @@
           "time": "4:00 PM ET",
           "bouts": [
             {
-              "order": 9,
+              "order": 10,
               "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
@@ -959,7 +980,7 @@
               ]
             },
             {
-              "order": 10,
+              "order": 11,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
@@ -980,7 +1001,7 @@
               ]
             },
             {
-              "order": 11,
+              "order": 12,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -1001,7 +1022,7 @@
               ]
             },
             {
-              "order": 12,
+              "order": 13,
               "label": "",
               "weight_class": "Welterweight Bout",
               "fighters": [
@@ -1828,10 +1849,10 @@
       "source_card_url": "https://jp.rizinff.com/_ct/17864056"
     },
     {
-      "id": "ufc-334-2026-11-14-fight-card",
+      "id": "ufc-2026-11-14-polymarket-ufc-334",
       "promotion_key": "ufc",
-      "promotion": "UFC 334",
-      "title": "Gane vs Hokit",
+      "promotion": "UFC",
+      "title": "Polymarket UFC 334",
       "date": "2026-11-14",
       "date_label": "Saturday · November 14, 2026",
       "starts_at": "",
