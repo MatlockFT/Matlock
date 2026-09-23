@@ -1,7 +1,43 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-23T17:16:55.614Z",
+  "generated_at": "2026-09-23T23:09:08.436Z",
   "changes": [
+    {
+      "id": "2026-09-23T23:09:08.436Z|ufc-fight-night-2026-09-26-fight-card|bout_changed|1",
+      "at": "2026-09-23T23:09:08.436Z",
+      "type": "bout_changed",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Mehemmedeli Osmanli vs Ilimbek Akylbek changed to Mahammadali Osmanli vs Ilimbek Akylbek on Jr. vs Barcelos.",
+      "details": {
+        "order": 3,
+        "section": "Main Card",
+        "from": [
+          "Mehemmedeli Osmanli",
+          "Ilimbek Akylbek"
+        ],
+        "to": [
+          "Mahammadali Osmanli",
+          "Ilimbek Akylbek"
+        ]
+      }
+    },
+    {
+      "id": "2026-09-23T23:09:08.436Z|ufc-fight-night-2026-09-26-fight-card|portrait_added|2",
+      "at": "2026-09-23T23:09:08.436Z",
+      "type": "portrait_added",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Ilimbek Akylbek portrait added.",
+      "details": {
+        "fighter": "Ilimbek Akylbek",
+        "source": "ufc"
+      }
+    },
     {
       "id": "2026-09-23T17:16:55.614Z|ufc-332-2026-10-03-fight-card|title_changed|1",
       "at": "2026-09-23T17:16:55.614Z",
@@ -4631,36 +4667,6 @@
       "summary": "Arnold Allen portrait source changed.",
       "details": {
         "fighter": "Arnold Allen",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-333-2026-10-24-fight-card|portrait_changed|97",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "promotion": "UFC 333",
-      "event_title": "Volkanovski vs Evloev",
-      "event_date": "2026-10-24",
-      "summary": "Aaron Pico portrait source changed.",
-      "details": {
-        "fighter": "Aaron Pico",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-333-2026-10-24-fight-card|portrait_changed|98",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "promotion": "UFC 333",
-      "event_title": "Volkanovski vs Evloev",
-      "event_date": "2026-10-24",
-      "summary": "Azamat Murzakanov portrait source changed.",
-      "details": {
-        "fighter": "Azamat Murzakanov",
         "from_source": "sherdog",
         "to_source": "ufc"
       }
