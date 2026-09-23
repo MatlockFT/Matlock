@@ -457,6 +457,14 @@
       rawHtmlBlocks.push(safe);
       return `\n@@RAWHTML${rawHtmlBlocks.length - 1}@@\n`;
     });
+    source = source.replace(/<figure\b[^>]*class=["'][^"']*\barticle-inline-image\b[^"']*["'][^>]*>[\s\S]*?<\/figure>/gi, html => {
+      const safe = html
+        .replace(/<script[\s\S]*?<\/script>/gi, '')
+        .replace(/\son\w+\s*=\s*(?:"[^"]*"|'[^']*')/gi, '')
+        .replace(/\s(?:href|src)\s*=\s*(["'])javascript:[\s\S]*?\1/gi, '');
+      rawHtmlBlocks.push(safe);
+      return `\n@@RAWHTML${rawHtmlBlocks.length - 1}@@\n`;
+    });
     const embeds = [];
     source = source.replace(/<div[^>]*>\s*(<iframe[\s\S]*?<\/iframe>)\s*<\/div>/gi, '$1');
     source = source.replace(/<iframe[\s\S]*?<\/iframe>/gi, html => {
@@ -1447,7 +1455,50 @@ function insertBlock(text) {
       tale: '[data-tale-dialog]', prediction: '[data-pick-dialog]', template: '[data-template-dialog]'
     };
     const dialog = app.querySelector(map[type]);
-    if (dialog) dialog.showModal();
+    if (dialog) {
+      if (type === 'image') syncInlineImagePlacementControls(dialog);
+      dialog.showModal();
+    }
+  }
+
+  function syncInlineImagePlacementControls(dialog = app.querySelector('[data-image-dialog]')) {
+    if (!dialog) return;
+    const flow = dialog.querySelector('[data-inline-image-flow]');
+    const align = dialog.querySelector('[data-inline-image-align]');
+    const width = dialog.querySelector('[data-inline-image-width]');
+    if (!flow || !align || !width) return;
+
+    const wrap = flow.value === 'wrap';
+    const center = align.querySelector('option[value="center"]');
+    const full = width.querySelector('option[value="full"]');
+    if (center) center.disabled = wrap;
+    if (full) full.disabled = wrap;
+    if (wrap && align.value === 'center') align.value = 'left';
+    if (wrap && width.value === 'full') width.value = 'medium';
+  }
+
+  function inlineImageMarkup(url, alt = '', options = {}) {
+    const flow = options.flow === 'wrap' ? 'wrap' : 'break';
+    let align = ['left','center','right'].includes(options.align) ? options.align : 'center';
+    let width = ['small','medium','large','full'].includes(options.width) ? options.width : 'full';
+    if (flow === 'wrap' && align === 'center') align = 'left';
+    if (flow === 'wrap' && width === 'full') width = 'medium';
+
+    const src = safeUrl(url);
+    const caption = String(options.caption || '').trim();
+    const classes = [
+      'article-inline-image',
+      `article-inline-image--${flow}`,
+      `article-inline-image--${align}`,
+      `article-inline-image--${width}`
+    ].join(' ');
+
+    return [
+      `<figure class="${classes}">`,
+      `  <img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy">`,
+      caption ? `  <figcaption>${escapeHtml(caption)}</figcaption>` : '',
+      '</figure>'
+    ].filter(Boolean).join('\n');
   }
 
   async function optimizeImage(file) {
@@ -1512,11 +1563,11 @@ function insertBlock(text) {
     }
   }
 
-  async function insertInlineImage(file, alt = '') {
+  async function insertInlineImage(file, alt = '', options = {}) {
     try {
       const path = await uploadAsset(file);
-      insertBlock(`![${alt || file.name.replace(/\.[^.]+$/, '')}](${path})`);
-      showToast('Image uploaded and inserted.');
+      insertBlock(inlineImageMarkup(path, alt || file.name.replace(/\.[^.]+$/, ''), options));
+      showToast('Image uploaded and placed.');
       return path;
     } catch (error) {
       showToast(`Image insert failed: ${error.message}`, 6000);
@@ -1669,21 +1720,35 @@ Object.values(fields).forEach(el => {
     const file = dialog.querySelector('[data-inline-image-file]').files?.[0];
     const url = dialog.querySelector('[data-inline-image-url]').value.trim();
     const alt = dialog.querySelector('[data-inline-image-alt]').value.trim();
+    const caption = dialog.querySelector('[data-inline-image-caption]').value.trim();
+    const flow = dialog.querySelector('[data-inline-image-flow]').value;
+    const align = dialog.querySelector('[data-inline-image-align]').value;
+    const width = dialog.querySelector('[data-inline-image-width]').value;
+    const options = { caption, flow, align, width };
     const button = dialog.querySelector('[data-image-insert]');
     button.disabled = true;
-    button.textContent = file ? 'Uploading…' : 'Inserting…';
+    button.textContent = file ? 'Uploading…' : 'Placing…';
     try {
-      if (file) await insertInlineImage(file, alt);
-      else if (url) insertBlock(`![${alt}](${url})`);
+      if (file) await insertInlineImage(file, alt, options);
+      else if (url) insertBlock(inlineImageMarkup(url, alt, options));
       else { showToast('Choose an image or enter an image URL.'); return; }
       dialog.querySelector('[data-inline-image-file]').value = '';
       dialog.querySelector('[data-inline-image-url]').value = '';
       dialog.querySelector('[data-inline-image-alt]').value = '';
+      dialog.querySelector('[data-inline-image-caption]').value = '';
+      dialog.querySelector('[data-inline-image-flow]').value = 'break';
+      dialog.querySelector('[data-inline-image-align]').value = 'center';
+      dialog.querySelector('[data-inline-image-width]').value = 'full';
+      syncInlineImagePlacementControls(dialog);
       dialog.close();
     } finally {
       button.disabled = false;
-      button.textContent = 'Upload & insert';
+      button.textContent = 'Place image';
     }
+  });
+
+  app.querySelector('[data-inline-image-flow]').addEventListener('change', event => {
+    syncInlineImagePlacementControls(event.currentTarget.closest('[data-image-dialog]'));
   });
 
   app.querySelector('[data-html-insert]').addEventListener('click', () => {

@@ -86,6 +86,9 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
 
   await page.click('[data-library-new]');
   await expect(page.locator('[data-editor-view]')).toBeVisible();
+  await expect(page.locator('.writer-preview-article')).toHaveClass(/post-page-v3/);
+  await expect(page.locator('.writer-preview-article')).toHaveAttribute('data-editorial-v3', '');
+  expect(await page.locator('.writer-preview-article .post-breadcrumbs ol').evaluate(el => getComputedStyle(el).listStyleType)).toBe('none');
 
   const date = await page.locator('[data-field="date"]').inputValue();
   const filename = `${date}-writer-production-smoke.md`;
@@ -114,8 +117,17 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await page.click('[data-tool="image"]');
   await page.fill('[data-inline-image-url]', 'https://example.com/writer-smoke.jpg');
   await page.fill('[data-inline-image-alt]', 'Writer smoke image');
+  await page.fill('[data-inline-image-caption]', 'Writer smoke caption');
+  await page.selectOption('[data-inline-image-flow]', 'wrap');
+  await page.selectOption('[data-inline-image-align]', 'right');
+  await page.selectOption('[data-inline-image-width]', 'medium');
   await page.click('[data-image-insert]');
-  await expect(page.locator('[data-preview-content] img[alt="Writer smoke image"]')).toHaveAttribute('src', 'https://example.com/writer-smoke.jpg');
+  const placedImage = page.locator('[data-preview-content] .article-inline-image');
+  await expect(placedImage).toHaveClass(/article-inline-image--wrap/);
+  await expect(placedImage).toHaveClass(/article-inline-image--right/);
+  await expect(placedImage).toHaveClass(/article-inline-image--medium/);
+  await expect(placedImage.locator('img[alt="Writer smoke image"]')).toHaveAttribute('src', 'https://example.com/writer-smoke.jpg');
+  await expect(placedImage.locator('figcaption')).toHaveText('Writer smoke caption');
 
   await page.click('[data-tool="youtube"]');
   await page.fill('[data-youtube-url]', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ');
@@ -217,7 +229,9 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect.poll(() => Boolean(remote && /published:\s*false/.test(remote.text))).toBe(true);
   expect(remote.text).toContain('<section class="writer-smoke-visual">');
   expect(remote.text).not.toContain('[HTML VISUAL');
-  expect(remote.text).toContain('![Writer smoke image](https://example.com/writer-smoke.jpg)');
+  expect(remote.text).toContain('article-inline-image--wrap article-inline-image--right article-inline-image--medium');
+  expect(remote.text).toContain('<img src="https://example.com/writer-smoke.jpg" alt="Writer smoke image" loading="lazy">');
+  expect(remote.text).toContain('<figcaption>Writer smoke caption</figcaption>');
   expect(remote.text).toContain('youtube.com/embed/dQw4w9WgXcQ');
   expect(remote.text).toContain('| Metric | Alpha | Beta |');
   expect(remote.text).toContain('ALPHA FIGHTER');

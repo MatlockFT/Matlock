@@ -5,6 +5,8 @@ permalink: /write/
 noindex: true
 sitemap: false
 page_styles:
+  - /assets/editorial-v3-shell.css
+  - /assets/post-v3.css
   - /assets/writer.css
   - /assets/writer-wordtools.css
   - /assets/writer-ux.css
@@ -219,7 +221,7 @@ page_scripts:
 
       <section class="writer-preview-pane" aria-label="Live article preview">
         <div class="writer-preview-frame" data-preview-frame data-preview-size="desktop">
-          <article class="post-page writer-preview-article" aria-labelledby="writer-preview-title">
+          <article class="post-page post-page-v3 writer-preview-article" data-editorial-v3 aria-labelledby="writer-preview-title">
             <nav class="post-breadcrumbs" aria-label="Preview breadcrumb">
               <ol>
                 <li><span>Home</span></li>
@@ -247,13 +249,17 @@ page_scripts:
               <img data-preview-image alt="">
             </figure>
 
-            <aside class="article-notice article-spoiler-notice" data-preview-spoiler hidden>
-              <strong>Spoiler warning</strong>
-              <p>This article discusses fight results and may contain spoilers.</p>
-            </aside>
+            <div class="post-reading-layout writer-preview-reading-layout">
+              <div class="post-reading-main">
+                <aside class="article-notice article-spoiler-notice" data-preview-spoiler hidden>
+                  <strong>Spoiler warning</strong>
+                  <p>This article discusses fight results and may contain spoilers.</p>
+                </aside>
 
-            <div id="writer-preview-content" class="post-body" data-preview-content>
-              <p class="writer-preview-empty">Start writing on the left. Your article will appear here immediately.</p>
+                <div id="writer-preview-content" class="post-body" data-preview-content>
+                  <p class="writer-preview-empty">Start writing on the left. Your article will appear here immediately.</p>
+                </div>
+              </div>
             </div>
 
             <footer class="post-footer writer-preview-footer">
@@ -324,16 +330,45 @@ page_scripts:
     </form>
   </dialog>
 
-  <dialog class="writer-dialog" data-image-dialog>
+  <dialog class="writer-dialog writer-image-dialog" data-image-dialog>
     <form method="dialog">
-      <header><div><p class="eyebrow">Media</p><h2>Insert image</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
-      <div class="writer-dialog-body writer-dialog-grid">
+      <header><div><p class="eyebrow">Media</p><h2>Place image</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
+      <div class="writer-dialog-body writer-dialog-grid writer-image-dialog-grid">
         <label class="writer-field writer-field-wide"><span>Upload image</span><input type="file" data-inline-image-file accept="image/png,image/jpeg,image/webp,image/gif"></label>
         <div class="writer-or"><span>or</span></div>
         <label class="writer-field writer-field-wide"><span>Image URL</span><input type="url" data-inline-image-url placeholder="https://… or /assets/uploads/…"></label>
         <label class="writer-field writer-field-wide"><span>Alt text</span><input type="text" data-inline-image-alt placeholder="Describe the image"></label>
+        <label class="writer-field writer-field-wide"><span>Caption <small>optional</small></span><input type="text" data-inline-image-caption placeholder="Caption or photo credit"></label>
+
+        <div class="writer-image-placement writer-field-wide">
+          <label class="writer-field">
+            <span>Text flow</span>
+            <select data-inline-image-flow>
+              <option value="break" selected>Break text</option>
+              <option value="wrap">Wrap text</option>
+            </select>
+          </label>
+          <label class="writer-field">
+            <span>Alignment</span>
+            <select data-inline-image-align>
+              <option value="left">Left</option>
+              <option value="center" selected>Center</option>
+              <option value="right">Right</option>
+            </select>
+          </label>
+          <label class="writer-field">
+            <span>Width</span>
+            <select data-inline-image-width>
+              <option value="small">Small · 35%</option>
+              <option value="medium">Medium · 50%</option>
+              <option value="large">Large · 70%</option>
+              <option value="full" selected>Full column</option>
+            </select>
+          </label>
+        </div>
+        <p class="writer-dialog-note writer-field-wide" data-inline-image-placement-note>Break text keeps paragraphs above and below the image. Wrap text flows the following paragraph around a left- or right-aligned image. Wrapped images become normal block images on phones.</p>
       </div>
-      <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-image-insert>Upload & insert</button></footer>
+      <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-image-insert>Place image</button></footer>
     </form>
   </dialog>
 

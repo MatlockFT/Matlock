@@ -912,3 +912,88 @@ body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{
   .writer-shell [data-github-connect]::before{margin:auto}
   .writer-shell .writer-mode-more-panel{position:fixed;top:auto;right:.5rem;bottom:.5rem;left:.5rem;width:auto}
 }
+
+
+/* Current-site article preview. The Writer remains black; the preview itself
+   uses the same editorial variables and post CSS as the published site. */
+.writer-shell .writer-preview-frame{
+  --v3-paper:#fbfaf7;
+  --v3-paper-deep:#f1efe9;
+  --v3-ink:#111111;
+  --v3-muted:#6e6b66;
+  --v3-rule:#b8b5af;
+  --v3-rule-dark:#242424;
+  --v3-red:#a7191f;
+  --v3-serif:Georgia,"Times New Roman",Times,serif;
+  --v3-sans:Arial,Helvetica,sans-serif;
+  --v3-mono:"Courier New",Courier,monospace;
+  min-height:100%;
+  background:var(--v3-paper);
+  color:var(--v3-ink);
+}
+.writer-shell .writer-preview-article{
+  width:min(calc(100% - 2rem),1120px);
+  margin:0 auto;
+  padding:.9rem 0 3rem;
+  background:transparent!important;
+  color:var(--v3-ink);
+}
+.writer-shell .writer-preview-article .post-breadcrumbs ol{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.35rem;
+  align-items:center;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.writer-shell .writer-preview-article .post-breadcrumbs li{
+  min-width:0;
+}
+.writer-shell .writer-preview-article .post-breadcrumbs li[aria-current="page"]{
+  max-width:420px;
+  overflow:hidden;
+  color:var(--v3-muted);
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.writer-shell .writer-preview-article .writer-preview-reading-layout{
+  grid-template-columns:minmax(0,760px);
+}
+.writer-shell .writer-preview-article .post-reading-main{
+  width:100%;
+}
+.writer-shell .writer-preview-empty{
+  color:var(--v3-muted)!important;
+  font-family:Georgia,"Times New Roman",serif;
+  font-style:italic;
+}
+.writer-shell .writer-preview-footer{
+  margin-top:2.5rem;
+}
+.writer-shell .writer-preview-frame[data-preview-size="mobile"] .post-page-v3{
+  width:min(calc(100% - 1.2rem),1120px);
+}
+.writer-shell .writer-preview-frame[data-preview-size="mobile"] .post-header h1{
+  font-size:clamp(2.15rem,10vw,3.5rem);
+}
+.writer-shell .writer-preview-frame[data-preview-size="mobile"] .article-inline-image--wrap{
+  float:none!important;
+  width:100%!important;
+  max-width:100%;
+  margin:1.5rem 0!important;
+}
+
+/* Image placement controls */
+.writer-shell .writer-image-placement{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:.65rem;
+  padding-top:.15rem;
+}
+.writer-shell .writer-image-dialog .writer-or{
+  margin:.05rem 0;
+}
+@media(max-width:700px){
+  .writer-shell .writer-image-placement{grid-template-columns:1fr}
+}
