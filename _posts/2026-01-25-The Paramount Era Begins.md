@@ -5,7 +5,7 @@ description: The Paramount era of the UFC has begun. What is a PPV? Why are
   there ads everywhere? What is going on?
 date: 2026-01-25
 category: Opinion
-author: MMA Matlock
+author: Matlock
 image:
   path: /assets/uploads/dana-white.png
   alt: "Dana White had always been the media attack dog."
