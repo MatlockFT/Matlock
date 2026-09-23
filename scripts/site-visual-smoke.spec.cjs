@@ -387,6 +387,7 @@ test.describe('Homepage V3 editorial shell', () => {
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
     await expect(page.locator('.site-theme-toggle')).toHaveAttribute('aria-pressed', 'true');
     await expect(page.locator('html')).toHaveClass(/v3-theme-transitioning/);
+    await expect(page.locator('html')).not.toHaveClass(/v3-theme-transitioning/, { timeout: 1200 });
     const darkTrendingColor = await page.locator('[data-v3-trending] a').first().evaluate(node =>
       getComputedStyle(node).color
     );
