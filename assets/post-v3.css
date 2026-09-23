@@ -286,3 +286,8 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
 .post-page-v3 .post-body > iframe{
   margin:1.35rem 0 1.65rem;
 }
+
+
+/* Quote paragraphs keep their intended breaks without adding a trailing gap. */
+.post-page-v3 .post-body blockquote > p{margin:0 0 .75rem}
+.post-page-v3 .post-body blockquote > p:last-child{margin-bottom:0}
