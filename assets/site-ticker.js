@@ -329,6 +329,27 @@
         time.dataset.eventId = event.id || "";
         if (event.id) eventCountdownNodes.set(event.id, time);
 
+        const setInteractiveRowState = active => {
+            if (!active) {
+                link.style.removeProperty("background-color");
+                link.style.removeProperty("color");
+                name.style.removeProperty("color");
+                detail.style.removeProperty("color");
+                return;
+            }
+
+            const dark = document.documentElement.dataset.theme === "dark";
+            link.style.setProperty("background-color", dark ? "#181818" : "#f1eee8", "important");
+            link.style.setProperty("color", dark ? "#ffffff" : "#111111", "important");
+            name.style.setProperty("color", dark ? "#ffffff" : "#111111", "important");
+            detail.style.setProperty("color", dark ? "#a8a8a8" : "#6e6b66", "important");
+        };
+
+        link.addEventListener("pointerenter", () => setInteractiveRowState(true));
+        link.addEventListener("pointerleave", () => setInteractiveRowState(false));
+        link.addEventListener("focus", () => setInteractiveRowState(true));
+        link.addEventListener("blur", () => setInteractiveRowState(false));
+
         link.append(main, time);
         li.append(link);
         return li;
