@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html class="writer-shell-root" lang="{{ page.lang | default: site.lang | default: 'en-US' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="theme-color" content="#000000">
+    <meta name="color-scheme" content="dark">
+
+    <link
+        rel="stylesheet"
+        href="{{ '/assets/base.css' | relative_url }}?v={{ site.asset_version }}"
+    >
+    <link
+        rel="stylesheet"
+        href="{{ '/assets/writer-shell.css' | relative_url }}?v={{ site.asset_version }}"
+    >
+
+    {% for stylesheet in page.page_styles %}
+        <link
+            rel="stylesheet"
+            href="{{ stylesheet | relative_url }}?v={{ site.asset_version }}"
+        >
+    {% endfor %}
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="{{ '/assets/favicon-matlock-v2.svg' | relative_url }}"
+    >
+    <link
+        rel="alternate icon"
+        type="image/x-icon"
+        href="{{ '/assets/favicon.ico' | relative_url }}"
+    >
+
+    {% seo %}
+</head>
+
+<body class="writer-shell layout-writer">
+    <a class="skip-link" href="#main-content">Skip to writer</a>
+
+    <main
+        class="writer-shell-main"
+        id="main-content"
+        tabindex="-1"
+        role="main"
+    >
+        {{ content }}
+    </main>
+
+    {% for script in page.page_scripts %}
+        <script src="{{ script | relative_url }}?v={{ site.asset_version }}" defer></script>
+    {% endfor %}
+</body>
+</html>
