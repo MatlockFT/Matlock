@@ -809,3 +809,32 @@ html[data-theme="dark"] body:has([data-globe-home]) {
 .v3-lower-grid .v3-history-feature-card {
     max-width: 920px;
 }
+
+
+/* DARK LIVE-DRAWER HOVER FIX
+   Prevent generic anchor hover styles from washing event rows white. */
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:hover,
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:focus-visible {
+    background: #181818 !important;
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:hover .site-event-row-name,
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:focus-visible .site-event-row-name {
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:hover .site-event-row-detail,
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:focus-visible .site-event-row-detail {
+    color: #a8a8a8 !important;
+}
+
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:hover .site-event-row-countdown,
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:focus-visible .site-event-row-countdown {
+    color: #d8d8d8 !important;
+}
+
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:hover .site-event-row-countdown[data-live="true"],
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:focus-visible .site-event-row-countdown[data-live="true"] {
+    color: #ff6670 !important;
+}
