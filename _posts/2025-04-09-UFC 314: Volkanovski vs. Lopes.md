@@ -6,7 +6,7 @@ description: UFC 314 was a mixed martial arts event featuring Alexander
   April 12, 2025.
 date: 2025-04-09
 category: Breakdown
-author: MMA Matlock
+author: Matlock
 image:
   path: /assets/uploads/volk.png
   alt: Alexander Volkanovski and Diego Lopes featured for UFC 314
