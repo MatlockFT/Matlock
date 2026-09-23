@@ -14,17 +14,17 @@
         rel="stylesheet"
         href="{{ '/assets/base.css' | relative_url }}?v={{ site.asset_version }}"
     >
-    <link
-        rel="stylesheet"
-        href="{{ '/assets/writer-shell.css' | relative_url }}?v={{ site.asset_version }}"
-    >
-
     {% for stylesheet in page.page_styles %}
         <link
             rel="stylesheet"
             href="{{ stylesheet | relative_url }}?v={{ site.asset_version }}"
         >
     {% endfor %}
+
+    <link
+        rel="stylesheet"
+        href="{{ '/assets/writer-shell.css' | relative_url }}?v={{ site.asset_version }}"
+    >
 
     <link
         rel="icon"
