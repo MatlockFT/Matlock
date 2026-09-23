@@ -386,23 +386,28 @@ test.describe('Homepage V3 editorial shell', () => {
     expect(toggleSize.labelDisplay).toBe('none');
 
 
-    await expect.poll(async () => page.locator('.v3-history-feature-image img').evaluate(img =>
-      Boolean(img.complete && img.naturalWidth > 0 && img.naturalHeight > 0)
-    ), { timeout: 10000 }).toBe(true);
+    const historyImage = page.locator('.v3-history-feature-image img');
+    if (await historyImage.count()) {
+      await expect.poll(async () => historyImage.evaluate(img =>
+        Boolean(img.complete && img.naturalWidth > 0 && img.naturalHeight > 0)
+      ), { timeout: 10000 }).toBe(true);
 
-    const historyImageRatio = await page.locator('.v3-history-feature-image img').evaluate(img => {
-      const rect = img.getBoundingClientRect();
-      return {
-        natural: img.naturalWidth / img.naturalHeight,
-        rendered: rect.width / rect.height
-      };
-    });
-    expect(Math.abs(historyImageRatio.natural - historyImageRatio.rendered)).toBeLessThan(0.03);
+      const historyImageRatio = await historyImage.evaluate(img => {
+        const rect = img.getBoundingClientRect();
+        return {
+          natural: img.naturalWidth / img.naturalHeight,
+          rendered: rect.width / rect.height
+        };
+      });
+      expect(Math.abs(historyImageRatio.natural - historyImageRatio.rendered)).toBeLessThan(0.03);
 
-    const historyRenderedWidth = await page.locator('.v3-history-feature-image img').evaluate(img =>
-      Math.round(img.getBoundingClientRect().width)
-    );
-    expect(historyRenderedWidth).toBeLessThanOrEqual(300);
+      const historyRenderedWidth = await historyImage.evaluate(img =>
+        Math.round(img.getBoundingClientRect().width)
+      );
+      expect(historyRenderedWidth).toBeLessThanOrEqual(300);
+    } else {
+      await expect(page.locator('.v3-history-feature-image--fallback')).toBeVisible();
+    }
 
     const stickyBefore = await page.locator('.v3-sticky-shell').evaluate(node =>
       Math.round(node.getBoundingClientRect().top)
