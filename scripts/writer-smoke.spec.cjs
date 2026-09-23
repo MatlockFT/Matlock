@@ -90,6 +90,19 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('.writer-preview-article')).toHaveAttribute('data-editorial-v3', '');
   expect(await page.locator('.writer-preview-article .post-breadcrumbs ol').evaluate(el => getComputedStyle(el).listStyleType)).toBe('none');
 
+  const more = page.locator('[data-writer-mode-more]');
+  await more.locator('summary').click();
+  await expect(more.locator('[data-writer-mode-more-panel]')).toBeVisible();
+  await more.locator('summary').click();
+
+  const previewFrame = page.locator('[data-preview-frame]');
+  await expect(previewFrame).toHaveAttribute('data-preview-theme', 'light');
+  await page.click('[data-preview-theme-toggle]');
+  await expect(previewFrame).toHaveAttribute('data-preview-theme', 'dark');
+  expect(await previewFrame.evaluate(el => getComputedStyle(el).getPropertyValue('--v3-paper').trim())).toBe('#0b0b0b');
+  await page.click('[data-preview-theme-toggle]');
+  await expect(previewFrame).toHaveAttribute('data-preview-theme', 'light');
+
   const date = await page.locator('[data-field="date"]').inputValue();
   const filename = `${date}-writer-production-smoke.md`;
   const longBody = Array.from({ length: 5200 }, (_, i) => `word${i}`).join(' ') + '\n\n## Closing section\n\nA final paragraph with a [valid source](https://example.com/source).';
@@ -206,6 +219,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await page.click('[data-github-authorize]');
   await expect(page.locator('[data-github-status]')).toContainText('Connected to MatlockFT/Matlock', { timeout: 10000 });
 
+  if (!(await advancedDetails.evaluate(el => el.open))) await advancedDetails.locator('summary').click();
   const cleanFilename = await page.locator('[data-field="filename"]').inputValue();
   await page.fill('[data-field="filename"]', `${date}-draft.md`);
   await page.click('[data-publish]');
@@ -247,6 +261,8 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('[data-preview-content]')).toContainText('Rendered HTML visual');
   await articleDetails.locator('summary').click();
   await expect(articleDetails).toHaveAttribute('open', '');
+  const advancedAfterLibrary = page.locator('.writer-meta-advanced');
+  if (!(await advancedAfterLibrary.evaluate(el => el.open))) await advancedAfterLibrary.locator('summary').click();
 
   await page.fill('[data-field="description"]', '');
   await page.click('[data-publish]');

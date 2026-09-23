@@ -10,6 +10,7 @@
   const editorView = app.querySelector('[data-editor-view]');
   const workspace = app.querySelector('[data-workspace]');
   const previewFrame = app.querySelector('[data-preview-frame]');
+  const previewThemeToggle = app.querySelector('[data-preview-theme-toggle]');
   const previewContent = app.querySelector('[data-preview-content]');
   const saveDraftButton = app.querySelector('[data-save-draft]');
   const publishButton = app.querySelector('[data-publish]');
@@ -123,6 +124,30 @@
     const text = el.querySelector('span') || el;
     text.textContent = message;
     el.dataset.state = state;
+  }
+
+  function readPreviewTheme() {
+    try {
+      return localStorage.getItem('matlock-v3-theme') === 'dark' ? 'dark' : 'light';
+    } catch {
+      return 'light';
+    }
+  }
+
+  function setPreviewTheme(theme, { persist = false } = {}) {
+    const next = theme === 'dark' ? 'dark' : 'light';
+    previewFrame.dataset.previewTheme = next;
+
+    if (previewThemeToggle) {
+      const dark = next === 'dark';
+      previewThemeToggle.setAttribute('aria-pressed', String(dark));
+      previewThemeToggle.setAttribute('aria-label', dark ? 'Use light preview' : 'Use dark preview');
+      previewThemeToggle.title = dark ? 'Switch preview to light mode' : 'Switch preview to dark mode';
+    }
+
+    if (persist) {
+      try { localStorage.setItem('matlock-v3-theme', next); } catch {}
+    }
   }
 
   function escapeHtml(value) {
@@ -1642,6 +1667,12 @@ Object.values(fields).forEach(el => {
     previewFrame.dataset.previewSize = button.dataset.previewSize;
     app.querySelectorAll('[data-preview-size]').forEach(btn => btn.setAttribute('aria-pressed', String(btn === button)));
   }));
+
+  setPreviewTheme(readPreviewTheme());
+  previewThemeToggle?.addEventListener('click', () => {
+    setPreviewTheme(previewFrame.dataset.previewTheme === 'dark' ? 'light' : 'dark', { persist: true });
+  });
+
   app.querySelectorAll('[data-library-filter]').forEach(button => button.addEventListener('click', () => {
     libraryFilter = button.dataset.libraryFilter;
     app.querySelectorAll('[data-library-filter]').forEach(btn => btn.setAttribute('aria-pressed', String(btn === button)));

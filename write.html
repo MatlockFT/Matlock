@@ -101,6 +101,7 @@ page_scripts:
           <button type="button" data-preview-size="desktop" aria-pressed="true">Desktop</button>
           <button type="button" data-preview-size="mobile" aria-pressed="false">Mobile</button>
         </div>
+        <button class="writer-preview-theme-toggle" type="button" data-preview-theme-toggle aria-pressed="false" aria-label="Use dark preview" title="Switch preview to dark mode">Dark</button>
         <details class="writer-mode-more" data-writer-mode-more>
           <summary aria-label="More writer controls">More</summary>
           <div class="writer-mode-more-panel" data-writer-mode-more-panel>
@@ -220,7 +221,7 @@ page_scripts:
       <div class="writer-splitter" data-writer-splitter role="separator" aria-orientation="vertical" aria-label="Resize editor and preview" aria-valuemin="32" aria-valuemax="68" aria-valuenow="50" tabindex="0"><span aria-hidden="true"></span></div>
 
       <section class="writer-preview-pane" aria-label="Live article preview">
-        <div class="writer-preview-frame" data-preview-frame data-preview-size="desktop">
+        <div class="writer-preview-frame" data-preview-frame data-preview-size="desktop" data-preview-theme="light">
           <article class="post-page post-page-v3 writer-preview-article" data-editorial-v3 aria-labelledby="writer-preview-title">
             <nav class="post-breadcrumbs" aria-label="Preview breadcrumb">
               <ol>

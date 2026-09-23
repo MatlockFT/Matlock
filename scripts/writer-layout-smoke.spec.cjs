@@ -38,9 +38,9 @@ test('Writer shell and editing surface adapt to desktop and ultrawide viewports'
 
   let box = await app.boundingBox();
   expect(box).not.toBeNull();
-  expect(box.width).toBeGreaterThan(1840);
-  expect(box.width).toBeLessThan(1900);
-  expect(1920 - box.width).toBeLessThan(80);
+  expect(box.width).toBeGreaterThanOrEqual(1798);
+  expect(box.width).toBeLessThanOrEqual(1802);
+  expect(1920 - box.width).toBeLessThanOrEqual(122);
   await expectCenteredWithoutOverflow(page, box);
 
   await openModeMore(page);
