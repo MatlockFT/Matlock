@@ -5,8 +5,8 @@
  * modifying the legacy/global site skin. Keep page-specific layout in its own
  * V3 stylesheet. The homepage assets are treated as the frozen visual reference.
  */
-@import url("/assets/homepage-v3.css?v=160");
-@import url("/assets/homepage-v3-refresh.css?v=160");
+@import url("/assets/homepage-v3.css?v=170");
+@import url("/assets/homepage-v3-refresh.css?v=170");
 
 body:has([data-editorial-v3]) .site-main {
     min-height: 60vh;
