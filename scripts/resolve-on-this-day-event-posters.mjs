@@ -211,6 +211,44 @@ function deterministicWikipediaTitles(entry) {
   return titles.slice(0, 6);
 }
 
+function exactStandaloneEventPage(pageTitle, entry) {
+  const page = norm(pageTitle);
+  const expected = norm(eventName(entry));
+  if (!page || !expected) return false;
+
+  // Broad season/list/index pages can describe the event but their lead image is
+  // not event-specific enough to certify as the poster.
+  if (/^(?:list of|timeline of)\b/.test(page) || /\b(?:19|20)\d{2}\s+in\b/.test(page)) return false;
+  if (/\bin\s+(?:bellator|strikeforce|ufc|pride|pancrase|rizin|pfl|one)\b/.test(page)) return false;
+
+  if (page === expected) return true;
+
+  // Numbered event articles are often titled only "UFC 63" / "Bellator 299"
+  // while the archive title also carries the main event subtitle.
+  const promo = promotionKey(entry);
+  const number = eventNumber(entry);
+  if (!promo || !number) return false;
+  const labels = {
+    ufc: 'ufc',
+    wec: 'wec',
+    bellator: 'bellator',
+    pride: 'pride',
+    pancrase: 'pancrase',
+    rizin: 'rizin',
+    pfl: 'pfl',
+    wsof: 'world series of fighting',
+    one: 'one'
+  };
+  const base = norm(`${labels[promo] || promo} ${number}`);
+  return page === base;
+}
+
+function safeExactPageImage(fileName) {
+  const file = norm(fileName);
+  if (!file) return false;
+  return !/\b(?:logo|wordmark|flag|map|venue|arena|portrait|headshot|profile photo|promotional photo)\b/.test(file);
+}
+
 function filenamePosterEvidence(fileName, entry) {
   const file = norm(String(fileName || '').replace(/\.(?:jpe?g|png|webp|gif|tiff?)$/i, ''));
   if (!file) return false;
@@ -270,7 +308,9 @@ function storedWikipediaPoster(entry) {
   if (!http(entry?.imageUrl)) return null;
   const pageTitle = wikipediaTitleFromUrl(entry?.imageSourceUrl);
   const fileName = wikipediaImageFileName(entry.imageUrl);
-  if (!pageTitle || !eventMatch(pageTitle, entry) || !filenamePosterEvidence(fileName, entry)) return null;
+  const exactPage = exactStandaloneEventPage(pageTitle, entry);
+  const filenameEvidence = filenamePosterEvidence(fileName, entry);
+  if (!pageTitle || !eventMatch(pageTitle, entry) || (!filenameEvidence && !(exactPage && safeExactPageImage(fileName)))) return null;
 
   let host = '';
   try { host = new URL(entry.imageUrl).hostname.toLowerCase(); } catch {}
@@ -286,7 +326,9 @@ function storedWikipediaPoster(entry) {
     imageSubjectType: 'event',
     imageArtifactType: 'event-poster',
     imagePosterVerified: true,
-    imageMatchReason: `Stored image recovered from the exact Wikipedia event page because the image filename (${fileName}) independently identifies this event/poster.`,
+    imageMatchReason: filenameEvidence
+      ? `Stored image recovered from the exact Wikipedia event page because the image filename (${fileName}) independently identifies this event/poster.`
+      : `Stored image recovered from the exact standalone Wikipedia event page (${pageTitle}); its event-page lead image is treated as the event poster/key art.`,
     imageWikipediaTitle: pageTitle,
     imageWikipediaFileTitle: fileName
   };
@@ -297,7 +339,14 @@ function wikipediaPosterFromPage(page, entry) {
   const pageTitle = clean(page?.title || '');
   const fileName = clean(page?.pageimage || '');
   const imageUrl = page?.thumbnail?.source || page?.original?.source || '';
-  if (!http(imageUrl) || !eventMatch(pageTitle, entry) || !filenamePosterEvidence(fileName, entry)) return null;
+  const exactPage = exactStandaloneEventPage(pageTitle, entry);
+  const filenameEvidence = filenamePosterEvidence(fileName, entry);
+  if (!http(imageUrl) || !eventMatch(pageTitle, entry) || (!filenameEvidence && !(exactPage && safeExactPageImage(fileName)))) return null;
+
+  let host = '';
+  try { host = new URL(imageUrl).hostname.toLowerCase(); } catch {}
+  if (!(host === 'upload.wikimedia.org' || host === 'commons.wikimedia.org')) return null;
+
   return {
     imageUrl,
     imageAlt: `${eventName(entry)} event poster`,
@@ -308,7 +357,9 @@ function wikipediaPosterFromPage(page, entry) {
     imageSubjectType: 'event',
     imageArtifactType: 'event-poster',
     imagePosterVerified: true,
-    imageMatchReason: `Exact Wikipedia event page (${pageTitle}) supplied poster/key art whose filename identifies this event.`,
+    imageMatchReason: filenameEvidence
+      ? `Exact Wikipedia event page (${pageTitle}) supplied poster/key art whose filename identifies this event.`
+      : `Exact standalone Wikipedia event page (${pageTitle}) supplied its event-page lead image as poster/key art.`,
     imageWikipediaTitle: pageTitle,
     imageWikipediaFileTitle: fileName
   };
@@ -473,10 +524,10 @@ for (const entry of wikipediaTargets) {
   }
 }
 
-history.eventPosterResolverVersion = 7;
+history.eventPosterResolverVersion = 8;
 history.eventPosterResolverUpdatedAt = nowIso;
 history.eventPosterPriority = ['tapology-exact-bound', 'trusted-explicit-poster', 'stored-exact-wikipedia-poster', 'wikipedia-exact-event-poster-evidence', 'stored-relevant-fallback'];
-history.eventPosterSearchPolicy = 'poster-only browser output; no generic event-image promotion; no orientation-only verification; Wikipedia page and filename must identify event/poster; retried batched exact-page lookup with split recovery';
+history.eventPosterSearchPolicy = 'poster-only browser output; exact standalone Wikipedia event pages may certify their Wikimedia lead image as event poster/key art; broad season/list pages still require event-identifying filename evidence; retried batched exact-page lookup with split recovery';
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
 
 const verified = events.filter(entry => exactBoundTapologyPoster(entry) || trustedExistingPoster(entry)).length;
@@ -486,4 +537,4 @@ if (wikipediaBatch.terminalFailures.length) {
   console.warn('Wikipedia poster requests still failing after retry/split recovery:');
   for (const failure of wikipediaBatch.terminalFailures.slice(0, 20)) console.warn(`- ${failure}`);
 }
-console.log(`Verified event-poster coverage after safe pass: ${verified}/${events.length}. Stored and fetched Wikipedia posters require an exact event page plus event-identifying poster filename.`);
+console.log(`Verified event-poster coverage after safe pass: ${verified}/${events.length}. Exact standalone Wikipedia event pages may supply their event-page lead image; broad/index pages still require event-identifying filename evidence.`);
