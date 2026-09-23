@@ -6,7 +6,7 @@ description: Eight Fighters to Watch at PFL New York. Undefeated PFL Lightweight
   3-Ranked Contender Archie Colgan.
 date: 2026-07-30
 category: Breakdown
-author: MMA Matlock
+author: Matlock
 image:
   path: /assets/uploads/pfl-new-york-bananer.jpg
   alt: "PFL NEW YORK "
