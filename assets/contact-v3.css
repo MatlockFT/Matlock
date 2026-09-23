@@ -1,0 +1,336 @@
+/*
+ * Contact V3 — isolated editorial contact directory.
+ * The live Contact page keeps its legacy social-card stylesheet.
+ */
+
+.contact-page-v3 {
+    width: min(calc(100% - 2rem), 1180px);
+    margin: 0 auto;
+    padding: .9rem 0 clamp(4rem, 7vw, 7rem);
+    color: var(--v3-ink);
+    font-family: var(--v3-sans);
+}
+
+.contact-page-v3 .contact-hero {
+    display: block;
+    margin: 0 0 clamp(2.4rem, 5vw, 4rem);
+}
+
+.contact-page-v3 .contact-hero-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, .7fr);
+    grid-template-areas:
+        "eyebrow email"
+        "title email"
+        "address email";
+    gap: 0 clamp(1.5rem, 4vw, 4rem);
+    align-items: end;
+    min-height: 0;
+    padding: .85rem 0 1.1rem;
+    border: 0;
+    border-top: 3px solid var(--v3-ink);
+    border-bottom: 1px solid var(--v3-rule);
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.contact-page-v3 .contact-v3-eyebrow {
+    grid-area: eyebrow;
+    margin: 0 0 .3rem;
+    color: var(--v3-red);
+    font: 800 .55rem/1 var(--v3-sans);
+    letter-spacing: .065em;
+    text-transform: uppercase;
+}
+
+.contact-page-v3 .contact-hero-main h1 {
+    grid-area: title;
+    margin: 0;
+    color: var(--v3-ink);
+    font-family: "Herkey", Georgia, "Times New Roman", serif;
+    font-size: clamp(2.6rem, 5.4vw, 5.5rem);
+    font-weight: 400;
+    line-height: .88;
+    letter-spacing: -.018em;
+    text-transform: none;
+    text-shadow: none;
+}
+
+.contact-page-v3 .contact-actions {
+    grid-area: email;
+    margin: 0;
+    align-self: end;
+}
+
+.contact-page-v3 .contact-email {
+    display: flex;
+    width: 100%;
+    min-height: 42px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+    padding: .65rem .72rem;
+    border: 1px solid var(--v3-ink);
+    border-radius: 0;
+    background: var(--v3-ink);
+    color: var(--v3-paper);
+    box-shadow: none;
+    font: 800 .56rem/1 var(--v3-sans);
+    letter-spacing: .045em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transform: none;
+}
+
+.contact-page-v3 .contact-email::after {
+    content: "→";
+}
+
+.contact-page-v3 .contact-email:hover,
+.contact-page-v3 .contact-email:focus-visible {
+    border-color: var(--v3-red);
+    background: var(--v3-red);
+    color: #fff;
+    transform: none;
+}
+
+.contact-page-v3 .contact-address {
+    grid-area: address;
+    margin: .7rem 0 0;
+    color: var(--v3-muted);
+    font: 650 .72rem/1.3 var(--v3-sans);
+    overflow-wrap: anywhere;
+}
+
+/* Social directory */
+.contact-page-v3 .contact-platform-section {
+    margin: 0 0 2.5rem;
+}
+
+.contact-page-v3 .contact-section-header {
+    display: block;
+    margin: 0;
+    padding: 0 0 .55rem;
+    border-bottom: 3px solid var(--v3-ink);
+}
+
+.contact-page-v3 .contact-section-header h2 {
+    margin: 0;
+    color: var(--v3-ink);
+    font-family: "Herkey", Georgia, "Times New Roman", serif;
+    font-size: clamp(1.55rem, 2.8vw, 2.65rem);
+    font-weight: 400;
+    line-height: .95;
+    letter-spacing: -.01em;
+    text-transform: none;
+}
+
+.contact-page-v3 .platform-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 clamp(1.5rem, 3vw, 3rem);
+}
+
+.contact-page-v3 .platform-card {
+    --platform-accent: var(--v3-red);
+    position: relative;
+    isolation: auto;
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr) auto;
+    align-items: center;
+    min-width: 0;
+    min-height: 76px;
+    gap: .8rem;
+    max-width: none;
+    margin: 0;
+    padding: .75rem 0;
+    overflow: visible;
+    border: 0;
+    border-bottom: 1px solid var(--v3-rule);
+    border-radius: 0;
+    background: transparent;
+    color: var(--v3-ink);
+    box-shadow: none;
+    text-decoration: none;
+    transform: none;
+}
+
+.contact-page-v3 .platform-card::after {
+    display: none;
+    content: none;
+}
+
+.contact-page-v3 .platform-card:hover,
+.contact-page-v3 .platform-card:focus-visible {
+    border-color: var(--v3-ink);
+    background: transparent;
+    color: var(--v3-ink);
+    transform: none;
+}
+
+.contact-page-v3 .platform-logo {
+    position: static;
+    z-index: auto;
+    display: inline-flex;
+    width: 38px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border: 1px solid var(--v3-rule);
+    border-radius: 0;
+    background: transparent;
+    color: var(--v3-ink);
+    box-shadow: none;
+}
+
+.contact-page-v3 .platform-card:hover .platform-logo,
+.contact-page-v3 .platform-card:focus-visible .platform-logo {
+    border-color: var(--v3-red);
+    color: var(--v3-red);
+}
+
+.contact-page-v3 .platform-logo svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+}
+
+.contact-page-v3 .platform-watermark {
+    display: none !important;
+}
+
+.contact-page-v3 .platform-copy {
+    position: static;
+    z-index: auto;
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: .18rem;
+}
+
+.contact-page-v3 .platform-card small {
+    color: var(--v3-red);
+    font: 800 .49rem/1 var(--v3-sans);
+    letter-spacing: .055em;
+    text-transform: uppercase;
+}
+
+.contact-page-v3 .platform-card strong {
+    color: var(--v3-ink);
+    font-family: "Herkey", Georgia, serif;
+    font-size: clamp(1.05rem, 1.65vw, 1.5rem);
+    font-weight: 400;
+    line-height: .98;
+    letter-spacing: -.008em;
+    text-transform: none;
+    overflow-wrap: anywhere;
+}
+
+.contact-page-v3 .platform-card b {
+    position: static;
+    z-index: auto;
+    display: inline-flex;
+    width: auto;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--v3-muted);
+    font: 800 1rem/1 var(--v3-sans);
+    transition: none;
+}
+
+.contact-page-v3 .platform-card:hover b,
+.contact-page-v3 .platform-card:focus-visible b {
+    border: 0;
+    color: var(--v3-red);
+    transform: translateX(2px);
+}
+
+/* Neutralize platform-specific legacy color/background assumptions. */
+.contact-page-v3 .platform-card--youtube,
+.contact-page-v3 .platform-card--x,
+.contact-page-v3 .platform-card--instagram,
+.contact-page-v3 .platform-card--threads,
+.contact-page-v3 .platform-card--tiktok,
+.contact-page-v3 .platform-card--facebook,
+.contact-page-v3 .platform-card--verdict,
+.contact-page-v3 .platform-card--youtube .platform-logo,
+.contact-page-v3 .platform-card--instagram .platform-logo,
+.contact-page-v3 .platform-card--verdict .platform-logo {
+    background: transparent;
+    color: var(--v3-ink);
+}
+
+html[data-theme="dark"] .contact-page-v3,
+html[data-theme="dark"] .contact-page-v3 .platform-card,
+html[data-theme="dark"] .contact-page-v3 .platform-logo {
+    background: var(--v3-paper);
+    color: var(--v3-ink);
+}
+
+html.v3-theme-transitioning .contact-page-v3,
+html.v3-theme-transitioning .contact-page-v3 .platform-card,
+html.v3-theme-transitioning .contact-page-v3 .platform-logo,
+html.v3-theme-transitioning .contact-page-v3 .contact-email {
+    transition:
+        background-color 360ms ease,
+        color 360ms ease,
+        border-color 360ms ease;
+}
+
+@media (max-width: 760px) {
+    .contact-page-v3 .contact-hero-main {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "eyebrow"
+            "title"
+            "address"
+            "email";
+        gap: 0;
+    }
+
+    .contact-page-v3 .contact-actions {
+        margin-top: 1rem;
+    }
+
+    .contact-page-v3 .platform-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .contact-page-v3 {
+        width: min(calc(100% - 1.4rem), 1180px);
+    }
+
+    .contact-page-v3 .contact-hero-main h1 {
+        font-size: clamp(2.6rem, 14vw, 4rem);
+    }
+
+    .contact-page-v3 .platform-card {
+        grid-template-columns: 34px minmax(0, 1fr) auto;
+        min-height: 68px;
+        gap: .7rem;
+    }
+
+    .contact-page-v3 .platform-logo {
+        width: 34px;
+        height: 34px;
+        padding: 7px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .contact-page-v3 *,
+    .contact-page-v3 *::before,
+    .contact-page-v3 *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}

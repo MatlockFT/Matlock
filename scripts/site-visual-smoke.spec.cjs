@@ -588,6 +588,70 @@ test.describe('Fight Cards V3 isolated migration', () => {
   });
 });
 
+test.describe('Contact V3 isolated migration', () => {
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('keeps live Contact untouched while V3 renders a flat editorial contact directory', async ({ page }) => {
+    await page.goto(targetUrl('/contact/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('.contact-page')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('[data-editorial-v3]')).toHaveCount(0);
+    await expect(page.locator('.site-theme-toggle')).toHaveCount(0);
+
+    await page.goto(targetUrl('/contact-v3/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-editorial-v3]')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('.v3-wordmark')).toBeVisible();
+    await expect(page.locator('.site-theme-toggle')).toBeVisible();
+    await expect(page.locator('.v3-sticky-shell')).toHaveCount(1);
+
+    const stylesheetHrefs = await page.locator('link[rel="stylesheet"]').evaluateAll(nodes =>
+      nodes.map(node => node.getAttribute('href') || '')
+    );
+    expect(stylesheetHrefs.some(href => href.includes('contact-socials.css'))).toBe(false);
+    const v3Index = stylesheetHrefs.findIndex(href => href.includes('contact-v3.css'));
+    const tailIndex = stylesheetHrefs.findIndex(href => href.includes('site-tail.css'));
+    expect(v3Index).toBeGreaterThan(tailIndex);
+
+    await page.evaluate(() => document.fonts?.ready).catch(() => {});
+    const title = await page.locator('.contact-hero-main h1').evaluate(node => ({
+      text: node.textContent.trim(),
+      font: getComputedStyle(node).fontFamily
+    }));
+    expect(title.text).toBe('Contact');
+    expect(title.font).toContain('Herkey');
+
+    const email = page.locator('.contact-email');
+    await expect(email).toHaveAttribute('href', 'mailto:fighttalkmma@protonmail.com');
+    await expect(page.locator('.contact-address')).toHaveText('fighttalkmma@protonmail.com');
+
+    const cards = page.locator('.platform-card');
+    await expect(cards).toHaveCount(7);
+    const cardStyle = await cards.first().evaluate(node => ({
+      radius: getComputedStyle(node).borderRadius,
+      shadow: getComputedStyle(node).boxShadow,
+      background: getComputedStyle(node).backgroundColor,
+      transform: getComputedStyle(node).transform
+    }));
+    expect(cardStyle.radius).toBe('0px');
+    expect(cardStyle.shadow).toBe('none');
+    expect(cardStyle.background).toBe('rgba(0, 0, 0, 0)');
+    expect(cardStyle.transform).toBe('none');
+
+    await expect(cards.first().locator('.platform-watermark')).toBeHidden();
+    const handleFont = await cards.first().locator('.platform-copy strong').evaluate(node =>
+      getComputedStyle(node).fontFamily
+    );
+    expect(handleFont).toContain('Herkey');
+
+    const overflow = await page.evaluate(() =>
+      document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(2);
+
+    const robots = await page.locator('meta[name="robots"]').getAttribute('content');
+    expect(robots).toContain('noindex');
+  });
+});
+
 test.describe('About V3 isolated migration', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 
