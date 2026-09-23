@@ -87,6 +87,7 @@ for (const file of postFiles) {
 
 const manifestEntries = [];
 
+// Drafts may temporarily reference media that has not uploaded yet.
 for (const imagePath of [...imagePaths].sort()) {
     const sourcePath = join(root, imagePath.replace(/^\//, ''));
     try {
