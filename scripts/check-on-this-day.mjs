@@ -5,12 +5,12 @@ const file = resolve("assets/data/on-this-day.json");
 const pageFile = resolve("on-this-day.html");
 const runtimeFile = resolve("assets/on-this-day-stable.js");
 const eventPosterFallbackRuntimeFile = resolve("assets/otd-event-poster-fallback.js");
-const eventPosterFallbackStyleFile = resolve("assets/otd-event-poster-fallback.css");
+const v3StyleFile = resolve("assets/on-this-day-v3.css");
 const data = JSON.parse(await readFile(file, "utf8"));
 const page = await readFile(pageFile, "utf8");
 const runtime = await readFile(runtimeFile, "utf8");
 const eventPosterFallbackRuntime = await readFile(eventPosterFallbackRuntimeFile, "utf8");
-const eventPosterFallbackStyle = await readFile(eventPosterFallbackStyleFile, "utf8");
+const v3Style = await readFile(v3StyleFile, "utf8");
 const entries = Array.isArray(data?.entries) ? data.entries : [];
 const allowedKinds = new Set([
     "fight",
@@ -59,14 +59,17 @@ if (!entries.length) {
 if (!page.includes("/assets/on-this-day-stable.js")) {
     failures.push("on-this-day.html must load the stable On This Day renderer");
 }
-if (!page.includes("/assets/on-this-day.bundle.css")) {
-    failures.push("on-this-day.html must load the generated On This Day stylesheet bundle");
+if (!page.includes("/assets/on-this-day-v3.css")) {
+    failures.push("on-this-day.html must load the V3 On This Day stylesheet");
+}
+if (page.includes("/assets/on-this-day.bundle.css")) {
+    failures.push("on-this-day.html must not load the retired legacy On This Day stylesheet bundle");
 }
 if (!page.includes("/assets/otd-event-poster-fallback.js")) {
     failures.push("on-this-day.html must load the event poster fallback renderer");
 }
-if (!page.includes("/assets/otd-event-poster-fallback.css")) {
-    failures.push("on-this-day.html must load the event poster fallback stylesheet");
+if (page.includes("/assets/otd-event-poster-fallback.css")) {
+    failures.push("on-this-day.html must not load the retired event poster fallback stylesheet");
 }
 if (!page.includes("data-history-index-url") || !page.includes("data-history-fallback-url")) {
     failures.push("on-this-day.html must provide optimized history data and a full-archive fallback");
@@ -91,8 +94,8 @@ for (const marker of ["COLLAPSE_LIMIT", "significanceScore", "openLightbox", "da
 for (const marker of ["otd-entry--event", ".otd-entry-media.is-fallback", "is-event-poster-fallback", "Original poster pending", "MutationObserver"]) {
     if (!eventPosterFallbackRuntime.includes(marker)) failures.push(`event poster fallback runtime is missing required marker: ${marker}`);
 }
-for (const marker of ["has-event-poster-fallback", "aspect-ratio: 4 / 5", "otd-event-poster-title", "otd-event-poster-status"]) {
-    if (!eventPosterFallbackStyle.includes(marker)) failures.push(`event poster fallback stylesheet is missing required marker: ${marker}`);
+for (const marker of ["has-event-poster-fallback", "otd-event-poster-title", "otd-event-poster-status", "min-height: 260px"]) {
+    if (!v3Style.includes(marker)) failures.push(`V3 On This Day stylesheet is missing required fallback marker: ${marker}`);
 }
 
 for (const [index, entry] of entries.entries()) {
