@@ -68,7 +68,6 @@ for (const filename of readdirSync(postsDirectory).filter(
     for (const field of [
         'layout',
         'title',
-        'description',
         'date',
         'category',
         'author',
@@ -82,6 +81,12 @@ for (const filename of readdirSync(postsDirectory).filter(
     const published = scalar(frontmatter.yaml, 'published');
     const title = scalar(frontmatter.yaml, 'title');
     const description = scalar(frontmatter.yaml, 'description');
+
+    if (!description) {
+        (published === 'true' ? failures : warnings).push(
+            `${filename}: missing description`
+        );
+    }
     const author = scalar(frontmatter.yaml, 'author');
 
     if (author !== 'Matlock') {
@@ -125,8 +130,10 @@ for (const filename of readdirSync(postsDirectory).filter(
     );
 
     if (!imageBlock) {
-        failures.push(`${filename}: missing featured image`);
-        continue;
+        (published === 'true' ? failures : warnings).push(
+            `${filename}: missing featured image`
+        );
+        if (published !== 'true') continue;
     }
 
     const imagePath = imageBlock[1]
@@ -138,23 +145,29 @@ for (const filename of readdirSync(postsDirectory).filter(
         ?.replace(/^['"]|['"]$/g, '');
 
     if (!imagePath) {
-        failures.push(`${filename}: featured image is missing its path`);
+        (published === 'true' ? failures : warnings).push(
+            `${filename}: featured image is missing its path`
+        );
     } else {
         const localImage = join(root, imagePath.replace(/^\//, ''));
 
         if (!existsSync(localImage)) {
-            failures.push(`${filename}: image does not exist: ${imagePath}`);
+            (published === 'true' ? failures : warnings).push(
+                `${filename}: image does not exist: ${imagePath}`
+            );
         }
 
         if (!manifest.includes(`${JSON.stringify(imagePath)}:`)) {
-            failures.push(
+            (published === 'true' ? failures : warnings).push(
                 `${filename}: responsive variants missing for ${imagePath}`
             );
         }
     }
 
     if (!imageAlt) {
-        failures.push(`${filename}: featured image is missing alt text`);
+        (published === 'true' ? failures : warnings).push(
+            `${filename}: featured image is missing alt text`
+        );
     }
 
     const typoPatterns = [
