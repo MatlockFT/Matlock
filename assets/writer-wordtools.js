@@ -1,5 +1,5 @@
 (() => {
-  const version = '20260922-writerchrome5';
+  const version = '20260923-writerchrome6';
   const head = document.head;
 
   function loadStyle(href) {
