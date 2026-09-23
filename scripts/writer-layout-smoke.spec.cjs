@@ -181,3 +181,39 @@ test('Writer keeps embeds stable, quotes structured, and bitmap clipboard paste 
   await expect(page.locator('[data-connect-dialog]')).toBeVisible();
   await expect(editor).toHaveValue(beforePaste);
 });
+
+
+test('Writer image paths remain durable across reload boundaries', async ({ page }) => {
+  await page.setViewportSize({ width: 1100, height: 900 });
+  await openWriter(page);
+
+  const imagePath = page.locator('[data-field="imagePath"]');
+  const coverInput = page.locator('[data-image-file]');
+  await expect(imagePath).toHaveValue('');
+
+  // Choosing a local cover may preview it, but must not invent a persisted repo path.
+  await coverInput.setInputFiles({
+    name: 'cover-test.png',
+    mimeType: 'image/png',
+    buffer: Buffer.from('local-cover-preview')
+  });
+  await expect(imagePath).toHaveValue('');
+  await expect(page.locator('[data-preview-image-shell]')).toBeVisible();
+
+  // Clear the local selection so the rest of the test represents a restored article.
+  await coverInput.setInputFiles([]);
+  const editor = page.locator('#writer-body');
+  await editor.fill([
+    'Before image.',
+    '',
+    '<figure class="article-inline-image article-inline-image--break article-inline-image--center article-inline-image--full">',
+    '  <img src="/assets/uploads/restored-inline.png" alt="Restored inline image" loading="lazy">',
+    '</figure>',
+    '',
+    'After image.'
+  ].join('\n'));
+
+  const restored = page.locator('[data-preview-content] .article-inline-image img');
+  await expect(restored).toHaveAttribute('data-writer-source', '/assets/uploads/restored-inline.png');
+  await expect(restored).toHaveAttribute('src', 'https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/uploads/restored-inline.png');
+});
