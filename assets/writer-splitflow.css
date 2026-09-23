@@ -6,10 +6,11 @@
 @media(min-width:1101px){
   .writer-splitflow .writer-toolbar{
     position:sticky;
-    top:8px;
+    top:44px;
     z-index:34;
-    box-shadow:0 10px 26px rgba(0,0,0,.32);
-    backdrop-filter:blur(12px);
+    box-shadow:none;
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
   }
 
   .writer-splitflow .writer-editor-dropzone{
@@ -32,7 +33,7 @@
 
 .writer-splitflow-sync[aria-pressed="true"]{
   color:#f2f2ef;
-  background:#171718;
+  background:transparent;
 }
 
 .writer-splitflow [data-preview-content] h2,
