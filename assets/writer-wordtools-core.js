@@ -6,6 +6,7 @@
   const toolbar = app.querySelector('.writer-toolbar');
   const primaryGroup = toolbar?.querySelector('.writer-toolbar-group');
   const modeActions = app.querySelector('.writer-modebar-actions');
+  const toolActions = app.querySelector('[data-writer-tool-actions]') || modeActions;
   const editorPane = app.querySelector('.writer-editor-pane');
   const editorView = app.querySelector('[data-editor-view]');
   if (!editor || !toolbar || !primaryGroup || !modeActions || !editorPane) return;
@@ -581,10 +582,10 @@
     <button type="button" data-wordtool="find" title="Find and replace (Ctrl/Cmd+H)">Replace</button>
   `);
 
-  modeActions.insertAdjacentHTML('afterbegin', `
-    <button class="writer-text-button" type="button" data-wordtool="outline" aria-pressed="false">Outline</button>
-    <button class="writer-text-button" type="button" data-wordtool="focus" aria-pressed="false">Focus</button>
-    <button class="writer-text-button" type="button" data-wordtool="fullscreen" aria-pressed="false">Full screen</button>
+  toolActions.insertAdjacentHTML('afterbegin', `
+    <button type="button" data-wordtool="outline" aria-pressed="false">Outline</button>
+    <button type="button" data-wordtool="focus" aria-pressed="false">Focus</button>
+    <button type="button" data-wordtool="fullscreen" aria-pressed="false">Full screen</button>
   `);
 
   toolbar.insertAdjacentHTML('afterend', `
