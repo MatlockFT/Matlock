@@ -1160,7 +1160,7 @@ html body:has([data-globe-home]) .site-event-primary-countdown[data-live="true"]
 html body:has([data-globe-home]) .site-event-primary:hover,
 html body:has([data-globe-home]) .site-event-primary:focus-visible,
 html body:has([data-globe-home]) .site-event-stack.is-open .site-event-primary {
-    background: #ece9e3 !important;
+    background: var(--v3-paper-deep, #ece9e3) !important;
 }
 
 /* Trending is one calm editorial rail, not a wrapped headline cloud. */
