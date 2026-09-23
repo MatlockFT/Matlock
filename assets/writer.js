@@ -60,7 +60,7 @@
 
   const controlledKeys = [
     'layout','title','description','date','category','author','image','tags',
-    'show_toc','pinned','listing_visibility','spoiler_warning','publish_at','published'
+    'show_toc','pinned','listing_visibility','spoiler_warning','preserve_line_breaks','publish_at','published'
   ];
 
   const templateBodies = {
@@ -266,6 +266,7 @@
       pinned: [`pinned: ${fields.pinned.checked ? 'true' : 'false'}`],
       listing_visibility: ['listing_visibility: normal'],
       spoiler_warning: [`spoiler_warning: ${fields.spoilerWarning.checked ? 'true' : 'false'}`],
+      preserve_line_breaks: ['preserve_line_breaks: true'],
       publish_at: publishIso && !publishedValue ? [`publish_at: ${yamlQuote(publishIso)}`] : [],
       published: [`published: ${publishedValue ? 'true' : 'false'}`]
     };
@@ -552,7 +553,7 @@
         let current = [];
         const flush = () => {
           if (!current.length) return;
-          paragraphs.push(current.join(' '));
+          paragraphs.push(current.join('\n'));
           current = [];
         };
         parts.forEach(part => {
@@ -581,7 +582,7 @@
         para.push(lines[i].trim());
         i += 1;
       }
-      out.push(`<p>${inlineMarkdown(para.join(' '))}</p>`);
+      out.push(`<p>${inlineMarkdown(para.join('\n'))}</p>`);
     }
     return out.join('\n');
   }
