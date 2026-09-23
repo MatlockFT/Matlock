@@ -823,3 +823,34 @@ html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-eve
 html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:is(:hover, :focus-visible) .site-event-row-detail {
     color: #aaa69e !important;
 }
+/* Keep the homepage event rail compact once the shell switches to its mobile layout. */
+@media (max-width: 850px) {
+    body:has([data-globe-home]) .site-event-stack {
+        width: max-content;
+        max-width: 46vw;
+        min-width: 0;
+    }
+
+    body:has([data-globe-home]) .site-event-primary {
+        grid-template-columns: minmax(0, auto) auto auto;
+        gap: .34rem;
+        padding: .42rem .45rem .42rem .55rem;
+        font-size: .57rem !important;
+    }
+}
+
+@media (max-width: 520px) {
+    body:has([data-globe-home]) .site-event-stack {
+        max-width: none;
+    }
+
+    body:has([data-globe-home]) .site-event-primary {
+        gap: .18rem;
+        padding: .42rem .2rem;
+        font-size: .55rem !important;
+    }
+
+    body:has([data-globe-home]) .site-event-primary-name {
+        max-width: 42px;
+    }
+}
