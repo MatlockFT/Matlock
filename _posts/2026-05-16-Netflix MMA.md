@@ -6,7 +6,7 @@ description: Anytime casual observers or first-time MMA watchers tune into
   it’s just that bad.
 date: 2026-05-16
 category: Opinion
-author: MMA Matlock
+author: Matlock
 image:
   path: /assets/uploads/rondarousey.jpg
   alt: "Ronda Rousey walking after victory"
