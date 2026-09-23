@@ -7,6 +7,8 @@ sitemap: false
 page_styles:
   - /assets/writer.css
   - /assets/writer-wordtools.css
+  - /assets/writer-ux.css
+  - /assets/writer-splitflow.css
 page_scripts:
   - /assets/writer.js
   - /assets/writer-auth.js
@@ -25,7 +27,7 @@ page_scripts:
       <div class="writer-top-secondary">
         <button class="writer-button writer-button-subtle" type="button" data-show-library>Library</button>
         <button class="writer-button writer-button-subtle" type="button" data-new-article>New</button>
-        <button class="writer-button writer-button-subtle" type="button" data-github-connect>Sign in with GitHub</button>
+        <button class="writer-button writer-button-subtle" type="button" data-github-connect data-connected="false" title="Connect GitHub">GitHub</button>
       </div>
       <div class="writer-publish-actions">
         <span class="writer-save-state" data-save-state data-state="neutral">Library</span>
@@ -86,30 +88,23 @@ page_scripts:
 
   <section data-editor-view hidden>
     <div class="writer-modebar" role="toolbar" aria-label="Writer controls">
-      <div class="writer-mode-group writer-view-group" data-mode-group="view">
-        <span class="writer-mode-label">View</span>
-        <div class="writer-mode-options" data-view-switcher>
-          <button type="button" data-view="write" aria-pressed="false">Write</button>
-          <button type="button" data-view="split" aria-pressed="true">Split</button>
-          <button type="button" data-view="preview" aria-pressed="false">Preview</button>
-        </div>
+      <div class="writer-mode-options writer-view-switcher" data-view-switcher aria-label="Editor view">
+        <button type="button" data-view="write" aria-pressed="false">Write</button>
+        <button type="button" data-view="split" aria-pressed="true">Split</button>
+        <button type="button" data-view="preview" aria-pressed="false">Preview</button>
       </div>
 
       <div class="writer-modebar-actions">
-        <div class="writer-mode-group writer-mode-tools" data-mode-group="tools">
-          <span class="writer-mode-label">Tools</span>
-          <div class="writer-mode-options" data-writer-tool-actions>
+        <div class="writer-mode-options writer-preview-size" data-preview-size-switcher aria-label="Preview size">
+          <button type="button" data-preview-size="desktop" aria-pressed="true">Desktop</button>
+          <button type="button" data-preview-size="mobile" aria-pressed="false">Mobile</button>
+        </div>
+        <details class="writer-mode-more" data-writer-mode-more>
+          <summary aria-label="More writer controls">More</summary>
+          <div class="writer-mode-more-panel" data-writer-mode-more-panel>
             <button type="button" data-history>History</button>
           </div>
-        </div>
-
-        <div class="writer-mode-group writer-preview-size" data-mode-group="preview">
-          <span class="writer-mode-label">Preview</span>
-          <div class="writer-mode-options" data-preview-size-switcher>
-            <button type="button" data-preview-size="desktop" aria-pressed="true">Desktop</button>
-            <button type="button" data-preview-size="mobile" aria-pressed="false">Mobile</button>
-          </div>
-        </div>
+        </details>
       </div>
     </div>
 
@@ -117,84 +112,68 @@ page_scripts:
       <section class="writer-editor-pane" aria-label="Article editor">
         <details class="writer-meta" open>
           <summary><span>Article details</span><span class="writer-meta-summary" data-meta-summary>Title, publishing and media</span></summary>
-
-          <div class="writer-meta-grid">
-            <label class="writer-field writer-field-wide">
+          <div class="writer-meta-core">
+            <label class="writer-field writer-field-title">
               <span>Title <em data-title-count>0</em></span>
               <input type="text" data-field="title" maxlength="140" placeholder="UFC 332: ...">
             </label>
-
-            <label class="writer-field writer-field-wide">
+            <label class="writer-field writer-field-description">
               <span>Description <em data-description-count>0 / 160</em></span>
               <textarea data-field="description" rows="2" maxlength="220" placeholder="One clean sentence describing the article."></textarea>
             </label>
-
             <label class="writer-field">
               <span>Article date</span>
               <input type="date" data-field="date">
             </label>
-
             <label class="writer-field">
               <span>Category</span>
               <input type="text" data-field="category" list="writer-categories" placeholder="Breakdown">
               <datalist id="writer-categories">
-                <option value="Breakdown"></option>
-                <option value="Opinion"></option>
-                <option value="News"></option>
-                <option value="History"></option>
-                <option value="Results"></option>
+                <option value="Breakdown"></option><option value="Opinion"></option><option value="News"></option><option value="History"></option><option value="Results"></option>
               </datalist>
             </label>
-
-            <label class="writer-field writer-field-wide">
+            <label class="writer-field writer-field-tags">
               <span>Tags <small>comma separated</small></span>
               <input type="text" data-field="tags" placeholder="UFC 332, Fighter Name, Lightweight">
             </label>
-
-            <label class="writer-field writer-field-wide">
-              <span>Featured image</span>
-              <div class="writer-image-row">
-                <input type="text" data-field="imagePath" placeholder="/assets/uploads/article-image.jpg">
-                <label class="writer-file-button">
-                  Choose image
-                  <input type="file" data-image-file accept="image/png,image/jpeg,image/webp,image/gif" hidden>
-                </label>
-                <button class="writer-button writer-button-subtle" type="button" data-upload-image disabled>Upload</button>
-              </div>
-            </label>
-
-            <label class="writer-field writer-field-wide">
-              <span>Image alt text</span>
-              <input type="text" data-field="imageAlt" placeholder="Describe the featured image">
-            </label>
-
-            <label class="writer-field">
-              <span>Image crop focus</span>
-              <select data-field="imagePosition">
-                <option value="center center">Center</option>
-                <option value="center top">Top</option>
-                <option value="center bottom">Bottom</option>
-                <option value="left center">Left</option>
-                <option value="right center">Right</option>
-              </select>
-            </label>
-
-            <label class="writer-field">
-              <span>Filename</span>
-              <input type="text" data-field="filename" spellcheck="false" placeholder="2026-09-16-my-article.md">
-            </label>
-
-            <label class="writer-field writer-field-wide writer-schedule-field">
-              <span>Schedule publication <small>checked every ~15 minutes</small></span>
-              <input type="datetime-local" data-field="publishAt">
-            </label>
           </div>
 
-          <div class="writer-flags">
-            <label><input type="checkbox" data-field="showToc"> Table of contents</label>
-            <label><input type="checkbox" data-field="spoilerWarning"> Spoiler warning</label>
-            <label><input type="checkbox" data-field="pinned"> Pin article</label>
-          </div>
+          <details class="writer-meta-advanced">
+            <summary><span>Publishing &amp; media</span><span class="writer-meta-advanced-hint">Image, filename, schedule, options</span></summary>
+            <div class="writer-meta-advanced-grid">
+              <label class="writer-field writer-field-featured">
+                <span>Featured image</span>
+                <div class="writer-image-row">
+                  <input type="text" data-field="imagePath" placeholder="/assets/uploads/article-image.jpg">
+                  <label class="writer-file-button">Choose image<input type="file" data-image-file accept="image/png,image/jpeg,image/webp,image/gif" hidden></label>
+                  <button class="writer-button writer-button-subtle" type="button" data-upload-image disabled>Upload</button>
+                </div>
+              </label>
+              <label class="writer-field writer-field-alt">
+                <span>Image alt text</span>
+                <input type="text" data-field="imageAlt" placeholder="Describe the featured image">
+              </label>
+              <label class="writer-field">
+                <span>Image crop focus</span>
+                <select data-field="imagePosition">
+                  <option value="center center">Center</option><option value="center top">Top</option><option value="center bottom">Bottom</option><option value="left center">Left</option><option value="right center">Right</option>
+                </select>
+              </label>
+              <label class="writer-field">
+                <span>Filename</span>
+                <input type="text" data-field="filename" spellcheck="false" placeholder="2026-09-16-my-article.md">
+              </label>
+              <label class="writer-field writer-schedule-field">
+                <span>Schedule publication <small>checked every ~15 minutes</small></span>
+                <input type="datetime-local" data-field="publishAt">
+              </label>
+            </div>
+            <div class="writer-flags">
+              <label><input type="checkbox" data-field="showToc"> Table of contents</label>
+              <label><input type="checkbox" data-field="spoilerWarning"> Spoiler warning</label>
+              <label><input type="checkbox" data-field="pinned"> Pin article</label>
+            </div>
+          </details>
         </details>
 
         <div class="writer-toolbar" role="toolbar" aria-label="Formatting and article blocks">

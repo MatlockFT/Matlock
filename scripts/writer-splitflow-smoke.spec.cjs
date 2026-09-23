@@ -7,6 +7,8 @@ async function openWriter(page) {
   const library = page.locator('[data-library-view]');
   if (await library.isVisible()) await page.click('[data-library-new]');
   await expect(page.locator('[data-writer-app]')).toBeVisible();
+  const more = page.locator('[data-writer-mode-more]');
+  if (!(await more.evaluate(el => el.open))) await more.locator('summary').click();
   await expect(page.locator('button[data-writer-sync-scroll]')).toBeVisible();
 }
 
@@ -80,6 +82,8 @@ test('split workflow persists views, fills the viewport and keeps editor/preview
 
   await page.reload({ waitUntil: 'domcontentloaded' });
   if (await page.locator('[data-library-view]').isVisible()) await page.click('[data-library-new]');
+  const moreAfterReload = page.locator('[data-writer-mode-more]');
+  if (!(await moreAfterReload.evaluate(el => el.open))) await moreAfterReload.locator('summary').click();
   await expect(page.locator('button[data-writer-sync-scroll]')).toBeVisible();
   await expect(workspace).toHaveAttribute('data-view-mode', 'split');
   await expect(previewFrame).toHaveAttribute('data-preview-size', 'mobile');

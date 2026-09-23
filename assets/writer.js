@@ -727,7 +727,11 @@ function expireGithubConnection(message = 'GitHub session expired. Sign in again
   setPublishingControls(false);
   app.querySelector('[data-github-status]').textContent = 'GitHub session expired';
   const topConnect = app.querySelector('[data-github-connect]');
-  if (topConnect) topConnect.textContent = 'Sign in with GitHub';
+  if (topConnect) {
+    topConnect.textContent = 'GitHub';
+    topConnect.dataset.connected = 'false';
+    topConnect.title = 'Connect GitHub';
+  }
   window.dispatchEvent(new CustomEvent('matlock-writer:auth-expired'));
   showToast(message, 6000);
 }
@@ -783,7 +787,11 @@ async function githubFetch(path, options = {}, requireAuth = false) {
     if (connectDialog.open) connectDialog.close();
     app.querySelector('[data-github-status]').textContent = `Connected to ${repo} as ${githubLogin}`;
     const topConnect = app.querySelector('[data-github-connect]');
-    if (topConnect) topConnect.textContent = 'GitHub connected';
+    if (topConnect) {
+      topConnect.textContent = 'GitHub';
+      topConnect.dataset.connected = 'true';
+      topConnect.title = `GitHub connected as ${githubLogin}`;
+    }
     setPublishingControls(true);
     window.dispatchEvent(new CustomEvent('matlock-writer:auth', { detail: { login: githubLogin } }));
     showToast('GitHub connected.');

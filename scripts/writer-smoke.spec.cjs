@@ -95,6 +95,8 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await page.fill('[data-field="description"]', 'Production validation article for the MMA Matlock Writer workflow.');
   await page.fill('[data-field="category"]', 'Breakdown');
   await page.fill('[data-field="tags"]', 'Writer QA, Production Smoke');
+  const advancedDetails = page.locator('.writer-meta-advanced');
+  if (!(await advancedDetails.evaluate(el => el.open))) await advancedDetails.locator('summary').click();
   await page.fill('[data-field="filename"]', filename);
   await page.fill('#writer-body', longBody);
 

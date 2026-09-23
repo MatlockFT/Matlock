@@ -50,10 +50,10 @@
   syncButton.type = 'button';
   syncButton.className = 'writer-splitflow-sync';
   syncButton.dataset.writerSyncScroll = '';
-  syncButton.textContent = 'Sync';
+  syncButton.textContent = 'Sync scroll';
   syncButton.title = 'Keep the editor and preview at roughly the same place';
 
-  const toolActions = app.querySelector('[data-writer-tool-actions]') || modeActions;
+  const toolActions = app.querySelector('[data-writer-mode-more-panel]') || modeActions;
   toolActions.insertAdjacentElement('afterbegin', syncButton);
 
   let syncEnabled = safeGet(SYNC_KEY) !== '0';

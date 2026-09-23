@@ -6,7 +6,7 @@
   const toolbar = app.querySelector('.writer-toolbar');
   const primaryGroup = toolbar?.querySelector('.writer-toolbar-group');
   const modeActions = app.querySelector('.writer-modebar-actions');
-  const toolActions = app.querySelector('[data-writer-tool-actions]') || modeActions;
+  const toolActions = app.querySelector('[data-writer-mode-more-panel]') || modeActions;
   const editorPane = app.querySelector('.writer-editor-pane');
   const editorView = app.querySelector('[data-editor-view]');
   if (!editor || !toolbar || !primaryGroup || !modeActions || !editorPane) return;

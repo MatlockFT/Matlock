@@ -20,6 +20,13 @@ async function openMore(page) {
   await expect(more.locator('.writer-ux-more-panel')).toBeVisible();
 }
 
+async function openModeMore(page) {
+  const more = page.locator('[data-writer-mode-more]');
+  await expect(more).toHaveCount(1);
+  if (!(await more.evaluate(el => el.open))) await more.locator('summary').click();
+  await expect(more.locator('[data-writer-mode-more-panel]')).toBeVisible();
+}
+
 async function setCaret(editor, pos) {
   await editor.evaluate((el, position) => {
     el.focus();
@@ -34,6 +41,7 @@ test('Writer word processor tools work in production', async ({ page }) => {
   page.on('dialog', dialog => dialog.accept());
 
   const editor = await openArticleEditor(page);
+  await openModeMore(page);
 
   // Browser-native basics stay out of the toolbar.
   await expect(page.locator('[data-wordtool="undo"]')).toHaveCount(0);
@@ -172,6 +180,7 @@ test('Writer usability layer keeps long-form editing compact and predictable', a
 
   const editor = await openArticleEditor(page);
   const app = page.locator('[data-writer-app]');
+  await openModeMore(page);
 
   // Low-frequency actions live behind one compact More control.
   await expect(page.locator('[data-writer-ux-more]')).toHaveCount(1);

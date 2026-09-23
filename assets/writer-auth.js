@@ -38,7 +38,9 @@
 
   const connectButton = originalConnectButton.cloneNode(true);
   originalConnectButton.replaceWith(connectButton);
-  connectButton.textContent = 'Sign in with GitHub';
+  connectButton.textContent = 'GitHub';
+  connectButton.dataset.connected = 'false';
+  connectButton.title = 'Connect GitHub';
 
   let popup = null;
   let popupWatch = 0;
@@ -69,7 +71,9 @@
         connectionMonitor = 0;
         const resolvedLogin = login || localRead(SESSION_LOGIN_KEY) || 'GitHub user';
         connectButton.disabled = false;
-        connectButton.textContent = 'GitHub connected';
+        connectButton.textContent = 'GitHub';
+        connectButton.dataset.connected = 'true';
+        connectButton.title = `GitHub connected as ${resolvedLogin}`;
         if (server) localWrite(SESSION_LOGIN_KEY, resolvedLogin);
         setStatus(server
           ? `Signed in as ${resolvedLogin}. This browser will stay signed in until you sign out or the session expires.`
@@ -85,7 +89,9 @@
         else sessionWrite(PAT_KEY, '');
         tokenInput.value = '';
         connectButton.disabled = false;
-        connectButton.textContent = 'Sign in with GitHub';
+        connectButton.textContent = 'GitHub';
+        connectButton.dataset.connected = 'false';
+        connectButton.title = 'Connect GitHub';
         setStatus('GitHub session could not be restored. Please sign in again.', 'error');
       }
     }, 150);

@@ -11,6 +11,13 @@ async function openWriter(page) {
   return app;
 }
 
+async function openModeMore(page) {
+  const more = page.locator('[data-writer-mode-more]');
+  await expect(more).toHaveCount(1);
+  if (!(await more.evaluate(el => el.open))) await more.locator('summary').click();
+  await expect(more.locator('[data-writer-mode-more-panel]')).toBeVisible();
+}
+
 async function expectCenteredWithoutOverflow(page, box) {
   const viewport = await page.evaluate(() => ({
     clientWidth: document.documentElement.clientWidth,
@@ -36,6 +43,7 @@ test('Writer shell and editing surface adapt to desktop and ultrawide viewports'
   expect(1920 - box.width).toBeLessThan(80);
   await expectCenteredWithoutOverflow(page, box);
 
+  await openModeMore(page);
   await page.click('[data-writer-ux-width="normal"]');
   const editorPane = page.locator('.writer-editor-pane');
   const dropzone = page.locator('[data-editor-dropzone]');
