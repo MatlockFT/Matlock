@@ -82,6 +82,11 @@ for (const filename of readdirSync(postsDirectory).filter(
     const published = scalar(frontmatter.yaml, 'published');
     const title = scalar(frontmatter.yaml, 'title');
     const description = scalar(frontmatter.yaml, 'description');
+    const author = scalar(frontmatter.yaml, 'author');
+
+    if (author !== 'Matlock') {
+        failures.push(`${filename}: author must be exactly “Matlock”`);
+    }
     const listingVisibility = scalar(frontmatter.yaml, 'listing_visibility');
     const publishAt = scalar(frontmatter.yaml, 'publish_at');
 
@@ -253,6 +258,12 @@ const cmsConfig = readFileSync(join(root, '.pages.yml'), 'utf8');
 if (!/name:\s*published[\s\S]*?default:\s*false/.test(cmsConfig)) {
     failures.push(
         '.pages.yml: new posts must default to published: false'
+    );
+}
+
+if (!/name:\s*author[\s\S]*?default:\s*["']?Matlock["']?/.test(cmsConfig)) {
+    failures.push(
+        '.pages.yml: new posts must default to author: Matlock'
     );
 }
 

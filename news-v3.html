@@ -49,8 +49,9 @@ page_fetch_preloads:
     </header>
 
     {% if news_matlock_post %}
+        {% assign news_matlock_author = news_matlock_post.author.name | default: news_matlock_post.author | default: site.author.name %}
         <section class="news-matlock-latest" aria-label="Latest original MMA Matlock article">
-            <span class="news-matlock-label">MMA Matlock</span>
+            <span class="news-matlock-label">{{ news_matlock_author }}</span>
             <div class="news-matlock-copy">
                 <h2><a href="{{ news_matlock_post.url | relative_url }}">{{ news_matlock_post.title }}</a></h2>
                 <p class="news-matlock-meta">{{ news_matlock_post.date | date: "%B %d, %Y" }}{% if news_matlock_post.description %} · {{ news_matlock_post.description | strip_html | truncate: 110 }}{% endif %}</p>
