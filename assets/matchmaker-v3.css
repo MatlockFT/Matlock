@@ -583,3 +583,168 @@ html.v3-theme-transitioning .mm-simple-v3 .mm-simple-match {
     border-top: 1px solid var(--v3-rule);
   }
 }
+
+
+/* 2026-09 visual hierarchy pass — clearer fighter files and a stronger primary recommendation. */
+.mm-simple-v3 .mm-simple-eventbar {
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding: .72rem .85rem;
+  border-left: 3px solid var(--v3-red);
+  background: color-mix(in srgb, var(--v3-paper-deep) 40%, transparent);
+}
+
+.mm-simple-v3 .mm-simple-grid {
+  gap: 1.15rem;
+}
+
+.mm-simple-v3 .mm-simple-file,
+.mm-simple-v3 .mm-simple-file:nth-child(even) {
+  padding: 1rem;
+  border: 1px solid var(--v3-rule);
+  border-top: 2px solid var(--v3-ink);
+  background: color-mix(in srgb, var(--v3-paper-deep) 22%, transparent);
+}
+
+.mm-simple-v3 .mm-simple-fighter-head {
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: 1.05rem;
+  align-items: center;
+  padding-bottom: .7rem;
+}
+
+.mm-simple-v3 .mm-simple-fighter-slot,
+.mm-simple-v3 .mm-simple-fighter-photo,
+.mm-simple-v3 .mm-simple-fighter-head > .mm-simple-placeholder {
+  width: 104px;
+  min-width: 104px;
+  height: 120px;
+  min-height: 120px;
+}
+
+.mm-simple-v3 .mm-simple-result {
+  margin-bottom: .35rem;
+}
+
+.mm-simple-v3 .mm-simple-next-label {
+  margin: .85rem 0 .5rem;
+  color: var(--v3-red);
+}
+
+.mm-simple-v3 .mm-simple-matches {
+  gap: .2rem;
+}
+
+.mm-simple-v3 .mm-simple-match {
+  grid-template-columns: 28px 58px minmax(0, 1fr);
+  gap: .68rem;
+  min-height: 80px;
+  padding: .58rem .58rem;
+  border-left: 3px solid transparent;
+}
+
+.mm-simple-v3 .mm-simple-match.is-primary {
+  margin-bottom: .2rem;
+  padding: .65rem .62rem;
+  border-left: 3px solid var(--v3-red);
+  background: color-mix(in srgb, var(--v3-red) 7%, var(--v3-paper));
+}
+
+.mm-simple-v3 .mm-simple-match-order {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  align-self: center;
+  border: 1px solid var(--v3-rule);
+  font-family: var(--v3-sans);
+  font-size: .55rem;
+  font-weight: 900;
+}
+
+.mm-simple-v3 .mm-simple-match.is-primary .mm-simple-match-order {
+  border-color: var(--v3-red);
+  background: var(--v3-red);
+  color: #fff;
+}
+
+.mm-simple-v3 .mm-simple-opponent-slot,
+.mm-simple-v3 .mm-simple-opponent-photo,
+.mm-simple-v3 .mm-simple-match .mm-simple-placeholder {
+  width: 58px;
+  min-width: 58px;
+  height: 68px;
+  min-height: 68px;
+}
+
+.mm-simple-v3 .mm-simple-match-copy strong {
+  font-size: clamp(1.08rem, 1.5vw, 1.42rem);
+}
+
+.mm-simple-v3 .mm-simple-match-copy p {
+  margin-top: .28rem;
+}
+
+html[data-theme="dark"] .mm-simple-v3 .mm-simple-file {
+  background: color-mix(in srgb, var(--v3-paper-deep) 18%, transparent);
+}
+
+html[data-theme="dark"] .mm-simple-v3 .mm-simple-match.is-primary {
+  background: color-mix(in srgb, var(--v3-red) 12%, var(--v3-paper));
+}
+
+@media (max-width: 900px) {
+  .mm-simple-v3 .mm-simple-file,
+  .mm-simple-v3 .mm-simple-file:nth-child(even) {
+    padding: .9rem;
+    border: 1px solid var(--v3-rule);
+    border-top: 2px solid var(--v3-ink);
+  }
+
+  .mm-simple-v3 .mm-simple-file + .mm-simple-file {
+    padding-top: .9rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .mm-simple-v3 .mm-simple-eventbar {
+    padding: .7rem;
+  }
+
+  .mm-simple-v3 .mm-simple-fighter-head {
+    grid-template-columns: 82px minmax(0, 1fr);
+    gap: .75rem;
+  }
+
+  .mm-simple-v3 .mm-simple-fighter-slot,
+  .mm-simple-v3 .mm-simple-fighter-photo,
+  .mm-simple-v3 .mm-simple-fighter-head > .mm-simple-placeholder {
+    width: 82px;
+    min-width: 82px;
+    height: 96px;
+    min-height: 96px;
+  }
+
+  .mm-simple-v3 .mm-simple-match {
+    grid-template-columns: 24px 48px minmax(0, 1fr);
+    grid-template-areas: none;
+    gap: .55rem;
+    padding: .55rem .45rem;
+  }
+
+  .mm-simple-v3 .mm-simple-match-order,
+  .mm-simple-v3 .mm-simple-opponent-slot,
+  .mm-simple-v3 .mm-simple-match-copy {
+    grid-area: auto;
+    grid-column: auto;
+  }
+
+  .mm-simple-v3 .mm-simple-opponent-slot,
+  .mm-simple-v3 .mm-simple-opponent-photo,
+  .mm-simple-v3 .mm-simple-match .mm-simple-placeholder {
+    width: 48px;
+    min-width: 48px;
+    height: 58px;
+    min-height: 58px;
+  }
+}
