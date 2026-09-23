@@ -53,6 +53,9 @@
   let linkMode = 'link';
   let saveInFlight = false;
   let imageUploadInFlight = false;
+  let featuredImageRetryTimer = 0;
+  let featuredImageRetryCount = 0;
+  let featuredImageRetrySource = '';
   let previewTimer = 0;
   let librarySearchTimer = 0;
   let htmlBlocks = new Map();
@@ -601,12 +604,74 @@
     return new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}).format(d);
   }
 
-  function writerPreviewAssetUrl(path) {
+  function writerPreviewAssetUrl(path, retry = 0) {
     const normalized = normalizeImagePath(path);
     if (/^\/assets\/uploads\//i.test(normalized)) {
-      return `https://raw.githubusercontent.com/${repo}/main${normalized}`;
+      const base = `https://raw.githubusercontent.com/${repo}/main${normalized}`;
+      return retry ? `${base}?writer_retry=${retry}-${Date.now()}` : base;
     }
     return normalized;
+  }
+
+  function clearFeaturedImageRetry() {
+    window.clearTimeout(featuredImageRetryTimer);
+    featuredImageRetryTimer = 0;
+    featuredImageRetryCount = 0;
+    featuredImageRetrySource = '';
+  }
+
+  function clearLocalFeaturedPreview() {
+    clearLocalFeaturedPreview();
+    if (imageFileInput) imageFileInput.value = '';
+    clearFeaturedImageRetry();
+  }
+
+  function loadFeaturedImagePreview(image, shell, imageError, source) {
+    const canonical = normalizeImagePath(source);
+    if (!canonical) return;
+
+    if (featuredImageRetrySource !== canonical) {
+      clearFeaturedImageRetry();
+      featuredImageRetrySource = canonical;
+    }
+
+    shell.classList.remove('is-missing');
+    shell.classList.add('is-loading');
+    if (imageError) imageError.hidden = true;
+    image.dataset.writerCanonicalSource = canonical;
+
+    image.onload = () => {
+      if (image.dataset.writerCanonicalSource !== canonical) return;
+      window.clearTimeout(featuredImageRetryTimer);
+      featuredImageRetryTimer = 0;
+      featuredImageRetryCount = 0;
+      shell.classList.remove('is-loading', 'is-missing');
+      if (imageError) imageError.hidden = true;
+    };
+
+    image.onerror = () => {
+      if (image.dataset.writerCanonicalSource !== canonical || localImageUrl) return;
+      const delays = [900, 1600, 2800, 4500, 7000, 10000, 15000];
+      if (featuredImageRetryCount < delays.length) {
+        const attempt = featuredImageRetryCount + 1;
+        const delay = delays[featuredImageRetryCount];
+        featuredImageRetryCount = attempt;
+        shell.classList.remove('is-missing');
+        shell.classList.add('is-loading');
+        if (imageError) imageError.hidden = true;
+        window.clearTimeout(featuredImageRetryTimer);
+        featuredImageRetryTimer = window.setTimeout(() => {
+          if (image.dataset.writerCanonicalSource !== canonical || localImageUrl) return;
+          image.src = writerPreviewAssetUrl(canonical, attempt);
+        }, delay);
+        return;
+      }
+      shell.classList.remove('is-loading');
+      shell.classList.add('is-missing');
+      if (imageError) imageError.hidden = false;
+    };
+
+    image.src = writerPreviewAssetUrl(canonical, featuredImageRetryCount);
   }
 
   function hydratePreviewImages() {
@@ -739,23 +804,28 @@
 
     const shell = app.querySelector('[data-preview-image-shell]');
     const image = app.querySelector('[data-preview-image]');
-    const imageSrc = localImageUrl || normalizeImagePath(fields.imagePath.value);
+    const savedImageSrc = normalizeImagePath(fields.imagePath.value);
+    const imageSrc = localImageUrl || savedImageSrc;
     shell.hidden = !imageSrc;
     if (imageSrc) {
-      shell.classList.remove('is-missing');
       const imageError = shell.querySelector('[data-preview-image-error]');
-      if (imageError) imageError.hidden = true;
-      image.onload = () => {
-        shell.classList.remove('is-missing');
-        if (imageError) imageError.hidden = true;
-      };
-      image.onerror = () => {
-        shell.classList.add('is-missing');
-        if (imageError) imageError.hidden = false;
-      };
-      image.src = localImageUrl || writerPreviewAssetUrl(imageSrc);
       image.alt = fields.imageAlt.value.trim() || title;
       image.style.objectPosition = fields.imagePosition.value || 'center center';
+
+      if (localImageUrl) {
+        clearFeaturedImageRetry();
+        shell.classList.remove('is-loading', 'is-missing');
+        if (imageError) imageError.hidden = true;
+        image.dataset.writerCanonicalSource = '';
+        if (image.src !== localImageUrl) image.src = localImageUrl;
+      } else if (image.dataset.writerCanonicalSource !== savedImageSrc) {
+        loadFeaturedImagePreview(image, shell, imageError, savedImageSrc);
+      }
+    } else {
+      clearFeaturedImageRetry();
+      image.dataset.writerCanonicalSource = '';
+      image.removeAttribute('src');
+      shell.classList.remove('is-loading', 'is-missing');
     }
 
     app.querySelector('[data-preview-spoiler]').hidden = !fields.spoilerWarning.checked;
@@ -1195,6 +1265,7 @@ function scheduleAutosave() {
 
   async function loadArticle(path, { force = false } = {}) {
     if (!force && dirty && !window.confirm('Open another article and leave the current unsaved changes?')) return;
+    clearLocalFeaturedPreview();
     setSaveState('Loading…');
     try {
       const data = await githubFetch(`/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}?ref=main`);
@@ -1214,6 +1285,7 @@ function scheduleAutosave() {
 
   async function duplicateArticle(path) {
     if (dirty && !window.confirm('Duplicate another article and leave the current unsaved changes?')) return;
+    clearLocalFeaturedPreview();
     try {
       const data = await githubFetch(`/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}?ref=main`);
       const state = stateFromFile(decodeBase64(data.content), path, data.sha);
@@ -1734,8 +1806,9 @@ function insertBlock(text) {
       const preferred = fields.imagePath.value.trim().split('/').pop() || selectedImageFile.name;
       const path = await uploadAsset(selectedImageFile, preferred);
       fields.imagePath.value = path;
-      if (localImageUrl) URL.revokeObjectURL(localImageUrl);
-      localImageUrl = '';
+      // Keep the local blob alive for this editing session. GitHub's raw/CDN
+      // endpoint can lag the successful commit briefly; swapping immediately
+      // makes a good upload look broken.
       selectedImageFile = null;
       imageFileInput.value = '';
       showToast('Featured image uploaded and verified in GitHub.');
