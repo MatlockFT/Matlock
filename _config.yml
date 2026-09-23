@@ -17,7 +17,7 @@ email: "fighttalkmma@protonmail.com"
 logo: "/assets/logo-header-final.png"
 
 author:
-  name: "MMA Matlock"
+  name: "Matlock"
   url: "https://mmamatlock.com/about/"
   twitter: "MMAMatlock"
 
@@ -114,6 +114,7 @@ defaults:
       ads: true
       page_scripts:
         - /assets/post-event-context.js
+      author: "Matlock"
       seo:
         type: "BlogPosting"
 
