@@ -55,6 +55,10 @@ Speaking of interesting history, it is only fair that I mention the UFC OG who h
 
 [EMBED X](https://x.com/MMAMATLOCK/status/2102869996133294391)
 
+<figure class="article-inline-image article-inline-image--break article-inline-image--center article-inline-image--full">
+  <img src="/assets/uploads/ban-oblique-kicks-pasted-20260923-185638-915.png" alt="ban oblique kicks" loading="lazy">
+</figure>
+
 Now, in 2026, the issue has returned to California's athletic regulators. Following UFC 331, California State Athletic Commission Executive Officer Andy Foster called for discussion of making lateral knee kicks a foul. The renewed attention followed Brunno Ferreira's use of knee-directed kicks against Edmen Shahbazyan, who complained to the referee during their September 19 fight. The strikes were legal. Shahbazyan won by unanimous decision. [Sherdog's report](https://www.sherdog.com/news/news/Controversial-MMA-technique-could-be-banned-following-UFC-331-202885/amp), [UFC's result](https://www.ufc.com/video/160166).
 
 Absolutely disgraceful. Is there no honor amongst fighters?
