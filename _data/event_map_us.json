@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_major_generated_at": "2026-09-23T06:38:12.762Z",
+  "source_major_generated_at": "2026-09-23T12:10:18.256Z",
   "source_regional_updated_at": null,
   "major_total": 11,
   "major_mapped": 1,
@@ -32,7 +32,7 @@
     },
     {
       "id": "ufc-332-2026-10-03-fight-card",
-      "title": "Silva vs Cong",
+      "title": "Figueiredo vs Talbott",
       "date": "2026-10-03",
       "promotion": "UFC 332",
       "venue": "Venue TBA",
@@ -120,146 +120,6 @@
     }
   ],
   "events": [
-    {
-      "id": "dwcs-season-10-week-7-2026-09-22",
-      "promotion_key": "dwcs",
-      "promotion": "DWCS",
-      "title": "Season 10 · Week 7",
-      "date": "2026-09-22",
-      "date_label": "Tuesday · September 22, 2026",
-      "venue": "Meta APEX · Las Vegas, Nevada",
-      "broadcast": "Paramount+",
-      "official_url": "https://www.ufc.com/dwcs#season-10-week-7",
-      "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-7-112633",
-      "updated_label": "September 23, 2026",
-      "sections": [
-        {
-          "kind": "main",
-          "title": "Fight Card",
-          "time": "8:00 PM ET",
-          "bouts": [
-            {
-              "order": 1,
-              "label": "Main Event",
-              "weight_class": "Middleweight",
-              "fighters": [
-                {
-                  "name": "Norbert Novenyi Jr.",
-                  "initials": "NNJ",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/156962260370992148_10158339557089879_7251662004207747072_o.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Theo Haig",
-                  "initials": "TH",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1678495358Theo_Haig.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Welterweight",
-              "fighters": [
-                {
-                  "name": "Alvi Dasuyev",
-                  "initials": "AD",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1780666489alvidasuyev.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Jaden Ortega",
-                  "initials": "JO",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1715536267IMG_4501.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 3,
-              "label": "",
-              "weight_class": "Flyweight",
-              "fighters": [
-                {
-                  "name": "Marcos Degli",
-                  "initials": "MD",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1769652881marcosdegli.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Paris Moran",
-                  "initials": "PM",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/20250817081609_Paris_Moran.JPG",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 4,
-              "label": "",
-              "weight_class": "Lightweight",
-              "fighters": [
-                {
-                  "name": "Piero Guaylupo",
-                  "initials": "PG",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1779966455IMG_3420.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Callum Connor",
-                  "initials": "CC",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1729264512connor.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
-              "weight_class": "Light Heavyweight",
-              "fighters": [
-                {
-                  "name": "Damian Piwowarczyk",
-                  "initials": "DP",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1737734366piwowarczyk.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Emilio Quissua",
-                  "initials": "EQ",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1769005984cs.1764587379672.png",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            }
-          ]
-        }
-      ],
-      "city": "Las Vegas",
-      "state": "NV",
-      "state_code": "NV",
-      "country": "US",
-      "location": "Las Vegas, NV",
-      "latitude": 36.1699,
-      "longitude": -115.1398,
-      "location_source": "venue-text",
-      "location_precision": "city",
-      "map_location_source": "venue-text",
-      "map_location_precision": "city",
-      "map_location_confidence": "city",
-      "map_dataset": "major"
-    },
     {
       "id": "tuff_n_uff-tuff-n-uff-157-jackson-vs-2026-09-25",
       "promotion": "Tuff-N-Uff",
@@ -953,6 +813,146 @@
       "map_location_precision": "city",
       "map_location_confidence": "city",
       "map_dataset": "regional"
+    },
+    {
+      "id": "dwcs-season-10-week-8-2026-09-29",
+      "promotion_key": "dwcs",
+      "promotion": "DWCS",
+      "title": "Season 10 · Week 8",
+      "date": "2026-09-29",
+      "date_label": "Tuesday · September 29, 2026",
+      "venue": "Meta APEX · Las Vegas, Nevada",
+      "broadcast": "Paramount+",
+      "official_url": "https://www.ufc.com/dwcs#season-10-week-8",
+      "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-8-112634",
+      "updated_label": "September 23, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Fight Card",
+          "time": "8:00 PM ET",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Strawweight",
+              "fighters": [
+                {
+                  "name": "Camila Reynoso",
+                  "initials": "CR",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1730210572reynoso.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Aieza Ramos Bertolso",
+                  "initials": "ARB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1768269758IMG_2302.jpeg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Lightweight",
+              "fighters": [
+                {
+                  "name": "George Staines",
+                  "initials": "GS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1721599386staines.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Loai Abushaar",
+                  "initials": "LA",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1767728957loaiabushaar.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Featherweight",
+              "fighters": [
+                {
+                  "name": "Luca Borando",
+                  "initials": "LB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1709567492luca-borando-1280x720.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Ian Escuza",
+                  "initials": "IE",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1782490998ianescuza.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Featherweight",
+              "fighters": [
+                {
+                  "name": "Ilias Bulaid",
+                  "initials": "IB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/156960664770718460_10158339556514879_1777937519321546752_o.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Erick Visconde",
+                  "initials": "EV",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732766598visconde.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Heavyweight",
+              "fighters": [
+                {
+                  "name": "Zaurbek Sabanov",
+                  "initials": "ZS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1717954841FpL_RstXEAMCzSH.jpeg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Adama Diop",
+                  "initials": "AD",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1772148782Diop-ceinture.png",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "city": "Las Vegas",
+      "state": "NV",
+      "state_code": "NV",
+      "country": "US",
+      "location": "Las Vegas, NV",
+      "latitude": 36.1699,
+      "longitude": -115.1398,
+      "location_source": "venue-text",
+      "location_precision": "city",
+      "map_location_source": "venue-text",
+      "map_location_precision": "city",
+      "map_location_confidence": "city",
+      "map_dataset": "major"
     },
     {
       "id": "nitro-dynasty-combat-sports-halloween-havoc-2026-10-02-2026-10-02",

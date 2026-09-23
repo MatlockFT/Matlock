@@ -22,6 +22,23 @@
       "confirmed_local_bouts": 9
     },
     {
+      "event_id": "dwcs-season-10-week-8-2026-09-29",
+      "promotion": "dwcs",
+      "date": "2026-09-29",
+      "title": "Season 10 · Week 8",
+      "status": "matched",
+      "verdict_event_id": "1933",
+      "verdict_url": "https://verdictmma.com/event/1933",
+      "verdict_date": "2026-09-29",
+      "local_fight_count": 5,
+      "verdict_fight_count": null,
+      "local_main_count": 5,
+      "verdict_main_count": null,
+      "local_prelim_count": 0,
+      "verdict_prelim_count": null,
+      "confirmed_local_bouts": 1
+    },
+    {
       "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
       "promotion": "rizin",
       "date": "2026-10-03",
@@ -42,18 +59,18 @@
       "event_id": "ufc-332-2026-10-03-fight-card",
       "promotion": "ufc",
       "date": "2026-10-03",
-      "title": "Silva vs Cong",
+      "title": "Figueiredo vs Talbott",
       "status": "matched",
       "verdict_event_id": "1952",
       "verdict_url": "https://verdictmma.com/event/1952",
       "verdict_date": "2026-10-03",
-      "local_fight_count": 13,
+      "local_fight_count": 12,
       "verdict_fight_count": 12,
-      "local_main_count": 5,
+      "local_main_count": 4,
       "verdict_main_count": 5,
       "local_prelim_count": 8,
       "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 11
+      "confirmed_local_bouts": 10
     },
     {
       "event_id": "ufc-fight-night-2026-10-10-fight-card",
@@ -176,6 +193,46 @@
     }
   ],
   "discrepancies": [
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "dwcs-season-10-week-8-2026-09-29",
+      "verdict_event_id": "1933",
+      "order": 1,
+      "fighters": [
+        "Camila Reynoso",
+        "Aieza Ramos Bertolso"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "dwcs-season-10-week-8-2026-09-29",
+      "verdict_event_id": "1933",
+      "order": 3,
+      "fighters": [
+        "Luca Borando",
+        "Ian Escuza"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "dwcs-season-10-week-8-2026-09-29",
+      "verdict_event_id": "1933",
+      "order": 4,
+      "fighters": [
+        "Ilias Bulaid",
+        "Erick Visconde"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "dwcs-season-10-week-8-2026-09-29",
+      "verdict_event_id": "1933",
+      "order": 5,
+      "fighters": [
+        "Zaurbek Sabanov",
+        "Adama Diop"
+      ]
+    },
     {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
@@ -307,17 +364,10 @@
       ]
     },
     {
-      "type": "bout_count_mismatch",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "verdict_event_id": "1952",
-      "local_fight_count": 13,
-      "verdict_fight_count": 12
-    },
-    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-332-2026-10-03-fight-card",
       "verdict_event_id": "1952",
-      "order": 8,
+      "order": 7,
       "fighters": [
         "Marcus McGhee",
         "Benardo Sopaj"
@@ -327,7 +377,7 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-332-2026-10-03-fight-card",
       "verdict_event_id": "1952",
-      "order": 9,
+      "order": 8,
       "fighters": [
         "Anthony Wint",
         "Lucas Armand"
@@ -337,7 +387,7 @@
       "type": "section_count_mismatch",
       "event_id": "ufc-332-2026-10-03-fight-card",
       "verdict_event_id": "1952",
-      "local_main_count": 5,
+      "local_main_count": 4,
       "verdict_main_count": 5,
       "local_prelim_count": 8,
       "verdict_prelim_count": 7
