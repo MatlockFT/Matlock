@@ -16,7 +16,8 @@
     header.querySelector('.site-live-strip-reserve')?.remove();
 
     const syncRailHeight = () => {
-      const height = Math.ceil(shell.getBoundingClientRect().height);
+      // Keep the deferred ticker row reserved until it mounts.
+      const height = Math.max(80, Math.ceil(shell.getBoundingClientRect().height));
       document.documentElement.style.setProperty('--v3-fixed-rail-height', `${height}px`);
     };
 
