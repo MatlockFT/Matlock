@@ -1,4 +1,4 @@
-import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import { access, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { extname, join, resolve } from 'node:path';
 import sharp from 'sharp';
 
@@ -89,6 +89,12 @@ const manifestEntries = [];
 
 for (const imagePath of [...imagePaths].sort()) {
     const sourcePath = join(root, imagePath.replace(/^\//, ''));
+    try {
+        await access(sourcePath);
+    } catch {
+        console.warn(`Skipping missing featured image: ${imagePath}`);
+        continue;
+    }
     const metadata = await sharp(sourcePath).metadata();
 
     if (!metadata.width || !metadata.height) {
