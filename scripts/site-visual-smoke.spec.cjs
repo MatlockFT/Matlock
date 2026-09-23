@@ -241,8 +241,8 @@ test.describe('Live V3 site rollout', () => {
     expect(articleGeometry.bodyWidth).toBeGreaterThanOrEqual(730);
     expect(articleGeometry.bodyWidth).toBeLessThanOrEqual(765);
     expect(articleGeometry.railLeft - articleGeometry.bodyRight).toBeGreaterThanOrEqual(24);
-    const articleAccentColor = await page.locator('.post-header h1').evaluate(node => getComputedStyle(node).color);
-    expect(articleAccentColor).toBe('rgb(196, 95, 0)');
+    const articleHeadingColor = await page.locator('.post-header h1').evaluate(node => getComputedStyle(node).color);
+    expect(articleHeadingColor).toBe('rgb(17, 17, 17)');
     await page.waitForFunction(() => {
       const list = document.querySelector('[data-post-news-list]');
       return list?.getAttribute('aria-busy') === 'false';
@@ -326,14 +326,22 @@ test.describe('Homepage V3 editorial shell', () => {
     expect(geometry.wordmarkFont).toContain('Edition Matlock');
     const seasonalAccent = await page.evaluate(() => {
       const heading = document.querySelector('.v3-section-head h2');
+      const trendingLabel = document.querySelector('.v3-trending > strong');
       const wordmark = document.querySelector('.v3-wordmark');
+      const pumpkinStyle = wordmark ? getComputedStyle(wordmark, '::after') : null;
       return {
         headingColor: heading ? getComputedStyle(heading).color : null,
-        pumpkin: wordmark ? getComputedStyle(wordmark, '::after').content : null
+        trendingColor: trendingLabel ? getComputedStyle(trendingLabel).color : null,
+        pumpkin: pumpkinStyle?.content || null,
+        pumpkinBottom: pumpkinStyle?.bottom || null,
+        pumpkinSize: pumpkinStyle ? parseFloat(pumpkinStyle.fontSize) : 0
       };
     });
-    expect(seasonalAccent.headingColor).toBe('rgb(196, 95, 0)');
+    expect(seasonalAccent.headingColor).toBe('rgb(17, 17, 17)');
+    expect(seasonalAccent.trendingColor).toBe('rgb(196, 95, 0)');
     expect(seasonalAccent.pumpkin).toContain('🎃');
+    expect(seasonalAccent.pumpkinBottom).not.toBe('auto');
+    expect(seasonalAccent.pumpkinSize).toBeGreaterThanOrEqual(18);
     expect(geometry.leadFont).toContain('Herkey');
     expect(geometry.sectionFont).toContain('Herkey');
     expect(geometry.historyFont).toContain('Herkey');
