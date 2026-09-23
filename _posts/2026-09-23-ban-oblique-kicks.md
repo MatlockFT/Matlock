@@ -5,7 +5,10 @@ description: ""
 date: 2026-09-23
 category: Breakdown
 author: Matlock
-image: ""
+image:
+  path: /assets/uploads/obkick.png
+  alt: "Tim Elliott , Steve Erceg,  Ed Mulholland"
+  position: center center
 tags:
   - "[]"
 show_toc: false
@@ -15,15 +18,12 @@ spoiler_warning: false
 published: false
 ---
 
-**The central angle is how a useful distance-control technique became a recurring fighter-safety dispute.** One correction to the news framing: as of September 23, 2026, I could verify Andy Foster’s call to discuss a ban, but not a scheduled vote or an adopted prohibition. CSAC’s September 21 agenda did not list an oblique-kick ban. We should describe this as renewed consideration of a rule change. [Current reporting](https://www.sherdog.com/news/news/Controversial-MMA-technique-could-be-banned-following-UFC-331-202885/amp), [CSAC agenda](https://dca.ca.gov/csac/meetings/agendas/20260921_agenda.pdf).
+Finally! The MMA Gods have listened to the collective prayers of casual and hardcore fans alike as they have anointed the great [Andy Foster](https://www.tapology.com/fightcenter/fighters/4052-andy-foster) to look into a technique that has shelved and ended the careers of many an MMA fighter. The powerful and deadly technique goes by many names but I, as a die-hard Joe Rogan loyalist, call it the OBLIQUE KICK. 
 
-Here’s a sourced first draft.
+This controversial kick has been used by many but most notably by Anderson Silva, Jon Jones, and Khalil Rountree. It's no wonder in some circles its called the illegal kick because its impossible to block or counter. In fact, unlike a submission, you cannot even tap to it. Its truly amazing we've made it to 2026 without it being banned yet. 
 
----
-
-**The Oblique Kick: The History Behind MMA’s Recurring Rules Debate**
-
-An oblique kick can look almost insignificant beside a spinning elbow or a head kick. The fighter lifts a foot and drives it into an opponent’s lead leg. Sometimes it interrupts a step. Sometimes it changes the fight.
+If you haven't felt a shiver up your spine at merely reading the words OBLIQUE KICK then that means you are unfamiliar with the devastating move. Worry not, for there is a video explaining it in perfect detail by the one who arguably made it most famous and used it most effectively. The one, the only Jonny Bones Jones.
+<iframe src="https://www.youtube.com/embed/6Lpf1vwr658" title="YouTube video" allowfullscreen></iframe>
 
 At UFC Vegas 36 on September 4, 2021, Khalil Rountree Jr. caught Modestas Bukauskas advancing with a jab and delivered a straight kick into his lead leg. Bukauskas collapsed, and referee Herb Dean stopped the fight at 2:30 of the second round. The finish became one of the clearest examples of the damage a knee-directed kick could cause—and a focal point for demands to outlaw it. [Contemporary fight report](https://www.mmafighting.com/2021/9/4/22657496/ufc-vegas-36-video-khalil-rountree-jr-destroys-modestas-bukauskas-knee-with-devastating-oblique-kick).
 
