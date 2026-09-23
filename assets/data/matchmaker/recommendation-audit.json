@@ -1,39 +1,39 @@
 {
-  "generatedAt": "2026-09-21T13:12:58.698Z",
+  "generatedAt": "2026-09-23T00:47:51.555Z",
   "engineVersion": 2,
   "subjects": 206,
-  "publishedRecommendations": 578,
+  "publishedRecommendations": 569,
   "recommendationSlots": {
-    "0": 12,
+    "0": 15,
     "1": 1,
     "2": 2,
-    "3": 191
+    "3": 188
   },
   "caseCounts": {
-    "rebound-pairing": 238,
-    "rising-vs-rising": 169,
-    "step-up-vs-rebound": 66,
-    "ranking-opportunity": 45,
-    "rankings-progression": 32,
-    "divisional-sorting": 13,
-    "title-case": 8,
-    "title-eliminator": 6,
-    "prospect-test": 1
+    "rebound-pairing": 241,
+    "rising-vs-rising": 165,
+    "step-up-vs-rebound": 62,
+    "ranking-opportunity": 42,
+    "rankings-progression": 30,
+    "divisional-sorting": 15,
+    "title-case": 7,
+    "title-eliminator": 5,
+    "prospect-test": 2
   },
   "confidenceCounts": {
-    "high": 537,
-    "medium": 25,
-    "low": 16
+    "high": 526,
+    "medium": 26,
+    "low": 17
   },
   "averageRecentOpponentLinkCoverage": 0.9076,
   "sameCardRecommendations": 30,
-  "sameCardRecommendationRatio": 0.0519,
-  "asymmetricTopThreeRecommendations": 197,
-  "asymmetricTopThreeRatio": 0.3408,
-  "publicPublishedRecommendations": 562,
-  "publicAsymmetricTopThreeRecommendations": 155,
-  "publicAsymmetricTopThreeRatio": 0.2758,
-  "engineGenericDivisionalSortingRecommendations": 13,
+  "sameCardRecommendationRatio": 0.0527,
+  "asymmetricTopThreeRecommendations": 186,
+  "asymmetricTopThreeRatio": 0.3269,
+  "publicPublishedRecommendations": 550,
+  "publicAsymmetricTopThreeRecommendations": 146,
+  "publicAsymmetricTopThreeRatio": 0.2655,
+  "engineGenericDivisionalSortingRecommendations": 15,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
@@ -41,7 +41,7 @@
     "title": "Crypto.com UFC 331: Van vs Pantoja 2",
     "date": "2026-09-19",
     "subjects": 24,
-    "publicRecommendations": 66,
+    "publicRecommendations": 67,
     "noClearMatchupSubjects": 0
   },
   "eventPublicSummary": [
@@ -50,7 +50,7 @@
       "title": "Crypto.com UFC 331: Van vs Pantoja 2",
       "date": "2026-09-19",
       "subjects": 24,
-      "publicRecommendations": 66,
+      "publicRecommendations": 67,
       "noClearMatchupSubjects": 0
     },
     {
@@ -58,7 +58,7 @@
       "title": "Noche UFC: Silva vs Delgado",
       "date": "2026-09-12",
       "subjects": 26,
-      "publicRecommendations": 73,
+      "publicRecommendations": 71,
       "noClearMatchupSubjects": 1
     },
     {
@@ -66,7 +66,7 @@
       "title": "UFC Fight Night: Hooker vs Parnasse",
       "date": "2026-09-05",
       "subjects": 28,
-      "publicRecommendations": 77,
+      "publicRecommendations": 75,
       "noClearMatchupSubjects": 1
     },
     {
@@ -74,8 +74,8 @@
       "title": "UFC Fight Night: Nurmagomedov vs Song",
       "date": "2026-08-29",
       "subjects": 26,
-      "publicRecommendations": 73,
-      "noClearMatchupSubjects": 1
+      "publicRecommendations": 70,
+      "noClearMatchupSubjects": 2
     },
     {
       "id": "ufc-fight-night-august-22-2026",
@@ -90,8 +90,8 @@
       "title": "UFC 330: Makhachev vs Machado Garry",
       "date": "2026-08-15",
       "subjects": 24,
-      "publicRecommendations": 63,
-      "noClearMatchupSubjects": 2
+      "publicRecommendations": 60,
+      "noClearMatchupSubjects": 3
     },
     {
       "id": "ufc-fight-night-august-08-2026",
@@ -106,8 +106,8 @@
       "title": "UFC Fight Night: Medic vs Rodriguez",
       "date": "2026-08-01",
       "subjects": 28,
-      "publicRecommendations": 76,
-      "noClearMatchupSubjects": 2
+      "publicRecommendations": 73,
+      "noClearMatchupSubjects": 3
     }
   ],
   "genericExamples": [
@@ -136,8 +136,15 @@
       "event": "Noche UFC: Silva vs Delgado",
       "fighter": "Curtis Blaydes",
       "opponent": "Serghei Spivac",
-      "score": 66,
+      "score": 67,
       "rationale": "Curtis Blaydes and Serghei Spivac occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "Noche UFC: Silva vs Delgado",
+      "fighter": "Curtis Blaydes",
+      "opponent": "Jon Jones",
+      "score": 54,
+      "rationale": "Curtis Blaydes and Jon Jones occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Hooker vs Parnasse",
@@ -152,6 +159,13 @@
       "opponent": "Lance Gibson Jr.",
       "score": 48,
       "rationale": "Salahdine Parnasse and Lance Gibson Jr. occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
+    },
+    {
+      "event": "UFC Fight Night: Hooker vs Parnasse",
+      "fighter": "Nora Cornolle",
+      "opponent": "Luana Santos",
+      "score": 63,
+      "rationale": "Nora Cornolle and Luana Santos occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
       "event": "UFC Fight Night: Hooker vs Parnasse",
@@ -178,7 +192,7 @@
       "event": "UFC Fight Night: Nurmagomedov vs Song",
       "fighter": "Kevin Borjas",
       "opponent": "Alibi Idiris",
-      "score": 92,
+      "score": 93,
       "rationale": "Kevin Borjas and Alibi Idiris occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
@@ -258,25 +272,25 @@
     {
       "event": "Crypto.com UFC 331: Van vs Pantoja 2",
       "fighter": "Mauricio Ruffy",
-      "opponent": "Max Holloway",
-      "pairScore": 72,
-      "case": "step-up-vs-rebound",
+      "opponent": "Rongzhu",
+      "pairScore": 79,
+      "case": "ranking-opportunity",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Paddy Pimblett",
-          "score": 86,
-          "case": "title-eliminator"
+          "opponent": "Jalin Turner",
+          "score": 88,
+          "case": "rising-vs-rising"
         },
         {
-          "opponent": "Arman Tsarukyan",
-          "score": 81,
-          "case": "title-eliminator"
+          "opponent": "Mateusz Gamrot",
+          "score": 85,
+          "case": "ranking-opportunity"
         },
         {
-          "opponent": "Benoit Saint Denis",
-          "score": 81,
-          "case": "step-up-vs-rebound"
+          "opponent": "Francis Marshall",
+          "score": 82,
+          "case": "rising-vs-rising"
         }
       ]
     },
@@ -308,25 +322,25 @@
     {
       "event": "Crypto.com UFC 331: Van vs Pantoja 2",
       "fighter": "Patricio Freire",
-      "opponent": "Kaan Ofli",
-      "pairScore": 88,
-      "case": "rankings-progression",
+      "opponent": "David Onama",
+      "pairScore": 90,
+      "case": "step-up-vs-rebound",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "David Onama",
-          "score": 94,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Melquizael Costa",
-          "score": 93,
-          "case": "ranking-opportunity"
-        },
-        {
           "opponent": "Christian Rodriguez",
-          "score": 92,
-          "case": "rising-vs-rising"
+          "score": 98,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Bogdan Grad",
+          "score": 96,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Sean Woodson",
+          "score": 96,
+          "case": "ranking-opportunity"
         }
       ]
     },
@@ -450,7 +464,7 @@
         },
         {
           "opponent": "Aiemann Zahabi",
-          "score": 79,
+          "score": 80,
           "case": "rebound-pairing"
         }
       ]
@@ -469,13 +483,13 @@
           "case": "rankings-progression"
         },
         {
-          "opponent": "Adrian Yanez",
-          "score": 85,
+          "opponent": "Victor Henry",
+          "score": 80,
           "case": "rankings-progression"
         },
         {
-          "opponent": "Victor Henry",
-          "score": 80,
+          "opponent": "Davey Grant",
+          "score": 77,
           "case": "rankings-progression"
         }
       ]
@@ -594,8 +608,8 @@
           "case": "ranking-opportunity"
         },
         {
-          "opponent": "Joanderson Brito",
-          "score": 97,
+          "opponent": "Bogdan Grad",
+          "score": 96,
           "case": "ranking-opportunity"
         },
         {
@@ -614,17 +628,17 @@
       "fighterRank": "Best match",
       "opponentTopThree": [
         {
+          "opponent": "Roberto Romero",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
           "opponent": "Austin Bashi",
           "score": 94,
           "case": "rebound-pairing"
         },
         {
           "opponent": "Damien Anderson",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Otari Tanzilovi",
           "score": 94,
           "case": "rebound-pairing"
         }
@@ -677,31 +691,6 @@
           "opponent": "Zhu Kangjie",
           "score": 95,
           "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Ryan Gandra",
-      "opponent": "Jackson McVey",
-      "pairScore": 93,
-      "case": "rising-vs-rising",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Robert Valentin Frey",
-          "score": 95,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Baisangur Susurkaev",
-          "score": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Yousri Belgaroui",
-          "score": 94,
-          "case": "rising-vs-rising"
         }
       ]
     },
@@ -784,7 +773,7 @@
       "event": "Crypto.com UFC 331: Van vs Pantoja 2",
       "fighter": "Giga Chikadze",
       "opponent": "Muhammad Naimov",
-      "pairScore": 86,
+      "pairScore": 87,
       "case": "rebound-pairing",
       "fighterRank": "Another option",
       "opponentTopThree": [
@@ -802,6 +791,31 @@
           "opponent": "Dooho Choi",
           "score": 92,
           "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Joanderson Brito",
+      "opponent": "Mairon Santos Alves",
+      "pairScore": 88,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Melquizael Costa",
+          "score": 97,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Youssef Zalal",
+          "score": 90,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Steve Garcia",
+          "score": 89,
+          "case": "ranking-opportunity"
         }
       ]
     },
