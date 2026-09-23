@@ -3,11 +3,11 @@ layout: default
 title: "MMA Event Map: Upcoming MMA Events Near You"
 description: "Explore upcoming MMA events across the United States plus official Grand Sumo tournaments in Japan, with event dates, venues, promotions, and source links."
 permalink: /event-map/
+v3_text_masthead: true
 page_styles:
-  - /assets/event-map.css
-  - /assets/event-map-detail.css
-  - /assets/event-map-sumo.css
+  - /assets/editorial-v3-shell.css
 page_scripts:
+  - /assets/editorial-v3-shell.js
   - /assets/event-map-v2.js
   - /assets/event-map-deferred.js
   - /assets/event-map-sumo.js
@@ -23,14 +23,19 @@ page_scripts:
     })();
 </script>
 
+<link rel="stylesheet" href="{{ '/assets/event-map-v3.css' | relative_url }}?v={{ site.asset_version }}" data-event-map-v3-final-style>
+
 <section
-    class="event-map-page"
+    class="event-map-page event-map-page-v3"
+    data-globe-home
+    data-editorial-v3
     data-event-map
     data-events-url="{{ '/assets/data/event-map-live.json' | relative_url }}?v={{ site.asset_version }}"
 >
     <header class="event-map-hero event-map-hero--compact">
         <div>
-            <h1>MMA EVENT MAP</h1>
+            <p class="event-map-v3-eyebrow">Upcoming MMA</p>
+            <h1>Event Map</h1>
         </div>
     </header>
 
@@ -127,7 +132,7 @@ page_scripts:
         aria-labelledby="event-map-sumo-title"
     >
         <header class="event-map-sumo-header">
-            <h2 id="event-map-sumo-title">GRAND SUMO / JAPAN</h2>
+            <h2 id="event-map-sumo-title">Grand Sumo / Japan</h2>
             <p>Official honbasho schedule · Japan Sumo Association</p>
         </header>
 

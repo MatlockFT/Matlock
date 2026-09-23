@@ -3,14 +3,20 @@ layout: default
 title: "Contact MMA Matlock"
 description: "Email MMA Matlock or connect through social media."
 permalink: /contact/
+v3_text_masthead: true
 page_styles:
-  - /assets/contact-socials.css
+  - /assets/editorial-v3-shell.css
+page_scripts:
+  - /assets/editorial-v3-shell.js
 ---
 
-<article class="contact-page">
+<link rel="stylesheet" href="{{ '/assets/contact-v3.css' | relative_url }}?v={{ site.asset_version }}" data-contact-v3-final-style>
+
+<article class="contact-page contact-page-v3" data-globe-home data-editorial-v3>
     <header class="contact-hero contact-hero-simple">
         <div class="contact-hero-main">
-            <h1>Contact MMA Matlock</h1>
+            <p class="contact-v3-eyebrow">MMA Matlock</p>
+            <h1>Contact</h1>
 
             <div class="contact-actions">
                 <a
@@ -32,7 +38,7 @@ page_styles:
         aria-labelledby="contact-socials-title"
     >
         <header class="contact-section-header">
-            <h2 id="contact-socials-title">Socials</h2>
+            <h2 id="contact-socials-title">Find MMA Matlock</h2>
         </header>
 
         <div class="platform-grid">

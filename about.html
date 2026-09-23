@@ -3,11 +3,19 @@ layout: default
 title: "About MMA Matlock"
 description: "About MMA Matlock, an independent MMA site and channel focused on original fight breakdowns, predictions, commentary, and archival fight content."
 permalink: /about/
+v3_text_masthead: true
+page_styles:
+  - /assets/editorial-v3-shell.css
+page_scripts:
+  - /assets/editorial-v3-shell.js
 ---
 
-<article class="simple-about-page">
+<link rel="stylesheet" href="{{ '/assets/about-v3.css' | relative_url }}?v={{ site.asset_version }}" data-about-v3-final-style>
+
+<article class="simple-about-page simple-about-page-v3" data-globe-home data-editorial-v3>
     <header class="simple-about-hero">
-        <h1>About MMA Matlock</h1>
+        <p class="simple-about-eyebrow">About</p>
+        <h1>MMA Matlock</h1>
 
         <p class="simple-about-intro">
             MMA Matlock is an independent MMA site and channel focused on

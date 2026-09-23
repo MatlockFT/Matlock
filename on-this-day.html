@@ -3,10 +3,12 @@ layout: default
 title: "On This Day in MMA History"
 description: "MMA history by date: memorable fights, title changes, signings, debuts, deaths, incidents, and other moments from across the sport."
 permalink: /on-this-day/
+v3_text_masthead: true
 page_styles:
-  - /assets/on-this-day.bundle.css
-  - /assets/otd-event-poster-fallback.css
+  - /assets/editorial-v3-shell.css
+  - /assets/otd-share.css
 page_scripts:
+  - /assets/editorial-v3-shell.js
   - /assets/otd-share-bootstrap.js
   - /assets/on-this-day-stable.js
   - /assets/otd-overhaul.js
@@ -58,123 +60,119 @@ page_scripts:
     })();
 </script>
 
+<link rel="stylesheet" href="{{ '/assets/on-this-day-v3.css' | relative_url }}?v={{ site.asset_version }}" data-otd-v3-final-style>
+
 <article
-    class="otd-page"
+    class="otd-page otd-page-v3"
+    data-globe-home
+    data-editorial-v3
     data-on-this-day
     data-mode="full"
     data-history-index-url="{{ '/assets/data/on-this-day-runtime/index.json' | relative_url }}?v={{ otd_data_version }}"
     data-history-fallback-url="{{ '/assets/data/on-this-day.json' | relative_url }}?v={{ otd_data_version }}"
 >
-    <header class="otd-page-header">
-        <h1>On This Day in MMA</h1>
-        <div class="otd-page-date-row">
-            <time
-                class="otd-page-date"
-                data-otd-date
-                title="Click to choose a date"
-                datetime="{{ site.time | date: '%Y-%m-%d' }}"
-            >{{ site.time | date: "%B %-d" }}</time>
-            <script>
-                (() => {
-                    const node = document.currentScript.previousElementSibling;
-                    const match = /^(\d{2})-(\d{2})$/.exec(window.__otdInitialDateKey || "");
-                    if (!node || !match) return;
-                    const year = new Date().getFullYear();
-                    const date = new Date(year, Number(match[1]) - 1, Number(match[2]));
-                    node.textContent = new Intl.DateTimeFormat([], { month: "long", day: "numeric" }).format(date);
-                    node.setAttribute("datetime", `${year}-${window.__otdInitialDateKey}`);
-                })();
-            </script>
-
-            <div class="otd-page-side">
-                <p class="otd-page-count" data-otd-count></p>
-                <div class="otd-page-actions" aria-label="On This Day utilities">
-                    <button
-                        class="otd-mini-button"
-                        type="button"
-                        data-otd-share
-                    >
-                        Share
-                    </button>
-                    <button
-                        class="otd-mini-button"
-                        type="button"
-                        data-otd-random
-                    >
-                        Random day
-                    </button>
-                </div>
+    <header class="otd-v3-header">
+        <div class="otd-v3-heading-row">
+            <div class="otd-v3-title-block">
+                <p class="otd-v3-eyebrow">MMA History Archive</p>
+                <h1>On This Day</h1>
             </div>
+
+            <div class="otd-v3-date-block">
+                <time
+                    class="otd-page-date"
+                    data-otd-date
+                    title="Click to choose a date"
+                    datetime="{{ site.time | date: '%Y-%m-%d' }}"
+                >{{ site.time | date: "%B %-d" }}</time>
+                <script>
+                    (() => {
+                        const node = document.currentScript.previousElementSibling;
+                        const match = /^(\d{2})-(\d{2})$/.exec(window.__otdInitialDateKey || "");
+                        if (!node || !match) return;
+                        const year = new Date().getFullYear();
+                        const date = new Date(year, Number(match[1]) - 1, Number(match[2]));
+                        node.textContent = new Intl.DateTimeFormat([], { month: "long", day: "numeric" }).format(date);
+                        node.setAttribute("datetime", `${year}-${window.__otdInitialDateKey}`);
+                    })();
+                </script>
+                <p class="otd-page-count" data-otd-count></p>
+            </div>
+        </div>
+
+        <div class="otd-v3-header-actions" aria-label="On This Day utilities">
+            <button class="otd-mini-button" type="button" data-otd-share>Share date</button>
+            <button class="otd-mini-button" type="button" data-otd-random>Random day</button>
         </div>
     </header>
 
-    <div class="otd-nav-dock" data-otd-dock>
-        <nav
-            class="otd-week-strip"
-            data-otd-week
-            aria-label="Browse this week in MMA history"
-        ></nav>
+    <section class="otd-v3-browser" aria-label="Browse MMA history">
+        <div class="otd-nav-dock" data-otd-dock>
+            <nav
+                class="otd-week-strip"
+                data-otd-week
+                aria-label="Browse this week in MMA history"
+            ></nav>
 
-        <div class="otd-controls" aria-label="Browse MMA history by date">
-            <button
-                class="otd-control-button"
-                type="button"
-                data-otd-prev
-                aria-label="Previous day"
-            >
-                ←
-            </button>
+            <div class="otd-v3-tool-row">
+                <div class="otd-controls" aria-label="Browse MMA history by date">
+                    <button
+                        class="otd-control-button"
+                        type="button"
+                        data-otd-prev
+                        aria-label="Previous day"
+                    >←</button>
 
-            <input
-                class="otd-date-input"
-                type="date"
-                data-otd-input
-                aria-label="Choose a date"
-            >
+                    <input
+                        class="otd-date-input"
+                        type="date"
+                        data-otd-input
+                        aria-label="Choose a date"
+                    >
 
-            <button
-                class="otd-control-button"
-                type="button"
-                data-otd-next
-                aria-label="Next day"
-            >
-                →
-            </button>
+                    <button
+                        class="otd-control-button"
+                        type="button"
+                        data-otd-next
+                        aria-label="Next day"
+                    >→</button>
 
-            <button
-                class="otd-control-button"
-                type="button"
-                data-otd-today
-            >
-                Today
-            </button>
-        </div>
+                    <button
+                        class="otd-control-button otd-today-button"
+                        type="button"
+                        data-otd-today
+                    >Today</button>
+                </div>
 
-        <div
-            class="otd-filters"
-            data-otd-filters
-            aria-label="Filter entries by type"
-            hidden
-        ></div>
+                <div class="otd-viewbar" data-otd-viewbar aria-label="History display options">
+                    <div class="otd-view-toggle" data-otd-mode-group hidden aria-label="Entry visibility">
+                        <button class="otd-view-button is-active" type="button" data-otd-mode="all" aria-pressed="true">All</button>
+                        <button class="otd-view-button" type="button" data-otd-mode="notable" aria-pressed="false">Notable</button>
+                    </div>
 
-        <div class="otd-viewbar" data-otd-viewbar aria-label="History display options">
-            <div class="otd-view-toggle" data-otd-mode-group hidden aria-label="Entry visibility">
-                <button class="otd-view-button is-active" type="button" data-otd-mode="all" aria-pressed="true">All</button>
-                <button class="otd-view-button" type="button" data-otd-mode="notable" aria-pressed="false">Notable</button>
+                    <label class="otd-sort-control">
+                        <span>Sort</span>
+                        <select class="otd-sort-select" data-otd-sort aria-label="Sort history entries">
+                            <option value="notable">Notable</option>
+                            <option value="newest">Newest</option>
+                            <option value="oldest">Oldest</option>
+                        </select>
+                    </label>
+
+                    <span class="otd-shortcut-hint" data-otd-shortcut-hint hidden>← → browse · T today</span>
+                </div>
             </div>
 
-            <label class="otd-sort-control">
-                <span>Sort</span>
-                <select class="otd-sort-select" data-otd-sort aria-label="Sort history entries">
-                    <option value="notable">Notable</option>
-                    <option value="newest">Newest</option>
-                    <option value="oldest">Oldest</option>
-                </select>
-            </label>
-
-            <span class="otd-shortcut-hint" data-otd-shortcut-hint hidden>← → browse · T today</span>
+            <div
+                class="otd-filters"
+                data-otd-filters
+                aria-label="Filter entries by type"
+                hidden
+            ></div>
         </div>
-    </div>
+    </section>
 
-    <div class="otd-list" data-otd-list aria-live="polite"></div>
+    <section class="otd-v3-records" aria-label="MMA history entries">
+        <div class="otd-list" data-otd-list aria-live="polite"></div>
+    </section>
 </article>
