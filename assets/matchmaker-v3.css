@@ -25,7 +25,7 @@
   overflow: visible;
   border: 0;
   border-top: 3px solid var(--v3-ink);
-  border-bottom: 1px solid var(--v3-rule);
+  border-bottom: 0;
   background: transparent;
   box-shadow: none;
 }
@@ -72,8 +72,6 @@
   margin: 0 0 .9rem;
   padding: .6rem 0;
   border: 0;
-  border-top: 1px solid var(--v3-rule);
-  border-bottom: 1px solid var(--v3-rule);
   color: var(--v3-muted);
   background: transparent;
   font: 700 .62rem/1.4 var(--v3-sans);
@@ -92,8 +90,6 @@
   margin: 0 0 1.5rem;
   padding: .7rem 0 .75rem;
   border: 0;
-  border-top: 1px solid var(--v3-rule);
-  border-bottom: 1px solid var(--v3-rule);
   color: var(--v3-ink);
   background: transparent;
   box-shadow: none;
@@ -176,17 +172,16 @@
 .mm-simple-v3 .mm-simple-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 clamp(1.5rem, 3vw, 3rem);
-  border-top: 3px solid var(--v3-ink);
+  gap: 2.4rem clamp(2rem, 4vw, 4rem);
+  border-top: 0;
 }
 
 .mm-simple-v3 .mm-simple-file {
   position: relative;
   min-width: 0;
   margin: 0;
-  padding: 1.15rem 0 1.4rem;
+  padding: 1rem 0 1.2rem;
   border: 0;
-  border-bottom: 1px solid var(--v3-rule);
   color: var(--v3-ink);
   background: transparent;
   box-shadow: none;
@@ -204,8 +199,8 @@
   gap: 1rem;
   align-items: start;
   min-height: 0;
-  padding: 0 0 .9rem;
-  border-bottom: 1px solid var(--v3-rule);
+  padding: 0 0 .55rem;
+  border-bottom: 0;
 }
 
 .mm-simple-v3 .mm-simple-fighter-slot {
@@ -308,10 +303,8 @@
 }
 
 .mm-simple-v3 .mm-simple-next-label::after {
-  flex: 1;
-  height: 1px;
-  background: var(--v3-rule);
-  content: "";
+  display: none;
+  content: none;
 }
 
 /* Matchup recommendations */
@@ -321,7 +314,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--v3-rule);
+  border-top: 0;
 }
 
 .mm-simple-v3 .mm-simple-match {
@@ -331,9 +324,8 @@
   gap: .75rem;
   align-items: center;
   min-height: 78px;
-  padding: .68rem 0;
+  padding: .58rem 0;
   border: 0;
-  border-bottom: 1px solid var(--v3-rule);
   background: transparent;
 }
 
@@ -552,5 +544,42 @@ html.v3-theme-transitioning .mm-simple-v3 .mm-simple-match {
   .mm-simple-v3 *::after {
     transition: none !important;
     animation: none !important;
+  }
+}
+
+
+/* MATCHMAKER V3 RULE CLEANUP
+   Use whitespace and column structure instead of repeated horizontal dividers. */
+.mm-simple-v3 .mm-simple-file:nth-child(even) {
+  padding-left: clamp(1.25rem, 2.5vw, 2.5rem);
+  border-left: 1px solid var(--v3-rule);
+}
+
+.mm-simple-v3 .mm-simple-match + .mm-simple-match {
+  margin-top: .3rem;
+}
+
+.mm-simple-v3 .mm-simple-match.is-primary {
+  padding-top: .7rem;
+}
+
+.mm-simple-v3 .mm-simple-no-match,
+.mm-simple-v3 .mm-simple-empty {
+  border-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .mm-simple-v3 .mm-simple-grid {
+    gap: 1.8rem;
+  }
+
+  .mm-simple-v3 .mm-simple-file:nth-child(even) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .mm-simple-v3 .mm-simple-file + .mm-simple-file {
+    padding-top: 1.8rem;
+    border-top: 1px solid var(--v3-rule);
   }
 }
