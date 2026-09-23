@@ -1,67 +1,720 @@
 /*
  * Standalone Writer shell.
- *
- * /write/ is intentionally detached from the public-site chrome and skin.
- * Keep this file neutral and functional so changes to the main site do not
- * visually reshape the publishing workspace.
+ * Intentionally independent from the public MMA Matlock visual system.
  */
 
-html.writer-shell-root {
+html.writer-shell-root{
   --theme-background:#000;
-  --theme-surface:#0b0b0b;
-  --theme-surface-raised:#111;
-  --theme-border:#292929;
-  --theme-border-bright:#454545;
-  --theme-text:#f4f4f2;
-  --theme-text-soft:#c8c8c6;
-  --theme-muted:#858585;
+  --theme-surface:#080808;
+  --theme-surface-raised:#0d0d0d;
+  --theme-border:#242424;
+  --theme-border-bright:#3a3a3a;
+  --theme-text:#f3f3f1;
+  --theme-text-soft:#c7c7c4;
+  --theme-muted:#7f7f80;
   --theme-accent:#f2f2ef;
-  --theme-accent-soft:#b9b9b7;
+  --theme-accent-soft:#b8b8b5;
   --theme-accent-rgb:242,242,239;
-  --theme-success:#9dc9ad;
+  --theme-success:#9bc6aa;
   --theme-shadow:none;
   --theme-shadow-card:none;
   --theme-nav-blur:0;
-  --theme-accent-wash:rgba(255,255,255,.04);
+  --theme-accent-wash:rgba(255,255,255,.035);
   background:#000;
   color-scheme:dark;
 }
 
-body.writer-shell {
+body.writer-shell{
   min-height:100vh;
   margin:0;
   background:#000;
-  color:#f4f4f2;
-  font-family:Arial,Helvetica,sans-serif;
+  color:#f3f3f1;
+  font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 }
 
-.writer-shell-main {
+.writer-shell-main{
   width:100%;
   min-height:100vh;
   margin:0;
   padding:0;
 }
 
-.writer-shell .writer-app {
-  margin-top:.75rem;
+.writer-shell .writer-app{
+  --writer-bg:#000;
+  --writer-panel:rgba(10,10,10,.72);
+  --writer-panel-2:rgba(14,14,14,.72);
+  --writer-panel-3:rgba(18,18,18,.74);
+  --writer-line:rgba(255,255,255,.075);
+  --writer-line-strong:rgba(255,255,255,.13);
+  --writer-text:#f2f2ef;
+  --writer-muted:#838384;
+  --writer-muted-2:#606061;
+  --writer-shadow:none;
+  --writer-shadow-tight:none;
+  width:min(1800px,calc(100% - 1.5rem));
+  margin:.5rem auto 2rem;
 }
 
-.writer-shell .writer-app .eyebrow {
-  color:#808080;
+/* Global flattening */
+.writer-shell .writer-app button,
+.writer-shell .writer-app input,
+.writer-shell .writer-app textarea,
+.writer-shell .writer-app select{
+  border-radius:3px;
 }
 
-.writer-shell .writer-app a {
-  color:#cfcfcd;
+.writer-shell .writer-app .eyebrow{
+  color:#666;
+}
+
+.writer-shell .writer-app a{
+  color:#c9c9c6;
 }
 
 .writer-shell .writer-app a:hover,
-.writer-shell .writer-app a:focus-visible {
+.writer-shell .writer-app a:focus-visible{
   color:#fff;
 }
 
-@media (max-width:700px) {
-  .writer-shell .writer-app {
-    width:min(100% - 1rem,1600px);
-    margin-top:.5rem;
+/* Command header: one glass strip, not a card */
+.writer-shell .writer-topbar{
+  position:sticky;
+  top:0;
+  z-index:60;
+  margin:0;
+  padding:.58rem .2rem .62rem;
+  border:0;
+  border-bottom:1px solid var(--writer-line);
+  border-radius:0;
+  background:rgba(0,0,0,.72);
+  box-shadow:none;
+  backdrop-filter:blur(18px) saturate(120%);
+  -webkit-backdrop-filter:blur(18px) saturate(120%);
+}
+.writer-shell .writer-topbar .eyebrow{display:none}
+.writer-shell .writer-topbar h1{
+  font-size:1rem;
+  font-weight:720;
+  letter-spacing:-.012em;
+}
+.writer-shell .writer-top-actions{gap:.18rem}
+.writer-shell .writer-top-secondary,
+.writer-shell .writer-publish-actions{
+  display:flex;
+  align-items:center;
+  gap:.08rem;
+}
+
+/* Buttons become quiet text controls. Only the primary action stays filled. */
+.writer-shell .writer-button,
+.writer-shell .writer-toolbar button,
+.writer-shell .writer-segmented button,
+.writer-shell .writer-file-button,
+.writer-shell .writer-library-actions button,
+.writer-shell .writer-library-actions a{
+  border:0;
+  border-radius:3px;
+  background:transparent;
+  box-shadow:none;
+  color:#aaa;
+  padding:.48rem .58rem;
+  font-weight:650;
+  transition:background .12s ease,color .12s ease,opacity .12s ease;
+}
+.writer-shell .writer-button:hover,
+.writer-shell .writer-toolbar button:hover,
+.writer-shell .writer-segmented button:hover,
+.writer-shell .writer-file-button:hover,
+.writer-shell .writer-library-actions button:hover,
+.writer-shell .writer-library-actions a:hover{
+  border:0;
+  background:rgba(255,255,255,.065);
+  color:#fff;
+  transform:none;
+  box-shadow:none;
+}
+.writer-shell .writer-button-primary{
+  background:#ededeb;
+  color:#090909;
+  border:0;
+  box-shadow:none;
+}
+.writer-shell .writer-button-primary:hover{
+  background:#fff;
+  color:#000;
+  border:0;
+  box-shadow:none;
+}
+.writer-shell .writer-button-subtle{background:transparent}
+.writer-shell .writer-button-danger{background:transparent;color:#d69a9a}
+.writer-shell .writer-button-danger:hover{background:rgba(180,70,70,.12);color:#f0b0b0}
+.writer-shell .writer-save-state{
+  min-height:0;
+  padding:0 .5rem;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:#666;
+  font-size:.66rem;
+}
+
+/* Status is a single quiet line */
+.writer-shell .writer-statusbar{
+  min-height:30px;
+  margin:0 0 .4rem;
+  padding:.32rem .15rem;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.045);
+  border-radius:0;
+  background:transparent;
+  color:#676768;
+}
+.writer-shell .writer-connection-chip,
+.writer-shell .writer-document-chip,
+.writer-shell .writer-autosave-chip,
+.writer-shell .writer-status-stat{
+  min-height:0;
+  padding:0 .32rem;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:#707071;
+}
+.writer-shell .writer-document-chip{font-weight:700;color:#929293}
+.writer-shell .writer-connection-chip i,
+.writer-shell .writer-autosave-chip i{
+  width:4px;
+  height:4px;
+}
+
+/* Library: dense editorial rows, no cards */
+.writer-shell .writer-library{padding:.65rem 0 0}
+.writer-shell .writer-library-header{
+  margin-bottom:.55rem;
+  padding:.2rem .15rem .6rem;
+  border-bottom:1px solid var(--writer-line);
+}
+.writer-shell .writer-library-header .eyebrow{display:none}
+.writer-shell .writer-library-header h2{
+  font-size:clamp(1.45rem,2.3vw,2rem);
+  font-weight:700;
+  letter-spacing:-.035em;
+}
+.writer-shell .writer-library-header p{font-size:.78rem;color:#6f6f70}
+.writer-shell .writer-library-controls{
+  grid-template-columns:minmax(240px,1fr) auto;
+  gap:1rem;
+  margin:0;
+  padding:.3rem .15rem .55rem;
+  border-bottom:1px solid rgba(255,255,255,.045);
+}
+.writer-shell .writer-library-search input{
+  width:100%;
+  padding:.5rem .05rem;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.13);
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+.writer-shell .writer-library-search input:focus{
+  border-color:rgba(255,255,255,.5);
+  box-shadow:none;
+}
+.writer-shell .writer-segmented{
+  gap:.1rem;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  overflow:visible;
+}
+.writer-shell .writer-segmented button{
+  position:relative;
+  border-radius:0;
+  padding:.48rem .55rem;
+  color:#6f6f70;
+}
+.writer-shell .writer-segmented button:hover{
+  background:transparent;
+  color:#d8d8d5;
+}
+.writer-shell .writer-segmented button[aria-pressed="true"]{
+  background:transparent;
+  color:#fff;
+  box-shadow:none;
+}
+.writer-shell .writer-segmented button[aria-pressed="true"]::after{
+  content:"";
+  position:absolute;
+  right:.55rem;
+  bottom:.18rem;
+  left:.55rem;
+  height:1px;
+  background:#d9d9d6;
+}
+.writer-shell .writer-library-stats{
+  gap:1.25rem;
+  padding:.45rem .15rem .55rem;
+  border-bottom:1px solid rgba(255,255,255,.045);
+  color:#5f5f60;
+  font-size:.68rem;
+}
+.writer-shell .writer-library-list{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0 2rem;
+  padding:0;
+}
+.writer-shell .writer-library-empty{
+  padding:2.5rem .2rem;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:#626263;
+}
+.writer-shell .writer-library-card{
+  grid-template-columns:108px minmax(0,1fr);
+  min-height:112px;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.065);
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  transition:background .12s ease;
+}
+.writer-shell .writer-library-card:hover{
+  border-color:rgba(255,255,255,.065);
+  background:rgba(255,255,255,.018);
+  transform:none;
+  box-shadow:none;
+}
+.writer-shell .writer-library-thumb{
+  min-height:112px;
+  margin:.62rem .72rem .62rem 0;
+  background:#080808;
+}
+.writer-shell .writer-library-card-body{padding:.62rem .1rem .62rem 0}
+.writer-shell .writer-library-card-body h3{
+  margin:.22rem 0 .2rem;
+  font-size:1rem;
+}
+.writer-shell .writer-library-card-body>p{
+  font-size:.75rem;
+  line-height:1.35;
+}
+.writer-shell .writer-library-card-meta,
+.writer-shell .writer-library-card-foot{font-size:.64rem}
+.writer-shell .writer-library-card-foot{padding-top:.38rem}
+.writer-shell .writer-library-actions{gap:.02rem}
+.writer-shell .writer-library-actions button,
+.writer-shell .writer-library-actions a{
+  padding:.3rem .38rem;
+  border-radius:2px;
+  font-size:.63rem;
+}
+.writer-shell .writer-status-badge{
+  gap:.34rem;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent!important;
+  font-size:.58rem;
+}
+.writer-shell .writer-status-badge::before{
+  content:"";
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#666;
+}
+.writer-shell .writer-status-badge.is-published::before{background:#a9b7ad}
+.writer-shell .writer-status-badge.is-draft::before{background:#b9aa74}
+.writer-shell .writer-status-badge.is-scheduled::before{background:#7da790}
+
+/* View controls are tabs on a line */
+.writer-shell .writer-modebar{
+  min-height:36px;
+  margin:0 0 .35rem;
+  padding:.18rem .05rem;
+  border:0;
+  border-bottom:1px solid var(--writer-line);
+  border-radius:0;
+  background:rgba(0,0,0,.58);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+}
+.writer-shell .writer-modebar .writer-segmented button{font-size:.69rem}
+
+/* Metadata: open canvas with rules, not a panel */
+.writer-shell .writer-meta{
+  margin:0 0 .4rem;
+  border:0;
+  border-bottom:1px solid var(--writer-line);
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  overflow:visible;
+}
+.writer-shell .writer-meta summary{
+  min-height:32px;
+  padding:.42rem .15rem;
+  color:#b3b3b1;
+  font-size:.69rem;
+}
+.writer-shell .writer-meta[open] summary{
+  border-bottom:1px solid rgba(255,255,255,.04);
+}
+.writer-shell .writer-meta-grid{
+  gap:.5rem .8rem;
+  padding:.65rem .15rem .55rem;
+}
+.writer-shell .writer-field{gap:.16rem}
+.writer-shell .writer-field>span{
+  color:#666;
+  font-size:.58rem;
+  letter-spacing:.085em;
+}
+.writer-shell .writer-field input,
+.writer-shell .writer-field textarea,
+.writer-shell .writer-field select,
+.writer-shell .writer-tale-head input,
+.writer-shell .writer-tale-grid input{
+  padding:.48rem .05rem;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.11);
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+.writer-shell .writer-field input:hover,
+.writer-shell .writer-field textarea:hover,
+.writer-shell .writer-field select:hover,
+.writer-shell .writer-tale-head input:hover,
+.writer-shell .writer-tale-grid input:hover{
+  border-color:rgba(255,255,255,.2);
+}
+.writer-shell .writer-field input:focus,
+.writer-shell .writer-field textarea:focus,
+.writer-shell .writer-field select:focus,
+.writer-shell .writer-tale-head input:focus,
+.writer-shell .writer-tale-grid input:focus{
+  border-color:rgba(255,255,255,.52);
+  background:transparent;
+  box-shadow:none;
+}
+.writer-shell .writer-flags{
+  gap:1.15rem;
+  padding:.48rem .15rem .58rem;
+  border-top:0;
+  color:#787879;
+  font-size:.68rem;
+}
+
+/* Formatting strip: actual glass, no button boxes */
+.writer-shell .writer-toolbar{
+  position:sticky;
+  top:45px;
+  z-index:40;
+  padding:.28rem .08rem;
+  border:0;
+  border-top:1px solid rgba(255,255,255,.04);
+  border-bottom:1px solid var(--writer-line);
+  border-radius:0;
+  background:rgba(5,5,5,.72);
+  box-shadow:none;
+  backdrop-filter:blur(18px) saturate(120%);
+  -webkit-backdrop-filter:blur(18px) saturate(120%);
+}
+.writer-shell .writer-toolbar-group{gap:.02rem}
+.writer-shell .writer-toolbar-rich{
+  padding-left:.38rem;
+  border-left:1px solid rgba(255,255,255,.065);
+}
+.writer-shell .writer-toolbar button{
+  padding:.38rem .45rem;
+  border-radius:3px;
+  background:transparent;
+  color:#8b8b8c;
+}
+.writer-shell .writer-toolbar button:hover{background:rgba(255,255,255,.06);color:#fff}
+
+/* Embedded-HTML rail becomes a quiet utility line */
+.writer-shell .writer-html-block-rail{
+  gap:.22rem;
+  padding:.36rem .12rem;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.055);
+  background:transparent;
+}
+.writer-shell .writer-html-block-card{
+  gap:.38rem;
+  padding:.34rem .42rem;
+  border:0;
+  border-radius:2px;
+  background:transparent;
+  box-shadow:none;
+  color:#aaa;
+}
+.writer-shell .writer-html-block-card:hover{
+  border:0;
+  background:rgba(255,255,255,.055);
+  transform:none;
+}
+.writer-shell .writer-html-block-badge{
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:#686869;
+}
+
+/* Editor and preview share the canvas */
+.writer-shell .writer-workspace{gap:0}
+.writer-shell .writer-editor-pane{padding-right:.7rem}
+.writer-shell .writer-preview-pane{
+  min-height:76vh;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  overflow:auto;
+}
+.writer-shell .writer-preview-frame[data-preview-size="mobile"]{
+  border-left:1px solid rgba(255,255,255,.055);
+  border-right:1px solid rgba(255,255,255,.055);
+}
+.writer-shell .writer-preview-article{padding:.9rem 1.15rem}
+.writer-shell .writer-body-editor{
+  min-height:68vh;
+  padding:.9rem .18rem 1.1rem;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:.9rem;
+}
+.writer-shell .writer-body-editor:hover{border-color:rgba(255,255,255,.12)}
+.writer-shell .writer-body-editor:focus{
+  border-color:rgba(255,255,255,.22);
+  background:transparent;
+  box-shadow:none;
+}
+.writer-shell .writer-editor-footer{
+  padding:.38rem .12rem;
+  border:0;
+}
+.writer-shell .writer-splitter{
+  width:13px;
+  margin:0 .35rem;
+  background:transparent;
+}
+.writer-shell .writer-splitter::before{
+  content:"";
+  width:1px;
+  height:100%;
+  margin:auto;
+  background:rgba(255,255,255,.075);
+}
+.writer-shell .writer-splitter span{display:none}
+
+/* Word-processing add-ons */
+.writer-shell .writer-wordtools-outline{
+  margin:0 0 .35rem;
+  border:0;
+  border-bottom:1px solid var(--writer-line);
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+}
+.writer-shell .writer-wordtools-outline>header{
+  padding:.42rem .12rem;
+  border-bottom:1px solid rgba(255,255,255,.04);
+}
+.writer-shell .writer-wordtools-outline nav{padding:.18rem 0}
+.writer-shell .writer-wordtools-outline-item{
+  border-radius:2px;
+  padding:.34rem .36rem;
+}
+.writer-shell .writer-wordtools-outline-item:hover{background:rgba(255,255,255,.045)}
+.writer-shell .writer-wordtools-selection-stat{
+  min-height:0;
+  padding:0 .3rem;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:#717172;
+}
+
+/* Modal glass is the one place a bounded surface is useful */
+.writer-shell .writer-dialog{
+  background:rgba(12,12,12,.82);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:8px;
+  box-shadow:0 24px 90px rgba(0,0,0,.62);
+  backdrop-filter:blur(24px) saturate(115%);
+  -webkit-backdrop-filter:blur(24px) saturate(115%);
+}
+.writer-shell .writer-dialog::backdrop{
+  background:rgba(0,0,0,.68);
+  backdrop-filter:blur(6px);
+}
+.writer-shell .writer-dialog form>header{
+  padding:.75rem .85rem;
+  border-bottom:1px solid rgba(255,255,255,.065);
+}
+.writer-shell .writer-dialog form>header .eyebrow{display:none}
+.writer-shell .writer-dialog h2{font-size:1.08rem}
+.writer-shell .writer-dialog-body{padding:.82rem .85rem}
+.writer-shell .writer-dialog-actions{padding:.62rem .85rem}
+.writer-shell .writer-dialog-close{
+  width:28px;
+  height:28px;
+  border:0;
+  border-radius:3px;
+  background:transparent;
+}
+.writer-shell .writer-dialog-close:hover{
+  border:0;
+  background:rgba(255,255,255,.06);
+}
+.writer-shell .writer-auth-primary{
+  padding:.2rem 0 .65rem;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.065);
+  border-radius:0;
+  background:transparent;
+}
+.writer-shell .writer-template-grid{gap:0;padding:.4rem .85rem}
+.writer-shell .writer-template-grid button{
+  padding:.72rem .1rem;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.065);
+  border-radius:0;
+  background:transparent;
+  transform:none;
+}
+.writer-shell .writer-template-grid button:hover{
+  border-color:rgba(255,255,255,.065);
+  background:rgba(255,255,255,.025);
+  transform:none;
+}
+.writer-shell .writer-history-list{gap:0}
+.writer-shell .writer-history-item{
+  padding:.58rem .08rem;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.055);
+  border-radius:0;
+  background:transparent;
+}
+.writer-shell .writer-history-item:hover{
+  border-color:rgba(255,255,255,.055);
+  background:rgba(255,255,255,.025);
+}
+
+/* Publish checks: rows instead of cards */
+.writer-shell .writer-publish-check-summary{
+  padding:.25rem 0 .7rem;
+  margin-bottom:.25rem;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  border-radius:0;
+  background:transparent!important;
+}
+.writer-shell .writer-publish-check-list{gap:0}
+.writer-shell .writer-publish-check-item{
+  padding:.62rem 0;
+  border:0;
+  border-bottom:1px solid rgba(255,255,255,.055);
+  border-radius:0;
+  background:transparent;
+}
+.writer-shell .writer-publish-check-icon{
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:transparent;
+  border:1px solid rgba(255,255,255,.14);
+}
+
+/* Toasts are compact glass notices, not pills/cards */
+.writer-shell .writer-toast{
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:5px;
+  background:rgba(20,20,20,.84);
+  color:#f2f2ef;
+  box-shadow:0 14px 44px rgba(0,0,0,.45);
+  backdrop-filter:blur(16px);
+}
+
+/* Full-screen mode should remain pure black */
+body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{
+  background:#000;
+}
+
+/* Responsive compaction */
+@media(max-width:1100px){
+  .writer-shell .writer-editor-pane{padding-right:0}
+  .writer-shell .writer-library-list{grid-template-columns:1fr}
+  .writer-shell .writer-workspace{gap:.45rem}
+  .writer-shell .writer-preview-pane{
+    padding-top:.45rem;
+    border-top:1px solid rgba(255,255,255,.07);
   }
+}
+
+@media(max-width:700px){
+  .writer-shell .writer-app{
+    width:calc(100% - .75rem);
+    margin:.25rem auto 1rem;
+  }
+  .writer-shell .writer-topbar{
+    padding:.45rem 0 .5rem;
+  }
+  .writer-shell .writer-topbar h1{font-size:.92rem}
+  .writer-shell .writer-library-controls{
+    grid-template-columns:1fr;
+    gap:.35rem;
+  }
+  .writer-shell .writer-segmented{
+    width:100%;
+    overflow-x:auto;
+  }
+  .writer-shell .writer-segmented button{
+    flex:1 0 auto;
+    padding:.42rem .45rem;
+  }
+  .writer-shell .writer-library-card{
+    grid-template-columns:76px minmax(0,1fr);
+    min-height:88px;
+  }
+  .writer-shell .writer-library-thumb{
+    min-height:76px;
+    margin:.5rem .6rem .5rem 0;
+  }
+  .writer-shell .writer-library-card-body{padding:.5rem .05rem}
+  .writer-shell .writer-statusbar{
+    gap:.22rem;
+    overflow-x:auto;
+    flex-wrap:nowrap;
+  }
+  .writer-shell .writer-status-primary,
+  .writer-shell .writer-status-meta{
+    flex-wrap:nowrap;
+    flex:0 0 auto;
+  }
+  .writer-shell .writer-meta-grid{padding:.5rem 0}
+  .writer-shell .writer-toolbar{
+    top:39px;
+    overflow-x:auto;
+    flex-wrap:nowrap;
+  }
+  .writer-shell .writer-toolbar-group{flex-wrap:nowrap}
+  .writer-shell .writer-toolbar-rich{
+    flex-wrap:nowrap;
+    flex:0 0 auto;
+  }
+  .writer-shell .writer-preview-article{padding:.75rem .35rem}
 }
