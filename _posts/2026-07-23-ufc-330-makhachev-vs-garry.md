@@ -6,7 +6,7 @@ description: A technical breakdown of Islam Makhachev vs. Ian Machado Garry,
   paths to victory.
 date: 2026-08-04
 category: Breakdown
-author: MMA Matlock
+author: Matlock
 image:
   path: /assets/ufc-330-poster-3-makhachev.png
   alt: Islam Makhachev and Ian Machado Garry featured on the UFC 330 fight poster
