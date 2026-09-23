@@ -44,7 +44,9 @@ Bernie Profato, Ohio
 
 Interesting.
 
-Speaking of interesting history, it is only fair that I mention the UFC OG who harnessed the power of Bruce Lee's stop kick
+Speaking of interesting history, it is only fair that I mention the UFC OG who harnessed the power of Bruce Lee's stop kick, Keith Hackney. 
+
+[EMBED X](https://x.com/MMAMATLOCK/status/2102863707042685031)
 
 <figure class="article-inline-image article-inline-image--break article-inline-image--center article-inline-image--full">
   <img src="/assets/uploads/ban-oblique-kicks-pasted-20260923-155757-570.png" alt="ban oblique kicks" loading="lazy">
