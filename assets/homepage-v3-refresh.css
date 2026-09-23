@@ -783,3 +783,19 @@ html[data-theme="dark"] body:has([data-globe-home]) {
         font-size: 1rem;
     }
 }
+
+
+/* Homepage latest-news numbering removal */
+.v3-news-list {
+    counter-reset: none;
+}
+
+.v3-news-item::before {
+    display: none;
+    content: none;
+}
+
+.v3-news-item a,
+.v3-news-meta {
+    margin-left: 0;
+}
