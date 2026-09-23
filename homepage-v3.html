@@ -50,6 +50,7 @@ page_scripts:
     {% assign lead_src = lead_responsive.src | default: lead_image %}
     {% assign lead_width = lead_responsive.width | default: lead_post.image.width %}
     {% assign lead_height = lead_responsive.height | default: lead_post.image.height %}
+    {% assign lead_author = lead_post.author.name | default: lead_post.author | default: site.author.name %}
 
     <main class="v3-front" aria-label="MMA Matlock front page">
       <aside class="v3-left-rail" aria-label="More recent stories">
@@ -112,7 +113,7 @@ page_scripts:
         {% endif %}
 
         <div class="v3-byline">
-          <span>By MMA Matlock</span>
+          <span>By {{ lead_author }}</span>
           <time datetime="{{ lead_post.date | date_to_xmlschema }}">{{ lead_post.date | date: "%B %-d, %Y" }}</time>
         </div>
       </article>
