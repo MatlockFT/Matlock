@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-21T19:02:29.969635+00:00",
+  "checkedAt": "2026-09-23T00:42:29.547935+00:00",
   "outcome": "success",
   "fallbackOutcome": "skipped",
   "activeEntryOutcome": "success",
@@ -24,13 +24,13 @@
     "0 Active-roster candidate(s) awaiting profile confirmation.",
     "Promoted 0 UFC Active-collection entrant(s) without waiting for profile Status: Active.",
     "UFC profile-directory sensor: 3213 profiles, 0 new profile(s) this run.",
-    "Official UFC event-card cross-check: 7 event(s), 98 athlete slots, 0 first-time UFC newcomer(s) confirmed this run.",
+    "Official UFC event-card cross-check: 8 event(s), 122 athlete slots, 0 first-time UFC newcomer(s) confirmed this run.",
     "Normalized UFC roster event history; removed 0 duplicate newcomer, 0 duplicate reactivation, and 0 duplicate departure event(s).",
     "Competition cross-check complete: 10 verified newcomer addition(s), 31 reactivation event(s), 0 newly reclassified this run.",
     "Canonical UFC roster: 993 source profiles -> 993 unique fighters (0 duplicate/alias profiles collapsed).",
     "Canonical registry: 1001 identities, 1 alias group(s), 0 unresolved bare/suffix pair(s) flagged for review.",
     "UFC roster output warnings:",
-    "- pendingRemovals[2] has 74 misses and non-Active status but remains pending; inspect the confirmation path",
+    "- pendingRemovals[2] has 83 misses and non-Active status but remains pending; inspect the confirmation path",
     "UFC roster output valid: 993 canonical active fighters from 993 UFC Active profiles, 10 recent additions, 2 confirmed departures, 4 pending departures.",
     "Finalized UFC roster event history; removed 0 duplicate newcomer, 0 duplicate reactivation, and 0 duplicate departure event(s)."
   ]
