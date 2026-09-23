@@ -64,6 +64,31 @@ But despite all of Jon, Joe, and Rampage's marketing of this technique, no one h
 
 Shameful. 
 
+It comes as no surprise that Edmen Shahbazyan was complaining to the referee during his fight with Brunno Ferreria at UFC 331 this past weekend when Bruno was targeting Edmen's knee with these side kicks. You can't blame him! It's 2026! It's truly bizarre this flaw hasn't been patched yet!
+
+Luckily, the most powerful person out of all the athletic commissions was present at UFC 331 for it took place under his jurisdiction, Andy Foster. Andy was once the executive director of the Georgia Athletic and Entertainment Commission but in 2012 took on that role in California instead. Andy would rather be God damned than to have this blasphemous technique used in his state. Aaron Bronsteader reports:
+
+[EMBED X](https://x.com/aaronbronsteter/status/2101540282055479615)
+
+Andy Foster has a great responsibility bestowed upon him by the MMA Gods. 
+
+1. Choosing the exact terminology to which to define this oblique kick, low-line side kick, stop kick, knee stomp, push kick to the knee, illegal kick - AH THE LIST IS ENDLESS!
+2. Defining exactly what the technique is and where it lands that would be considered a foul
+
+But then will MMA run into another trivial foul like the knees to a grounded opponent? That would be a terrible side effect of banning this strike. 
+
+What I'm about to say could be very controversial so I do want to preface with a sincere apology. I know I could be barred from the MMA community with this idea but please, hear me out.
+
+What if fighters either blocked the strike or, better yet, countered it? Is this even an option? Can this actually be done? 
+
+Well, using my dedicated Qubes OS machine, routed through a Whonix gateway, chained into Tor, pushed through a separate VPN tunnel, isolated behind a hardware firewall and connected over a hardwired Ethernet line to a network I will not be discussing further, I was finally able to uncover the answer.
+
+The answer is yes, it can be done. There have been examples in the past that have flown under the radar. Luckily, those much smarter than I were able to identify it. Most notably from Phantom Punch Breakdowns:
+
+[EMBED X](https://x.com/9h6st21_mma/status/2102785195795701803)
+
+I'm being ridiculous. No one wants to see it in the sport anymore. Its ended so many careers that it cannot possibly be legal anymore.
+
 In ordinary MMA usage, an **oblique kick** is a thrusting kick delivered with the sole or heel toward the opponent’s leg, usually at or just above the knee. Its path differs from the swinging motion of a conventional round kick. It can interrupt forward movement, upset an opponent’s stance and keep a puncher outside punching range. Jon Jones and coach Mike Winkeljohn demonstrated those applications in a 2015 instructional video. [Jones and Winkeljohn’s demonstration](https://www.youtube.com/watch?v=6Lpf1vwr658).
 
 The terminology is less consistent than the public debate suggests. “Oblique kick,” “knee stomp,” “push kick to the knee,” “low-line kick” and “low side kick” often appear interchangeably in MMA coverage. A UFC profile of Winkeljohn also used “shovel kick.” Technically, however, a low side kick and a front-facing oblique kick can involve different body positions and deliveries. They become grouped together because they attack the same general target. [UFC’s Winkeljohn profile](https://us.ufcespanol.com/news/winkeljohns-fight-wrong-right), [Jack Slack’s technical analysis](https://www.fightprimer.com/articles/2019/7/4/ktk).
