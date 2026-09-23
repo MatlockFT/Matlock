@@ -291,3 +291,10 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
 /* Quote paragraphs keep their intended breaks without adding a trailing gap. */
 .post-page-v3 .post-body blockquote > p{margin:0 0 .75rem}
 .post-page-v3 .post-body blockquote > p:last-child{margin-bottom:0}
+
+
+/* Writer-authored soft line breaks: Enter is visible; a blank line still starts a new paragraph. */
+.post-page-v3 .post-body-preserve-breaks > p,
+.post-page-v3 .post-body-preserve-breaks > blockquote > p{
+  white-space:pre-line;
+}
