@@ -6,7 +6,7 @@ description: End of the year, end of an era. We no longer have to suffer through
   better.
 date: 2025-12-15
 category: Opinion
-author: MMA Matlock
+author: Matlock
 image:
   path: /assets/uploads/espn.png
   alt: ESPN + UFC Era comes to a close
