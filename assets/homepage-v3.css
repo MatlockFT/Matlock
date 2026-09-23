@@ -223,9 +223,24 @@ body:has([data-globe-home]) .site-event-list li + li {
     border-top-color: #dedbd5;
 }
 
-body:has([data-globe-home]) .site-event-row:hover,
-body:has([data-globe-home]) .site-event-row:focus-visible {
+html[data-theme="light"] body:has([data-globe-home]) .site-event-row:hover,
+html[data-theme="light"] body:has([data-globe-home]) .site-event-row:focus-visible {
     background: #f1eee8;
+}
+
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:hover,
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:focus-visible {
+    background: #181818 !important;
+}
+
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:hover .site-event-row-name,
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:focus-visible .site-event-row-name {
+    color: #ffffff !important;
+}
+
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:hover .site-event-row-detail,
+html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-event-row:focus-visible .site-event-row-detail {
+    color: #a8a8a8 !important;
 }
 
 body:has([data-globe-home]) .site-news-label {
