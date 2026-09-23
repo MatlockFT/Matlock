@@ -5,7 +5,7 @@ description: "A breakdown and prediction for UFC 329, featuring Conor McGregor's
   return against Max Holloway in a rematch that no one really cares about."
 date: 2026-07-10
 category: Breakdown
-author: MMA Matlock
+author: Matlock
 image:
   path: /assets/uploads/maxholloway.webp
   alt: UFC 329 Max Holloway Pointing Down
