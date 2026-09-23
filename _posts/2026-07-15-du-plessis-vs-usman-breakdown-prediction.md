@@ -8,7 +8,7 @@ permalink: /2026/07/15/du-plessis-vs-usman-breakdown-prediction.html
 redirect_from:
   - /2026/07/15/UFC-OKC-Street-Sharks.html
 category: Breakdown
-author: MMA Matlock
+author: Matlock
 image:
   path: /assets/uploads/ufcokcheader.png
   alt: "Kamaru Usman | UFC OKC"
