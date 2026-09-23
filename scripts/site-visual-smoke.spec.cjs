@@ -218,6 +218,19 @@ test.describe('Live V3 site rollout', () => {
       expect(overflow).toBeLessThanOrEqual(2);
     });
   }
+  test('On This Day September 23 lead renders real poster artwork', async ({ page }) => {
+    await page.goto(targetUrl('/on-this-day/?date=09-23'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-otd-list] .otd-entry').first()).toBeVisible({ timeout: 30000 });
+    const lead = page.locator('.otd-entry').filter({ hasText: 'UFC Fight Night: Fiziev vs. Gamrot' }).first();
+    await expect(lead).toBeVisible({ timeout: 30000 });
+    const image = lead.locator('.otd-entry-media.is-image-ready img');
+    await expect(image).toBeVisible({ timeout: 30000 });
+    expect(await image.evaluate(node => ({ complete: node.complete, width: node.naturalWidth, height: node.naturalHeight })))
+      .toEqual(expect.objectContaining({ complete: true }));
+    expect(await image.evaluate(node => node.naturalWidth)).toBeGreaterThan(0);
+    await expect(lead.locator('.otd-event-poster-status')).toHaveCount(0);
+  });
+
   test('published articles use the V3 article shell', async ({ page }) => {
     await page.goto(targetUrl('/breakdowns/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
     const href = await page.locator('.article-card a[href]').first().getAttribute('href');
