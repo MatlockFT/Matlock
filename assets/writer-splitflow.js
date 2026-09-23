@@ -48,14 +48,13 @@
 
   const syncButton = document.createElement('button');
   syncButton.type = 'button';
-  syncButton.className = 'writer-text-button writer-splitflow-sync';
+  syncButton.className = 'writer-splitflow-sync';
   syncButton.dataset.writerSyncScroll = '';
-  syncButton.textContent = 'Sync scroll';
+  syncButton.textContent = 'Sync';
   syncButton.title = 'Keep the editor and preview at roughly the same place';
 
-  const widthSwitcher = modeActions.querySelector('[data-writer-ux-width-switcher]');
-  if (widthSwitcher) widthSwitcher.insertAdjacentElement('afterend', syncButton);
-  else modeActions.insertAdjacentElement('afterbegin', syncButton);
+  const toolActions = app.querySelector('[data-writer-tool-actions]') || modeActions;
+  toolActions.insertAdjacentElement('afterbegin', syncButton);
 
   let syncEnabled = safeGet(SYNC_KEY) !== '0';
   function updateSyncButton() {
