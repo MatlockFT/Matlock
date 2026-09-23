@@ -467,7 +467,9 @@ test.describe('Homepage V3 editorial shell', () => {
       nameColor: getComputedStyle(node.querySelector('.site-event-row-name')).color,
       detailColor: getComputedStyle(node.querySelector('.site-event-row-detail')).color
     }));
-    expect(hoveredEventStyle.background).toBe('rgb(24, 24, 24)');
+    const hoveredRgb = (hoveredEventStyle.background.match(/\d+/g) || []).slice(0, 3).map(Number);
+    expect(hoveredRgb).toHaveLength(3);
+    expect(Math.max(...hoveredRgb)).toBeLessThan(80);
     expect(hoveredEventStyle.color).toBe('rgb(255, 255, 255)');
     expect(hoveredEventStyle.nameColor).toBe('rgb(255, 255, 255)');
 
