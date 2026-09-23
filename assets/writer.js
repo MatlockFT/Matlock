@@ -56,6 +56,7 @@
   let featuredImageRetryTimer = 0;
   let featuredImageRetryCount = 0;
   let featuredImageRetrySource = '';
+  const inlineImageRetryTimers = new WeakMap();
   let previewTimer = 0;
   let librarySearchTimer = 0;
   let htmlBlocks = new Map();
@@ -684,9 +685,40 @@
         img.dataset.writerSource = original;
       }
       const source = img.dataset.writerSource || original;
-      if (/^\/assets\/uploads\//i.test(source)) {
-        const previewUrl = writerPreviewAssetUrl(source);
-        if (img.getAttribute('src') !== previewUrl) img.setAttribute('src', previewUrl);
+      if (!/^\/assets\/uploads\//i.test(source)) return;
+
+      const existingTimer = inlineImageRetryTimers.get(img);
+      if (existingTimer) window.clearTimeout(existingTimer);
+
+      let attempt = Number(img.dataset.writerRetryAttempt || '0');
+      const setSource = () => {
+        img.setAttribute('src', writerPreviewAssetUrl(source, attempt));
+      };
+
+      img.onload = () => {
+        img.dataset.writerRetryAttempt = '0';
+        const timer = inlineImageRetryTimers.get(img);
+        if (timer) window.clearTimeout(timer);
+        inlineImageRetryTimers.delete(img);
+      };
+
+      img.onerror = () => {
+        const delays = [900, 1600, 2800, 4500, 7000, 10000];
+        if (attempt >= delays.length) return;
+        const delay = delays[attempt];
+        attempt += 1;
+        img.dataset.writerRetryAttempt = String(attempt);
+        const timer = window.setTimeout(() => {
+          if (!img.isConnected) return;
+          setSource();
+        }, delay);
+        inlineImageRetryTimers.set(img, timer);
+      };
+
+      const current = img.getAttribute('src') || '';
+      const expected = writerPreviewAssetUrl(source, attempt);
+      if (current !== expected && !/^https:\/\/raw\.githubusercontent\.com\//i.test(current)) {
+        img.setAttribute('src', expected);
       }
     });
   }
