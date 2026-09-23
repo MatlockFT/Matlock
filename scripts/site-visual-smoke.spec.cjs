@@ -588,6 +588,82 @@ test.describe('Fight Cards V3 isolated migration', () => {
   });
 });
 
+test.describe('Event Map V3 isolated migration', () => {
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('keeps live Event Map untouched while V3 preserves map interactions in editorial styling', async ({ page }) => {
+    await page.goto(targetUrl('/event-map/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('.event-map-page')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('[data-editorial-v3]')).toHaveCount(0);
+    await expect(page.locator('.site-theme-toggle')).toHaveCount(0);
+
+    await page.goto(targetUrl('/event-map-v3/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-editorial-v3]')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('.v3-wordmark')).toBeVisible();
+    await expect(page.locator('.site-theme-toggle')).toBeVisible();
+    await expect(page.locator('.v3-sticky-shell')).toHaveCount(1);
+
+    const stylesheetHrefs = await page.locator('link[rel="stylesheet"]').evaluateAll(nodes =>
+      nodes.map(node => node.getAttribute('href') || '')
+    );
+    expect(stylesheetHrefs.some(href => href.includes('event-map.css'))).toBe(false);
+    expect(stylesheetHrefs.some(href => href.includes('event-map-detail.css'))).toBe(false);
+    expect(stylesheetHrefs.some(href => href.includes('event-map-sumo.css'))).toBe(false);
+    const v3Index = stylesheetHrefs.findIndex(href => href.includes('event-map-v3.css'));
+    const tailIndex = stylesheetHrefs.findIndex(href => href.includes('site-tail.css'));
+    expect(v3Index).toBeGreaterThan(tailIndex);
+
+    await page.evaluate(() => document.fonts?.ready).catch(() => {});
+    const title = await page.locator('.event-map-hero h1').evaluate(node => ({
+      text: node.textContent.trim(),
+      font: getComputedStyle(node).fontFamily
+    }));
+    expect(title.text).toBe('Event Map');
+    expect(title.font).toContain('Herkey');
+
+    const stageStyle = await page.locator('.event-map-stage').evaluate(node => ({
+      radius: getComputedStyle(node).borderRadius,
+      shadow: getComputedStyle(node).boxShadow
+    }));
+    expect(stageStyle.radius).toBe('0px');
+    expect(stageStyle.shadow).toBe('none');
+
+    await page.waitForFunction(() => {
+      const loading = document.querySelector('[data-map-loading]');
+      const states = document.querySelectorAll('.event-map-state');
+      return loading?.hidden && states.length > 0;
+    }, null, { timeout: 30000 });
+
+    expect(await page.locator('.event-map-state').count()).toBeGreaterThan(0);
+
+    const range30 = page.locator('[data-range="30"]');
+    await range30.click();
+    await expect(range30).toHaveAttribute('aria-pressed', 'true');
+    await expect(page.locator('[data-range="week"]')).toHaveAttribute('aria-pressed', 'false');
+
+    await page.waitForFunction(() => document.querySelectorAll('.event-map-result').length > 0, null, {
+      timeout: 30000
+    });
+
+    const firstResult = page.locator('.event-map-result').first();
+    await firstResult.click();
+    await expect(page.locator('[data-event-detail-card]')).toBeVisible({ timeout: 10000 });
+
+    const detailTitleFont = await page.locator('[data-detail-title]').evaluate(node =>
+      getComputedStyle(node).fontFamily
+    );
+    expect(detailTitleFont).toContain('Herkey');
+
+    const overflow = await page.evaluate(() =>
+      document.documentElement.scrollWidth - document.documentElement.clientWidth
+    );
+    expect(overflow).toBeLessThanOrEqual(2);
+
+    const robots = await page.locator('meta[name="robots"]').getAttribute('content');
+    expect(robots).toContain('noindex');
+  });
+});
+
 test.describe('UFC Roster V3 isolated migration', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 
