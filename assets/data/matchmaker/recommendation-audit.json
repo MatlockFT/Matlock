@@ -1,38 +1,38 @@
 {
-  "generatedAt": "2026-09-23T00:47:51.555Z",
+  "generatedAt": "2026-09-23T12:00:02.633Z",
   "engineVersion": 2,
   "subjects": 206,
-  "publishedRecommendations": 569,
+  "publishedRecommendations": 566,
   "recommendationSlots": {
-    "0": 15,
+    "0": 16,
     "1": 1,
     "2": 2,
-    "3": 188
+    "3": 187
   },
   "caseCounts": {
     "rebound-pairing": 241,
-    "rising-vs-rising": 165,
-    "step-up-vs-rebound": 62,
+    "rising-vs-rising": 162,
+    "step-up-vs-rebound": 63,
     "ranking-opportunity": 42,
-    "rankings-progression": 30,
+    "rankings-progression": 29,
     "divisional-sorting": 15,
     "title-case": 7,
     "title-eliminator": 5,
     "prospect-test": 2
   },
   "confidenceCounts": {
-    "high": 526,
-    "medium": 26,
+    "high": 522,
+    "medium": 27,
     "low": 17
   },
   "averageRecentOpponentLinkCoverage": 0.9076,
-  "sameCardRecommendations": 30,
-  "sameCardRecommendationRatio": 0.0527,
+  "sameCardRecommendations": 31,
+  "sameCardRecommendationRatio": 0.0548,
   "asymmetricTopThreeRecommendations": 186,
-  "asymmetricTopThreeRatio": 0.3269,
-  "publicPublishedRecommendations": 550,
-  "publicAsymmetricTopThreeRecommendations": 146,
-  "publicAsymmetricTopThreeRatio": 0.2655,
+  "asymmetricTopThreeRatio": 0.3286,
+  "publicPublishedRecommendations": 546,
+  "publicAsymmetricTopThreeRecommendations": 148,
+  "publicAsymmetricTopThreeRatio": 0.2711,
   "engineGenericDivisionalSortingRecommendations": 15,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -58,8 +58,8 @@
       "title": "Noche UFC: Silva vs Delgado",
       "date": "2026-09-12",
       "subjects": 26,
-      "publicRecommendations": 71,
-      "noClearMatchupSubjects": 1
+      "publicRecommendations": 68,
+      "noClearMatchupSubjects": 2
     },
     {
       "id": "ufc-fight-night-september-05-2026",
@@ -82,7 +82,7 @@
       "title": "UFC Fight Night: Hernandez vs Rodrigues",
       "date": "2026-08-22",
       "subjects": 26,
-      "publicRecommendations": 74,
+      "publicRecommendations": 73,
       "noClearMatchupSubjects": 1
     },
     {
@@ -696,6 +696,31 @@
     },
     {
       "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Ryan Gandra",
+      "opponent": "Tresean Gore",
+      "pairScore": 83,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Dustin Stoltzfus",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jacob Malkoun",
+          "score": 94,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Bo Nickal",
+          "score": 91,
+          "case": "rankings-progression"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
       "fighter": "Edmen Shahbazyan",
       "opponent": "Shara Magomedov",
       "pairScore": 85,
@@ -816,31 +841,6 @@
           "opponent": "Steve Garcia",
           "score": 89,
           "case": "ranking-opportunity"
-        }
-      ]
-    },
-    {
-      "event": "Noche UFC: Silva vs Delgado",
-      "fighter": "Brandon Moreno",
-      "opponent": "Asu Almabayev",
-      "pairScore": 84,
-      "case": "rankings-progression",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Tatsuro Taira",
-          "score": 95,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Kyoji Horiguchi",
-          "score": 93,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Amir Albazi",
-          "score": 91,
-          "case": "step-up-vs-rebound"
         }
       ]
     }
