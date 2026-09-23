@@ -234,7 +234,7 @@
       description: [`description: ${yamlQuote(fields.description.value.trim())}`],
       date: [`date: ${yamlQuote(fields.date.value || today())}`],
       category: [`category: ${yamlQuote(fields.category.value.trim() || 'Breakdown')}`],
-      author: ['author: MMA Matlock'],
+      author: ['author: Matlock'],
       image: imagePath ? ['image:', `  path: ${yamlQuote(imagePath)}`, `  alt: ${yamlQuote(imageAlt || fields.title.value.trim())}`, `  position: ${yamlQuote(imagePosition || 'center center')}`] : ['image: ""'],
       tags: tags.length ? ['tags:', ...tags.map(tag => `  - ${yamlQuote(tag)}`)] : ['tags: []'],
       show_toc: [`show_toc: ${fields.showToc.checked ? 'true' : 'false'}`],
