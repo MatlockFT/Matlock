@@ -179,32 +179,104 @@ layout: default
         </figure>
     {% endif %}
 
-    {% if page.spoiler_warning %}
-        <aside class="article-notice article-spoiler-notice" role="note">
-            <strong>Spoiler warning</strong>
-            <p>{{ page.spoiler_message | default: "This article discusses fight results and may contain spoilers." }}</p>
+    <div class="post-reading-layout">
+        <div class="post-reading-main">
+            {% if page.spoiler_warning %}
+                <aside class="article-notice article-spoiler-notice" role="note">
+                    <strong>Spoiler warning</strong>
+                    <p>{{ page.spoiler_message | default: "This article discusses fight results and may contain spoilers." }}</p>
+                </aside>
+            {% endif %}
+
+            {% if page.update_note %}
+                <aside class="article-notice article-update-note" role="note">
+                    <strong>Update note</strong>
+                    <p>{{ page.update_note }}</p>
+                </aside>
+            {% endif %}
+
+            {% if page.show_toc %}
+                <nav class="article-toc" aria-labelledby="article-toc-title" data-article-toc hidden>
+                    <strong id="article-toc-title">In this article</strong>
+                    <ol data-article-toc-list></ol>
+                </nav>
+            {% endif %}
+
+            <div
+                id="article-content"
+                class="post-body"
+            >
+                {{ content }}
+            </div>
+        </div>
+
+        <aside class="post-rail" aria-label="More MMA reading">
+            <section class="post-rail-section post-rail-originals" aria-labelledby="post-rail-originals-title">
+                <header class="post-rail-heading">
+                    <p>From Matlock</p>
+                    <h2 id="post-rail-originals-title">More to Read</h2>
+                </header>
+
+                <div class="post-rail-articles">
+                    {% assign rail_post_count = 0 %}
+                    {% for rail_post in site.posts %}
+                        {% assign rail_visibility = rail_post.listing_visibility | default: "normal" %}
+                        {% unless rail_post.url == page.url or rail_visibility == "direct-only" or rail_post_count >= 3 %}
+                            {% assign rail_image = rail_post.image.path | default: rail_post.image %}
+                            {% assign rail_responsive = site.data.responsive_images[rail_image] %}
+                            {% assign rail_src = rail_responsive.small | default: rail_image %}
+
+                            <article class="post-rail-article">
+                                {% if rail_image %}
+                                    <a class="post-rail-thumb" href="{{ rail_post.url | relative_url }}" aria-label="Read {{ rail_post.title | escape }}">
+                                        <img
+                                            src="{{ rail_src | relative_url }}"
+                                            alt=""
+                                            loading="lazy"
+                                            decoding="async"
+                                            data-hide-broken
+                                        >
+                                    </a>
+                                {% endif %}
+
+                                <div class="post-rail-article-copy">
+                                    <p>
+                                        {{ rail_post.category | default: "Article" }}
+                                        <span aria-hidden="true">·</span>
+                                        {{ rail_post.date | date: "%b %-d" }}
+                                    </p>
+                                    <h3><a href="{{ rail_post.url | relative_url }}">{{ rail_post.title }}</a></h3>
+                                </div>
+                            </article>
+
+                            {% assign rail_post_count = rail_post_count | plus: 1 %}
+                        {% endunless %}
+                    {% endfor %}
+                </div>
+
+                <a class="post-rail-more-link" href="{{ '/breakdowns/' | relative_url }}">More Matlock articles →</a>
+            </section>
+
+            <section
+                class="post-rail-section post-rail-news"
+                aria-labelledby="post-rail-news-title"
+                data-post-news-rail
+                data-feed-url="https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-news.json"
+                data-api-fallback-url="https://api.github.com/repos/MatlockFT/Matlock/releases/tags/mma-news-data"
+                data-fallback-url="{{ '/assets/data/mma-news.json' | relative_url }}?v={{ site.asset_version }}"
+            >
+                <header class="post-rail-heading">
+                    <p>Around MMA</p>
+                    <h2 id="post-rail-news-title"><a href="{{ '/news/' | relative_url }}">Latest News</a></h2>
+                </header>
+
+                <div class="post-rail-news-list" data-post-news-list aria-live="polite" aria-busy="true">
+                    <p class="post-rail-loading">Loading latest headlines…</p>
+                </div>
+
+                <a class="post-rail-more-link" href="{{ '/news/' | relative_url }}">More MMA news →</a>
+            </section>
         </aside>
-    {% endif %}
-
-    {% if page.update_note %}
-        <aside class="article-notice article-update-note" role="note">
-            <strong>Update note</strong>
-            <p>{{ page.update_note }}</p>
-        </aside>
-    {% endif %}
-
-    {% if page.show_toc %}
-        <nav class="article-toc" aria-labelledby="article-toc-title" data-article-toc hidden>
-            <strong id="article-toc-title">In this article</strong>
-            <ol data-article-toc-list></ol>
-        </nav>
-    {% endif %}
-
-    <div
-        id="article-content"
-        class="post-body"
-    >
-        {{ content }}
     </div>
 
     <section
@@ -487,6 +559,7 @@ layout: default
 {% if page.show_toc %}
     <script src="{{ '/assets/article-toc.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
 {% endif %}
+<script src="{{ '/assets/article-rail.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
 
 <script>
     (function () {
