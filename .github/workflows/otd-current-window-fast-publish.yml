@@ -12,6 +12,8 @@ on:
       - "scripts/resolve-current-on-this-day-tapology-posters.mjs"
       - "scripts/resolve-on-this-day-tapology-posters.mjs"
       - "scripts/resolve-on-this-day-event-posters.mjs"
+      - "scripts/resolve-on-this-day-event-poster-pipeline.mjs"
+      - "scripts/sync-on-this-day-poster-registry.mjs"
       - "scripts/sanitize-on-this-day-tapology-posters.mjs"
       - "scripts/prune-on-this-day-poster-registry.mjs"
       - "scripts/finalize-on-this-day-image-metadata.mjs"
@@ -40,6 +42,7 @@ concurrency:
 
 jobs:
   fast-publish:
+    if: ${{ github.event_name != 'push' || !contains(github.event.head_commit.message, '[skip otd-refresh]') }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
@@ -78,6 +81,8 @@ jobs:
           node --check scripts/resolve-current-on-this-day-tapology-posters.mjs
           node --check scripts/resolve-on-this-day-tapology-posters.mjs
           node --check scripts/resolve-on-this-day-event-posters.mjs
+          node --check scripts/resolve-on-this-day-event-poster-pipeline.mjs
+          node --check scripts/sync-on-this-day-poster-registry.mjs
           node --check scripts/sanitize-on-this-day-tapology-posters.mjs
           node --check scripts/prune-on-this-day-poster-registry.mjs
           node --check scripts/finalize-on-this-day-image-metadata.mjs
@@ -93,9 +98,6 @@ jobs:
       - name: Validate deterministic current poster fallback registry
         run: |
           node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-current-poster-fallbacks.json','utf8')); const allowed=new Set(['official-promotion-event-poster','wikipedia-event-poster','archived-promotion-event-poster','verified-manual-event-poster']); if(!Array.isArray(d.entries)) process.exit(1); for(const e of d.entries){ if(!e.date||!e.title||!e.sourceUrl||!e.imageUrl||!allowed.has(e.sourceType)||Number(e.confidence)<0.9) process.exit(1); if(e.sourceType==='verified-manual-event-poster'&&e.manualVisualVerified!==true) process.exit(1); }"
-
-      - name: Apply deterministic hard-case image sources
-        run: node scripts/apply-on-this-day-image-source-overrides.mjs
 
       - name: Prepare immutable poster cache checkout
         shell: bash
@@ -114,10 +116,10 @@ jobs:
           fi
           echo "OTD_POSTER_OUTPUT_DIR=$cache_dir" >> "$GITHUB_ENV"
 
-      - name: Resolve and byte-verify current-window Tapology posters
-        run: node scripts/resolve-current-on-this-day-tapology-posters.mjs
+      - name: Resolve canonical current-window event posters
+        run: node scripts/resolve-on-this-day-event-poster-pipeline.mjs --current-window
 
-      - name: Publish immutable Tapology poster bytes
+      - name: Publish immutable poster bytes
         shell: bash
         run: |
           set -euo pipefail
@@ -125,26 +127,11 @@ jobs:
           git -C "$OTD_POSTER_OUTPUT_DIR" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git -C "$OTD_POSTER_OUTPUT_DIR" add --all
           if git -C "$OTD_POSTER_OUTPUT_DIR" diff --cached --quiet; then
-            echo "No new Tapology poster bytes."
+            echo "No new poster bytes."
           else
             git -C "$OTD_POSTER_OUTPUT_DIR" commit -m "Cache verified On This Day posters"
             git -C "$OTD_POSTER_OUTPUT_DIR" push origin HEAD:otd-poster-cache
           fi
-
-      - name: Reject mismatched or unbound Tapology posters
-        run: node scripts/sanitize-on-this-day-tapology-posters.mjs
-
-      - name: Apply deterministic current-window poster fallbacks
-        run: node scripts/apply-on-this-day-current-poster-fallbacks.mjs
-
-      - name: Recover exact Wikipedia event posters
-        run: node scripts/resolve-on-this-day-event-posters.mjs
-
-      - name: Prune stale poster registry records
-        run: node scripts/prune-on-this-day-poster-registry.mjs
-
-      - name: Finalize public image metadata
-        run: node scripts/finalize-on-this-day-image-metadata.mjs
 
       - name: Enforce current-window and birthday image QA
         run: npm run check:history-images

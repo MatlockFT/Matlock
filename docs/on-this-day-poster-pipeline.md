@@ -1,52 +1,75 @@
-# On This Day verified poster pipeline
+# On This Day event-poster pipeline
 
-The poster pipeline treats event identity and image retrieval as separate steps. A search result may suggest an event, but it is never enough to publish a poster.
+Event entries have one dedicated poster path. General On This Day image resolution does not choose event art.
 
-## Acceptance contract
+## Source order
 
-A Tapology poster is published only when all of these checks pass:
+Every unresolved event follows the same order in every workflow:
 
-1. Tapology search returns one unique event whose date and normalized title match the On This Day entry.
-2. The exact Tapology event page independently matches the expected title.
-3. The image is exposed by that event page from Tapology's `poster_images` CDN path.
-4. When Tapology uses a numeric event ID, the same ID appears in the poster asset path.
-5. Downloaded bytes are a real image, at least 10 KB, at least 240 pixels in both dimensions, and have a plausible poster aspect ratio.
-6. The bytes receive a SHA-256 fingerprint and an immutable filename before being copied to the `otd-poster-cache` branch.
-7. The registry record, history entry, cached URL, dimensions, and SHA-256 fingerprint all agree in offline QA.
+1. **Canonical registry/cache** — restore any previously verified assignment first. A solved event is not searched again during routine runs.
+2. **Tapology** — exact event title/date match, exact event page, event-bound `poster_images` asset, byte/dimension validation, SHA-256 fingerprint, immutable `otd-poster-cache` copy.
+3. **Wikipedia/Wikimedia** — exact event page plus poster/key-art filename evidence.
+4. **Official/archive sources** — promotion-hosted event art such as Pancrase, then curated archived-promotion rules.
+5. **Manual verified override** — only with explicit visual verification.
+6. **Generated archive card** — presentation fallback only. It is never registered as authentic poster art.
 
-An ambiguous match, transport failure, changed image hash, or malformed asset cannot overwrite a previously verified record. Hash changes are quarantined until a deliberate `--refresh` run.
+Fighter portraits, fight photos, generic promotion logos, adjacent-event artwork and orientation-only guesses cannot satisfy an event-poster record.
 
-## Poster fallback order
+## One canonical registry
 
-Tapology is the first-choice source, not the only source. After the exact Tapology pass, the daily poster workflow now applies deterministic curated poster rules and then runs the exact-event Wikipedia/Wikimedia recovery pass. Trusted non-Tapology poster types are:
+`assets/data/on-this-day-poster-registry.json` is version 2 and is source-agnostic.
 
-- official promotion event posters or key art
-- Wikipedia/Wikimedia event posters whose exact event page and filename identify the event
-- archived promotion event posters
-- manually verified event posters with an explicit visual-verification flag
+It stores the active verified poster assignment for Tapology, Wikipedia/Wikimedia, official promotion, archived promotion and manually verified sources. Tapology records retain the stricter event-page identity, image-byte, dimensions and SHA-256 fields. If Tapology verifies that an exact event page has no poster and another trusted source later resolves the event, that Tapology evidence is preserved while the active poster assignment becomes the verified non-Tapology source.
 
-Fighter portraits, unrelated action photos, adjacent-event artwork, generic promotion logos, and orientation-only guesses are never promoted to an event poster.
+The pipeline always restores this registry before performing discovery and captures the final verified assignments back into it after discovery. This prevents the same historical event from being searched repeatedly.
 
-## When an authentic poster still cannot be recovered
+## Tapology acceptance contract
 
-A Tapology `verified-unavailable` result means only that the exact Tapology event page did not provide a usable poster. It no longer means the page should render blank. Other trusted poster sources are still allowed to satisfy the event.
+A Tapology poster is published only when:
 
-If no authentic poster/key art has been verified yet, the browser renders a clearly labeled event-specific archive card using the real event title, promotion, and date. That card is a presentation fallback only: it is not stored as historical poster art, is not counted as a verified poster, and explicitly says that the original poster is still pending. This guarantees that every event has a poster-shaped visual without passing fabricated artwork off as an original event poster.
+1. search produces one unique event matching title and date;
+2. the exact Tapology event page independently matches;
+3. that page exposes a `poster_images` asset;
+4. numeric event IDs agree when Tapology provides them;
+5. downloaded bytes are an actual image of plausible size and dimensions;
+6. bytes are SHA-256 fingerprinted and copied to the immutable poster-cache branch;
+7. registry, history metadata and cached bytes agree in QA.
 
-## Automated operation
+Changed poster bytes are quarantined unless a deliberate refresh is requested.
 
-`.github/workflows/otd-poster-sync.yml` runs after the main daily history refresh and can also be dispatched manually. It restores every existing registry record first, works through a bounded unresolved Tapology batch, applies curated deterministic poster fallbacks, runs the broader exact Wikipedia event-poster recovery pass, validates the registry, publishes new immutable Tapology poster bytes, rebuilds the browser history shards and social-image cache, then commits generated On This Day data.
+## Single entry point
 
-The workflow shares the `on-this-day-history` concurrency group with the history updater and does not cancel an in-progress run. This prevents two writers from racing on `main`.
-
-Useful commands:
+All automated poster work now goes through:
 
 ```sh
-npm run resolve:history-posters
-npm run apply:history-poster-fallbacks
 npm run resolve:history-event-posters
-npm run check:poster-registry
-npm run check:history-images
 ```
 
-Use `OTD_TAPOLOGY_POSTER_LIMIT` to control the exact Tapology backlog size. Use `OTD_EVENT_POSTER_LIMIT` to control the broader non-Tapology recovery pass. Use `--apply-only` to restore the last verified Tapology registry without making network requests. Use `--refresh` only when deliberately reviewing a changed Tapology poster asset.
+Useful modes:
+
+```sh
+# Full discovery: registry → Tapology → Wikipedia → official/manual fallbacks
+npm run resolve:history-event-posters
+
+# Restore verified poster assignments only; no network discovery
+node scripts/resolve-on-this-day-event-poster-pipeline.mjs --apply-only
+
+# Current-date fast path, still using the same source order
+node scripts/resolve-on-this-day-event-poster-pipeline.mjs --current-window
+
+# History rebuild: reuse Tapology registry without fetching new Tapology pages,
+# then allow Wikipedia and lower-priority sources to resolve new events.
+node scripts/resolve-on-this-day-event-poster-pipeline.mjs --skip-tapology-fetch
+```
+
+Low-level Tapology and Wikipedia scripts remain implementation details for verification and troubleshooting; workflows should not compose them independently.
+
+## Automation
+
+- `.github/workflows/otd-poster-sync.yml` runs the full resolver and publishes new immutable Tapology bytes.
+- `.github/workflows/otd-current-window-fast-publish.yml` runs the same resolver in current-window mode.
+- `.github/workflows/update-on-this-day-events.yml` keeps ordinary fighter/moment images separate, then runs the event-poster pipeline without a fresh Tapology crawl. The dedicated poster sync performs the broader Tapology discovery pass.
+
+All three share the `on-this-day-history` concurrency group, so history writers cannot race each other.
+
+Use `OTD_TAPOLOGY_POSTER_LIMIT` for the Tapology batch size and `OTD_EVENT_POSTER_LIMIT` for Wikipedia recovery. Use `OTD_POSTER_REFRESH=1` or `--refresh` only for deliberate Tapology asset review.

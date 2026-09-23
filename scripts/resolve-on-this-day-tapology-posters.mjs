@@ -360,11 +360,17 @@ const history = JSON.parse(await fs.readFile(HISTORY_PATH, 'utf8'));
 const overrides = JSON.parse(await fs.readFile(OVERRIDES_PATH, 'utf8').catch(() => '{"entries":[]}'))?.entries || [];
 const cache = JSON.parse(await fs.readFile(CACHE_PATH, 'utf8').catch(() => '{"version":5,"entries":{}}'));
 const registry = JSON.parse(await fs.readFile(REGISTRY_PATH, 'utf8').catch(() => '{"version":1,"records":{}}'));
-registry.version = 1;
+registry.version = Math.max(2, Number(registry.version || 1));
 registry.records = registry.records && typeof registry.records === 'object' && !Array.isArray(registry.records) ? registry.records : {};
 cache.entries = cache.entries && typeof cache.entries === 'object' && !Array.isArray(cache.entries) ? cache.entries : {};
 for (const record of Object.values(registry.records)) {
   if (!record.dateMatch && clean(record.eventDate) === clean(record.date)) record.dateMatch = 'exact';
+  if (record?.status === 'verified' && !clean(record?.sourceType) && tapologyEventUrl(record?.eventUrl)) {
+    record.sourceType = 'tapology-event-poster';
+    record.sourceUrl = clean(record.eventUrl);
+    record.credit = 'Tapology';
+    record.confidence = 1;
+  }
 }
 
 const events = (history.entries || []).filter(entry => isEvent(entry) || Boolean(exactOverride(entry, overrides)));
@@ -436,12 +442,14 @@ for (const entry of targets) {
       const record = {
         key,
         status: 'verified',
+        sourceType: 'tapology-event-poster',
         date: entry.date,
         title: entry.title,
         eventTitle: page.eventTitle,
         eventDate: page.eventDate,
         dateMatch: page.dateMatch,
         eventUrl: page.eventUrl,
+        sourceUrl: page.eventUrl,
         originPosterUrl: page.poster.url,
         posterUrl: image.publicUrl,
         sha256: image.sha256,
@@ -450,6 +458,8 @@ for (const entry of targets) {
         bytes: image.bytes,
         format: image.format,
         alt: page.poster.alt,
+        credit: 'Tapology',
+        confidence: 1,
         titleScore: page.titleScore,
         eventIdBound: Boolean(numericId(page.eventUrl, 'event')),
         discovery: tapologyEventUrl(entry?.tapologyUrl) || exactOverride(entry, overrides) ? 'stored-or-curated-exact-event-page' : 'tapology-search-unique-title-date',
@@ -483,11 +493,12 @@ for (const entry of targets) {
 
 const nowIso = APPLY_ONLY ? clean(registry.updatedAt) || new Date().toISOString() : new Date().toISOString();
 if (!APPLY_ONLY) registry.updatedAt = nowIso;
-registry.policy = 'Exact Tapology title and date; unique search result; event-bound poster path; image bytes dimension-checked and SHA-256 pinned; verified bytes mirrored to otd-poster-cache; failures preserve last known-good records.';
+registry.tapologyPolicy = 'Exact Tapology title and date; unique search result; event-bound poster path; image bytes dimension-checked and SHA-256 pinned; verified bytes mirrored to otd-poster-cache; failures preserve last known-good records.';
+registry.policy ||= 'One event-poster registry. Restore verified assignments first; new unresolved events resolve in source priority order: Tapology, Wikipedia/Wikimedia, official/archive/manual fallback.';
 history.tapologyPosterResolverVersion = 5;
 history.tapologyPosterResolverUpdatedAt = nowIso;
 history.tapologyPosterBindingPolicy = 'verified-registry-only';
-history.tapologyPosterDiscoveryPolicy = registry.policy;
+history.tapologyPosterDiscoveryPolicy = registry.tapologyPolicy;
 if (!APPLY_ONLY) cache.updatedAt = nowIso;
 
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');

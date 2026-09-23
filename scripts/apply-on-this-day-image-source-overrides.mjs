@@ -1,7 +1,12 @@
 import fs from 'node:fs/promises';
 
-const HISTORY_PATH = process.argv[2] || 'assets/data/on-this-day.json';
-const OVERRIDES_PATH = process.argv[3] || 'assets/data/on-this-day-image-source-overrides.json';
+const CLI_ARGS = process.argv.slice(2);
+const POSITIONAL_ARGS = CLI_ARGS.filter(value => !value.startsWith('--'));
+const HISTORY_PATH = POSITIONAL_ARGS[0] || 'assets/data/on-this-day.json';
+const OVERRIDES_PATH = POSITIONAL_ARGS[1] || 'assets/data/on-this-day-image-source-overrides.json';
+const EVENTS_ONLY = CLI_ARGS.includes('--events-only');
+const NON_EVENTS_ONLY = CLI_ARGS.includes('--non-events-only');
+if (EVENTS_ONLY && NON_EVENTS_ONLY) throw new Error('Choose only one of --events-only or --non-events-only.');
 const USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36 MMA-Matlock-OTD/1.4';
 const REQUEST_TIMEOUT_MS = 20000;
 const REQUEST_ATTEMPTS = 3;
@@ -198,6 +203,8 @@ for (const override of overrides) {
     failures.push(`${label}: entry not found`);
     continue;
   }
+  if (EVENTS_ONLY && !isEvent(entry)) continue;
+  if (NON_EVENTS_ONLY && isEvent(entry)) continue;
 
   const primaryConfidence = Math.max(0, Math.min(1, Number(override?.confidence || 0.95)));
   const existingConfidence = Number(entry?.imageConfidence || 0);
@@ -285,7 +292,11 @@ for (const override of overrides) {
 
 history.imageSourceOverrideVersion = Number(overridesData?.version || 1);
 history.imageSourceOverridesAppliedAt = nowIso;
-history.imageSourceOverridePolicy = 'direct assets and non-event sources only; event page bindings are deferred to dedicated poster resolvers';
+history.imageSourceOverridePolicy = EVENTS_ONLY
+  ? 'event direct assets only, after Tapology and Wikipedia; source-page bindings remain deferred'
+  : NON_EVENTS_ONLY
+    ? 'non-event verified source overrides only'
+    : 'direct assets and non-event sources only; event page bindings are deferred to dedicated poster resolvers';
 await fs.writeFile(HISTORY_PATH, `${JSON.stringify(history, null, 2)}\n`, 'utf8');
 
 console.log(`On This Day verified source overrides: ${applied} applied (${fallbackApplied} fallback), ${retained} already protected, ${posterMetadataRepaired} poster metadata repaired, ${deferredEventBindings} event binding(s) deferred, ${failures.length} unresolved.`);

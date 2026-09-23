@@ -73,17 +73,8 @@ jobs:
           fi
           echo "OTD_POSTER_OUTPUT_DIR=$cache_dir" >> "$GITHUB_ENV"
 
-      - name: Resolve and byte-verify exact event posters
-        run: npm run resolve:history-posters
-
-      - name: Apply curated non-Tapology poster fallbacks
-        run: npm run apply:history-poster-fallbacks
-
-      - name: Recover exact Wikipedia event posters
+      - name: Resolve canonical event-poster pipeline
         run: npm run resolve:history-event-posters
-
-      - name: Validate poster identity registry
-        run: npm run check:poster-registry
 
       - name: Publish immutable poster bytes
         shell: bash
