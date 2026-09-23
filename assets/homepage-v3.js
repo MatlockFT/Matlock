@@ -59,7 +59,6 @@
   const fallbackNewsUrl = root.dataset.newsFallbackUrl;
   const historyUrl = root.dataset.historyUrl;
   const historyRuntimeBase = root.dataset.historyRuntimeBase;
-  const verdictProfileUrl = root.dataset.verdictProfileUrl;
   const historyTimeZone = 'America/Chicago';
 
   const el = (tag, className, text) => {
@@ -253,37 +252,12 @@
     }
   };
 
-  const loadVerdictProfileState = async () => {
-    if (!verdictProfileUrl) return;
-
-    try {
-      const response = await fetch(verdictProfileUrl, { cache: 'no-store' });
-      if (!response.ok) return;
-      const html = await response.text();
-      const doc = new DOMParser().parseFromString(html, 'text/html');
-      const bodyText = (doc.body?.textContent || '').replace(/\s+/g, ' ').trim();
-
-      const career = bodyText.match(
-        /Career\s+Since\s+\d{4}\s+([\d,]+)\s+Rounds Scored\s+([\d,]+)\s+Fights Predicted/i
-      );
-
-      if (career) {
-        const rounds = root.querySelector('[data-verdict-rounds]');
-        const predictions = root.querySelector('[data-verdict-career-predictions]');
-        if (rounds) rounds.textContent = career[1];
-        if (predictions) predictions.textContent = career[2];
-      }
-    } catch {
-      // Static verified profile totals remain visible when Verdict blocks cross-origin reads.
-    }
-  };
 
   const start = () => {
     setupStickyShell();
     setupThemeTransition();
     loadNews();
     window.setTimeout(loadHistory, 100);
-    window.setTimeout(loadVerdictProfileState, 160);
   };
 
   if (document.readyState === 'loading') {
