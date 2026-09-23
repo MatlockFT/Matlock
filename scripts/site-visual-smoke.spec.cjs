@@ -319,7 +319,7 @@ test.describe('Homepage V3 editorial shell', () => {
     expect(geometry.navWidth).toBeGreaterThanOrEqual(geometry.viewport - 4);
     expect(geometry.tickerWidth).toBeGreaterThanOrEqual(geometry.viewport - 4);
     expect(geometry.eventColor).toBe('rgb(17, 17, 17)');
-    expect(geometry.countdownColor).toBe(geometry.countdownLive ? 'rgb(167, 25, 31)' : 'rgb(17, 17, 17)');
+    expect(geometry.countdownColor).toBe(geometry.countdownLive ? 'rgb(196, 95, 0)' : 'rgb(17, 17, 17)');
     expect(geometry.trendingScrollHeight).toBeLessThanOrEqual(geometry.trendingHeight + 2);
     expect(geometry.leadTitleAlign).toBe('left');
     expect(geometry.leadDeckAlign).toBe('left');
