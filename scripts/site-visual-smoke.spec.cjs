@@ -362,7 +362,7 @@ test.describe('Homepage V3 editorial shell', () => {
     await expect(page.locator('.v3-rail-image')).toHaveCount(2);
     await expect(page.locator('.v3-history-feature-card')).toBeVisible({ timeout: 10000 });
     await expect(page.locator('.v3-history-feature-image')).toBeVisible({ timeout: 10000 });
-    await expect(page.locator('.v3-pick-row')).toHaveCount(2);
+    await expect(page.locator('.v3-verdict')).toHaveCount(0);
     await expect(page.locator('.v3-utility-strip')).toHaveCount(0);
     await expect(page.locator('.v3-sticky-shell')).toHaveCount(1);
     await expect(page.locator('.v3-sticky-shell > .site-navigation')).toHaveCount(1);
