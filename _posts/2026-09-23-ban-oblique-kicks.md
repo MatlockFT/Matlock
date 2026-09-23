@@ -16,6 +16,7 @@ pinned: false
 listing_visibility: normal
 spoiler_warning: false
 published: false
+preserve_line_breaks: true
 ---
 
 Finally! The MMA Gods have listened to the collective prayers of casual and hardcore fans alike as they have anointed the great [Andy Foster](https://www.tapology.com/fightcenter/fighters/4052-andy-foster) to look into a technique that has shelved and ended the careers of many an MMA fighter. The powerful and deadly technique goes by many names but I, as a die-hard Joe Rogan loyalist, call it the OBLIQUE KICK. 
@@ -34,14 +35,20 @@ Who was on the committee in 2009, you ask?
 
 Committee Chair Nick Lembo, New Jersey
 Jim Erickson, Mille Lacs
-Andy Foster, Georgia
+**Andy Foster, Georgia**
 Dale Kliparchuk, River Cree
 Keith Kizer, Nevada
 Josef Mason , Colorado
 Mike Mazzulli, Mohegan Sun
 Bernie Profato, Ohio
-On behalf of ABC President Tim Lueckenhoff, Missouri
 
+Interesting.
+
+Speaking of interesting history, it is only fair that I mention the UFC OG who harnessed the power of Bruce Lee's stop kick
+
+<figure class="article-inline-image article-inline-image--break article-inline-image--center article-inline-image--full">
+  <img src="/assets/uploads/ban-oblique-kicks-pasted-20260923-155757-570.png" alt="ban oblique kicks" loading="lazy">
+</figure>
 
 Five years later, the issue has returned to California’s athletic regulators. Following UFC 331, California State Athletic Commission executive director Andy Foster called for discussion of making lateral knee kicks a foul. The renewed attention followed Brunno Ferreira’s use of knee-directed kicks against Edmen Shahbazyan, who complained to the referee during their September 19 fight. The strikes were legal. Shahbazyan won by unanimous decision. [Sherdog’s report](https://www.sherdog.com/news/news/Controversial-MMA-technique-could-be-banned-following-UFC-331-202885/amp), [UFC’s result](https://www.ufc.com/video/160166).
 
