@@ -1475,7 +1475,7 @@ function insertBlock(text) {
   const before = bodyEditor.value.slice(0, start);
   const after = bodyEditor.value.slice(end);
   const prefix = !before ? '' : before.endsWith('\n\n') ? '' : before.endsWith('\n') ? '\n' : '\n\n';
-  const suffix = !after ? '' : after.startsWith('\n\n') ? '' : after.startsWith('\n') ? '\n' : '\n\n';
+  const suffix = !after ? '\n\n' : after.startsWith('\n\n') ? '' : after.startsWith('\n') ? '\n' : '\n\n';
   const inserted = `${prefix}${String(text).trim()}${suffix}`;
   bodyEditor.setRangeText(inserted, start, end, 'end');
   bodyEditor.focus();
