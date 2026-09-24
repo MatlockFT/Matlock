@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "generated_at": "2026-09-24T03:23:27Z",
+  "generated_at": "2026-09-24T03:24:47Z",
   "selected_event_id": null,
   "events": [],
   "upcoming": [
@@ -29,7 +29,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T03:23:27Z",
+      "observed_at": "2026-09-24T03:24:46Z",
       "source_role": "promotion"
     },
     {
@@ -111,7 +111,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T03:23:27Z",
+      "observed_at": "2026-09-24T03:24:46Z",
       "source_role": "promotion"
     },
     {
@@ -139,7 +139,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T03:23:27Z",
+      "observed_at": "2026-09-24T03:24:46Z",
       "source_role": "promotion"
     }
   ],
@@ -159,7 +159,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:27Z"
+      "last_checked_at": "2026-09-24T03:24:46Z"
     },
     "a1-combat": {
       "promotion": "A1 Combat",
@@ -193,7 +193,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:27Z"
+      "last_checked_at": "2026-09-24T03:24:46Z"
     },
     "afc-korea": {
       "promotion": "Angel's Fighting Championship",
@@ -227,7 +227,75 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:26Z"
+      "last_checked_at": "2026-09-24T03:24:45Z"
+    },
+    "ararat-wfc": {
+      "promotion": "Ararat World Fighting Championship",
+      "short_name": "Ararat WFC",
+      "country": "Ukraine",
+      "priority": 64,
+      "coverage_note": "Official promotion channel; monitor public live fight streams",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/channel/UCHjxDQsCI4hwHwOBkf43mwQ",
+      "channel_id": "UCHjxDQsCI4hwHwOBkf43mwQ",
+      "channel_name": "Ararat World Fighting Championship",
+      "status": "offline",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T03:24:46Z"
+    },
+    "ares": {
+      "promotion": "ARES Fighting Championship",
+      "short_name": "ARES",
+      "country": "France",
+      "priority": 66,
+      "coverage_note": "Official promotion channel; monitor free live fight segments when offered",
+      "access_note": "Main cards may be carried by CANAL+",
+      "channel_url": "https://www.youtube.com/channel/UCKvc7DzyLhhECmqqN81YYhA",
+      "channel_id": "UCKvc7DzyLhhECmqqN81YYhA",
+      "channel_name": "ARES Fighting Championship",
+      "status": "offline",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T03:24:46Z"
+    },
+    "babilon": {
+      "promotion": "Babilon MMA",
+      "short_name": "Babilon MMA",
+      "country": "Poland",
+      "priority": 66,
+      "coverage_note": "Official promotion channel; monitor free live fight segments when offered",
+      "access_note": "Current main cards may be carried by Polish broadcast partners",
+      "channel_url": "https://www.youtube.com/channel/UCjBX8YnAmJ6X61VbxKJ6qsQ",
+      "channel_id": "UCjBX8YnAmJ6X61VbxKJ6qsQ",
+      "channel_name": "Babilon MMA",
+      "status": "offline",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T03:24:46Z"
+    },
+    "bcm-promotions": {
+      "promotion": "BCM Promotions",
+      "short_name": "BCM",
+      "country": "United States",
+      "priority": 60,
+      "coverage_note": "Official promotion channel; monitor public live fight streams",
+      "access_note": "Current full-event distribution may use Combat Sports Now",
+      "channel_url": "https://www.youtube.com/channel/UC9Xot7hxSWvdfFCe3Ik8gMg",
+      "channel_id": "UC9Xot7hxSWvdfFCe3Ik8gMg",
+      "channel_name": "BCM PROMOTIONS",
+      "status": "offline",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T03:24:47Z"
     },
     "budo-sento": {
       "promotion": "Budo Sento Championship",
@@ -261,7 +329,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:26Z"
+      "last_checked_at": "2026-09-24T03:24:45Z"
     },
     "empire-mma-colombia": {
       "promotion": "Empire MMA",
@@ -295,7 +363,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:27Z"
+      "last_checked_at": "2026-09-24T03:24:46Z"
     },
     "fnc": {
       "promotion": "Fight Nation Championship",
@@ -330,6 +398,23 @@
       "error_count": 0,
       "last_success_at": null,
       "last_checked_at": "2026-09-24T03:13:48Z"
+    },
+    "fusion-fight-league": {
+      "promotion": "Fusion Fight League",
+      "short_name": "Fusion",
+      "country": "United States",
+      "priority": 62,
+      "coverage_note": "Official promotion channel; monitor public live fight streams",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/channel/UC9otIczdPcn5de3Nohwslsg",
+      "channel_id": "UC9otIczdPcn5de3Nohwslsg",
+      "channel_name": "Fusion Fight League",
+      "status": "offline",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T03:24:47Z"
     },
     "gma-vietnam": {
       "promotion": "Gods of Martial Arts",
@@ -380,7 +465,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-24T02:19:06Z",
-      "last_checked_at": "2026-09-24T03:23:26Z"
+      "last_checked_at": "2026-09-24T03:24:45Z"
     },
     "levels-fight-league": {
       "promotion": "Levels Fight League",
@@ -397,7 +482,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:26Z"
+      "last_checked_at": "2026-09-24T03:24:46Z"
     },
     "lfa": {
       "promotion": "Legacy Fighting Alliance",
@@ -431,7 +516,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:27Z"
+      "last_checked_at": "2026-09-24T03:24:46Z"
     },
     "lux": {
       "promotion": "LUX Fight League",
@@ -448,7 +533,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:26Z"
+      "last_checked_at": "2026-09-24T03:24:46Z"
     },
     "mangu": {
       "promotion": "Mangu Professional League",
@@ -465,7 +550,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:27Z"
+      "last_checked_at": "2026-09-24T03:24:46Z"
     },
     "mfl": {
       "promotion": "Mexico Fight League",
@@ -516,7 +601,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:26Z"
+      "last_checked_at": "2026-09-24T03:24:45Z"
     },
     "octagon-central-asia": {
       "promotion": "OCTAGON",
@@ -550,7 +635,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:26Z"
+      "last_checked_at": "2026-09-24T03:24:46Z"
     },
     "real-fight-arena": {
       "promotion": "Real Fight Arena",
@@ -567,7 +652,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:26Z"
+      "last_checked_at": "2026-09-24T03:24:46Z"
     },
     "road-fc": {
       "promotion": "ROAD FC",
@@ -584,7 +669,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:26Z"
+      "last_checked_at": "2026-09-24T03:24:45Z"
     },
     "samurai-fight-house": {
       "promotion": "Samurai Fight House",
@@ -601,7 +686,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:26Z"
+      "last_checked_at": "2026-09-24T03:24:46Z"
     },
     "sft-combat": {
       "promotion": "SFT Combat",
@@ -618,7 +703,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:26Z"
+      "last_checked_at": "2026-09-24T03:24:45Z"
     },
     "shooto-brasil": {
       "promotion": "Shooto Brasil",
@@ -635,7 +720,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:27Z"
+      "last_checked_at": "2026-09-24T03:24:46Z"
     },
     "tuff-n-uff": {
       "promotion": "Tuff-N-Uff",
@@ -686,12 +771,29 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:23:26Z"
+      "last_checked_at": "2026-09-24T03:24:46Z"
+    },
+    "wow-fc": {
+      "promotion": "WOW Fight Company",
+      "short_name": "WOW FC",
+      "country": "Spain",
+      "priority": 66,
+      "coverage_note": "Official promotion channel; monitor public live fight streams",
+      "access_note": "Current numbered events may also be distributed on UFC Fight Pass",
+      "channel_url": "https://www.youtube.com/channel/UCfw5Y7JU0LOGVsrUL9zS44w",
+      "channel_id": "UCfw5Y7JU0LOGVsrUL9zS44w",
+      "channel_name": "WOWfc",
+      "status": "offline",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T03:24:47Z"
     }
   },
-  "monitored_count": 32,
+  "monitored_count": 38,
   "live_count": 0,
   "upcoming_count": 5,
   "youtube_api_configured": true,
-  "api_verified_source_count": 32
+  "api_verified_source_count": 38
 }
