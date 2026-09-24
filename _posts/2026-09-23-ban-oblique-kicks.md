@@ -69,7 +69,7 @@ Now, in 2026, the issue has returned to California's athletic regulators. Follow
 
 Absolutely disgraceful. Is there no honor amongst fighters?
 
-Luckily, the most powerful person out of all the athletic commissions was present at UFC 331, as it took place under his jurisdiction: Andy Foster. Andy was once the Executive Director of the Georgia Athletic and Entertainment Commission but, on November 7, 2012, was hired as Executive Officer of the California State Athletic Commission. Andy would rather be God damned than have this blasphemous technique used in his state. Aaron Bronsteter reports:
+Luckily, the most powerful person out of all the athletic commissions was present at UFC 331, as it took place under his jurisdiction in Cali: Andy Foster. Andy was once the Executive Director of the Georgia Athletic and Entertainment Commission but, on November 7, 2012, was hired as Executive Officer of the California State Athletic Commission. Andy would rather be God damned than have this blasphemous technique used in his state. Aaron Bronsteter reports:
 
 [EMBED X](https://x.com/aaronbronsteter/status/2101540282055479615)
 
