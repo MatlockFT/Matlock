@@ -1,5 +1,5 @@
 import fs from 'node:fs/promises';
-import { DATA_PATH, norm } from './upcoming-events-data.mjs';
+import { DATA_PATH, norm } from '../events/upcoming-events-data.mjs';
 
 const CACHE_PATH = '_data/fighter_portraits.json';
 const UFC = 'https://www.ufc.com';

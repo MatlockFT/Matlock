@@ -2,8 +2,8 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import sharp from 'sharp';
-import { balancedWrap, textUnits } from './share-title-layout.mjs';
-import { topMatterSvg, collageMarksSvg, titleAndFooterSvg, noImageSvg } from './share-card-composition.mjs';
+import { balancedWrap, textUnits } from '../media/share-title-layout.mjs';
+import { topMatterSvg, collageMarksSvg, titleAndFooterSvg, noImageSvg } from '../media/share-card-composition.mjs';
 
 const HISTORY_PATH = process.argv[2] || 'assets/data/on-this-day.json';
 const OUTPUT_DIR = process.env.OTD_SHARE_OUTPUT_DIR || '.otd-share-cache';

@@ -205,7 +205,7 @@ export function displayTextSvg(text, { x = 0, y = 0, size = 64, fill = '#fff', s
   }).join('');
 }
 `;
-const output = '// Generated from Gobold Bold.woff by scripts/build-share-gobold.mjs. Do not hand-edit glyph data.\n'
+const output = '// Generated from Gobold Bold.woff by scripts/media/build-share-gobold.mjs. Do not hand-edit glyph data.\n'
   + `export const displayFontMetrics = ${JSON.stringify(metrics)};\n`
   + `const mapping = ${JSON.stringify(mapping)};\n`
   + `const glyphs = ${JSON.stringify(glyphs)};\n`
@@ -213,7 +213,7 @@ const output = '// Generated from Gobold Bold.woff by scripts/build-share-gobold
 const destination = new URL('../assets/share-gobold.mjs', import.meta.url);
 if (process.argv.includes('--check')) {
   if (!fs.existsSync(destination) || fs.readFileSync(destination, 'utf8') !== output) {
-    throw new Error('GoBold module is stale; run node scripts/build-share-gobold.mjs');
+    throw new Error('GoBold module is stale; run node scripts/media/build-share-gobold.mjs');
   }
   console.log(`GoBold outlines verified: ${Object.keys(glyphs).length} glyphs, ${Object.keys(mapping).length} characters.`);
 } else {

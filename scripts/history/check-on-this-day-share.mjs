@@ -1,5 +1,5 @@
 import fs from 'node:fs/promises';
-import { balancedWrap } from './share-title-layout.mjs';
+import { balancedWrap } from '../media/share-title-layout.mjs';
 
 const pagePath = 'on-this-day.html';
 const manifestPath = process.env.OTD_SHARE_MANIFEST_PATH || 'assets/data/on-this-day-share-manifest.json';

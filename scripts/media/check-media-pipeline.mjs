@@ -67,9 +67,9 @@ if (!writer.includes("assets/uploads/articles/")) {
   fail('assets/writer.js: new Writer images are not routed to the article upload hierarchy.');
 }
 
-const optimizer = await fs.readFile('scripts/optimize-post-images.mjs', 'utf8');
+const optimizer = await fs.readFile('scripts/media/optimize-post-images.mjs', 'utf8');
 if (!optimizer.includes("responsiveOutputPlan")) {
-  fail('scripts/optimize-post-images.mjs: responsive image generation is not using the media path planner.');
+  fail('scripts/media/optimize-post-images.mjs: responsive image generation is not using the media path planner.');
 }
 
 const mediaBackend = await fs.readFile('_netlify-auth/netlify/functions/writer-media-process-background.mjs', 'utf8');
