@@ -9,6 +9,8 @@ on:
     paths:
       - "write.html"
       - "assets/writer.js"
+      - "_writer/**"
+      - "scripts/build-frontend-bundles.mjs"
       - "assets/writer.css"
       - "assets/writer-auth.js"
       - "assets/writer-wordtools.js"
