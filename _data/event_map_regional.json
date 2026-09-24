@@ -372,23 +372,6 @@
       "longitude": -118.2437
     },
     {
-      "id": "peak-pfc-54-2026-09-26",
-      "promotion": "Peak Fighting",
-      "promotion_key": "peak",
-      "title": "PFC 54",
-      "date": "2026-09-26",
-      "venue": "kay yeager coliseum",
-      "location": "Wichita falls, TX",
-      "broadcast": "",
-      "official_url": "https://www.peakfighting.com/",
-      "regional": true,
-      "level": "pro-am",
-      "source_key": "peak",
-      "source_label": "Peak Fighting Championship",
-      "latitude": 33.9137,
-      "longitude": -98.4934
-    },
-    {
       "id": "peak-pfc-54-braxton-smith-vs-khetag-sabeev-2026-09-26",
       "promotion": "Peak Fighting",
       "promotion_key": "peak",
@@ -1339,6 +1322,36 @@
       "longitude": -106.485
     },
     {
+      "id": "sherdog-czmma-cagezilla-fc-93-2026-10-24-manassas",
+      "promotion": "CZMMA",
+      "promotion_key": "sherdog_discovery",
+      "title": "CZMMA: Cagezilla FC 93",
+      "date": "2026-10-24",
+      "venue": "The Salisbury Center",
+      "location": "Manassas, VA",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/CZMMA-Cagezilla-FC-93-111496",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-firepower-xtreme-combat-3-mma-all-in-2026-10-24-long-beach",
+      "promotion": "Firepower Xtreme Combat",
+      "promotion_key": "sherdog_discovery",
+      "title": "Firepower Xtreme Combat 3: MMA All In",
+      "date": "2026-10-24",
+      "venue": "Thunder Studios",
+      "location": "Long Beach, CA",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Firepower-Xtreme-Combat-3-MMA-All-In-114656",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "nitro-capitol-city-punishment-10-24-2026-10-24",
       "promotion": "GE Fights",
       "promotion_key": "nitro",
@@ -1352,6 +1365,7 @@
       "level": "regional",
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
+      "ticket_url": "https://www.nitrotickets.com/event/1270/capitol-city-punishment-1024",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1270/1785882975_dfGzg.jpg"
     },
     {
@@ -1371,6 +1385,21 @@
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1321/1789671042_large_thumb1785876728_Hammer-D2-Group-image.jpg"
     },
     {
+      "id": "sherdog-hub-city-mma-fight-night-13-2026-10-24-jackson",
+      "promotion": "Hub City MMA",
+      "promotion_key": "sherdog_discovery",
+      "title": "Hub City MMA: Fight Night 13",
+      "date": "2026-10-24",
+      "venue": "Jackson Fair Grounds",
+      "location": "Jackson, TN",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Hub-City-MMA-Fight-Night-13-114469",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
       "id": "camomma-king-of-the-cage-2026-10-24",
       "promotion": "KING OF THE CAGE",
       "promotion_key": "camomma",
@@ -1384,6 +1413,36 @@
       "level": "amateur",
       "source_key": "camomma",
       "source_label": "California Amateur Mixed Martial Arts Organization"
+    },
+    {
+      "id": "sherdog-legends-fight-series-o-h-i-ko-fight-night-2026-10-24-columbus",
+      "promotion": "Legends Fight Series",
+      "promotion_key": "sherdog_discovery",
+      "title": "Legends Fight Series: O-H-I-KO Fight Night",
+      "date": "2026-10-24",
+      "venue": "Kemba Live",
+      "location": "Columbus, OH",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Legends-Fight-Series-OHIKO-Fight-Night-114538",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "sherdog-pure-fc-32-pure-fighting-championships-32-2026-10-24-waukesha",
+      "promotion": "Pure FC",
+      "promotion_key": "sherdog_discovery",
+      "title": "Pure FC 32: Pure Fighting Championships 32",
+      "date": "2026-10-24",
+      "venue": "Waukesha Expo Arena",
+      "location": "Waukesha, WI",
+      "broadcast": "",
+      "official_url": "https://www.sherdog.com/events/Pure-FC-32-Pure-Fighting-Championships-32-114537",
+      "regional": true,
+      "level": "regional",
+      "source_key": "sherdog_discovery",
+      "source_label": "Sherdog regional discovery"
     },
     {
       "id": "camomma-ssp-mma-2026-10-24",
@@ -1416,6 +1475,7 @@
       "level": "regional",
       "source_key": "nitro",
       "source_label": "Nitro Tickets",
+      "ticket_url": "https://www.nitrotickets.com/event/1302/synergy-fc-33-kansas-city-1024",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1302/1788195524_cttVd.jpg"
     },
     {
@@ -1434,6 +1494,7 @@
       "source_label": "Nitro Tickets",
       "latitude": 46.8772,
       "longitude": -96.7898,
+      "ticket_url": "https://www.nitrotickets.com/event/1317/throne-mma-fargo",
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1317/1789517745_RKOpA.jpg"
     },
     {
