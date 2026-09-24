@@ -4,9 +4,9 @@ This document tracks the controlled reorganization of the MMA Matlock repository
 
 ## Current status
 
-**Stage 8 of 10 — Runtime-data and cache policy: IN PROGRESS**
+**Stage 8 of 10 — Runtime-data and cache policy: COMPLETE**
 
-Next stage after validation: **Stage 9 — Repository integrity enforcement**
+Next stage: **Stage 9 — Repository integrity enforcement**
 
 Stages 0–5 established the safety baseline, repository/media contracts, article-owned asset hierarchy, modular Writer source, and domain-organized development scripts. Stage 6 consolidates overlapping GitHub Actions ownership while preserving schedules, publishing behavior, and production regression gates.
 
@@ -339,6 +339,17 @@ Local On This Day scratch defaults now use `.cache/on-this-day/`. Existing workf
 
 The exact pre-Stage-8 repository state is preserved at `archive/repo-modernization-stage7-complete-2026-09-24`.
 
+
+Stage 8 validation confirmed:
+
+- `npm run check:data` classified all 16 tracked `_data/` files and all 54 tracked `assets/data/` files with no gaps or overlaps.
+- Repository reference safety, repository policy, script organization, workflow organization, media separation, brand/theme, content, and browser/data syntax checks passed.
+- The Site Browser exact-commit Jekyll build passed.
+- Production visual smoke passed across the canonical desktop/mobile surfaces.
+- The triggered On This Day refresh successfully rebuilt runtime shards, built and validated share images, published the share cache, rebuilt homepage/lead data, validated the archive, and committed its generated-data refresh.
+- Mobile Lighthouse and the long Matchmaker validation remain independent existing gates and are not weakened by Stage 8.
+
+
 ## Planned stages
 
 | Stage | Scope | Status |
@@ -351,8 +362,8 @@ The exact pre-Stage-8 repository state is preserved at `archive/repo-modernizati
 | 5 | Development-script organization | Complete |
 | 6 | GitHub Actions workflow consolidation | Complete |
 | 7 | Legacy/V2/V3 page cleanup | Complete |
-| 8 | Runtime-data and cache policy | In progress |
-| 9 | Repository integrity enforcement | Pending |
+| 8 | Runtime-data and cache policy | Complete |
+| 9 | Repository integrity enforcement | Next |
 | 10 | Final documentation and maintenance mode | Pending |
 
 The status table is updated at the end of every completed stage.
