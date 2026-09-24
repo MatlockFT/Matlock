@@ -38,6 +38,8 @@ jobs:
           python-version: "3.12"
 
       - name: Check promotion registry
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: python scripts/update-global-live.py
 
       - name: Publish live-state change
