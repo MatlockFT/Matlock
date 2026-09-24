@@ -32,6 +32,9 @@ jobs:
       - name: Check repository integrity
         run: npm run check:integrity
 
+      - name: Check repository reference safety
+        run: npm run audit:repo -- --check
+
       - name: Check current brand identity
         run: node scripts/check-brand-identity.mjs
 
@@ -71,6 +74,7 @@ jobs:
           node --check scripts/build-on-this-day-home.mjs
           node --check scripts/build-frontend-bundles.mjs
           node --check scripts/check-repository-integrity.mjs
+          node --check scripts/repository-reference-audit.mjs
           node --check scripts/check-search-readiness.mjs
           node --check scripts/build-on-this-day-share-images.mjs
           node --check scripts/share-title-layout.mjs
