@@ -130,6 +130,12 @@ def decode_json_text(value):
 
 
 def extract_title(window, fallback):
+    content_match = TITLE_CONTENT_RE.search(window)
+    if content_match:
+        title = decode_json_text(content_match.group(1))
+        if title:
+            return title
+
     og_match = OG_TITLE_RE.search(window)
     if og_match:
         title = html.unescape(og_match.group(1)).strip()
@@ -320,84 +326,50 @@ def error_result(promotion, previous_source, previous_event, channel_url, error)
     }
 
 
-def extract_stream_video_ids(page_html):
-    ids = []
+def extract_stream_candidates(page_html, promotion):
+    candidates = []
     seen = set()
 
-    for match in STREAM_VIDEO_ID_RE.finditer(page_html):
+    matches = list(STREAM_VIDEO_ID_RE.finditer(page_html))
+    if not matches:
+        matches = list(VIDEO_ID_RE.finditer(page_html))
+
+    for match in matches:
         video_id = match.group(1)
         if video_id in seen:
             continue
         seen.add(video_id)
-        ids.append(video_id)
-        if len(ids) >= MAX_STREAM_CANDIDATES:
-            return ids
 
-    # Fallback for YouTube markup variants that omit the renderer key.
-    if not ids:
-        for match in VIDEO_ID_RE.finditer(page_html):
-            video_id = match.group(1)
-            if video_id in seen:
-                continue
-            seen.add(video_id)
-            ids.append(video_id)
-            if len(ids) >= MAX_STREAM_CANDIDATES:
-                break
+        window_start = max(0, match.start() - 700)
+        window_end = min(len(page_html), match.end() + 9000)
+        window = page_html[window_start:window_end]
+        lowered = window.casefold()
 
-    return ids
+        live = (
+            bool(WATCHING_RE.search(window))
+            or "BADGE_STYLE_TYPE_LIVE_NOW" in window
+            or '"style":"LIVE"' in window
+            or '"label":"LIVE"' in window
+        )
+        restricted = any(marker in lowered for marker in RESTRICTED_MARKERS)
+        title = extract_title(
+            window,
+            f"{promotion.get('short_name') or promotion['name']} live",
+        )
 
+        candidates.append(
+            {
+                "video_id": video_id,
+                "title": title,
+                "live": live,
+                "restricted": restricted,
+            }
+        )
 
-def inspect_watch_video(video_id, promotion):
-    watch_url = f"https://www.youtube.com/watch?v={video_id}"
-    page_html, page_error, _ = fetch_text(watch_url)
+        if len(candidates) >= MAX_STREAM_CANDIDATES:
+            break
 
-    if not page_html:
-        return {
-            "video_id": video_id,
-            "live": False,
-            "restricted": False,
-            "title": "",
-            "error": page_error,
-        }
-
-    lowered = page_html.casefold()
-    if "sign in to confirm you're not a bot" in lowered:
-        return {
-            "video_id": video_id,
-            "live": False,
-            "restricted": False,
-            "title": "",
-            "error": "YouTube bot challenge on watch page",
-        }
-
-    live = bool(LIVE_BROADCAST_RE.search(page_html)) or '"isLiveNow":true' in page_html
-    restricted = any(marker in lowered for marker in RESTRICTED_MARKERS)
-
-    if promotion.get("id") == "inka" and video_id == "C2nNtrk8FRs":
-        probes = {
-            "isLiveNow": '"isLiveNow":true' in page_html,
-            "isLiveContent": '"isLiveContent":true' in page_html,
-            "liveBroadcastDetails": '"liveBroadcastDetails"' in page_html,
-            "liveBadge": "BADGE_STYLE_TYPE_LIVE_NOW" in page_html,
-            "liveStyle": '"style":"LIVE"' in page_html,
-            "offlineSlate": "LIVE_STREAM_OFFLINE_SLATE_RENDERER" in page_html,
-        }
-        print(f"INKA C2n markers: {probes}")
-
-    fallback = f"{promotion.get('short_name') or promotion['name']} live"
-    title = extract_title(page_html, fallback)
-
-    metadata, _ = fetch_oembed(video_id)
-    if metadata and metadata.get("title"):
-        title = str(metadata["title"]).strip()
-
-    return {
-        "video_id": video_id,
-        "live": live,
-        "restricted": restricted,
-        "title": title,
-        "error": "",
-    }
+    return candidates
 
 
 def probe_promotion(promotion, global_terms, previous_state):
@@ -426,50 +398,40 @@ def probe_promotion(promotion, global_terms, previous_state):
             streams_error or "Could not load YouTube Streams page",
         )
 
-    video_ids = extract_stream_video_ids(streams_page)
+    candidates = extract_stream_candidates(streams_page, promotion)
+
     if promotion_id == "inka":
-        print(f"INKA stream candidates: {video_ids}")
-        debug_id = "C2nNtrk8FRs"
-        debug_needle = f'"videoId":"{debug_id}"'
-        debug_index = streams_page.find(debug_needle)
-        if debug_index >= 0:
-            debug_window = streams_page[max(0, debug_index - 500): debug_index + 6500]
-            debug_tokens = {
-                "BADGE_STYLE_TYPE_LIVE_NOW": "BADGE_STYLE_TYPE_LIVE_NOW" in debug_window,
-                "style_LIVE": '"style":"LIVE"' in debug_window,
-                "text_LIVE": '"text":"LIVE"' in debug_window,
-                "label_LIVE": '"label":"LIVE"' in debug_window,
-                "upcoming": "upcomingEventData" in debug_window,
-                "scheduledStartTime": "scheduledStartTime" in debug_window,
-                "thumbnailOverlayTimeStatusRenderer": "thumbnailOverlayTimeStatusRenderer" in debug_window,
-                "badges": '"badges"' in debug_window,
-            }
-            print(f"INKA stream card tokens: {debug_tokens}")
-            print("INKA stream card sample:", debug_window[:2600])
+        print(
+            "INKA stream candidates:",
+            [
+                {
+                    "video_id": item["video_id"],
+                    "title": item["title"],
+                    "live": item["live"],
+                    "restricted": item["restricted"],
+                }
+                for item in candidates
+            ],
+        )
 
     restricted_title = None
     ignored_title = None
-    watch_errors = []
 
-    for video_id in video_ids:
-        inspected = inspect_watch_video(video_id, promotion)
-
-        if inspected["error"]:
-            watch_errors.append(inspected["error"])
+    for candidate in candidates:
+        if not candidate["live"]:
             continue
 
-        if not inspected["live"]:
+        title = candidate["title"]
+
+        if candidate["restricted"]:
+            restricted_title = title
             continue
 
-        if inspected["restricted"]:
-            restricted_title = inspected["title"]
-            continue
-
-        title = inspected["title"]
         if not title_allowed(title, global_terms, promotion):
             ignored_title = title
             continue
 
+        video_id = candidate["video_id"]
         observed_at = now_iso()
         event = {
             "event_id": f"{promotion_id}:{video_id}",
@@ -529,15 +491,6 @@ def probe_promotion(promotion, global_terms, previous_state):
             ),
             "event": None,
         }
-
-    if video_ids and len(watch_errors) == len(video_ids):
-        return error_result(
-            promotion,
-            previous_source,
-            previous_event,
-            channel_url,
-            watch_errors[0],
-        )
 
     return {
         "source": build_source(
