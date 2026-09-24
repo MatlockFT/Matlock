@@ -21,10 +21,10 @@
   const upcomingCount = root.querySelector("[data-upcoming-count]");
   const monitored = root.querySelector("[data-live-monitored]");
   const apiStatus = root.querySelector("[data-api-status]");
+  const promotionGrid = root.querySelector("[data-promotion-grid]");
   const sourceList = root.querySelector("[data-source-list]");
 
   let currentVideoId = "";
-  let currentEventId = "";
   let busy = false;
   let lastData = null;
 
@@ -75,17 +75,17 @@
     if (!event || !event.video_id) return;
 
     currentVideoId = event.video_id;
-    currentEventId = event.event_id || "";
     screen.dataset.state = "live";
     stateWrap?.classList.add("is-live");
     stateText.textContent = event.stale ? "Live status delayed" : "Live now";
     title.textContent = event.title || "Live MMA";
-    promotion.textContent = `${event.short_name || event.promotion || "MMA"} · ${event.country || "International"}`;
+    promotion.textContent =
+      `${event.short_name || event.promotion || "MMA"} · ${event.country || "International"}`;
 
     const watchUrl = event.watch_url || `https://www.youtube.com/watch?v=${event.video_id}`;
     source.href = watchUrl;
     source.hidden = false;
-    source.textContent = "Open on YouTube ↗";
+    source.textContent = "Watch on YouTube ↗";
 
     if (!player.getAttribute("src") || !player.src.includes(event.video_id)) {
       player.src = embedUrl(event.video_id);
@@ -97,36 +97,37 @@
   const showStandby = (upcoming = []) => {
     screen.dataset.state = "offline";
     stateWrap?.classList.remove("is-live");
-    stateText.textContent = "Standby";
-    title.textContent = "No monitored MMA is live";
-    promotion.textContent = "Waiting for the next detected broadcast";
+    stateText.textContent = "No fights live";
+    title.textContent = "No live broadcasts right now";
+    promotion.textContent = "Check the upcoming schedule below";
 
     const next = Array.isArray(upcoming) ? upcoming[0] : null;
     if (next) {
-      standbyTitle.textContent = "Next broadcast scheduled";
-      standbyCopy.textContent = `${next.short_name || next.promotion || "MMA"} · ${formatSchedule(next.scheduled_start_time)}`;
+      standbyTitle.textContent = "Next broadcast";
+      standbyCopy.textContent =
+        `${next.short_name || next.promotion || "MMA"} · ${formatSchedule(next.scheduled_start_time)}`;
     } else {
-      standbyTitle.textContent = "No live MMA detected";
-      standbyCopy.textContent = "The station will activate when a monitored promotion goes live.";
+      standbyTitle.textContent = "No fights live right now";
+      standbyCopy.textContent = "New public YouTube broadcasts will appear here automatically.";
     }
 
     source.hidden = true;
 
     if (player.getAttribute("src")) player.removeAttribute("src");
     currentVideoId = "";
-    currentEventId = "";
 
     renderLiveEvents(lastData?.events || []);
   };
 
   const renderLiveEvents = (events) => {
-    if (!liveList) return;
+    if (!liveList || !liveCount) return;
 
     const activeEvents = Array.isArray(events) ? events : [];
-    liveCount.textContent = `${activeEvents.length} live`;
+    liveCount.textContent = activeEvents.length === 1 ? "1 live" : `${activeEvents.length} live`;
 
     if (!activeEvents.length) {
-      liveList.innerHTML = '<p class="live-lab__empty">No monitored fight streams are live right now.</p>';
+      liveList.innerHTML =
+        '<div class="live-lab__empty live-lab__empty--live"><strong>Nothing is live right now.</strong><span>The next detected public fight stream will appear here automatically.</span></div>';
       return;
     }
 
@@ -136,14 +137,14 @@
       const button = document.createElement("button");
       button.type = "button";
       button.className = "live-lab__event";
-      button.dataset.eventId = event.event_id || "";
       if (event.video_id === currentVideoId) button.classList.add("is-playing");
 
       const status = document.createElement("span");
       status.className = "live-lab__event-status";
-      status.textContent = event.video_id === currentVideoId
-        ? "Playing"
-        : (event.stale ? "Status delayed" : "Live");
+      status.textContent =
+        event.video_id === currentVideoId
+          ? "Now playing"
+          : (event.stale ? "Live · status delayed" : "Live");
 
       const name = document.createElement("strong");
       name.textContent = event.title || "Live MMA";
@@ -153,12 +154,15 @@
       const viewers = event.concurrent_viewers
         ? ` · ${Number(event.concurrent_viewers).toLocaleString()} watching`
         : "";
-      const verified = event.api_verified ? " · API verified" : " · fallback";
       meta.textContent =
         `${event.short_name || event.promotion || "MMA"} · ${event.country || "International"}` +
-        `${event.coverage_note ? ` · ${event.coverage_note}` : ""}${viewers}${verified}`;
+        `${event.coverage_note ? ` · ${event.coverage_note}` : ""}${viewers}`;
 
-      button.append(status, name, meta);
+      const action = document.createElement("span");
+      action.className = "live-lab__event-action";
+      action.textContent = event.video_id === currentVideoId ? "Playing" : "Watch";
+
+      button.append(status, name, meta, action);
       button.addEventListener("click", () => setPlayer(event));
       liveList.append(button);
     }
@@ -168,10 +172,12 @@
     if (!upcomingList || !upcomingCount) return;
 
     const scheduled = Array.isArray(events) ? events : [];
-    upcomingCount.textContent = `${scheduled.length} upcoming`;
+    upcomingCount.textContent =
+      scheduled.length === 1 ? "1 upcoming" : `${scheduled.length} upcoming`;
 
     if (!scheduled.length) {
-      upcomingList.innerHTML = '<p class="live-lab__empty">No scheduled YouTube broadcasts detected yet.</p>';
+      upcomingList.innerHTML =
+        '<div class="live-lab__empty"><strong>No scheduled broadcasts yet.</strong><span>Some promotions publish their YouTube stream only shortly before the event.</span></div>';
       return;
     }
 
@@ -197,27 +203,95 @@
         `${event.short_name || event.promotion || "MMA"} · ${event.country || "International"}` +
         `${event.coverage_note ? ` · ${event.coverage_note}` : ""}`;
 
-      card.append(time, name, meta);
+      const arrow = document.createElement("span");
+      arrow.className = "live-lab__upcoming-arrow";
+      arrow.setAttribute("aria-hidden", "true");
+      arrow.textContent = "↗";
+
+      card.append(time, name, meta, arrow);
       upcomingList.append(card);
+    }
+  };
+
+  const renderPromotions = (sources) => {
+    if (!promotionGrid) return;
+
+    const entries = Object.values(sources || {}).sort((a, b) =>
+      String(a.short_name || a.promotion || "").localeCompare(
+        String(b.short_name || b.promotion || "")
+      )
+    );
+
+    promotionGrid.innerHTML = "";
+
+    if (!entries.length) {
+      promotionGrid.innerHTML =
+        '<p class="live-lab__empty">Tracked promotions are temporarily unavailable.</p>';
+      return;
+    }
+
+    for (const item of entries) {
+      const card = item.channel_url
+        ? document.createElement("a")
+        : document.createElement("div");
+
+      card.className = "live-lab__promotion";
+      if (item.channel_url) {
+        card.href = item.channel_url;
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+      }
+
+      const head = document.createElement("div");
+      head.className = "live-lab__promotion-head";
+
+      const name = document.createElement("strong");
+      name.textContent = item.short_name || item.promotion || "MMA";
+
+      if (item.status === "live" || item.status === "upcoming") {
+        const state = document.createElement("span");
+        state.className = "live-lab__promotion-state";
+        state.dataset.status = item.status;
+        state.textContent = item.status === "live" ? "LIVE" : "UP NEXT";
+        head.append(name, state);
+      } else {
+        head.append(name);
+      }
+
+      const country = document.createElement("span");
+      country.className = "live-lab__promotion-country";
+      country.textContent = item.country || "International";
+
+      const coverage = document.createElement("span");
+      coverage.className = "live-lab__promotion-coverage";
+      coverage.textContent = item.coverage_note || "Public fight coverage varies";
+
+      card.append(head, country, coverage);
+      promotionGrid.append(card);
     }
   };
 
   const renderSources = (sources) => {
     if (!sourceList) return;
+
     const entries = Object.values(sources || {});
     sourceList.innerHTML = "";
 
     if (!entries.length) {
-      sourceList.innerHTML = "<span>No sources loaded.</span>";
+      sourceList.innerHTML = "<span>No source status available.</span>";
       return;
     }
 
     entries
-      .sort((a, b) => (b.priority || 0) - (a.priority || 0))
+      .sort((a, b) =>
+        String(a.short_name || a.promotion || "").localeCompare(
+          String(b.short_name || b.promotion || "")
+        )
+      )
       .forEach((item) => {
-        const pill = document.createElement("span");
-        pill.className = "live-lab__source";
-        pill.dataset.status = item.status || "unknown";
+        const row = document.createElement("span");
+        row.className = "live-lab__source";
+        row.dataset.status = item.status || "unknown";
 
         const label = document.createElement("strong");
         label.textContent = item.short_name || item.promotion || "MMA";
@@ -227,8 +301,8 @@
           live: "live",
           upcoming: "upcoming",
           offline: "offline",
-          ignored_live: "ignored live",
-          restricted_live: "restricted live",
+          ignored_live: "ignored",
+          restricted_live: "restricted",
           unembeddable_live: "embed blocked",
           error: "check delayed"
         }[item.status] || item.status || "unknown";
@@ -236,41 +310,47 @@
         const verified = item.verification === "youtube_api" ? " · API" : "";
         status.textContent = `${statusText}${verified}`;
 
-        pill.append(label, status);
-        sourceList.append(pill);
+        row.append(label, status);
+        sourceList.append(row);
       });
   };
 
   const applyData = (data) => {
     lastData = data;
+
     const events = Array.isArray(data.events) ? data.events : [];
     const upcoming = Array.isArray(data.upcoming) ? data.upcoming : [];
+    const sources = data.sources || {};
 
-    monitored.textContent = `${data.monitored_count ?? Object.keys(data.sources || {}).length} promotions`;
+    monitored.textContent =
+      `${data.monitored_count ?? Object.keys(sources).length} promotions`;
     updated.textContent = formatDate(data.generated_at);
 
     if (apiStatus) {
       apiStatus.textContent = data.youtube_api_configured
-        ? `YouTube API · ${data.api_verified_source_count || 0} verified this state`
-        : "HTML fallback only";
+        ? `YouTube API · ${data.api_verified_source_count || 0} sources verified`
+        : "Public-channel fallback";
     }
 
-    renderSources(data.sources || {});
+    renderSources(sources);
+    renderPromotions(sources);
     renderUpcoming(upcoming);
 
-    const currentStillLive = currentVideoId ? findEventByVideo(events, currentVideoId) : null;
+    const currentStillLive = currentVideoId
+      ? findEventByVideo(events, currentVideoId)
+      : null;
+
     if (currentStillLive) {
       setPlayer(currentStillLive);
-      return;
+    } else {
+      const selected =
+        findEventById(events, data.selected_event_id) ||
+        events[0] ||
+        null;
+
+      if (selected) setPlayer(selected);
+      else showStandby(upcoming);
     }
-
-    const selected =
-      findEventById(events, data.selected_event_id) ||
-      events[0] ||
-      null;
-
-    if (selected) setPlayer(selected);
-    else showStandby(upcoming);
 
     renderLiveEvents(events);
   };
@@ -279,11 +359,12 @@
     if (currentVideoId) return;
     screen.dataset.state = "checking";
     stateWrap?.classList.remove("is-live");
-    stateText.textContent = "Checking the world…";
+    stateText.textContent = "Checking live fights…";
   };
 
   const loadStatus = async ({ manual = false } = {}) => {
     if (busy) return;
+
     busy = true;
     if (manual) showChecking();
 
@@ -294,17 +375,20 @@
         headers: { Accept: "application/json" }
       });
 
-      if (!response.ok) throw new Error(`Status request failed: ${response.status}`);
-      const data = await response.json();
-      applyData(data);
+      if (!response.ok) {
+        throw new Error(`Status request failed: ${response.status}`);
+      }
 
+      applyData(await response.json());
       note.textContent =
-        "Automatic mode keeps the stream you are watching until it ends, then moves to the next detected live card. Scheduled broadcasts are verified with the YouTube Data API; public channel parsing remains available as a fallback.";
+        "Live and scheduled broadcasts are checked automatically. YouTube API verification is backed by public-channel fallback detection.";
     } catch (error) {
       console.warn("Global live status unavailable", error);
-      stateText.textContent = currentVideoId ? "Live status delayed" : "Monitor unavailable";
+      stateText.textContent = currentVideoId
+        ? "Live status delayed"
+        : "Updates temporarily unavailable";
       note.textContent =
-        "The live-state feed could not be reached. The current player is being preserved until the monitor returns.";
+        "Live-status updates are temporarily unavailable. Any stream already playing will be left in place.";
     } finally {
       busy = false;
     }
@@ -314,6 +398,7 @@
   window.addEventListener("online", () => loadStatus({ manual: true }));
 
   loadStatus();
+
   window.setInterval(() => {
     if (!document.hidden) loadStatus();
   }, 30000);
