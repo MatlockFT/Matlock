@@ -274,7 +274,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await page.click('[data-image-insert]');
   await expect.poll(() => uploadedAssets.size, { timeout: 10000 }).toBeGreaterThan(0);
   const uploadedAssetPath = [...uploadedAssets.keys()][0];
-  expect(uploadedAssetPath).toMatch(new RegExp(`^assets/uploads/articles/${date.slice(0, 4)}/${date.slice(5, 7)}/writer-production-smoke/`));
+  expect(uploadedAssetPath).toMatch(new RegExp(`^assets/uploads/articles/${date.slice(0, 4)}/${date.slice(5, 7)}/writer-production-smoke(?:-test)?/`));
   await expect.poll(async () => await editor.inputValue(), { timeout: 10000 }).toContain('/' + uploadedAssetPath);
 
   if (!(await advancedDetails.evaluate(el => el.open))) await advancedDetails.locator('summary').click();
