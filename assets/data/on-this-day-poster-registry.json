@@ -3850,7 +3850,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "Bellator 99 event poster",
-      "verifiedAt": "2026-09-24T04:16:19.639Z",
+      "verifiedAt": "2026-09-24T04:22:15.161Z",
       "manualVisualVerified": true
     },
     "2013-09-14::wsof5 arlovski vs kyle": {
@@ -3864,7 +3864,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "WSOF5: Arlovski vs. Kyle event poster",
-      "verifiedAt": "2026-09-24T04:16:19.639Z",
+      "verifiedAt": "2026-09-24T04:22:15.161Z",
       "manualVisualVerified": true
     },
     "2013-09-21::ufc 165 jones vs gustafsson": {
@@ -4086,7 +4086,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "WSOF13: Moraes vs. Bollinger event poster",
-      "verifiedAt": "2026-09-24T04:16:19.639Z",
+      "verifiedAt": "2026-09-24T04:22:15.161Z",
       "manualVisualVerified": true
     },
     "2014-09-20::ufc fight night hunt vs nelson": {
@@ -7818,9 +7818,62 @@
       "transport": "tapology-via-public-reader-v1",
       "checkedAt": "2026-09-24T04:16:10.930Z",
       "reason": "The exact Tapology event page was verified by title and date but exposes no event poster."
+    },
+    "2001-05-27::pride 14": {
+      "key": "2001-05-27::pride 14",
+      "status": "verified",
+      "sourceType": "tapology-event-poster",
+      "date": "2001-05-27",
+      "title": "Pride 14",
+      "eventTitle": "Pride 14: Clash of the Titans",
+      "eventDate": "2001-05-27",
+      "dateMatch": "exact",
+      "eventUrl": "https://www.tapology.com/fightcenter/events/pride-14-clash-of-the-titans",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/pride-14-clash-of-the-titans",
+      "originPosterUrl": "https://images.tapology.com/poster_images/239/profile/pridefcclashoftitans.jpg?1551283408",
+      "posterUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2001-05-27-pride-14-27f627f205f6eaeb.jpg",
+      "sha256": "27f627f205f6eaebd9d3a5fbf2b97da76c6adffc2e46728e0b9cc176e7b3b0be",
+      "width": 318,
+      "height": 445,
+      "bytes": 50139,
+      "format": "jpeg",
+      "alt": "Pride 14 event poster",
+      "credit": "Tapology",
+      "confidence": 1,
+      "titleScore": 99,
+      "eventIdBound": false,
+      "discovery": "tapology-search-unique-title-date",
+      "transport": "tapology-via-public-reader-v1",
+      "verifiedAt": "2026-09-24T04:20:27.270Z"
+    },
+    "2025-05-04::razhabali shaydullaev": {
+      "key": "2025-05-04::razhabali shaydullaev",
+      "status": "verified",
+      "sourceType": "wikipedia-event-poster",
+      "date": "2025-05-04",
+      "title": "Razhabali Shaydullaev",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Razhabali_Shaydullaev",
+      "posterUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Razhabali_Shaidulloev.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "credit": "Wikipedia / Wikimedia Commons",
+      "confidence": 0.96,
+      "alt": "Razhabali Shaydullaev event poster",
+      "verifiedAt": "2026-09-24T04:20:51.290Z"
+    },
+    "2026-05-10::luiz gustavo": {
+      "key": "2026-05-10::luiz gustavo",
+      "status": "verified",
+      "sourceType": "wikipedia-event-poster",
+      "date": "2026-05-10",
+      "title": "Luiz Gustavo",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Luiz_Gustavo",
+      "posterUrl": "https://upload.wikimedia.org/wikipedia/commons/1/15/20141118_AUTBRA_5085.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "credit": "Wikipedia / Wikimedia Commons",
+      "confidence": 0.96,
+      "alt": "Luiz Gustavo event poster",
+      "verifiedAt": "2026-09-24T04:20:51.290Z"
     }
   },
-  "updatedAt": "2026-09-24T04:16:19.860Z",
+  "updatedAt": "2026-09-24T04:22:15.382Z",
   "policy": "One event-poster registry. Restore verified assignments first; new unresolved events resolve in source priority order: Tapology, Wikipedia/Wikimedia, official/archive/manual fallback.",
   "tapologyPolicy": "Exact Tapology title and date; unique search result; event-bound poster path; image bytes dimension-checked and SHA-256 pinned; verified bytes mirrored to otd-poster-cache; failures preserve last known-good records."
 }
