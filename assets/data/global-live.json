@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "generated_at": "2026-09-24T02:55:26Z",
+  "generated_at": "2026-09-24T03:01:46Z",
   "selected_event_id": null,
   "events": [],
   "upcoming": [
@@ -30,6 +30,60 @@
       "api_verified": true,
       "stale": false,
       "observed_at": "2026-09-24T02:55:26Z"
+    },
+    {
+      "event_id": "tuff-n-uff:iRW8qArVe7Q",
+      "promotion_id": "tuff-n-uff",
+      "promotion": "Tuff-N-Uff",
+      "short_name": "Tuff-N-Uff",
+      "country": "United States",
+      "priority": 65,
+      "coverage_note": "Preliminary coverage",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/user/TuffNUffTV",
+      "channel_id": "UCFhFc55-s4Ct3t79SCN-I4Q",
+      "channel_name": "Tuff-N-Uff",
+      "video_id": "iRW8qArVe7Q",
+      "title": "Tuff-N-Uff 157 Live from THE POOL at Sahara",
+      "watch_url": "https://www.youtube.com/watch?v=iRW8qArVe7Q",
+      "status": "upcoming",
+      "is_live": false,
+      "embeddable": true,
+      "scheduled_start_time": "2026-09-26T00:45:00Z",
+      "scheduled_end_time": null,
+      "actual_start_time": null,
+      "actual_end_time": null,
+      "concurrent_viewers": null,
+      "api_verified": true,
+      "stale": false,
+      "observed_at": "2026-09-24T03:01:45Z"
+    },
+    {
+      "event_id": "fnc:EtbyNuJ2yGo",
+      "promotion_id": "fnc",
+      "promotion": "Fight Nation Championship",
+      "short_name": "FNC",
+      "country": "Croatia / Balkans",
+      "priority": 60,
+      "coverage_note": "Selected opening fights",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/channel/UC0JUv5zHnKbn3ee1NrJEhCw",
+      "channel_id": "UC0JUv5zHnKbn3ee1NrJEhCw",
+      "channel_name": "FIGHT NATION CHAMPIONSHIP - FNC",
+      "video_id": "EtbyNuJ2yGo",
+      "title": "[LIVE]  FNC Vikings 3 powered by SuperSport | SUPERFIGHTS | Zagreb",
+      "watch_url": "https://www.youtube.com/watch?v=EtbyNuJ2yGo",
+      "status": "upcoming",
+      "is_live": false,
+      "embeddable": true,
+      "scheduled_start_time": "2026-09-26T10:00:00Z",
+      "scheduled_end_time": null,
+      "actual_start_time": null,
+      "actual_end_time": null,
+      "concurrent_viewers": null,
+      "api_verified": true,
+      "stale": false,
+      "observed_at": "2026-09-24T03:01:45Z"
     },
     {
       "event_id": "levels-fight-league:bwknYg2JnzU",
@@ -95,11 +149,14 @@
       "coverage_note": "Prelims and Prospect Series",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@A1Combat",
+      "channel_id": "UCyeGKHo7-9jFGSBI58lOPjQ",
+      "channel_name": "Urijah Faber's A1 Combat",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:19:06Z"
+      "last_checked_at": "2026-09-24T03:01:44Z"
     },
     "afc-korea": {
       "promotion": "Angel's Fighting Championship",
@@ -143,11 +200,14 @@
       "coverage_note": "Prelims",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@budosentochampionship",
+      "channel_id": "UCyYAd6dwMu7MdMbaEkKlY8w",
+      "channel_name": "Budo Sento Championship",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:19:06Z"
+      "last_checked_at": "2026-09-24T03:01:44Z"
     },
     "deep": {
       "promotion": "DEEP / DEEP JEWELS",
@@ -191,11 +251,14 @@
       "coverage_note": "Selected opening fights",
       "access_note": null,
       "channel_url": "https://www.youtube.com/channel/UC0JUv5zHnKbn3ee1NrJEhCw",
-      "status": "offline",
+      "channel_id": "UC0JUv5zHnKbn3ee1NrJEhCw",
+      "channel_name": "FIGHT NATION CHAMPIONSHIP - FNC",
+      "status": "upcoming",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:19:06Z"
+      "last_checked_at": "2026-09-24T03:01:44Z"
     },
     "front-street-fights": {
       "promotion": "Front Street Fights",
@@ -214,6 +277,23 @@
       "last_success_at": null,
       "last_checked_at": "2026-09-24T02:55:25Z"
     },
+    "gma-vietnam": {
+      "promotion": "Gods of Martial Arts",
+      "short_name": "GMA",
+      "country": "Vietnam",
+      "priority": 78,
+      "coverage_note": "Official GMA channel; recent events have used YouTube",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/channel/UCcfXwgYeWtgBGlP8leMsr_Q",
+      "channel_id": "UCcfXwgYeWtgBGlP8leMsr_Q",
+      "channel_name": "GMA Fighting Championship",
+      "status": "offline",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T03:01:45Z"
+    },
     "grachan": {
       "promotion": "GRACHAN",
       "short_name": "GRACHAN",
@@ -222,11 +302,14 @@
       "coverage_note": "Challenge/amateur coverage; other events vary",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@GRACHAN-MMA",
+      "channel_id": "UCw4RZz4S3ZdRyPfLBFVhYTw",
+      "channel_name": "GRACHAN MMA",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:19:06Z"
+      "last_checked_at": "2026-09-24T03:01:44Z"
     },
     "inka": {
       "promotion": "Inka Fighting Championship",
@@ -294,7 +377,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:55:25Z"
+      "last_checked_at": "2026-09-24T03:01:45Z"
     },
     "lux": {
       "promotion": "LUX Fight League",
@@ -313,22 +396,22 @@
       "last_success_at": null,
       "last_checked_at": "2026-09-24T02:36:16Z"
     },
-    "master-vic-podcast-tv": {
-      "promotion": "Master Vic Podcast TV",
-      "short_name": "Master Vic",
-      "country": "Mexico",
-      "priority": 55,
-      "coverage_note": "Combat-sports channel; included as a live-source monitor",
+    "mangu": {
+      "promotion": "Mangu Professional League",
+      "short_name": "MANGU",
+      "country": "Uzbekistan",
+      "priority": 82,
+      "coverage_note": "Full event streams on YouTube",
       "access_note": null,
-      "channel_url": "https://www.youtube.com/@MasterVicPodcasTV",
-      "channel_id": "UCtfufNe71Uj9-yXjk5X1c3g",
-      "channel_name": "Master Vic PodcasTV",
+      "channel_url": "https://www.youtube.com/channel/UC-qkzVAOMrqLm9d_sCbpNzA",
+      "channel_id": "UC-qkzVAOMrqLm9d_sCbpNzA",
+      "channel_name": "Mangu Professional League",
       "status": "offline",
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:55:25Z"
+      "last_checked_at": "2026-09-24T03:01:45Z"
     },
     "mfl": {
       "promotion": "Mexico Fight League",
@@ -346,6 +429,23 @@
       "error_count": 0,
       "last_success_at": null,
       "last_checked_at": "2026-09-24T02:55:25Z"
+    },
+    "mma-mexico": {
+      "promotion": "MMA México",
+      "short_name": "MMA México",
+      "country": "Mexico",
+      "priority": 72,
+      "coverage_note": "Promotion coverage via Master Vic channel; monitor public live fight streams",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/@MasterVicPodcasTV",
+      "channel_id": "UCtfufNe71Uj9-yXjk5X1c3g",
+      "channel_name": "Master Vic PodcasTV",
+      "status": "offline",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T03:01:45Z"
     },
     "naiza": {
       "promotion": "NAIZA Fighting Championship",
@@ -372,11 +472,14 @@
       "coverage_note": "Event streams; some cards marked prelims",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@OCTAGONTV",
+      "channel_id": "UCqtqRlYC_VQIGuMGPQCLR6w",
+      "channel_name": "OCTAGON TV",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:19:06Z"
+      "last_checked_at": "2026-09-24T03:01:44Z"
     },
     "open-fight-latam": {
       "promotion": "Open Fight LATAM",
@@ -463,6 +566,23 @@
       "last_success_at": null,
       "last_checked_at": "2026-09-24T02:36:15Z"
     },
+    "shooto-brasil": {
+      "promotion": "Shooto Brasil",
+      "short_name": "Shooto Brasil",
+      "country": "Brazil",
+      "priority": 82,
+      "coverage_note": "Official Shooto Brasil channel; current events include YouTube coverage",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/channel/UCsmEWs-nKmRSKDWxY_k4HjQ",
+      "channel_id": "UCsmEWs-nKmRSKDWxY_k4HjQ",
+      "channel_name": "SHOOTO BRASIL TV",
+      "status": "offline",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T03:01:45Z"
+    },
     "tuff-n-uff": {
       "promotion": "Tuff-N-Uff",
       "short_name": "Tuff-N-Uff",
@@ -471,11 +591,14 @@
       "coverage_note": "Preliminary coverage",
       "access_note": null,
       "channel_url": "https://www.youtube.com/user/TuffNUffTV",
-      "status": "offline",
+      "channel_id": "UCFhFc55-s4Ct3t79SCN-I4Q",
+      "channel_name": "Tuff-N-Uff",
+      "status": "upcoming",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:19:06Z"
+      "last_checked_at": "2026-09-24T03:01:44Z"
     },
     "ugp": {
       "promotion": "Ultimo Guerrero en Pie",
@@ -485,11 +608,14 @@
       "coverage_note": "Event stream",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@UGP-%C3%9AltimoGuerreroenPie-u2k",
+      "channel_id": "UCVRF3AA82tB9rC8zzUdbXOQ",
+      "channel_name": "UGP - Último Guerrero en Pie",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:19:06Z"
+      "last_checked_at": "2026-09-24T03:01:45Z"
     },
     "versus-mma": {
       "promotion": "Versus MMA",
@@ -509,9 +635,9 @@
       "last_checked_at": "2026-09-24T02:36:16Z"
     }
   },
-  "monitored_count": 26,
+  "monitored_count": 29,
   "live_count": 0,
-  "upcoming_count": 3,
+  "upcoming_count": 5,
   "youtube_api_configured": true,
-  "api_verified_source_count": 19
+  "api_verified_source_count": 29
 }
