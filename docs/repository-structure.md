@@ -122,9 +122,22 @@ assets/post-v3.css
 assets/writer.js
 ```
 
-may remain exactly where they are.
+remain stable public interfaces.
 
-Internal source organization may improve behind those stable public paths. Stage 4 will apply this principle to Writer code.
+The Writer's maintainable source now lives under:
+
+```text
+_writer/
+  00-core.js
+  01-preview.js
+  02-state-library.js
+  03-publishing.js
+  04-editor-tools.js
+  05-media.js
+  06-bootstrap.js
+```
+
+`assets/writer.js` is a generated compatibility bundle built from those ordered fragments with `npm run build:frontend`. The source fragments intentionally share one closure at build time, preserving the Writer's existing runtime semantics while removing the 135 KB single-file maintenance surface. CI rejects a stale public bundle.
 
 ## Automation
 
