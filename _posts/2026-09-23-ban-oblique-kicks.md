@@ -82,7 +82,7 @@ Andy Foster has a great responsibility bestowed upon him by the MMA Gods.
   <img src="/assets/uploads/ban-oblique-kicks-pasted-20260923-185638-915.png" alt="ban oblique kicks" loading="lazy">
 </figure>
 
-But will MMA run into another trivial foul like the knees to a grounded opponent? That would be a terrible side effect of banning this strike.
+But will MMA run into another trivial foul like the knees/kicks to the head of a grounded opponent? That would be a terrible side effect of banning this strike.
 
 Hmm...
 
