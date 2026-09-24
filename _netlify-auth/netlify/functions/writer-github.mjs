@@ -41,8 +41,13 @@ function validateWriteBody(apiPath, body) {
   if (!body.content || typeof body.content !== 'string') throw new Error('Missing file content.');
   const bytes = Math.ceil(body.content.length * 0.75);
   const repoPath = contentPathFromApiPath(apiPath);
-  const limit = repoPath.startsWith('assets/uploads/') ? 6 * 1024 * 1024 : 2 * 1024 * 1024;
-  if (bytes > limit) throw new Error(repoPath.startsWith('assets/uploads/') ? 'Uploaded image is too large after optimization.' : 'Article file is too large.');
+  const isVideo = /^assets\/uploads\/video\/.*\.(?:mp4|webm|m4v)$/i.test(repoPath);
+  const isUpload = repoPath.startsWith('assets/uploads/');
+  const limit = isVideo ? 15 * 1024 * 1024 : isUpload ? 6 * 1024 * 1024 : 2 * 1024 * 1024;
+  if (bytes > limit) {
+    if (isVideo) throw new Error('Uploaded video is too large. Keep clips under 15 MB.');
+    throw new Error(isUpload ? 'Uploaded image is too large after optimization.' : 'Article file is too large.');
+  }
 }
 
 export default async function handler(request) {
