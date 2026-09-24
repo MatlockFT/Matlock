@@ -90,9 +90,9 @@ Hmm...
 
 What I'm about to say could be very controversial, so I do want to preface it with a sincere apology. I know I could be barred from the MMA community for this idea but please, hear me out.
 
-What if fighters either blocked the strike or, better yet, countered it? Is this even an option? Can this actually be done?
-
 I'm sorry.
+
+What if fighters either blocked the strike or, better yet, countered it? Is this even an option? Can this actually be done?
 
 Well, using my dedicated Qubes OS machine, routed through a Whonix gateway, chained into Tor, pushed through a separate VPN tunnel, isolated behind a hardware firewall and connected over a hardwired Ethernet line to a network I will not be discussing further, I was finally able to uncover the answer.
 
