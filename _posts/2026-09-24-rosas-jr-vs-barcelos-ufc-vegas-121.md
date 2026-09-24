@@ -21,3 +21,4 @@ preserve_line_breaks: true
 published: false
 ---
 
+The Meta APEX is hosting another event this weekend in Las Vegas and I gotta say... I'm not mad at it. It has a little bit of all the things I enjoy. The main event offers some mild intrigue which is young vs. old, we only have two middlweight fights on the card which is great, curious to see Tina Black again, 
