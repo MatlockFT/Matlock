@@ -16,6 +16,7 @@ test('Writer GitHub proxy only allows scoped article and upload paths', () => {
   assert.equal(allowedPath('/contents/_posts/2026-09-24-test.md?ref=main', 'GET'), true);
   assert.equal(allowedPath('/contents/_posts/2026-09-24-test.md', 'PUT'), true);
   assert.equal(allowedPath('/contents/assets/uploads/example.webp', 'PUT'), true);
+  assert.equal(allowedPath('/contents/assets/uploads/articles/2026/09/article-slug/cover.webp', 'PUT'), true);
   assert.equal(allowedPath('/repos/MatlockFT/Matlock/actions', 'GET'), false);
   assert.equal(allowedPath('/contents/_config.yml', 'PUT'), false);
   assert.equal(allowedPath('/contents/_posts/../../_config.yml', 'PUT'), false);
