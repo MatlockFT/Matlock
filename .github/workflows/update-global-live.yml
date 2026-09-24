@@ -9,8 +9,8 @@ on:
       - ".github/workflows/update-global-live.yml"
       - "scripts/update-global-live.py"
       - "assets/data/live-promotions.json"
-      - "live-lab.html"
-      - "assets/live-lab.js"
+      - "live.html"
+      - "assets/live.js"
   schedule:
     - cron: "4-59/5 * * * *"
 

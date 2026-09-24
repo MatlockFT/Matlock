@@ -1,5 +1,5 @@
 (() => {
-  const root = document.querySelector("[data-live-lab]");
+  const root = document.querySelector("[data-live-page]");
   if (!root) return;
 
   const statusUrl = root.dataset.statusUrl;
