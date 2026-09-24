@@ -2074,7 +2074,7 @@ Object.values(fields).forEach(el => {
     const id = youtubeId(dialog.querySelector('[data-youtube-url]').value.trim());
     if (!id) { showToast('I could not read that YouTube URL.'); return; }
     const title = dialog.querySelector('[data-youtube-title]').value.trim() || 'YouTube video';
-    insertBlock(`<iframe src="https://www.youtube.com/embed/${id}" title="${title.replace(/"/g,'&quot;')}" allowfullscreen></iframe>`);
+    insertBlock(`<div class="article-video-embed"><iframe src="https://www.youtube.com/embed/${id}" title="${title.replace(/"/g,'&quot;')}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>`);
     dialog.close();
   });
 
