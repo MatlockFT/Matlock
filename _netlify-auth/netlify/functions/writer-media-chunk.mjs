@@ -4,17 +4,15 @@ import {
   chunkKey,
   mediaStore,
   requireWriterSession,
+  setStatus,
   uploadScope,
-  validUploadId
+  validUploadId,
+  validateVideoMetadata
 } from './_writer-media.mjs';
-
-function responseHeaders(request) {
-  return corsHeaders(request);
-}
 
 export default async function handler(request) {
   const origin = normalizeOrigin(request.headers.get('origin'));
-  const headers = responseHeaders(request);
+  const headers = corsHeaders(request);
 
   if (request.method === 'OPTIONS') {
     if (!isAllowedOrigin(origin)) return new Response(null, { status: 403, headers });
@@ -50,16 +48,26 @@ export default async function handler(request) {
 
   const uploadId = validUploadId(request.headers.get('x-upload-id'));
   const chunkIndex = Number(request.headers.get('x-chunk-index'));
-  const chunkCount = Number(request.headers.get('x-chunk-count'));
-  const fileSize = Number(request.headers.get('x-file-size'));
-  const fileType = String(request.headers.get('x-file-type') || 'application/octet-stream').slice(0, 120);
-  const assetName = String(request.headers.get('x-asset-name') || '').replace(/[^A-Za-z0-9._-]+/g, '-').slice(0, 180);
+  const rawChunkCount = Number(request.headers.get('x-chunk-count'));
 
-  if (!uploadId || !Number.isInteger(chunkIndex) || chunkIndex < 0 || !Number.isInteger(chunkCount) || chunkCount < 1 || chunkIndex >= chunkCount) {
+  if (!uploadId || !Number.isInteger(chunkIndex) || chunkIndex < 0) {
     return Response.json({ ok: false, error: 'Invalid upload chunk metadata.' }, { status: 400, headers });
   }
-  if (!Number.isFinite(fileSize) || fileSize < 1 || fileSize >= 2 * 1024 * 1024 * 1024 || !assetName) {
-    return Response.json({ ok: false, error: 'Invalid video upload metadata.' }, { status: 400, headers });
+
+  let meta;
+  try {
+    meta = validateVideoMetadata({
+      assetName: request.headers.get('x-asset-name'),
+      fileSize: request.headers.get('x-file-size'),
+      fileType: request.headers.get('x-file-type'),
+      chunkCount: rawChunkCount
+    });
+  } catch (error) {
+    return Response.json({ ok: false, error: error.message }, { status: 400, headers });
+  }
+
+  if (chunkIndex >= meta.chunkCount) {
+    return Response.json({ ok: false, error: 'Invalid upload chunk index.' }, { status: 400, headers });
   }
 
   const bytes = await request.arrayBuffer();
@@ -72,13 +80,20 @@ export default async function handler(request) {
   await store.set(chunkKey(scope, uploadId, chunkIndex), bytes, {
     metadata: {
       chunkIndex,
-      chunkCount,
+      chunkCount: meta.chunkCount,
       chunkSize: bytes.byteLength,
-      fileSize,
-      fileType,
-      assetName,
+      fileSize: meta.fileSize,
+      fileType: meta.fileType,
+      assetName: meta.assetName,
       createdAt: new Date().toISOString()
     }
+  });
+  await setStatus(store, scope, uploadId, {
+    state: 'uploading',
+    chunkCount: meta.chunkCount,
+    fileSize: meta.fileSize,
+    fileType: meta.fileType,
+    assetName: meta.assetName
   });
 
   return Response.json({ ok: true, chunkIndex, chunkSize: bytes.byteLength }, { status: 200, headers });
