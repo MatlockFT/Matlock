@@ -57,9 +57,10 @@
       "id": "ares",
       "promotion": "ARES Fighting Championship",
       "event": "ARES 43",
-      "status": "not_youtube_live",
+      "status": "monitoring",
       "search_query": "ARES Fighting Championship official",
-      "reason": "ARES 43/current ARES distribution is CANAL+; YouTube channel exists but is not the current fight-card live outlet"
+      "reason": "Official YouTube channel monitored for free fight segments; paid main card distribution does not block monitoring",
+      "registry_id": "ares"
     },
     {
       "id": "hexagone",
@@ -115,8 +116,10 @@
       "id": "ararat-wfc",
       "promotion": "Ararat WFC",
       "event": "Ararat WFC 3",
-      "status": "research",
-      "search_query": "Ararat WFC MMA official"
+      "status": "monitoring",
+      "search_query": "Ararat WFC MMA official",
+      "registry_id": "ararat-wfc",
+      "reason": "Official Ararat WFC YouTube channel identified by API"
     },
     {
       "id": "afc-navarra",
@@ -151,9 +154,10 @@
       "id": "babilon",
       "promotion": "Babilon MMA",
       "event": "Babilon MMA 60",
-      "status": "not_youtube_live",
+      "status": "monitoring",
       "search_query": "Babilon MMA official",
-      "reason": "Babilon MMA 60 airs live on Polsat Sport Fight/Super Polsat"
+      "reason": "Official Babilon MMA YouTube channel monitored for free fight segments",
+      "registry_id": "babilon"
     },
     {
       "id": "bfn",
@@ -218,9 +222,10 @@
       "id": "wow",
       "promotion": "WOW FC",
       "event": "WOW 32",
-      "status": "not_youtube_live",
+      "status": "monitoring",
       "search_query": "WOW FC MMA Spain official",
-      "reason": "WOW 32 is distributed on UFC Fight Pass"
+      "reason": "Official WOW FC YouTube channel monitored for public fight streams",
+      "registry_id": "wow-fc"
     },
     {
       "id": "ifn",
@@ -263,9 +268,10 @@
       "id": "fusion",
       "promotion": "Fusion Fight League",
       "event": "Fusion Fight League",
-      "status": "not_youtube_live",
+      "status": "monitoring",
       "search_query": "Fusion Fight League MMA official",
-      "reason": "Current Fusion Fight League card is distributed on Spectation Sports"
+      "reason": "Official Fusion Fight League YouTube channel monitored",
+      "registry_id": "fusion-fight-league"
     },
     {
       "id": "247fc",
@@ -278,9 +284,10 @@
       "id": "bcm",
       "promotion": "BCM Promotions",
       "event": "BCM Fight Night 27",
-      "status": "not_youtube_live",
+      "status": "monitoring",
       "search_query": "BCM Promotions MMA Ohio official",
-      "reason": "Current BCM live events are sold through Combat Sports Now; YouTube carries recaps/full-fight uploads"
+      "reason": "Official BCM Promotions YouTube channel monitored; paid distribution may coexist",
+      "registry_id": "bcm-promotions"
     },
     {
       "id": "cfc-huntsville",
