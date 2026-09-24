@@ -28,7 +28,7 @@ preserve_line_breaks: true
 
 Finally! The MMA Gods have listened to the collective prayers of casual and hardcore fans alike as they have anointed the great [Andy Foster](https://www.tapology.com/fightcenter/fighters/4052-andy-foster) to look into a technique that has shelved and ended the careers of many an MMA fighter. The powerful and deadly strike goes by many names but I, as a die-hard Joe Rogan loyalist, call it the OBLIQUE KICK.
 
-This controversial kick has been used by many, but most notably by Anderson Silva, Jon Jones, and Khalil Rountree. It's no wonder in some circles it's called the illegal kick because it's impossible to block or counter. In fact, unlike a submission, you cannot even tap to it. It's truly amazing we've made it to 2026 without it being banned yet.
+This controversial kick has been used by many, but most notably by Anderson Silva, Jon Jones, and Khalil Rountree. It's no wonder in some circles it's called the illegal kick. It's truly amazing we've made it to 2026 without it being banned yet.
 
 [EMBED X](https://x.com/MWestern7/status/2102779294158110994)
 
