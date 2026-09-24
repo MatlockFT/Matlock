@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-09-24T03:24:55Z",
+  "generated_at": "2026-09-24T03:25:41Z",
   "searched_count": 5,
   "results": [
     {
@@ -8,23 +8,64 @@
       "promotion": "MMA Attack",
       "event": "MMA Attack 7",
       "query": "MMA Attack Poland official",
-      "error": "HTTP 429: Quota exceeded for quota metric 'Search Queries' and limit 'Search Queries per day' of service 'youtube.googleapis.com' for consumer 'project_number:628595826781'.",
-      "candidates": [],
+      "error": null,
+      "candidates": [
+        {
+          "channel_id": "UCtQGyGivVN23FSbxU3CRmkw",
+          "channel_url": "https://www.youtube.com/channel/UCtQGyGivVN23FSbxU3CRmkw",
+          "title": "H N",
+          "description": "",
+          "published_at": "2019-11-03T19:22:07Z",
+          "score": 0
+        },
+        {
+          "channel_id": "UC96X0Wensp23EK43LRfDnyw",
+          "channel_url": "https://www.youtube.com/channel/UC96X0Wensp23EK43LRfDnyw",
+          "title": "Jacek Sarna",
+          "description": "",
+          "published_at": "2012-05-07T17:32:31Z",
+          "score": 0
+        },
+        {
+          "channel_id": "UCFl8AHVhYMCDRvccJSUbTvA",
+          "channel_url": "https://www.youtube.com/channel/UCFl8AHVhYMCDRvccJSUbTvA",
+          "title": "RARE REAL FEMALE GROIN HITS",
+          "description": "",
+          "published_at": "2019-05-08T15:32:00Z",
+          "score": 0
+        },
+        {
+          "channel_id": "UCRVHuFHJ7qjFlDcbpBXSGGQ",
+          "channel_url": "https://www.youtube.com/channel/UCRVHuFHJ7qjFlDcbpBXSGGQ",
+          "title": "Youmiksha’s Fam",
+          "description": "All I do is Make Memories while i am here. but donno where and how but as long as i am breathing, it will be there and now.",
+          "published_at": "2007-04-18T16:47:03Z",
+          "score": 0
+        },
+        {
+          "channel_id": "UCtLUIHu5qtwRooQWQgrFN5g",
+          "channel_url": "https://www.youtube.com/channel/UCtLUIHu5qtwRooQWQgrFN5g",
+          "title": "Zofia Szuster-Górska",
+          "description": "Oficjalny kanał ALPHA TEAM Combat & Shooting.",
+          "published_at": "2011-09-16T08:48:27Z",
+          "score": 0
+        }
+      ],
       "top_candidate_live": [],
       "top_candidate_upcoming": [],
       "top_candidate_live_error": null,
       "top_candidate_upcoming_error": null,
       "event_search_live": [],
       "event_search_upcoming": [],
-      "event_search_live_error": "HTTP 429: Quota exceeded for quota metric 'Search Queries' and limit 'Search Queries per day' of service 'youtube.googleapis.com' for consumer 'project_number:628595826781'.",
-      "event_search_upcoming_error": "HTTP 429: Quota exceeded for quota metric 'Search Queries' and limit 'Search Queries per day' of service 'youtube.googleapis.com' for consumer 'project_number:628595826781'."
+      "event_search_live_error": "",
+      "event_search_upcoming_error": ""
     },
     {
       "id": "afc-navarra",
       "promotion": "AFC Navarra",
       "event": "AFC 2 Navarra Arena",
       "query": "AFC Navarra MMA Spain official",
-      "error": "HTTP 429: Quota exceeded for quota metric 'Search Queries' and limit 'Search Queries per day' of service 'youtube.googleapis.com' for consumer 'project_number:628595826781'.",
+      "error": null,
       "candidates": [],
       "top_candidate_live": [],
       "top_candidate_upcoming": [],
@@ -53,9 +94,9 @@
     },
     {
       "id": "ifn",
-      "promotion": "IFN",
+      "promotion": "Itacoatiara Fight Night",
       "event": "IFN 1",
-      "query": "IFN MMA Brazil promotion official",
+      "query": "Itacoatiara Fight Night MMA official YouTube",
       "error": "HTTP 429: Quota exceeded for quota metric 'Search Queries' and limit 'Search Queries per day' of service 'youtube.googleapis.com' for consumer 'project_number:628595826781'.",
       "candidates": [],
       "top_candidate_live": [],
@@ -65,7 +106,7 @@
       "event_search_live": [],
       "event_search_upcoming": [],
       "event_search_live_error": "HTTP 429: Quota exceeded for quota metric 'Search Queries' and limit 'Search Queries per day' of service 'youtube.googleapis.com' for consumer 'project_number:628595826781'.",
-      "event_search_upcoming_error": "HTTP 429: Quota exceeded for quota metric 'Search Queries' and limit 'Search Queries per day' of service 'youtube.googleapis.com' for consumer 'project_number:628595826781'."
+      "event_search_upcoming_error": ""
     },
     {
       "id": "wfc",
@@ -81,7 +122,7 @@
       "event_search_live": [],
       "event_search_upcoming": [],
       "event_search_live_error": "HTTP 429: Quota exceeded for quota metric 'Search Queries' and limit 'Search Queries per day' of service 'youtube.googleapis.com' for consumer 'project_number:628595826781'.",
-      "event_search_upcoming_error": "HTTP 429: Quota exceeded for quota metric 'Search Queries' and limit 'Search Queries per day' of service 'youtube.googleapis.com' for consumer 'project_number:628595826781'."
+      "event_search_upcoming_error": ""
     }
   ]
 }
