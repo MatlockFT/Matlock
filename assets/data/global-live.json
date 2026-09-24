@@ -1,26 +1,8 @@
 {
   "version": 4,
-  "generated_at": "2026-09-24T02:10:53Z",
-  "selected_event_id": "inka:ggYwWwcm0qU",
-  "events": [
-    {
-      "event_id": "inka:ggYwWwcm0qU",
-      "promotion_id": "inka",
-      "promotion": "Inka Fighting Championship",
-      "short_name": "INKA",
-      "country": "Peru",
-      "priority": 65,
-      "coverage_note": "Prelims",
-      "access_note": null,
-      "channel_url": "https://www.youtube.com/@INKA.MMAPRO",
-      "video_id": "ggYwWwcm0qU",
-      "title": "Scammer Caught Using Stolen Credit Card & Fake ID to Buy $85K Luxury Vehicle at Dealership",
-      "watch_url": "https://www.youtube.com/watch?v=ggYwWwcm0qU",
-      "is_live": true,
-      "stale": false,
-      "observed_at": "2026-09-24T02:10:53Z"
-    }
-  ],
+  "generated_at": "2026-09-24T02:12:56Z",
+  "selected_event_id": null,
+  "events": [],
   "sources": {
     "a1-combat": {
       "promotion": "A1 Combat",
@@ -50,7 +32,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:10:52Z"
+      "last_checked_at": "2026-09-24T02:12:50Z"
     },
     "apfc": {
       "promotion": "Anthony Pettis Fighting Championship",
@@ -108,7 +90,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:10:52Z"
+      "last_checked_at": "2026-09-24T02:12:50Z"
     },
     "fnc": {
       "promotion": "Fight Nation Championship",
@@ -138,7 +120,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:10:52Z"
+      "last_checked_at": "2026-09-24T02:12:50Z"
     },
     "grachan": {
       "promotion": "GRACHAN",
@@ -164,11 +146,11 @@
       "coverage_note": "Prelims",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@INKA.MMAPRO",
-      "status": "live",
+      "status": "offline",
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-24T02:10:53Z",
-      "last_checked_at": "2026-09-24T02:10:52Z"
+      "last_checked_at": "2026-09-24T02:12:50Z"
     },
     "levels-fight-league": {
       "promotion": "Levels Fight League",
@@ -196,7 +178,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:10:52Z"
+      "last_checked_at": "2026-09-24T02:12:50Z"
     },
     "lux": {
       "promotion": "LUX Fight League",
@@ -224,7 +206,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:10:52Z"
+      "last_checked_at": "2026-09-24T02:12:50Z"
     },
     "naiza": {
       "promotion": "NAIZA Fighting Championship",
@@ -360,5 +342,5 @@
     }
   },
   "monitored_count": 23,
-  "live_count": 1
+  "live_count": 0
 }
