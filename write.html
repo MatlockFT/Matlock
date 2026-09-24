@@ -191,6 +191,7 @@ page_scripts:
           </div>
           <div class="writer-toolbar-group writer-toolbar-rich">
             <button type="button" data-tool="image" title="Insert image">Image</button>
+            <button type="button" data-tool="video" title="Upload or insert video">Video</button>
             <button type="button" data-tool="youtube" title="Insert YouTube">YouTube</button>
             <button type="button" data-tool="x" title="Insert X / Twitter post">Tweet</button>
             <button type="button" data-tool="table" title="Build table">Table</button>
@@ -205,8 +206,8 @@ page_scripts:
 
         <label class="writer-body-label" for="writer-body">Article</label>
         <div class="writer-editor-dropzone" data-editor-dropzone>
-          <textarea id="writer-body" class="writer-body-editor" data-field="body" spellcheck="true" placeholder="Start writing…  Try /table, /tale, /pick, /youtube, /tweet, /image, /html, /source or /template"></textarea>
-          <div class="writer-drop-hint" data-drop-hint hidden>Drop image to upload and insert</div>
+          <textarea id="writer-body" class="writer-body-editor" data-field="body" spellcheck="true" placeholder="Start writing…  Try /table, /tale, /pick, /video, /youtube, /tweet, /image, /html, /source or /template"></textarea>
+          <div class="writer-drop-hint" data-drop-hint hidden>Drop image or video to upload and insert at the cursor</div>
         </div>
 
         <footer class="writer-editor-footer">
@@ -307,6 +308,20 @@ page_scripts:
         <label class="writer-field writer-field-wide"><span>URL</span><input type="url" data-link-url placeholder="https://…"></label>
       </div>
       <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-link-insert>Insert</button></footer>
+    </form>
+  </dialog>
+
+  <dialog class="writer-dialog" data-video-dialog>
+    <form method="dialog">
+      <header><div><p class="eyebrow">Media</p><h2>Place video</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
+      <div class="writer-dialog-body writer-dialog-grid">
+        <label class="writer-field writer-field-wide"><span>Upload video</span><input type="file" data-inline-video-file accept="video/mp4,video/webm,video/x-m4v,.mp4,.webm,.m4v"></label>
+        <div class="writer-or"><span>or</span></div>
+        <label class="writer-field writer-field-wide"><span>Direct video URL</span><input type="url" data-inline-video-url placeholder="https://…/clip.mp4 or /assets/uploads/…"></label>
+        <label class="writer-field writer-field-wide"><span>Caption <small>optional</small></span><input type="text" data-inline-video-caption placeholder="Caption or source credit"></label>
+        <p class="writer-dialog-note writer-field-wide">MP4 is recommended. Local MP4, WebM and M4V clips up to 15 MB can be uploaded directly. Playback controls are added automatically.</p>
+      </div>
+      <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-video-insert>Place video</button></footer>
     </form>
   </dialog>
 
