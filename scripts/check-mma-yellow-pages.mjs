@@ -1,8 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import yaml from 'js-yaml';
-
-const DATA_PATH = path.resolve('_data/mma_yellow_pages.yml');
+const DATA_PATH = path.resolve('_data/mma_yellow_pages.json');
 const failures = [];
 
 const normalize = value => String(value || '').trim().toLocaleLowerCase('en-US');
