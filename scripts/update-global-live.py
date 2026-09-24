@@ -252,6 +252,9 @@ def current_bucket():
 
 
 def should_probe(promotion, previous_source, previous_event, active_bucket):
+    if promotion.get("always_check"):
+        return True
+
     if not previous_source:
         return True
 
