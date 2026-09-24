@@ -325,20 +325,21 @@
         // for an entry whose image is unresolved or fails to load. Walk deeper
         // into today's history instead and use the first four images that
         // actually resolve in the browser.
-        const candidates = compactEntries(entries, date, 12);
+        const candidates = compactEntries(entries, date, 12)
+            .filter(entry => /^https:\/\//i.test(entry.imageUrl || ""));
+
         if (!candidates.length) {
             widget.hidden = true;
             return;
         }
 
-        const attempts = await Promise.all(
-            candidates.map(entry => bestLoadedImage(entry, false))
-        );
-
-        const matching = candidates
-            .map((entry, index) => ({ entry, loaded: attempts[index] }))
-            .filter(item => item.loaded?.image)
-            .slice(0, 4);
+        const matching = [];
+        for (const entry of candidates) {
+            const loaded = await bestLoadedImage(entry, false);
+            if (!loaded?.image) continue;
+            matching.push({ entry, loaded });
+            if (matching.length === 4) break;
+        }
 
         if (!matching.length) {
             list.replaceChildren();
