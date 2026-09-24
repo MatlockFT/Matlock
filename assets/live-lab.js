@@ -22,11 +22,13 @@
   const monitored = root.querySelector("[data-live-monitored]");
   const apiStatus = root.querySelector("[data-api-status]");
   const promotionGrid = root.querySelector("[data-promotion-grid]");
+  const promotionToggle = root.querySelector("[data-promotion-toggle]");
   const sourceList = root.querySelector("[data-source-list]");
 
   let currentVideoId = "";
   let busy = false;
   let lastData = null;
+  let promotionsExpanded = false;
 
   const embedUrl = (videoId) => {
     const params = new URLSearchParams({
@@ -230,7 +232,9 @@
       return;
     }
 
-    for (const item of entries) {
+    const visibleEntries = promotionsExpanded ? entries : entries.slice(0, 16);
+
+    for (const item of visibleEntries) {
       const card = item.channel_url
         ? document.createElement("a")
         : document.createElement("div");
@@ -268,6 +272,17 @@
 
       card.append(head, country, coverage);
       promotionGrid.append(card);
+    }
+
+    if (promotionToggle) {
+      if (entries.length <= 16) {
+        promotionToggle.hidden = true;
+      } else {
+        promotionToggle.hidden = false;
+        promotionToggle.textContent = promotionsExpanded
+          ? "Show fewer promotions"
+          : `Show all ${entries.length} promotions`;
+      }
     }
   };
 
@@ -395,6 +410,10 @@
   };
 
   refresh?.addEventListener("click", () => loadStatus({ manual: true }));
+  promotionToggle?.addEventListener("click", () => {
+    promotionsExpanded = !promotionsExpanded;
+    renderPromotions(lastData?.sources || {});
+  });
   window.addEventListener("online", () => loadStatus({ manual: true }));
 
   loadStatus();
