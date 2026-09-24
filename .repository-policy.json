@@ -21,7 +21,12 @@
     "generatedRoot": "assets/generated",
     "runtimeDataRoot": "assets/data",
     "videoBackend": "github-releases",
-    "videoReleaseTagPattern": "writer-media-YYYY-MM"
+    "videoReleaseTagPattern": "writer-media-YYYY-MM",
+    "generatedArticleRoot": "assets/generated/posts",
+    "generatedArticlePattern": "assets/generated/posts/YYYY/MM/article-slug/",
+    "sourceImageRole": "authored-source",
+    "generatedImageRole": "rebuildable-derivative",
+    "videoStorageRule": "release-assets-only"
   },
   "code": {
     "layoutsRoot": "_layouts",
