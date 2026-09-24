@@ -38,6 +38,11 @@ TITLE_SIMPLE_RE = re.compile(
     r'"title":\{"simpleText":"((?:\\.|[^"\\])*)"',
     re.S,
 )
+TITLE_CONTENT_RE = re.compile(
+    r'"title":\\{"content":"((?:\\\\.|[^"\\\\])*)"',
+    re.S,
+)
+WATCHING_RE = re.compile(r'"content":"[^"]*\\bwatching"', re.I)
 
 LIVE_MARKERS = (
     '"BADGE_STYLE_TYPE_LIVE_NOW"',
