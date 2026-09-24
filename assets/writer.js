@@ -743,15 +743,18 @@
     if (node.matches('.writer-x-embed[data-writer-x-url]')) {
       return `x:${node.getAttribute('data-writer-x-url') || ''}`;
     }
-    if (node.matches('figure.article-inline-image')) {
-      const img = node.querySelector('img');
-      const source = img?.dataset.writerSource || img?.getAttribute('src') || '';
-      if (source) return `image:${source}`;
-    }
-    if (node.matches('figure.article-inline-video')) {
-      const video = node.querySelector('video');
-      const source = video?.getAttribute('src') || video?.querySelector('source')?.getAttribute('src') || video?.currentSrc || '';
-      if (source) return `video:${source}`;
+    if (node.matches('figure.article-inline-image, figure.article-inline-video')) {
+      const mediaId = node.getAttribute('data-writer-media-id') || '';
+      if (mediaId) return 'media:' + mediaId;
+      if (node.matches('figure.article-inline-image')) {
+        const img = node.querySelector('img');
+        const source = img?.dataset.writerSource || img?.getAttribute('src') || '';
+        if (source) return 'image:' + source;
+      } else {
+        const video = node.querySelector('video');
+        const source = video?.getAttribute('src') || video?.querySelector('source')?.getAttribute('src') || video?.currentSrc || '';
+        if (source) return 'video:' + source;
+      }
     }
     if (node.matches('p')) {
       const links = node.querySelectorAll('a');
@@ -761,6 +764,25 @@
       }
     }
     return '';
+  }
+
+  function syncPreviewMediaLayout(existing, next) {
+    if (!existing?.matches?.('figure.article-inline-image, figure.article-inline-video')) return;
+    if (!next?.matches?.('figure.article-inline-image, figure.article-inline-video')) return;
+
+    [...existing.classList].forEach(name => {
+      if (/^article-inline-(?:image|video)--(?:break|wrap|left|center|right|small|medium|large|full)$/.test(name)) existing.classList.remove(name);
+    });
+    [...next.classList].forEach(name => {
+      if (/^article-inline-(?:image|video)--(?:break|wrap|left|center|right|small|medium|large|full)$/.test(name)) existing.classList.add(name);
+    });
+    ['writerMediaId','mediaFlow','mediaAlign','mediaWidth'].forEach(key => {
+      if (next.dataset[key] !== undefined) existing.dataset[key] = next.dataset[key];
+      else delete existing.dataset[key];
+    });
+    const width = next.style.getPropertyValue('--media-width');
+    if (width) existing.style.setProperty('--media-width', width);
+    else existing.style.removeProperty('--media-width');
   }
 
   function patchPreviewContent(html) {
@@ -774,11 +796,13 @@
       const nextKey = previewEmbedKey(next);
       if (nextKey) {
         if (cursor && previewEmbedKey(cursor) === nextKey) {
+          syncPreviewMediaLayout(cursor, next);
           cursor = cursor.nextElementSibling;
           continue;
         }
         const existing = [...previewContent.children].find(child => previewEmbedKey(child) === nextKey);
         if (existing) {
+          syncPreviewMediaLayout(existing, next);
           previewContent.insertBefore(existing, cursor || null);
           cursor = existing.nextElementSibling;
           continue;
@@ -1860,6 +1884,18 @@ function insertBlock(text) {
     if (wrap && width.value === 'full') width.value = 'medium';
   }
 
+  function mediaBlockId() {
+    return 'media-' + htmlBlockId();
+  }
+
+  function mediaWidthValue(value, flow = 'break') {
+    const presets = { small:35, medium:50, large:70, full:100 };
+    const parsed = typeof value === 'number' ? value : (presets[value] || Number.parseFloat(value));
+    const fallback = flow === 'wrap' ? 50 : 100;
+    const max = flow === 'wrap' ? 60 : 100;
+    return Math.max(25, Math.min(max, Number.isFinite(parsed) ? parsed : fallback));
+  }
+
   function inlineImageMarkup(url, alt = '', options = {}) {
     const flow = options.flow === 'wrap' ? 'wrap' : 'break';
     let align = ['left','center','right'].includes(options.align) ? options.align : 'center';
@@ -1869,32 +1905,45 @@ function insertBlock(text) {
 
     const src = safeUrl(url);
     const caption = String(options.caption || '').trim();
+    const mediaId = mediaBlockId();
+    const widthPercent = mediaWidthValue(width, flow);
     const classes = [
       'article-inline-image',
-      `article-inline-image--${flow}`,
-      `article-inline-image--${align}`,
-      `article-inline-image--${width}`
+      'article-inline-image--' + flow,
+      'article-inline-image--' + align,
+      'article-inline-image--' + width
     ].join(' ');
 
     return [
-      `<figure class="${classes}">`,
-      `  <img src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" loading="lazy">`,
-      caption ? `  <figcaption>${escapeHtml(caption)}</figcaption>` : '',
+      '<figure class="' + classes + '" data-writer-media-id="' + mediaId + '" data-media-flow="' + flow + '" data-media-align="' + align + '" data-media-width="' + widthPercent + '" style="--media-width:' + widthPercent + '%;">',
+      '  <img src="' + escapeHtml(src) + '" alt="' + escapeHtml(alt) + '" loading="lazy">',
+      caption ? '  <figcaption>' + escapeHtml(caption) + '</figcaption>' : '',
       '</figure>'
     ].filter(Boolean).join('\n');
   }
 
-  function inlineVideoMarkup(url, caption = '') {
+  function inlineVideoMarkup(url, caption = '', options = {}) {
     const src = safeUrl(url);
     if (!src || src === '#') return '';
     const cleanCaption = String(caption || '').trim();
     const label = cleanCaption || 'Article video';
+    const flow = options.flow === 'wrap' ? 'wrap' : 'break';
+    let align = ['left','center','right'].includes(options.align) ? options.align : 'center';
+    if (flow === 'wrap' && align === 'center') align = 'left';
+    const widthPercent = mediaWidthValue(options.width || (flow === 'wrap' ? 50 : 100), flow);
+    const mediaId = mediaBlockId();
+    const classes = [
+      'article-inline-video',
+      'article-inline-video--' + flow,
+      'article-inline-video--' + align
+    ].join(' ');
+
     return [
-      '<figure class="article-inline-video">',
+      '<figure class="' + classes + '" data-writer-media-id="' + mediaId + '" data-media-flow="' + flow + '" data-media-align="' + align + '" data-media-width="' + widthPercent + '" style="--media-width:' + widthPercent + '%;">',
       '  <div class="article-inline-video-stage">',
-      `    <video autoplay loop muted playsinline preload="metadata" src="${escapeHtml(src)}" aria-label="${escapeHtml(label)}"></video>`,
+      '    <video autoplay loop muted playsinline preload="metadata" src="' + escapeHtml(src) + '" aria-label="' + escapeHtml(label) + '"></video>',
       '  </div>',
-      cleanCaption ? `  <figcaption>${escapeHtml(cleanCaption)}</figcaption>` : '',
+      cleanCaption ? '  <figcaption>' + escapeHtml(cleanCaption) + '</figcaption>' : '',
       '</figure>'
     ].filter(Boolean).join('\n');
   }
