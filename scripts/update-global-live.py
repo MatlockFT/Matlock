@@ -5,6 +5,7 @@ import re
 import sys
 import urllib.error
 import urllib.request
+import urllib.parse
 import zlib
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
@@ -147,6 +148,30 @@ def video_id_from_url(url):
         return None
     match = WATCH_URL_RE.search(url)
     return match.group(1) if match else None
+
+
+def fetch_oembed(video_id):
+    params = urllib.parse.urlencode({
+        "url": f"https://www.youtube.com/watch?v={video_id}",
+        "format": "json",
+    })
+    request = urllib.request.Request(
+        f"https://www.youtube.com/oembed?{params}",
+        headers={
+            "User-Agent": USER_AGENT,
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept": "application/json",
+        },
+    )
+
+    try:
+        with urllib.request.urlopen(request, timeout=20) as response:
+            payload = json.loads(response.read().decode("utf-8", errors="replace"))
+            return payload, ""
+    except urllib.error.HTTPError as exc:
+        return None, f"HTTP {exc.code}: {exc.reason}"
+    except Exception as exc:
+        return None, f"oEmbed error: {exc}"
 
 
 def find_live_video(page_html, promotion):
@@ -364,6 +389,24 @@ def probe_promotion(promotion, global_terms, previous_state):
         }
 
     title = candidate["title"]
+    metadata, metadata_error = fetch_oembed(candidate["video_id"])
+    if metadata and metadata.get("title"):
+        title = str(metadata["title"]).strip()
+
+    if metadata_error.startswith("HTTP 401") or metadata_error.startswith("HTTP 403"):
+        return {
+            "source": build_source(
+                promotion,
+                channel_url,
+                "restricted_live",
+                f"Current YouTube broadcast metadata is restricted: {metadata_error}",
+                0,
+                previous_source.get("last_success_at"),
+                checked_at,
+            ),
+            "event": None,
+        }
+
     if not title_allowed(title, global_terms, promotion):
         return {
             "source": build_source(
