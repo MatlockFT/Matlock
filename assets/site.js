@@ -339,4 +339,141 @@
         image.addEventListener("error", removeBrokenImage);
         if (image.complete && image.naturalWidth === 0) removeBrokenImage();
     });
+
+    function articleVideoIcon(kind) {
+        if (kind === "play") return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>';
+        if (kind === "pause") return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5h4v14H6zm8 0h4v14h-4z"></path></svg>';
+        if (kind === "sound") return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm11.5 3a3.5 3.5 0 0 0-1.5-2.87v5.74A3.5 3.5 0 0 0 15.5 12zm0-6.18v2.06A5.5 5.5 0 0 1 18 12a5.5 5.5 0 0 1-2.5 4.12v2.06A7.5 7.5 0 0 0 20 12a7.5 7.5 0 0 0-4.5-6.18z"></path></svg>';
+        return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.6 3 2.2-2.2-1.4-1.4-2.2 2.2L13 8.4 11.6 9.8l2.2 2.2-2.2 2.2 1.4 1.4 2.2-2.2 2.2 2.2 1.4-1.4z"></path></svg>';
+    }
+
+    function setupArticleVideos() {
+        const figures = [...document.querySelectorAll(".post-body figure.article-inline-video")];
+        if (!figures.length) return;
+
+        const visibilityObserver = "IntersectionObserver" in window
+            ? new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    const figure = entry.target;
+                    const video = figure.querySelector("video");
+                    if (!video || figure.dataset.videoManualPause === "true") return;
+                    if (entry.isIntersecting && entry.intersectionRatio >= 0.18 && !systemReducedMotion.matches) {
+                        video.play().catch(() => {});
+                    } else if (!entry.isIntersecting || entry.intersectionRatio < 0.08) {
+                        video.pause();
+                    }
+                });
+            }, { threshold: [0, 0.08, 0.18, 0.6] })
+            : null;
+
+        figures.forEach(figure => {
+            const video = figure.querySelector("video");
+            if (!video || figure.dataset.videoUi === "ready") return;
+            figure.dataset.videoUi = "ready";
+
+            let stage = figure.querySelector(".article-inline-video-stage");
+            if (!stage) {
+                stage = document.createElement("div");
+                stage.className = "article-inline-video-stage";
+                video.before(stage);
+                stage.appendChild(video);
+            }
+
+            video.controls = false;
+            video.removeAttribute("controls");
+            video.autoplay = true;
+            video.loop = true;
+            video.muted = true;
+            video.defaultMuted = true;
+            video.playsInline = true;
+            video.setAttribute("autoplay", "");
+            video.setAttribute("loop", "");
+            video.setAttribute("muted", "");
+            video.setAttribute("playsinline", "");
+            video.tabIndex = 0;
+            video.setAttribute("aria-keyshortcuts", "Space Enter M");
+
+            const controls = document.createElement("div");
+            controls.className = "article-inline-video-controls";
+            controls.innerHTML = `
+                <button type="button" class="article-inline-video-control" data-video-play aria-label="Pause video" title="Pause">${articleVideoIcon("pause")}</button>
+                <button type="button" class="article-inline-video-control" data-video-sound aria-label="Turn sound on" title="Sound on">${articleVideoIcon("muted")}</button>
+            `;
+            stage.appendChild(controls);
+
+            const playButton = controls.querySelector("[data-video-play]");
+            const soundButton = controls.querySelector("[data-video-sound]");
+
+            const sync = () => {
+                const paused = video.paused;
+                figure.classList.toggle("is-paused", paused);
+                figure.classList.toggle("is-muted", video.muted);
+                playButton.innerHTML = articleVideoIcon(paused ? "play" : "pause");
+                playButton.setAttribute("aria-label", paused ? "Play video" : "Pause video");
+                playButton.title = paused ? "Play" : "Pause";
+                soundButton.innerHTML = articleVideoIcon(video.muted ? "muted" : "sound");
+                soundButton.setAttribute("aria-label", video.muted ? "Turn sound on" : "Mute video");
+                soundButton.title = video.muted ? "Sound on" : "Mute";
+            };
+
+            const togglePlay = (manual = true) => {
+                if (video.paused) {
+                    if (manual) figure.dataset.videoManualPause = "false";
+                    video.play().catch(() => {});
+                } else {
+                    if (manual) figure.dataset.videoManualPause = "true";
+                    video.pause();
+                }
+            };
+
+            playButton.addEventListener("click", event => {
+                event.stopPropagation();
+                togglePlay();
+            });
+            soundButton.addEventListener("click", event => {
+                event.stopPropagation();
+                video.muted = !video.muted;
+                if (video.paused && figure.dataset.videoManualPause !== "true") video.play().catch(() => {});
+                sync();
+            });
+            video.addEventListener("click", () => togglePlay());
+            video.addEventListener("play", sync);
+            video.addEventListener("pause", sync);
+            video.addEventListener("volumechange", sync);
+            video.addEventListener("keydown", event => {
+                if (event.key === " " || event.key === "Enter") {
+                    event.preventDefault();
+                    togglePlay();
+                } else if (event.key.toLowerCase() === "m") {
+                    event.preventDefault();
+                    video.muted = !video.muted;
+                    sync();
+                }
+            });
+
+            if (systemReducedMotion.matches) {
+                figure.dataset.videoManualPause = "true";
+                video.pause();
+            } else {
+                figure.dataset.videoManualPause = "false";
+                video.play().catch(() => {});
+            }
+
+            visibilityObserver?.observe(figure);
+            sync();
+        });
+
+        systemReducedMotion.addEventListener?.("change", event => {
+            figures.forEach(figure => {
+                const video = figure.querySelector("video");
+                if (!video) return;
+                if (event.matches) {
+                    figure.dataset.videoManualPause = "true";
+                    video.pause();
+                }
+            });
+        });
+    }
+
+    setupArticleVideos();
 })();
