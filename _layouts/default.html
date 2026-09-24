@@ -90,6 +90,10 @@
         rel="stylesheet"
         href="{{ '/assets/site-tail.css' | relative_url }}?v={{ site.asset_version }}"
     >
+    <link
+        rel="stylesheet"
+        href="{{ '/assets/media-glitch.css' | relative_url }}?v={{ site.asset_version }}"
+    >
     {% if page.layout == "post" %}
         <link rel="stylesheet" href="{{ '/assets/editorial-v3-shell.css' | relative_url }}?v={{ site.asset_version }}">
         <link rel="stylesheet" href="{{ '/assets/post-v3.css' | relative_url }}?v={{ site.asset_version }}">
@@ -557,6 +561,7 @@
 
     <script src="{{ '/assets/site.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
     <script src="{{ '/assets/site-ticker-bootstrap.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
+    <script src="{{ '/assets/media-glitch.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
     {% if page.layout == "post" %}
         <script src="{{ '/assets/editorial-v3-shell.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
     {% endif %}
