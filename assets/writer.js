@@ -2428,6 +2428,32 @@ function insertBlock(text) {
     return { blob, name: `${file.name.replace(/\.[^.]+$/, '')}.webp` };
   }
 
+  function articleAssetScope() {
+    const currentFilename = currentPath ? currentPath.split('/').pop() : fields.filename.value.trim();
+    const filenameMatch = String(currentFilename || '').match(/^(\d{4})-(\d{2})-(\d{2})-(.+?)\.(?:md|markdown|html)$/i);
+
+    if (filenameMatch) {
+      return {
+        year: filenameMatch[1],
+        month: filenameMatch[2],
+        slug: slugify(filenameMatch[4])
+      };
+    }
+
+    const articleDate = String(fields.date.value || today());
+    const dateMatch = articleDate.match(/^(\d{4})-(\d{2})-\d{2}$/);
+    const now = new Date();
+    return {
+      year: dateMatch?.[1] || String(now.getFullYear()),
+      month: dateMatch?.[2] || String(now.getMonth() + 1).padStart(2, '0'),
+      slug: slugify(fields.title.value || 'article')
+    };
+  }
+
+  function articleUploadPath(filename) {
+    const scope = articleAssetScope();
+    return 'assets/uploads/articles/' + scope.year + '/' + scope.month + '/' + scope.slug + '/' + filename;
+  }
   async function uploadAsset(file, preferredName = '') {
     if (!githubCredential) throw new Error('Sign in with GitHub before uploading images.');
     const optimized = await optimizeImage(file);
@@ -2438,7 +2464,7 @@ function insertBlock(text) {
       uploadName = `${preferredName.replace(/\.[^.]+$/, '')}${optimizedExtension}`;
     }
     const safeName = uploadName.replace(/[^A-Za-z0-9._-]+/g,'-');
-    const path = `assets/uploads/${safeName}`;
+    const path = articleUploadPath(safeName);
     const bytes = new Uint8Array(await optimized.blob.arrayBuffer());
     let binary = '';
     for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
