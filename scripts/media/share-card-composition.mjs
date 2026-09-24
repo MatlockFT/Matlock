@@ -4,7 +4,7 @@ import { measureDisplay, displayTextSvg } from '../../assets/share-gobold.mjs';
 
 const PAPER = '#f1eee4';
 const MONO = 'DejaVu Sans Mono, Liberation Mono, monospace';
-const tape = `data:image/png;base64,${fs.readFileSync(new URL('../assets/textures/otd-gaffer-tape-v1.png', import.meta.url)).toString('base64')}`;
+const tape = `data:image/png;base64,${fs.readFileSync(new URL('../../assets/textures/otd-gaffer-tape-v1.png', import.meta.url)).toString('base64')}`;
 const FORMATS = { post: { width: 1080, height: 1350 }, story: { width: 1080, height: 1920 }, social: { width: 1200, height: 1200 } };
 const esc = value => String(value || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
