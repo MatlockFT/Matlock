@@ -4,11 +4,11 @@ This document tracks the controlled reorganization of the MMA Matlock repository
 
 ## Current status
 
-**Stage 5 of 10 — Development-script organization: COMPLETE**
+**Stage 6 of 10 — GitHub Actions workflow consolidation: IN PROGRESS**
 
-Next stage: **Stage 6 — GitHub Actions workflow consolidation**
+Next stage after validation: **Stage 7 — Legacy/V2/V3 page cleanup**
 
-Stages 0–4 established the safety baseline, repository/media contracts, article-owned asset hierarchy, and modular Writer source. Stage 5 reorganizes internal development automation by domain while preserving npm command names and workflow behavior.
+Stages 0–5 established the safety baseline, repository/media contracts, article-owned asset hierarchy, modular Writer source, and domain-organized development scripts. Stage 6 consolidates overlapping GitHub Actions ownership while preserving schedules, publishing behavior, and production regression gates.
 
 ## Rollback point
 
@@ -250,6 +250,19 @@ Stage 5 added `npm run check:scripts`, which rejects:
 
 A pre-Stage-5 rollback branch is preserved at `archive/repo-modernization-stage4-complete-2026-09-24`.
 
+## Stage 6 GitHub Actions consolidation
+
+Stage 6 reduces overlapping workflow ownership without combining jobs that have distinct data-writing responsibilities or unsafe concurrency requirements.
+
+The consolidation changes are:
+
+- Writer validation and deployed Writer smoke move from two workflows into `.github/workflows/writer-quality.yml`.
+- Site visual geometry smoke and mobile Lighthouse move into `.github/workflows/site-browser-quality.yml`, preserving their separate daily schedules as separate jobs.
+- Matchmaker pull-request validation moves into `.github/workflows/update-matchmaker.yml`, alongside the existing scheduled/live data update job.
+- Scheduled publishers for news, On This Day, live status, UFC roster, events, and other independently owned datasets remain separate because they use different cadences, credentials, or write targets.
+
+Stage 6 adds `npm run check:workflows` so CI verifies canonical consolidated workflows, retired workflow removal, unique workflow display names, and valid Pages CMS workflow references.
+
 ## Planned stages
 
 | Stage | Scope | Status |
@@ -259,8 +272,8 @@ A pre-Stage-5 rollback branch is preserved at `archive/repo-modernization-stage4
 | 2 | Future article asset upload hierarchy | Complete |
 | 3 | Media source/generated/video pipeline separation | Complete |
 | 4 | Writer frontend module split | Complete |
-| 5 | Development-script organization | Next |
-| 6 | GitHub Actions workflow consolidation | Next |
+| 5 | Development-script organization | Complete |
+| 6 | GitHub Actions workflow consolidation | In progress |
 | 7 | Legacy/V2/V3 page cleanup | Pending |
 | 8 | Runtime-data and cache policy | Pending |
 | 9 | Repository integrity enforcement | Pending |
