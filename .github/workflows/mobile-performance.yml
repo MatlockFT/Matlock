@@ -13,7 +13,7 @@ on:
       - "assets/*.js"
       - "*.html"
       - "_config.yml"
-      - "scripts/summarize-lighthouse.mjs"
+      - "scripts/qa/summarize-lighthouse.mjs"
       - ".github/workflows/mobile-performance.yml"
 
 permissions:
@@ -99,7 +99,7 @@ jobs:
           PAGES
 
       - name: Enforce mobile performance gate
-        run: node scripts/summarize-lighthouse.mjs lighthouse-reports
+        run: node scripts/qa/summarize-lighthouse.mjs lighthouse-reports
 
       - name: Upload Lighthouse reports
         if: always()

@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - "assets/data/live-source-candidates.json"
-      - "scripts/discover-youtube-live-sources.py"
+      - "scripts/site-data/live/discover-youtube-live-sources.py"
       - ".github/workflows/discover-youtube-live-sources.yml"
   schedule:
     - cron: "17 15 * * 0"
@@ -38,7 +38,7 @@ jobs:
       - name: Search unresolved promotion channels
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-        run: python scripts/discover-youtube-live-sources.py
+        run: python scripts/site-data/live/discover-youtube-live-sources.py
 
       - name: Publish discovery results
         shell: bash

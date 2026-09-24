@@ -14,7 +14,7 @@ on:
       - "assets/event-map*.css"
       - "_data/event_map*.json"
       - "_data/upcoming_events*.json"
-      - "scripts/event-map-smoke.spec.cjs"
+      - "scripts/site-data/events/event-map-smoke.spec.cjs"
       - ".github/workflows/event-map-smoke.yml"
 
 permissions:
@@ -63,4 +63,4 @@ jobs:
       - name: Exercise desktop and mobile Event Map interactions
         env:
           EVENT_MAP_BASE_URL: https://mmamatlock.com/event-map/
-        run: npx playwright test scripts/event-map-smoke.spec.cjs --browser=chromium --reporter=line
+        run: npx playwright test scripts/site-data/events/event-map-smoke.spec.cjs --browser=chromium --reporter=line
