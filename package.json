@@ -32,7 +32,8 @@
     "check:yellow-pages": "node scripts/qa/check-mma-yellow-pages.mjs",
     "audit:repo": "node scripts/qa/repository-reference-audit.mjs",
     "check:repo-policy": "node scripts/qa/check-repository-policy.mjs",
-    "check:media": "node scripts/media/check-media-pipeline.mjs"
+    "check:media": "node scripts/media/check-media-pipeline.mjs",
+    "check:scripts": "node scripts/qa/check-script-layout.mjs"
   },
   "devDependencies": {
     "fast-xml-parser": "^5.10.1",
