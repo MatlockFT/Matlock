@@ -381,6 +381,26 @@
       "channel_url": "https://www.youtube.com/channel/UCRolEb7xwuPcRbsPyEWGK2Q",
       "coverage_note": "Free YouTube fight coverage varies; FEN 63 includes the first three fights",
       "access_note": "Main card may be carried by CANAL+"
+    },
+    {
+      "id": "aeternum",
+      "name": "Aeternum Fight League",
+      "short_name": "Aeternum",
+      "country": "Mexico",
+      "priority": 78,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/@aeternum.fightleague",
+      "coverage_note": "Official promotion channel; Aeternum events have been announced for YouTube",
+      "broadcast_channels": [
+        {
+          "channel_url": "https://www.youtube.com/@HiSportsTV1",
+          "role": "broadcast_partner",
+          "require_terms": [
+            "Aeternum"
+          ]
+        }
+      ],
+      "fast_check_until": "2026-09-27T06:00:00Z"
     }
   ]
 }
