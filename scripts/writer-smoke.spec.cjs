@@ -319,10 +319,10 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('#writer-body')).toHaveValue(/Writer smoke image/);
   await expect(page.locator('#writer-body')).toHaveValue(/ALPHA FIGHTER/);
   await expect(page.locator('[data-preview-content]')).toContainText('Rendered HTML visual');
-  await articleDetails.locator('summary').click();
+  await articleDetails.locator(':scope > summary').click();
   await expect(articleDetails).toHaveAttribute('open', '');
   const advancedAfterLibrary = page.locator('.writer-meta-advanced');
-  if (!(await advancedAfterLibrary.evaluate(el => el.open))) await advancedAfterLibrary.locator('summary').click();
+  if (!(await advancedAfterLibrary.evaluate(el => el.open))) await advancedAfterLibrary.locator(':scope > summary').click();
 
   await page.fill('[data-field="description"]', '');
   await page.click('[data-publish]');
