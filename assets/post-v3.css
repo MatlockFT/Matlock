@@ -246,13 +246,22 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
   font:500 .62rem/1.45 var(--v3-sans);
 }
 
-/* Native article videos uploaded from Writer. */
+/* Native article videos uploaded from Writer: GIF-like by default, with tiny custom controls. */
 .post-page-v3 .post-body .article-inline-video{
   display:block;
   width:100%;
   max-width:100%;
   margin:1.75rem 0;
   padding:0;
+}
+.post-page-v3 .post-body .article-inline-video-stage{
+  position:relative;
+  display:flex;
+  width:100%;
+  max-width:100%;
+  justify-content:center;
+  overflow:hidden;
+  background:#000;
 }
 .post-page-v3 .post-body .article-inline-video video{
   display:block;
@@ -264,12 +273,67 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
   border-radius:0;
   background:#000;
   box-shadow:none;
+  cursor:pointer;
+}
+.post-page-v3 .post-body .article-inline-video-controls{
+  position:absolute;
+  right:.55rem;
+  bottom:.55rem;
+  z-index:2;
+  display:flex;
+  gap:.3rem;
+  opacity:0;
+  transform:translateY(3px);
+  transition:opacity .16s ease,transform .16s ease;
+}
+.post-page-v3 .post-body .article-inline-video:hover .article-inline-video-controls,
+.post-page-v3 .post-body .article-inline-video:focus-within .article-inline-video-controls,
+.post-page-v3 .post-body .article-inline-video.is-paused .article-inline-video-controls{
+  opacity:1;
+  transform:none;
+}
+.post-page-v3 .post-body .article-inline-video-control{
+  display:grid;
+  place-items:center;
+  width:2rem;
+  height:2rem;
+  margin:0;
+  padding:0;
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:999px;
+  background:rgba(0,0,0,.58);
+  color:#fff;
+  box-shadow:0 1px 8px rgba(0,0,0,.2);
+  backdrop-filter:blur(5px);
+  -webkit-backdrop-filter:blur(5px);
+  cursor:pointer;
+}
+.post-page-v3 .post-body .article-inline-video-control:hover,
+.post-page-v3 .post-body .article-inline-video-control:focus-visible{
+  background:rgba(0,0,0,.78);
+  border-color:rgba(255,255,255,.55);
+  outline:none;
+}
+.post-page-v3 .post-body .article-inline-video-control:focus-visible{
+  box-shadow:0 0 0 2px rgba(255,255,255,.72);
+}
+.post-page-v3 .post-body .article-inline-video-control svg{
+  display:block;
+  width:.88rem;
+  height:.88rem;
+  fill:currentColor;
 }
 .post-page-v3 .post-body .article-inline-video figcaption{
   margin:.45rem 0 0;
   padding:0;
   color:var(--v3-muted);
   font:500 .62rem/1.45 var(--v3-sans);
+}
+@media(hover:none){
+  .post-page-v3 .post-body .article-inline-video-controls{
+    opacity:.72;
+    transform:none;
+  }
 }
 .post-page-v3 .post-body .article-inline-image--small{width:35%}
 .post-page-v3 .post-body .article-inline-image--medium{width:50%}
