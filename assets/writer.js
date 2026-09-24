@@ -53,6 +53,7 @@
   let linkMode = 'link';
   let saveInFlight = false;
   let imageUploadInFlight = false;
+  let videoUploadInFlight = false;
   let featuredImageRetryTimer = 0;
   let featuredImageRetryCount = 0;
   let featuredImageRetrySource = '';
@@ -483,14 +484,14 @@
 
   function renderMarkdown(markdown) {
     let source = String(markdown || '').replace(/\r\n?/g, '\n');
-    source = source.replace(/<!--\s*WRITER_IMAGE_UPLOAD_[\w:-]+\s*-->/g, '');
+    source = source.replace(/<!--\s*WRITER_(?:IMAGE|VIDEO)_UPLOAD_[\w:-]+\s*-->/g, '');
     const rawHtmlBlocks = [];
     source = source.replace(/<section\b[\s\S]*?<\/section>/gi, html => {
       const safe = html.replace(/<script[\s\S]*?<\/script>/gi, '');
       rawHtmlBlocks.push(safe);
       return `\n@@RAWHTML${rawHtmlBlocks.length - 1}@@\n`;
     });
-    source = source.replace(/<figure\b[^>]*class=["'][^"']*\barticle-inline-image\b[^"']*["'][^>]*>[\s\S]*?<\/figure>/gi, html => {
+    source = source.replace(/<figure\b[^>]*class=["'][^"']*\barticle-inline-(?:image|video)\b[^"']*["'][^>]*>[\s\S]*?<\/figure>/gi, html => {
       const safe = html
         .replace(/<script[\s\S]*?<\/script>/gi, '')
         .replace(/\son\w+\s*=\s*(?:"[^"]*"|'[^']*')/gi, '')
@@ -971,7 +972,7 @@
 }
 
 function setPublishingControls(enabled) {
-  const active = Boolean(enabled) && !saveInFlight && !imageUploadInFlight;
+  const active = Boolean(enabled) && !saveInFlight && !imageUploadInFlight && !videoUploadInFlight;
   saveDraftButton.disabled = !active;
   publishButton.disabled = !active;
   scheduleButton.disabled = !active;
@@ -1729,7 +1730,7 @@ function insertBlock(text) {
       return;
     }
     const map = {
-      image: '[data-image-dialog]', youtube: '[data-youtube-dialog]', x: '[data-x-dialog]', table: '[data-table-dialog]',
+      image: '[data-image-dialog]', video: '[data-video-dialog]', youtube: '[data-youtube-dialog]', x: '[data-x-dialog]', table: '[data-table-dialog]',
       tale: '[data-tale-dialog]', prediction: '[data-pick-dialog]', template: '[data-template-dialog]'
     };
     const dialog = app.querySelector(map[type]);
@@ -1777,6 +1778,98 @@ function insertBlock(text) {
       caption ? `  <figcaption>${escapeHtml(caption)}</figcaption>` : '',
       '</figure>'
     ].filter(Boolean).join('\n');
+  }
+
+  function inlineVideoMarkup(url, caption = '') {
+    const src = safeUrl(url);
+    if (!src || src === '#') return '';
+    const cleanCaption = String(caption || '').trim();
+    const label = cleanCaption || 'Article video';
+    return [
+      '<figure class="article-inline-video">',
+      `  <video controls playsinline preload="metadata" src="${escapeHtml(src)}" aria-label="${escapeHtml(label)}"></video>`,
+      cleanCaption ? `  <figcaption>${escapeHtml(cleanCaption)}</figcaption>` : '',
+      '</figure>'
+    ].filter(Boolean).join('\n');
+  }
+
+  function videoFileInfo(file) {
+    if (!file) throw new Error('Choose a video file.');
+    const extension = String(file.name || '').match(/\.([A-Za-z0-9]+)$/)?.[1]?.toLowerCase() || '';
+    const typeExtension = {
+      'video/mp4': 'mp4',
+      'video/webm': 'webm',
+      'video/x-m4v': 'm4v'
+    }[file.type] || '';
+    const ext = extension || typeExtension;
+    if (!['mp4','webm','m4v'].includes(ext)) throw new Error('Use an MP4, WebM or M4V video.');
+    if (file.size > 15 * 1024 * 1024) throw new Error('Keep uploaded videos under 15 MB.');
+    return { ext };
+  }
+
+  function videoUploadName(file) {
+    const { ext } = videoFileInfo(file);
+    const now = new Date();
+    const stamp = [
+      now.getFullYear(),
+      String(now.getMonth() + 1).padStart(2, '0'),
+      String(now.getDate()).padStart(2, '0'),
+      String(now.getHours()).padStart(2, '0'),
+      String(now.getMinutes()).padStart(2, '0'),
+      String(now.getSeconds()).padStart(2, '0')
+    ].join('');
+    const stem = slugify(fields.title.value || file.name.replace(/\.[^.]+$/, '') || 'article').slice(0, 48) || 'article';
+    return `${stem}-video-${stamp}.${ext}`;
+  }
+
+  async function uploadVideoAsset(file) {
+    if (!githubCredential) throw new Error('Sign in with GitHub before uploading videos.');
+    videoFileInfo(file);
+    const safeName = videoUploadName(file).replace(/[^A-Za-z0-9._-]+/g, '-');
+    const path = `assets/uploads/video/${safeName}`;
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    let binary = '';
+    for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+    const payload = { message: `Upload article video ${safeName}`, content: btoa(binary), branch: 'main' };
+    await githubFetch(`/contents/${path}`, { method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) }, true);
+    return `/${path}`;
+  }
+
+  async function insertInlineVideo(file, caption = '') {
+    if (!githubCredential) {
+      showToast('Connect GitHub before uploading a video, then try again.', 6000);
+      if (!connectDialog.open) connectDialog.showModal();
+      return '';
+    }
+
+    try {
+      videoFileInfo(file);
+    } catch (error) {
+      showToast(error.message, 6000);
+      return '';
+    }
+
+    const token = `<!-- WRITER_VIDEO_UPLOAD_${Date.now()} -->`;
+    insertBlock(token);
+    videoUploadInFlight = true;
+    setPublishingControls(Boolean(githubCredential));
+    showToast('Uploading video…', 3000);
+
+    try {
+      const path = await uploadVideoAsset(file);
+      const fallbackCaption = '';
+      if (replaceUploadToken(token, inlineVideoMarkup(path, caption || fallbackCaption))) {
+        showToast('Video uploaded and placed.');
+      }
+      return path;
+    } catch (error) {
+      replaceUploadToken(token, '');
+      showToast(`Video upload failed: ${error.message}`, 7000);
+      return '';
+    } finally {
+      videoUploadInFlight = false;
+      setPublishingControls(Boolean(githubCredential));
+    }
   }
 
   async function optimizeImage(file) {
@@ -1957,7 +2050,7 @@ function insertBlock(text) {
     const before = bodyEditor.value.slice(0, cursor);
     const lineStart = before.lastIndexOf('\n') + 1;
     const line = before.slice(lineStart).trim();
-    if (!/^\/(table|tale|pick|youtube|image|html|source|template|divider)$/.test(line)) return '';
+    if (!/^\/(table|tale|pick|video|youtube|image|html|source|template|divider)$/.test(line)) return '';
     bodyEditor.setRangeText('', lineStart, cursor, 'end');
     return line.slice(1);
   }
@@ -2067,6 +2160,45 @@ Object.values(fields).forEach(el => {
     if (!/^https?:\/\//i.test(url) && !url.startsWith('/')) { showToast('Enter a valid URL.'); return; }
     insertAtCursor('[', `](${url})`, label);
     dialog.close();
+  });
+
+  app.querySelector('[data-video-insert]').addEventListener('click', async () => {
+    const dialog = app.querySelector('[data-video-dialog]');
+    const fileInput = dialog.querySelector('[data-inline-video-file]');
+    const urlInput = dialog.querySelector('[data-inline-video-url]');
+    const captionInput = dialog.querySelector('[data-inline-video-caption]');
+    const file = fileInput.files?.[0];
+    const url = urlInput.value.trim();
+    const caption = captionInput.value.trim();
+    const button = dialog.querySelector('[data-video-insert]');
+
+    button.disabled = true;
+    button.textContent = file ? 'Uploading…' : 'Placing…';
+    try {
+      let placed = false;
+      if (file) {
+        placed = Boolean(await insertInlineVideo(file, caption));
+      } else if (url) {
+        const markup = inlineVideoMarkup(url, caption);
+        if (!markup) { showToast('Enter a valid direct video URL.'); return; }
+        insertBlock(markup);
+        showToast('Video placed.');
+        placed = true;
+      } else {
+        showToast('Choose a video or enter a direct video URL.');
+        return;
+      }
+
+      if (placed) {
+        fileInput.value = '';
+        urlInput.value = '';
+        captionInput.value = '';
+        dialog.close();
+      }
+    } finally {
+      button.disabled = false;
+      button.textContent = 'Place video';
+    }
   });
 
   app.querySelector('[data-youtube-insert]').addEventListener('click', () => {
@@ -2232,17 +2364,20 @@ Object.values(fields).forEach(el => {
   const dropzone = app.querySelector('[data-editor-dropzone]');
   const dropHint = app.querySelector('[data-drop-hint]');
   ['dragenter','dragover'].forEach(type => dropzone.addEventListener(type, event => {
-    if ([...(event.dataTransfer?.items || [])].some(item => item.type.startsWith('image/'))) {
+    if ([...(event.dataTransfer?.items || [])].some(item => item.type.startsWith('image/') || item.type.startsWith('video/'))) {
       event.preventDefault();
       dropHint.hidden = false;
     }
   }));
   ['dragleave','drop'].forEach(type => dropzone.addEventListener(type, () => { dropHint.hidden = true; }));
   dropzone.addEventListener('drop', async event => {
-    const file = [...(event.dataTransfer?.files || [])].find(item => item.type.startsWith('image/'));
+    const files = [...(event.dataTransfer?.files || [])];
+    const file = files.find(item => item.type.startsWith('video/')) || files.find(item => item.type.startsWith('image/'));
     if (!file) return;
     event.preventDefault();
-    await insertInlineImage(file);
+    bodyEditor.focus();
+    if (file.type.startsWith('video/')) await insertInlineVideo(file);
+    else await insertInlineImage(file);
   });
 
   bodyEditor.addEventListener('paste', event => {
