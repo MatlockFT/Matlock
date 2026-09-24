@@ -39,7 +39,7 @@ A new directory or collection should only be introduced when the page type genui
 
 Existing files under `assets/uploads/` remain valid and are not migrated simply for organization.
 
-Beginning in Stage 2, **new Writer article-image uploads** will use:
+**New Writer article-image uploads** use:
 
 ```text
 assets/uploads/articles/YYYY/MM/article-slug/
@@ -71,7 +71,7 @@ writer-media-YYYY-MM
 
 The article stores the release URL. Existing release URLs are permanent dependencies and must not be deleted casually.
 
-Tracked video files under `assets/` are prohibited by the Stage 3 media pipeline check. Direct external video URLs may still be embedded, but Writer uploads use GitHub Releases.
+Tracked video files under `assets/` are prohibited by the media pipeline check. Direct external video URLs may still be embedded, but Writer uploads use GitHub Releases.
 
 ## Generated media
 
@@ -113,7 +113,7 @@ Disposable local/CI scratch data belongs under:
 .cache/
 ```
 
-Stage 8 records producer, consumer, regeneration, retention, ownership, and public-contract status in `.repository-data-policy.json`. CI runs `npm run check:data` and rejects an unclassified file added beneath `_data/` or `assets/data/`.
+The repository records producer, consumer, regeneration, retention, ownership, and public-contract status in `.repository-data-policy.json`. CI runs `npm run check:data` and rejects an unclassified file added beneath `_data/` or `assets/data/`.
 
 Files such as `assets/data/on-this-day-image-cache.json` remain tracked operational data despite the word “cache” in their filename. Historical Matchmaker snapshots likewise remain tracked because they preserve point-in-time state. Generated data is only disposable when its lifecycle rule explicitly says so.
 
@@ -167,7 +167,7 @@ scripts/
   qa/
 ```
 
-Stage 5 completed this migration. Human-facing npm commands remain stable where practical even though their implementations now live in domain folders. Feature-specific helpers and validation stay beside the feature they support; cross-site quality checks live under `scripts/qa/`.
+Human-facing npm commands remain stable where practical even though their implementations live in domain folders. Feature-specific helpers and validation stay beside the feature they support; cross-site quality checks live under `scripts/qa/`.
 
 ## Backend
 
@@ -189,7 +189,7 @@ GitHub requires workflow files to remain directly inside:
 .github/workflows/
 ```
 
-Stage 6 keeps that flat physical layout but consolidates workflows by responsibility instead of creating artificial subdirectories:
+The flat physical layout is retained, while workflows are consolidated by responsibility instead of artificial subdirectories:
 
 ```text
 writer-quality.yml
@@ -206,7 +206,7 @@ Scheduled data publishers remain separate when they have meaningfully different 
 
 ## Integrity enforcement
 
-Stage 9 freezes known legacy media and makes the permanent structure enforceable in CI.
+Known legacy media is frozen and the permanent structure is enforceable in CI.
 
 New article images must use the article-owned upload hierarchy. The exact pre-Stage-2 flat uploads that remain valid are recorded in `.repository-legacy-media.json`; adding another flat upload is rejected.
 
@@ -235,23 +235,30 @@ _netlify-auth/netlify/functions/writer-github.mjs
 
 This list is not exhaustive; the reference audit is still required before any move or removal.
 
-## Legacy exceptions
+## Legacy compatibility
 
-The repository intentionally tolerates several legacy patterns until their dedicated migration stage:
+The repository intentionally preserves working legacy paths when they still serve a compatibility purpose:
 
-- Existing flat files in `assets/uploads/`
-- Existing `legacy-*.html` redirect stubs that preserve old public article URLs
+- the exact pre-Stage-2 flat upload paths frozen in `.repository-legacy-media.json`;
+- existing `legacy-*.html` redirect stubs that preserve old public article URLs;
+- older V2/V3-named CSS/JS assets that canonical live pages still consume.
 
-The flat `scripts/` exception ended in Stage 5, workflow sprawl ended in Stage 6, and versioned migration pages ended in Stage 7. New development automation must live inside one of the defined script domains.
+Legacy compatibility is permission to preserve a working dependency, not permission for new work to expand the old pattern. New article media, scripts, workflows, pages, and data must follow the permanent contract.
 
-A legacy exception is permission to leave a working file alone, not permission for new work to keep expanding the old pattern.
+## Maintenance mode
+
+The ten-stage repository modernization is complete. Routine work should now follow this contract without reopening broad structural migration work.
+
+Use [`docs/maintenance.md`](maintenance.md) for day-to-day tasks, required checks, legacy compatibility rules, and rollback guidance.
+
+A future structural migration should only happen when a concrete requirement cannot fit the current contract. Old-but-working filenames are not, by themselves, a reason to reorganize the repository.
 
 ## Decision rule for new files
 
 When adding something new, use this order:
 
 1. Is it an article? → `_posts/`
-2. Is it media owned by one article? → Stage-2 article media hierarchy
+2. Is it media owned by one article? → `assets/uploads/articles/YYYY/MM/article-slug/`
 3. Is it generated output? → `assets/generated/`
 4. Is it runtime browser data? → `assets/data/`
 5. Is it Jekyll build data? → `_data/`

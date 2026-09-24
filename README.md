@@ -1,20 +1,107 @@
 # MMA Matlock
 
-[MMA Matlock](https://mmamatlock.com) is a fan-run MMA website featuring original fight breakdowns, predictions, edited classic MMA clips, and commentary.
+[MMA Matlock](https://mmamatlock.com) is a fan-run MMA website for original fight breakdowns, predictions, commentary, MMA news, event tools, history, and supporting editorial projects.
 
-## What’s here
+The site is built with Jekyll and published through GitHub Pages. The repository is now in **maintenance mode**: preserve working public paths, use the established structure for new work, and let CI reject organizational drift.
 
-- Written MMA breakdowns, previews, recaps, and opinion pieces
-- A [live MMA news feed](https://mmamatlock.com/news/) aggregated from trusted MMA outlets and fight promotions
-- The [MMA Yellow Pages](https://mmamatlock.com/mma-yellowpages), a curated directory of MMA websites, tools, and creators
-- A media kit, picture gallery, and supporting site pages
-- Links to MMA Matlock videos and social channels
+## Developer map
 
-## How it works
+| Task | Where it belongs |
+| --- | --- |
+| Add or edit an article | Use the Writer at `/write/`; posts live in `_posts/` |
+| New article images | Writer → `assets/uploads/articles/YYYY/MM/article-slug/` |
+| Article video | Writer → GitHub Release assets; never commit video to Git |
+| Generated responsive media | `assets/generated/`; do not hand-edit |
+| New standalone page | Root Jekyll HTML + frontmatter unless a collection is genuinely warranted |
+| Browser/runtime data | `assets/data/` |
+| Jekyll build-time data | `_data/` |
+| Temporary local/CI cache | `.cache/` |
+| Writer frontend source | `_writer/`; build publishes `assets/writer.js` |
+| Development automation | `scripts/<domain>/` |
+| Writer backend | `_netlify-auth/` |
+| GitHub Actions | `.github/workflows/`, grouped by responsibility |
 
-The site is built with [Jekyll](https://jekyllrb.com/) and published through GitHub Pages. Posts live in `_posts/`, shared layouts live in `_layouts/`, and public styles, scripts, images, and runtime data live in `assets/`.
+## Operating rules
 
-Repository organization is intentionally stability-first: existing public URLs stay in place, while new content follows the permanent structure documented in [`docs/repository-structure.md`](docs/repository-structure.md). The staged migration plan and rollback point are tracked in [`docs/repository-modernization.md`](docs/repository-modernization.md).
+- Do not reorganize old working content merely for aesthetics.
+- New articles and media follow the current structure automatically.
+- Writer determines article-media placement.
+- Videos never enter Git history.
+- Generated output must remain identifiable and reproducible.
+- Existing public URLs are preserved unless a change has a concrete reason and migration plan.
+- Before moving or deleting a tracked path, run the reference audit.
+- Do not add another legacy/versioned page, flat article-upload pattern, mystery dataset, or miscellaneous script location.
+
+Before moving or deleting a file:
+
+```sh
+npm run audit:repo -- --target path/to/file
+```
+
+## Publishing articles
+
+The custom Writer at `/write/` is the primary publishing interface.
+
+Articles remain Jekyll posts under:
+
+```text
+_posts/
+  YYYY-MM-DD-article-slug.md
+```
+
+New Writer image uploads use:
+
+```text
+assets/uploads/articles/YYYY/MM/article-slug/
+```
+
+Existing legacy image URLs remain valid and are intentionally not moved. Their grandfathered paths are recorded in `.repository-legacy-media.json`.
+
+Writer-uploaded video uses monthly GitHub Release assets such as:
+
+```text
+writer-media-2026-09
+```
+
+## Generated files
+
+Responsive image derivatives live under `assets/generated/`. Do not edit them directly.
+
+Regenerate and validate with:
+
+```sh
+npm run optimize:images
+npm run check:generated
+npm run check:content
+```
+
+The optimizer updates `.repository-generated-assets.json`, which lets CI detect hand-edited or stale generated media.
+
+The public Writer bundle is also generated. Edit `_writer/`, then run:
+
+```sh
+npm run build:frontend
+npm run check:frontend
+```
+
+## Repository checks
+
+The main structural checks are:
+
+```sh
+npm run check:integrity
+npm run audit:repo -- --check
+npm run check:repo-policy
+npm run check:data
+npm run check:scripts
+npm run check:workflows
+npm run check:media
+npm run check:generated
+npm run check:content
+npm run check:frontend
+```
+
+GitHub Actions runs these as part of the normal quality gates.
 
 ## Run locally
 
@@ -28,30 +115,20 @@ bundle exec jekyll serve
 
 Open `http://localhost:4000`.
 
-## Publishing articles
+## Documentation
 
-The custom Writer at `/write/` is the primary publishing interface. Articles remain Jekyll posts under `_posts/`; Writer handles drafts, scheduling, publishing, article images, and GitHub Release video uploads.
-
-Existing article-media URLs remain valid. Stage 2 of the repository modernization will make new Writer image uploads article-scoped under `assets/uploads/articles/YYYY/MM/article-slug/` without moving older media.
-
-For manual maintenance of featured images, responsive variants and content metadata can still be validated with:
-
-```sh
-npm run optimize:images
-npm run check:content
-```
+- [Maintenance runbook](docs/maintenance.md) — day-to-day rules and change workflow
+- [Repository structure](docs/repository-structure.md) — permanent file-placement contract
+- [Repository integrity](docs/repository-integrity.md) — CI enforcement and legacy freezes
+- [Media pipeline](docs/media-pipeline.md) — source images, generated derivatives, and video
+- [Data lifecycle](docs/data-lifecycle.md) — build-time, runtime, cache, and historical data
+- [Repository modernization](docs/repository-modernization.md) — completed migration history and rollback markers
 
 ## Search visibility and advertising
 
-The site publishes an RSS feed at
-[mmamatlock.com/feed.xml](https://mmamatlock.com/feed.xml).
-Register the site with Google Search Console, then place the supplied
-verification token in `_config.yml`; verification tokens are account-specific
-and should never be guessed.
+The site publishes an RSS feed at [mmamatlock.com/feed.xml](https://mmamatlock.com/feed.xml).
 
-AdSense stays disabled until both a banner slot and
-`consent_manager_enabled: true` are configured. Enable that setting only after
-a consent-management platform appropriate for the site's visitors is active.
+Search Console verification values belong in `_config.yml` and must come from the relevant account. Ad/consent settings should only be changed when the corresponding service configuration is actually ready.
 
 ## Links
 
@@ -64,6 +141,4 @@ a consent-management platform appropriate for the site's visitors is active.
 
 The website source code is available under the [MIT License](LICENSE). Original articles, images, audio, video, logos, and other editorial or brand assets are not covered by that license unless explicitly stated.
 
-## About
-
-MMA Matlock is an independent project made by a longtime MMA fan. It is not affiliated with the UFC or any other promotion.
+MMA Matlock is an independent project and is not affiliated with the UFC or any other promotion.

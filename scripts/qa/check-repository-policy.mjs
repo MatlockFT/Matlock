@@ -183,6 +183,47 @@ if (stage >= 9) {
   }
 }
 
+if (stage >= 10) {
+  if (!policy.maintenance || typeof policy.maintenance !== 'object') {
+    errors.push('Stage 10 must define maintenance mode.');
+  } else {
+    if (policy.maintenance.mode !== 'maintenance') errors.push('Stage 10 maintenance.mode must be maintenance.');
+    if (policy.maintenance.modernizationComplete !== true) errors.push('Stage 10 modernizationComplete must be true.');
+    if (policy.maintenance.broadReorganizationRequiresConcreteNeed !== true) {
+      errors.push('Stage 10 broadReorganizationRequiresConcreteNeed must remain true.');
+    }
+    const expectedMaintenanceDocs = {
+      developerMap: 'README.md',
+      runbook: 'docs/maintenance.md',
+      structureContract: 'docs/repository-structure.md',
+      migrationHistory: 'docs/repository-modernization.md'
+    };
+    for (const [key, expectedPath] of Object.entries(expectedMaintenanceDocs)) {
+      if (policy.maintenance[key] !== expectedPath) {
+        errors.push(`Stage 10 maintenance.${key} must remain ${expectedPath}.`);
+      } else {
+        await requirePath(expectedPath, 'Stage 10 maintenance document');
+      }
+    }
+    if (policy.maintenance.rollbackBranch !== 'archive/repo-modernization-stage9-complete-2026-09-24') {
+      errors.push('Stage 10 rollbackBranch must preserve the pre-Stage-10 state.');
+    }
+    const readme = await fs.readFile('README.md', 'utf8').catch(() => '');
+    for (const marker of [
+      '## Developer map',
+      'assets/uploads/articles/YYYY/MM/article-slug/',
+      'assets/generated/',
+      'assets/data/',
+      '_data/',
+      'scripts/<domain>/',
+      '_netlify-auth/',
+      'npm run audit:repo -- --target'
+    ]) {
+      if (!readme.includes(marker)) errors.push('README maintenance developer map is missing: ' + marker);
+    }
+  }
+}
+
 if (stage < 7 && policy.legacyExceptions?.versionedRootPagesAllowedUntilStage !== 7) {
   errors.push('Versioned root page exception must remain scheduled for Stage 7.');
 }

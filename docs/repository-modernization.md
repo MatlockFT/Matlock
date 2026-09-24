@@ -4,11 +4,11 @@ This document tracks the controlled reorganization of the MMA Matlock repository
 
 ## Current status
 
-**Stage 9 of 10 — Repository integrity enforcement: COMPLETE**
+**Stage 10 of 10 — Final documentation and maintenance mode: IN PROGRESS**
 
-Next stage: **Stage 10 — Final documentation and maintenance mode**
+After validation, the staged repository modernization enters maintenance mode.
 
-Stages 0–5 established the safety baseline, repository/media contracts, article-owned asset hierarchy, modular Writer source, and domain-organized development scripts. Stage 6 consolidates overlapping GitHub Actions ownership while preserving schedules, publishing behavior, and production regression gates.
+Stages 0–9 established the safety baseline, permanent repository/media contracts, article-owned asset hierarchy, modular Writer source, domain-organized development scripts, consolidated workflow ownership, legacy-page cleanup, explicit data lifecycles, and enforceable repository integrity.
 
 ## Rollback point
 
@@ -388,6 +388,50 @@ Stage 9 validation confirmed:
 The first Stage 9 CI run was useful by design: the new local-media scanner initially included Markdown closing parentheses in asset paths. CI rejected those false positives, the parser was corrected in `37df6a7240101ffc5c526d6cf4766512e15721f7`, and the corrected integrity step passed.
 
 
+## Stage 10 final documentation and maintenance mode
+
+Stage 10 converts the completed migration into an everyday maintenance model.
+
+The main entry points are now:
+
+```text
+README.md
+  concise developer map and common commands
+
+docs/maintenance.md
+  day-to-day task runbook, recovery rules, and change workflow
+
+docs/repository-structure.md
+  permanent file-placement contract
+
+docs/repository-integrity.md
+  CI enforcement and compatibility freezes
+
+docs/data-lifecycle.md
+  tracked data ownership and regeneration rules
+
+docs/media-pipeline.md
+  authored/generated/video media boundaries
+
+docs/repository-modernization.md
+  historical migration record and rollback markers
+```
+
+The README is intentionally present-tense. It no longer instructs maintainers to wait for future migration stages; it describes the structure that is already in force.
+
+The maintenance policy is also machine-readable in `.repository-policy.json`:
+
+- `modernizationStage: 10`;
+- `maintenance.mode: maintenance`;
+- `maintenance.modernizationComplete: true`;
+- canonical developer-map/runbook/history paths;
+- the pre-Stage-10 rollback branch;
+- an explicit rule that broad reorganization needs a concrete requirement rather than aesthetic motivation.
+
+The repository-policy checker verifies these maintenance-mode documents and key README developer-map markers so the final documentation cannot silently disappear while CI still claims the repository is in maintenance mode.
+
+The exact pre-Stage-10 repository state is preserved at `archive/repo-modernization-stage9-complete-2026-09-24`.
+
 ## Planned stages
 
 | Stage | Scope | Status |
@@ -402,6 +446,6 @@ The first Stage 9 CI run was useful by design: the new local-media scanner initi
 | 7 | Legacy/V2/V3 page cleanup | Complete |
 | 8 | Runtime-data and cache policy | Complete |
 | 9 | Repository integrity enforcement | Complete |
-| 10 | Final documentation and maintenance mode | Next |
+| 10 | Final documentation and maintenance mode | In progress |
 
 The status table is updated at the end of every completed stage.

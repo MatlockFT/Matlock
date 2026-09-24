@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "modernizationStage": 9,
+  "modernizationStage": 10,
   "principles": {
     "preserveExistingPublicPaths": true,
     "noCosmeticMoves": true,
@@ -97,5 +97,15 @@
     "duplicatePermalinksRejected": true,
     "versionedRootPagesRejected": true,
     "trackedVideosRejected": true
+  },
+  "maintenance": {
+    "mode": "maintenance",
+    "modernizationComplete": true,
+    "developerMap": "README.md",
+    "runbook": "docs/maintenance.md",
+    "structureContract": "docs/repository-structure.md",
+    "migrationHistory": "docs/repository-modernization.md",
+    "rollbackBranch": "archive/repo-modernization-stage9-complete-2026-09-24",
+    "broadReorganizationRequiresConcreteNeed": true
   }
 }
