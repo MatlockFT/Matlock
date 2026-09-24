@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "generated_at": "2026-09-24T03:13:49Z",
+  "generated_at": "2026-09-24T03:23:27Z",
   "selected_event_id": null,
   "events": [],
   "upcoming": [
@@ -29,7 +29,8 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T03:08:18Z"
+      "observed_at": "2026-09-24T03:23:27Z",
+      "source_role": "promotion"
     },
     {
       "event_id": "tuff-n-uff:iRW8qArVe7Q",
@@ -110,7 +111,8 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T03:08:18Z"
+      "observed_at": "2026-09-24T03:23:27Z",
+      "source_role": "promotion"
     },
     {
       "event_id": "levels-fight-league:ynNjsajmOw8",
@@ -137,7 +139,8 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T03:08:18Z"
+      "observed_at": "2026-09-24T03:23:27Z",
+      "source_role": "promotion"
     }
   ],
   "sources": {
@@ -156,7 +159,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:08:18Z"
+      "last_checked_at": "2026-09-24T03:23:27Z"
     },
     "a1-combat": {
       "promotion": "A1 Combat",
@@ -174,6 +177,23 @@
       "error_count": 0,
       "last_success_at": null,
       "last_checked_at": "2026-09-24T03:01:44Z"
+    },
+    "aeternum": {
+      "promotion": "Aeternum Fight League",
+      "short_name": "Aeternum",
+      "country": "Mexico",
+      "priority": 78,
+      "coverage_note": "Official promotion channel; Aeternum events have been announced for YouTube",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/@aeternum.fightleague",
+      "channel_id": "UCXmuh-MjNXLKKR918Zzzm9g",
+      "channel_name": "ÆTERNUM Fight League",
+      "status": "offline",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T03:23:27Z"
     },
     "afc-korea": {
       "promotion": "Angel's Fighting Championship",
@@ -207,7 +227,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:08:17Z"
+      "last_checked_at": "2026-09-24T03:23:26Z"
     },
     "budo-sento": {
       "promotion": "Budo Sento Championship",
@@ -241,7 +261,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:08:17Z"
+      "last_checked_at": "2026-09-24T03:23:26Z"
     },
     "empire-mma-colombia": {
       "promotion": "Empire MMA",
@@ -275,7 +295,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:08:18Z"
+      "last_checked_at": "2026-09-24T03:23:27Z"
     },
     "fnc": {
       "promotion": "Fight Nation Championship",
@@ -360,7 +380,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-24T02:19:06Z",
-      "last_checked_at": "2026-09-24T03:08:17Z"
+      "last_checked_at": "2026-09-24T03:23:26Z"
     },
     "levels-fight-league": {
       "promotion": "Levels Fight League",
@@ -377,7 +397,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:08:18Z"
+      "last_checked_at": "2026-09-24T03:23:26Z"
     },
     "lfa": {
       "promotion": "Legacy Fighting Alliance",
@@ -411,7 +431,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:13:48Z"
+      "last_checked_at": "2026-09-24T03:23:27Z"
     },
     "lux": {
       "promotion": "LUX Fight League",
@@ -428,7 +448,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:08:17Z"
+      "last_checked_at": "2026-09-24T03:23:26Z"
     },
     "mangu": {
       "promotion": "Mangu Professional League",
@@ -445,7 +465,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:08:18Z"
+      "last_checked_at": "2026-09-24T03:23:27Z"
     },
     "mfl": {
       "promotion": "Mexico Fight League",
@@ -496,7 +516,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:08:17Z"
+      "last_checked_at": "2026-09-24T03:23:26Z"
     },
     "octagon-central-asia": {
       "promotion": "OCTAGON",
@@ -530,7 +550,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:08:18Z"
+      "last_checked_at": "2026-09-24T03:23:26Z"
     },
     "real-fight-arena": {
       "promotion": "Real Fight Arena",
@@ -547,7 +567,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:08:18Z"
+      "last_checked_at": "2026-09-24T03:23:26Z"
     },
     "road-fc": {
       "promotion": "ROAD FC",
@@ -564,7 +584,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:08:17Z"
+      "last_checked_at": "2026-09-24T03:23:26Z"
     },
     "samurai-fight-house": {
       "promotion": "Samurai Fight House",
@@ -581,7 +601,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:08:18Z"
+      "last_checked_at": "2026-09-24T03:23:26Z"
     },
     "sft-combat": {
       "promotion": "SFT Combat",
@@ -598,7 +618,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:08:17Z"
+      "last_checked_at": "2026-09-24T03:23:26Z"
     },
     "shooto-brasil": {
       "promotion": "Shooto Brasil",
@@ -615,7 +635,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:13:49Z"
+      "last_checked_at": "2026-09-24T03:23:27Z"
     },
     "tuff-n-uff": {
       "promotion": "Tuff-N-Uff",
@@ -666,12 +686,12 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:08:17Z"
+      "last_checked_at": "2026-09-24T03:23:26Z"
     }
   },
-  "monitored_count": 31,
+  "monitored_count": 32,
   "live_count": 0,
   "upcoming_count": 5,
   "youtube_api_configured": true,
-  "api_verified_source_count": 31
+  "api_verified_source_count": 32
 }
