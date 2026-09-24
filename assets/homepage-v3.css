@@ -2163,3 +2163,101 @@ body:has([data-globe-home]) .site-theme-toggle-knob {
         justify-content: flex-start;
     }
 }
+
+
+/* =========================================================
+   WIDE EDITORIAL CANVAS — USE LARGE DESKTOPS INTENTIONALLY
+   ========================================================= */
+
+/* Desktop headlines should use the lead column, not an arbitrary character cap. */
+@media (min-width: 1051px) {
+    .v3-lead h1 {
+        max-width: none;
+        text-wrap: balance;
+    }
+}
+
+/* Trending behaves like a newspaper rail: five fixed slots, full title on hover. */
+@media (min-width: 781px) {
+    .v3-trending-links {
+        gap: .58rem;
+        overflow: hidden;
+    }
+
+    .v3-trending-links a {
+        position: relative;
+        display: block;
+        min-width: 0;
+        max-width: none;
+        flex: 1 1 0;
+        overflow: hidden;
+        text-overflow: clip;
+        white-space: nowrap;
+    }
+
+    .v3-trending-text {
+        display: inline-block;
+        min-width: max-content;
+        transform: translateX(0);
+        transition: transform .18s ease;
+        will-change: transform;
+    }
+
+    .v3-trending-links a.is-overflowing:hover .v3-trending-text,
+    .v3-trending-links a.is-overflowing:focus-visible .v3-trending-text {
+        transform: translateX(calc(-1 * var(--trend-shift, 0px)));
+        transition: transform var(--trend-duration, 2.6s) linear .28s;
+    }
+
+    .v3-trending-separator {
+        flex: 0 0 auto;
+    }
+}
+
+/* The 1380px newspaper frame looked undersized on 1920–2560px displays. */
+@media (min-width: 1600px) {
+    .v3-home {
+        width: min(calc(100% - 10vw), 1880px);
+    }
+
+    .v3-front {
+        grid-template-columns:
+            clamp(250px, 17%, 320px)
+            minmax(0, 1fr)
+            clamp(300px, 20%, 370px);
+    }
+
+    .v3-lead {
+        padding-right: clamp(1.6rem, 2vw, 2.5rem);
+        padding-left: clamp(1.6rem, 2vw, 2.5rem);
+    }
+
+    .v3-lead h1 {
+        font-size: clamp(3.15rem, 3.2vw, 4.9rem);
+        line-height: .9;
+    }
+
+    .v3-lead-deck {
+        max-width: 66ch;
+    }
+
+    .v3-rail-story h2 {
+        font-size: clamp(1.18rem, 1.05vw, 1.55rem);
+    }
+}
+
+@media (max-width: 780px) {
+    .v3-trending-text {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .v3-trending-links a.is-overflowing:hover .v3-trending-text,
+    .v3-trending-links a.is-overflowing:focus-visible .v3-trending-text {
+        transform: none;
+        transition: none;
+    }
+}

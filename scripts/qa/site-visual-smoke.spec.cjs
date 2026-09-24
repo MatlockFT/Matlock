@@ -503,6 +503,60 @@ test.describe('Homepage editorial shell', () => {
 });
 
 
+test.describe('Wide editorial layouts', () => {
+  test.use({ viewport: { width: 2560, height: 1440 }, isMobile: false, hasTouch: false });
+
+  test('homepage expands its editorial canvas and keeps Trending contained', async ({ page }) => {
+    await page.goto(targetUrl('/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-globe-home]')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('[data-v3-trending] a')).toHaveCount(5, { timeout: 10000 });
+
+    const geometry = await page.evaluate(() => {
+      const home = document.querySelector('.v3-home');
+      const lead = document.querySelector('.v3-lead');
+      const title = document.querySelector('.v3-lead h1');
+      const trending = document.querySelector('[data-v3-trending]');
+      return {
+        homeWidth: home?.getBoundingClientRect().width || 0,
+        leadWidth: lead?.getBoundingClientRect().width || 0,
+        titleMaxWidth: title ? getComputedStyle(title).maxWidth : '',
+        trendingClientWidth: trending?.clientWidth || 0,
+        trendingScrollWidth: trending?.scrollWidth || 0,
+        trendLabels: trending?.querySelectorAll('.v3-trending-text').length || 0
+      };
+    });
+
+    expect(geometry.homeWidth).toBeGreaterThanOrEqual(1750);
+    expect(geometry.leadWidth).toBeGreaterThanOrEqual(900);
+    expect(geometry.titleMaxWidth).toBe('none');
+    expect(geometry.trendingScrollWidth).toBeLessThanOrEqual(geometry.trendingClientWidth + 2);
+    expect(geometry.trendLabels).toBe(5);
+  });
+
+  test('news lead uses the wide column instead of a narrow headline measure', async ({ page }) => {
+    await page.goto(targetUrl('/news/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-news-top-story] .news-lead-card')).toBeVisible({ timeout: 30000 });
+
+    const geometry = await page.evaluate(() => {
+      const pageNode = document.querySelector('.news-page-v3');
+      const story = document.querySelector('.news-top-story');
+      const title = document.querySelector('.news-lead-card h2');
+      return {
+        pageWidth: pageNode?.getBoundingClientRect().width || 0,
+        storyWidth: story?.getBoundingClientRect().width || 0,
+        titleWidth: title?.getBoundingClientRect().width || 0,
+        titleMaxWidth: title ? getComputedStyle(title).maxWidth : ''
+      };
+    });
+
+    expect(geometry.pageWidth).toBeGreaterThanOrEqual(1750);
+    expect(geometry.storyWidth).toBeGreaterThanOrEqual(1150);
+    expect(geometry.titleWidth).toBeGreaterThanOrEqual(1000);
+    expect(geometry.titleMaxWidth).toBe('none');
+  });
+});
+
+
 test.describe('On This Day share builder', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 

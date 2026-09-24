@@ -99,23 +99,42 @@
       .slice(0, 6);
   };
 
+  const syncTrendingOverflow = () => {
+    if (!trendingRail) return;
+    trendingRail.querySelectorAll('a').forEach(link => {
+      const label = link.querySelector('.v3-trending-text');
+      if (!label) return;
+      const shift = Math.max(0, Math.ceil(label.scrollWidth - link.clientWidth));
+      link.classList.toggle('is-overflowing', shift > 4);
+      link.style.setProperty('--trend-shift', shift + 'px');
+      link.style.setProperty('--trend-duration', Math.max(2.2, shift / 34).toFixed(2) + 's');
+    });
+  };
+
+  const scheduleTrendingOverflowSync = () => {
+    window.requestAnimationFrame(syncTrendingOverflow);
+  };
+
   const renderTrending = stories => {
     if (!trendingRail) return;
     trendingRail.replaceChildren();
 
     const items = stories.slice(0, 5);
     items.forEach((story, index) => {
-      const link = el('a', '', story.title);
+      const link = el('a');
       link.href = story.url;
       link.target = '_blank';
       link.rel = 'noopener noreferrer';
       link.title = story.title;
-      link.textContent = story.title;
+      link.append(el('span', 'v3-trending-text', story.title));
       trendingRail.append(link);
       if (index < items.length - 1) {
         trendingRail.append(el('span', 'v3-trending-separator', '•'));
       }
     });
+
+    scheduleTrendingOverflowSync();
+    document.fonts?.ready?.then(scheduleTrendingOverflowSync).catch(() => {});
   };
 
   const renderNews = data => {
@@ -298,6 +317,12 @@
     }
   };
 
+
+  let trendingResizeFrame = 0;
+  window.addEventListener('resize', () => {
+    window.cancelAnimationFrame(trendingResizeFrame);
+    trendingResizeFrame = window.requestAnimationFrame(syncTrendingOverflow);
+  }, { passive: true });
 
   const start = () => {
     setupStickyShell();
