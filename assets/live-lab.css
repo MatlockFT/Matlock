@@ -29,7 +29,11 @@ html[data-theme="dark"] .live-lab {
 }
 
 body:has(.live-lab) .site-main {
-  background: var(--live-paper, #fff);
+  background: #fff;
+}
+
+html[data-theme="dark"] body:has(.live-lab) .site-main {
+  background: #111;
 }
 
 .live-lab a {
@@ -490,6 +494,27 @@ a.live-lab__promotion:focus-visible {
   margin-top: auto;
   color: var(--live-muted);
   font: 400 .72rem/1.35 var(--live-sans);
+}
+
+.live-lab__promotion-toggle {
+  appearance: none;
+  display: block;
+  margin: 1rem auto 0;
+  padding: .55rem 0 .35rem;
+  border: 0;
+  border-bottom: 1px solid var(--live-rule-dark);
+  background: transparent;
+  color: var(--live-ink);
+  cursor: pointer;
+  font: 800 .62rem/1 var(--live-sans);
+  letter-spacing: .045em;
+  text-transform: uppercase;
+}
+
+.live-lab__promotion-toggle:hover,
+.live-lab__promotion-toggle:focus-visible {
+  color: var(--live-red);
+  border-bottom-color: var(--live-red);
 }
 
 .live-lab__about-grid {
