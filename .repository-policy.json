@@ -43,7 +43,11 @@
       "history",
       "site-data",
       "qa"
-    ]
+    ],
+    "writerSourceRoot": "_writer",
+    "writerBundle": "assets/writer.js",
+    "writerSourceModel": "ordered-build-time-concatenation",
+    "writerBuildCommand": "npm run build:frontend"
   },
   "protectedPaths": [
     "_config.yml",
