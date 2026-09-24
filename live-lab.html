@@ -1,0 +1,104 @@
+---
+layout: default
+title: "Global MMA Live Lab"
+description: "Private prototype for an automated MMA livestream player."
+permalink: /live-lab/
+noindex: true
+sitemap: false
+listing_visibility: direct-only
+ads: false
+v3_text_masthead: true
+page_styles:
+  - /assets/editorial-v3-shell.css
+  - /assets/live-lab.css
+page_scripts:
+  - /assets/editorial-v3-shell.js
+  - /assets/live-lab.js
+---
+
+<article
+  class="live-lab"
+  data-live-lab
+  data-status-url="{{ '/assets/data/inka-live.json' | relative_url }}"
+  data-fallback-video="C2nNtrk8FRs"
+>
+  <header class="live-lab__hero">
+    <div>
+      <p class="live-lab__eyebrow">Private lab / Inka only</p>
+      <h1>Global MMA Live</h1>
+      <p class="live-lab__deck">
+        One player that follows Inka MMA's current YouTube fight stream and returns to standby when the broadcast ends.
+      </p>
+    </div>
+
+    <div class="live-lab__hero-state" aria-live="polite">
+      <span class="live-lab__dot" data-live-dot aria-hidden="true"></span>
+      <strong data-live-state>Checking Inka…</strong>
+    </div>
+  </header>
+
+  <section class="live-lab__stage" aria-label="Inka MMA live player">
+    <div class="live-lab__screen" data-live-screen data-state="checking">
+      <iframe
+        class="live-lab__player"
+        data-live-player
+        title="Inka MMA live stream"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        referrerpolicy="strict-origin-when-cross-origin"
+      ></iframe>
+
+      <div class="live-lab__standby" data-live-standby>
+        <span class="live-lab__standby-mark" aria-hidden="true">M</span>
+        <strong data-live-standby-title>Checking Inka MMA</strong>
+        <span data-live-standby-copy>Looking for an active YouTube fight stream.</span>
+      </div>
+    </div>
+
+    <div class="live-lab__now">
+      <div class="live-lab__now-copy">
+        <p class="live-lab__label">Now</p>
+        <h2 data-live-title>Checking Inka MMA…</h2>
+        <p data-live-promotion>INKA MMA PRO · Peru</p>
+      </div>
+
+      <div class="live-lab__actions">
+        <button type="button" class="live-lab__button" data-live-refresh>Recheck</button>
+        <a
+          class="live-lab__button live-lab__button--quiet"
+          data-live-source
+          href="https://www.youtube.com/watch?v=C2nNtrk8FRs"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Open on YouTube ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="live-lab__info" aria-label="Prototype status">
+    <div>
+      <span>Source</span>
+      <strong>INKA MMA PRO</strong>
+    </div>
+    <div>
+      <span>Player</span>
+      <strong>Single persistent embed</strong>
+    </div>
+    <div>
+      <span>Detection</span>
+      <strong>Automatic monitor</strong>
+    </div>
+    <div>
+      <span>Last change</span>
+      <strong data-live-updated>—</strong>
+    </div>
+  </section>
+
+  <p class="live-lab__note" data-live-note>
+    This is the isolated Inka prototype. It is not linked anywhere else on MMA Matlock.
+  </p>
+
+  <noscript>
+    <p class="live-lab__noscript">JavaScript is required for automatic live-stream switching.</p>
+  </noscript>
+</article>
