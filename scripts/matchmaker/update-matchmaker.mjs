@@ -1,10 +1,10 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { clean, key, slug, parseEvent, parseProfile, parseRankings } from './matchmaker/sources/ufc.mjs';
-import { parseMirrorHistory } from './matchmaker/sources/ufcstats.mjs';
-import { validateData } from './matchmaker/validate.mjs';
-import { reconcileRoster } from './matchmaker/roster.mjs';
-import { reconcileBookings } from './matchmaker/bookings.mjs';
+import { clean, key, slug, parseEvent, parseProfile, parseRankings } from './sources/ufc.mjs';
+import { parseMirrorHistory } from './sources/ufcstats.mjs';
+import { validateData } from './validate.mjs';
+import { reconcileRoster } from './roster.mjs';
+import { reconcileBookings } from './bookings.mjs';
 const root = path.resolve('assets/data/matchmaker');
 const now = new Date(), checkedAt = now.toISOString(), today = checkedAt.slice(0, 10);
 const cacheDir = process.env.MATCHMAKER_CACHE || path.resolve('.cache/matchmaker');
