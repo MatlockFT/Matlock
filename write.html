@@ -198,11 +198,12 @@ page_scripts:
             <button type="button" data-tool="tale" title="Tale of the Tape">Tale of Tape</button>
             <button type="button" data-tool="prediction" title="Fight prediction">Pick</button>
             <button type="button" data-tool="html" title="Insert or edit a self-contained HTML visual">HTML</button>
+            <button type="button" class="writer-visuals-toggle" data-html-block-panel-toggle aria-expanded="false" title="Browse embedded HTML visuals" hidden>Visuals <span data-html-block-count>0</span></button>
             <button type="button" data-tool="template" title="Article template">Template</button>
           </div>
         </div>
 
-        <div class="writer-html-block-rail" data-html-block-rail hidden aria-label="Embedded HTML visuals"></div>
+        <aside class="writer-html-block-rail" data-html-block-rail hidden aria-label="Embedded HTML visuals" tabindex="-1"></aside>
 
         <label class="writer-body-label" for="writer-body">Article</label>
         <div class="writer-editor-dropzone" data-editor-dropzone>

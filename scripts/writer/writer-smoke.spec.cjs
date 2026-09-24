@@ -205,6 +205,18 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('[data-preview-content]')).toContainText('Metric');
   await expect(page.locator('[data-preview-content]')).toContainText('Reach');
 
+  // Markdown tables can be edited directly in the visual preview.
+  const previewTableShell = page.locator('[data-preview-content] .writer-preview-table-shell').first();
+  await expect(previewTableShell).toBeVisible();
+  await previewTableShell.hover();
+  await previewTableShell.locator('[data-preview-table-edit]').click();
+  const recordValueCell = previewTableShell.locator('tbody tr').first().locator('td').nth(1);
+  await expect(recordValueCell).toHaveAttribute('contenteditable', /plaintext-only|true/);
+  await recordValueCell.fill('10-1');
+  await expect.poll(async () => editor.inputValue()).toContain('| Record | 10-1 |  |');
+  await previewTableShell.locator('[data-preview-table-edit]').click();
+  await expect(page.locator('[data-preview-content] table').first()).toContainText('10-1');
+
   await page.click('[data-tool="tale"]');
   await page.fill('[data-tale-a]', 'Alpha Fighter');
   await page.fill('[data-tale-b]', 'Beta Fighter');
@@ -230,10 +242,49 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   // Authors may paste a normal HTML/CSS fragment; Writer supplies the section wrapper.
   await page.fill('[data-html-code]', '<div class="writer-smoke-visual"><h2>Smoke Visual</h2><p>Rendered HTML visual.</p></div><style>.writer-smoke-visual{padding:12px}</style>');
   await page.click('[data-html-insert]');
+  await expect(page.locator('[data-html-block-panel-toggle]')).toBeVisible();
+  await expect(page.locator('[data-html-block-panel-toggle]')).toHaveAttribute('aria-expanded', 'true');
   await expect(page.locator('[data-html-block-rail]')).toBeVisible();
   await expect(page.locator('[data-html-block-edit]')).toContainText('Smoke visual');
   await expect(page.locator('[data-preview-content]')).toContainText('Rendered HTML visual');
   await expect(page.locator('[data-local-status]')).toContainText('Saved locally', { timeout: 5000 });
+
+  // Embedded visuals live in a vertical, scroll-ready browser instead of a horizontal strip.
+  const visualList = page.locator('.writer-html-block-list');
+  const visualListLayout = await visualList.evaluate(node => ({
+    display: getComputedStyle(node).display,
+    overflowY: getComputedStyle(node).overflowY,
+    overflowX: getComputedStyle(node).overflowX
+  }));
+  expect(visualListLayout.display).toBe('grid');
+  expect(['auto','scroll']).toContain(visualListLayout.overflowY);
+  expect(visualListLayout.overflowX).toBe('hidden');
+  await page.locator('[data-html-block-panel-close]').click();
+  await expect(page.locator('[data-html-block-rail]')).toBeHidden();
+  await page.locator('[data-html-block-panel-toggle]').click();
+  await expect(page.locator('[data-html-block-rail]')).toBeVisible();
+
+  // HTML visuals can be edited in place while seeing the finished visual.
+  const htmlVisualShell = page.locator('[data-preview-content] .writer-preview-html-shell').first();
+  await htmlVisualShell.hover();
+  await htmlVisualShell.locator('[data-preview-html-visual-edit]').click();
+  const htmlVisualSection = htmlVisualShell.locator('section[data-writer-html-block-id]');
+  await expect(htmlVisualSection).toHaveAttribute('contenteditable', 'true');
+  await htmlVisualSection.evaluate(section => {
+    const paragraph = section.querySelector('p');
+    paragraph.textContent = 'Visually edited HTML.';
+    section.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertText', data: 'Visually edited HTML.' }));
+  });
+  await expect(htmlVisualShell).toContainText('Visually edited HTML.');
+  await page.waitForTimeout(180);
+  await htmlVisualShell.locator('[data-preview-html-visual-edit]').click();
+
+  const refreshedHtmlVisualShell = page.locator('[data-preview-content] .writer-preview-html-shell').first();
+  await refreshedHtmlVisualShell.hover();
+  await refreshedHtmlVisualShell.locator('[data-preview-html-source-edit]').click();
+  await expect(page.locator('[data-html-dialog]')).toBeVisible();
+  await expect(page.locator('[data-html-code]')).toHaveValue(/Visually edited HTML\./);
+  await page.locator('[data-html-dialog]').getByRole('button', { name: 'Cancel' }).click();
 
   const previewContent = page.locator('[data-preview-content]');
   const desktopHtml = await previewContent.innerHTML();
@@ -329,7 +380,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('#writer-body')).toHaveValue(/Closing section/);
   await expect(page.locator('#writer-body')).toHaveValue(/Writer smoke image/);
   await expect(page.locator('#writer-body')).toHaveValue(/ALPHA FIGHTER/);
-  await expect(page.locator('[data-preview-content]')).toContainText('Rendered HTML visual');
+  await expect(page.locator('[data-preview-content]')).toContainText('Visually edited HTML.');
   await articleDetails.locator(':scope > summary').click();
   await expect(articleDetails).toHaveAttribute('open', '');
   const advancedAfterLibrary = page.locator('.writer-meta-advanced');
@@ -367,7 +418,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('[data-save-state]')).toContainText('Published', { timeout: 10000 });
   await expect.poll(() => Boolean(remote && /published:\s*true/.test(remote.text))).toBe(true);
   expect(remote.text).toContain('Writer Production Smoke Test');
-  expect(remote.text).toContain('Rendered HTML visual.');
+  expect(remote.text).toContain('Visually edited HTML.');
   expect(remote.text).toContain('Writer smoke image');
   expect(remote.text).toContain('dQw4w9WgXcQ');
   expect(remote.text).toContain('ALPHA FIGHTER');

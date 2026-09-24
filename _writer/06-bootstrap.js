@@ -251,7 +251,8 @@ Object.values(fields).forEach(el => {
       htmlBlocks.set(id, block);
       insertBlock(htmlBlockToken(block));
       renderHtmlBlockRail();
-      showToast('HTML visual inserted as a compact block.');
+      setHtmlBlockPanel(true);
+      showToast('HTML visual inserted. Open Visuals anytime to edit it.');
     }
 
     editingHtmlBlockId = '';
@@ -368,14 +369,24 @@ Object.values(fields).forEach(el => {
     htmlBlocks.set(id, block);
     insertBlock(htmlBlockToken(block));
     renderHtmlBlockRail();
-    showToast('HTML visual collapsed into one Writer block. Use Embedded visuals to edit it.');
+    setHtmlBlockPanel(true);
+    showToast('HTML visual added. Open Visuals anytime to edit it.');
   });
 
   bodyEditor.addEventListener('dblclick', () => {
     if (htmlBlockAtCursor()) openHtmlDialog();
   });
 
+  htmlBlockPanelToggle?.addEventListener('click', () => {
+    setHtmlBlockPanel(!htmlBlockPanelOpen, { focus: !htmlBlockPanelOpen });
+  });
+
   if (htmlBlockRail) htmlBlockRail.addEventListener('click', event => {
+    if (event.target.closest('[data-html-block-panel-close]')) {
+      setHtmlBlockPanel(false);
+      htmlBlockPanelToggle?.focus();
+      return;
+    }
     const button = event.target.closest('[data-html-block-edit]');
     if (!button) return;
     openHtmlBlockById(button.dataset.htmlBlockEdit);

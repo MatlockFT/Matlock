@@ -30,6 +30,8 @@
   const conflictDialog = app.querySelector('[data-conflict-dialog]');
   const metaDetails = app.querySelector('.writer-meta');
   const htmlBlockRail = app.querySelector('[data-html-block-rail]');
+  const htmlBlockPanelToggle = app.querySelector('[data-html-block-panel-toggle]');
+  const htmlBlockCount = app.querySelector('[data-html-block-count]');
   const splitter = app.querySelector('[data-writer-splitter]');
   const publishCheckDialog = app.querySelector('[data-publish-check-dialog]');
   const publishCheckSummary = app.querySelector('[data-publish-check-summary]');
@@ -64,6 +66,7 @@
   let librarySearchTimer = 0;
   let htmlBlocks = new Map();
   let editingHtmlBlockId = '';
+  let htmlBlockPanelOpen = false;
   let splitRatio = 50;
 
   const controlledKeys = [
@@ -374,8 +377,12 @@
     return String(line || '').trim().match(/^\[HTML VISUAL · .*? · #([A-Za-z0-9_-]+)\]$/);
   }
 
-  function expandHtmlBlocks(text) {
-    return String(text || '').replace(/^\[HTML VISUAL · .*? · #([A-Za-z0-9_-]+)\]\s*$/gm, (token, id) => htmlBlocks.get(id)?.code || token);
+  function expandHtmlBlocks(text, { preview = false } = {}) {
+    return String(text || '').replace(/^\[HTML VISUAL · .*? · #([A-Za-z0-9_-]+)\]\s*$/gm, (token, id) => {
+      const code = htmlBlocks.get(id)?.code || token;
+      if (!preview || code === token) return code;
+      return code.replace(/^<section\b/i, '<section data-writer-html-block-id="' + id + '"');
+    });
   }
 
   function collapseRawHtmlSections(text) {
@@ -430,12 +437,54 @@
     window.setTimeout(() => dialog.querySelector('[data-html-code]').focus(), 0);
   }
 
+  function setHtmlBlockPanel(open, { focus = false } = {}) {
+    const hasBlocks = htmlBlocks.size > 0;
+    htmlBlockPanelOpen = Boolean(open && hasBlocks);
+    if (htmlBlockRail) htmlBlockRail.hidden = !htmlBlockPanelOpen;
+    if (htmlBlockPanelToggle) {
+      htmlBlockPanelToggle.hidden = !hasBlocks;
+      htmlBlockPanelToggle.setAttribute('aria-expanded', String(htmlBlockPanelOpen));
+      htmlBlockPanelToggle.classList.toggle('is-active', htmlBlockPanelOpen);
+    }
+    if (focus && htmlBlockPanelOpen) {
+      window.setTimeout(() => htmlBlockRail?.querySelector('[data-html-block-edit]')?.focus(), 0);
+    }
+  }
+
   function renderHtmlBlockRail() {
     if (!htmlBlockRail) return;
     const blocks = [...htmlBlocks.values()];
-    htmlBlockRail.hidden = blocks.length === 0;
-    if (!blocks.length) { htmlBlockRail.innerHTML = ''; return; }
-    htmlBlockRail.innerHTML = `<div class="writer-html-block-rail-head"><span>Embedded visuals</span><small>${blocks.length} ${blocks.length === 1 ? 'block' : 'blocks'}</small></div><div class="writer-html-block-list">${blocks.map(block => `<button type="button" class="writer-html-block-card" data-html-block-edit="${escapeHtml(block.id)}" title="Edit ${escapeHtml(block.label)}"><span class="writer-html-block-badge">HTML</span><strong>${escapeHtml(block.label)}</strong><span class="writer-html-block-action">Edit</span></button>`).join('')}</div>`;
+    if (htmlBlockCount) htmlBlockCount.textContent = String(blocks.length);
+    if (htmlBlockPanelToggle) htmlBlockPanelToggle.hidden = blocks.length === 0;
+
+    if (!blocks.length) {
+      htmlBlockRail.innerHTML = '';
+      setHtmlBlockPanel(false);
+      return;
+    }
+
+    htmlBlockRail.innerHTML = `
+      <div class="writer-html-block-rail-head">
+        <div>
+          <span>Embedded visuals</span>
+          <small>${blocks.length} ${blocks.length === 1 ? 'block' : 'blocks'} · click one to edit</small>
+        </div>
+        <button type="button" class="writer-html-block-close" data-html-block-panel-close aria-label="Close embedded visuals">×</button>
+      </div>
+      <div class="writer-html-block-list">
+        ${blocks.map((block, index) => `
+          <button type="button" class="writer-html-block-card" data-html-block-edit="${escapeHtml(block.id)}" title="Edit ${escapeHtml(block.label)}">
+            <span class="writer-html-block-index">${index + 1}</span>
+            <span class="writer-html-block-card-copy">
+              <strong>${escapeHtml(block.label)}</strong>
+              <small>HTML visual · #${escapeHtml(block.id)}</small>
+            </span>
+            <span class="writer-html-block-action">Edit HTML</span>
+          </button>
+        `).join('')}
+      </div>`;
+
+    setHtmlBlockPanel(htmlBlockPanelOpen);
   }
 
   function focusHtmlBlockToken(id) {

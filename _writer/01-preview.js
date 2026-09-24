@@ -27,6 +27,7 @@
 
     const lines = source.split('\n');
     const out = [];
+    let tableRenderIndex = 0;
     let i = 0;
     const special = line => /^\s*(#{1,6}\s|```|>|[-*+]\s+|\d+\.\s+|(?:---+|___+|\*\*\*+)\s*$|@@(?:EMBED|RAWHTML)\d+@@\s*$)/.test(line);
 
@@ -62,7 +63,7 @@
           rows.push(splitCells(lines[i]));
           i += 1;
         }
-        out.push(`<table><thead><tr>${headers.map(c => `<th>${inlineMarkdown(c)}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${headers.map((_, idx) => `<td>${inlineMarkdown(row[idx] || '')}</td>`).join('')}</tr>`).join('')}</tbody></table>`);
+        out.push(`<table data-writer-table-index="${tableRenderIndex++}"><thead><tr>${headers.map(c => `<th>${inlineMarkdown(c)}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${headers.map((_, idx) => `<td>${inlineMarkdown(row[idx] || '')}</td>`).join('')}</tr>`).join('')}</tbody></table>`);
         continue;
       }
       if (/^\s*>/.test(line)) {
@@ -680,13 +681,225 @@
     });
   }
 
+
+  function markdownTableRanges(text = bodyEditor.value) {
+    const source = String(text || '').replace(/\r\n?/g, '\n');
+    const lines = source.split('\n');
+    const starts = [];
+    let cursor = 0;
+    lines.forEach((line, index) => {
+      starts[index] = cursor;
+      cursor += line.length + (index < lines.length - 1 ? 1 : 0);
+    });
+
+    const ranges = [];
+    let i = 0;
+    while (i < lines.length - 1) {
+      if (!lines[i].includes('|') || !isTableSeparator(lines[i + 1])) {
+        i += 1;
+        continue;
+      }
+
+      const startLine = i;
+      i += 2;
+      while (i < lines.length && lines[i].trim() && lines[i].includes('|')) i += 1;
+      const endLine = Math.max(startLine + 1, i - 1);
+      ranges.push({
+        start: starts[startLine],
+        end: starts[endLine] + lines[endLine].length
+      });
+    }
+    return ranges;
+  }
+
+  function plainTableCell(value) {
+    return String(value || '')
+      .replace(/\u00a0/g, ' ')
+      .replace(/\s*\n+\s*/g, ' ')
+      .replace(/\|/g, '\\|')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  function markdownFromPreviewTable(table) {
+    const headers = [...table.querySelectorAll('thead th')].map(cell => plainTableCell(cell.textContent));
+    if (headers.length < 2) return '';
+    const rows = [...table.querySelectorAll('tbody tr')].map(row => {
+      const cells = [...row.querySelectorAll('td')].map(cell => plainTableCell(cell.textContent));
+      while (cells.length < headers.length) cells.push('');
+      return cells.slice(0, headers.length);
+    });
+    return [
+      '| ' + headers.join(' | ') + ' |',
+      '| ' + headers.map(() => '---').join(' | ') + ' |',
+      ...rows.map(row => '| ' + row.join(' | ') + ' |')
+    ].join('\n');
+  }
+
+  function persistPreviewTable(table) {
+    const index = Number(table?.dataset.writerTableIndex);
+    if (!Number.isInteger(index) || index < 0) return false;
+    const ranges = markdownTableRanges();
+    const range = ranges[index];
+    const markdown = markdownFromPreviewTable(table);
+    if (!range || !markdown) return false;
+
+    bodyEditor.value = bodyEditor.value.slice(0, range.start) + markdown + bodyEditor.value.slice(range.end);
+    scheduleAutosave();
+    return true;
+  }
+
+  function setPreviewTableEditing(shell, enabled) {
+    const table = shell?.querySelector('table[data-writer-table-index]');
+    if (!table) return;
+    shell.classList.toggle('is-editing', enabled);
+    table.querySelectorAll('th,td').forEach(cell => {
+      if (enabled) {
+        cell.setAttribute('contenteditable', 'plaintext-only');
+        cell.setAttribute('spellcheck', 'true');
+      } else {
+        cell.removeAttribute('contenteditable');
+        cell.removeAttribute('spellcheck');
+      }
+    });
+    const button = shell.querySelector('[data-preview-table-edit]');
+    if (button) button.textContent = enabled ? 'Done' : 'Edit cells';
+    if (!enabled) {
+      window.clearTimeout(table._writerTableTimer);
+      persistPreviewTable(table);
+      updatePreview();
+    }
+  }
+
+  function hydratePreviewTables() {
+    if (!previewContent) return;
+    previewContent.querySelectorAll('table[data-writer-table-index]').forEach(table => {
+      if (table.closest('.writer-preview-table-shell')) return;
+
+      const shell = document.createElement('div');
+      shell.className = 'writer-preview-table-shell';
+      table.replaceWith(shell);
+      shell.append(table);
+
+      const tools = document.createElement('div');
+      tools.className = 'writer-preview-block-tools writer-preview-table-tools';
+      tools.innerHTML = '<span>Table</span><button type="button" data-preview-table-edit>Edit cells</button>';
+      shell.prepend(tools);
+
+      tools.querySelector('[data-preview-table-edit]').addEventListener('click', event => {
+        event.stopPropagation();
+        setPreviewTableEditing(shell, !shell.classList.contains('is-editing'));
+      });
+
+      table.addEventListener('input', () => {
+        window.clearTimeout(table._writerTableTimer);
+        table._writerTableTimer = window.setTimeout(() => persistPreviewTable(table), 120);
+      });
+
+      table.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && shell.classList.contains('is-editing')) {
+          event.preventDefault();
+          setPreviewTableEditing(shell, false);
+        }
+      });
+    });
+  }
+
+  function previewHtmlCode(section) {
+    const clone = section.cloneNode(true);
+    clone.removeAttribute('data-writer-html-block-id');
+    clone.removeAttribute('contenteditable');
+    clone.removeAttribute('spellcheck');
+    clone.querySelectorAll('[contenteditable]').forEach(node => node.removeAttribute('contenteditable'));
+    clone.querySelectorAll('[spellcheck]').forEach(node => node.removeAttribute('spellcheck'));
+    return clone.outerHTML.trim();
+  }
+
+  function persistPreviewHtmlVisual(section) {
+    const id = section?.dataset.writerHtmlBlockId || '';
+    const block = htmlBlocks.get(id);
+    if (!block) return false;
+    block.code = previewHtmlCode(section);
+    scheduleAutosave();
+    return true;
+  }
+
+  function setPreviewHtmlEditing(shell, enabled) {
+    const section = shell?.querySelector('section[data-writer-html-block-id]');
+    if (!section) return;
+    shell.classList.toggle('is-editing', enabled);
+    if (enabled) {
+      section.setAttribute('contenteditable', 'true');
+      section.setAttribute('spellcheck', 'true');
+      section.focus({ preventScroll: true });
+    } else {
+      window.clearTimeout(section._writerHtmlTimer);
+      persistPreviewHtmlVisual(section);
+      section.removeAttribute('contenteditable');
+      section.removeAttribute('spellcheck');
+    }
+
+    const button = shell.querySelector('[data-preview-html-visual-edit]');
+    if (button) button.textContent = enabled ? 'Done' : 'Edit visually';
+  }
+
+  function hydratePreviewHtmlVisuals() {
+    if (!previewContent) return;
+    previewContent.querySelectorAll('section[data-writer-html-block-id]').forEach(section => {
+      if (section.closest('.writer-preview-html-shell')) return;
+
+      const id = section.dataset.writerHtmlBlockId || '';
+      const block = htmlBlocks.get(id);
+      if (!block) return;
+
+      const shell = document.createElement('div');
+      shell.className = 'writer-preview-html-shell';
+      section.replaceWith(shell);
+      shell.append(section);
+
+      const tools = document.createElement('div');
+      tools.className = 'writer-preview-block-tools writer-preview-html-tools';
+      tools.innerHTML = '<span>' + escapeHtml(block.label) + '</span><button type="button" data-preview-html-visual-edit>Edit visually</button><button type="button" data-preview-html-source-edit>Edit HTML</button>';
+      shell.prepend(tools);
+
+      tools.querySelector('[data-preview-html-visual-edit]').addEventListener('click', event => {
+        event.stopPropagation();
+        setPreviewHtmlEditing(shell, !shell.classList.contains('is-editing'));
+      });
+
+      tools.querySelector('[data-preview-html-source-edit]').addEventListener('click', event => {
+        event.stopPropagation();
+        if (shell.classList.contains('is-editing')) setPreviewHtmlEditing(shell, false);
+        openHtmlDialog(id);
+      });
+
+      section.addEventListener('input', () => {
+        window.clearTimeout(section._writerHtmlTimer);
+        section._writerHtmlTimer = window.setTimeout(() => persistPreviewHtmlVisual(section), 120);
+      });
+
+      section.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && shell.classList.contains('is-editing')) {
+          event.preventDefault();
+          setPreviewHtmlEditing(shell, false);
+        }
+      });
+
+      section.addEventListener('click', event => {
+        if (!shell.classList.contains('is-editing')) return;
+        const link = event.target.closest('a[href]');
+        if (link) event.preventDefault();
+      });
+    });
+  }
+
   function updatePreview() {
     const title = fields.title.value.trim() || 'Untitled article';
     const description = fields.description.value.trim();
     const category = fields.category.value.trim() || 'Breakdown';
     const date = fields.date.value || today();
     const tags = fields.tags.value.split(',').map(v => v.trim()).filter(Boolean);
-    const expandedBody = expandHtmlBlocks(bodyEditor.value);
+    const expandedBody = expandHtmlBlocks(bodyEditor.value, { preview: true });
     const words = countWords(expandedBody);
     const minutes = Math.max(1, Math.ceil(words / 200));
 
@@ -742,6 +955,8 @@
     hydratePreviewImages();
     hydratePreviewVideos();
     hydratePreviewMediaTools();
+    hydratePreviewTables();
+    hydratePreviewHtmlVisuals();
     hydratePreviewXEmbeds();
 
     const topics = app.querySelector('[data-preview-topics]');
