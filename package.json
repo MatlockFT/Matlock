@@ -31,7 +31,8 @@
     "restore:history-poster-registry": "node scripts/sync-on-this-day-poster-registry.mjs --restore",
     "check:yellow-pages": "node scripts/check-mma-yellow-pages.mjs",
     "audit:repo": "node scripts/repository-reference-audit.mjs",
-    "check:repo-policy": "node scripts/check-repository-policy.mjs"
+    "check:repo-policy": "node scripts/check-repository-policy.mjs",
+    "check:media": "node scripts/check-media-pipeline.mjs"
   },
   "devDependencies": {
     "fast-xml-parser": "^5.10.1",
