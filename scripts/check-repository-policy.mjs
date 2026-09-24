@@ -42,6 +42,11 @@ requireString(policy.media?.sourceImageRole, 'media.sourceImageRole');
 requireString(policy.media?.generatedImageRole, 'media.generatedImageRole');
 requireString(policy.media?.videoStorageRule, 'media.videoStorageRule');
 
+requireString(policy.code?.writerSourceRoot, 'code.writerSourceRoot');
+requireString(policy.code?.writerBundle, 'code.writerBundle');
+requireString(policy.code?.writerSourceModel, 'code.writerSourceModel');
+requireString(policy.code?.writerBuildCommand, 'code.writerBuildCommand');
+
 if (policy.media?.videoBackend !== 'github-releases') {
   errors.push('media.videoBackend must remain github-releases.');
 }
@@ -91,6 +96,8 @@ for (const [path, label] of [
   [policy.code?.includesRoot, 'Includes root'],
   [policy.code?.jekyllDataRoot, 'Jekyll data root'],
   [policy.code?.scriptsRoot, 'Scripts root'],
+  [policy.code?.writerSourceRoot, 'Writer source root'],
+  [policy.code?.writerBundle, 'Writer public bundle'],
   [policy.code?.backendRoot, 'Backend root'],
   [policy.code?.workflowsRoot, 'Workflows root']
 ]) {
@@ -107,6 +114,16 @@ if (!Array.isArray(policy.protectedPaths) || !policy.protectedPaths.length) {
   for (const protectedPath of policy.protectedPaths) {
     await requirePath(protectedPath, 'Protected path');
   }
+}
+
+if (policy.code?.writerSourceModel !== 'ordered-build-time-concatenation') {
+  errors.push('Writer source model must remain ordered-build-time-concatenation during the staged refactor.');
+}
+if (policy.code?.writerBundle !== 'assets/writer.js') {
+  errors.push('Writer public bundle must remain assets/writer.js.');
+}
+if (policy.code?.writerBuildCommand !== 'npm run build:frontend') {
+  errors.push('Writer build command must remain npm run build:frontend.');
 }
 
 if (policy.legacyExceptions?.versionedRootPagesAllowedUntilStage !== 7) {
