@@ -1,0 +1,56 @@
+name: Discover YouTube live sources
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "assets/data/live-source-candidates.json"
+      - "scripts/discover-youtube-live-sources.py"
+      - ".github/workflows/discover-youtube-live-sources.yml"
+  schedule:
+    - cron: "17 15 * * 0"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: youtube-live-source-discovery
+  cancel-in-progress: true
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Search unresolved promotion channels
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: python scripts/discover-youtube-live-sources.py
+
+      - name: Publish discovery results
+        shell: bash
+        run: |
+          if git diff --quiet -- assets/data/live-source-discovery.json; then
+            echo "No discovery result changes."
+            exit 0
+          fi
+
+          git config user.name "mma-matlock-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets/data/live-source-discovery.json
+          git commit -m "Update YouTube live source discovery"
+          git pull --rebase origin main
+          git push origin HEAD:main
