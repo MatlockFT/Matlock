@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "generated_at": "2026-09-24T03:01:46Z",
+  "generated_at": "2026-09-24T03:06:37Z",
   "selected_event_id": null,
   "events": [],
   "upcoming": [
@@ -29,7 +29,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T02:55:26Z"
+      "observed_at": "2026-09-24T03:06:37Z"
     },
     {
       "event_id": "tuff-n-uff:iRW8qArVe7Q",
@@ -110,7 +110,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T02:36:16Z"
+      "observed_at": "2026-09-24T03:06:37Z"
     },
     {
       "event_id": "levels-fight-league:ynNjsajmOw8",
@@ -137,10 +137,27 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T02:36:16Z"
+      "observed_at": "2026-09-24T03:06:37Z"
     }
   ],
   "sources": {
+    "559-fights": {
+      "promotion": "559 Fights",
+      "short_name": "559 Fights",
+      "country": "United States",
+      "priority": 68,
+      "coverage_note": "Official channel has carried event broadcasts; monitor public live streams",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/channel/UC59lyKOdqALBN6t3yHa5i9g",
+      "channel_id": "UC59lyKOdqALBN6t3yHa5i9g",
+      "channel_name": "559 Fights",
+      "status": "offline",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T03:06:37Z"
+    },
     "a1-combat": {
       "promotion": "A1 Combat",
       "short_name": "A1 Combat",
@@ -190,7 +207,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:36:15Z"
+      "last_checked_at": "2026-09-24T03:06:36Z"
     },
     "budo-sento": {
       "promotion": "Budo Sento Championship",
@@ -224,7 +241,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:36:15Z"
+      "last_checked_at": "2026-09-24T03:06:36Z"
     },
     "empire-mma-colombia": {
       "promotion": "Empire MMA",
@@ -326,7 +343,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-24T02:19:06Z",
-      "last_checked_at": "2026-09-24T02:36:15Z"
+      "last_checked_at": "2026-09-24T03:06:36Z"
     },
     "levels-fight-league": {
       "promotion": "Levels Fight League",
@@ -343,7 +360,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:36:16Z"
+      "last_checked_at": "2026-09-24T03:06:37Z"
     },
     "lfa": {
       "promotion": "Legacy Fighting Alliance",
@@ -394,7 +411,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:36:16Z"
+      "last_checked_at": "2026-09-24T03:06:37Z"
     },
     "mangu": {
       "promotion": "Mangu Professional League",
@@ -411,7 +428,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:01:45Z"
+      "last_checked_at": "2026-09-24T03:06:37Z"
     },
     "mfl": {
       "promotion": "Mexico Fight League",
@@ -462,7 +479,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:36:15Z"
+      "last_checked_at": "2026-09-24T03:06:36Z"
     },
     "octagon-central-asia": {
       "promotion": "OCTAGON",
@@ -496,7 +513,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:36:16Z"
+      "last_checked_at": "2026-09-24T03:06:37Z"
     },
     "real-fight-arena": {
       "promotion": "Real Fight Arena",
@@ -513,7 +530,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:55:25Z"
+      "last_checked_at": "2026-09-24T03:06:37Z"
     },
     "road-fc": {
       "promotion": "ROAD FC",
@@ -530,7 +547,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:36:15Z"
+      "last_checked_at": "2026-09-24T03:06:36Z"
     },
     "samurai-fight-house": {
       "promotion": "Samurai Fight House",
@@ -547,7 +564,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:36:16Z"
+      "last_checked_at": "2026-09-24T03:06:37Z"
     },
     "sft-combat": {
       "promotion": "SFT Combat",
@@ -564,7 +581,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:36:15Z"
+      "last_checked_at": "2026-09-24T03:06:36Z"
     },
     "shooto-brasil": {
       "promotion": "Shooto Brasil",
@@ -632,12 +649,12 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:36:16Z"
+      "last_checked_at": "2026-09-24T03:06:37Z"
     }
   },
-  "monitored_count": 29,
+  "monitored_count": 30,
   "live_count": 0,
   "upcoming_count": 5,
   "youtube_api_configured": true,
-  "api_verified_source_count": 29
+  "api_verified_source_count": 30
 }
