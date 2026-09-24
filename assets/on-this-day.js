@@ -253,7 +253,26 @@
         }
     }
 
-    function mediaBlock(entry, compact = false, priority = false) {
+    function applyLoadedMedia(media, result, compact = false) {
+        if (!result?.image) return false;
+
+        media.classList.remove("is-fallback");
+        if (compact) {
+            const ratio = result.image.naturalHeight
+                ? result.image.naturalWidth / result.image.naturalHeight
+                : 1.5;
+            media.classList.remove("is-portrait", "is-square", "is-landscape");
+            media.classList.add(
+                ratio < 0.9 ? "is-portrait" : ratio < 1.25 ? "is-square" : "is-landscape"
+            );
+        }
+
+        media.replaceChildren(result.image);
+        if (result.credit) media.append(element("span", "otd-media-credit", result.credit));
+        return true;
+    }
+
+    function mediaBlock(entry, compact = false, priority = false, preloaded = null) {
         const media = element("div", compact ? "otd-compact-media" : "otd-entry-media");
         media.dataset.year = entryYear(entry);
         media.dataset.promotion = entry.promotion || kindLabel(entry.kind);
@@ -268,20 +287,14 @@
 
         fallback();
 
+        if (preloaded?.image) {
+            applyLoadedMedia(media, preloaded, compact);
+            return media;
+        }
+
         bestLoadedImage(entry, priority).then(result => {
             if (!result?.image || !media.isConnected) return;
-            media.classList.remove("is-fallback");
-            if (compact) {
-                const ratio = result.image.naturalHeight
-                    ? result.image.naturalWidth / result.image.naturalHeight
-                    : 1.5;
-                media.classList.remove("is-portrait", "is-square", "is-landscape");
-                media.classList.add(
-                    ratio < 0.9 ? "is-portrait" : ratio < 1.25 ? "is-square" : "is-landscape"
-                );
-            }
-            media.replaceChildren(result.image);
-            if (result.credit) media.append(element("span", "otd-media-credit", result.credit));
+            applyLoadedMedia(media, result, compact);
         });
 
         return media;
@@ -300,21 +313,40 @@
         });
     }
 
-    function renderCompact(widget, entries) {
+    async function renderCompact(widget, entries) {
         const date = localToday();
-        const matching = compactEntries(entries, date, 4);
         const dateNode = widget.querySelector("[data-otd-date]");
         const list = widget.querySelector("[data-otd-list]");
 
         if (dateNode) dateNode.textContent = displayDate(date);
         if (!list) return;
 
-        if (!matching.length) {
+        // Compact surfaces are visual by design. Never reserve a thumbnail slot
+        // for an entry whose image is unresolved or fails to load. Walk deeper
+        // into today's history instead and use the first four images that
+        // actually resolve in the browser.
+        const candidates = compactEntries(entries, date, 12);
+        if (!candidates.length) {
             widget.hidden = true;
             return;
         }
 
-        const cards = matching.map((entry, index) => {
+        const attempts = await Promise.all(
+            candidates.map(entry => bestLoadedImage(entry, false))
+        );
+
+        const matching = candidates
+            .map((entry, index) => ({ entry, loaded: attempts[index] }))
+            .filter(item => item.loaded?.image)
+            .slice(0, 4);
+
+        if (!matching.length) {
+            list.replaceChildren();
+            widget.hidden = true;
+            return;
+        }
+
+        const cards = matching.map(({ entry, loaded }, index) => {
             const card = element("article", `otd-compact-item${index === 0 ? " otd-compact-item--lead" : ""}`);
             const copy = element("div", "otd-compact-copy");
             const meta = element("div", "otd-compact-meta");
@@ -331,7 +363,7 @@
             }
 
             copy.append(meta, title);
-            card.append(mediaBlock(entry, true, index === 0), copy);
+            card.append(mediaBlock(entry, true, index === 0, loaded), copy);
             return card;
         });
 
@@ -512,7 +544,7 @@
             const data = await response.json();
             const entries = Array.isArray(data?.entries) ? data.entries : [];
 
-            if (widget.dataset.mode === "compact") renderCompact(widget, entries);
+            if (widget.dataset.mode === "compact") await renderCompact(widget, entries);
             else renderFull(widget, entries);
         } catch {
             if (widget.dataset.mode === "compact") {
