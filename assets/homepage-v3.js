@@ -171,15 +171,50 @@
     return `${parts.month}-${parts.day}`;
   };
 
+  const historyYear = entry =>
+    Number(String(entry?.date || '').slice(0, 4)) || 0;
+
+  const historySignificance = entry => {
+    const title = String(entry?.title || '').trim();
+    const promotionName = String(entry?.promotion || '').trim().toLowerCase();
+    let score = Number(entry?.weight || 0) * 10;
+
+    if (/^ufc\s+\d+\b/i.test(title)) score += 220;
+    else if (/^pride\s+\d+\b/i.test(title)) score += 190;
+    else if (/\b(?:grand prix|gp final|final conflict|shockwave)\b/i.test(title)) score += 120;
+    else if (/\b(?:title|champion|championship)\b/i.test(title)) score += 80;
+
+    if (/^ufc fight night\b/i.test(title)) score += 60;
+    if (promotionName === 'ufc') score += 35;
+    if (promotionName === 'pride') score += 30;
+    if (promotionName === 'rizin') score += 18;
+    if (promotionName === 'bellator') score += 14;
+
+    if (/^https:\/\//i.test(String(entry?.imageUrl || ''))) score += 25;
+    if (entry?.imageStatus === 'resolved') score += 20;
+
+    return score;
+  };
+
   const latestHistoryEntry = (entries, key) => {
     const todays = entries.filter(entry => String(entry?.date || '').slice(5) === key);
     const events = todays.filter(entry => entry?.kind === 'event');
     const candidates = events.length ? events : todays;
 
     return candidates.sort((a, b) => {
-      const dateOrder = String(b?.date || '').localeCompare(String(a?.date || ''));
-      if (dateOrder) return dateOrder;
-      return Number(Boolean(b?.imageUrl)) - Number(Boolean(a?.imageUrl));
+      const scoreOrder = historySignificance(b) - historySignificance(a);
+      if (scoreOrder) return scoreOrder;
+
+      const imageOrder =
+        Number(Boolean(b?.imageUrl)) - Number(Boolean(a?.imageUrl));
+      if (imageOrder) return imageOrder;
+
+      const resolvedOrder =
+        Number(b?.imageStatus === 'resolved') -
+        Number(a?.imageStatus === 'resolved');
+      if (resolvedOrder) return resolvedOrder;
+
+      return historyYear(b) - historyYear(a);
     })[0] || null;
   };
 
