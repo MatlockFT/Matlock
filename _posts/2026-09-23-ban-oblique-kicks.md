@@ -65,9 +65,7 @@ But despite all of Jon, Joe, and Rampage's marketing of this strike, no one has 
 
 Shameful.
 
-Now, in 2026, the issue has returned to California's athletic regulators. Following UFC 331, California State Athletic Commission Executive Officer Andy Foster called for discussion of making lateral knee kicks a foul. The renewed attention followed Brunno Ferreira's use of knee-directed kicks against Edmen Shahbazyan, who complained to the referee during their September 19 fight. The strikes were legal. Shahbazyan won by unanimous decision. [Sherdog's report](https://www.sherdog.com/news/news/Controversial-MMA-technique-could-be-banned-following-UFC-331-202885/amp), [UFC's result](https://www.ufc.com/video/160166).
-
-It comes as no surprise that Edmen Shahbazyan was complaining to the referee during his fight with Brunno Ferreira at UFC 331 this past weekend when Brunno was targeting Edmen's knee with these side kicks. You can't blame him! It's 2026! It's truly bizarre this flaw hasn't been patched yet!
+Now, in 2026, the issue has returned to California's athletic regulators. Following UFC 331, California State Athletic Commission Executive Officer Andy Foster called for discussion of making lateral knee kicks a foul. The renewed attention followed Brunno Ferreira's use of knee-directed kicks against Edmen Shahbazyan, who complained to the referee during their September 19 fight. The strikes were legal. Shahbazyan won by unanimous decision. It comes as no surprise that Edmen Shahbazyan was complaining! You can't blame him for thinking this deadly technique was banned! It is 2026! [Sherdog's report](https://www.sherdog.com/news/news/Controversial-MMA-technique-could-be-banned-following-UFC-331-202885/amp), [UFC's result](https://www.ufc.com/video/160166).
 
 Absolutely disgraceful. Is there no honor amongst fighters?
 
