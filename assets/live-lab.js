@@ -3,7 +3,6 @@
   if (!root) return;
 
   const statusUrl = root.dataset.statusUrl;
-  const fallbackVideo = root.dataset.fallbackVideo || "";
   const player = root.querySelector("[data-live-player]");
   const screen = root.querySelector("[data-live-screen]");
   const stateWrap = root.querySelector(".live-lab__hero-state");
@@ -16,9 +15,15 @@
   const standbyTitle = root.querySelector("[data-live-standby-title]");
   const standbyCopy = root.querySelector("[data-live-standby-copy]");
   const note = root.querySelector("[data-live-note]");
+  const liveList = root.querySelector("[data-live-list]");
+  const liveCount = root.querySelector("[data-live-count]");
+  const monitored = root.querySelector("[data-live-monitored]");
+  const sourceList = root.querySelector("[data-source-list]");
 
   let currentVideoId = "";
+  let currentEventId = "";
   let busy = false;
+  let lastData = null;
 
   const embedUrl = (videoId) => {
     const params = new URLSearchParams({
@@ -43,54 +48,153 @@
     }).format(parsed);
   };
 
-  const showLive = (data) => {
-    const videoId = data.video_id || fallbackVideo;
-    if (!videoId) return showOffline(data);
+  const findEventById = (events, eventId) =>
+    events.find((event) => event.event_id === eventId);
 
+  const findEventByVideo = (events, videoId) =>
+    events.find((event) => event.video_id === videoId);
+
+  const setPlayer = (event) => {
+    if (!event || !event.video_id) return;
+
+    currentVideoId = event.video_id;
+    currentEventId = event.event_id || "";
     screen.dataset.state = "live";
     stateWrap?.classList.add("is-live");
-    stateText.textContent = "Live now";
-    title.textContent = data.title || "Inka MMA live";
-    promotion.textContent = `${data.channel_name || "INKA MMA PRO"} · Peru`;
-    updated.textContent = formatDate(data.updated_at);
+    stateText.textContent = event.stale ? "Live status delayed" : "Live now";
+    title.textContent = event.title || "Live MMA";
+    promotion.textContent = `${event.short_name || event.promotion || "MMA"} · ${event.country || "International"}`;
 
-    const watchUrl = data.watch_url || `https://www.youtube.com/watch?v=${videoId}`;
+    const watchUrl = event.watch_url || `https://www.youtube.com/watch?v=${event.video_id}`;
     source.href = watchUrl;
+    source.hidden = false;
+    source.textContent = "Open on YouTube ↗";
 
-    if (currentVideoId !== videoId || !player.getAttribute("src")) {
-      currentVideoId = videoId;
-      player.src = embedUrl(videoId);
+    if (!player.getAttribute("src") || !player.src.includes(event.video_id)) {
+      player.src = embedUrl(event.video_id);
     }
 
-    note.textContent = "The monitor will replace this video automatically when Inka starts a different YouTube live stream.";
+    renderLiveEvents(lastData?.events || []);
   };
 
-  const showOffline = (data = {}) => {
+  const showStandby = () => {
     screen.dataset.state = "offline";
     stateWrap?.classList.remove("is-live");
-    stateText.textContent = "Off air";
-    title.textContent = "Inka MMA is not live";
-    promotion.textContent = `${data.channel_name || "INKA MMA PRO"} · Peru`;
-    updated.textContent = formatDate(data.updated_at);
-    standbyTitle.textContent = "Inka MMA is off air";
-    standbyCopy.textContent = "This player will activate when the monitor detects the next live fight stream.";
+    stateText.textContent = "Standby";
+    title.textContent = "No monitored MMA is live";
+    promotion.textContent = "Waiting for the next detected broadcast";
+    standbyTitle.textContent = "No live MMA detected";
+    standbyCopy.textContent = "The station will activate when a monitored promotion goes live.";
+    source.hidden = true;
 
     if (player.getAttribute("src")) player.removeAttribute("src");
     currentVideoId = "";
+    currentEventId = "";
 
-    if (data.channel_url) {
-      source.href = data.channel_url;
-      source.textContent = "Open Inka channel ↗";
+    renderLiveEvents(lastData?.events || []);
+  };
+
+  const renderLiveEvents = (events) => {
+    if (!liveList) return;
+
+    const activeEvents = Array.isArray(events) ? events : [];
+    liveCount.textContent = `${activeEvents.length} live`;
+
+    if (!activeEvents.length) {
+      liveList.innerHTML = '<p class="live-lab__empty">No monitored fight streams are live right now.</p>';
+      return;
     }
 
-    note.textContent = "Standby mode. The page keeps checking the live-state file automatically.";
+    liveList.innerHTML = "";
+
+    for (const event of activeEvents) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "live-lab__event";
+      button.dataset.eventId = event.event_id || "";
+      if (event.video_id === currentVideoId) button.classList.add("is-playing");
+
+      const status = document.createElement("span");
+      status.className = "live-lab__event-status";
+      status.textContent = event.video_id === currentVideoId ? "Playing" : (event.stale ? "Status delayed" : "Live");
+
+      const name = document.createElement("strong");
+      name.textContent = event.title || "Live MMA";
+
+      const meta = document.createElement("span");
+      meta.className = "live-lab__event-meta";
+      meta.textContent = `${event.short_name || event.promotion || "MMA"} · ${event.country || "International"}`;
+
+      button.append(status, name, meta);
+      button.addEventListener("click", () => setPlayer(event));
+      liveList.append(button);
+    }
+  };
+
+  const renderSources = (sources) => {
+    if (!sourceList) return;
+    const entries = Object.values(sources || {});
+    sourceList.innerHTML = "";
+
+    if (!entries.length) {
+      sourceList.innerHTML = "<span>No sources loaded.</span>";
+      return;
+    }
+
+    entries
+      .sort((a, b) => (b.priority || 0) - (a.priority || 0))
+      .forEach((item) => {
+        const pill = document.createElement("span");
+        pill.className = "live-lab__source";
+        pill.dataset.status = item.status || "unknown";
+
+        const label = document.createElement("strong");
+        label.textContent = item.short_name || item.promotion || "MMA";
+
+        const status = document.createElement("small");
+        const statusText = {
+          live: "live",
+          offline: "offline",
+          ignored_live: "ignored live",
+          error: "check delayed"
+        }[item.status] || item.status || "unknown";
+        status.textContent = statusText;
+
+        pill.append(label, status);
+        sourceList.append(pill);
+      });
+  };
+
+  const applyData = (data) => {
+    lastData = data;
+    const events = Array.isArray(data.events) ? data.events : [];
+
+    monitored.textContent = `${data.monitored_count ?? Object.keys(data.sources || {}).length} promotions`;
+    updated.textContent = formatDate(data.generated_at);
+    renderSources(data.sources || {});
+
+    const currentStillLive = currentVideoId ? findEventByVideo(events, currentVideoId) : null;
+    if (currentStillLive) {
+      setPlayer(currentStillLive);
+      return;
+    }
+
+    const selected =
+      findEventById(events, data.selected_event_id) ||
+      events[0] ||
+      null;
+
+    if (selected) setPlayer(selected);
+    else showStandby();
+
+    renderLiveEvents(events);
   };
 
   const showChecking = () => {
     if (currentVideoId) return;
     screen.dataset.state = "checking";
     stateWrap?.classList.remove("is-live");
-    stateText.textContent = "Checking Inka…";
+    stateText.textContent = "Checking the world…";
   };
 
   const loadStatus = async ({ manual = false } = {}) => {
@@ -107,23 +211,15 @@
 
       if (!response.ok) throw new Error(`Status request failed: ${response.status}`);
       const data = await response.json();
+      applyData(data);
 
-      if (data.is_live && data.video_id) showLive(data);
-      else showOffline(data);
+      note.textContent =
+        "Automatic mode will keep the stream you are watching until it disappears from the live feed, then move to the next detected card.";
     } catch (error) {
-      console.warn("Inka live status unavailable", error);
+      console.warn("Global live status unavailable", error);
       stateText.textContent = currentVideoId ? "Live status delayed" : "Monitor unavailable";
-      if (!currentVideoId && fallbackVideo) {
-        showLive({
-          is_live: true,
-          video_id: fallbackVideo,
-          title: "Inka 61",
-          channel_name: "INKA MMA PRO",
-          watch_url: `https://www.youtube.com/watch?v=${fallbackVideo}`
-        });
-        stateText.textContent = "Fallback stream";
-      }
-      note.textContent = "The status monitor could not be reached. The page is using its last known/fallback stream.";
+      note.textContent =
+        "The live-state feed could not be reached. The current player is being preserved until the monitor returns.";
     } finally {
       busy = false;
     }
