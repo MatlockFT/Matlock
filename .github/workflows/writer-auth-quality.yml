@@ -52,3 +52,7 @@ jobs:
             node --check "$file"
           done
           node -e "import('./netlify/functions/_github-auth.mjs').then(() => console.log('Auth helper imports successfully.'))"
+
+      - name: Run Writer backend tests
+        working-directory: _netlify-auth
+        run: npm test
