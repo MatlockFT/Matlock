@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "generated_at": "2026-09-24T03:06:37Z",
+  "generated_at": "2026-09-24T03:08:19Z",
   "selected_event_id": null,
   "events": [],
   "upcoming": [
@@ -29,7 +29,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T03:06:37Z"
+      "observed_at": "2026-09-24T03:08:18Z"
     },
     {
       "event_id": "tuff-n-uff:iRW8qArVe7Q",
@@ -110,7 +110,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T03:06:37Z"
+      "observed_at": "2026-09-24T03:08:18Z"
     },
     {
       "event_id": "levels-fight-league:ynNjsajmOw8",
@@ -137,7 +137,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T03:06:37Z"
+      "observed_at": "2026-09-24T03:08:18Z"
     }
   ],
   "sources": {
@@ -156,7 +156,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:06:37Z"
+      "last_checked_at": "2026-09-24T03:08:18Z"
     },
     "a1-combat": {
       "promotion": "A1 Combat",
@@ -207,7 +207,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:06:36Z"
+      "last_checked_at": "2026-09-24T03:08:17Z"
     },
     "budo-sento": {
       "promotion": "Budo Sento Championship",
@@ -241,7 +241,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:06:36Z"
+      "last_checked_at": "2026-09-24T03:08:17Z"
     },
     "empire-mma-colombia": {
       "promotion": "Empire MMA",
@@ -259,6 +259,23 @@
       "error_count": 0,
       "last_success_at": null,
       "last_checked_at": "2026-09-24T02:55:25Z"
+    },
+    "fen": {
+      "promotion": "Fight Exclusive Night",
+      "short_name": "FEN",
+      "country": "Poland",
+      "priority": 72,
+      "coverage_note": "Free YouTube fight coverage varies; FEN 63 includes the first three fights",
+      "access_note": "Main card may be carried by CANAL+",
+      "channel_url": "https://www.youtube.com/channel/UCRolEb7xwuPcRbsPyEWGK2Q",
+      "channel_id": "UCRolEb7xwuPcRbsPyEWGK2Q",
+      "channel_name": "FEN MMA",
+      "status": "offline",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T03:08:18Z"
     },
     "fnc": {
       "promotion": "Fight Nation Championship",
@@ -343,7 +360,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-24T02:19:06Z",
-      "last_checked_at": "2026-09-24T03:06:36Z"
+      "last_checked_at": "2026-09-24T03:08:17Z"
     },
     "levels-fight-league": {
       "promotion": "Levels Fight League",
@@ -360,7 +377,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:06:37Z"
+      "last_checked_at": "2026-09-24T03:08:18Z"
     },
     "lfa": {
       "promotion": "Legacy Fighting Alliance",
@@ -411,7 +428,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:06:37Z"
+      "last_checked_at": "2026-09-24T03:08:17Z"
     },
     "mangu": {
       "promotion": "Mangu Professional League",
@@ -428,7 +445,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:06:37Z"
+      "last_checked_at": "2026-09-24T03:08:18Z"
     },
     "mfl": {
       "promotion": "Mexico Fight League",
@@ -479,7 +496,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:06:36Z"
+      "last_checked_at": "2026-09-24T03:08:17Z"
     },
     "octagon-central-asia": {
       "promotion": "OCTAGON",
@@ -513,7 +530,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:06:37Z"
+      "last_checked_at": "2026-09-24T03:08:18Z"
     },
     "real-fight-arena": {
       "promotion": "Real Fight Arena",
@@ -530,7 +547,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:06:37Z"
+      "last_checked_at": "2026-09-24T03:08:18Z"
     },
     "road-fc": {
       "promotion": "ROAD FC",
@@ -547,7 +564,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:06:36Z"
+      "last_checked_at": "2026-09-24T03:08:17Z"
     },
     "samurai-fight-house": {
       "promotion": "Samurai Fight House",
@@ -564,7 +581,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:06:37Z"
+      "last_checked_at": "2026-09-24T03:08:18Z"
     },
     "sft-combat": {
       "promotion": "SFT Combat",
@@ -581,7 +598,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:06:36Z"
+      "last_checked_at": "2026-09-24T03:08:17Z"
     },
     "shooto-brasil": {
       "promotion": "Shooto Brasil",
@@ -649,12 +666,12 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:06:37Z"
+      "last_checked_at": "2026-09-24T03:08:17Z"
     }
   },
-  "monitored_count": 30,
+  "monitored_count": 31,
   "live_count": 0,
   "upcoming_count": 5,
   "youtube_api_configured": true,
-  "api_verified_source_count": 30
+  "api_verified_source_count": 31
 }
