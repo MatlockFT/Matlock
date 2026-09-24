@@ -241,8 +241,11 @@ if (stage >= 7) {
     errors.push('Stage 7 forbids versioned root pages: ' + legacyRootPages.join(', '));
   }
 }
-if (policy.legacyExceptions?.currentFlatScriptLayoutAllowedUntilStage !== 5) {
+if (stage < 5 && policy.legacyExceptions?.currentFlatScriptLayoutAllowedUntilStage !== 5) {
   errors.push('Flat script layout exception must remain scheduled for Stage 5.');
+}
+if (stage >= 5 && Object.prototype.hasOwnProperty.call(policy.legacyExceptions || {}, 'currentFlatScriptLayoutAllowedUntilStage')) {
+  errors.push('Flat script layout exception must be retired at Stage 5.');
 }
 if (stage >= 6 && Object.prototype.hasOwnProperty.call(policy.legacyExceptions || {}, 'currentWorkflowLayoutAllowedUntilStage')) {
   errors.push('Workflow-layout legacy exception must be retired at Stage 6.');

@@ -84,8 +84,7 @@
     "_netlify-auth/netlify/functions/writer-github.mjs"
   ],
   "legacyExceptions": {
-    "existingUploadsRemainInPlace": true,
-    "currentFlatScriptLayoutAllowedUntilStage": 5
+    "existingUploadsRemainInPlace": true
   },
   "dataPolicyFile": ".repository-data-policy.json",
   "integrity": {
