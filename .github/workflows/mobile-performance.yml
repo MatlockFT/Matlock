@@ -37,26 +37,13 @@ jobs:
         with:
           node-version: 22
 
-      - name: Wait for matching production assets
+      - name: Configure GitHub Pages for exact-commit audit
         if: github.event_name == 'push'
-        shell: bash
-        run: |
-          set -euo pipefail
-          version="$(awk -F'"' '/^asset_version:/ { print $2; exit }' _config.yml)"
-          echo "Waiting for production asset version ${version}..."
+        uses: actions/configure-pages@v5
 
-          for attempt in $(seq 1 36); do
-            html="$(curl -fsSL --retry 2 "https://mmamatlock.com/?performance_probe=${GITHUB_RUN_ID}-${attempt}" || true)"
-            if grep -Fq "?v=${version}" <<<"${html}"; then
-              echo "Production is serving asset version ${version}."
-              exit 0
-            fi
-            echo "Attempt ${attempt}/36: production has not reached v${version} yet."
-            sleep 10
-          done
-
-          echo "Production did not reach asset version ${version} within six minutes."
-          exit 1
+      - name: Build exact commit for push audit
+        if: github.event_name == 'push'
+        uses: actions/jekyll-build-pages@v1
 
       - name: Run mobile Lighthouse audits
         shell: bash
@@ -64,10 +51,33 @@ jobs:
           set -euo pipefail
           mkdir -p lighthouse-reports
 
+          if [ "${GITHUB_EVENT_NAME}" = "push" ]; then
+            audit_base="http://127.0.0.1:4000"
+            python3 -m http.server 4000 --directory _site > /tmp/lighthouse-local-server.log 2>&1 &
+            server_pid=$!
+            trap 'kill "${server_pid}" 2>/dev/null || true' EXIT
+
+            for attempt in $(seq 1 30); do
+              if curl -fsS "${audit_base}/" >/dev/null; then
+                break
+              fi
+              if [ "${attempt}" -eq 30 ]; then
+                cat /tmp/lighthouse-local-server.log || true
+                echo "Local Jekyll site did not become available."
+                exit 1
+              fi
+              sleep 1
+            done
+            echo "Auditing exact commit from ${audit_base}."
+          else
+            audit_base="https://mmamatlock.com"
+            echo "Auditing deployed production site from ${audit_base}."
+          fi
+
           while IFS='|' read -r slug path; do
             for sample in 1 2 3; do
               echo "Auditing ${path} (sample ${sample}/3)"
-              npx --yes lighthouse@12.8.2 "https://mmamatlock.com${path}" \
+              npx --yes lighthouse@12.8.2 "${audit_base}${path}" \
                 --quiet \
                 --only-categories=performance \
                 --form-factor=mobile \
