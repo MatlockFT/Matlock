@@ -143,6 +143,34 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(placedImage.locator('img[alt="Writer smoke image"]')).toHaveAttribute('src', 'https://example.com/writer-smoke.jpg');
   await expect(placedImage.locator('figcaption')).toHaveText('Writer smoke caption');
 
+  // Preview media is directly editable: hover controls change wrap mode and drag-resize persists.
+  await placedImage.hover();
+  const mediaToolbar = placedImage.locator(':scope > .writer-media-toolbar');
+  await expect(mediaToolbar).toBeVisible();
+  await expect(mediaToolbar.locator('[data-media-width-label]')).toHaveText('50%');
+  await mediaToolbar.locator('[data-media-layout="break"]').click();
+  await expect(placedImage).toHaveAttribute('data-media-flow', 'break');
+  await expect(placedImage).toHaveAttribute('data-media-align', 'center');
+  await expect(editor).toHaveValue(/data-writer-media-id="media-[^"]+"/);
+  await expect(editor).toHaveValue(/data-media-flow="break"/);
+
+  const resizeHandle = placedImage.locator(':scope > .writer-media-resize-handle');
+  const handleBox = await resizeHandle.boundingBox();
+  expect(handleBox).not.toBeNull();
+  await page.mouse.move(handleBox.x + handleBox.width / 2, handleBox.y + handleBox.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(handleBox.x + 80, handleBox.y + handleBox.height / 2, { steps: 4 });
+  await page.mouse.up();
+  await expect.poll(async () => Number(await placedImage.getAttribute('data-media-width'))).toBeGreaterThan(50);
+  await expect(editor).toHaveValue(/--media-width:[5-9][0-9](?:\.\d+)?%/);
+
+  await placedImage.hover();
+  await mediaToolbar.locator('[data-media-layout="wrap-right"]').click();
+  await expect(placedImage).toHaveAttribute('data-media-flow', 'wrap');
+  await expect(placedImage).toHaveAttribute('data-media-align', 'right');
+  await expect(editor).toHaveValue(/data-media-flow="wrap"/);
+  await expect(editor).toHaveValue(/data-media-align="right"/);
+
   await page.click('[data-tool="youtube"]');
   await page.fill('[data-youtube-url]', 'https://www.youtube.com/watch?v=dQw4w9WgXcQ');
   await page.fill('[data-youtube-title]', 'Writer smoke YouTube');
