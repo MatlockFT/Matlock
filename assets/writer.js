@@ -748,6 +748,11 @@
       const source = img?.dataset.writerSource || img?.getAttribute('src') || '';
       if (source) return `image:${source}`;
     }
+    if (node.matches('figure.article-inline-video')) {
+      const video = node.querySelector('video');
+      const source = video?.currentSrc || video?.getAttribute('src') || video?.querySelector('source')?.getAttribute('src') || '';
+      if (source) return `video:${source}`;
+    }
     if (node.matches('p')) {
       const links = node.querySelectorAll('a');
       if (links.length === 1 && node.textContent.trim().toUpperCase() === 'EMBED X') {
