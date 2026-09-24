@@ -1,9 +1,36 @@
 {
   "version": 5,
-  "generated_at": "2026-09-24T02:36:16Z",
+  "generated_at": "2026-09-24T02:55:26Z",
   "selected_event_id": null,
   "events": [],
   "upcoming": [
+    {
+      "event_id": "real-fight-arena:z7sfnn-WqtY",
+      "promotion_id": "real-fight-arena",
+      "promotion": "Real Fight Arena",
+      "short_name": "RFA",
+      "country": "Slovakia",
+      "priority": 78,
+      "coverage_note": "Promotion channel; monitor public live streams",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/@realfightarena",
+      "channel_id": "UCuuQsVyn8pFoLZw1j5uak7g",
+      "channel_name": "RFA | Real Fight Arena",
+      "video_id": "z7sfnn-WqtY",
+      "title": "RFA 33: Free prelims | Go-Pass Arena Bratislava",
+      "watch_url": "https://www.youtube.com/watch?v=z7sfnn-WqtY",
+      "status": "upcoming",
+      "is_live": false,
+      "embeddable": true,
+      "scheduled_start_time": "2026-09-25T17:00:00Z",
+      "scheduled_end_time": null,
+      "actual_start_time": null,
+      "actual_end_time": null,
+      "concurrent_viewers": null,
+      "api_verified": true,
+      "stale": false,
+      "observed_at": "2026-09-24T02:55:26Z"
+    },
     {
       "event_id": "levels-fight-league:bwknYg2JnzU",
       "promotion_id": "levels-fight-league",
@@ -82,11 +109,14 @@
       "coverage_note": "Event stream",
       "access_note": null,
       "channel_url": "https://www.youtube.com/channel/UC7YF5mRzbnmiKREOGsKUJTg",
+      "channel_id": "UC7YF5mRzbnmiKREOGsKUJTg",
+      "channel_name": "AFC엔젤스파이팅 챔피언십",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:12:50Z"
+      "last_checked_at": "2026-09-24T02:55:25Z"
     },
     "apfc": {
       "promotion": "Anthony Pettis Fighting Championship",
@@ -144,11 +174,14 @@
       "coverage_note": "Event stream",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@empiremma_",
+      "channel_id": "UCQZbURj-ffOq8U7i3Wt0YFw",
+      "channel_name": "Empire MMA",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:12:50Z"
+      "last_checked_at": "2026-09-24T02:55:25Z"
     },
     "fnc": {
       "promotion": "Fight Nation Championship",
@@ -172,11 +205,14 @@
       "coverage_note": "Event stream",
       "access_note": null,
       "channel_url": "https://www.youtube.com/user/frontstreetfights",
+      "channel_id": "UCRveRG9lPKCaYAVeUI-ZuDg",
+      "channel_name": "Front Street Fights",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:12:50Z"
+      "last_checked_at": "2026-09-24T02:55:25Z"
     },
     "grachan": {
       "promotion": "GRACHAN",
@@ -234,11 +270,31 @@
       "coverage_note": "Main cards and prelims",
       "access_note": "Territory restrictions may apply",
       "channel_url": "https://www.youtube.com/@lfafights",
+      "channel_id": "UCMssVoZVgjD4pyeG6Ic-_Nw",
+      "channel_name": "LFA Fights ",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:12:50Z"
+      "last_checked_at": "2026-09-24T02:55:25Z"
+    },
+    "liga-monstro-combate": {
+      "promotion": "Liga Monstro Combate",
+      "short_name": "LMC",
+      "country": "Brazil",
+      "priority": 80,
+      "coverage_note": "Monthly MMA/boxing events; official site says events air on YouTube",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/@ligamonstrocombate",
+      "channel_id": "UClGFqfpNtUpUD1v51mw3VbQ",
+      "channel_name": "LMC | Liga Monstro Combate",
+      "status": "offline",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:55:25Z"
     },
     "lux": {
       "promotion": "LUX Fight League",
@@ -257,6 +313,23 @@
       "last_success_at": null,
       "last_checked_at": "2026-09-24T02:36:16Z"
     },
+    "master-vic-podcast-tv": {
+      "promotion": "Master Vic Podcast TV",
+      "short_name": "Master Vic",
+      "country": "Mexico",
+      "priority": 55,
+      "coverage_note": "Combat-sports channel; included as a live-source monitor",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/@MasterVicPodcasTV",
+      "channel_id": "UCtfufNe71Uj9-yXjk5X1c3g",
+      "channel_name": "Master Vic PodcasTV",
+      "status": "offline",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:55:25Z"
+    },
     "mfl": {
       "promotion": "Mexico Fight League",
       "short_name": "MFL",
@@ -265,11 +338,14 @@
       "coverage_note": "English and Spanish event broadcasts",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@fightMFL",
+      "channel_id": "UCTmA0qVjZTda4HoGqRFaXvQ",
+      "channel_name": "México Fight League",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:12:50Z"
+      "last_checked_at": "2026-09-24T02:55:25Z"
     },
     "naiza": {
       "promotion": "NAIZA Fighting Championship",
@@ -318,6 +394,23 @@
       "error_count": 0,
       "last_success_at": null,
       "last_checked_at": "2026-09-24T02:36:16Z"
+    },
+    "real-fight-arena": {
+      "promotion": "Real Fight Arena",
+      "short_name": "RFA",
+      "country": "Slovakia",
+      "priority": 78,
+      "coverage_note": "Promotion channel; monitor public live streams",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/@realfightarena",
+      "channel_id": "UCuuQsVyn8pFoLZw1j5uak7g",
+      "channel_name": "RFA | Real Fight Arena",
+      "status": "upcoming",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:55:25Z"
     },
     "road-fc": {
       "promotion": "ROAD FC",
@@ -416,9 +509,9 @@
       "last_checked_at": "2026-09-24T02:36:16Z"
     }
   },
-  "monitored_count": 23,
+  "monitored_count": 26,
   "live_count": 0,
-  "upcoming_count": 2,
+  "upcoming_count": 3,
   "youtube_api_configured": true,
-  "api_verified_source_count": 11
+  "api_verified_source_count": 19
 }
