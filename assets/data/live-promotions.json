@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "global_ignore_terms": [
+    "weigh-in",
+    "weigh in",
+    "pesaje",
+    "press conference",
+    "conferencia",
+    "interview",
+    "entrevista",
+    "podcast",
+    "reaction",
+    "highlights",
+    "resumen",
+    "trailer",
+    "countdown",
+    "24/7",
+    "24-7",
+    "non-stop",
+    "nonstop",
+    "marathon",
+    "replay"
+  ],
+  "promotions": [
+    {
+      "id": "inka",
+      "name": "Inka Fighting Championship",
+      "short_name": "INKA",
+      "country": "Peru",
+      "priority": 75,
+      "enabled": true,
+      "seed_url": "https://www.youtube.com/watch?v=C2nNtrk8FRs"
+    },
+    {
+      "id": "jungle-fight",
+      "name": "Jungle Fight",
+      "short_name": "Jungle Fight",
+      "country": "Brazil",
+      "priority": 80,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/@Junglefcoficial"
+    },
+    {
+      "id": "lfa",
+      "name": "Legacy Fighting Alliance",
+      "short_name": "LFA",
+      "country": "United States",
+      "priority": 90,
+      "enabled": true,
+      "seed_url": "https://www.youtube.com/watch?v=lYJcWGHVmyU"
+    },
+    {
+      "id": "brave-cf",
+      "name": "BRAVE Combat Federation",
+      "short_name": "BRAVE CF",
+      "country": "Bahrain",
+      "priority": 85,
+      "enabled": true,
+      "seed_url": "https://www.youtube.com/watch?v=nY-gc32iKBU",
+      "ignore_terms": ["full events"]
+    },
+    {
+      "id": "open-fc",
+      "name": "Open Fighting Championship",
+      "short_name": "OPEN FC",
+      "country": "International",
+      "priority": 70,
+      "enabled": true,
+      "seed_url": "https://www.youtube.com/watch?v=MOkiD3O8SW4"
+    },
+    {
+      "id": "uae-warriors",
+      "name": "UAE Warriors",
+      "short_name": "UAE Warriors",
+      "country": "United Arab Emirates",
+      "priority": 80,
+      "enabled": true,
+      "seed_url": "https://www.youtube.com/watch?v=0Wbv-s21nrI"
+    },
+    {
+      "id": "eternal-mma",
+      "name": "Eternal MMA",
+      "short_name": "Eternal MMA",
+      "country": "Australia",
+      "priority": 72,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/eternalmma"
+    },
+    {
+      "id": "cage-warriors",
+      "name": "Cage Warriors",
+      "short_name": "Cage Warriors",
+      "country": "United Kingdom",
+      "priority": 88,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/c/CageWarriorsTV"
+    }
+  ]
+}
