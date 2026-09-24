@@ -1,8 +1,26 @@
 {
   "version": 4,
-  "generated_at": "2026-09-24T02:18:26Z",
-  "selected_event_id": null,
-  "events": [],
+  "generated_at": "2026-09-24T02:19:07Z",
+  "selected_event_id": "inka:C2nNtrk8FRs",
+  "events": [
+    {
+      "event_id": "inka:C2nNtrk8FRs",
+      "promotion_id": "inka",
+      "promotion": "Inka Fighting Championship",
+      "short_name": "INKA",
+      "country": "Peru",
+      "priority": 65,
+      "coverage_note": "Prelims",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/@INKA.MMAPRO",
+      "video_id": "C2nNtrk8FRs",
+      "title": "INKA MMA 61 CARD PRELIMINAR",
+      "watch_url": "https://www.youtube.com/watch?v=C2nNtrk8FRs",
+      "is_live": true,
+      "stale": false,
+      "observed_at": "2026-09-24T02:19:06Z"
+    }
+  ],
   "sources": {
     "a1-combat": {
       "promotion": "A1 Combat",
@@ -16,7 +34,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:18:25Z"
+      "last_checked_at": "2026-09-24T02:19:06Z"
     },
     "afc-korea": {
       "promotion": "Angel's Fighting Championship",
@@ -58,7 +76,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:18:25Z"
+      "last_checked_at": "2026-09-24T02:19:06Z"
     },
     "deep": {
       "promotion": "DEEP / DEEP JEWELS",
@@ -100,7 +118,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:18:25Z"
+      "last_checked_at": "2026-09-24T02:19:06Z"
     },
     "front-street-fights": {
       "promotion": "Front Street Fights",
@@ -128,7 +146,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:18:25Z"
+      "last_checked_at": "2026-09-24T02:19:06Z"
     },
     "inka": {
       "promotion": "Inka Fighting Championship",
@@ -138,11 +156,11 @@
       "coverage_note": "Prelims",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@INKA.MMAPRO",
-      "status": "offline",
+      "status": "live",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": "2026-09-24T02:10:53Z",
-      "last_checked_at": "2026-09-24T02:18:25Z"
+      "last_success_at": "2026-09-24T02:19:06Z",
+      "last_checked_at": "2026-09-24T02:19:06Z"
     },
     "levels-fight-league": {
       "promotion": "Levels Fight League",
@@ -226,7 +244,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:18:25Z"
+      "last_checked_at": "2026-09-24T02:19:06Z"
     },
     "open-fight-latam": {
       "promotion": "Open Fight LATAM",
@@ -296,7 +314,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:18:25Z"
+      "last_checked_at": "2026-09-24T02:19:06Z"
     },
     "ugp": {
       "promotion": "Ultimo Guerrero en Pie",
@@ -310,7 +328,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:18:25Z"
+      "last_checked_at": "2026-09-24T02:19:06Z"
     },
     "versus-mma": {
       "promotion": "Versus MMA",
@@ -328,5 +346,5 @@
     }
   },
   "monitored_count": 23,
-  "live_count": 0
+  "live_count": 1
 }
