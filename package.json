@@ -29,7 +29,8 @@
     "resolve:history-posters:tapology": "node scripts/resolve-on-this-day-tapology-posters.mjs",
     "resolve:history-posters:wikipedia": "node scripts/resolve-on-this-day-event-posters.mjs",
     "restore:history-poster-registry": "node scripts/sync-on-this-day-poster-registry.mjs --restore",
-    "check:yellow-pages": "node scripts/check-mma-yellow-pages.mjs"
+    "check:yellow-pages": "node scripts/check-mma-yellow-pages.mjs",
+    "audit:repo": "node scripts/repository-reference-audit.mjs"
   },
   "devDependencies": {
     "fast-xml-parser": "^5.10.1",
