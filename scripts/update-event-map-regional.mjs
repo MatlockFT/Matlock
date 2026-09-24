@@ -366,7 +366,7 @@ function dedupe(events) {
   const map = new Map();
   for (const event of events.filter(Boolean)) {
     const number = eventNumber(event.title);
-    const key = `${event.source_key}|${event.date}|${number || norm(event.title)}|${event.location}`;
+    const key = number\n      ? `${event.source_key}|${event.date}|#${number}`\n      : `${event.source_key}|${event.date}|${norm(event.title)}|${norm(event.location)}`;
     const previous = map.get(key);
     if (!previous) {
       map.set(key, event);
