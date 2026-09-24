@@ -20,7 +20,7 @@ IDLE_BATCH_COUNT = 3
 
 VIDEO_ID_RE = re.compile(r'"videoId":"([A-Za-z0-9_-]{11})"')
 WATCH_URL_RE = re.compile(r'(?:watch\\?v=|watch%3Fv%3D)([A-Za-z0-9_-]{11})')
-OG_TITLE_RE = re.compile(r'<meta[^>]+property=["\\']og:title["\\'][^>]+content=["\\']([^"\\']+)["\\']', re.I)
+OG_TITLE_RE = re.compile(r'<meta property="og:title" content="([^"]+)"', re.I)
 TITLE_RUN_RE = re.compile(
     r'"title":\{"runs":\[\{"text":"((?:\\.|[^"\\])*)"',
     re.S,
