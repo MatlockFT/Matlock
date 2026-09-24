@@ -71,6 +71,7 @@ function classify(file) {
   if (file.startsWith('assets/')) return 'site assets';
   if (file.startsWith('scripts/')) return 'automation/scripts';
   if (file.startsWith('.github/')) return 'github automation';
+  if (file.startsWith('_writer/')) return 'writer frontend source';
   if (file.startsWith('_netlify-auth/')) return 'writer backend';
   if (file.startsWith('_data/')) return 'jekyll data';
   if (file.startsWith('_layouts/') || file.startsWith('_includes/')) return 'jekyll templates';
