@@ -30,7 +30,8 @@
     "resolve:history-posters:wikipedia": "node scripts/resolve-on-this-day-event-posters.mjs",
     "restore:history-poster-registry": "node scripts/sync-on-this-day-poster-registry.mjs --restore",
     "check:yellow-pages": "node scripts/check-mma-yellow-pages.mjs",
-    "audit:repo": "node scripts/repository-reference-audit.mjs"
+    "audit:repo": "node scripts/repository-reference-audit.mjs",
+    "check:repo-policy": "node scripts/check-repository-policy.mjs"
   },
   "devDependencies": {
     "fast-xml-parser": "^5.10.1",
