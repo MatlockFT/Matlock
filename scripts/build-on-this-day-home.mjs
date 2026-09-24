@@ -21,13 +21,44 @@ const todays = entries.filter(entry => String(entry?.date || '').slice(5) === ke
 const events = todays.filter(entry => entry?.kind === 'event');
 const candidates = events.length ? events : todays;
 
+const yearOf = entry => Number(String(entry?.date || '').slice(0, 4)) || 0;
+
+function significanceScore(entry) {
+    const title = String(entry?.title || '').trim();
+    const promotion = String(entry?.promotion || '').trim().toLowerCase();
+    let score = Number(entry?.weight || 0) * 10;
+
+    // Homepage history should favor historically important cards, not merely
+    // whichever matching event happened most recently.
+    if (/^ufc\s+\d+\b/i.test(title)) score += 220;
+    else if (/^pride\s+\d+\b/i.test(title)) score += 190;
+    else if (/\b(?:grand prix|gp final|final conflict|shockwave)\b/i.test(title)) score += 120;
+    else if (/\b(?:title|champion|championship)\b/i.test(title)) score += 80;
+
+    if (/^ufc fight night\b/i.test(title)) score += 60;
+    if (promotion === 'ufc') score += 35;
+    if (promotion === 'pride') score += 30;
+    if (promotion === 'rizin') score += 18;
+    if (promotion === 'bellator') score += 14;
+
+    if (hasImage(entry)) score += 25;
+    if (entry?.imageStatus === 'resolved') score += 20;
+
+    return score;
+}
+
 const best = candidates
     .sort((a, b) => {
-        const dateOrder = String(b?.date || '').localeCompare(String(a?.date || ''));
-        if (dateOrder) return dateOrder;
+        const scoreOrder = significanceScore(b) - significanceScore(a);
+        if (scoreOrder) return scoreOrder;
+
         const imageOrder = Number(hasImage(b)) - Number(hasImage(a));
         if (imageOrder) return imageOrder;
-        return Number(b?.weight || 0) - Number(a?.weight || 0);
+
+        const resolvedOrder = Number(b?.imageStatus === 'resolved') - Number(a?.imageStatus === 'resolved');
+        if (resolvedOrder) return resolvedOrder;
+
+        return yearOf(b) - yearOf(a);
     })[0] || null;
 
 const compactEntry = best ? {
