@@ -7,7 +7,7 @@ const postsDirectory = join(root, '_posts');
 const postOutputDirectory = join(root, 'assets', 'generated', 'posts');
 const siteOutputDirectory = join(root, 'assets', 'generated', 'site');
 const manifestPath = join(root, '_data', 'responsive_images.yml');
-const targetWidths = [480, 720, 960, 1600];
+const targetWidths = [480, 720, 768, 960, 1600];
 
 function yamlString(value) {
     return JSON.stringify(value);
