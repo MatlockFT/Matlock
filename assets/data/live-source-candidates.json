@@ -1,0 +1,310 @@
+{
+  "version": 1,
+  "updated_at": "2026-09-23",
+  "notes": "Discovery queue seeded from MerrabiMedia prospect/event list supplied by site owner. Research entries may be searched via YouTube Data API; nothing is auto-promoted into the live registry.",
+  "candidates": [
+    {
+      "id": "dwcs",
+      "promotion": "Dana White's Contender Series",
+      "event": "DWCS Season 10 Episode 7",
+      "status": "excluded",
+      "reason": "UFC/ESPN distribution; not a regional YouTube-live target"
+    },
+    {
+      "id": "pancrase",
+      "promotion": "PANCRASE",
+      "event": "PANCRASE 366",
+      "status": "not_youtube_live",
+      "reason": "Current event distribution is U-NEXT; YouTube used for press/media"
+    },
+    {
+      "id": "inka",
+      "promotion": "Inka Fighting Championship",
+      "event": "INKA 61",
+      "status": "monitoring",
+      "registry_id": "inka"
+    },
+    {
+      "id": "shooto-japan-lemino",
+      "promotion": "Shooto Japan",
+      "event": "Lemino Shooto 8",
+      "status": "not_youtube_live",
+      "reason": "Lemino-branded event; official Shooto channel currently used mainly for post-event full-fight uploads"
+    },
+    {
+      "id": "one-friday-fights",
+      "promotion": "ONE Championship",
+      "event": "ONE Friday Fights 172",
+      "status": "excluded",
+      "reason": "Major promotion; outside regional-discovery priority"
+    },
+    {
+      "id": "mma-attack",
+      "promotion": "MMA Attack",
+      "event": "MMA Attack 7",
+      "status": "research",
+      "search_query": "MMA Attack Poland official"
+    },
+    {
+      "id": "rfa",
+      "promotion": "Real Fight Arena",
+      "event": "RFA 33",
+      "status": "monitoring",
+      "registry_id": "real-fight-arena",
+      "reason": "User-requested monitor despite current RFA Play/VOYO main-card distribution"
+    },
+    {
+      "id": "ares",
+      "promotion": "ARES Fighting Championship",
+      "event": "ARES 43",
+      "status": "research",
+      "search_query": "ARES Fighting Championship official"
+    },
+    {
+      "id": "hexagone",
+      "promotion": "HEXAGONE MMA",
+      "event": "HXMMA 47",
+      "status": "not_youtube_live",
+      "reason": "Current 2026 distribution listed as RMC Sport/DAZN"
+    },
+    {
+      "id": "mma-mexico",
+      "promotion": "MMA México",
+      "event": "MMA México 9",
+      "status": "monitoring",
+      "registry_id": "mma-mexico"
+    },
+    {
+      "id": "shooto-brasil",
+      "promotion": "Shooto Brasil",
+      "event": "Shooto Brasil 140",
+      "status": "monitoring",
+      "registry_id": "shooto-brasil"
+    },
+    {
+      "id": "liga-monstro",
+      "promotion": "Liga Monstro Combate",
+      "event": "LMC 3",
+      "status": "monitoring",
+      "registry_id": "liga-monstro-combate"
+    },
+    {
+      "id": "tuff-n-uff",
+      "promotion": "Tuff-N-Uff",
+      "event": "Tuff-N-Uff 157",
+      "status": "monitoring",
+      "registry_id": "tuff-n-uff"
+    },
+    {
+      "id": "fac",
+      "promotion": "Fighting Alliance Championship",
+      "event": "FAC 36",
+      "status": "research",
+      "search_query": "Fighting Alliance Championship FAC MMA official"
+    },
+    {
+      "id": "gma",
+      "promotion": "Gods of Martial Arts",
+      "event": "GMA 15",
+      "status": "monitoring",
+      "registry_id": "gma-vietnam"
+    },
+    {
+      "id": "ararat-wfc",
+      "promotion": "Ararat WFC",
+      "event": "Ararat WFC 3",
+      "status": "research",
+      "search_query": "Ararat WFC MMA official"
+    },
+    {
+      "id": "afc-navarra",
+      "promotion": "AFC Navarra",
+      "event": "AFC 2 Navarra Arena",
+      "status": "research",
+      "search_query": "AFC Navarra MMA Spain official"
+    },
+    {
+      "id": "lfl",
+      "promotion": "Levels Fight League",
+      "event": "LFL 24",
+      "status": "monitoring",
+      "registry_id": "levels-fight-league"
+    },
+    {
+      "id": "mangu",
+      "promotion": "Mangu Professional League",
+      "event": "MANGU 05",
+      "status": "monitoring",
+      "registry_id": "mangu"
+    },
+    {
+      "id": "armmada",
+      "promotion": "ARMMADA",
+      "event": "ARMMADA 19",
+      "status": "research",
+      "search_query": "ARMMADA MMA Serbia Arena Fight official"
+    },
+    {
+      "id": "babilon",
+      "promotion": "Babilon MMA",
+      "event": "Babilon MMA 60",
+      "status": "research",
+      "search_query": "Babilon MMA official"
+    },
+    {
+      "id": "bfn",
+      "promotion": "Baraber Fight Night",
+      "event": "BFN 10",
+      "status": "research",
+      "search_query": "Baraber Fight Night Croatia official"
+    },
+    {
+      "id": "oktagon",
+      "promotion": "OKTAGON MMA",
+      "event": "OKTAGON 94",
+      "status": "not_youtube_live",
+      "reason": "Current full-event distribution is via OKTAGON.tv/broadcast partners"
+    },
+    {
+      "id": "afn",
+      "promotion": "Apex Fight Night",
+      "event": "AFN 13",
+      "status": "not_youtube_live",
+      "reason": "Current events use AFN Fight Pass"
+    },
+    {
+      "id": "fcc",
+      "promotion": "Full Contact Contender",
+      "event": "FCC 47",
+      "status": "held",
+      "registry_id": "fcc",
+      "reason": "YouTube amateur live coverage is membership-gated; pro cards on UFC Fight Pass"
+    },
+    {
+      "id": "cage-warriors",
+      "promotion": "Cage Warriors",
+      "event": "Cage Warriors 210",
+      "status": "excluded",
+      "reason": "UFC Fight Pass promotion; not a regional free-YouTube target"
+    },
+    {
+      "id": "fnc",
+      "promotion": "Fight Nation Championship",
+      "event": "FNC Vikings 3",
+      "status": "monitoring",
+      "registry_id": "fnc"
+    },
+    {
+      "id": "enfusion",
+      "promotion": "Enfusion",
+      "event": "Enfusion 163",
+      "status": "not_youtube_live",
+      "reason": "Current event page points to Enfusion livestream/ViaPlay rather than YouTube"
+    },
+    {
+      "id": "fen",
+      "promotion": "Fight Exclusive Night",
+      "event": "FEN 63",
+      "status": "research",
+      "search_query": "FEN MMA Fight Exclusive Night official"
+    },
+    {
+      "id": "wow",
+      "promotion": "WOW FC",
+      "event": "WOW 32",
+      "status": "research",
+      "search_query": "WOW FC MMA Spain official"
+    },
+    {
+      "id": "ifn",
+      "promotion": "IFN",
+      "event": "IFN 1",
+      "status": "research",
+      "search_query": "IFN MMA Brazil promotion official"
+    },
+    {
+      "id": "aeternum",
+      "promotion": "Aeternum",
+      "event": "Aeternum 2",
+      "status": "research",
+      "search_query": "Aeternum MMA Peru Mexico official"
+    },
+    {
+      "id": "peak",
+      "promotion": "Peak Fighting",
+      "event": "PFC 54",
+      "status": "not_youtube_live",
+      "reason": "Recent live-fight distribution points to Spectation Sports"
+    },
+    {
+      "id": "sfh",
+      "promotion": "Samurai Fight House",
+      "event": "SFH 31",
+      "status": "monitoring",
+      "registry_id": "samurai-fight-house"
+    },
+    {
+      "id": "fla",
+      "promotion": "Fight League Atlantic",
+      "event": "FLA 26",
+      "status": "not_youtube_live",
+      "reason": "Current event sold as direct PPV"
+    },
+    {
+      "id": "fusion",
+      "promotion": "Fusion Fight League",
+      "event": "Fusion Fight League",
+      "status": "research",
+      "search_query": "Fusion Fight League MMA official"
+    },
+    {
+      "id": "247fc",
+      "promotion": "247 Fighting Championships",
+      "event": "247 MMA at the Venue 8",
+      "status": "not_youtube_live",
+      "reason": "Official site separates YouTube from paid live-stream ordering; current event stream not established on YouTube"
+    },
+    {
+      "id": "bcm",
+      "promotion": "BCM Promotions",
+      "event": "BCM Fight Night 27",
+      "status": "research",
+      "search_query": "BCM Promotions MMA Ohio official"
+    },
+    {
+      "id": "cfc-huntsville",
+      "promotion": "Cage Fighting Championships",
+      "event": "CFC 12 Fall Brawl",
+      "status": "not_youtube_live",
+      "reason": "Recent full events distributed through Combat Sports Now PPV"
+    },
+    {
+      "id": "wfc",
+      "promotion": "World Fighting Championship",
+      "event": "WFC 198",
+      "status": "research",
+      "search_query": "WFC World Fighting Championship MMA Nevada official"
+    },
+    {
+      "id": "shooto-japan",
+      "promotion": "Shooto Japan",
+      "event": "Professional Shooto",
+      "status": "not_youtube_live",
+      "reason": "Official YouTube channel carries full fights after events; current live cards use other services"
+    },
+    {
+      "id": "559-fights",
+      "promotion": "559 Fights",
+      "event": "559 Fights 127",
+      "status": "research",
+      "search_query": "559 Fights official MMA"
+    },
+    {
+      "id": "ufc-vegas",
+      "promotion": "UFC",
+      "event": "UFC Vegas 122",
+      "status": "excluded",
+      "reason": "Major promotion; not a YouTube-live regional source"
+    }
+  ]
+}
