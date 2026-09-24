@@ -305,7 +305,52 @@ def error_result(promotion, previous_source, previous_event, previous_state, cha
     }
 
 
-def extract_stream_candidates(page_html, promotion):
+def promotion_channels(promotion):
+    channels = []
+
+    primary = normalize_channel_url(promotion.get("channel_url"))
+    if primary:
+        channels.append({
+            "channel_url": primary,
+            "require_terms": [],
+            "role": "promotion",
+        })
+
+    for item in promotion.get("broadcast_channels") or []:
+        if isinstance(item, str):
+            url = normalize_channel_url(item)
+            require_terms = []
+            role = "broadcast_partner"
+        else:
+            url = normalize_channel_url(item.get("channel_url"))
+            require_terms = item.get("require_terms") or []
+            role = item.get("role") or "broadcast_partner"
+
+        if not url:
+            continue
+
+        if any(existing["channel_url"] == url for existing in channels):
+            continue
+
+        channels.append({
+            "channel_url": url,
+            "require_terms": [str(term) for term in require_terms if str(term).strip()],
+            "role": role,
+        })
+
+    return channels
+
+
+def source_title_allowed(title, candidate):
+    terms = candidate.get("require_terms") or []
+    if not terms:
+        return True
+
+    lowered = (title or "").casefold()
+    return any(term.casefold() in lowered for term in terms)
+
+
+def extract_stream_candidates(page_html, promotion, channel_config):
     candidates = []
     seen = set()
 
@@ -342,6 +387,9 @@ def extract_stream_candidates(page_html, promotion):
                 "title": title,
                 "html_live": html_live,
                 "restricted": restricted,
+                "source_channel_url": channel_config["channel_url"],
+                "source_role": channel_config.get("role") or "promotion",
+                "require_terms": channel_config.get("require_terms") or [],
             }
         )
 
@@ -453,30 +501,56 @@ def probe_promotion(promotion, global_terms, previous_state):
     previous_source = (previous_state.get("sources") or {}).get(promotion_id) or {}
     previous_event = prior_event_for(promotion_id, previous_state)
 
-    channel_url = normalize_channel_url(promotion.get("channel_url"))
-    if not channel_url:
+    channel_configs = promotion_channels(promotion)
+    primary_channel_url = (
+        channel_configs[0]["channel_url"]
+        if channel_configs
+        else normalize_channel_url(promotion.get("channel_url"))
+    )
+
+    if not channel_configs:
         return error_result(
             promotion,
             previous_source,
             previous_event,
             previous_state,
             None,
-            "No direct YouTube channel URL configured",
+            "No YouTube channel URL configured",
         )
 
     checked_at = now_iso()
-    streams_page, streams_error, _ = fetch_text(f"{channel_url}/streams")
-    if not streams_page:
+    candidates = []
+    fetch_errors = []
+    seen_video_ids = set()
+
+    for channel_config in channel_configs:
+        channel_url = channel_config["channel_url"]
+        streams_page, streams_error, _ = fetch_text(f"{channel_url}/streams")
+        if not streams_page:
+            fetch_errors.append(f"{channel_url}: {streams_error or 'Could not load Streams page'}")
+            continue
+
+        for candidate in extract_stream_candidates(
+            streams_page,
+            promotion,
+            channel_config,
+        ):
+            video_id = candidate.get("video_id")
+            if not video_id or video_id in seen_video_ids:
+                continue
+            seen_video_ids.add(video_id)
+            candidates.append(candidate)
+
+    if not candidates and len(fetch_errors) == len(channel_configs):
         return error_result(
             promotion,
             previous_source,
             previous_event,
             previous_state,
-            channel_url,
-            streams_error or "Could not load YouTube Streams page",
+            primary_channel_url,
+            " | ".join(fetch_errors)[:800],
         )
 
-    candidates = extract_stream_candidates(streams_page, promotion)
     api_items, api_error = youtube_videos(
         [candidate["video_id"] for candidate in candidates]
     )
@@ -507,6 +581,9 @@ def probe_promotion(promotion, global_terms, previous_state):
             if event_status not in {"live", "upcoming"}:
                 continue
 
+            if not source_title_allowed(title, candidate):
+                continue
+
             if candidate["restricted"]:
                 restricted_title = title
                 continue
@@ -517,12 +594,13 @@ def probe_promotion(promotion, global_terms, previous_state):
 
             event = make_event(
                 promotion,
-                channel_url,
+                candidate.get("source_channel_url") or primary_channel_url,
                 video_id,
                 title,
                 item,
                 event_status,
             )
+            event["source_role"] = candidate.get("source_role") or "promotion"
 
             if event_status == "live":
                 if not status_data.get("embeddable", True):
@@ -547,7 +625,7 @@ def probe_promotion(promotion, global_terms, previous_state):
             return {
                 "source": build_source(
                     promotion,
-                    channel_url,
+                    live_event.get("channel_url") or primary_channel_url,
                     "live",
                     None,
                     0,
@@ -574,10 +652,16 @@ def probe_promotion(promotion, global_terms, previous_state):
             source_status = "upcoming" if upcoming else "offline"
             source_error = None
 
+        best_channel_url = (
+            upcoming[0].get("channel_url")
+            if upcoming
+            else primary_channel_url
+        )
+
         return {
             "source": build_source(
                 promotion,
-                channel_url,
+                best_channel_url,
                 source_status,
                 source_error,
                 0,
@@ -591,8 +675,7 @@ def probe_promotion(promotion, global_terms, previous_state):
             "upcoming": upcoming,
         }
 
-    # API failure falls back to the channel page so a quota/key/network issue
-    # cannot take the live station offline.
+    # API failure falls back to public channel-card live metadata.
     restricted_title = None
     ignored_title = None
 
@@ -601,6 +684,9 @@ def probe_promotion(promotion, global_terms, previous_state):
             continue
 
         title = candidate["title"]
+
+        if not source_title_allowed(title, candidate):
+            continue
 
         if candidate["restricted"]:
             restricted_title = title
@@ -611,6 +697,9 @@ def probe_promotion(promotion, global_terms, previous_state):
             continue
 
         observed_at = now_iso()
+        source_channel_url = (
+            candidate.get("source_channel_url") or primary_channel_url
+        )
         event = {
             "event_id": f"{promotion_id}:{candidate['video_id']}",
             "promotion_id": promotion_id,
@@ -620,7 +709,7 @@ def probe_promotion(promotion, global_terms, previous_state):
             "priority": int(promotion.get("priority") or 50),
             "coverage_note": promotion.get("coverage_note"),
             "access_note": promotion.get("access_note"),
-            "channel_url": channel_url,
+            "channel_url": source_channel_url,
             "channel_id": previous_source.get("channel_id"),
             "channel_name": previous_source.get("channel_name"),
             "video_id": candidate["video_id"],
@@ -635,6 +724,7 @@ def probe_promotion(promotion, global_terms, previous_state):
             "actual_end_time": None,
             "concurrent_viewers": None,
             "api_verified": False,
+            "source_role": candidate.get("source_role") or "promotion",
             "stale": False,
             "observed_at": observed_at,
         }
@@ -642,7 +732,7 @@ def probe_promotion(promotion, global_terms, previous_state):
         return {
             "source": build_source(
                 promotion,
-                channel_url,
+                source_channel_url,
                 "live",
                 f"API fallback: {api_error}" if api_error else None,
                 0,
@@ -669,7 +759,7 @@ def probe_promotion(promotion, global_terms, previous_state):
     return {
         "source": build_source(
             promotion,
-            channel_url,
+            primary_channel_url,
             fallback_status,
             fallback_error,
             0,
