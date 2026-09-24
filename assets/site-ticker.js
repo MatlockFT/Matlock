@@ -260,11 +260,49 @@
         return { text: `${minutes}M ${secondText}`, live: false };
     }
 
+    function tickerEventNumber(event) {
+        return String(event?.title || "").match(/\b(\d{1,4})\b/)?.[1] || "";
+    }
+
+    function tickerEventRichness(event) {
+        return (
+            String(event?.title || "").length +
+            (event?.main_event ? 80 : 0) +
+            (event?.venue ? 20 : 0) +
+            (event?.broadcast ? 10 : 0) +
+            (event?.official_url ? 5 : 0)
+        );
+    }
+
+    function dedupeTickerEvents(events) {
+        const byIdentity = new Map();
+
+        for (const event of events) {
+            const source = String(event?.source_key || event?.promotion_key || event?.promotion || "")
+                .trim()
+                .toLowerCase();
+            const date = String(event?.date || "").trim();
+            const number = tickerEventNumber(event);
+            const identity = number && source && date
+                ? `${source}|${date}|#${number}`
+                : event?.id
+                    ? `id:${event.id}`
+                    : `fallback:${source}|${date}|${String(event?.title || "").trim().toLowerCase()}`;
+
+            const previous = byIdentity.get(identity);
+            if (!previous || tickerEventRichness(event) > tickerEventRichness(previous)) {
+                byIdentity.set(identity, event);
+            }
+        }
+
+        return [...byIdentity.values()];
+    }
+
     function normalizedEvents(data) {
         const now = Date.now();
         const roughCutoff = now - DEFAULT_EVENT_LENGTH_MS;
         const raw = Array.isArray(data?.events) ? data.events : [];
-        const candidates = raw
+        const candidates = dedupeTickerEvents(raw)
             .filter(event => {
                 const rough = safeDate(event.starts_at || (event.date ? `${event.date}T23:59:59Z` : ""));
                 return !rough || rough.getTime() > roughCutoff;
