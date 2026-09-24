@@ -4,11 +4,11 @@ This document tracks the controlled reorganization of the MMA Matlock repository
 
 ## Current status
 
-**Stage 1 of 10 — Permanent organizational rules: COMPLETE**
+**Stage 2 of 10 — Future article asset upload hierarchy: COMPLETE**
 
-Next stage: **Stage 2 — Future article asset upload hierarchy**
+Next stage: **Stage 3 — Media source/generated/video pipeline separation**
 
-Stages 0 and 1 moved no public page, article, asset, permalink, Writer path, or runtime-data path. Stage 1 establishes the permanent rules that later stages must follow.
+Stages 0 and 1 established the rollback baseline and permanent organization contract without moving public paths. Stage 2 changes only where new Writer article-image uploads are stored; existing article media remains untouched.
 
 ## Rollback point
 
@@ -137,14 +137,28 @@ npm run check:repo-policy
 
 That check verifies the permanent roots, Jekyll permalink contract, protected paths, media separation, GitHub Release video policy, and staged legacy exceptions before later migrations build on top of them.
 
+## Stage 2 article media hierarchy
+
+Stage 2 routes **new Writer image uploads** into article-owned directories:
+
+```text
+assets/uploads/articles/YYYY/MM/article-slug/
+```
+
+The Writer derives the year and month from the article date and uses the saved filename slug when available, falling back to the article title slug for an unsaved article. Existing files under `assets/uploads/` are not moved or renamed.
+
+The Writer upload UI and backend allow nested article-media paths, and production smoke coverage verifies that new uploads resolve under the article hierarchy. GitHub Release video uploads remain unchanged and outside Git history.
+
+Stage 2 also made the repository-policy stage validator reusable for later stages. Site Quality, Writer auth quality, Writer production smoke, and GitHub Pages deployment all passed before Stage 2 was closed.
+
 ## Planned stages
 
 | Stage | Scope | Status |
 | --- | --- | --- |
 | 0 | Baseline, rollback marker, reference audit | Complete |
 | 1 | Permanent organizational rules | Complete |
-| 2 | Future article asset upload hierarchy | Next |
-| 3 | Media source/generated/video pipeline separation | Pending |
+| 2 | Future article asset upload hierarchy | Complete |
+| 3 | Media source/generated/video pipeline separation | Next |
 | 4 | Writer frontend module split | Pending |
 | 5 | Development-script organization | Pending |
 | 6 | GitHub Actions workflow consolidation | Pending |
