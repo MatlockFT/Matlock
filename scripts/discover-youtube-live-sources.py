@@ -106,6 +106,37 @@ def search_event_videos(channel_id, event_type):
     return videos, ""
 
 
+def search_global_event_videos(query, event_type):
+    params = urllib.parse.urlencode({
+        "part":"snippet",
+        "type":"video",
+        "eventType":event_type,
+        "maxResults":"5",
+        "order":"date",
+        "q":query,
+        "key":API_KEY,
+    })
+    payload, error = fetch_json(f"https://www.googleapis.com/youtube/v3/search?{params}")
+    if not payload:
+        return [], error
+
+    videos = []
+    for item in payload.get("items") or []:
+        video_id = (item.get("id") or {}).get("videoId")
+        snippet = item.get("snippet") or {}
+        if not video_id:
+            continue
+        videos.append({
+            "video_id":video_id,
+            "watch_url":f"https://www.youtube.com/watch?v={video_id}",
+            "title":snippet.get("title") or "",
+            "channel_title":snippet.get("channelTitle") or "",
+            "channel_id":snippet.get("channelId"),
+            "published_at":snippet.get("publishedAt"),
+        })
+    return videos, ""
+
+
 def search_channels(query):
     params = urllib.parse.urlencode({
         "part":"snippet",
@@ -168,6 +199,12 @@ def main():
             top_live, live_error = search_event_videos(ranked[0]["channel_id"], "live")
             top_upcoming, upcoming_error = search_event_videos(ranked[0]["channel_id"], "upcoming")
 
+        event_query = " ".join(
+            part for part in [entry.get("event"), entry.get("promotion")] if part
+        )
+        global_live, global_live_error = search_global_event_videos(event_query, "live")
+        global_upcoming, global_upcoming_error = search_global_event_videos(event_query, "upcoming")
+
         output["results"].append({
             "id":entry.get("id"),
             "promotion":entry.get("promotion"),
@@ -179,6 +216,10 @@ def main():
             "top_candidate_upcoming":top_upcoming,
             "top_candidate_live_error":live_error,
             "top_candidate_upcoming_error":upcoming_error,
+            "event_search_live":global_live,
+            "event_search_upcoming":global_upcoming,
+            "event_search_live_error":global_live_error,
+            "event_search_upcoming_error":global_upcoming_error,
         })
 
     OUT_PATH.write_text(json.dumps(output, indent=2, ensure_ascii=False)+"\n", encoding="utf-8")
