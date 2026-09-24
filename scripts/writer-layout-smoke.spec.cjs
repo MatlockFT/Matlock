@@ -38,7 +38,7 @@ test('Writer shell and editing surface adapt to desktop and ultrawide viewports'
   await expect(page.locator('[data-tool="video"]')).toHaveCount(1);
   await page.locator('[data-tool="video"]').click();
   await expect(page.locator('[data-video-dialog]')).toBeVisible();
-  await expect(page.locator('[data-video-dialog]')).toContainText('GitHub Release assets');
+  await expect(page.locator('[data-video-dialog]')).toContainText('GitHub Releases');
   await page.locator('[data-video-dialog] .writer-dialog-close').click();
 
   let box = await app.boundingBox();
