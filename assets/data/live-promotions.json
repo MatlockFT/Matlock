@@ -289,14 +289,14 @@
       "coverage_note": "Promotion channel; monitor public live streams"
     },
     {
-      "id": "master-vic-podcast-tv",
-      "name": "Master Vic Podcast TV",
-      "short_name": "Master Vic",
+      "id": "mma-mexico",
+      "name": "MMA México",
+      "short_name": "MMA México",
       "country": "Mexico",
-      "priority": 55,
+      "priority": 72,
       "enabled": true,
       "channel_url": "https://www.youtube.com/@MasterVicPodcasTV",
-      "coverage_note": "Combat-sports channel; included as a live-source monitor"
+      "coverage_note": "Promotion coverage via Master Vic channel; monitor public live fight streams"
     },
     {
       "id": "liga-monstro-combate",
@@ -307,6 +307,47 @@
       "enabled": true,
       "channel_url": "https://www.youtube.com/@ligamonstrocombate",
       "coverage_note": "Monthly MMA/boxing events; official site says events air on YouTube"
+    },
+    {
+      "id": "shooto-brasil",
+      "name": "Shooto Brasil",
+      "short_name": "Shooto Brasil",
+      "country": "Brazil",
+      "priority": 82,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/channel/UCsmEWs-nKmRSKDWxY_k4HjQ",
+      "coverage_note": "Official Shooto Brasil channel; current events include YouTube coverage"
+    },
+    {
+      "id": "mangu",
+      "name": "Mangu Professional League",
+      "short_name": "MANGU",
+      "country": "Uzbekistan",
+      "priority": 82,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/channel/UC-qkzVAOMrqLm9d_sCbpNzA",
+      "coverage_note": "Full event streams on YouTube"
+    },
+    {
+      "id": "gma-vietnam",
+      "name": "Gods of Martial Arts",
+      "short_name": "GMA",
+      "country": "Vietnam",
+      "priority": 78,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/channel/UCcfXwgYeWtgBGlP8leMsr_Q",
+      "coverage_note": "Official GMA channel; recent events have used YouTube"
+    },
+    {
+      "id": "fcc",
+      "name": "Full Contact Contender",
+      "short_name": "FCC",
+      "country": "United Kingdom",
+      "priority": 55,
+      "enabled": false,
+      "channel_url": "https://www.youtube.com/@fccmmauk",
+      "coverage_note": "Amateur fight coverage on YouTube",
+      "access_note": "Held: current live amateur coverage is membership-gated; pro cards are on UFC Fight Pass"
     }
   ]
 }
