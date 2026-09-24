@@ -3,15 +3,6 @@
     const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)');
     if (!hoverCapable?.matches || reduceMotion?.matches) return;
 
-    const selectors = [
-        '.v3-lead-image',
-        '.v3-feature-image',
-        '.v3-rail-image',
-        '.article-card-image',
-        '.post-rail-thumb',
-        '.featured-image'
-    ];
-
     const syncCloneGeometry = (source, clone) => {
         const styles = getComputedStyle(source);
         clone.style.objectFit = styles.objectFit;
@@ -72,6 +63,5 @@
         decorate(wrapper);
     };
 
-    document.querySelectorAll(selectors.join(',')).forEach(decorate);
     document.querySelectorAll('.post-featured-image').forEach(decorateFeaturedFigure);
 })();
