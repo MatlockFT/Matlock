@@ -8,7 +8,7 @@ import urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 QUEUE_PATH = ROOT / "assets" / "data" / "live-source-candidates.json"
 OUT_PATH = ROOT / "assets" / "data" / "live-source-discovery.json"
 API_KEY = os.environ.get("YOUTUBE_API_KEY", "").strip()
