@@ -14,9 +14,9 @@
       "verdict_url": "https://verdictmma.com/event/1959",
       "verdict_date": "2026-09-26",
       "local_fight_count": 12,
-      "verdict_fight_count": 12,
+      "verdict_fight_count": 11,
       "local_main_count": 5,
-      "verdict_main_count": 5,
+      "verdict_main_count": 4,
       "local_prelim_count": 7,
       "verdict_prelim_count": 7,
       "confirmed_local_bouts": 9
@@ -404,6 +404,13 @@
       ]
     },
     {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "local_fight_count": 12,
+      "verdict_fight_count": 11
+    },
+    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-09-26-fight-card",
       "verdict_event_id": "1959",
@@ -432,6 +439,15 @@
         "Mahammadali Osmanli",
         "Ilimbek Akylbek"
       ]
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "verdict_event_id": "1959",
+      "local_main_count": 5,
+      "verdict_main_count": 4,
+      "local_prelim_count": 7,
+      "verdict_prelim_count": 7
     },
     {
       "type": "bout_count_mismatch",
