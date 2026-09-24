@@ -34,6 +34,10 @@ If you haven't felt a shiver up your spine at merely reading the words OBLIQUE K
 
 <div class="article-video-embed"><iframe src="https://www.youtube.com/embed/6Lpf1vwr658" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>
 
+Speaking of interesting history, it is only fair that I mention the UFC OG who harnessed the power of Bruce Lee's stop kick, Keith Hackney.
+
+[EMBED X](https://x.com/MMAMATLOCK/status/2102869996133294391)
+
 Before Jones made the oblique kick famous, the aforementioned Anderson Silva obliterated Thales Leites so horribly at UFC 97 that the Association of Boxing Commissions' committee had to review the legality of this lethal blow. Ultimately, the MMA Gods decided the ABC were not honorable enough to enact such a monumental change, and the strike remained legal in 2009. [ABC committee report](https://www.abcboxing.com/committee-report-on-unified-rules-for-mma/).
 
 [EMBED X](https://x.com/MMAMATLOCK/status/2102644311741387051)
@@ -51,18 +55,6 @@ Bernie Profato, Ohio
 
 Interesting.
 
-Speaking of interesting history, it is only fair that I mention the UFC OG who harnessed the power of Bruce Lee's stop kick, Keith Hackney.
-
-[EMBED X](https://x.com/MMAMATLOCK/status/2102869996133294391)
-
-<figure class="article-inline-image article-inline-image--break article-inline-image--center article-inline-image--full">
-  <img src="/assets/uploads/ban-oblique-kicks-pasted-20260923-185638-915.png" alt="ban oblique kicks" loading="lazy">
-</figure>
-
-Now, in 2026, the issue has returned to California's athletic regulators. Following UFC 331, California State Athletic Commission Executive Officer Andy Foster called for discussion of making lateral knee kicks a foul. The renewed attention followed Brunno Ferreira's use of knee-directed kicks against Edmen Shahbazyan, who complained to the referee during their September 19 fight. The strikes were legal. Shahbazyan won by unanimous decision. [Sherdog's report](https://www.sherdog.com/news/news/Controversial-MMA-technique-could-be-banned-following-UFC-331-202885/amp), [UFC's result](https://www.ufc.com/video/160166).
-
-Absolutely disgraceful. Is there no honor amongst fighters?
-
 Fighters and fans alike have endured years and years of watching this strike go unchecked. Jon Jones, Joe Rogan, and [Rampage Jackson have spent more than a decade running competing marketing campaigns bringing awareness to the masses.](https://www.mmamania.com/2013/1/22/1536869/rampage-jackson-jon-jones-oblique-kick-illegal-banned-ufc-mma) Jon Jones obviously a proponent, Rampage Jackson in opposition, as he was the one to suffer the most from Jon Jones using it against him, and Joe Rogan discussing it at length during Jon's fights and on his podcast, more as a mediator. I do believe Joe Rogan lands on the side of supporting the legality of this strike, as well as wanting MMA to take place on a basketball court.
 
 But despite all of Jon, Joe, and Rampage's marketing of this strike, no one has brought more viral awareness than Khalil Rountree when he shelved Modestas Bukauskas' career with perhaps the most effective use of the technique to date. Beware, this video is disturbing.
@@ -71,7 +63,15 @@ But despite all of Jon, Joe, and Rampage's marketing of this strike, no one has 
 
 Shameful.
 
+<figure class="article-inline-image article-inline-image--break article-inline-image--center article-inline-image--full">
+  <img src="/assets/uploads/ban-oblique-kicks-pasted-20260923-185638-915.png" alt="ban oblique kicks" loading="lazy">
+</figure>
+
+Now, in 2026, the issue has returned to California's athletic regulators. Following UFC 331, California State Athletic Commission Executive Officer Andy Foster called for discussion of making lateral knee kicks a foul. The renewed attention followed Brunno Ferreira's use of knee-directed kicks against Edmen Shahbazyan, who complained to the referee during their September 19 fight. The strikes were legal. Shahbazyan won by unanimous decision. [Sherdog's report](https://www.sherdog.com/news/news/Controversial-MMA-technique-could-be-banned-following-UFC-331-202885/amp), [UFC's result](https://www.ufc.com/video/160166).
+
 It comes as no surprise that Edmen Shahbazyan was complaining to the referee during his fight with Brunno Ferreira at UFC 331 this past weekend when Brunno was targeting Edmen's knee with these side kicks. You can't blame him! It's 2026! It's truly bizarre this flaw hasn't been patched yet!
+
+Absolutely disgraceful. Is there no honor amongst fighters?
 
 Luckily, the most powerful person out of all the athletic commissions was present at UFC 331, as it took place under his jurisdiction: Andy Foster. Andy was once the Executive Director of the Georgia Athletic and Entertainment Commission but, on November 7, 2012, was hired as Executive Officer of the California State Athletic Commission. Andy would rather be God damned than have this blasphemous technique used in his state. Aaron Bronsteter reports:
 
@@ -107,4 +107,3 @@ In the meantime, we can only pray no other fighters' careers are sidelined or co
 Andy Foster getting knocked out by Amar Suloev
 
 <div class="article-video-embed"><iframe src="https://www.youtube.com/embed/a0QcDnV2lHQ" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>
-
