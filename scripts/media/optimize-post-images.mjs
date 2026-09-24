@@ -3,7 +3,7 @@ import { join, resolve } from 'node:path';
 import sharp from 'sharp';
 import { responsiveOutputPlan } from './media-paths.mjs';
 
-const root = resolve(import.meta.dirname, '..');
+const root = resolve(import.meta.dirname, '../..');
 const postsDirectory = join(root, '_posts');
 const postOutputDirectory = join(root, 'assets', 'generated', 'posts');
 const siteOutputDirectory = join(root, 'assets', 'generated', 'site');
