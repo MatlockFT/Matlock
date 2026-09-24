@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-09-24T15:09:40.927Z"
+      "checkedAt": "2026-09-24T19:12:58.548Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-24T15:10:04.932Z",
+      "checkedAt": "2026-09-24T19:13:27.641Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -196847,7 +196847,13 @@
         "mirrorThrough": "2026-09-19",
         "officialThrough": "2026-09-19"
       },
-      "booking": null,
+      "booking": {
+        "event": "Jr. vs Barcelos",
+        "date": "2026-09-26",
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Sedriques Dumas",
+        "opponentId": "sedriques-dumas"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -224799,13 +224805,7 @@
         "mirrorThrough": "2026-09-19",
         "officialThrough": "2026-09-19"
       },
-      "booking": {
-        "event": "Jr. vs Barcelos",
-        "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
-        "opponent": "Sedriques Dumas",
-        "opponentId": "sedriques-dumas"
-      },
+      "booking": null,
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -284663,8 +284663,8 @@
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
         "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
-        "opponent": "Mickey Gall",
-        "opponentId": "mickey-gall"
+        "opponent": "Luis Hernandez",
+        "opponentId": "luis-hernandez"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
