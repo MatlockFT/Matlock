@@ -48,7 +48,7 @@ async function countFiles(directory) {
 }
 
 function normalizeAssetReference(value) {
-  const clean = String(value || '').split(/[?#]/, 1)[0].replace(/^\//, '');
+  const clean = String(value || '').split(/[?#]/, 1)[0].replace(/[)\]}>.,;:]+$/g, '').replace(/^\//, '');
   try { return decodeURI(clean); } catch { return clean; }
 }
 
