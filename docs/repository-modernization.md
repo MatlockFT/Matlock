@@ -305,7 +305,7 @@ Canonical routes remain unchanged. Browser smoke coverage now targets the canoni
 
 Version-named V3 assets such as `assets/homepage-v3.css`, `assets/news-v3.css`, and `assets/matchmaker-v3.css` were deliberately retained because the canonical live pages still consume them. Stage 7 removes dead page entry points, not working production styling.
 
-The repository policy now advances to modernization Stage 7 and rejects any new root `*-vN.html` or `legacy-*.html` migration page.
+The repository policy now advances to modernization Stage 7 and rejects any new root `*-vN.html` migration page. Existing `legacy-*.html` files are retained because they are deliberate redirect stubs that preserve older public article URLs.
 
 The exact pre-Stage-7 repository state is preserved at `archive/repo-modernization-stage6-complete-2026-09-24`.
 

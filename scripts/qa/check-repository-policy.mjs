@@ -162,12 +162,12 @@ if (stage >= 7 && Object.prototype.hasOwnProperty.call(policy.legacyExceptions |
 if (stage >= 7) {
   const rootEntries = await fs.readdir('.', { withFileTypes: true });
   const legacyRootPages = rootEntries
-    .filter(entry => entry.isFile() && /(?:-v\d+\.html$|^legacy-.*\.html$)/i.test(entry.name))
+    .filter(entry => entry.isFile() && /-v\d+\.html$/i.test(entry.name))
     .map(entry => entry.name)
     .sort();
 
   if (legacyRootPages.length) {
-    errors.push('Stage 7 forbids versioned/legacy root pages: ' + legacyRootPages.join(', '));
+    errors.push('Stage 7 forbids versioned root pages: ' + legacyRootPages.join(', '));
   }
 }
 if (policy.legacyExceptions?.currentFlatScriptLayoutAllowedUntilStage !== 5) {

@@ -290,17 +290,6 @@
                                     {% if active %}aria-current="page"{% endif %}
                                 >
                                     
-                                                {% assign nav_description = "Open this section of MMA Matlock." %}
-                                        {% endcase %}
-                                        <span
-                                            class="navigation-v2-link-copy"
-                                            data-nav-preview-label="{{ item.name | escape }}"
-                                            data-nav-preview-description="{{ nav_description | escape }}"
-                                        >
-                                            {{ item.name }}
-                                        </span>
-                                        <span class="navigation-v2-link-arrow" aria-hidden="true">↗</span>
-                                    {% else %}
                                         <span>{{ item.name }}</span>
                                         {% if item.external %}<span aria-hidden="true">↗</span>{% endif %}
                                     
