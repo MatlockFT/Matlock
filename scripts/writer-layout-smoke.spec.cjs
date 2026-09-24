@@ -162,6 +162,22 @@ test('Writer keeps embeds stable, quotes structured, and bitmap clipboard paste 
   await page.waitForTimeout(180);
   await expect(page.locator('[data-preview-content] .writer-embed iframe')).toHaveAttribute('data-keep-node', 'youtube');
 
+  // Native uploaded video stays the same DOM/video node while unrelated copy changes.
+  await editor.fill([
+    'Copy before native video.',
+    '',
+    '<figure class="article-inline-video">',
+    '  <video controls playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-test/stable-preview.mp4" aria-label="Stable native video"></video>',
+    '</figure>'
+  ].join('\n'));
+  const nativeVideo = page.locator('[data-preview-content] .article-inline-video video');
+  await expect(nativeVideo).toHaveCount(1);
+  await nativeVideo.evaluate(el => { el.dataset.keepNode = 'native-video'; });
+  await editor.evaluate(el => { el.focus(); el.setSelectionRange(el.value.length, el.value.length); });
+  await page.keyboard.type(' Copy after native video.');
+  await page.waitForTimeout(180);
+  await expect(page.locator('[data-preview-content] .article-inline-video video')).toHaveAttribute('data-keep-node', 'native-video');
+
   // X preview wrapper is also preserved instead of being rebuilt on each keystroke.
   await page.click('[data-tool="x"]');
   await page.fill('[data-x-url]', 'https://x.com/MMAMatlock/status/2100109052697051428');
