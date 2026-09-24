@@ -370,6 +370,17 @@ def inspect_watch_video(video_id, promotion):
     live = bool(LIVE_BROADCAST_RE.search(page_html)) or '"isLiveNow":true' in page_html
     restricted = any(marker in lowered for marker in RESTRICTED_MARKERS)
 
+    if promotion.get("id") == "inka" and video_id == "C2nNtrk8FRs":
+        probes = {
+            "isLiveNow": '"isLiveNow":true' in page_html,
+            "isLiveContent": '"isLiveContent":true' in page_html,
+            "liveBroadcastDetails": '"liveBroadcastDetails"' in page_html,
+            "liveBadge": "BADGE_STYLE_TYPE_LIVE_NOW" in page_html,
+            "liveStyle": '"style":"LIVE"' in page_html,
+            "offlineSlate": "LIVE_STREAM_OFFLINE_SLATE_RENDERER" in page_html,
+        }
+        print(f"INKA C2n markers: {probes}")
+
     fallback = f"{promotion.get('short_name') or promotion['name']} live"
     title = extract_title(page_html, fallback)
 
