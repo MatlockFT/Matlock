@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-09-24T03:23:12.264Z",
+  "updatedAt": "2026-09-24T04:16:11.091Z",
   "entries": {
     "ufc:2018-09-08:ufc-228-woodley-vs-till": {
       "strategyVersion": 7,
@@ -1254,16 +1254,44 @@
     "rizin:2023-09-24:rizin-44": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T23:57:22.006Z",
-      "wikipediaTitle": "2023 in Rizin Fighting Federation#Rizin 44"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-09-24T04:15:36.020Z",
+      "wikipediaTitle": "2023 in Rizin Fighting Federation#Rizin 44",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2023-09-24-rizin-44-1e2a654f6dd60225.jpg",
+      "imageAlt": "Rizin 44 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/103572-rizin-44",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/103572-rizin-44",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "1e2a654f6dd6022578f6c7f9e3268674aca094699700826ec876fb346868f452",
+      "posterRegistryKey": "2023-09-24::rizin 44"
     },
     "pride:2005-09-25:pride-bushido-9": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T23:57:22.006Z",
-      "wikipediaTitle": "Pride Bushido 9"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-09-24T04:14:12.599Z",
+      "wikipediaTitle": "Pride Bushido 9",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2005-09-25-pride-bushido-9-8eebd21cb2e36f30.jpg",
+      "imageAlt": "Pride Bushido 9 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/pride-bushido-9",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/pride-bushido-9",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "8eebd21cb2e36f309aa409fccad0baecd7bf8f4e33fa3a04eef4ade9ebabf761",
+      "posterRegistryKey": "2005-09-25::pride bushido 9"
     },
     "strikeforce:2009-09-25:strikeforce-challengers-3-kennedy-vs-cummings": {
       "strategyVersion": 6,
