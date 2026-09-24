@@ -1,8 +1,26 @@
 {
   "version": 4,
-  "generated_at": "2026-09-24T02:06:27Z",
-  "selected_event_id": null,
-  "events": [],
+  "generated_at": "2026-09-24T02:09:57Z",
+  "selected_event_id": "inka:6ukaP7vVicE",
+  "events": [
+    {
+      "event_id": "inka:6ukaP7vVicE",
+      "promotion_id": "inka",
+      "promotion": "Inka Fighting Championship",
+      "short_name": "INKA",
+      "country": "Peru",
+      "priority": 65,
+      "coverage_note": "Prelims",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/@INKA.MMAPRO",
+      "video_id": "6ukaP7vVicE",
+      "title": "INKA live",
+      "watch_url": "https://www.youtube.com/watch?v=6ukaP7vVicE",
+      "is_live": true,
+      "stale": false,
+      "observed_at": "2026-09-24T02:09:56Z"
+    }
+  ],
   "sources": {
     "a1-combat": {
       "promotion": "A1 Combat",
@@ -45,7 +63,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:06:26Z"
+      "last_checked_at": "2026-09-24T02:09:55Z"
     },
     "budo-sento": {
       "promotion": "Budo Sento Championship",
@@ -75,7 +93,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:06:26Z"
+      "last_checked_at": "2026-09-24T02:09:55Z"
     },
     "empire-mma-colombia": {
       "promotion": "Empire MMA",
@@ -143,11 +161,11 @@
       "coverage_note": "Prelims",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@INKA.MMAPRO",
-      "status": "offline",
+      "status": "live",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:06:26Z"
+      "last_success_at": "2026-09-24T02:09:56Z",
+      "last_checked_at": "2026-09-24T02:09:55Z"
     },
     "levels-fight-league": {
       "promotion": "Levels Fight League",
@@ -161,7 +179,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:06:26Z"
+      "last_checked_at": "2026-09-24T02:09:56Z"
     },
     "lfa": {
       "promotion": "Legacy Fighting Alliance",
@@ -188,7 +206,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:06:26Z"
+      "last_checked_at": "2026-09-24T02:09:56Z"
     },
     "mfl": {
       "promotion": "Mexico Fight League",
@@ -215,7 +233,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:06:26Z"
+      "last_checked_at": "2026-09-24T02:09:55Z"
     },
     "octagon-central-asia": {
       "promotion": "OCTAGON",
@@ -245,7 +263,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:06:26Z"
+      "last_checked_at": "2026-09-24T02:09:56Z"
     },
     "road-fc": {
       "promotion": "ROAD FC",
@@ -259,7 +277,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:06:26Z"
+      "last_checked_at": "2026-09-24T02:09:55Z"
     },
     "samurai-fight-house": {
       "promotion": "Samurai Fight House",
@@ -273,7 +291,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:06:27Z"
+      "last_checked_at": "2026-09-24T02:09:56Z"
     },
     "sft-combat": {
       "promotion": "SFT Combat",
@@ -287,7 +305,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:06:26Z"
+      "last_checked_at": "2026-09-24T02:09:55Z"
     },
     "tuff-n-uff": {
       "promotion": "Tuff-N-Uff",
@@ -333,9 +351,9 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:06:26Z"
+      "last_checked_at": "2026-09-24T02:09:56Z"
     }
   },
   "monitored_count": 23,
-  "live_count": 0
+  "live_count": 1
 }
