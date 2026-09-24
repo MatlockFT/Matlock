@@ -12,7 +12,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[3]
 REGISTRY_PATH = ROOT / "assets" / "data" / "live-promotions.json"
 STATE_PATH = ROOT / "assets" / "data" / "global-live.json"
 
