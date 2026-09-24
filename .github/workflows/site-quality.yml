@@ -129,6 +129,7 @@ jobs:
         run: |
           node --check assets/matchmaker.js
           node --check assets/matchmaker-engine.js
+          node scripts/matchmaker/check-ui-readability.mjs
           node scripts/check-matchmaker.mjs
 
       - name: Check Event Map poster sanitizer behavior
