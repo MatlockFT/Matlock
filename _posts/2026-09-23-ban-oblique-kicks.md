@@ -30,6 +30,8 @@ Finally! The MMA Gods have listened to the collective prayers of casual and hard
 
 This controversial kick has been used by many, but most notably by Anderson Silva, Jon Jones, and Khalil Rountree. It's no wonder in some circles it's called the illegal kick because it's impossible to block or counter. In fact, unlike a submission, you cannot even tap to it. It's truly amazing we've made it to 2026 without it being banned yet.
 
+[EMBED X](https://x.com/MWestern7/status/2102779294158110994)
+
 If you haven't felt a shiver up your spine at merely reading the words OBLIQUE KICK, then that means you are unfamiliar with the devastating move. Worry not, for there is a video explaining it in perfect detail by the one who arguably made it most famous and used it most effectively. The one, the only, Jonny Bones Jones.
 
 <div class="article-video-embed"><iframe src="https://www.youtube.com/embed/6Lpf1vwr658" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>
