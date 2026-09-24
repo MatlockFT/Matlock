@@ -7,7 +7,7 @@ const normalize = value => String(value || '').trim().toLocaleLowerCase('en-US')
 
 let data;
 try {
-  data = yaml.load(await fs.readFile(DATA_PATH, 'utf8'));
+  data = JSON.parse(await fs.readFile(DATA_PATH, 'utf8'));
 } catch (error) {
   console.error(`Could not read MMA Yellow Pages data: ${error.message}`);
   process.exit(1);
