@@ -1,0 +1,87 @@
+categories:
+  - id: merchandise-gear
+    letter: M
+    title: Merchandise & Gear
+    listings:
+      - name: Cage Fury Store
+        url: https://cagefurystore.com/
+        type: Promotion Store
+        description: Official CFFC apparel and promotion merchandise.
+      - name: Combat Supply Co.
+        url: https://combatsupplyco.com/
+        type: Equipment
+        description: Boxing, MMA, BJJ, Muay Thai, and general training gear.
+      - name: King Killers
+        url: https://kingkillers.co/
+        type: Fightwear
+        description: Fighter-owned combat-sports apparel and training wear.
+      - name: The Fight Site Merch
+        url: https://the-fight-site-shop.creator-spring.com/
+        type: Creator Merch
+        description: Shirts and merchandise from The Fight Site.
+
+  - id: reference-data
+    letter: R
+    title: Reference & Data
+    listings:
+      - name: Fight Matrix
+        url: https://www.fightmatrix.com/
+        type: Rankings
+        description: Computer-generated MMA rankings, records, and fighter search.
+      - name: MMA Decisions
+        url: https://mmadecisions.com/
+        type: Judging
+        description: Official scorecards, media scores, fan scores, judges, and decision history.
+      - name: MMA Judge Analyzer
+        url: https://mmajudgeanalyzer.com/
+        type: Judging
+        description: MMA judging and scorecard analysis.
+      - name: Sherdog Fight Finder
+        url: https://www.sherdog.com/stats/fightfinder
+        type: Database
+        description: Fighter, event, organization, and historical fight records.
+      - name: Tapology
+        url: https://www.tapology.com/
+        type: Database
+        description: Fight cards, fighter records, regional events, rankings, and community picks.
+      - name: UFCStats
+        url: https://ufcstats.com/
+        type: Stats
+        description: Official UFC fight and fighter statistics.
+
+  - id: video-podcasts
+    letter: V
+    title: Video & Podcasts
+    listings:
+      - name: Co-Main Event Podcast
+        url: https://www.youtube.com/@comaineventpodcast
+        type: Podcast
+        description: MMA news, commentary, and event discussion.
+      - name: Fight Site Presents
+        url: https://www.youtube.com/@FightSitePresents
+        type: Video
+        description: Combat-sports analysis and technical discussion.
+      - name: Half The Battle
+        url: https://www.youtube.com/@HalfTheBattleOfficial
+        type: Video
+        description: Fight predictions and MMA betting discussion.
+      - name: Jack Slack
+        url: https://www.youtube.com/@jackslack7786
+        type: Video
+        description: MMA technique, analysis, and fight commentary.
+      - name: Jimmy Smith MMA
+        url: https://www.youtube.com/@jimmysmithmma
+        type: Video
+        description: MMA commentary and analysis.
+      - name: Liam Picks Fights
+        url: https://www.youtube.com/@LiamPicksFights
+        type: Video
+        description: Fight picks, predictions, and analysis.
+      - name: MMA History Podcast
+        url: https://www.youtube.com/@MMAHistoryPodcast
+        type: Podcast
+        description: Stories and discussion from MMA history.
+      - name: The Weasle
+        url: https://www.youtube.com/@TheWeasleMMA
+        type: Video
+        description: MMA breakdowns, predictions, and post-fight analysis.
