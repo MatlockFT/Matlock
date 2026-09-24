@@ -17,7 +17,8 @@
 
   const commands = [
     { key: 'image', label: 'Image', detail: 'Upload or insert an image', selector: '[data-tool="image"]', aliases: 'photo picture media' },
-    { key: 'youtube', label: 'YouTube', detail: 'Embed a YouTube video', selector: '[data-tool="youtube"]', aliases: 'video yt' },
+    { key: 'video', label: 'Video', detail: 'Upload a clip or insert a direct video URL', selector: '[data-tool="video"]', aliases: 'clip mp4 webm m4v media upload' },
+    { key: 'youtube', label: 'YouTube', detail: 'Embed a YouTube video', selector: '[data-tool="youtube"]', aliases: 'yt youtube embed' },
     { key: 'tweet', label: 'Tweet / X', detail: 'Embed an X or Twitter post', selector: '[data-tool="x"]', aliases: 'x twitter post status embed' },
     { key: 'table', label: 'Table', detail: 'Build a Markdown table', selector: '[data-tool="table"]', aliases: 'rows columns stats' },
     { key: 'tale', label: 'Tale of Tape', detail: 'Insert the existing tale-of-the-tape block', selector: '[data-tool="tale"]', aliases: 'tale tape fighter' },
