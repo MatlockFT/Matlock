@@ -9,12 +9,10 @@ page_styles:
   - /assets/editorial-v3-shell.css
   - /assets/news.css
   - /assets/news-matlock.css
-  - /assets/on-this-day.css
   - /assets/news-v3.css
 page_scripts:
   - /assets/editorial-v3-shell.js
   - /assets/news-feed.js
-  - /assets/news-otd-deferred.js
 page_preconnects:
   - https://raw.githubusercontent.com
 page_fetch_preloads:
@@ -77,24 +75,6 @@ page_fetch_preloads:
                 </div>
             </aside>
         </div>
-    </section>
-
-    <div data-news-otd-sentinel aria-hidden="true" style="height:1px"></div>
-
-    <section
-        class="otd-compact"
-        data-on-this-day
-        data-mode="compact"
-        data-history-url="{{ '/assets/data/on-this-day.json' | relative_url }}?v={{ site.asset_version }}"
-        data-history-script-url="{{ '/assets/on-this-day.js' | relative_url }}?v={{ site.asset_version }}"
-        hidden
-        aria-label="On this day in MMA history"
-    >
-        <div class="otd-compact-header">
-            <a class="otd-compact-title" href="{{ '/on-this-day/' | relative_url }}">On This Day</a>
-            <span class="otd-compact-date" data-otd-date></span>
-        </div>
-        <div class="otd-compact-list" data-otd-list></div>
     </section>
 
     <section class="news-more" aria-labelledby="news-more-title">
