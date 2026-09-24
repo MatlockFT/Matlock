@@ -71,6 +71,8 @@ writer-media-YYYY-MM
 
 The article stores the release URL. Existing release URLs are permanent dependencies and must not be deleted casually.
 
+Tracked video files under `assets/` are prohibited by the Stage 3 media pipeline check. Direct external video URLs may still be embedded, but Writer uploads use GitHub Releases.
+
 ## Generated media
 
 Machine-produced derivatives belong under:
@@ -81,7 +83,15 @@ assets/generated/
 
 Generated files are outputs, not source material. A generation script should be able to recreate them from their authored source.
 
-Source images and generated responsive variants must remain conceptually separate even when legacy files predate this contract.
+For new article-owned source images, responsive derivatives mirror article ownership under:
+
+```text
+assets/generated/posts/YYYY/MM/article-slug/
+```
+
+Legacy source images keep their existing flat generated filenames so established public URLs do not change.
+
+The full source → generated → video separation is documented in [`docs/media-pipeline.md`](media-pipeline.md). Templates should use `_data/responsive_images.yml` rather than constructing generated URLs by hand.
 
 ## Runtime data
 
