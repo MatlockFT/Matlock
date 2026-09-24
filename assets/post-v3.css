@@ -282,6 +282,30 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
 }
 
 
+/* X embeds must keep the height supplied by X widgets; never force a video aspect ratio. */
+.post-page-v3 .post-body .article-x-embed{
+  width:min(100%,550px);
+  max-width:100%;
+  margin:1.35rem auto 1.65rem;
+  overflow:visible;
+}
+.post-page-v3 .post-body .article-x-embed > .twitter-tweet{
+  width:100%;
+  max-width:100%;
+  margin:0;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+.post-page-v3 .post-body .article-x-embed iframe{
+  position:static;
+  width:100%!important;
+  max-width:100%!important;
+  aspect-ratio:auto!important;
+  margin:0!important;
+  border:0!important;
+}
+
 /* Responsive YouTube embeds from Writer, plus a fallback for older raw iframes. */
 .post-page-v3 .post-body .article-video-embed{
   position:relative;
