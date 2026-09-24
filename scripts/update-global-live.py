@@ -19,6 +19,8 @@ MAX_WORKERS = 6
 IDLE_BATCH_COUNT = 3
 
 VIDEO_ID_RE = re.compile(r'"videoId":"([A-Za-z0-9_-]{11})"')
+WATCH_URL_RE = re.compile(r'(?:watch\\?v=|watch%3Fv%3D)([A-Za-z0-9_-]{11})')
+OG_TITLE_RE = re.compile(r'<meta[^>]+property=["\\']og:title["\\'][^>]+content=["\\']([^"\\']+)["\\']', re.I)
 TITLE_RUN_RE = re.compile(
     r'"title":\{"runs":\[\{"text":"((?:\\.|[^"\\])*)"',
     re.S,
@@ -89,20 +91,21 @@ def fetch_text(url):
     try:
         with urllib.request.urlopen(request, timeout=35) as response:
             content_type = response.headers.get("Content-Type", "")
+            final_url = response.geturl()
             body = response.read().decode("utf-8", errors="replace")
             if response.status >= 400:
-                return None, f"HTTP {response.status}"
+                return None, f"HTTP {response.status}", final_url
             if "text/html" not in content_type and "<html" not in body[:500].lower():
-                return None, f"Unexpected content type: {content_type}"
-            return body, ""
+                return None, f"Unexpected content type: {content_type}", final_url
+            return body, "", final_url
     except urllib.error.HTTPError as exc:
-        return None, f"HTTP {exc.code}: {exc.reason}"
+        return None, f"HTTP {exc.code}: {exc.reason}", exc.geturl()
     except urllib.error.URLError as exc:
-        return None, f"Network error: {exc.reason}"
+        return None, f"Network error: {exc.reason}", url
     except TimeoutError:
-        return None, "Request timed out"
+        return None, "Request timed out", url
     except Exception as exc:
-        return None, f"Request error: {exc}"
+        return None, f"Request error: {exc}", url
 
 
 def decode_json_text(value):
@@ -118,6 +121,12 @@ def decode_json_text(value):
 
 
 def extract_title(window, fallback):
+    og_match = OG_TITLE_RE.search(window)
+    if og_match:
+        title = html.unescape(og_match.group(1)).strip()
+        if title:
+            return title
+
     run_match = TITLE_RUN_RE.search(window)
     if run_match:
         title = decode_json_text(run_match.group(1))
@@ -131,6 +140,13 @@ def extract_title(window, fallback):
             return title
 
     return fallback
+
+
+def video_id_from_url(url):
+    if not url:
+        return None
+    match = WATCH_URL_RE.search(url)
+    return match.group(1) if match else None
 
 
 def find_live_video(page_html, promotion):
@@ -283,20 +299,42 @@ def probe_promotion(promotion, global_terms, previous_state):
             "No direct YouTube channel URL configured",
         )
 
-    streams_url = f"{channel_url}/streams"
-    page_html, fetch_error = fetch_text(streams_url)
     checked_at = now_iso()
 
-    if not page_html:
-        return error_result(
-            promotion,
-            previous_source,
-            previous_event,
-            channel_url,
-            fetch_error or "Could not load YouTube Streams page",
-        )
+    live_page, live_error, live_final_url = fetch_text(f"{channel_url}/live")
+    candidate = None
 
-    candidate = find_live_video(page_html, promotion)
+    redirected_video_id = video_id_from_url(live_final_url)
+    if redirected_video_id:
+        page_lower = (live_page or "").casefold()
+        candidate = {
+            "video_id": redirected_video_id,
+            "restricted": any(marker in page_lower for marker in RESTRICTED_MARKERS),
+            "title": extract_title(
+                live_page or "",
+                f"{promotion.get('short_name') or promotion['name']} live",
+            ),
+        }
+    elif live_page:
+        candidate = find_live_video(live_page, promotion)
+
+    # Some channel URL variants do not redirect /live even while broadcasting.
+    # Fall back to the Streams tab and inspect its initial server-rendered data.
+    if not candidate:
+        streams_page, streams_error, _ = fetch_text(f"{channel_url}/streams")
+        if streams_page:
+            candidate = find_live_video(streams_page, promotion)
+        elif not live_page:
+            combined_error = live_error or streams_error or "Could not load YouTube channel pages"
+            if "HTTP 404" not in combined_error:
+                return error_result(
+                    promotion,
+                    previous_source,
+                    previous_event,
+                    channel_url,
+                    combined_error,
+                )
+
     if not candidate:
         return {
             "source": build_source(
