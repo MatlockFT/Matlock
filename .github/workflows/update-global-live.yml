@@ -1,0 +1,59 @@
+name: Update global MMA live status
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/update-global-live.yml"
+      - "scripts/update-global-live.py"
+      - "assets/data/live-promotions.json"
+      - "live-lab.html"
+      - "assets/live-lab.js"
+  schedule:
+    - cron: "4-59/5 * * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: global-mma-live-status
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install YouTube detector
+        run: python -m pip install --disable-pip-version-check --quiet yt-dlp
+
+      - name: Check promotion registry
+        run: python scripts/update-global-live.py
+
+      - name: Publish live-state change
+        shell: bash
+        run: |
+          if git diff --quiet -- assets/data/global-live.json; then
+            echo "No global live-state change."
+            exit 0
+          fi
+
+          git config user.name "mma-matlock-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets/data/global-live.json
+          git commit -m "Update global MMA live status"
+          git pull --rebase origin main
+          git push origin HEAD:main
