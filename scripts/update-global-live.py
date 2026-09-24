@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 import html
 import json
+import os
 import re
 import sys
 import urllib.error
-import urllib.request
 import urllib.parse
+import urllib.request
 import zlib
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
@@ -15,21 +16,17 @@ ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATH = ROOT / "assets" / "data" / "live-promotions.json"
 STATE_PATH = ROOT / "assets" / "data" / "global-live.json"
 
+YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", "").strip()
+
 MAX_STALE_ERRORS = 4
 MAX_WORKERS = 6
 IDLE_BATCH_COUNT = 3
-MAX_STREAM_CANDIDATES = 6
+MAX_STREAM_CANDIDATES = 8
 
 VIDEO_ID_RE = re.compile(r'"videoId":"([A-Za-z0-9_-]{11})"')
 STREAM_VIDEO_ID_RE = re.compile(
     r'"(?:videoRenderer|gridVideoRenderer)":\{"videoId":"([A-Za-z0-9_-]{11})"'
 )
-LIVE_BROADCAST_RE = re.compile(
-    r'"liveBroadcastDetails":\\{.{0,1500}?"isLiveNow":true',
-    re.S,
-)
-WATCH_URL_RE = re.compile(r'(?:watch\\?v=|watch%3Fv%3D)([A-Za-z0-9_-]{11})')
-OG_TITLE_RE = re.compile(r'<meta property="og:title" content="([^"]+)"', re.I)
 TITLE_RUN_RE = re.compile(
     r'"title":\{"runs":\[\{"text":"((?:\\.|[^"\\])*)"',
     re.S,
@@ -44,15 +41,8 @@ TITLE_CONTENT_RE = re.compile(
 )
 WATCHING_RE = re.compile(r'"content":"[^"]*\bwatching"', re.I)
 
-LIVE_MARKERS = (
-    '"BADGE_STYLE_TYPE_LIVE_NOW"',
-    '"style":"LIVE"',
-    '"isLiveNow":true',
-    '"text":"LIVE"',
-)
-
 RESTRICTED_MARKERS = (
-    "BADGE_STYLE_TYPE_MEMBERS_ONLY",
+    "badge_style_type_members_only",
     "members-only",
     "members only",
     "subscriber-only",
@@ -122,6 +112,39 @@ def fetch_text(url):
         return None, f"Request error: {exc}", url
 
 
+def fetch_json(url):
+    request = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": USER_AGENT,
+            "Accept": "application/json",
+        },
+    )
+
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            return json.loads(response.read().decode("utf-8", errors="replace")), ""
+    except urllib.error.HTTPError as exc:
+        detail = ""
+        try:
+            payload = json.loads(exc.read().decode("utf-8", errors="replace"))
+            detail = (
+                payload.get("error", {}).get("message")
+                or payload.get("error", {}).get("errors", [{}])[0].get("reason")
+                or ""
+            )
+        except Exception:
+            pass
+        suffix = f": {detail}" if detail else ""
+        return None, f"HTTP {exc.code}{suffix}"
+    except urllib.error.URLError as exc:
+        return None, f"Network error: {exc.reason}"
+    except TimeoutError:
+        return None, "Request timed out"
+    except Exception as exc:
+        return None, f"Request error: {exc}"
+
+
 def decode_json_text(value):
     if not value:
         return ""
@@ -141,12 +164,6 @@ def extract_title(window, fallback):
         if title:
             return title
 
-    og_match = OG_TITLE_RE.search(window)
-    if og_match:
-        title = html.unescape(og_match.group(1)).strip()
-        if title:
-            return title
-
     run_match = TITLE_RUN_RE.search(window)
     if run_match:
         title = decode_json_text(run_match.group(1))
@@ -162,85 +179,6 @@ def extract_title(window, fallback):
     return fallback
 
 
-def video_id_from_url(url):
-    if not url:
-        return None
-    match = WATCH_URL_RE.search(url)
-    return match.group(1) if match else None
-
-
-def fetch_oembed(video_id):
-    params = urllib.parse.urlencode({
-        "url": f"https://www.youtube.com/watch?v={video_id}",
-        "format": "json",
-    })
-    request = urllib.request.Request(
-        f"https://www.youtube.com/oembed?{params}",
-        headers={
-            "User-Agent": USER_AGENT,
-            "Accept-Language": "en-US,en;q=0.9",
-            "Accept": "application/json",
-        },
-    )
-
-    try:
-        with urllib.request.urlopen(request, timeout=20) as response:
-            payload = json.loads(response.read().decode("utf-8", errors="replace"))
-            return payload, ""
-    except urllib.error.HTTPError as exc:
-        return None, f"HTTP {exc.code}: {exc.reason}"
-    except Exception as exc:
-        return None, f"oEmbed error: {exc}"
-
-
-def find_live_video(page_html, promotion):
-    candidates = []
-    seen = set()
-
-    for match in VIDEO_ID_RE.finditer(page_html):
-        video_id = match.group(1)
-        if video_id in seen:
-            continue
-        seen.add(video_id)
-
-        start = max(0, match.start() - 1200)
-        end = min(len(page_html), match.end() + 9000)
-        window = page_html[start:end]
-        lowered = window.casefold()
-
-        if not any(marker in window for marker in LIVE_MARKERS):
-            continue
-
-        if any(marker in lowered for marker in RESTRICTED_MARKERS):
-            candidates.append(
-                {
-                    "video_id": video_id,
-                    "restricted": True,
-                    "title": extract_title(
-                        window,
-                        f"{promotion.get('short_name') or promotion['name']} live",
-                    ),
-                }
-            )
-            continue
-
-        candidates.append(
-            {
-                "video_id": video_id,
-                "restricted": False,
-                "title": extract_title(
-                    window,
-                    f"{promotion.get('short_name') or promotion['name']} live",
-                ),
-            }
-        )
-
-    # Prefer a public live candidate if both public and restricted broadcasts
-    # appear on the Streams page.
-    candidates.sort(key=lambda item: item["restricted"])
-    return candidates[0] if candidates else None
-
-
 def title_allowed(title, global_terms, promotion):
     lowered = (title or "").casefold()
     terms = list(global_terms) + list(promotion.get("ignore_terms") or [])
@@ -252,6 +190,14 @@ def prior_event_for(promotion_id, previous_state):
         if event.get("promotion_id") == promotion_id:
             return event
     return None
+
+
+def prior_upcoming_for(promotion_id, previous_state):
+    return [
+        event
+        for event in previous_state.get("upcoming") or []
+        if event.get("promotion_id") == promotion_id
+    ]
 
 
 def promotion_bucket(promotion_id):
@@ -275,7 +221,7 @@ def should_probe(promotion, previous_source, previous_event, active_bucket):
     status = previous_source.get("status")
     error_count = int(previous_source.get("error_count") or 0)
 
-    if status in {"live", "restricted_live"}:
+    if status in {"live", "restricted_live", "unembeddable_live"}:
         return True
 
     if status == "error" and error_count < 2:
@@ -292,6 +238,9 @@ def build_source(
     error_count=0,
     last_success_at=None,
     last_checked_at=None,
+    verification=None,
+    channel_id=None,
+    channel_name=None,
 ):
     return {
         "promotion": promotion["name"],
@@ -301,7 +250,10 @@ def build_source(
         "coverage_note": promotion.get("coverage_note"),
         "access_note": promotion.get("access_note"),
         "channel_url": channel_url,
+        "channel_id": channel_id,
+        "channel_name": channel_name,
         "status": status,
+        "verification": verification,
         "last_error": last_error,
         "error_count": error_count,
         "last_success_at": last_success_at,
@@ -309,7 +261,7 @@ def build_source(
     }
 
 
-def error_result(promotion, previous_source, previous_event, channel_url, error):
+def error_result(promotion, previous_source, previous_event, previous_state, channel_url, error):
     error_count = int(previous_source.get("error_count") or 0) + 1
     preserved_event = None
 
@@ -326,8 +278,12 @@ def error_result(promotion, previous_source, previous_event, channel_url, error)
             error_count,
             previous_source.get("last_success_at"),
             now_iso(),
+            previous_source.get("verification"),
+            previous_source.get("channel_id"),
+            previous_source.get("channel_name"),
         ),
         "event": preserved_event,
+        "upcoming": prior_upcoming_for(promotion["id"], previous_state),
     }
 
 
@@ -350,11 +306,11 @@ def extract_stream_candidates(page_html, promotion):
         window = page_html[window_start:window_end]
         lowered = window.casefold()
 
-        live = (
+        html_live = (
             bool(WATCHING_RE.search(window))
-            or "BADGE_STYLE_TYPE_LIVE_NOW" in window
-            or '"style":"LIVE"' in window
-            or '"label":"LIVE"' in window
+            or "badge_style_type_live_now" in lowered
+            or '"style":"live"' in lowered
+            or '"label":"live"' in lowered
         )
         restricted = any(marker in lowered for marker in RESTRICTED_MARKERS)
         title = extract_title(
@@ -366,7 +322,7 @@ def extract_stream_candidates(page_html, promotion):
             {
                 "video_id": video_id,
                 "title": title,
-                "live": live,
+                "html_live": html_live,
                 "restricted": restricted,
             }
         )
@@ -375,6 +331,103 @@ def extract_stream_candidates(page_html, promotion):
             break
 
     return candidates
+
+
+def youtube_videos(video_ids):
+    if not YOUTUBE_API_KEY:
+        return {}, "YouTube API key is not configured"
+
+    unique_ids = []
+    seen = set()
+    for video_id in video_ids:
+        if video_id and video_id not in seen:
+            seen.add(video_id)
+            unique_ids.append(video_id)
+
+    if not unique_ids:
+        return {}, ""
+
+    params = urllib.parse.urlencode(
+        {
+            "part": "snippet,liveStreamingDetails,status",
+            "id": ",".join(unique_ids[:50]),
+            "key": YOUTUBE_API_KEY,
+        }
+    )
+    payload, error = fetch_json(
+        f"https://www.googleapis.com/youtube/v3/videos?{params}"
+    )
+    if not payload:
+        return {}, error
+
+    items = {}
+    for item in payload.get("items") or []:
+        video_id = item.get("id")
+        if video_id:
+            items[video_id] = item
+
+    return items, ""
+
+
+def classify_api_video(item):
+    snippet = item.get("snippet") or {}
+    live_details = item.get("liveStreamingDetails") or {}
+    broadcast_content = snippet.get("liveBroadcastContent") or "none"
+
+    actual_start = live_details.get("actualStartTime")
+    actual_end = live_details.get("actualEndTime")
+    scheduled_start = live_details.get("scheduledStartTime")
+
+    if broadcast_content == "live":
+        return "live"
+
+    if actual_start and not actual_end:
+        return "live"
+
+    if broadcast_content == "upcoming":
+        return "upcoming"
+
+    if scheduled_start and not actual_start and not actual_end:
+        return "upcoming"
+
+    if actual_end:
+        return "ended"
+
+    return "offline"
+
+
+def make_event(promotion, channel_url, video_id, title, item, event_status):
+    snippet = item.get("snippet") or {}
+    live_details = item.get("liveStreamingDetails") or {}
+    status = item.get("status") or {}
+
+    return {
+        "event_id": f"{promotion['id']}:{video_id}",
+        "promotion_id": promotion["id"],
+        "promotion": promotion["name"],
+        "short_name": promotion.get("short_name") or promotion["name"],
+        "country": promotion.get("country") or "International",
+        "priority": int(promotion.get("priority") or 50),
+        "coverage_note": promotion.get("coverage_note"),
+        "access_note": promotion.get("access_note"),
+        "channel_url": channel_url,
+        "channel_id": snippet.get("channelId"),
+        "channel_name": snippet.get("channelTitle"),
+        "video_id": video_id,
+        "title": title,
+        "watch_url": f"https://www.youtube.com/watch?v={video_id}",
+        "status": event_status,
+        "is_live": event_status == "live",
+        "embeddable": status.get("embeddable", True),
+        "scheduled_start_time": live_details.get("scheduledStartTime"),
+        "scheduled_end_time": live_details.get("scheduledEndTime"),
+        "actual_start_time": live_details.get("actualStartTime"),
+        "actual_end_time": live_details.get("actualEndTime"),
+        "concurrent_viewers": live_details.get("concurrentViewers"),
+        "api_verified": True,
+        "stale": False,
+        "observed_at": now_iso(),
+    }
 
 
 def probe_promotion(promotion, global_terms, previous_state):
@@ -388,6 +441,7 @@ def probe_promotion(promotion, global_terms, previous_state):
             promotion,
             previous_source,
             previous_event,
+            previous_state,
             None,
             "No direct YouTube channel URL configured",
         )
@@ -399,17 +453,133 @@ def probe_promotion(promotion, global_terms, previous_state):
             promotion,
             previous_source,
             previous_event,
+            previous_state,
             channel_url,
             streams_error or "Could not load YouTube Streams page",
         )
 
     candidates = extract_stream_candidates(streams_page, promotion)
+    api_items, api_error = youtube_videos(
+        [candidate["video_id"] for candidate in candidates]
+    )
 
+    if api_items:
+        live_event = None
+        upcoming = []
+        restricted_title = None
+        unembeddable_title = None
+        ignored_title = None
+        api_channel_id = None
+        api_channel_name = None
+
+        for candidate in candidates:
+            video_id = candidate["video_id"]
+            item = api_items.get(video_id)
+            if not item:
+                continue
+
+            snippet = item.get("snippet") or {}
+            status_data = item.get("status") or {}
+            api_channel_id = api_channel_id or snippet.get("channelId")
+            api_channel_name = api_channel_name or snippet.get("channelTitle")
+
+            title = (snippet.get("title") or candidate["title"] or "").strip()
+            event_status = classify_api_video(item)
+
+            if event_status not in {"live", "upcoming"}:
+                continue
+
+            if candidate["restricted"]:
+                restricted_title = title
+                continue
+
+            if not title_allowed(title, global_terms, promotion):
+                ignored_title = title
+                continue
+
+            event = make_event(
+                promotion,
+                channel_url,
+                video_id,
+                title,
+                item,
+                event_status,
+            )
+
+            if event_status == "live":
+                if not status_data.get("embeddable", True):
+                    unembeddable_title = title
+                    continue
+                if live_event is None:
+                    live_event = event
+            else:
+                upcoming.append(event)
+
+        upcoming.sort(
+            key=lambda event: (
+                event.get("scheduled_start_time") or "9999-12-31T23:59:59Z",
+                -int(event.get("priority") or 0),
+                event.get("title") or "",
+            )
+        )
+
+        if live_event:
+            observed_at = now_iso()
+            live_event["observed_at"] = observed_at
+            return {
+                "source": build_source(
+                    promotion,
+                    channel_url,
+                    "live",
+                    None,
+                    0,
+                    observed_at,
+                    checked_at,
+                    "youtube_api",
+                    live_event.get("channel_id") or api_channel_id,
+                    live_event.get("channel_name") or api_channel_name,
+                ),
+                "event": live_event,
+                "upcoming": upcoming,
+            }
+
+        if unembeddable_title:
+            source_status = "unembeddable_live"
+            source_error = f"Live broadcast cannot be embedded: {unembeddable_title}"
+        elif restricted_title:
+            source_status = "restricted_live"
+            source_error = f"Restricted live broadcast: {restricted_title}"
+        elif ignored_title:
+            source_status = "ignored_live"
+            source_error = f"Ignored live title: {ignored_title}"
+        else:
+            source_status = "upcoming" if upcoming else "offline"
+            source_error = None
+
+        return {
+            "source": build_source(
+                promotion,
+                channel_url,
+                source_status,
+                source_error,
+                0,
+                previous_source.get("last_success_at"),
+                checked_at,
+                "youtube_api",
+                api_channel_id,
+                api_channel_name,
+            ),
+            "event": None,
+            "upcoming": upcoming,
+        }
+
+    # API failure falls back to the channel page so a quota/key/network issue
+    # cannot take the live station offline.
     restricted_title = None
     ignored_title = None
 
     for candidate in candidates:
-        if not candidate["live"]:
+        if not candidate["html_live"]:
             continue
 
         title = candidate["title"]
@@ -422,10 +592,9 @@ def probe_promotion(promotion, global_terms, previous_state):
             ignored_title = title
             continue
 
-        video_id = candidate["video_id"]
         observed_at = now_iso()
         event = {
-            "event_id": f"{promotion_id}:{video_id}",
+            "event_id": f"{promotion_id}:{candidate['video_id']}",
             "promotion_id": promotion_id,
             "promotion": promotion["name"],
             "short_name": promotion.get("short_name") or promotion["name"],
@@ -434,10 +603,20 @@ def probe_promotion(promotion, global_terms, previous_state):
             "coverage_note": promotion.get("coverage_note"),
             "access_note": promotion.get("access_note"),
             "channel_url": channel_url,
-            "video_id": video_id,
+            "channel_id": previous_source.get("channel_id"),
+            "channel_name": previous_source.get("channel_name"),
+            "video_id": candidate["video_id"],
             "title": title,
-            "watch_url": f"https://www.youtube.com/watch?v={video_id}",
+            "watch_url": f"https://www.youtube.com/watch?v={candidate['video_id']}",
+            "status": "live",
             "is_live": True,
+            "embeddable": True,
+            "scheduled_start_time": None,
+            "scheduled_end_time": None,
+            "actual_start_time": None,
+            "actual_end_time": None,
+            "concurrent_viewers": None,
+            "api_verified": False,
             "stale": False,
             "observed_at": observed_at,
         }
@@ -447,53 +626,43 @@ def probe_promotion(promotion, global_terms, previous_state):
                 promotion,
                 channel_url,
                 "live",
-                None,
+                f"API fallback: {api_error}" if api_error else None,
                 0,
                 observed_at,
                 checked_at,
+                "html_fallback",
+                previous_source.get("channel_id"),
+                previous_source.get("channel_name"),
             ),
             "event": event,
+            "upcoming": prior_upcoming_for(promotion_id, previous_state),
         }
 
     if restricted_title:
-        return {
-            "source": build_source(
-                promotion,
-                channel_url,
-                "restricted_live",
-                f"Restricted live broadcast: {restricted_title}",
-                0,
-                previous_source.get("last_success_at"),
-                checked_at,
-            ),
-            "event": None,
-        }
-
-    if ignored_title:
-        return {
-            "source": build_source(
-                promotion,
-                channel_url,
-                "ignored_live",
-                f"Ignored live title: {ignored_title}",
-                0,
-                previous_source.get("last_success_at"),
-                checked_at,
-            ),
-            "event": None,
-        }
+        fallback_status = "restricted_live"
+        fallback_error = f"Restricted live broadcast: {restricted_title}"
+    elif ignored_title:
+        fallback_status = "ignored_live"
+        fallback_error = f"Ignored live title: {ignored_title}"
+    else:
+        fallback_status = "offline"
+        fallback_error = f"API fallback: {api_error}" if api_error else None
 
     return {
         "source": build_source(
             promotion,
             channel_url,
-            "offline",
-            None,
+            fallback_status,
+            fallback_error,
             0,
             previous_source.get("last_success_at"),
             checked_at,
+            "html_fallback",
+            previous_source.get("channel_id"),
+            previous_source.get("channel_name"),
         ),
         "event": None,
+        "upcoming": prior_upcoming_for(promotion_id, previous_state),
     }
 
 
@@ -505,8 +674,10 @@ def comparable(state):
         source.pop("last_success_at", None)
         source.pop("last_checked_at", None)
 
-    for event in clean.get("events") or []:
-        event.pop("observed_at", None)
+    for key in ("events", "upcoming"):
+        for event in clean.get(key) or []:
+            event.pop("observed_at", None)
+            event.pop("concurrent_viewers", None)
 
     return clean
 
@@ -528,6 +699,7 @@ def main():
     active_bucket = current_bucket()
     sources = {}
     events = []
+    upcoming = []
     to_probe = []
 
     for promotion in promotions:
@@ -536,8 +708,10 @@ def main():
 
         if should_probe(promotion, previous_source, previous_event, active_bucket):
             to_probe.append(promotion)
-        elif previous_source:
-            sources[promotion["id"]] = previous_source
+        else:
+            if previous_source:
+                sources[promotion["id"]] = previous_source
+            upcoming.extend(prior_upcoming_for(promotion["id"], previous))
 
     with ThreadPoolExecutor(max_workers=min(MAX_WORKERS, max(1, len(to_probe)))) as pool:
         jobs = {
@@ -554,6 +728,7 @@ def main():
                     promotion,
                     (previous.get("sources") or {}).get(promotion["id"]) or {},
                     prior_event_for(promotion["id"], previous),
+                    previous,
                     normalize_channel_url(promotion.get("channel_url")),
                     f"Unhandled monitor error: {exc}",
                 )
@@ -561,6 +736,16 @@ def main():
             sources[promotion["id"]] = result["source"]
             if result.get("event"):
                 events.append(result["event"])
+            upcoming.extend(result.get("upcoming") or [])
+
+    # Remove duplicates if a channel page exposed the same scheduled stream
+    # multiple times.
+    deduped_upcoming = {}
+    for event in upcoming:
+        event_id = event.get("event_id")
+        if event_id:
+            deduped_upcoming[event_id] = event
+    upcoming = list(deduped_upcoming.values())
 
     events.sort(
         key=lambda event: (
@@ -569,22 +754,40 @@ def main():
             str(event.get("title") or ""),
         )
     )
+    upcoming.sort(
+        key=lambda event: (
+            event.get("scheduled_start_time") or "9999-12-31T23:59:59Z",
+            -int(event.get("priority") or 0),
+            str(event.get("title") or ""),
+        )
+    )
 
     selected_event_id = events[0]["event_id"] if events else None
+    api_verified_sources = sum(
+        1
+        for source in sources.values()
+        if source.get("verification") == "youtube_api"
+    )
+
     state = {
-        "version": 4,
+        "version": 5,
         "generated_at": now_iso(),
         "selected_event_id": selected_event_id,
         "events": events,
+        "upcoming": upcoming[:40],
         "sources": dict(sorted(sources.items())),
         "monitored_count": len(promotions),
         "live_count": len(events),
+        "upcoming_count": len(upcoming),
+        "youtube_api_configured": bool(YOUTUBE_API_KEY),
+        "api_verified_source_count": api_verified_sources,
     }
 
     if comparable(state) == comparable(previous):
         print(
             f"Global live state unchanged: {len(events)} live / "
-            f"{len(promotions)} monitored / {len(to_probe)} checked."
+            f"{len(upcoming)} upcoming / {len(promotions)} monitored / "
+            f"{len(to_probe)} checked / {api_verified_sources} API-verified sources."
         )
         return 0
 
@@ -596,12 +799,19 @@ def main():
 
     print(
         f"Updated global live state: {len(events)} live / "
-        f"{len(promotions)} monitored / {len(to_probe)} checked."
+        f"{len(upcoming)} upcoming / {len(promotions)} monitored / "
+        f"{len(to_probe)} checked / {api_verified_sources} API-verified sources."
     )
 
     for event in events:
-        stale = " (stale)" if event.get("stale") else ""
-        print(f"- {event['short_name']}: {event['title']}{stale}")
+        verification = "API" if event.get("api_verified") else "HTML"
+        print(f"- LIVE [{verification}] {event['short_name']}: {event['title']}")
+
+    for event in upcoming[:8]:
+        print(
+            f"- UPCOMING {event['short_name']}: {event['title']} "
+            f"@ {event.get('scheduled_start_time') or 'time TBD'}"
+        )
 
     return 0
 
