@@ -706,7 +706,7 @@
   app.addEventListener('pointerdown', event => {
     if (!event.target.closest('button')) return;
     if (event.target.closest('[data-wordtool]')) return;
-    if (event.target.closest('[data-insert],[data-link-insert],[data-youtube-insert],[data-x-insert],[data-image-insert],[data-html-insert],[data-html-delete],[data-table-insert],[data-tale-insert],[data-pick-insert],[data-template]')) {
+    if (event.target.closest('[data-insert],[data-link-insert],[data-video-insert],[data-youtube-insert],[data-x-insert],[data-image-insert],[data-html-insert],[data-html-delete],[data-table-insert],[data-tale-insert],[data-pick-insert],[data-template]')) {
       pushUndo(snapshot());
       window.setTimeout(scheduleOutline, 0);
     }
