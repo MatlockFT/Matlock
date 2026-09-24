@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
+import html
 import json
-import subprocess
+import re
 import sys
+import urllib.error
+import urllib.request
 import zlib
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
@@ -11,24 +14,47 @@ ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATH = ROOT / "assets" / "data" / "live-promotions.json"
 STATE_PATH = ROOT / "assets" / "data" / "global-live.json"
 
-MAX_STALE_ERRORS = 6
+MAX_STALE_ERRORS = 4
 MAX_WORKERS = 6
 IDLE_BATCH_COUNT = 3
 
-RESTRICTED_AVAILABILITY = {
-    "private",
-    "premium_only",
-    "subscriber_only",
-    "needs_auth",
-}
+VIDEO_ID_RE = re.compile(r'"videoId":"([A-Za-z0-9_-]{11})"')
+TITLE_RUN_RE = re.compile(
+    r'"title":\{"runs":\[\{"text":"((?:\\.|[^"\\])*)"',
+    re.S,
+)
+TITLE_SIMPLE_RE = re.compile(
+    r'"title":\{"simpleText":"((?:\\.|[^"\\])*)"',
+    re.S,
+)
+
+LIVE_MARKERS = (
+    '"BADGE_STYLE_TYPE_LIVE_NOW"',
+    '"style":"LIVE"',
+    '"isLiveNow":true',
+    '"text":"LIVE"',
+)
+
+RESTRICTED_MARKERS = (
+    "BADGE_STYLE_TYPE_MEMBERS_ONLY",
+    "members-only",
+    "members only",
+    "subscriber-only",
+)
+
+USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/153.0.0.0 Safari/537.36"
+)
 
 
-def now():
+def utc_now():
     return datetime.now(timezone.utc)
 
 
 def now_iso():
-    return now().replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    return utc_now().replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
 def load_json(path, default):
@@ -36,43 +62,6 @@ def load_json(path, default):
         return json.loads(path.read_text(encoding="utf-8"))
     except (FileNotFoundError, json.JSONDecodeError):
         return default
-
-
-def ytdlp_json(url):
-    command = [
-        "yt-dlp",
-        "--dump-single-json",
-        "--skip-download",
-        "--no-warnings",
-        "--no-playlist",
-        url,
-    ]
-
-    try:
-        result = subprocess.run(
-            command,
-            cwd=ROOT,
-            text=True,
-            capture_output=True,
-            timeout=75,
-        )
-    except subprocess.TimeoutExpired:
-        return None, "yt-dlp timed out"
-
-    if result.returncode != 0:
-        error = (result.stderr or result.stdout or "").strip()
-        return None, error[-800:] if error else "yt-dlp failed"
-
-    try:
-        return json.loads(result.stdout), ""
-    except json.JSONDecodeError:
-        return None, "yt-dlp returned invalid JSON"
-
-
-def is_live(info):
-    if not isinstance(info, dict):
-        return False
-    return info.get("is_live") is True or info.get("live_status") == "is_live"
 
 
 def normalize_channel_url(url):
@@ -86,29 +75,110 @@ def normalize_channel_url(url):
     return normalized
 
 
-def resolve_source(promotion, previous_source):
-    channel_id = promotion.get("channel_id") or previous_source.get("channel_id")
-    channel_name = (
-        previous_source.get("channel_name")
-        or promotion.get("short_name")
-        or promotion["name"]
-    )
-    channel_url = normalize_channel_url(
-        promotion.get("channel_url") or previous_source.get("channel_url")
+def fetch_text(url):
+    request = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": USER_AGENT,
+            "Accept-Language": "en-US,en;q=0.9",
+            "Accept": "text/html,application/xhtml+xml",
+            "Cache-Control": "no-cache",
+        },
     )
 
-    if channel_id and not channel_url:
-        channel_url = f"https://www.youtube.com/channel/{channel_id}"
+    try:
+        with urllib.request.urlopen(request, timeout=35) as response:
+            content_type = response.headers.get("Content-Type", "")
+            body = response.read().decode("utf-8", errors="replace")
+            if response.status >= 400:
+                return None, f"HTTP {response.status}"
+            if "text/html" not in content_type and "<html" not in body[:500].lower():
+                return None, f"Unexpected content type: {content_type}"
+            return body, ""
+    except urllib.error.HTTPError as exc:
+        return None, f"HTTP {exc.code}: {exc.reason}"
+    except urllib.error.URLError as exc:
+        return None, f"Network error: {exc.reason}"
+    except TimeoutError:
+        return None, "Request timed out"
+    except Exception as exc:
+        return None, f"Request error: {exc}"
 
-    if not channel_url:
-        return (
-            channel_id,
-            channel_name,
-            None,
-            "No direct YouTube channel URL configured",
+
+def decode_json_text(value):
+    if not value:
+        return ""
+
+    try:
+        decoded = json.loads(f'"{value}"')
+    except json.JSONDecodeError:
+        decoded = value.replace(r'\"', '"').replace(r"\\n", " ")
+
+    return html.unescape(decoded).strip()
+
+
+def extract_title(window, fallback):
+    run_match = TITLE_RUN_RE.search(window)
+    if run_match:
+        title = decode_json_text(run_match.group(1))
+        if title:
+            return title
+
+    simple_match = TITLE_SIMPLE_RE.search(window)
+    if simple_match:
+        title = decode_json_text(simple_match.group(1))
+        if title:
+            return title
+
+    return fallback
+
+
+def find_live_video(page_html, promotion):
+    candidates = []
+    seen = set()
+
+    for match in VIDEO_ID_RE.finditer(page_html):
+        video_id = match.group(1)
+        if video_id in seen:
+            continue
+        seen.add(video_id)
+
+        start = max(0, match.start() - 1200)
+        end = min(len(page_html), match.end() + 9000)
+        window = page_html[start:end]
+        lowered = window.casefold()
+
+        if not any(marker in window for marker in LIVE_MARKERS):
+            continue
+
+        if any(marker in lowered for marker in RESTRICTED_MARKERS):
+            candidates.append(
+                {
+                    "video_id": video_id,
+                    "restricted": True,
+                    "title": extract_title(
+                        window,
+                        f"{promotion.get('short_name') or promotion['name']} live",
+                    ),
+                }
+            )
+            continue
+
+        candidates.append(
+            {
+                "video_id": video_id,
+                "restricted": False,
+                "title": extract_title(
+                    window,
+                    f"{promotion.get('short_name') or promotion['name']} live",
+                ),
+            }
         )
 
-    return channel_id, channel_name, channel_url, ""
+    # Prefer a public live candidate if both public and restricted broadcasts
+    # appear on the Streams page.
+    candidates.sort(key=lambda item: item["restricted"])
+    return candidates[0] if candidates else None
 
 
 def title_allowed(title, global_terms, promotion):
@@ -129,7 +199,7 @@ def promotion_bucket(promotion_id):
 
 
 def current_bucket():
-    return int(now().timestamp() // 300) % IDLE_BATCH_COUNT
+    return int(utc_now().timestamp() // 300) % IDLE_BATCH_COUNT
 
 
 def should_probe(promotion, previous_source, previous_event, active_bucket):
@@ -145,7 +215,7 @@ def should_probe(promotion, previous_source, previous_event, active_bucket):
     if status in {"live", "restricted_live"}:
         return True
 
-    if status == "error" and error_count < 3:
+    if status == "error" and error_count < 2:
         return True
 
     return promotion_bucket(promotion["id"]) == active_bucket
@@ -153,12 +223,10 @@ def should_probe(promotion, previous_source, previous_event, active_bucket):
 
 def build_source(
     promotion,
-    channel_id,
-    channel_name,
     channel_url,
     status,
-    last_error,
-    error_count,
+    last_error=None,
+    error_count=0,
     last_success_at=None,
     last_checked_at=None,
 ):
@@ -169,8 +237,6 @@ def build_source(
         "priority": int(promotion.get("priority") or 50),
         "coverage_note": promotion.get("coverage_note"),
         "access_note": promotion.get("access_note"),
-        "channel_id": channel_id,
-        "channel_name": channel_name,
         "channel_url": channel_url,
         "status": status,
         "last_error": last_error,
@@ -180,36 +246,26 @@ def build_source(
     }
 
 
-def probe_error_result(
-    promotion,
-    previous_source,
-    previous_event,
-    channel_id,
-    channel_name,
-    channel_url,
-    error,
-):
+def error_result(promotion, previous_source, previous_event, channel_url, error):
     error_count = int(previous_source.get("error_count") or 0) + 1
-    prior_success = previous_source.get("last_success_at")
     preserved_event = None
 
     if previous_event and previous_event.get("is_live") and error_count <= MAX_STALE_ERRORS:
         preserved_event = dict(previous_event)
         preserved_event["stale"] = True
 
-    source = build_source(
-        promotion,
-        channel_id or previous_source.get("channel_id"),
-        channel_name or previous_source.get("channel_name"),
-        channel_url or previous_source.get("channel_url"),
-        "error",
-        str(error)[-800:],
-        error_count,
-        prior_success,
-        now_iso(),
-    )
-
-    return {"source": source, "event": preserved_event}
+    return {
+        "source": build_source(
+            promotion,
+            channel_url or previous_source.get("channel_url"),
+            "error",
+            str(error)[-800:],
+            error_count,
+            previous_source.get("last_success_at"),
+            now_iso(),
+        ),
+        "event": preserved_event,
+    }
 
 
 def probe_promotion(promotion, global_terms, previous_state):
@@ -217,76 +273,36 @@ def probe_promotion(promotion, global_terms, previous_state):
     previous_source = (previous_state.get("sources") or {}).get(promotion_id) or {}
     previous_event = prior_event_for(promotion_id, previous_state)
 
-    channel_id, channel_name, channel_url, resolve_error = resolve_source(
-        promotion,
-        previous_source,
-    )
-
-    if resolve_error:
-        return probe_error_result(
+    channel_url = normalize_channel_url(promotion.get("channel_url"))
+    if not channel_url:
+        return error_result(
             promotion,
             previous_source,
             previous_event,
-            channel_id,
-            channel_name,
-            channel_url,
-            resolve_error,
+            None,
+            "No direct YouTube channel URL configured",
         )
 
-    live_info, live_error = ytdlp_json(f"{channel_url}/live")
+    streams_url = f"{channel_url}/streams"
+    page_html, fetch_error = fetch_text(streams_url)
     checked_at = now_iso()
 
-    if not live_info:
-        error_text = (live_error or "").casefold()
-        known_offline_markers = (
-            "not currently live",
-            "no live stream",
-            "this live event will begin",
-            "premieres in",
-            "upcoming",
-            "video unavailable",
-        )
-
-        if any(marker in error_text for marker in known_offline_markers):
-            return {
-                "source": build_source(
-                    promotion,
-                    channel_id,
-                    channel_name,
-                    channel_url,
-                    "offline",
-                    None,
-                    0,
-                    previous_source.get("last_success_at"),
-                    checked_at,
-                ),
-                "event": None,
-            }
-
-        return probe_error_result(
+    if not page_html:
+        return error_result(
             promotion,
             previous_source,
             previous_event,
-            channel_id,
-            channel_name,
             channel_url,
-            live_error or "Could not inspect channel live route",
+            fetch_error or "Could not load YouTube Streams page",
         )
 
-    channel_id = live_info.get("channel_id") or channel_id
-    channel_name = live_info.get("channel") or live_info.get("uploader") or channel_name
-
-    if channel_id:
-        channel_url = f"https://www.youtube.com/channel/{channel_id}"
-
-    if not is_live(live_info):
+    candidate = find_live_video(page_html, promotion)
+    if not candidate:
         return {
             "source": build_source(
                 promotion,
-                channel_id,
-                channel_name,
                 channel_url,
-                live_info.get("live_status") or "offline",
+                "offline",
                 None,
                 0,
                 previous_source.get("last_success_at"),
@@ -295,16 +311,13 @@ def probe_promotion(promotion, global_terms, previous_state):
             "event": None,
         }
 
-    availability = live_info.get("availability")
-    if availability in RESTRICTED_AVAILABILITY:
+    if candidate["restricted"]:
         return {
             "source": build_source(
                 promotion,
-                channel_id,
-                channel_name,
                 channel_url,
                 "restricted_live",
-                f"YouTube availability: {availability}",
+                "Current YouTube broadcast appears to require membership/authentication",
                 0,
                 previous_source.get("last_success_at"),
                 checked_at,
@@ -312,16 +325,14 @@ def probe_promotion(promotion, global_terms, previous_state):
             "event": None,
         }
 
-    title = live_info.get("title") or f"{promotion.get('short_name') or promotion['name']} live"
+    title = candidate["title"]
     if not title_allowed(title, global_terms, promotion):
         return {
             "source": build_source(
                 promotion,
-                channel_id,
-                channel_name,
                 channel_url,
                 "ignored_live",
-                None,
+                f"Ignored live title: {title}",
                 0,
                 previous_source.get("last_success_at"),
                 checked_at,
@@ -329,18 +340,7 @@ def probe_promotion(promotion, global_terms, previous_state):
             "event": None,
         }
 
-    video_id = live_info.get("id")
-    if not video_id:
-        return probe_error_result(
-            promotion,
-            previous_source,
-            previous_event,
-            channel_id,
-            channel_name,
-            channel_url,
-            "Live video did not expose a video ID",
-        )
-
+    video_id = candidate["video_id"]
     observed_at = now_iso()
     event = {
         "event_id": f"{promotion_id}:{video_id}",
@@ -351,13 +351,10 @@ def probe_promotion(promotion, global_terms, previous_state):
         "priority": int(promotion.get("priority") or 50),
         "coverage_note": promotion.get("coverage_note"),
         "access_note": promotion.get("access_note"),
-        "channel_name": channel_name,
-        "channel_id": channel_id,
         "channel_url": channel_url,
         "video_id": video_id,
         "title": title,
-        "watch_url": live_info.get("webpage_url")
-        or f"https://www.youtube.com/watch?v={video_id}",
+        "watch_url": f"https://www.youtube.com/watch?v={video_id}",
         "is_live": True,
         "stale": False,
         "observed_at": observed_at,
@@ -366,8 +363,6 @@ def probe_promotion(promotion, global_terms, previous_state):
     return {
         "source": build_source(
             promotion,
-            channel_id,
-            channel_name,
             channel_url,
             "live",
             None,
@@ -418,9 +413,7 @@ def main():
 
         if should_probe(promotion, previous_source, previous_event, active_bucket):
             to_probe.append(promotion)
-            continue
-
-        if previous_source:
+        elif previous_source:
             sources[promotion["id"]] = previous_source
 
     with ThreadPoolExecutor(max_workers=min(MAX_WORKERS, max(1, len(to_probe)))) as pool:
@@ -434,13 +427,11 @@ def main():
             try:
                 result = future.result()
             except Exception as exc:
-                result = probe_error_result(
+                result = error_result(
                     promotion,
                     (previous.get("sources") or {}).get(promotion["id"]) or {},
                     prior_event_for(promotion["id"], previous),
-                    None,
-                    promotion.get("short_name") or promotion["name"],
-                    promotion.get("channel_url"),
+                    normalize_channel_url(promotion.get("channel_url")),
                     f"Unhandled monitor error: {exc}",
                 )
 
@@ -448,8 +439,6 @@ def main():
             if result.get("event"):
                 events.append(result["event"])
 
-    # Any live event must come from a promotion probed on this run. A prior live
-    # event is always forced into to_probe, so it cannot linger indefinitely.
     events.sort(
         key=lambda event: (
             -int(event.get("priority") or 0),
@@ -460,7 +449,7 @@ def main():
 
     selected_event_id = events[0]["event_id"] if events else None
     state = {
-        "version": 3,
+        "version": 4,
         "generated_at": now_iso(),
         "selected_event_id": selected_event_id,
         "events": events,
