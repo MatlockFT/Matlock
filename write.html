@@ -17,7 +17,7 @@ page_scripts:
   - /assets/writer-wordtools.js
 ---
 
-<section class="writer-app" data-writer-app data-repo="MatlockFT/Matlock" data-auth-base="https://mmamatlock-writer-auth.netlify.app">
+<section class="writer-app" data-writer-app data-repo="MatlockFT/Matlock" data-media-repo="MatlockFT/Matlock" data-auth-base="https://mmamatlock-writer-auth.netlify.app">
   <header class="writer-topbar">
     <div>
       <p class="eyebrow">Publishing workspace</p>
@@ -319,7 +319,11 @@ page_scripts:
         <div class="writer-or"><span>or</span></div>
         <label class="writer-field writer-field-wide"><span>Direct video URL</span><input type="url" data-inline-video-url placeholder="https://…/clip.mp4 or /assets/uploads/…"></label>
         <label class="writer-field writer-field-wide"><span>Caption <small>optional</small></span><input type="text" data-inline-video-caption placeholder="Caption or source credit"></label>
-        <p class="writer-dialog-note writer-field-wide">MP4 is recommended. Local MP4, WebM and M4V clips up to 15 MB can be uploaded directly. Playback controls are added automatically.</p>
+        <p class="writer-dialog-note writer-field-wide">MP4 is recommended. Uploaded clips are stored as GitHub Release assets instead of inside the site repository history. Files must stay under GitHub's 2 GiB release-asset limit.</p>
+        <div class="writer-video-upload-status writer-field-wide" data-video-upload-status hidden aria-live="polite">
+          <progress data-video-upload-progress max="100" value="0"></progress>
+          <span data-video-upload-label>Preparing upload…</span>
+        </div>
       </div>
       <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-video-insert>Place video</button></footer>
     </form>
