@@ -1,4 +1,5 @@
-import { REPO_FULL_NAME, corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mjs';
+import { corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mjs';
+import { githubRepoFetch } from './_github-client.mjs';
 import { getWriterSession } from './_writer-session.mjs';
 
 function sessionId(request) {
@@ -11,7 +12,7 @@ function normalizeApiPath(value) {
   return path;
 }
 
-function allowedPath(path, method) {
+export function allowedPath(path, method) {
   const value = String(path || '');
   if (method === 'GET') {
     if (value === '') return true;
@@ -34,7 +35,7 @@ function contentPathFromApiPath(path) {
   try { return decodeURIComponent(match[1]); } catch { return match[1]; }
 }
 
-function validateWriteBody(apiPath, body) {
+export function validateWriteBody(apiPath, body) {
   if (!body || typeof body !== 'object') throw new Error('Invalid request body.');
   if (body.branch && body.branch !== 'main') throw new Error('Writer can only update the main branch.');
   if (!body.message || typeof body.message !== 'string' || body.message.length > 180) throw new Error('Invalid commit message.');
@@ -86,16 +87,9 @@ export default async function handler(request) {
     bodyText = JSON.stringify({ ...body, branch: 'main' });
   }
 
-  const response = await fetch(`https://api.github.com/repos/${REPO_FULL_NAME}${apiPath}`, {
+  const response = await githubRepoFetch(session.token, apiPath, {
     method: request.method,
-    headers: {
-      Accept: 'application/vnd.github+json',
-      Authorization: `Bearer ${session.token}`,
-      'X-GitHub-Api-Version': '2022-11-28',
-      'User-Agent': 'MMA-Matlock-Writer'
-    },
-    body: bodyText,
-    cache: 'no-store'
+    body: bodyText
   });
 
   const text = await response.text();
