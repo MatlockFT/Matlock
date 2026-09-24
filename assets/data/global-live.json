@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "generated_at": "2026-09-24T02:03:07Z",
+  "version": 3,
+  "generated_at": "2026-09-24T02:04:26Z",
   "selected_event_id": "inka:C2nNtrk8FRs",
   "events": [
     {
@@ -26,13 +26,16 @@
       "short_name": "A1 Combat",
       "country": "United States",
       "priority": 65,
+      "coverage_note": "Prelims and Prospect Series",
+      "access_note": null,
       "channel_id": null,
       "channel_name": "A1 Combat",
       "channel_url": "https://www.youtube.com/@A1Combat",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:04:25Z"
     },
     "afc-korea": {
       "promotion": "Angel's Fighting Championship",
@@ -65,13 +68,16 @@
       "short_name": "Budo Sento",
       "country": "Mexico",
       "priority": 65,
+      "coverage_note": "Prelims",
+      "access_note": null,
       "channel_id": null,
       "channel_name": "Budo Sento",
       "channel_url": "https://www.youtube.com/@budosentochampionship",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:04:26Z"
     },
     "deep": {
       "promotion": "DEEP / DEEP JEWELS",
@@ -104,13 +110,16 @@
       "short_name": "FNC",
       "country": "Croatia / Balkans",
       "priority": 60,
+      "coverage_note": "Selected opening fights",
+      "access_note": null,
       "channel_id": null,
       "channel_name": "FNC",
       "channel_url": "https://www.youtube.com/channel/UC0JUv5zHnKbn3ee1NrJEhCw",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:04:26Z"
     },
     "front-street-fights": {
       "promotion": "Front Street Fights",
@@ -130,26 +139,32 @@
       "short_name": "GRACHAN",
       "country": "Japan",
       "priority": 55,
+      "coverage_note": "Challenge/amateur coverage; other events vary",
+      "access_note": null,
       "channel_id": null,
       "channel_name": "GRACHAN",
       "channel_url": "https://www.youtube.com/@GRACHAN-MMA",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:04:25Z"
     },
     "inka": {
       "promotion": "Inka Fighting Championship",
       "short_name": "INKA",
       "country": "Peru",
       "priority": 65,
+      "coverage_note": "Prelims",
+      "access_note": null,
       "channel_id": null,
       "channel_name": "INKA MMA PRO",
       "channel_url": "https://www.youtube.com/@INKA.MMAPRO",
       "status": "error",
       "last_error": "ERROR: [youtube] C2nNtrk8FRs: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
-      "error_count": 4,
-      "last_success_at": null
+      "error_count": 5,
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:04:26Z"
     },
     "levels-fight-league": {
       "promotion": "Levels Fight League",
@@ -221,13 +236,16 @@
       "short_name": "OCTAGON",
       "country": "Central Asia",
       "priority": 78,
+      "coverage_note": "Event streams; some cards marked prelims",
+      "access_note": null,
       "channel_id": null,
       "channel_name": "OCTAGON",
       "channel_url": "https://www.youtube.com/@OCTAGONTV",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:04:25Z"
     },
     "open-fight-latam": {
       "promotion": "Open Fight LATAM",
@@ -286,26 +304,32 @@
       "short_name": "Tuff-N-Uff",
       "country": "United States",
       "priority": 65,
+      "coverage_note": "Preliminary coverage",
+      "access_note": null,
       "channel_id": null,
       "channel_name": "Tuff-N-Uff",
       "channel_url": "https://www.youtube.com/user/TuffNUffTV",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:04:26Z"
     },
     "ugp": {
       "promotion": "Ultimo Guerrero en Pie",
       "short_name": "UGP",
       "country": "Colombia",
       "priority": 80,
+      "coverage_note": "Event stream",
+      "access_note": null,
       "channel_id": null,
       "channel_name": "UGP",
       "channel_url": "https://www.youtube.com/@UGP-%C3%9AltimoGuerreroenPie-u2k",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:04:25Z"
     },
     "versus-mma": {
       "promotion": "Versus MMA",
