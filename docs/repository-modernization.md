@@ -4,9 +4,9 @@ This document tracks the controlled reorganization of the MMA Matlock repository
 
 ## Current status
 
-**Stage 6 of 10 — GitHub Actions workflow consolidation: IN PROGRESS**
+**Stage 6 of 10 — GitHub Actions workflow consolidation: COMPLETE**
 
-Next stage after validation: **Stage 7 — Legacy/V2/V3 page cleanup**
+Next stage: **Stage 7 — Legacy/V2/V3 page cleanup**
 
 Stages 0–5 established the safety baseline, repository/media contracts, article-owned asset hierarchy, modular Writer source, and domain-organized development scripts. Stage 6 consolidates overlapping GitHub Actions ownership while preserving schedules, publishing behavior, and production regression gates.
 
@@ -263,6 +263,17 @@ The consolidation changes are:
 
 Stage 6 adds `npm run check:workflows` so CI verifies canonical consolidated workflows, retired workflow removal, unique workflow display names, and valid Pages CMS workflow references.
 
+Stage 6 validation confirmed that the consolidation preserved behavior:
+
+- `Site quality` passed, including the workflow-layout checker.
+- `Writer quality` passed.
+- `Update Matchmaker data` passed.
+- The consolidated visual-smoke job passed.
+- GitHub Pages deployed successfully.
+- The consolidated mobile Lighthouse job remained red on the same existing performance gate that was already failing in the pre-consolidation `Mobile performance` workflow. The previous run failed the same gate before Stage 6, so this is recorded as a pre-existing site-performance issue rather than a workflow-consolidation regression.
+
+The exact pre-Stage-6 repository state remains available at `archive/repo-modernization-stage5-complete-2026-09-24`.
+
 ## Planned stages
 
 | Stage | Scope | Status |
@@ -273,8 +284,8 @@ Stage 6 adds `npm run check:workflows` so CI verifies canonical consolidated wor
 | 3 | Media source/generated/video pipeline separation | Complete |
 | 4 | Writer frontend module split | Complete |
 | 5 | Development-script organization | Complete |
-| 6 | GitHub Actions workflow consolidation | In progress |
-| 7 | Legacy/V2/V3 page cleanup | Pending |
+| 6 | GitHub Actions workflow consolidation | Complete |
+| 7 | Legacy/V2/V3 page cleanup | Next |
 | 8 | Runtime-data and cache policy | Pending |
 | 9 | Repository integrity enforcement | Pending |
 | 10 | Final documentation and maintenance mode | Pending |
