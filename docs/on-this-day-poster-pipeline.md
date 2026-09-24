@@ -52,14 +52,14 @@ Useful modes:
 npm run resolve:history-event-posters
 
 # Restore verified poster assignments only; no network discovery
-node scripts/resolve-on-this-day-event-poster-pipeline.mjs --apply-only
+node scripts/history/resolve-on-this-day-event-poster-pipeline.mjs --apply-only
 
 # Current-date fast path, still using the same source order
-node scripts/resolve-on-this-day-event-poster-pipeline.mjs --current-window
+node scripts/history/resolve-on-this-day-event-poster-pipeline.mjs --current-window
 
 # History rebuild: reuse Tapology registry without fetching new Tapology pages,
 # then allow Wikipedia and lower-priority sources to resolve new events.
-node scripts/resolve-on-this-day-event-poster-pipeline.mjs --skip-tapology-fetch
+node scripts/history/resolve-on-this-day-event-poster-pipeline.mjs --skip-tapology-fetch
 ```
 
 Low-level Tapology and Wikipedia scripts remain implementation details for verification and troubleshooting; workflows should not compose them independently.

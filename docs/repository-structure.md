@@ -141,7 +141,7 @@ _writer/
 
 ## Automation
 
-The target internal script structure is:
+Development automation is organized by domain:
 
 ```text
 scripts/
@@ -151,12 +151,13 @@ scripts/
   news/
   history/
   site-data/
+    events/
+    ufc/
+    live/
   qa/
 ```
 
-This is a Stage 5 migration. Existing script locations remain valid until then.
-
-Human-facing npm commands should stay stable where practical even when their implementation moves.
+Stage 5 completed this migration. Human-facing npm commands remain stable where practical even though their implementations now live in domain folders. Feature-specific helpers and validation stay beside the feature they support; cross-site quality checks live under `scripts/qa/`.
 
 ## Backend
 

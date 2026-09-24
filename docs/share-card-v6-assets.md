@@ -1,6 +1,6 @@
 # Share-card V6 assets
 
-The GoBold display outlines in `assets/share-gobold.mjs` are generated from the existing `Gobold Bold.woff` using `node scripts/build-share-gobold.mjs`. The same outline module renders exact letterforms in Sharp and in the browser fallback. Use `--check` to verify freshness.
+The GoBold display outlines in `assets/share-gobold.mjs` are generated from the existing `Gobold Bold.woff` using `node scripts/media/build-share-gobold.mjs`. The same outline module renders exact letterforms in Sharp and in the browser fallback. Use `--check` to verify freshness.
 
 `assets/textures/otd-gaffer-tape-v1.png` was generated with the built-in image-generation tool, then its transparent margins were trimmed and it was resized to 1600 pixels wide. It is an original material texture; all event imagery and all typography are composited separately.
 

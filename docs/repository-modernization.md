@@ -166,9 +166,9 @@ ARTICLE VIDEO
 GitHub Release asset: writer-media-YYYY-MM
 ```
 
-Legacy image sources and their established generated URLs remain unchanged. The responsive-image generator now uses `scripts/media-paths.mjs`, which keeps legacy output flat while routing future article-owned derivatives into matching article namespaces.
+Legacy image sources and their established generated URLs remain unchanged. The responsive-image generator now uses `scripts/media/media-paths.mjs`, which keeps legacy output flat while routing future article-owned derivatives into matching article namespaces.
 
-`scripts/check-content.mjs` now validates generated responsive images recursively so nested derivatives receive the same size checks as legacy flat output.
+`scripts/qa/check-content.mjs` now validates generated responsive images recursively so nested derivatives receive the same size checks as legacy flat output.
 
 Stage 3 also added:
 
@@ -202,7 +202,7 @@ _writer/
   06-bootstrap.js
 ```
 
-`scripts/build-frontend-bundles.mjs` concatenates those ordered source modules into the existing `assets/writer.js` compatibility bundle. This deliberately preserves the Writer's shared closure and runtime ordering instead of introducing a risky browser-module rewrite.
+`scripts/writer/build-frontend-bundles.mjs` concatenates those ordered source modules into the existing `assets/writer.js` compatibility bundle. This deliberately preserves the Writer's shared closure and runtime ordering instead of introducing a risky browser-module rewrite.
 
 The split reduced the single-file maintenance surface into domains for core/frontmatter helpers, preview rendering, state/library/GitHub transport, publishing, editor tools, media upload/layout, and event/bootstrap behavior.
 

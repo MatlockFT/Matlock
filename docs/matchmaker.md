@@ -4,7 +4,7 @@ The `/matchmaker/` route is intentionally simple: choose a completed UFC card an
 
 ## Run and verify
 
-Run `node scripts/update-matchmaker.mjs` to refresh source data, then `node scripts/check-matchmaker.mjs` for deterministic-engine regressions and real-card checks. The **Update Matchmaker data** workflow runs twice daily, supports manual dispatch, and also runs when Matchmaker engine/source code changes. Collection is atomic: validation failure leaves the previous good dataset published.
+Run `node scripts/matchmaker/update-matchmaker.mjs` to refresh source data, then `node scripts/matchmaker/check-matchmaker.mjs` for deterministic-engine regressions and real-card checks. The **Update Matchmaker data** workflow runs twice daily, supports manual dispatch, and also runs when Matchmaker engine/source code changes. Collection is atomic: validation failure leaves the previous good dataset published.
 
 `assets/matchmaker-engine.js` is the deterministic recommendation engine. `scripts/matchmaker/sources/ufc.mjs` handles UFC event results, rankings and athlete-profile context. `scripts/matchmaker/sources/ufcstats.mjs` supplies structured prior-opponent history for rematch detection. The site's canonical UFC roster, upcoming schedule and portrait registry are reused. Visitors never trigger source scraping; the browser only reads normalized published JSON.
 
