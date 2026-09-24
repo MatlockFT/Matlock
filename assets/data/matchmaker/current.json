@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-09-23T22:09:22.774Z"
+      "checkedAt": "2026-09-24T00:31:35.286Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-23T22:09:46.716Z",
+      "checkedAt": "2026-09-24T00:32:05.299Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -120792,8 +120792,8 @@
         "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
         "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
-        "opponent": "Mehemmedeli Osmanli",
-        "opponentId": "mehemmedeli-osmanli"
+        "opponent": "Mahammadali Osmanli",
+        "opponentId": null
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -216844,7 +216844,7 @@
     {
       "id": "mehemmedeli-osmanli",
       "name": "Mehemmedeli Osmanli",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/mehemmedeli-osmanli",
       "aliases": [
         "mehemmedeli-osmanli"
@@ -216885,17 +216885,11 @@
         "mirrorThrough": "2026-09-19",
         "officialThrough": "2026-09-19"
       },
-      "booking": {
-        "event": "Jr. vs Barcelos",
-        "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
-        "opponent": "Ilimbek Akylbek",
-        "opponentId": "ilimbek-akylbek"
-      },
+      "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-09-23T18:56:27.940Z"
+        "checkedAt": "2026-09-24T00:31:35.286Z"
       },
       "imageSource": "UFC.com athlete profile",
       "imagePage": "https://www.ufc.com/athlete/mehemmedeli-osmanli",
@@ -338264,7 +338258,7 @@
   ],
   "coverage": {
     "profileFailures": 28,
-    "activeFighters": 991,
+    "activeFighters": 990,
     "participantHistoriesRequested": 206,
     "verifiedParticipantHistories": 206,
     "ufcStatsNameMisses": 0,
