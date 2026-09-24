@@ -94,7 +94,7 @@ I'm sorry.
 
 Well, using my dedicated Qubes OS machine, routed through a Whonix gateway, chained into Tor, pushed through a separate VPN tunnel, isolated behind a hardware firewall and connected over a hardwired Ethernet line to a network I will not be discussing further, I was finally able to uncover the answer.
 
-The answer is yes, it can be done. There have been examples in the past that have flown under the radar. Luckily, those much smarter than I were able to identify them. Most notably, Phantom Punch Breakdowns:
+The answer is yes, it can be done. There have been examples in the past that have flown under the radar. Luckily, those much smarter than I were able to identify them. Most notably, [Phantom Punch Breakdowns](https://x.com/9h6st21_mma):
 
 [EMBED X](https://x.com/9h6st21_mma/status/2102785195795701803)
 
