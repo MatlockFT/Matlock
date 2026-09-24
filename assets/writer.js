@@ -1794,6 +1794,10 @@ function insertBlock(text) {
     ].filter(Boolean).join('\n');
   }
 
+  const VIDEO_CHUNK_BYTES = 3.5 * 1024 * 1024;
+  const VIDEO_STATUS_POLL_MS = 1500;
+  const VIDEO_STATUS_TIMEOUT_MS = 15 * 60 * 1000;
+
   function videoFileInfo(file) {
     if (!file) throw new Error('Choose a video file.');
     const extension = String(file.name || '').match(/\.([A-Za-z0-9]+)$/)?.[1]?.toLowerCase() || '';
@@ -1851,133 +1855,123 @@ function insertBlock(text) {
     if (elements.label) elements.label.textContent = 'Preparing upload…';
   }
 
-  async function mediaGithubToken() {
-    if (!githubCredential) throw new Error('Sign in with GitHub before uploading videos.');
-    if (!isServerSession()) return githubCredential;
-    if (!authBase) throw new Error('Writer auth bridge is unavailable.');
-
-    const id = githubCredential.slice('session:'.length);
-    const response = await fetch(`${authBase}/api/writer/media-token`, {
-      method: 'POST',
-      mode: 'cors',
-      cache: 'no-store',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'X-Writer-Session': id
-      },
-      body: '{}'
-    });
-
-    const data = await response.json().catch(() => ({}));
-    if (!response.ok || !data.token) {
-      if (response.status === 401) expireGithubConnection();
-      throw new Error(data.error || data.message || 'Could not authorize the media upload.');
-    }
-    return data.token;
+  function writerSessionId() {
+    return isServerSession() ? githubCredential.slice('session:'.length) : '';
   }
 
-  async function releaseApiFetch(token, path, options = {}) {
-    const response = await fetch(`https://api.github.com/repos/${mediaRepo}${path}`, {
-      ...options,
-      headers: {
-        Accept: 'application/vnd.github+json',
-        Authorization: `Bearer ${token}`,
-        'X-GitHub-Api-Version': '2022-11-28',
-        ...(options.headers || {})
-      },
-      cache: 'no-store'
-    });
+  function videoUploadId() {
+    if (window.crypto?.randomUUID) return window.crypto.randomUUID().replace(/-/g, '');
+    return `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 14)}`;
+  }
 
-    let data = null;
-    if (response.status !== 204) data = await response.json().catch(() => ({}));
+  async function mediaBridgeFetch(path, options = {}) {
+    if (!authBase) throw new Error('Writer auth bridge is unavailable.');
+    const session = writerSessionId();
+    if (!session) throw new Error('Use the normal GitHub sign-in before uploading videos.');
+
+    let response;
+    try {
+      response = await fetch(`${authBase}${path}`, {
+        ...options,
+        mode: 'cors',
+        cache: 'no-store',
+        headers: {
+          Accept: 'application/json',
+          'X-Writer-Session': session,
+          ...(options.headers || {})
+        }
+      });
+    } catch {
+      throw new Error('Could not reach the Writer upload bridge.');
+    }
+
+    const data = await response.json().catch(() => ({}));
     if (!response.ok) {
-      const error = new Error(data?.message || `${response.status} ${response.statusText}`);
-      error.status = response.status;
-      error.data = data;
-      throw error;
+      if (response.status === 401) expireGithubConnection();
+      throw new Error(data.error || data.message || `${response.status} ${response.statusText}`);
     }
     return data;
   }
 
-  function monthlyMediaReleaseTag() {
-    const now = new Date();
-    return `writer-media-${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
-  }
+  async function uploadVideoChunk(uploadId, file, assetName, index, count) {
+    const start = index * VIDEO_CHUNK_BYTES;
+    const end = Math.min(file.size, start + VIDEO_CHUNK_BYTES);
+    const chunk = file.slice(start, end);
+    const headers = {
+      'Content-Type': 'application/octet-stream',
+      'X-Upload-Id': uploadId,
+      'X-Chunk-Index': String(index),
+      'X-Chunk-Count': String(count),
+      'X-File-Size': String(file.size),
+      'X-File-Type': file.type || 'application/octet-stream',
+      'X-Asset-Name': assetName
+    };
 
-  async function ensureMediaRelease(token) {
-    const tag = monthlyMediaReleaseTag();
-    try {
-      return await releaseApiFetch(token, `/releases/tags/${encodeURIComponent(tag)}`);
-    } catch (error) {
-      if (error.status !== 404) throw error;
-    }
-
-    const monthLabel = tag.replace('writer-media-', '');
-    return releaseApiFetch(token, '/releases', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        tag_name: tag,
-        target_commitish: 'main',
-        name: `Website media · ${monthLabel}`,
-        body: 'Article media uploaded automatically by MMA Matlock Writer. Do not delete assets that are embedded in published articles.',
-        draft: false,
-        prerelease: true
-      })
-    });
-  }
-
-  function uploadReleaseAsset(token, release, file, filename) {
-    return new Promise((resolve, reject) => {
-      const base = String(release?.upload_url || '').replace(/\{\?name,label\}$/, '');
-      if (!base) {
-        reject(new Error('GitHub did not provide a release upload URL.'));
-        return;
+    let lastError = null;
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      try {
+        await mediaBridgeFetch('/api/writer/media-chunk', {
+          method: 'POST',
+          headers,
+          body: chunk
+        });
+        return chunk.size;
+      } catch (error) {
+        lastError = error;
+        if (attempt < 2) await new Promise(resolve => window.setTimeout(resolve, 350 * (attempt + 1)));
       }
+    }
+    throw lastError || new Error('Video chunk upload failed.');
+  }
 
-      const request = new XMLHttpRequest();
-      request.open('POST', `${base}?name=${encodeURIComponent(filename)}`);
-      request.responseType = 'json';
-      request.setRequestHeader('Accept', 'application/vnd.github+json');
-      request.setRequestHeader('Authorization', `Bearer ${token}`);
-      request.setRequestHeader('X-GitHub-Api-Version', '2022-11-28');
-      request.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+  async function waitForVideoRelease(uploadId) {
+    const started = Date.now();
+    while (Date.now() - started < VIDEO_STATUS_TIMEOUT_MS) {
+      const status = await mediaBridgeFetch(`/api/writer/media-status?uploadId=${encodeURIComponent(uploadId)}`);
+      if (status.state === 'complete' && status.url) return status.url;
+      if (status.state === 'error') throw new Error(status.error || 'GitHub Release upload failed.');
 
-      request.upload.addEventListener('progress', event => {
-        if (!event.lengthComputable) {
-          setVideoUploadProgress(0, 'Uploading video…');
-          return;
-        }
-        const percent = Math.round((event.loaded / event.total) * 100);
-        setVideoUploadProgress(percent, `Uploading video… ${percent}%`);
-      });
+      const stage = status.state || 'processing';
+      if (stage === 'queued') setVideoUploadProgress(82, 'Queued for GitHub Releases…');
+      else if (stage === 'preparing') setVideoUploadProgress(86, 'Preparing GitHub Release…');
+      else if (stage === 'publishing') setVideoUploadProgress(92, 'Publishing video to GitHub Releases…');
+      else setVideoUploadProgress(84, 'Processing video…');
 
-      request.addEventListener('load', () => {
-        const data = request.response && typeof request.response === 'object'
-          ? request.response
-          : (() => { try { return JSON.parse(request.responseText || '{}'); } catch { return {}; } })();
-
-        if (request.status === 201 && data?.browser_download_url) {
-          resolve(data);
-          return;
-        }
-        reject(new Error(data?.message || `GitHub upload failed with status ${request.status}.`));
-      });
-      request.addEventListener('error', () => reject(new Error('The browser could not reach GitHub Releases.')));
-      request.addEventListener('abort', () => reject(new Error('Video upload was cancelled.')));
-      request.send(file);
-    });
+      await new Promise(resolve => window.setTimeout(resolve, VIDEO_STATUS_POLL_MS));
+    }
+    throw new Error('GitHub Release upload timed out. Try the upload again.');
   }
 
   async function uploadVideoAsset(file) {
     videoFileInfo(file);
-    const token = await mediaGithubToken();
-    setVideoUploadProgress(0, 'Preparing GitHub Release…');
-    const release = await ensureMediaRelease(token);
-    const safeName = videoUploadName(file).replace(/[^A-Za-z0-9._-]+/g, '-');
-    const asset = await uploadReleaseAsset(token, release, file, safeName);
-    return asset.browser_download_url;
+    if (!writerSessionId()) throw new Error('Use the normal GitHub sign-in before uploading videos.');
+
+    const uploadId = videoUploadId();
+    const assetName = videoUploadName(file).replace(/[^A-Za-z0-9._-]+/g, '-');
+    const chunkCount = Math.ceil(file.size / VIDEO_CHUNK_BYTES);
+    let uploaded = 0;
+
+    setVideoUploadProgress(2, `Uploading video in ${chunkCount} part${chunkCount === 1 ? '' : 's'}…`);
+    for (let index = 0; index < chunkCount; index += 1) {
+      uploaded += await uploadVideoChunk(uploadId, file, assetName, index, chunkCount);
+      const percent = 5 + (uploaded / file.size) * 70;
+      setVideoUploadProgress(percent, `Uploading video… ${Math.round((uploaded / file.size) * 100)}%`);
+    }
+
+    setVideoUploadProgress(78, 'Sending video to GitHub Releases…');
+    await mediaBridgeFetch('/api/writer/media-finalize', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        uploadId,
+        assetName,
+        chunkCount,
+        fileSize: file.size,
+        fileType: file.type || 'application/octet-stream'
+      })
+    });
+
+    return waitForVideoRelease(uploadId);
   }
 
   async function insertInlineVideo(file, caption = '') {
@@ -1999,7 +1993,7 @@ function insertBlock(text) {
     videoUploadInFlight = true;
     setPublishingControls(Boolean(githubCredential));
     clearVideoUploadProgress();
-    showToast('Preparing GitHub Release upload…', 3000);
+    showToast('Uploading video…', 3000);
 
     try {
       const url = await uploadVideoAsset(file);
@@ -2011,12 +2005,12 @@ function insertBlock(text) {
       return url;
     } catch (error) {
       replaceUploadToken(token, '');
-      showToast(`Video upload failed: ${error.message}`, 8000);
+      showToast(`Video upload failed: ${error.message}`, 9000);
       return '';
     } finally {
       videoUploadInFlight = false;
       setPublishingControls(Boolean(githubCredential));
-      window.setTimeout(clearVideoUploadProgress, 900);
+      window.setTimeout(clearVideoUploadProgress, 1200);
       setSaveState('Unsaved changes');
     }
   }
