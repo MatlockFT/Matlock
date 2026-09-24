@@ -1,3 +1,4 @@
+/* Generated public bundle source. Edit _writer/*.js, then run npm run build:frontend. */
 (() => {
   const app = document.querySelector('[data-writer-app]');
   if (!app) return;
