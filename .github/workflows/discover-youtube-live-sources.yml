@@ -43,7 +43,7 @@ jobs:
       - name: Publish discovery results
         shell: bash
         run: |
-          if git diff --quiet -- assets/data/live-source-discovery.json; then
+          if [ -z "$(git status --porcelain -- assets/data/live-source-discovery.json)" ]; then
             echo "No discovery result changes."
             exit 0
           fi
