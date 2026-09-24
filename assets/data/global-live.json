@@ -1,25 +1,8 @@
 {
-  "version": 3,
-  "generated_at": "2026-09-24T02:04:26Z",
-  "selected_event_id": "inka:C2nNtrk8FRs",
-  "events": [
-    {
-      "event_id": "inka:C2nNtrk8FRs",
-      "promotion_id": "inka",
-      "promotion": "Inka Fighting Championship",
-      "short_name": "INKA",
-      "country": "Peru",
-      "priority": 75,
-      "channel_name": "INKA MMA PRO",
-      "channel_id": null,
-      "channel_url": null,
-      "video_id": "C2nNtrk8FRs",
-      "title": "Inka 61",
-      "watch_url": "https://www.youtube.com/watch?v=C2nNtrk8FRs",
-      "is_live": true,
-      "stale": true
-    }
-  ],
+  "version": 4,
+  "generated_at": "2026-09-24T02:06:27Z",
+  "selected_event_id": null,
+  "events": [],
   "sources": {
     "a1-combat": {
       "promotion": "A1 Combat",
@@ -55,13 +38,14 @@
       "short_name": "APFC",
       "country": "United States",
       "priority": 65,
-      "channel_id": null,
-      "channel_name": "APFC",
+      "coverage_note": "Prelims",
+      "access_note": null,
       "channel_url": "https://www.youtube.com/@ANTHONYPETTISFC",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:06:26Z"
     },
     "budo-sento": {
       "promotion": "Budo Sento Championship",
@@ -84,13 +68,14 @@
       "short_name": "DEEP",
       "country": "Japan",
       "priority": 75,
-      "channel_id": null,
-      "channel_name": "DEEP",
+      "coverage_note": "Event stream",
+      "access_note": "Some events may require membership",
       "channel_url": "https://www.youtube.com/@deep2001MMA",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:06:26Z"
     },
     "empire-mma-colombia": {
       "promotion": "Empire MMA",
@@ -157,27 +142,26 @@
       "priority": 65,
       "coverage_note": "Prelims",
       "access_note": null,
-      "channel_id": null,
-      "channel_name": "INKA MMA PRO",
       "channel_url": "https://www.youtube.com/@INKA.MMAPRO",
-      "status": "error",
-      "last_error": "ERROR: [youtube] C2nNtrk8FRs: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
-      "error_count": 5,
+      "status": "offline",
+      "last_error": null,
+      "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:04:26Z"
+      "last_checked_at": "2026-09-24T02:06:26Z"
     },
     "levels-fight-league": {
       "promotion": "Levels Fight League",
       "short_name": "LFL",
       "country": "Netherlands",
       "priority": 78,
-      "channel_id": null,
-      "channel_name": "LFL",
+      "coverage_note": "Event stream",
+      "access_note": "Territory restrictions may apply",
       "channel_url": "https://www.youtube.com/channel/UCNMMACQ4MzL4SodKy8sUySA",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:06:26Z"
     },
     "lfa": {
       "promotion": "Legacy Fighting Alliance",
@@ -197,13 +181,14 @@
       "short_name": "LUX",
       "country": "Mexico",
       "priority": 60,
-      "channel_id": null,
-      "channel_name": "LUX",
+      "coverage_note": "Selected fight coverage",
+      "access_note": null,
       "channel_url": "https://www.youtube.com/@LuxFightLeagueOficial",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:06:26Z"
     },
     "mfl": {
       "promotion": "Mexico Fight League",
@@ -223,13 +208,14 @@
       "short_name": "NAIZA",
       "country": "Kazakhstan",
       "priority": 80,
-      "channel_id": null,
-      "channel_name": "NAIZA",
+      "coverage_note": "Event stream",
+      "access_note": null,
       "channel_url": "https://www.youtube.com/@naizatv",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:06:26Z"
     },
     "octagon-central-asia": {
       "promotion": "OCTAGON",
@@ -252,52 +238,56 @@
       "short_name": "OFL",
       "country": "Chile",
       "priority": 80,
-      "channel_id": null,
-      "channel_name": "OFL",
+      "coverage_note": "Event stream",
+      "access_note": null,
       "channel_url": "https://www.youtube.com/@OpenFightLatam",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:06:26Z"
     },
     "road-fc": {
       "promotion": "ROAD FC",
       "short_name": "ROAD FC",
       "country": "South Korea",
       "priority": 55,
-      "channel_id": null,
-      "channel_name": "ROAD FC",
+      "coverage_note": "Rookie/semi-pro league verified; main shows not confirmed",
+      "access_note": null,
       "channel_url": "https://www.youtube.com/roadfc",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:06:26Z"
     },
     "samurai-fight-house": {
       "promotion": "Samurai Fight House",
       "short_name": "SFH",
       "country": "Argentina",
       "priority": 75,
-      "channel_id": null,
-      "channel_name": "SFH",
+      "coverage_note": "Pro and amateur event streams",
+      "access_note": null,
       "channel_url": "https://www.youtube.com/@samuraifighthouseLIVE",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:06:27Z"
     },
     "sft-combat": {
       "promotion": "SFT Combat",
       "short_name": "SFT",
       "country": "Brazil",
       "priority": 80,
-      "channel_id": null,
-      "channel_name": "SFT",
+      "coverage_note": "Event stream",
+      "access_note": null,
       "channel_url": "https://www.youtube.com/@SFTCombat",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:06:26Z"
     },
     "tuff-n-uff": {
       "promotion": "Tuff-N-Uff",
@@ -336,15 +326,16 @@
       "short_name": "Versus MMA",
       "country": "South Africa",
       "priority": 85,
-      "channel_id": null,
-      "channel_name": "Versus MMA",
+      "coverage_note": "Full event stream",
+      "access_note": null,
       "channel_url": "https://www.youtube.com/@versusmmaofficial",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:06:26Z"
     }
   },
   "monitored_count": 23,
-  "live_count": 1
+  "live_count": 0
 }
