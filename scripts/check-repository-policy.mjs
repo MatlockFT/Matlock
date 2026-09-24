@@ -86,6 +86,10 @@ if (configuredPermalink !== policy.content?.permalink) {
   errors.push('Jekyll permalink does not match repository policy.');
 }
 
+if (!/^exclude:\s*$[\s\S]*?^\s+-\s+_writer\s*$/m.test(config)) {
+  errors.push('Jekyll must explicitly exclude _writer source modules from the published site.');
+}
+
 for (const [path, label] of [
   [policy.content?.postsRoot, 'Posts root'],
   [policy.media?.legacyUploadRoot, 'Legacy upload root'],
