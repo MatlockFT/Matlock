@@ -4,9 +4,9 @@ This document tracks the controlled reorganization of the MMA Matlock repository
 
 ## Current status
 
-**Stage 9 of 10 — Repository integrity enforcement: IN PROGRESS**
+**Stage 9 of 10 — Repository integrity enforcement: COMPLETE**
 
-Next stage after validation: **Stage 10 — Final documentation and maintenance mode**
+Next stage: **Stage 10 — Final documentation and maintenance mode**
 
 Stages 0–5 established the safety baseline, repository/media contracts, article-owned asset hierarchy, modular Writer source, and domain-organized development scripts. Stage 6 consolidates overlapping GitHub Actions ownership while preserving schedules, publishing behavior, and production regression gates.
 
@@ -373,6 +373,21 @@ Earlier enforcement remains in place and forms part of the Stage 9 integrity bou
 
 The exact pre-Stage-9 repository state is preserved at `archive/repo-modernization-stage8-complete-2026-09-24`.
 
+
+Stage 9 validation confirmed:
+
+- the frozen legacy-upload manifest contains exactly 46 pre-existing flat upload paths;
+- the generated-asset integrity manifest covers all 142 files under `assets/generated/`;
+- the real image-optimization workflow regenerated responsive images, refreshed/validated the integrity manifest, validated article content, and completed successfully;
+- the strengthened repository-integrity check passed after correcting Markdown closing-parenthesis parsing discovered by its first CI run;
+- repository reference safety, repository policy, runtime-data policy, script organization, workflow organization, media separation, and generated-asset integrity all passed together in Site Quality;
+- content, brand/theme, browser/data syntax, and UFC roster identity checks passed after the new integrity layer;
+- the exact Stage 9 commit built successfully with Jekyll and uploaded its Pages artifact;
+- the long Matchmaker validation remains an independent existing Site Quality gate and was still running when Stage 9 was closed; no Stage 9 rule weakens or bypasses it.
+
+The first Stage 9 CI run was useful by design: the new local-media scanner initially included Markdown closing parentheses in asset paths. CI rejected those false positives, the parser was corrected in `37df6a7240101ffc5c526d6cf4766512e15721f7`, and the corrected integrity step passed.
+
+
 ## Planned stages
 
 | Stage | Scope | Status |
@@ -386,7 +401,7 @@ The exact pre-Stage-9 repository state is preserved at `archive/repo-modernizati
 | 6 | GitHub Actions workflow consolidation | Complete |
 | 7 | Legacy/V2/V3 page cleanup | Complete |
 | 8 | Runtime-data and cache policy | Complete |
-| 9 | Repository integrity enforcement | In progress |
-| 10 | Final documentation and maintenance mode | Pending |
+| 9 | Repository integrity enforcement | Complete |
+| 10 | Final documentation and maintenance mode | Next |
 
 The status table is updated at the end of every completed stage.
