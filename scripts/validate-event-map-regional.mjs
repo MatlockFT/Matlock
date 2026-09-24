@@ -16,6 +16,10 @@ if (!Array.isArray(data.sources) || !data.sources.length) failures.push('Regiona
 if (!Array.isArray(data.events)) failures.push('Regional Event Map events must be an array.');
 
 const ids = new Set();
+const numberedEventKeys = new Map();
+const normalize = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const eventNumber = event => normalize(event?.title).match(/\b(\d{1,4})\b/)?.[1] || '';
+
 for (const [index, event] of (data.events || []).entries()) {
   const label = `event ${index + 1}`;
   if (!event?.id) failures.push(`${label}: missing id.`);
@@ -27,6 +31,16 @@ for (const [index, event] of (data.events || []).entries()) {
   if (!String(event.title || '').trim()) failures.push(`${label}: missing title.`);
   if (!String(event.location || '').trim()) failures.push(`${label}: missing location.`);
   if (!String(event.source_key || '').trim()) failures.push(`${label}: missing source_key.`);
+
+  const number = eventNumber(event);
+  if (number && event.source_key && event.date) {
+    const duplicateKey = `${event.source_key}|${event.date}|#${number}`;
+    if (numberedEventKeys.has(duplicateKey)) {
+      failures.push(`${label}: duplicate numbered event of ${numberedEventKeys.get(duplicateKey)} (${duplicateKey}).`);
+    } else {
+      numberedEventKeys.set(duplicateKey, event.id || label);
+    }
+  }
   if (!/^https:\/\//i.test(String(event.official_url || ''))) failures.push(`${label}: official_url must use https.`);
   if (event.regional !== true) failures.push(`${label}: regional flag must be true.`);
 
