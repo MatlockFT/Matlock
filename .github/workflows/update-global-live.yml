@@ -37,9 +37,6 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install YouTube detector
-        run: python -m pip install --disable-pip-version-check --quiet yt-dlp
-
       - name: Check promotion registry
         run: python scripts/update-global-live.py
 
