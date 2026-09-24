@@ -1,0 +1,561 @@
+{
+  "version": 1,
+  "modernizationStage": 8,
+  "roots": {
+    "buildTime": "_data",
+    "publicRuntime": "assets/data",
+    "temporaryScratch": ".cache",
+    "generatedMedia": "assets/generated"
+  },
+  "invariants": {
+    "preserveExistingPublishedDataPaths": true,
+    "generatedDoesNotMeanDisposable": true,
+    "publicRuntimeCachesAreOperationalData": true,
+    "temporaryScratchMustNotBeTracked": true
+  },
+  "scratch": {
+    "canonicalRoot": ".cache",
+    "gitignoreRequired": [
+      ".cache/",
+      ".otd-share-cache/",
+      ".otd-poster-cache/",
+      ".otd-event-fallback-snapshot.json"
+    ]
+  },
+  "datasets": [
+    {
+      "id": "event-map-generated-build-data",
+      "storage": "build-time",
+      "paths": [
+        "_data/event_map_location_report.json",
+        "_data/event_map_regional.json",
+        "_data/event_map_us.json"
+      ],
+      "lifecycle": "generated-build-data",
+      "owner": "events",
+      "producers": [
+        "scripts/site-data/events/build-event-map-us.mjs",
+        "scripts/site-data/events/update-event-map-regional.mjs",
+        "scripts/site-data/events/report-event-map-locations.mjs"
+      ],
+      "consumers": [
+        "event-map.html",
+        "scripts/site-data/events/validate-event-map-us.mjs"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "event-map-curated-overrides",
+      "storage": "build-time",
+      "paths": [
+        "_data/event_map_overrides.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "events",
+      "producers": [
+        "manual:reviewed-overrides"
+      ],
+      "consumers": [
+        "scripts/site-data/events"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "fighter-portrait-build-data",
+      "storage": "build-time",
+      "paths": [
+        "_data/fighter_portraits.json"
+      ],
+      "lifecycle": "generated-build-data",
+      "owner": "ufc",
+      "producers": [
+        "scripts/site-data/ufc/enrich-fighter-portraits.mjs",
+        "scripts/site-data/ufc/publish-fighter-portraits.mjs"
+      ],
+      "consumers": [
+        "jekyll:templates"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "fighter-portrait-overrides",
+      "storage": "build-time",
+      "paths": [
+        "_data/fighter_portrait_overrides.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "ufc",
+      "producers": [
+        "manual:reviewed-overrides"
+      ],
+      "consumers": [
+        "scripts/site-data/ufc"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "matchmaker-roster-overrides",
+      "storage": "build-time",
+      "paths": [
+        "_data/matchmaker-roster-overrides.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "matchmaker",
+      "producers": [
+        "manual:reviewed-overrides"
+      ],
+      "consumers": [
+        "scripts/matchmaker/sync-matchmaker-roster.mjs"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "yellow-pages-directory",
+      "storage": "build-time",
+      "paths": [
+        "_data/mma_yellow_pages.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "site",
+      "producers": [
+        "manual:curated-directory"
+      ],
+      "consumers": [
+        "mma-yellowpages.html",
+        "scripts/qa/check-mma-yellow-pages.mjs"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "otd-jekyll-lead-index",
+      "storage": "build-time",
+      "paths": [
+        "_data/on_this_day_leads.json"
+      ],
+      "lifecycle": "generated-build-data",
+      "owner": "history",
+      "producers": [
+        ".github/workflows/update-on-this-day-events.yml",
+        ".github/workflows/otd-current-window-fast-publish.yml"
+      ],
+      "consumers": [
+        "jekyll:homepage-preload"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "responsive-image-manifest",
+      "storage": "build-time",
+      "paths": [
+        "_data/responsive_images.yml"
+      ],
+      "lifecycle": "generated-build-data",
+      "owner": "media",
+      "producers": [
+        "scripts/media/optimize-post-images.mjs"
+      ],
+      "consumers": [
+        "jekyll:responsive-image-templates",
+        "scripts/qa/check-content.mjs"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "sumo-event-build-data",
+      "storage": "build-time",
+      "paths": [
+        "_data/sumo_events.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "events",
+      "producers": [
+        "manual:curated-sumo-calendar"
+      ],
+      "consumers": [
+        "jekyll:event-surfaces"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "upcoming-event-generated-build-data",
+      "storage": "build-time",
+      "paths": [
+        "_data/upcoming_events.json",
+        "_data/upcoming_events_changes.json",
+        "_data/upcoming_events_regional.json",
+        "_data/upcoming_events_verdict_watch.json"
+      ],
+      "lifecycle": "generated-build-data",
+      "owner": "events",
+      "producers": [
+        "scripts/site-data/events/update-upcoming-ufc-events.mjs",
+        "scripts/site-data/events/update-pfl-upcoming-events.mjs",
+        "scripts/site-data/events/update-rizin-upcoming-events.mjs",
+        "scripts/site-data/events/diff-upcoming-events.mjs"
+      ],
+      "consumers": [
+        "upcoming-events.html",
+        "scripts/matchmaker/update-matchmaker.mjs",
+        "scripts/site-data/events"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "upcoming-event-overrides",
+      "storage": "build-time",
+      "paths": [
+        "_data/upcoming_events_overrides.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "events",
+      "producers": [
+        "manual:reviewed-overrides"
+      ],
+      "consumers": [
+        "scripts/site-data/events/apply-upcoming-event-overrides.mjs"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "public-event-bridges",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/event-map-live.json",
+        "assets/data/upcoming-events-live.json"
+      ],
+      "lifecycle": "generated-public-runtime",
+      "owner": "events",
+      "producers": [
+        "jekyll:build-from-_data"
+      ],
+      "consumers": [
+        "assets/site-ticker.js",
+        "browser:event-map-and-fight-card-surfaces"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
+      "id": "fighter-birthday-seeds",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/fighter-birthday-seeds.json"
+      ],
+      "lifecycle": "curated-input",
+      "owner": "ufc",
+      "producers": [
+        "manual:verified-birthday-seeds"
+      ],
+      "consumers": [
+        "scripts/site-data/ufc/update-fighter-birthdays.mjs"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "live-status-runtime",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/global-live.json"
+      ],
+      "lifecycle": "generated-public-runtime",
+      "owner": "live",
+      "producers": [
+        "scripts/site-data/live/update-global-live.py"
+      ],
+      "consumers": [
+        "browser:live-and-site-ticker"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
+      "id": "live-source-registry",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/live-promotions.json"
+      ],
+      "lifecycle": "curated-operational-input",
+      "owner": "live",
+      "producers": [
+        "manual:promotion-source-registry"
+      ],
+      "consumers": [
+        "scripts/site-data/live"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "live-source-discovery-state",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/live-source-candidates.json",
+        "assets/data/live-source-discovery.json"
+      ],
+      "lifecycle": "operational-cache",
+      "owner": "live",
+      "producers": [
+        "scripts/site-data/live/discover-youtube-live-sources.py"
+      ],
+      "consumers": [
+        "scripts/site-data/live/update-global-live.py"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "matchmaker-current",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/matchmaker/current.json"
+      ],
+      "lifecycle": "generated-public-runtime",
+      "owner": "matchmaker",
+      "producers": [
+        "scripts/matchmaker/update-matchmaker.mjs",
+        "scripts/matchmaker/sync-matchmaker-roster.mjs"
+      ],
+      "consumers": [
+        "matchmaker.html",
+        "assets/matchmaker-public.js"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
+      "id": "matchmaker-historical-universe",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/matchmaker/historical-universe.json"
+      ],
+      "lifecycle": "generated-validation-data",
+      "owner": "matchmaker",
+      "producers": [
+        "scripts/matchmaker/build-historical-universe.mjs"
+      ],
+      "consumers": [
+        "scripts/matchmaker/backtest-recommendations-v4.mjs"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "matchmaker-validation-reports",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/matchmaker/backtest-report.json",
+        "assets/data/matchmaker/recommendation-audit.json"
+      ],
+      "lifecycle": "generated-validation-data",
+      "owner": "matchmaker",
+      "producers": [
+        "scripts/matchmaker/backtest-recommendations-v4.mjs",
+        "scripts/matchmaker/audit-recommendations.mjs"
+      ],
+      "consumers": [
+        "docs/matchmaker.md",
+        "ci:matchmaker-validation"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "matchmaker-ranking-snapshots",
+      "storage": "public-runtime",
+      "prefixes": [
+        "assets/data/matchmaker/rankings/"
+      ],
+      "lifecycle": "snapshot-archive",
+      "owner": "matchmaker",
+      "producers": [
+        "scripts/matchmaker/update-matchmaker.mjs"
+      ],
+      "consumers": [
+        "scripts/matchmaker/backtest-recommendations.mjs",
+        "scripts/matchmaker/backtest-recommendations-v4.mjs"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "matchmaker-state-snapshots",
+      "storage": "public-runtime",
+      "prefixes": [
+        "assets/data/matchmaker/state/"
+      ],
+      "lifecycle": "snapshot-archive",
+      "owner": "matchmaker",
+      "producers": [
+        "scripts/matchmaker/snapshot-temporal-state.mjs"
+      ],
+      "consumers": [
+        "scripts/matchmaker/backtest-recommendations.mjs",
+        "scripts/matchmaker/backtest-recommendations-v4.mjs"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "mma-news-runtime-fallback",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/mma-news.json"
+      ],
+      "lifecycle": "generated-public-runtime",
+      "owner": "news",
+      "producers": [
+        "scripts/news/build-news-feed.mjs"
+      ],
+      "consumers": [
+        "news.html",
+        "index.html",
+        "_layouts/post.html",
+        "assets/site-ticker.js"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
+      "id": "otd-primary-runtime",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/on-this-day.json"
+      ],
+      "lifecycle": "generated-public-runtime",
+      "owner": "history",
+      "producers": [
+        "scripts/history/update-on-this-day-events.mjs",
+        "scripts/site-data/ufc/update-fighter-birthdays.mjs"
+      ],
+      "consumers": [
+        "on-this-day.html",
+        "scripts/history"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
+      "id": "otd-runtime-summaries",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/on-this-day-home.json",
+        "assets/data/on-this-day-leads.json",
+        "assets/data/on-this-day-share-manifest.json"
+      ],
+      "lifecycle": "generated-public-runtime",
+      "owner": "history",
+      "producers": [
+        "scripts/history/build-on-this-day-home.mjs",
+        "scripts/history/build-on-this-day-leads.mjs",
+        "scripts/history/build-on-this-day-share-safe.mjs"
+      ],
+      "consumers": [
+        "index.html",
+        "on-this-day.html",
+        "_data/on_this_day_leads.json"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
+      "id": "otd-runtime-shards",
+      "storage": "public-runtime",
+      "prefixes": [
+        "assets/data/on-this-day-runtime/"
+      ],
+      "lifecycle": "generated-public-runtime",
+      "owner": "history",
+      "producers": [
+        "scripts/history/build-on-this-day-runtime.mjs"
+      ],
+      "consumers": [
+        "on-this-day.html",
+        "index.html"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
+      "id": "otd-operational-caches",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/on-this-day-content-cache.json",
+        "assets/data/on-this-day-image-cache.json",
+        "assets/data/on-this-day-pancrase-cache.json",
+        "assets/data/on-this-day-poster-registry.json"
+      ],
+      "lifecycle": "operational-cache",
+      "owner": "history",
+      "producers": [
+        "scripts/history/enrich-on-this-day-content.mjs",
+        "scripts/history/resolve-on-this-day-images.mjs",
+        "scripts/history/enrich-on-this-day-pancrase.mjs",
+        "scripts/history/resolve-on-this-day-tapology-posters.mjs"
+      ],
+      "consumers": [
+        "scripts/history"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
+      "id": "otd-curated-source-registries",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/on-this-day-current-poster-fallbacks.json",
+        "assets/data/on-this-day-event-sources.json",
+        "assets/data/on-this-day-image-source-overrides.json",
+        "assets/data/on-this-day-share-sources.json"
+      ],
+      "lifecycle": "curated-operational-input",
+      "owner": "history",
+      "producers": [
+        "manual:verified-source-curation"
+      ],
+      "consumers": [
+        "scripts/history"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    }
+  ]
+}

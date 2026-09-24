@@ -152,6 +152,13 @@ if (policy.code?.writerBundle !== 'assets/writer.js') {
 if (policy.code?.writerBuildCommand !== 'npm run build:frontend') {
   errors.push('Writer build command must remain npm run build:frontend.');
 }
+if (stage >= 8) {
+  if (policy.dataPolicyFile !== '.repository-data-policy.json') {
+    errors.push('Stage 8 must define dataPolicyFile as .repository-data-policy.json.');
+  } else {
+    await requirePath(policy.dataPolicyFile, 'Data lifecycle policy');
+  }
+}
 
 if (stage < 7 && policy.legacyExceptions?.versionedRootPagesAllowedUntilStage !== 7) {
   errors.push('Versioned root page exception must remain scheduled for Stage 7.');

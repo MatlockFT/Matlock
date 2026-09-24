@@ -1,7 +1,8 @@
 import fs from 'node:fs/promises';
+import path from 'node:path';
 
 const HISTORY_PATH = process.argv[3] || process.env.OTD_HISTORY_PATH || 'assets/data/on-this-day.json';
-const SNAPSHOT_PATH = process.env.OTD_EVENT_FALLBACK_SNAPSHOT || '.otd-event-fallback-snapshot.json';
+const SNAPSHOT_PATH = process.env.OTD_EVENT_FALLBACK_SNAPSHOT || '.cache/on-this-day/event-fallback-snapshot.json';
 const MODE = String(process.argv[2] || '').toLowerCase();
 const clean = value => String(value || '').replace(/\s+/g, ' ').trim();
 const norm = value => clean(value).normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
@@ -32,6 +33,7 @@ if (MODE === 'snapshot') {
     if (!isEvent(entry) || !http(entry?.imageUrl) || verifiedPoster(entry)) continue;
     fallbacks[keyFor(entry)] = snapshotImage(entry);
   }
+  await fs.mkdir(path.dirname(SNAPSHOT_PATH), { recursive: true });
   await fs.writeFile(SNAPSHOT_PATH, `${JSON.stringify({ version: 1, createdAt: new Date().toISOString(), fallbacks }, null, 2)}\n`, 'utf8');
   console.log(`Snapshotted ${Object.keys(fallbacks).length} stored OTD event fallback image(s).`);
   process.exit(0);

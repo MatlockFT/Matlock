@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "modernizationStage": 7,
+  "modernizationStage": 8,
   "principles": {
     "preserveExistingPublicPaths": true,
     "noCosmeticMoves": true,
@@ -86,5 +86,6 @@
   "legacyExceptions": {
     "existingUploadsRemainInPlace": true,
     "currentFlatScriptLayoutAllowedUntilStage": 5
-  }
+  },
+  "dataPolicyFile": ".repository-data-policy.json"
 }

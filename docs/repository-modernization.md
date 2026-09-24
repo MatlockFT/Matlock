@@ -4,9 +4,9 @@ This document tracks the controlled reorganization of the MMA Matlock repository
 
 ## Current status
 
-**Stage 7 of 10 — Legacy/V2/V3 page cleanup: COMPLETE**
+**Stage 8 of 10 — Runtime-data and cache policy: IN PROGRESS**
 
-Next stage: **Stage 8 — Runtime-data and cache policy**
+Next stage after validation: **Stage 9 — Repository integrity enforcement**
 
 Stages 0–5 established the safety baseline, repository/media contracts, article-owned asset hierarchy, modular Writer source, and domain-organized development scripts. Stage 6 consolidates overlapping GitHub Actions ownership while preserving schedules, publishing behavior, and production regression gates.
 
@@ -309,6 +309,36 @@ The repository policy now advances to modernization Stage 7 and rejects any new 
 
 The exact pre-Stage-7 repository state is preserved at `archive/repo-modernization-stage6-complete-2026-09-24`.
 
+## Stage 8 runtime-data and cache policy
+
+Stage 8 classifies tracked repository data by lifecycle without relocating established public URLs.
+
+The permanent roots are:
+
+```text
+_data/          Jekyll/build-time data
+assets/data/    published runtime and operational data
+.cache/         disposable local/CI scratch data
+assets/generated/ generated media (Stage 3 contract)
+```
+
+The machine-readable registry is `.repository-data-policy.json`. Every tracked file beneath `_data/` and `assets/data/` must match exactly one lifecycle rule describing its owner, producer, consumers, regeneration status, deletion status, and whether its path is a browser/runtime contract.
+
+Stage 8 adds `npm run check:data` and Site Quality enforcement. The check rejects unclassified managed data, overlapping classifications, missing declared files/producers, tracked scratch-cache files, and invalid public-contract metadata.
+
+Important policy decisions:
+
+- existing `assets/data/` URLs remain in place;
+- large Matchmaker files are not moved merely because of size;
+- Matchmaker ranking/state snapshots are historical archives and are not considered reproducible from current data;
+- On This Day files with `cache` in their names are tracked operational persistence, not disposable scratch;
+- `safeToRegenerate: true` never implies `safeToDeleteFromRepository: true`;
+- new temporary scratch data belongs under ignored `.cache/`.
+
+Local On This Day scratch defaults now use `.cache/on-this-day/`. Existing workflow-specific poster/share cache branches and their public URLs remain unchanged.
+
+The exact pre-Stage-8 repository state is preserved at `archive/repo-modernization-stage7-complete-2026-09-24`.
+
 ## Planned stages
 
 | Stage | Scope | Status |
@@ -321,7 +351,7 @@ The exact pre-Stage-7 repository state is preserved at `archive/repo-modernizati
 | 5 | Development-script organization | Complete |
 | 6 | GitHub Actions workflow consolidation | Complete |
 | 7 | Legacy/V2/V3 page cleanup | Complete |
-| 8 | Runtime-data and cache policy | Next |
+| 8 | Runtime-data and cache policy | In progress |
 | 9 | Repository integrity enforcement | Pending |
 | 10 | Final documentation and maintenance mode | Pending |
 

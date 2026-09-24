@@ -95,7 +95,7 @@ The full source → generated → video separation is documented in [`docs/media
 
 ## Runtime data
 
-Browser-consumed datasets belong under:
+Browser-consumed/published datasets belong under:
 
 ```text
 assets/data/
@@ -107,7 +107,17 @@ Jekyll build-time data belongs under:
 _data/
 ```
 
-Large JSON files are not considered wrong solely because they are large. Stage 8 will document producer, consumer, regeneration policy, and retention rules for each important dataset.
+Disposable local/CI scratch data belongs under:
+
+```text
+.cache/
+```
+
+Stage 8 records producer, consumer, regeneration, retention, ownership, and public-contract status in `.repository-data-policy.json`. CI runs `npm run check:data` and rejects an unclassified file added beneath `_data/` or `assets/data/`.
+
+Files such as `assets/data/on-this-day-image-cache.json` remain tracked operational data despite the word “cache” in their filename. Historical Matchmaker snapshots likewise remain tracked because they preserve point-in-time state. Generated data is only disposable when its lifecycle rule explicitly says so.
+
+See [`docs/data-lifecycle.md`](data-lifecycle.md) for the full contract.
 
 ## Site code
 
@@ -218,10 +228,9 @@ This list is not exhaustive; the reference audit is still required before any mo
 The repository intentionally tolerates several legacy patterns until their dedicated migration stage:
 
 - Existing flat files in `assets/uploads/`
-- Versioned root pages such as `*-v3.html` until Stage 7
-- Current workflow sprawl until Stage 6
+- Existing `legacy-*.html` redirect stubs that preserve old public article URLs
 
-The flat `scripts/` exception ended in Stage 5. New development automation must live inside one of the defined script domains.
+The flat `scripts/` exception ended in Stage 5, workflow sprawl ended in Stage 6, and versioned migration pages ended in Stage 7. New development automation must live inside one of the defined script domains.
 
 A legacy exception is permission to leave a working file alone, not permission for new work to keep expanding the old pattern.
 

@@ -38,6 +38,9 @@ jobs:
       - name: Check repository organization policy
         run: npm run check:repo-policy
 
+      - name: Check data lifecycle policy
+        run: npm run check:data
+
       - name: Check development script organization
         run: npm run check:scripts
 
@@ -88,6 +91,7 @@ jobs:
           node --check scripts/qa/check-repository-integrity.mjs
           node --check scripts/qa/repository-reference-audit.mjs
           node --check scripts/qa/check-repository-policy.mjs
+          node --check scripts/qa/check-data-lifecycle.mjs
           node --check scripts/qa/check-script-layout.mjs
           node --check scripts/qa/check-workflow-layout.mjs
           node --check scripts/media/media-paths.mjs

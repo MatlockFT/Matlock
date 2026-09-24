@@ -6,7 +6,7 @@ import { balancedWrap, textUnits } from '../media/share-title-layout.mjs';
 import { topMatterSvg, collageMarksSvg, titleAndFooterSvg, noImageSvg } from '../media/share-card-composition.mjs';
 
 const HISTORY_PATH = process.argv[2] || 'assets/data/on-this-day.json';
-const OUTPUT_DIR = process.env.OTD_SHARE_OUTPUT_DIR || '.otd-share-cache';
+const OUTPUT_DIR = process.env.OTD_SHARE_OUTPUT_DIR || '.cache/on-this-day/share';
 const MANIFEST_PATH = process.env.OTD_SHARE_MANIFEST_PATH || 'assets/data/on-this-day-share-manifest.json';
 const CURATED_SOURCES_PATH = process.env.OTD_SHARE_SOURCES_PATH || 'assets/data/on-this-day-share-sources.json';
 const PUBLIC_BASE = process.env.OTD_SHARE_PUBLIC_BASE || 'https://raw.githubusercontent.com/MatlockFT/Matlock/otd-share-cache';
