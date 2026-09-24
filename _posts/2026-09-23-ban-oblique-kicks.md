@@ -32,7 +32,7 @@ This controversial kick has been used by many, but most notably by Anderson Silv
 
 If you haven't felt a shiver up your spine at merely reading the words OBLIQUE KICK, then that means you are unfamiliar with the devastating move. Worry not, for there is a video explaining it in perfect detail by the one who arguably made it most famous and used it most effectively. The one, the only, Jonny Bones Jones.
 
-<iframe src="https://www.youtube.com/embed/6Lpf1vwr658" title="YouTube video" allowfullscreen></iframe>
+<div class="article-video-embed"><iframe src="https://www.youtube.com/embed/6Lpf1vwr658" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>
 
 Before Jones made the oblique kick famous, the aforementioned Anderson Silva obliterated Thales Leites so horribly at UFC 97 that the Association of Boxing Commissions' committee had to review the legality of this lethal blow. Ultimately, the MMA Gods decided the ABC were not honorable enough to enact such a monumental change, and the strike remained legal in 2009. [ABC committee report](https://www.abcboxing.com/committee-report-on-unified-rules-for-mma/).
 
@@ -104,5 +104,5 @@ In the meantime, we can only pray no other fighters' careers are sidelined or co
 
 Andy Foster getting knocked out by Amar Suloev
 
-<iframe src="https://www.youtube.com/embed/a0QcDnV2lHQ" title="YouTube video" allowfullscreen></iframe>
+<div class="article-video-embed"><iframe src="https://www.youtube.com/embed/a0QcDnV2lHQ" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>
 
