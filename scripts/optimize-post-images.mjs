@@ -1,6 +1,7 @@
 import { access, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
-import { extname, join, resolve } from 'node:path';
+import { join, resolve } from 'node:path';
 import sharp from 'sharp';
+import { responsiveOutputPlan } from './media-paths.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const postsDirectory = join(root, '_posts');
@@ -33,18 +34,6 @@ function findFeaturedImage(markdown) {
     return pathMatch
         ? pathMatch[1].replace(/^['"]|['"]$/g, '')
         : null;
-}
-
-function outputStem(imagePath) {
-    const extension = extname(imagePath);
-
-    return imagePath
-        .slice(1, -extension.length)
-        .replace(/^assets\//, '')
-        .replaceAll('/', '-')
-        .replace(/[^a-zA-Z0-9_-]+/g, '-')
-        .replace(/-+/g, '-')
-        .toLowerCase();
 }
 
 async function generateSiteHeader() {
@@ -110,12 +99,14 @@ for (const imagePath of [...imagePaths].sort()) {
         ])
     ].sort((a, b) => a - b);
 
-    const stem = outputStem(imagePath);
+    const plan = responsiveOutputPlan(imagePath);
+    const outputDirectory = join(root, plan.relativeDirectory);
+    await mkdir(outputDirectory, { recursive: true });
     const variants = [];
 
     for (const width of widths) {
-        const filename = `${stem}-${width}.webp`;
-        const outputPath = join(postOutputDirectory, filename);
+        const filename = `${plan.stem}-${width}.webp`;
+        const outputPath = join(outputDirectory, filename);
 
         await sharp(sourcePath)
             .rotate()
@@ -131,7 +122,7 @@ for (const imagePath of [...imagePaths].sort()) {
 
         variants.push({
             width,
-            url: `/assets/generated/posts/${filename}`
+            url: `${plan.publicDirectory}/${filename}`
         });
     }
 
