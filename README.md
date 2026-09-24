@@ -12,7 +12,9 @@
 
 ## How it works
 
-The site is built with [Jekyll](https://jekyllrb.com/) and published through GitHub Pages. Posts live in `_posts/`, shared layouts live in `_layouts/`, and styles, scripts, and images live in `assets/`.
+The site is built with [Jekyll](https://jekyllrb.com/) and published through GitHub Pages. Posts live in `_posts/`, shared layouts live in `_layouts/`, and public styles, scripts, images, and runtime data live in `assets/`.
+
+Repository organization is intentionally stability-first: existing public URLs stay in place, while new content follows the permanent structure documented in [`docs/repository-structure.md`](docs/repository-structure.md). The staged migration plan and rollback point are tracked in [`docs/repository-modernization.md`](docs/repository-modernization.md).
 
 ## Run locally
 
@@ -28,10 +30,11 @@ Open `http://localhost:4000`.
 
 ## Publishing articles
 
-New articles created in Pages CMS begin as drafts. Keep `published: false`
-until the copy, description, and featured-image alt text are ready. Before
-publishing an article with a new featured image, regenerate and validate its
-responsive image variants:
+The custom Writer at `/write/` is the primary publishing interface. Articles remain Jekyll posts under `_posts/`; Writer handles drafts, scheduling, publishing, article images, and GitHub Release video uploads.
+
+Existing article-media URLs remain valid. Stage 2 of the repository modernization will make new Writer image uploads article-scoped under `assets/uploads/articles/YYYY/MM/article-slug/` without moving older media.
+
+For manual maintenance of featured images, responsive variants and content metadata can still be validated with:
 
 ```sh
 npm run optimize:images
