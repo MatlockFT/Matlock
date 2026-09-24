@@ -177,7 +177,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await page.mouse.move(handleBox.x + 80, handleBox.y + handleBox.height / 2, { steps: 4 });
   await page.mouse.up();
   await expect.poll(async () => Number(await placedImage.getAttribute('data-media-width'))).toBeGreaterThan(50);
-  await expect(editor).toHaveValue(/--media-width:[5-9][0-9](?:\.\d+)?%/);
+  await expect(editor).toHaveValue(/--media-width:\s*[5-9][0-9](?:\.\d+)?%/);
 
   await placedImage.hover();
   await mediaToolbar.locator('[data-media-layout="wrap-right"]').click();
