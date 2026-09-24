@@ -65,15 +65,17 @@ jobs:
           mkdir -p lighthouse-reports
 
           while IFS='|' read -r slug path; do
-            echo "Auditing ${path}"
-            npx --yes lighthouse@12.8.2 "https://mmamatlock.com${path}" \
-              --quiet \
-              --only-categories=performance \
-              --form-factor=mobile \
-              --screenEmulation.mobile=true \
-              --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" \
-              --output=json \
-              --output-path="lighthouse-reports/${slug}.json"
+            for sample in 1 2 3; do
+              echo "Auditing ${path} (sample ${sample}/3)"
+              npx --yes lighthouse@12.8.2 "https://mmamatlock.com${path}" \
+                --quiet \
+                --only-categories=performance \
+                --form-factor=mobile \
+                --screenEmulation.mobile=true \
+                --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" \
+                --output=json \
+                --output-path="lighthouse-reports/${slug}-${sample}.json"
+            done
           done <<'PAGES'
           home|/
           homepage-v2|/homepage-v2/
@@ -83,6 +85,7 @@ jobs:
           event-map|/event-map/
           ufc-roster|/ufc-roster/
           on-this-day|/on-this-day/
+          live|/live/
           PAGES
 
       - name: Enforce mobile performance gate
