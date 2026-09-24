@@ -208,14 +208,32 @@ def current_bucket():
     return int(utc_now().timestamp() // 300) % IDLE_BATCH_COUNT
 
 
-def should_probe(promotion, previous_source, previous_event, active_bucket):
-    if promotion.get("always_check"):
-        return True
+def upcoming_near_start(upcoming_events):
+    current = utc_now()
+    for event in upcoming_events or []:
+        value = event.get("scheduled_start_time")
+        if not value:
+            continue
+        try:
+            scheduled = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        except ValueError:
+            continue
 
+        seconds = (scheduled - current).total_seconds()
+        if -6 * 3600 <= seconds <= 2 * 3600:
+            return True
+
+    return False
+
+
+def should_probe(promotion, previous_source, previous_event, previous_upcoming, active_bucket):
     if not previous_source:
         return True
 
     if previous_event and previous_event.get("is_live"):
+        return True
+
+    if upcoming_near_start(previous_upcoming):
         return True
 
     status = previous_source.get("status")
@@ -705,8 +723,15 @@ def main():
     for promotion in promotions:
         previous_source = (previous.get("sources") or {}).get(promotion["id"]) or {}
         previous_event = prior_event_for(promotion["id"], previous)
+        previous_upcoming = prior_upcoming_for(promotion["id"], previous)
 
-        if should_probe(promotion, previous_source, previous_event, active_bucket):
+        if should_probe(
+            promotion,
+            previous_source,
+            previous_event,
+            previous_upcoming,
+            active_bucket,
+        ):
             to_probe.append(promotion)
         else:
             if previous_source:
