@@ -102,6 +102,8 @@ The final fight is not over yet. Foster has publicly floated the idea. CSAC has 
 
 In the meantime, we can only pray no other fighters' careers are sidelined or come to an end as a result of this technique that should've been left as simply an idea in Bruce Lee's mind.
 
+---
+
 Andy Foster getting knocked out by Amar Suloev
 
 <div class="article-video-embed"><iframe src="https://www.youtube.com/embed/a0QcDnV2lHQ" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>
