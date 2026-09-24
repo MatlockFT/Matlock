@@ -123,7 +123,7 @@
 
       const meta = document.createElement("span");
       meta.className = "live-lab__event-meta";
-      meta.textContent = `${event.short_name || event.promotion || "MMA"} · ${event.country || "International"}`;
+      meta.textContent = `${event.short_name || event.promotion || "MMA"} · ${event.country || "International"}${event.coverage_note ? ` · ${event.coverage_note}` : ""}`;
 
       button.append(status, name, meta);
       button.addEventListener("click", () => setPlayer(event));
