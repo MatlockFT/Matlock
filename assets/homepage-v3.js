@@ -20,7 +20,7 @@
 
     const syncRailHeight = () => {
       // Keep the deferred ticker row reserved until it mounts.
-      const height = Math.max(80, Math.ceil(shell.getBoundingClientRect().height));
+      const height = Math.max(83, Math.ceil(shell.getBoundingClientRect().height));
       document.documentElement.style.setProperty('--v3-fixed-rail-height', `${height}px`);
     };
 
