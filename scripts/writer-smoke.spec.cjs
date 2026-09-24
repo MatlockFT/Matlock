@@ -26,6 +26,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
 
   let remote = null;
   let shaCounter = 1;
+  const uploadedAssets = new Map();
 
   await page.route('https://platform.x.com/widgets.js', async route => {
     await route.fulfill({
@@ -62,6 +63,20 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
     if (url.pathname === `${repoRoot}/contents/_posts` && method === 'GET') {
       const list = remote ? [{ type: 'file', name: remote.name, path: remote.path, sha: remote.sha }] : [];
       return route.fulfill({ status: 200, headers, body: JSON.stringify(list) });
+    }
+    if (url.pathname.startsWith(`${repoRoot}/contents/assets/uploads/articles/`)) {
+      const assetPath = decodeURIComponent(url.pathname.slice(`${repoRoot}/contents/`.length));
+      if (method === 'GET') {
+        const asset = uploadedAssets.get(assetPath);
+        if (!asset) return route.fulfill({ status: 404, headers, body: JSON.stringify({ message: 'Not Found' }) });
+        return route.fulfill({ status: 200, headers, body: JSON.stringify({ path: assetPath, sha: asset.sha }) });
+      }
+      if (method === 'PUT') {
+        const payload = request.postDataJSON();
+        const sha = `assetsha${shaCounter++}`;
+        uploadedAssets.set(assetPath, { sha, content: payload.content });
+        return route.fulfill({ status: 200, headers, body: JSON.stringify({ content: { path: assetPath, sha }, commit: { sha: `commit${shaCounter}` } }) });
+      }
     }
     if (url.pathname.startsWith(`${repoRoot}/contents/_posts/`)) {
       const path = decodeURIComponent(url.pathname.slice(`${repoRoot}/contents/`.length));
@@ -247,6 +262,19 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await page.fill('[data-github-token]', 'github_pat_writer_smoke_fake');
   await page.click('[data-github-authorize]');
   await expect(page.locator('[data-github-status]')).toContainText('Connected to MatlockFT/Matlock', { timeout: 10000 });
+
+  // New uploads live under the article's date + filename slug rather than the flat legacy upload root.
+  await page.click('[data-tool="image"]');
+  await page.locator('[data-inline-image-file]').setInputFiles({
+    name: 'smoke-upload.png',
+    mimeType: 'image/png',
+    buffer: Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9Y9ZQmcAAAAASUVORK5CYII=', 'base64')
+  });
+  await page.fill('[data-inline-image-alt]', 'Uploaded smoke image');
+  await page.click('[data-image-insert]');
+  const expectedAssetPath = `assets/uploads/articles/${date.slice(0, 4)}/${date.slice(5, 7)}/writer-production-smoke/smoke-upload.png`;
+  expect(await editor.inputValue()).toContain('/' + expectedAssetPath);
+  expect(uploadedAssets.has(expectedAssetPath)).toBe(true);
 
   if (!(await advancedDetails.evaluate(el => el.open))) await advancedDetails.locator('summary').click();
   const cleanFilename = await page.locator('[data-field="filename"]').inputValue();
