@@ -22,7 +22,7 @@ MAX_STREAM_CANDIDATES = 6
 
 VIDEO_ID_RE = re.compile(r'"videoId":"([A-Za-z0-9_-]{11})"')
 STREAM_VIDEO_ID_RE = re.compile(
-    r'"(?:videoRenderer|gridVideoRenderer)":\\{"videoId":"([A-Za-z0-9_-]{11})"'
+    r'"(?:videoRenderer|gridVideoRenderer)":\{"videoId":"([A-Za-z0-9_-]{11})"'
 )
 LIVE_BROADCAST_RE = re.compile(
     r'"liveBroadcastDetails":\\{.{0,1500}?"isLiveNow":true',
@@ -39,10 +39,10 @@ TITLE_SIMPLE_RE = re.compile(
     re.S,
 )
 TITLE_CONTENT_RE = re.compile(
-    r'"title":\\{"content":"((?:\\\\.|[^"\\\\])*)"',
+    r'"title":\{"content":"((?:\\.|[^"\\])*)"',
     re.S,
 )
-WATCHING_RE = re.compile(r'"content":"[^"]*\\bwatching"', re.I)
+WATCHING_RE = re.compile(r'"content":"[^"]*\bwatching"', re.I)
 
 LIVE_MARKERS = (
     '"BADGE_STYLE_TYPE_LIVE_NOW"',
