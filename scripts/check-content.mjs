@@ -4,7 +4,7 @@ import {
     readdirSync,
     statSync
 } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { join, relative, resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
 const postsDirectory = join(root, '_posts');
@@ -253,14 +253,29 @@ for (const filename of readdirSync(postsDirectory).filter(
 
 const generatedDirectory = join(root, 'assets', 'generated', 'posts');
 
+function generatedFiles(directory) {
+    const files = [];
+
+    for (const entry of readdirSync(directory, { withFileTypes: true })) {
+        const entryPath = join(directory, entry.name);
+
+        if (entry.isDirectory()) {
+            files.push(...generatedFiles(entryPath));
+        } else if (entry.isFile()) {
+            files.push(entryPath);
+        }
+    }
+
+    return files;
+}
+
 if (existsSync(generatedDirectory)) {
-    for (const filename of readdirSync(generatedDirectory)) {
-        const path = join(generatedDirectory, filename);
+    for (const path of generatedFiles(generatedDirectory)) {
         const size = statSync(path).size;
 
         if (size > 500 * 1024) {
             failures.push(
-                `${filename}: responsive image exceeds 500 KB`
+                `${relative(root, path)}: responsive image exceeds 500 KB`
             );
         }
     }
