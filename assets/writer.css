@@ -521,8 +521,9 @@
 .writer-publish-check-item.is-warning .writer-publish-check-icon{background:rgba(151,119,56,.16);color:#d8bf84}
 
 
-.writer-x-embed{margin:1.35rem 0 1.65rem}
+.writer-x-embed{margin:1.35rem 0 1.65rem;overflow:visible}
 .writer-x-embed>.twitter-tweet{margin-top:0;margin-bottom:0}
+.writer-x-embed iframe{max-width:100%!important;aspect-ratio:auto!important}
 
 
 .writer-preview-featured.is-missing img{display:none}
