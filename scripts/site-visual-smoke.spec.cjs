@@ -15,7 +15,8 @@ const pages = [
   { slug: 'event-map', path: '/event-map/', ready: '.event-map-page' },
   { slug: 'on-this-day', path: '/on-this-day/', ready: '.otd-page' },
   { slug: 'roster', path: '/ufc-roster/', ready: '.ufc-roster-page' },
-  { slug: 'breakdowns', path: '/breakdowns/', ready: '.archive-page' }
+  { slug: 'breakdowns', path: '/breakdowns/', ready: '.archive-page' },
+  { slug: 'live', path: '/live/', ready: '.live-page' }
 ];
 
 const viewports = [
@@ -205,7 +206,8 @@ test.describe('Live V3 site rollout', () => {
     ['/on-this-day/', '[data-editorial-v3]'], ['/ufc-roster/', '[data-editorial-v3]'],
     ['/matchmaker/', '[data-editorial-v3]'], ['/about/', '[data-editorial-v3]'], ['/contact/', '[data-editorial-v3]'],
     ['/privacy/', '[data-editorial-v3]'], ['/media-kit/', '[data-editorial-v3]'],
-    ['/mma-yellowpages', '[data-editorial-v3]'], ['/picture-gallery', '[data-editorial-v3]']
+    ['/live/', '[data-editorial-v3]'], ['/mma-yellowpages', '[data-editorial-v3]'],
+    ['/picture-gallery', '[data-editorial-v3]']
   ];
   for (const [route, ready] of routes) {
     test(route + ' is live on V3', async ({ page }) => {
@@ -1321,7 +1323,7 @@ test.describe('Homepage V2 immersive scroll', () => {
     await expect(page.locator('#navigation-panel')).toBeVisible();
 
     const links = page.locator('#navigation-list > li > a');
-    await expect(links).toHaveCount(7);
+    await expect(links).toHaveCount(8);
 
     const boxes = await links.evaluateAll(nodes =>
       nodes.map(node => {
