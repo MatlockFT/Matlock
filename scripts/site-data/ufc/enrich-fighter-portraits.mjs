@@ -1,5 +1,5 @@
 import fs from 'node:fs/promises';
-import { DATA_PATH, norm } from './upcoming-events-data.mjs';
+import { DATA_PATH, norm } from '../events/upcoming-events-data.mjs';
 
 const CACHE_PATH='_data/fighter_portraits.json';
 const UA='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36';

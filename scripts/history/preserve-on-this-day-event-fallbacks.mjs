@@ -38,7 +38,7 @@ if (MODE === 'snapshot') {
 }
 
 if (MODE !== 'restore') {
-  throw new Error('Usage: node scripts/preserve-on-this-day-event-fallbacks.mjs snapshot|restore [history-path]');
+  throw new Error('Usage: node scripts/history/preserve-on-this-day-event-fallbacks.mjs snapshot|restore [history-path]');
 }
 
 let snapshot = { fallbacks: {} };

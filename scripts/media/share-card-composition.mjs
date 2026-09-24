@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import { balancedWrap } from './share-title-layout.mjs';
-import { measureDisplay, displayTextSvg } from '../assets/share-gobold.mjs';
+import { measureDisplay, displayTextSvg } from '../../assets/share-gobold.mjs';
 
 const PAPER = '#f1eee4';
 const MONO = 'DejaVu Sans Mono, Liberation Mono, monospace';

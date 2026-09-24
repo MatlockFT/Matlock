@@ -54,7 +54,7 @@ await fs.writeFile(tempHistoryPath, `${JSON.stringify(scopedHistory, null, 2)}\n
 console.log(`Current-window Tapology scope: ${currentEvents.length} event(s) within ±${WINDOW_DAYS} day(s); archive events are excluded from this fast pass.`);
 
 const result = spawnSync(process.execPath, [
-  'scripts/resolve-on-this-day-tapology-posters.mjs',
+  'scripts/history/resolve-on-this-day-tapology-posters.mjs',
   tempHistoryPath,
   OVERRIDES_PATH,
   CACHE_PATH
