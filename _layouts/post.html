@@ -1044,5 +1044,28 @@ layout: default
                 loadXWidgets(wrapper);
             }
         });
+
+        /*
+         * Article links always open in a new tab.
+         * This applies sitewide to links authored inside post content,
+         * including existing posts and future posts.
+         */
+        article.querySelectorAll("a[href]").forEach(function (link) {
+            link.target = "_blank";
+
+            const rel = new Set(
+                (link.getAttribute("rel") || "")
+                    .split(/\s+/)
+                    .filter(Boolean)
+            );
+
+            rel.add("noopener");
+            rel.add("noreferrer");
+
+            link.setAttribute(
+                "rel",
+                Array.from(rel).join(" ")
+            );
+        });
     });
 </script>
