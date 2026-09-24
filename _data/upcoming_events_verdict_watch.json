@@ -98,9 +98,9 @@
       "verdict_event_id": "1936",
       "verdict_url": "https://verdictmma.com/event/1936",
       "verdict_date": "2026-10-17",
-      "local_fight_count": 12,
+      "local_fight_count": 13,
       "verdict_fight_count": 12,
-      "local_main_count": 5,
+      "local_main_count": 6,
       "verdict_main_count": 5,
       "local_prelim_count": 7,
       "verdict_prelim_count": 7,
@@ -407,7 +407,7 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-09-26-fight-card",
       "verdict_event_id": "1959",
-      "order": 10,
+      "order": 11,
       "fighters": [
         "John Castaneda",
         "Alatengheili"
@@ -417,7 +417,7 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-09-26-fight-card",
       "verdict_event_id": "1959",
-      "order": 11,
+      "order": 3,
       "fighters": [
         "Luis Hernandez",
         "Sedriques Dumas"
@@ -427,11 +427,37 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-09-26-fight-card",
       "verdict_event_id": "1959",
-      "order": 3,
+      "order": 4,
       "fighters": [
         "Mahammadali Osmanli",
         "Ilimbek Akylbek"
       ]
+    },
+    {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "verdict_event_id": "1936",
+      "local_fight_count": 13,
+      "verdict_fight_count": 12
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "verdict_event_id": "1936",
+      "order": 3,
+      "fighters": [
+        "Kyle Nelson",
+        "Cristian Perez Gonzalez"
+      ]
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-fight-night-2026-10-17-fight-card",
+      "verdict_event_id": "1936",
+      "local_main_count": 6,
+      "verdict_main_count": 5,
+      "local_prelim_count": 7,
+      "verdict_prelim_count": 7
     },
     {
       "type": "local_bout_not_found_on_verdict",

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-24T19:17:40.805Z",
+  "generated_at": "2026-09-24T20:37:19.129Z",
   "events": [
     {
       "id": "ufc-fight-night-2026-09-26-fight-card",
@@ -45,19 +45,19 @@
             {
               "order": 2,
               "label": "Co-Main Event",
-              "weight_class": "Middleweight Bout",
+              "weight_class": "Women's Bantamweight Bout",
               "fighters": [
                 {
-                  "name": "Rodolfo Vieira",
-                  "initials": "RV",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/VIEIRA_RODOLFO_L_04-25.png?itok=lZzBJfMR",
+                  "name": "Norma Dumont",
+                  "initials": "ND",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/DUMONT_NORMA_L_04-25.png?itok=uOQsIEx0",
                   "image_source": "ufc",
                   "image_framing": "safe"
                 },
                 {
-                  "name": "Robert Bryczek",
-                  "initials": "RB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-02/BRYZCEK_ROBERT_L_02-10.png?itok=xbrgBOJC",
+                  "name": "Ailin Perez",
+                  "initials": "AP",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/PEREZ_AILIN_L_02-28.png?itok=sPy9HJ2B",
                   "image_source": "ufc",
                   "image_framing": "safe"
                 }
@@ -65,6 +65,27 @@
             },
             {
               "order": 3,
+              "label": "",
+              "weight_class": "Light Heavyweight Bout",
+              "fighters": [
+                {
+                  "name": "Luis Hernandez",
+                  "initials": "LH",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/HERNANDEZ_LUIS_L_09-15.png?itok=6xYGQztr",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Sedriques Dumas",
+                  "initials": "SD",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/DUMAS_SEDRIQUES_L_04-12.png?itok=x6aJnKrz",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -85,7 +106,7 @@
               ]
             },
             {
-              "order": 4,
+              "order": 5,
               "label": "",
               "weight_class": "Women's Strawweight Bout",
               "fighters": [
@@ -104,9 +125,16 @@
                   "image_framing": "safe"
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "kind": "prelims",
+          "title": "Prelims",
+          "time": "5:00 PM ET",
+          "bouts": [
             {
-              "order": 5,
+              "order": 6,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -125,16 +153,30 @@
                   "image_framing": "safe"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "kind": "prelims",
-          "title": "Prelims",
-          "time": "5:00 PM ET",
-          "bouts": [
+            },
             {
-              "order": 6,
+              "order": 7,
+              "label": "",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Rodolfo Vieira",
+                  "initials": "RV",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/VIEIRA_RODOLFO_L_04-25.png?itok=lZzBJfMR",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Robert Bryczek",
+                  "initials": "RB",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-02/BRYZCEK_ROBERT_L_02-10.png?itok=xbrgBOJC",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 8,
               "label": "",
               "weight_class": "Light Heavyweight Bout",
               "fighters": [
@@ -155,7 +197,7 @@
               ]
             },
             {
-              "order": 7,
+              "order": 9,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
@@ -176,7 +218,7 @@
               ]
             },
             {
-              "order": 8,
+              "order": 10,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -197,28 +239,7 @@
               ]
             },
             {
-              "order": 9,
-              "label": "",
-              "weight_class": "Women's Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Norma Dumont",
-                  "initials": "ND",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/DUMONT_NORMA_L_04-25.png?itok=uOQsIEx0",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Ailin Perez",
-                  "initials": "AP",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/PEREZ_AILIN_L_02-28.png?itok=sPy9HJ2B",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 10,
+              "order": 11,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -233,27 +254,6 @@
                   "name": "Alatengheili",
                   "initials": "A",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-04/ALATENGHEILI_L_05-18.png?itok=tO6xLHed",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 11,
-              "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Luis Hernandez",
-                  "initials": "LH",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/HERNANDEZ_LUIS_L_09-15.png?itok=6xYGQztr",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Sedriques Dumas",
-                  "initials": "SD",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/DUMAS_SEDRIQUES_L_04-12.png?itok=x6aJnKrz",
                   "image_source": "ufc",
                   "image_framing": "safe"
                 }
@@ -1154,6 +1154,27 @@
             {
               "order": 3,
               "label": "",
+              "weight_class": "Lightweight Bout",
+              "fighters": [
+                {
+                  "name": "Kyle Nelson",
+                  "initials": "KN",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/NELSON_KYLE_L_10-18.png?itok=N6FSsbo_",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Cristian Perez Gonzalez",
+                  "initials": "CPG",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/PEREZ_CRISTIAN_L_08-26.png?itok=LIbBOleP",
+                  "image_source": "ufc",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
                 {
@@ -1173,7 +1194,7 @@
               ]
             },
             {
-              "order": 4,
+              "order": 5,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -1194,7 +1215,7 @@
               ]
             },
             {
-              "order": 5,
+              "order": 6,
               "label": "",
               "weight_class": "Lightweight Bout",
               "fighters": [
@@ -1222,7 +1243,7 @@
           "time": "5:00 PM ET",
           "bouts": [
             {
-              "order": 6,
+              "order": 7,
               "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
@@ -1243,7 +1264,7 @@
               ]
             },
             {
-              "order": 7,
+              "order": 8,
               "label": "",
               "weight_class": "Middleweight Bout",
               "fighters": [
@@ -1264,7 +1285,7 @@
               ]
             },
             {
-              "order": 8,
+              "order": 9,
               "label": "",
               "weight_class": "Heavyweight Bout",
               "fighters": [
@@ -1285,7 +1306,7 @@
               ]
             },
             {
-              "order": 9,
+              "order": 10,
               "label": "",
               "weight_class": "Women's Flyweight Bout",
               "fighters": [
@@ -1306,7 +1327,7 @@
               ]
             },
             {
-              "order": 10,
+              "order": 11,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
@@ -1327,7 +1348,7 @@
               ]
             },
             {
-              "order": 11,
+              "order": 12,
               "label": "",
               "weight_class": "Women's Bantamweight Bout",
               "fighters": [
@@ -1348,7 +1369,7 @@
               ]
             },
             {
-              "order": 12,
+              "order": 13,
               "label": "",
               "weight_class": "Bantamweight Bout",
               "fighters": [
