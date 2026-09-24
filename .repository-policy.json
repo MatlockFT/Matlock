@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "modernizationStage": 1,
+  "principles": {
+    "preserveExistingPublicPaths": true,
+    "noCosmeticMoves": true,
+    "newContentFollowsPolicy": true,
+    "generatedOutputIsReproducible": true,
+    "videosStayOutOfGitHistory": true
+  },
+  "content": {
+    "postsRoot": "_posts",
+    "postFilenamePattern": "YYYY-MM-DD-slug.md",
+    "permalink": "/:year/:month/:day/:title.html",
+    "rootPagesPolicy": "root-level-jekyll-pages-are-allowed"
+  },
+  "media": {
+    "legacyUploadRoot": "assets/uploads",
+    "futureArticleUploadRoot": "assets/uploads/articles",
+    "futureArticleUploadPattern": "assets/uploads/articles/YYYY/MM/article-slug/",
+    "generatedRoot": "assets/generated",
+    "runtimeDataRoot": "assets/data",
+    "videoBackend": "github-releases",
+    "videoReleaseTagPattern": "writer-media-YYYY-MM"
+  },
+  "code": {
+    "layoutsRoot": "_layouts",
+    "includesRoot": "_includes",
+    "jekyllDataRoot": "_data",
+    "scriptsRoot": "scripts",
+    "backendRoot": "_netlify-auth",
+    "workflowsRoot": ".github/workflows",
+    "plannedScriptGroups": [
+      "writer",
+      "media",
+      "matchmaker",
+      "news",
+      "history",
+      "site-data",
+      "qa"
+    ]
+  },
+  "protectedPaths": [
+    "_config.yml",
+    "_layouts/default.html",
+    "index.html",
+    "write.html",
+    "assets/site.js",
+    "assets/base.css",
+    "assets/writer.js",
+    "assets/writer.css",
+    "assets/post-v3.css",
+    "_netlify-auth/netlify/functions/writer-github.mjs"
+  ],
+  "legacyExceptions": {
+    "existingUploadsRemainInPlace": true,
+    "versionedRootPagesAllowedUntilStage": 7,
+    "currentFlatScriptLayoutAllowedUntilStage": 5,
+    "currentWorkflowLayoutAllowedUntilStage": 6
+  }
+}
