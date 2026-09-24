@@ -28,7 +28,8 @@
     "check:theme": "node scripts/check-theme-readiness.mjs",
     "resolve:history-posters:tapology": "node scripts/resolve-on-this-day-tapology-posters.mjs",
     "resolve:history-posters:wikipedia": "node scripts/resolve-on-this-day-event-posters.mjs",
-    "restore:history-poster-registry": "node scripts/sync-on-this-day-poster-registry.mjs --restore"
+    "restore:history-poster-registry": "node scripts/sync-on-this-day-poster-registry.mjs --restore",
+    "check:yellow-pages": "node scripts/check-mma-yellow-pages.mjs"
   },
   "devDependencies": {
     "fast-xml-parser": "^5.10.1",
