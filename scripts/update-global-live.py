@@ -226,7 +226,21 @@ def upcoming_near_start(upcoming_events):
     return False
 
 
+def fast_check_window_active(promotion):
+    value = promotion.get("fast_check_until")
+    if not value:
+        return False
+    try:
+        until = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except ValueError:
+        return False
+    return utc_now() <= until
+
+
 def should_probe(promotion, previous_source, previous_event, previous_upcoming, active_bucket):
+    if fast_check_window_active(promotion):
+        return True
+
     if not previous_source:
         return True
 
