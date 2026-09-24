@@ -36,7 +36,7 @@ If you haven't felt a shiver up your spine at merely reading the words OBLIQUE K
 
 <div class="article-video-embed"><iframe src="https://www.youtube.com/embed/6Lpf1vwr658" title="YouTube video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>
 
-Speaking of interesting history, it is only fair that I mention the UFC OG who harnessed the power of Bruce Lee's stop kick, Keith Hackney.
+It is only fair that I also mention the UFC OG who harnessed the power of Bruce Lee's stop kick, Keith Hackney.
 
 [EMBED X](https://x.com/MMAMATLOCK/status/2102869996133294391)
 
