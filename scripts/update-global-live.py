@@ -429,6 +429,23 @@ def probe_promotion(promotion, global_terms, previous_state):
     video_ids = extract_stream_video_ids(streams_page)
     if promotion_id == "inka":
         print(f"INKA stream candidates: {video_ids}")
+        debug_id = "C2nNtrk8FRs"
+        debug_needle = f'"videoId":"{debug_id}"'
+        debug_index = streams_page.find(debug_needle)
+        if debug_index >= 0:
+            debug_window = streams_page[max(0, debug_index - 500): debug_index + 6500]
+            debug_tokens = {
+                "BADGE_STYLE_TYPE_LIVE_NOW": "BADGE_STYLE_TYPE_LIVE_NOW" in debug_window,
+                "style_LIVE": '"style":"LIVE"' in debug_window,
+                "text_LIVE": '"text":"LIVE"' in debug_window,
+                "label_LIVE": '"label":"LIVE"' in debug_window,
+                "upcoming": "upcomingEventData" in debug_window,
+                "scheduledStartTime": "scheduledStartTime" in debug_window,
+                "thumbnailOverlayTimeStatusRenderer": "thumbnailOverlayTimeStatusRenderer" in debug_window,
+                "badges": '"badges"' in debug_window,
+            }
+            print(f"INKA stream card tokens: {debug_tokens}")
+            print("INKA stream card sample:", debug_window[:2600])
 
     restricted_title = None
     ignored_title = None
