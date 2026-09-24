@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import { inflateSync } from 'node:zlib';
 
-const font = fs.readFileSync(new URL('../Gobold Bold.woff', import.meta.url));
+const font = fs.readFileSync(new URL('../../Gobold Bold.woff', import.meta.url));
 if (font.toString('ascii', 0, 4) !== 'wOFF' || font.readUInt32BE(4) !== 0x00010000) {
   throw new Error('Expected a TrueType WOFF font');
 }
