@@ -108,8 +108,13 @@ for (const [path, label] of [
   if (path) await requirePath(path, label);
 }
 
-if (!Array.isArray(policy.code?.plannedScriptGroups) || policy.code.plannedScriptGroups.length < 5) {
-  errors.push('plannedScriptGroups must define the future script domains.');
+const expectedScriptGroups = ['writer', 'media', 'matchmaker', 'news', 'history', 'site-data', 'qa'];
+if (JSON.stringify(policy.code?.scriptGroups) !== JSON.stringify(expectedScriptGroups)) {
+  errors.push('code.scriptGroups must define the Stage 5 script domains in canonical order.');
+}
+const expectedSiteDataGroups = ['events', 'ufc', 'live'];
+if (JSON.stringify(policy.code?.siteDataGroups) !== JSON.stringify(expectedSiteDataGroups)) {
+  errors.push('code.siteDataGroups must define events, ufc and live.');
 }
 
 if (!Array.isArray(policy.protectedPaths) || !policy.protectedPaths.length) {
