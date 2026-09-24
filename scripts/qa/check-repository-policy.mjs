@@ -117,6 +117,24 @@ if (JSON.stringify(policy.code?.siteDataGroups) !== JSON.stringify(expectedSiteD
   errors.push('code.siteDataGroups must define events, ufc and live.');
 }
 
+const expectedWorkflowFamilies = ['site', 'writer', 'matchmaker', 'history', 'events', 'ufc', 'live', 'news', 'publishing', 'cms'];
+if (JSON.stringify(policy.code?.workflowFamilies) !== JSON.stringify(expectedWorkflowFamilies)) {
+  errors.push('code.workflowFamilies must define the Stage 6 workflow responsibility groups in canonical order.');
+}
+
+const expectedConsolidatedWorkflows = {
+  writer: '.github/workflows/writer-quality.yml',
+  siteBrowser: '.github/workflows/site-browser-quality.yml',
+  matchmaker: '.github/workflows/update-matchmaker.yml'
+};
+if (JSON.stringify(policy.code?.consolidatedWorkflows) !== JSON.stringify(expectedConsolidatedWorkflows)) {
+  errors.push('code.consolidatedWorkflows must define the Stage 6 canonical workflow owners.');
+} else {
+  for (const [owner, workflowPath] of Object.entries(expectedConsolidatedWorkflows)) {
+    await requirePath(workflowPath, 'Consolidated workflow ' + owner);
+  }
+}
+
 if (!Array.isArray(policy.protectedPaths) || !policy.protectedPaths.length) {
   errors.push('protectedPaths must be a non-empty array.');
 } else {
@@ -141,8 +159,8 @@ if (policy.legacyExceptions?.versionedRootPagesAllowedUntilStage !== 7) {
 if (policy.legacyExceptions?.currentFlatScriptLayoutAllowedUntilStage !== 5) {
   errors.push('Flat script layout exception must remain scheduled for Stage 5.');
 }
-if (policy.legacyExceptions?.currentWorkflowLayoutAllowedUntilStage !== 6) {
-  errors.push('Workflow-layout exception must remain scheduled for Stage 6.');
+if (stage >= 6 && Object.prototype.hasOwnProperty.call(policy.legacyExceptions || {}, 'currentWorkflowLayoutAllowedUntilStage')) {
+  errors.push('Workflow-layout legacy exception must be retired at Stage 6.');
 }
 
 if (errors.length) {

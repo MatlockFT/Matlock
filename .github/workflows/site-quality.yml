@@ -41,6 +41,9 @@ jobs:
       - name: Check development script organization
         run: npm run check:scripts
 
+      - name: Check GitHub Actions organization
+        run: npm run check:workflows
+
       - name: Check media pipeline separation
         run: npm run check:media
 
@@ -86,6 +89,7 @@ jobs:
           node --check scripts/qa/repository-reference-audit.mjs
           node --check scripts/qa/check-repository-policy.mjs
           node --check scripts/qa/check-script-layout.mjs
+          node --check scripts/qa/check-workflow-layout.mjs
           node --check scripts/media/media-paths.mjs
           node --check scripts/media/check-media-pipeline.mjs
           node --check scripts/qa/check-search-readiness.mjs
