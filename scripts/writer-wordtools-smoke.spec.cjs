@@ -79,6 +79,8 @@ test('Writer word processor tools work in production', async ({ page }) => {
   await expect(editor).toHaveValue(/  - First item\n  - Second item/);
   await page.click('[data-wordtool="outdent"]');
   await expect(editor).toHaveValue(/- First item\n- Second item/);
+  const editingMore = page.locator('[data-writer-ux-more]');
+  if (await editingMore.evaluate(el => el.open)) await editingMore.locator('summary').click();
   const bulleted = await editor.inputValue();
   const bulletStart = bulleted.indexOf('- First item');
   const bulletEnd = bulleted.indexOf('- Second item') + '- Second item'.length;
