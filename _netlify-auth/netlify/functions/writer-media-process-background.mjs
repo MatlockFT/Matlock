@@ -1,29 +1,15 @@
-import { chunkKey, cleanupChunks, mediaStore, requireWriterSession, setStatus, uploadScope, validUploadId } from './_writer-media.mjs';
-
-function repoFullName() {
-  return Netlify.env.get('GITHUB_REPOSITORY') || 'MatlockFT/Matlock';
-}
-
-async function githubJson(token, path, options = {}) {
-  const response = await fetch(`https://api.github.com/repos/${repoFullName()}${path}`, {
-    ...options,
-    headers: {
-      Accept: 'application/vnd.github+json',
-      Authorization: `Bearer ${token}`,
-      'X-GitHub-Api-Version': '2022-11-28',
-      ...(options.headers || {})
-    },
-    cache: 'no-store'
-  });
-
-  const data = response.status === 204 ? null : await response.json().catch(() => ({}));
-  if (!response.ok) {
-    const error = new Error(data?.message || `${response.status} ${response.statusText}`);
-    error.status = response.status;
-    throw error;
-  }
-  return data;
-}
+import { githubFetchUrl, githubJson } from './_github-client.mjs';
+import {
+  chunkKey,
+  cleanupChunks,
+  mediaStore,
+  requireWriterSession,
+  setStatus,
+  statusKey,
+  uploadScope,
+  validUploadId,
+  validateVideoMetadata
+} from './_writer-media.mjs';
 
 function releaseTag() {
   const now = new Date();
@@ -95,20 +81,17 @@ async function verifyChunks(store, scope, uploadId, chunkCount, fileSize) {
   if (stagedBytes !== fileSize) throw new Error('Staged video size did not match the original upload.');
 }
 
-async function uploadAsset(token, release, store, scope, uploadId, chunkCount, fileSize, fileType, assetName) {
+async function uploadAsset(token, release, store, scope, uploadId, meta) {
   const uploadUrl = String(release?.upload_url || '').replace(/\{\?name,label\}$/, '');
   if (!uploadUrl) throw new Error('GitHub did not provide a Release upload URL.');
 
-  const response = await fetch(`${uploadUrl}?name=${encodeURIComponent(assetName)}`, {
+  const response = await githubFetchUrl(token, `${uploadUrl}?name=${encodeURIComponent(meta.assetName)}`, {
     method: 'POST',
     headers: {
-      Accept: 'application/vnd.github+json',
-      Authorization: `Bearer ${token}`,
-      'X-GitHub-Api-Version': '2022-11-28',
-      'Content-Type': fileType || 'application/octet-stream',
-      'Content-Length': String(fileSize)
+      'Content-Type': meta.fileType || 'application/octet-stream',
+      'Content-Length': String(meta.fileSize)
     },
-    body: chunkStream(store, scope, uploadId, chunkCount),
+    body: chunkStream(store, scope, uploadId, meta.chunkCount),
     duplex: 'half'
   });
 
@@ -116,7 +99,7 @@ async function uploadAsset(token, release, store, scope, uploadId, chunkCount, f
   if (response.status === 201 && data?.browser_download_url) return data;
 
   if (response.status === 422) {
-    const existing = await existingReleaseAsset(token, release, assetName);
+    const existing = await existingReleaseAsset(token, release, meta.assetName);
     if (existing) return existing;
   }
   throw new Error(data?.message || `GitHub Release upload failed with status ${response.status}.`);
@@ -130,40 +113,49 @@ export default async function handler(request) {
 
   const body = await request.json().catch(() => null);
   const uploadId = validUploadId(body?.uploadId);
-  const chunkCount = Number(body?.chunkCount);
-  const fileSize = Number(body?.fileSize);
-  const fileType = String(body?.fileType || 'application/octet-stream').slice(0, 120);
-  const assetName = String(body?.assetName || '').replace(/[^A-Za-z0-9._-]+/g, '-').slice(0, 180);
-  if (!uploadId || !Number.isInteger(chunkCount) || chunkCount < 1 || !Number.isFinite(fileSize) || fileSize < 1 || !assetName) return;
+  if (!uploadId) return;
+
+  let meta;
+  try {
+    meta = validateVideoMetadata({
+      assetName: body?.assetName,
+      fileSize: body?.fileSize,
+      fileType: body?.fileType,
+      chunkCount: body?.chunkCount
+    });
+  } catch {
+    return;
+  }
 
   const scope = uploadScope(sessionId);
   const store = mediaStore();
 
   try {
-    const current = await store.get(`status/${scope}/${uploadId}`, { type: 'json', consistency: 'strong' });
+    const current = await store.get(statusKey(scope, uploadId), { type: 'json', consistency: 'strong' });
     if (current?.state === 'complete' && current?.url) return;
 
-    await setStatus(store, scope, uploadId, { state: 'preparing' });
-    await verifyChunks(store, scope, uploadId, chunkCount, fileSize);
+    await setStatus(store, scope, uploadId, { state: 'preparing', ...meta });
+    await verifyChunks(store, scope, uploadId, meta.chunkCount, meta.fileSize);
 
     const release = await ensureRelease(session.token);
-    await setStatus(store, scope, uploadId, { state: 'publishing' });
+    await setStatus(store, scope, uploadId, { state: 'publishing', ...meta });
 
-    const asset = await uploadAsset(session.token, release, store, scope, uploadId, chunkCount, fileSize, fileType, assetName);
+    const asset = await uploadAsset(session.token, release, store, scope, uploadId, meta);
     await setStatus(store, scope, uploadId, {
       state: 'complete',
       url: asset.browser_download_url,
       assetId: asset.id,
       releaseId: release.id,
-      assetName
+      ...meta
     });
-    await cleanupChunks(store, scope, uploadId, chunkCount);
+    await cleanupChunks(store, scope, uploadId, meta.chunkCount);
   } catch (error) {
     await setStatus(store, scope, uploadId, {
       state: 'error',
-      error: String(error?.message || error || 'GitHub Release upload failed.')
+      error: String(error?.message || error || 'GitHub Release upload failed.'),
+      ...meta
     });
-    await cleanupChunks(store, scope, uploadId, chunkCount);
+    await cleanupChunks(store, scope, uploadId, meta.chunkCount);
   }
 }
 
