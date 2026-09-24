@@ -830,23 +830,31 @@ body:has([data-globe-home]) .site-event-drawer {
 
     .v3-right-rail {
         grid-column: 1 / -1;
-        display: grid;
-        grid-template-columns: 170px minmax(0, 1fr);
-        gap: 1.25rem;
+        display: block;
         padding: 1.2rem 0 1.5rem;
         border-top: 1px solid var(--v3-rule);
         border-left: 0;
     }
 
+    .v3-right-rail .v3-rail-head {
+        margin-bottom: .9rem;
+    }
+
     .v3-news-list {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0,1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        column-gap: 1rem;
     }
 
     .v3-news-item {
         padding: .2rem 1rem .2rem 0;
         border-right: 1px solid var(--v3-rule);
         border-bottom: 0;
+    }
+
+    .v3-news-item:nth-child(3) {
+        padding-right: 0;
+        border-right: 0;
     }
 
     .v3-news-item:nth-child(n+4) {
