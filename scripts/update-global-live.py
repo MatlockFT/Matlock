@@ -18,8 +18,16 @@ STATE_PATH = ROOT / "assets" / "data" / "global-live.json"
 MAX_STALE_ERRORS = 4
 MAX_WORKERS = 6
 IDLE_BATCH_COUNT = 3
+MAX_STREAM_CANDIDATES = 6
 
 VIDEO_ID_RE = re.compile(r'"videoId":"([A-Za-z0-9_-]{11})"')
+STREAM_VIDEO_ID_RE = re.compile(
+    r'"(?:videoRenderer|gridVideoRenderer)":\\{"videoId":"([A-Za-z0-9_-]{11})"'
+)
+LIVE_BROADCAST_RE = re.compile(
+    r'"liveBroadcastDetails":\\{.{0,1500}?"isLiveNow":true',
+    re.S,
+)
 WATCH_URL_RE = re.compile(r'(?:watch\\?v=|watch%3Fv%3D)([A-Za-z0-9_-]{11})')
 OG_TITLE_RE = re.compile(r'<meta property="og:title" content="([^"]+)"', re.I)
 TITLE_RUN_RE = re.compile(
@@ -309,6 +317,75 @@ def error_result(promotion, previous_source, previous_event, channel_url, error)
     }
 
 
+def extract_stream_video_ids(page_html):
+    ids = []
+    seen = set()
+
+    for match in STREAM_VIDEO_ID_RE.finditer(page_html):
+        video_id = match.group(1)
+        if video_id in seen:
+            continue
+        seen.add(video_id)
+        ids.append(video_id)
+        if len(ids) >= MAX_STREAM_CANDIDATES:
+            return ids
+
+    # Fallback for YouTube markup variants that omit the renderer key.
+    if not ids:
+        for match in VIDEO_ID_RE.finditer(page_html):
+            video_id = match.group(1)
+            if video_id in seen:
+                continue
+            seen.add(video_id)
+            ids.append(video_id)
+            if len(ids) >= MAX_STREAM_CANDIDATES:
+                break
+
+    return ids
+
+
+def inspect_watch_video(video_id, promotion):
+    watch_url = f"https://www.youtube.com/watch?v={video_id}"
+    page_html, page_error, _ = fetch_text(watch_url)
+
+    if not page_html:
+        return {
+            "video_id": video_id,
+            "live": False,
+            "restricted": False,
+            "title": "",
+            "error": page_error,
+        }
+
+    lowered = page_html.casefold()
+    if "sign in to confirm you're not a bot" in lowered:
+        return {
+            "video_id": video_id,
+            "live": False,
+            "restricted": False,
+            "title": "",
+            "error": "YouTube bot challenge on watch page",
+        }
+
+    live = bool(LIVE_BROADCAST_RE.search(page_html)) or '"isLiveNow":true' in page_html
+    restricted = any(marker in lowered for marker in RESTRICTED_MARKERS)
+
+    fallback = f"{promotion.get('short_name') or promotion['name']} live"
+    title = extract_title(page_html, fallback)
+
+    metadata, _ = fetch_oembed(video_id)
+    if metadata and metadata.get("title"):
+        title = str(metadata["title"]).strip()
+
+    return {
+        "video_id": video_id,
+        "live": live,
+        "restricted": restricted,
+        "title": title,
+        "error": "",
+    }
+
+
 def probe_promotion(promotion, global_terms, previous_state):
     promotion_id = promotion["id"]
     previous_source = (previous_state.get("sources") or {}).get(promotion_id) or {}
@@ -325,62 +402,82 @@ def probe_promotion(promotion, global_terms, previous_state):
         )
 
     checked_at = now_iso()
+    streams_page, streams_error, _ = fetch_text(f"{channel_url}/streams")
+    if not streams_page:
+        return error_result(
+            promotion,
+            previous_source,
+            previous_event,
+            channel_url,
+            streams_error or "Could not load YouTube Streams page",
+        )
 
-    live_page, live_error, live_final_url = fetch_text(f"{channel_url}/live")
-    candidate = None
+    video_ids = extract_stream_video_ids(streams_page)
+    if promotion_id == "inka":
+        print(f"INKA stream candidates: {video_ids}")
 
-    redirected_video_id = video_id_from_url(live_final_url)
-    if redirected_video_id:
-        page_lower = (live_page or "").casefold()
-        candidate = {
-            "video_id": redirected_video_id,
-            "restricted": any(marker in page_lower for marker in RESTRICTED_MARKERS),
-            "title": extract_title(
-                live_page or "",
-                f"{promotion.get('short_name') or promotion['name']} live",
-            ),
+    restricted_title = None
+    ignored_title = None
+    watch_errors = []
+
+    for video_id in video_ids:
+        inspected = inspect_watch_video(video_id, promotion)
+
+        if inspected["error"]:
+            watch_errors.append(inspected["error"])
+            continue
+
+        if not inspected["live"]:
+            continue
+
+        if inspected["restricted"]:
+            restricted_title = inspected["title"]
+            continue
+
+        title = inspected["title"]
+        if not title_allowed(title, global_terms, promotion):
+            ignored_title = title
+            continue
+
+        observed_at = now_iso()
+        event = {
+            "event_id": f"{promotion_id}:{video_id}",
+            "promotion_id": promotion_id,
+            "promotion": promotion["name"],
+            "short_name": promotion.get("short_name") or promotion["name"],
+            "country": promotion.get("country") or "International",
+            "priority": int(promotion.get("priority") or 50),
+            "coverage_note": promotion.get("coverage_note"),
+            "access_note": promotion.get("access_note"),
+            "channel_url": channel_url,
+            "video_id": video_id,
+            "title": title,
+            "watch_url": f"https://www.youtube.com/watch?v={video_id}",
+            "is_live": True,
+            "stale": False,
+            "observed_at": observed_at,
         }
-    elif live_page:
-        candidate = find_live_video(live_page, promotion)
 
-    # Some channel URL variants do not redirect /live even while broadcasting.
-    # Fall back to the Streams tab and inspect its initial server-rendered data.
-    if not candidate:
-        streams_page, streams_error, _ = fetch_text(f"{channel_url}/streams")
-        if streams_page:
-            candidate = find_live_video(streams_page, promotion)
-        elif not live_page:
-            combined_error = live_error or streams_error or "Could not load YouTube channel pages"
-            if "HTTP 404" not in combined_error:
-                return error_result(
-                    promotion,
-                    previous_source,
-                    previous_event,
-                    channel_url,
-                    combined_error,
-                )
-
-    if not candidate:
         return {
             "source": build_source(
                 promotion,
                 channel_url,
-                "offline",
+                "live",
                 None,
                 0,
-                previous_source.get("last_success_at"),
+                observed_at,
                 checked_at,
             ),
-            "event": None,
+            "event": event,
         }
 
-    if candidate["restricted"]:
+    if restricted_title:
         return {
             "source": build_source(
                 promotion,
                 channel_url,
                 "restricted_live",
-                "Current YouTube broadcast appears to require membership/authentication",
+                f"Restricted live broadcast: {restricted_title}",
                 0,
                 previous_source.get("last_success_at"),
                 checked_at,
@@ -388,32 +485,13 @@ def probe_promotion(promotion, global_terms, previous_state):
             "event": None,
         }
 
-    title = candidate["title"]
-    metadata, metadata_error = fetch_oembed(candidate["video_id"])
-    if metadata and metadata.get("title"):
-        title = str(metadata["title"]).strip()
-
-    if metadata_error.startswith("HTTP 401") or metadata_error.startswith("HTTP 403"):
-        return {
-            "source": build_source(
-                promotion,
-                channel_url,
-                "restricted_live",
-                f"Current YouTube broadcast metadata is restricted: {metadata_error}",
-                0,
-                previous_source.get("last_success_at"),
-                checked_at,
-            ),
-            "event": None,
-        }
-
-    if not title_allowed(title, global_terms, promotion):
+    if ignored_title:
         return {
             "source": build_source(
                 promotion,
                 channel_url,
                 "ignored_live",
-                f"Ignored live title: {title}",
+                f"Ignored live title: {ignored_title}",
                 0,
                 previous_source.get("last_success_at"),
                 checked_at,
@@ -421,37 +499,26 @@ def probe_promotion(promotion, global_terms, previous_state):
             "event": None,
         }
 
-    video_id = candidate["video_id"]
-    observed_at = now_iso()
-    event = {
-        "event_id": f"{promotion_id}:{video_id}",
-        "promotion_id": promotion_id,
-        "promotion": promotion["name"],
-        "short_name": promotion.get("short_name") or promotion["name"],
-        "country": promotion.get("country") or "International",
-        "priority": int(promotion.get("priority") or 50),
-        "coverage_note": promotion.get("coverage_note"),
-        "access_note": promotion.get("access_note"),
-        "channel_url": channel_url,
-        "video_id": video_id,
-        "title": title,
-        "watch_url": f"https://www.youtube.com/watch?v={video_id}",
-        "is_live": True,
-        "stale": False,
-        "observed_at": observed_at,
-    }
+    if video_ids and len(watch_errors) == len(video_ids):
+        return error_result(
+            promotion,
+            previous_source,
+            previous_event,
+            channel_url,
+            watch_errors[0],
+        )
 
     return {
         "source": build_source(
             promotion,
             channel_url,
-            "live",
+            "offline",
             None,
             0,
-            observed_at,
+            previous_source.get("last_success_at"),
             checked_at,
         ),
-        "event": event,
+        "event": None,
     }
 
 
