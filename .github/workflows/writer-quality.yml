@@ -1,0 +1,161 @@
+name: Writer quality
+
+# One Writer workflow owns source/backend validation and deployed browser smoke.
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "write.html"
+      - "assets/writer.js"
+      - "_writer/**"
+      - "scripts/writer/build-frontend-bundles.mjs"
+      - "assets/writer-auth.js"
+      - "assets/writer.css"
+      - "assets/writer-wordtools.js"
+      - "assets/writer-wordtools-core.js"
+      - "assets/writer-wordtools.css"
+      - "assets/writer-ux.js"
+      - "assets/writer-ux.css"
+      - "assets/writer-splitflow.js"
+      - "assets/writer-splitflow.css"
+      - "scripts/writer/writer-smoke.spec.cjs"
+      - "scripts/writer/writer-wordtools-smoke.spec.cjs"
+      - "scripts/writer/writer-layout-smoke.spec.cjs"
+      - "scripts/writer/writer-splitflow-smoke.spec.cjs"
+      - "_netlify-auth/**"
+      - ".github/workflows/writer-quality.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "write.html"
+      - "assets/writer.js"
+      - "_writer/**"
+      - "scripts/writer/build-frontend-bundles.mjs"
+      - "assets/writer-auth.js"
+      - "assets/writer.css"
+      - "assets/writer-wordtools.js"
+      - "assets/writer-wordtools-core.js"
+      - "assets/writer-wordtools.css"
+      - "assets/writer-ux.js"
+      - "assets/writer-ux.css"
+      - "assets/writer-splitflow.js"
+      - "assets/writer-splitflow.css"
+      - "scripts/writer/writer-smoke.spec.cjs"
+      - "scripts/writer/writer-wordtools-smoke.spec.cjs"
+      - "scripts/writer/writer-layout-smoke.spec.cjs"
+      - "scripts/writer/writer-splitflow-smoke.spec.cjs"
+      - "_netlify-auth/**"
+      - ".github/workflows/writer-quality.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: writer-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.12.0"
+
+      - name: Check Writer source bundle
+        run: node scripts/writer/build-frontend-bundles.mjs --check
+
+      - name: Check Writer browser scripts
+        run: |
+          node --check assets/writer.js
+          node --check assets/writer-auth.js
+
+      - name: Install auth bridge dependency
+        working-directory: _netlify-auth
+        run: npm install --ignore-scripts --no-audit --no-fund
+
+      - name: Check Netlify auth functions
+        working-directory: _netlify-auth
+        run: |
+          for file in netlify/functions/*.mjs; do
+            echo "Checking $file"
+            node --check "$file"
+          done
+          node -e "import('./netlify/functions/_github-auth.mjs').then(() => console.log('Auth helper imports successfully.'))"
+
+      - name: Run Writer backend tests
+        working-directory: _netlify-auth
+        run: npm test
+
+  production-smoke:
+    if: github.event_name != 'pull_request'
+    needs: quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.12.0"
+
+      - name: Wait for this Writer release to reach production
+        env:
+          WRITER_SHA: ${{ github.sha }}
+        run: |
+          local_js="$(sha256sum assets/writer.js | awk '{print $1}')"
+          local_css="$(sha256sum assets/writer.css | awk '{print $1}')"
+          local_word_js="$(sha256sum assets/writer-wordtools.js | awk '{print $1}')"
+          local_word_core_js="$(sha256sum assets/writer-wordtools-core.js | awk '{print $1}')"
+          local_word_css="$(sha256sum assets/writer-wordtools.css | awk '{print $1}')"
+          local_ux_js="$(sha256sum assets/writer-ux.js | awk '{print $1}')"
+          local_ux_css="$(sha256sum assets/writer-ux.css | awk '{print $1}')"
+          local_splitflow_js="$(sha256sum assets/writer-splitflow.js | awk '{print $1}')"
+          local_splitflow_css="$(sha256sum assets/writer-splitflow.css | awk '{print $1}')"
+          ready=0
+          for attempt in $(seq 1 48); do
+            curl -fsSL "https://mmamatlock.com/assets/writer.js?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer.js || true
+            curl -fsSL "https://mmamatlock.com/assets/writer.css?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer.css || true
+            curl -fsSL "https://mmamatlock.com/assets/writer-wordtools.js?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer-wordtools.js || true
+            curl -fsSL "https://mmamatlock.com/assets/writer-wordtools-core.js?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer-wordtools-core.js || true
+            curl -fsSL "https://mmamatlock.com/assets/writer-wordtools.css?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer-wordtools.css || true
+            curl -fsSL "https://mmamatlock.com/assets/writer-ux.js?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer-ux.js || true
+            curl -fsSL "https://mmamatlock.com/assets/writer-ux.css?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer-ux.css || true
+            curl -fsSL "https://mmamatlock.com/assets/writer-splitflow.js?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer-splitflow.js || true
+            curl -fsSL "https://mmamatlock.com/assets/writer-splitflow.css?release=${WRITER_SHA}-${attempt}" -o /tmp/live-writer-splitflow.css || true
+            live_js="$(sha256sum /tmp/live-writer.js 2>/dev/null | awk '{print $1}')"
+            live_css="$(sha256sum /tmp/live-writer.css 2>/dev/null | awk '{print $1}')"
+            live_word_js="$(sha256sum /tmp/live-writer-wordtools.js 2>/dev/null | awk '{print $1}')"
+            live_word_core_js="$(sha256sum /tmp/live-writer-wordtools-core.js 2>/dev/null | awk '{print $1}')"
+            live_word_css="$(sha256sum /tmp/live-writer-wordtools.css 2>/dev/null | awk '{print $1}')"
+            live_ux_js="$(sha256sum /tmp/live-writer-ux.js 2>/dev/null | awk '{print $1}')"
+            live_ux_css="$(sha256sum /tmp/live-writer-ux.css 2>/dev/null | awk '{print $1}')"
+            live_splitflow_js="$(sha256sum /tmp/live-writer-splitflow.js 2>/dev/null | awk '{print $1}')"
+            live_splitflow_css="$(sha256sum /tmp/live-writer-splitflow.css 2>/dev/null | awk '{print $1}')"
+            if [ "$live_js" = "$local_js" ] && [ "$live_css" = "$local_css" ] && [ "$live_word_js" = "$local_word_js" ] && [ "$live_word_core_js" = "$local_word_core_js" ] && [ "$live_word_css" = "$local_word_css" ] && [ "$live_ux_js" = "$local_ux_js" ] && [ "$live_ux_css" = "$local_ux_css" ] && [ "$live_splitflow_js" = "$local_splitflow_js" ] && [ "$live_splitflow_css" = "$local_splitflow_css" ]; then
+              echo "Current Writer assets are live."
+              ready=1
+              break
+            fi
+            echo "Waiting for production Writer assets... attempt ${attempt}/48"
+            sleep 10
+          done
+          if [ "$ready" != "1" ]; then
+            echo "Production did not reach the checked-out Writer release within 8 minutes."
+            exit 1
+          fi
+
+      - name: Install browser test runtime
+        run: |
+          npm install --no-save --no-package-lock @playwright/test@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Exercise production Writer workflow
+        env:
+          WRITER_BASE_URL: https://mmamatlock.com/write/
+        run: npx playwright test scripts/writer/writer-smoke.spec.cjs scripts/writer/writer-wordtools-smoke.spec.cjs scripts/writer/writer-layout-smoke.spec.cjs scripts/writer/writer-splitflow-smoke.spec.cjs --workers=1 --reporter=line
