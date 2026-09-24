@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-23T23:09:08.436Z",
+  "generated_at": "2026-09-24T01:23:59.323Z",
   "changes": [
+    {
+      "id": "2026-09-24T01:23:59.323Z|ufc-333-2026-10-24-fight-card|start_time_changed|1",
+      "at": "2026-09-24T01:23:59.323Z",
+      "type": "start_time_changed",
+      "event_id": "ufc-333-2026-10-24-fight-card",
+      "promotion": "UFC 333",
+      "event_title": "Volkanovski vs Evloev",
+      "event_date": "2026-10-24",
+      "summary": "UFC 333 Volkanovski vs Evloev: Prelims start time changed.",
+      "details": {
+        "section": "Prelims",
+        "from": "",
+        "to": "10:00 AM ET"
+      }
+    },
     {
       "id": "2026-09-23T23:09:08.436Z|ufc-fight-night-2026-09-26-fight-card|bout_changed|1",
       "at": "2026-09-23T23:09:08.436Z",
@@ -4652,21 +4667,6 @@
       "summary": "Rizvan Kuniev portrait source changed.",
       "details": {
         "fighter": "Rizvan Kuniev",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-333-2026-10-24-fight-card|portrait_changed|96",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-333-2026-10-24-fight-card",
-      "promotion": "UFC 333",
-      "event_title": "Volkanovski vs Evloev",
-      "event_date": "2026-10-24",
-      "summary": "Arnold Allen portrait source changed.",
-      "details": {
-        "fighter": "Arnold Allen",
         "from_source": "sherdog",
         "to_source": "ufc"
       }
