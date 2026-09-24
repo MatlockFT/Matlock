@@ -1894,3 +1894,1764 @@ On the flip side, older fighters are not doing bad these days, Jauregui hasn't f
 **Pick: Yazmin Jauregui by Decision**
 
 ## John Castaneda vs. Alateng Heili
+
+<section class="article-html-visual">
+<div class="fight-compare-sleek">
+  <div class="fc-shell">
+
+    <div class="fc-top">
+
+      <div class="fc-fighter fc-left">
+        <div class="fc-portrait ring-left">
+          <span class="fc-ring"></span>
+          <span class="fc-ring fc-ring-inner"></span>
+
+          <img
+            src="https://imagedelivery.net/kd_oB-9dZCrENaJzp7HSCA/11c64eca-b8a0-47d3-84d6-c20349f3fd00/public"
+            alt="John Castaneda"
+          >
+        </div>
+
+        <div class="fc-meta">
+          <span class="fc-division">BANTAMWEIGHT</span>
+
+          <h2>John Castaneda</h2>
+
+          <div class="fc-meta-strip">
+
+            <div class="fc-odds fc-favorite-left">
+              <span>ML</span>
+              <strong>-325</strong>
+            </div>
+
+            <div class="fc-last5">
+              <span class="fc-last5-record">2-2-1</span>
+              <span class="fc-last5-label">Last 5</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="fc-center-badge">
+        <strong>MATCHUP</strong>
+        <i></i>
+      </div>
+
+
+      <div class="fc-fighter fc-right">
+        <div class="fc-portrait ring-right">
+          <span class="fc-ring"></span>
+          <span class="fc-ring fc-ring-inner"></span>
+
+          <img
+            src="https://imagedelivery.net/kd_oB-9dZCrENaJzp7HSCA/1928c33d-20a9-4432-ae48-d97598783300/public"
+            alt="Alatengheili"
+          >
+        </div>
+
+        <div class="fc-meta">
+          <span class="fc-division">BANTAMWEIGHT</span>
+
+          <h2>Alatengheili</h2>
+
+          <div class="fc-meta-strip">
+
+            <div class="fc-odds fc-underdog-right">
+              <span>ML</span>
+              <strong>+260</strong>
+            </div>
+
+            <div class="fc-last5">
+              <span class="fc-last5-record">3-2</span>
+              <span class="fc-last5-label">Last 5</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="fc-form-wrap">
+
+      <div class="fc-column">
+
+        <div class="fc-form-row">
+          <span class="fc-result draw">D</span>
+
+          <div class="fc-form-copy">
+            <strong>Mark Vologdin</strong>
+            <small>DEC · APR 18, 2026 · R3 5:00</small>
+          </div>
+        </div>
+
+        <div class="fc-form-row">
+          <span class="fc-result loss">L</span>
+
+          <div class="fc-form-copy">
+            <strong>Chris Gutierrez</strong>
+            <small>DEC · APR 26, 2025 · R3 5:00</small>
+          </div>
+        </div>
+
+        <div class="fc-form-row">
+          <span class="fc-result loss">L</span>
+
+          <div class="fc-form-copy">
+            <strong>Daniel Marcos</strong>
+            <small>DEC · JUN 8, 2024 · R3 5:00</small>
+          </div>
+        </div>
+
+        <div class="fc-form-row">
+          <span class="fc-result win">W</span>
+
+          <div class="fc-form-copy">
+            <strong>Kyung Ho Kang</strong>
+            <small>DEC · NOV 11, 2023 · R3 5:00</small>
+          </div>
+        </div>
+
+        <div class="fc-form-row">
+          <span class="fc-result win">W</span>
+
+          <div class="fc-form-copy">
+            <strong>Muin Gafurov</strong>
+            <small>DEC · JUN 3, 2023 · R3 5:00</small>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="fc-column">
+
+        <div class="fc-form-row">
+          <span class="fc-result loss">L</span>
+
+          <div class="fc-form-copy">
+            <strong>Da'Mon Blackshear</strong>
+            <small>DEC · APR 26, 2025 · R3 5:00</small>
+          </div>
+        </div>
+
+        <div class="fc-form-row">
+          <span class="fc-result win">W</span>
+
+          <div class="fc-form-copy">
+            <strong>Kleydson Rodrigues</strong>
+            <small>DEC · MAY 18, 2024 · R3 5:00</small>
+          </div>
+        </div>
+
+        <div class="fc-form-row">
+          <span class="fc-result loss">L</span>
+
+          <div class="fc-form-copy">
+            <strong>Chris Gutierrez</strong>
+            <small>DEC · OCT 14, 2023 · R3 5:00</small>
+          </div>
+        </div>
+
+        <div class="fc-form-row">
+          <span class="fc-result win">W</span>
+
+          <div class="fc-form-copy">
+            <strong>Chad Anheliger</strong>
+            <small>DEC · SEP 10, 2022 · R3 5:00</small>
+          </div>
+        </div>
+
+        <div class="fc-form-row">
+          <span class="fc-result win">W</span>
+
+          <div class="fc-form-copy">
+            <strong>Kevin Croom</strong>
+            <small>TKO · APR 16, 2022 · R1 0:47</small>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="fc-opponents">
+
+      <div class="fc-opponent-stat">
+        <strong>85-22</strong>
+        <span>79%</span>
+      </div>
+
+      <div class="fc-opponent-label">
+        OPPONENTS COMBINED RECORD
+      </div>
+
+      <div class="fc-opponent-stat">
+        <strong>76-33</strong>
+        <span>70%</span>
+      </div>
+
+    </div>
+
+
+    <div class="fc-tale">
+
+      <div class="fc-section-title">
+        <span>Tale of the Tape</span>
+      </div>
+
+      <div class="fc-tale-row featured">
+        <strong>21-8-1</strong>
+        <span>Record</span>
+        <strong>17-10-2</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>34</strong>
+        <span>Age</span>
+        <strong>34</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>5'6"</strong>
+        <span>Height</span>
+        <strong>5'5"</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>71.0"</strong>
+        <span>Arm Reach</span>
+        <strong>66.5"</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>4-4-1</strong>
+        <span>UFC Record</span>
+        <strong>5-3-1</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>17-4</strong>
+        <span>Record Outside UFC</span>
+        <strong>12-7-1</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>14-2</strong>
+        <span>Total Finishes</span>
+        <strong>8-4</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>7-2</strong>
+        <span>TKO / KO</span>
+        <strong>5-3</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>7-0</strong>
+        <span>Submission</span>
+        <strong>3-1</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>6-3</strong>
+        <span>Unanimous Decision</span>
+        <strong>6-5</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>1-3</strong>
+        <span>Split Decision</span>
+        <strong>2-0</strong>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<style>
+.fight-compare-sleek {
+  --bg: #07090d;
+  --panel: #0f141b;
+  --line: rgba(255,255,255,.08);
+  --line-strong: rgba(255,255,255,.16);
+  --text: #f3f5f7;
+  --muted: #8f98a4;
+
+  --red: #ff4d5a;
+  --red-soft: rgba(255,77,90,.18);
+
+  --blue: #578cff;
+  --blue-soft: rgba(87,140,255,.17);
+
+  --green: #3fd07b;
+  --green-soft: rgba(63,208,123,.18);
+
+  --draw: #d6b765;
+  --draw-soft: rgba(214,183,101,.14);
+
+  width: 100%;
+  margin: 28px 0;
+  color: var(--text);
+  font-family: inherit;
+}
+
+
+.fight-compare-sleek *,
+.fight-compare-sleek *::before,
+.fight-compare-sleek *::after {
+  box-sizing: border-box;
+}
+
+
+.fight-compare-sleek .fc-shell {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 18% 0%,
+      rgba(255,77,90,.13),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 82% 0%,
+      rgba(87,140,255,.13),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #0a0d12 0%,
+      #07090d 100%
+    );
+
+  border: 1px solid var(--line);
+
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.02) inset,
+    0 18px 42px rgba(0,0,0,.3);
+}
+
+
+.fight-compare-sleek .fc-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.015),
+      transparent 35%,
+      transparent 65%,
+      rgba(255,255,255,.015),
+      transparent
+    );
+
+  pointer-events: none;
+}
+
+
+/* TOP MATCHUP */
+
+.fight-compare-sleek .fc-top {
+  display: grid;
+  grid-template-columns: 1fr 170px 1fr;
+  border-bottom: 1px solid var(--line);
+}
+
+
+.fight-compare-sleek .fc-fighter {
+  position: relative;
+
+  min-height: 290px;
+  padding: 27px 22px 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.fight-compare-sleek .fc-left {
+  border-right: 1px solid var(--line);
+}
+
+
+.fight-compare-sleek .fc-right {
+  border-left: 1px solid var(--line);
+}
+
+
+/* CENTER */
+
+.fight-compare-sleek .fc-center-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+
+  padding: 20px 12px;
+}
+
+
+.fight-compare-sleek .fc-center-badge strong {
+  font-size: .82rem;
+  font-weight: 900;
+
+  text-transform: uppercase;
+  letter-spacing: .18em;
+}
+
+
+.fight-compare-sleek .fc-center-badge i {
+  display: block;
+
+  width: 32px;
+  height: 3px;
+
+  margin-top: 13px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--red),
+      rgba(255,255,255,.65) 50%,
+      var(--blue)
+    );
+}
+
+
+/* PORTRAITS */
+
+.fight-compare-sleek .fc-portrait {
+  position: relative;
+
+  width: 154px;
+  height: 154px;
+
+  margin: 0 auto 17px;
+
+  border-radius: 50%;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 18%,
+      rgba(255,255,255,.08),
+      transparent 52%
+    ),
+    linear-gradient(
+      180deg,
+      #0f141a,
+      #090c10
+    );
+
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.08) inset,
+    0 0 0 1px rgba(255,255,255,.08),
+    0 12px 26px rgba(0,0,0,.25);
+}
+
+
+.fight-compare-sleek .fc-ring,
+.fight-compare-sleek .fc-ring-inner {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+
+.fight-compare-sleek .fc-ring {
+  inset: 0;
+  border: 1px solid rgba(255,255,255,.22);
+}
+
+
+.fight-compare-sleek .fc-ring-inner {
+  inset: 8px;
+  border: 1px solid rgba(255,255,255,.055);
+}
+
+
+.fight-compare-sleek .ring-left::before,
+.fight-compare-sleek .ring-right::before {
+  content: "";
+
+  position: absolute;
+
+  left: 17px;
+  right: 17px;
+  bottom: 12px;
+
+  height: 38px;
+
+  filter: blur(17px);
+  border-radius: 50%;
+}
+
+
+.fight-compare-sleek .ring-left::before {
+  background: rgba(255,77,90,.2);
+}
+
+
+.fight-compare-sleek .ring-right::before {
+  background: rgba(87,140,255,.2);
+}
+
+
+.fight-compare-sleek .fc-portrait img {
+  position: absolute;
+  max-width: none;
+  height: auto;
+  display: block;
+}
+
+
+/*
+  STANDARD PORTRAIT POSITION
+  -34px is the established baseline.
+*/
+
+.fight-compare-sleek .ring-left img {
+  width: 108%;
+  left: 50%;
+  bottom: -34px;
+  transform: translateX(-50%);
+}
+
+
+.fight-compare-sleek .ring-right img {
+  width: 106%;
+  left: 50%;
+  bottom: -34px;
+  transform: translateX(-50%);
+}
+
+
+/* FIGHTER INFO */
+
+.fight-compare-sleek .fc-meta {
+  text-align: center;
+  max-width: 100%;
+}
+
+
+.fight-compare-sleek .fc-division {
+  display: inline-block;
+
+  margin-bottom: 7px;
+
+  color: #ff7983;
+
+  font-size: .62rem;
+  font-weight: 900;
+
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+
+.fight-compare-sleek .fc-right .fc-division {
+  color: #7fa4ff;
+}
+
+
+.fight-compare-sleek .fc-meta h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 1.08rem;
+  line-height: 1.12;
+  font-weight: 850;
+
+  text-transform: uppercase;
+  letter-spacing: .015em;
+}
+
+
+/* ODDS + LAST 5 */
+
+.fight-compare-sleek .fc-meta-strip {
+  margin-top: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+}
+
+
+.fight-compare-sleek .fc-odds,
+.fight-compare-sleek .fc-last5 {
+  height: 31px;
+
+  display: inline-flex;
+  align-items: center;
+
+  border-radius: 999px;
+}
+
+
+.fight-compare-sleek .fc-odds {
+  gap: 6px;
+
+  padding: 0 11px;
+
+  border: 1px solid var(--line-strong);
+
+  background: rgba(255,255,255,.035);
+}
+
+
+.fight-compare-sleek .fc-odds span {
+  color: var(--muted);
+
+  font-size: .53rem;
+  font-weight: 900;
+
+  letter-spacing: .1em;
+}
+
+
+.fight-compare-sleek .fc-odds strong {
+  font-size: .78rem;
+  line-height: 1;
+  font-weight: 900;
+}
+
+
+.fight-compare-sleek .fc-favorite-left {
+  border-color: rgba(255,77,90,.32);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,77,90,.11),
+      rgba(255,77,90,.04)
+    );
+}
+
+
+.fight-compare-sleek .fc-favorite-left strong {
+  color: #ff727d;
+}
+
+
+.fight-compare-sleek .fc-underdog-right {
+  border-color: rgba(87,140,255,.32);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(87,140,255,.11),
+      rgba(87,140,255,.04)
+    );
+}
+
+
+.fight-compare-sleek .fc-underdog-right strong {
+  color: #7fa4ff;
+}
+
+
+.fight-compare-sleek .fc-last5 {
+  gap: 7px;
+
+  padding: 0 11px;
+
+  border: 1px solid var(--line);
+
+  background: rgba(255,255,255,.025);
+}
+
+
+.fight-compare-sleek .fc-last5-record {
+  font-size: .78rem;
+  font-weight: 900;
+}
+
+
+.fight-compare-sleek .fc-last5-label {
+  color: var(--muted);
+
+  font-size: .53rem;
+  font-weight: 800;
+
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+
+
+/* RECENT FORM */
+
+.fight-compare-sleek .fc-form-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+.fight-compare-sleek .fc-column {
+  padding: 12px 20px;
+}
+
+
+.fight-compare-sleek .fc-column:first-child {
+  border-right: 1px solid var(--line);
+}
+
+
+.fight-compare-sleek .fc-form-row {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+
+  gap: 12px;
+
+  align-items: center;
+
+  padding: 14px 0;
+
+  border-bottom: 1px solid var(--line);
+}
+
+
+.fight-compare-sleek .fc-form-row:last-child {
+  border-bottom: 0;
+}
+
+
+.fight-compare-sleek .fc-result {
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: .72rem;
+  font-weight: 900;
+}
+
+
+.fight-compare-sleek .fc-result.win {
+  color: var(--green);
+
+  background: var(--green-soft);
+
+  border: 1px solid rgba(63,208,123,.42);
+
+  box-shadow:
+    0 0 20px rgba(63,208,123,.09);
+}
+
+
+.fight-compare-sleek .fc-result.loss {
+  color: var(--red);
+
+  background: var(--red-soft);
+
+  border: 1px solid rgba(255,77,90,.42);
+
+  box-shadow:
+    0 0 20px rgba(255,77,90,.09);
+}
+
+
+.fight-compare-sleek .fc-result.draw {
+  color: var(--draw);
+
+  background: var(--draw-soft);
+
+  border: 1px solid rgba(214,183,101,.42);
+
+  box-shadow:
+    0 0 20px rgba(214,183,101,.07);
+}
+
+
+.fight-compare-sleek .fc-form-copy strong {
+  display: block;
+
+  font-size: .97rem;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+
+.fight-compare-sleek .fc-form-copy small {
+  display: block;
+
+  margin-top: 4px;
+
+  color: var(--muted);
+
+  font-size: .67rem;
+  line-height: 1.35;
+
+  letter-spacing: .055em;
+
+  text-transform: uppercase;
+}
+
+
+/* OPPONENT RECORD */
+
+.fight-compare-sleek .fc-opponents {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    220px
+    1fr;
+
+  align-items: center;
+
+  border-top: 1px solid var(--line-strong);
+  border-bottom: 1px solid var(--line-strong);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,77,90,.035),
+      rgba(255,255,255,.018) 50%,
+      rgba(87,140,255,.035)
+    );
+}
+
+
+.fight-compare-sleek .fc-opponent-stat {
+  padding: 19px 16px;
+  text-align: center;
+}
+
+
+.fight-compare-sleek .fc-opponent-stat strong {
+  display: block;
+
+  font-size: 1.28rem;
+  font-weight: 900;
+
+  line-height: 1;
+}
+
+
+.fight-compare-sleek .fc-opponent-stat span {
+  display: block;
+
+  margin-top: 6px;
+
+  color: var(--muted);
+
+  font-size: .67rem;
+  font-weight: 700;
+
+  letter-spacing: .1em;
+}
+
+
+.fight-compare-sleek .fc-opponent-label {
+  padding: 18px 12px;
+
+  text-align: center;
+
+  color: var(--muted);
+
+  font-size: .63rem;
+  font-weight: 900;
+
+  line-height: 1.4;
+
+  letter-spacing: .13em;
+}
+
+
+/* TALE OF THE TAPE */
+
+.fight-compare-sleek .fc-tale {
+  padding: 20px 18px 19px;
+}
+
+
+.fight-compare-sleek .fc-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 12px;
+}
+
+
+.fight-compare-sleek .fc-section-title span {
+  position: relative;
+
+  display: inline-block;
+
+  padding: 0 14px;
+
+  font-size: .73rem;
+  font-weight: 900;
+
+  text-transform: uppercase;
+  letter-spacing: .17em;
+}
+
+
+.fight-compare-sleek .fc-section-title span::before,
+.fight-compare-sleek .fc-section-title span::after {
+  content: "";
+
+  position: absolute;
+  top: 50%;
+
+  width: 30px;
+  height: 1px;
+
+  background: var(--line-strong);
+}
+
+
+.fight-compare-sleek .fc-section-title span::before {
+  right: 100%;
+}
+
+
+.fight-compare-sleek .fc-section-title span::after {
+  left: 100%;
+}
+
+
+.fight-compare-sleek .fc-tale-row {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    210px
+    1fr;
+
+  align-items: center;
+
+  min-height: 46px;
+
+  padding: 0 8px;
+
+  border-top: 1px solid var(--line);
+}
+
+
+.fight-compare-sleek .fc-tale-row strong {
+  font-size: .95rem;
+  font-weight: 850;
+
+  line-height: 1;
+}
+
+
+.fight-compare-sleek .fc-tale-row strong:first-child {
+  text-align: right;
+}
+
+
+.fight-compare-sleek .fc-tale-row strong:last-child {
+  text-align: left;
+}
+
+
+.fight-compare-sleek .fc-tale-row span {
+  color: var(--muted);
+
+  text-align: center;
+
+  font-size: .67rem;
+  font-weight: 850;
+
+  text-transform: uppercase;
+  letter-spacing: .11em;
+}
+
+
+.fight-compare-sleek .fc-tale-row.featured {
+  margin-bottom: 4px;
+
+  border: 1px solid var(--line);
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,77,90,.085),
+      rgba(255,255,255,.025),
+      rgba(87,140,255,.085)
+    );
+}
+
+
+.fight-compare-sleek .fc-tale-row.featured strong {
+  font-size: 1.06rem;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+
+  .fight-compare-sleek .fc-shell {
+    overflow-x: auto;
+  }
+
+
+  .fight-compare-sleek .fc-top,
+  .fight-compare-sleek .fc-form-wrap,
+  .fight-compare-sleek .fc-opponents,
+  .fight-compare-sleek .fc-tale {
+    min-width: 680px;
+  }
+
+
+  .fight-compare-sleek .fc-top {
+    grid-template-columns:
+      1fr
+      150px
+      1fr;
+  }
+
+
+  .fight-compare-sleek .fc-portrait {
+    width: 142px;
+    height: 142px;
+  }
+
+
+  .fight-compare-sleek .fc-tale-row {
+    grid-template-columns:
+      1fr
+      190px
+      1fr;
+  }
+
+
+  .fight-compare-sleek .ring-left img,
+  .fight-compare-sleek .ring-right img {
+    bottom: -34px;
+  }
+
+}
+</style>
+</section>
+**John Castaneda** is a switch-stance bantamweight who spends a lot of time southpaw. He mixes kicks and boxing combinations well, stays active with his footwork, and blends wrestling into his offense without forcing it. He’s generally pretty versatile and comfortable fighting at different ranges.
+
+**Alatengheili** is a compact orthodox fighter with a strong wrestling base and a pretty heavy counter right hand. He likes to stay planted, pressure forward, and turn fights into physical exchanges where he can mix in clinch work and takedowns.
+
+<section class="article-html-visual">
+<div class="fight-stats-sleek">
+  <div class="fs-shell">
+
+    <div class="fs-header">
+
+      <div class="fs-fighter fs-fighter-left">
+        <span class="fs-side-label">RED CORNER</span>
+        <strong>John Castaneda</strong>
+      </div>
+
+      <div class="fs-header-center">
+        <strong>STATS</strong>
+        <i></i>
+      </div>
+
+      <div class="fs-fighter fs-fighter-right">
+        <span class="fs-side-label">BLUE CORNER</span>
+        <strong>Alatengheili</strong>
+      </div>
+
+    </div>
+
+
+    <div class="fs-section">
+
+      <div class="fs-section-title">
+        <span>Striking</span>
+      </div>
+
+      <div class="fs-stat-row featured">
+        <strong>5.16</strong>
+        <span>Significant Strikes / Minute</span>
+        <strong>2.63</strong>
+      </div>
+
+      <div class="fs-stat-row">
+        <strong>5.12</strong>
+        <span>Sig. Strikes Absorbed / Minute</span>
+        <strong>5.40</strong>
+      </div>
+
+      <div class="fs-stat-row">
+        <strong>54%</strong>
+        <span>Striking Accuracy</span>
+        <strong>32%</strong>
+      </div>
+
+      <div class="fs-stat-row">
+        <strong>1</strong>
+        <span>Total Knockdowns Landed</span>
+        <strong>0</strong>
+      </div>
+
+    </div>
+
+
+    <div class="fs-section fs-section-grappling">
+
+      <div class="fs-section-title">
+        <span>Grappling</span>
+      </div>
+
+      <div class="fs-stat-row featured">
+        <strong>14:51</strong>
+        <span>Control Time</span>
+        <strong>8:34</strong>
+      </div>
+
+      <div class="fs-stat-row">
+        <strong>8</strong>
+        <span>Takedowns Landed</span>
+        <strong>3</strong>
+      </div>
+
+      <div class="fs-stat-row">
+        <strong>13</strong>
+        <span>Takedowns Defended</span>
+        <strong>1</strong>
+      </div>
+
+      <div class="fs-stat-row">
+        <strong>0</strong>
+        <span>Total Submission Attempts</span>
+        <strong>0</strong>
+      </div>
+
+    </div>
+
+
+    <div class="fs-cage-header">
+
+      <div class="fs-average fs-average-left">
+        <span>AVG. CAGE TIME</span>
+        <strong>15:00</strong>
+        <small>Castaneda</small>
+      </div>
+
+      <div class="fs-cage-center">
+        <span>Recent UFC Cage Time</span>
+      </div>
+
+      <div class="fs-average fs-average-right">
+        <span>AVG. CAGE TIME</span>
+        <strong>12:09</strong>
+        <small>Heili</small>
+      </div>
+
+    </div>
+
+
+    <div class="fs-cage-grid">
+
+      <div class="fs-cage-column">
+
+        <div class="fs-cage-row">
+          <strong>15:00</strong>
+          <span>vs. Mark Vologdin</span>
+        </div>
+
+        <div class="fs-cage-row">
+          <strong>15:00</strong>
+          <span>vs. Chris Gutierrez</span>
+        </div>
+
+        <div class="fs-cage-row">
+          <strong>15:00</strong>
+          <span>vs. Daniel Marcos</span>
+        </div>
+
+        <div class="fs-cage-row">
+          <strong>15:00</strong>
+          <span>vs. Kyung Ho Kang</span>
+        </div>
+
+        <div class="fs-cage-row">
+          <strong>15:00</strong>
+          <span>vs. Muin Gafurov</span>
+        </div>
+
+      </div>
+
+
+      <div class="fs-cage-column">
+
+        <div class="fs-cage-row">
+          <strong>15:00</strong>
+          <span>vs. Chris Gutierrez</span>
+        </div>
+
+        <div class="fs-cage-row">
+          <strong>15:00</strong>
+          <span>vs. Chad Anheliger</span>
+        </div>
+
+        <div class="fs-cage-row">
+          <strong>0:47</strong>
+          <span>vs. Kevin Croom</span>
+        </div>
+
+        <div class="fs-cage-row">
+          <strong>15:00</strong>
+          <span>vs. Gustavo Lopez</span>
+        </div>
+
+        <div class="fs-cage-row">
+          <strong>15:00</strong>
+          <span>vs. Casey Kenney</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<style>
+.fight-stats-sleek {
+  --fs-bg: #07090d;
+  --fs-panel: #0d1117;
+  --fs-panel-2: #101620;
+
+  --fs-text: #f3f5f7;
+  --fs-muted: #8f98a4;
+
+  --fs-line: rgba(255,255,255,.08);
+  --fs-line-strong: rgba(255,255,255,.16);
+
+  --fs-red: #ff4d5a;
+  --fs-red-soft: rgba(255,77,90,.10);
+
+  --fs-blue: #578cff;
+  --fs-blue-soft: rgba(87,140,255,.10);
+
+  width: 100%;
+  margin: 28px 0;
+
+  color: var(--fs-text);
+  font-family: inherit;
+}
+
+
+.fight-stats-sleek *,
+.fight-stats-sleek *::before,
+.fight-stats-sleek *::after {
+  box-sizing: border-box;
+}
+
+
+.fight-stats-sleek .fs-shell {
+  position: relative;
+  overflow: hidden;
+
+  border: 1px solid var(--fs-line);
+
+  background:
+    radial-gradient(
+      circle at 15% 0%,
+      rgba(255,77,90,.12),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 0%,
+      rgba(87,140,255,.12),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      #0a0d12 0%,
+      var(--fs-bg) 100%
+    );
+
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.02) inset,
+    0 18px 42px rgba(0,0,0,.28);
+}
+
+
+/* HEADER */
+
+.fight-stats-sleek .fs-header {
+  display: grid;
+  grid-template-columns: 1fr 180px 1fr;
+
+  min-height: 112px;
+
+  border-bottom: 1px solid var(--fs-line);
+}
+
+
+.fight-stats-sleek .fs-fighter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 22px 28px;
+}
+
+
+.fight-stats-sleek .fs-fighter-left {
+  align-items: flex-end;
+  text-align: right;
+
+  border-right: 1px solid var(--fs-line);
+}
+
+
+.fight-stats-sleek .fs-fighter-right {
+  align-items: flex-start;
+  text-align: left;
+
+  border-left: 1px solid var(--fs-line);
+}
+
+
+.fight-stats-sleek .fs-side-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: .56rem;
+  font-weight: 900;
+
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+
+.fight-stats-sleek .fs-fighter-left .fs-side-label {
+  color: #ff737d;
+}
+
+
+.fight-stats-sleek .fs-fighter-right .fs-side-label {
+  color: #7fa4ff;
+}
+
+
+.fight-stats-sleek .fs-fighter strong {
+  font-size: 1.08rem;
+  font-weight: 850;
+
+  line-height: 1.15;
+
+  text-transform: uppercase;
+}
+
+
+/* CENTER STATS LABEL */
+
+.fight-stats-sleek .fs-header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  border-left: 1px solid var(--fs-line);
+  border-right: 1px solid var(--fs-line);
+}
+
+
+.fight-stats-sleek .fs-header-center strong {
+  font-size: .82rem;
+  font-weight: 900;
+
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+
+.fight-stats-sleek .fs-header-center i {
+  width: 32px;
+  height: 3px;
+
+  margin-top: 12px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--fs-red),
+      rgba(255,255,255,.65) 50%,
+      var(--fs-blue)
+    );
+}
+
+
+/* STAT SECTIONS */
+
+.fight-stats-sleek .fs-section {
+  padding: 20px 18px 18px;
+}
+
+
+.fight-stats-sleek .fs-section-grappling {
+  padding-top: 15px;
+
+  border-top: 1px solid var(--fs-line-strong);
+}
+
+
+.fight-stats-sleek .fs-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 12px;
+}
+
+
+.fight-stats-sleek .fs-section-title span {
+  position: relative;
+
+  padding: 0 15px;
+
+  font-size: .72rem;
+  font-weight: 900;
+
+  letter-spacing: .17em;
+  text-transform: uppercase;
+}
+
+
+.fight-stats-sleek .fs-section-title span::before,
+.fight-stats-sleek .fs-section-title span::after {
+  content: "";
+
+  position: absolute;
+  top: 50%;
+
+  width: 34px;
+  height: 1px;
+
+  background: var(--fs-line-strong);
+}
+
+
+.fight-stats-sleek .fs-section-title span::before {
+  right: 100%;
+}
+
+
+.fight-stats-sleek .fs-section-title span::after {
+  left: 100%;
+}
+
+
+.fight-stats-sleek .fs-stat-row {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    240px
+    1fr;
+
+  align-items: center;
+
+  min-height: 48px;
+
+  padding: 0 10px;
+
+  border-top: 1px solid var(--fs-line);
+}
+
+
+.fight-stats-sleek .fs-stat-row strong {
+  font-size: .98rem;
+  font-weight: 850;
+}
+
+
+.fight-stats-sleek .fs-stat-row strong:first-child {
+  text-align: right;
+}
+
+
+.fight-stats-sleek .fs-stat-row strong:last-child {
+  text-align: left;
+}
+
+
+.fight-stats-sleek .fs-stat-row span {
+  padding: 0 18px;
+
+  color: var(--fs-muted);
+
+  text-align: center;
+
+  font-size: .67rem;
+  font-weight: 850;
+
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+
+.fight-stats-sleek .fs-stat-row.featured {
+  margin-bottom: 3px;
+
+  border: 1px solid var(--fs-line);
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--fs-red-soft),
+      rgba(255,255,255,.025),
+      var(--fs-blue-soft)
+    );
+}
+
+
+.fight-stats-sleek .fs-stat-row.featured strong {
+  font-size: 1.08rem;
+}
+
+
+/* CAGE TIME HEADER */
+
+.fight-stats-sleek .fs-cage-header {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    220px
+    1fr;
+
+  align-items: stretch;
+
+  border-top: 1px solid var(--fs-line-strong);
+  border-bottom: 1px solid var(--fs-line-strong);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,77,90,.045),
+      rgba(255,255,255,.018),
+      rgba(87,140,255,.045)
+    );
+}
+
+
+.fight-stats-sleek .fs-average {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 18px 25px;
+}
+
+
+.fight-stats-sleek .fs-average-left {
+  align-items: flex-end;
+  text-align: right;
+}
+
+
+.fight-stats-sleek .fs-average-right {
+  align-items: flex-start;
+  text-align: left;
+}
+
+
+.fight-stats-sleek .fs-average > span {
+  margin-bottom: 4px;
+
+  color: var(--fs-muted);
+
+  font-size: .54rem;
+  font-weight: 900;
+
+  letter-spacing: .16em;
+}
+
+
+.fight-stats-sleek .fs-average strong {
+  font-size: 1.55rem;
+  font-weight: 900;
+
+  line-height: 1;
+}
+
+
+.fight-stats-sleek .fs-average-left strong {
+  color: #ff737d;
+}
+
+
+.fight-stats-sleek .fs-average-right strong {
+  color: #7fa4ff;
+}
+
+
+.fight-stats-sleek .fs-average small {
+  margin-top: 6px;
+
+  color: var(--fs-muted);
+
+  font-size: .63rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+
+.fight-stats-sleek .fs-cage-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px;
+
+  border-left: 1px solid var(--fs-line);
+  border-right: 1px solid var(--fs-line);
+
+  text-align: center;
+}
+
+
+.fight-stats-sleek .fs-cage-center span {
+  color: var(--fs-muted);
+
+  font-size: .63rem;
+  font-weight: 900;
+
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+
+/* INDIVIDUAL CAGE TIMES */
+
+.fight-stats-sleek .fs-cage-grid {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+}
+
+
+.fight-stats-sleek .fs-cage-column {
+  padding: 11px 20px;
+}
+
+
+.fight-stats-sleek .fs-cage-column:first-child {
+  border-right: 1px solid var(--fs-line);
+}
+
+
+.fight-stats-sleek .fs-cage-row {
+  display: grid;
+
+  grid-template-columns:
+    58px
+    1fr;
+
+  gap: 13px;
+
+  align-items: center;
+
+  min-height: 50px;
+
+  border-bottom: 1px solid var(--fs-line);
+}
+
+
+.fight-stats-sleek .fs-cage-row:last-child {
+  border-bottom: 0;
+}
+
+
+.fight-stats-sleek .fs-cage-row strong {
+  font-size: .82rem;
+  font-weight: 900;
+
+  font-variant-numeric: tabular-nums;
+}
+
+
+.fight-stats-sleek .fs-cage-row span {
+  color: #d8dce2;
+
+  font-size: .82rem;
+  font-weight: 650;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+
+  .fight-stats-sleek .fs-shell {
+    overflow-x: auto;
+  }
+
+  .fight-stats-sleek .fs-header,
+  .fight-stats-sleek .fs-section,
+  .fight-stats-sleek .fs-cage-header,
+  .fight-stats-sleek .fs-cage-grid {
+    min-width: 680px;
+  }
+
+  .fight-stats-sleek .fs-stat-row {
+    grid-template-columns:
+      1fr
+      220px
+      1fr;
+  }
+
+  .fight-stats-sleek .fs-header {
+    grid-template-columns:
+      1fr
+      160px
+      1fr;
+  }
+
+}
+</style>
+</section>
+I had the privilege of being live at a lot of John Castaneda’s fights when he was first starting out in Minnesota. He had a pretty sick head-kick KO and very good wrestling. That hasn’t changed. His primary focus is to stay on the outside and pick his opponents apart. When his opponent can cut off the cage, apply pressure, and land bombs, that’s when he gets into trouble. Alatengheili can certainly put Castaneda’s lights out if he can time that right hand.
+
+However, I’m biased, but I also believe Castaneda is just the better fighter here. I think his wrestling is good enough to keep Alatengheili off of him, and I think his counterstriking is good enough to hurt Alatengheili. The smart play is probably Castaneda by decision, but since I’m cheering him on, I think Castaneda finds a head kick from southpaw and puts Alatengheili’s lights out.
+
+**Pick: John Castaneda via Round 2 KO/TKO**
