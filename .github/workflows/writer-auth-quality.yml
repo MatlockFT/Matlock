@@ -5,6 +5,8 @@ on:
     paths:
       - "write.html"
       - "assets/writer.js"
+      - "_writer/**"
+      - "scripts/build-frontend-bundles.mjs"
       - "assets/writer-auth.js"
       - "assets/writer.css"
       - "_netlify-auth/**"
@@ -15,6 +17,8 @@ on:
     paths:
       - "write.html"
       - "assets/writer.js"
+      - "_writer/**"
+      - "scripts/build-frontend-bundles.mjs"
       - "assets/writer-auth.js"
       - "assets/writer.css"
       - "_netlify-auth/**"
@@ -34,6 +38,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22.12.0"
+
+      - name: Check Writer source bundle
+        run: node scripts/build-frontend-bundles.mjs --check
 
       - name: Check Writer browser scripts
         run: |
