@@ -63,10 +63,6 @@ But despite all of Jon, Joe, and Rampage's marketing of this strike, no one has 
 
 Shameful.
 
-<figure class="article-inline-image article-inline-image--break article-inline-image--center article-inline-image--full">
-  <img src="/assets/uploads/ban-oblique-kicks-pasted-20260923-185638-915.png" alt="ban oblique kicks" loading="lazy">
-</figure>
-
 Now, in 2026, the issue has returned to California's athletic regulators. Following UFC 331, California State Athletic Commission Executive Officer Andy Foster called for discussion of making lateral knee kicks a foul. The renewed attention followed Brunno Ferreira's use of knee-directed kicks against Edmen Shahbazyan, who complained to the referee during their September 19 fight. The strikes were legal. Shahbazyan won by unanimous decision. [Sherdog's report](https://www.sherdog.com/news/news/Controversial-MMA-technique-could-be-banned-following-UFC-331-202885/amp), [UFC's result](https://www.ufc.com/video/160166).
 
 It comes as no surprise that Edmen Shahbazyan was complaining to the referee during his fight with Brunno Ferreira at UFC 331 this past weekend when Brunno was targeting Edmen's knee with these side kicks. You can't blame him! It's 2026! It's truly bizarre this flaw hasn't been patched yet!
@@ -79,10 +75,16 @@ Luckily, the most powerful person out of all the athletic commissions was presen
 
 Andy Foster has a great responsibility bestowed upon him by the MMA Gods.
 
-1. Choosing the exact terminology with which to define this oblique kick, low-line side kick, stop kick, knee stomp, push kick to the knee, illegal kick - AH, THE LIST IS ENDLESS!
+1. What will he officially call the kick? Lateral knee kick, low-line side kick, stop kick, knee stomp, push kick to the knee, illegal kick - AH, THE LIST IS ENDLESS!
 2. Defining exactly what the technique is and where it would have to land to be considered a foul.
 
-But then will MMA run into another trivial foul like the knees to a grounded opponent? That would be a terrible side effect of banning this strike.
+<figure class="article-inline-image article-inline-image--break article-inline-image--center article-inline-image--full">
+  <img src="/assets/uploads/ban-oblique-kicks-pasted-20260923-185638-915.png" alt="ban oblique kicks" loading="lazy">
+</figure>
+
+But will MMA run into another trivial foul like the knees to a grounded opponent? That would be a terrible side effect of banning this strike.
+
+Hmm...
 
 What I'm about to say could be very controversial, so I do want to preface it with a sincere apology. I know I could be barred from the MMA community for this idea but please, hear me out.
 
