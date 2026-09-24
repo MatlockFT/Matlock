@@ -49,7 +49,8 @@
 }
 
 @supports (content-visibility: auto) {
-    .article-card {
+    /* Keep the lead row fully laid out: these cards define first paint/LCP. */
+    .article-card:nth-child(n + 4) {
         content-visibility: auto;
         contain-intrinsic-size: auto 440px;
     }
