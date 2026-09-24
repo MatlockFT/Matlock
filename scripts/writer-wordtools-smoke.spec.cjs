@@ -79,6 +79,13 @@ test('Writer word processor tools work in production', async ({ page }) => {
   await expect(editor).toHaveValue(/  - First item\n  - Second item/);
   await page.click('[data-wordtool="outdent"]');
   await expect(editor).toHaveValue(/- First item\n- Second item/);
+  const bulleted = await editor.inputValue();
+  const bulletStart = bulleted.indexOf('- First item');
+  const bulletEnd = bulleted.indexOf('- Second item') + '- Second item'.length;
+  await editor.evaluate((el, range) => {
+    el.focus();
+    el.setSelectionRange(range.start, range.end);
+  }, { start: bulletStart, end: bulletEnd });
   await page.click('[data-wordtool="numbers"]');
   await expect(editor).toHaveValue(/1\. First item\n2\. Second item/);
 
