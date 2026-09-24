@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Global MMA Live Lab"
-description: "Private prototype for an automated global MMA livestream player."
+title: "Live MMA Streams"
+description: "Live and upcoming MMA broadcasts from regional promotions around the world, collected in one place."
 permalink: /live-lab/
 noindex: true
 sitemap: false
@@ -19,126 +19,165 @@ page_scripts:
 <article
   class="live-lab"
   data-live-lab
+  data-editorial-v3
   data-status-url="{{ '/assets/data/global-live.json' | relative_url }}"
 >
   <header class="live-lab__hero">
-    <div>
-      <p class="live-lab__eyebrow">Private lab / multi-promotion</p>
-      <h1>Global MMA Live</h1>
+    <div class="live-lab__hero-copy">
+      <p class="live-lab__eyebrow">MMA Matlock · Live Fight Guide</p>
+      <h1>Live MMA Streams</h1>
       <p class="live-lab__deck">
-        One player, multiple MMA promotions. The station watches the registry, detects active YouTube fight streams, and moves to the next live card when the current broadcast ends.
+        Live and upcoming fight broadcasts from regional promotions around the world, collected in one place.
       </p>
     </div>
 
     <div class="live-lab__hero-state" aria-live="polite">
       <span class="live-lab__dot" aria-hidden="true"></span>
-      <strong data-live-state>Checking the world…</strong>
+      <strong data-live-state>Checking live fights…</strong>
     </div>
   </header>
 
-  <section class="live-lab__stage" aria-label="Global MMA live player">
+  <section class="live-lab__stage" aria-labelledby="live-lab-now-title">
     <div class="live-lab__screen" data-live-screen data-state="checking">
       <iframe
         class="live-lab__player"
         data-live-player
-        title="Global MMA live stream"
+        title="Live MMA stream"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
         referrerpolicy="strict-origin-when-cross-origin"
       ></iframe>
 
       <div class="live-lab__standby" data-live-standby>
-        <span class="live-lab__standby-mark" aria-hidden="true">M</span>
-        <strong data-live-standby-title>Checking live MMA</strong>
-        <span data-live-standby-copy>Looking for an active fight stream from a monitored promotion.</span>
+        <div class="live-lab__standby-kicker">MMA MATLOCK LIVE</div>
+        <strong data-live-standby-title>Checking for live fights</strong>
+        <span data-live-standby-copy>Looking across tracked YouTube broadcasts.</span>
       </div>
     </div>
 
     <div class="live-lab__now">
       <div class="live-lab__now-copy">
         <p class="live-lab__label">Now playing</p>
-        <h2 data-live-title>Checking live MMA…</h2>
-        <p data-live-promotion>Global station</p>
+        <h2 id="live-lab-now-title" data-live-title>Checking live MMA…</h2>
+        <p class="live-lab__now-meta" data-live-promotion>Worldwide fight stream guide</p>
       </div>
 
       <div class="live-lab__actions">
-        <button type="button" class="live-lab__button" data-live-refresh>Recheck</button>
         <a
-          class="live-lab__button live-lab__button--quiet"
+          class="live-lab__button"
           data-live-source
           href="https://www.youtube.com/"
           target="_blank"
           rel="noopener noreferrer"
           hidden
-        >Open on YouTube ↗</a>
+        >Watch on YouTube ↗</a>
+        <button type="button" class="live-lab__text-button" data-live-refresh>Refresh</button>
       </div>
     </div>
   </section>
 
-  <section class="live-lab__live-section" aria-labelledby="live-lab-live-title">
+  <section class="live-lab__live-section live-lab__section" aria-labelledby="live-lab-live-title">
     <div class="live-lab__section-head">
       <div>
-        <p class="live-lab__label">Detected broadcasts</p>
+        <p class="live-lab__label live-lab__label--red">On air</p>
         <h2 id="live-lab-live-title">Live now</h2>
       </div>
-      <strong data-live-count>0 live</strong>
+      <span class="live-lab__section-count" data-live-count>0 live</span>
     </div>
 
     <div class="live-lab__event-list" data-live-list>
-      <p class="live-lab__empty">Checking monitored promotions…</p>
+      <p class="live-lab__empty">Checking for live fight broadcasts…</p>
     </div>
   </section>
 
-  <section class="live-lab__upcoming-section" aria-labelledby="live-lab-upcoming-title">
+  <section class="live-lab__upcoming-section live-lab__section" aria-labelledby="live-lab-upcoming-title">
     <div class="live-lab__section-head">
       <div>
-        <p class="live-lab__label">Scheduled on YouTube</p>
+        <p class="live-lab__label">Schedule</p>
         <h2 id="live-lab-upcoming-title">Up next</h2>
       </div>
-      <strong data-upcoming-count>0 upcoming</strong>
+      <span class="live-lab__section-count" data-upcoming-count>0 upcoming</span>
     </div>
 
     <div class="live-lab__upcoming-list" data-upcoming-list>
-      <p class="live-lab__empty">Checking scheduled broadcasts…</p>
+      <p class="live-lab__empty">Checking scheduled YouTube broadcasts…</p>
     </div>
   </section>
 
-  <section class="live-lab__info" aria-label="Prototype status">
-    <div>
-      <span>Monitored</span>
-      <strong data-live-monitored>— promotions</strong>
-    </div>
-    <div>
-      <span>Verification</span>
-      <strong data-api-status>YouTube API + fallback</strong>
-    </div>
-    <div>
-      <span>Player</span>
-      <strong>Single persistent embed</strong>
-    </div>
-    <div>
-      <span>Last state change</span>
-      <strong data-live-updated>—</strong>
-    </div>
-  </section>
-
-  <section class="live-lab__sources" aria-labelledby="live-lab-sources-title">
+  <section class="live-lab__promotions live-lab__section" aria-labelledby="live-lab-promotions-title">
     <div class="live-lab__section-head">
       <div>
-        <p class="live-lab__label">Registry</p>
-        <h2 id="live-lab-sources-title">Monitored sources</h2>
+        <p class="live-lab__label">Worldwide coverage</p>
+        <h2 id="live-lab-promotions-title">Promotions we track</h2>
       </div>
+      <span class="live-lab__section-count" data-live-monitored>— promotions</span>
     </div>
-    <div class="live-lab__source-list" data-source-list>
-      <span>Loading registry status…</span>
+
+    <p class="live-lab__section-deck">
+      The guide follows official promotion channels and selected broadcast partners. Coverage can range from full cards to prelims or selected free fights.
+    </p>
+
+    <div class="live-lab__promotion-grid" data-promotion-grid>
+      <p class="live-lab__empty">Loading tracked promotions…</p>
     </div>
   </section>
 
-  <p class="live-lab__note" data-live-note>
-    This remains a hidden test page. Nothing here is linked from the public MMA Matlock navigation.
-  </p>
+  <section class="live-lab__about live-lab__section" aria-labelledby="live-lab-about-title">
+    <div class="live-lab__section-head">
+      <div>
+        <p class="live-lab__label">About this page</p>
+        <h2 id="live-lab-about-title">How it works</h2>
+      </div>
+    </div>
+
+    <div class="live-lab__about-grid">
+      <div>
+        <span>01</span>
+        <h3>We track the channels</h3>
+        <p>Selected MMA promotions and legitimate broadcast partners are checked for public YouTube fight streams.</p>
+      </div>
+      <div>
+        <span>02</span>
+        <h3>Live fights surface here</h3>
+        <p>When an eligible broadcast goes live, it appears in the player and the Live Now section automatically.</p>
+      </div>
+      <div>
+        <span>03</span>
+        <h3>The next card takes over</h3>
+        <p>If another tracked event is still live when the current stream ends, the player can move to the next available card.</p>
+      </div>
+    </div>
+
+    <p class="live-lab__disclaimer">
+      Availability varies by event, territory and promotion. Some channels only offer prelims or selected fights. This page only surfaces legitimate public YouTube broadcasts and does not bypass paywalls, memberships or geographic restrictions.
+    </p>
+  </section>
+
+  <details class="live-lab__technical">
+    <summary>Technical status</summary>
+    <div class="live-lab__technical-body">
+      <div class="live-lab__technical-stats">
+        <div>
+          <span>Verification</span>
+          <strong data-api-status>YouTube API + fallback</strong>
+        </div>
+        <div>
+          <span>Last update</span>
+          <strong data-live-updated>—</strong>
+        </div>
+      </div>
+
+      <div class="live-lab__source-list" data-source-list>
+        <span>Loading source status…</span>
+      </div>
+
+      <p class="live-lab__note" data-live-note>
+        Live status refreshes automatically.
+      </p>
+    </div>
+  </details>
 
   <noscript>
-    <p class="live-lab__noscript">JavaScript is required for automatic live-stream switching.</p>
+    <p class="live-lab__noscript">JavaScript is required for automatic live-stream updates.</p>
   </noscript>
 </article>
