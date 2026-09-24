@@ -4,11 +4,11 @@ This document tracks the controlled reorganization of the MMA Matlock repository
 
 ## Current status
 
-**Stage 2 of 10 — Future article asset upload hierarchy: COMPLETE**
+**Stage 3 of 10 — Media source/generated/video pipeline separation: COMPLETE**
 
-Next stage: **Stage 3 — Media source/generated/video pipeline separation**
+Next stage: **Stage 4 — Writer frontend module split**
 
-Stages 0 and 1 established the rollback baseline and permanent organization contract without moving public paths. Stage 2 changes only where new Writer article-image uploads are stored; existing article media remains untouched.
+Stages 0–2 established the safety baseline, repository contract, and article-owned source upload hierarchy. Stage 3 separates authored image sources, rebuildable responsive derivatives, and GitHub Release video storage while preserving legacy public media URLs.
 
 ## Rollback point
 
@@ -151,6 +151,35 @@ The Writer upload UI and backend allow nested article-media paths, and productio
 
 Stage 2 also made the repository-policy stage validator reusable for later stages. Site Quality, Writer auth quality, Writer production smoke, and GitHub Pages deployment all passed before Stage 2 was closed.
 
+## Stage 3 media pipeline separation
+
+Stage 3 formalized three independent media lanes:
+
+```text
+AUTHORED ARTICLE IMAGE
+assets/uploads/articles/YYYY/MM/article-slug/
+
+RESPONSIVE DERIVATIVE
+assets/generated/posts/YYYY/MM/article-slug/
+
+ARTICLE VIDEO
+GitHub Release asset: writer-media-YYYY-MM
+```
+
+Legacy image sources and their established generated URLs remain unchanged. The responsive-image generator now uses `scripts/media-paths.mjs`, which keeps legacy output flat while routing future article-owned derivatives into matching article namespaces.
+
+`scripts/check-content.mjs` now validates generated responsive images recursively so nested derivatives receive the same size checks as legacy flat output.
+
+Stage 3 also added:
+
+- `docs/media-pipeline.md` for the media lifecycle contract;
+- `npm run check:media` for source/generated/video boundary enforcement;
+- Site Quality enforcement for the media check;
+- an optimizer workflow trigger for media-path rule changes;
+- a Writer UI clarification that local article-upload paths are image storage, not video storage.
+
+The image optimizer completed successfully, Writer production smoke passed, Site Quality passed including the new media check, and GitHub Pages built successfully before Stage 3 was closed.
+
 ## Planned stages
 
 | Stage | Scope | Status |
@@ -158,8 +187,8 @@ Stage 2 also made the repository-policy stage validator reusable for later stage
 | 0 | Baseline, rollback marker, reference audit | Complete |
 | 1 | Permanent organizational rules | Complete |
 | 2 | Future article asset upload hierarchy | Complete |
-| 3 | Media source/generated/video pipeline separation | Next |
-| 4 | Writer frontend module split | Pending |
+| 3 | Media source/generated/video pipeline separation | Complete |
+| 4 | Writer frontend module split | Next |
 | 5 | Development-script organization | Pending |
 | 6 | GitHub Actions workflow consolidation | Pending |
 | 7 | Legacy/V2/V3 page cleanup | Pending |
