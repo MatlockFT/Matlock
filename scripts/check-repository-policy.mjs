@@ -18,7 +18,10 @@ async function requirePath(path, label) {
 }
 
 if (Number(policy.version) !== 1) errors.push('Policy version must be 1.');
-if (Number(policy.modernizationStage) !== 1) errors.push('Policy modernizationStage must be 1 during Stage 1.');
+const stage = Number(policy.modernizationStage);
+if (!Number.isInteger(stage) || stage < 1 || stage > 10) {
+  errors.push('Policy modernizationStage must be an integer from 1 through 10.');
+}
 
 requireBoolean(policy.principles?.preserveExistingPublicPaths, 'preserveExistingPublicPaths');
 requireBoolean(policy.principles?.noCosmeticMoves, 'noCosmeticMoves');
