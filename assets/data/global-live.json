@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "generated_at": "2026-09-24T01:55:00Z",
+  "version": 2,
+  "generated_at": "2026-09-24T01:59:51Z",
   "selected_event_id": "inka:C2nNtrk8FRs",
   "events": [
     {
@@ -16,16 +16,116 @@
       "video_id": "C2nNtrk8FRs",
       "title": "Inka 61",
       "watch_url": "https://www.youtube.com/watch?v=C2nNtrk8FRs",
-      "is_live": true
+      "is_live": true,
+      "stale": true
     }
   ],
   "sources": {
+    "brave-cf": {
+      "promotion": "BRAVE Combat Federation",
+      "short_name": "BRAVE CF",
+      "country": "Bahrain",
+      "priority": 85,
+      "channel_id": null,
+      "channel_name": "BRAVE CF",
+      "channel_url": null,
+      "status": "error",
+      "last_error": "Could not resolve seed video: ERROR: [youtube] nY-gc32iKBU: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+      "error_count": 1,
+      "last_success_at": null
+    },
+    "cage-warriors": {
+      "promotion": "Cage Warriors",
+      "short_name": "Cage Warriors",
+      "country": "United Kingdom",
+      "priority": 88,
+      "channel_id": null,
+      "channel_name": "Cage Warriors",
+      "channel_url": "https://www.youtube.com/c/CageWarriorsTV",
+      "status": "offline",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null
+    },
+    "eternal-mma": {
+      "promotion": "Eternal MMA",
+      "short_name": "Eternal MMA",
+      "country": "Australia",
+      "priority": 72,
+      "channel_id": null,
+      "channel_name": "Eternal MMA",
+      "channel_url": "https://www.youtube.com/eternalmma",
+      "status": "offline",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null
+    },
     "inka": {
+      "promotion": "Inka Fighting Championship",
+      "short_name": "INKA",
+      "country": "Peru",
+      "priority": 75,
       "channel_id": null,
       "channel_name": "INKA MMA PRO",
       "channel_url": null,
-      "status": "live",
-      "last_error": null
+      "status": "error",
+      "last_error": "Could not resolve seed video: ERROR: [youtube] C2nNtrk8FRs: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+      "error_count": 1,
+      "last_success_at": null
+    },
+    "jungle-fight": {
+      "promotion": "Jungle Fight",
+      "short_name": "Jungle Fight",
+      "country": "Brazil",
+      "priority": 80,
+      "channel_id": null,
+      "channel_name": "Jungle Fight",
+      "channel_url": "https://www.youtube.com/@Junglefcoficial",
+      "status": "offline",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": null
+    },
+    "lfa": {
+      "promotion": "Legacy Fighting Alliance",
+      "short_name": "LFA",
+      "country": "United States",
+      "priority": 90,
+      "channel_id": null,
+      "channel_name": "LFA",
+      "channel_url": null,
+      "status": "error",
+      "last_error": "Could not resolve seed video: ERROR: [youtube] lYJcWGHVmyU: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+      "error_count": 1,
+      "last_success_at": null
+    },
+    "open-fc": {
+      "promotion": "Open Fighting Championship",
+      "short_name": "OPEN FC",
+      "country": "International",
+      "priority": 70,
+      "channel_id": null,
+      "channel_name": "OPEN FC",
+      "channel_url": null,
+      "status": "error",
+      "last_error": "Could not resolve seed video: ERROR: [youtube] MOkiD3O8SW4: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+      "error_count": 1,
+      "last_success_at": null
+    },
+    "uae-warriors": {
+      "promotion": "UAE Warriors",
+      "short_name": "UAE Warriors",
+      "country": "United Arab Emirates",
+      "priority": 80,
+      "channel_id": null,
+      "channel_name": "UAE Warriors",
+      "channel_url": null,
+      "status": "error",
+      "last_error": "Could not resolve seed video: ERROR: [youtube] 0Wbv-s21nrI: Sign in to confirm you’re not a bot. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+      "error_count": 1,
+      "last_success_at": null
     }
-  }
+  },
+  "monitored_count": 8,
+  "live_count": 1
 }
