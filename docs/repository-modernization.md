@@ -4,9 +4,9 @@ This document tracks the controlled reorganization of the MMA Matlock repository
 
 ## Current status
 
-**Stage 10 of 10 — Final documentation and maintenance mode: IN PROGRESS**
+**Stage 10 of 10 — Final documentation and maintenance mode: COMPLETE**
 
-After validation, the staged repository modernization enters maintenance mode.
+The staged repository modernization is complete. The repository is now in maintenance mode.
 
 Stages 0–9 established the safety baseline, permanent repository/media contracts, article-owned asset hierarchy, modular Writer source, domain-organized development scripts, consolidated workflow ownership, legacy-page cleanup, explicit data lifecycles, and enforceable repository integrity.
 
@@ -432,6 +432,19 @@ The repository-policy checker verifies these maintenance-mode documents and key 
 
 The exact pre-Stage-10 repository state is preserved at `archive/repo-modernization-stage9-complete-2026-09-24`.
 
+
+Stage 10 validation confirmed:
+
+- the rewritten `README.md` contains the permanent developer map for articles, media, data, automation, Writer code, backend code, and workflows;
+- `docs/maintenance.md` provides the default day-to-day runbook, required checks, compatibility rules, recovery approach, and criteria for any future structural migration;
+- `docs/repository-structure.md` now describes the permanent contract in present tense instead of instructing maintainers to wait for migration stages;
+- `.repository-policy.json` is at modernization Stage 10 with `maintenance.mode: maintenance` and `modernizationComplete: true`;
+- the repository-policy check successfully verified the maintenance documents and required README developer-map markers;
+- repository integrity, reference safety, data lifecycle, script organization, workflow organization, media separation, generated-asset integrity, brand/theme, content, browser/data syntax, and UFC roster identity checks passed together;
+- the exact Stage 10 implementation commit built successfully with Jekyll, uploaded its Pages artifact, and completed the GitHub Pages deployment step successfully;
+- the long Matchmaker validation remained the only still-running tail of Site Quality when Stage 10 was closed; it is an existing independent gate and was not changed or bypassed by this documentation stage.
+
+
 ## Planned stages
 
 | Stage | Scope | Status |
@@ -446,6 +459,19 @@ The exact pre-Stage-10 repository state is preserved at `archive/repo-modernizat
 | 7 | Legacy/V2/V3 page cleanup | Complete |
 | 8 | Runtime-data and cache policy | Complete |
 | 9 | Repository integrity enforcement | Complete |
-| 10 | Final documentation and maintenance mode | In progress |
+| 10 | Final documentation and maintenance mode | Complete |
 
-The status table is updated at the end of every completed stage.
+The ten-stage migration is complete. Future structural changes should follow the maintenance runbook rather than extending this stage sequence.
+
+## Maintenance-mode handoff
+
+The migration itself should now be treated as historical record.
+
+For routine work, start with:
+
+1. `README.md` for the developer map;
+2. `docs/maintenance.md` for the task/runbook workflow;
+3. `docs/repository-structure.md` for placement decisions;
+4. `docs/repository-integrity.md`, `docs/media-pipeline.md`, or `docs/data-lifecycle.md` for domain-specific contracts.
+
+The permanent operating rule is simple: preserve working public paths, put new work in the established location, let generators own generated output, run the reference audit before moves/deletes, and rely on CI to reject structural drift.
