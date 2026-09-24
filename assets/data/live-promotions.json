@@ -277,6 +277,36 @@
       "channel_url": "https://www.youtube.com/@blackcombat",
       "coverage_note": "Recent livestream evidence",
       "access_note": "Held: membership coverage"
+    },
+    {
+      "id": "real-fight-arena",
+      "name": "Real Fight Arena",
+      "short_name": "RFA",
+      "country": "Slovakia",
+      "priority": 78,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/@realfightarena",
+      "coverage_note": "Promotion channel; monitor public live streams"
+    },
+    {
+      "id": "master-vic-podcast-tv",
+      "name": "Master Vic Podcast TV",
+      "short_name": "Master Vic",
+      "country": "Mexico",
+      "priority": 55,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/@MasterVicPodcasTV",
+      "coverage_note": "Combat-sports channel; included as a live-source monitor"
+    },
+    {
+      "id": "liga-monstro-combate",
+      "name": "Liga Monstro Combate",
+      "short_name": "LMC",
+      "country": "Brazil",
+      "priority": 80,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/@ligamonstrocombate",
+      "coverage_note": "Monthly MMA/boxing events; official site says events air on YouTube"
     }
   ]
 }
