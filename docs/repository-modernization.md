@@ -4,7 +4,9 @@ This document tracks the controlled reorganization of the MMA Matlock repository
 
 ## Current status
 
-**Stage 0 of 10 — Baseline and rollback map: IN PROGRESS**
+**Stage 0 of 10 — Baseline and rollback map: COMPLETE**
+
+Next stage: **Stage 1 — Permanent organizational rules**
 
 No public page, article, asset, permalink, Writer path, or runtime-data path is being moved or renamed in Stage 0.
 
@@ -47,6 +49,37 @@ These are observations, not cleanup targets by themselves.
 6. Every stage must pass repository integrity, Jekyll/site checks, and feature-specific tests it touches.
 7. Structural cleanup is performed in small reversible changes rather than one repository-wide rewrite.
 
+## Reference audit
+
+Stage 0 added a repository-aware reference audit that is now part of Site Quality CI.
+
+Run the full inventory/report locally with:
+
+```sh
+npm run audit:repo
+```
+
+Before changing a specific tracked path, inspect inbound references with:
+
+```sh
+npm run audit:repo -- --target news-v3.html
+npm run audit:repo -- --target assets/some-file.js
+```
+
+Machine-readable output is available with:
+
+```sh
+npm run audit:repo -- --json
+```
+
+CI runs:
+
+```sh
+npm run audit:repo -- --check
+```
+
+The check currently protects against duplicate root permalinks and root pages referencing missing `page_styles` or `page_scripts` assets. The report also inventories repository responsibilities and identifies legacy/versioned page candidates with inbound references.
+
 ## Critical production surfaces
 
 Public routes that later stages must continue to protect:
@@ -79,8 +112,8 @@ Automation that must remain operational includes site quality/build checks, Writ
 
 | Stage | Scope | Status |
 | --- | --- | --- |
-| 0 | Baseline, rollback marker, reference audit | In progress |
-| 1 | Permanent organizational rules | Pending |
+| 0 | Baseline, rollback marker, reference audit | Complete |
+| 1 | Permanent organizational rules | Next |
 | 2 | Future article asset upload hierarchy | Pending |
 | 3 | Media source/generated/video pipeline separation | Pending |
 | 4 | Writer frontend module split | Pending |
