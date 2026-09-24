@@ -306,7 +306,17 @@
       "priority": 80,
       "enabled": true,
       "channel_url": "https://www.youtube.com/@ligamonstrocombate",
-      "coverage_note": "Monthly MMA/boxing events; official site says events air on YouTube"
+      "coverage_note": "Promotion channel + filtered RedeTV! broadcast partner; LMC 3 airs on RedeTV! YouTube",
+      "broadcast_channels": [
+        {
+          "channel_url": "https://www.youtube.com/channel/UCd7VVhgnd2eCv9JEghvR_1w",
+          "role": "broadcast_partner",
+          "require_terms": [
+            "LMC",
+            "Liga Monstro"
+          ]
+        }
+      ]
     },
     {
       "id": "shooto-brasil",
