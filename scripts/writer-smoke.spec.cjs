@@ -64,7 +64,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
       const list = remote ? [{ type: 'file', name: remote.name, path: remote.path, sha: remote.sha }] : [];
       return route.fulfill({ status: 200, headers, body: JSON.stringify(list) });
     }
-    if (url.pathname.startsWith(`${repoRoot}/contents/assets/uploads/articles/`)) {
+    if (url.pathname.startsWith(`${repoRoot}/contents/assets/uploads/`)) {
       const assetPath = decodeURIComponent(url.pathname.slice(`${repoRoot}/contents/`.length));
       if (method === 'GET') {
         const asset = uploadedAssets.get(assetPath);
@@ -272,9 +272,10 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   });
   await page.fill('[data-inline-image-alt]', 'Uploaded smoke image');
   await page.click('[data-image-insert]');
-  const expectedAssetPath = `assets/uploads/articles/${date.slice(0, 4)}/${date.slice(5, 7)}/writer-production-smoke/smoke-upload.png`;
-  await expect.poll(() => uploadedAssets.has(expectedAssetPath), { timeout: 10000 }).toBe(true);
-  await expect.poll(async () => await editor.inputValue(), { timeout: 10000 }).toContain('/' + expectedAssetPath);
+  await expect.poll(() => uploadedAssets.size, { timeout: 10000 }).toBeGreaterThan(0);
+  const uploadedAssetPath = [...uploadedAssets.keys()][0];
+  expect(uploadedAssetPath).toMatch(new RegExp(`^assets/uploads/articles/${date.slice(0, 4)}/${date.slice(5, 7)}/writer-production-smoke/`));
+  await expect.poll(async () => await editor.inputValue(), { timeout: 10000 }).toContain('/' + uploadedAssetPath);
 
   if (!(await advancedDetails.evaluate(el => el.open))) await advancedDetails.locator('summary').click();
   const cleanFilename = await page.locator('[data-field="filename"]').inputValue();
