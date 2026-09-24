@@ -179,7 +179,20 @@ GitHub requires workflow files to remain directly inside:
 .github/workflows/
 ```
 
-Stage 6 will consolidate responsibilities and naming without inventing unsupported workflow subdirectories.
+Stage 6 keeps that flat physical layout but consolidates workflows by responsibility instead of creating artificial subdirectories:
+
+```text
+writer-quality.yml
+  Writer source/backend validation + production browser smoke
+
+site-browser-quality.yml
+  visual geometry smoke + mobile Lighthouse
+
+update-matchmaker.yml
+  pull-request validation + scheduled/live Matchmaker refresh
+```
+
+Scheduled data publishers remain separate when they have meaningfully different cadences, credentials, concurrency groups, or generated-data ownership. `npm run check:workflows` enforces the canonical consolidated files, rejects retired split workflows, checks duplicate display names, and verifies Pages CMS workflow references still resolve.
 
 ## Protected production paths
 
