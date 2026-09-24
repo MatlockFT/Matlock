@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-09-24T03:06:51Z",
+  "generated_at": "2026-09-24T03:07:28Z",
   "searched_count": 9,
   "results": [
     {
@@ -54,7 +54,11 @@
       "top_candidate_live": [],
       "top_candidate_upcoming": [],
       "top_candidate_live_error": null,
-      "top_candidate_upcoming_error": null
+      "top_candidate_upcoming_error": null,
+      "event_search_live": [],
+      "event_search_upcoming": [],
+      "event_search_live_error": "",
+      "event_search_upcoming_error": ""
     },
     {
       "id": "ararat-wfc",
@@ -99,7 +103,11 @@
       "top_candidate_live": [],
       "top_candidate_upcoming": [],
       "top_candidate_live_error": "",
-      "top_candidate_upcoming_error": ""
+      "top_candidate_upcoming_error": "",
+      "event_search_live": [],
+      "event_search_upcoming": [],
+      "event_search_live_error": "",
+      "event_search_upcoming_error": ""
     },
     {
       "id": "afc-navarra",
@@ -111,7 +119,11 @@
       "top_candidate_live": [],
       "top_candidate_upcoming": [],
       "top_candidate_live_error": null,
-      "top_candidate_upcoming_error": null
+      "top_candidate_upcoming_error": null,
+      "event_search_live": [],
+      "event_search_upcoming": [],
+      "event_search_live_error": "",
+      "event_search_upcoming_error": ""
     },
     {
       "id": "armmada",
@@ -123,7 +135,11 @@
       "top_candidate_live": [],
       "top_candidate_upcoming": [],
       "top_candidate_live_error": null,
-      "top_candidate_upcoming_error": null
+      "top_candidate_upcoming_error": null,
+      "event_search_live": [],
+      "event_search_upcoming": [],
+      "event_search_live_error": "",
+      "event_search_upcoming_error": ""
     },
     {
       "id": "bfn",
@@ -176,7 +192,11 @@
       "top_candidate_live": [],
       "top_candidate_upcoming": [],
       "top_candidate_live_error": null,
-      "top_candidate_upcoming_error": null
+      "top_candidate_upcoming_error": null,
+      "event_search_live": [],
+      "event_search_upcoming": [],
+      "event_search_live_error": "",
+      "event_search_upcoming_error": ""
     },
     {
       "id": "fen",
@@ -185,14 +205,6 @@
       "query": "FEN MMA Fight Exclusive Night official",
       "error": null,
       "candidates": [
-        {
-          "channel_id": "UCImfc168mO_71t6VMxJzkqQ",
-          "channel_url": "https://www.youtube.com/channel/UCImfc168mO_71t6VMxJzkqQ",
-          "title": "A.S. INFO FIGHT",
-          "description": "A.S. INFO FIGHT – Twoje centrum sportów walki! Witaj na kanale A.S.INFO FIGHT! Jesteśmy tam, gdzie bijące serce polskiego ...",
-          "published_at": "2026-01-12T10:01:33Z",
-          "score": 0
-        },
         {
           "channel_id": "UCp91i5P0MGWV4VXfbCxx5WA",
           "channel_url": "https://www.youtube.com/channel/UCp91i5P0MGWV4VXfbCxx5WA",
@@ -218,6 +230,14 @@
           "score": 0
         },
         {
+          "channel_id": "UChuDGoY2b4sYFfk4Ob5aw3w",
+          "channel_url": "https://www.youtube.com/channel/UChuDGoY2b4sYFfk4Ob5aw3w",
+          "title": "MMA,UFC,BALLATOR,KSW FIGHT",
+          "description": "",
+          "published_at": "2021-02-07T00:09:35Z",
+          "score": 0
+        },
+        {
           "channel_id": "UCrDg4IAVc-ZmiZCPb2yQuxQ",
           "channel_url": "https://www.youtube.com/channel/UCrDg4IAVc-ZmiZCPb2yQuxQ",
           "title": "wwwFIGHT24pl",
@@ -229,7 +249,11 @@
       "top_candidate_live": [],
       "top_candidate_upcoming": [],
       "top_candidate_live_error": null,
-      "top_candidate_upcoming_error": null
+      "top_candidate_upcoming_error": null,
+      "event_search_live": [],
+      "event_search_upcoming": [],
+      "event_search_live_error": "",
+      "event_search_upcoming_error": "HTTP 429: Quota exceeded for quota metric 'Search Queries' and limit 'Search Queries per day' of service 'youtube.googleapis.com' for consumer 'project_number:628595826781'."
     },
     {
       "id": "ifn",
@@ -250,7 +274,11 @@
       "top_candidate_live": [],
       "top_candidate_upcoming": [],
       "top_candidate_live_error": null,
-      "top_candidate_upcoming_error": null
+      "top_candidate_upcoming_error": null,
+      "event_search_live": [],
+      "event_search_upcoming": [],
+      "event_search_live_error": "",
+      "event_search_upcoming_error": "HTTP 429: Quota exceeded for quota metric 'Search Queries' and limit 'Search Queries per day' of service 'youtube.googleapis.com' for consumer 'project_number:628595826781'."
     },
     {
       "id": "aeternum",
@@ -262,36 +290,27 @@
       "top_candidate_live": [],
       "top_candidate_upcoming": [],
       "top_candidate_live_error": null,
-      "top_candidate_upcoming_error": null
+      "top_candidate_upcoming_error": null,
+      "event_search_live": [],
+      "event_search_upcoming": [],
+      "event_search_live_error": "",
+      "event_search_upcoming_error": "HTTP 429: Quota exceeded for quota metric 'Search Queries' and limit 'Search Queries per day' of service 'youtube.googleapis.com' for consumer 'project_number:628595826781'."
     },
     {
       "id": "wfc",
       "promotion": "World Fighting Championship",
       "event": "WFC 198",
       "query": "WFC World Fighting Championship MMA Nevada official",
-      "error": null,
-      "candidates": [
-        {
-          "channel_id": "UCk8XGxi7fsTqQQRVq9LSraw",
-          "channel_url": "https://www.youtube.com/channel/UCk8XGxi7fsTqQQRVq9LSraw",
-          "title": "UFC Brasil",
-          "description": "Assista a todos os eventos do UFC só no Paramount+. Assine já: https://ufc.ac/4mG0LNz UFC® é o líder global em artes marciais ...",
-          "published_at": "2012-12-05T18:00:57Z",
-          "score": 0
-        },
-        {
-          "channel_id": "UCOm-vIlMf6FiWM1MRN_EyWg",
-          "channel_url": "https://www.youtube.com/channel/UCOm-vIlMf6FiWM1MRN_EyWg",
-          "title": "WFC Wavrin Fighting Club",
-          "description": "",
-          "published_at": "2017-04-26T18:41:12Z",
-          "score": 0
-        }
-      ],
+      "error": "HTTP 429: Quota exceeded for quota metric 'Search Queries' and limit 'Search Queries per day' of service 'youtube.googleapis.com' for consumer 'project_number:628595826781'.",
+      "candidates": [],
       "top_candidate_live": [],
       "top_candidate_upcoming": [],
       "top_candidate_live_error": null,
-      "top_candidate_upcoming_error": null
+      "top_candidate_upcoming_error": null,
+      "event_search_live": [],
+      "event_search_upcoming": [],
+      "event_search_live_error": "HTTP 429: Quota exceeded for quota metric 'Search Queries' and limit 'Search Queries per day' of service 'youtube.googleapis.com' for consumer 'project_number:628595826781'.",
+      "event_search_upcoming_error": "HTTP 429: Quota exceeded for quota metric 'Search Queries' and limit 'Search Queries per day' of service 'youtube.googleapis.com' for consumer 'project_number:628595826781'."
     }
   ]
 }
