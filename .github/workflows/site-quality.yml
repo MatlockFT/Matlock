@@ -119,6 +119,7 @@ jobs:
           node --check scripts/validate-ufc-roster-output.mjs
           node --check scripts/publish-scheduled-posts.mjs
           node --check scripts/summarize-lighthouse.mjs
+          node --check scripts/check-mma-yellow-pages.mjs
 
       - name: Check UFC roster identity behavior
         run: |
@@ -224,6 +225,9 @@ jobs:
           node scripts/report-event-map-locations.mjs --check
           node scripts/validate-event-map-quality.mjs
           node scripts/check-event-map-architecture.mjs
+
+      - name: Check MMA Yellow Pages directory
+        run: npm run check:yellow-pages
 
       - name: Check bundled MMA news data
         run: npm run check:news
