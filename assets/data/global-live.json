@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "generated_at": "2026-09-24T01:55:00Z",
+  "selected_event_id": "inka:C2nNtrk8FRs",
+  "events": [
+    {
+      "event_id": "inka:C2nNtrk8FRs",
+      "promotion_id": "inka",
+      "promotion": "Inka Fighting Championship",
+      "short_name": "INKA",
+      "country": "Peru",
+      "priority": 75,
+      "channel_name": "INKA MMA PRO",
+      "channel_id": null,
+      "channel_url": null,
+      "video_id": "C2nNtrk8FRs",
+      "title": "Inka 61",
+      "watch_url": "https://www.youtube.com/watch?v=C2nNtrk8FRs",
+      "is_live": true
+    }
+  ],
+  "sources": {
+    "inka": {
+      "channel_id": null,
+      "channel_name": "INKA MMA PRO",
+      "channel_url": null,
+      "status": "live",
+      "last_error": null
+    }
+  }
+}
