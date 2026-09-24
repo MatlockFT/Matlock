@@ -1,5 +1,5 @@
 import { corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mjs';
-import { mediaStore, requireWriterSession, setStatus, uploadScope, validUploadId } from './_writer-media.mjs';
+import { mediaStore, requireWriterSession, setStatus, uploadScope, validUploadId, validateVideoMetadata } from './_writer-media.mjs';
 
 export default async function handler(request) {
   const origin = normalizeOrigin(request.headers.get('origin'));
@@ -29,18 +29,29 @@ export default async function handler(request) {
 
   const body = await request.json().catch(() => null);
   const uploadId = validUploadId(body?.uploadId);
-  const chunkCount = Number(body?.chunkCount);
-  const fileSize = Number(body?.fileSize);
-  const fileType = String(body?.fileType || 'application/octet-stream').slice(0, 120);
-  const assetName = String(body?.assetName || '').replace(/[^A-Za-z0-9._-]+/g, '-').slice(0, 180);
+  if (!uploadId) return Response.json({ ok: false, error: 'Invalid upload ID.' }, { status: 400, headers });
 
-  if (!uploadId || !Number.isInteger(chunkCount) || chunkCount < 1 || !Number.isFinite(fileSize) || fileSize < 1 || fileSize >= 2 * 1024 * 1024 * 1024 || !assetName) {
-    return Response.json({ ok: false, error: 'Invalid finalize request.' }, { status: 400, headers });
+  let meta;
+  try {
+    meta = validateVideoMetadata({
+      assetName: body?.assetName,
+      fileSize: body?.fileSize,
+      fileType: body?.fileType,
+      chunkCount: body?.chunkCount
+    });
+  } catch (error) {
+    return Response.json({ ok: false, error: error.message }, { status: 400, headers });
   }
 
   const scope = uploadScope(sessionId);
   const store = mediaStore();
-  await setStatus(store, scope, uploadId, { state: 'queued' });
+  await setStatus(store, scope, uploadId, {
+    state: 'queued',
+    chunkCount: meta.chunkCount,
+    fileSize: meta.fileSize,
+    fileType: meta.fileType,
+    assetName: meta.assetName
+  });
 
   const processUrl = `${new URL(request.url).origin}/api/writer/media-process`;
   const processResponse = await fetch(processUrl, {
@@ -49,12 +60,25 @@ export default async function handler(request) {
       'Content-Type': 'application/json',
       'X-Writer-Session': sessionId
     },
-    body: JSON.stringify({ uploadId, chunkCount, fileSize, fileType, assetName }),
+    body: JSON.stringify({
+      uploadId,
+      chunkCount: meta.chunkCount,
+      fileSize: meta.fileSize,
+      fileType: meta.fileType,
+      assetName: meta.assetName
+    }),
     cache: 'no-store'
   });
 
   if (!processResponse.ok) {
-    await setStatus(store, scope, uploadId, { state: 'error', error: 'Could not start the GitHub Release publishing job.' });
+    await setStatus(store, scope, uploadId, {
+      state: 'error',
+      error: 'Could not start the GitHub Release publishing job.',
+      chunkCount: meta.chunkCount,
+      fileSize: meta.fileSize,
+      fileType: meta.fileType,
+      assetName: meta.assetName
+    });
     return Response.json({ ok: false, error: 'Could not start the GitHub Release publishing job.' }, { status: 502, headers });
   }
 
