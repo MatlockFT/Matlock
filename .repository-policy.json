@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "modernizationStage": 6,
+  "modernizationStage": 7,
   "principles": {
     "preserveExistingPublicPaths": true,
     "noCosmeticMoves": true,
@@ -85,7 +85,6 @@
   ],
   "legacyExceptions": {
     "existingUploadsRemainInPlace": true,
-    "versionedRootPagesAllowedUntilStage": 7,
     "currentFlatScriptLayoutAllowedUntilStage": 5
   }
 }

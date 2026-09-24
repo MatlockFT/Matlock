@@ -4,9 +4,9 @@ This document tracks the controlled reorganization of the MMA Matlock repository
 
 ## Current status
 
-**Stage 6 of 10 — GitHub Actions workflow consolidation: COMPLETE**
+**Stage 7 of 10 — Legacy/V2/V3 page cleanup: COMPLETE**
 
-Next stage: **Stage 7 — Legacy/V2/V3 page cleanup**
+Next stage: **Stage 8 — Runtime-data and cache policy**
 
 Stages 0–5 established the safety baseline, repository/media contracts, article-owned asset hierarchy, modular Writer source, and domain-organized development scripts. Stage 6 consolidates overlapping GitHub Actions ownership while preserving schedules, publishing behavior, and production regression gates.
 
@@ -62,7 +62,7 @@ npm run audit:repo
 Before changing a specific tracked path, inspect inbound references with:
 
 ```sh
-npm run audit:repo -- --target news-v3.html
+npm run audit:repo -- --target news.html
 npm run audit:repo -- --target assets/some-file.js
 ```
 
@@ -127,7 +127,7 @@ The contract establishes:
 - Article video remains outside Git history as GitHub Release assets.
 - Internal scripts have a target domain structure, but moves wait until Stage 5.
 - Workflow consolidation waits until Stage 6.
-- Versioned legacy page cleanup waits until Stage 7.
+- Versioned legacy page cleanup was completed in Stage 7.
 
 The policy is checked in CI with:
 
@@ -274,6 +274,41 @@ Stage 6 validation confirmed that the consolidation preserved behavior:
 
 The exact pre-Stage-6 repository state remains available at `archive/repo-modernization-stage5-complete-2026-09-24`.
 
+## Stage 7 legacy/V2/V3 page cleanup
+
+Stage 7 retired the noindex migration/demo page entry points only after the reference audit confirmed they were not canonical public surfaces.
+
+Removed root pages:
+
+```text
+about-v3.html
+breakdowns-v3.html
+contact-v3.html
+event-map-v3.html
+homepage-v2.html
+homepage-v3.html
+matchmaker-v3.html
+news-v3.html
+on-this-day-v3.html
+ufc-roster-v3.html
+upcoming-events-v3.html
+```
+
+The old Homepage V2-only browser bundle was also removed because its only consumer was `homepage-v2.html`:
+
+```text
+assets/homepage-v2.css
+assets/homepage-v2.js
+```
+
+Canonical routes remain unchanged. Browser smoke coverage now targets the canonical live pages instead of migration fixtures, the obsolete Homepage V2 navigation branches were removed from `_layouts/default.html`, and mobile Lighthouse no longer audits `/homepage-v2/`.
+
+Version-named V3 assets such as `assets/homepage-v3.css`, `assets/news-v3.css`, and `assets/matchmaker-v3.css` were deliberately retained because the canonical live pages still consume them. Stage 7 removes dead page entry points, not working production styling.
+
+The repository policy now advances to modernization Stage 7 and rejects any new root `*-vN.html` or `legacy-*.html` migration page.
+
+The exact pre-Stage-7 repository state is preserved at `archive/repo-modernization-stage6-complete-2026-09-24`.
+
 ## Planned stages
 
 | Stage | Scope | Status |
@@ -285,8 +320,8 @@ The exact pre-Stage-6 repository state remains available at `archive/repo-modern
 | 4 | Writer frontend module split | Complete |
 | 5 | Development-script organization | Complete |
 | 6 | GitHub Actions workflow consolidation | Complete |
-| 7 | Legacy/V2/V3 page cleanup | Next |
-| 8 | Runtime-data and cache policy | Pending |
+| 7 | Legacy/V2/V3 page cleanup | Complete |
+| 8 | Runtime-data and cache policy | Next |
 | 9 | Repository integrity enforcement | Pending |
 | 10 | Final documentation and maintenance mode | Pending |
 

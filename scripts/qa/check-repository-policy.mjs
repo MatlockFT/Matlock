@@ -153,8 +153,22 @@ if (policy.code?.writerBuildCommand !== 'npm run build:frontend') {
   errors.push('Writer build command must remain npm run build:frontend.');
 }
 
-if (policy.legacyExceptions?.versionedRootPagesAllowedUntilStage !== 7) {
+if (stage < 7 && policy.legacyExceptions?.versionedRootPagesAllowedUntilStage !== 7) {
   errors.push('Versioned root page exception must remain scheduled for Stage 7.');
+}
+if (stage >= 7 && Object.prototype.hasOwnProperty.call(policy.legacyExceptions || {}, 'versionedRootPagesAllowedUntilStage')) {
+  errors.push('Versioned root page exception must be retired at Stage 7.');
+}
+if (stage >= 7) {
+  const rootEntries = await fs.readdir('.', { withFileTypes: true });
+  const legacyRootPages = rootEntries
+    .filter(entry => entry.isFile() && /(?:-v\d+\.html$|^legacy-.*\.html$)/i.test(entry.name))
+    .map(entry => entry.name)
+    .sort();
+
+  if (legacyRootPages.length) {
+    errors.push('Stage 7 forbids versioned/legacy root pages: ' + legacyRootPages.join(', '));
+  }
 }
 if (policy.legacyExceptions?.currentFlatScriptLayoutAllowedUntilStage !== 5) {
   errors.push('Flat script layout exception must remain scheduled for Stage 5.');
