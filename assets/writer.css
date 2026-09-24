@@ -543,3 +543,27 @@
 
 .writer-preview-featured.is-loading img{visibility:hidden}
 .writer-preview-featured.is-loading{min-height:180px}
+
+
+.writer-video-upload-status{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  gap:.55rem .75rem;
+  padding:.65rem .75rem;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:8px;
+  background:rgba(255,255,255,.035);
+}
+.writer-video-upload-status[hidden]{display:none}
+.writer-video-upload-status progress{
+  width:100%;
+  height:.48rem;
+  accent-color:currentColor;
+}
+.writer-video-upload-status span{
+  font-size:.72rem;
+  font-weight:700;
+  white-space:nowrap;
+  color:var(--writer-muted,#aaa);
+}
