@@ -38,6 +38,9 @@ jobs:
       - name: Check repository organization policy
         run: npm run check:repo-policy
 
+      - name: Check media pipeline separation
+        run: npm run check:media
+
       - name: Check current brand identity
         run: node scripts/check-brand-identity.mjs
 
@@ -79,6 +82,8 @@ jobs:
           node --check scripts/check-repository-integrity.mjs
           node --check scripts/repository-reference-audit.mjs
           node --check scripts/check-repository-policy.mjs
+          node --check scripts/media-paths.mjs
+          node --check scripts/check-media-pipeline.mjs
           node --check scripts/check-search-readiness.mjs
           node --check scripts/build-on-this-day-share-images.mjs
           node --check scripts/share-title-layout.mjs
