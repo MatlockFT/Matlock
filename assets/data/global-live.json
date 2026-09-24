@@ -1,10 +1,10 @@
 {
   "version": 4,
-  "generated_at": "2026-09-24T02:09:57Z",
-  "selected_event_id": "inka:6ukaP7vVicE",
+  "generated_at": "2026-09-24T02:10:53Z",
+  "selected_event_id": "inka:ggYwWwcm0qU",
   "events": [
     {
-      "event_id": "inka:6ukaP7vVicE",
+      "event_id": "inka:ggYwWwcm0qU",
       "promotion_id": "inka",
       "promotion": "Inka Fighting Championship",
       "short_name": "INKA",
@@ -13,12 +13,12 @@
       "coverage_note": "Prelims",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@INKA.MMAPRO",
-      "video_id": "6ukaP7vVicE",
-      "title": "INKA live",
-      "watch_url": "https://www.youtube.com/watch?v=6ukaP7vVicE",
+      "video_id": "ggYwWwcm0qU",
+      "title": "Scammer Caught Using Stolen Credit Card & Fake ID to Buy $85K Luxury Vehicle at Dealership",
+      "watch_url": "https://www.youtube.com/watch?v=ggYwWwcm0qU",
       "is_live": true,
       "stale": false,
-      "observed_at": "2026-09-24T02:09:56Z"
+      "observed_at": "2026-09-24T02:10:53Z"
     }
   ],
   "sources": {
@@ -43,13 +43,14 @@
       "short_name": "AFC",
       "country": "South Korea",
       "priority": 80,
-      "channel_id": null,
-      "channel_name": "AFC",
+      "coverage_note": "Event stream",
+      "access_note": null,
       "channel_url": "https://www.youtube.com/channel/UC7YF5mRzbnmiKREOGsKUJTg",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:10:52Z"
     },
     "apfc": {
       "promotion": "Anthony Pettis Fighting Championship",
@@ -100,13 +101,14 @@
       "short_name": "Empire MMA",
       "country": "Colombia",
       "priority": 80,
-      "channel_id": null,
-      "channel_name": "Empire MMA",
+      "coverage_note": "Event stream",
+      "access_note": null,
       "channel_url": "https://www.youtube.com/@empiremma_",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:10:52Z"
     },
     "fnc": {
       "promotion": "Fight Nation Championship",
@@ -129,13 +131,14 @@
       "short_name": "FSF",
       "country": "United States",
       "priority": 80,
-      "channel_id": null,
-      "channel_name": "FSF",
+      "coverage_note": "Event stream",
+      "access_note": null,
       "channel_url": "https://www.youtube.com/user/frontstreetfights",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:10:52Z"
     },
     "grachan": {
       "promotion": "GRACHAN",
@@ -164,8 +167,8 @@
       "status": "live",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": "2026-09-24T02:09:56Z",
-      "last_checked_at": "2026-09-24T02:09:55Z"
+      "last_success_at": "2026-09-24T02:10:53Z",
+      "last_checked_at": "2026-09-24T02:10:52Z"
     },
     "levels-fight-league": {
       "promotion": "Levels Fight League",
@@ -186,13 +189,14 @@
       "short_name": "LFA",
       "country": "USA / Brazil",
       "priority": 85,
-      "channel_id": null,
-      "channel_name": "LFA",
+      "coverage_note": "Main cards and prelims",
+      "access_note": "Territory restrictions may apply",
       "channel_url": "https://www.youtube.com/@lfafights",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:10:52Z"
     },
     "lux": {
       "promotion": "LUX Fight League",
@@ -213,13 +217,14 @@
       "short_name": "MFL",
       "country": "Mexico",
       "priority": 80,
-      "channel_id": null,
-      "channel_name": "MFL",
+      "coverage_note": "English and Spanish event broadcasts",
+      "access_note": null,
       "channel_url": "https://www.youtube.com/@fightMFL",
       "status": "offline",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null
+      "last_success_at": null,
+      "last_checked_at": "2026-09-24T02:10:52Z"
     },
     "naiza": {
       "promotion": "NAIZA Fighting Championship",
