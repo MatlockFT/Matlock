@@ -194,6 +194,53 @@ html[data-theme="light"] body:has([data-globe-home]) .site-event-row:focus-visib
 
 
 /* =========================================================
+   V3 FIRST-PAINT RAIL GEOMETRY
+   Reserve the final ticker + nav height before shell JS moves nodes.
+   ========================================================= */
+
+html:has(body [data-globe-home]) {
+    --v3-fixed-rail-height: 83px;
+}
+
+body:has([data-globe-home]) .site-header > .site-navigation {
+    position: fixed !important;
+    top: 41px !important;
+    right: 0 !important;
+    left: 0 !important;
+    z-index: 1001;
+}
+
+body:has([data-globe-home]) .site-header > .site-live-strip-reserve {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    display: block !important;
+    height: 41px;
+    min-height: 41px;
+    border: 0;
+    border-bottom: 1px solid var(--v3-rule);
+    background: #f5f3ee;
+}
+
+html[data-theme="dark"] body:has([data-globe-home]) .site-header > .site-live-strip-reserve {
+    background: #101010;
+}
+
+/* Before the deferred ticker mounts, preserve its exact slot inside the shell. */
+.v3-sticky-shell:not(:has(.site-live-strip)) {
+    padding-top: 41px;
+}
+
+.v3-sticky-shell > .site-navigation {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+}
+
+/* =========================================================
    V3.4 — STICKY RAIL / COMPACT LOWER PAGE / CLEAN TOGGLE
    ========================================================= */
 
