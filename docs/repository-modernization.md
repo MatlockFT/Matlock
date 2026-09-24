@@ -4,11 +4,11 @@ This document tracks the controlled reorganization of the MMA Matlock repository
 
 ## Current status
 
-**Stage 3 of 10 — Media source/generated/video pipeline separation: COMPLETE**
+**Stage 4 of 10 — Writer frontend module split: COMPLETE**
 
-Next stage: **Stage 4 — Writer frontend module split**
+Next stage: **Stage 5 — Development-script organization**
 
-Stages 0–2 established the safety baseline, repository contract, and article-owned source upload hierarchy. Stage 3 separates authored image sources, rebuildable responsive derivatives, and GitHub Release video storage while preserving legacy public media URLs.
+Stages 0–3 established the repository and media contracts. Stage 4 replaces the Writer's monolithic source-of-truth with maintainable source modules while preserving the same public `/assets/writer.js` runtime interface.
 
 ## Rollback point
 
@@ -180,6 +180,44 @@ Stage 3 also added:
 
 The image optimizer completed successfully, Writer production smoke passed, Site Quality passed including the new media check, and GitHub Pages built successfully before Stage 3 was closed.
 
+## Stage 4 Writer frontend modules
+
+Stage 4 keeps the browser contract unchanged:
+
+```text
+/write/
+  → /assets/writer.js
+```
+
+The maintainable source now lives under `_writer/`:
+
+```text
+_writer/
+  00-core.js
+  01-preview.js
+  02-state-library.js
+  03-publishing.js
+  04-editor-tools.js
+  05-media.js
+  06-bootstrap.js
+```
+
+`scripts/build-frontend-bundles.mjs` concatenates those ordered source modules into the existing `assets/writer.js` compatibility bundle. This deliberately preserves the Writer's shared closure and runtime ordering instead of introducing a risky browser-module rewrite.
+
+The split reduced the single-file maintenance surface into domains for core/frontmatter helpers, preview rendering, state/library/GitHub transport, publishing, editor tools, media upload/layout, and event/bootstrap behavior.
+
+Safeguards added in Stage 4:
+
+- `assets/writer.js` is explicitly marked generated;
+- `npm run check:frontend` rejects any public Writer bundle that differs from `_writer/`;
+- Writer auth quality checks the generated bundle before browser-script validation;
+- Writer production smoke watches changes under `_writer/**`;
+- `_writer/` is explicitly excluded from Jekyll output so source fragments are not published;
+- the repository audit recognizes `_writer/` as Writer frontend source;
+- the repository policy records the stable public bundle and source model.
+
+The generated bundle was verified byte-for-byte against the ordered source fragments. Writer auth quality passed, production Writer smoke passed, Site Quality passed the generated-bundle check, and GitHub Pages built successfully before Stage 4 was closed.
+
 ## Planned stages
 
 | Stage | Scope | Status |
@@ -188,8 +226,8 @@ The image optimizer completed successfully, Writer production smoke passed, Site
 | 1 | Permanent organizational rules | Complete |
 | 2 | Future article asset upload hierarchy | Complete |
 | 3 | Media source/generated/video pipeline separation | Complete |
-| 4 | Writer frontend module split | Next |
-| 5 | Development-script organization | Pending |
+| 4 | Writer frontend module split | Complete |
+| 5 | Development-script organization | Next |
 | 6 | GitHub Actions workflow consolidation | Pending |
 | 7 | Legacy/V2/V3 page cleanup | Pending |
 | 8 | Runtime-data and cache policy | Pending |
