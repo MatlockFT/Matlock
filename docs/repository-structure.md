@@ -204,6 +204,18 @@ update-matchmaker.yml
 
 Scheduled data publishers remain separate when they have meaningfully different cadences, credentials, concurrency groups, or generated-data ownership. `npm run check:workflows` enforces the canonical consolidated files, rejects retired split workflows, checks duplicate display names, and verifies Pages CMS workflow references still resolve.
 
+## Integrity enforcement
+
+Stage 9 freezes known legacy media and makes the permanent structure enforceable in CI.
+
+New article images must use the article-owned upload hierarchy. The exact pre-Stage-2 flat uploads that remain valid are recorded in `.repository-legacy-media.json`; adding another flat upload is rejected.
+
+Generated media under `assets/generated/` is protected by `.repository-generated-assets.json`. The image generator updates this manifest, while `npm run check:generated` rejects hand-edited or otherwise drifting generated output.
+
+`npm run check:integrity` also verifies local article media references and caps direct `assets/` images at 3 MiB so the root asset namespace cannot turn into another upload bucket.
+
+See [`docs/repository-integrity.md`](repository-integrity.md) for the complete enforcement map.
+
 ## Protected production paths
 
 The following paths are treated as high-risk dependencies and should not be moved casually:

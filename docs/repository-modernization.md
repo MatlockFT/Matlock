@@ -4,9 +4,9 @@ This document tracks the controlled reorganization of the MMA Matlock repository
 
 ## Current status
 
-**Stage 8 of 10 — Runtime-data and cache policy: COMPLETE**
+**Stage 9 of 10 — Repository integrity enforcement: IN PROGRESS**
 
-Next stage: **Stage 9 — Repository integrity enforcement**
+Next stage after validation: **Stage 10 — Final documentation and maintenance mode**
 
 Stages 0–5 established the safety baseline, repository/media contracts, article-owned asset hierarchy, modular Writer source, and domain-organized development scripts. Stage 6 consolidates overlapping GitHub Actions ownership while preserving schedules, publishing behavior, and production regression gates.
 
@@ -350,6 +350,29 @@ Stage 8 validation confirmed:
 - Mobile Lighthouse and the long Matchmaker validation remain independent existing gates and are not weakened by Stage 8.
 
 
+## Stage 9 repository integrity enforcement
+
+Stage 9 converts the repository conventions from earlier stages into hard CI boundaries.
+
+New enforcement includes:
+
+- `.repository-legacy-media.json` freezes the exact 46 flat `assets/uploads/` files that predate the article-owned upload hierarchy. New flat uploads are rejected; future article media must use `assets/uploads/articles/YYYY/MM/article-slug/`.
+- `.repository-generated-assets.json` records a Git blob hash for every generated asset. `npm run check:generated` rejects direct edits, unexplained additions, and missing generated files.
+- `npm run optimize:images` now refreshes the generated integrity manifest automatically, and the image-optimization workflow commits it with responsive derivatives.
+- direct images under the top-level `assets/` namespace are capped at 3 MiB so shared site infrastructure cannot become another upload dumping ground;
+- `npm run check:integrity` scans article-local `/assets/...` references and rejects nonexistent media;
+- the Stage 9 policy records these constraints and requires their manifests.
+
+Earlier enforcement remains in place and forms part of the Stage 9 integrity boundary:
+
+- duplicate root permalinks are rejected by the repository reference audit;
+- new root `*-vN.html` migration pages are rejected by repository policy;
+- tracked video assets are rejected by the media pipeline;
+- Writer and On This Day generated runtime bundles retain their feature-specific freshness checks;
+- runtime/build datasets, script domains, and workflow organization retain their Stage 5–8 policy checks.
+
+The exact pre-Stage-9 repository state is preserved at `archive/repo-modernization-stage8-complete-2026-09-24`.
+
 ## Planned stages
 
 | Stage | Scope | Status |
@@ -363,7 +386,7 @@ Stage 8 validation confirmed:
 | 6 | GitHub Actions workflow consolidation | Complete |
 | 7 | Legacy/V2/V3 page cleanup | Complete |
 | 8 | Runtime-data and cache policy | Complete |
-| 9 | Repository integrity enforcement | Next |
+| 9 | Repository integrity enforcement | In progress |
 | 10 | Final documentation and maintenance mode | Pending |
 
 The status table is updated at the end of every completed stage.

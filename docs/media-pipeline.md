@@ -81,3 +81,8 @@ The media check verifies:
 - the Writer video backend still targets GitHub Releases.
 
 This check runs as part of Site Quality.
+
+
+## Generated output integrity
+
+Stage 9 protects `assets/generated/` with `.repository-generated-assets.json`. Do not edit responsive derivatives by hand. Run `npm run optimize:images`; the generator updates both the derivatives and the integrity manifest. CI verifies the result with `npm run check:generated`.

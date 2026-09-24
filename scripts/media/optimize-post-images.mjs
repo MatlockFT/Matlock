@@ -2,6 +2,7 @@ import { access, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import sharp from 'sharp';
 import { responsiveOutputPlan } from './media-paths.mjs';
+import { writeGeneratedIntegrityManifest } from './generated-integrity.mjs';
 
 const root = resolve(import.meta.dirname, '../..');
 const postsDirectory = join(root, '_posts');
@@ -156,6 +157,7 @@ const manifest = [
 
 await writeFile(manifestPath, manifest);
 await generateSiteHeader();
+await writeGeneratedIntegrityManifest();
 
 console.log(
     `Generated responsive variants for ${manifestEntries.length} featured images plus the site header.`

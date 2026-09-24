@@ -8,6 +8,7 @@ on:
       - 'assets/header-image.png'
       - 'scripts/media/optimize-post-images.mjs'
       - 'scripts/media/media-paths.mjs'
+      - 'scripts/media/generated-integrity.mjs'
       - '.github/workflows/pages-cms-optimize-images.yml'
   workflow_dispatch:
     inputs:
@@ -50,13 +51,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- assets/generated/posts assets/generated/site _data/responsive_images.yml; then
+          if git diff --quiet -- assets/generated/posts assets/generated/site _data/responsive_images.yml .repository-generated-assets.json; then
             echo "Images are already optimized."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- assets/generated/posts assets/generated/site _data/responsive_images.yml
+          git add -- assets/generated/posts assets/generated/site _data/responsive_images.yml .repository-generated-assets.json
           git commit -m "Optimize site images"
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"

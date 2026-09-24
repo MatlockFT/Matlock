@@ -50,6 +50,9 @@ jobs:
       - name: Check media pipeline separation
         run: npm run check:media
 
+      - name: Check generated asset integrity
+        run: npm run check:generated
+
       - name: Check current brand identity
         run: node scripts/qa/check-brand-identity.mjs
 
@@ -96,6 +99,7 @@ jobs:
           node --check scripts/qa/check-workflow-layout.mjs
           node --check scripts/media/media-paths.mjs
           node --check scripts/media/check-media-pipeline.mjs
+          node --check scripts/media/generated-integrity.mjs
           node --check scripts/qa/check-search-readiness.mjs
           node --check scripts/history/build-on-this-day-share-images.mjs
           node --check scripts/media/share-title-layout.mjs

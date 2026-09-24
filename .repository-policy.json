@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "modernizationStage": 8,
+  "modernizationStage": 9,
   "principles": {
     "preserveExistingPublicPaths": true,
     "noCosmeticMoves": true,
@@ -87,5 +87,15 @@
     "existingUploadsRemainInPlace": true,
     "currentFlatScriptLayoutAllowedUntilStage": 5
   },
-  "dataPolicyFile": ".repository-data-policy.json"
+  "dataPolicyFile": ".repository-data-policy.json",
+  "integrity": {
+    "legacyMediaManifest": ".repository-legacy-media.json",
+    "generatedAssetsManifest": ".repository-generated-assets.json",
+    "maxTopLevelAssetImageBytes": 3145728,
+    "articleUploadPattern": "assets/uploads/articles/YYYY/MM/article-slug/image.ext",
+    "localArticleMediaMustExist": true,
+    "duplicatePermalinksRejected": true,
+    "versionedRootPagesRejected": true,
+    "trackedVideosRejected": true
+  }
 }

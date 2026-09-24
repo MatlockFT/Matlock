@@ -160,6 +160,29 @@ if (stage >= 8) {
   }
 }
 
+if (stage >= 9) {
+  if (!policy.integrity || typeof policy.integrity !== 'object') {
+    errors.push('Stage 9 must define integrity enforcement policy.');
+  } else {
+    if (policy.integrity.legacyMediaManifest !== '.repository-legacy-media.json') {
+      errors.push('Stage 9 legacyMediaManifest must remain .repository-legacy-media.json.');
+    } else {
+      await requirePath(policy.integrity.legacyMediaManifest, 'Legacy media manifest');
+    }
+    if (policy.integrity.generatedAssetsManifest !== '.repository-generated-assets.json') {
+      errors.push('Stage 9 generatedAssetsManifest must remain .repository-generated-assets.json.');
+    } else {
+      await requirePath(policy.integrity.generatedAssetsManifest, 'Generated asset integrity manifest');
+    }
+    if (policy.integrity.maxTopLevelAssetImageBytes !== 3145728) {
+      errors.push('Stage 9 top-level asset image cap must remain 3 MiB.');
+    }
+    for (const flag of ['localArticleMediaMustExist','duplicatePermalinksRejected','versionedRootPagesRejected','trackedVideosRejected']) {
+      if (policy.integrity[flag] !== true) errors.push(`Stage 9 integrity flag ${flag} must remain true.`);
+    }
+  }
+}
+
 if (stage < 7 && policy.legacyExceptions?.versionedRootPagesAllowedUntilStage !== 7) {
   errors.push('Versioned root page exception must remain scheduled for Stage 7.');
 }

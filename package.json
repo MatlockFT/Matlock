@@ -35,7 +35,8 @@
     "check:media": "node scripts/media/check-media-pipeline.mjs",
     "check:scripts": "node scripts/qa/check-script-layout.mjs",
     "check:workflows": "node scripts/qa/check-workflow-layout.mjs",
-    "check:data": "node scripts/qa/check-data-lifecycle.mjs"
+    "check:data": "node scripts/qa/check-data-lifecycle.mjs",
+    "check:generated": "node scripts/media/generated-integrity.mjs"
   },
   "devDependencies": {
     "fast-xml-parser": "^5.10.1",
