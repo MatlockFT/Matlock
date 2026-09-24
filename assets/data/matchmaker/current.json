@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-09-24T19:16:29.492Z"
+      "checkedAt": "2026-09-24T22:27:15.771Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-24T19:17:01.867Z",
+      "checkedAt": "2026-09-24T22:27:43.955Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -69650,7 +69650,13 @@
         "mirrorThrough": "2026-09-19",
         "officialThrough": "2026-09-19"
       },
-      "booking": null,
+      "booking": {
+        "event": "Buckley vs Malott",
+        "date": "2026-10-17",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Kyle Nelson",
+        "opponentId": "kyle-nelson"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -185844,7 +185850,13 @@
         "mirrorThrough": "2026-09-19",
         "officialThrough": "2026-09-19"
       },
-      "booking": null,
+      "booking": {
+        "event": "Buckley vs Malott",
+        "date": "2026-10-17",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
+        "opponent": "Cristian Perez Gonzalez",
+        "opponentId": "cristian-perez-gonzalez"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -306359,7 +306371,7 @@
     {
       "id": "tina-black",
       "name": "Tina Black",
-      "active": true,
+      "active": false,
       "source": "https://www.ufc.com/athlete/tina-black",
       "aliases": [
         "tina-black"
@@ -306400,17 +306412,11 @@
         "mirrorThrough": "2026-09-19",
         "officialThrough": "2026-09-19"
       },
-      "booking": {
-        "event": "Jr. vs Barcelos",
-        "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
-        "opponent": "Melissa Amaya",
-        "opponentId": "melissa-amaya"
-      },
+      "booking": null,
       "rosterEligibility": {
-        "reason": "ufc-active-roster",
+        "reason": "absent-from-ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-        "checkedAt": "2026-09-24T10:08:10.350Z"
+        "checkedAt": "2026-09-24T22:27:15.771Z"
       },
       "profileHistory": [],
       "historyModelVersion": 2
@@ -338618,7 +338624,7 @@
   ],
   "coverage": {
     "profileFailures": 36,
-    "activeFighters": 998,
+    "activeFighters": 997,
     "participantHistoriesRequested": 206,
     "verifiedParticipantHistories": 206,
     "ufcStatsNameMisses": 0,
