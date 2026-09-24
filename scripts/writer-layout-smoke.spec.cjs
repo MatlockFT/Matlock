@@ -35,6 +35,11 @@ async function expectCenteredWithoutOverflow(page, box) {
 test('Writer shell and editing surface adapt to desktop and ultrawide viewports', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   const app = await openWriter(page);
+  await expect(page.locator('[data-tool="video"]')).toHaveCount(1);
+  await page.locator('[data-tool="video"]').click();
+  await expect(page.locator('[data-video-dialog]')).toBeVisible();
+  await expect(page.locator('[data-video-dialog]')).toContainText('GitHub Release assets');
+  await page.locator('[data-video-dialog] .writer-dialog-close').click();
 
   let box = await app.boundingBox();
   expect(box).not.toBeNull();
