@@ -77,6 +77,35 @@ def score_candidate(promotion, title, description):
 
     return score
 
+def search_event_videos(channel_id, event_type):
+    params = urllib.parse.urlencode({
+        "part":"snippet",
+        "type":"video",
+        "eventType":event_type,
+        "channelId":channel_id,
+        "maxResults":"5",
+        "order":"date",
+        "key":API_KEY,
+    })
+    payload, error = fetch_json(f"https://www.googleapis.com/youtube/v3/search?{params}")
+    if not payload:
+        return [], error
+
+    videos = []
+    for item in payload.get("items") or []:
+        video_id = (item.get("id") or {}).get("videoId")
+        snippet = item.get("snippet") or {}
+        if not video_id:
+            continue
+        videos.append({
+            "video_id":video_id,
+            "watch_url":f"https://www.youtube.com/watch?v={video_id}",
+            "title":snippet.get("title") or "",
+            "published_at":snippet.get("publishedAt"),
+        })
+    return videos, ""
+
+
 def search_channels(query):
     params = urllib.parse.urlencode({
         "part":"snippet",
@@ -130,6 +159,15 @@ def main():
             ranked.append(candidate)
         ranked.sort(key=lambda x:(-x["score"], x["title"]))
 
+        top_live = []
+        top_upcoming = []
+        live_error = None
+        upcoming_error = None
+
+        if ranked and ranked[0]["score"] >= 15:
+            top_live, live_error = search_event_videos(ranked[0]["channel_id"], "live")
+            top_upcoming, upcoming_error = search_event_videos(ranked[0]["channel_id"], "upcoming")
+
         output["results"].append({
             "id":entry.get("id"),
             "promotion":entry.get("promotion"),
@@ -137,6 +175,10 @@ def main():
             "query":query,
             "error":error or None,
             "candidates":ranked,
+            "top_candidate_live":top_live,
+            "top_candidate_upcoming":top_upcoming,
+            "top_candidate_live_error":live_error,
+            "top_candidate_upcoming_error":upcoming_error,
         })
 
     OUT_PATH.write_text(json.dumps(output, indent=2, ensure_ascii=False)+"\n", encoding="utf-8")
