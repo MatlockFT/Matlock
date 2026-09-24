@@ -3,6 +3,7 @@
   if (!app) return;
 
   const repo = app.dataset.repo || 'MatlockFT/Matlock';
+  const mediaRepo = app.dataset.mediaRepo || repo;
   const authBase = String(app.dataset.authBase || '').replace(/\/$/, '');
   const fields = Object.fromEntries([...app.querySelectorAll('[data-field]')].map(el => [el.dataset.field, el]));
   const bodyEditor = fields.body;
@@ -1803,7 +1804,7 @@ function insertBlock(text) {
     }[file.type] || '';
     const ext = extension || typeExtension;
     if (!['mp4','webm','m4v'].includes(ext)) throw new Error('Use an MP4, WebM or M4V video.');
-    if (file.size > 15 * 1024 * 1024) throw new Error('Keep uploaded videos under 15 MB.');
+    if (file.size >= 2 * 1024 * 1024 * 1024) throw new Error('GitHub Release assets must be smaller than 2 GiB.');
     return { ext };
   }
 
@@ -1814,25 +1815,169 @@ function insertBlock(text) {
       now.getFullYear(),
       String(now.getMonth() + 1).padStart(2, '0'),
       String(now.getDate()).padStart(2, '0'),
+      '-',
       String(now.getHours()).padStart(2, '0'),
       String(now.getMinutes()).padStart(2, '0'),
-      String(now.getSeconds()).padStart(2, '0')
+      String(now.getSeconds()).padStart(2, '0'),
+      '-',
+      String(now.getMilliseconds()).padStart(3, '0')
     ].join('');
     const stem = slugify(fields.title.value || file.name.replace(/\.[^.]+$/, '') || 'article').slice(0, 48) || 'article';
     return `${stem}-video-${stamp}.${ext}`;
   }
 
-  async function uploadVideoAsset(file) {
+  function videoProgressElements() {
+    const dialog = app.querySelector('[data-video-dialog]');
+    return {
+      shell: dialog?.querySelector('[data-video-upload-status]') || null,
+      progress: dialog?.querySelector('[data-video-upload-progress]') || null,
+      label: dialog?.querySelector('[data-video-upload-label]') || null
+    };
+  }
+
+  function setVideoUploadProgress(percent = 0, label = '') {
+    const safePercent = Math.max(0, Math.min(100, Number(percent) || 0));
+    const elements = videoProgressElements();
+    if (elements.shell) elements.shell.hidden = false;
+    if (elements.progress) elements.progress.value = safePercent;
+    if (elements.label) elements.label.textContent = label || `Uploading… ${Math.round(safePercent)}%`;
+    setSaveState(label || `Uploading video… ${Math.round(safePercent)}%`);
+  }
+
+  function clearVideoUploadProgress() {
+    const elements = videoProgressElements();
+    if (elements.shell) elements.shell.hidden = true;
+    if (elements.progress) elements.progress.value = 0;
+    if (elements.label) elements.label.textContent = 'Preparing upload…';
+  }
+
+  async function mediaGithubToken() {
     if (!githubCredential) throw new Error('Sign in with GitHub before uploading videos.');
+    if (!isServerSession()) return githubCredential;
+    if (!authBase) throw new Error('Writer auth bridge is unavailable.');
+
+    const id = githubCredential.slice('session:'.length);
+    const response = await fetch(`${authBase}/api/writer/media-token`, {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-store',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'X-Writer-Session': id
+      },
+      body: '{}'
+    });
+
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.token) {
+      if (response.status === 401) expireGithubConnection();
+      throw new Error(data.error || data.message || 'Could not authorize the media upload.');
+    }
+    return data.token;
+  }
+
+  async function releaseApiFetch(token, path, options = {}) {
+    const response = await fetch(`https://api.github.com/repos/${mediaRepo}${path}`, {
+      ...options,
+      headers: {
+        Accept: 'application/vnd.github+json',
+        Authorization: `Bearer ${token}`,
+        'X-GitHub-Api-Version': '2022-11-28',
+        ...(options.headers || {})
+      },
+      cache: 'no-store'
+    });
+
+    let data = null;
+    if (response.status !== 204) data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      const error = new Error(data?.message || `${response.status} ${response.statusText}`);
+      error.status = response.status;
+      error.data = data;
+      throw error;
+    }
+    return data;
+  }
+
+  function monthlyMediaReleaseTag() {
+    const now = new Date();
+    return `writer-media-${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+  }
+
+  async function ensureMediaRelease(token) {
+    const tag = monthlyMediaReleaseTag();
+    try {
+      return await releaseApiFetch(token, `/releases/tags/${encodeURIComponent(tag)}`);
+    } catch (error) {
+      if (error.status !== 404) throw error;
+    }
+
+    const monthLabel = tag.replace('writer-media-', '');
+    return releaseApiFetch(token, '/releases', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        tag_name: tag,
+        target_commitish: 'main',
+        name: `Website media · ${monthLabel}`,
+        body: 'Article media uploaded automatically by MMA Matlock Writer. Do not delete assets that are embedded in published articles.',
+        draft: false,
+        prerelease: true
+      })
+    });
+  }
+
+  function uploadReleaseAsset(token, release, file, filename) {
+    return new Promise((resolve, reject) => {
+      const base = String(release?.upload_url || '').replace(/\{\?name,label\}$/, '');
+      if (!base) {
+        reject(new Error('GitHub did not provide a release upload URL.'));
+        return;
+      }
+
+      const request = new XMLHttpRequest();
+      request.open('POST', `${base}?name=${encodeURIComponent(filename)}`);
+      request.responseType = 'json';
+      request.setRequestHeader('Accept', 'application/vnd.github+json');
+      request.setRequestHeader('Authorization', `Bearer ${token}`);
+      request.setRequestHeader('X-GitHub-Api-Version', '2022-11-28');
+      request.setRequestHeader('Content-Type', file.type || 'application/octet-stream');
+
+      request.upload.addEventListener('progress', event => {
+        if (!event.lengthComputable) {
+          setVideoUploadProgress(0, 'Uploading video…');
+          return;
+        }
+        const percent = Math.round((event.loaded / event.total) * 100);
+        setVideoUploadProgress(percent, `Uploading video… ${percent}%`);
+      });
+
+      request.addEventListener('load', () => {
+        const data = request.response && typeof request.response === 'object'
+          ? request.response
+          : (() => { try { return JSON.parse(request.responseText || '{}'); } catch { return {}; } })();
+
+        if (request.status === 201 && data?.browser_download_url) {
+          resolve(data);
+          return;
+        }
+        reject(new Error(data?.message || `GitHub upload failed with status ${request.status}.`));
+      });
+      request.addEventListener('error', () => reject(new Error('The browser could not reach GitHub Releases.')));
+      request.addEventListener('abort', () => reject(new Error('Video upload was cancelled.')));
+      request.send(file);
+    });
+  }
+
+  async function uploadVideoAsset(file) {
     videoFileInfo(file);
+    const token = await mediaGithubToken();
+    setVideoUploadProgress(0, 'Preparing GitHub Release…');
+    const release = await ensureMediaRelease(token);
     const safeName = videoUploadName(file).replace(/[^A-Za-z0-9._-]+/g, '-');
-    const path = `assets/uploads/video/${safeName}`;
-    const bytes = new Uint8Array(await file.arrayBuffer());
-    let binary = '';
-    for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
-    const payload = { message: `Upload article video ${safeName}`, content: btoa(binary), branch: 'main' };
-    await githubFetch(`/contents/${path}`, { method:'PUT', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) }, true);
-    return `/${path}`;
+    const asset = await uploadReleaseAsset(token, release, file, safeName);
+    return asset.browser_download_url;
   }
 
   async function insertInlineVideo(file, caption = '') {
@@ -1853,22 +1998,26 @@ function insertBlock(text) {
     insertBlock(token);
     videoUploadInFlight = true;
     setPublishingControls(Boolean(githubCredential));
-    showToast('Uploading video…', 3000);
+    clearVideoUploadProgress();
+    showToast('Preparing GitHub Release upload…', 3000);
 
     try {
-      const path = await uploadVideoAsset(file);
-      const fallbackCaption = '';
-      if (replaceUploadToken(token, inlineVideoMarkup(path, caption || fallbackCaption))) {
-        showToast('Video uploaded and placed.');
+      const url = await uploadVideoAsset(file);
+      setVideoUploadProgress(100, 'Upload complete · placing video…');
+      if (replaceUploadToken(token, inlineVideoMarkup(url, caption))) {
+        showToast('Video uploaded to GitHub Releases and placed.');
       }
-      return path;
+      scheduleAutosave();
+      return url;
     } catch (error) {
       replaceUploadToken(token, '');
-      showToast(`Video upload failed: ${error.message}`, 7000);
+      showToast(`Video upload failed: ${error.message}`, 8000);
       return '';
     } finally {
       videoUploadInFlight = false;
       setPublishingControls(Boolean(githubCredential));
+      window.setTimeout(clearVideoUploadProgress, 900);
+      setSaveState('Unsaved changes');
     }
   }
 
@@ -2193,7 +2342,7 @@ Object.values(fields).forEach(el => {
         fileInput.value = '';
         urlInput.value = '';
         captionInput.value = '';
-        dialog.close();
+        window.setTimeout(() => dialog.close(), file ? 500 : 0);
       }
     } finally {
       button.disabled = false;
