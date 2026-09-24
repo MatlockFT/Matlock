@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Global MMA Live Lab"
-description: "Private prototype for an automated MMA livestream player."
+description: "Private prototype for an automated global MMA livestream player."
 permalink: /live-lab/
 noindex: true
 sitemap: false
@@ -19,30 +19,29 @@ page_scripts:
 <article
   class="live-lab"
   data-live-lab
-  data-status-url="{{ '/assets/data/inka-live.json' | relative_url }}"
-  data-fallback-video="C2nNtrk8FRs"
+  data-status-url="{{ '/assets/data/global-live.json' | relative_url }}"
 >
   <header class="live-lab__hero">
     <div>
-      <p class="live-lab__eyebrow">Private lab / Inka only</p>
+      <p class="live-lab__eyebrow">Private lab / multi-promotion</p>
       <h1>Global MMA Live</h1>
       <p class="live-lab__deck">
-        One player that follows Inka MMA's current YouTube fight stream and returns to standby when the broadcast ends.
+        One player, multiple MMA promotions. The station watches the registry, detects active YouTube fight streams, and moves to the next live card when the current broadcast ends.
       </p>
     </div>
 
     <div class="live-lab__hero-state" aria-live="polite">
-      <span class="live-lab__dot" data-live-dot aria-hidden="true"></span>
-      <strong data-live-state>Checking Inka…</strong>
+      <span class="live-lab__dot" aria-hidden="true"></span>
+      <strong data-live-state>Checking the world…</strong>
     </div>
   </header>
 
-  <section class="live-lab__stage" aria-label="Inka MMA live player">
+  <section class="live-lab__stage" aria-label="Global MMA live player">
     <div class="live-lab__screen" data-live-screen data-state="checking">
       <iframe
         class="live-lab__player"
         data-live-player
-        title="Inka MMA live stream"
+        title="Global MMA live stream"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
         referrerpolicy="strict-origin-when-cross-origin"
@@ -50,16 +49,16 @@ page_scripts:
 
       <div class="live-lab__standby" data-live-standby>
         <span class="live-lab__standby-mark" aria-hidden="true">M</span>
-        <strong data-live-standby-title>Checking Inka MMA</strong>
-        <span data-live-standby-copy>Looking for an active YouTube fight stream.</span>
+        <strong data-live-standby-title>Checking live MMA</strong>
+        <span data-live-standby-copy>Looking for an active fight stream from a monitored promotion.</span>
       </div>
     </div>
 
     <div class="live-lab__now">
       <div class="live-lab__now-copy">
-        <p class="live-lab__label">Now</p>
-        <h2 data-live-title>Checking Inka MMA…</h2>
-        <p data-live-promotion>INKA MMA PRO · Peru</p>
+        <p class="live-lab__label">Now playing</p>
+        <h2 data-live-title>Checking live MMA…</h2>
+        <p data-live-promotion>Global station</p>
       </div>
 
       <div class="live-lab__actions">
@@ -67,35 +66,62 @@ page_scripts:
         <a
           class="live-lab__button live-lab__button--quiet"
           data-live-source
-          href="https://www.youtube.com/watch?v=C2nNtrk8FRs"
+          href="https://www.youtube.com/"
           target="_blank"
           rel="noopener noreferrer"
+          hidden
         >Open on YouTube ↗</a>
       </div>
     </div>
   </section>
 
+  <section class="live-lab__live-section" aria-labelledby="live-lab-live-title">
+    <div class="live-lab__section-head">
+      <div>
+        <p class="live-lab__label">Detected broadcasts</p>
+        <h2 id="live-lab-live-title">Live now</h2>
+      </div>
+      <strong data-live-count>0 live</strong>
+    </div>
+
+    <div class="live-lab__event-list" data-live-list>
+      <p class="live-lab__empty">Checking monitored promotions…</p>
+    </div>
+  </section>
+
   <section class="live-lab__info" aria-label="Prototype status">
     <div>
-      <span>Source</span>
-      <strong>INKA MMA PRO</strong>
+      <span>Monitored</span>
+      <strong data-live-monitored>— promotions</strong>
     </div>
     <div>
       <span>Player</span>
       <strong>Single persistent embed</strong>
     </div>
     <div>
-      <span>Detection</span>
-      <strong>Automatic monitor</strong>
+      <span>Mode</span>
+      <strong>Auto + manual override</strong>
     </div>
     <div>
-      <span>Last change</span>
+      <span>Last check</span>
       <strong data-live-updated>—</strong>
     </div>
   </section>
 
+  <section class="live-lab__sources" aria-labelledby="live-lab-sources-title">
+    <div class="live-lab__section-head">
+      <div>
+        <p class="live-lab__label">Registry</p>
+        <h2 id="live-lab-sources-title">Monitored sources</h2>
+      </div>
+    </div>
+    <div class="live-lab__source-list" data-source-list>
+      <span>Loading registry status…</span>
+    </div>
+  </section>
+
   <p class="live-lab__note" data-live-note>
-    This is the isolated Inka prototype. It is not linked anywhere else on MMA Matlock.
+    This remains a hidden test page. Nothing here is linked from the public MMA Matlock navigation.
   </p>
 
   <noscript>
