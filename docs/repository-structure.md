@@ -206,8 +206,9 @@ The repository intentionally tolerates several legacy patterns until their dedic
 
 - Existing flat files in `assets/uploads/`
 - Versioned root pages such as `*-v3.html` until Stage 7
-- Mostly flat `scripts/` until Stage 5
 - Current workflow sprawl until Stage 6
+
+The flat `scripts/` exception ended in Stage 5. New development automation must live inside one of the defined script domains.
 
 A legacy exception is permission to leave a working file alone, not permission for new work to keep expanding the old pattern.
 
