@@ -319,7 +319,7 @@ page_scripts:
         <div class="writer-or"><span>or</span></div>
         <label class="writer-field writer-field-wide"><span>Direct video URL</span><input type="url" data-inline-video-url placeholder="https://…/clip.mp4 or /assets/uploads/…"></label>
         <label class="writer-field writer-field-wide"><span>Caption <small>optional</small></span><input type="text" data-inline-video-caption placeholder="Caption or source credit"></label>
-        <p class="writer-dialog-note writer-field-wide">MP4 is recommended. Uploaded clips are stored as GitHub Release assets instead of inside the site repository history. Files must stay under GitHub's 2 GiB release-asset limit.</p>
+        <p class="writer-dialog-note writer-field-wide">MP4 is recommended. Uploaded clips are staged in small temporary chunks, then published to GitHub Releases. The temporary chunks are deleted after the release asset is created, so the video never enters the site's Git history. Files must stay under GitHub's 2 GiB release-asset limit.</p>
         <div class="writer-video-upload-status writer-field-wide" data-video-upload-status hidden aria-live="polite">
           <progress data-video-upload-progress max="100" value="0"></progress>
           <span data-video-upload-label>Preparing upload…</span>
