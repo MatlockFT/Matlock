@@ -43,7 +43,9 @@
       "promotion": "MMA Attack",
       "event": "MMA Attack 7",
       "status": "research",
-      "search_query": "MMA Attack Poland official"
+      "search_query": "MMA Attack Poland official",
+      "reason": "No reliable YouTube live source established yet; keep searching event/promoter names weekly",
+      "last_manual_check": "2026-09-23"
     },
     {
       "id": "rfa",
@@ -126,7 +128,9 @@
       "promotion": "AFC Navarra",
       "event": "AFC 2 Navarra Arena",
       "status": "research",
-      "search_query": "AFC Navarra MMA Spain official"
+      "search_query": "AFC Navarra MMA Spain official",
+      "reason": "AFC2 event confirmed at Navarra Arena, but no reliable YouTube live source established yet",
+      "last_manual_check": "2026-09-23"
     },
     {
       "id": "lfl",
@@ -164,7 +168,9 @@
       "promotion": "Baraber Fight Night",
       "event": "BFN 10",
       "status": "research",
-      "search_query": "Baraber Fight Night Croatia official"
+      "search_query": "Baraber Fight Night Croatia official",
+      "reason": "BFN 10 confirmed, but no reliable official YouTube live source established yet",
+      "last_manual_check": "2026-09-23"
     },
     {
       "id": "oktagon",
@@ -229,10 +235,12 @@
     },
     {
       "id": "ifn",
-      "promotion": "IFN",
+      "promotion": "Itacoatiara Fight Night",
       "event": "IFN 1",
       "status": "research",
-      "search_query": "IFN MMA Brazil promotion official"
+      "search_query": "Itacoatiara Fight Night MMA official YouTube",
+      "reason": "IFN 1 identified as Itacoatiara Fight Night 1; official YouTube source still unresolved",
+      "last_manual_check": "2026-09-23"
     },
     {
       "id": "aeternum",
@@ -301,7 +309,9 @@
       "promotion": "World Fighting Championship",
       "event": "WFC 198",
       "status": "research",
-      "search_query": "WFC World Fighting Championship MMA Nevada official"
+      "search_query": "WFC World Fighting Championship MMA Nevada official",
+      "reason": "WFC 198 confirmed by official WFC site, but no reliable YouTube live source established yet",
+      "last_manual_check": "2026-09-23"
     },
     {
       "id": "shooto-japan",
