@@ -1,8 +1,64 @@
 {
-  "version": 4,
-  "generated_at": "2026-09-24T02:35:08Z",
+  "version": 5,
+  "generated_at": "2026-09-24T02:36:16Z",
   "selected_event_id": null,
   "events": [],
+  "upcoming": [
+    {
+      "event_id": "levels-fight-league:bwknYg2JnzU",
+      "promotion_id": "levels-fight-league",
+      "promotion": "Levels Fight League",
+      "short_name": "LFL",
+      "country": "Netherlands",
+      "priority": 78,
+      "coverage_note": "Event stream",
+      "access_note": "Territory restrictions may apply",
+      "channel_url": "https://www.youtube.com/channel/UCNMMACQ4MzL4SodKy8sUySA",
+      "channel_id": "UCNMMACQ4MzL4SodKy8sUySA",
+      "channel_name": "Levels Fight League",
+      "video_id": "bwknYg2JnzU",
+      "title": "LSG - Levels Small Gloves 1",
+      "watch_url": "https://www.youtube.com/watch?v=bwknYg2JnzU",
+      "status": "upcoming",
+      "is_live": false,
+      "embeddable": true,
+      "scheduled_start_time": "2026-09-26T12:00:00Z",
+      "scheduled_end_time": null,
+      "actual_start_time": null,
+      "actual_end_time": null,
+      "concurrent_viewers": null,
+      "api_verified": true,
+      "stale": false,
+      "observed_at": "2026-09-24T02:36:16Z"
+    },
+    {
+      "event_id": "levels-fight-league:ynNjsajmOw8",
+      "promotion_id": "levels-fight-league",
+      "promotion": "Levels Fight League",
+      "short_name": "LFL",
+      "country": "Netherlands",
+      "priority": 78,
+      "coverage_note": "Event stream",
+      "access_note": "Territory restrictions may apply",
+      "channel_url": "https://www.youtube.com/channel/UCNMMACQ4MzL4SodKy8sUySA",
+      "channel_id": "UCNMMACQ4MzL4SodKy8sUySA",
+      "channel_name": "Levels Fight League",
+      "video_id": "ynNjsajmOw8",
+      "title": "Levels Fight League 24",
+      "watch_url": "https://www.youtube.com/watch?v=ynNjsajmOw8",
+      "status": "upcoming",
+      "is_live": false,
+      "embeddable": true,
+      "scheduled_start_time": "2026-09-26T16:00:00Z",
+      "scheduled_end_time": null,
+      "actual_start_time": null,
+      "actual_end_time": null,
+      "concurrent_viewers": null,
+      "api_verified": true,
+      "stale": false,
+      "observed_at": "2026-09-24T02:36:16Z"
+    }
+  ],
   "sources": {
     "a1-combat": {
       "promotion": "A1 Combat",
@@ -40,11 +96,14 @@
       "coverage_note": "Prelims",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@ANTHONYPETTISFC",
+      "channel_id": "UCoRMGgqgRiH7akMkhxZKGCA",
+      "channel_name": "APFC MMA",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:35:07Z"
+      "last_checked_at": "2026-09-24T02:36:15Z"
     },
     "budo-sento": {
       "promotion": "Budo Sento Championship",
@@ -68,11 +127,14 @@
       "coverage_note": "Event stream",
       "access_note": "Some events may require membership",
       "channel_url": "https://www.youtube.com/@deep2001MMA",
+      "channel_id": "UCrzcqokfdjCm0JiqzYJZxeA",
+      "channel_name": "DEEP チャンネル",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:35:07Z"
+      "last_checked_at": "2026-09-24T02:36:15Z"
     },
     "empire-mma-colombia": {
       "promotion": "Empire MMA",
@@ -138,11 +200,14 @@
       "coverage_note": "Prelims",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@INKA.MMAPRO",
+      "channel_id": "UC2IdeF7xgn6g-j2r1LuuDjQ",
+      "channel_name": "INKA MMA PRO ",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-24T02:19:06Z",
-      "last_checked_at": "2026-09-24T02:35:07Z"
+      "last_checked_at": "2026-09-24T02:36:15Z"
     },
     "levels-fight-league": {
       "promotion": "Levels Fight League",
@@ -152,11 +217,14 @@
       "coverage_note": "Event stream",
       "access_note": "Territory restrictions may apply",
       "channel_url": "https://www.youtube.com/channel/UCNMMACQ4MzL4SodKy8sUySA",
-      "status": "offline",
+      "channel_id": "UCNMMACQ4MzL4SodKy8sUySA",
+      "channel_name": "Levels Fight League",
+      "status": "upcoming",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:35:08Z"
+      "last_checked_at": "2026-09-24T02:36:16Z"
     },
     "lfa": {
       "promotion": "Legacy Fighting Alliance",
@@ -180,11 +248,14 @@
       "coverage_note": "Selected fight coverage",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@LuxFightLeagueOficial",
+      "channel_id": "UCv2tR5B09mmpTqlsVdF0-4Q",
+      "channel_name": "Lux Fight League Oficial",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:35:08Z"
+      "last_checked_at": "2026-09-24T02:36:16Z"
     },
     "mfl": {
       "promotion": "Mexico Fight League",
@@ -208,11 +279,14 @@
       "coverage_note": "Event stream",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@naizatv",
+      "channel_id": "UCJpYM1roghKA8JfBh9cSaUg",
+      "channel_name": "NAIZA TV",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:35:07Z"
+      "last_checked_at": "2026-09-24T02:36:15Z"
     },
     "octagon-central-asia": {
       "promotion": "OCTAGON",
@@ -236,11 +310,14 @@
       "coverage_note": "Event stream",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@OpenFightLatam",
+      "channel_id": "UCxHrCFc75ASEG0U05EDQtzA",
+      "channel_name": "OFL, la revolución de las MMA",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:35:08Z"
+      "last_checked_at": "2026-09-24T02:36:16Z"
     },
     "road-fc": {
       "promotion": "ROAD FC",
@@ -250,11 +327,14 @@
       "coverage_note": "Rookie/semi-pro league verified; main shows not confirmed",
       "access_note": null,
       "channel_url": "https://www.youtube.com/roadfc",
+      "channel_id": "UCQ2TX8Q2iVhXhJ0G3NuyEbA",
+      "channel_name": "ROAD FIGHTING CHAMPIONSHIP",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:35:07Z"
+      "last_checked_at": "2026-09-24T02:36:15Z"
     },
     "samurai-fight-house": {
       "promotion": "Samurai Fight House",
@@ -264,11 +344,14 @@
       "coverage_note": "Pro and amateur event streams",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@samuraifighthouseLIVE",
+      "channel_id": "UCYwPDAGgjk79gkO44UJqDqQ",
+      "channel_name": "Samurai Fight House",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:35:08Z"
+      "last_checked_at": "2026-09-24T02:36:16Z"
     },
     "sft-combat": {
       "promotion": "SFT Combat",
@@ -278,11 +361,14 @@
       "coverage_note": "Event stream",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@SFTCombat",
+      "channel_id": "UC4ttIHMnDPbVRk5mzCjW9Pg",
+      "channel_name": "SFT Combat",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:35:07Z"
+      "last_checked_at": "2026-09-24T02:36:15Z"
     },
     "tuff-n-uff": {
       "promotion": "Tuff-N-Uff",
@@ -320,13 +406,19 @@
       "coverage_note": "Full event stream",
       "access_note": null,
       "channel_url": "https://www.youtube.com/@versusmmaofficial",
+      "channel_id": "UCWtrbcZAR1lBirkVh4Q7HoQ",
+      "channel_name": "Versus MMA",
       "status": "offline",
+      "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T02:35:08Z"
+      "last_checked_at": "2026-09-24T02:36:16Z"
     }
   },
   "monitored_count": 23,
-  "live_count": 0
+  "live_count": 0,
+  "upcoming_count": 2,
+  "youtube_api_configured": true,
+  "api_verified_source_count": 11
 }
