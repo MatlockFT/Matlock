@@ -210,7 +210,7 @@ const output = '// Generated from Gobold Bold.woff by scripts/media/build-share-
   + `const mapping = ${JSON.stringify(mapping)};\n`
   + `const glyphs = ${JSON.stringify(glyphs)};\n`
   + runtime;
-const destination = new URL('../assets/share-gobold.mjs', import.meta.url);
+const destination = new URL('../../assets/share-gobold.mjs', import.meta.url);
 if (process.argv.includes('--check')) {
   if (!fs.existsSync(destination) || fs.readFileSync(destination, 'utf8') !== output) {
     throw new Error('GoBold module is stale; run node scripts/media/build-share-gobold.mjs');
