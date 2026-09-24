@@ -6,7 +6,7 @@ import {
 } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
 
-const root = resolve(import.meta.dirname, '..');
+const root = resolve(import.meta.dirname, '../..');
 const postsDirectory = join(root, '_posts');
 const manifestPath = join(root, '_data', 'responsive_images.yml');
 const failures = [];
