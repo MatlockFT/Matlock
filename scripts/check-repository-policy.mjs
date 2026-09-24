@@ -34,11 +34,26 @@ requireString(policy.content?.permalink, 'content.permalink');
 requireString(policy.media?.legacyUploadRoot, 'media.legacyUploadRoot');
 requireString(policy.media?.futureArticleUploadRoot, 'media.futureArticleUploadRoot');
 requireString(policy.media?.generatedRoot, 'media.generatedRoot');
+requireString(policy.media?.generatedArticleRoot, 'media.generatedArticleRoot');
+requireString(policy.media?.generatedArticlePattern, 'media.generatedArticlePattern');
 requireString(policy.media?.runtimeDataRoot, 'media.runtimeDataRoot');
 requireString(policy.media?.videoBackend, 'media.videoBackend');
+requireString(policy.media?.sourceImageRole, 'media.sourceImageRole');
+requireString(policy.media?.generatedImageRole, 'media.generatedImageRole');
+requireString(policy.media?.videoStorageRule, 'media.videoStorageRule');
 
 if (policy.media?.videoBackend !== 'github-releases') {
   errors.push('media.videoBackend must remain github-releases.');
+}
+
+if (policy.media?.videoStorageRule !== 'release-assets-only') {
+  errors.push('media.videoStorageRule must remain release-assets-only.');
+}
+if (policy.media?.sourceImageRole !== 'authored-source') {
+  errors.push('media.sourceImageRole must remain authored-source.');
+}
+if (policy.media?.generatedImageRole !== 'rebuildable-derivative') {
+  errors.push('media.generatedImageRole must remain rebuildable-derivative.');
 }
 
 if (!String(policy.media?.futureArticleUploadRoot || '').startsWith(String(policy.media?.legacyUploadRoot || '') + '/')) {
@@ -54,6 +69,13 @@ if (new Set(distinctRoots).size !== distinctRoots.length) {
   errors.push('Article uploads, generated assets and runtime data must use distinct roots.');
 }
 
+if (!String(policy.media?.generatedArticleRoot || '').startsWith(String(policy.media?.generatedRoot || '') + '/')) {
+  errors.push('Generated article variants must remain beneath the generated asset root.');
+}
+if (policy.media?.generatedArticlePattern !== 'assets/generated/posts/YYYY/MM/article-slug/') {
+  errors.push('Generated article pattern must remain assets/generated/posts/YYYY/MM/article-slug/.');
+}
+
 const configuredPermalink = config.match(/^permalink:\s*(.+?)\s*$/m)?.[1]?.trim().replace(/^['"]|['"]$/g, '') || '';
 if (configuredPermalink !== policy.content?.permalink) {
   errors.push('Jekyll permalink does not match repository policy.');
@@ -63,6 +85,7 @@ for (const [path, label] of [
   [policy.content?.postsRoot, 'Posts root'],
   [policy.media?.legacyUploadRoot, 'Legacy upload root'],
   [policy.media?.generatedRoot, 'Generated asset root'],
+  [policy.media?.generatedArticleRoot, 'Generated article root'],
   [policy.media?.runtimeDataRoot, 'Runtime data root'],
   [policy.code?.layoutsRoot, 'Layouts root'],
   [policy.code?.includesRoot, 'Includes root'],
@@ -102,4 +125,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log('Repository policy OK: Stage 1 organization contract is internally consistent.');
+console.log(`Repository policy OK: modernization Stage ${stage} contract is internally consistent.`);
