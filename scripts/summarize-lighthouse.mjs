@@ -31,10 +31,21 @@ const display = (value, kind = 'ms') => {
     return `${Math.round(value)} ms`;
 };
 
-const rows = files.map(file => {
+const median = values => {
+    const finite = values.filter(Number.isFinite).sort((a, b) => a - b);
+    if (!finite.length) return undefined;
+    const middle = Math.floor(finite.length / 2);
+    return finite.length % 2
+        ? finite[middle]
+        : (finite[middle - 1] + finite[middle]) / 2;
+};
+
+const samples = files.map(file => {
     const lhr = JSON.parse(readFileSync(resolve(reportDir, file), 'utf8'));
+    const rawPage = basename(file, '.json');
+    const page = rawPage.replace(/-\\d+$/, '');
     return {
-        page: basename(file, '.json'),
+        page,
         score: lhr.categories?.performance?.score,
         fcp: metric(lhr, 'first-contentful-paint'),
         lcp: metric(lhr, 'largest-contentful-paint'),
@@ -43,6 +54,25 @@ const rows = files.map(file => {
         cls: metric(lhr, 'cumulative-layout-shift')
     };
 });
+
+const grouped = new Map();
+for (const sample of samples) {
+    if (!grouped.has(sample.page)) grouped.set(sample.page, []);
+    grouped.get(sample.page).push(sample);
+}
+
+const rows = [...grouped.entries()]
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([page, pageSamples]) => ({
+        page,
+        samples: pageSamples.length,
+        score: median(pageSamples.map(sample => sample.score)),
+        fcp: median(pageSamples.map(sample => sample.fcp)),
+        lcp: median(pageSamples.map(sample => sample.lcp)),
+        speedIndex: median(pageSamples.map(sample => sample.speedIndex)),
+        tbt: median(pageSamples.map(sample => sample.tbt)),
+        cls: median(pageSamples.map(sample => sample.cls))
+    }));
 
 const failuresFor = row => {
     const failures = [];
@@ -68,10 +98,11 @@ const warningRows = rows
     .map(row => ({ row, warnings: warningsFor(row) }))
     .filter(item => item.warnings.length);
 
-const header = '| Page | Perf | FCP | LCP | Speed Index | TBT | CLS |';
-const divider = '| --- | ---: | ---: | ---: | ---: | ---: | ---: |';
+const header = '| Page | Samples | Perf | FCP | LCP | Speed Index | TBT | CLS |';
+const divider = '| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |';
 const body = rows.map(row => [
     `| ${row.page}`,
+    String(row.samples),
     display(row.score, 'score'),
     display(row.fcp),
     display(row.lcp),
@@ -105,7 +136,7 @@ const summary = [
     ...gateLines,
     ...warningLines,
     '',
-    'Gate: performance >= 70, LCP <= 4.00 s, TBT <= 1.20 s hard ceiling (700 ms target), CLS <= 0.250.',
+    'Gate uses the median of three mobile Lighthouse samples per page: performance >= 70, LCP <= 4.00 s, TBT <= 1.20 s hard ceiling (700 ms target), CLS <= 0.250.',
     '',
     '_Lab measurements are useful for regression tracking. They are not field INP/Core Web Vitals data._',
     ''
