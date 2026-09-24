@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "global_ignore_terms": [
     "weigh-in",
     "weigh in",
@@ -19,7 +19,8 @@
     "non-stop",
     "nonstop",
     "marathon",
-    "replay"
+    "replay",
+    "rebroadcast"
   ],
   "promotions": [
     {
@@ -27,73 +28,255 @@
       "name": "Inka Fighting Championship",
       "short_name": "INKA",
       "country": "Peru",
-      "priority": 75,
+      "priority": 65,
       "enabled": true,
-      "seed_url": "https://www.youtube.com/watch?v=C2nNtrk8FRs"
+      "channel_url": "https://www.youtube.com/@INKA.MMAPRO",
+      "coverage_note": "Prelims"
     },
     {
-      "id": "jungle-fight",
-      "name": "Jungle Fight",
-      "short_name": "Jungle Fight",
-      "country": "Brazil",
+      "id": "naiza",
+      "name": "NAIZA Fighting Championship",
+      "short_name": "NAIZA",
+      "country": "Kazakhstan",
       "priority": 80,
       "enabled": true,
-      "channel_url": "https://www.youtube.com/@Junglefcoficial"
+      "channel_url": "https://www.youtube.com/@naizatv",
+      "coverage_note": "Event stream"
+    },
+    {
+      "id": "deep",
+      "name": "DEEP / DEEP JEWELS",
+      "short_name": "DEEP",
+      "country": "Japan",
+      "priority": 75,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/@deep2001MMA",
+      "coverage_note": "Event stream",
+      "access_note": "Some events may require membership"
+    },
+    {
+      "id": "grachan",
+      "name": "GRACHAN",
+      "short_name": "GRACHAN",
+      "country": "Japan",
+      "priority": 55,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/@GRACHAN-MMA",
+      "coverage_note": "Challenge/amateur coverage; other events vary"
+    },
+    {
+      "id": "fnc",
+      "name": "Fight Nation Championship",
+      "short_name": "FNC",
+      "country": "Croatia / Balkans",
+      "priority": 60,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/channel/UC0JUv5zHnKbn3ee1NrJEhCw",
+      "coverage_note": "Selected opening fights"
+    },
+    {
+      "id": "afc-korea",
+      "name": "Angel's Fighting Championship",
+      "short_name": "AFC",
+      "country": "South Korea",
+      "priority": 80,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/channel/UC7YF5mRzbnmiKREOGsKUJTg",
+      "coverage_note": "Event stream"
+    },
+    {
+      "id": "road-fc",
+      "name": "ROAD FC",
+      "short_name": "ROAD FC",
+      "country": "South Korea",
+      "priority": 55,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/roadfc",
+      "coverage_note": "Rookie/semi-pro league verified; main shows not confirmed"
+    },
+    {
+      "id": "octagon-central-asia",
+      "name": "OCTAGON",
+      "short_name": "OCTAGON",
+      "country": "Central Asia",
+      "priority": 78,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/@OCTAGONTV",
+      "coverage_note": "Event streams; some cards marked prelims"
     },
     {
       "id": "lfa",
       "name": "Legacy Fighting Alliance",
       "short_name": "LFA",
-      "country": "United States",
-      "priority": 90,
-      "enabled": true,
-      "seed_url": "https://www.youtube.com/watch?v=lYJcWGHVmyU"
-    },
-    {
-      "id": "brave-cf",
-      "name": "BRAVE Combat Federation",
-      "short_name": "BRAVE CF",
-      "country": "Bahrain",
+      "country": "USA / Brazil",
       "priority": 85,
       "enabled": true,
-      "seed_url": "https://www.youtube.com/watch?v=nY-gc32iKBU",
-      "ignore_terms": ["full events"]
+      "channel_url": "https://www.youtube.com/@lfafights",
+      "coverage_note": "Main cards and prelims",
+      "access_note": "Territory restrictions may apply"
     },
     {
-      "id": "open-fc",
-      "name": "Open Fighting Championship",
-      "short_name": "OPEN FC",
-      "country": "International",
-      "priority": 70,
+      "id": "apfc",
+      "name": "Anthony Pettis Fighting Championship",
+      "short_name": "APFC",
+      "country": "United States",
+      "priority": 65,
       "enabled": true,
-      "seed_url": "https://www.youtube.com/watch?v=MOkiD3O8SW4"
+      "channel_url": "https://www.youtube.com/@ANTHONYPETTISFC",
+      "coverage_note": "Prelims"
     },
     {
-      "id": "uae-warriors",
-      "name": "UAE Warriors",
-      "short_name": "UAE Warriors",
-      "country": "United Arab Emirates",
+      "id": "sft-combat",
+      "name": "SFT Combat",
+      "short_name": "SFT",
+      "country": "Brazil",
       "priority": 80,
       "enabled": true,
-      "seed_url": "https://www.youtube.com/watch?v=0Wbv-s21nrI"
+      "channel_url": "https://www.youtube.com/@SFTCombat",
+      "coverage_note": "Event stream"
     },
     {
-      "id": "eternal-mma",
-      "name": "Eternal MMA",
-      "short_name": "Eternal MMA",
-      "country": "Australia",
-      "priority": 72,
+      "id": "mfl",
+      "name": "Mexico Fight League",
+      "short_name": "MFL",
+      "country": "Mexico",
+      "priority": 80,
       "enabled": true,
-      "channel_url": "https://www.youtube.com/eternalmma"
+      "channel_url": "https://www.youtube.com/@fightMFL",
+      "coverage_note": "English and Spanish event broadcasts"
     },
     {
-      "id": "cage-warriors",
-      "name": "Cage Warriors",
-      "short_name": "Cage Warriors",
-      "country": "United Kingdom",
-      "priority": 88,
+      "id": "lux",
+      "name": "LUX Fight League",
+      "short_name": "LUX",
+      "country": "Mexico",
+      "priority": 60,
       "enabled": true,
-      "channel_url": "https://www.youtube.com/c/CageWarriorsTV"
+      "channel_url": "https://www.youtube.com/@LuxFightLeagueOficial",
+      "coverage_note": "Selected fight coverage"
+    },
+    {
+      "id": "versus-mma",
+      "name": "Versus MMA",
+      "short_name": "Versus MMA",
+      "country": "South Africa",
+      "priority": 85,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/@versusmmaofficial",
+      "coverage_note": "Full event stream"
+    },
+    {
+      "id": "tuff-n-uff",
+      "name": "Tuff-N-Uff",
+      "short_name": "Tuff-N-Uff",
+      "country": "United States",
+      "priority": 65,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/user/TuffNUffTV",
+      "coverage_note": "Preliminary coverage"
+    },
+    {
+      "id": "front-street-fights",
+      "name": "Front Street Fights",
+      "short_name": "FSF",
+      "country": "United States",
+      "priority": 80,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/user/frontstreetfights",
+      "coverage_note": "Event stream"
+    },
+    {
+      "id": "levels-fight-league",
+      "name": "Levels Fight League",
+      "short_name": "LFL",
+      "country": "Netherlands",
+      "priority": 78,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/channel/UCNMMACQ4MzL4SodKy8sUySA",
+      "coverage_note": "Event stream",
+      "access_note": "Territory restrictions may apply"
+    },
+    {
+      "id": "budo-sento",
+      "name": "Budo Sento Championship",
+      "short_name": "Budo Sento",
+      "country": "Mexico",
+      "priority": 65,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/@budosentochampionship",
+      "coverage_note": "Prelims"
+    },
+    {
+      "id": "a1-combat",
+      "name": "A1 Combat",
+      "short_name": "A1 Combat",
+      "country": "United States",
+      "priority": 65,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/@A1Combat",
+      "coverage_note": "Prelims and Prospect Series"
+    },
+    {
+      "id": "open-fight-latam",
+      "name": "Open Fight LATAM",
+      "short_name": "OFL",
+      "country": "Chile",
+      "priority": 80,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/@OpenFightLatam",
+      "coverage_note": "Event stream"
+    },
+    {
+      "id": "samurai-fight-house",
+      "name": "Samurai Fight House",
+      "short_name": "SFH",
+      "country": "Argentina",
+      "priority": 75,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/@samuraifighthouseLIVE",
+      "coverage_note": "Pro and amateur event streams"
+    },
+    {
+      "id": "empire-mma-colombia",
+      "name": "Empire MMA",
+      "short_name": "Empire MMA",
+      "country": "Colombia",
+      "priority": 80,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/@empiremma_",
+      "coverage_note": "Event stream"
+    },
+    {
+      "id": "ugp",
+      "name": "Ultimo Guerrero en Pie",
+      "short_name": "UGP",
+      "country": "Colombia",
+      "priority": 80,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/@UGP-%C3%9AltimoGuerreroenPie-u2k",
+      "coverage_note": "Event stream"
+    },
+    {
+      "id": "thunder-fight",
+      "name": "Thunder Fight",
+      "short_name": "Thunder Fight",
+      "country": "Brazil",
+      "priority": 40,
+      "enabled": false,
+      "channel_url": "https://www.youtube.com/@thunderfight4369",
+      "coverage_note": "Recent event evidence exists outside the public Live tab",
+      "access_note": "Held: recent archive is members-only; free live access not confirmed"
+    },
+    {
+      "id": "black-combat",
+      "name": "Black Combat",
+      "short_name": "Black Combat",
+      "country": "South Korea",
+      "priority": 40,
+      "enabled": false,
+      "channel_url": "https://www.youtube.com/@blackcombat",
+      "coverage_note": "Recent livestream evidence",
+      "access_note": "Held: membership coverage"
     }
   ]
 }
