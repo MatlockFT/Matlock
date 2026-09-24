@@ -1,5 +1,5 @@
 import fs from 'node:fs/promises';
-import { DATA_PATH, norm } from './upcoming-events-data.mjs';
+import { DATA_PATH, norm } from '../events/upcoming-events-data.mjs';
 
 const CACHE_PATH = '_data/fighter_portraits.json';
 const UA = 'Mozilla/5.0 (compatible; MMAMatlockPortraitResolver/2.6; +https://mmamatlock.com/)';

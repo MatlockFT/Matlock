@@ -8,7 +8,7 @@ on:
     branches: [main]
     paths:
       - '_data/matchmaker-roster-overrides.json'
-      - 'scripts/sync-matchmaker-roster.mjs'
+      - 'scripts/matchmaker/sync-matchmaker-roster.mjs'
       - 'scripts/matchmaker/roster.mjs'
       - 'scripts/matchmaker/bookings.mjs'
       - 'scripts/matchmaker/validate.mjs'
@@ -30,8 +30,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - run: node scripts/sync-matchmaker-roster.mjs
-      - run: node scripts/check-matchmaker.mjs
+      - run: node scripts/matchmaker/sync-matchmaker-roster.mjs
+      - run: node scripts/matchmaker/check-matchmaker.mjs
       - name: Commit availability changes
         run: |
           set -euo pipefail

@@ -8,20 +8,20 @@ on:
     paths:
       - ".github/workflows/update-event-map-regional.yml"
       - "_data/upcoming_events.json"
-      - "scripts/event-location-utils.mjs"
-      - "scripts/build-event-map-us.mjs"
-      - "scripts/validate-event-map-us.mjs"
-      - "scripts/report-event-map-locations.mjs"
-      - "scripts/update-event-map-regional.mjs"
-      - "scripts/update-event-map-discovery.mjs"
-      - "scripts/update-event-map-regional-extra.mjs"
-      - "scripts/update-event-map-regional-more.mjs"
-      - "scripts/cleanup-event-map-regional.mjs"
-      - "scripts/enrich-event-map-details.mjs"
-      - "scripts/sanitize-event-map-posters.mjs"
-      - "scripts/validate-event-map-posters.mjs"
-      - "scripts/preserve-event-map-discovery.mjs"
-      - "scripts/validate-event-map-regional.mjs"
+      - "scripts/site-data/events/event-location-utils.mjs"
+      - "scripts/site-data/events/build-event-map-us.mjs"
+      - "scripts/site-data/events/validate-event-map-us.mjs"
+      - "scripts/site-data/events/report-event-map-locations.mjs"
+      - "scripts/site-data/events/update-event-map-regional.mjs"
+      - "scripts/site-data/events/update-event-map-discovery.mjs"
+      - "scripts/site-data/events/update-event-map-regional-extra.mjs"
+      - "scripts/site-data/events/update-event-map-regional-more.mjs"
+      - "scripts/site-data/events/cleanup-event-map-regional.mjs"
+      - "scripts/site-data/events/enrich-event-map-details.mjs"
+      - "scripts/site-data/events/sanitize-event-map-posters.mjs"
+      - "scripts/site-data/events/validate-event-map-posters.mjs"
+      - "scripts/site-data/events/preserve-event-map-discovery.mjs"
+      - "scripts/site-data/events/validate-event-map-regional.mjs"
   schedule:
     - cron: "23 */6 * * *"
 
@@ -50,63 +50,63 @@ jobs:
 
       - name: Validate updater syntax
         run: |
-          node --check scripts/event-location-utils.mjs
-          node --check scripts/build-event-map-us.mjs
-          node --check scripts/validate-event-map-us.mjs
-          node --check scripts/report-event-map-locations.mjs
-          node --check scripts/update-event-map-regional.mjs
-          node --check scripts/update-event-map-discovery.mjs
-          node --check scripts/update-event-map-regional-extra.mjs
-          node --check scripts/update-event-map-regional-more.mjs
-          node --check scripts/cleanup-event-map-regional.mjs
-          node --check scripts/enrich-event-map-details.mjs
-          node --check scripts/sanitize-event-map-posters.mjs
-          node --check scripts/validate-event-map-posters.mjs
-          node --check scripts/preserve-event-map-discovery.mjs
-          node --check scripts/validate-event-map-regional.mjs
+          node --check scripts/site-data/events/event-location-utils.mjs
+          node --check scripts/site-data/events/build-event-map-us.mjs
+          node --check scripts/site-data/events/validate-event-map-us.mjs
+          node --check scripts/site-data/events/report-event-map-locations.mjs
+          node --check scripts/site-data/events/update-event-map-regional.mjs
+          node --check scripts/site-data/events/update-event-map-discovery.mjs
+          node --check scripts/site-data/events/update-event-map-regional-extra.mjs
+          node --check scripts/site-data/events/update-event-map-regional-more.mjs
+          node --check scripts/site-data/events/cleanup-event-map-regional.mjs
+          node --check scripts/site-data/events/enrich-event-map-details.mjs
+          node --check scripts/site-data/events/sanitize-event-map-posters.mjs
+          node --check scripts/site-data/events/validate-event-map-posters.mjs
+          node --check scripts/site-data/events/preserve-event-map-discovery.mjs
+          node --check scripts/site-data/events/validate-event-map-regional.mjs
 
       - name: Check trusted-location parser regressions
-        run: node scripts/build-event-map-us.mjs --self-test
+        run: node scripts/site-data/events/build-event-map-us.mjs --self-test
 
       - name: Snapshot current regional data
         run: cp _data/event_map_regional.json /tmp/event-map-regional-before.json
 
       - name: Read official regional promotion schedules
-        run: node scripts/update-event-map-regional.mjs
+        run: node scripts/site-data/events/update-event-map-regional.mjs
 
       - name: Preserve discovery source fallback data
-        run: node scripts/preserve-event-map-discovery.mjs /tmp/event-map-regional-before.json
+        run: node scripts/site-data/events/preserve-event-map-discovery.mjs /tmp/event-map-regional-before.json
 
       - name: Read regional discovery feeds
-        run: node scripts/update-event-map-discovery.mjs
+        run: node scripts/site-data/events/update-event-map-discovery.mjs
 
       - name: Read additional official and commission schedules
-        run: node scripts/update-event-map-regional-extra.mjs
+        run: node scripts/site-data/events/update-event-map-regional-extra.mjs
 
       - name: Read broad U.S. regional MMA discovery
-        run: node scripts/update-event-map-regional-more.mjs
+        run: node scripts/site-data/events/update-event-map-regional-more.mjs
 
       - name: Clean regional discovery classifications
-        run: node scripts/cleanup-event-map-regional.mjs
+        run: node scripts/site-data/events/cleanup-event-map-regional.mjs
 
       - name: Enrich event posters and matchup details
-        run: node scripts/enrich-event-map-details.mjs
+        run: node scripts/site-data/events/enrich-event-map-details.mjs
 
       - name: Sanitize event poster images
-        run: node scripts/sanitize-event-map-posters.mjs
+        run: node scripts/site-data/events/sanitize-event-map-posters.mjs
 
       - name: Build trusted U.S. map dataset
-        run: node scripts/build-event-map-us.mjs
+        run: node scripts/site-data/events/build-event-map-us.mjs
 
       - name: Generate Event Map location quality report
-        run: node scripts/report-event-map-locations.mjs
+        run: node scripts/site-data/events/report-event-map-locations.mjs
 
       - name: Validate event locations and regional data
         run: |
-          node scripts/validate-event-map-regional.mjs
-          node scripts/validate-event-map-posters.mjs
-          node scripts/validate-event-map-us.mjs
-          node scripts/report-event-map-locations.mjs --check
+          node scripts/site-data/events/validate-event-map-regional.mjs
+          node scripts/site-data/events/validate-event-map-posters.mjs
+          node scripts/site-data/events/validate-event-map-us.mjs
+          node scripts/site-data/events/report-event-map-locations.mjs --check
 
       - name: Commit Event Map data changes
         shell: bash

@@ -7,25 +7,25 @@ on:
       - main
     paths:
       - ".github/workflows/otd-current-window-fast-publish.yml"
-      - "scripts/apply-on-this-day-image-source-overrides.mjs"
-      - "scripts/apply-on-this-day-current-poster-fallbacks.mjs"
-      - "scripts/resolve-current-on-this-day-tapology-posters.mjs"
-      - "scripts/resolve-on-this-day-tapology-posters.mjs"
-      - "scripts/resolve-on-this-day-event-posters.mjs"
-      - "scripts/resolve-on-this-day-event-poster-pipeline.mjs"
-      - "scripts/sync-on-this-day-poster-registry.mjs"
-      - "scripts/sanitize-on-this-day-tapology-posters.mjs"
-      - "scripts/prune-on-this-day-poster-registry.mjs"
-      - "scripts/finalize-on-this-day-image-metadata.mjs"
-      - "scripts/check-on-this-day-images.mjs"
-      - "scripts/build-on-this-day-runtime.mjs"
-      - "scripts/build-on-this-day-home.mjs"
-      - "scripts/build-on-this-day-leads.mjs"
-      - "scripts/build-on-this-day-share-images.mjs"
-      - "scripts/build-on-this-day-share-safe.mjs"
-      - "scripts/share-title-layout.mjs"
-      - "scripts/share-card-composition.mjs"
-      - "scripts/check-on-this-day-share.mjs"
+      - "scripts/history/apply-on-this-day-image-source-overrides.mjs"
+      - "scripts/history/apply-on-this-day-current-poster-fallbacks.mjs"
+      - "scripts/history/resolve-current-on-this-day-tapology-posters.mjs"
+      - "scripts/history/resolve-on-this-day-tapology-posters.mjs"
+      - "scripts/history/resolve-on-this-day-event-posters.mjs"
+      - "scripts/history/resolve-on-this-day-event-poster-pipeline.mjs"
+      - "scripts/history/sync-on-this-day-poster-registry.mjs"
+      - "scripts/history/sanitize-on-this-day-tapology-posters.mjs"
+      - "scripts/history/prune-on-this-day-poster-registry.mjs"
+      - "scripts/history/finalize-on-this-day-image-metadata.mjs"
+      - "scripts/history/check-on-this-day-images.mjs"
+      - "scripts/history/build-on-this-day-runtime.mjs"
+      - "scripts/history/build-on-this-day-home.mjs"
+      - "scripts/history/build-on-this-day-leads.mjs"
+      - "scripts/history/build-on-this-day-share-images.mjs"
+      - "scripts/history/build-on-this-day-share-safe.mjs"
+      - "scripts/media/share-title-layout.mjs"
+      - "scripts/media/share-card-composition.mjs"
+      - "scripts/history/check-on-this-day-share.mjs"
       - "assets/share-gobold.mjs"
       - "assets/textures/otd-gaffer-tape-v1.png"
       - "assets/textures/otd-xerox-paper-v1.webp"
@@ -76,24 +76,24 @@ jobs:
 
       - name: Check fast-path syntax
         run: |
-          node --check scripts/apply-on-this-day-image-source-overrides.mjs
-          node --check scripts/apply-on-this-day-current-poster-fallbacks.mjs
-          node --check scripts/resolve-current-on-this-day-tapology-posters.mjs
-          node --check scripts/resolve-on-this-day-tapology-posters.mjs
-          node --check scripts/resolve-on-this-day-event-posters.mjs
-          node --check scripts/resolve-on-this-day-event-poster-pipeline.mjs
-          node --check scripts/sync-on-this-day-poster-registry.mjs
-          node --check scripts/sanitize-on-this-day-tapology-posters.mjs
-          node --check scripts/prune-on-this-day-poster-registry.mjs
-          node --check scripts/finalize-on-this-day-image-metadata.mjs
-          node --check scripts/check-on-this-day-images.mjs
-          node --check scripts/build-on-this-day-runtime.mjs
-          node --check scripts/build-on-this-day-home.mjs
-          node --check scripts/build-on-this-day-leads.mjs
-          node --check scripts/build-on-this-day-share-images.mjs
-          node --check scripts/build-on-this-day-share-safe.mjs
-          node --check scripts/share-title-layout.mjs
-          node --check scripts/check-on-this-day-share.mjs
+          node --check scripts/history/apply-on-this-day-image-source-overrides.mjs
+          node --check scripts/history/apply-on-this-day-current-poster-fallbacks.mjs
+          node --check scripts/history/resolve-current-on-this-day-tapology-posters.mjs
+          node --check scripts/history/resolve-on-this-day-tapology-posters.mjs
+          node --check scripts/history/resolve-on-this-day-event-posters.mjs
+          node --check scripts/history/resolve-on-this-day-event-poster-pipeline.mjs
+          node --check scripts/history/sync-on-this-day-poster-registry.mjs
+          node --check scripts/history/sanitize-on-this-day-tapology-posters.mjs
+          node --check scripts/history/prune-on-this-day-poster-registry.mjs
+          node --check scripts/history/finalize-on-this-day-image-metadata.mjs
+          node --check scripts/history/check-on-this-day-images.mjs
+          node --check scripts/history/build-on-this-day-runtime.mjs
+          node --check scripts/history/build-on-this-day-home.mjs
+          node --check scripts/history/build-on-this-day-leads.mjs
+          node --check scripts/history/build-on-this-day-share-images.mjs
+          node --check scripts/history/build-on-this-day-share-safe.mjs
+          node --check scripts/media/share-title-layout.mjs
+          node --check scripts/history/check-on-this-day-share.mjs
 
       - name: Validate deterministic current poster fallback registry
         run: |
@@ -117,7 +117,7 @@ jobs:
           echo "OTD_POSTER_OUTPUT_DIR=$cache_dir" >> "$GITHUB_ENV"
 
       - name: Resolve canonical current-window event posters
-        run: node scripts/resolve-on-this-day-event-poster-pipeline.mjs --current-window
+        run: node scripts/history/resolve-on-this-day-event-poster-pipeline.mjs --current-window
 
       - name: Publish immutable poster bytes
         shell: bash
@@ -146,17 +146,17 @@ jobs:
         run: npm run build:history-runtime
 
       - name: Build current-window share images safely
-        run: node scripts/build-on-this-day-share-safe.mjs
+        run: node scripts/history/build-on-this-day-share-safe.mjs
 
       - name: Validate current-window share manifest
         run: npm run check:history-share
 
       - name: Build homepage snapshot
-        run: node scripts/build-on-this-day-home.mjs
+        run: node scripts/history/build-on-this-day-home.mjs
 
       - name: Build lead-image indexes
         run: |
-          node scripts/build-on-this-day-leads.mjs
+          node scripts/history/build-on-this-day-leads.mjs
           mkdir -p _data
           cp assets/data/on-this-day-leads.json _data/on_this_day_leads.json
 

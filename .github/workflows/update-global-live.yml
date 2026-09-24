@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - ".github/workflows/update-global-live.yml"
-      - "scripts/update-global-live.py"
+      - "scripts/site-data/live/update-global-live.py"
       - "assets/data/live-promotions.json"
       - "live.html"
       - "assets/live.js"
@@ -40,7 +40,7 @@ jobs:
       - name: Check promotion registry
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-        run: python scripts/update-global-live.py
+        run: python scripts/site-data/live/update-global-live.py
 
       - name: Publish live-state change
         shell: bash

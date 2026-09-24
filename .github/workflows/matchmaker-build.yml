@@ -55,8 +55,8 @@ jobs:
           node scripts/matchmaker/check-turnaround-timing.mjs
           node scripts/matchmaker/check-public-recommendations.mjs
           node scripts/matchmaker/check-ui-readability.mjs
-          node scripts/check-matchmaker.mjs
+          node scripts/matchmaker/check-matchmaker.mjs
       - name: Build Jekyll site
         uses: actions/jekyll-build-pages@v1
       - name: Check built internal links and assets
-        run: node scripts/check-site.mjs _site
+        run: node scripts/qa/check-site.mjs _site

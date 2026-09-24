@@ -6,7 +6,7 @@ on:
       - "write.html"
       - "assets/writer.js"
       - "_writer/**"
-      - "scripts/build-frontend-bundles.mjs"
+      - "scripts/writer/build-frontend-bundles.mjs"
       - "assets/writer-auth.js"
       - "assets/writer.css"
       - "_netlify-auth/**"
@@ -18,7 +18,7 @@ on:
       - "write.html"
       - "assets/writer.js"
       - "_writer/**"
-      - "scripts/build-frontend-bundles.mjs"
+      - "scripts/writer/build-frontend-bundles.mjs"
       - "assets/writer-auth.js"
       - "assets/writer.css"
       - "_netlify-auth/**"
@@ -40,7 +40,7 @@ jobs:
           node-version: "22.12.0"
 
       - name: Check Writer source bundle
-        run: node scripts/build-frontend-bundles.mjs --check
+        run: node scripts/writer/build-frontend-bundles.mjs --check
 
       - name: Check Writer browser scripts
         run: |

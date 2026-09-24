@@ -7,9 +7,9 @@ on:
       - main
     paths:
       - ".github/workflows/on-this-day-share-preview.yml"
-      - "scripts/build-on-this-day-share-images.mjs"
-      - "scripts/share-title-layout.mjs"
-      - "scripts/share-card-composition.mjs"
+      - "scripts/history/build-on-this-day-share-images.mjs"
+      - "scripts/media/share-title-layout.mjs"
+      - "scripts/media/share-card-composition.mjs"
       - "assets/share-gobold.mjs"
       - "assets/textures/otd-gaffer-tape-v1.png"
       - "assets/data/on-this-day-share-sources.json"
@@ -48,8 +48,8 @@ jobs:
 
       - name: Check renderer syntax
         run: |
-          node --check scripts/build-on-this-day-share-images.mjs
-          node --check scripts/share-title-layout.mjs
+          node --check scripts/history/build-on-this-day-share-images.mjs
+          node --check scripts/media/share-title-layout.mjs
 
       - name: Render current-day share cards
         run: npm run build:history-share

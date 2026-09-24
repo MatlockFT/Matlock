@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - ".github/workflows/external-links.yml"
-      - "scripts/check-external-links.mjs"
+      - "scripts/qa/check-external-links.mjs"
       - "mma-yellowpages.html"
       - "_data/**"
   schedule:

@@ -17,10 +17,10 @@ const FINGERPRINT_VERSION = 1;
 const REUSE_MARKER = path.join(OUTPUT_DIR, '.reuse-complete');
 const FORMAT_NAMES = ['post', 'story', 'social'];
 const RENDER_INPUT_FILES = [
-  'scripts/build-on-this-day-share-safe.mjs',
-  'scripts/build-on-this-day-share-images.mjs',
-  'scripts/share-card-composition.mjs',
-  'scripts/share-title-layout.mjs',
+  'scripts/history/build-on-this-day-share-safe.mjs',
+  'scripts/history/build-on-this-day-share-images.mjs',
+  'scripts/media/share-card-composition.mjs',
+  'scripts/media/share-title-layout.mjs',
   'assets/share-gobold.mjs',
   TEXTURE_PATH,
   'assets/textures/otd-gaffer-tape-v1.png',
@@ -230,7 +230,7 @@ if (reusableManifest(previousManifest, inputFingerprint, selectedEntries)) {
   const tempHistory = path.join(tempDir, 'on-this-day.json');
   try {
     await fs.writeFile(tempHistory, `${JSON.stringify(safeHistory, null, 2)}\n`, 'utf8');
-    const result = spawnSync(process.execPath, ['scripts/build-on-this-day-share-images.mjs', tempHistory], {
+    const result = spawnSync(process.execPath, ['scripts/history/build-on-this-day-share-images.mjs', tempHistory], {
       cwd: process.cwd(),
       env: process.env,
       stdio: 'inherit'

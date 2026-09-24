@@ -9,8 +9,8 @@ on:
       - ".github/workflows/update-news-feed.yml"
       - "package.json"
       - "package-lock.json"
-      - "scripts/build-news-feed.mjs"
-      - "scripts/dedupe-news-headlines.mjs"
+      - "scripts/news/build-news-feed.mjs"
+      - "scripts/news/dedupe-news-headlines.mjs"
   schedule:
     - cron: "2-57/5 * * * *"
 
@@ -53,7 +53,7 @@ jobs:
           --previous /tmp/mma-news-previous.json
 
       - name: Remove duplicate normalized headlines
-        run: node scripts/dedupe-news-headlines.mjs /tmp/mma-news.json
+        run: node scripts/news/dedupe-news-headlines.mjs /tmp/mma-news.json
 
       - name: Validate generated news
         run: npm run check:news -- /tmp/mma-news.json

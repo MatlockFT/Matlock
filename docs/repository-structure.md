@@ -141,7 +141,7 @@ _writer/
 
 ## Automation
 
-The target internal script structure is:
+Development automation is organized by domain:
 
 ```text
 scripts/
@@ -151,12 +151,13 @@ scripts/
   news/
   history/
   site-data/
+    events/
+    ufc/
+    live/
   qa/
 ```
 
-This is a Stage 5 migration. Existing script locations remain valid until then.
-
-Human-facing npm commands should stay stable where practical even when their implementation moves.
+Stage 5 completed this migration. Human-facing npm commands remain stable where practical even though their implementations now live in domain folders. Feature-specific helpers and validation stay beside the feature they support; cross-site quality checks live under `scripts/qa/`.
 
 ## Backend
 
@@ -205,8 +206,9 @@ The repository intentionally tolerates several legacy patterns until their dedic
 
 - Existing flat files in `assets/uploads/`
 - Versioned root pages such as `*-v3.html` until Stage 7
-- Mostly flat `scripts/` until Stage 5
 - Current workflow sprawl until Stage 6
+
+The flat `scripts/` exception ended in Stage 5. New development automation must live inside one of the defined script domains.
 
 A legacy exception is permission to leave a working file alone, not permission for new work to keep expanding the old pattern.
 

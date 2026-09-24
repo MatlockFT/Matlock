@@ -38,11 +38,14 @@ jobs:
       - name: Check repository organization policy
         run: npm run check:repo-policy
 
+      - name: Check development script organization
+        run: npm run check:scripts
+
       - name: Check media pipeline separation
         run: npm run check:media
 
       - name: Check current brand identity
-        run: node scripts/check-brand-identity.mjs
+        run: node scripts/qa/check-brand-identity.mjs
 
       - name: Check theme overhaul readiness
         run: npm run check:theme
@@ -68,92 +71,93 @@ jobs:
           node --check assets/event-map-enhancements.js
           node --check assets/upcoming-events-jump.js
           node --check assets/upcoming-events-links.js
-          node --check scripts/check-brand-identity.mjs
-          node --check scripts/check-theme-readiness.mjs
-          node --check scripts/build-news-feed.mjs
-          node --check scripts/check-news-data.mjs
-          node --check scripts/dedupe-news-headlines.mjs
-          node --check scripts/check-on-this-day.mjs
-          node --check scripts/check-on-this-day-images.mjs
-          node --check scripts/check-on-this-day-share.mjs
-          node --check scripts/build-on-this-day-runtime.mjs
-          node --check scripts/build-on-this-day-home.mjs
-          node --check scripts/build-frontend-bundles.mjs
-          node --check scripts/check-repository-integrity.mjs
-          node --check scripts/repository-reference-audit.mjs
-          node --check scripts/check-repository-policy.mjs
-          node --check scripts/media-paths.mjs
-          node --check scripts/check-media-pipeline.mjs
-          node --check scripts/check-search-readiness.mjs
-          node --check scripts/build-on-this-day-share-images.mjs
-          node --check scripts/share-title-layout.mjs
-          node --check scripts/update-fighter-birthdays.mjs
-          node --check scripts/update-on-this-day-events.mjs
-          node --check scripts/enrich-on-this-day-images.mjs
-          node --check scripts/verify-on-this-day-event-images.mjs
-          node --check scripts/apply-on-this-day-image-source-overrides.mjs
-          node --check scripts/apply-on-this-day-current-poster-fallbacks.mjs
-          node --check scripts/resolve-on-this-day-images.mjs
-          node --check scripts/resolve-on-this-day-tapology-posters.mjs
-          node --check scripts/resolve-on-this-day-event-posters.mjs
-          node --check scripts/resolve-on-this-day-event-poster-pipeline.mjs
-          node --check scripts/sync-on-this-day-poster-registry.mjs
-          node --check scripts/check-on-this-day-poster-registry.mjs
-          node --check scripts/sanitize-on-this-day-tapology-posters.mjs
-          node --check scripts/finalize-on-this-day-image-metadata.mjs
-          node --check scripts/enrich-on-this-day-content.mjs
-          node --check scripts/curate-on-this-day-events.mjs
-          node --check scripts/report-on-this-day-coverage.mjs
-          node --check scripts/upcoming-events-data.mjs
-          node --check scripts/event-location-utils.mjs
-          node --check scripts/enrich-upcoming-event-locations.mjs
-          node --check scripts/update-upcoming-ufc-events.mjs
-          node --check scripts/update-pfl-upcoming-events.mjs
-          node --check scripts/update-rizin-upcoming-events.mjs
-          node --check scripts/build-event-map-us.mjs
-          node --check scripts/validate-event-map-us.mjs
-          node --check scripts/report-event-map-locations.mjs
-          node --check scripts/update-event-map-regional.mjs
-          node --check scripts/update-event-map-discovery.mjs
-          node --check scripts/enrich-event-map-details.mjs
-          node --check scripts/sanitize-event-map-posters.mjs
-          node --check scripts/validate-event-map-posters.mjs
-          node --check scripts/preserve-event-map-discovery.mjs
-          node --check scripts/validate-event-map-regional.mjs
-          node --check scripts/validate-event-map-quality.mjs
-          node --check scripts/check-event-map-architecture.mjs
-          node --check scripts/validate-regional-picker.mjs
-          node --check scripts/resolve-espn-fighter-portraits.mjs
-          node --check scripts/enrich-fighter-portraits.mjs
-          node --check scripts/validate-upcoming-events.mjs
-          node --check scripts/ufc-roster-identity.mjs
-          node --check scripts/build-ufc-canonical-roster.mjs
-          node --check scripts/normalize-ufc-roster-events.mjs
-          node --check scripts/validate-ufc-roster-output.mjs
-          node --check scripts/publish-scheduled-posts.mjs
-          node --check scripts/summarize-lighthouse.mjs
-          node --check scripts/check-mma-yellow-pages.mjs
+          node --check scripts/qa/check-brand-identity.mjs
+          node --check scripts/qa/check-theme-readiness.mjs
+          node --check scripts/news/build-news-feed.mjs
+          node --check scripts/news/check-news-data.mjs
+          node --check scripts/news/dedupe-news-headlines.mjs
+          node --check scripts/history/check-on-this-day.mjs
+          node --check scripts/history/check-on-this-day-images.mjs
+          node --check scripts/history/check-on-this-day-share.mjs
+          node --check scripts/history/build-on-this-day-runtime.mjs
+          node --check scripts/history/build-on-this-day-home.mjs
+          node --check scripts/writer/build-frontend-bundles.mjs
+          node --check scripts/qa/check-repository-integrity.mjs
+          node --check scripts/qa/repository-reference-audit.mjs
+          node --check scripts/qa/check-repository-policy.mjs
+          node --check scripts/qa/check-script-layout.mjs
+          node --check scripts/media/media-paths.mjs
+          node --check scripts/media/check-media-pipeline.mjs
+          node --check scripts/qa/check-search-readiness.mjs
+          node --check scripts/history/build-on-this-day-share-images.mjs
+          node --check scripts/media/share-title-layout.mjs
+          node --check scripts/site-data/ufc/update-fighter-birthdays.mjs
+          node --check scripts/history/update-on-this-day-events.mjs
+          node --check scripts/history/enrich-on-this-day-images.mjs
+          node --check scripts/history/verify-on-this-day-event-images.mjs
+          node --check scripts/history/apply-on-this-day-image-source-overrides.mjs
+          node --check scripts/history/apply-on-this-day-current-poster-fallbacks.mjs
+          node --check scripts/history/resolve-on-this-day-images.mjs
+          node --check scripts/history/resolve-on-this-day-tapology-posters.mjs
+          node --check scripts/history/resolve-on-this-day-event-posters.mjs
+          node --check scripts/history/resolve-on-this-day-event-poster-pipeline.mjs
+          node --check scripts/history/sync-on-this-day-poster-registry.mjs
+          node --check scripts/history/check-on-this-day-poster-registry.mjs
+          node --check scripts/history/sanitize-on-this-day-tapology-posters.mjs
+          node --check scripts/history/finalize-on-this-day-image-metadata.mjs
+          node --check scripts/history/enrich-on-this-day-content.mjs
+          node --check scripts/history/curate-on-this-day-events.mjs
+          node --check scripts/history/report-on-this-day-coverage.mjs
+          node --check scripts/site-data/events/upcoming-events-data.mjs
+          node --check scripts/site-data/events/event-location-utils.mjs
+          node --check scripts/site-data/events/enrich-upcoming-event-locations.mjs
+          node --check scripts/site-data/events/update-upcoming-ufc-events.mjs
+          node --check scripts/site-data/events/update-pfl-upcoming-events.mjs
+          node --check scripts/site-data/events/update-rizin-upcoming-events.mjs
+          node --check scripts/site-data/events/build-event-map-us.mjs
+          node --check scripts/site-data/events/validate-event-map-us.mjs
+          node --check scripts/site-data/events/report-event-map-locations.mjs
+          node --check scripts/site-data/events/update-event-map-regional.mjs
+          node --check scripts/site-data/events/update-event-map-discovery.mjs
+          node --check scripts/site-data/events/enrich-event-map-details.mjs
+          node --check scripts/site-data/events/sanitize-event-map-posters.mjs
+          node --check scripts/site-data/events/validate-event-map-posters.mjs
+          node --check scripts/site-data/events/preserve-event-map-discovery.mjs
+          node --check scripts/site-data/events/validate-event-map-regional.mjs
+          node --check scripts/site-data/events/validate-event-map-quality.mjs
+          node --check scripts/site-data/events/check-event-map-architecture.mjs
+          node --check scripts/site-data/events/validate-regional-picker.mjs
+          node --check scripts/site-data/ufc/resolve-espn-fighter-portraits.mjs
+          node --check scripts/site-data/ufc/enrich-fighter-portraits.mjs
+          node --check scripts/site-data/events/validate-upcoming-events.mjs
+          node --check scripts/site-data/ufc/ufc-roster-identity.mjs
+          node --check scripts/site-data/ufc/build-ufc-canonical-roster.mjs
+          node --check scripts/site-data/ufc/normalize-ufc-roster-events.mjs
+          node --check scripts/site-data/ufc/validate-ufc-roster-output.mjs
+          node --check scripts/writer/publish-scheduled-posts.mjs
+          node --check scripts/qa/summarize-lighthouse.mjs
+          node --check scripts/qa/check-mma-yellow-pages.mjs
 
       - name: Check UFC roster identity behavior
         run: |
-          node scripts/normalize-ufc-roster-events.mjs --self-test
-          node scripts/build-ufc-canonical-roster.mjs --self-test
+          node scripts/site-data/ufc/normalize-ufc-roster-events.mjs --self-test
+          node scripts/site-data/ufc/build-ufc-canonical-roster.mjs --self-test
 
       - name: Check Matchmaker engine and published data
         run: |
           node --check assets/matchmaker.js
           node --check assets/matchmaker-engine.js
           node scripts/matchmaker/check-ui-readability.mjs
-          node scripts/check-matchmaker.mjs
+          node scripts/matchmaker/check-matchmaker.mjs
 
       - name: Check Event Map poster sanitizer behavior
-        run: node scripts/sanitize-event-map-posters.mjs --self-test
+        run: node scripts/site-data/events/sanitize-event-map-posters.mjs --self-test
 
       - name: Check Event Map trusted-location behavior
-        run: node scripts/build-event-map-us.mjs --self-test
+        run: node scripts/site-data/events/build-event-map-us.mjs --self-test
 
       - name: Check On This Day event-image verifier behavior
-        run: node scripts/verify-on-this-day-event-images.mjs --self-test
+        run: node scripts/history/verify-on-this-day-event-images.mjs --self-test
 
       - name: Check first-paint shell invariants
         run: |
@@ -174,7 +178,7 @@ jobs:
           grep -q "v3-front" index.html
           grep -q "Shared optical row alignment" assets/site-consistency.css
           grep -q "ufc-active-absence-confirmed" assets/ufc-roster.js
-          grep -q "REMOVAL_CONFIRMATION_MISSES = 3" scripts/update-ufc-roster-v4.mjs
+          grep -q "REMOVAL_CONFIRMATION_MISSES = 3" scripts/site-data/ufc/update-ufc-roster-v4.mjs
           grep -q "site.data.event_map_us" assets/data/event-map-live.json
           if grep -q 'data-news-refresh' news.html || grep -q 'data-news-status' news.html; then
             echo "News page must not expose manual refresh/update-status clutter"
@@ -224,20 +228,20 @@ jobs:
           node -e "const d=JSON.parse(require('fs').readFileSync('assets/data/on-this-day-poster-registry.json','utf8')); if(Number(d.version)<2||!d.records||typeof d.records!=='object'||Array.isArray(d.records)) process.exit(1);"
 
       - name: Check Upcoming Events data and renderer
-        run: node scripts/validate-upcoming-events.mjs
+        run: node scripts/site-data/events/validate-upcoming-events.mjs
 
       - name: Check curated regional Fight Card Picker data
-        run: node scripts/validate-regional-picker.mjs
+        run: node scripts/site-data/events/validate-regional-picker.mjs
 
       - name: Check regional Event Map data
-        run: node scripts/validate-event-map-regional.mjs
+        run: node scripts/site-data/events/validate-event-map-regional.mjs
 
       - name: Check Event Map quality and interaction architecture
         run: |
-          node scripts/validate-event-map-us.mjs
-          node scripts/report-event-map-locations.mjs --check
-          node scripts/validate-event-map-quality.mjs
-          node scripts/check-event-map-architecture.mjs
+          node scripts/site-data/events/validate-event-map-us.mjs
+          node scripts/site-data/events/report-event-map-locations.mjs --check
+          node scripts/site-data/events/validate-event-map-quality.mjs
+          node scripts/site-data/events/check-event-map-architecture.mjs
 
       - name: Check MMA Yellow Pages directory
         run: npm run check:yellow-pages
@@ -263,8 +267,8 @@ jobs:
       - name: Check On This Day share pipeline
         run: |
           npm run check:history-share
-          node scripts/build-share-gobold.mjs --check
-          node --check scripts/share-card-composition.mjs
+          node scripts/media/build-share-gobold.mjs --check
+          node --check scripts/media/share-card-composition.mjs
 
       - name: Check generated frontend assets
         run: |
@@ -275,7 +279,7 @@ jobs:
         uses: actions/jekyll-build-pages@v1
 
       - name: Check internal links and assets
-        run: node scripts/check-site.mjs _site
+        run: node scripts/qa/check-site.mjs _site
 
       - name: Check search and AdSense readiness
         run: npm run check:search

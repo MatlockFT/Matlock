@@ -3,7 +3,7 @@
 import fs from 'node:fs';
 import { inflateSync } from 'node:zlib';
 
-const font = fs.readFileSync(new URL('../Gobold Bold.woff', import.meta.url));
+const font = fs.readFileSync(new URL('../../Gobold Bold.woff', import.meta.url));
 if (font.toString('ascii', 0, 4) !== 'wOFF' || font.readUInt32BE(4) !== 0x00010000) {
   throw new Error('Expected a TrueType WOFF font');
 }
@@ -205,15 +205,15 @@ export function displayTextSvg(text, { x = 0, y = 0, size = 64, fill = '#fff', s
   }).join('');
 }
 `;
-const output = '// Generated from Gobold Bold.woff by scripts/build-share-gobold.mjs. Do not hand-edit glyph data.\n'
+const output = '// Generated from Gobold Bold.woff by scripts/media/build-share-gobold.mjs. Do not hand-edit glyph data.\n'
   + `export const displayFontMetrics = ${JSON.stringify(metrics)};\n`
   + `const mapping = ${JSON.stringify(mapping)};\n`
   + `const glyphs = ${JSON.stringify(glyphs)};\n`
   + runtime;
-const destination = new URL('../assets/share-gobold.mjs', import.meta.url);
+const destination = new URL('../../assets/share-gobold.mjs', import.meta.url);
 if (process.argv.includes('--check')) {
   if (!fs.existsSync(destination) || fs.readFileSync(destination, 'utf8') !== output) {
-    throw new Error('GoBold module is stale; run node scripts/build-share-gobold.mjs');
+    throw new Error('GoBold module is stale; run node scripts/media/build-share-gobold.mjs');
   }
   console.log(`GoBold outlines verified: ${Object.keys(glyphs).length} glyphs, ${Object.keys(mapping).length} characters.`);
 } else {

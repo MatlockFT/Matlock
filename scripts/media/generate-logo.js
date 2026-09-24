@@ -3,7 +3,7 @@ import { dirname, join } from 'path';
 import { writeFileSync } from 'fs';
 
 const src = process.argv[2];
-if (!src) throw new Error('Usage: node scripts/generate-logo.js <source.png>');
+if (!src) throw new Error('Usage: node scripts/media/generate-logo.js <source.png>');
 const outDir = dirname(src);
 const sizes = [640, 1280];
 

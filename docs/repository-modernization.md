@@ -4,11 +4,11 @@ This document tracks the controlled reorganization of the MMA Matlock repository
 
 ## Current status
 
-**Stage 4 of 10 — Writer frontend module split: COMPLETE**
+**Stage 5 of 10 — Development-script organization: COMPLETE**
 
-Next stage: **Stage 5 — Development-script organization**
+Next stage: **Stage 6 — GitHub Actions workflow consolidation**
 
-Stages 0–3 established the repository and media contracts. Stage 4 replaces the Writer's monolithic source-of-truth with maintainable source modules while preserving the same public `/assets/writer.js` runtime interface.
+Stages 0–4 established the safety baseline, repository/media contracts, article-owned asset hierarchy, and modular Writer source. Stage 5 reorganizes internal development automation by domain while preserving npm command names and workflow behavior.
 
 ## Rollback point
 
@@ -166,9 +166,9 @@ ARTICLE VIDEO
 GitHub Release asset: writer-media-YYYY-MM
 ```
 
-Legacy image sources and their established generated URLs remain unchanged. The responsive-image generator now uses `scripts/media-paths.mjs`, which keeps legacy output flat while routing future article-owned derivatives into matching article namespaces.
+Legacy image sources and their established generated URLs remain unchanged. The responsive-image generator now uses `scripts/media/media-paths.mjs`, which keeps legacy output flat while routing future article-owned derivatives into matching article namespaces.
 
-`scripts/check-content.mjs` now validates generated responsive images recursively so nested derivatives receive the same size checks as legacy flat output.
+`scripts/qa/check-content.mjs` now validates generated responsive images recursively so nested derivatives receive the same size checks as legacy flat output.
 
 Stage 3 also added:
 
@@ -202,7 +202,7 @@ _writer/
   06-bootstrap.js
 ```
 
-`scripts/build-frontend-bundles.mjs` concatenates those ordered source modules into the existing `assets/writer.js` compatibility bundle. This deliberately preserves the Writer's shared closure and runtime ordering instead of introducing a risky browser-module rewrite.
+`scripts/writer/build-frontend-bundles.mjs` concatenates those ordered source modules into the existing `assets/writer.js` compatibility bundle. This deliberately preserves the Writer's shared closure and runtime ordering instead of introducing a risky browser-module rewrite.
 
 The split reduced the single-file maintenance surface into domains for core/frontmatter helpers, preview rendering, state/library/GitHub transport, publishing, editor tools, media upload/layout, and event/bootstrap behavior.
 
@@ -218,6 +218,38 @@ Safeguards added in Stage 4:
 
 The generated bundle was verified byte-for-byte against the ordered source fragments. Writer auth quality passed, production Writer smoke passed, Site Quality passed the generated-bundle check, and GitHub Pages built successfully before Stage 4 was closed.
 
+## Stage 5 development-script organization
+
+Stage 5 moves the previously flat development-script surface into stable responsibility domains:
+
+```text
+scripts/
+  writer/
+  media/
+  matchmaker/
+  news/
+  history/
+  site-data/
+    events/
+    ufc/
+    live/
+  qa/
+```
+
+The migration preserves the existing human-facing npm commands while changing their implementation paths. GitHub Actions workflows and documentation were updated to the new locations at the same time as the moves.
+
+The migration also repaired path-sensitive scripts whose relative imports or `import.meta.url` asset lookups changed after relocation, including Matchmaker helpers, UFC portrait tooling, On This Day share tooling, and generated GoBold assets.
+
+Stage 5 added `npm run check:scripts`, which rejects:
+
+- files placed directly under `scripts/`;
+- unknown script-domain folders;
+- broken relative imports caused by future moves;
+- stale references to the pre-Stage-5 flat script paths;
+- script references that point to nonexistent files.
+
+A pre-Stage-5 rollback branch is preserved at `archive/repo-modernization-stage4-complete-2026-09-24`.
+
 ## Planned stages
 
 | Stage | Scope | Status |
@@ -228,7 +260,7 @@ The generated bundle was verified byte-for-byte against the ordered source fragm
 | 3 | Media source/generated/video pipeline separation | Complete |
 | 4 | Writer frontend module split | Complete |
 | 5 | Development-script organization | Next |
-| 6 | GitHub Actions workflow consolidation | Pending |
+| 6 | GitHub Actions workflow consolidation | Next |
 | 7 | Legacy/V2/V3 page cleanup | Pending |
 | 8 | Runtime-data and cache policy | Pending |
 | 9 | Repository integrity enforcement | Pending |

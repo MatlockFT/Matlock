@@ -7,8 +7,8 @@ on:
     paths:
       - 'assets/matchmaker-engine.js'
       - 'assets/matchmaker-public.js'
-      - 'scripts/update-matchmaker.mjs'
-      - 'scripts/check-matchmaker.mjs'
+      - 'scripts/matchmaker/update-matchmaker.mjs'
+      - 'scripts/matchmaker/check-matchmaker.mjs'
       - 'scripts/matchmaker/**'
       - '.github/workflows/update-matchmaker.yml'
   schedule:
@@ -35,7 +35,7 @@ jobs:
           key: matchmaker-profiles-${{ github.run_id }}
           restore-keys: matchmaker-profiles-
       - name: Collect and atomically validate official data
-        run: node scripts/update-matchmaker.mjs
+        run: node scripts/matchmaker/update-matchmaker.mjs
       - name: Prefer official UFC athlete portraits
         run: node scripts/matchmaker/enrich-official-portraits.mjs
       - name: Apply official ranking identity aliases
@@ -51,7 +51,7 @@ jobs:
       - name: Build historical UFC candidate universe
         run: node scripts/matchmaker/build-historical-universe.mjs
       - name: Check engine against refreshed data
-        run: node scripts/check-matchmaker.mjs
+        run: node scripts/matchmaker/check-matchmaker.mjs
       - name: Audit published recommendations
         run: node scripts/matchmaker/audit-recommendations.mjs
       - name: Backtest recent next-fight recommendations

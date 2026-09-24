@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
-import { reconcileRoster, rosterUrl } from './matchmaker/roster.mjs';
-import { validateData } from './matchmaker/validate.mjs';
-import { reconcileBookings } from './matchmaker/bookings.mjs';
+import { reconcileRoster, rosterUrl } from './roster.mjs';
+import { validateData } from './validate.mjs';
+import { reconcileBookings } from './bookings.mjs';
 const file = 'assets/data/matchmaker/current.json';
 const before = await fs.readFile(file, 'utf8');
 const data = JSON.parse(before);

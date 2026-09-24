@@ -10,7 +10,7 @@ on:
       - "write.html"
       - "assets/writer.js"
       - "_writer/**"
-      - "scripts/build-frontend-bundles.mjs"
+      - "scripts/writer/build-frontend-bundles.mjs"
       - "assets/writer.css"
       - "assets/writer-auth.js"
       - "assets/writer-wordtools.js"
@@ -20,10 +20,10 @@ on:
       - "assets/writer-ux.css"
       - "assets/writer-splitflow.js"
       - "assets/writer-splitflow.css"
-      - "scripts/writer-smoke.spec.cjs"
-      - "scripts/writer-wordtools-smoke.spec.cjs"
-      - "scripts/writer-layout-smoke.spec.cjs"
-      - "scripts/writer-splitflow-smoke.spec.cjs"
+      - "scripts/writer/writer-smoke.spec.cjs"
+      - "scripts/writer/writer-wordtools-smoke.spec.cjs"
+      - "scripts/writer/writer-layout-smoke.spec.cjs"
+      - "scripts/writer/writer-splitflow-smoke.spec.cjs"
       - ".github/workflows/writer-production-smoke.yml"
 
 permissions:
@@ -98,4 +98,4 @@ jobs:
       - name: Exercise production Writer workflow
         env:
           WRITER_BASE_URL: https://mmamatlock.com/write/
-        run: npx playwright test scripts/writer-smoke.spec.cjs scripts/writer-wordtools-smoke.spec.cjs scripts/writer-layout-smoke.spec.cjs scripts/writer-splitflow-smoke.spec.cjs --workers=1 --reporter=line
+        run: npx playwright test scripts/writer/writer-smoke.spec.cjs scripts/writer/writer-wordtools-smoke.spec.cjs scripts/writer/writer-layout-smoke.spec.cjs scripts/writer/writer-splitflow-smoke.spec.cjs --workers=1 --reporter=line
