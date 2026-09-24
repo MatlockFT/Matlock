@@ -8,25 +8,25 @@ on:
     paths:
       - ".github/workflows/update-upcoming-ufc-events.yml"
       - "_data/upcoming_events_overrides.json"
-      - "scripts/upcoming-events-data.mjs"
-      - "scripts/event-location-utils.mjs"
-      - "scripts/enrich-upcoming-event-locations.mjs"
-      - "scripts/build-event-map-us.mjs"
-      - "scripts/validate-event-map-us.mjs"
-      - "scripts/report-event-map-locations.mjs"
-      - "scripts/update-upcoming-ufc-events.mjs"
-      - "scripts/normalize-upcoming-ufc-events.mjs"
-      - "scripts/update-dwcs-upcoming-events.mjs"
-      - "scripts/update-pfl-upcoming-events.mjs"
-      - "scripts/update-rizin-upcoming-events.mjs"
-      - "scripts/apply-upcoming-event-overrides.mjs"
-      - "scripts/resolve-espn-fighter-portraits.mjs"
-      - "scripts/enrich-fighter-portraits.mjs"
-      - "scripts/enforce-ufc-fighter-portraits.mjs"
-      - "scripts/check-verdict-upcoming-events.mjs"
-      - "scripts/publish-fighter-portraits.mjs"
-      - "scripts/validate-upcoming-events.mjs"
-      - "scripts/diff-upcoming-events.mjs"
+      - "scripts/site-data/events/upcoming-events-data.mjs"
+      - "scripts/site-data/events/event-location-utils.mjs"
+      - "scripts/site-data/events/enrich-upcoming-event-locations.mjs"
+      - "scripts/site-data/events/build-event-map-us.mjs"
+      - "scripts/site-data/events/validate-event-map-us.mjs"
+      - "scripts/site-data/events/report-event-map-locations.mjs"
+      - "scripts/site-data/events/update-upcoming-ufc-events.mjs"
+      - "scripts/site-data/events/normalize-upcoming-ufc-events.mjs"
+      - "scripts/site-data/events/update-dwcs-upcoming-events.mjs"
+      - "scripts/site-data/events/update-pfl-upcoming-events.mjs"
+      - "scripts/site-data/events/update-rizin-upcoming-events.mjs"
+      - "scripts/site-data/events/apply-upcoming-event-overrides.mjs"
+      - "scripts/site-data/ufc/resolve-espn-fighter-portraits.mjs"
+      - "scripts/site-data/ufc/enrich-fighter-portraits.mjs"
+      - "scripts/site-data/ufc/enforce-ufc-fighter-portraits.mjs"
+      - "scripts/site-data/events/check-verdict-upcoming-events.mjs"
+      - "scripts/site-data/ufc/publish-fighter-portraits.mjs"
+      - "scripts/site-data/events/validate-upcoming-events.mjs"
+      - "scripts/site-data/events/diff-upcoming-events.mjs"
   schedule:
     - cron: "7,22,37,52 * * * *"
 
@@ -59,77 +59,77 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node --check scripts/upcoming-events-data.mjs
-          node --check scripts/event-location-utils.mjs
-          node --check scripts/enrich-upcoming-event-locations.mjs
-          node --check scripts/build-event-map-us.mjs
-          node --check scripts/validate-event-map-us.mjs
-          node --check scripts/report-event-map-locations.mjs
-          node --check scripts/update-upcoming-ufc-events.mjs
-          node --check scripts/normalize-upcoming-ufc-events.mjs
-          node --check scripts/update-dwcs-upcoming-events.mjs
-          node --check scripts/update-pfl-upcoming-events.mjs
-          node --check scripts/update-rizin-upcoming-events.mjs
-          node --check scripts/apply-upcoming-event-overrides.mjs
-          node --check scripts/resolve-espn-fighter-portraits.mjs
-          node --check scripts/enrich-fighter-portraits.mjs
-          node --check scripts/enforce-ufc-fighter-portraits.mjs
-          node --check scripts/check-verdict-upcoming-events.mjs
-          node --check scripts/publish-fighter-portraits.mjs
-          node --check scripts/validate-upcoming-events.mjs
-          node --check scripts/diff-upcoming-events.mjs
+          node --check scripts/site-data/events/upcoming-events-data.mjs
+          node --check scripts/site-data/events/event-location-utils.mjs
+          node --check scripts/site-data/events/enrich-upcoming-event-locations.mjs
+          node --check scripts/site-data/events/build-event-map-us.mjs
+          node --check scripts/site-data/events/validate-event-map-us.mjs
+          node --check scripts/site-data/events/report-event-map-locations.mjs
+          node --check scripts/site-data/events/update-upcoming-ufc-events.mjs
+          node --check scripts/site-data/events/normalize-upcoming-ufc-events.mjs
+          node --check scripts/site-data/events/update-dwcs-upcoming-events.mjs
+          node --check scripts/site-data/events/update-pfl-upcoming-events.mjs
+          node --check scripts/site-data/events/update-rizin-upcoming-events.mjs
+          node --check scripts/site-data/events/apply-upcoming-event-overrides.mjs
+          node --check scripts/site-data/ufc/resolve-espn-fighter-portraits.mjs
+          node --check scripts/site-data/ufc/enrich-fighter-portraits.mjs
+          node --check scripts/site-data/ufc/enforce-ufc-fighter-portraits.mjs
+          node --check scripts/site-data/events/check-verdict-upcoming-events.mjs
+          node --check scripts/site-data/ufc/publish-fighter-portraits.mjs
+          node --check scripts/site-data/events/validate-upcoming-events.mjs
+          node --check scripts/site-data/events/diff-upcoming-events.mjs
 
       - name: Snapshot current event data
         run: cp _data/upcoming_events.json /tmp/upcoming-events.before.json
 
       - name: Read UFC event data
-        run: node scripts/update-upcoming-ufc-events.mjs
+        run: node scripts/site-data/events/update-upcoming-ufc-events.mjs
 
       - name: Normalize UFC event metadata
-        run: node scripts/normalize-upcoming-ufc-events.mjs
+        run: node scripts/site-data/events/normalize-upcoming-ufc-events.mjs
 
       - name: Apply verified late card changes
-        run: node scripts/apply-upcoming-event-overrides.mjs
+        run: node scripts/site-data/events/apply-upcoming-event-overrides.mjs
 
       - name: Read DWCS event data
-        run: node scripts/update-dwcs-upcoming-events.mjs
+        run: node scripts/site-data/events/update-dwcs-upcoming-events.mjs
 
       - name: Read PFL event data
-        run: node scripts/update-pfl-upcoming-events.mjs
+        run: node scripts/site-data/events/update-pfl-upcoming-events.mjs
 
       - name: Read RIZIN event data
-        run: node scripts/update-rizin-upcoming-events.mjs
+        run: node scripts/site-data/events/update-rizin-upcoming-events.mjs
 
       - name: Enrich event locations from official sources
-        run: node scripts/enrich-upcoming-event-locations.mjs
+        run: node scripts/site-data/events/enrich-upcoming-event-locations.mjs
 
       - name: Rebuild trusted U.S. map from major event data
         run: |
-          node scripts/build-event-map-us.mjs
-          node scripts/report-event-map-locations.mjs
-          node scripts/validate-event-map-us.mjs
-          node scripts/report-event-map-locations.mjs --check
+          node scripts/site-data/events/build-event-map-us.mjs
+          node scripts/site-data/events/report-event-map-locations.mjs
+          node scripts/site-data/events/validate-event-map-us.mjs
+          node scripts/site-data/events/report-event-map-locations.mjs --check
 
       - name: Resolve verified promotion portraits
-        run: node scripts/enrich-fighter-portraits.mjs
+        run: node scripts/site-data/ufc/enrich-fighter-portraits.mjs
 
       - name: Fill remaining portraits from ESPN
-        run: node scripts/resolve-espn-fighter-portraits.mjs
+        run: node scripts/site-data/ufc/resolve-espn-fighter-portraits.mjs
 
       - name: Enforce UFC.com portraits on UFC cards
-        run: node scripts/enforce-ufc-fighter-portraits.mjs
+        run: node scripts/site-data/ufc/enforce-ufc-fighter-portraits.mjs
 
       - name: Validate merged event data
-        run: node scripts/validate-upcoming-events.mjs /tmp/upcoming-events.before.json _data/upcoming_events.json upcoming-events.html
+        run: node scripts/site-data/events/validate-upcoming-events.mjs /tmp/upcoming-events.before.json _data/upcoming_events.json upcoming-events.html
 
       - name: Compare cards with Verdict MMA
-        run: node scripts/check-verdict-upcoming-events.mjs
+        run: node scripts/site-data/events/check-verdict-upcoming-events.mjs
 
       - name: Record meaningful event changes
-        run: node scripts/diff-upcoming-events.mjs /tmp/upcoming-events.before.json _data/upcoming_events.json _data/upcoming_events_changes.json
+        run: node scripts/site-data/events/diff-upcoming-events.mjs /tmp/upcoming-events.before.json _data/upcoming_events.json _data/upcoming_events_changes.json
 
       - name: Publish fighter portrait cache
-        run: node scripts/publish-fighter-portraits.mjs
+        run: node scripts/site-data/ufc/publish-fighter-portraits.mjs
 
       - name: Commit meaningful event, map, and portrait changes
         shell: bash

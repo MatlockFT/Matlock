@@ -10,16 +10,16 @@ on:
       - main
     paths:
       - ".github/workflows/update-ufc-roster.yml"
-      - "scripts/update-ufc-roster-v4.mjs"
-      - "scripts/promote-ufc-active-entries.mjs"
-      - "scripts/check-ufc-profile-directory.mjs"
-      - "scripts/filter-ufc-roster-additions.mjs"
-      - "scripts/check-ufc-event-cards.mjs"
-      - "scripts/normalize-ufc-roster-events.mjs"
-      - "scripts/ufc-roster-identity.mjs"
-      - "scripts/build-ufc-canonical-roster.mjs"
-      - "scripts/validate-ufc-roster-output.mjs"
-      - "scripts/check-ufc-antidoping.mjs"
+      - "scripts/site-data/ufc/update-ufc-roster-v4.mjs"
+      - "scripts/site-data/ufc/promote-ufc-active-entries.mjs"
+      - "scripts/site-data/ufc/check-ufc-profile-directory.mjs"
+      - "scripts/site-data/ufc/filter-ufc-roster-additions.mjs"
+      - "scripts/site-data/ufc/check-ufc-event-cards.mjs"
+      - "scripts/site-data/ufc/normalize-ufc-roster-events.mjs"
+      - "scripts/site-data/ufc/ufc-roster-identity.mjs"
+      - "scripts/site-data/ufc/build-ufc-canonical-roster.mjs"
+      - "scripts/site-data/ufc/validate-ufc-roster-output.mjs"
+      - "scripts/site-data/ufc/check-ufc-antidoping.mjs"
       - "ufc-roster.html"
       - "assets/ufc-roster.js"
       - "assets/ufc-roster.css"
@@ -87,7 +87,7 @@ jobs:
         shell: bash
         run: |
           set +e
-          node scripts/update-ufc-roster-v4.mjs \
+          node scripts/site-data/ufc/update-ufc-roster-v4.mjs \
             --state /tmp/ufc-roster/ufc-roster-state.json \
             --backfill assets/ufc-roster-backfill.json \
             --output-state /tmp/ufc-roster-state.json \
@@ -168,7 +168,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/promote-ufc-active-entries.mjs \
+          node scripts/site-data/ufc/promote-ufc-active-entries.mjs \
             --state /tmp/ufc-roster-state.json \
             --public /tmp/ufc-roster-latest.json \
             2>&1 | tee -a /tmp/ufc-roster-run.log
@@ -180,7 +180,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/check-ufc-profile-directory.mjs \
+          node scripts/site-data/ufc/check-ufc-profile-directory.mjs \
             --state /tmp/ufc-roster-state.json \
             --public /tmp/ufc-roster-latest.json \
             --previous /tmp/ufc-roster/ufc-roster-state.json \
@@ -192,7 +192,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/check-ufc-event-cards.mjs \
+          node scripts/site-data/ufc/check-ufc-event-cards.mjs \
             --state /tmp/ufc-roster-state.json \
             --public /tmp/ufc-roster-latest.json \
             --previous /tmp/ufc-roster/ufc-roster-state.json \
@@ -203,7 +203,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/normalize-ufc-roster-events.mjs \
+          node scripts/site-data/ufc/normalize-ufc-roster-events.mjs \
             --state /tmp/ufc-roster-state.json \
             --public /tmp/ufc-roster-latest.json \
             2>&1 | tee -a /tmp/ufc-roster-run.log
@@ -214,7 +214,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/filter-ufc-roster-additions.mjs \
+          node scripts/site-data/ufc/filter-ufc-roster-additions.mjs \
             --state /tmp/ufc-roster-state.json \
             --public /tmp/ufc-roster-latest.json \
             --backfill assets/ufc-roster-backfill.json \
@@ -226,7 +226,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/build-ufc-canonical-roster.mjs \
+          node scripts/site-data/ufc/build-ufc-canonical-roster.mjs \
             --state /tmp/ufc-roster-state.json \
             --public /tmp/ufc-roster-latest.json \
             2>&1 | tee -a /tmp/ufc-roster-run.log
@@ -237,7 +237,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/normalize-ufc-roster-events.mjs \
+          node scripts/site-data/ufc/normalize-ufc-roster-events.mjs \
             --state /tmp/ufc-roster-state.json \
             --public /tmp/ufc-roster-latest.json \
             --finalize-public \
@@ -249,7 +249,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          node scripts/check-ufc-antidoping.mjs \
+          node scripts/site-data/ufc/check-ufc-antidoping.mjs \
             --state /tmp/ufc-roster-state.json \
             --previous /tmp/ufc-roster/ufc-roster-state.json
 

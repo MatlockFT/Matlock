@@ -34,10 +34,10 @@ jobs:
 
       - name: Check updater syntax
         run: |
-          node --check scripts/update-fighter-birthdays.mjs
-          node --check scripts/resolve-on-this-day-images.mjs
-          node --check scripts/check-on-this-day-images.mjs
-          node --check scripts/check-on-this-day.mjs
+          node --check scripts/site-data/ufc/update-fighter-birthdays.mjs
+          node --check scripts/history/resolve-on-this-day-images.mjs
+          node --check scripts/history/check-on-this-day-images.mjs
+          node --check scripts/history/check-on-this-day.mjs
 
       - name: Refresh fighter birthdays from Wikipedia and Wikidata
         run: npm run update:birthdays
