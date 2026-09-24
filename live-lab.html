@@ -89,18 +89,32 @@ page_scripts:
     </div>
   </section>
 
+  <section class="live-lab__upcoming-section" aria-labelledby="live-lab-upcoming-title">
+    <div class="live-lab__section-head">
+      <div>
+        <p class="live-lab__label">Scheduled on YouTube</p>
+        <h2 id="live-lab-upcoming-title">Up next</h2>
+      </div>
+      <strong data-upcoming-count>0 upcoming</strong>
+    </div>
+
+    <div class="live-lab__upcoming-list" data-upcoming-list>
+      <p class="live-lab__empty">Checking scheduled broadcasts…</p>
+    </div>
+  </section>
+
   <section class="live-lab__info" aria-label="Prototype status">
     <div>
       <span>Monitored</span>
       <strong data-live-monitored>— promotions</strong>
     </div>
     <div>
-      <span>Player</span>
-      <strong>Single persistent embed</strong>
+      <span>Verification</span>
+      <strong data-api-status>YouTube API + fallback</strong>
     </div>
     <div>
-      <span>Mode</span>
-      <strong>Auto + manual override</strong>
+      <span>Player</span>
+      <strong>Single persistent embed</strong>
     </div>
     <div>
       <span>Last state change</span>
