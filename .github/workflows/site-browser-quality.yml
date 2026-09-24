@@ -97,7 +97,7 @@ jobs:
 
       - name: Configure GitHub Pages for exact-commit audit
         if: github.event_name == 'push'
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Build exact commit for push audit
         if: github.event_name == 'push'
