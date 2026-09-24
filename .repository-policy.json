@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "modernizationStage": 5,
+  "modernizationStage": 6,
   "principles": {
     "preserveExistingPublicPaths": true,
     "noCosmeticMoves": true,
@@ -52,7 +52,24 @@
       "events",
       "ufc",
       "live"
-    ]
+    ],
+    "workflowFamilies": [
+      "site",
+      "writer",
+      "matchmaker",
+      "history",
+      "events",
+      "ufc",
+      "live",
+      "news",
+      "publishing",
+      "cms"
+    ],
+    "consolidatedWorkflows": {
+      "writer": ".github/workflows/writer-quality.yml",
+      "siteBrowser": ".github/workflows/site-browser-quality.yml",
+      "matchmaker": ".github/workflows/update-matchmaker.yml"
+    }
   },
   "protectedPaths": [
     "_config.yml",
@@ -69,7 +86,6 @@
   "legacyExceptions": {
     "existingUploadsRemainInPlace": true,
     "versionedRootPagesAllowedUntilStage": 7,
-    "currentFlatScriptLayoutAllowedUntilStage": 5,
-    "currentWorkflowLayoutAllowedUntilStage": 6
+    "currentFlatScriptLayoutAllowedUntilStage": 5
   }
 }
