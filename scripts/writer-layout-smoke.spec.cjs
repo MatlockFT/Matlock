@@ -72,8 +72,8 @@ test('Writer shell and editing surface adapt to desktop and ultrawide viewports'
   await page.setViewportSize({ width: 1024, height: 900 });
   box = await app.boundingBox();
   expect(box).not.toBeNull();
-  expect(box.width).toBeGreaterThanOrEqual(950);
-  expect(box.width).toBeLessThanOrEqual(970);
+  expect(box.width).toBeGreaterThanOrEqual(998);
+  expect(box.width).toBeLessThanOrEqual(1002);
   await expectCenteredWithoutOverflow(page, box);
 });
 
