@@ -4,11 +4,11 @@ This document tracks the controlled reorganization of the MMA Matlock repository
 
 ## Current status
 
-**Stage 0 of 10 — Baseline and rollback map: COMPLETE**
+**Stage 1 of 10 — Permanent organizational rules: COMPLETE**
 
-Next stage: **Stage 1 — Permanent organizational rules**
+Next stage: **Stage 2 — Future article asset upload hierarchy**
 
-No public page, article, asset, permalink, Writer path, or runtime-data path is being moved or renamed in Stage 0.
+Stages 0 and 1 moved no public page, article, asset, permalink, Writer path, or runtime-data path. Stage 1 establishes the permanent rules that later stages must follow.
 
 ## Rollback point
 
@@ -108,13 +108,42 @@ Content invariants:
 
 Automation that must remain operational includes site quality/build checks, Writer production smoke tests, Writer backend quality tests, scheduled publishing, news updates, On This Day generation, Matchmaker generation/validation, and event-data jobs.
 
+## Stage 1 organization contract
+
+Stage 1 formalized the stability-first repository model in two forms:
+
+- Human-readable contract: `docs/repository-structure.md`
+- Machine-readable contract: `.repository-policy.json`
+
+The contract establishes:
+
+- Existing public URLs and working asset paths are preserved by default.
+- Root-level Jekyll pages are valid and do not need cosmetic relocation.
+- Articles remain in `_posts/` with the existing permalink format.
+- Existing files in `assets/uploads/` remain where they are.
+- Stage 2 will route **new** Writer article media to `assets/uploads/articles/YYYY/MM/article-slug/`.
+- Generated media belongs under `assets/generated/`.
+- Public runtime datasets belong under `assets/data/`; Jekyll build-time data belongs under `_data/`.
+- Article video remains outside Git history as GitHub Release assets.
+- Internal scripts have a target domain structure, but moves wait until Stage 5.
+- Workflow consolidation waits until Stage 6.
+- Versioned legacy page cleanup waits until Stage 7.
+
+The policy is checked in CI with:
+
+```sh
+npm run check:repo-policy
+```
+
+That check verifies the permanent roots, Jekyll permalink contract, protected paths, media separation, GitHub Release video policy, and staged legacy exceptions before later migrations build on top of them.
+
 ## Planned stages
 
 | Stage | Scope | Status |
 | --- | --- | --- |
 | 0 | Baseline, rollback marker, reference audit | Complete |
-| 1 | Permanent organizational rules | Next |
-| 2 | Future article asset upload hierarchy | Pending |
+| 1 | Permanent organizational rules | Complete |
+| 2 | Future article asset upload hierarchy | Next |
 | 3 | Media source/generated/video pipeline separation | Pending |
 | 4 | Writer frontend module split | Pending |
 | 5 | Development-script organization | Pending |
