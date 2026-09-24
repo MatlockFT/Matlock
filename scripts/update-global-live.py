@@ -405,20 +405,6 @@ def probe_promotion(promotion, global_terms, previous_state):
 
     candidates = extract_stream_candidates(streams_page, promotion)
 
-    if promotion_id == "inka":
-        print(
-            "INKA stream candidates:",
-            [
-                {
-                    "video_id": item["video_id"],
-                    "title": item["title"],
-                    "live": item["live"],
-                    "restricted": item["restricted"],
-                }
-                for item in candidates
-            ],
-        )
-
     restricted_title = None
     ignored_title = None
 
