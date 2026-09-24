@@ -177,6 +177,11 @@ test('Writer keeps embeds stable, quotes structured, and bitmap clipboard paste 
   await page.keyboard.type(' Copy after native video.');
   await page.waitForTimeout(180);
   await expect(page.locator('[data-preview-content] .article-inline-video video')).toHaveAttribute('data-keep-node', 'native-video');
+  await expect(nativeVideo).toHaveAttribute('loop', '');
+  await expect(nativeVideo).toHaveAttribute('muted', '');
+  await expect(nativeVideo).toHaveAttribute('playsinline', '');
+  await expect(nativeVideo).not.toHaveAttribute('controls', '');
+  await expect(page.locator('[data-preview-content] .article-inline-video-controls')).toHaveCount(1);
 
   // X preview wrapper is also preserved instead of being rebuilt on each keystroke.
   await page.click('[data-tool="x"]');
