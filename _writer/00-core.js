@@ -98,11 +98,29 @@
     return `${y}-${m}-${day}`;
   };
 
+  function hideToast() {
+    if (typeof toast.hidePopover === 'function' && toast.matches(':popover-open')) {
+      try { toast.hidePopover(); } catch {}
+    }
+    toast.hidden = true;
+  }
+
   function showToast(message, ms = 3200) {
     window.clearTimeout(toastTimer);
     toast.textContent = message;
-    toast.hidden = false;
-    toastTimer = window.setTimeout(() => { toast.hidden = true; }, ms);
+
+    if (typeof toast.showPopover === 'function') {
+      if (toast.matches(':popover-open')) {
+        try { toast.hidePopover(); } catch {}
+      }
+      toast.hidden = false;
+      try { toast.showPopover(); }
+      catch { toast.hidden = false; }
+    } else {
+      toast.hidden = false;
+    }
+
+    toastTimer = window.setTimeout(hideToast, ms);
   }
 
   function saveStateKind(message) {
@@ -339,6 +357,13 @@
     const sectionClass = String(code || '').match(/<section\b[^>]*class=["']([^"']+)["']/i);
     if (sectionClass) return cleanHtmlLabel(sectionClass[1].split(/\s+/).join(' '));
     return 'HTML visual';
+  }
+
+  function normalizeHtmlVisual(code) {
+    const source = String(code || '').trim();
+    if (!source) return '';
+    if (/^<section\b[\s\S]*<\/section>\s*$/i.test(source)) return source;
+    return `<section class="article-html-visual">\n${source}\n</section>`;
   }
 
   function htmlBlockToken(block) {

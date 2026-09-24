@@ -450,8 +450,8 @@ Stance</textarea></label>
       <header><div><p class="eyebrow">Visual block</p><h2 data-html-dialog-title>Insert HTML visual</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
       <div class="writer-dialog-body writer-dialog-grid">
         <label class="writer-field writer-field-wide"><span>Visual name <small>shown only inside Writer</small></span><input type="text" data-html-label placeholder="KI MMA World Grand Prix"></label>
-        <label class="writer-field writer-field-wide"><span>HTML + CSS</span><textarea class="writer-html-code" rows="16" data-html-code spellcheck="false" placeholder='&lt;section class="my-visual"&gt;&#10;  &lt;style&gt;...&lt;/style&gt;&#10;  ...&#10;&lt;/section&gt;'></textarea></label>
-        <p class="writer-dialog-note writer-field-wide">Use one self-contained &lt;section&gt; block. Writer keeps the full code here while the article editor shows only one compact placeholder line. Preview and publish use the full HTML.</p>
+        <label class="writer-field writer-field-wide"><span>HTML + CSS</span><textarea class="writer-html-code" rows="16" data-html-code spellcheck="false" placeholder='&lt;div class="my-visual"&gt;...&lt;/div&gt;&#10;&#10;&lt;style&gt;&#10;  .my-visual { ... }&#10;&lt;/style&gt;'></textarea></label>
+        <p class="writer-dialog-note writer-field-wide">Paste the HTML + CSS for the visual. Writer automatically wraps it in a self-contained &lt;section&gt; when needed, while the article editor shows one compact placeholder line. Script tags are not supported.</p>
       </div>
       <footer class="writer-dialog-actions writer-dialog-actions-spread">
         <button class="writer-button writer-button-danger" type="button" data-html-delete hidden>Remove visual</button>
@@ -502,5 +502,5 @@ Stance</textarea></label>
     </form>
   </dialog>
 
-  <div class="writer-toast" data-toast role="status" aria-live="polite" hidden></div>
+  <div class="writer-toast" data-toast role="status" aria-live="polite" popover="manual" hidden></div>
 </section>

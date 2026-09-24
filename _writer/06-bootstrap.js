@@ -235,19 +235,19 @@ Object.values(fields).forEach(el => {
         : 'Script tags are not supported in article HTML visuals.', 5000);
       return;
     }
-    if (!/^<section\b[\s\S]*<\/section>\s*$/i.test(code)) { showToast('Wrap the visual in one self-contained <section>...</section> block.', 5500); return; }
-    const label = cleanHtmlLabel(dialog.querySelector('[data-html-label]').value || inferHtmlLabel(code));
+    const normalizedCode = normalizeHtmlVisual(code);
+    const label = cleanHtmlLabel(dialog.querySelector('[data-html-label]').value || inferHtmlLabel(normalizedCode));
 
     if (editingHtmlBlockId && htmlBlocks.has(editingHtmlBlockId)) {
       const block = htmlBlocks.get(editingHtmlBlockId);
       block.label = label;
-      block.code = code;
+      block.code = normalizedCode;
       replaceHtmlToken(editingHtmlBlockId, htmlBlockToken(block));
       renderHtmlBlockRail();
       showToast('HTML visual updated.');
     } else {
       const id = htmlBlockId();
-      const block = { id, label, code };
+      const block = { id, label, code: normalizedCode };
       htmlBlocks.set(id, block);
       insertBlock(htmlBlockToken(block));
       renderHtmlBlockRail();
@@ -359,11 +359,12 @@ Object.values(fields).forEach(el => {
     }
 
     const pasted = event.clipboardData?.getData('text/plain')?.trim() || '';
-    if (!/^<section\b[\s\S]*<\/section>\s*$/i.test(pasted)) return;
+    if (!/<(?:section|article|div|table|figure|style|aside|details|svg)\b/i.test(pasted)) return;
     if (/<script\b/i.test(pasted)) { event.preventDefault(); showToast('Script tags are not supported in article HTML visuals.', 5000); return; }
     event.preventDefault();
+    const normalizedCode = normalizeHtmlVisual(pasted);
     const id = htmlBlockId();
-    const block = { id, label: inferHtmlLabel(pasted), code: pasted };
+    const block = { id, label: inferHtmlLabel(normalizedCode), code: normalizedCode };
     htmlBlocks.set(id, block);
     insertBlock(htmlBlockToken(block));
     renderHtmlBlockRail();

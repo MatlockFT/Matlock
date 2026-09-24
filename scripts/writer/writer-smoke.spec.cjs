@@ -218,7 +218,17 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
 
   await page.click('[data-tool="html"]');
   await page.fill('[data-html-label]', 'Smoke visual');
-  await page.fill('[data-html-code]', '<section class="writer-smoke-visual"><style>.writer-smoke-visual{padding:12px}</style><h2>Smoke Visual</h2><p>Rendered HTML visual.</p></section>');
+
+  // Dialog validation must stay visible above the modal instead of disappearing behind it.
+  await page.fill('[data-html-code]', '<div>Unsafe</div><script>alert(1)</script>');
+  await page.click('[data-html-insert]');
+  await expect(page.locator('[data-html-dialog]')).toBeVisible();
+  await expect(page.locator('[data-toast]')).toBeVisible();
+  await expect(page.locator('[data-toast]')).toContainText('Script tags are not supported');
+  await expect.poll(async () => page.locator('[data-toast]').evaluate(el => el.matches(':popover-open'))).toBe(true);
+
+  // Authors may paste a normal HTML/CSS fragment; Writer supplies the section wrapper.
+  await page.fill('[data-html-code]', '<div class="writer-smoke-visual"><h2>Smoke Visual</h2><p>Rendered HTML visual.</p></div><style>.writer-smoke-visual{padding:12px}</style>');
   await page.click('[data-html-insert]');
   await expect(page.locator('[data-html-block-rail]')).toBeVisible();
   await expect(page.locator('[data-html-block-edit]')).toContainText('Smoke visual');
@@ -299,7 +309,8 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await page.click('[data-save-draft]');
   await expect(page.locator('[data-save-state]')).toContainText('Saved', { timeout: 10000 });
   await expect.poll(() => Boolean(remote && /published:\s*false/.test(remote.text))).toBe(true);
-  expect(remote.text).toContain('<section class="writer-smoke-visual">');
+  expect(remote.text).toContain('<section class="article-html-visual">');
+  expect(remote.text).toContain('<div class="writer-smoke-visual">');
   expect(remote.text).not.toContain('[HTML VISUAL');
   expect(remote.text).toContain('article-inline-image--wrap article-inline-image--right');
   expect(remote.text).toContain('data-media-flow="wrap"');
