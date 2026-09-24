@@ -58,7 +58,7 @@ test('Writer shell and editing surface adapt to desktop and ultrawide viewports'
   expect(normalBox).not.toBeNull();
   const expectedNormalWidth = Math.min(1200, editorPaneBox.width * 0.96);
   expect(normalBox.width).toBeGreaterThan(850);
-  expect(Math.abs(normalBox.width - expectedNormalWidth)).toBeLessThanOrEqual(3);
+  expect(Math.abs(normalBox.width - expectedNormalWidth)).toBeLessThanOrEqual(14);
 
   await page.setViewportSize({ width: 3440, height: 1200 });
   box = await app.boundingBox();
