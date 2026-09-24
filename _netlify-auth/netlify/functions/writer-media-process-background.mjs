@@ -1,9 +1,11 @@
 import { chunkKey, cleanupChunks, mediaStore, requireWriterSession, setStatus, uploadScope, validUploadId } from './_writer-media.mjs';
 
-const REPO_FULL_NAME = process.env.GITHUB_REPOSITORY || 'MatlockFT/Matlock';
+function repoFullName() {
+  return Netlify.env.get('GITHUB_REPOSITORY') || 'MatlockFT/Matlock';
+}
 
 async function githubJson(token, path, options = {}) {
-  const response = await fetch(`https://api.github.com/repos/${REPO_FULL_NAME}${path}`, {
+  const response = await fetch(`https://api.github.com/repos/${repoFullName()}${path}`, {
     ...options,
     headers: {
       Accept: 'application/vnd.github+json',
@@ -83,9 +85,9 @@ function chunkStream(store, scope, uploadId, chunkCount) {
 async function verifyChunks(store, scope, uploadId, chunkCount, fileSize) {
   let stagedBytes = 0;
   for (let index = 0; index < chunkCount; index += 1) {
-    const metadata = await store.getMetadata(chunkKey(scope, uploadId, index), { consistency: 'strong' });
-    const chunkSize = Number(metadata?.chunkSize);
-    if (!metadata || !Number.isFinite(chunkSize) || chunkSize < 1) {
+    const entry = await store.getMetadata(chunkKey(scope, uploadId, index), { consistency: 'strong' });
+    const chunkSize = Number(entry?.metadata?.chunkSize);
+    if (!entry || !Number.isFinite(chunkSize) || chunkSize < 1) {
       throw new Error(`Missing staged video chunk ${index + 1} of ${chunkCount}.`);
     }
     stagedBytes += chunkSize;
