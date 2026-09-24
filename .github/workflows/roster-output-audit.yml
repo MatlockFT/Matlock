@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - ".github/workflows/roster-output-audit.yml"
-      - "scripts/validate-ufc-roster-output.mjs"
+      - "scripts/site-data/ufc/validate-ufc-roster-output.mjs"
   workflow_run:
     workflows:
       - Update UFC roster tracker
@@ -55,6 +55,6 @@ jobs:
 
       - name: Validate published roster integrity
         run: >-
-          node scripts/validate-ufc-roster-output.mjs
+          node scripts/site-data/ufc/validate-ufc-roster-output.mjs
           /tmp/ufc-roster-audit/ufc-roster-latest.json
           /tmp/ufc-roster-audit/ufc-roster-state.json

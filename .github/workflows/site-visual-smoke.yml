@@ -13,7 +13,7 @@ on:
       - "_includes/**"
       - "assets/*.css"
       - "assets/*.js"
-      - "scripts/site-visual-smoke.spec.cjs"
+      - "scripts/qa/site-visual-smoke.spec.cjs"
       - ".github/workflows/site-visual-smoke.yml"
       - "_config.yml"
 
@@ -65,7 +65,7 @@ jobs:
         env:
           SITE_BASE_URL: https://mmamatlock.com
           VISUAL_SMOKE_DIR: artifacts/site-visual-smoke
-        run: npx playwright test scripts/site-visual-smoke.spec.cjs --browser=chromium --reporter=line
+        run: npx playwright test scripts/qa/site-visual-smoke.spec.cjs --browser=chromium --reporter=line
 
       - name: Upload viewport screenshots
         if: always()

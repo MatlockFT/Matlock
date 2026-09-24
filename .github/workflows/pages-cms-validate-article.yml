@@ -38,4 +38,4 @@ jobs:
         uses: actions/jekyll-build-pages@v1
 
       - name: Check generated site
-        run: node scripts/check-site.mjs _site
+        run: node scripts/qa/check-site.mjs _site

@@ -6,8 +6,8 @@ on:
       - '_posts/**'
       - 'assets/uploads/**'
       - 'assets/header-image.png'
-      - 'scripts/optimize-post-images.mjs'
-      - 'scripts/media-paths.mjs'
+      - 'scripts/media/optimize-post-images.mjs'
+      - 'scripts/media/media-paths.mjs'
       - '.github/workflows/pages-cms-optimize-images.yml'
   workflow_dispatch:
     inputs:
