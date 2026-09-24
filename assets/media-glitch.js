@@ -34,8 +34,10 @@
         for (const clone of [red, cyan]) {
             clone.removeAttribute('id');
             clone.removeAttribute('alt');
-            clone.removeAttribute('loading');
-            clone.removeAttribute('fetchpriority');
+            clone.removeAttribute('srcset');
+            clone.src = source.currentSrc || source.src;
+            clone.loading = 'lazy';
+            clone.fetchPriority = 'low';
             clone.setAttribute('aria-hidden', 'true');
             clone.classList.add('mma-glitch-copy');
             syncCloneGeometry(source, clone);
