@@ -162,7 +162,7 @@ const feeds = [
 
 async function broadcastControlConfig() {
     for (const path of [
-        "assets/uploads/broadcast-control.json",
+        "assets/uploads/system/broadcast-control.json",
         "assets/data/broadcast-control.json"
     ]) {
         try {
