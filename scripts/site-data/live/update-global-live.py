@@ -919,6 +919,33 @@ def main():
                 events.append(result["event"])
             upcoming.extend(result.get("upcoming") or [])
 
+    # Collapse mirrored live broadcasts exposed on multiple YouTube channels.
+    # Keep distinct simultaneous streams from the same promotion when their titles differ.
+    deduped_events = {}
+    for event in events:
+        title_key = re.sub(r"\\s+", " ", str(event.get("title") or "").strip()).casefold()
+        event_key = (
+            str(event.get("promotion_id") or ""),
+            title_key or str(event.get("video_id") or ""),
+        )
+        current = deduped_events.get(event_key)
+        if current is None:
+            deduped_events[event_key] = event
+            continue
+
+        def live_event_score(item):
+            role_score = 1 if item.get("source_role") == "promotion" else 0
+            try:
+                viewers = int(item.get("concurrent_viewers") or 0)
+            except (TypeError, ValueError):
+                viewers = 0
+            return (role_score, viewers)
+
+        if live_event_score(event) > live_event_score(current):
+            deduped_events[event_key] = event
+
+    events = list(deduped_events.values())
+
     # Remove duplicates if a channel page exposed the same scheduled stream
     # multiple times.
     deduped_upcoming = {}
