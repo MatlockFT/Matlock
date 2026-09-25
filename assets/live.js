@@ -28,6 +28,28 @@
   let ambientLayerIndex = 0;
   let busy = false;
   let lastData = null;
+  let uiIdleTimer = 0;
+
+  const UI_IDLE_DELAY = 5000;
+
+  const clearUiIdleTimer = () => {
+    window.clearTimeout(uiIdleTimer);
+    uiIdleTimer = 0;
+  };
+
+  const scheduleUiFade = () => {
+    clearUiIdleTimer();
+    if (!currentVideoId || document.hidden) return;
+
+    uiIdleTimer = window.setTimeout(() => {
+      if (currentVideoId && !document.hidden) root.classList.add("is-ui-idle");
+    }, UI_IDLE_DELAY);
+  };
+
+  const revealUi = () => {
+    root.classList.remove("is-ui-idle");
+    scheduleUiFade();
+  };
 
   const embedUrl = (videoId) => {
     const params = new URLSearchParams({
@@ -237,6 +259,7 @@
     }
 
     setAmbientVideo(event.video_id);
+    revealUi();
     renderLiveEvents(lastData?.events || []);
   };
 
@@ -251,6 +274,8 @@
     if (player.getAttribute("src")) player.removeAttribute("src");
     currentVideoId = "";
     clearAmbientVideo();
+    clearUiIdleTimer();
+    root.classList.remove("is-ui-idle");
 
     const next = Array.isArray(upcoming) ? upcoming[0] : null;
     if (next) {
@@ -317,6 +342,23 @@
 
   refresh?.addEventListener("click", loadStatus);
   window.addEventListener("online", loadStatus);
+
+  const activityEvents = ["pointermove", "pointerdown", "keydown", "wheel", "touchstart", "scroll"];
+  for (const eventName of activityEvents) {
+    window.addEventListener(eventName, revealUi, { passive: true });
+  }
+
+  window.addEventListener("focus", revealUi);
+  root.addEventListener("focusin", revealUi);
+  player?.addEventListener("mouseenter", revealUi);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      clearUiIdleTimer();
+      root.classList.remove("is-ui-idle");
+    } else {
+      revealUi();
+    }
+  });
 
   loadStatus();
   window.setInterval(() => {
