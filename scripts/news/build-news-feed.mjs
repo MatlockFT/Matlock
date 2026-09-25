@@ -440,8 +440,25 @@ async function fetchArticleImage(story) {
     }
 }
 
-function articleContextFromHtml(html) {
+function articleContextFromHtml(html, storyTitle = "") {
     const metaKeys = new Set(["description", "og:description", "twitter:description"]);
+    const paragraphPattern = /<p\b[^>]*>([\s\S]*?)<\/p>/gi;
+    const paragraphs = [...html.matchAll(paragraphPattern)]
+        .map(match => plainText(match[1]))
+        .filter(text => text.length >= 90)
+        .filter(text =>
+            !/subscribe|sign up|newsletter|advertisement|click here|follow us|cookie|privacy/i.test(text)
+        );
+
+    const resultDriven = /\bresults?|live updates?|recap|scorecards?|weigh-?ins?\b/i.test(storyTitle);
+    if (resultDriven && paragraphs.length) {
+        const resultSignal = /\b(defeated|def\.|won|wins|winner|knockout|\bko\b|\btko\b|submission|decision|unanimous|split|majority|scorecards?|round|stoppage|finished|finish)\b/i;
+        const resultParagraphs = paragraphs.filter(text => resultSignal.test(text));
+
+        if (resultParagraphs.length) {
+            return truncate(resultParagraphs.slice(0, 2).join(" "), ARTICLE_CONTEXT_LIMIT);
+        }
+    }
 
     for (const match of html.matchAll(/<meta\b[^>]*>/gi)) {
         const tag = match[0];
@@ -472,14 +489,6 @@ function articleContextFromHtml(html) {
         }
     }
 
-    const paragraphPattern = /<p\b[^>]*>([\s\S]*?)<\/p>/gi;
-    const paragraphs = [...html.matchAll(paragraphPattern)]
-        .map(match => plainText(match[1]))
-        .filter(text => text.length >= 90)
-        .filter(text =>
-            !/subscribe|sign up|newsletter|advertisement|click here|follow us|cookie|privacy/i.test(text)
-        );
-
     return paragraphs.length
         ? truncate(paragraphs.slice(0, 2).join(" "), ARTICLE_CONTEXT_LIMIT)
         : "";
@@ -500,7 +509,7 @@ async function fetchArticleContext(story) {
         if (!response.ok) return "";
         const contentType = response.headers.get("content-type") || "";
         if (contentType && !contentType.includes("html")) return "";
-        return articleContextFromHtml(await response.text());
+        return articleContextFromHtml(await response.text(), story.title);
     } catch {
         return "";
     } finally {

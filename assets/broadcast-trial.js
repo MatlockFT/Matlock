@@ -93,6 +93,7 @@ function renderSlide(s){
  if(s.type==="news"&&index%2===0)els.stage.classList.add("layout-flip");
  if(s.type==="video")setVideo(s);else if(s.type==="event"){els.stage.classList.add("event-mode");renderEventVisual(s)}else setMediaImage(s.image);
  els.title.textContent=s.title||"Combat Sports Update";
+ els.title.classList.toggle("is-long",String(s.title||"").length>92);
  els.context.textContent=s.context||"";
  els.context.style.display=s.context?"block":"none";
  els.source.textContent=(s.source||"Combat Sports").toUpperCase();
