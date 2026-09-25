@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "generated_at": "2026-09-25T22:09:31Z",
+  "generated_at": "2026-09-25T22:10:56Z",
   "selected_event_id": "shooto-brasil:xKtNvmTpuGM",
   "events": [
     {
@@ -25,38 +25,10 @@
       "scheduled_end_time": null,
       "actual_start_time": "2026-09-25T21:27:07Z",
       "actual_end_time": null,
-      "concurrent_viewers": "246",
+      "concurrent_viewers": "249",
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T22:09:30Z",
-      "source_role": "promotion"
-    },
-    {
-      "event_id": "shooto-brasil:NSG3v4z5uqc",
-      "promotion_id": "shooto-brasil",
-      "promotion": "Shooto Brasil",
-      "short_name": "Shooto Brasil",
-      "country": "Brazil",
-      "priority": 82,
-      "coverage_note": "Official Shooto Brasil channel; current events include YouTube coverage",
-      "access_note": null,
-      "channel_url": "https://www.youtube.com/channel/UCsmEWs-nKmRSKDWxY_k4HjQ",
-      "channel_id": "UCeEf1KSLM06p5Wp5P_Y72Qw",
-      "channel_name": "Esportes RedeTV",
-      "video_id": "NSG3v4z5uqc",
-      "title": "🚨🥊 AO VIVO 🚨🥊  | LIGA MONSTRO COMBATE 3 na REDETV!",
-      "watch_url": "https://www.youtube.com/watch?v=NSG3v4z5uqc",
-      "status": "live",
-      "is_live": true,
-      "embeddable": true,
-      "scheduled_start_time": "2026-09-25T20:30:00Z",
-      "scheduled_end_time": null,
-      "actual_start_time": "2026-09-25T20:25:46Z",
-      "actual_end_time": null,
-      "concurrent_viewers": "297",
-      "api_verified": true,
-      "stale": false,
-      "observed_at": "2026-09-25T22:09:30Z",
+      "observed_at": "2026-09-25T22:10:55Z",
       "source_role": "promotion"
     },
     {
@@ -81,10 +53,38 @@
       "scheduled_end_time": null,
       "actual_start_time": "2026-09-25T20:26:10Z",
       "actual_end_time": null,
-      "concurrent_viewers": "1302",
+      "concurrent_viewers": "1346",
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T22:09:30Z",
+      "observed_at": "2026-09-25T22:10:56Z",
+      "source_role": "broadcast_partner"
+    },
+    {
+      "event_id": "liga-monstro-combate:NSG3v4z5uqc",
+      "promotion_id": "liga-monstro-combate",
+      "promotion": "Liga Monstro Combate",
+      "short_name": "LMC",
+      "country": "Brazil",
+      "priority": 80,
+      "coverage_note": "Promotion channel + filtered RedeTV! broadcast partner; LMC 3 airs on RedeTV! YouTube",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/channel/UCeEf1KSLM06p5Wp5P_Y72Qw",
+      "channel_id": "UCeEf1KSLM06p5Wp5P_Y72Qw",
+      "channel_name": "Esportes RedeTV",
+      "video_id": "NSG3v4z5uqc",
+      "title": "🚨🥊 AO VIVO 🚨🥊  | LIGA MONSTRO COMBATE 3 na REDETV!",
+      "watch_url": "https://www.youtube.com/watch?v=NSG3v4z5uqc",
+      "status": "live",
+      "is_live": true,
+      "embeddable": true,
+      "scheduled_start_time": "2026-09-25T20:30:00Z",
+      "scheduled_end_time": null,
+      "actual_start_time": "2026-09-25T20:25:46Z",
+      "actual_end_time": null,
+      "concurrent_viewers": "323",
+      "api_verified": true,
+      "stale": false,
+      "observed_at": "2026-09-25T22:10:56Z",
       "source_role": "broadcast_partner"
     }
   ],
@@ -280,7 +280,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:09:30Z"
+      "last_checked_at": "2026-09-25T22:10:55Z"
     },
     "afc-korea": {
       "promotion": "Angel's Fighting Championship",
@@ -297,7 +297,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:55:13Z"
+      "last_checked_at": "2026-09-25T22:10:54Z"
     },
     "apfc": {
       "promotion": "Anthony Pettis Fighting Championship",
@@ -382,7 +382,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:55:14Z"
+      "last_checked_at": "2026-09-25T22:10:55Z"
     },
     "budo-sento": {
       "promotion": "Budo Sento Championship",
@@ -433,7 +433,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:55:13Z"
+      "last_checked_at": "2026-09-25T22:10:54Z"
     },
     "fen": {
       "promotion": "Fight Exclusive Night",
@@ -484,7 +484,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:55:13Z"
+      "last_checked_at": "2026-09-25T22:10:54Z"
     },
     "fusion-fight-league": {
       "promotion": "Fusion Fight League",
@@ -586,7 +586,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:55:13Z"
+      "last_checked_at": "2026-09-25T22:10:54Z"
     },
     "liga-monstro-combate": {
       "promotion": "Liga Monstro Combate",
@@ -602,8 +602,8 @@
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": "2026-09-25T22:09:30Z",
-      "last_checked_at": "2026-09-25T22:09:30Z"
+      "last_success_at": "2026-09-25T22:10:56Z",
+      "last_checked_at": "2026-09-25T22:10:54Z"
     },
     "lux": {
       "promotion": "LUX Fight League",
@@ -654,7 +654,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:55:13Z"
+      "last_checked_at": "2026-09-25T22:10:54Z"
     },
     "mma-mexico": {
       "promotion": "MMA México",
@@ -722,7 +722,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T15:59:14Z",
-      "last_checked_at": "2026-09-25T22:09:30Z"
+      "last_checked_at": "2026-09-25T22:10:55Z"
     },
     "open-fight-latam": {
       "promotion": "Open Fight LATAM",
@@ -823,8 +823,8 @@
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": "2026-09-25T22:09:30Z",
-      "last_checked_at": "2026-09-25T22:09:30Z"
+      "last_success_at": "2026-09-25T22:10:55Z",
+      "last_checked_at": "2026-09-25T22:10:55Z"
     },
     "tuff-n-uff": {
       "promotion": "Tuff-N-Uff",
@@ -892,7 +892,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T02:51:01Z",
-      "last_checked_at": "2026-09-25T16:55:14Z"
+      "last_checked_at": "2026-09-25T22:10:55Z"
     },
     "wow-fc": {
       "promotion": "WOW Fight Company",
@@ -909,7 +909,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:55:14Z"
+      "last_checked_at": "2026-09-25T22:10:55Z"
     }
   },
   "monitored_count": 40,
