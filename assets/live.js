@@ -23,7 +23,6 @@
   const mediaPlay = root.querySelector("[data-media-play]");
   const mediaPlayIcon = root.querySelector("[data-media-play-icon]");
   const mediaMute = root.querySelector("[data-media-mute]");
-  const mediaMuteIcon = root.querySelector("[data-media-mute-icon]");
   const mediaVolume = root.querySelector("[data-media-volume]");
   const mediaLive = root.querySelector("[data-media-live]");
 
@@ -115,14 +114,19 @@
         mediaPlay.title = playing ? "Pause" : "Play";
       }
 
-      if (mediaMuteIcon) mediaMuteIcon.textContent = muted || volume === 0 ? "MUTE" : "VOL";
+      const effectivelyMuted = muted || volume === 0;
+      if (!effectivelyMuted && volume > 0) {
+        lastNonZeroVolume = volume;
+      }
+
       if (mediaMute) {
-        mediaMute.setAttribute("aria-label", muted ? "Unmute" : "Mute");
-        mediaMute.title = muted ? "Unmute" : "Mute";
+        mediaMute.classList.toggle("is-muted", effectivelyMuted);
+        mediaMute.setAttribute("aria-label", effectivelyMuted ? "Unmute" : "Mute");
+        mediaMute.title = effectivelyMuted ? "Unmute" : "Mute";
       }
 
       if (mediaVolume && document.activeElement !== mediaVolume) {
-        mediaVolume.value = String(Math.round(volume));
+        mediaVolume.value = effectivelyMuted ? "0" : String(Math.round(volume));
       }
 
       mediaLive?.classList.toggle("is-live-edge", atLiveEdge);
@@ -199,13 +203,18 @@
   const toggleMute = () => {
     revealUi();
     withYouTubePlayer((api) => {
-      if (api.isMuted()) {
+      const currentVolume = Number(api.getVolume?.() ?? 100);
+      const muted = api.isMuted?.() || currentVolume === 0;
+
+      if (muted) {
+        const restoreVolume = Math.max(1, lastNonZeroVolume || 100);
+        api.setVolume(restoreVolume);
         api.unMute();
-        api.setVolume(lastNonZeroVolume || 100);
+        if (mediaVolume) mediaVolume.value = String(Math.round(restoreVolume));
       } else {
-        const currentVolume = Number(api.getVolume?.() ?? 100);
         if (currentVolume > 0) lastNonZeroVolume = currentVolume;
         api.mute();
+        if (mediaVolume) mediaVolume.value = "0";
       }
     });
   };
@@ -213,7 +222,13 @@
   const setPlayerVolume = (value) => {
     revealUi();
     const normalized = Math.max(0, Math.min(100, Number(value) || 0));
-    if (normalized > 0) lastNonZeroVolume = normalized;
+
+    if (normalized > 0) {
+      lastNonZeroVolume = normalized;
+      mediaMute?.classList.remove("is-muted");
+    } else {
+      mediaMute?.classList.add("is-muted");
+    }
 
     withYouTubePlayer((api) => {
       api.setVolume(normalized);
