@@ -962,8 +962,8 @@ html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-eve
 
     body:has([data-globe-home]) .site-navigation .mobile-brand {
         display: inline-flex !important;
-        align-items: center;
-        gap: .16em;
+        align-items: flex-end;
+        gap: 0;
         color: var(--v3-ink) !important;
         font-family: "Edition Matlock", Georgia, "Times New Roman", serif !important;
         font-size: clamp(1.72rem, 8.4vw, 2.25rem) !important;
@@ -973,10 +973,15 @@ html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-eve
         text-transform: uppercase !important;
     }
 
+    body:has([data-globe-home]) .mobile-brand-pumpkin {
+        margin-left: -.13em;
+    }
+
     body:has([data-globe-home]) .mobile-brand-pumpkin-icon {
         display: block;
-        width: .72em;
-        height: .72em;
-        transform: translateY(.04em);
+        width: .84em;
+        height: .84em;
+        transform: translateY(.11em) rotate(-4deg);
+        transform-origin: 50% 100%;
     }
 }
