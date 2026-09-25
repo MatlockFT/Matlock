@@ -190,7 +190,7 @@ async function saveLive(success='Broadcast control updated'){
     toast('Apply failed: '+e.message);
     if(e.status===401)window.dispatchEvent(new CustomEvent('matlock-broadcast:auth-expired'));
     throw e;
-  }finally{apply.disabled=false;apply.textContent='Apply live'}
+  }finally{markDirty()}
 }
 
 qa('[data-nav-target]').forEach(btn=>btn.onclick=()=>{qa('[data-nav-target]').forEach(x=>x.classList.toggle('is-active',x===btn));qa('[data-section]').forEach(s=>s.hidden=s.dataset.section!==btn.dataset.navTarget)});
