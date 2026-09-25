@@ -1895,9 +1895,6 @@ That being said, there are a few things that give me pause. Older fighters have 
 
 Still, I think Jauregui is too sharp on the feet and should be able to win enough exchanges to take it.
 
-**Pick: Yazmin Jauregui via Decision**
-
-
 <section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Yazmin%20Jauregui%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%7D">
 <aside class="article-pick-card">
   <span class="article-pick-card__label">MATLOCK PICK</span>
