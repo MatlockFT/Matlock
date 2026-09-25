@@ -403,6 +403,91 @@ test.describe('Live V3 site rollout', () => {
     ['/live/', '[data-editorial-v3]'], ['/mma-yellowpages', '[data-editorial-v3]'],
     ['/picture-gallery', '[data-editorial-v3]']
   ];
+  test('ended Live video cannot autoplay or resurrect from stale status data', async ({ page }) => {
+    const staleEvent = {
+      event_id: 'test-promotion:abcdefghijk',
+      promotion_id: 'test-promotion',
+      promotion: 'Test Promotion',
+      short_name: 'TEST',
+      country: 'Test',
+      priority: 100,
+      video_id: 'abcdefghijk',
+      title: 'Finished broadcast',
+      watch_url: 'https://www.youtube.com/watch?v=abcdefghijk',
+      status: 'live',
+      is_live: true,
+      embeddable: true,
+      api_verified: true,
+      stale: false
+    };
+    const stalePayload = {
+      version: 5,
+      generated_at: new Date().toISOString(),
+      selected_event_id: staleEvent.event_id,
+      events: [staleEvent],
+      upcoming: [],
+      live_count: 1,
+      upcoming_count: 0,
+      sources: {}
+    };
+
+    await page.addInitScript(() => {
+      class FakePlayer {
+        constructor(_id, options) {
+          this.options = options || {};
+          setTimeout(() => this.options.events?.onReady?.({ target: this }), 0);
+        }
+        getPlayerState() { return 5; }
+        getVideoData() { return { isLive: false }; }
+        getVolume() { return 0; }
+        isMuted() { return true; }
+        getCurrentTime() { return 0; }
+        getDuration() { return 0; }
+        getPlaybackQuality() { return 'auto'; }
+        pauseVideo() {}
+        playVideo() { window.__endedReplayPlayCalls = (window.__endedReplayPlayCalls || 0) + 1; }
+        destroy() {}
+      }
+      window.YT = {
+        Player: FakePlayer,
+        PlayerState: { PLAYING: 1 }
+      };
+      window.__endedReplayPlayCalls = 0;
+    });
+
+    await page.route('**/assets/data/global-live.json*', route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify(stalePayload)
+      })
+    );
+    await page.route('https://www.youtube.com/embed/**', route =>
+      route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>mock</title>' })
+    );
+
+    await page.goto(targetUrl('/live/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+
+    const iframe = page.locator('[data-live-player]');
+    await expect(iframe).toHaveAttribute('src', /abcdefghijk/, { timeout: 10000 });
+    const src = await iframe.getAttribute('src');
+    expect(new URL(src).searchParams.get('autoplay')).toBe('0');
+
+    await expect.poll(
+      () => page.evaluate(() => window.__endedReplayPlayCalls || 0),
+      { timeout: 9000 }
+    ).toBe(0);
+
+    await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'offline', { timeout: 9000 });
+    await expect(iframe).not.toHaveAttribute('src', /abcdefghijk/);
+
+    await page.locator('[data-live-refresh]').click();
+    await page.waitForTimeout(300);
+    await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'offline');
+    await expect(iframe).not.toHaveAttribute('src', /abcdefghijk/);
+    expect(await page.evaluate(() => window.__endedReplayPlayCalls || 0)).toBe(0);
+  });
+
   for (const [route, ready] of routes) {
     test(route + ' is live on V3', async ({ page }) => {
       await page.goto(targetUrl(route), { waitUntil: 'domcontentloaded', timeout: 45000 });
