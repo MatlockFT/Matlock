@@ -13,6 +13,11 @@ jobs:
   inspect:
     runs-on: ubuntu-latest
     steps:
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
       - name: Download article videos
         env:
           GH_TOKEN: ${{ github.token }}
