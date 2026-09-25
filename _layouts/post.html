@@ -196,9 +196,31 @@ layout: default
             {% endif %}
 
             {% if page.show_toc %}
-                <nav class="article-toc" aria-labelledby="article-toc-title" data-article-toc hidden>
-                    <strong id="article-toc-title">In this article</strong>
-                    <ol data-article-toc-list></ol>
+                <nav
+                    class="article-toc"
+                    aria-labelledby="article-toc-title"
+                    data-article-toc
+                    data-toc-mode="{{ page.toc_mode | default: 'sections' }}"
+                    hidden
+                >
+                    <button
+                        class="article-toc-toggle"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="article-toc-panel"
+                        data-article-toc-toggle
+                    >
+                        <strong id="article-toc-title">In this article</strong>
+                        <span class="article-toc-toggle-icon" aria-hidden="true"></span>
+                    </button>
+                    <div
+                        class="article-toc-panel"
+                        id="article-toc-panel"
+                        data-article-toc-panel
+                        hidden
+                    >
+                        <ol data-article-toc-list></ol>
+                    </div>
                 </nav>
             {% endif %}
 
