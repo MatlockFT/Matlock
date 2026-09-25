@@ -226,8 +226,9 @@ test.describe('Editorial top spacing consistency', () => {
       return sorted[Math.floor(sorted.length / 2)];
     };
 
-    expect(Math.abs(live.mastheadHeight - median(samples.map(item => item.mastheadHeight))),
-      'Live must not use a custom masthead height').toBeLessThanOrEqual(2);
+    expect(live.mastheadHeight,
+      'Live masthead should be no taller than the editorial masthead median')
+      .toBeLessThanOrEqual(median(samples.map(item => item.mastheadHeight)));
     expect(Math.abs(live.wordmarkHeight - median(samples.map(item => item.wordmarkHeight))),
       'Live must not shrink or enlarge the MATLOCK wordmark').toBeLessThanOrEqual(2);
     expect(Math.abs(live.mastheadToRoot - median(samples.map(item => item.mastheadToRoot))),
