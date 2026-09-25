@@ -521,11 +521,22 @@ def make_event(promotion, channel_url, video_id, title, item, event_status):
     live_details = item.get("liveStreamingDetails") or {}
     status = item.get("status") or {}
 
+    display_name = (
+        snippet.get("channelTitle")
+        if promotion.get("use_channel_name") and snippet.get("channelTitle")
+        else promotion["name"]
+    )
+    short_name = (
+        snippet.get("channelTitle")
+        if promotion.get("use_channel_name") and snippet.get("channelTitle")
+        else (promotion.get("short_name") or promotion["name"])
+    )
+
     return {
         "event_id": f"{promotion['id']}:{video_id}",
         "promotion_id": promotion["id"],
-        "promotion": promotion["name"],
-        "short_name": promotion.get("short_name") or promotion["name"],
+        "promotion": display_name,
+        "short_name": short_name,
         "country": promotion.get("country") or "International",
         "priority": int(promotion.get("priority") or 50),
         "coverage_note": promotion.get("coverage_note"),
@@ -562,14 +573,14 @@ def probe_promotion(promotion, global_terms, previous_state):
         else normalize_channel_url(promotion.get("channel_url"))
     )
 
-    if not channel_configs:
+    if not channel_configs and not (promotion.get("pinned_videos") or []):
         return error_result(
             promotion,
             previous_source,
             previous_event,
             previous_state,
             None,
-            "No YouTube channel URL configured",
+            "No YouTube channel URL or pinned videos configured",
         )
 
     checked_at = now_iso()
