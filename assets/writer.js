@@ -2495,8 +2495,10 @@ function insertBlock(text) {
     const recentA = recentFormMarkup(a.recent);
     const recentB = recentFormMarkup(b.recent);
     const recent = recentA || recentB
-      ? '<div class="mfc-form-wrap"><div class="mfc-column">' + recentA +
-        '</div><div class="mfc-column">' + recentB + '</div></div>'
+      ? '<div class="mfc-form-wrap"><div class="mfc-column"><div class="mfc-mobile-column-label"><span>RECENT FORM</span><strong>' +
+        escapeHtml(a.name || 'Fighter A') + '</strong></div>' + recentA +
+        '</div><div class="mfc-column"><div class="mfc-mobile-column-label"><span>RECENT FORM</span><strong>' +
+        escapeHtml(b.name || 'Fighter B') + '</strong></div>' + recentB + '</div></div>'
       : '';
     const opponents = (a.opponentsRecord || b.opponentsRecord || a.opponentsPct || b.opponentsPct)
       ? '<div class="mfc-opponents"><div><strong>' + escapeHtml(a.opponentsRecord || '—') +
