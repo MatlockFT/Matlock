@@ -206,6 +206,11 @@ html[data-theme="light"] body:has([data-live-page]) .logo-banner {
   z-index: 20;
 }
 
+.live-page.is-replay-armed .live-page__player-frame {
+  width: min(100%, var(--replay-capture-width, 100%));
+  margin-inline: auto;
+}
+
 /* Low-cost stationary glow: no video sampling, images, polling or backdrop blur. */
 .live-page__player-stage::before {
   content: "";
