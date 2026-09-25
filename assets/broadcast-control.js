@@ -10,7 +10,7 @@ const VIDEOS_FALLBACK='/assets/data/mma-videos.json';
 const EVENTS='/assets/data/upcoming-events-live.json';
 const DEFAULT={"version":1,"revision":1,"updatedAt":null,"modules":{"news":true,"video":true,"events":true,"ticker":true,"comingUp":true,"music":true},"rundown":["news","news","video","news","event"],"timing":{"newsSeconds":45,"eventSeconds":35,"transitionMs":650,"controlPollSeconds":10},"news":{"maxAgeHours":48,"maxItems":16,"sources":[],"requireContext":true,"contextFacts":4},"video":{"maxAgeHours":48,"maxItems":8,"minSeconds":20,"maxSeconds":600,"volume":50,"channels":[],"playFull":true},"events":{"maxItems":3,"usePosters":true},"audio":{"enabled":true,"musicUrl":"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3","musicVolume":14,"duckVolume":3.5},"ticker":{"enabled":true,"speedSeconds":240,"maxItems":14},"visual":{"flipNews":true,"showRail":true,"showClock":true,"showBadge":true,"showSource":true},"sources":{"customNewsFeeds":[],"customVideoChannels":[]},"hidden":{"news":[],"videos":[],"events":[]},"forceNext":null};
 const q=s=>app.querySelector(s),qa=s=>[...app.querySelectorAll(s)];
-let state=structuredClone(DEFAULT),saved=structuredClone(DEFAULT),feeds={news:null,videos:null,events:null},contentTab='news',dragIndex=-1,toastTimer=0,feedWarnings=[],previewReady=false,previewLoadTimer=0;
+let state=structuredClone(DEFAULT),saved=structuredClone(DEFAULT),feeds={news:null,videos:null,events:null},contentTab='news',dragIndex=-1,toastTimer=0,feedWarnings=[],previewReady=false,previewLoadTimer=0,previewSyncTimer=0;
 
 function clone(v){return JSON.parse(JSON.stringify(v))}
 function deepMerge(base,extra){const out=clone(base);for(const[k,v]of Object.entries(extra||{})){if(v&&typeof v==='object'&&!Array.isArray(v)&&out[k]&&typeof out[k]==='object'&&!Array.isArray(out[k]))out[k]=deepMerge(out[k],v);else out[k]=v}return out}
@@ -66,10 +66,19 @@ function updatePreview(restart=false){
     setPreviewStatus('Program monitor could not receive the draft: '+error.message,'error');
   }
 }
+function startPreviewSync(){
+  clearInterval(previewSyncTimer);
+  let attempts=0;
+  const sync=()=>{
+    if(previewReady||attempts>=30){clearInterval(previewSyncTimer);return}
+    attempts++;updatePreview(attempts===1);
+  };
+  sync();previewSyncTimer=setInterval(sync,500);
+}
 function restartProgramMonitor(){
   const frame=q('[data-program-monitor-frame]');if(!frame)return;
   previewReady=false;setPreviewStatus('Restarting the real broadcast renderer…','connecting');
-  clearTimeout(previewLoadTimer);
+  clearTimeout(previewLoadTimer);clearInterval(previewSyncTimer);
   frame.src='/broadcast/?controlPreview=1&embedded=1&v='+Date.now();
 }
 async function fetchJson(url){const u=new URL(url,location.href);u.searchParams.set('_',Date.now());const r=await fetch(u,{cache:'no-store'});if(!r.ok)throw new Error(r.status);return r.json()}
@@ -264,15 +273,18 @@ const monitorFrame=q('[data-program-monitor-frame]');
 monitorFrame?.addEventListener('load',()=>{
   previewReady=false;setPreviewStatus('Renderer loaded. Syncing current draft…','connecting');scaleProgramMonitor();
   clearTimeout(previewLoadTimer);
-  previewLoadTimer=setTimeout(()=>updatePreview(true),150);
+  previewLoadTimer=setTimeout(startPreviewSync,100);
 });
 window.addEventListener('message',event=>{
   if(event.origin!==location.origin)return;
   const message=event.data;if(!message||message.type!=='matlock-broadcast-preview-state')return;
-  if(message.state==='ready'){
-    previewReady=true;setPreviewStatus(message.slideCount?('Renderer online · '+message.slideCount+' programmed items'):'Renderer online · no eligible items','ready');
+  if(message.state==='connected'){
+    setPreviewStatus('Renderer connected. Loading program…','connecting');
+    updatePreview(true);
+  }else if(message.state==='ready'){
+    previewReady=true;clearInterval(previewSyncTimer);setPreviewStatus(message.slideCount?('Renderer online · '+message.slideCount+' programmed items'):'Renderer online · no eligible items','ready');
   }else if(message.state==='empty'){
-    previewReady=true;setPreviewStatus('Renderer online, but this draft has no eligible content.','error');
+    previewReady=true;clearInterval(previewSyncTimer);setPreviewStatus('Renderer online, but this draft has no eligible content.','error');
   }else if(message.state==='error'){
     previewReady=false;setPreviewStatus(message.message||'Broadcast renderer error.','error');
   }

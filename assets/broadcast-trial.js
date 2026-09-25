@@ -269,6 +269,7 @@ window.addEventListener("message",event=>{
   reportPreviewState("ready");
 });
 if(!IS_CONTROL_PREVIEW)previewControl=null;
+else reportPreviewState("connected");
 
 async function boot(){
   try{
