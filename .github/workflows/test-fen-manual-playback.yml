@@ -1,0 +1,118 @@
+name: Test FEN manual embed playback
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/test-fen-manual-playback.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: |
+          npm install --no-save --no-package-lock @playwright/test@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Test manual playback
+        run: |
+          node <<'NODE'
+          const { chromium } = require('@playwright/test');
+
+          const variants = [
+            ['plain', 'https://www.youtube.com/embed/cv2svtEOyIw?controls=1&playsinline=1'],
+            ['jsapi', 'https://www.youtube.com/embed/cv2svtEOyIw?controls=1&playsinline=1&enablejsapi=1&origin=https%3A%2F%2Fmmamatlock.com'],
+            ['nocookie', 'https://www.youtube-nocookie.com/embed/cv2svtEOyIw?controls=1&playsinline=1']
+          ];
+
+          (async () => {
+            const browser = await chromium.launch({ channel: 'chrome' });
+
+            for (const [name, src] of variants) {
+              const context = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+              const page = await context.newPage();
+
+              await page.route('https://mmamatlock.com/manual-probe', route =>
+                route.fulfill({
+                  status: 200,
+                  contentType: 'text/html',
+                  body: '<!doctype html><body style="margin:0;background:#000"><iframe src="' + src + '" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin" style="width:960px;height:540px;border:0"></iframe></body>'
+                })
+              );
+
+              await page.goto('https://mmamatlock.com/manual-probe', { waitUntil: 'domcontentloaded', timeout: 45000 });
+              await page.waitForTimeout(4000);
+
+              const frame = page.frames().find(f => f !== page.mainFrame() && (f.url().includes('youtube.com/embed') || f.url().includes('youtube-nocookie.com/embed')));
+              if (!frame) throw new Error('No frame for ' + name);
+
+              const inspect = async () => frame.evaluate(() => {
+                const v = document.querySelector('video');
+                return {
+                  bodyText: (document.body?.innerText || '').slice(0, 1000),
+                  video: v ? {
+                    paused: v.paused,
+                    currentTime: v.currentTime,
+                    duration: Number.isFinite(v.duration) ? v.duration : null,
+                    readyState: v.readyState,
+                    currentSrc: v.currentSrc,
+                    muted: v.muted
+                  } : null
+                };
+              });
+
+              console.log('BEFORE_CLICK', name, JSON.stringify(await inspect()));
+
+              const selectors = [
+                'button[aria-label="Play video"]',
+                '.ytp-large-play-button',
+                '.ytp-play-button'
+              ];
+              let clicked = false;
+              for (const selector of selectors) {
+                const loc = frame.locator(selector).first();
+                if (await loc.count()) {
+                  try {
+                    await loc.click({ timeout: 5000 });
+                    clicked = true;
+                    console.log('CLICKED', name, selector);
+                    break;
+                  } catch (e) {
+                    console.log('CLICK_FAIL', name, selector, e.message);
+                  }
+                }
+              }
+
+              if (!clicked) console.log('NO_PLAY_BUTTON', name);
+              await page.waitForTimeout(6000);
+              console.log('AFTER_CLICK', name, JSON.stringify(await inspect()));
+              await page.screenshot({ path: 'manual-' + name + '.png' });
+
+              await context.close();
+            }
+
+            await browser.close();
+          })().catch(err => {
+            console.error(err);
+            process.exit(1);
+          });
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fen-manual-playback
+          path: "manual-*.png"
+      - name: Remove test
+        if: always()
+        run: |
+          git config user.name "MatlockFT"
+          git config user.email "fighttalkmma@protonmail.com"
+          git rm .github/workflows/test-fen-manual-playback.yml
+          git commit -m "Remove FEN manual playback test" || exit 0
+          git push origin HEAD:main
