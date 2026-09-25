@@ -12,7 +12,10 @@ const ARTICLE_IMAGE_CONCURRENCY = 6;
 const ARTICLE_IMAGE_TIMEOUT = 12000;
 const LEAD_IMAGE_CANDIDATE_LIMIT = 6;
 const LEAD_IMAGE_MAX_BYTES = 250 * 1024;
-const IMAGE_PROBE_TIMEOUT = 6000;\nconst ARTICLE_CONTEXT_CONCURRENCY = 4;\nconst ARTICLE_CONTEXT_TIMEOUT = 10000;\nconst ARTICLE_CONTEXT_LIMIT = 420;
+const IMAGE_PROBE_TIMEOUT = 6000;
+const ARTICLE_CONTEXT_CONCURRENCY = 4;
+const ARTICLE_CONTEXT_TIMEOUT = 10000;
+const ARTICLE_CONTEXT_LIMIT = 420;
 
 const feeds = [
     {
@@ -1064,6 +1067,7 @@ const latest = clusters
 const publicStories = [topStory, ...latest];
 const previousImages = await previousImageMap();
 await enrichStoryImages(publicStories, previousImages);
+await enrichStoryContexts(publicStories);
 await selectEfficientLeadImage(topStory, topCluster, previousImages);
 
 const output = {
