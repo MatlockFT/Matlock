@@ -1,8 +1,8 @@
 (() => {
 const app=document.querySelector('[data-broadcast-control-app]');if(!app)return;
-const RAW_CONFIG='https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/uploads/broadcast-control.json';
+const RAW_CONFIG='https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/uploads/system/broadcast-control.json';
 const FALLBACK_CONFIG='/assets/data/broadcast-control.json';
-const CONFIG_API_PATH='/contents/assets/uploads/broadcast-control.json';
+const CONFIG_API_PATH='/contents/assets/uploads/system/broadcast-control.json';
 const NEWS='https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-news.json';
 const VIDEOS='https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-videos.json';
 const EVENTS='/assets/data/upcoming-events-live.json';
