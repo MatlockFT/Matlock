@@ -333,8 +333,8 @@ html[data-theme="light"] .live-page__player-stage::before {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  min-height: 64px;
-  padding: .65rem .1rem 0;
+  min-height: 70px;
+  padding: 1rem .1rem 0;
 }
 
 .live-page__media-controls {
@@ -428,10 +428,10 @@ html[data-theme="light"] .live-page__player-stage::before {
 .live-page__replay-arm,
 .live-page__replay-save {
   display: inline-grid;
-  width: 54px;
-  height: 54px;
+  width: 46px;
+  height: 46px;
   place-items: center;
-  flex: 0 0 54px;
+  flex: 0 0 46px;
   padding: 0;
   border: 1px solid rgba(255,255,255,.18);
   border-radius: 50%;
@@ -440,7 +440,7 @@ html[data-theme="light"] .live-page__player-stage::before {
   box-shadow:
     0 8px 24px rgba(0,0,0,.25),
     inset 0 1px 0 rgba(255,255,255,.08);
-  font: 900 .58rem/1 var(--v3-sans);
+  font: 900 .54rem/1 var(--v3-sans);
   letter-spacing: .06em;
   text-transform: uppercase;
   cursor: pointer;
@@ -786,8 +786,8 @@ html[data-theme="light"] .live-page__player-stage::before {
   }
 
   .live-page__control-dock {
-    min-height: 58px;
-    padding-top: .5rem;
+    min-height: 64px;
+    padding-top: .8rem;
     align-items: flex-start;
     flex-wrap: wrap;
   }
@@ -818,10 +818,10 @@ html[data-theme="light"] .live-page__player-stage::before {
 
   .live-page__replay-arm,
   .live-page__replay-save {
-    width: 48px;
-    height: 48px;
-    flex-basis: 48px;
-    font-size: .53rem;
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+    font-size: .5rem;
   }
 
   .live-page__section {
