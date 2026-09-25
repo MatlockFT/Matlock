@@ -22,6 +22,7 @@
   const replayStatus = root.querySelector("[data-replay-status]");
   const replayControls = root.querySelector("[data-replay-controls]");
   const replayWindow = root.querySelector("[data-replay-window]");
+  const replayFill = root.querySelector("[data-replay-fill]");
   const replayStartLabel = root.querySelector("[data-replay-start]");
   const replayEndLabel = root.querySelector("[data-replay-end]");
   const mediaPlay = root.querySelector("[data-media-play]");
@@ -366,8 +367,8 @@
     replayControls?.classList.toggle("is-buffering", recording);
     replayControls?.classList.toggle("is-ready", ready);
 
-    if (replayArm) {
-      replayArm.style.setProperty("--buffer-progress", `${(progress * 360).toFixed(1)}deg`);
+    if (replayFill) {
+      replayFill.style.width = `${(progress * 100).toFixed(1)}%`;
     }
 
     if (replayStartLabel) {
@@ -390,7 +391,7 @@
     window.clearInterval(replayUiTimer);
     replayUiTimer = 0;
     replayControls?.classList.remove("is-buffering", "is-ready");
-    if (replayArm) replayArm.style.setProperty("--buffer-progress", "0deg");
+    if (replayFill) replayFill.style.width = "0%";
     if (replayStartLabel) replayStartLabel.textContent = "0s";
     if (replayEndLabel) replayEndLabel.textContent = "NOW";
   };
@@ -399,7 +400,6 @@
     replayArm?.classList.remove("is-buffering");
     if (replayArm) {
       replayArm.disabled = false;
-      replayArm.textContent = "ARM";
       replayArm.setAttribute("aria-pressed", "false");
       replayArm.setAttribute("aria-label", "Arm 15-second replay buffer");
       replayArm.title = "Arm 15-second replay buffer";
@@ -606,7 +606,6 @@
 
       if (replayArm) {
         replayArm.disabled = false;
-        replayArm.textContent = "";
         replayArm.setAttribute("aria-pressed", "true");
         replayArm.setAttribute("aria-label", "Stop 15-second replay buffer");
         replayArm.title = "Stop 15-second replay buffer";
