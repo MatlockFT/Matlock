@@ -534,6 +534,7 @@
 
   function openHtmlBlockById(id) {
     if (!focusHtmlBlockToken(id)) return;
+    if (openStructuredBlockById(id)) return;
     openHtmlDialog(id);
   }
 
@@ -2401,6 +2402,226 @@ function insertBlock(text) {
     if (type === 'divider') return insertBlock('---');
   }
 
+  let editingStructuredBlockId = '';
+
+  const taleDefaultRows = [
+    'Record |  | ',
+    'Age |  | ',
+    'Height |  | ',
+    'Arm Reach |  | ',
+    'UFC Record |  | ',
+    'Record Outside UFC |  | ',
+    'Total Finishes |  | ',
+    'TKO / KO |  | ',
+    'Submission |  | ',
+    'Unanimous Decision |  | ',
+    'Split Decision |  | '
+  ].join('\n');
+
+  function structuredMeta(code) {
+    const source = String(code || '');
+    const type = source.match(/data-writer-block="(stats|tale|pick)"/)?.[1] || '';
+    const raw = source.match(/data-writer-config="([^"]+)"/)?.[1] || '';
+    if (!type || !raw) return null;
+    try { return { type, config: JSON.parse(decodeURIComponent(raw)) }; }
+    catch { return null; }
+  }
+
+  function encodedStructuredConfig(config) {
+    return escapeHtml(encodeURIComponent(JSON.stringify(config || {})));
+  }
+
+  function pipeRows(text, width = 3) {
+    return String(text || '').split('\n').map(line => line.trim()).filter(Boolean).map(line => {
+      const cells = line.split('|').map(cell => cell.trim());
+      while (cells.length < width) cells.push('');
+      return cells.slice(0, width);
+    });
+  }
+
+  function structuredSection(type, config, inner) {
+    return '<section class="article-html-visual" data-writer-block="' + type + '" data-writer-config="' +
+      encodedStructuredConfig(config) + '">\n' + inner + '\n</section>';
+  }
+
+  function buildStatsVisual(config) {
+    const body = pipeRows(config.rows, 3).map(row =>
+      '<tr><td>' + escapeHtml(row[0]) + '</td><td>' + escapeHtml(row[1]) +
+      '</td><td>' + escapeHtml(row[2]) + '</td></tr>'
+    ).join('');
+    return structuredSection('stats', config,
+      '<div class="matlock-stats-card"><table><thead><tr><th>STAT</th><th>COUNT / LEADER</th><th>FIGHTER(S)</th></tr></thead><tbody>' +
+      body + '</tbody></table></div>'
+    );
+  }
+
+  function recentFormMarkup(text) {
+    return pipeRows(text, 3).map(row => {
+      const result = String(row[0] || '').toUpperCase();
+      const resultClass = result === 'W' ? 'win' : result === 'L' ? 'loss' : 'draw';
+      return '<div class="mfc-form-row"><span class="mfc-result ' + resultClass + '">' +
+        escapeHtml(result || '—') + '</span><div><strong>' + escapeHtml(row[1]) +
+        '</strong><small>' + escapeHtml(row[2]) + '</small></div></div>';
+    }).join('');
+  }
+
+  function fighterPortraitMarkup(side, fighter) {
+    const image = String(fighter.image || '').trim();
+    const style = '--portrait-x:' + Number(fighter.x || 50) + '%;--portrait-y:' +
+      Number(fighter.y || 50) + '%;--portrait-zoom:' + (Number(fighter.zoom || 100) / 100) + ';';
+    return '<div class="mfc-portrait mfc-' + side + '" style="' + style + '">' +
+      (image ? '<img src="' + escapeHtml(image) + '" alt="' + escapeHtml(fighter.name || '') + '">' : '') +
+      '</div>';
+  }
+
+  function fighterTopMarkup(side, fighter) {
+    return '<div class="mfc-fighter mfc-' + side + '-fighter">' +
+      fighterPortraitMarkup(side, fighter) +
+      '<div class="mfc-meta"><span class="mfc-division">' + escapeHtml(fighter.division || '') +
+      '</span><strong class="mfc-name">' + escapeHtml(fighter.name || '') +
+      '</strong><div class="mfc-meta-strip"><span class="mfc-odds">ML <b>' +
+      escapeHtml(fighter.odds || '—') + '</b></span><span class="mfc-last5"><b>' +
+      escapeHtml(fighter.last5 || '—') + '</b> LAST 5</span></div></div></div>';
+  }
+
+  function buildTaleVisual(config) {
+    const a = config.a || {};
+    const b = config.b || {};
+    const taleRows = pipeRows(config.rows, 3).map((row, index) =>
+      '<div class="mfc-tale-row' + (index === 0 ? ' featured' : '') + '"><strong>' +
+      escapeHtml(row[1]) + '</strong><span>' + escapeHtml(row[0]) +
+      '</span><strong>' + escapeHtml(row[2]) + '</strong></div>'
+    ).join('');
+    const recentA = recentFormMarkup(a.recent);
+    const recentB = recentFormMarkup(b.recent);
+    const recent = recentA || recentB
+      ? '<div class="mfc-form-wrap"><div class="mfc-column">' + recentA +
+        '</div><div class="mfc-column">' + recentB + '</div></div>'
+      : '';
+    const opponents = (a.opponentsRecord || b.opponentsRecord || a.opponentsPct || b.opponentsPct)
+      ? '<div class="mfc-opponents"><div><strong>' + escapeHtml(a.opponentsRecord || '—') +
+        '</strong><span>' + escapeHtml(a.opponentsPct || '') + '</span></div><p>OPPONENTS COMBINED RECORD</p><div><strong>' +
+        escapeHtml(b.opponentsRecord || '—') + '</strong><span>' + escapeHtml(b.opponentsPct || '') + '</span></div></div>'
+      : '';
+    const inner = '<div class="matlock-fight-card"><div class="mfc-top">' +
+      fighterTopMarkup('left', a) +
+      '<div class="mfc-center"><strong>MATCHUP</strong><i></i></div>' +
+      fighterTopMarkup('right', b) +
+      '</div>' + recent + opponents +
+      '<div class="mfc-tale"><div class="mfc-section-title">TALE OF THE TAPE</div>' +
+      taleRows + '</div></div>';
+    return structuredSection('tale', config, inner);
+  }
+
+  function buildPickVisual(config) {
+    const fighter = String(config.fighter || '').trim();
+    const method = String(config.method || '').trim();
+    const round = String(config.round || '').trim();
+    const result = [method, round].filter(Boolean).join(' · ');
+    const note = String(config.note || '').trim();
+    const inner = '<aside class="article-pick-card"><span class="article-pick-card__label">MATLOCK PICK</span>' +
+      '<div class="article-pick-card__main"><strong>' + escapeHtml(fighter) + '</strong>' +
+      (result ? '<span>' + escapeHtml(result) + '</span>' : '') + '</div>' +
+      (note ? '<p>' + escapeHtml(note) + '</p>' : '') + '</aside>';
+    return structuredSection('pick', config, inner);
+  }
+
+  function saveStructuredBlock(type, label, code) {
+    if (editingStructuredBlockId && htmlBlocks.has(editingStructuredBlockId)) {
+      const block = htmlBlocks.get(editingStructuredBlockId);
+      block.label = label;
+      block.code = code;
+      htmlBlocks.set(editingStructuredBlockId, block);
+      replaceHtmlToken(editingStructuredBlockId, htmlBlockToken(block));
+    } else {
+      const id = htmlBlockId();
+      const block = { id, label, code };
+      htmlBlocks.set(id, block);
+      insertBlock(htmlBlockToken(block));
+    }
+    editingStructuredBlockId = '';
+    renderHtmlBlockRail();
+    setHtmlBlockPanel(true);
+    scheduleAutosave();
+    updatePreview();
+  }
+
+  function taleImagePreview(side, localUrl = '') {
+    const dialog = app.querySelector('[data-tale-dialog]');
+    if (!dialog) return;
+    const path = dialog.querySelector('[data-tale-image-path="' + side + '"]')?.value.trim() || '';
+    const image = dialog.querySelector('[data-tale-image-preview="' + side + '"]');
+    const empty = dialog.querySelector('[data-tale-image-empty="' + side + '"]');
+    if (!image || !empty) return;
+    const x = Number(dialog.querySelector('[data-tale-image-x="' + side + '"]')?.value || 50);
+    const y = Number(dialog.querySelector('[data-tale-image-y="' + side + '"]')?.value || 50);
+    const zoom = Number(dialog.querySelector('[data-tale-image-zoom="' + side + '"]')?.value || 100) / 100;
+    const src = localUrl || (path ? writerPreviewAssetUrl(path) : '');
+    image.hidden = !src;
+    empty.hidden = Boolean(src);
+    if (src) image.src = src;
+    image.style.objectPosition = x + '% ' + y + '%';
+    image.style.transform = 'scale(' + zoom + ')';
+  }
+
+  function resetStatsDialog(config = {}) {
+    app.querySelector('[data-stats-dialog] [data-stats-rows]').value = config.rows || '';
+  }
+
+  function resetPickDialog(config = {}) {
+    const dialog = app.querySelector('[data-pick-dialog]');
+    dialog.querySelector('[data-pick-fighter]').value = config.fighter || '';
+    dialog.querySelector('[data-pick-method]').value = config.method || '';
+    dialog.querySelector('[data-pick-round]').value = config.round || '';
+    dialog.querySelector('[data-pick-note]').value = config.note || '';
+  }
+
+  function resetTaleDialog(config = {}) {
+    const dialog = app.querySelector('[data-tale-dialog]');
+    const a = config.a || {};
+    const b = config.b || {};
+    dialog.querySelector('[data-tale-a]').value = a.name || '';
+    dialog.querySelector('[data-tale-b]').value = b.name || '';
+    ['a','b'].forEach(side => {
+      const fighter = side === 'a' ? a : b;
+      dialog.querySelector('[data-tale-division="' + side + '"]').value = fighter.division || '';
+      dialog.querySelector('[data-tale-odds="' + side + '"]').value = fighter.odds || '';
+      dialog.querySelector('[data-tale-last5="' + side + '"]').value = fighter.last5 || '';
+      dialog.querySelector('[data-tale-image-path="' + side + '"]').value = fighter.image || '';
+      dialog.querySelector('[data-tale-image-x="' + side + '"]').value = fighter.x ?? 50;
+      dialog.querySelector('[data-tale-image-y="' + side + '"]').value = fighter.y ?? 50;
+      dialog.querySelector('[data-tale-image-zoom="' + side + '"]').value = fighter.zoom ?? 100;
+      dialog.querySelector('[data-tale-recent="' + side + '"]').value = fighter.recent || '';
+      dialog.querySelector('[data-tale-opponents-record="' + side + '"]').value = fighter.opponentsRecord || '';
+      dialog.querySelector('[data-tale-opponents-pct="' + side + '"]').value = fighter.opponentsPct || '';
+      taleImagePreview(side);
+    });
+    dialog.querySelector('[data-tale-rows]').value = config.rows || taleDefaultRows;
+  }
+
+  function openStructuredBlockById(id) {
+    const block = htmlBlocks.get(id);
+    const meta = structuredMeta(block?.code);
+    if (!meta) return false;
+    editingStructuredBlockId = id;
+    if (meta.type === 'stats') {
+      resetStatsDialog(meta.config);
+      app.querySelector('[data-stats-dialog]').showModal();
+      return true;
+    }
+    if (meta.type === 'tale') {
+      resetTaleDialog(meta.config);
+      app.querySelector('[data-tale-dialog]').showModal();
+      return true;
+    }
+    if (meta.type === 'pick') {
+      resetPickDialog(meta.config);
+      app.querySelector('[data-pick-dialog]').showModal();
+      return true;
+    }
+    return false;
+  }
+
   function openTool(type) {
     if (type === 'link' || type === 'citation') {
       linkMode = type;
@@ -2416,9 +2637,26 @@ function insertBlock(text) {
       openHtmlDialog();
       return;
     }
+    if (type === 'stats') {
+      editingStructuredBlockId = '';
+      resetStatsDialog();
+      app.querySelector('[data-stats-dialog]').showModal();
+      return;
+    }
+    if (type === 'tale') {
+      editingStructuredBlockId = '';
+      resetTaleDialog();
+      app.querySelector('[data-tale-dialog]').showModal();
+      return;
+    }
+    if (type === 'prediction') {
+      editingStructuredBlockId = '';
+      resetPickDialog();
+      app.querySelector('[data-pick-dialog]').showModal();
+      return;
+    }
     const map = {
-      image: '[data-image-dialog]', video: '[data-video-dialog]', youtube: '[data-youtube-dialog]', x: '[data-x-dialog]', table: '[data-table-dialog]',
-      tale: '[data-tale-dialog]', prediction: '[data-pick-dialog]', template: '[data-template-dialog]'
+      image: '[data-image-dialog]', video: '[data-video-dialog]', youtube: '[data-youtube-dialog]', x: '[data-x-dialog]'
     };
     const dialog = app.querySelector(map[type]);
     if (dialog) {
@@ -2932,7 +3170,7 @@ function insertBlock(text) {
     const before = bodyEditor.value.slice(0, cursor);
     const lineStart = before.lastIndexOf('\n') + 1;
     const line = before.slice(lineStart).trim();
-    if (!/^\/(table|tale|pick|video|youtube|image|html|source|template|divider)$/.test(line)) return '';
+    if (!/^\/(stats|tale|pick|video|youtube|image|html|source|divider)$/.test(line)) return '';
     bodyEditor.setRangeText('', lineStart, cursor, 'end');
     return line.slice(1);
   }
@@ -3186,50 +3424,130 @@ Object.values(fields).forEach(el => {
     showToast('HTML visual removed.');
   });
 
-  app.querySelector('[data-table-insert]').addEventListener('click', () => {
-    const dialog = app.querySelector('[data-table-dialog]');
-    const headers = dialog.querySelector('[data-table-headers]').value.split(',').map(v => v.trim()).filter(Boolean);
-    const rows = dialog.querySelector('[data-table-rows]').value.split('\n').map(v => v.trim()).filter(Boolean);
-    if (headers.length < 2) { showToast('Add at least two column headers.'); return; }
-    const table = [
-      `| ${headers.join(' | ')} |`,
-      `| ${headers.map(() => '---').join(' | ')} |`,
-      ...rows.map(label => `| ${[label, ...Array(headers.length - 1).fill('')].join(' | ')} |`)
-    ].join('\n');
-    insertBlock(table);
+  app.querySelector('[data-stats-insert]').addEventListener('click', () => {
+    const dialog = app.querySelector('[data-stats-dialog]');
+    const rows = dialog.querySelector('[data-stats-rows]').value.trim();
+    if (!rows) { showToast('Add at least one stats row.'); return; }
+    const cfg = { rows };
+    saveStructuredBlock('stats', 'Stats', buildStatsVisual(cfg));
     dialog.close();
   });
 
   app.querySelector('[data-tale-insert]').addEventListener('click', () => {
     const dialog = app.querySelector('[data-tale-dialog]');
-    const a = dialog.querySelector('[data-tale-a]').value.trim() || 'FIGHTER A';
-    const b = dialog.querySelector('[data-tale-b]').value.trim() || 'FIGHTER B';
-    const labels = { record:'Record', age:'Age', height:'Height', reach:'Reach', weight:'Weight', stance:'Stance', ko:'KO/TKO Wins', sub:'Submission Wins', dec:'Decision Wins', r1:'1st-Round Finishes' };
-    const rows = Object.entries(labels).map(([key,label]) => {
-      const va = dialog.querySelector(`[data-tale-row="${key}"][data-side="a"]`).value.trim();
-      const vb = dialog.querySelector(`[data-tale-row="${key}"][data-side="b"]`).value.trim();
-      return `| ${label} | ${va} | ${vb} |`;
+    const collect = side => ({
+      name: dialog.querySelector(side === 'a' ? '[data-tale-a]' : '[data-tale-b]').value.trim(),
+      division: dialog.querySelector('[data-tale-division="' + side + '"]').value.trim(),
+      odds: dialog.querySelector('[data-tale-odds="' + side + '"]').value.trim(),
+      last5: dialog.querySelector('[data-tale-last5="' + side + '"]').value.trim(),
+      image: dialog.querySelector('[data-tale-image-path="' + side + '"]').value.trim(),
+      x: Number(dialog.querySelector('[data-tale-image-x="' + side + '"]').value || 50),
+      y: Number(dialog.querySelector('[data-tale-image-y="' + side + '"]').value || 50),
+      zoom: Number(dialog.querySelector('[data-tale-image-zoom="' + side + '"]').value || 100),
+      recent: dialog.querySelector('[data-tale-recent="' + side + '"]').value.trim(),
+      opponentsRecord: dialog.querySelector('[data-tale-opponents-record="' + side + '"]').value.trim(),
+      opponentsPct: dialog.querySelector('[data-tale-opponents-pct="' + side + '"]').value.trim()
     });
-    insertBlock([`|  | ${a.toUpperCase()} | ${b.toUpperCase()} |`, '| --- | ---: | ---: |', ...rows].join('\n'));
+    const cfg = { a: collect('a'), b: collect('b'), rows: dialog.querySelector('[data-tale-rows]').value.trim() || taleDefaultRows };
+    if (!cfg.a.name || !cfg.b.name) { showToast('Add both fighter names.'); return; }
+    saveStructuredBlock('tale', cfg.a.name + ' vs. ' + cfg.b.name, buildTaleVisual(cfg));
     dialog.close();
   });
 
   app.querySelector('[data-pick-insert]').addEventListener('click', () => {
     const dialog = app.querySelector('[data-pick-dialog]');
-    const fighter = dialog.querySelector('[data-pick-fighter]').value.trim();
-    if (!fighter) { showToast('Add the fighter you are picking.'); return; }
-    const method = dialog.querySelector('[data-pick-method]').value;
-    const round = dialog.querySelector('[data-pick-round]').value;
-    const confidence = dialog.querySelector('[data-pick-confidence]').value.trim();
-    const pick = `**Pick: ${fighter} by ${method}${round ? `, ${round}` : ''}**${confidence ? `\n\nConfidence: ${confidence}/10` : ''}`;
-    insertBlock(pick);
+    const cfg = {
+      fighter: dialog.querySelector('[data-pick-fighter]').value.trim(),
+      method: dialog.querySelector('[data-pick-method]').value,
+      round: dialog.querySelector('[data-pick-round]').value,
+      note: dialog.querySelector('[data-pick-note]').value.trim()
+    };
+    if (!cfg.fighter) { showToast('Add the fighter you are picking.'); return; }
+    saveStructuredBlock('pick', 'Pick · ' + cfg.fighter, buildPickVisual(cfg));
     dialog.close();
   });
 
-  app.querySelectorAll('[data-template]').forEach(button => button.addEventListener('click', () => {
-    app.querySelector('[data-template-dialog]').close();
-    resetNewArticle({ template: button.dataset.template });
-  }));
+  async function uploadTalePortrait(side, file) {
+    if (!file?.type?.startsWith('image/')) return;
+    if (!githubCredential) {
+      showToast('Connect GitHub before uploading fighter portraits.', 5000);
+      if (!connectDialog.open) connectDialog.showModal();
+      return;
+    }
+    const dialog = app.querySelector('[data-tale-dialog]');
+    const localUrl = URL.createObjectURL(file);
+    taleImagePreview(side, localUrl);
+    try {
+      const fighterName = dialog.querySelector(side === 'a' ? '[data-tale-a]' : '[data-tale-b]').value.trim();
+      const ext = file.name.match(/\.[^.]+$/)?.[0] || '.jpg';
+      const preferred = (slugify(fighterName || ('fighter-' + side)) || ('fighter-' + side)) + '-' + side + ext;
+      const path = await uploadAsset(file, preferred);
+      dialog.querySelector('[data-tale-image-path="' + side + '"]').value = path;
+      taleImagePreview(side);
+      showToast('Fighter portrait uploaded.');
+    } catch (error) {
+      showToast('Portrait upload failed: ' + error.message, 6000);
+    } finally {
+      window.setTimeout(() => URL.revokeObjectURL(localUrl), 1000);
+    }
+  }
+
+  ['a','b'].forEach(side => {
+    const dialog = app.querySelector('[data-tale-dialog]');
+    const drop = dialog.querySelector('[data-tale-image-drop="' + side + '"]');
+    const file = dialog.querySelector('[data-tale-image-file="' + side + '"]');
+    const path = dialog.querySelector('[data-tale-image-path="' + side + '"]');
+    const image = dialog.querySelector('[data-tale-image-preview="' + side + '"]');
+
+    drop.addEventListener('click', () => file.click());
+    drop.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); file.click(); }
+    });
+    ['dragenter','dragover'].forEach(type => drop.addEventListener(type, event => {
+      if (![...(event.dataTransfer?.items || [])].some(item => item.type.startsWith('image/'))) return;
+      event.preventDefault();
+      drop.classList.add('is-dragging');
+    }));
+    ['dragleave','drop'].forEach(type => drop.addEventListener(type, () => drop.classList.remove('is-dragging')));
+    drop.addEventListener('drop', event => {
+      const portrait = [...(event.dataTransfer?.files || [])].find(item => item.type.startsWith('image/'));
+      if (!portrait) return;
+      event.preventDefault();
+      uploadTalePortrait(side, portrait);
+    });
+    file.addEventListener('change', () => {
+      if (file.files?.[0]) uploadTalePortrait(side, file.files[0]);
+    });
+    path.addEventListener('input', () => taleImagePreview(side));
+    ['x','y','zoom'].forEach(axis => {
+      dialog.querySelector('[data-tale-image-' + axis + '="' + side + '"]').addEventListener('input', () => taleImagePreview(side));
+    });
+
+    let dragState = null;
+    image.addEventListener('pointerdown', event => {
+      if (image.hidden) return;
+      event.preventDefault();
+      image.setPointerCapture?.(event.pointerId);
+      dragState = {
+        x: event.clientX,
+        y: event.clientY,
+        startX: Number(dialog.querySelector('[data-tale-image-x="' + side + '"]').value || 50),
+        startY: Number(dialog.querySelector('[data-tale-image-y="' + side + '"]').value || 50),
+        rect: drop.getBoundingClientRect()
+      };
+    });
+    image.addEventListener('pointermove', event => {
+      if (!dragState) return;
+      const xInput = dialog.querySelector('[data-tale-image-x="' + side + '"]');
+      const yInput = dialog.querySelector('[data-tale-image-y="' + side + '"]');
+      xInput.value = String(Math.round(Math.max(0, Math.min(100, dragState.startX + ((event.clientX - dragState.x) / Math.max(1, dragState.rect.width)) * 100))));
+      yInput.value = String(Math.round(Math.max(0, Math.min(100, dragState.startY + ((event.clientY - dragState.y) / Math.max(1, dragState.rect.height)) * 100))));
+      taleImagePreview(side);
+    });
+    const stopDrag = () => { dragState = null; };
+    image.addEventListener('pointerup', stopDrag);
+    image.addEventListener('pointercancel', stopDrag);
+  });
 
   app.querySelector('[data-conflict-reload]').addEventListener('click', () => {
     conflictDialog.close();
