@@ -1,8 +1,37 @@
 {
   "version": 5,
-  "generated_at": "2026-09-25T12:08:44Z",
-  "selected_event_id": null,
-  "events": [],
+  "generated_at": "2026-09-25T15:59:14Z",
+  "selected_event_id": "one-championship:b6Ih94J2IN8",
+  "events": [
+    {
+      "event_id": "one-championship:b6Ih94J2IN8",
+      "promotion_id": "one-championship",
+      "promotion": "ONE Championship",
+      "short_name": "ONE",
+      "country": "Singapore / Global",
+      "priority": 95,
+      "coverage_note": "Official public live streams and fight broadcasts",
+      "access_note": "Availability may vary by territory",
+      "channel_url": "https://www.youtube.com/@ONEChampionship",
+      "channel_id": "UCiormkBf3jm6mfb7k0yPbKA",
+      "channel_name": "ONE Championship",
+      "video_id": "b6Ih94J2IN8",
+      "title": "🔴 [Live in HD] ONE Friday Fights 172: Superlek vs. Rhouni",
+      "watch_url": "https://www.youtube.com/watch?v=b6Ih94J2IN8",
+      "status": "live",
+      "is_live": true,
+      "embeddable": true,
+      "scheduled_start_time": "2026-09-25T13:30:00Z",
+      "scheduled_end_time": null,
+      "actual_start_time": "2026-09-25T13:16:34Z",
+      "actual_end_time": null,
+      "concurrent_viewers": null,
+      "api_verified": true,
+      "stale": false,
+      "observed_at": "2026-09-25T15:59:14Z",
+      "source_role": "promotion"
+    }
+  ],
   "upcoming": [
     {
       "event_id": "real-fight-arena:z7sfnn-WqtY",
@@ -29,7 +58,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T12:08:43Z",
+      "observed_at": "2026-09-25T15:59:14Z",
       "source_role": "promotion"
     },
     {
@@ -57,7 +86,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T12:08:43Z",
+      "observed_at": "2026-09-25T15:59:14Z",
       "source_role": "promotion"
     },
     {
@@ -85,7 +114,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T12:08:43Z",
+      "observed_at": "2026-09-25T15:59:14Z",
       "source_role": "broadcast_partner"
     },
     {
@@ -225,7 +254,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T12:08:43Z",
+      "observed_at": "2026-09-25T15:59:14Z",
       "source_role": "promotion"
     }
   ],
@@ -279,7 +308,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T12:08:43Z"
+      "last_checked_at": "2026-09-25T15:59:14Z"
     },
     "afc-korea": {
       "promotion": "Angel's Fighting Championship",
@@ -296,7 +325,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:13:48Z"
+      "last_checked_at": "2026-09-25T15:59:13Z"
     },
     "apfc": {
       "promotion": "Anthony Pettis Fighting Championship",
@@ -381,7 +410,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:47Z"
+      "last_checked_at": "2026-09-25T15:59:14Z"
     },
     "budo-sento": {
       "promotion": "Budo Sento Championship",
@@ -432,7 +461,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:13:48Z"
+      "last_checked_at": "2026-09-25T15:59:13Z"
     },
     "fen": {
       "promotion": "Fight Exclusive Night",
@@ -449,7 +478,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T12:08:43Z"
+      "last_checked_at": "2026-09-25T15:59:14Z"
     },
     "fnc": {
       "promotion": "Fight Nation Championship",
@@ -483,7 +512,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:13:48Z"
+      "last_checked_at": "2026-09-25T15:59:13Z"
     },
     "fusion-fight-league": {
       "promotion": "Fusion Fight League",
@@ -585,7 +614,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:13:48Z"
+      "last_checked_at": "2026-09-25T15:59:13Z"
     },
     "liga-monstro-combate": {
       "promotion": "Liga Monstro Combate",
@@ -602,7 +631,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T12:08:43Z"
+      "last_checked_at": "2026-09-25T15:59:14Z"
     },
     "lux": {
       "promotion": "LUX Fight League",
@@ -653,7 +682,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:13:48Z"
+      "last_checked_at": "2026-09-25T15:59:13Z"
     },
     "mma-mexico": {
       "promotion": "MMA México",
@@ -706,6 +735,23 @@
       "last_success_at": null,
       "last_checked_at": "2026-09-24T17:34:34Z"
     },
+    "one-championship": {
+      "promotion": "ONE Championship",
+      "short_name": "ONE",
+      "country": "Singapore / Global",
+      "priority": 95,
+      "coverage_note": "Official public live streams and fight broadcasts",
+      "access_note": "Availability may vary by territory",
+      "channel_url": "https://www.youtube.com/@ONEChampionship",
+      "channel_id": "UCiormkBf3jm6mfb7k0yPbKA",
+      "channel_name": "ONE Championship",
+      "status": "live",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": "2026-09-25T15:59:14Z",
+      "last_checked_at": "2026-09-25T15:59:14Z"
+    },
     "open-fight-latam": {
       "promotion": "Open Fight LATAM",
       "short_name": "OFL",
@@ -738,7 +784,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T12:08:42Z"
+      "last_checked_at": "2026-09-25T15:59:13Z"
     },
     "road-fc": {
       "promotion": "ROAD FC",
@@ -806,7 +852,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T12:08:43Z"
+      "last_checked_at": "2026-09-25T15:59:14Z"
     },
     "tuff-n-uff": {
       "promotion": "Tuff-N-Uff",
@@ -874,7 +920,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T02:51:01Z",
-      "last_checked_at": "2026-09-25T06:22:35Z"
+      "last_checked_at": "2026-09-25T15:59:14Z"
     },
     "wow-fc": {
       "promotion": "WOW Fight Company",
@@ -891,12 +937,12 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:47Z"
+      "last_checked_at": "2026-09-25T15:59:14Z"
     }
   },
-  "monitored_count": 39,
-  "live_count": 0,
+  "monitored_count": 40,
+  "live_count": 1,
   "upcoming_count": 8,
   "youtube_api_configured": true,
-  "api_verified_source_count": 39
+  "api_verified_source_count": 40
 }
