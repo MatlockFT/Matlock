@@ -206,11 +206,15 @@ function resolveForce(ref){
   if(ref.type==="event"){const x=eventCache.find(item=>itemId("event",item)===ref.id);if(!x)return null;return{type:"event",id:itemId("event",x),title:scalar(x.title)||scalar(x.promotion)||"Upcoming Event",source:scalar(x.promotion)||"MMA",image:cfg().events.usePosters?(scalar(x.poster_url)||""):"",event:x,context:eventFacts(x)}}
   return null;
 }
-function seenForceId(){try{return localStorage.getItem("matlock-broadcast:seen-force")||""}catch{return""}}
-function markForceSeen(id){try{localStorage.setItem("matlock-broadcast:seen-force",id)}catch{}}
+const IS_CONTROL_PREVIEW=new URLSearchParams(location.search).get("controlPreview")==="1";
+function forceStorageKey(){return IS_CONTROL_PREVIEW?"matlock-broadcast:seen-force-preview":"matlock-broadcast:seen-force-live"}
+function seenForceId(){try{return localStorage.getItem(forceStorageKey())||""}catch{return""}}
+function markForceSeen(id){try{localStorage.setItem(forceStorageKey(),id)}catch{}}
 function processForce(){
   const force=cfg().forceNext;if(!force?.requestId||force.requestId===seenForceId())return;
-  const item=resolveForce(force.ref);if(!item)return;markForceSeen(force.requestId);
+  const item=resolveForce(force.ref);if(!item)return;
+  if(force.mode==="now"&&transitioning){setTimeout(processForce,Math.max(250,Number(cfg().timing.transitionMs||650)+100));return}
+  markForceSeen(force.requestId);
   if(force.mode==="now")transitionTo(item);else slides.splice(index,0,item);
 }
 
@@ -240,7 +244,7 @@ window.addEventListener("message",event=>{
   const m=event.data;if(!m||m.type!=="matlock-broadcast-control-preview"||!m.config)return;
   previewControl=deepMerge(DEFAULT_CONTROL,m.config);rebuildSlides();processForce();configureBed();
 });
-if(new URLSearchParams(location.search).get("controlPreview")!=="1")previewControl=null;
+if(!IS_CONTROL_PREVIEW)previewControl=null;
 
 async function boot(){
   try{control=deepMerge(DEFAULT_CONTROL,await getWithFallback(CONTROL_REMOTE,CONTROL_FALLBACK));lastControlRevision=Number(control.revision||0)}catch{}
