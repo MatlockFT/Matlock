@@ -5,7 +5,7 @@ const NEWS='https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/m
 const VIDEOS='https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-videos.json';
 const EVENTS='/assets/data/upcoming-events-live.json';
 const CONFIG_PATH='/contents/assets/data/broadcast-control.json';
-const DEFAULT={"version":1,"revision":1,"updatedAt":null,"modules":{"news":true,"video":true,"events":true,"ticker":true,"comingUp":true,"music":true},"rundown":["news","news","video","news","event"],"timing":{"newsSeconds":45,"eventSeconds":35,"transitionMs":650,"controlPollSeconds":10},"news":{"maxAgeHours":48,"maxItems":16,"sources":[],"requireContext":true,"contextFacts":4},"video":{"maxAgeHours":48,"maxItems":8,"minSeconds":20,"maxSeconds":600,"volume":50,"channels":[],"playFull":true},"events":{"maxItems":3,"usePosters":true},"audio":{"enabled":true,"musicUrl":"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3","musicVolume":14,"duckVolume":3.5},"ticker":{"enabled":true,"speedSeconds":240,"maxItems":14},"visual":{"flipNews":true,"showRail":true,"showClock":true,"showBadge":true,"showSource":true},"hidden":{"news":[],"videos":[],"events":[]},"forceNext":null};
+const DEFAULT={"version":1,"revision":1,"updatedAt":null,"modules":{"news":true,"video":true,"events":true,"ticker":true,"comingUp":true,"music":true},"rundown":["news","news","video","news","event"],"timing":{"newsSeconds":45,"eventSeconds":35,"transitionMs":650,"controlPollSeconds":10},"news":{"maxAgeHours":48,"maxItems":16,"sources":[],"requireContext":true,"contextFacts":4},"video":{"maxAgeHours":48,"maxItems":8,"minSeconds":20,"maxSeconds":600,"volume":50,"channels":[],"playFull":true},"events":{"maxItems":3,"usePosters":true},"audio":{"enabled":true,"musicUrl":"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3","musicVolume":14,"duckVolume":3.5},"ticker":{"enabled":true,"speedSeconds":240,"maxItems":14},"visual":{"flipNews":true,"showRail":true,"showClock":true,"showBadge":true,"showSource":true},"sources":{"customNewsFeeds":[],"customVideoChannels":[]},"hidden":{"news":[],"videos":[],"events":[]},"forceNext":null};
 const q=s=>app.querySelector(s),qa=s=>[...app.querySelectorAll(s)];
 let state=structuredClone(DEFAULT),saved=structuredClone(DEFAULT),feeds={news:null,videos:null,events:null},contentTab='news',dragIndex=-1,toastTimer=0;
 
@@ -146,10 +146,11 @@ q('[data-all-news]').onclick=()=>{state.news.sources=[];renderSources();markDirt
 q('[data-all-video]').onclick=()=>{state.video.channels=[];renderSources();markDirty()};
 q('[data-add-news-source]').onclick=()=>{
   const name=q('[data-custom-news-name]').value.trim(),url=q('[data-custom-news-url]').value.trim();
-  if(!name||!/^https:\/\//i.test(url)){toast('Add a source name and an https RSS/Atom URL.');return}
+  let parsed=null;try{parsed=new URL(url)}catch{}
+  if(!name||!parsed||parsed.protocol!=='https:'){toast('Add a source name and a valid https RSS/Atom URL.');return}
   state.sources=state.sources||{customNewsFeeds:[],customVideoChannels:[]};
   if(state.sources.customNewsFeeds.some(x=>x.name.toLowerCase()===name.toLowerCase())){toast('That source name already exists.');return}
-  state.sources.customNewsFeeds.push({name,feedUrl:url,siteUrl:new URL(url).origin+'/',priority:8});
+  state.sources.customNewsFeeds.push({name,feedUrl:parsed.href,siteUrl:parsed.origin+'/',priority:8});
   q('[data-custom-news-name]').value='';q('[data-custom-news-url]').value='';renderSources();markDirty();toast('Custom news feed added. It will populate on the next feed refresh.');
 };
 q('[data-add-video-source]').onclick=()=>{
