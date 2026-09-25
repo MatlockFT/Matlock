@@ -39,12 +39,18 @@
 .post-page-v3 .post-reading-layout{
   display:grid;
   grid-template-columns:minmax(0,760px) minmax(250px,280px);
+  grid-template-areas:
+    "main rail"
+    "share share"
+    "footer footer";
   gap:clamp(2rem,4vw,3rem);
   align-items:start;
   justify-content:center;
   margin:0 auto;
 }
-.post-page-v3 .post-reading-main{min-width:0}
+.post-page-v3 .post-reading-main{grid-area:main;min-width:0}
+.post-page-v3 .post-reading-layout>.post-share{grid-area:share}
+.post-page-v3 .post-reading-layout>.post-footer{grid-area:footer}
 .post-page-v3 .post-reading-main .article-notice,
 .post-page-v3 .post-reading-main .article-toc,
 .post-page-v3 .post-reading-main .post-body{
@@ -53,6 +59,7 @@
   margin-right:0;
 }
 .post-page-v3 .post-rail{
+  grid-area:rail;
   position:sticky;
   top:calc(var(--v3-fixed-rail-height,80px) + 1rem);
   min-width:0;
@@ -215,6 +222,11 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
 @media(max-width:1040px){
   .post-page-v3 .post-reading-layout{
     grid-template-columns:minmax(0,760px);
+    grid-template-areas:
+      "main"
+      "footer"
+      "share"
+      "rail";
   }
   .post-page-v3 .post-rail{
     position:static;
@@ -1133,4 +1145,38 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
   background:var(--v3-ink);
   color:var(--v3-paper);
   outline:none;
+}
+
+
+/* Mobile article endmatter order: article -> topics -> share -> reading rail -> archive CTA. */
+@media(max-width:1040px){
+  .post-page-v3 .post-reading-layout>.post-footer{
+    display:contents;
+  }
+  .post-page-v3 .post-reading-layout>.post-footer>.post-topics{
+    grid-area:topics;
+    width:min(100%,760px);
+    margin:0 auto;
+  }
+  .post-page-v3 .post-reading-layout>.post-footer>.post-archive-link{
+    grid-area:archive;
+    width:min(100%,760px);
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .post-page-v3 .post-reading-layout{
+    grid-template-areas:
+      "main"
+      "topics"
+      "share"
+      "rail"
+      "archive";
+  }
+  .post-page-v3 .post-reading-layout>.post-share{
+    margin-top:.5rem;
+  }
+  .post-page-v3 .post-reading-layout>.post-topics,
+  .post-page-v3 .post-reading-layout>.post-footer>.post-topics{
+    margin-top:.4rem;
+  }
 }
