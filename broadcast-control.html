@@ -1,0 +1,255 @@
+---
+layout: null
+title: "MMA Matlock Broadcast Control"
+permalink: /broadcast-control/
+sitemap: false
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#090909">
+  <title>MMA Matlock Broadcast Control</title>
+  <link rel="stylesheet" href="/assets/broadcast-control.css?v={{ site.asset_version }}">
+</head>
+<body>
+  <main
+    class="bc-app"
+    data-broadcast-control-app
+    data-repo="MatlockFT/Matlock"
+    data-auth-base="https://mmamatlock-writer-auth.netlify.app"
+  >
+    <header class="bc-topbar">
+      <div class="bc-brand">
+        <span class="bc-live-dot" aria-hidden="true"></span>
+        <div>
+          <strong>MMA MATLOCK</strong>
+          <span>Broadcast Control</span>
+        </div>
+      </div>
+
+      <div class="bc-top-status">
+        <span class="bc-status-pill" data-live-status data-state="loading">Loading control…</span>
+        <span class="bc-save-state" data-save-state>Saved</span>
+      </div>
+
+      <div class="bc-top-actions">
+        <a class="bc-button bc-button-ghost" href="/broadcast/" target="_blank" rel="noopener">Open output ↗</a>
+        <button class="bc-button bc-button-ghost" type="button" data-github-connect>GitHub</button>
+        <button class="bc-button bc-button-primary" type="button" data-apply-live>Apply live</button>
+      </div>
+    </header>
+
+    <div class="bc-shell">
+      <aside class="bc-nav">
+        <div class="bc-nav-title">Console</div>
+        <nav aria-label="Broadcast control sections">
+          <button type="button" class="is-active" data-nav-target="overview"><span>01</span> Overview</button>
+          <button type="button" data-nav-target="rundown"><span>02</span> Rundown</button>
+          <button type="button" data-nav-target="sources"><span>03</span> Sources</button>
+          <button type="button" data-nav-target="timing"><span>04</span> Timing + audio</button>
+          <button type="button" data-nav-target="display"><span>05</span> Display</button>
+          <button type="button" data-nav-target="live-content"><span>06</span> Live content</button>
+          <button type="button" data-nav-target="custom"><span>07</span> Custom card</button>
+        </nav>
+
+        <div class="bc-nav-bottom">
+          <button class="bc-button bc-button-ghost bc-button-full" type="button" data-reset-draft>Discard unsaved</button>
+          <div class="bc-revision">Revision <span data-revision>—</span></div>
+        </div>
+      </aside>
+
+      <section class="bc-workspace">
+        <section class="bc-section" data-section="overview">
+          <div class="bc-section-head">
+            <div>
+              <p class="bc-eyebrow">Channel state</p>
+              <h1>Broadcast desk</h1>
+              <p>Build the channel here. Changes appear in the preview immediately; nothing reaches OBS until you click <strong>Apply live</strong>.</p>
+            </div>
+          </div>
+
+          <div class="bc-metrics">
+            <article><span>Fresh news</span><strong data-metric-news>—</strong><small>eligible stories</small></article>
+            <article><span>Videos</span><strong data-metric-videos>—</strong><small>eligible uploads</small></article>
+            <article><span>Events</span><strong data-metric-events>—</strong><small>upcoming cards</small></article>
+            <article><span>Rundown</span><strong data-metric-rundown>—</strong><small>segment pattern</small></article>
+          </div>
+
+          <div class="bc-card">
+            <div class="bc-card-head"><div><h2>Modules</h2><p>Kill or restore any part of the channel without changing code.</p></div></div>
+            <div class="bc-switch-grid">
+              <label class="bc-switch"><input type="checkbox" data-path="modules.news"><span></span><b>News</b><small>External MMA articles</small></label>
+              <label class="bc-switch"><input type="checkbox" data-path="modules.video"><span></span><b>Videos</b><small>YouTube segments</small></label>
+              <label class="bc-switch"><input type="checkbox" data-path="modules.events"><span></span><b>Events</b><small>Upcoming fight cards</small></label>
+              <label class="bc-switch"><input type="checkbox" data-path="modules.ticker"><span></span><b>Ticker</b><small>Bottom news crawl</small></label>
+              <label class="bc-switch"><input type="checkbox" data-path="modules.comingUp"><span></span><b>Coming up</b><small>Next three items rail</small></label>
+              <label class="bc-switch"><input type="checkbox" data-path="modules.music"><span></span><b>Music bed</b><small>Background audio</small></label>
+            </div>
+          </div>
+
+          <div class="bc-card">
+            <div class="bc-card-head"><div><h2>Presets</h2><p>Use these as starting points. You can alter every setting afterward.</p></div></div>
+            <div class="bc-presets">
+              <button type="button" data-preset="newsroom"><strong>Newsroom</strong><span>Balanced news, video and events</span></button>
+              <button type="button" data-preset="video"><strong>Video heavy</strong><span>More long-form YouTube</span></button>
+              <button type="button" data-preset="headlines"><strong>Headlines only</strong><span>No videos or event boards</span></button>
+              <button type="button" data-preset="event"><strong>Event day</strong><span>More upcoming-card coverage</span></button>
+            </div>
+          </div>
+        </section>
+
+        <section class="bc-section" data-section="rundown" hidden>
+          <div class="bc-section-head"><div><p class="bc-eyebrow">Programming</p><h1>Rundown</h1><p>Drag the blocks into the order you want. The pattern repeats while fresh items remain.</p></div></div>
+          <div class="bc-card">
+            <div class="bc-rundown" data-rundown></div>
+            <div class="bc-add-segment">
+              <span>Add segment</span>
+              <button type="button" data-add-segment="news">+ News</button>
+              <button type="button" data-add-segment="video">+ Video</button>
+              <button type="button" data-add-segment="event">+ Event</button>
+            </div>
+          </div>
+          <div class="bc-card bc-two-col">
+            <label class="bc-field"><span>Maximum news items</span><input type="number" min="1" max="40" data-path="news.maxItems"></label>
+            <label class="bc-field"><span>Maximum video items</span><input type="number" min="1" max="30" data-path="video.maxItems"></label>
+            <label class="bc-field"><span>Maximum event items</span><input type="number" min="0" max="20" data-path="events.maxItems"></label>
+            <label class="bc-field"><span>News freshness window <em>hours</em></span><input type="number" min="1" max="168" data-path="news.maxAgeHours"></label>
+          </div>
+        </section>
+
+        <section class="bc-section" data-section="sources" hidden>
+          <div class="bc-section-head"><div><p class="bc-eyebrow">Editorial inputs</p><h1>Sources</h1><p>Turn individual publishers and YouTube channels on or off. Empty selections mean “use everything.”</p></div></div>
+          <div class="bc-source-columns">
+            <div class="bc-card">
+              <div class="bc-card-head"><div><h2>News sites</h2><p data-news-source-summary>Loading…</p></div><button class="bc-text-button" type="button" data-all-news>All</button></div>
+              <div class="bc-source-list" data-news-sources></div>
+              <div class="bc-source-add">
+                <input type="text" data-custom-news-name placeholder="Source name">
+                <input type="url" data-custom-news-url placeholder="RSS / Atom feed URL">
+                <button type="button" data-add-news-source>+ Add feed</button>
+              </div>
+            </div>
+            <div class="bc-card">
+              <div class="bc-card-head"><div><h2>YouTube channels</h2><p data-video-source-summary>Loading…</p></div><button class="bc-text-button" type="button" data-all-video>All</button></div>
+              <div class="bc-source-list" data-video-sources></div>
+              <div class="bc-source-add">
+                <input type="text" data-custom-video-name placeholder="Channel name">
+                <input type="text" data-custom-video-handle placeholder="@YouTubeHandle">
+                <button type="button" data-add-video-source>+ Add channel</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="bc-section" data-section="timing" hidden>
+          <div class="bc-section-head"><div><p class="bc-eyebrow">Pacing + mix</p><h1>Timing &amp; audio</h1><p>Control how long viewers sit with information and how the audio behaves.</p></div></div>
+          <div class="bc-card bc-two-col">
+            <label class="bc-field"><span>News duration <em>seconds</em></span><input type="number" min="10" max="180" data-path="timing.newsSeconds"></label>
+            <label class="bc-field"><span>Event duration <em>seconds</em></span><input type="number" min="10" max="180" data-path="timing.eventSeconds"></label>
+            <label class="bc-field"><span>Transition <em>milliseconds</em></span><input type="number" min="0" max="3000" step="50" data-path="timing.transitionMs"></label>
+            <label class="bc-field"><span>Control polling <em>seconds</em></span><input type="number" min="5" max="120" data-path="timing.controlPollSeconds"></label>
+          </div>
+          <div class="bc-card">
+            <div class="bc-card-head"><div><h2>Video</h2><p>Eligible videos play to their natural end unless you cap the duration below.</p></div></div>
+            <div class="bc-two-col">
+              <label class="bc-field"><span>Video volume <em data-value-for="video.volume">50%</em></span><input type="range" min="0" max="100" step="1" data-path="video.volume"></label>
+              <label class="bc-field"><span>Minimum video <em>seconds</em></span><input type="number" min="0" max="600" data-path="video.minSeconds"></label>
+              <label class="bc-field"><span>Maximum video <em>seconds</em></span><input type="number" min="15" max="3600" data-path="video.maxSeconds"></label>
+              <label class="bc-field"><span>Video freshness <em>hours</em></span><input type="number" min="1" max="168" data-path="video.maxAgeHours"></label>
+            </div>
+          </div>
+          <div class="bc-card">
+            <div class="bc-card-head"><div><h2>Music bed</h2><p>Background music automatically ducks while a video is talking.</p></div></div>
+            <label class="bc-field bc-field-wide"><span>Music URL</span><input type="url" data-path="audio.musicUrl" placeholder="https://…"></label>
+            <div class="bc-two-col">
+              <label class="bc-field"><span>Normal level <em data-value-for="audio.musicVolume">14%</em></span><input type="range" min="0" max="50" step=".5" data-path="audio.musicVolume"></label>
+              <label class="bc-field"><span>Ducked under video <em data-value-for="audio.duckVolume">3.5%</em></span><input type="range" min="0" max="30" step=".5" data-path="audio.duckVolume"></label>
+            </div>
+          </div>
+        </section>
+
+        <section class="bc-section" data-section="display" hidden>
+          <div class="bc-section-head"><div><p class="bc-eyebrow">Presentation</p><h1>Display</h1><p>Control the pieces viewers see without touching CSS.</p></div></div>
+          <div class="bc-card">
+            <div class="bc-switch-grid">
+              <label class="bc-switch"><input type="checkbox" data-path="visual.flipNews"><span></span><b>Alternate news sides</b><small>Image left / right</small></label>
+              <label class="bc-switch"><input type="checkbox" data-path="visual.showRail"><span></span><b>Coming-up rail</b><small>Three-item preview</small></label>
+              <label class="bc-switch"><input type="checkbox" data-path="visual.showClock"><span></span><b>Clock</b><small>Central Time clock</small></label>
+              <label class="bc-switch"><input type="checkbox" data-path="visual.showBadge"><span></span><b>Media badge</b><small>Latest / now playing</small></label>
+              <label class="bc-switch"><input type="checkbox" data-path="visual.showSource"><span></span><b>Source attribution</b><small>Publisher / channel</small></label>
+              <label class="bc-switch"><input type="checkbox" data-path="events.usePosters"><span></span><b>Event posters</b><small>Use artwork when available</small></label>
+            </div>
+          </div>
+          <div class="bc-card bc-two-col">
+            <label class="bc-field"><span>Ticker speed <em>seconds per loop</em></span><input type="number" min="30" max="900" data-path="ticker.speedSeconds"></label>
+            <label class="bc-field"><span>Ticker headline count</span><input type="number" min="3" max="30" data-path="ticker.maxItems"></label>
+            <label class="bc-field"><span>Context facts per story</span><input type="number" min="1" max="6" data-path="news.contextFacts"></label>
+          </div>
+        </section>
+
+        <section class="bc-section" data-section="live-content" hidden>
+          <div class="bc-section-head"><div><p class="bc-eyebrow">Manual desk</p><h1>Live content</h1><p>See what the feeds contain right now. Hide junk, queue something next, or take over immediately.</p></div></div>
+          <div class="bc-content-tabs" role="tablist">
+            <button type="button" class="is-active" data-content-tab="news">News</button>
+            <button type="button" data-content-tab="video">Videos</button>
+            <button type="button" data-content-tab="event">Events</button>
+          </div>
+          <div class="bc-live-list" data-live-list></div>
+        </section>
+
+        <section class="bc-section" data-section="custom" hidden>
+          <div class="bc-section-head"><div><p class="bc-eyebrow">Manual insert</p><h1>Custom card</h1><p>Put your own update on the channel without publishing an article.</p></div></div>
+          <div class="bc-card">
+            <div class="bc-two-col">
+              <label class="bc-field bc-field-wide"><span>Headline</span><input type="text" data-custom-title maxlength="180" placeholder="Breaking: …"></label>
+              <label class="bc-field bc-field-wide"><span>Image URL</span><input type="url" data-custom-image placeholder="https://…"></label>
+              <label class="bc-field bc-field-wide"><span>Context</span><textarea rows="6" data-custom-context placeholder="One to four useful facts."></textarea></label>
+              <label class="bc-field"><span>Source label</span><input type="text" data-custom-source value="MMA MATLOCK"></label>
+              <label class="bc-field"><span>Duration <em>seconds</em></span><input type="number" min="10" max="180" value="45" data-custom-duration></label>
+            </div>
+            <div class="bc-inline-actions">
+              <button class="bc-button" type="button" data-custom-next>Air next</button>
+              <button class="bc-button bc-button-danger" type="button" data-custom-now>Take over now</button>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <aside class="bc-preview-column">
+        <div class="bc-preview-head">
+          <div><span>PROGRAM PREVIEW</span><small>Unsaved changes</small></div>
+          <button type="button" data-preview-reload title="Reload preview">↻</button>
+        </div>
+        <div class="bc-preview-frame">
+          <iframe src="/broadcast/?controlPreview=1" data-preview title="Broadcast preview"></iframe>
+        </div>
+        <div class="bc-now-card">
+          <div><span>Live config</span><strong data-live-config-label>Loading…</strong></div>
+          <small>OBS polls the live control service automatically.</small>
+        </div>
+      </aside>
+    </div>
+
+    <div class="bc-toast" data-toast hidden></div>
+
+    <dialog class="bc-dialog" data-auth-dialog>
+      <form method="dialog">
+        <header><div><p class="bc-eyebrow">Broadcast access</p><h2>GitHub control</h2></div><button value="cancel" aria-label="Close">×</button></header>
+        <div class="bc-dialog-body">
+          <p>Your existing MMA Matlock GitHub sign-in is used to write the live broadcast control file. No token is stored in this page.</p>
+          <button class="bc-button bc-button-primary bc-button-full" type="button" data-github-oauth>Sign in with GitHub</button>
+          <p class="bc-auth-status" data-oauth-status>Checking sign-in…</p>
+          <button class="bc-text-button" type="button" data-github-signout hidden>Sign out</button>
+        </div>
+      </form>
+    </dialog>
+  </main>
+
+  <script src="/assets/broadcast-control-auth.js?v={{ site.asset_version }}" defer></script>
+  <script src="/assets/broadcast-control.js?v={{ site.asset_version }}" defer></script>
+</body>
+</html>

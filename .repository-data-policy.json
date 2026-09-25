@@ -468,6 +468,25 @@
       "publicContract": true
     },
     {
+      "id": "broadcast-control-runtime",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/broadcast-control.json"
+      ],
+      "lifecycle": "curated-public-runtime",
+      "owner": "broadcast",
+      "producers": [
+        "broadcast-control.html",
+        "assets/broadcast-control.js"
+      ],
+      "consumers": [
+        "assets/broadcast-trial.js"
+      ],
+      "safeToRegenerate": false,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
       "id": "otd-primary-runtime",
       "storage": "public-runtime",
       "paths": [
