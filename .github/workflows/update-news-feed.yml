@@ -10,6 +10,7 @@ on:
       - "package.json"
       - "package-lock.json"
       - "scripts/news/build-news-feed.mjs"
+      - "scripts/news/build-youtube-feed.mjs"
       - "scripts/news/dedupe-news-headlines.mjs"
   schedule:
     - cron: "2-57/5 * * * *"
@@ -52,6 +53,11 @@ jobs:
           --output /tmp/mma-news.json
           --previous /tmp/mma-news-previous.json
 
+      - name: Collect latest MMA YouTube uploads
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: node scripts/news/build-youtube-feed.mjs --output /tmp/mma-videos.json
+
       - name: Remove duplicate normalized headlines
         run: node scripts/news/dedupe-news-headlines.mjs /tmp/mma-news.json
 
@@ -68,8 +74,9 @@ jobs:
           git switch --orphan live-news-data
           git rm -rf . >/dev/null 2>&1 || true
           cp /tmp/mma-news.json mma-news.json
-          git add mma-news.json
-          git commit -m "Refresh MMA news data"
+          cp /tmp/mma-videos.json mma-videos.json
+          git add mma-news.json mma-videos.json
+          git commit -m "Refresh MMA news and video data"
           git push --force origin HEAD:live-news-data
 
       - name: Publish the latest data snapshot
