@@ -34,9 +34,11 @@
     const child = window.open(
       url,
       name,
-      'popup=yes,width=760,height=720,resizable=yes,scrollbars=yes,noopener,noreferrer'
+      'popup=yes,width=760,height=720,resizable=yes,scrollbars=yes'
     );
-    if (!child) {
+    if (child) {
+      try { child.opener = null; } catch {}
+    } else {
       window.open(url, '_blank', 'noopener,noreferrer');
     }
   };
@@ -96,7 +98,7 @@
 
   xButton?.addEventListener('click', () => {
     popup(
-      'https://x.com/intent/post?text=' +
+      'https://twitter.com/intent/tweet?text=' +
       encodeURIComponent(shareTitle) +
       '&url=' +
       encodeURIComponent(shareUrl),
