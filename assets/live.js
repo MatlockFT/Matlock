@@ -23,6 +23,12 @@
     root.querySelector("[data-live-ambient-b]")
   ].filter(Boolean);
 
+  // Promote the lighting field to the document shell so it can wash behind
+  // the global masthead, navigation, ticker, page content, and footer.
+  if (ambientStage && ambientStage.parentElement !== document.body) {
+    document.body.insertBefore(ambientStage, document.body.firstChild);
+  }
+
   let currentVideoId = "";
   let ambientVideoId = "";
   let ambientLayerIndex = 0;
