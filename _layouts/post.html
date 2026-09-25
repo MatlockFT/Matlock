@@ -253,6 +253,151 @@ layout: default
             </div>
         </div>
 
+        <footer class="post-footer">
+                {% if page.tags and page.tags.size > 0 %}
+                    <section
+                        class="post-topics"
+                        aria-labelledby="post-topics-title"
+                    >
+                        <h2 id="post-topics-title">
+                            Topics
+                        </h2>
+        
+                        <ul>
+                            {% for tag in page.tags %}
+                                <li>
+                                    {{ tag }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </section>
+                {% endif %}
+        
+                <div class="post-archive-link">
+                    <p>
+                        Browse more original UFC and MMA breakdowns from MMA Matlock.
+                    </p>
+        
+                    <a
+                        class="primary-button"
+                        href="{{ '/breakdowns/' | relative_url }}"
+                    >
+                        View all breakdowns
+                    </a>
+                </div>
+            </footer>
+        
+        
+
+        <section
+                class="post-share"
+                aria-labelledby="post-share-title"
+                data-post-share
+                data-share-url="{{ share_url | escape }}"
+                data-share-title="{{ share_title | escape }}"
+                data-share-text="{{ page.description | default: page.title | strip_html | escape }}"
+                data-share-image="{% if featured_src %}{{ featured_src | absolute_url | escape }}{% endif %}"
+            >
+                <div class="post-share-heading">
+                    <div>
+                        <p class="eyebrow">
+                            Share this article
+                        </p>
+        
+                        <h2 id="post-share-title">
+                            Pass It Along
+                        </h2>
+                    </div>
+        
+                    <p>
+                        Share this article or copy its direct link.
+                    </p>
+                </div>
+        
+                <div class="post-share-actions">
+                    <button
+                        class="post-share-button post-native-share"
+                        type="button"
+                        data-native-share
+                        aria-label="Open the share menu for {{ page.title | escape }}"
+                    >
+                        Share
+                    </button>
+        
+                    <a
+                        class="post-share-button"
+                        data-share-x
+                        href="https://twitter.com/intent/tweet?text={{ share_title | url_encode }}&url={{ share_url | url_encode }}"
+                        aria-label="Share {{ page.title | escape }} on X"
+                    >
+                        X
+                    </a>
+        
+                    <a
+                        class="post-share-button"
+                        data-share-threads
+                        href="https://www.threads.net/intent/post?text={{ share_title | append: ' ' | append: share_url | url_encode }}"
+                        aria-label="Share {{ page.title | escape }} on Threads"
+                    >
+                        Threads
+                    </a>
+        
+                    <a
+                        class="post-share-button"
+                        data-share-facebook
+                        href="https://www.facebook.com/sharer/sharer.php?u={{ share_url | url_encode }}"
+                        aria-label="Share {{ page.title | escape }} on Facebook"
+                    >
+                        Facebook
+                    </a>
+        
+                    <button
+                        class="post-share-button post-share-button-instagram"
+                        type="button"
+                        data-share-instagram="post"
+                        aria-label="Prepare an Instagram post for {{ page.title | escape }}"
+                    >
+                        IG Post
+                    </button>
+        
+                    <button
+                        class="post-share-button post-share-button-instagram"
+                        type="button"
+                        data-share-instagram="story"
+                        aria-label="Prepare an Instagram story for {{ page.title | escape }}"
+                    >
+                        IG Story
+                    </button>
+        
+                    <a
+                        class="post-share-button"
+                        data-share-reddit
+                        href="https://www.reddit.com/submit?url={{ share_url | url_encode }}&title={{ share_title | url_encode }}"
+                        aria-label="Share {{ page.title | escape }} on Reddit"
+                    >
+                        Reddit
+                    </a>
+        
+                    <button
+                        class="post-share-button"
+                        type="button"
+                        data-copy-link
+                        aria-label="Copy the link to {{ page.title | escape }}"
+                    >
+                        Copy
+                    </button>
+                </div>
+        
+                <p
+                    class="post-share-status"
+                    data-share-status
+                    role="status"
+                    aria-live="polite"
+                ></p>
+            </section>
+        
+        
+
         <aside class="post-rail" aria-label="More MMA reading">
             <section class="post-rail-section post-rail-originals" aria-labelledby="post-rail-originals-title">
                 <header class="post-rail-heading">
@@ -321,147 +466,6 @@ layout: default
             </section>
         </aside>
     </div>
-
-    <section
-        class="post-share"
-        aria-labelledby="post-share-title"
-        data-post-share
-        data-share-url="{{ share_url | escape }}"
-        data-share-title="{{ share_title | escape }}"
-        data-share-text="{{ page.description | default: page.title | strip_html | escape }}"
-        data-share-image="{% if featured_src %}{{ featured_src | absolute_url | escape }}{% endif %}"
-    >
-        <div class="post-share-heading">
-            <div>
-                <p class="eyebrow">
-                    Share this article
-                </p>
-
-                <h2 id="post-share-title">
-                    Pass It Along
-                </h2>
-            </div>
-
-            <p>
-                Share this article or copy its direct link.
-            </p>
-        </div>
-
-        <div class="post-share-actions">
-            <button
-                class="post-share-button post-native-share"
-                type="button"
-                data-native-share
-                aria-label="Open the share menu for {{ page.title | escape }}"
-            >
-                Share
-            </button>
-
-            <a
-                class="post-share-button"
-                data-share-x
-                href="https://twitter.com/intent/tweet?text={{ share_title | url_encode }}&url={{ share_url | url_encode }}"
-                aria-label="Share {{ page.title | escape }} on X"
-            >
-                X
-            </a>
-
-            <a
-                class="post-share-button"
-                data-share-threads
-                href="https://www.threads.net/intent/post?text={{ share_title | append: ' ' | append: share_url | url_encode }}"
-                aria-label="Share {{ page.title | escape }} on Threads"
-            >
-                Threads
-            </a>
-
-            <a
-                class="post-share-button"
-                data-share-facebook
-                href="https://www.facebook.com/sharer/sharer.php?u={{ share_url | url_encode }}"
-                aria-label="Share {{ page.title | escape }} on Facebook"
-            >
-                Facebook
-            </a>
-
-            <button
-                class="post-share-button post-share-button-instagram"
-                type="button"
-                data-share-instagram="post"
-                aria-label="Prepare an Instagram post for {{ page.title | escape }}"
-            >
-                IG Post
-            </button>
-
-            <button
-                class="post-share-button post-share-button-instagram"
-                type="button"
-                data-share-instagram="story"
-                aria-label="Prepare an Instagram story for {{ page.title | escape }}"
-            >
-                IG Story
-            </button>
-
-            <a
-                class="post-share-button"
-                data-share-reddit
-                href="https://www.reddit.com/submit?url={{ share_url | url_encode }}&title={{ share_title | url_encode }}"
-                aria-label="Share {{ page.title | escape }} on Reddit"
-            >
-                Reddit
-            </a>
-
-            <button
-                class="post-share-button"
-                type="button"
-                data-copy-link
-                aria-label="Copy the link to {{ page.title | escape }}"
-            >
-                Copy
-            </button>
-        </div>
-
-        <p
-            class="post-share-status"
-            data-share-status
-            role="status"
-            aria-live="polite"
-        ></p>
-    </section>
-
-    <footer class="post-footer">
-        {% if page.tags and page.tags.size > 0 %}
-            <section
-                class="post-topics"
-                aria-labelledby="post-topics-title"
-            >
-                <h2 id="post-topics-title">
-                    Topics
-                </h2>
-
-                <ul>
-                    {% for tag in page.tags %}
-                        <li>
-                            {{ tag }}
-                        </li>
-                    {% endfor %}
-                </ul>
-            </section>
-        {% endif %}
-
-        <div class="post-archive-link">
-            <p>
-                Browse more original UFC and MMA breakdowns from MMA Matlock.
-            </p>
-
-            <a
-                class="primary-button"
-                href="{{ '/breakdowns/' | relative_url }}"
-            >
-                View all breakdowns
-            </a>
-        </div>
-    </footer>
 
     {% assign visible_related_posts = "" | split: "" %}
     {% for candidate in site.related_posts %}
