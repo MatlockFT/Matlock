@@ -183,6 +183,61 @@ for (const viewport of viewports) {
 
 
 
+
+test.describe('Editorial top spacing consistency', () => {
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  const peers = [
+    ['/news/', '.news-page-v3', '.news-page-header h1'],
+    ['/breakdowns/', '.archive-page-v3', '.archive-header h1'],
+    ['/upcoming-events/', '.upcoming-events-page-v3', '.upcoming-events-header h1'],
+    ['/event-map/', '.event-map-page-v3', '.event-map-hero h1']
+  ];
+
+  async function topGeometry(page, route, rootSelector, headingSelector) {
+    await page.goto(targetUrl(route), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator(rootSelector).first()).toBeVisible({ timeout: 30000 });
+    return page.evaluate(({ rootSelector, headingSelector }) => {
+      const masthead = document.querySelector('.logo-banner')?.getBoundingClientRect();
+      const wordmark = document.querySelector('.v3-wordmark')?.getBoundingClientRect();
+      const root = document.querySelector(rootSelector)?.getBoundingClientRect();
+      const heading = document.querySelector(headingSelector)?.getBoundingClientRect();
+      return {
+        mastheadHeight: masthead?.height || 0,
+        mastheadBottom: masthead?.bottom || 0,
+        wordmarkHeight: wordmark?.height || 0,
+        rootTop: root?.top || 0,
+        headingTop: heading?.top || 0,
+        mastheadToRoot: (root?.top || 0) - (masthead?.bottom || 0),
+        mastheadToHeading: (heading?.top || 0) - (masthead?.bottom || 0)
+      };
+    }, { rootSelector, headingSelector });
+  }
+
+  test('Live uses the same masthead and top rhythm as editorial peers', async ({ page }) => {
+    const live = await topGeometry(page, '/live/', '.live-page', '.live-page__head h1');
+    const samples = [];
+    for (const [route, rootSelector, headingSelector] of peers) {
+      samples.push(await topGeometry(page, route, rootSelector, headingSelector));
+    }
+
+    const median = values => {
+      const sorted = [...values].sort((a, b) => a - b);
+      return sorted[Math.floor(sorted.length / 2)];
+    };
+
+    expect(Math.abs(live.mastheadHeight - median(samples.map(item => item.mastheadHeight))),
+      'Live must not use a custom masthead height').toBeLessThanOrEqual(2);
+    expect(Math.abs(live.wordmarkHeight - median(samples.map(item => item.wordmarkHeight))),
+      'Live must not shrink or enlarge the MATLOCK wordmark').toBeLessThanOrEqual(2);
+    expect(Math.abs(live.mastheadToRoot - median(samples.map(item => item.mastheadToRoot))),
+      'Live page start should align with editorial peers').toBeLessThanOrEqual(8);
+    expect(Math.abs(live.mastheadToHeading - median(samples.map(item => item.mastheadToHeading))),
+      'Live title spacing should match editorial peers').toBeLessThanOrEqual(18);
+  });
+});
+
+
 test.describe('Article social sharing', () => {
   const articlePath = '/2026/09/24/rosas-jr-vs-barcelos-ufc-vegas-121.html';
 
