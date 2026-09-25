@@ -761,7 +761,7 @@ html.reduce-motion .mma-gallery-image-button:hover img {
     .site-navigation .mobile-brand {
         display: inline-flex !important;
         align-items: flex-end;
-        gap: 0;
+        gap: .2em;
         min-width: 0;
         color: inherit;
         font-family: "Edition Matlock", var(--font-display), Georgia, "Times New Roman", serif;
@@ -787,14 +787,14 @@ html.reduce-motion .mma-gallery-image-button:hover img {
         align-items: flex-end;
         justify-content: center;
         flex: 0 0 auto;
-        margin-left: -.18em;
+        margin-left: 0;
     }
 
     .mobile-brand-pumpkin-icon {
         display: block;
-        width: .94em;
-        height: .94em;
-        transform: translateY(.16em) rotate(-5deg);
+        width: .85em;
+        height: .85em;
+        transform: translateY(.06em);
         transform-origin: 50% 100%;
     }
 
@@ -833,22 +833,21 @@ html.reduce-motion .mma-gallery-image-button:hover img {
         align-items: flex-end;
         justify-content: center;
         flex: 0 0 auto;
-        margin-left: -.08em;
+        margin-left: .65rem;
         pointer-events: none;
     }
 
     .desktop-brand-pumpkin img {
         display: block;
-        width: .36em;
-        height: .36em;
-        min-width: 34px;
-        min-height: 34px;
-        transform: translateY(.035em) rotate(-5deg);
+        width: clamp(38px, 3.6vw, 52px);
+        height: auto;
+        aspect-ratio: 1;
+        transform: translateY(-.12rem);
         transform-origin: 50% 100%;
     }
 
     .desktop-brand-pumpkin-image-logo {
-        margin-left: -12px;
+        margin-left: .4rem;
     }
 
     .desktop-brand-pumpkin-image-logo img {
@@ -856,6 +855,6 @@ html.reduce-motion .mma-gallery-image-button:hover img {
         height: clamp(34px, 3.2vw, 46px);
         min-width: 0;
         min-height: 0;
-        transform: translateY(-.08rem) rotate(-5deg);
+        transform: translateY(-.08rem);
     }
 }

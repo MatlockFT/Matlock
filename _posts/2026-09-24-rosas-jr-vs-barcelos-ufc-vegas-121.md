@@ -455,7 +455,7 @@ It’s basically a little House of Horrors fight card.
   --text: #f3f5f7;
   --muted: #8f98a4;
 
-  --red: #ff4d5a;
+  --red: #f08a24;
   --red-soft: rgba(255,77,90,.18);
 
   --blue: #578cff;
@@ -721,7 +721,7 @@ It’s basically a little House of Horrors fight card.
 
   margin-bottom: 7px;
 
-  color: #ff7983;
+  color: #ffad66;
 
   font-size: .62rem;
   font-weight: 900;
@@ -810,7 +810,7 @@ It’s basically a little House of Horrors fight card.
 
 
 .fight-compare-sleek .fc-underdog strong {
-  color: #ff727d;
+  color: #ffad66;
 }
 
 
@@ -1397,7 +1397,7 @@ She’s coming off a submission loss to Ketlen Souza and has been out for a whil
   --fs-line: rgba(255,255,255,.08);
   --fs-line-strong: rgba(255,255,255,.16);
 
-  --fs-red: #ff4d5a;
+  --fs-red: #f08a24;
   --fs-red-soft: rgba(255,77,90,.10);
 
   --fs-blue: #578cff;
@@ -1498,7 +1498,7 @@ She’s coming off a submission loss to Ketlen Souza and has been out for a whil
 
 
 .fight-stats-sleek .fs-fighter-left .fs-side-label {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -1757,7 +1757,7 @@ She’s coming off a submission loss to Ketlen Souza and has been out for a whil
 
 
 .fight-stats-sleek .fs-average-left strong {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -2203,7 +2203,7 @@ Still, I think Jauregui is too sharp on the feet and should be able to win enoug
   --text: #f3f5f7;
   --muted: #8f98a4;
 
-  --red: #ff4d5a;
+  --red: #f08a24;
   --red-soft: rgba(255,77,90,.18);
 
   --blue: #578cff;
@@ -2477,7 +2477,7 @@ Still, I think Jauregui is too sharp on the feet and should be able to win enoug
 
   margin-bottom: 7px;
 
-  color: #ff7983;
+  color: #ffad66;
 
   font-size: .62rem;
   font-weight: 900;
@@ -2571,7 +2571,7 @@ Still, I think Jauregui is too sharp on the feet and should be able to win enoug
 
 
 .fight-compare-sleek .fc-favorite-left strong {
-  color: #ff727d;
+  color: #ffad66;
 }
 
 
@@ -3172,7 +3172,7 @@ Still, I think Jauregui is too sharp on the feet and should be able to win enoug
   --fs-line: rgba(255,255,255,.08);
   --fs-line-strong: rgba(255,255,255,.16);
 
-  --fs-red: #ff4d5a;
+  --fs-red: #f08a24;
   --fs-red-soft: rgba(255,77,90,.10);
 
   --fs-blue: #578cff;
@@ -3273,7 +3273,7 @@ Still, I think Jauregui is too sharp on the feet and should be able to win enoug
 
 
 .fight-stats-sleek .fs-fighter-left .fs-side-label {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -3532,7 +3532,7 @@ Still, I think Jauregui is too sharp on the feet and should be able to win enoug
 
 
 .fight-stats-sleek .fs-average-left strong {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -4056,7 +4056,7 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
   --text: #f3f5f7;
   --muted: #8f98a4;
 
-  --red: #ff4d5a;
+  --red: #f08a24;
   --red-soft: rgba(255,77,90,.18);
 
   --blue: #578cff;
@@ -4404,7 +4404,7 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
 
   margin-bottom: 7px;
 
-  color: #ff7983;
+  color: #ffad66;
 
   font-size: .62rem;
 
@@ -4519,7 +4519,7 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
 
 
 .fight-compare-sleek .fc-red-odds strong {
-  color: #ff727d;
+  color: #ffad66;
 }
 
 
@@ -5237,7 +5237,7 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
   --fs-line: rgba(255,255,255,.08);
   --fs-line-strong: rgba(255,255,255,.16);
 
-  --fs-red: #ff4d5a;
+  --fs-red: #f08a24;
   --fs-red-soft: rgba(255,77,90,.10);
 
   --fs-blue: #578cff;
@@ -5356,7 +5356,7 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
 
 
 .fight-stats-sleek .fs-fighter-left .fs-side-label {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -5664,7 +5664,7 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
 
 
 .fight-stats-sleek .fs-average-left strong {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -6214,7 +6214,7 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
   --text: #f3f5f7;
   --muted: #8f98a4;
 
-  --red: #ff4d5a;
+  --red: #f08a24;
   --red-soft: rgba(255,77,90,.18);
 
   --blue: #578cff;
@@ -6559,7 +6559,7 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
 
   margin-bottom: 7px;
 
-  color: #ff7983;
+  color: #ffad66;
 
   font-size: .62rem;
 
@@ -6674,7 +6674,7 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
 
 
 .fight-compare-sleek .fc-red-odds strong {
-  color: #ff727d;
+  color: #ffad66;
 }
 
 
@@ -7384,7 +7384,7 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
   --fs-line: rgba(255,255,255,.08);
   --fs-line-strong: rgba(255,255,255,.16);
 
-  --fs-red: #ff4d5a;
+  --fs-red: #f08a24;
   --fs-red-soft: rgba(255,77,90,.10);
 
   --fs-blue: #578cff;
@@ -7503,7 +7503,7 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
 
 
 .fight-stats-sleek .fs-fighter-left .fs-side-label {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -7811,7 +7811,7 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
 
 
 .fight-stats-sleek .fs-average-left strong {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -8361,7 +8361,7 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
   --text: #f3f5f7;
   --muted: #8f98a4;
 
-  --red: #ff4d5a;
+  --red: #f08a24;
   --red-soft: rgba(255,77,90,.18);
 
   --blue: #578cff;
@@ -8685,7 +8685,7 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
 
   margin-bottom: 7px;
 
-  color: #ff7983;
+  color: #ffad66;
 
   font-size: .62rem;
   font-weight: 900;
@@ -8793,7 +8793,7 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
 
 
 .fight-compare-sleek .fc-red-odds strong {
-  color: #ff727d;
+  color: #ffad66;
 }
 
 
@@ -9514,7 +9514,7 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
   --fs-line: rgba(255,255,255,.08);
   --fs-line-strong: rgba(255,255,255,.16);
 
-  --fs-red: #ff4d5a;
+  --fs-red: #f08a24;
   --fs-red-soft: rgba(255,77,90,.10);
 
   --fs-blue: #578cff;
@@ -9633,7 +9633,7 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
 
 
 .fight-stats-sleek .fs-fighter-left .fs-side-label {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -9941,7 +9941,7 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
 
 
 .fight-stats-sleek .fs-average-left strong {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -10449,7 +10449,7 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
   --text: #f3f5f7;
   --muted: #8f98a4;
 
-  --red: #ff4d5a;
+  --red: #f08a24;
   --red-soft: rgba(255,77,90,.18);
 
   --blue: #578cff;
@@ -10789,7 +10789,7 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
 
   margin-bottom: 7px;
 
-  color: #ff7983;
+  color: #ffad66;
 
   font-size: .62rem;
 
@@ -10904,7 +10904,7 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
 
 
 .fight-compare-sleek .fc-red-odds strong {
-  color: #ff727d;
+  color: #ffad66;
 }
 
 
@@ -11608,7 +11608,7 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
   --fs-line: rgba(255,255,255,.08);
   --fs-line-strong: rgba(255,255,255,.16);
 
-  --fs-red: #ff4d5a;
+  --fs-red: #f08a24;
   --fs-red-soft: rgba(255,77,90,.10);
 
   --fs-blue: #578cff;
@@ -11727,7 +11727,7 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
 
 
 .fight-stats-sleek .fs-fighter-left .fs-side-label {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -12035,7 +12035,7 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
 
 
 .fight-stats-sleek .fs-average-left strong {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -12541,7 +12541,7 @@ I have no real interest in this fight and don’t have a strong lean either way.
   --text: #f3f5f7;
   --muted: #8f98a4;
 
-  --red: #ff4d5a;
+  --red: #f08a24;
   --red-soft: rgba(255,77,90,.18);
 
   --blue: #578cff;
@@ -12879,7 +12879,7 @@ I have no real interest in this fight and don’t have a strong lean either way.
 
   margin-bottom: 7px;
 
-  color: #ff7983;
+  color: #ffad66;
 
   font-size: .62rem;
 
@@ -12994,7 +12994,7 @@ I have no real interest in this fight and don’t have a strong lean either way.
 
 
 .fight-compare-sleek .fc-red-odds strong {
-  color: #ff727d;
+  color: #ffad66;
 }
 
 
@@ -13698,7 +13698,7 @@ I have no real interest in this fight and don’t have a strong lean either way.
   --fs-line: rgba(255,255,255,.08);
   --fs-line-strong: rgba(255,255,255,.16);
 
-  --fs-red: #ff4d5a;
+  --fs-red: #f08a24;
   --fs-red-soft: rgba(255,77,90,.10);
 
   --fs-blue: #578cff;
@@ -13817,7 +13817,7 @@ I have no real interest in this fight and don’t have a strong lean either way.
 
 
 .fight-stats-sleek .fs-fighter-left .fs-side-label {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -14125,7 +14125,7 @@ I have no real interest in this fight and don’t have a strong lean either way.
 
 
 .fight-stats-sleek .fs-average-left strong {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -14672,7 +14672,7 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
   --text: #f3f5f7;
   --muted: #8f98a4;
 
-  --red: #ff4d5a;
+  --red: #f08a24;
   --red-soft: rgba(255,77,90,.18);
 
   --blue: #578cff;
@@ -15033,7 +15033,7 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
 
   margin-bottom: 7px;
 
-  color: #ff7983;
+  color: #ffad66;
 
   font-size: .62rem;
 
@@ -15148,7 +15148,7 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
 
 
 .fight-compare-sleek .fc-red-odds strong {
-  color: #ff727d;
+  color: #ffad66;
 }
 
 
@@ -15861,7 +15861,7 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
 
   --fs-line-strong: rgba(255,255,255,.16);
 
-  --fs-red: #ff4d5a;
+  --fs-red: #f08a24;
 
   --fs-red-soft: rgba(255,77,90,.10);
 
@@ -15942,7 +15942,7 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
 }
 
 .fight-stats-sleek .fs-fighter-left .fs-side-label {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 .fight-stats-sleek .fs-fighter-right .fs-side-label {
@@ -16161,7 +16161,7 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
 }
 
 .fight-stats-sleek .fs-average-left strong {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 .fight-stats-sleek .fs-average-right strong {
@@ -16659,7 +16659,7 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
   --text: #f3f5f7;
   --muted: #8f98a4;
 
-  --red: #ff4d5a;
+  --red: #f08a24;
   --red-soft: rgba(255,77,90,.18);
 
   --blue: #578cff;
@@ -17004,7 +17004,7 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 
   margin-bottom: 7px;
 
-  color: #ff7983;
+  color: #ffad66;
 
   font-size: .62rem;
 
@@ -17119,7 +17119,7 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 
 
 .fight-compare-sleek .fc-red-odds strong {
-  color: #ff727d;
+  color: #ffad66;
 }
 
 
@@ -17823,7 +17823,7 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
   --fs-line: rgba(255,255,255,.08);
   --fs-line-strong: rgba(255,255,255,.16);
 
-  --fs-red: #ff4d5a;
+  --fs-red: #f08a24;
   --fs-red-soft: rgba(255,77,90,.10);
 
   --fs-blue: #578cff;
@@ -17942,7 +17942,7 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 
 
 .fight-stats-sleek .fs-fighter-left .fs-side-label {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -18250,7 +18250,7 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 
 
 .fight-stats-sleek .fs-average-left strong {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -18758,7 +18758,7 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
   --text: #f3f5f7;
   --muted: #8f98a4;
 
-  --red: #ff4d5a;
+  --red: #f08a24;
   --red-soft: rgba(255,77,90,.18);
 
   --blue: #578cff;
@@ -19096,7 +19096,7 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
 
   margin-bottom: 7px;
 
-  color: #ff7983;
+  color: #ffad66;
 
   font-size: .62rem;
 
@@ -19211,7 +19211,7 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
 
 
 .fight-compare-sleek .fc-red-odds strong {
-  color: #ff727d;
+  color: #ffad66;
 }
 
 
@@ -19915,7 +19915,7 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
   --fs-line: rgba(255,255,255,.08);
   --fs-line-strong: rgba(255,255,255,.16);
 
-  --fs-red: #ff4d5a;
+  --fs-red: #f08a24;
   --fs-red-soft: rgba(255,77,90,.10);
 
   --fs-blue: #578cff;
@@ -20034,7 +20034,7 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
 
 
 .fight-stats-sleek .fs-fighter-left .fs-side-label {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 
@@ -20342,7 +20342,7 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
 
 
 .fight-stats-sleek .fs-average-left strong {
-  color: #ff737d;
+  color: #ffad66;
 }
 
 

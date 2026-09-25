@@ -459,7 +459,7 @@
     function drawTextCard(ctx, config, entry, bitmap) {
         const { width: w, height: h } = config;
         const pad = Math.round(w * 0.064);
-        const red = '#e31b23';
+        const red = '#a94b00';
         const white = '#f7f7f7';
         const muted = '#a6a6a6';
 

@@ -210,7 +210,7 @@
 }
 
 .contact-page .platform-card--verdict .platform-logo {
-    color: #ff3c4d;
+    color: var(--accent);
 }
 
 .contact-page .platform-card--youtube .platform-logo {

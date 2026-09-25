@@ -934,7 +934,7 @@ html[data-theme="light"] .live-page__player-stage::before {
 
 .live-page__row-state {
   align-self: center;
-  color: #ff565b;
+  color: var(--v3-red);
   font: 800 .58rem/1.25 var(--v3-sans);
   letter-spacing: .05em;
   text-transform: uppercase;

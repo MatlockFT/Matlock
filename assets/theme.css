@@ -16,9 +16,9 @@
     --theme-text-soft: #d0d0d0;
     --theme-muted: #929292;
 
-    --theme-accent: #ff4a54;
-    --theme-accent-soft: #ff8990;
-    --theme-accent-rgb: 255, 74, 84;
+    --theme-accent: #f08a24;
+    --theme-accent-soft: #ffba75;
+    --theme-accent-rgb: 240, 138, 36;
     --theme-success: #3ddd78;
 
     --theme-content-width: 1240px;
@@ -42,5 +42,12 @@
     --theme-shadow: 0 20px 60px rgba(0, 0, 0, 0.32);
     --theme-shadow-card: 0 15px 38px rgba(0, 0, 0, 0.28);
     --theme-nav-blur: 14px;
-    --theme-accent-wash: rgba(255, 74, 84, 0.1);
+    --theme-accent-wash: rgba(var(--theme-accent-rgb), 0.1);
+}
+
+/* Burnt orange remains legible on paper; warm orange stays bright on ink. */
+html[data-theme="light"] {
+    --theme-accent: #a94b00;
+    --theme-accent-soft: #a94b00;
+    --theme-accent-rgb: 169, 75, 0;
 }
