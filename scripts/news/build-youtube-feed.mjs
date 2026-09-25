@@ -1,16 +1,28 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
 const API="https://www.googleapis.com/youtube/v3";
 const MAX_AGE_MS=48*60*60*1000;
 const MAX_PER_CHANNEL=6;
-const channels=[
+let channels=[
   {name:"MMA Junkie",handle:"@MMAJunkieOfficial"},
   {name:"MMA Fighting",handle:"@MMAFighting"},
   {name:"UFC",handle:"@ufc"},
   {name:"PFL MMA",handle:"@PFLMMA"},
   {name:"ONE Championship",handle:"@ONEChampionship"}
 ];
+
+try {
+  const control=JSON.parse(await readFile(resolve("assets/data/broadcast-control.json"),"utf8"));
+  for(const channel of control?.sources?.customVideoChannels||[]){
+    const name=String(channel?.name||"").trim();
+    const handle=String(channel?.handle||"").trim();
+    if(!name||!/^@[A-Za-z0-9._-]+$/.test(handle)||channels.some(item=>item.name.toLowerCase()===name.toLowerCase()))continue;
+    channels.push({name,handle});
+  }
+}catch{
+  // Broadcast control is optional for the YouTube builder.
+}
 
 function argumentValue(name){const i=process.argv.indexOf(name);return i>=0?process.argv[i+1]:""}
 const destination=resolve(argumentValue("--output")||"assets/data/mma-videos.json");
