@@ -184,6 +184,33 @@ for (const viewport of viewports) {
 
 
 
+test.describe('Broadcast control program monitor', () => {
+  test.use({ viewport: { width: 1440, height: 1000 }, isMobile: false, hasTouch: false });
+
+  test('renders the real broadcast output and reacts to preset changes', async ({ page }) => {
+    const pageErrors = [];
+    page.on('pageerror', error => pageErrors.push(error.message));
+
+    await page.goto(targetUrl('/broadcast-control/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-program-monitor-frame]')).toBeVisible({ timeout: 30000 });
+    await expect(page.locator('[data-preview-renderer]')).toHaveText('ONLINE', { timeout: 30000 });
+
+    const frame = page.frameLocator('[data-program-monitor-frame]');
+    await expect(frame.locator('[data-broadcast]')).toBeVisible({ timeout: 30000 });
+    await expect(frame.locator('[data-title]')).not.toHaveText('Loading current combat sports news…', { timeout: 30000 });
+    await expect(frame.locator('[data-title]')).not.toHaveText('', { timeout: 30000 });
+
+    await page.locator('[data-preset="video"]').click();
+    await expect(page.locator('[data-draft-title]')).toContainText('Video heavy');
+    await expect(page.locator('[data-preview-program]')).toHaveText('DRAFT');
+    await expect(page.locator('[data-preview-renderer]')).toHaveText('ONLINE', { timeout: 10000 });
+    await expect(frame.locator('[data-title]')).not.toHaveText('', { timeout: 10000 });
+
+    expect(pageErrors).toEqual([]);
+  });
+});
+
+
 test.describe('Editorial top spacing consistency', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 
