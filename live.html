@@ -152,7 +152,7 @@ page_scripts:
 
     <div class="live-page__now-playing live-page__ui">
       <div>
-        <p class="live-page__label">Now playing</p>
+        <p class="live-page__label" data-live-now-label>Now playing</p>
         <h2 id="live-now-playing-title" data-live-title>Checking live MMA…</h2>
         <p class="live-page__meta" data-live-promotion>Live fight stream guide</p>
       </div>
@@ -171,11 +171,11 @@ page_scripts:
     </div>
   </section>
 
-  <section class="live-page__section live-page__ui" aria-labelledby="live-now-title">
+  <section class="live-page__section live-page__section--live live-page__ui" data-live-section aria-labelledby="live-now-title" hidden>
     <header class="live-page__section-head">
       <div>
-        <p class="live-page__label live-page__label--red">On air</p>
-        <h2 id="live-now-title">Live now</h2>
+        <p class="live-page__label live-page__label--red">Also on air</p>
+        <h2 id="live-now-title">Other live streams</h2>
       </div>
       <span data-live-count>0 live</span>
     </header>
@@ -189,7 +189,7 @@ page_scripts:
     <header class="live-page__section-head">
       <div>
         <p class="live-page__label">Schedule</p>
-        <h2 id="up-next-title">What’s next</h2>
+        <h2 id="up-next-title">Upcoming streams</h2>
       </div>
       <span data-upcoming-count>0 upcoming</span>
     </header>
