@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-09-23",
+  "updated_at": "2026-09-24",
   "notes": "Discovery queue seeded from MerrabiMedia prospect/event list supplied by site owner. Research entries may be searched via YouTube Data API; nothing is auto-promoted into the live registry.",
   "candidates": [
     {
@@ -335,6 +335,14 @@
       "event": "UFC Vegas 122",
       "status": "excluded",
       "reason": "Major promotion; not a YouTube-live regional source"
+    },
+    {
+      "id": "youtube-uUlmif4wkr8",
+      "promotion": "User-supplied YouTube source",
+      "event": "https://www.youtube.com/watch?v=uUlmif4wkr8",
+      "status": "research",
+      "video_id": "uUlmif4wkr8",
+      "reason": "User requested that the uploader channel be monitored on the Live page"
     }
   ]
 }
