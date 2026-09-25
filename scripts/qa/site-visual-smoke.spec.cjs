@@ -713,8 +713,11 @@ test.describe('Live V3 site rollout', () => {
 
     await page.goto(targetUrl('/live/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
     await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'live');
-    await expect(page.locator('[data-live-embed-fallback]')).toBeVisible({ timeout: 12000 });
+    await expect(page.locator('[data-live-embed-fallback]')).toBeVisible({ timeout: 8000 });
+    await expect(page.locator('[data-live-embed-fallback]')).toContainText('YouTube requires direct playback');
+    await expect(page.locator('[data-live-embed-fallback]')).toContainText('Watch this live stream on YouTube.');
     await expect(page.locator('[data-live-embed-fallback-link]')).toHaveAttribute('href', /cv2svtEOyIw/);
+    await expect(page.locator('[data-live-player]')).toHaveCSS('visibility', 'hidden');
     await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'live');
   });
 
