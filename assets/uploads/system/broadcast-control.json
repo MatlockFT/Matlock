@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "revision": 1790375595932,
-  "updatedAt": "2026-09-25T22:33:15.932Z",
+  "revision": 1790375634403,
+  "updatedAt": "2026-09-25T22:33:54.403Z",
   "modules": {
     "news": true,
     "video": true,
@@ -70,6 +70,13 @@
     "videos": [],
     "events": []
   },
-  "forceNext": null,
+  "forceNext": {
+    "requestId": "1790375633729",
+    "mode": "now",
+    "ref": {
+      "type": "news",
+      "id": "9472261bd1587562"
+    }
+  },
   "updatedBy": "MatlockFT"
 }
