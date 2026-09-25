@@ -547,3 +547,402 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
   .post-page-v3 .post-body .mfc-opponents{grid-template-columns:1fr 120px 1fr}
   .post-page-v3 .post-body .mfc-tale-row{grid-template-columns:1fr 105px 1fr}
 }
+
+
+/* Mobile article visual containment: vertical reading only. */
+.post-page-v3 .post-body{
+  min-width:0;
+  max-width:100%;
+  overflow-wrap:break-word;
+}
+.post-page-v3 .post-body > *{
+  min-width:0;
+  max-width:100%;
+}
+.post-page-v3 .post-body .article-html-visual{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  overflow-x:hidden;
+  overflow-x:clip;
+}
+.post-page-v3 .post-body .article-html-visual :where(div,section,article,aside,figure,table,thead,tbody,tfoot,tr,td,th){
+  min-width:0;
+  box-sizing:border-box;
+}
+.post-page-v3 .post-body .article-html-visual :where(img,video,iframe,svg,canvas){
+  max-width:100%;
+}
+.post-page-v3 .post-body .article-html-visual :where(p,span,strong,small,td,th){
+  overflow-wrap:anywhere;
+}
+.post-page-v3 .post-body .article-html-visual pre{
+  max-width:100%;
+  overflow-x:hidden;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+
+@media(max-width:760px){
+  .post-page-v3 .post-body{
+    overflow-x:hidden;
+    overflow-x:clip;
+  }
+
+  /* Generic HTML tables: wrap into the viewport rather than requiring sideways scrolling. */
+  .post-page-v3 .post-body .article-html-visual table,
+  .post-page-v3 .post-body .card-stats-table table,
+  .post-page-v3 .post-body .matlock-stats-card table{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    table-layout:fixed!important;
+  }
+  .post-page-v3 .post-body .article-html-visual th,
+  .post-page-v3 .post-body .article-html-visual td,
+  .post-page-v3 .post-body .card-stats-table th,
+  .post-page-v3 .post-body .card-stats-table td,
+  .post-page-v3 .post-body .matlock-stats-card th,
+  .post-page-v3 .post-body .matlock-stats-card td{
+    white-space:normal!important;
+    overflow-wrap:anywhere!important;
+    word-break:normal!important;
+  }
+  .post-page-v3 .post-body .card-stats-table,
+  .post-page-v3 .post-body .matlock-stats-card{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    overflow-x:hidden!important;
+  }
+  .post-page-v3 .post-body .card-stats-table th,
+  .post-page-v3 .post-body .card-stats-table td,
+  .post-page-v3 .post-body .matlock-stats-card th,
+  .post-page-v3 .post-body .matlock-stats-card td{
+    padding:.5rem .38rem!important;
+    font-size:clamp(.58rem,2.7vw,.76rem)!important;
+  }
+  .post-page-v3 .post-body .card-stats-table th,
+  .post-page-v3 .post-body .matlock-stats-card th{
+    font-size:clamp(.45rem,2.2vw,.58rem)!important;
+    letter-spacing:.04em!important;
+  }
+
+  /* Legacy Tale of the Tape blocks already published in older articles. */
+  .post-page-v3 .post-body .fight-compare-sleek,
+  .post-page-v3 .post-body .fight-compare-sleek .fc-shell,
+  .post-page-v3 .post-body .fight-compare-sleek .fc-top,
+  .post-page-v3 .post-body .fight-compare-sleek .fc-form-wrap,
+  .post-page-v3 .post-body .fight-compare-sleek .fc-opponents,
+  .post-page-v3 .post-body .fight-compare-sleek .fc-tale{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-shell{
+    overflow:hidden!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-top{
+    grid-template-columns:minmax(0,1fr) 38px minmax(0,1fr)!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-fighter{
+    min-width:0!important;
+    min-height:188px!important;
+    padding:.8rem .3rem!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-center-badge{
+    min-width:0!important;
+    padding:.35rem .12rem!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-center-badge strong{
+    display:none!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-center-badge i{
+    width:22px!important;
+    max-width:70%!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-portrait{
+    width:clamp(72px,25vw,96px)!important;
+    height:clamp(72px,25vw,96px)!important;
+    margin-bottom:.6rem!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-meta{
+    min-width:0!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-meta h2{
+    max-width:100%!important;
+    font-size:clamp(.66rem,3.2vw,.86rem)!important;
+    line-height:1.08!important;
+    overflow-wrap:anywhere!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-division{
+    max-width:100%!important;
+    font-size:.44rem!important;
+    letter-spacing:.09em!important;
+    overflow-wrap:anywhere!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-meta-strip{
+    flex-wrap:wrap!important;
+    gap:.25rem!important;
+    margin-top:.45rem!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-odds,
+  .post-page-v3 .post-body .fight-compare-sleek .fc-last5{
+    height:auto!important;
+    min-height:25px!important;
+    max-width:100%!important;
+    padding:.28rem .4rem!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-form-wrap{
+    grid-template-columns:1fr!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-column{
+    min-width:0!important;
+    padding:.2rem .7rem!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-column:first-child{
+    border-right:0!important;
+    border-bottom:1px solid var(--line)!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-form-row{
+    min-width:0!important;
+    grid-template-columns:28px minmax(0,1fr)!important;
+    gap:.55rem!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-form-copy{
+    min-width:0!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-form-copy strong,
+  .post-page-v3 .post-body .fight-compare-sleek .fc-form-copy small{
+    max-width:100%!important;
+    overflow-wrap:anywhere!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-opponents{
+    grid-template-columns:minmax(0,1fr) minmax(76px,29%) minmax(0,1fr)!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-opponent-stat,
+  .post-page-v3 .post-body .fight-compare-sleek .fc-opponent-label{
+    min-width:0!important;
+    padding:.7rem .25rem!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-opponent-label{
+    font-size:.46rem!important;
+    letter-spacing:.05em!important;
+    overflow-wrap:anywhere!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-tale{
+    padding:.8rem .45rem!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-section-title span::before,
+  .post-page-v3 .post-body .fight-compare-sleek .fc-section-title span::after{
+    display:none!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-tale-row{
+    width:100%!important;
+    min-width:0!important;
+    grid-template-columns:minmax(0,1fr) minmax(78px,40%) minmax(0,1fr)!important;
+    gap:.25rem!important;
+    padding:0 .2rem!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-tale-row span{
+    min-width:0!important;
+    padding:0 .15rem!important;
+    font-size:.49rem!important;
+    letter-spacing:.04em!important;
+    overflow-wrap:anywhere!important;
+  }
+  .post-page-v3 .post-body .fight-compare-sleek .fc-tale-row strong{
+    min-width:0!important;
+    font-size:clamp(.68rem,3vw,.84rem)!important;
+    overflow-wrap:anywhere!important;
+  }
+
+  /* Legacy fighter stat comparison blocks already in the UFC Vegas 121 article. */
+  .post-page-v3 .post-body .fight-stats-sleek,
+  .post-page-v3 .post-body .fight-stats-sleek .fs-shell,
+  .post-page-v3 .post-body .fight-stats-sleek .fs-header,
+  .post-page-v3 .post-body .fight-stats-sleek .fs-section,
+  .post-page-v3 .post-body .fight-stats-sleek .fs-cage-header,
+  .post-page-v3 .post-body .fight-stats-sleek .fs-cage-grid{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-shell{
+    overflow:hidden!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-header{
+    grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr)!important;
+    min-height:84px!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-fighter{
+    min-width:0!important;
+    padding:.7rem .35rem!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-fighter strong{
+    max-width:100%!important;
+    font-size:clamp(.64rem,3vw,.82rem)!important;
+    overflow-wrap:anywhere!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-side-label{
+    font-size:.42rem!important;
+    letter-spacing:.07em!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-header-center{
+    min-width:0!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-header-center strong{
+    display:none!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-header-center i{
+    width:22px!important;
+    max-width:70%!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-section{
+    padding:.75rem .35rem!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-section-title span::before,
+  .post-page-v3 .post-body .fight-stats-sleek .fs-section-title span::after{
+    display:none!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-stat-row{
+    width:100%!important;
+    min-width:0!important;
+    grid-template-columns:minmax(0,1fr) minmax(88px,43%) minmax(0,1fr)!important;
+    gap:.2rem!important;
+    padding:0 .15rem!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-stat-row span{
+    min-width:0!important;
+    padding:0 .18rem!important;
+    font-size:.48rem!important;
+    letter-spacing:.035em!important;
+    overflow-wrap:anywhere!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-stat-row strong{
+    min-width:0!important;
+    font-size:clamp(.68rem,3vw,.86rem)!important;
+    overflow-wrap:anywhere!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-cage-header{
+    grid-template-columns:minmax(0,1fr) minmax(72px,28%) minmax(0,1fr)!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-average{
+    min-width:0!important;
+    padding:.7rem .3rem!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-average strong{
+    font-size:clamp(.9rem,4.5vw,1.18rem)!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-average > span,
+  .post-page-v3 .post-body .fight-stats-sleek .fs-average small,
+  .post-page-v3 .post-body .fight-stats-sleek .fs-cage-center span{
+    font-size:.43rem!important;
+    letter-spacing:.045em!important;
+    overflow-wrap:anywhere!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-cage-center{
+    min-width:0!important;
+    padding:.3rem!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-cage-grid{
+    grid-template-columns:1fr!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-cage-column{
+    min-width:0!important;
+    padding:.25rem .65rem!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-cage-column:first-child{
+    border-right:0!important;
+    border-bottom:1px solid var(--fs-line)!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-cage-row{
+    grid-template-columns:48px minmax(0,1fr)!important;
+    gap:.55rem!important;
+  }
+  .post-page-v3 .post-body .fight-stats-sleek .fs-cage-row span{
+    min-width:0!important;
+    overflow-wrap:anywhere!important;
+  }
+
+  /* New Writer-generated Tale / Stats / Pick components. */
+  .post-page-v3 .post-body .matlock-fight-card,
+  .post-page-v3 .post-body .matlock-stats-card,
+  .post-page-v3 .post-body .article-pick-card{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+  }
+  .post-page-v3 .post-body .matlock-fight-card .mfc-top{
+    grid-template-columns:minmax(0,1fr) 34px minmax(0,1fr)!important;
+  }
+  .post-page-v3 .post-body .matlock-fight-card .mfc-fighter{
+    min-width:0!important;
+    min-height:180px!important;
+    padding:.7rem .25rem!important;
+  }
+  .post-page-v3 .post-body .matlock-fight-card .mfc-portrait{
+    width:clamp(70px,24vw,88px)!important;
+    height:clamp(70px,24vw,88px)!important;
+  }
+  .post-page-v3 .post-body .matlock-fight-card .mfc-name{
+    max-width:100%!important;
+    font-size:clamp(.66rem,3vw,.82rem)!important;
+    overflow-wrap:anywhere!important;
+  }
+  .post-page-v3 .post-body .matlock-fight-card .mfc-division{
+    font-size:.42rem!important;
+    letter-spacing:.07em!important;
+  }
+  .post-page-v3 .post-body .matlock-fight-card .mfc-center{
+    min-width:0!important;
+    padding:.2rem!important;
+  }
+  .post-page-v3 .post-body .matlock-fight-card .mfc-center i{
+    width:20px!important;
+  }
+  .post-page-v3 .post-body .matlock-fight-card .mfc-meta-strip{
+    gap:.2rem!important;
+  }
+  .post-page-v3 .post-body .matlock-fight-card .mfc-odds,
+  .post-page-v3 .post-body .matlock-fight-card .mfc-last5{
+    min-width:0!important;
+    max-width:100%!important;
+    padding:.28rem .35rem!important;
+    font-size:.42rem!important;
+  }
+  .post-page-v3 .post-body .matlock-fight-card .mfc-opponents{
+    grid-template-columns:minmax(0,1fr) minmax(70px,28%) minmax(0,1fr)!important;
+  }
+  .post-page-v3 .post-body .matlock-fight-card .mfc-opponents p{
+    padding:0 .15rem!important;
+    font-size:.42rem!important;
+    letter-spacing:.04em!important;
+    overflow-wrap:anywhere!important;
+  }
+  .post-page-v3 .post-body .matlock-fight-card .mfc-tale{
+    padding:.75rem .35rem!important;
+  }
+  .post-page-v3 .post-body .matlock-fight-card .mfc-tale-row{
+    grid-template-columns:minmax(0,1fr) minmax(76px,39%) minmax(0,1fr)!important;
+    gap:.2rem!important;
+    padding:.48rem .1rem!important;
+  }
+  .post-page-v3 .post-body .matlock-fight-card .mfc-tale-row span{
+    font-size:.45rem!important;
+    letter-spacing:.035em!important;
+    overflow-wrap:anywhere!important;
+  }
+  .post-page-v3 .post-body .matlock-fight-card .mfc-tale-row strong{
+    min-width:0!important;
+    overflow-wrap:anywhere!important;
+  }
+  .post-page-v3 .post-body .article-pick-card{
+    grid-template-columns:1fr!important;
+    gap:.35rem!important;
+    padding:.8rem .85rem!important;
+  }
+  .post-page-v3 .post-body .article-pick-card p{
+    grid-column:1!important;
+  }
+}
