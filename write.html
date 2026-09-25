@@ -194,12 +194,11 @@ page_scripts:
             <button type="button" data-tool="video" title="Upload or insert video">Video</button>
             <button type="button" data-tool="youtube" title="Insert YouTube">YouTube</button>
             <button type="button" data-tool="x" title="Insert X / Twitter post">Tweet</button>
-            <button type="button" data-tool="table" title="Build table">Table</button>
-            <button type="button" data-tool="tale" title="Tale of the Tape">Tale of Tape</button>
-            <button type="button" data-tool="prediction" title="Fight prediction">Pick</button>
+            <button type="button" data-tool="stats" title="Build article stats card">Stats</button>
+            <button type="button" data-tool="tale" title="Build editable fight comparison">Tale of Tape</button>
+            <button type="button" data-tool="prediction" title="Insert styled Matlock pick">Pick</button>
             <button type="button" data-tool="html" title="Insert or edit a self-contained HTML visual">HTML</button>
             <button type="button" class="writer-visuals-toggle" data-html-block-panel-toggle aria-expanded="false" title="Browse embedded HTML visuals" hidden>Visuals <span data-html-block-count>0</span></button>
-            <button type="button" data-tool="template" title="Article template">Template</button>
           </div>
         </div>
 
@@ -207,7 +206,7 @@ page_scripts:
 
         <label class="writer-body-label" for="writer-body">Article</label>
         <div class="writer-editor-dropzone" data-editor-dropzone>
-          <textarea id="writer-body" class="writer-body-editor" data-field="body" spellcheck="true" placeholder="Start writing…  Try /table, /tale, /pick, /video, /youtube, /tweet, /image, /html, /source or /template"></textarea>
+          <textarea id="writer-body" class="writer-body-editor" data-field="body" spellcheck="true" placeholder="Start writing…  Try /stats, /tale, /pick, /video, /youtube, /tweet, /image, /html or /source"></textarea>
           <div class="writer-drop-hint" data-drop-hint hidden>Drop image or video to upload and insert at the cursor</div>
         </div>
 
@@ -394,53 +393,102 @@ page_scripts:
     </form>
   </dialog>
 
-  <dialog class="writer-dialog" data-table-dialog>
+  <dialog class="writer-dialog writer-dialog-wide writer-structured-dialog" data-stats-dialog>
     <form method="dialog">
-      <header><div><p class="eyebrow">Block</p><h2>Table builder</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
+      <header><div><p class="eyebrow">Article visual</p><h2>Stats</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
       <div class="writer-dialog-body writer-dialog-grid">
-        <label class="writer-field writer-field-wide"><span>Column headers <small>comma separated</small></span><input type="text" data-table-headers value="Stat, Fighter A, Fighter B"></label>
-        <label class="writer-field writer-field-wide"><span>Row labels <small>one per line</small></span><textarea rows="7" data-table-rows>Record
-Age
-Height
-Reach
-Weight
-Stance</textarea></label>
-        <p class="writer-dialog-note writer-field-wide">The table is inserted with blank fighter values so you can tab through and fill it in.</p>
+        <p class="writer-dialog-note writer-field-wide">Same three-column stats treatment used in the UFC Vegas 121 article. Add one row per line as <strong>Stat | Value | Fighter(s)</strong>.</p>
+        <label class="writer-field writer-field-wide"><span>Stats rows</span><textarea rows="12" data-stats-rows spellcheck="false" placeholder="Oldest | 39 | Raoni Barcelos&#10;Youngest | 21 | Raul Rosas Jr."></textarea></label>
       </div>
-      <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-table-insert>Insert table</button></footer>
+      <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-stats-insert>Insert stats</button></footer>
     </form>
   </dialog>
 
-  <dialog class="writer-dialog writer-dialog-wide" data-tale-dialog>
+  <dialog class="writer-dialog writer-dialog-wide writer-structured-dialog writer-tale-dialog" data-tale-dialog>
     <form method="dialog">
-      <header><div><p class="eyebrow">Fight block</p><h2>Tale of the Tape</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
+      <header><div><p class="eyebrow">Fight visual</p><h2>Tale of the Tape</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
       <div class="writer-dialog-body">
-        <div class="writer-tale-head"><input type="text" data-tale-a placeholder="Fighter A"><span>vs.</span><input type="text" data-tale-b placeholder="Fighter B"></div>
-        <div class="writer-tale-grid" data-tale-grid>
-          <span>Record</span><input data-tale-row="record" data-side="a"><input data-tale-row="record" data-side="b">
-          <span>Age</span><input data-tale-row="age" data-side="a"><input data-tale-row="age" data-side="b">
-          <span>Height</span><input data-tale-row="height" data-side="a"><input data-tale-row="height" data-side="b">
-          <span>Reach</span><input data-tale-row="reach" data-side="a"><input data-tale-row="reach" data-side="b">
-          <span>Weight</span><input data-tale-row="weight" data-side="a"><input data-tale-row="weight" data-side="b">
-          <span>Stance</span><input data-tale-row="stance" data-side="a"><input data-tale-row="stance" data-side="b">
-          <span>KO/TKO Wins</span><input data-tale-row="ko" data-side="a"><input data-tale-row="ko" data-side="b">
-          <span>Submission Wins</span><input data-tale-row="sub" data-side="a"><input data-tale-row="sub" data-side="b">
-          <span>Decision Wins</span><input data-tale-row="dec" data-side="a"><input data-tale-row="dec" data-side="b">
-          <span>1st-Round Finishes</span><input data-tale-row="r1" data-side="a"><input data-tale-row="r1" data-side="b">
+        <div class="writer-matchup-builder">
+          <section class="writer-fighter-builder" data-tale-side-panel="a">
+            <div class="writer-tale-portrait" data-tale-image-drop="a" tabindex="0" role="button" aria-label="Choose Fighter A portrait">
+              <img data-tale-image-preview="a" alt="" hidden>
+              <span data-tale-image-empty="a">Drop / choose portrait</span>
+              <input type="file" data-tale-image-file="a" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+            </div>
+            <label class="writer-field"><span>Fighter A</span><input data-tale-a placeholder="Fighter A"></label>
+            <label class="writer-field"><span>Division</span><input data-tale-division="a" placeholder="Bantamweight"></label>
+            <div class="writer-dialog-grid writer-dialog-grid-two">
+              <label class="writer-field"><span>Moneyline</span><input data-tale-odds="a" placeholder="-325"></label>
+              <label class="writer-field"><span>Last 5</span><input data-tale-last5="a" placeholder="2-2-1"></label>
+            </div>
+            <label class="writer-field"><span>Image path / URL</span><input data-tale-image-path="a" placeholder="/assets/uploads/..."></label>
+            <div class="writer-image-position-controls">
+              <label><span>X</span><input type="range" min="0" max="100" value="50" data-tale-image-x="a"></label>
+              <label><span>Y</span><input type="range" min="0" max="100" value="50" data-tale-image-y="a"></label>
+              <label><span>Zoom</span><input type="range" min="90" max="180" value="100" data-tale-image-zoom="a"></label>
+            </div>
+            <label class="writer-field"><span>Recent form <small>W/L | Opponent | Detail</small></span><textarea rows="6" data-tale-recent="a" spellcheck="false" placeholder="W | Opponent | DEC · JUN 14, 2025 · R3 5:00"></textarea></label>
+            <div class="writer-dialog-grid writer-dialog-grid-two">
+              <label class="writer-field"><span>Opponents record</span><input data-tale-opponents-record="a" placeholder="45-14"></label>
+              <label class="writer-field"><span>Win %</span><input data-tale-opponents-pct="a" placeholder="76%"></label>
+            </div>
+          </section>
+          <div class="writer-matchup-builder-vs"><span>VS</span></div>
+          <section class="writer-fighter-builder" data-tale-side-panel="b">
+            <div class="writer-tale-portrait" data-tale-image-drop="b" tabindex="0" role="button" aria-label="Choose Fighter B portrait">
+              <img data-tale-image-preview="b" alt="" hidden>
+              <span data-tale-image-empty="b">Drop / choose portrait</span>
+              <input type="file" data-tale-image-file="b" accept="image/png,image/jpeg,image/webp,image/gif" hidden>
+            </div>
+            <label class="writer-field"><span>Fighter B</span><input data-tale-b placeholder="Fighter B"></label>
+            <label class="writer-field"><span>Division</span><input data-tale-division="b" placeholder="Bantamweight"></label>
+            <div class="writer-dialog-grid writer-dialog-grid-two">
+              <label class="writer-field"><span>Moneyline</span><input data-tale-odds="b" placeholder="+260"></label>
+              <label class="writer-field"><span>Last 5</span><input data-tale-last5="b" placeholder="3-2"></label>
+            </div>
+            <label class="writer-field"><span>Image path / URL</span><input data-tale-image-path="b" placeholder="/assets/uploads/..."></label>
+            <div class="writer-image-position-controls">
+              <label><span>X</span><input type="range" min="0" max="100" value="50" data-tale-image-x="b"></label>
+              <label><span>Y</span><input type="range" min="0" max="100" value="50" data-tale-image-y="b"></label>
+              <label><span>Zoom</span><input type="range" min="90" max="180" value="100" data-tale-image-zoom="b"></label>
+            </div>
+            <label class="writer-field"><span>Recent form <small>W/L | Opponent | Detail</small></span><textarea rows="6" data-tale-recent="b" spellcheck="false" placeholder="L | Opponent | SUB · SEP 14, 2024 · R1 3:02"></textarea></label>
+            <div class="writer-dialog-grid writer-dialog-grid-two">
+              <label class="writer-field"><span>Opponents record</span><input data-tale-opponents-record="b" placeholder="48-18"></label>
+              <label class="writer-field"><span>Win %</span><input data-tale-opponents-pct="b" placeholder="73%"></label>
+            </div>
+          </section>
         </div>
+        <section class="writer-tale-stats-editor">
+          <div>
+            <p class="eyebrow">Tale rows</p>
+            <p class="writer-dialog-note">One row per line as <strong>Label | Fighter A | Fighter B</strong>. Add, remove or rename anything.</p>
+          </div>
+          <textarea rows="12" data-tale-rows spellcheck="false">Record |  | 
+Age |  | 
+Height |  | 
+Arm Reach |  | 
+UFC Record |  | 
+Record Outside UFC |  | 
+Total Finishes |  | 
+TKO / KO |  | 
+Submission |  | 
+Unanimous Decision |  | 
+Split Decision |  | </textarea>
+        </section>
       </div>
       <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-tale-insert>Insert Tale of the Tape</button></footer>
     </form>
   </dialog>
 
-  <dialog class="writer-dialog" data-pick-dialog>
+  <dialog class="writer-dialog writer-structured-dialog" data-pick-dialog>
     <form method="dialog">
-      <header><div><p class="eyebrow">Fight block</p><h2>Prediction</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
+      <header><div><p class="eyebrow">Article visual</p><h2>Matlock Pick</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
       <div class="writer-dialog-body writer-dialog-grid writer-dialog-grid-two">
         <label class="writer-field writer-field-wide"><span>Fighter</span><input type="text" data-pick-fighter placeholder="Doo Ho Choi"></label>
-        <label class="writer-field"><span>Method</span><select data-pick-method><option>KO/TKO</option><option>Submission</option><option>Decision</option><option>Split Decision</option><option>Unanimous Decision</option></select></label>
+        <label class="writer-field"><span>Method</span><select data-pick-method><option value="">No method</option><option>KO/TKO</option><option>Submission</option><option>Decision</option><option>Split Decision</option><option>Unanimous Decision</option></select></label>
         <label class="writer-field"><span>Round</span><select data-pick-round><option value="">No round</option><option>Round 1</option><option>Round 2</option><option>Round 3</option><option>Round 4</option><option>Round 5</option></select></label>
-        <label class="writer-field writer-field-wide"><span>Confidence <small>optional</small></span><input type="number" min="1" max="10" data-pick-confidence placeholder="7"></label>
+        <label class="writer-field writer-field-wide"><span>Note <small>optional</small></span><input type="text" data-pick-note placeholder="Upset lean / club-and-sub / whatever matters"></label>
       </div>
       <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-pick-insert>Insert pick</button></footer>
     </form>
@@ -458,18 +506,6 @@ Stance</textarea></label>
         <button class="writer-button writer-button-danger" type="button" data-html-delete hidden>Remove visual</button>
         <div><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-html-insert>Insert visual</button></div>
       </footer>
-    </form>
-  </dialog>
-
-  <dialog class="writer-dialog writer-dialog-wide" data-template-dialog>
-    <form method="dialog">
-      <header><div><p class="eyebrow">Start faster</p><h2>Article templates</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
-      <div class="writer-template-grid">
-        <button type="button" data-template="breakdown"><strong>Fight breakdown</strong><span>Tale of Tape, analysis, odds and pick structure.</span></button>
-        <button type="button" data-template="card"><strong>Event preview</strong><span>Opening, fight navigation and multiple matchup sections.</span></button>
-        <button type="button" data-template="news"><strong>News</strong><span>Fast factual story with source and context blocks.</span></button>
-        <button type="button" data-template="opinion"><strong>Opinion</strong><span>Clean argument structure without over-sectioning.</span></button>
-      </div>
     </form>
   </dialog>
 
