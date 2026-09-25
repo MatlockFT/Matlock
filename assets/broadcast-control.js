@@ -65,7 +65,10 @@ function subsetMatches(target,subset){
   return target===subset;
 }
 function activePresetName(){
-  const hit=Object.entries(PRESETS).find(([,preset])=>subsetMatches(state,preset));
+  const hit=Object.entries(PRESETS).find(([,preset])=>{
+    const {label,...definition}=preset;
+    return subsetMatches(state,definition);
+  });
   return hit?.[0]||'custom';
 }
 function renderPresetState(){
