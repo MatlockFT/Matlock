@@ -230,50 +230,36 @@ sitemap: false
 
       <aside class="bc-preview-column">
         <div class="bc-preview-head">
-          <div><span>PROGRAM PREVIEW</span><small data-preview-mode>Draft program</small></div>
-          <div class="bc-preview-nav">
-            <button type="button" data-preview-prev title="Previous segment">‹</button>
-            <span data-preview-position>—</span>
-            <button type="button" data-preview-next title="Next segment">›</button>
+          <div>
+            <span>PROGRAM MONITOR</span>
+            <small data-preview-mode>Connecting to renderer…</small>
+          </div>
+          <div class="bc-preview-actions">
+            <button type="button" data-preview-restart title="Restart program preview">↻ Restart</button>
           </div>
         </div>
 
-        <div class="bc-preview-frame bc-native-preview" data-native-preview>
-          <div class="bc-preview-stage">
-            <div class="bc-preview-media">
-              <div class="bc-preview-media-fill" data-preview-fill></div>
-              <img data-preview-image alt="">
-              <div class="bc-preview-play" data-preview-play hidden>
-                <span>▶</span>
-                <small data-preview-video-duration></small>
-              </div>
-              <span class="bc-preview-badge" data-preview-badge>LATEST</span>
-            </div>
-            <article class="bc-preview-copy">
-              <div class="bc-preview-kicker" data-preview-kicker>NEWS UPDATE</div>
-              <h2 data-preview-title>Loading preview…</h2>
-              <div class="bc-preview-context" data-preview-context></div>
-              <div class="bc-preview-meta">
-                <strong data-preview-source>COMBAT SPORTS</strong>
-                <span>•</span>
-                <span data-preview-time>PREVIEW</span>
-              </div>
-            </article>
+        <div class="bc-preview-frame" data-preview-shell>
+          <iframe
+            src="/broadcast/?controlPreview=1&embedded=1"
+            data-program-monitor-frame
+            title="Live broadcast program monitor"
+            allow="autoplay"
+          ></iframe>
+          <div class="bc-preview-overlay" data-preview-overlay>
+            <strong>Starting program monitor…</strong>
+            <span data-preview-status>The real broadcast renderer is loading.</span>
           </div>
-          <div class="bc-preview-coming-up" data-preview-coming-up></div>
-          <div class="bc-preview-ticker" data-preview-ticker>
-            <b>LATEST</b>
-            <span data-preview-ticker-text>Loading current headlines…</span>
-          </div>
-          <div class="bc-preview-empty" data-preview-empty hidden>
-            <strong>No eligible content for this draft</strong>
-            <span>Enable a module, broaden the source filters, or lower the content requirements.</span>
-          </div>
+        </div>
+
+        <div class="bc-preview-health">
+          <div><span>Renderer</span><strong data-preview-renderer>CONNECTING</strong></div>
+          <div><span>Program</span><strong data-preview-program>DRAFT</strong></div>
         </div>
 
         <div class="bc-now-card">
           <div><span>Live config</span><strong data-live-config-label>Loading…</strong></div>
-          <small>The preview above is rendered directly from your current draft. OBS polls the saved live control state automatically.</small>
+          <small>This is the same renderer used by <code>/broadcast/</code>. Draft changes are injected here before you apply them live.</small>
         </div>
       </aside>
     </div>
