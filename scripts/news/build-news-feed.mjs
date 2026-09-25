@@ -12,7 +12,7 @@ const ARTICLE_IMAGE_CONCURRENCY = 6;
 const ARTICLE_IMAGE_TIMEOUT = 12000;
 const LEAD_IMAGE_CANDIDATE_LIMIT = 6;
 const LEAD_IMAGE_MAX_BYTES = 250 * 1024;
-const IMAGE_PROBE_TIMEOUT = 6000;
+const IMAGE_PROBE_TIMEOUT = 6000;\nconst ARTICLE_CONTEXT_CONCURRENCY = 4;\nconst ARTICLE_CONTEXT_TIMEOUT = 10000;\nconst ARTICLE_CONTEXT_LIMIT = 420;
 
 const feeds = [
     {
@@ -435,6 +435,69 @@ async function fetchArticleImage(story) {
     } finally {
         clearTimeout(timeout);
     }
+}
+
+function articleContextFromHtml(html) {
+    const metaKeys = new Set(["description","og:description","twitter:description"]);
+    for (const match of html.matchAll(/<meta\\b[^>]*>/gi)) {
+        const tag = match[0];
+        const key = (tagAttribute(tag, "property") || tagAttribute(tag, "name")).toLowerCase();
+        if (!metaKeys.has(key)) continue;
+        const text = plainText(tagAttribute(tag, "content"));
+        if (text.length >= 90) return truncate(text, ARTICLE_CONTEXT_LIMIT);
+    }
+
+    for (const match of html.matchAll(/<script\\b[^>]*type=["']application\\/ld\\+json[^"']*["'][^>]*>([\\s\\S]*?)<\\/script>/gi)) {
+        try {
+            const data = JSON.parse(decodeEntities(match[1]));
+            const roots = Array.isArray(data) ? data : [data];
+            const entries = roots.flatMap(root => Array.isArray(root?.["@graph"]) ? root["@graph"] : [root]);
+            for (const entry of entries) {
+                const text = plainText(entry?.articleBody || entry?.description || "");
+                if (text.length >= 120) return truncate(text, ARTICLE_CONTEXT_LIMIT);
+            }
+        } catch {}
+    }
+
+    const paragraphs = [...html.matchAll(/<p\\b[^>]*>([\\s\\S]*?)<\\/p>/gi)]
+        .map(match => plainText(match[1]))
+        .filter(text => text.length >= 90)
+        .filter(text => !/subscribe|sign up|newsletter|advertisement|click here|follow us|cookie|privacy/i.test(text));
+    return paragraphs.length ? truncate(paragraphs.slice(0, 2).join(" "), ARTICLE_CONTEXT_LIMIT) : "";
+}
+
+async function fetchArticleContext(story) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), ARTICLE_CONTEXT_TIMEOUT);
+    try {
+        const response = await fetch(story.url, {
+            headers: {
+                accept: "text/html,application/xhtml+xml;q=0.9,*/*;q=0.5",
+                "user-agent": "MMA Matlock News Aggregator/1.0 (+https://mmamatlock.com/news/)"
+            },
+            redirect: "follow",
+            signal: controller.signal
+        });
+        if (!response.ok) return "";
+        const contentType = response.headers.get("content-type") || "";
+        if (contentType && !contentType.includes("html")) return "";
+        return articleContextFromHtml(await response.text());
+    } catch {
+        return "";
+    } finally {
+        clearTimeout(timeout);
+    }
+}
+
+async function enrichStoryContexts(stories) {
+    const targets = stories.slice(0, 18);
+    const contexts = await mapWithConcurrency(targets, ARTICLE_CONTEXT_CONCURRENCY, fetchArticleContext);
+    contexts.forEach((context, index) => {
+        const story = targets[index];
+        if (!story) return;
+        if (context && context.toLowerCase() !== String(story.excerpt || "").toLowerCase()) story.context = context;
+        else if (story.excerpt) story.context = story.excerpt;
+    });
 }
 
 async function imageContentLength(value) {
