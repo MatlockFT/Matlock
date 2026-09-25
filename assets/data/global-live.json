@@ -1,36 +1,8 @@
 {
   "version": 5,
-  "generated_at": "2026-09-25T16:55:15Z",
-  "selected_event_id": "real-fight-arena:z7sfnn-WqtY",
+  "generated_at": "2026-09-25T17:32:46Z",
+  "selected_event_id": "fen:cv2svtEOyIw",
   "events": [
-    {
-      "event_id": "real-fight-arena:z7sfnn-WqtY",
-      "promotion_id": "real-fight-arena",
-      "promotion": "Real Fight Arena",
-      "short_name": "RFA",
-      "country": "Slovakia",
-      "priority": 78,
-      "coverage_note": "Promotion channel; monitor public live streams",
-      "access_note": null,
-      "channel_url": "https://www.youtube.com/@realfightarena",
-      "channel_id": "UCuuQsVyn8pFoLZw1j5uak7g",
-      "channel_name": "RFA | Real Fight Arena",
-      "video_id": "z7sfnn-WqtY",
-      "title": "RFA 33: Free prelims | Go-Pass Arena Bratislava",
-      "watch_url": "https://www.youtube.com/watch?v=z7sfnn-WqtY",
-      "status": "live",
-      "is_live": true,
-      "embeddable": true,
-      "scheduled_start_time": "2026-09-25T17:00:00Z",
-      "scheduled_end_time": null,
-      "actual_start_time": "2026-09-25T16:47:21Z",
-      "actual_end_time": null,
-      "concurrent_viewers": "116",
-      "api_verified": true,
-      "stale": false,
-      "observed_at": "2026-09-25T16:55:14Z",
-      "source_role": "promotion"
-    },
     {
       "event_id": "fen:cv2svtEOyIw",
       "promotion_id": "fen",
@@ -53,10 +25,10 @@
       "scheduled_end_time": null,
       "actual_start_time": "2026-09-25T16:47:19Z",
       "actual_end_time": null,
-      "concurrent_viewers": "31",
+      "concurrent_viewers": "78",
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T16:55:14Z",
+      "observed_at": "2026-09-25T17:32:45Z",
       "source_role": "promotion"
     }
   ],
@@ -86,7 +58,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T16:55:14Z",
+      "observed_at": "2026-09-25T17:32:45Z",
       "source_role": "broadcast_partner"
     },
     {
@@ -114,7 +86,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T17:34:34Z",
+      "observed_at": "2026-09-25T17:32:44Z",
       "source_role": "promotion"
     },
     {
@@ -142,7 +114,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T17:34:34Z",
+      "observed_at": "2026-09-25T17:32:44Z",
       "source_role": "promotion"
     },
     {
@@ -226,7 +198,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T16:55:14Z",
+      "observed_at": "2026-09-25T17:32:45Z",
       "source_role": "promotion"
     }
   ],
@@ -263,7 +235,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T17:34:34Z"
+      "last_checked_at": "2026-09-25T17:32:44Z"
     },
     "aeternum": {
       "promotion": "Aeternum Fight League",
@@ -280,7 +252,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:55:14Z"
+      "last_checked_at": "2026-09-25T17:32:45Z"
     },
     "afc-korea": {
       "promotion": "Angel's Fighting Championship",
@@ -348,7 +320,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T17:34:34Z"
+      "last_checked_at": "2026-09-25T17:32:45Z"
     },
     "babilon": {
       "promotion": "Babilon MMA",
@@ -399,7 +371,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T17:34:34Z"
+      "last_checked_at": "2026-09-25T17:32:44Z"
     },
     "deep": {
       "promotion": "DEEP / DEEP JEWELS",
@@ -449,8 +421,8 @@
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": "2026-09-25T16:55:14Z",
-      "last_checked_at": "2026-09-25T16:55:14Z"
+      "last_success_at": "2026-09-25T17:32:45Z",
+      "last_checked_at": "2026-09-25T17:32:45Z"
     },
     "fnc": {
       "promotion": "Fight Nation Championship",
@@ -467,7 +439,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T17:34:34Z"
+      "last_checked_at": "2026-09-25T17:32:44Z"
     },
     "front-street-fights": {
       "promotion": "Front Street Fights",
@@ -501,7 +473,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T17:34:35Z"
+      "last_checked_at": "2026-09-25T17:32:45Z"
     },
     "gma-vietnam": {
       "promotion": "Gods of Martial Arts",
@@ -518,7 +490,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T17:34:34Z"
+      "last_checked_at": "2026-09-25T17:32:44Z"
     },
     "grachan": {
       "promotion": "GRACHAN",
@@ -535,7 +507,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T17:34:34Z"
+      "last_checked_at": "2026-09-25T17:32:44Z"
     },
     "inka": {
       "promotion": "Inka Fighting Championship",
@@ -603,7 +575,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:55:14Z"
+      "last_checked_at": "2026-09-25T17:32:44Z"
     },
     "lux": {
       "promotion": "LUX Fight League",
@@ -671,7 +643,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T17:34:34Z"
+      "last_checked_at": "2026-09-25T17:32:44Z"
     },
     "naiza": {
       "promotion": "NAIZA Fighting Championship",
@@ -705,7 +677,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T17:34:34Z"
+      "last_checked_at": "2026-09-25T17:32:44Z"
     },
     "one-championship": {
       "promotion": "ONE Championship",
@@ -722,7 +694,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T15:59:14Z",
-      "last_checked_at": "2026-09-25T16:55:14Z"
+      "last_checked_at": "2026-09-25T17:32:45Z"
     },
     "open-fight-latam": {
       "promotion": "Open Fight LATAM",
@@ -751,12 +723,12 @@
       "channel_url": "https://www.youtube.com/@realfightarena",
       "channel_id": "UCuuQsVyn8pFoLZw1j5uak7g",
       "channel_name": "RFA | Real Fight Arena",
-      "status": "live",
+      "status": "offline",
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T16:55:14Z",
-      "last_checked_at": "2026-09-25T16:55:13Z"
+      "last_checked_at": "2026-09-25T17:32:44Z"
     },
     "road-fc": {
       "promotion": "ROAD FC",
@@ -824,7 +796,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:55:14Z"
+      "last_checked_at": "2026-09-25T17:32:44Z"
     },
     "tuff-n-uff": {
       "promotion": "Tuff-N-Uff",
@@ -841,7 +813,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T17:34:34Z"
+      "last_checked_at": "2026-09-25T17:32:44Z"
     },
     "ugp": {
       "promotion": "Ultimo Guerrero en Pie",
@@ -858,7 +830,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T17:34:34Z"
+      "last_checked_at": "2026-09-25T17:32:44Z"
     },
     "versus-mma": {
       "promotion": "Versus MMA",
@@ -913,7 +885,7 @@
     }
   },
   "monitored_count": 40,
-  "live_count": 2,
+  "live_count": 1,
   "upcoming_count": 6,
   "youtube_api_configured": true,
   "api_verified_source_count": 40
