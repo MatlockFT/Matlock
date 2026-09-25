@@ -1885,9 +1885,13 @@ She’s coming off a submission loss to Ketlen Souza and has been out for a whil
 }
 </style>
 </section>
-There are few things to like about Demopoulos in this position such as her age, her striking differential, and her losing streak. Jauregui is the much better striker here and that will likely carry her to a finish or decision. 
+There aren’t a lot of reasons to like Demopoulos in this matchup. She’s the older fighter, she has a poor striking differential, and she comes in on a losing streak. Jauregui is clearly the better striker, and that alone may be enough to carry her to either a finish or a comfortable decision.
 
-On the flip side, older fighters are not doing bad these days, Jauregui hasn't fought since 2024, and Demopoulos has to feel like she is in a must-win position. I wouldn't be surprised if we see some very tough veteran grit and going all in on this fight. Nonetheless, I still favor Jauregui.
+That being said, there are a few things that give me pause. Older fighters have been doing surprisingly well lately, Jauregui hasn’t fought since 2024, and Demopoulos has to know she’s entering must-win territory. I wouldn’t be surprised to see her come out with some serious veteran urgency and throw everything she has into making this fight ugly.
+
+Still, I think Jauregui is too sharp on the feet and should be able to win enough exchanges to take it.
+
+**Pick: Yazmin Jauregui via Decision**
 
 
 <section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Yazmin%20Jauregui%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%7D">
@@ -1896,8 +1900,6 @@ On the flip side, older fighters are not doing bad these days, Jauregui hasn't f
   <div class="article-pick-card__main"><strong>Yazmin Jauregui</strong><span>Decision</span></div>
 </aside>
 </section>
-
-
 ---
 
 ## John Castaneda vs. Alatengheili
@@ -3668,8 +3670,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
   <div class="article-pick-card__main"><strong>John Castaneda</strong><span>KO/TKO · Round 2</span></div>
 </aside>
 </section>
-
-
 ---
 
 ## Montel Jackson vs. Ricky Simon
@@ -5824,8 +5824,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
   <div class="article-pick-card__main"><strong>Montel Jackson</strong><span>KO/TKO · Round 3</span></div>
 </aside>
 </section>
-
-
 ---
 
 ## Elves Brener vs. Josiah Harrell
@@ -7969,8 +7967,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
   <div class="article-pick-card__main"><strong>Elves Brener</strong><span>Submission · Round 1</span></div>
 </aside>
 </section>
-
-
 ---
 
 ## Rodolfo Bellato vs. Christian Edwards
@@ -10095,8 +10091,6 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
   <div class="article-pick-card__main"><strong>Rodolfo Bellato</strong><span>Decision</span></div>
 </aside>
 </section>
-
-
 ---
 
 ## Rodolfo Vieira vs. Robert Bryczek
@@ -12185,8 +12179,6 @@ I have no real interest in this fight and don’t have a strong lean either way.
   <div class="article-pick-card__main"><strong>Rodolfo Vieira</strong><span>Split Decision</span></div>
 </aside>
 </section>
-
-
 ---
 
 ## Brady Hiestand vs. Rinya Nakamura
@@ -14275,8 +14267,6 @@ This could potentially be Fight of the Night in my eyes. A lot of it really depe
   <div class="article-pick-card__main"><strong>Nakamura</strong><span>KO/TKO · Round 2</span></div>
 </aside>
 </section>
-
-
 ---
 
 For the two TUF Finale fights, I have very little info. Tina Black looks to be the better, more technical fighter so I'd imagine her opponent is gonna have to make the fight ugly. 
@@ -14287,8 +14277,6 @@ For the two TUF Finale fights, I have very little info. Tina Black looks to be t
   <div class="article-pick-card__main"><strong>Tina Black</strong><span>Decision</span></div>
 </aside>
 </section>
-
-
 I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence for me to pick him. 
 
 <section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Mehemmedeli%20Osmanli%22%2C%22method%22%3A%22%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%7D">
@@ -14297,8 +14285,6 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
   <div class="article-pick-card__main"><strong>Mehemmedeli Osmanli</strong></div>
 </aside>
 </section>
-
-
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-17cc0f7f" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
     <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-09/rosas-jr-vs-barcelos-ufc-vegas-121-video-20260925-011655-703.mp4" aria-label="Article video"></video>
@@ -16263,8 +16249,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
   <div class="article-pick-card__main"><strong>Luis Hernandez</strong><span>Submission · Round 1</span></div>
 </aside>
 </section>
-
-
 ---
 
 ## Ailin Perez vs. Norma Dumont
@@ -18400,8 +18384,6 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
   <div class="article-pick-card__main"><strong>Ailin Perez</strong><span>Decision</span></div>
 </aside>
 </section>
-
-
 ---
 
 ## Raul Rosas Jr. vs. Raoni Barcelos
@@ -20494,6 +20476,4 @@ Part of me is absolutely cheering for Barcelos to pull it off, but he can’t ju
   <div class="article-pick-card__main"><strong>Raul Rosas Jr.</strong><span>KO/TKO · Round 3</span></div>
 </aside>
 </section>
-
-
 That does it for my breakdown and picks. If I change my mind I'll say it on [X](https://x.com/MMAMATLOCK) and change it on [Verdict](https://verdictmma.com/profile/MMAMatlock)! Thanks for the follow!
