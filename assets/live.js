@@ -20,6 +20,11 @@
   const replayArm = root.querySelector("[data-replay-arm]");
   const replaySave = root.querySelector("[data-replay-save]");
   const replayStatus = root.querySelector("[data-replay-status]");
+  const replayControls = root.querySelector("[data-replay-controls]");
+  const replayWindow = root.querySelector("[data-replay-window]");
+  const replayFill = root.querySelector("[data-replay-fill]");
+  const replayStartLabel = root.querySelector("[data-replay-start]");
+  const replayEndLabel = root.querySelector("[data-replay-end]");
   const mediaPlay = root.querySelector("[data-media-play]");
   const mediaPlayIcon = root.querySelector("[data-media-play-icon]");
   const mediaMute = root.querySelector("[data-media-mute]");
@@ -37,7 +42,9 @@
   let replayHeaderBlob = null;
   let replayStartedAt = 0;
   let replayMimeType = "";
+  let replayHasAudio = false;
   let replayStopping = false;
+  let replayUiTimer = 0;
   let ytPlayer = null;
   let ytApiPromise = null;
   let playerControlTimer = 0;
@@ -300,14 +307,27 @@
     );
   };
 
-  const chooseReplayMimeType = () => {
-    const types = [
-      "video/mp4",
+  const chooseReplayMimeType = (hasAudio) => {
+    const withAudio = [
       "video/mp4;codecs=avc1.42E01E,mp4a.40.2",
-      "video/mp4;codecs=avc3.42E01E,mp4a.40.2"
+      "video/mp4;codecs=avc3.42E01E,mp4a.40.2",
+      "video/mp4;codecs=avc1.4D401F,mp4a.40.2"
     ];
+    const videoOnly = [
+      "video/mp4;codecs=avc1.42E01E",
+      "video/mp4;codecs=avc3.42E01E",
+      "video/mp4;codecs=avc1.4D401F"
+    ];
+    const types = hasAudio ? withAudio : videoOnly;
 
     return types.find((type) => MediaRecorder.isTypeSupported?.(type)) || "";
+  };
+
+  const recorderMimeIsXCompatible = (mimeType, hasAudio) => {
+    const normalized = String(mimeType || "").toLowerCase();
+    const hasAvc = normalized.includes("avc1") || normalized.includes("avc3");
+    const hasAac = normalized.includes("mp4a.40.2") || normalized.includes("aac");
+    return normalized.includes("video/mp4") && hasAvc && (!hasAudio || hasAac);
   };
 
   const restrictCaptureToPlayer = async (videoTrack) => {
@@ -332,6 +352,46 @@
     }
 
     throw new Error("Player-only capture is unavailable in this browser.");
+  };
+
+  const updateReplayWindow = () => {
+    const recording = replayRecorder?.state === "recording";
+    const elapsedMs = recording
+      ? Math.max(0, performance.now() - replayStartedAt)
+      : 0;
+    const bufferedMs = Math.min(REPLAY_BUFFER_MS, elapsedMs);
+    const seconds = bufferedMs / 1000;
+    const progress = Math.max(0, Math.min(1, bufferedMs / REPLAY_BUFFER_MS));
+    const ready = bufferedMs >= REPLAY_BUFFER_MS;
+
+    if (replayFill) replayFill.style.width = `${(progress * 100).toFixed(1)}%`;
+    replayWindow?.classList.toggle("is-ready", ready);
+    replayControls?.classList.toggle("is-buffering", recording);
+
+    if (replayStartLabel) {
+      replayStartLabel.textContent = ready
+        ? "−15s"
+        : bufferedMs > 0
+          ? `−${Math.max(1, Math.floor(seconds))}s`
+          : "0s";
+    }
+    if (replayEndLabel) replayEndLabel.textContent = "NOW";
+  };
+
+  const startReplayUiTimer = () => {
+    window.clearInterval(replayUiTimer);
+    replayUiTimer = window.setInterval(updateReplayWindow, 200);
+    updateReplayWindow();
+  };
+
+  const stopReplayUiTimer = () => {
+    window.clearInterval(replayUiTimer);
+    replayUiTimer = 0;
+    replayControls?.classList.remove("is-buffering");
+    replayWindow?.classList.remove("is-ready");
+    if (replayFill) replayFill.style.width = "0%";
+    if (replayStartLabel) replayStartLabel.textContent = "0s";
+    if (replayEndLabel) replayEndLabel.textContent = "NOW";
   };
 
   const resetReplayUi = (status = "Off") => {
@@ -360,6 +420,8 @@
     replayHeaderBlob = null;
     replayStartedAt = 0;
     replayMimeType = "";
+    replayHasAudio = false;
+    stopReplayUiTimer();
 
     if (recorder && recorder.state !== "inactive") {
       try {
@@ -383,6 +445,8 @@
 
   const updateReplayReadyState = () => {
     if (!replayRecorder || replayRecorder.state !== "recording") return;
+
+    updateReplayWindow();
 
     const bufferedMs = Math.min(
       REPLAY_BUFFER_MS,
@@ -489,19 +553,28 @@
         throw new Error("Player-only capture verification failed.");
       }
 
-      replayMimeType = chooseReplayMimeType();
-      if (!replayMimeType || !replayMimeType.includes("mp4")) {
-        throw new Error("MP4 MediaRecorder is unavailable in this browser.");
+      replayHasAudio = stream.getAudioTracks().length > 0;
+      replayMimeType = chooseReplayMimeType(replayHasAudio);
+      if (!replayMimeType) {
+        throw new Error(
+          replayHasAudio
+            ? "H.264/AAC MP4 recording is unavailable in this browser."
+            : "H.264 MP4 recording is unavailable in this browser."
+        );
       }
 
       const recorderOptions = {
+        mimeType: replayMimeType,
         videoBitsPerSecond: 5000000,
         audioBitsPerSecond: 128000,
         videoKeyFrameIntervalDuration: 1000
       };
-      if (replayMimeType) recorderOptions.mimeType = replayMimeType;
 
       const recorder = new MediaRecorder(stream, recorderOptions);
+      if (!recorderMimeIsXCompatible(recorder.mimeType, replayHasAudio)) {
+        throw new Error("Recorder did not honor the H.264/AAC MP4 request.");
+      }
+      replayMimeType = recorder.mimeType;
       replayStream = stream;
       replayRecorder = recorder;
       replayChunks = [];
@@ -528,6 +601,7 @@
       }
 
       recorder.start(REPLAY_CHUNK_MS);
+      startReplayUiTimer();
 
       if (replayArm) {
         replayArm.disabled = false;
@@ -538,12 +612,11 @@
         replayArm.classList.add("is-buffering");
       }
 
-      const hasAudio = stream.getAudioTracks().length > 0;
       const captureLabel = captureMode === "element" ? "Player capture" : "Player crop";
       setReplayStatus(
-        hasAudio
-          ? `${captureLabel} · buffering…`
-          : `${captureLabel} · video only`
+        replayHasAudio
+          ? `${captureLabel} · H.264/AAC`
+          : `${captureLabel} · H.264 video only`
       );
       updateReplayReadyState();
       scheduleUiFade();
@@ -558,9 +631,11 @@
           ? "Capture cancelled"
           : cropFailure
             ? "Player-only capture failed"
-            : /MP4/i.test(String(error?.message || ""))
-              ? "MP4 capture unsupported"
-              : "Replay unavailable"
+            : /H\.264|AAC|Recorder did not honor/i.test(String(error?.message || ""))
+              ? "H.264/AAC unavailable"
+              : /MP4/i.test(String(error?.message || ""))
+                ? "MP4 capture unsupported"
+                : "Replay unavailable"
       );
 
       if (replayArm) replayArm.disabled = false;
@@ -741,12 +816,32 @@
     return payload;
   };
 
+  const bytesContainAscii = (bytes, text) => {
+    const pattern = [...text].map((char) => char.charCodeAt(0));
+    outer:
+    for (let index = 0; index <= bytes.length - pattern.length; index += 1) {
+      for (let offset = 0; offset < pattern.length; offset += 1) {
+        if (bytes[index + offset] !== pattern[offset]) continue outer;
+      }
+      return true;
+    }
+    return false;
+  };
+
   const buildRollingMp4 = async (chunks) => {
     if (!replayHeaderBlob) {
       throw new Error("Replay MP4 initialization segment is not available yet.");
     }
 
     const headerSource = new Uint8Array(await replayHeaderBlob.arrayBuffer());
+    const headerHasAvc =
+      bytesContainAscii(headerSource, "avc1") ||
+      bytesContainAscii(headerSource, "avc3");
+    const headerHasAac = bytesContainAscii(headerSource, "mp4a");
+
+    if (!headerHasAvc || (replayHasAudio && !headerHasAac)) {
+      throw new Error("Replay codec verification failed: H.264/AAC not present.");
+    }
     const firstHeaderMoof = findMp4BoxStart(headerSource, "moof");
     const header =
       firstHeaderMoof > 0
@@ -823,7 +918,7 @@
     link.remove();
     window.setTimeout(() => URL.revokeObjectURL(url), 60000);
 
-    setReplayStatus("Saved last 15s");
+    setReplayStatus("Saved −15s → NOW");
     window.setTimeout(updateReplayReadyState, 1800);
   };
 
