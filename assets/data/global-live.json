@@ -1,9 +1,8 @@
 {
   "version": 5,
-  "generated_at": "2026-09-25T16:44:57Z",
-  "selected_event_id": null,
-  "events": [],
-  "upcoming": [
+  "generated_at": "2026-09-25T16:55:15Z",
+  "selected_event_id": "real-fight-arena:z7sfnn-WqtY",
+  "events": [
     {
       "event_id": "real-fight-arena:z7sfnn-WqtY",
       "promotion_id": "real-fight-arena",
@@ -19,17 +18,17 @@
       "video_id": "z7sfnn-WqtY",
       "title": "RFA 33: Free prelims | Go-Pass Arena Bratislava",
       "watch_url": "https://www.youtube.com/watch?v=z7sfnn-WqtY",
-      "status": "upcoming",
-      "is_live": false,
+      "status": "live",
+      "is_live": true,
       "embeddable": true,
       "scheduled_start_time": "2026-09-25T17:00:00Z",
       "scheduled_end_time": null,
-      "actual_start_time": null,
+      "actual_start_time": "2026-09-25T16:47:21Z",
       "actual_end_time": null,
-      "concurrent_viewers": null,
+      "concurrent_viewers": "116",
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T16:44:56Z",
+      "observed_at": "2026-09-25T16:55:14Z",
       "source_role": "promotion"
     },
     {
@@ -47,19 +46,21 @@
       "video_id": "cv2svtEOyIw",
       "title": "FACE TO FACE + WAŻENIE PRZED FEN 63 | Kruk vs Kornik | Filipczak vs Olech | Borowski vs Miś",
       "watch_url": "https://www.youtube.com/watch?v=cv2svtEOyIw",
-      "status": "upcoming",
-      "is_live": false,
+      "status": "live",
+      "is_live": true,
       "embeddable": true,
       "scheduled_start_time": "2026-09-25T17:00:00Z",
       "scheduled_end_time": null,
-      "actual_start_time": null,
+      "actual_start_time": "2026-09-25T16:47:19Z",
       "actual_end_time": null,
-      "concurrent_viewers": null,
+      "concurrent_viewers": "31",
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T16:44:56Z",
+      "observed_at": "2026-09-25T16:55:14Z",
       "source_role": "promotion"
-    },
+    }
+  ],
+  "upcoming": [
     {
       "event_id": "liga-monstro-combate:ZF3yOJK-3Fg",
       "promotion_id": "liga-monstro-combate",
@@ -85,7 +86,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T16:44:57Z",
+      "observed_at": "2026-09-25T16:55:14Z",
       "source_role": "broadcast_partner"
     },
     {
@@ -225,7 +226,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T16:44:56Z",
+      "observed_at": "2026-09-25T16:55:14Z",
       "source_role": "promotion"
     }
   ],
@@ -279,7 +280,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:44:56Z"
+      "last_checked_at": "2026-09-25T16:55:14Z"
     },
     "afc-korea": {
       "promotion": "Angel's Fighting Championship",
@@ -296,7 +297,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:44:55Z"
+      "last_checked_at": "2026-09-25T16:55:13Z"
     },
     "apfc": {
       "promotion": "Anthony Pettis Fighting Championship",
@@ -381,7 +382,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:44:56Z"
+      "last_checked_at": "2026-09-25T16:55:14Z"
     },
     "budo-sento": {
       "promotion": "Budo Sento Championship",
@@ -432,7 +433,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:44:55Z"
+      "last_checked_at": "2026-09-25T16:55:13Z"
     },
     "fen": {
       "promotion": "Fight Exclusive Night",
@@ -444,12 +445,12 @@
       "channel_url": "https://www.youtube.com/channel/UCRolEb7xwuPcRbsPyEWGK2Q",
       "channel_id": "UCRolEb7xwuPcRbsPyEWGK2Q",
       "channel_name": "FEN MMA",
-      "status": "upcoming",
+      "status": "live",
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:44:56Z"
+      "last_success_at": "2026-09-25T16:55:14Z",
+      "last_checked_at": "2026-09-25T16:55:14Z"
     },
     "fnc": {
       "promotion": "Fight Nation Championship",
@@ -483,7 +484,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:44:55Z"
+      "last_checked_at": "2026-09-25T16:55:13Z"
     },
     "fusion-fight-league": {
       "promotion": "Fusion Fight League",
@@ -585,7 +586,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:44:55Z"
+      "last_checked_at": "2026-09-25T16:55:13Z"
     },
     "liga-monstro-combate": {
       "promotion": "Liga Monstro Combate",
@@ -602,7 +603,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:44:56Z"
+      "last_checked_at": "2026-09-25T16:55:14Z"
     },
     "lux": {
       "promotion": "LUX Fight League",
@@ -653,7 +654,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:44:55Z"
+      "last_checked_at": "2026-09-25T16:55:13Z"
     },
     "mma-mexico": {
       "promotion": "MMA México",
@@ -721,7 +722,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T15:59:14Z",
-      "last_checked_at": "2026-09-25T16:44:56Z"
+      "last_checked_at": "2026-09-25T16:55:14Z"
     },
     "open-fight-latam": {
       "promotion": "Open Fight LATAM",
@@ -750,12 +751,12 @@
       "channel_url": "https://www.youtube.com/@realfightarena",
       "channel_id": "UCuuQsVyn8pFoLZw1j5uak7g",
       "channel_name": "RFA | Real Fight Arena",
-      "status": "upcoming",
+      "status": "live",
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:44:55Z"
+      "last_success_at": "2026-09-25T16:55:14Z",
+      "last_checked_at": "2026-09-25T16:55:13Z"
     },
     "road-fc": {
       "promotion": "ROAD FC",
@@ -823,7 +824,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:44:56Z"
+      "last_checked_at": "2026-09-25T16:55:14Z"
     },
     "tuff-n-uff": {
       "promotion": "Tuff-N-Uff",
@@ -891,7 +892,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T02:51:01Z",
-      "last_checked_at": "2026-09-25T16:44:56Z"
+      "last_checked_at": "2026-09-25T16:55:14Z"
     },
     "wow-fc": {
       "promotion": "WOW Fight Company",
@@ -908,12 +909,12 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T16:44:56Z"
+      "last_checked_at": "2026-09-25T16:55:14Z"
     }
   },
   "monitored_count": 40,
-  "live_count": 0,
-  "upcoming_count": 8,
+  "live_count": 2,
+  "upcoming_count": 6,
   "youtube_api_configured": true,
   "api_verified_source_count": 40
 }
