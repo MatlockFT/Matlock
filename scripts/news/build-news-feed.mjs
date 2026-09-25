@@ -160,24 +160,36 @@ const feeds = [
     }
 ];
 
-try {
-    const control = JSON.parse(
-        await readFile(resolve("assets/data/broadcast-control.json"), "utf8")
-    );
-    for (const source of control?.sources?.customNewsFeeds || []) {
-        const name = plainText(source?.name);
-        const feedUrl = safeUrl(source?.feedUrl);
-        const siteUrl = safeUrl(source?.siteUrl) || (feedUrl ? new URL(feedUrl).origin + "/" : "");
-        if (!name || !feedUrl || feeds.some(feed => feed.name.toLowerCase() === name.toLowerCase())) continue;
-        feeds.push({
-            name: truncate(name, 80),
-            siteUrl,
-            feedUrl,
-            priority: Number.isFinite(Number(source?.priority)) ? Number(source.priority) : 8
+async function broadcastControlConfig() {
+    try {
+        const response = await fetch("https://mmamatlock-writer-auth.netlify.app/api/broadcast/control", {
+            headers: { accept: "application/json" },
+            cache: "no-store"
         });
+        if (response.ok) return await response.json();
+    } catch {}
+
+    try {
+        return JSON.parse(
+            await readFile(resolve("assets/data/broadcast-control.json"), "utf8")
+        );
+    } catch {
+        return {};
     }
-} catch {
-    // Broadcast control is optional for the news builder.
+}
+
+const broadcastControl = await broadcastControlConfig();
+for (const source of broadcastControl?.sources?.customNewsFeeds || []) {
+    const name = plainText(source?.name);
+    const feedUrl = safeUrl(source?.feedUrl);
+    const siteUrl = safeUrl(source?.siteUrl) || (feedUrl ? new URL(feedUrl).origin + "/" : "");
+    if (!name || !feedUrl || feeds.some(feed => feed.name.toLowerCase() === name.toLowerCase())) continue;
+    feeds.push({
+        name: truncate(name, 80),
+        siteUrl,
+        feedUrl,
+        priority: Number.isFinite(Number(source?.priority)) ? Number(source.priority) : 8
+    });
 }
 
 const parser = new XMLParser({
