@@ -1,4 +1,4 @@
-/* Live MMA — one continuous glass plane, video-first */
+/* Live MMA — video-first shell with stationary player glow */
 
 body:has([data-live-page]) {
   position: relative;
@@ -11,29 +11,13 @@ body:has([data-live-page]) .site-main {
   background: transparent !important;
 }
 
-/*
- * Stack:
- *   0 = video-derived ambient field
- *   1 = one continuous glass sheet
- *   2 = site chrome + live content
- */
-body:has([data-live-page])::before {
-  content: "";
-  position: fixed;
-  z-index: 1;
-  inset: 0;
-  pointer-events: none;
-  background: rgba(8,8,8,.055);
-  -webkit-backdrop-filter: blur(22px) saturate(1.06);
-  backdrop-filter: blur(22px) saturate(1.06);
-}
-
+/* The Live page stays visually open; lighting is confined to the player. */
 body:has([data-live-page]) .site-header,
 body:has([data-live-page]) .v3-sticky-shell,
 body:has([data-live-page]) .site-main,
 body:has([data-live-page]) .site-footer {
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 body:has([data-live-page]) .site-header,
@@ -85,10 +69,6 @@ body:has([data-live-page]) .logo-banner {
   backdrop-filter: none !important;
 }
 
-html[data-theme="light"] body:has([data-live-page])::before {
-  background: rgba(255,255,255,.075);
-}
-
 html[data-theme="light"] body:has([data-live-page]) .v3-sticky-shell,
 html[data-theme="light"] body:has([data-live-page]) .site-navigation,
 html[data-theme="light"] body:has([data-live-page]) .site-live-strip,
@@ -107,57 +87,9 @@ html[data-theme="light"] body:has([data-live-page]) .logo-banner {
   overflow: visible;
 }
 
-.live-page > *:not(.live-page__ambient) {
+.live-page > * {
   position: relative;
-  z-index: 2;
-}
-
-/* Full-screen light field: intentionally broad and faint, not a halo. */
-.live-page__ambient {
-  position: fixed;
-  z-index: 0;
-  inset: -18vh -14vw;
-  overflow: hidden;
-  pointer-events: none;
-  opacity: 0;
-  transform: translateZ(0);
-  transition: opacity .9s ease;
-}
-
-.live-page__ambient.is-ambient-active {
-  opacity: .18;
-}
-
-.live-page__ambient-layer {
-  position: absolute;
-  inset: -12%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  filter: blur(clamp(100px, 10vw, 180px)) saturate(1.16) brightness(.58);
-  opacity: 0;
-  transform: scale(1.12);
-  transition: opacity 1.15s ease;
-  will-change: opacity;
-}
-
-.live-page__ambient-layer::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,.32);
-}
-
-.live-page__ambient-layer.is-active {
-  opacity: 1;
-}
-
-html[data-theme="light"] .live-page__ambient.is-ambient-active {
-  opacity: .11;
-}
-
-html[data-theme="dark"] .live-page__ambient.is-ambient-active {
-  opacity: .18;
+  z-index: 1;
 }
 
 /* Everything except the video participates in cinema-mode fade. */
@@ -272,30 +204,22 @@ html[data-theme="dark"] .live-page__ambient.is-ambient-active {
   overflow: visible;
 }
 
-/* A tiny local lift ties the player to the room light without making a card. */
+/* Low-cost stationary glow: no video sampling, images, polling or backdrop blur. */
 .live-page__player-stage::before {
   content: "";
   position: absolute;
   z-index: 0;
-  inset: -8% -6% -11%;
-  background: var(--live-ambient-image, none) center / cover no-repeat;
-  filter: blur(clamp(60px, 6vw, 100px)) saturate(1.08) brightness(.55);
-  opacity: 0;
-  transform: scale(1.04);
+  inset: -7% -5% -9%;
   pointer-events: none;
-  transition:
-    opacity .8s ease,
-    background-image .4s ease;
-  -webkit-mask-image: radial-gradient(ellipse at center, #000 10%, rgba(0,0,0,.66) 52%, transparent 82%);
-  mask-image: radial-gradient(ellipse at center, #000 10%, rgba(0,0,0,.66) 52%, transparent 82%);
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(255,255,255,.10) 0%, rgba(255,255,255,.045) 32%, transparent 68%),
+    radial-gradient(ellipse at 48% 54%, rgba(105,120,145,.055) 0%, transparent 62%);
+  filter: blur(34px);
+  opacity: .72;
 }
 
-.live-page.has-ambient-light .live-page__player-stage::before {
-  opacity: .12;
-}
-
-html[data-theme="light"] .live-page.has-ambient-light .live-page__player-stage::before {
-  opacity: .08;
+html[data-theme="light"] .live-page__player-stage::before {
+  opacity: .38;
 }
 
 .live-page__player-frame {
@@ -611,8 +535,6 @@ html[data-theme="light"] .live-page.has-ambient-light .live-page__player-stage::
   body:has([data-live-page]) .site-header,
   body:has([data-live-page]) .v3-sticky-shell,
   body:has([data-live-page]) .site-footer,
-  .live-page__ambient,
-  .live-page__ambient-layer,
   .live-page__ui,
   .live-page__row,
   .live-page__status-dot {
@@ -625,15 +547,6 @@ html[data-theme="light"] .live-page.has-ambient-light .live-page__player-stage::
   .live-page {
     width: min(calc(100% - 1rem), 1460px);
     padding-top: .55rem;
-  }
-
-  body:has([data-live-page])::before {
-    -webkit-backdrop-filter: blur(16px) saturate(1.04);
-    backdrop-filter: blur(16px) saturate(1.04);
-  }
-
-  .live-page__ambient {
-    inset: -12vh -34vw;
   }
 
   .live-page__head,
