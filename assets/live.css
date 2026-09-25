@@ -84,8 +84,63 @@
   padding-top: 1.35rem;
 }
 
+.live-page__player-stage {
+  position: relative;
+  isolation: isolate;
+}
+
+.live-page__ambient {
+  position: absolute;
+  z-index: 0;
+  inset: -9% -4%;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateZ(0);
+  transition: opacity .5s ease;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, rgba(0,0,0,.94) 48%, transparent 79%);
+  mask-image: radial-gradient(ellipse at center, #000 20%, rgba(0,0,0,.94) 48%, transparent 79%);
+}
+
+.live-page__player-stage.is-ambient-active .live-page__ambient {
+  opacity: .58;
+}
+
+.live-page__ambient-layer {
+  position: absolute;
+  inset: -10%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(clamp(42px, 5vw, 82px)) saturate(1.28) brightness(.7);
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity .85s ease;
+  will-change: opacity;
+}
+
+.live-page__ambient-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.16);
+}
+
+.live-page__ambient-layer.is-active {
+  opacity: 1;
+}
+
+html[data-theme="light"] .live-page__player-stage.is-ambient-active .live-page__ambient {
+  opacity: .34;
+}
+
+html[data-theme="dark"] .live-page__player-stage.is-ambient-active .live-page__ambient {
+  opacity: .64;
+}
+
 .live-page__player-frame {
   position: relative;
+  z-index: 1;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   background: #050505;
@@ -323,6 +378,13 @@
   margin-top: 1rem;
   color: var(--v3-muted);
   font: 400 .72rem/1.4 var(--v3-sans);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-page__ambient,
+  .live-page__ambient-layer {
+    transition: none;
+  }
 }
 
 @media (max-width: 700px) {
