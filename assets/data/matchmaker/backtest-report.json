@@ -1,6 +1,6 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-09-24T21:42:59.571Z",
+  "generatedAt": "2026-09-25T12:06:04.510Z",
   "engineVersion": 2,
   "mode": "temporal-historical-universe-v5",
   "lookbackDays": 730,
@@ -8,8 +8,8 @@
   "availableCases": 577,
   "sampledCases": 120,
   "historicalUniverseCoverage": {
-    "currentDatasetFighters": 1006,
-    "historicalOnlyFighters": 2021,
+    "currentDatasetFighters": 1007,
+    "historicalOnlyFighters": 2020,
     "combinedCandidateUniverse": 3027,
     "trackedFights": 8888,
     "fightersWithTrackedHistory": 2749,
@@ -19,16 +19,16 @@
   },
   "rankingSnapshotCoverage": {
     "archiveStart": "2026-09-10",
-    "archiveEnd": "2026-09-24",
-    "snapshotsAvailable": 11,
+    "archiveEnd": "2026-09-25",
+    "snapshotsAvailable": 12,
     "sampledCasesWithSnapshot": 0,
     "sampledCasesWithoutSnapshot": 120,
     "maxSnapshotAgeDays": 14
   },
   "temporalStateCoverage": {
     "archiveStart": "2026-09-15",
-    "archiveEnd": "2026-09-24",
-    "snapshotsAvailable": 6,
+    "archiveEnd": "2026-09-25",
+    "snapshotsAvailable": 7,
     "sampledCasesWithSnapshot": 0,
     "sampledCasesWithoutSnapshot": 120,
     "maxSnapshotAgeDays": 7
@@ -4061,6 +4061,12 @@
         {
           "opponent": "David Martinez",
           "score": 83,
+          "rankingScore": 79,
+          "case": "prospect-test"
+        },
+        {
+          "opponent": "Elijah Smith",
+          "score": 83,
           "rankingScore": 78,
           "case": "prospect-test"
         },
@@ -4068,12 +4074,6 @@
           "opponent": "Aleksandre Topuria",
           "score": 82,
           "rankingScore": 78,
-          "case": "prospect-test"
-        },
-        {
-          "opponent": "Elijah Smith",
-          "score": 83,
-          "rankingScore": 76,
           "case": "prospect-test"
         }
       ],
