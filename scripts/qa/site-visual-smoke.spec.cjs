@@ -785,7 +785,7 @@ test.describe('Live V3 site rollout', () => {
     await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'live');
   });
 
-  test('stuck YouTube embed exposes direct-watch fallback', async ({ page }) => {
+  test('stuck YouTube embed collapses player into a direct-watch live row', async ({ page }) => {
     const liveEvent = {
       event_id: 'fen:cv2svtEOyIw',
       promotion_id: 'fen',
@@ -844,13 +844,20 @@ test.describe('Live V3 site rollout', () => {
     );
 
     await page.goto(targetUrl('/live/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
-    await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'live');
-    await expect(page.locator('[data-live-embed-fallback]')).toBeVisible({ timeout: 8000 });
-    await expect(page.locator('[data-live-embed-fallback]')).toContainText('YouTube requires direct playback');
-    await expect(page.locator('[data-live-embed-fallback]')).toContainText('Watch this live stream on YouTube.');
-    await expect(page.locator('[data-live-embed-fallback-link]')).toHaveAttribute('href', /cv2svtEOyIw/);
-    await expect(page.locator('[data-live-player]')).toHaveCSS('visibility', 'hidden');
-    await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'live');
+    await expect(page.locator('.live-page')).toHaveClass(/is-direct-only/, { timeout: 8000 });
+    await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'direct-only');
+    await expect(page.locator('.live-page__player-stage')).toBeHidden();
+    await expect(page.locator('.live-page__control-dock')).toBeHidden();
+    await expect(page.locator('[data-live-now-label]')).toHaveText('Live streams');
+    await expect(page.locator('#live-now-title')).toHaveText('Live streams on YouTube');
+    await expect(page.locator('[data-live-section]')).toBeVisible();
+    const directRow = page.locator('[data-live-list] .live-page__row.is-direct-only');
+    await expect(directRow).toHaveCount(1);
+    await expect(directRow).toContainText('Live · YouTube');
+    await expect(directRow).toContainText('FACE TO FACE');
+    await expect(directRow).toHaveAttribute('href', /cv2svtEOyIw/);
+    await expect(page.locator('[data-live-source]')).toHaveAttribute('href', /cv2svtEOyIw/);
+    await expect(page.locator('[data-live-embed-fallback]')).toHaveCount(0);
   });
 
   test('ended Live video cannot autoplay or resurrect from stale status data', async ({ page }) => {
