@@ -968,7 +968,7 @@
     currentVideoId = event.video_id;
     screen.dataset.state = "live";
     stateWrap?.classList.add("is-live");
-    stateText.textContent = event.stale ? "Live status delayed" : "Live now";
+    if (stateText) stateText.textContent = event.stale ? "Live status delayed" : "Live now";
     title.textContent = event.title || "Live MMA";
     promotion.textContent =
       `${event.short_name || event.promotion || "MMA"} · ${event.country || "International"}`;
@@ -993,7 +993,7 @@
   const showStandby = (upcoming) => {
     screen.dataset.state = "offline";
     stateWrap?.classList.remove("is-live");
-    stateText.textContent = "No fights live";
+    if (stateText) stateText.textContent = "No fights live";
     title.textContent = "No live broadcasts right now";
     promotion.textContent = "See what is coming up next";
     source.hidden = true;
@@ -1062,9 +1062,11 @@
       applyData(await response.json());
     } catch (error) {
       console.warn("Live MMA status unavailable", error);
-      stateText.textContent = currentVideoId
-        ? "Live status delayed"
-        : "Updates temporarily unavailable";
+      if (stateText) {
+        stateText.textContent = currentVideoId
+          ? "Live status delayed"
+          : "Updates temporarily unavailable";
+      }
     } finally {
       busy = false;
     }
