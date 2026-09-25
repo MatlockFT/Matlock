@@ -458,20 +458,23 @@ def classify_api_video(item):
     actual_end = live_details.get("actualEndTime")
     scheduled_start = live_details.get("scheduledStartTime")
 
+    # End-state metadata is authoritative. YouTube can briefly leave
+    # liveBroadcastContent="live" while an ended broadcast is transitioning
+    # into its archived replay.
+    if actual_end:
+        return "ended"
+
     if broadcast_content == "live":
         return "live"
 
-    if actual_start and not actual_end:
+    if actual_start:
         return "live"
 
     if broadcast_content == "upcoming":
         return "upcoming"
 
-    if scheduled_start and not actual_start and not actual_end:
+    if scheduled_start and not actual_start:
         return "upcoming"
-
-    if actual_end:
-        return "ended"
 
     return "offline"
 
