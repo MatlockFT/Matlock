@@ -70,7 +70,7 @@ function cleanContext(value){
   const codeLike=/(?:function\s*\(|=>|\bconst\s+\w+\s*=|\bvar\s+\w+\s*=|window\.|document\.|webpack|__NEXT_DATA__|application\/ld\+json|<\/?script|\{\s*["'][\w-]+["']\s*:)/i;
   const punctuation=(text.match(/[{};=<>]/g)||[]).length;
   if(codeLike.test(text)||punctuation>Math.max(8,text.length*.035))return"";
-  return text.slice(0,460);
+  return text.slice(0,620);
 }
 function contextFacts(value){
   const text=cleanContext(value);if(!text)return[];
@@ -133,6 +133,7 @@ function mainEventText(e){
 }
 function eventFacts(e){
   const facts=[];
+  facts.push("When: "+formatEventDate(e));
   const main=mainEventText(e);if(main)facts.push("Main event: "+main);
   const venue=scalar(e.venue),location=scalar(e.location);
   if(venue||location)facts.push([venue,location].filter(Boolean).join(" · "));
@@ -218,7 +219,14 @@ async function startVideo(slide){
     playerVars:{autoplay:1,controls:0,rel:0,playsinline:1,fs:0,iv_load_policy:3},
     events:{
       onReady:event=>{
-        try{event.target.setVolume(VIDEO_VOLUME);event.target.unMute();event.target.playVideo()}catch{}
+        try{
+          event.target.mute();
+          event.target.setVolume(VIDEO_VOLUME);
+          event.target.playVideo();
+          setTimeout(()=>{
+            try{event.target.setVolume(VIDEO_VOLUME);event.target.unMute()}catch{}
+          },650);
+        }catch{}
       },
       onStateChange:event=>{
         if(event.data===YT.PlayerState.PLAYING){
