@@ -326,13 +326,95 @@ html[data-theme="light"] .live-page__player-stage::before {
   flex-wrap: wrap;
 }
 
-.live-page__replay-dock {
+.live-page__control-dock {
   position: relative;
   z-index: 4;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   min-height: 64px;
   padding: .65rem .1rem 0;
+}
+
+.live-page__media-controls {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  min-width: 0;
+}
+
+.live-page__media-button {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  flex: 0 0 42px;
+  padding: 0;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 50%;
+  background: rgba(8,8,8,.58);
+  color: rgba(255,255,255,.88);
+  box-shadow: 0 6px 20px rgba(0,0,0,.18);
+  font: 900 .64rem/1 var(--v3-sans);
+  letter-spacing: .02em;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+  transition:
+    transform .18s ease,
+    border-color .18s ease,
+    background-color .18s ease;
+}
+
+.live-page__media-button:hover,
+.live-page__media-button:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(255,255,255,.32);
+  background: rgba(24,24,24,.8);
+  outline: none;
+}
+
+.live-page__volume {
+  width: clamp(78px, 10vw, 132px);
+  accent-color: #fff;
+  cursor: pointer;
+}
+
+.live-page__jump-live {
+  display: inline-flex;
+  align-items: center;
+  gap: .42rem;
+  min-height: 34px;
+  padding: .48rem .68rem;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 999px;
+  background: rgba(8,8,8,.5);
+  color: rgba(255,255,255,.82);
+  font: 900 .56rem/1 var(--v3-sans);
+  letter-spacing: .055em;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+}
+
+.live-page__jump-live-dot {
+  width: .46rem;
+  height: .46rem;
+  border-radius: 50%;
+  background: #777;
+  transition:
+    background-color .18s ease,
+    box-shadow .18s ease;
+}
+
+.live-page__jump-live.is-live-edge {
+  color: #ff6569;
+}
+
+.live-page__jump-live.is-live-edge .live-page__jump-live-dot {
+  background: #ff3f45;
+  box-shadow: 0 0 10px rgba(255,63,69,.62);
 }
 
 .live-page__replay {
@@ -703,13 +785,35 @@ html[data-theme="light"] .live-page__player-stage::before {
     justify-content: flex-start;
   }
 
-  .live-page__replay-dock {
+  .live-page__control-dock {
     min-height: 58px;
     padding-top: .5rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .live-page__media-controls {
+    gap: .45rem;
+  }
+
+  .live-page__media-button {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+
+  .live-page__volume {
+    width: 86px;
+  }
+
+  .live-page__jump-live {
+    min-height: 32px;
+    padding: .45rem .58rem;
   }
 
   .live-page__replay {
     gap: .48rem;
+    margin-left: auto;
   }
 
   .live-page__replay-arm,
