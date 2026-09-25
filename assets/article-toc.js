@@ -1,26 +1,45 @@
 (function () {
     const navigation = document.querySelector('[data-article-toc]');
+    const toggle = navigation?.querySelector('[data-article-toc-toggle]');
+    const panel = navigation?.querySelector('[data-article-toc-panel]');
     const list = navigation?.querySelector('[data-article-toc-list]');
     const article = document.getElementById('article-content');
 
-    if (!navigation || !list || !article) {
+    if (!navigation || !toggle || !panel || !list || !article) {
         return;
     }
 
-    const headings = Array.from(article.querySelectorAll('h2, h3'));
+    const mode = navigation.dataset.tocMode || 'sections';
+    const allHeadings = Array.from(article.querySelectorAll('h2, h3'));
+    const matchupPattern = /\b(?:vs\.?|versus)\b/i;
 
-    if (headings.length < 2) {
+    const headings = mode === 'fights'
+        ? allHeadings.filter((heading) => (
+            heading.tagName === 'H2' &&
+            matchupPattern.test(heading.textContent || '')
+        ))
+        : allHeadings;
+
+    if (!headings.length) {
         return;
     }
 
     const usedIds = new Set();
 
-    headings.forEach((heading, index) => {
-        let id = heading.id || heading.textContent
+    const slugify = (value, fallback) => (
+        value
             .trim()
             .toLowerCase()
             .replace(/[^a-z0-9]+/g, '-')
-            .replace(/^-|-$/g, '') || `section-${index + 1}`;
+            .replace(/^-|-$/g, '') || fallback
+    );
+
+    headings.forEach((heading, index) => {
+        const label = (heading.textContent || '')
+            .trim()
+            .replace(/\s+/g, ' ');
+
+        let id = heading.id || slugify(label, 'section-' + (index + 1));
         const baseId = id;
         let suffix = 2;
 
@@ -29,22 +48,58 @@
                 break;
             }
 
-            id = `${baseId}-${suffix}`;
+            id = baseId + '-' + suffix;
             suffix += 1;
         }
 
         heading.id = id;
+        heading.classList.add('article-toc-target');
         usedIds.add(id);
 
         const item = document.createElement('li');
         const link = document.createElement('a');
 
         item.dataset.level = heading.tagName.slice(1);
-        link.href = `#${id}`;
-        link.textContent = heading.textContent.trim();
+        link.href = '#' + id;
+        link.textContent = label;
+
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            const reduceMotion = window.matchMedia(
+                '(prefers-reduced-motion: reduce)'
+            ).matches;
+
+            heading.scrollIntoView({
+                behavior: reduceMotion ? 'auto' : 'smooth',
+                block: 'start'
+            });
+
+            if (window.history && window.history.pushState) {
+                window.history.pushState(null, '', '#' + id);
+            } else {
+                window.location.hash = id;
+            }
+
+            toggle.setAttribute('aria-expanded', 'false');
+            panel.hidden = true;
+            navigation.classList.remove('is-open');
+        });
+
         item.append(link);
         list.append(item);
     });
 
+    const setOpen = (open) => {
+        toggle.setAttribute('aria-expanded', String(open));
+        panel.hidden = !open;
+        navigation.classList.toggle('is-open', open);
+    };
+
+    toggle.addEventListener('click', () => {
+        setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+
+    setOpen(false);
     navigation.hidden = false;
 }());
