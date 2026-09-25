@@ -232,6 +232,25 @@ test.describe('Article native sharing on mobile', () => {
 
     await page.goto(targetUrl(articlePath), { waitUntil: 'domcontentloaded', timeout: 45000 });
     await expect(page.locator('[data-native-share-top]')).toBeVisible();
+    const order = await page.evaluate(() => {
+      const body = document.querySelector('.post-body')?.getBoundingClientRect();
+      const topics = document.querySelector('.post-topics')?.getBoundingClientRect();
+      const share = document.querySelector('.post-share')?.getBoundingClientRect();
+      const rail = document.querySelector('.post-rail')?.getBoundingClientRect();
+      return {
+        bodyBottom: body?.bottom || 0,
+        topicsTop: topics?.top || 0,
+        topicsBottom: topics?.bottom || 0,
+        shareTop: share?.top || 0,
+        shareBottom: share?.bottom || 0,
+        railTop: rail?.top || 0
+      };
+    });
+
+    expect(order.topicsTop).toBeGreaterThanOrEqual(order.bodyBottom - 2);
+    expect(order.shareTop).toBeGreaterThanOrEqual(order.topicsBottom - 2);
+    expect(order.railTop).toBeGreaterThanOrEqual(order.shareBottom - 2);
+
     await page.locator('[data-native-share-top]').click();
 
     await expect.poll(async () => page.evaluate(() => window.__mmaSharePayloads.length)).toBe(1);
