@@ -240,6 +240,7 @@ It’s basically a little House of Horrors fight card.
     <div class="fc-form-wrap">
 
       <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Vanessa Demopoulos</strong></div>
 
         <div class="fc-form-row">
           <span class="fc-result loss">L</span>
@@ -290,6 +291,7 @@ It’s basically a little House of Horrors fight card.
 
 
       <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Yazmin Jauregui</strong></div>
 
         <div class="fc-form-row">
           <span class="fc-result loss">L</span>
@@ -1311,6 +1313,7 @@ She’s coming off a submission loss to Ketlen Souza and has been out for a whil
     <div class="fs-cage-grid">
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Vanessa Demopoulos</strong></div>
 
         <div class="fs-cage-row">
           <strong>15:00</strong>
@@ -1341,6 +1344,7 @@ She’s coming off a submission loss to Ketlen Souza and has been out for a whil
 
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Yazmin Jauregui</strong></div>
 
         <div class="fs-cage-row">
           <strong>3:02</strong>
@@ -1987,6 +1991,7 @@ Still, I think Jauregui is too sharp on the feet and should be able to win enoug
     <div class="fc-form-wrap">
 
       <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>John Castaneda</strong></div>
 
         <div class="fc-form-row">
           <span class="fc-result draw">D</span>
@@ -2037,6 +2042,7 @@ Still, I think Jauregui is too sharp on the feet and should be able to win enoug
 
 
       <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Alatengheili</strong></div>
 
         <div class="fc-form-row">
           <span class="fc-result loss">L</span>
@@ -3085,6 +3091,7 @@ Still, I think Jauregui is too sharp on the feet and should be able to win enoug
     <div class="fs-cage-grid">
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>John Castaneda</strong></div>
 
         <div class="fs-cage-row">
           <strong>15:00</strong>
@@ -3115,6 +3122,7 @@ Still, I think Jauregui is too sharp on the feet and should be able to win enoug
 
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Alatengheili</strong></div>
 
         <div class="fs-cage-row">
           <strong>15:00</strong>
@@ -3872,6 +3880,7 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
         <!-- MONTEL JACKSON -->
 
         <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Montel Jackson</strong></div>
 
           <div class="fc-form-row">
 
@@ -3938,6 +3947,7 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
         <!-- RICKY SIMON -->
 
         <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Ricky Simon</strong></div>
 
           <div class="fc-form-row">
 
@@ -5146,6 +5156,7 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
     <div class="fs-cage-grid">
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Montel Jackson</strong></div>
 
         <div class="fs-cage-row">
           <strong>15:00</strong>
@@ -5176,6 +5187,7 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
 
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Ricky Simon</strong></div>
 
         <div class="fs-cage-row">
           <strong>15:00</strong>
@@ -6026,6 +6038,7 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
         <!-- ELVES BRENER -->
 
         <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Elves Brener</strong></div>
 
           <div class="fc-form-row">
 
@@ -6092,6 +6105,7 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
         <!-- JOSIAH HARRELL -->
 
         <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Josiah Harrell</strong></div>
 
           <div class="fc-form-row">
 
@@ -7289,6 +7303,7 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
     <div class="fs-cage-grid">
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Elves Brener</strong></div>
 
         <div class="fs-cage-row">
           <strong>15:00</strong>
@@ -7319,6 +7334,7 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
 
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Josiah Harrell</strong></div>
 
         <div class="fs-cage-row">
           <strong>3:01</strong>
@@ -8169,6 +8185,7 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
         <!-- RODOLFO BELLATO -->
 
         <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Rodolfo Bellato</strong></div>
 
           <div class="fc-form-row">
 
@@ -8235,6 +8252,7 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
         <!-- CHRISTIAN EDWARDS -->
 
         <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Christian Edwards</strong></div>
 
           <div class="fc-form-row">
 
@@ -9415,6 +9433,7 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
     <div class="fs-cage-grid">
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Rodolfo Bellato</strong></div>
 
         <div class="fs-cage-row">
           <strong>2:42</strong>
@@ -9445,6 +9464,7 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
 
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Christian Edwards</strong></div>
 
         <div class="fs-cage-row">
           <strong>15:00</strong>
@@ -10281,6 +10301,7 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
         <!-- RODOLFO VIEIRA -->
 
         <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Rodolfo Vieira</strong></div>
 
           <div class="fc-form-row">
             <span class="fc-result loss">L</span>
@@ -10333,6 +10354,7 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
         <!-- ROBERT BRYCZEK -->
 
         <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Robert Bryczek</strong></div>
 
           <div class="fc-form-row">
             <span class="fc-result loss">L</span>
@@ -11505,6 +11527,7 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
     <div class="fs-cage-grid">
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Rodolfo Vieira</strong></div>
 
         <div class="fs-cage-row">
           <strong>15:00</strong>
@@ -11535,6 +11558,7 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
 
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Robert Bryczek</strong></div>
 
         <div class="fs-cage-row">
           <strong>15:00</strong>
@@ -12369,6 +12393,7 @@ I have no real interest in this fight and don’t have a strong lean either way.
         <!-- BRADY HIESTAND -->
 
         <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Brady Hiestand</strong></div>
 
           <div class="fc-form-row">
             <span class="fc-result win">W</span>
@@ -12421,6 +12446,7 @@ I have no real interest in this fight and don’t have a strong lean either way.
         <!-- RINYA NAKAMURA -->
 
         <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Rinya Nakamura</strong></div>
 
           <div class="fc-form-row">
             <span class="fc-result win">W</span>
@@ -13591,6 +13617,7 @@ I have no real interest in this fight and don’t have a strong lean either way.
     <div class="fs-cage-grid">
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Brady Hiestand</strong></div>
 
         <div class="fs-cage-row">
           <strong>11:52</strong>
@@ -13621,6 +13648,7 @@ I have no real interest in this fight and don’t have a strong lean either way.
 
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Rinya Nakamura</strong></div>
 
         <div class="fs-cage-row">
           <strong>1:02</strong>
@@ -14488,6 +14516,7 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
         <!-- LUIS HERNANDEZ -->
 
         <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Luis Hernandez</strong></div>
 
           <div class="fc-form-row">
             <span class="fc-result win">W</span>
@@ -14544,6 +14573,7 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
         <!-- SEDRIQUES DUMAS -->
 
         <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Sedriques Dumas</strong></div>
 
           <div class="fc-form-row">
             <span class="fc-result loss">L</span>
@@ -15750,6 +15780,7 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
     <div class="fs-cage-grid">
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Luis Hernandez</strong></div>
 
         <div class="fs-cage-row">
           <strong>6:01</strong>
@@ -15780,6 +15811,7 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
 
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Sedriques Dumas</strong></div>
 
         <div class="fs-cage-row">
           <strong>2:14</strong>
@@ -16451,6 +16483,7 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
         <!-- NORMA DUMONT -->
 
         <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Norma Dumont</strong></div>
 
           <div class="fc-form-row">
 
@@ -16517,6 +16550,7 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
         <!-- AILIN PEREZ -->
 
         <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Ailin Perez</strong></div>
 
           <div class="fc-form-row">
 
@@ -17708,6 +17742,7 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
     <div class="fs-cage-grid">
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Norma Dumont</strong></div>
 
         <div class="fs-cage-row">
           <strong>15:00</strong>
@@ -17738,6 +17773,7 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Ailin Perez</strong></div>
 
         <div class="fs-cage-row">
           <strong>15:00</strong>
@@ -18574,6 +18610,7 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
         <!-- RAUL ROSAS JR. -->
 
         <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Raul Rosas Jr.</strong></div>
 
           <div class="fc-form-row">
             <span class="fc-result win">W</span>
@@ -18626,6 +18663,7 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
         <!-- RAONI BARCELOS -->
 
         <div class="fc-column">
+        <div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>Raoni Barcelos</strong></div>
 
           <div class="fc-form-row">
             <span class="fc-result win">W</span>
@@ -19796,6 +19834,7 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
     <div class="fs-cage-grid">
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Raul Rosas Jr.</strong></div>
 
         <div class="fs-cage-row">
           <strong>15:00</strong>
@@ -19826,6 +19865,7 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
 
 
       <div class="fs-cage-column">
+        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Raoni Barcelos</strong></div>
 
         <div class="fs-cage-row">
           <strong>15:00</strong>
