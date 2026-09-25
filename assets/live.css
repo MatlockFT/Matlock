@@ -197,6 +197,15 @@ html[data-theme="light"] body:has([data-live-page]) .logo-banner {
   overflow: visible;
 }
 
+/* Keep the capture target physically stable while the replay buffer is armed.
+   Region/Element Capture can otherwise expose black pixels when the target
+   scrolls partially outside the captured tab viewport. */
+.live-page.is-replay-armed .live-page__player-stage {
+  position: sticky;
+  top: .5rem;
+  z-index: 20;
+}
+
 /* Low-cost stationary glow: no video sampling, images, polling or backdrop blur. */
 .live-page__player-stage::before {
   content: "";
