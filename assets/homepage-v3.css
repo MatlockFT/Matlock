@@ -2177,40 +2177,40 @@ body:has([data-globe-home]) .site-theme-toggle-knob {
     }
 }
 
-/* Trending behaves like a clean newspaper rail: five readable slots with deliberate separation. */
+/* Trending reads as one continuous editorial rail with consistent article spacing. */
 @media (min-width: 781px) {
     .v3-trending {
-        gap: 1rem;
+        gap: .9rem;
     }
 
     .v3-trending-links {
+        display: flex;
+        align-items: center;
         gap: 0;
-        overflow: hidden;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scrollbar-width: none;
+    }
+
+    .v3-trending-links::-webkit-scrollbar {
+        display: none;
     }
 
     .v3-trending-links a {
         position: relative;
         display: block;
+        flex: 0 0 auto;
+        width: auto;
         min-width: 0;
-        max-width: none;
-        flex: 1 1 0;
-        padding: 0 .85rem;
+        max-width: clamp(190px, 18vw, 270px);
+        padding: 0;
         overflow: hidden;
         box-sizing: border-box;
         white-space: nowrap;
     }
 
-    .v3-trending-links a:first-child {
-        padding-left: 0;
-    }
-
-    .v3-trending-links a:last-child {
-        padding-right: 0;
-    }
-
     .v3-trending-text {
         display: block;
-        min-width: 0;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -2228,8 +2228,8 @@ body:has([data-globe-home]) .site-theme-toggle-knob {
     .v3-trending-separator {
         flex: 0 0 1px;
         width: 1px;
-        height: .78rem;
-        margin: 0 .12rem;
+        height: .72rem;
+        margin: 0 .9rem;
         overflow: hidden;
         color: transparent;
         background: #817e78;
