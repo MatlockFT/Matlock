@@ -1,37 +1,8 @@
 {
   "version": 5,
-  "generated_at": "2026-09-25T02:51:01Z",
-  "selected_event_id": "wcc-peru:uUlmif4wkr8",
-  "events": [
-    {
-      "event_id": "wcc-peru:uUlmif4wkr8",
-      "promotion_id": "wcc-peru",
-      "promotion": "Warriors Combat Championship",
-      "short_name": "WCC",
-      "country": "Peru",
-      "priority": 82,
-      "coverage_note": "Full event streams on the official WCC channel",
-      "access_note": null,
-      "channel_url": "https://www.youtube.com/channel/UCN7WmJ425uk_WIw0MQaBtXw",
-      "channel_id": "UCN7WmJ425uk_WIw0MQaBtXw",
-      "channel_name": "WCC - Warriors Combat Championship",
-      "video_id": "uUlmif4wkr8",
-      "title": "WCC EDICION 13",
-      "watch_url": "https://www.youtube.com/watch?v=uUlmif4wkr8",
-      "status": "live",
-      "is_live": true,
-      "embeddable": true,
-      "scheduled_start_time": null,
-      "scheduled_end_time": null,
-      "actual_start_time": "2026-09-25T01:28:32Z",
-      "actual_end_time": null,
-      "concurrent_viewers": "696",
-      "api_verified": true,
-      "stale": false,
-      "observed_at": "2026-09-25T02:51:01Z",
-      "source_role": "promotion"
-    }
-  ],
+  "generated_at": "2026-09-25T06:22:35Z",
+  "selected_event_id": null,
+  "events": [],
   "upcoming": [
     {
       "event_id": "real-fight-arena:z7sfnn-WqtY",
@@ -842,12 +813,12 @@
       "channel_url": "https://www.youtube.com/channel/UCN7WmJ425uk_WIw0MQaBtXw",
       "channel_id": "UCN7WmJ425uk_WIw0MQaBtXw",
       "channel_name": "WCC - Warriors Combat Championship",
-      "status": "live",
+      "status": "offline",
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T02:51:01Z",
-      "last_checked_at": "2026-09-25T02:51:00Z"
+      "last_checked_at": "2026-09-25T06:22:35Z"
     },
     "wow-fc": {
       "promotion": "WOW Fight Company",
@@ -868,7 +839,7 @@
     }
   },
   "monitored_count": 39,
-  "live_count": 1,
+  "live_count": 0,
   "upcoming_count": 6,
   "youtube_api_configured": true,
   "api_verified_source_count": 39
