@@ -150,7 +150,16 @@ layout: default
                 data-native-share-top
                 aria-label="Share {{ page.title | escape }}"
             >
-                <span aria-hidden="true">↗</span>
+                <svg
+                    class="post-header-share-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                >
+                    <path d="M12 16V4"></path>
+                    <path d="M8 8l4-4 4 4"></path>
+                    <path d="M5 11v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"></path>
+                </svg>
                 Share
             </button>
         </div>
