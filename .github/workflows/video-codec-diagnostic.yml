@@ -1,0 +1,37 @@
+name: Video codec diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/video-codec-diagnostic.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download article videos
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/article-videos
+          gh release download writer-media-2026-09 \
+            --repo MatlockFT/Matlock \
+            --dir /tmp/article-videos \
+            --pattern 'rosas-jr-vs-barcelos-ufc-vegas-121-video-20260924-193315-968.mp4' \
+            --pattern 'rosas-jr-vs-barcelos-ufc-vegas-121-video-20260925-011655-703.mp4'
+
+      - name: Inspect codecs and container
+        run: |
+          set -euo pipefail
+          for file in /tmp/article-videos/*.mp4; do
+            echo "===== $(basename "$file") ====="
+            ffprobe -v error \
+              -show_entries format=format_name,duration,size,bit_rate \
+              -show_entries stream=index,codec_name,codec_long_name,profile,codec_type,pix_fmt,width,height,r_frame_rate,avg_frame_rate \
+              -of json "$file"
+          done
