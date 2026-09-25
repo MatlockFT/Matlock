@@ -230,15 +230,50 @@ sitemap: false
 
       <aside class="bc-preview-column">
         <div class="bc-preview-head">
-          <div><span>PROGRAM PREVIEW</span><small>Unsaved changes</small></div>
-          <button type="button" data-preview-reload title="Reload preview">↻</button>
+          <div><span>PROGRAM PREVIEW</span><small data-preview-mode>Draft program</small></div>
+          <div class="bc-preview-nav">
+            <button type="button" data-preview-prev title="Previous segment">‹</button>
+            <span data-preview-position>—</span>
+            <button type="button" data-preview-next title="Next segment">›</button>
+          </div>
         </div>
-        <div class="bc-preview-frame">
-          <iframe src="/broadcast/?controlPreview=1" data-preview title="Broadcast preview"></iframe>
+
+        <div class="bc-preview-frame bc-native-preview" data-native-preview>
+          <div class="bc-preview-stage">
+            <div class="bc-preview-media">
+              <div class="bc-preview-media-fill" data-preview-fill></div>
+              <img data-preview-image alt="">
+              <div class="bc-preview-play" data-preview-play hidden>
+                <span>▶</span>
+                <small data-preview-video-duration></small>
+              </div>
+              <span class="bc-preview-badge" data-preview-badge>LATEST</span>
+            </div>
+            <article class="bc-preview-copy">
+              <div class="bc-preview-kicker" data-preview-kicker>NEWS UPDATE</div>
+              <h2 data-preview-title>Loading preview…</h2>
+              <div class="bc-preview-context" data-preview-context></div>
+              <div class="bc-preview-meta">
+                <strong data-preview-source>COMBAT SPORTS</strong>
+                <span>•</span>
+                <span data-preview-time>PREVIEW</span>
+              </div>
+            </article>
+          </div>
+          <div class="bc-preview-coming-up" data-preview-coming-up></div>
+          <div class="bc-preview-ticker" data-preview-ticker>
+            <b>LATEST</b>
+            <span data-preview-ticker-text>Loading current headlines…</span>
+          </div>
+          <div class="bc-preview-empty" data-preview-empty hidden>
+            <strong>No eligible content for this draft</strong>
+            <span>Enable a module, broaden the source filters, or lower the content requirements.</span>
+          </div>
         </div>
+
         <div class="bc-now-card">
           <div><span>Live config</span><strong data-live-config-label>Loading…</strong></div>
-          <small>OBS polls the saved live control state automatically.</small>
+          <small>The preview above is rendered directly from your current draft. OBS polls the saved live control state automatically.</small>
         </div>
       </aside>
     </div>
