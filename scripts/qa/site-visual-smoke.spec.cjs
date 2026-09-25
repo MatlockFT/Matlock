@@ -216,7 +216,7 @@ test.describe('Article native sharing on mobile', () => {
     hasTouch: true
   });
 
-  test('top Share uses Web Share while platform links remain same-tab intents', async ({ page, request }) => {
+  test('top Share uses Web Share while platform links remain same-tab intents', async ({ page, request, browserName }) => {
     await page.addInitScript(() => {
       window.__mmaSharePayloads = [];
       Object.defineProperty(navigator, 'share', {
@@ -308,7 +308,11 @@ test.describe('Article native sharing on mobile', () => {
         readyState: node.readyState,
         error: node.error ? node.error.code : 0
       }));
-      if (mediaState.error > 0) {
+      if (browserName === 'webkit') {
+        expect(mediaState.error, 'WebKit should decode the same-origin MP4').toBe(0);
+        expect(mediaState.readyState, 'WebKit should reach loaded metadata').toBeGreaterThanOrEqual(1);
+        await expect(figure.locator('.article-inline-video-fallback')).toBeHidden();
+      } else if (mediaState.error > 0) {
         await expect(figure.locator('.article-inline-video-fallback')).toBeVisible();
       } else {
         expect(mediaState.readyState).toBeGreaterThanOrEqual(1);
