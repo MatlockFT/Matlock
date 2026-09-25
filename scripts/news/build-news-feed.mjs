@@ -440,37 +440,58 @@ async function fetchArticleImage(story) {
     }
 }
 
+function broadcastContextText(value) {
+    const text = plainText(value)
+        .replace(/\bRead the Full Article Here\b.*$/i, "")
+        .replace(/\bAdvertisement\b/gi, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    if (!text) return "";
+
+    const codeLike =
+        /(?:function\s*\(|=>|\bconst\s+\w+\s*=|\bvar\s+\w+\s*=|window\.|document\.|webpack|__NEXT_DATA__|application\/ld\+json|<\/?script|\{\s*["'][\w-]+["']\s*:)/i;
+    const punctuation = (text.match(/[{};=<>]/g) || []).length;
+
+    if (
+        codeLike.test(text) ||
+        punctuation > Math.max(8, text.length * 0.035)
+    ) {
+        return "";
+    }
+
+    return truncate(text, ARTICLE_CONTEXT_LIMIT);
+}
+
 function articleContextFromHtml(html, storyTitle = "") {
-    const metaKeys = new Set(["description", "og:description", "twitter:description"]);
     const paragraphPattern = /<p\b[^>]*>([\s\S]*?)<\/p>/gi;
     const paragraphs = [...html.matchAll(paragraphPattern)]
-        .map(match => plainText(match[1]))
+        .map(match => broadcastContextText(match[1]))
         .filter(text => text.length >= 90)
         .filter(text =>
             !/subscribe|sign up|newsletter|advertisement|click here|follow us|cookie|privacy/i.test(text)
         );
 
-    const resultDriven = /\bresults?|live updates?|recap|scorecards?|weigh-?ins?\b/i.test(storyTitle);
+    const resultDriven =
+        /\bresults?|live updates?|recap|scorecards?|weigh-?ins?\b/i.test(storyTitle);
+
     if (resultDriven && paragraphs.length) {
-        const resultSignal = /\b(defeated|def\.|won|wins|winner|knockout|\bko\b|\btko\b|submission|decision|unanimous|split|majority|scorecards?|round|stoppage|finished|finish)\b/i;
-        const resultParagraphs = paragraphs.filter(text => resultSignal.test(text));
+        const resultSignal =
+            /\b(defeated|def\.|won|wins|winner|knockout|\bko\b|\btko\b|submission|decision|unanimous|split|majority|scorecards?|round|stoppage|finished|finish)\b/i;
+        const resultParagraphs = paragraphs.filter(text =>
+            resultSignal.test(text)
+        );
 
         if (resultParagraphs.length) {
-            return truncate(resultParagraphs.slice(0, 2).join(" "), ARTICLE_CONTEXT_LIMIT);
+            return truncate(
+                resultParagraphs.slice(0, 2).join(" "),
+                ARTICLE_CONTEXT_LIMIT
+            );
         }
     }
 
-    for (const match of html.matchAll(/<meta\b[^>]*>/gi)) {
-        const tag = match[0];
-        const key = (tagAttribute(tag, "property") || tagAttribute(tag, "name")).toLowerCase();
-
-        if (!metaKeys.has(key)) continue;
-
-        const text = plainText(tagAttribute(tag, "content"));
-        if (text.length >= 90) return truncate(text, ARTICLE_CONTEXT_LIMIT);
-    }
-
-    const ldJsonPattern = /<script\b[^>]*type=["']application\/ld\+json[^"']*["'][^>]*>([\s\S]*?)<\/script>/gi;
+    const ldJsonPattern =
+        /<script\b[^>]*type=["']application\/ld\+json[^"']*["'][^>]*>([\s\S]*?)<\/script>/gi;
 
     for (const match of html.matchAll(ldJsonPattern)) {
         try {
@@ -481,17 +502,41 @@ function articleContextFromHtml(html, storyTitle = "") {
             );
 
             for (const entry of entries) {
-                const text = plainText(entry?.articleBody || entry?.description || "");
-                if (text.length >= 120) return truncate(text, ARTICLE_CONTEXT_LIMIT);
+                const text = broadcastContextText(entry?.articleBody || "");
+                if (text.length >= 140) return text;
             }
         } catch {
-            // Ignore malformed publisher JSON-LD and continue to paragraph fallback.
+            // Ignore malformed publisher JSON-LD and continue.
         }
     }
 
-    return paragraphs.length
-        ? truncate(paragraphs.slice(0, 2).join(" "), ARTICLE_CONTEXT_LIMIT)
-        : "";
+    if (paragraphs.length) {
+        return truncate(
+            paragraphs.slice(0, 2).join(" "),
+            ARTICLE_CONTEXT_LIMIT
+        );
+    }
+
+    const metaKeys = new Set([
+        "description",
+        "og:description",
+        "twitter:description"
+    ]);
+
+    for (const match of html.matchAll(/<meta\b[^>]*>/gi)) {
+        const tag = match[0];
+        const key = (
+            tagAttribute(tag, "property") ||
+            tagAttribute(tag, "name")
+        ).toLowerCase();
+
+        if (!metaKeys.has(key)) continue;
+
+        const text = broadcastContextText(tagAttribute(tag, "content"));
+        if (text.length >= 90) return text;
+    }
+
+    return "";
 }
 
 async function fetchArticleContext(story) {
