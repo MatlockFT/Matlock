@@ -4,11 +4,13 @@ const RAW_CONFIG='https://raw.githubusercontent.com/MatlockFT/Matlock/main/asset
 const FALLBACK_CONFIG='/assets/data/broadcast-control.json';
 const CONFIG_API_PATH='/contents/assets/uploads/system/broadcast-control.json';
 const NEWS='https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-news.json';
+const NEWS_FALLBACK='/assets/data/mma-news.json';
 const VIDEOS='https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-videos.json';
+const VIDEOS_FALLBACK='/assets/data/mma-videos.json';
 const EVENTS='/assets/data/upcoming-events-live.json';
 const DEFAULT={"version":1,"revision":1,"updatedAt":null,"modules":{"news":true,"video":true,"events":true,"ticker":true,"comingUp":true,"music":true},"rundown":["news","news","video","news","event"],"timing":{"newsSeconds":45,"eventSeconds":35,"transitionMs":650,"controlPollSeconds":10},"news":{"maxAgeHours":48,"maxItems":16,"sources":[],"requireContext":true,"contextFacts":4},"video":{"maxAgeHours":48,"maxItems":8,"minSeconds":20,"maxSeconds":600,"volume":50,"channels":[],"playFull":true},"events":{"maxItems":3,"usePosters":true},"audio":{"enabled":true,"musicUrl":"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3","musicVolume":14,"duckVolume":3.5},"ticker":{"enabled":true,"speedSeconds":240,"maxItems":14},"visual":{"flipNews":true,"showRail":true,"showClock":true,"showBadge":true,"showSource":true},"sources":{"customNewsFeeds":[],"customVideoChannels":[]},"hidden":{"news":[],"videos":[],"events":[]},"forceNext":null};
 const q=s=>app.querySelector(s),qa=s=>[...app.querySelectorAll(s)];
-let state=structuredClone(DEFAULT),saved=structuredClone(DEFAULT),feeds={news:null,videos:null,events:null},contentTab='news',dragIndex=-1,toastTimer=0;
+let state=structuredClone(DEFAULT),saved=structuredClone(DEFAULT),feeds={news:null,videos:null,events:null},contentTab='news',dragIndex=-1,toastTimer=0,feedWarnings=[];
 
 function clone(v){return JSON.parse(JSON.stringify(v))}
 function deepMerge(base,extra){const out=clone(base);for(const[k,v]of Object.entries(extra||{})){if(v&&typeof v==='object'&&!Array.isArray(v)&&out[k]&&typeof out[k]==='object'&&!Array.isArray(out[k]))out[k]=deepMerge(out[k],v);else out[k]=v}return out}
@@ -16,27 +18,76 @@ function getPath(obj,path){return path.split('.').reduce((a,k)=>a?.[k],obj)}
 function setPath(obj,path,value){const p=path.split('.');let a=obj;for(let i=0;i<p.length-1;i++)a=a[p[i]]??={};a[p.at(-1)]=value}
 function toast(msg){const el=q('[data-toast]');clearTimeout(toastTimer);el.textContent=msg;el.hidden=false;toastTimer=setTimeout(()=>el.hidden=true,3400)}
 function dirty(){return JSON.stringify(state)!==JSON.stringify(saved)}
-function markDirty(){q('[data-save-state]').textContent=dirty()?'Unsaved':'Saved';q('[data-save-state]').classList.toggle('is-dirty',dirty());updatePreview()}
-function updatePreview(){const frame=q('[data-preview]');try{frame.contentWindow?.postMessage({type:'matlock-broadcast-control-preview',config:state},location.origin)}catch{}}
+function markDirty({restartPreview=false}={}){
+  const pending=dirty(),save=q('[data-save-state]'),apply=q('[data-apply-live]');
+  save.textContent=pending?'Pending changes':'Live';
+  save.classList.toggle('is-dirty',pending);
+  apply.disabled=!pending;
+  apply.dataset.pending=String(pending);
+  apply.textContent=pending?'Apply changes live':'Live is current';
+  renderDraftState();
+  updatePreview(restartPreview);
+}
+function updatePreview(restart=false){const frame=q('[data-preview]');try{frame.contentWindow?.postMessage({type:'matlock-broadcast-control-preview',config:state,restart},location.origin)}catch{}}
 function scalePreview(){const shell=q('.bc-preview-frame'),frame=q('[data-preview]');if(!shell||!frame)return;const s=shell.clientWidth/1920;shell.style.setProperty('--preview-scale',String(s));}
 function normalize(v){return String(v??'').trim()}
 function itemId(type,item){if(type==='news')return item.id||item.url;if(type==='video')return item.videoId;if(type==='event')return item.id||[item.promotion,item.title,item.date].join('|');return''}
 
 async function fetchJson(url){const u=new URL(url,location.href);u.searchParams.set('_',Date.now());const r=await fetch(u,{cache:'no-store'});if(!r.ok)throw new Error(r.status);return r.json()}
 async function loadAll(){
-  q('[data-live-status]').textContent='Loading control…';
-  try{
-    const [cfg,news,videos,events]=await Promise.all([
-      fetchJson(RAW_CONFIG).catch(()=>fetchJson(FALLBACK_CONFIG)),
-      fetchJson(NEWS),fetchJson(VIDEOS),fetchJson(EVENTS)
-    ]);
-    state=deepMerge(DEFAULT,cfg);saved=clone(state);feeds={news,videos,events};renderAll();q('[data-live-status]').textContent='Control online';q('[data-live-status]').dataset.state='live';q('[data-live-config-label]').textContent='Revision '+(state.revision||'—');
-  }catch(e){q('[data-live-status]').textContent='Control load failed';q('[data-live-status]').dataset.state='error';toast('Could not load live control data.')}
+  const status=q('[data-live-status]');status.textContent='Loading control…';feedWarnings=[];
+  let cfg=clone(DEFAULT);
+  try{cfg=await fetchJson(RAW_CONFIG)}catch{try{cfg=await fetchJson(FALLBACK_CONFIG)}catch{feedWarnings.push('control fallback')}}
+  const [news,videos,events]=await Promise.all([
+    fetchJson(NEWS).catch(()=>fetchJson(NEWS_FALLBACK)).catch(()=>{feedWarnings.push('news');return {sources:[],stories:[]}}),
+    fetchJson(VIDEOS).catch(()=>fetchJson(VIDEOS_FALLBACK)).catch(()=>{feedWarnings.push('videos');return {videos:[]}}),
+    fetchJson(EVENTS).catch(()=>{feedWarnings.push('events');return {events:[]}})
+  ]);
+  state=deepMerge(DEFAULT,cfg);saved=clone(state);feeds={news,videos,events};renderAll();
+  if(feedWarnings.length){status.textContent='Control online · '+feedWarnings.length+' feed issue'+(feedWarnings.length===1?'':'s');status.dataset.state='partial'}
+  else{status.textContent='Control online';status.dataset.state='live'}
+  q('[data-live-config-label]').textContent='Revision '+(state.revision||'—');
 }
-function renderAll(){renderInputs();renderRundown();renderSources();renderMetrics();renderLiveList();q('[data-revision]').textContent=state.revision||'—';markDirty()}
+function renderAll(){renderInputs();renderRundown();renderSources();renderMetrics();renderLiveList();renderPresetState();q('[data-revision]').textContent=state.revision||'—';markDirty()}
 function renderInputs(){
   qa('[data-path]').forEach(el=>{const v=getPath(state,el.dataset.path);if(el.type==='checkbox')el.checked=Boolean(v);else el.value=v??''});
   qa('[data-value-for]').forEach(el=>{const v=getPath(state,el.dataset.valueFor);el.textContent=v+'%'});
+}
+const PRESETS={
+  newsroom:{label:'Newsroom',modules:{news:true,video:true,events:true},rundown:['news','news','video','news','event'],timing:{newsSeconds:45,eventSeconds:35},video:{maxSeconds:600}},
+  video:{label:'Video heavy',modules:{news:true,video:true,events:true},rundown:['news','video','news','video','event'],timing:{newsSeconds:40,eventSeconds:30},video:{maxSeconds:900}},
+  headlines:{label:'Headlines only',modules:{news:true,video:false,events:false},rundown:['news','news','news'],timing:{newsSeconds:50}},
+  event:{label:'Event day',modules:{news:true,video:true,events:true},rundown:['news','event','news','video','event'],timing:{newsSeconds:40,eventSeconds:50}}
+};
+function subsetMatches(target,subset){
+  if(Array.isArray(subset))return Array.isArray(target)&&JSON.stringify(target)===JSON.stringify(subset);
+  if(subset&&typeof subset==='object')return Object.entries(subset).every(([key,value])=>subsetMatches(target?.[key],value));
+  return target===subset;
+}
+function activePresetName(){
+  const hit=Object.entries(PRESETS).find(([,preset])=>{
+    const {label,...definition}=preset;
+    return subsetMatches(state,definition);
+  });
+  return hit?.[0]||'custom';
+}
+function renderPresetState(){
+  const active=activePresetName();
+  qa('[data-preset]').forEach(btn=>{
+    const on=btn.dataset.preset===active;
+    btn.classList.toggle('is-active',on);btn.setAttribute('aria-pressed',String(on));
+    const em=btn.querySelector('em');if(em)em.textContent=on?(dirty()?'Loaded · pending':'Live preset'):'Load preset';
+  });
+}
+function renderDraftState(){
+  const active=activePresetName(),pending=dirty(),preset=PRESETS[active];
+  const strip=q('[data-draft-strip]'),title=q('[data-draft-title]'),status=q('[data-draft-status]'),host=q('[data-draft-rundown]');
+  if(!strip||!title||!status||!host)return;
+  strip.classList.toggle('is-dirty',pending);
+  title.textContent=(preset?.label||'Custom program')+(pending?' · DRAFT':' · LIVE');
+  status.textContent=pending?'Changes are loaded in the preview. Click Apply changes live to send them to OBS.':'This is the saved program OBS is polling now.';
+  host.innerHTML=(state.rundown||[]).map(type=>'<span class="bc-draft-segment" data-type="'+type+'">'+type.toUpperCase()+'</span>').join('');
+  renderPresetState();
 }
 function renderMetrics(){
   const stories=[feeds.news?.topStory,...(feeds.news?.stories||[])].filter(Boolean);
@@ -50,7 +101,7 @@ function renderRundown(){
   state.rundown.forEach((type,i)=>{
     const el=document.createElement('div');el.className='bc-rundown-item';el.draggable=true;el.dataset.type=type;el.dataset.index=i;
     el.innerHTML='<i></i><strong>'+type.toUpperCase()+'</strong><button type="button" aria-label="Remove">×</button>';
-    el.querySelector('button').onclick=()=>{state.rundown.splice(i,1);renderRundown();renderMetrics();markDirty()};
+    el.querySelector('button').onclick=()=>{state.rundown.splice(i,1);renderRundown();renderMetrics();markDirty({restartPreview:true})};
     el.addEventListener('dragstart',()=>{dragIndex=i;el.classList.add('is-dragging')});
     el.addEventListener('dragend',()=>{dragIndex=-1;el.classList.remove('is-dragging')});
     el.addEventListener('dragover',e=>e.preventDefault());
@@ -118,12 +169,10 @@ function customForce(mode){
 }
 
 function preset(name){
-  const p={
-    newsroom:{modules:{news:true,video:true,events:true},rundown:['news','news','video','news','event'],timing:{newsSeconds:45,eventSeconds:35},video:{maxSeconds:600}},
-    video:{modules:{news:true,video:true,events:true},rundown:['news','video','news','video','event'],timing:{newsSeconds:40,eventSeconds:30},video:{maxSeconds:900}},
-    headlines:{modules:{news:true,video:false,events:false},rundown:['news','news','news'],timing:{newsSeconds:50}},
-    event:{modules:{news:true,video:true,events:true},rundown:['news','event','news','video','event'],timing:{newsSeconds:40,eventSeconds:50}}
-  }[name];if(!p)return;state=deepMerge(state,p);renderAll();toast('Preset loaded into preview.')}
+  const p=PRESETS[name];if(!p)return;
+  const {label,...changes}=p;state=deepMerge(state,changes);renderInputs();renderRundown();renderMetrics();renderPresetState();renderLiveList();markDirty({restartPreview:true});
+  toast(dirty()?label+' loaded. Review the preview, then Apply changes live.':label+' is already live.');
+}
 function encode64(text){const bytes=new TextEncoder().encode(text);let binary='';for(let i=0;i<bytes.length;i+=0x8000)binary+=String.fromCharCode(...bytes.subarray(i,i+0x8000));return btoa(binary)}
 async function saveLive(success='Broadcast control updated'){
   const auth=window.MatlockBroadcastAuth;
@@ -141,16 +190,16 @@ async function saveLive(success='Broadcast control updated'){
     toast('Apply failed: '+e.message);
     if(e.status===401)window.dispatchEvent(new CustomEvent('matlock-broadcast:auth-expired'));
     throw e;
-  }finally{apply.disabled=false;apply.textContent='Apply live'}
+  }finally{markDirty()}
 }
 
 qa('[data-nav-target]').forEach(btn=>btn.onclick=()=>{qa('[data-nav-target]').forEach(x=>x.classList.toggle('is-active',x===btn));qa('[data-section]').forEach(s=>s.hidden=s.dataset.section!==btn.dataset.navTarget)});
-qa('[data-path]').forEach(el=>{const event=el.type==='range'?'input':'change';el.addEventListener(event,()=>{let v=el.type==='checkbox'?el.checked:el.value;if(el.type==='number'||el.type==='range')v=Number(v);setPath(state,el.dataset.path,v);renderInputs();renderMetrics();markDirty()})});
-qa('[data-add-segment]').forEach(b=>b.onclick=()=>{state.rundown.push(b.dataset.addSegment);renderRundown();renderMetrics();markDirty()});
+qa('[data-path]').forEach(el=>{const event=el.type==='range'?'input':'change';el.addEventListener(event,()=>{let v=el.type==='checkbox'?el.checked:el.value;if(el.type==='number'||el.type==='range')v=Number(v);setPath(state,el.dataset.path,v);renderInputs();renderMetrics();markDirty({restartPreview:/^(modules|news\.sources|video\.channels|events\.)/.test(el.dataset.path)})})});
+qa('[data-add-segment]').forEach(b=>b.onclick=()=>{state.rundown.push(b.dataset.addSegment);renderRundown();renderMetrics();markDirty({restartPreview:true})});
 qa('[data-preset]').forEach(b=>b.onclick=()=>preset(b.dataset.preset));
 qa('[data-content-tab]').forEach(b=>b.onclick=()=>{contentTab=b.dataset.contentTab;qa('[data-content-tab]').forEach(x=>x.classList.toggle('is-active',x===b));renderLiveList()});
-q('[data-all-news]').onclick=()=>{state.news.sources=[];renderSources();markDirty()};
-q('[data-all-video]').onclick=()=>{state.video.channels=[];renderSources();markDirty()};
+q('[data-all-news]').onclick=()=>{state.news.sources=[];renderSources();markDirty({restartPreview:true})};
+q('[data-all-video]').onclick=()=>{state.video.channels=[];renderSources();markDirty({restartPreview:true})};
 q('[data-add-news-source]').onclick=()=>{
   const name=q('[data-custom-news-name]').value.trim(),url=q('[data-custom-news-url]').value.trim();
   let parsed=null;try{parsed=new URL(url)}catch{}
@@ -169,10 +218,10 @@ q('[data-add-video-source]').onclick=()=>{
   q('[data-custom-video-name]').value='';q('[data-custom-video-handle]').value='';renderSources();markDirty();toast('Custom YouTube channel added. It will populate on the next feed refresh.');
 };
 q('[data-apply-live]').onclick=()=>saveLive().catch(()=>{});
-q('[data-reset-draft]').onclick=()=>{state=clone(saved);renderAll();toast('Unsaved changes discarded.')};
+q('[data-reset-draft]').onclick=()=>{state=clone(saved);renderAll();updatePreview(true);toast('Draft discarded. Preview restored to the live program.')};
 q('[data-custom-next]').onclick=()=>customForce('next');q('[data-custom-now]').onclick=()=>customForce('now');
 q('[data-preview-reload]').onclick=()=>{const f=q('[data-preview]');f.src='/broadcast/?controlPreview=1&v='+Date.now()};
-q('[data-preview]').addEventListener('load',()=>setTimeout(updatePreview,350));
+q('[data-preview]').addEventListener('load',()=>setTimeout(()=>updatePreview(true),350));
 window.addEventListener('resize',scalePreview);new ResizeObserver(scalePreview).observe(q('.bc-preview-frame'));
 window.addEventListener('matlock-broadcast:auth',()=>toast('GitHub connected. You can apply changes live.'));
 window.addEventListener('beforeunload',e=>{if(!dirty())return;e.preventDefault();e.returnValue=''});

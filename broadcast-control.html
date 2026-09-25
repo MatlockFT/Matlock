@@ -79,6 +79,15 @@ sitemap: false
             <article><span>Rundown</span><strong data-metric-rundown>—</strong><small>segment pattern</small></article>
           </div>
 
+          <div class="bc-draft-strip" data-draft-strip>
+            <div class="bc-draft-copy">
+              <span>PROGRAM DRAFT</span>
+              <strong data-draft-title>Loading live program…</strong>
+              <small data-draft-status>Waiting for control state.</small>
+            </div>
+            <div class="bc-draft-rundown" data-draft-rundown aria-label="Draft rundown"></div>
+          </div>
+
           <div class="bc-card">
             <div class="bc-card-head"><div><h2>Modules</h2><p>Kill or restore any part of the channel without changing code.</p></div></div>
             <div class="bc-switch-grid">
@@ -94,10 +103,10 @@ sitemap: false
           <div class="bc-card">
             <div class="bc-card-head"><div><h2>Presets</h2><p>Use these as starting points. You can alter every setting afterward.</p></div></div>
             <div class="bc-presets">
-              <button type="button" data-preset="newsroom"><strong>Newsroom</strong><span>Balanced news, video and events</span></button>
-              <button type="button" data-preset="video"><strong>Video heavy</strong><span>More long-form YouTube</span></button>
-              <button type="button" data-preset="headlines"><strong>Headlines only</strong><span>No videos or event boards</span></button>
-              <button type="button" data-preset="event"><strong>Event day</strong><span>More upcoming-card coverage</span></button>
+              <button type="button" data-preset="newsroom" aria-pressed="false"><strong>Newsroom</strong><span>Balanced news, video and events</span><em>Load preset</em></button>
+              <button type="button" data-preset="video" aria-pressed="false"><strong>Video heavy</strong><span>More long-form YouTube</span><em>Load preset</em></button>
+              <button type="button" data-preset="headlines" aria-pressed="false"><strong>Headlines only</strong><span>No videos or event boards</span><em>Load preset</em></button>
+              <button type="button" data-preset="event" aria-pressed="false"><strong>Event day</strong><span>More upcoming-card coverage</span><em>Load preset</em></button>
             </div>
           </div>
         </section>

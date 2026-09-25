@@ -243,6 +243,13 @@ window.addEventListener("message",event=>{
   if(event.origin!==location.origin)return;
   const m=event.data;if(!m||m.type!=="matlock-broadcast-control-preview"||!m.config)return;
   previewControl=deepMerge(DEFAULT_CONTROL,m.config);rebuildSlides();processForce();configureBed();
+  if(m.restart&&IS_CONTROL_PREVIEW&&slides.length){
+    clearTimeout(timer);clearTimeout(videoWatchdog);transitioning=false;
+    if(currentSlide?.type==="video")resetVideoHost();
+    index=0;currentSlide=null;
+    const next=slides[index%slides.length];index=(index+1)%slides.length;
+    renderSlideNow(next);
+  }
 });
 if(!IS_CONTROL_PREVIEW)previewControl=null;
 
