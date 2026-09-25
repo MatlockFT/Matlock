@@ -814,3 +814,48 @@ html.reduce-motion .mma-gallery-image-button:hover img {
         height: 0;
     }
 }
+
+
+/* Seasonal desktop masthead pumpkin */
+@media (min-width: 851px) {
+    .logo-banner > a {
+        display: inline-flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 0;
+        overflow: visible;
+    }
+
+    .desktop-brand-pumpkin {
+        position: relative;
+        z-index: 3;
+        display: inline-flex;
+        align-items: flex-end;
+        justify-content: center;
+        flex: 0 0 auto;
+        margin-left: -.08em;
+        pointer-events: none;
+    }
+
+    .desktop-brand-pumpkin img {
+        display: block;
+        width: .36em;
+        height: .36em;
+        min-width: 34px;
+        min-height: 34px;
+        transform: translateY(.035em) rotate(-5deg);
+        transform-origin: 50% 100%;
+    }
+
+    .desktop-brand-pumpkin-image-logo {
+        margin-left: -12px;
+    }
+
+    .desktop-brand-pumpkin-image-logo img {
+        width: clamp(34px, 3.2vw, 46px);
+        height: clamp(34px, 3.2vw, 46px);
+        min-width: 0;
+        min-height: 0;
+        transform: translateY(-.08rem) rotate(-5deg);
+    }
+}
