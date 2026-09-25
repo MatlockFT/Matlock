@@ -20,13 +20,12 @@
     { key: 'video', label: 'Video', detail: 'Upload a clip or insert a direct video URL', selector: '[data-tool="video"]', aliases: 'clip mp4 webm m4v media upload' },
     { key: 'youtube', label: 'YouTube', detail: 'Embed a YouTube video', selector: '[data-tool="youtube"]', aliases: 'yt youtube embed' },
     { key: 'tweet', label: 'Tweet / X', detail: 'Embed an X or Twitter post', selector: '[data-tool="x"]', aliases: 'x twitter post status embed' },
-    { key: 'table', label: 'Table', detail: 'Build a Markdown table', selector: '[data-tool="table"]', aliases: 'rows columns stats' },
-    { key: 'tale', label: 'Tale of Tape', detail: 'Insert the existing tale-of-the-tape block', selector: '[data-tool="tale"]', aliases: 'tale tape fighter' },
-    { key: 'pick', label: 'Pick', detail: 'Insert the existing fight-pick block', selector: '[data-tool="prediction"]', aliases: 'prediction fight' },
+    { key: 'stats', label: 'Stats', detail: 'Build the styled article stats card', selector: '[data-tool="stats"]', aliases: 'rows columns stats leaders' },
+    { key: 'tale', label: 'Tale of Tape', detail: 'Build the editable matchup visual', selector: '[data-tool="tale"]', aliases: 'tale tape fighter matchup' },
+    { key: 'pick', label: 'Pick', detail: 'Insert the styled Matlock pick card', selector: '[data-tool="prediction"]', aliases: 'prediction fight pick' },
     { key: 'html', label: 'HTML visual', detail: 'Insert or edit a self-contained visual', selector: '[data-tool="html"]', aliases: 'visual embed code' },
     { key: 'source', label: 'Source', detail: 'Insert a source or citation', selector: '[data-tool="citation"]', aliases: 'citation reference' },
-    { key: 'link', label: 'Link', detail: 'Insert a link', selector: '[data-tool="link"]', aliases: 'url' },
-    { key: 'template', label: 'Template', detail: 'Insert an article template', selector: '[data-tool="template"]', aliases: 'article structure' }
+    { key: 'link', label: 'Link', detail: 'Insert a link', selector: '[data-tool="link"]', aliases: 'url' }
   ];
 
   function dispatchBeforeInput(inputType = 'insertText') {
