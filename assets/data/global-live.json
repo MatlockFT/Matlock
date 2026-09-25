@@ -58,34 +58,6 @@
       "stale": false,
       "observed_at": "2026-09-25T22:10:56Z",
       "source_role": "broadcast_partner"
-    },
-    {
-      "event_id": "liga-monstro-combate:NSG3v4z5uqc",
-      "promotion_id": "liga-monstro-combate",
-      "promotion": "Liga Monstro Combate",
-      "short_name": "LMC",
-      "country": "Brazil",
-      "priority": 80,
-      "coverage_note": "Promotion channel + filtered RedeTV! broadcast partner; LMC 3 airs on RedeTV! YouTube",
-      "access_note": null,
-      "channel_url": "https://www.youtube.com/channel/UCeEf1KSLM06p5Wp5P_Y72Qw",
-      "channel_id": "UCeEf1KSLM06p5Wp5P_Y72Qw",
-      "channel_name": "Esportes RedeTV",
-      "video_id": "NSG3v4z5uqc",
-      "title": "🚨🥊 AO VIVO 🚨🥊  | LIGA MONSTRO COMBATE 3 na REDETV!",
-      "watch_url": "https://www.youtube.com/watch?v=NSG3v4z5uqc",
-      "status": "live",
-      "is_live": true,
-      "embeddable": true,
-      "scheduled_start_time": "2026-09-25T20:30:00Z",
-      "scheduled_end_time": null,
-      "actual_start_time": "2026-09-25T20:25:46Z",
-      "actual_end_time": null,
-      "concurrent_viewers": "323",
-      "api_verified": true,
-      "stale": false,
-      "observed_at": "2026-09-25T22:10:56Z",
-      "source_role": "broadcast_partner"
     }
   ],
   "upcoming": [
@@ -913,7 +885,7 @@
     }
   },
   "monitored_count": 40,
-  "live_count": 3,
+  "live_count": 2,
   "upcoming_count": 5,
   "youtube_api_configured": true,
   "api_verified_source_count": 40
