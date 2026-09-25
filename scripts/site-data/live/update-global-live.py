@@ -499,9 +499,6 @@ def classify_api_video(item):
     if broadcast_content == "live":
         return "live"
 
-    if actual_start:
-        return "live"
-
     if broadcast_content == "upcoming":
         return "upcoming"
 
