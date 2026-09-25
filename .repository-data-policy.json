@@ -450,6 +450,24 @@
       "publicContract": true
     },
     {
+      "id": "mma-videos-runtime-fallback",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/mma-videos.json"
+      ],
+      "lifecycle": "generated-public-runtime",
+      "owner": "news",
+      "producers": [
+        "scripts/news/build-youtube-feed.mjs"
+      ],
+      "consumers": [
+        "assets/broadcast-trial.js"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
+    },
+    {
       "id": "otd-primary-runtime",
       "storage": "public-runtime",
       "paths": [
