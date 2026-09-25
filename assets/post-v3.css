@@ -1117,10 +1117,15 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
   cursor:pointer;
   transition:border-color .15s ease,background-color .15s ease,color .15s ease;
 }
-.post-page-v3 .post-header-share span{
-  color:var(--v3-red);
-  font-size:.8rem;
-  line-height:1;
+.post-page-v3 .post-header-share-icon{
+  width:14px;
+  height:14px;
+  flex:0 0 14px;
+  fill:none;
+  stroke:var(--v3-red);
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
 }
 .post-page-v3 .post-header-share:hover,
 .post-page-v3 .post-header-share:focus-visible{
