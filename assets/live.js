@@ -28,6 +28,7 @@
   let replayStream = null;
   let replayRecorder = null;
   let replayChunks = [];
+  let replayHeaderBlob = null;
   let replayStartedAt = 0;
   let replayMimeType = "";
   let replayStopping = false;
@@ -70,9 +71,7 @@
     const types = [
       "video/webm;codecs=vp9,opus",
       "video/webm;codecs=vp8,opus",
-      "video/webm",
-      "video/mp4;codecs=avc1.42E01E,mp4a.40.2",
-      "video/mp4"
+      "video/webm"
     ];
 
     return types.find((type) => MediaRecorder.isTypeSupported?.(type)) || "";
@@ -99,6 +98,7 @@
     replayRecorder = null;
     replayStream = null;
     replayChunks = [];
+    replayHeaderBlob = null;
     replayStartedAt = 0;
     replayMimeType = "";
 
@@ -201,9 +201,14 @@
       await videoTrack.cropTo(cropTarget);
 
       replayMimeType = chooseReplayMimeType();
+      if (!replayMimeType || !replayMimeType.includes("webm")) {
+        throw new Error("A WebM MediaRecorder is required for the rolling buffer.");
+      }
+
       const recorderOptions = {
         videoBitsPerSecond: 5000000,
-        audioBitsPerSecond: 128000
+        audioBitsPerSecond: 128000,
+        videoKeyFrameIntervalDuration: 1000
       };
       if (replayMimeType) recorderOptions.mimeType = replayMimeType;
 
@@ -211,11 +216,13 @@
       replayStream = stream;
       replayRecorder = recorder;
       replayChunks = [];
+      replayHeaderBlob = null;
       replayStartedAt = performance.now();
 
       recorder.addEventListener("dataavailable", (event) => {
         if (!event.data || event.data.size <= 0) return;
         const now = performance.now();
+        if (!replayHeaderBlob) replayHeaderBlob = event.data;
         replayChunks.push({ blob: event.data, endedAt: now });
         pruneReplayChunks(now);
         updateReplayReadyState();
@@ -287,6 +294,155 @@
       }
     });
 
+  const WEBM_CLUSTER_ID = [0x1f, 0x43, 0xb6, 0x75];
+
+  const findBytePattern = (bytes, pattern, from = 0) => {
+    outer:
+    for (let index = Math.max(0, from); index <= bytes.length - pattern.length; index += 1) {
+      for (let offset = 0; offset < pattern.length; offset += 1) {
+        if (bytes[index + offset] !== pattern[offset]) continue outer;
+      }
+      return index;
+    }
+    return -1;
+  };
+
+  const readEbmlVint = (bytes, offset) => {
+    if (offset >= bytes.length) return null;
+
+    const first = bytes[offset];
+    let mask = 0x80;
+    let length = 1;
+
+    while (length <= 8 && !(first & mask)) {
+      mask >>= 1;
+      length += 1;
+    }
+
+    if (length > 8 || offset + length > bytes.length) return null;
+
+    let value = first & (mask - 1);
+    for (let index = 1; index < length; index += 1) {
+      value = (value * 256) + bytes[offset + index];
+    }
+
+    return { length, value };
+  };
+
+  const readUnsignedBigEndian = (bytes, offset, length) => {
+    let value = 0;
+    for (let index = 0; index < length; index += 1) {
+      value = (value * 256) + bytes[offset + index];
+    }
+    return value;
+  };
+
+  const writeUnsignedBigEndian = (bytes, offset, length, value) => {
+    let remaining = Math.max(0, Math.floor(value));
+    for (let index = length - 1; index >= 0; index -= 1) {
+      bytes[offset + index] = remaining % 256;
+      remaining = Math.floor(remaining / 256);
+    }
+  };
+
+  const concatUint8Arrays = (arrays) => {
+    const total = arrays.reduce((sum, array) => sum + array.byteLength, 0);
+    const merged = new Uint8Array(total);
+    let offset = 0;
+
+    for (const array of arrays) {
+      merged.set(array, offset);
+      offset += array.byteLength;
+    }
+
+    return merged;
+  };
+
+  const findClusterTimecode = (bytes, clusterOffset, nextClusterOffset) => {
+    const sizeInfo = readEbmlVint(bytes, clusterOffset + WEBM_CLUSTER_ID.length);
+    if (!sizeInfo) return null;
+
+    const contentStart =
+      clusterOffset +
+      WEBM_CLUSTER_ID.length +
+      sizeInfo.length;
+    const scanEnd = Math.min(
+      nextClusterOffset > clusterOffset ? nextClusterOffset : bytes.length,
+      contentStart + 96
+    );
+
+    for (let offset = contentStart; offset < scanEnd - 2; offset += 1) {
+      if (bytes[offset] !== 0xe7) continue;
+
+      const valueSize = readEbmlVint(bytes, offset + 1);
+      if (!valueSize || valueSize.value < 1 || valueSize.value > 8) continue;
+
+      const valueOffset = offset + 1 + valueSize.length;
+      if (valueOffset + valueSize.value > bytes.length) continue;
+
+      return {
+        valueOffset,
+        valueLength: valueSize.value,
+        value: readUnsignedBigEndian(bytes, valueOffset, valueSize.value)
+      };
+    }
+
+    return null;
+  };
+
+  const buildRollingWebm = async (chunks) => {
+    if (!replayHeaderBlob) {
+      throw new Error("Replay WebM header is not available yet.");
+    }
+
+    const headerSource = new Uint8Array(await replayHeaderBlob.arrayBuffer());
+    const firstHeaderCluster = findBytePattern(headerSource, WEBM_CLUSTER_ID);
+    if (firstHeaderCluster <= 0) {
+      throw new Error("Replay WebM header could not be parsed.");
+    }
+
+    const header = headerSource.slice(0, firstHeaderCluster);
+    const chunkArrays = await Promise.all(
+      chunks.map(async (chunk) => new Uint8Array(await chunk.blob.arrayBuffer()))
+    );
+    const combined = concatUint8Arrays(chunkArrays);
+    const firstCluster = findBytePattern(combined, WEBM_CLUSTER_ID);
+
+    if (firstCluster < 0) {
+      throw new Error("No complete WebM cluster exists in the replay window.");
+    }
+
+    const payload = combined.slice(firstCluster);
+    const clusters = [];
+    let searchFrom = 0;
+
+    while (searchFrom < payload.length) {
+      const offset = findBytePattern(payload, WEBM_CLUSTER_ID, searchFrom);
+      if (offset < 0) break;
+      clusters.push(offset);
+      searchFrom = offset + WEBM_CLUSTER_ID.length;
+    }
+
+    let baseTimecode = null;
+
+    for (let index = 0; index < clusters.length; index += 1) {
+      const clusterOffset = clusters[index];
+      const nextClusterOffset = clusters[index + 1] ?? payload.length;
+      const timecode = findClusterTimecode(payload, clusterOffset, nextClusterOffset);
+      if (!timecode) continue;
+
+      if (baseTimecode === null) baseTimecode = timecode.value;
+      writeUnsignedBigEndian(
+        payload,
+        timecode.valueOffset,
+        timecode.valueLength,
+        timecode.value - baseTimecode
+      );
+    }
+
+    return new Blob([header, payload], { type: "video/webm" });
+  };
+
   const saveReplayBuffer = async () => {
     revealUi();
 
@@ -315,12 +471,17 @@
       return;
     }
 
-    const type =
-      replayMimeType ||
-      selected.find((chunk) => chunk.blob.type)?.blob.type ||
-      "video/webm";
-    const blob = new Blob(selected.map((chunk) => chunk.blob), { type });
-    const extension = type.includes("mp4") ? "mp4" : "webm";
+    let blob;
+    try {
+      blob = await buildRollingWebm(selected);
+    } catch (error) {
+      console.warn("Replay assembly failed", error);
+      updateReplayReadyState();
+      setReplayStatus("Replay assembly failed");
+      return;
+    }
+
+    const extension = "webm";
     const stamp = new Date()
       .toISOString()
       .replace(/[:.]/g, "-")
