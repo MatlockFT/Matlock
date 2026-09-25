@@ -294,9 +294,12 @@ test.describe('Article native sharing on mobile', () => {
         timeout: 30000
       });
       expect([200, 206]).toContain(mediaResponse.status());
-      expect(mediaResponse.headers()['content-type'] || '').toMatch(/^video\/mp4(?:;|$)/i);
+      expect(['video/mp4', 'application/octet-stream']).toContain(
+        (mediaResponse.headers()['content-type'] || '').split(';')[0].trim().toLowerCase()
+      );
       const mediaBytes = await mediaResponse.body();
-      expect(mediaBytes.length).toBeGreaterThan(0);
+      expect(mediaBytes.length).toBeGreaterThanOrEqual(12);
+      expect(mediaBytes.toString('ascii', 4, 8)).toBe('ftyp');
 
       await expect.poll(async () => video.evaluate(node => (
         node.readyState >= 1 || Boolean(node.error)
