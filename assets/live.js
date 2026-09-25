@@ -53,6 +53,7 @@
   let liveVerificationTimer = 0;
   let liveVerificationMisses = 0;
   let verifiedLiveVideoId = "";
+  let liveDurationSample = null;
   const endedVideoSuppressions = new Map();
   let lastNonZeroVolume = 100;
 
@@ -157,6 +158,7 @@
     window.clearInterval(liveVerificationTimer);
     liveVerificationTimer = 0;
     liveVerificationMisses = 0;
+    liveDurationSample = null;
   };
 
   const verifyEmbeddedLiveState = () => {
@@ -164,26 +166,44 @@
 
     try {
       const state = ytPlayer.getPlayerState?.();
-      const videoData = ytPlayer.getVideoData?.();
-      const hasLiveFlag =
-        videoData &&
-        Object.prototype.hasOwnProperty.call(videoData, "isLive");
 
-      // ENDED is authoritative. The isLive field is exposed by YouTube's
-      // player data even though it is not part of the documented IFrame API;
-      // require two consecutive explicit false readings to avoid transient
-      // player initialization states.
+      // YouTube's IFrame API does not document getVideoData().isLive and it
+      // can report false for a real live stream. ENDED, however, is an
+      // authoritative player state.
       if (state === 0) {
         liveVerificationMisses = 2;
-      } else if (hasLiveFlag && videoData.isLive === false) {
-        liveVerificationMisses += 1;
-      } else if (hasLiveFlag && videoData.isLive === true) {
-        liveVerificationMisses = 0;
-        if (verifiedLiveVideoId !== currentVideoId) {
-          verifiedLiveVideoId = currentVideoId;
-          ytPlayer.playVideo?.();
-        }
       } else {
+        liveVerificationMisses = 0;
+
+        // For a live broadcast getDuration() represents elapsed broadcast
+        // time, so it continues to grow. A VOD/replay has a fixed duration.
+        // Use that documented behavior to auto-start only a stream that has
+        // demonstrated live progression.
+        const duration = Number(ytPlayer.getDuration?.() ?? 0);
+        const now = Date.now();
+
+        if (
+          liveDurationSample &&
+          liveDurationSample.videoId === currentVideoId &&
+          duration > 0 &&
+          duration > liveDurationSample.duration + 0.25 &&
+          now - liveDurationSample.at >= 750
+        ) {
+          if (verifiedLiveVideoId !== currentVideoId) {
+            verifiedLiveVideoId = currentVideoId;
+            ytPlayer.mute?.();
+            ytPlayer.playVideo?.();
+          }
+        }
+
+        if (duration > 0) {
+          liveDurationSample = {
+            videoId: currentVideoId,
+            duration,
+            at: now
+          };
+        }
+
         return;
       }
 
@@ -228,9 +248,9 @@
     stopLiveVerification();
     liveVerificationTimer = window.setInterval(
       verifyEmbeddedLiveState,
-      5000
+      1500
     );
-    window.setTimeout(verifyEmbeddedLiveState, 2500);
+    window.setTimeout(verifyEmbeddedLiveState, 750);
   };
 
   const updateMediaControls = () => {
