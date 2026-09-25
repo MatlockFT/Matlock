@@ -348,7 +348,13 @@ Object.values(fields).forEach(el => {
     const path = dialog.querySelector('[data-tale-image-path="' + side + '"]');
     const image = dialog.querySelector('[data-tale-image-preview="' + side + '"]');
 
-    drop.addEventListener('click', () => file.click());
+    drop.addEventListener('click', event => {
+      if (!image.hidden && event.target === image) return;
+      file.click();
+    });
+    drop.addEventListener('dblclick', event => {
+      if (!image.hidden && event.target === image) file.click();
+    });
     drop.addEventListener('keydown', event => {
       if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); file.click(); }
     });
