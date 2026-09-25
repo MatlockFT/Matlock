@@ -1553,7 +1553,7 @@ html[data-theme="light"] .live-page {
   justify-items: center;
   gap: .55rem;
   padding: clamp(1.25rem, 4vw, 3rem);
-  background: rgba(5,5,5,.92);
+  background: #050505;
   color: #fff;
   text-align: center;
   pointer-events: auto;
@@ -1596,6 +1596,10 @@ html[data-theme="light"] .live-page {
 .live-page__embed-fallback a:hover,
 .live-page__embed-fallback a:focus-visible {
   border-color: #fff;
+}
+
+.live-page.has-embed-fallback .live-page__player {
+  visibility: hidden;
 }
 
 .live-page.has-embed-fallback .live-page__control-dock {
