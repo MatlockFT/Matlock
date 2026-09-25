@@ -1889,7 +1889,14 @@ There are few things to like about Demopoulos in this position such as her age, 
 
 On the flip side, older fighters are not doing bad these days, Jauregui hasn't fought since 2024, and Demopoulos has to feel like she is in a must-win position. I wouldn't be surprised if we see some very tough veteran grit and going all in on this fight. Nonetheless, I still favor Jauregui.
 
-**Pick: Yazmin Jauregui by Decision**
+
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Yazmin%20Jauregui%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%7D">
+<aside class="article-pick-card">
+  <span class="article-pick-card__label">MATLOCK PICK</span>
+  <div class="article-pick-card__main"><strong>Yazmin Jauregui</strong><span>Decision</span></div>
+</aside>
+</section>
+
 
 ---
 
@@ -3654,7 +3661,14 @@ I had the privilege of being live at a lot of John Castaneda’s fights when he 
 
 However, I’m biased, but I also believe Castaneda is just the better fighter here. I think his wrestling is good enough to keep Alatengheili off of him, and I think his counterstriking is good enough to hurt Alatengheili. The smart play is probably Castaneda by decision, but since I’m cheering him on, I think Castaneda finds a head kick from southpaw and puts Alatengheili’s lights out to finally get that highlight reel finish he's been searching for in the UFC.
 
-**Pick: John Castaneda via Round 2 KO/TKO**
+
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22John%20Castaneda%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%202%22%2C%22note%22%3A%22%22%7D">
+<aside class="article-pick-card">
+  <span class="article-pick-card__label">MATLOCK PICK</span>
+  <div class="article-pick-card__main"><strong>John Castaneda</strong><span>KO/TKO · Round 2</span></div>
+</aside>
+</section>
+
 
 ---
 
@@ -3752,7 +3766,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
     </div>
 
 
-
     <!-- =====================================================
          TALE OF THE TAPE
          ===================================================== -->
@@ -3843,7 +3856,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
     </div>
 
 
-
     <!-- =====================================================
          RECENT FORM
          ===================================================== -->
@@ -3923,7 +3935,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
         </div>
 
 
-
         <!-- RICKY SIMON -->
 
         <div class="fc-column">
@@ -3994,7 +4005,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
     </div>
 
 
-
     <!-- =====================================================
          OPPONENT STRENGTH
          ===================================================== -->
@@ -4019,7 +4029,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
 
   </div>
 </div>
-
 
 
 <style>
@@ -4061,7 +4070,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
 .fight-compare-sleek *::after {
   box-sizing: border-box;
 }
-
 
 
 .fight-compare-sleek .fc-shell {
@@ -4117,7 +4125,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
 }
 
 
-
 /* =========================================================
    FIGHTER HEADER
    ========================================================= */
@@ -4166,7 +4173,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
   border-left:
     1px solid var(--line);
 }
-
 
 
 /* =========================================================
@@ -4227,7 +4233,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
       var(--blue)
     );
 }
-
 
 
 /* =========================================================
@@ -4369,7 +4374,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
 }
 
 
-
 /* =========================================================
    FIGHTER INFO
    ========================================================= */
@@ -4419,7 +4423,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
 
   letter-spacing: .015em;
 }
-
 
 
 /* =========================================================
@@ -4560,7 +4563,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
 }
 
 
-
 /* =========================================================
    SECTION HEADERS
    ========================================================= */
@@ -4621,7 +4623,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
 .fight-compare-sleek .fc-section-title span::after {
   left: 100%;
 }
-
 
 
 /* =========================================================
@@ -4716,7 +4717,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
 .fight-compare-sleek .fc-tale-row.featured strong {
   font-size: 1.06rem;
 }
-
 
 
 /* =========================================================
@@ -4871,7 +4871,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
 }
 
 
-
 /* =========================================================
    OPPONENT COMBINED RECORD
    ========================================================= */
@@ -4952,7 +4951,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
 
   letter-spacing: .13em;
 }
-
 
 
 /* =========================================================
@@ -5819,7 +5817,14 @@ At range, I don’t see Ricky having a lot of success against Montel Jackson. I 
 
 The tough part is deciding whether Jackson gets it done inside the distance or if this goes to a decision. I really want to give Ricky that respect, but Jackson has the potential to show out here. I'll lean into a stoppage as Ricky tries to close the distance.
 
-**Pick: Montel Jackson via KO/TKO in round 3**
+
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Montel%20Jackson%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%203%22%2C%22note%22%3A%22%22%7D">
+<aside class="article-pick-card">
+  <span class="article-pick-card__label">MATLOCK PICK</span>
+  <div class="article-pick-card__main"><strong>Montel Jackson</strong><span>KO/TKO · Round 3</span></div>
+</aside>
+</section>
+
 
 ---
 
@@ -5917,7 +5922,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
     </div>
 
 
-
     <!-- =====================================================
          TALE OF THE TAPE
          ===================================================== -->
@@ -6008,7 +6012,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
     </div>
 
 
-
     <!-- =====================================================
          RECENT FORM
          ===================================================== -->
@@ -6088,7 +6091,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
         </div>
 
 
-
         <!-- JOSIAH HARRELL -->
 
         <div class="fc-column">
@@ -6159,7 +6161,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
     </div>
 
 
-
     <!-- =====================================================
          OPPONENT STRENGTH
          ===================================================== -->
@@ -6184,7 +6185,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
 
   </div>
 </div>
-
 
 
 <style>
@@ -6278,7 +6278,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
 }
 
 
-
 /* =========================================================
    FIGHTER HEADER
    ========================================================= */
@@ -6327,7 +6326,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
   border-left:
     1px solid var(--line);
 }
-
 
 
 /* =========================================================
@@ -6388,7 +6386,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
       var(--blue)
     );
 }
-
 
 
 /* =========================================================
@@ -6530,7 +6527,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
 }
 
 
-
 /* =========================================================
    FIGHTER INFO
    ========================================================= */
@@ -6580,7 +6576,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
 
   letter-spacing: .015em;
 }
-
 
 
 /* =========================================================
@@ -6721,7 +6716,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
 }
 
 
-
 /* =========================================================
    SECTION HEADERS
    ========================================================= */
@@ -6782,7 +6776,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
 .fight-compare-sleek .fc-section-title span::after {
   left: 100%;
 }
-
 
 
 /* =========================================================
@@ -6877,7 +6870,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
 .fight-compare-sleek .fc-tale-row.featured strong {
   font-size: 1.06rem;
 }
-
 
 
 /* =========================================================
@@ -7018,7 +7010,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
 }
 
 
-
 /* =========================================================
    OPPONENT COMBINED RECORD
    ========================================================= */
@@ -7099,7 +7090,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
 
   letter-spacing: .13em;
 }
-
 
 
 /* =========================================================
@@ -7972,7 +7962,14 @@ I sorta kinda agree with Harrell being the slight favorite because of his sheer 
 
 It’s an interesting fight for a card of this caliber, but I’ll give a slight nod to the underdog to be crafty enough to find a victory. Honestly, it could be a KO, but with how easily Jacobe Smith was able to move around on top, Brener may just find a submission. I’ll pick the club-and-sub for Brener to make it 12 submission victories on his record.
 
-**Pick: Elves Brener via submission in round 1**
+
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Elves%20Brener%22%2C%22method%22%3A%22Submission%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%7D">
+<aside class="article-pick-card">
+  <span class="article-pick-card__label">MATLOCK PICK</span>
+  <div class="article-pick-card__main"><strong>Elves Brener</strong><span>Submission · Round 1</span></div>
+</aside>
+</section>
+
 
 ---
 
@@ -8070,7 +8067,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
     </div>
 
 
-
     <!-- =====================================================
          TALE OF THE TAPE
          ===================================================== -->
@@ -8161,7 +8157,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
     </div>
 
 
-
     <!-- =====================================================
          RECENT FORM
          ===================================================== -->
@@ -8241,7 +8236,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
         </div>
 
 
-
         <!-- CHRISTIAN EDWARDS -->
 
         <div class="fc-column">
@@ -8312,7 +8306,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
     </div>
 
 
-
     <!-- =====================================================
          OPPONENT STRENGTH
          ===================================================== -->
@@ -8337,7 +8330,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
 
   </div>
 </div>
-
 
 
 <style>
@@ -8432,7 +8424,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
 }
 
 
-
 /* =========================================================
    FIGHTER HEADER
    ========================================================= */
@@ -8475,7 +8466,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
 .fight-compare-sleek .fc-right {
   border-left: 1px solid var(--line);
 }
-
 
 
 /* =========================================================
@@ -8526,7 +8516,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
       var(--blue)
     );
 }
-
 
 
 /* =========================================================
@@ -8662,7 +8651,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
 }
 
 
-
 /* =========================================================
    FIGHTER INFO
    ========================================================= */
@@ -8709,7 +8697,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
 
   letter-spacing: .015em;
 }
-
 
 
 /* =========================================================
@@ -8845,7 +8832,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
 }
 
 
-
 /* =========================================================
    SECTION HEADERS
    ========================================================= */
@@ -8903,7 +8889,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
 .fight-compare-sleek .fc-section-title span::after {
   left: 100%;
 }
-
 
 
 /* =========================================================
@@ -8996,7 +8981,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
 .fight-compare-sleek .fc-tale-row.featured strong {
   font-size: 1.06rem;
 }
-
 
 
 /* =========================================================
@@ -9163,7 +9147,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
 }
 
 
-
 /* =========================================================
    OPPONENT COMBINED RECORD
    ========================================================= */
@@ -9241,7 +9224,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
 
   letter-spacing: .13em;
 }
-
 
 
 /* =========================================================
@@ -10106,7 +10088,14 @@ Personally, it’s not a fight I’m all that interested in, but my fingers are 
 
 If it does come down to a decision, I think Rodolfo’s volume, power, and full camp at American Top Team will be enough for him to take it.
 
-**Pick: Rodolfo Bellato via Decision**
+
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Rodolfo%20Bellato%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%7D">
+<aside class="article-pick-card">
+  <span class="article-pick-card__label">MATLOCK PICK</span>
+  <div class="article-pick-card__main"><strong>Rodolfo Bellato</strong><span>Decision</span></div>
+</aside>
+</section>
+
 
 ---
 
@@ -12189,7 +12178,14 @@ We go from one Rodolfo to another, and from light heavyweight to middleweight...
 
 I have no real interest in this fight and don’t have a strong lean either way. I do feel like Vieira is a better grappler than Bryczek is a striker, though. This one smells like a decision stinker. I think Vieira will win by dictating where the fight takes place and controlling enough of the grappling exchanges to edge it out.
 
-**Pick: Rodolfo Vieira via Split Decision**
+
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Rodolfo%20Vieira%22%2C%22method%22%3A%22Split%20Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%7D">
+<aside class="article-pick-card">
+  <span class="article-pick-card__label">MATLOCK PICK</span>
+  <div class="article-pick-card__main"><strong>Rodolfo Vieira</strong><span>Split Decision</span></div>
+</aside>
+</section>
+
 
 ---
 
@@ -14272,13 +14268,36 @@ I think Nakamura is the better fighter, but they do have similar strengths. Hies
 
 This could potentially be Fight of the Night in my eyes. A lot of it really depends on how Hiestand looks in his return.
 
-**Pick: Nakamura via KO/TKO in Round 2**
+
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Nakamura%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%202%22%2C%22note%22%3A%22%22%7D">
+<aside class="article-pick-card">
+  <span class="article-pick-card__label">MATLOCK PICK</span>
+  <div class="article-pick-card__main"><strong>Nakamura</strong><span>KO/TKO · Round 2</span></div>
+</aside>
+</section>
+
 
 ---
 
-For the two TUF Finale fights, I have very little info. Tina Black looks to be the better, more technical fighter so I'd imagine her opponent is gonna have to make the fight ugly. **Pick: Tina Black via Decision**
+For the two TUF Finale fights, I have very little info. Tina Black looks to be the better, more technical fighter so I'd imagine her opponent is gonna have to make the fight ugly. 
 
-I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence for me to pick him. **Pick: Mehemmedeli Osmanli**
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Tina%20Black%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%7D">
+<aside class="article-pick-card">
+  <span class="article-pick-card__label">MATLOCK PICK</span>
+  <div class="article-pick-card__main"><strong>Tina Black</strong><span>Decision</span></div>
+</aside>
+</section>
+
+
+I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence for me to pick him. 
+
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Mehemmedeli%20Osmanli%22%2C%22method%22%3A%22%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%7D">
+<aside class="article-pick-card">
+  <span class="article-pick-card__label">MATLOCK PICK</span>
+  <div class="article-pick-card__main"><strong>Mehemmedeli Osmanli</strong></div>
+</aside>
+</section>
+
 
 <figure class="article-inline-video article-inline-video--break article-inline-video--center" data-writer-media-id="media-17cc0f7f" data-media-flow="break" data-media-align="center" data-media-width="100" style="--media-width:100%;">
   <div class="article-inline-video-stage">
@@ -14377,7 +14396,6 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
     </div>
 
 
-
     <!-- =====================================================
          TALE OF THE TAPE
          ===================================================== -->
@@ -14468,7 +14486,6 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
     </div>
 
 
-
     <!-- =====================================================
          RECENT FORM
          ===================================================== -->
@@ -14538,7 +14555,6 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
         </div>
 
 
-
         <!-- SEDRIQUES DUMAS -->
 
         <div class="fc-column">
@@ -14599,7 +14615,6 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
     </div>
 
 
-
     <!-- =====================================================
          OPPONENT STRENGTH
          ===================================================== -->
@@ -14624,7 +14639,6 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
 
   </div>
 </div>
-
 
 
 <style>
@@ -16242,7 +16256,14 @@ Hernandez will likely try to get this fight down to the mat and look for a submi
 
 That being said, the dude lost to Jackson McVey. The height and reach advantage may be significant, but that only really matters if the takedown defense is there. At 33%, I don’t think it’s going to be enough to keep Luis from plowing through, closing the distance, and getting Dumas to the mat.
 
-**Pick: Luis Hernandez via submission in Round 1**
+
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Luis%20Hernandez%22%2C%22method%22%3A%22Submission%22%2C%22round%22%3A%22Round%201%22%2C%22note%22%3A%22%22%7D">
+<aside class="article-pick-card">
+  <span class="article-pick-card__label">MATLOCK PICK</span>
+  <div class="article-pick-card__main"><strong>Luis Hernandez</strong><span>Submission · Round 1</span></div>
+</aside>
+</section>
+
 
 ---
 
@@ -16340,7 +16361,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
     </div>
 
 
-
     <!-- =====================================================
          TALE OF THE TAPE
          ===================================================== -->
@@ -16431,7 +16451,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
     </div>
 
 
-
     <!-- =====================================================
          RECENT FORM
          ===================================================== -->
@@ -16511,7 +16530,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
         </div>
 
 
-
         <!-- AILIN PEREZ -->
 
         <div class="fc-column">
@@ -16582,7 +16600,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
     </div>
 
 
-
     <!-- =====================================================
          OPPONENT STRENGTH
          ===================================================== -->
@@ -16607,7 +16624,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 
   </div>
 </div>
-
 
 
 <style>
@@ -16646,7 +16662,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 .fight-compare-sleek *::after {
   box-sizing: border-box;
 }
-
 
 
 .fight-compare-sleek .fc-shell {
@@ -16702,7 +16717,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 }
 
 
-
 /* =========================================================
    FIGHTER HEADER
    ========================================================= */
@@ -16751,7 +16765,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
   border-left:
     1px solid var(--line);
 }
-
 
 
 /* =========================================================
@@ -16812,7 +16825,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
       var(--blue)
     );
 }
-
 
 
 /* =========================================================
@@ -16954,7 +16966,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 }
 
 
-
 /* =========================================================
    FIGHTER INFO
    ========================================================= */
@@ -17004,7 +17015,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 
   letter-spacing: .015em;
 }
-
 
 
 /* =========================================================
@@ -17145,7 +17155,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 }
 
 
-
 /* =========================================================
    SECTION HEADERS
    ========================================================= */
@@ -17206,7 +17215,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 .fight-compare-sleek .fc-section-title span::after {
   left: 100%;
 }
-
 
 
 /* =========================================================
@@ -17301,7 +17309,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 .fight-compare-sleek .fc-tale-row.featured strong {
   font-size: 1.06rem;
 }
-
 
 
 /* =========================================================
@@ -17442,7 +17449,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 }
 
 
-
 /* =========================================================
    OPPONENT COMBINED RECORD
    ========================================================= */
@@ -17523,7 +17529,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 
   letter-spacing: .13em;
 }
-
 
 
 /* =========================================================
@@ -18388,7 +18393,14 @@ Yes, I’m picking Ailin Perez. It’s a tale as old as time: pick against a fig
 
 I think the control time will be significantly in Perez’s favor, if she doesn’t find a submission first. We shall see.
 
-**Pick: Ailin Perez via Decision**
+
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Ailin%20Perez%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%7D">
+<aside class="article-pick-card">
+  <span class="article-pick-card__label">MATLOCK PICK</span>
+  <div class="article-pick-card__main"><strong>Ailin Perez</strong><span>Decision</span></div>
+</aside>
+</section>
+
 
 ---
 
@@ -20475,6 +20487,13 @@ That’s what makes this an intriguing matchup and a tough one to call. Despite 
 
 Part of me is absolutely cheering for Barcelos to pull it off, but he can’t just keep turning back the clock and eating the young. We have standards and practices!
 
-**Pick: Raul Rosas Jr. via Round 3 KO/TKO**
+
+<section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Raul%20Rosas%20Jr.%22%2C%22method%22%3A%22KO%2FTKO%22%2C%22round%22%3A%22Round%203%22%2C%22note%22%3A%22%22%7D">
+<aside class="article-pick-card">
+  <span class="article-pick-card__label">MATLOCK PICK</span>
+  <div class="article-pick-card__main"><strong>Raul Rosas Jr.</strong><span>KO/TKO · Round 3</span></div>
+</aside>
+</section>
+
 
 That does it for my breakdown and picks. If I change my mind I'll say it on [X](https://x.com/MMAMATLOCK) and change it on [Verdict](https://verdictmma.com/profile/MMAMatlock)! Thanks for the follow!
