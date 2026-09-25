@@ -22,7 +22,6 @@
   const replayStatus = root.querySelector("[data-replay-status]");
   const replayControls = root.querySelector("[data-replay-controls]");
   const replayWindow = root.querySelector("[data-replay-window]");
-  const replayFill = root.querySelector("[data-replay-fill]");
   const replayStartLabel = root.querySelector("[data-replay-start]");
   const replayEndLabel = root.querySelector("[data-replay-end]");
   const mediaPlay = root.querySelector("[data-media-play]");
@@ -364,9 +363,12 @@
     const progress = Math.max(0, Math.min(1, bufferedMs / REPLAY_BUFFER_MS));
     const ready = bufferedMs >= REPLAY_BUFFER_MS;
 
-    if (replayFill) replayFill.style.width = `${(progress * 100).toFixed(1)}%`;
-    replayWindow?.classList.toggle("is-ready", ready);
     replayControls?.classList.toggle("is-buffering", recording);
+    replayControls?.classList.toggle("is-ready", ready);
+
+    if (replayArm) {
+      replayArm.style.setProperty("--buffer-progress", `${(progress * 360).toFixed(1)}deg`);
+    }
 
     if (replayStartLabel) {
       replayStartLabel.textContent = ready
@@ -387,9 +389,8 @@
   const stopReplayUiTimer = () => {
     window.clearInterval(replayUiTimer);
     replayUiTimer = 0;
-    replayControls?.classList.remove("is-buffering");
-    replayWindow?.classList.remove("is-ready");
-    if (replayFill) replayFill.style.width = "0%";
+    replayControls?.classList.remove("is-buffering", "is-ready");
+    if (replayArm) replayArm.style.setProperty("--buffer-progress", "0deg");
     if (replayStartLabel) replayStartLabel.textContent = "0s";
     if (replayEndLabel) replayEndLabel.textContent = "NOW";
   };
