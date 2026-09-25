@@ -232,6 +232,14 @@ test.describe('Article native sharing on mobile', () => {
 
     await page.goto(targetUrl(articlePath), { waitUntil: 'domcontentloaded', timeout: 45000 });
     await expect(page.locator('[data-native-share-top]')).toBeVisible();
+
+    const backToTop = page.locator('[data-article-back-to-top]');
+    await expect(backToTop).toBeHidden();
+    await page.evaluate(() => window.scrollTo(0, Math.max(document.body.scrollHeight * .45, 1200)));
+    await expect(backToTop).toBeVisible();
+    await backToTop.click();
+    await expect.poll(async () => page.evaluate(() => Math.round(window.scrollY)), { timeout: 3000 }).toBeLessThan(8);
+
     const order = await page.evaluate(() => {
       const body = document.querySelector('.post-body')?.getBoundingClientRect();
       const topics = document.querySelector('.post-topics')?.getBoundingClientRect();
@@ -265,6 +273,19 @@ test.describe('Article native sharing on mobile', () => {
       '[data-share-reddit]'
     ]) {
       await expect(page.locator(selector)).not.toHaveAttribute('target', '_blank');
+    }
+
+    const videos = page.locator('.post-body figure.article-inline-video video');
+    await expect(videos).toHaveCount(2);
+
+    for (let index = 0; index < 2; index += 1) {
+      const video = videos.nth(index);
+      await video.scrollIntoViewIfNeeded();
+      await expect.poll(async () => video.evaluate(node => ({
+        readyState: node.readyState,
+        error: node.error ? node.error.code : 0
+      })), { timeout: 30000 }).toEqual(expect.objectContaining({ error: 0 }));
+      await expect.poll(async () => video.evaluate(node => node.readyState), { timeout: 30000 }).toBeGreaterThanOrEqual(1);
     }
 
     expect(pageErrors).toEqual([]);
