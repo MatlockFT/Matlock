@@ -318,7 +318,8 @@
             startLiveVerification();
 
             const activeEvent = findEventByVideo(lastData?.events || [], currentVideoId);
-            if (shouldAutoplayEvent(activeEvent)) {
+            const readyState = ytPlayer.getPlayerState?.();
+            if (readyState !== 0 && shouldAutoplayEvent(activeEvent)) {
               try {
                 ytPlayer.mute?.();
                 ytPlayer.playVideo?.();
