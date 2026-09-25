@@ -11,13 +11,20 @@
 
     const mode = navigation.dataset.tocMode || 'sections';
     const allHeadings = Array.from(article.querySelectorAll('h2, h3'));
+    const explicitFightHeadings = Array.from(
+        article.querySelectorAll('h2.article-fight-heading')
+    );
     const matchupPattern = /\b(?:vs\.?|versus)\b/i;
 
-    const headings = mode === 'fights'
-        ? allHeadings.filter((heading) => (
+    const fightHeadings = explicitFightHeadings.length
+        ? explicitFightHeadings
+        : allHeadings.filter((heading) => (
             heading.tagName === 'H2' &&
             matchupPattern.test(heading.textContent || '')
-        ))
+        ));
+
+    const headings = explicitFightHeadings.length || mode === 'fights'
+        ? fightHeadings
         : allHeadings;
 
     if (!headings.length) {
