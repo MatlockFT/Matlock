@@ -396,21 +396,35 @@ html[data-theme="light"] .live-page__player-stage::before {
   position: relative;
   display: inline-flex;
   align-items: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  overflow: visible;
+  transition: width .2s ease;
+}
+
+.live-page__volume-control:hover,
+.live-page__volume-control:focus-within {
+  width: 146px;
+}
+
+.live-page__volume-control .live-page__media-mute {
+  position: relative;
+  z-index: 2;
 }
 
 .live-page__volume-popout {
   position: absolute;
-  z-index: 8;
-  left: calc(100% + .35rem);
-  top: 50%;
+  z-index: 1;
+  left: 42px;
+  top: 0;
   display: flex;
   align-items: center;
   width: 0;
-  height: 38px;
+  height: 42px;
   padding: 0;
   overflow: hidden;
   opacity: 0;
-  transform: translateY(-50%);
   pointer-events: none;
   transition:
     width .2s ease,
@@ -420,15 +434,15 @@ html[data-theme="light"] .live-page__player-stage::before {
 
 .live-page__volume-control:hover .live-page__volume-popout,
 .live-page__volume-control:focus-within .live-page__volume-popout {
-  width: 112px;
-  padding: 0 .55rem 0 .2rem;
+  width: 104px;
+  padding: 0 .5rem 0 .45rem;
   opacity: 1;
   pointer-events: auto;
 }
 
 .live-page__volume {
-  width: 92px;
-  min-width: 92px;
+  width: 84px;
+  min-width: 84px;
   accent-color: #fff;
   cursor: pointer;
 }
@@ -443,7 +457,7 @@ html[data-theme="light"] .live-page__player-stage::before {
   color: rgba(255,255,255,.62);
   font: 900 .52rem/1 var(--v3-sans);
   letter-spacing: .045em;
-  cursor: default;
+  cursor: help;
 }
 
 .live-page__jump-live {
@@ -877,27 +891,27 @@ html[data-theme="light"] .live-page__player-stage::before {
     flex-basis: 38px;
   }
 
-  .live-page__volume-popout {
-    left: 50%;
-    top: auto;
-    bottom: calc(100% + .35rem);
-    width: 106px;
-    height: 34px;
-    padding: 0 .45rem;
-    border-radius: 999px;
-    background: rgba(8,8,8,.78);
-    opacity: 0;
-    transform: translateX(-50%);
+  .live-page__volume-control:hover,
+  .live-page__volume-control:focus-within {
+    width: 128px;
   }
 
+  .live-page__volume-popout {
+    left: 38px;
+    top: 0;
+    height: 38px;
+    transform: none;
+  }
+
+  .live-page__volume-control:hover .live-page__volume-popout,
   .live-page__volume-control:focus-within .live-page__volume-popout {
-    width: 106px;
-    opacity: 1;
+    width: 90px;
+    padding: 0 .42rem;
   }
 
   .live-page__volume {
-    width: 84px;
-    min-width: 84px;
+    width: 72px;
+    min-width: 72px;
   }
 
   .live-page__jump-live {
