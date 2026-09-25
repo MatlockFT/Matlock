@@ -294,6 +294,26 @@
   const settleReplayCaptureFrame = async () => {
     root.classList.add("is-replay-armed");
 
+    // Size the target before capture begins so the entire 16:9 frame fits
+    // inside the visible browser viewport. This prevents clipped/offscreen
+    // portions from becoming black pixels in the recorded stream.
+    const viewportHeight =
+      window.visualViewport?.height ||
+      window.innerHeight ||
+      document.documentElement.clientHeight;
+    const currentWidth = screen?.getBoundingClientRect().width || 0;
+    const availableHeight = Math.max(240, viewportHeight - 16);
+    const widthThatFitsHeight = availableHeight * (16 / 9);
+    const captureWidth = Math.max(
+      320,
+      Math.min(currentWidth || widthThatFitsHeight, widthThatFitsHeight)
+    );
+
+    root.style.setProperty(
+      "--replay-capture-width",
+      `${Math.floor(captureWidth)}px`
+    );
+
     // Put the target at the top of the viewport before capture begins, then
     // let sticky positioning keep it there while the rest of the page scrolls.
     screen?.scrollIntoView({
@@ -309,6 +329,7 @@
 
   const releaseReplayCaptureFrame = () => {
     root.classList.remove("is-replay-armed");
+    root.style.removeProperty("--replay-capture-width");
   };
 
   const replaySupported = () => {
