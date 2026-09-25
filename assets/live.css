@@ -84,6 +84,36 @@ html[data-theme="light"] body:has([data-live-page]) .v3-sticky-shell {
   border-color: rgba(20,20,20,.065) !important;
 }
 
+/*
+ * Live must beat the V3 dark-mode paper rules. Those rules intentionally use
+ * !important for editorial pages, so the Live page needs an equally explicit
+ * exception or the ambient field is painted over by an opaque #0b0b0b slab.
+ */
+html[data-theme="dark"] body:has([data-live-page]) .site-main,
+html[data-theme="dark"] body:has([data-live-page]) .site-header,
+html[data-theme="dark"] body:has([data-live-page]) .logo-banner,
+html[data-theme="dark"] body:has([data-live-page]) .navigation-panel,
+html[data-theme="dark"] body:has([data-live-page]) .v3-footer {
+  background: transparent !important;
+}
+
+html[data-theme="dark"] body:has([data-live-page]) .site-navigation,
+html[data-theme="dark"] body:has([data-live-page]) .v3-sticky-shell {
+  background: rgba(8,8,8,.07) !important;
+  border-color: rgba(255,255,255,.06) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.12) !important;
+  backdrop-filter: blur(18px) saturate(1.12) !important;
+}
+
+html[data-theme="dark"] body:has([data-live-page]) .site-live-strip,
+html[data-theme="dark"] body:has([data-live-page]) .site-event-stack,
+html[data-theme="dark"] body:has([data-live-page]) .site-event-primary {
+  background: rgba(8,8,8,.055) !important;
+  border-color: rgba(255,255,255,.05) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.1) !important;
+  backdrop-filter: blur(16px) saturate(1.1) !important;
+}
+
 .live-page {
   position: relative;
   width: min(calc(100% - 2rem), 1460px);
@@ -271,8 +301,8 @@ html[data-theme="dark"] .live-page__ambient.is-ambient-active {
 .live-page__player-stage::before {
   content: "";
   position: absolute;
-  z-index: -1;
-  inset: -7% -5% -10%;
+  z-index: 0;
+  inset: -9% -7% -13%;
   border-radius: 18%;
   background: var(--live-ambient-image, none) center / cover no-repeat;
   filter: blur(clamp(54px, 5vw, 88px)) saturate(1.12) brightness(.56);
@@ -287,7 +317,7 @@ html[data-theme="dark"] .live-page__ambient.is-ambient-active {
 }
 
 .live-page.has-ambient-light .live-page__player-stage::before {
-  opacity: .27;
+  opacity: .23;
 }
 
 html[data-theme="light"] .live-page.has-ambient-light .live-page__player-stage::before {
@@ -296,6 +326,7 @@ html[data-theme="light"] .live-page.has-ambient-light .live-page__player-stage::
 
 .live-page__player-frame {
   position: relative;
+  z-index: 1;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,.13);
