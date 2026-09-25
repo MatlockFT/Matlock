@@ -145,13 +145,6 @@ html[data-theme="light"] body:has([data-live-page]) .logo-banner {
   line-height: .9;
 }
 
-.live-page__deck {
-  max-width: 58ch;
-  margin: .75rem 0 0;
-  color: var(--v3-muted);
-  font: 400 clamp(.92rem, 1.1vw, 1.04rem)/1.5 var(--v3-sans);
-}
-
 /* Status is information, not a pill/card. */
 .live-page__status {
   display: inline-flex;
@@ -341,8 +334,9 @@ html[data-theme="light"] .live-page__player-stage::before {
   display: inline-flex;
   align-items: center;
   align-self: center;
-  gap: .6rem;
+  gap: .55rem;
   min-width: 0;
+  padding-right: 0;
 }
 
 .live-page__media-button {
@@ -398,10 +392,58 @@ html[data-theme="light"] .live-page__player-stage::before {
   display: block;
 }
 
+.live-page__volume-control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.live-page__volume-popout {
+  position: absolute;
+  z-index: 8;
+  left: calc(100% + .35rem);
+  top: 50%;
+  display: flex;
+  align-items: center;
+  width: 0;
+  height: 38px;
+  padding: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition:
+    width .2s ease,
+    padding .2s ease,
+    opacity .16s ease;
+}
+
+.live-page__volume-control:hover .live-page__volume-popout,
+.live-page__volume-control:focus-within .live-page__volume-popout {
+  width: 112px;
+  padding: 0 .55rem 0 .2rem;
+  opacity: 1;
+  pointer-events: auto;
+}
+
 .live-page__volume {
-  width: clamp(78px, 10vw, 132px);
+  width: 92px;
+  min-width: 92px;
   accent-color: #fff;
   cursor: pointer;
+}
+
+.live-page__quality {
+  min-width: 48px;
+  min-height: 34px;
+  padding: .45rem .58rem;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255,255,255,.62);
+  font: 900 .52rem/1 var(--v3-sans);
+  letter-spacing: .045em;
+  cursor: default;
 }
 
 .live-page__jump-live {
@@ -835,8 +877,27 @@ html[data-theme="light"] .live-page__player-stage::before {
     flex-basis: 38px;
   }
 
+  .live-page__volume-popout {
+    left: 50%;
+    top: auto;
+    bottom: calc(100% + .35rem);
+    width: 106px;
+    height: 34px;
+    padding: 0 .45rem;
+    border-radius: 999px;
+    background: rgba(8,8,8,.78);
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+
+  .live-page__volume-control:focus-within .live-page__volume-popout {
+    width: 106px;
+    opacity: 1;
+  }
+
   .live-page__volume {
-    width: 86px;
+    width: 84px;
+    min-width: 84px;
   }
 
   .live-page__jump-live {
