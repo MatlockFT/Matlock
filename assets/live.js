@@ -1073,10 +1073,6 @@
   mediaPlay?.addEventListener("click", togglePlayback);
   mediaMute?.addEventListener("click", toggleMute);
   mediaVolume?.addEventListener("input", (event) => setPlayerVolume(event.target.value));
-  mediaQuality?.addEventListener("click", () => {
-    revealUi();
-    setQualityLabel(mediaQuality.textContent === "AUTO" ? "auto" : mediaQuality.textContent);
-  });
   mediaLive?.addEventListener("click", jumpToLive);
   replayArm?.addEventListener("click", armReplayBuffer);
   replaySave?.addEventListener("click", saveReplayBuffer);
