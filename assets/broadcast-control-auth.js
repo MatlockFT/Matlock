@@ -52,9 +52,30 @@
     if(!m.ok||!m.sessionId){setStatus(m.error||'GitHub sign-in failed.','error');return}
     sessionId=m.sessionId;localWrite(SESSION_ID_KEY,m.sessionId);localWrite(SESSION_LOGIN_KEY,m.login||'GitHub user');setConnected(m.login||'GitHub user');setStatus('Signed in as '+(m.login||'GitHub user')+'.','success');if(dialog.open)dialog.close();
   });
+  async function githubFetch(path,options={}){
+    if(!sessionId)throw Object.assign(new Error('Sign in with GitHub first.'),{status:401});
+    const method=options.method||'GET';
+    let response;
+    try{
+      response=await fetch(authBase+'/api/writer/github?path='+encodeURIComponent(path),{
+        ...options,method,mode:'cors',
+        headers:{Accept:'application/json','X-Writer-Session':sessionId,...(options.headers||{})}
+      });
+    }catch{
+      throw new Error(navigator.onLine===false?'You appear to be offline.':'Could not reach the broadcast control service.');
+    }
+    if(!response.ok){
+      const data=await response.json().catch(()=>({}));
+      const error=new Error(data.message||data.error||response.status+' '+response.statusText);
+      error.status=response.status;
+      if(response.status===401)window.dispatchEvent(new CustomEvent('matlock-broadcast:auth-expired'));
+      throw error;
+    }
+    return response.status===204?null:response.json();
+  }
   window.addEventListener('matlock-broadcast:auth-expired',()=>{
     localWrite(SESSION_ID_KEY,'');localWrite(SESSION_LOGIN_KEY,'');clear();setStatus('Your GitHub session expired. Sign in again.','error');
   });
-  window.MatlockBroadcastAuth={isConnected:()=>Boolean(sessionId),getSessionId:()=>sessionId,getLogin:()=>login,open:()=>dialog.showModal(),authBase:()=>authBase};
+  window.MatlockBroadcastAuth={isConnected:()=>Boolean(sessionId),getSessionId:()=>sessionId,getLogin:()=>login,githubFetch,open:()=>dialog.showModal(),authBase:()=>authBase};
   restore();
 })();
