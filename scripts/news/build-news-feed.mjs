@@ -22,6 +22,12 @@ const feeds = [
         priority: 10
     },
     {
+        name: "MMA Junkie",
+        siteUrl: "https://mmajunkie.usatoday.com/",
+        feedUrl: "https://mmajunkie.usatoday.com/feed",
+        priority: 10
+    },
+    {
         name: "ESPN MMA",
         siteUrl: "https://www.espn.com/mma/",
         feedUrl: "https://www.espn.com/espn/rss/mma/news",
