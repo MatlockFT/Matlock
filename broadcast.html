@@ -1,0 +1,70 @@
+---
+layout: null
+title: "MMA Matlock Broadcast Trial"
+permalink: /broadcast/
+sitemap: false
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1920, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>MMA Matlock Broadcast Trial</title>
+  <link rel="stylesheet" href="/assets/broadcast-trial.css?v={{ site.asset_version }}">
+</head>
+<body>
+  <main class="broadcast" data-broadcast>
+    <header class="topbar">
+      <div class="brand">MMA MATLOCK</div>
+      <div class="status"><span class="live-dot"></span> LIVE NEWS DESK</div>
+      <time class="clock" data-clock>--:-- CT</time>
+    </header>
+
+    <section class="stage" aria-live="polite">
+      <div class="media" data-media></div>
+      <div class="wash"></div>
+      <div class="content">
+        <div class="eyebrow" data-eyebrow>LATEST</div>
+        <h1 data-title>Loading MMA Matlock broadcast…</h1>
+        <p class="deck" data-deck></p>
+        <div class="meta">
+          <span data-source>MMA MATLOCK</span>
+          <span class="meta-sep">•</span>
+          <span data-time>LIVE</span>
+        </div>
+      </div>
+      <div class="progress"><span data-progress></span></div>
+    </section>
+
+    <footer class="ticker">
+      <div class="ticker-label">COMBAT SPORTS</div>
+      <div class="ticker-window">
+        <div class="ticker-track" data-ticker-track>
+          <span>Loading latest combat sports headlines…</span>
+        </div>
+      </div>
+      <div class="next-event" data-next-event>UPCOMING EVENTS</div>
+    </footer>
+  </main>
+
+  <script id="matlock-posts" type="application/json">
+  [
+  {% assign visible_posts = site.posts | where_exp: "post", "post.listing_visibility != 'direct-only'" %}
+  {% for post in visible_posts limit: 12 %}
+    {
+      "type": "article",
+      "title": {{ post.title | jsonify }},
+      "deck": {{ post.description | default: post.excerpt | strip_html | normalize_whitespace | truncate: 220 | jsonify }},
+      "url": {{ post.url | relative_url | jsonify }},
+      "image": {{ post.image.path | default: post.image | default: "" | relative_url | jsonify }},
+      "source": "MMA Matlock",
+      "publishedAt": {{ post.date | date_to_xmlschema | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  ]
+  </script>
+  <script src="/assets/broadcast-trial.js?v={{ site.asset_version }}"></script>
+</body>
+</html>
