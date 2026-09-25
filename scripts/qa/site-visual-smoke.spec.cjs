@@ -234,6 +234,15 @@ test.describe('Editorial top spacing consistency', () => {
       'Live page start should align with editorial peers').toBeLessThanOrEqual(8);
     expect(Math.abs(live.mastheadToHeading - median(samples.map(item => item.mastheadToHeading))),
       'Live title spacing should match editorial peers').toBeLessThanOrEqual(18);
+
+    await page.goto(targetUrl('/live/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    const navToWordmark = await page.evaluate(() => {
+      const nav = document.querySelector('.site-navigation')?.getBoundingClientRect();
+      const wordmark = document.querySelector('.v3-wordmark')?.getBoundingClientRect();
+      return Math.round((wordmark?.top || 0) - (nav?.bottom || 0));
+    });
+    expect(navToWordmark, 'Live MATLOCK masthead should sit close to the navigation rail')
+      .toBeLessThanOrEqual(32);
   });
 });
 
@@ -394,6 +403,50 @@ test.describe.skip('Original site theme isolation', () => {
 
 test.describe('Live V3 site rollout', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('offline Live state collapses media chrome and duplicate status sections', async ({ page }) => {
+    const upcoming = {
+      event_id: 'future:test',
+      promotion_id: 'future',
+      promotion: 'Future Fighting',
+      short_name: 'FUTURE',
+      country: 'United States',
+      video_id: 'ZYXWVUTSRQP',
+      title: 'Future Fighting 1',
+      watch_url: 'https://www.youtube.com/watch?v=ZYXWVUTSRQP',
+      status: 'upcoming',
+      is_live: false,
+      scheduled_start_time: '2026-09-26T20:00:00Z'
+    };
+    await page.route('**/assets/data/global-live.json*', route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          version: 5,
+          generated_at: new Date().toISOString(),
+          selected_event_id: null,
+          events: [],
+          upcoming: [upcoming],
+          live_count: 0,
+          upcoming_count: 1,
+          sources: {}
+        })
+      })
+    );
+
+    await page.goto(targetUrl('/live/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('.live-page')).toHaveClass(/is-offline/, { timeout: 10000 });
+    await expect(page.locator('.live-page__player-stage')).toBeHidden();
+    await expect(page.locator('.live-page__control-dock')).toBeHidden();
+    await expect(page.locator('[data-live-section]')).toBeHidden();
+    await expect(page.locator('[data-live-now-label]')).toHaveText('Status');
+    await expect(page.locator('[data-live-title]')).toHaveText('No fights live right now');
+    await expect(page.locator('[data-live-promotion]')).toHaveText('1 upcoming public broadcast');
+    await expect(page.locator('#up-next-title')).toHaveText('Upcoming streams');
+    await expect(page.locator('[data-upcoming-list] .live-page__row')).toHaveCount(1);
+    await expect(page.locator('body')).not.toContainText('Nothing is live right now.');
+  });
   const routes = [
     ['/', '[data-globe-home]'], ['/news/', '[data-editorial-v3]'], ['/breakdowns/', '[data-editorial-v3]'],
     ['/upcoming-events/', '[data-editorial-v3]'], ['/event-map/', '[data-editorial-v3]'],
