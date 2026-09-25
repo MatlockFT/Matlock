@@ -64,7 +64,7 @@
   const REPLAY_BUFFER_MS = 15000;
   const REPLAY_CHUNK_MS = 1000;
   const ENDED_VIDEO_SUPPRESS_MS = 30 * 60 * 1000;
-  const PLAYBACK_HEALTH_DELAY = 9000;
+  const PLAYBACK_HEALTH_DELAY = 4500;
 
   const clearUiIdleTimer = () => {
     window.clearTimeout(uiIdleTimer);
