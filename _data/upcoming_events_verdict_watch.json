@@ -13,13 +13,13 @@
       "verdict_event_id": "1959",
       "verdict_url": "https://verdictmma.com/event/1959",
       "verdict_date": "2026-09-26",
-      "local_fight_count": 11,
-      "verdict_fight_count": 11,
-      "local_main_count": 4,
-      "verdict_main_count": 4,
+      "local_fight_count": 12,
+      "verdict_fight_count": 12,
+      "local_main_count": 5,
+      "verdict_main_count": 5,
       "local_prelim_count": 7,
       "verdict_prelim_count": 7,
-      "confirmed_local_bouts": 9
+      "confirmed_local_bouts": 10
     },
     {
       "event_id": "dwcs-season-10-week-8-2026-09-29",
@@ -166,9 +166,9 @@
       "verdict_event_id": "1974",
       "verdict_url": "https://verdictmma.com/event/1974",
       "verdict_date": "2026-11-08",
-      "local_fight_count": 5,
+      "local_fight_count": 10,
       "verdict_fight_count": null,
-      "local_main_count": 5,
+      "local_main_count": 10,
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
@@ -207,6 +207,16 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
       "verdict_event_id": "1974",
+      "order": 10,
+      "fighters": [
+        "力也",
+        "木村琉音"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
+      "verdict_event_id": "1974",
       "order": 4,
       "fighters": [
         "Abijah Kaleo Meheula",
@@ -221,6 +231,46 @@
       "fighters": [
         "Hiroaki Suzuki",
         "Chiharu"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
+      "verdict_event_id": "1974",
+      "order": 6,
+      "fighters": [
+        "Juntaro Ushiku",
+        "Kaiwen Li"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
+      "verdict_event_id": "1974",
+      "order": 7,
+      "fighters": [
+        "Kyung Pyo Kim",
+        "Nurkhan Zhumagazy"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
+      "verdict_event_id": "1974",
+      "order": 8,
+      "fighters": [
+        "雑賀“ヤン坊”達也",
+        "Daigo Kuramoto"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
+      "verdict_event_id": "1974",
+      "order": 9,
+      "fighters": [
+        "Taichi Nakajima",
+        "溝口司"
       ]
     },
     {
@@ -407,7 +457,7 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-09-26-fight-card",
       "verdict_event_id": "1959",
-      "order": 10,
+      "order": 11,
       "fighters": [
         "John Castaneda",
         "Alatengheili"
@@ -417,7 +467,7 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-09-26-fight-card",
       "verdict_event_id": "1959",
-      "order": 3,
+      "order": 4,
       "fighters": [
         "Mahammadali Osmanli",
         "Ilimbek Akylbek"
