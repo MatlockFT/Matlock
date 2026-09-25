@@ -298,10 +298,9 @@ test.describe('Article native sharing on mobile', () => {
       const mediaBytes = await mediaResponse.body();
       expect(mediaBytes.length).toBeGreaterThan(0);
 
-      await expect.poll(async () => video.evaluate(node => ({
-        readyState: node.readyState,
-        error: node.error ? node.error.code : 0
-      })), { timeout: 30000 }).toSatisfy(state => state.readyState >= 1 || state.error > 0);
+      await expect.poll(async () => video.evaluate(node => (
+        node.readyState >= 1 || Boolean(node.error)
+      )), { timeout: 30000 }).toBeTruthy();
 
       const mediaState = await video.evaluate(node => ({
         readyState: node.readyState,
