@@ -567,6 +567,79 @@ test.describe('Live V3 site rollout', () => {
     expect(await page.locator('[data-media-mute]').count()).toBe(0);
   });
 
+  test('playing live stream with fixed duration is not removed', async ({ page }) => {
+    const liveEvent = {
+      event_id: 'fen:stable-duration',
+      promotion_id: 'fen',
+      promotion: 'Fight Exclusive Night',
+      short_name: 'FEN',
+      country: 'Poland',
+      priority: 72,
+      video_id: 'cv2svtEOyIw',
+      title: 'FACE TO FACE + WAŻENIE PRZED FEN 63',
+      watch_url: 'https://www.youtube.com/watch?v=cv2svtEOyIw',
+      status: 'live',
+      is_live: true,
+      embeddable: true,
+      api_verified: true,
+      stale: false
+    };
+
+    await page.addInitScript(() => {
+      class FakePlayer {
+        constructor(_id, options) {
+          this.options = options || {};
+          this.state = 1;
+          setTimeout(() => this.options.events?.onReady?.({ target: this }), 0);
+        }
+        getPlayerState() { return this.state; }
+        getVideoData() { return { isLive: false }; }
+        getVolume() { return 0; }
+        isMuted() { return true; }
+        getCurrentTime() { return 25; }
+        getDuration() { return 100; }
+        getPlaybackQuality() { return 'auto'; }
+        mute() {}
+        playVideo() { this.state = 1; }
+        pauseVideo() { this.state = 2; }
+        destroy() {}
+      }
+      window.YT = {
+        Player: FakePlayer,
+        PlayerState: { PLAYING: 1 }
+      };
+    });
+
+    await page.route('**/assets/data/global-live.json*', route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          version: 5,
+          generated_at: new Date().toISOString(),
+          selected_event_id: liveEvent.event_id,
+          events: [liveEvent],
+          upcoming: [],
+          live_count: 1,
+          upcoming_count: 0,
+          sources: {}
+        })
+      })
+    );
+    await page.route('https://www.youtube.com/embed/**', route =>
+      route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>mock</title>' })
+    );
+
+    await page.goto(targetUrl('/live/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+
+    await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'live');
+    await page.waitForTimeout(6500);
+    await expect(page.locator('.live-page')).toHaveClass(/is-live/);
+    await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'live');
+    await expect(page.locator('[data-live-title]')).toContainText('FACE TO FACE');
+    await expect(page.locator('[data-live-player]')).toBeVisible();
+  });
+
   test('verified live stream plays even when YouTube isLive flag is false', async ({ page }) => {
     const liveEvent = {
       event_id: 'fen:cv2svtEOyIw',
