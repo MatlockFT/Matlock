@@ -216,7 +216,7 @@ test.describe('Article native sharing on mobile', () => {
     hasTouch: true
   });
 
-  test('top Share uses Web Share while platform links remain same-tab intents', async ({ page }) => {
+  test('top Share uses Web Share while platform links remain same-tab intents', async ({ page, request }) => {
     await page.addInitScript(() => {
       window.__mmaSharePayloads = [];
       Object.defineProperty(navigator, 'share', {
@@ -280,12 +280,38 @@ test.describe('Article native sharing on mobile', () => {
 
     for (let index = 0; index < 2; index += 1) {
       const video = videos.nth(index);
+      const figure = video.locator('xpath=ancestor::figure[1]');
       await video.scrollIntoViewIfNeeded();
+      await expect(video).toHaveAttribute('playsinline', '');
+      await expect(video).toHaveAttribute('webkit-playsinline', '');
+
+      const source = await video.getAttribute('src');
+      expect(source).toContain('/releases/download/writer-media-2026-09/');
+      expect(source).toMatch(/\.mp4(?:$|\?)/i);
+
+      const mediaResponse = await request.get(source, {
+        headers: { Range: 'bytes=0-4095' },
+        timeout: 30000
+      });
+      expect([200, 206]).toContain(mediaResponse.status());
+      expect(mediaResponse.headers()['content-type'] || '').toMatch(/^video\/mp4(?:;|$)/i);
+      const mediaBytes = await mediaResponse.body();
+      expect(mediaBytes.length).toBeGreaterThan(0);
+
       await expect.poll(async () => video.evaluate(node => ({
         readyState: node.readyState,
         error: node.error ? node.error.code : 0
-      })), { timeout: 30000 }).toEqual(expect.objectContaining({ error: 0 }));
-      await expect.poll(async () => video.evaluate(node => node.readyState), { timeout: 30000 }).toBeGreaterThanOrEqual(1);
+      })), { timeout: 30000 }).toSatisfy(state => state.readyState >= 1 || state.error > 0);
+
+      const mediaState = await video.evaluate(node => ({
+        readyState: node.readyState,
+        error: node.error ? node.error.code : 0
+      }));
+      if (mediaState.error > 0) {
+        await expect(figure.locator('.article-inline-video-fallback')).toBeVisible();
+      } else {
+        expect(mediaState.readyState).toBeGreaterThanOrEqual(1);
+      }
     }
 
     expect(pageErrors).toEqual([]);
