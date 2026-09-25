@@ -2463,12 +2463,17 @@ html.reduce-motion .mma-gallery-image-button:hover img {
     }
 
     .mobile-brand-pumpkin {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         flex: 0 0 auto;
-        font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-        font-size: .62em;
-        line-height: 1;
-        transform: translateY(.08em);
+    }
+
+    .mobile-brand-pumpkin-icon {
+        display: block;
+        width: .72em;
+        height: .72em;
+        transform: translateY(.04em);
     }
 
     /* Mobile browsers render the viewport scrollbar over fixed site chrome.
