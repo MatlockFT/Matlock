@@ -17,21 +17,7 @@
   const liveCount = root.querySelector("[data-live-count]");
   const upcomingList = root.querySelector("[data-upcoming-list]");
   const upcomingCount = root.querySelector("[data-upcoming-count]");
-  const ambientStage = root.querySelector("[data-live-ambient-stage]");
-  const ambientLayers = [
-    root.querySelector("[data-live-ambient-a]"),
-    root.querySelector("[data-live-ambient-b]")
-  ].filter(Boolean);
-
-  // Promote the lighting field to the document shell so it can wash behind
-  // the global masthead, navigation, ticker, page content, and footer.
-  if (ambientStage && ambientStage.parentElement !== document.body) {
-    document.body.insertBefore(ambientStage, document.body.firstChild);
-  }
-
   let currentVideoId = "";
-  let ambientVideoId = "";
-  let ambientLayerIndex = 0;
   let busy = false;
   let lastData = null;
   let uiIdleTimer = 0;
@@ -66,114 +52,6 @@
       origin: window.location.origin
     });
     return `https://www.youtube.com/embed/${encodeURIComponent(videoId)}?${params.toString()}`;
-  };
-
-  const AMBIENT_REFRESH_MS = 15000;
-  let ambientRefreshTimer = 0;
-  let ambientRefreshVideoId = "";
-  let ambientRequestSerial = 0;
-
-  const thumbnailCandidates = (videoId, cacheBust = "") => {
-    const encoded = encodeURIComponent(videoId);
-    const suffix = cacheBust ? `?ambient=${cacheBust}` : "";
-
-    return [
-      `https://i.ytimg.com/vi/${encoded}/maxresdefault_live.jpg${suffix}`,
-      `https://i.ytimg.com/vi/${encoded}/sddefault_live.jpg${suffix}`,
-      `https://i.ytimg.com/vi/${encoded}/hqdefault_live.jpg${suffix}`,
-      `https://i.ytimg.com/vi/${encoded}/maxresdefault.jpg`,
-      `https://i.ytimg.com/vi/${encoded}/hqdefault.jpg`
-    ];
-  };
-
-  const resolveThumbnail = (videoId, cacheBust = "") =>
-    new Promise((resolve) => {
-      const candidates = thumbnailCandidates(videoId, cacheBust);
-      let index = 0;
-
-      const tryNext = () => {
-        if (index >= candidates.length) {
-          resolve("");
-          return;
-        }
-
-        const url = candidates[index++];
-        const image = new Image();
-        image.decoding = "async";
-        image.referrerPolicy = "no-referrer";
-        image.onload = () => {
-          const looksValid = image.naturalWidth >= 320 && image.naturalHeight >= 180;
-          if (looksValid) resolve(url);
-          else tryNext();
-        };
-        image.onerror = tryNext;
-        image.src = url;
-      };
-
-      tryNext();
-    });
-
-  const setAmbientVideo = async (videoId, { force = false } = {}) => {
-    if (!ambientStage || !ambientLayers.length || !videoId) return;
-    if (!force && videoId === ambientVideoId) return;
-
-    const requestSerial = ++ambientRequestSerial;
-    const requestedVideoId = videoId;
-    const imageUrl = await resolveThumbnail(videoId, Date.now());
-
-    if (
-      !imageUrl ||
-      requestSerial !== ambientRequestSerial ||
-      currentVideoId !== requestedVideoId
-    ) return;
-
-    const nextIndex = ambientLayers.length > 1
-      ? (ambientLayerIndex + 1) % ambientLayers.length
-      : 0;
-    const nextLayer = ambientLayers[nextIndex];
-
-    nextLayer.style.backgroundImage = `url("${imageUrl}")`;
-    nextLayer.classList.add("is-active");
-
-    ambientLayers.forEach((layer, index) => {
-      if (index !== nextIndex) layer.classList.remove("is-active");
-    });
-
-    root.style.setProperty("--live-ambient-image", `url("${imageUrl}")`);
-    root.classList.add("has-ambient-light");
-    ambientLayerIndex = nextIndex;
-    ambientVideoId = requestedVideoId;
-    ambientStage.classList.add("is-ambient-active");
-  };
-
-  const stopAmbientRefresh = () => {
-    window.clearInterval(ambientRefreshTimer);
-    ambientRefreshTimer = 0;
-    ambientRefreshVideoId = "";
-  };
-
-  const startAmbientRefresh = (videoId) => {
-    if (!videoId) return;
-    if (ambientRefreshVideoId === videoId && ambientRefreshTimer) return;
-
-    stopAmbientRefresh();
-    ambientRefreshVideoId = videoId;
-    setAmbientVideo(videoId, { force: true });
-
-    ambientRefreshTimer = window.setInterval(() => {
-      if (!document.hidden && currentVideoId === videoId) {
-        setAmbientVideo(videoId, { force: true });
-      }
-    }, AMBIENT_REFRESH_MS);
-  };
-
-  const clearAmbientVideo = () => {
-    ambientRequestSerial += 1;
-    ambientVideoId = "";
-    stopAmbientRefresh();
-    ambientStage?.classList.remove("is-ambient-active");
-    root.classList.remove("has-ambient-light");
-    root.style.removeProperty("--live-ambient-image");
   };
 
   const formatSchedule = (value) => {
@@ -314,7 +192,6 @@
       player.src = embedUrl(event.video_id);
     }
 
-    startAmbientRefresh(event.video_id);
     scheduleUiFade();
     renderLiveEvents(lastData?.events || []);
   };
@@ -329,7 +206,6 @@
 
     if (player.getAttribute("src")) player.removeAttribute("src");
     currentVideoId = "";
-    clearAmbientVideo();
     clearUiIdleTimer();
     root.classList.remove("is-ui-idle");
 
@@ -413,7 +289,6 @@
       root.classList.remove("is-ui-idle");
     } else {
       revealUi();
-      if (currentVideoId) setAmbientVideo(currentVideoId, { force: true });
     }
   });
 
