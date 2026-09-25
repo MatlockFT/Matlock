@@ -14,6 +14,7 @@ tags:
   - ROSAS JR
   - BARCELOS
 show_toc: true
+toc_mode: fights
 pinned: false
 listing_visibility: normal
 spoiler_warning: false
