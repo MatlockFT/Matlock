@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "revision": 1790375721398,
-  "updatedAt": "2026-09-25T22:35:21.398Z",
+  "revision": 1790378729732,
+  "updatedAt": "2026-09-25T23:25:29.732Z",
   "modules": {
     "news": true,
     "video": true,
@@ -12,14 +12,14 @@
   },
   "rundown": [
     "news",
-    "video",
     "news",
     "video",
+    "news",
     "event"
   ],
   "timing": {
-    "newsSeconds": 40,
-    "eventSeconds": 30,
+    "newsSeconds": 45,
+    "eventSeconds": 35,
     "transitionMs": 650,
     "controlPollSeconds": 10
   },
@@ -34,7 +34,7 @@
     "maxAgeHours": 48,
     "maxItems": 8,
     "minSeconds": 20,
-    "maxSeconds": 900,
+    "maxSeconds": 600,
     "volume": 50,
     "channels": [],
     "playFull": true
