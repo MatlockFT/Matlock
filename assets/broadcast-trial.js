@@ -4,7 +4,7 @@ const NEWS_FALLBACK="/assets/data/mma-news.json";
 const VIDEOS_REMOTE="https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-videos.json";
 const VIDEOS_FALLBACK="/assets/data/mma-videos.json";
 const EVENTS="/assets/data/upcoming-events-live.json";
-const CONTROL_REMOTE="https://mmamatlock-writer-auth.netlify.app/api/broadcast/control";
+const CONTROL_REMOTE="https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/uploads/broadcast-control.json";
 const CONTROL_FALLBACK="/assets/data/broadcast-control.json";
 const FEED_REFRESH_MS=300000;
 
