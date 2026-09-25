@@ -142,6 +142,18 @@ layout: default
                 {{ reading_minutes }} min read
             </span>
         </div>
+
+        <div class="post-header-actions">
+            <button
+                class="post-header-share"
+                type="button"
+                data-native-share-top
+                aria-label="Share {{ page.title | escape }}"
+            >
+                <span aria-hidden="true">↗</span>
+                Share
+            </button>
+        </div>
     </header>
 
     {% if featured_image %}
@@ -332,37 +344,36 @@ layout: default
                 type="button"
                 data-native-share
                 aria-label="Open the share menu for {{ page.title | escape }}"
-                hidden
             >
                 Share
             </button>
 
-            <button
+            <a
                 class="post-share-button"
-                type="button"
                 data-share-x
+                href="https://twitter.com/intent/tweet?text={{ share_title | url_encode }}&url={{ share_url | url_encode }}"
                 aria-label="Share {{ page.title | escape }} on X"
             >
                 X
-            </button>
+            </a>
 
-            <button
+            <a
                 class="post-share-button"
-                type="button"
                 data-share-threads
+                href="https://www.threads.net/intent/post?text={{ share_title | append: ' ' | append: share_url | url_encode }}"
                 aria-label="Share {{ page.title | escape }} on Threads"
             >
                 Threads
-            </button>
+            </a>
 
-            <button
+            <a
                 class="post-share-button"
-                type="button"
                 data-share-facebook
+                href="https://www.facebook.com/sharer/sharer.php?u={{ share_url | url_encode }}"
                 aria-label="Share {{ page.title | escape }} on Facebook"
             >
                 Facebook
-            </button>
+            </a>
 
             <button
                 class="post-share-button post-share-button-instagram"
@@ -382,14 +393,14 @@ layout: default
                 IG Story
             </button>
 
-            <button
+            <a
                 class="post-share-button"
-                type="button"
                 data-share-reddit
+                href="https://www.reddit.com/submit?url={{ share_url | url_encode }}&title={{ share_title | url_encode }}"
                 aria-label="Share {{ page.title | escape }} on Reddit"
             >
                 Reddit
-            </button>
+            </a>
 
             <button
                 class="post-share-button"
