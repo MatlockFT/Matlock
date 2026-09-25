@@ -563,16 +563,8 @@ test.describe('Live V3 site rollout', () => {
       { timeout: 5000 }
     ).toContain('cv2svtEOyIw');
 
-    await expect(page.locator('[data-media-play]')).toHaveAttribute('aria-label', 'Pause');
-
-    await page.locator('[data-media-play]').click();
-    await expect(page.locator('[data-media-play]')).toHaveAttribute('aria-label', 'Play');
-
-    await page.locator('[data-media-play]').click();
-    await expect.poll(
-      () => page.evaluate(() => window.__playCalls || []),
-      { timeout: 5000 }
-    ).toContain('cv2svtEOyIw');
+    expect(await page.locator('[data-media-play]').count()).toBe(0);
+    expect(await page.locator('[data-media-mute]').count()).toBe(0);
   });
 
   test('verified live stream plays even when YouTube isLive flag is false', async ({ page }) => {
@@ -647,7 +639,9 @@ test.describe('Live V3 site rollout', () => {
 
     await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'live');
     const liveSrc = await page.locator('[data-live-player]').getAttribute('src');
-    expect(new URL(liveSrc).searchParams.get('autoplay')).toBe('0');
+    expect(new URL(liveSrc).searchParams.get('autoplay')).toBe('1');
+    expect(new URL(liveSrc).searchParams.get('mute')).toBe('1');
+    expect(new URL(liveSrc).searchParams.get('controls')).toBe('1');
     await expect.poll(
       () => page.evaluate(() => window.__livePlayCalls || 0),
       { timeout: 7000 }
