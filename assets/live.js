@@ -291,6 +291,26 @@
     if (replayStatus) replayStatus.textContent = message;
   };
 
+  const settleReplayCaptureFrame = async () => {
+    root.classList.add("is-replay-armed");
+
+    // Put the target at the top of the viewport before capture begins, then
+    // let sticky positioning keep it there while the rest of the page scrolls.
+    screen?.scrollIntoView({
+      block: "start",
+      inline: "nearest",
+      behavior: "auto"
+    });
+
+    await new Promise((resolve) =>
+      requestAnimationFrame(() => requestAnimationFrame(resolve))
+    );
+  };
+
+  const releaseReplayCaptureFrame = () => {
+    root.classList.remove("is-replay-armed");
+  };
+
   const replaySupported = () => {
     const hasElementCapture =
       "RestrictionTarget" in window &&
@@ -423,6 +443,7 @@
     replayMimeType = "";
     replayHasAudio = false;
     stopReplayUiTimer();
+    releaseReplayCaptureFrame();
 
     if (recorder && recorder.state !== "inactive") {
       try {
@@ -491,6 +512,7 @@
     let stream = null;
 
     try {
+      await settleReplayCaptureFrame();
       const supportedCaptureConstraints =
         navigator.mediaDevices.getSupportedConstraints?.() || {};
       const videoConstraints = {
@@ -622,6 +644,7 @@
       scheduleUiFade();
     } catch (error) {
       stream?.getTracks().forEach((track) => track.stop());
+      releaseReplayCaptureFrame();
       console.warn("Replay buffer unavailable", error);
 
       const denied = error?.name === "NotAllowedError";
