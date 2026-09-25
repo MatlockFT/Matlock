@@ -1447,3 +1447,74 @@ html[data-theme="light"] .live-page {
     max-width: 145px;
   }
 }
+
+
+/* Live page compact shell + state hierarchy */
+
+/* The fixed ticker/nav already reserves its own height. Keep the Live masthead
+   visually attached to that rail without changing the MATLOCK wordmark scale. */
+body:has([data-live-page]) .logo-banner {
+  min-height: 88px !important;
+  padding: .28rem 1rem .2rem !important;
+}
+
+body:has([data-live-page]) .logo-banner > a {
+  align-items: center;
+}
+
+/* Offline is a status + schedule view, not an empty media player. */
+.live-page.is-offline .live-page__player-stage,
+.live-page.is-offline .live-page__control-dock {
+  display: none;
+}
+
+.live-page.is-offline .live-page__player-section {
+  padding-top: 0;
+}
+
+.live-page.is-offline .live-page__now-playing {
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin: 0;
+  padding: .72rem 0 .78rem;
+  border-top: 0;
+  border-bottom: 1px solid var(--live-rule);
+}
+
+.live-page.is-offline .live-page__now-playing h2 {
+  max-width: none;
+  font-size: clamp(1.12rem, 1.65vw, 1.5rem);
+}
+
+.live-page.is-offline .live-page__meta {
+  margin-top: .22rem;
+}
+
+.live-page.is-offline .live-page__section--last {
+  margin-top: 1rem;
+}
+
+.live-page__section[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 700px) {
+  body:has([data-live-page]) .logo-banner {
+    min-height: 68px !important;
+    padding: .2rem .7rem .14rem !important;
+  }
+
+  .live-page.is-offline .live-page__now-playing {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: .65rem;
+    padding: .62rem 0 .68rem;
+  }
+
+  .live-page.is-offline .live-page__actions {
+    align-self: center;
+    justify-content: flex-end;
+  }
+
+  .live-page.is-offline .live-page__section--last {
+    margin-top: .85rem;
+  }
+}
