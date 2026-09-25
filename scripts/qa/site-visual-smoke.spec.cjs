@@ -860,6 +860,97 @@ test.describe('Live V3 site rollout', () => {
     await expect(page.locator('[data-live-embed-fallback]')).toHaveCount(0);
   });
 
+
+  test('blocked selected stream falls through to another embeddable live feed', async ({ page }) => {
+    const blocked = {
+      event_id: 'blocked:aaaaaaaaaaa',
+      promotion_id: 'blocked',
+      promotion: 'Blocked Promotion',
+      short_name: 'BLOCKED',
+      country: 'Test',
+      priority: 100,
+      video_id: 'aaaaaaaaaaa',
+      title: 'Blocked live feed',
+      watch_url: 'https://www.youtube.com/watch?v=aaaaaaaaaaa',
+      status: 'live',
+      is_live: true,
+      embeddable: true,
+      api_verified: true,
+      stale: false
+    };
+    const playable = {
+      event_id: 'playable:bbbbbbbbbbb',
+      promotion_id: 'playable',
+      promotion: 'Playable Promotion',
+      short_name: 'PLAY',
+      country: 'Test',
+      priority: 90,
+      video_id: 'bbbbbbbbbbb',
+      title: 'Playable live feed',
+      watch_url: 'https://www.youtube.com/watch?v=bbbbbbbbbbb',
+      status: 'live',
+      is_live: true,
+      embeddable: true,
+      api_verified: true,
+      stale: false
+    };
+
+    await page.addInitScript(() => {
+      class FakePlayer {
+        constructor(_id, options) {
+          this.options = options || {};
+          this.videoId = 'aaaaaaaaaaa';
+          this.state = 5;
+          setTimeout(() => this.options.events?.onReady?.({ target: this }), 0);
+        }
+        getPlayerState() { return this.state; }
+        getVolume() { return 0; }
+        isMuted() { return true; }
+        getCurrentTime() { return 0; }
+        getDuration() { return this.videoId === 'bbbbbbbbbbb' ? 100 : 0; }
+        getPlaybackQuality() { return 'auto'; }
+        mute() {}
+        playVideo() {}
+        pauseVideo() {}
+        loadVideoById(videoId) {
+          this.videoId = videoId;
+          this.state = 1;
+          setTimeout(() => this.options.events?.onStateChange?.({ data: 1 }), 0);
+        }
+        destroy() {}
+      }
+      window.YT = { Player: FakePlayer, PlayerState: { PLAYING: 1 } };
+    });
+
+    await page.route('**/assets/data/global-live.json*', route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          version: 5,
+          generated_at: new Date().toISOString(),
+          selected_event_id: blocked.event_id,
+          events: [blocked, playable],
+          upcoming: [],
+          live_count: 2,
+          upcoming_count: 0,
+          sources: {}
+        })
+      })
+    );
+    await page.route('https://www.youtube.com/embed/**', route =>
+      route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>mock</title>' })
+    );
+
+    await page.goto(targetUrl('/live/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-live-title]')).toHaveText('Playable live feed', { timeout: 9000 });
+    await expect(page.locator('.live-page')).toHaveClass(/is-live/);
+    await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'live');
+    const blockedRow = page.locator('[data-live-list] .live-page__row.is-direct-only');
+    await expect(blockedRow).toContainText('Blocked live feed');
+    await expect(blockedRow).toHaveAttribute('href', /aaaaaaaaaaa/);
+  });
+
   test('ended Live video cannot autoplay or resurrect from stale status data', async ({ page }) => {
     const staleEvent = {
       event_id: 'test-promotion:abcdefghijk',
