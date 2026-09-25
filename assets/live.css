@@ -4,6 +4,71 @@ body:has([data-live-page]) .site-main {
   overflow: visible;
 }
 
+body:has([data-live-page]) {
+  position: relative;
+  isolation: isolate;
+}
+
+body:has([data-live-page]) .site-header,
+body:has([data-live-page]) .site-main,
+body:has([data-live-page]) .site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+body:has([data-live-page]) .site-header,
+body:has([data-live-page]) .site-footer {
+  transition:
+    opacity 2.6s ease,
+    transform 2.6s ease;
+}
+
+body:has(.live-page.is-ui-idle) .site-header,
+body:has(.live-page.is-ui-idle) .site-footer {
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+}
+
+body:has([data-live-page]) .site-header {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body:has([data-live-page]) .logo-banner {
+  background: rgba(8,8,8,.08) !important;
+  border-color: rgba(255,255,255,.05) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.12);
+  backdrop-filter: blur(16px) saturate(1.12);
+}
+
+body:has([data-live-page]) .site-navigation {
+  background: rgba(8,8,8,.14) !important;
+  border-color: rgba(255,255,255,.07) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.035) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.16) !important;
+  backdrop-filter: blur(18px) saturate(1.16) !important;
+}
+
+body:has([data-live-page]) .navigation-inner,
+body:has([data-live-page]) .navigation-panel {
+  background: transparent !important;
+}
+
+body:has([data-live-page]) .site-live-strip {
+  background: rgba(8,8,8,.1) !important;
+  border-color: rgba(255,255,255,.055) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.14);
+  backdrop-filter: blur(16px) saturate(1.14);
+}
+
+html[data-theme="light"] body:has([data-live-page]) .logo-banner,
+html[data-theme="light"] body:has([data-live-page]) .site-navigation,
+html[data-theme="light"] body:has([data-live-page]) .site-live-strip {
+  background: rgba(255,255,255,.13) !important;
+  border-color: rgba(20,20,20,.07) !important;
+}
+
 .live-page {
   position: relative;
   width: min(calc(100% - 2rem), 1460px);
@@ -35,7 +100,7 @@ body:has([data-live-page]) .site-main {
 }
 
 .live-page__ambient.is-ambient-active {
-  opacity: .78;
+  opacity: .28;
 }
 
 .live-page__ambient-layer {
@@ -44,7 +109,7 @@ body:has([data-live-page]) .site-main {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: blur(clamp(72px, 7vw, 128px)) saturate(1.48) brightness(.66);
+  filter: blur(clamp(86px, 8vw, 148px)) saturate(1.18) brightness(.52);
   opacity: 0;
   transform: scale(1.1);
   transition: opacity 1.15s ease;
@@ -56,8 +121,8 @@ body:has([data-live-page]) .site-main {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to bottom, rgba(0,0,0,.12), rgba(0,0,0,.28)),
-    radial-gradient(circle at 50% 38%, transparent 20%, rgba(0,0,0,.22) 78%);
+    linear-gradient(to bottom, rgba(0,0,0,.24), rgba(0,0,0,.38)),
+    radial-gradient(circle at 50% 38%, transparent 16%, rgba(0,0,0,.34) 80%);
 }
 
 .live-page__ambient-layer.is-active {
@@ -65,11 +130,11 @@ body:has([data-live-page]) .site-main {
 }
 
 html[data-theme="light"] .live-page__ambient.is-ambient-active {
-  opacity: .5;
+  opacity: .16;
 }
 
 html[data-theme="dark"] .live-page__ambient.is-ambient-active {
-  opacity: .86;
+  opacity: .32;
 }
 
 /* All non-video UI participates in the idle fade. */
@@ -540,6 +605,8 @@ html[data-theme="light"] .live-page__section-head > span {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  body:has([data-live-page]) .site-header,
+  body:has([data-live-page]) .site-footer,
   .live-page__ambient,
   .live-page__ambient-layer,
   .live-page__ui,
