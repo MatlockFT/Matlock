@@ -286,17 +286,16 @@ test.describe('Article native sharing on mobile', () => {
       await expect(video).toHaveAttribute('webkit-playsinline', '');
 
       const source = await video.getAttribute('src');
-      expect(source).toContain('/releases/download/writer-media-2026-09/');
+      expect(source).toContain('/assets/article-media/');
       expect(source).toMatch(/\.mp4(?:$|\?)/i);
 
-      const mediaResponse = await request.get(source, {
+      const mediaResponse = await request.get(new URL(source, BASE).toString(), {
         headers: { Range: 'bytes=0-4095' },
         timeout: 30000
       });
-      expect([200, 206]).toContain(mediaResponse.status());
-      expect(['video/mp4', 'application/octet-stream']).toContain(
-        (mediaResponse.headers()['content-type'] || '').split(';')[0].trim().toLowerCase()
-      );
+      expect(mediaResponse.status()).toBe(206);
+      expect((mediaResponse.headers()['content-type'] || '').split(';')[0].trim().toLowerCase()).toBe('video/mp4');
+      expect(mediaResponse.headers()['content-range'] || '').toMatch(/^bytes 0-4095\//i);
       const mediaBytes = await mediaResponse.body();
       expect(mediaBytes.length).toBeGreaterThanOrEqual(12);
       expect(mediaBytes.toString('ascii', 4, 8)).toBe('ftyp');
