@@ -17,6 +17,7 @@
   const liveList = root.querySelector("[data-live-list]");
   const liveCount = root.querySelector("[data-live-count]");
   const liveSection = root.querySelector("[data-live-section]");
+  const liveHeading = root.querySelector("#live-now-title");
   const upcomingList = root.querySelector("[data-upcoming-list]");
   const upcomingCount = root.querySelector("[data-upcoming-count]");
   const replayArm = root.querySelector("[data-replay-arm]");
@@ -1320,6 +1321,7 @@
     }
 
     root.classList.remove("is-direct-only");
+    if (liveHeading) liveHeading.textContent = "Other live streams";
     const previousVideoId = currentVideoId;
     const changingVideo = previousVideoId !== event.video_id;
     currentVideoId = event.video_id;
@@ -1389,6 +1391,7 @@
     stateWrap?.classList.add("is-live");
     if (stateText) stateText.textContent = "Live on YouTube";
     if (nowPlayingLabel) nowPlayingLabel.textContent = "Live streams";
+    if (liveHeading) liveHeading.textContent = "Live streams on YouTube";
 
     if (featured) {
       title.textContent = featured.title || "Live broadcast";
@@ -1424,6 +1427,7 @@
   const showStandby = (upcoming) => {
     root.classList.remove("is-live", "is-direct-only");
     root.classList.add("is-offline");
+    if (liveHeading) liveHeading.textContent = "Other live streams";
     hideEmbedFallback();
     screen.dataset.state = "offline";
     stateWrap?.classList.remove("is-live");
