@@ -506,6 +506,79 @@ html[data-theme="light"] .live-page__player-stage::before {
   pointer-events: auto;
 }
 
+.live-page__replay-window {
+  display: grid;
+  gap: .28rem;
+  width: 118px;
+  opacity: .42;
+  transition: opacity .2s ease;
+}
+
+.live-page__replay.is-buffering .live-page__replay-window {
+  opacity: .92;
+}
+
+.live-page__replay-window-track {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255,255,255,.11);
+}
+
+.live-page__replay-window-fill {
+  display: block;
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: rgba(255,255,255,.52);
+  transition: width .22s linear, background-color .18s ease;
+}
+
+.live-page__replay-window.is-ready .live-page__replay-window-fill {
+  width: 100% !important;
+  background: rgba(255,75,80,.52);
+}
+
+.live-page__replay-window-now {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff3f45;
+  box-shadow: 0 0 9px rgba(255,63,69,.65);
+  transform: translate(0,-50%);
+  opacity: 0;
+}
+
+.live-page__replay-window.is-ready .live-page__replay-window-now {
+  opacity: 1;
+  animation: replay-now-pulse 1.25s ease-in-out infinite;
+}
+
+.live-page__replay-window-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: .5rem;
+  color: rgba(255,255,255,.5);
+  font: 800 .47rem/1 var(--v3-sans);
+  letter-spacing: .045em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.live-page__replay-window.is-ready .live-page__replay-window-labels {
+  color: rgba(255,255,255,.7);
+}
+
+@keyframes replay-now-pulse {
+  0%,100% { opacity: .72; box-shadow: 0 0 7px rgba(255,63,69,.4); }
+  50% { opacity: 1; box-shadow: 0 0 13px rgba(255,63,69,.85); }
+}
+
 .live-page__replay-arm,
 .live-page__replay-save {
   display: inline-grid;
@@ -604,6 +677,14 @@ html[data-theme="light"] .live-page__player-stage::before {
 
 .live-page.is-ui-idle .live-page__replay-status {
   opacity: 0;
+}
+
+.live-page.is-ui-idle .live-page__replay-window {
+  opacity: .34;
+}
+
+.live-page.is-ui-idle .live-page__replay.is-buffering .live-page__replay-window {
+  opacity: .68;
 }
 
 .live-page.is-ui-idle .live-page__replay-arm:not(.is-buffering),
@@ -923,6 +1004,10 @@ html[data-theme="light"] .live-page__player-stage::before {
     flex: 0 0 auto;
     gap: .48rem;
     margin-left: auto;
+  }
+
+  .live-page__replay-window {
+    width: 92px;
   }
 
   .live-page__replay-arm,
