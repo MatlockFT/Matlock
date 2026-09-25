@@ -1,0 +1,113 @@
+name: Probe current production Live playback
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/probe-current-live.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Chromium
+        run: |
+          npm install --no-save --no-package-lock @playwright/test@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Probe production player
+        run: |
+          node <<'NODE'
+          const { chromium } = require('@playwright/test');
+
+          async function iframeState(page) {
+            const yt = page.frames().find(frame => frame.url().includes('youtube.com/embed'));
+            if (!yt) return { found: false };
+            let video = null;
+            try {
+              const count = await yt.locator('video').count();
+              if (count) {
+                video = await yt.locator('video').first().evaluate(v => ({
+                  paused: v.paused,
+                  currentTime: v.currentTime,
+                  duration: v.duration,
+                  readyState: v.readyState,
+                  networkState: v.networkState,
+                  muted: v.muted,
+                  volume: v.volume,
+                  error: v.error ? v.error.code : 0
+                }));
+              }
+            } catch (e) {
+              video = { inspectError: String(e) };
+            }
+            let titleHref = null;
+            try {
+              titleHref = await yt.locator('.ytp-title-link').first().getAttribute('href');
+            } catch {}
+            return { found: true, frameUrl: yt.url(), titleHref, video };
+          }
+
+          (async () => {
+            const browser = await chromium.launch();
+            const context = await browser.newContext({ viewport: { width: 1365, height: 900 } });
+            const page = await context.newPage();
+            page.on('console', msg => console.log('PAGE_CONSOLE', msg.type(), msg.text()));
+            page.on('pageerror', err => console.log('PAGE_ERROR', err.message));
+
+            await page.goto('https://mmamatlock.com/live/?playback_probe=' + Date.now(), {
+              waitUntil: 'domcontentloaded',
+              timeout: 45000
+            });
+            await page.waitForSelector('[data-live-page]', { timeout: 30000 });
+            await page.waitForTimeout(7000);
+
+            const pageState = async label => {
+              const outer = await page.evaluate(() => ({
+                title: document.querySelector('[data-live-title]')?.textContent?.trim() || null,
+                iframeSrc: document.querySelector('[data-live-player]')?.getAttribute('src') || null,
+                screenState: document.querySelector('[data-live-screen]')?.dataset?.state || null,
+                playLabel: document.querySelector('[data-media-play]')?.getAttribute('aria-label') || null,
+                playGlyph: document.querySelector('[data-media-play-icon]')?.textContent || null,
+                liveJs: [...document.scripts].map(s => s.src).find(src => src.includes('/assets/live.js')) || null
+              }));
+              console.log(label, JSON.stringify({ outer, inner: await iframeState(page) }));
+            };
+
+            await pageState('BEFORE_PLAY');
+
+            await page.locator('[data-media-play]').click();
+            await page.waitForTimeout(4000);
+            await pageState('AFTER_PLAY');
+
+            await page.locator('[data-media-play]').click();
+            await page.waitForTimeout(1500);
+            await pageState('AFTER_SECOND_CLICK');
+
+            await page.screenshot({ path: 'current-live-probe.png', fullPage: true });
+            await browser.close();
+          })().catch(err => {
+            console.error(err);
+            process.exit(1);
+          });
+          NODE
+      - name: Upload screenshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: current-live-probe
+          path: current-live-probe.png
+      - name: Remove one-shot probe
+        if: always()
+        run: |
+          git config user.name "MatlockFT"
+          git config user.email "fighttalkmma@protonmail.com"
+          git rm .github/workflows/probe-current-live.yml
+          git commit -m "Remove current Live playback probe" || exit 0
+          git push origin HEAD:main
