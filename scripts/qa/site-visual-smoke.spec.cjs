@@ -642,11 +642,79 @@ test.describe('Live V3 site rollout', () => {
     expect(new URL(liveSrc).searchParams.get('autoplay')).toBe('1');
     expect(new URL(liveSrc).searchParams.get('mute')).toBe('1');
     expect(new URL(liveSrc).searchParams.get('controls')).toBe('1');
+    expect(await page.locator('[data-live-player]').evaluate(node => getComputedStyle(node).pointerEvents)).toBe('auto');
+    expect(await page.locator('[data-media-play]').count()).toBe(0);
+    expect(await page.locator('[data-media-mute]').count()).toBe(0);
     await expect.poll(
       () => page.evaluate(() => window.__livePlayCalls || 0),
       { timeout: 7000 }
     ).toBeGreaterThan(0);
     expect(await page.evaluate(() => window.__liveMuteCalls || 0)).toBeGreaterThan(0);
+    await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'live');
+  });
+
+  test('stuck YouTube embed exposes direct-watch fallback', async ({ page }) => {
+    const liveEvent = {
+      event_id: 'fen:cv2svtEOyIw',
+      promotion_id: 'fen',
+      promotion: 'Fight Exclusive Night',
+      short_name: 'FEN',
+      country: 'Poland',
+      priority: 72,
+      video_id: 'cv2svtEOyIw',
+      title: 'FACE TO FACE + WAŻENIE PRZED FEN 63',
+      watch_url: 'https://www.youtube.com/watch?v=cv2svtEOyIw',
+      status: 'live',
+      is_live: true,
+      embeddable: true,
+      api_verified: true,
+      stale: false
+    };
+
+    await page.addInitScript(() => {
+      class FakePlayer {
+        constructor(_id, options) {
+          this.options = options || {};
+          setTimeout(() => this.options.events?.onReady?.({ target: this }), 0);
+        }
+        getPlayerState() { return 5; }
+        getVolume() { return 0; }
+        isMuted() { return true; }
+        getCurrentTime() { return 0; }
+        getDuration() { return 0; }
+        getPlaybackQuality() { return 'auto'; }
+        mute() {}
+        playVideo() {}
+        pauseVideo() {}
+        destroy() {}
+      }
+      window.YT = { Player: FakePlayer, PlayerState: { PLAYING: 1 } };
+    });
+
+    await page.route('**/assets/data/global-live.json*', route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          version: 5,
+          generated_at: new Date().toISOString(),
+          selected_event_id: liveEvent.event_id,
+          events: [liveEvent],
+          upcoming: [],
+          live_count: 1,
+          upcoming_count: 0,
+          sources: {}
+        })
+      })
+    );
+    await page.route('https://www.youtube.com/embed/**', route =>
+      route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>mock</title>' })
+    );
+
+    await page.goto(targetUrl('/live/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'live');
+    await expect(page.locator('[data-live-embed-fallback]')).toBeVisible({ timeout: 12000 });
+    await expect(page.locator('[data-live-embed-fallback-link]')).toHaveAttribute('href', /cv2svtEOyIw/);
     await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'live');
   });
 
