@@ -151,7 +151,7 @@ function applyDisplay(){
 }
 function rebuildSlides(){slides=buildSlides();if(index>=slides.length)index=0;applyDisplay()}
 function chicagoDateKey(){const parts=new Intl.DateTimeFormat("en-US",{timeZone:"America/Chicago",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());const get=t=>parts.find(p=>p.type===t)?.value||"";return get("year")+"-"+get("month")+"-"+get("day")}
-function normalizedEvents(data){const list=Array.isArray(data?.events)?data.events:[],today=chicagoDateKey();return list.filter(x=>{const day=scalar(x?.date);if(/^\d{4}-\d{2}-\d{2}$/.test(day))return day>=today;const p=parseEventDate(x);return p&&p.date.getTime()>Date.now()-6*3600000}).sort((a,b)=>String(scalar(a.starts_at)||scalar(a.date)).localeCompare(String(scalar(b.starts_at)||scalar(b.date)))}
+function normalizedEvents(data){const list=Array.isArray(data?.events)?data.events:[],today=chicagoDateKey();return list.filter(x=>{const day=scalar(x?.date);if(/^\d{4}-\d{2}-\d{2}$/.test(day))return day>=today;const p=parseEventDate(x);return p&&p.date.getTime()>Date.now()-6*3600000}).sort((a,b)=>String(scalar(a.starts_at)||scalar(a.date)).localeCompare(String(scalar(b.starts_at)||scalar(b.date))))}
 
 function configureBed(){
   const c=cfg(),on=Boolean(c.modules.music&&c.audio.enabled&&c.audio.musicUrl);
