@@ -1,5 +1,5 @@
   function renderMarkdown(markdown) {
-    let source = String(markdown || '').replace(/\r\n?/g, '\n');
+    let source = normalizeMarkdownDividers(markdown);
     source = source.replace(/<!--\s*WRITER_(?:IMAGE|VIDEO)_UPLOAD_[\w:-]+\s*-->/g, '');
     const rawHtmlBlocks = [];
     source = source.replace(/<section\b[\s\S]*?<\/section>/gi, html => {
