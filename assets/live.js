@@ -572,6 +572,9 @@
     const params = new URLSearchParams({
       autoplay: "1",
       playsinline: "1",
+      controls: "0",
+      fs: "0",
+      iv_load_policy: "3",
       rel: "0",
       enablejsapi: "1",
       origin: window.location.origin
