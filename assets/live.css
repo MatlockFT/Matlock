@@ -13,11 +13,18 @@ body:has([data-live-page]) .site-main {
 
 /* The Live page stays visually open; lighting is confined to the player. */
 body:has([data-live-page]) .site-header,
-body:has([data-live-page]) .v3-sticky-shell,
 body:has([data-live-page]) .site-main,
 body:has([data-live-page]) .site-footer {
   position: relative;
   z-index: 1;
+}
+
+body:has([data-live-page]) .v3-sticky-shell {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 body:has([data-live-page]) .site-header,
@@ -1451,17 +1458,6 @@ html[data-theme="light"] .live-page {
 
 /* Live page compact shell + state hierarchy */
 
-/* The fixed ticker/nav already reserves its own height. Keep the Live masthead
-   visually attached to that rail without changing the MATLOCK wordmark scale. */
-body:has([data-live-page]) .logo-banner {
-  min-height: 88px !important;
-  padding: .28rem 1rem .2rem !important;
-}
-
-body:has([data-live-page]) .logo-banner > a {
-  align-items: center;
-}
-
 /* Offline is a status + schedule view, not an empty media player. */
 .live-page.is-offline .live-page__player-stage,
 .live-page.is-offline .live-page__control-dock {
@@ -1498,11 +1494,6 @@ body:has([data-live-page]) .logo-banner > a {
 }
 
 @media (max-width: 700px) {
-  body:has([data-live-page]) .logo-banner {
-    min-height: 68px !important;
-    padding: .2rem .7rem .14rem !important;
-  }
-
   .live-page.is-offline .live-page__now-playing {
     grid-template-columns: minmax(0, 1fr) auto;
     gap: .65rem;
