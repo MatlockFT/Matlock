@@ -10,7 +10,7 @@ const VIDEOS_FALLBACK='/assets/data/mma-videos.json';
 const EVENTS='/assets/data/upcoming-events-live.json';
 const DEFAULT={"version":1,"revision":1,"updatedAt":null,"modules":{"news":true,"video":true,"events":true,"ticker":true,"comingUp":true,"music":true},"rundown":["news","news","video","news","event"],"timing":{"newsSeconds":45,"eventSeconds":35,"transitionMs":650,"controlPollSeconds":10},"news":{"maxAgeHours":48,"maxItems":16,"sources":[],"requireContext":true,"contextFacts":4},"video":{"maxAgeHours":48,"maxItems":8,"minSeconds":20,"maxSeconds":600,"volume":50,"channels":[],"playFull":true},"events":{"maxItems":3,"usePosters":true},"audio":{"enabled":true,"musicUrl":"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3","musicVolume":14,"duckVolume":3.5},"ticker":{"enabled":true,"speedSeconds":240,"maxItems":14},"visual":{"flipNews":true,"showRail":true,"showClock":true,"showBadge":true,"showSource":true},"sources":{"customNewsFeeds":[],"customVideoChannels":[]},"hidden":{"news":[],"videos":[],"events":[]},"forceNext":null};
 const q=s=>app.querySelector(s),qa=s=>[...app.querySelectorAll(s)];
-let state=structuredClone(DEFAULT),saved=structuredClone(DEFAULT),feeds={news:null,videos:null,events:null},contentTab='news',dragIndex=-1,toastTimer=0,feedWarnings=[];
+let state=structuredClone(DEFAULT),saved=structuredClone(DEFAULT),feeds={news:null,videos:null,events:null},contentTab='news',dragIndex=-1,toastTimer=0,feedWarnings=[],previewIndex=0;
 
 function clone(v){return JSON.parse(JSON.stringify(v))}
 function deepMerge(base,extra){const out=clone(base);for(const[k,v]of Object.entries(extra||{})){if(v&&typeof v==='object'&&!Array.isArray(v)&&out[k]&&typeof out[k]==='object'&&!Array.isArray(out[k]))out[k]=deepMerge(out[k],v);else out[k]=v}return out}
@@ -28,11 +28,95 @@ function markDirty({restartPreview=false}={}){
   renderDraftState();
   updatePreview(restartPreview);
 }
-function updatePreview(restart=false){const frame=q('[data-preview]');try{frame.contentWindow?.postMessage({type:'matlock-broadcast-control-preview',config:state,restart},location.origin)}catch{}}
-function scalePreview(){const shell=q('.bc-preview-frame'),frame=q('[data-preview]');if(!shell||!frame)return;const s=shell.clientWidth/1920;shell.style.setProperty('--preview-scale',String(s));}
+function updatePreview(restart=false){if(restart)previewIndex=0;renderNativePreview()}
+
 function normalize(v){return String(v??'').trim()}
 function itemId(type,item){if(type==='news')return item.id||item.url;if(type==='video')return item.videoId;if(type==='event')return item.id||[item.promotion,item.title,item.date].join('|');return''}
 
+function previewFresh(value,hours){const time=Date.parse(value||'');return Number.isFinite(time)&&Date.now()-time<=Number(hours||48)*3600000&&time<=Date.now()+300000}
+function previewContext(value){
+  return String(value||'').replace(/\s+/g,' ').replace(/\bRead the Full Article Here\b.*$/i,'').trim();
+}
+function previewFacts(value,limit=3){
+  const text=previewContext(value);if(!text)return[];
+  let parts=text.split(/(?<=[.!?])\s+(?=[A-Z0-9“"'(])/).map(x=>x.trim()).filter(x=>x.length>20);
+  if(!parts.length)parts=[text];
+  return parts.slice(0,Math.max(1,limit)).map(x=>x.length>150?x.slice(0,147).trim()+'…':x);
+}
+function previewEventTitle(e){return normalize(e?.title)||normalize(e?.promotion)||'Upcoming event'}
+function previewEventContext(e){
+  const facts=[];
+  if(e?.date)facts.push('Date: '+e.date);
+  if(e?.main_event&&typeof e.main_event==='object'){
+    const fighters=(e.main_event.fighters||[]).map(normalize).filter(Boolean);if(fighters.length)facts.push('Main event: '+fighters.join(' vs. '));
+  }else if(e?.main_event)facts.push('Main event: '+normalize(e.main_event));
+  if(e?.venue)facts.push(normalize(e.venue));
+  return facts;
+}
+function buildNativePreviewItems(){
+  const queues={news:[],video:[],event:[]};
+  if(state.modules.news){
+    const enabled=state.news.sources||[],hidden=new Set(state.hidden.news||[]);
+    queues.news=[feeds.news?.topStory,...(feeds.news?.stories||[])].filter(Boolean)
+      .filter(x=>x.title&&previewFresh(x.publishedAt,state.news.maxAgeHours))
+      .filter(x=>!enabled.length||enabled.includes(x.source))
+      .filter(x=>!hidden.has(itemId('news',x)))
+      .map(x=>({type:'news',id:itemId('news',x),title:x.title,source:x.source||'Combat Sports',image:x.image||x.imageUrl||x.thumbnail||x.ogImage||'',context:previewFacts(x.context||x.excerpt||x.summary||x.description,Number(state.news.contextFacts||4)),publishedAt:x.publishedAt}))
+      .filter(x=>!state.news.requireContext||x.context.length)
+      .slice(0,Number(state.news.maxItems||16));
+  }
+  if(state.modules.video){
+    const enabled=state.video.channels||[],hidden=new Set(state.hidden.videos||[]);
+    queues.video=(feeds.videos?.videos||[]).filter(x=>{
+      const duration=Number(x.durationSeconds||0);
+      return x.title&&x.videoId&&previewFresh(x.publishedAt,state.video.maxAgeHours)&&duration>=Number(state.video.minSeconds||0)&&duration<=Number(state.video.maxSeconds||3600)&&x.embeddable!==false;
+    }).filter(x=>!enabled.length||enabled.includes(x.channel)).filter(x=>!hidden.has(itemId('video',x)))
+      .map(x=>({type:'video',id:x.videoId,title:x.title,source:x.channel||'YouTube',image:x.thumbnail||'',context:['Video plays with audio at '+Number(state.video.volume||0)+'% volume'],durationSeconds:Number(x.durationSeconds||0),publishedAt:x.publishedAt}))
+      .slice(0,Number(state.video.maxItems||8));
+  }
+  if(state.modules.events){
+    const hidden=new Set(state.hidden.events||[]);
+    queues.event=(feeds.events?.events||[]).filter(x=>normalize(x.date)>=(new Date().toISOString().slice(0,10))).filter(x=>!hidden.has(itemId('event',x)))
+      .map(x=>({type:'event',id:itemId('event',x),title:previewEventTitle(x),source:normalize(x.promotion)||'MMA',image:state.events.usePosters?(x.poster_url||x.image||''):'',context:previewEventContext(x),publishedAt:x.date}))
+      .slice(0,Number(state.events.maxItems||3));
+  }
+  const pattern=(state.rundown||[]).filter(x=>['news','video','event'].includes(x)),recipe=pattern.length?pattern:['news'],out=[];
+  let safety=0;
+  while((queues.news.length||queues.video.length||queues.event.length)&&safety<100){
+    let moved=false;for(const type of recipe){if(queues[type]?.length){out.push(queues[type].shift());moved=true}}
+    if(!moved)break;safety++;
+  }
+  return out;
+}
+function previewDuration(seconds){const n=Math.max(0,Math.round(Number(seconds||0)));if(!n)return'';const m=Math.floor(n/60),s=String(n%60).padStart(2,'0');return m+':'+s}
+function previewRelative(value){
+  const t=Date.parse(value||'');if(!Number.isFinite(t))return'PREVIEW';
+  const mins=Math.max(0,Math.round((Date.now()-t)/60000));if(mins<2)return'JUST NOW';if(mins<60)return mins+' MIN AGO';const hrs=Math.round(mins/60);return hrs<24?hrs+' HR AGO':'RECENT';
+}
+function renderNativePreview(){
+  const items=buildNativePreviewItems(),empty=q('[data-preview-empty]'),frame=q('[data-native-preview]');
+  if(!frame)return;
+  const count=items.length;
+  q('[data-preview-position]').textContent=count?(previewIndex%count+1)+' / '+count:'0 / 0';
+  q('[data-preview-mode]').textContent=dirty()?'Draft program':'Live program';
+  if(!count){empty.hidden=false;return}
+  empty.hidden=true;previewIndex=((previewIndex%count)+count)%count;
+  const item=items[previewIndex],image=q('[data-preview-image]'),fill=q('[data-preview-fill]'),play=q('[data-preview-play]');
+  const url=item.image||'';image.src=url;image.style.display=url?'block':'none';fill.style.backgroundImage=url?'url("'+String(url).replace(/"/g,'%22')+'")':'radial-gradient(circle at 40% 35%,#242424,#080808 70%)';
+  q('[data-preview-title]').textContent=item.title||'Combat Sports Update';
+  q('[data-preview-kicker]').textContent=item.type==='video'?'LATEST VIDEO':item.type==='event'?'FIGHT CALENDAR':'NEWS UPDATE';
+  q('[data-preview-badge]').textContent=item.type==='video'?'NOW PLAYING':item.type==='event'?'UP NEXT':'LATEST';
+  q('[data-preview-source]').textContent=String(item.source||'Combat Sports').toUpperCase();
+  q('[data-preview-time]').textContent=item.type==='event'?'UPCOMING':previewRelative(item.publishedAt);
+  const ctx=q('[data-preview-context]');ctx.innerHTML=(item.context||[]).slice(0,4).map(x=>'<p>'+escapeHtml(x)+'</p>').join('');
+  play.hidden=item.type!=='video';q('[data-preview-video-duration]').textContent=item.type==='video'?previewDuration(item.durationSeconds):'';
+  const upcoming=[];for(let o=1;o<=3&&o<count;o++)upcoming.push(items[(previewIndex+o)%count]);
+  q('[data-preview-coming-up]').innerHTML=upcoming.map(x=>'<div class="bc-preview-upcoming-item"><b>'+(x.type==='video'?'VIDEO':x.type==='event'?'EVENT':'NEWS')+'</b><span>'+escapeHtml(x.title||'')+'</span></div>').join('');
+  const tickerOn=state.modules.ticker&&state.ticker.enabled!==false;
+  q('[data-preview-ticker]').style.display=tickerOn?'grid':'none';
+  const headlines=[feeds.news?.topStory,...(feeds.news?.stories||[])].filter(Boolean).map(x=>x.title).filter(Boolean).slice(0,Math.max(1,Number(state.ticker.maxItems||14)));
+  q('[data-preview-ticker-text]').textContent=headlines.slice(0,3).join('   ◆   ')||'No current ticker headlines';
+}
 async function fetchJson(url){const u=new URL(url,location.href);u.searchParams.set('_',Date.now());const r=await fetch(u,{cache:'no-store'});if(!r.ok)throw new Error(r.status);return r.json()}
 async function loadAll(){
   const status=q('[data-live-status]');status.textContent='Loading control…';feedWarnings=[];
@@ -220,10 +304,9 @@ q('[data-add-video-source]').onclick=()=>{
 q('[data-apply-live]').onclick=()=>saveLive().catch(()=>{});
 q('[data-reset-draft]').onclick=()=>{state=clone(saved);renderAll();updatePreview(true);toast('Draft discarded. Preview restored to the live program.')};
 q('[data-custom-next]').onclick=()=>customForce('next');q('[data-custom-now]').onclick=()=>customForce('now');
-q('[data-preview-reload]').onclick=()=>{const f=q('[data-preview]');f.src='/broadcast/?controlPreview=1&v='+Date.now()};
-q('[data-preview]').addEventListener('load',()=>setTimeout(()=>updatePreview(true),350));
-window.addEventListener('resize',scalePreview);new ResizeObserver(scalePreview).observe(q('.bc-preview-frame'));
+q('[data-preview-prev]').onclick=()=>{previewIndex-=1;renderNativePreview()};
+q('[data-preview-next]').onclick=()=>{previewIndex+=1;renderNativePreview()};
 window.addEventListener('matlock-broadcast:auth',()=>toast('GitHub connected. You can apply changes live.'));
 window.addEventListener('beforeunload',e=>{if(!dirty())return;e.preventDefault();e.returnValue=''});
-loadAll();scalePreview();
+loadAll();
 })();
