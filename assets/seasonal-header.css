@@ -48,11 +48,11 @@
 
     .desktop-brand-pumpkin {
         position: absolute;
-        right: clamp(8px, .65vw, 14px);
-        bottom: clamp(6px, .45vw, 10px);
+        right: -34px;
+        bottom: 0;
         z-index: 3;
-        width: clamp(44px, 3.45vw, 58px);
-        height: clamp(44px, 3.45vw, 58px);
+        width: clamp(40px, 2.85vw, 48px);
+        height: clamp(40px, 2.85vw, 48px);
         margin: 0;
         display: block;
         pointer-events: none;
