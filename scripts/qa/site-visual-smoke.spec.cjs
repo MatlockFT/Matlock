@@ -506,11 +506,11 @@ test.describe('Live V3 site rollout', () => {
         getCurrentTime() { return 0; }
         getDuration() { return 100; }
         getPlaybackQuality() { return 'auto'; }
-        cueVideoById(videoId) {
+        loadVideoById(videoId) {
           this.videoId = videoId;
-          this.state = 5;
-          window.__cueCalls = [...(window.__cueCalls || []), videoId];
-          setTimeout(() => this.options.events?.onStateChange?.({ data: 5 }), 0);
+          this.state = 1;
+          window.__loadCalls = [...(window.__loadCalls || []), videoId];
+          setTimeout(() => this.options.events?.onStateChange?.({ data: 1 }), 0);
         }
         playVideo() {
           this.state = 1;
@@ -524,7 +524,7 @@ test.describe('Live V3 site rollout', () => {
         Player: FakePlayer,
         PlayerState: { PLAYING: 1 }
       };
-      window.__cueCalls = [];
+      window.__loadCalls = [];
       window.__playCalls = [];
       window.__destroyCalls = 0;
     });
@@ -559,12 +559,16 @@ test.describe('Live V3 site rollout', () => {
 
     await expect(page.locator('[data-live-title]')).toContainText('FACE TO FACE');
     await expect.poll(
-      () => page.evaluate(() => window.__cueCalls || []),
+      () => page.evaluate(() => window.__loadCalls || []),
       { timeout: 5000 }
     ).toContain('cv2svtEOyIw');
 
-    await page.locator('[data-media-play]').click();
+    await expect(page.locator('[data-media-play]')).toHaveAttribute('aria-label', 'Pause');
 
+    await page.locator('[data-media-play]').click();
+    await expect(page.locator('[data-media-play]')).toHaveAttribute('aria-label', 'Play');
+
+    await page.locator('[data-media-play]').click();
     await expect.poll(
       () => page.evaluate(() => window.__playCalls || []),
       { timeout: 5000 }
@@ -642,6 +646,8 @@ test.describe('Live V3 site rollout', () => {
     await page.goto(targetUrl('/live/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
 
     await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'live');
+    const liveSrc = await page.locator('[data-live-player]').getAttribute('src');
+    expect(new URL(liveSrc).searchParams.get('autoplay')).toBe('0');
     await expect.poll(
       () => page.evaluate(() => window.__livePlayCalls || 0),
       { timeout: 7000 }
@@ -716,9 +722,6 @@ test.describe('Live V3 site rollout', () => {
     await page.goto(targetUrl('/live/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
 
     const iframe = page.locator('[data-live-player]');
-    await expect(iframe).toHaveAttribute('src', /abcdefghijk/, { timeout: 10000 });
-    const src = await iframe.getAttribute('src');
-    expect(new URL(src).searchParams.get('autoplay')).toBe('0');
 
     await expect.poll(
       () => page.evaluate(() => window.__endedReplayPlayCalls || 0),
