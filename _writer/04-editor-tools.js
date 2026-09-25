@@ -135,6 +135,226 @@ function insertBlock(text) {
     if (type === 'divider') return insertBlock('---');
   }
 
+  let editingStructuredBlockId = '';
+
+  const taleDefaultRows = [
+    'Record |  | ',
+    'Age |  | ',
+    'Height |  | ',
+    'Arm Reach |  | ',
+    'UFC Record |  | ',
+    'Record Outside UFC |  | ',
+    'Total Finishes |  | ',
+    'TKO / KO |  | ',
+    'Submission |  | ',
+    'Unanimous Decision |  | ',
+    'Split Decision |  | '
+  ].join('\n');
+
+  function structuredMeta(code) {
+    const source = String(code || '');
+    const type = source.match(/data-writer-block="(stats|tale|pick)"/)?.[1] || '';
+    const raw = source.match(/data-writer-config="([^"]+)"/)?.[1] || '';
+    if (!type || !raw) return null;
+    try { return { type, config: JSON.parse(decodeURIComponent(raw)) }; }
+    catch { return null; }
+  }
+
+  function encodedStructuredConfig(config) {
+    return escapeHtml(encodeURIComponent(JSON.stringify(config || {})));
+  }
+
+  function pipeRows(text, width = 3) {
+    return String(text || '').split('\n').map(line => line.trim()).filter(Boolean).map(line => {
+      const cells = line.split('|').map(cell => cell.trim());
+      while (cells.length < width) cells.push('');
+      return cells.slice(0, width);
+    });
+  }
+
+  function structuredSection(type, config, inner) {
+    return '<section class="article-html-visual" data-writer-block="' + type + '" data-writer-config="' +
+      encodedStructuredConfig(config) + '">\n' + inner + '\n</section>';
+  }
+
+  function buildStatsVisual(config) {
+    const body = pipeRows(config.rows, 3).map(row =>
+      '<tr><td>' + escapeHtml(row[0]) + '</td><td>' + escapeHtml(row[1]) +
+      '</td><td>' + escapeHtml(row[2]) + '</td></tr>'
+    ).join('');
+    return structuredSection('stats', config,
+      '<div class="matlock-stats-card"><table><thead><tr><th>STAT</th><th>COUNT / LEADER</th><th>FIGHTER(S)</th></tr></thead><tbody>' +
+      body + '</tbody></table></div>'
+    );
+  }
+
+  function recentFormMarkup(text) {
+    return pipeRows(text, 3).map(row => {
+      const result = String(row[0] || '').toUpperCase();
+      const resultClass = result === 'W' ? 'win' : result === 'L' ? 'loss' : 'draw';
+      return '<div class="mfc-form-row"><span class="mfc-result ' + resultClass + '">' +
+        escapeHtml(result || '—') + '</span><div><strong>' + escapeHtml(row[1]) +
+        '</strong><small>' + escapeHtml(row[2]) + '</small></div></div>';
+    }).join('');
+  }
+
+  function fighterPortraitMarkup(side, fighter) {
+    const image = String(fighter.image || '').trim();
+    const style = '--portrait-x:' + Number(fighter.x || 50) + '%;--portrait-y:' +
+      Number(fighter.y || 50) + '%;--portrait-zoom:' + (Number(fighter.zoom || 100) / 100) + ';';
+    return '<div class="mfc-portrait mfc-' + side + '" style="' + style + '">' +
+      (image ? '<img src="' + escapeHtml(image) + '" alt="' + escapeHtml(fighter.name || '') + '">' : '') +
+      '</div>';
+  }
+
+  function fighterTopMarkup(side, fighter) {
+    return '<div class="mfc-fighter mfc-' + side + '-fighter">' +
+      fighterPortraitMarkup(side, fighter) +
+      '<div class="mfc-meta"><span class="mfc-division">' + escapeHtml(fighter.division || '') +
+      '</span><strong class="mfc-name">' + escapeHtml(fighter.name || '') +
+      '</strong><div class="mfc-meta-strip"><span class="mfc-odds">ML <b>' +
+      escapeHtml(fighter.odds || '—') + '</b></span><span class="mfc-last5"><b>' +
+      escapeHtml(fighter.last5 || '—') + '</b> LAST 5</span></div></div></div>';
+  }
+
+  function buildTaleVisual(config) {
+    const a = config.a || {};
+    const b = config.b || {};
+    const taleRows = pipeRows(config.rows, 3).map((row, index) =>
+      '<div class="mfc-tale-row' + (index === 0 ? ' featured' : '') + '"><strong>' +
+      escapeHtml(row[1]) + '</strong><span>' + escapeHtml(row[0]) +
+      '</span><strong>' + escapeHtml(row[2]) + '</strong></div>'
+    ).join('');
+    const recentA = recentFormMarkup(a.recent);
+    const recentB = recentFormMarkup(b.recent);
+    const recent = recentA || recentB
+      ? '<div class="mfc-form-wrap"><div class="mfc-column">' + recentA +
+        '</div><div class="mfc-column">' + recentB + '</div></div>'
+      : '';
+    const opponents = (a.opponentsRecord || b.opponentsRecord || a.opponentsPct || b.opponentsPct)
+      ? '<div class="mfc-opponents"><div><strong>' + escapeHtml(a.opponentsRecord || '—') +
+        '</strong><span>' + escapeHtml(a.opponentsPct || '') + '</span></div><p>OPPONENTS COMBINED RECORD</p><div><strong>' +
+        escapeHtml(b.opponentsRecord || '—') + '</strong><span>' + escapeHtml(b.opponentsPct || '') + '</span></div></div>'
+      : '';
+    const inner = '<div class="matlock-fight-card"><div class="mfc-top">' +
+      fighterTopMarkup('left', a) +
+      '<div class="mfc-center"><strong>MATCHUP</strong><i></i></div>' +
+      fighterTopMarkup('right', b) +
+      '</div>' + recent + opponents +
+      '<div class="mfc-tale"><div class="mfc-section-title">TALE OF THE TAPE</div>' +
+      taleRows + '</div></div>';
+    return structuredSection('tale', config, inner);
+  }
+
+  function buildPickVisual(config) {
+    const fighter = String(config.fighter || '').trim();
+    const method = String(config.method || '').trim();
+    const round = String(config.round || '').trim();
+    const result = [method, round].filter(Boolean).join(' · ');
+    const note = String(config.note || '').trim();
+    const inner = '<aside class="article-pick-card"><span class="article-pick-card__label">MATLOCK PICK</span>' +
+      '<div class="article-pick-card__main"><strong>' + escapeHtml(fighter) + '</strong>' +
+      (result ? '<span>' + escapeHtml(result) + '</span>' : '') + '</div>' +
+      (note ? '<p>' + escapeHtml(note) + '</p>' : '') + '</aside>';
+    return structuredSection('pick', config, inner);
+  }
+
+  function saveStructuredBlock(type, label, code) {
+    if (editingStructuredBlockId && htmlBlocks.has(editingStructuredBlockId)) {
+      const block = htmlBlocks.get(editingStructuredBlockId);
+      block.label = label;
+      block.code = code;
+      htmlBlocks.set(editingStructuredBlockId, block);
+      replaceHtmlToken(editingStructuredBlockId, htmlBlockToken(block));
+    } else {
+      const id = htmlBlockId();
+      const block = { id, label, code };
+      htmlBlocks.set(id, block);
+      insertBlock(htmlBlockToken(block));
+    }
+    editingStructuredBlockId = '';
+    renderHtmlBlockRail();
+    setHtmlBlockPanel(true);
+    scheduleAutosave();
+    updatePreview();
+  }
+
+  function taleImagePreview(side, localUrl = '') {
+    const dialog = app.querySelector('[data-tale-dialog]');
+    if (!dialog) return;
+    const path = dialog.querySelector('[data-tale-image-path="' + side + '"]')?.value.trim() || '';
+    const image = dialog.querySelector('[data-tale-image-preview="' + side + '"]');
+    const empty = dialog.querySelector('[data-tale-image-empty="' + side + '"]');
+    if (!image || !empty) return;
+    const x = Number(dialog.querySelector('[data-tale-image-x="' + side + '"]')?.value || 50);
+    const y = Number(dialog.querySelector('[data-tale-image-y="' + side + '"]')?.value || 50);
+    const zoom = Number(dialog.querySelector('[data-tale-image-zoom="' + side + '"]')?.value || 100) / 100;
+    const src = localUrl || (path ? writerPreviewAssetUrl(path) : '');
+    image.hidden = !src;
+    empty.hidden = Boolean(src);
+    if (src) image.src = src;
+    image.style.objectPosition = x + '% ' + y + '%';
+    image.style.transform = 'scale(' + zoom + ')';
+  }
+
+  function resetStatsDialog(config = {}) {
+    app.querySelector('[data-stats-dialog] [data-stats-rows]').value = config.rows || '';
+  }
+
+  function resetPickDialog(config = {}) {
+    const dialog = app.querySelector('[data-pick-dialog]');
+    dialog.querySelector('[data-pick-fighter]').value = config.fighter || '';
+    dialog.querySelector('[data-pick-method]').value = config.method || '';
+    dialog.querySelector('[data-pick-round]').value = config.round || '';
+    dialog.querySelector('[data-pick-note]').value = config.note || '';
+  }
+
+  function resetTaleDialog(config = {}) {
+    const dialog = app.querySelector('[data-tale-dialog]');
+    const a = config.a || {};
+    const b = config.b || {};
+    dialog.querySelector('[data-tale-a]').value = a.name || '';
+    dialog.querySelector('[data-tale-b]').value = b.name || '';
+    ['a','b'].forEach(side => {
+      const fighter = side === 'a' ? a : b;
+      dialog.querySelector('[data-tale-division="' + side + '"]').value = fighter.division || '';
+      dialog.querySelector('[data-tale-odds="' + side + '"]').value = fighter.odds || '';
+      dialog.querySelector('[data-tale-last5="' + side + '"]').value = fighter.last5 || '';
+      dialog.querySelector('[data-tale-image-path="' + side + '"]').value = fighter.image || '';
+      dialog.querySelector('[data-tale-image-x="' + side + '"]').value = fighter.x ?? 50;
+      dialog.querySelector('[data-tale-image-y="' + side + '"]').value = fighter.y ?? 50;
+      dialog.querySelector('[data-tale-image-zoom="' + side + '"]').value = fighter.zoom ?? 100;
+      dialog.querySelector('[data-tale-recent="' + side + '"]').value = fighter.recent || '';
+      dialog.querySelector('[data-tale-opponents-record="' + side + '"]').value = fighter.opponentsRecord || '';
+      dialog.querySelector('[data-tale-opponents-pct="' + side + '"]').value = fighter.opponentsPct || '';
+      taleImagePreview(side);
+    });
+    dialog.querySelector('[data-tale-rows]').value = config.rows || taleDefaultRows;
+  }
+
+  function openStructuredBlockById(id) {
+    const block = htmlBlocks.get(id);
+    const meta = structuredMeta(block?.code);
+    if (!meta) return false;
+    editingStructuredBlockId = id;
+    if (meta.type === 'stats') {
+      resetStatsDialog(meta.config);
+      app.querySelector('[data-stats-dialog]').showModal();
+      return true;
+    }
+    if (meta.type === 'tale') {
+      resetTaleDialog(meta.config);
+      app.querySelector('[data-tale-dialog]').showModal();
+      return true;
+    }
+    if (meta.type === 'pick') {
+      resetPickDialog(meta.config);
+      app.querySelector('[data-pick-dialog]').showModal();
+      return true;
+    }
+    return false;
+  }
+
   function openTool(type) {
     if (type === 'link' || type === 'citation') {
       linkMode = type;
@@ -150,9 +370,26 @@ function insertBlock(text) {
       openHtmlDialog();
       return;
     }
+    if (type === 'stats') {
+      editingStructuredBlockId = '';
+      resetStatsDialog();
+      app.querySelector('[data-stats-dialog]').showModal();
+      return;
+    }
+    if (type === 'tale') {
+      editingStructuredBlockId = '';
+      resetTaleDialog();
+      app.querySelector('[data-tale-dialog]').showModal();
+      return;
+    }
+    if (type === 'prediction') {
+      editingStructuredBlockId = '';
+      resetPickDialog();
+      app.querySelector('[data-pick-dialog]').showModal();
+      return;
+    }
     const map = {
-      image: '[data-image-dialog]', video: '[data-video-dialog]', youtube: '[data-youtube-dialog]', x: '[data-x-dialog]', table: '[data-table-dialog]',
-      tale: '[data-tale-dialog]', prediction: '[data-pick-dialog]', template: '[data-template-dialog]'
+      image: '[data-image-dialog]', video: '[data-video-dialog]', youtube: '[data-youtube-dialog]', x: '[data-x-dialog]'
     };
     const dialog = app.querySelector(map[type]);
     if (dialog) {
