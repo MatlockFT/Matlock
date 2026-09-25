@@ -24,6 +24,7 @@
   const mediaPlayIcon = root.querySelector("[data-media-play-icon]");
   const mediaMute = root.querySelector("[data-media-mute]");
   const mediaVolume = root.querySelector("[data-media-volume]");
+  const mediaQuality = root.querySelector("[data-media-quality]");
   const mediaLive = root.querySelector("[data-media-live]");
 
   let currentVideoId = "";
@@ -95,6 +96,32 @@
     return ytApiPromise;
   };
 
+  const setQualityLabel = (quality) => {
+    if (!mediaQuality) return;
+
+    const labels = {
+      small: "240P",
+      medium: "360P",
+      large: "480P",
+      hd720: "720P",
+      hd1080: "1080P",
+      highres: "HD+"
+    };
+
+    const label = labels[quality] || "AUTO";
+    mediaQuality.textContent = label;
+    mediaQuality.setAttribute(
+      "aria-label",
+      label === "AUTO"
+        ? "YouTube playback quality is automatic"
+        : `Current YouTube playback quality ${label}`
+    );
+    mediaQuality.title =
+      label === "AUTO"
+        ? "YouTube manages playback quality automatically"
+        : `Current quality: ${label} · YouTube manages selection automatically`;
+  };
+
   const updateMediaControls = () => {
     if (!ytPlayer || typeof ytPlayer.getPlayerState !== "function") return;
 
@@ -162,10 +189,15 @@
       ytPlayer = new YT.Player("live-youtube-player", {
         events: {
           onReady: () => {
+            setQualityLabel("auto");
             startPlayerControlSync();
             updateMediaControls();
           },
           onStateChange: updateMediaControls,
+          onPlaybackQualityChange: (event) => {
+            setQualityLabel(event?.data || "auto");
+            updateMediaControls();
+          },
           onError: updateMediaControls
         }
       });
@@ -1041,6 +1073,10 @@
   mediaPlay?.addEventListener("click", togglePlayback);
   mediaMute?.addEventListener("click", toggleMute);
   mediaVolume?.addEventListener("input", (event) => setPlayerVolume(event.target.value));
+  mediaQuality?.addEventListener("click", () => {
+    revealUi();
+    setQualityLabel(mediaQuality.textContent === "AUTO" ? "auto" : mediaQuality.textContent);
+  });
   mediaLive?.addEventListener("click", jumpToLive);
   replayArm?.addEventListener("click", armReplayBuffer);
   replaySave?.addEventListener("click", saveReplayBuffer);
