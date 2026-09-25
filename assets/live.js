@@ -1414,7 +1414,7 @@
     playerControlTimer = 0;
     stopLiveVerification();
     try {
-      ytPlayer?.destroy?.();
+      ytPlayer?.pauseVideo?.();
     } catch {}
     ytPlayer = null;
     stopReplayBuffer("Off");
