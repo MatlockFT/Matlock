@@ -225,6 +225,8 @@ html[data-theme="light"] .live-page__player-stage::before {
 .live-page__player-frame {
   position: relative;
   z-index: 1;
+  isolation: isolate;
+  transform-style: flat;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border: 0;
