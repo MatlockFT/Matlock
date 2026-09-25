@@ -13,7 +13,7 @@ let channels=[
 ];
 
 async function broadcastControlConfig(){
-  for(const path of ["assets/uploads/broadcast-control.json","assets/data/broadcast-control.json"]){
+  for(const path of ["assets/uploads/system/broadcast-control.json","assets/data/broadcast-control.json"]){
     try{return JSON.parse(await readFile(resolve(path),"utf8"))}catch{}
   }
   return{}
