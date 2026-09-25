@@ -534,6 +534,7 @@
 
   function openHtmlBlockById(id) {
     if (!focusHtmlBlockToken(id)) return;
+    if (openStructuredBlockById(id)) return;
     openHtmlDialog(id);
   }
 
