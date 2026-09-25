@@ -36,20 +36,27 @@ page_scripts:
   </header>
 
   <section class="live-page__player-section" aria-labelledby="live-now-playing-title">
-    <div class="live-page__player-frame" data-live-screen data-state="checking">
-      <iframe
-        class="live-page__player"
-        data-live-player
-        title="Live MMA stream"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-        referrerpolicy="strict-origin-when-cross-origin"
-      ></iframe>
+    <div class="live-page__player-stage" data-live-ambient-stage>
+      <div class="live-page__ambient" aria-hidden="true">
+        <div class="live-page__ambient-layer is-active" data-live-ambient-a></div>
+        <div class="live-page__ambient-layer" data-live-ambient-b></div>
+      </div>
 
-      <div class="live-page__standby" data-live-standby>
-        <span class="live-page__standby-label">MMA MATLOCK LIVE</span>
-        <strong data-live-standby-title>Checking for live fights</strong>
-        <span data-live-standby-copy>Looking for an active public broadcast.</span>
+      <div class="live-page__player-frame" data-live-screen data-state="checking">
+        <iframe
+          class="live-page__player"
+          data-live-player
+          title="Live MMA stream"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+
+        <div class="live-page__standby" data-live-standby>
+          <span class="live-page__standby-label">MMA MATLOCK LIVE</span>
+          <strong data-live-standby-title>Checking for live fights</strong>
+          <span data-live-standby-copy>Looking for an active public broadcast.</span>
+        </div>
       </div>
     </div>
 
