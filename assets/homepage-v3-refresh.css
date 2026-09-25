@@ -846,23 +846,21 @@ html[data-theme="dark"] body:has([data-globe-home]) {
 
 .v3-wordmark::after {
     position: absolute;
-    right: -1.65rem;
-    bottom: -.18rem;
-    content: "🎃";
-    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-    font-size: clamp(1.15rem, 1.45vw, 1.5rem);
-    font-weight: 400;
-    line-height: 1;
-    letter-spacing: 0;
+    right: -1.72rem;
+    bottom: -.16rem;
+    width: clamp(1.15rem, 1.45vw, 1.5rem);
+    aspect-ratio: 1;
+    content: "";
+    background: url("/assets/icons/pumpkin.svg") center / contain no-repeat;
     pointer-events: none;
     user-select: none;
 }
 
 @media (max-width: 520px) {
     .v3-wordmark::after {
-        right: -1.25rem;
-        bottom: -.12rem;
-        font-size: 1rem;
+        right: -1.3rem;
+        bottom: -.1rem;
+        width: 1rem;
     }
 }
 
@@ -975,10 +973,10 @@ html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-eve
         text-transform: uppercase !important;
     }
 
-    body:has([data-globe-home]) .mobile-brand-pumpkin {
-        font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif !important;
-        font-size: .62em;
-        line-height: 1;
-        transform: translateY(.08em);
+    body:has([data-globe-home]) .mobile-brand-pumpkin-icon {
+        display: block;
+        width: .72em;
+        height: .72em;
+        transform: translateY(.04em);
     }
 }
