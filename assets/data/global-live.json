@@ -1,8 +1,37 @@
 {
   "version": 5,
-  "generated_at": "2026-09-24T17:34:35Z",
-  "selected_event_id": null,
-  "events": [],
+  "generated_at": "2026-09-25T02:51:01Z",
+  "selected_event_id": "wcc-peru:uUlmif4wkr8",
+  "events": [
+    {
+      "event_id": "wcc-peru:uUlmif4wkr8",
+      "promotion_id": "wcc-peru",
+      "promotion": "Warriors Combat Championship",
+      "short_name": "WCC",
+      "country": "Peru",
+      "priority": 82,
+      "coverage_note": "Full event streams on the official WCC channel",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/channel/UCN7WmJ425uk_WIw0MQaBtXw",
+      "channel_id": "UCN7WmJ425uk_WIw0MQaBtXw",
+      "channel_name": "WCC - Warriors Combat Championship",
+      "video_id": "uUlmif4wkr8",
+      "title": "WCC EDICION 13",
+      "watch_url": "https://www.youtube.com/watch?v=uUlmif4wkr8",
+      "status": "live",
+      "is_live": true,
+      "embeddable": true,
+      "scheduled_start_time": null,
+      "scheduled_end_time": null,
+      "actual_start_time": "2026-09-25T01:28:32Z",
+      "actual_end_time": null,
+      "concurrent_viewers": "696",
+      "api_verified": true,
+      "stale": false,
+      "observed_at": "2026-09-25T02:51:01Z",
+      "source_role": "promotion"
+    }
+  ],
   "upcoming": [
     {
       "event_id": "real-fight-arena:z7sfnn-WqtY",
@@ -29,7 +58,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T03:24:46Z",
+      "observed_at": "2026-09-25T02:51:00Z",
       "source_role": "promotion"
     },
     {
@@ -57,7 +86,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T17:34:35Z",
+      "observed_at": "2026-09-25T02:51:00Z",
       "source_role": "broadcast_partner"
     },
     {
@@ -141,7 +170,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T03:24:46Z",
+      "observed_at": "2026-09-25T02:51:00Z",
       "source_role": "promotion"
     },
     {
@@ -169,7 +198,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-24T03:24:46Z",
+      "observed_at": "2026-09-25T02:51:00Z",
       "source_role": "promotion"
     }
   ],
@@ -189,7 +218,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:46Z"
+      "last_checked_at": "2026-09-25T02:51:00Z"
     },
     "a1-combat": {
       "promotion": "A1 Combat",
@@ -223,7 +252,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T17:34:34Z"
+      "last_checked_at": "2026-09-25T02:51:00Z"
     },
     "afc-korea": {
       "promotion": "Angel's Fighting Championship",
@@ -257,7 +286,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:45Z"
+      "last_checked_at": "2026-09-25T02:50:59Z"
     },
     "ararat-wfc": {
       "promotion": "Ararat World Fighting Championship",
@@ -274,7 +303,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:46Z"
+      "last_checked_at": "2026-09-25T02:51:00Z"
     },
     "ares": {
       "promotion": "ARES Fighting Championship",
@@ -308,7 +337,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:46Z"
+      "last_checked_at": "2026-09-25T02:51:00Z"
     },
     "bcm-promotions": {
       "promotion": "BCM Promotions",
@@ -359,7 +388,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:45Z"
+      "last_checked_at": "2026-09-25T02:50:59Z"
     },
     "empire-mma-colombia": {
       "promotion": "Empire MMA",
@@ -393,7 +422,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:46Z"
+      "last_checked_at": "2026-09-25T02:51:00Z"
     },
     "fnc": {
       "promotion": "Fight Nation Championship",
@@ -495,7 +524,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-24T02:19:06Z",
-      "last_checked_at": "2026-09-24T03:24:45Z"
+      "last_checked_at": "2026-09-25T02:50:59Z"
     },
     "levels-fight-league": {
       "promotion": "Levels Fight League",
@@ -512,7 +541,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:46Z"
+      "last_checked_at": "2026-09-25T02:50:59Z"
     },
     "lfa": {
       "promotion": "Legacy Fighting Alliance",
@@ -546,7 +575,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T17:34:34Z"
+      "last_checked_at": "2026-09-25T02:51:00Z"
     },
     "lux": {
       "promotion": "LUX Fight League",
@@ -563,7 +592,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:46Z"
+      "last_checked_at": "2026-09-25T02:50:59Z"
     },
     "mangu": {
       "promotion": "Mangu Professional League",
@@ -580,7 +609,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:46Z"
+      "last_checked_at": "2026-09-25T02:51:00Z"
     },
     "mfl": {
       "promotion": "Mexico Fight League",
@@ -631,7 +660,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:45Z"
+      "last_checked_at": "2026-09-25T02:50:59Z"
     },
     "octagon-central-asia": {
       "promotion": "OCTAGON",
@@ -665,7 +694,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:46Z"
+      "last_checked_at": "2026-09-25T02:50:59Z"
     },
     "real-fight-arena": {
       "promotion": "Real Fight Arena",
@@ -682,7 +711,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:46Z"
+      "last_checked_at": "2026-09-25T02:51:00Z"
     },
     "road-fc": {
       "promotion": "ROAD FC",
@@ -699,7 +728,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:45Z"
+      "last_checked_at": "2026-09-25T02:50:59Z"
     },
     "samurai-fight-house": {
       "promotion": "Samurai Fight House",
@@ -716,7 +745,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:46Z"
+      "last_checked_at": "2026-09-25T02:50:59Z"
     },
     "sft-combat": {
       "promotion": "SFT Combat",
@@ -733,7 +762,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:45Z"
+      "last_checked_at": "2026-09-25T02:50:59Z"
     },
     "shooto-brasil": {
       "promotion": "Shooto Brasil",
@@ -750,7 +779,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T17:34:34Z"
+      "last_checked_at": "2026-09-25T02:51:00Z"
     },
     "tuff-n-uff": {
       "promotion": "Tuff-N-Uff",
@@ -801,7 +830,24 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-24T03:24:46Z"
+      "last_checked_at": "2026-09-25T02:50:59Z"
+    },
+    "wcc-peru": {
+      "promotion": "Warriors Combat Championship",
+      "short_name": "WCC",
+      "country": "Peru",
+      "priority": 82,
+      "coverage_note": "Full event streams on the official WCC channel",
+      "access_note": null,
+      "channel_url": "https://www.youtube.com/channel/UCN7WmJ425uk_WIw0MQaBtXw",
+      "channel_id": "UCN7WmJ425uk_WIw0MQaBtXw",
+      "channel_name": "WCC - Warriors Combat Championship",
+      "status": "live",
+      "verification": "youtube_api",
+      "last_error": null,
+      "error_count": 0,
+      "last_success_at": "2026-09-25T02:51:01Z",
+      "last_checked_at": "2026-09-25T02:51:00Z"
     },
     "wow-fc": {
       "promotion": "WOW Fight Company",
@@ -821,9 +867,9 @@
       "last_checked_at": "2026-09-24T03:24:47Z"
     }
   },
-  "monitored_count": 38,
-  "live_count": 0,
+  "monitored_count": 39,
+  "live_count": 1,
   "upcoming_count": 6,
   "youtube_api_configured": true,
-  "api_verified_source_count": 38
+  "api_verified_source_count": 39
 }
