@@ -1,0 +1,32 @@
+name: Rebuild frontend bundle once
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/rebuild-frontend-once.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Rebuild generated frontend bundles
+        run: npm run build:frontend
+
+      - name: Commit generated bundle and remove one-shot workflow
+        run: |
+          git config user.name "MatlockFT"
+          git config user.email "fighttalkmma@protonmail.com"
+          git add assets/site-tail.css assets/on-this-day.bundle.css assets/writer.js
+          git rm .github/workflows/rebuild-frontend-once.yml
+          git commit -m "Rebuild frontend bundles for mobile shell"
+          git push origin HEAD:main
