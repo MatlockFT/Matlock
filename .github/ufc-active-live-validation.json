@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-09-25T21:12:06.472688+00:00",
+  "checkedAt": "2026-09-25T21:16:35.285349+00:00",
   "outcome": "success",
   "fallbackOutcome": "skipped",
   "activeEntryOutcome": "success",
@@ -30,8 +30,8 @@
     "Canonical UFC roster: 1000 source profiles -> 1000 unique fighters (0 duplicate/alias profiles collapsed).",
     "Canonical registry: 1010 identities, 1 alias group(s), 0 unresolved bare/suffix pair(s) flagged for review.",
     "UFC roster output warnings:",
-    "- pendingRemovals[2] has 101 misses and non-Active status but remains pending; inspect the confirmation path",
-    "- pendingRemovals[4] has 13 misses and non-Active status but remains pending; inspect the confirmation path",
+    "- pendingRemovals[2] has 102 misses and non-Active status but remains pending; inspect the confirmation path",
+    "- pendingRemovals[4] has 14 misses and non-Active status but remains pending; inspect the confirmation path",
     "UFC roster output valid: 1000 canonical active fighters from 1000 UFC Active profiles, 10 recent additions, 2 confirmed departures, 6 pending departures.",
     "Finalized UFC roster event history; removed 0 duplicate newcomer, 0 duplicate reactivation, and 0 duplicate departure event(s)."
   ]
