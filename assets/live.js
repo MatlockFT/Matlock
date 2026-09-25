@@ -166,33 +166,26 @@
 
     try {
       const state = ytPlayer.getPlayerState?.();
+      let shouldSuppress = state === 0;
 
-      // YouTube's IFrame API does not document getVideoData().isLive and it
-      // can report false for a real live stream. ENDED, however, is an
-      // authoritative player state.
-      if (state === 0) {
-        liveVerificationMisses = 2;
-      } else {
-        liveVerificationMisses = 0;
-
-        // For a live broadcast getDuration() represents elapsed broadcast
-        // time, so it continues to grow. A VOD/replay has a fixed duration.
-        // Use that documented behavior to auto-start only a stream that has
-        // demonstrated live progression.
+      if (!shouldSuppress) {
         const duration = Number(ytPlayer.getDuration?.() ?? 0);
         const now = Date.now();
-
-        if (
+        const prior =
           liveDurationSample &&
-          liveDurationSample.videoId === currentVideoId &&
-          duration > 0 &&
-          duration > liveDurationSample.duration + 0.25 &&
-          now - liveDurationSample.at >= 750
-        ) {
-          if (verifiedLiveVideoId !== currentVideoId) {
+          liveDurationSample.videoId === currentVideoId
+            ? liveDurationSample
+            : null;
+
+        if (prior && duration > 0 && now - prior.at >= 750) {
+          if (duration > prior.duration + 0.25) {
+            liveVerificationMisses = 0;
             verifiedLiveVideoId = currentVideoId;
-            ytPlayer.mute?.();
-            ytPlayer.playVideo?.();
+          } else if (state === 1) {
+            // A live broadcast's duration keeps increasing. If a supposedly
+            // live video is actively playing but its duration stays fixed for
+            // several samples, it is the archived replay of an ended stream.
+            liveVerificationMisses += 1;
           }
         }
 
@@ -204,10 +197,10 @@
           };
         }
 
-        return;
+        shouldSuppress = liveVerificationMisses >= 3;
       }
 
-      if (liveVerificationMisses < 2) return;
+      if (!shouldSuppress) return;
 
       const endedVideoId = currentVideoId;
       suppressEndedVideo(endedVideoId);
@@ -323,6 +316,15 @@
             setQualityLabel("auto");
             startPlayerControlSync();
             startLiveVerification();
+
+            const activeEvent = findEventByVideo(lastData?.events || [], currentVideoId);
+            if (shouldAutoplayEvent(activeEvent)) {
+              try {
+                ytPlayer.mute?.();
+                ytPlayer.playVideo?.();
+              } catch {}
+            }
+
             updateMediaControls();
             verifyEmbeddedLiveState();
           },
@@ -1095,14 +1097,23 @@
     window.setTimeout(updateReplayReadyState, 1800);
   };
 
-  const embedUrl = (videoId) => {
+  const shouldAutoplayEvent = (event) =>
+    Boolean(
+      event &&
+      event.api_verified === true &&
+      event.status === "live" &&
+      event.stale !== true
+    );
+
+  const embedUrl = (videoId, autoplay = false) => {
     const params = new URLSearchParams({
-      autoplay: "0",
+      autoplay: autoplay ? "1" : "0",
+      mute: autoplay ? "1" : "0",
       playsinline: "1",
-      controls: "0",
-      fs: "0",
+      controls: "1",
+      fs: "1",
       iv_load_policy: "3",
-      disablekb: "1",
+      disablekb: "0",
       rel: "0",
       enablejsapi: "1",
       origin: window.location.origin
@@ -1261,6 +1272,7 @@
     if (changingVideo && ytPlayer && typeof ytPlayer.loadVideoById === "function") {
       stopLiveVerification();
       try {
+        if (shouldAutoplayEvent(event)) ytPlayer.mute?.();
         ytPlayer.loadVideoById(event.video_id);
         startLiveVerification();
         window.setTimeout(updateMediaControls, 120);
@@ -1270,7 +1282,7 @@
         window.clearInterval(playerControlTimer);
         playerControlTimer = 0;
         stopLiveVerification();
-        player.src = embedUrl(event.video_id);
+        player.src = embedUrl(event.video_id, shouldAutoplayEvent(event));
         player.addEventListener("load", () => attachYouTubePlayerApi(), { once: true });
       }
     } else if (!player.getAttribute("src") || !player.src.includes(event.video_id)) {
@@ -1281,7 +1293,7 @@
       window.clearInterval(playerControlTimer);
       playerControlTimer = 0;
       stopLiveVerification();
-      player.src = embedUrl(event.video_id);
+      player.src = embedUrl(event.video_id, shouldAutoplayEvent(event));
       player.addEventListener("load", () => attachYouTubePlayerApi(), { once: true });
     } else if (!ytPlayer) {
       attachYouTubePlayerApi();
