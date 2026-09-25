@@ -50,11 +50,14 @@
   let playerControlTimer = 0;
   let liveVerificationTimer = 0;
   let liveVerificationMisses = 0;
+  let verifiedLiveVideoId = "";
+  const endedVideoSuppressions = new Map();
   let lastNonZeroVolume = 100;
 
   const UI_IDLE_DELAY = 5000;
   const REPLAY_BUFFER_MS = 15000;
   const REPLAY_CHUNK_MS = 1000;
+  const ENDED_VIDEO_SUPPRESS_MS = 30 * 60 * 1000;
 
   const clearUiIdleTimer = () => {
     window.clearTimeout(uiIdleTimer);
@@ -131,6 +134,23 @@
         : `Current quality: ${label} · YouTube manages selection automatically`;
   };
 
+  const pruneEndedVideoSuppressions = () => {
+    const now = Date.now();
+    for (const [videoId, expiresAt] of endedVideoSuppressions.entries()) {
+      if (expiresAt <= now) endedVideoSuppressions.delete(videoId);
+    }
+  };
+
+  const suppressEndedVideo = (videoId) => {
+    if (!videoId) return;
+    endedVideoSuppressions.set(videoId, Date.now() + ENDED_VIDEO_SUPPRESS_MS);
+  };
+
+  const isSuppressedEndedVideo = (videoId) => {
+    pruneEndedVideoSuppressions();
+    return Boolean(videoId && endedVideoSuppressions.has(videoId));
+  };
+
   const stopLiveVerification = () => {
     window.clearInterval(liveVerificationTimer);
     liveVerificationTimer = 0;
@@ -157,6 +177,10 @@
         liveVerificationMisses += 1;
       } else if (hasLiveFlag && videoData.isLive === true) {
         liveVerificationMisses = 0;
+        if (verifiedLiveVideoId !== currentVideoId) {
+          verifiedLiveVideoId = currentVideoId;
+          ytPlayer.playVideo?.();
+        }
       } else {
         return;
       }
@@ -164,6 +188,11 @@
       if (liveVerificationMisses < 2) return;
 
       const endedVideoId = currentVideoId;
+      suppressEndedVideo(endedVideoId);
+      verifiedLiveVideoId = "";
+      try {
+        ytPlayer.pauseVideo?.();
+      } catch {}
       const nextData = lastData
         ? {
             ...lastData,
@@ -1046,7 +1075,7 @@
 
   const embedUrl = (videoId) => {
     const params = new URLSearchParams({
-      autoplay: "1",
+      autoplay: "0",
       playsinline: "1",
       controls: "0",
       fs: "0",
@@ -1180,9 +1209,11 @@
   };
 
   const setPlayer = (event) => {
-    if (!event || !event.video_id) return;
+    if (!event || !event.video_id || isSuppressedEndedVideo(event.video_id)) return;
 
+    const changingVideo = currentVideoId !== event.video_id;
     currentVideoId = event.video_id;
+    if (changingVideo) verifiedLiveVideoId = "";
     screen.dataset.state = "live";
     stateWrap?.classList.add("is-live");
     if (stateText) stateText.textContent = event.stale ? "Live status delayed" : "Live now";
@@ -1218,6 +1249,7 @@
 
     if (player.getAttribute("src")) player.removeAttribute("src");
     currentVideoId = "";
+    verifiedLiveVideoId = "";
     window.clearInterval(playerControlTimer);
     playerControlTimer = 0;
     stopLiveVerification();
@@ -1240,10 +1272,17 @@
   };
 
   const applyData = (data) => {
-    lastData = data;
-
-    const events = Array.isArray(data.events) ? data.events : [];
+    const events = (Array.isArray(data.events) ? data.events : [])
+      .filter(event => !isSuppressedEndedVideo(event?.video_id));
     const upcoming = Array.isArray(data.upcoming) ? data.upcoming : [];
+    lastData = {
+      ...data,
+      events,
+      live_count: events.length,
+      selected_event_id: events.some(event => event.event_id === data.selected_event_id)
+        ? data.selected_event_id
+        : null
+    };
 
     renderUpcoming(upcoming);
 
