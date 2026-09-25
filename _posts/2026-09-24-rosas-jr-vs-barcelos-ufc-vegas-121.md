@@ -14,7 +14,6 @@ tags:
   - ROSAS JR
   - BARCELOS
 show_toc: true
-toc_mode: fights
 pinned: false
 listing_visibility: normal
 spoiler_warning: false
@@ -22,7 +21,9 @@ preserve_line_breaks: true
 published: true
 ---
 
-The Meta APEX is hosting another event this weekend in Las Vegas and I gotta say... I'm not mad at it. It has a little bit of all the things I enjoy and I'm not against a hate-watch either. It's like a little House of Horrors fight card!
+The Meta APEX is hosting another event this weekend in Las Vegas and I gotta say... I’m not mad at it. This card has a little bit of everything I enjoy, and I’m not above a good hate-watch either.
+
+It’s basically a little House of Horrors fight card.
 
 <section class="article-html-visual">
 <div class="card-stats-table">
