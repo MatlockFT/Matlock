@@ -467,6 +467,17 @@
       "channel_url": "https://www.youtube.com/channel/UC9Xot7hxSWvdfFCe3Ik8gMg",
       "coverage_note": "Official promotion channel; monitor public live fight streams",
       "access_note": "Current full-event distribution may use Combat Sports Now"
+    },
+    {
+      "id": "wcc-peru",
+      "name": "Warriors Combat Championship",
+      "short_name": "WCC",
+      "country": "Peru",
+      "priority": 82,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/channel/UCN7WmJ425uk_WIw0MQaBtXw",
+      "coverage_note": "Full event streams on the official WCC channel",
+      "fast_check_until": "2026-09-25T08:00:00Z"
     }
   ]
 }
