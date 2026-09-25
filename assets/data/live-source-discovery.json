@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "generated_at": "2026-09-24T19:17:22Z",
-  "searched_count": 5,
+  "generated_at": "2026-09-25T02:49:59Z",
+  "searched_count": 6,
   "results": [
     {
       "id": "mma-attack",
@@ -9,7 +9,16 @@
       "event": "MMA Attack 7",
       "query": "MMA Attack Poland official",
       "error": null,
+      "direct_video": null,
       "candidates": [
+        {
+          "channel_id": "UCQEQc0u2IqBIMonoEccpa-Q",
+          "channel_url": "https://www.youtube.com/channel/UCQEQc0u2IqBIMonoEccpa-Q",
+          "title": "MMA Attack 7",
+          "description": "LIVE: ✧─────✧✧─────✧ MMA Attack 7 – (Official Broadcast) Location : Nowak-Mosty Bedzin Arena, Bedzin, ...",
+          "published_at": "2026-09-25T02:25:23Z",
+          "score": 87
+        },
         {
           "channel_id": "UCqLmaQnuZxqt9TosEcuRQ_g",
           "channel_url": "https://www.youtube.com/channel/UCqLmaQnuZxqt9TosEcuRQ_g",
@@ -17,6 +26,14 @@
           "description": "(LIVE) : MMA Attack 7 – ((Official Broadcast)) Location : Nowak-Mosty Bedzin Arena, Bedzin, Poland Date : September 25, ...",
           "published_at": "2026-09-24T14:32:40Z",
           "score": 87
+        },
+        {
+          "channel_id": "UCpyQMq4DWvaNCNGlaBQ063A",
+          "channel_url": "https://www.youtube.com/channel/UCpyQMq4DWvaNCNGlaBQ063A",
+          "title": "MMA Attack 7",
+          "description": "MMA Attack 7 – Live Stream Location: Nowak-Mosty Bedzin Arena, Bedzin, Poland Date: September 25, 2026 ⏬ Please ...",
+          "published_at": "2026-09-25T01:36:04Z",
+          "score": 82
         },
         {
           "channel_id": "UCsfbQOjC0ao7RlunC6OPq3Q",
@@ -33,38 +50,13 @@
           "description": "",
           "published_at": "2012-05-07T17:32:31Z",
           "score": 0
-        },
-        {
-          "channel_id": "UCFl8AHVhYMCDRvccJSUbTvA",
-          "channel_url": "https://www.youtube.com/channel/UCFl8AHVhYMCDRvccJSUbTvA",
-          "title": "RARE REAL FEMALE GROIN HITS",
-          "description": "",
-          "published_at": "2019-05-08T15:32:00Z",
-          "score": 0
-        },
-        {
-          "channel_id": "UCtLUIHu5qtwRooQWQgrFN5g",
-          "channel_url": "https://www.youtube.com/channel/UCtLUIHu5qtwRooQWQgrFN5g",
-          "title": "Zofia Szuster-Górska",
-          "description": "Oficjalny kanał ALPHA TEAM Combat & Shooting.",
-          "published_at": "2011-09-16T08:48:27Z",
-          "score": 0
         }
       ],
       "top_candidate_live": [],
       "top_candidate_upcoming": [],
       "top_candidate_live_error": "",
       "top_candidate_upcoming_error": "",
-      "event_search_live": [
-        {
-          "video_id": "ehJ6EqlCcjc",
-          "watch_url": "https://www.youtube.com/watch?v=ehJ6EqlCcjc",
-          "title": "MMA ATTACK 7 - Oficjalna ceremonia ważenia",
-          "channel_title": "MMA ATTACK official",
-          "channel_id": "UCPOq2RRb0EUwquNeel_9w8Q",
-          "published_at": "2026-09-24T15:39:34Z"
-        }
-      ],
+      "event_search_live": [],
       "event_search_upcoming": [
         {
           "video_id": "u7DwwAefVx4",
@@ -92,6 +84,7 @@
       "event": "AFC 2 Navarra Arena",
       "query": "AFC Navarra MMA Spain official",
       "error": null,
+      "direct_video": null,
       "candidates": [],
       "top_candidate_live": [],
       "top_candidate_upcoming": [],
@@ -108,6 +101,7 @@
       "event": "BFN 10",
       "query": "Baraber Fight Night Croatia official",
       "error": null,
+      "direct_video": null,
       "candidates": [
         {
           "channel_id": "UCP48E2JZ6AbY0UFrHswDgLA",
@@ -165,6 +159,7 @@
       "event": "IFN 1",
       "query": "Itacoatiara Fight Night MMA official YouTube",
       "error": null,
+      "direct_video": null,
       "candidates": [],
       "top_candidate_live": [],
       "top_candidate_upcoming": [],
@@ -173,7 +168,7 @@
       "event_search_live": [],
       "event_search_upcoming": [],
       "event_search_live_error": "",
-      "event_search_upcoming_error": "<urlopen error [Errno 104] Connection reset by peer>"
+      "event_search_upcoming_error": ""
     },
     {
       "id": "wfc",
@@ -181,6 +176,7 @@
       "event": "WFC 198",
       "query": "WFC World Fighting Championship MMA Nevada official",
       "error": null,
+      "direct_video": null,
       "candidates": [
         {
           "channel_id": "UCk8XGxi7fsTqQQRVq9LSraw",
@@ -203,6 +199,47 @@
       "top_candidate_upcoming": [],
       "top_candidate_live_error": null,
       "top_candidate_upcoming_error": null,
+      "event_search_live": [],
+      "event_search_upcoming": [],
+      "event_search_live_error": "",
+      "event_search_upcoming_error": ""
+    },
+    {
+      "id": "youtube-uUlmif4wkr8",
+      "promotion": "User-supplied YouTube source",
+      "event": "https://www.youtube.com/watch?v=uUlmif4wkr8",
+      "query": "User-supplied YouTube source",
+      "error": null,
+      "direct_video": {
+        "video_id": "uUlmif4wkr8",
+        "watch_url": "https://www.youtube.com/watch?v=uUlmif4wkr8",
+        "title": "WCC EDICION 13",
+        "channel_title": "WCC - Warriors Combat Championship",
+        "channel_id": "UCN7WmJ425uk_WIw0MQaBtXw",
+        "channel_url": "https://www.youtube.com/channel/UCN7WmJ425uk_WIw0MQaBtXw",
+        "published_at": "2026-09-24T23:50:12Z"
+      },
+      "candidates": [
+        {
+          "channel_id": "UCN7WmJ425uk_WIw0MQaBtXw",
+          "channel_url": "https://www.youtube.com/channel/UCN7WmJ425uk_WIw0MQaBtXw",
+          "title": "WCC - Warriors Combat Championship",
+          "description": "Uploader of WCC EDICION 13",
+          "published_at": null,
+          "score": 1000
+        }
+      ],
+      "top_candidate_live": [
+        {
+          "video_id": "uUlmif4wkr8",
+          "watch_url": "https://www.youtube.com/watch?v=uUlmif4wkr8",
+          "title": "WCC EDICION 13",
+          "published_at": "2026-09-24T23:50:12Z"
+        }
+      ],
+      "top_candidate_upcoming": [],
+      "top_candidate_live_error": "",
+      "top_candidate_upcoming_error": "",
       "event_search_live": [],
       "event_search_upcoming": [],
       "event_search_live_error": "",
