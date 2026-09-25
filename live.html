@@ -113,6 +113,17 @@ page_scripts:
       </div>
 
       <div class="live-page__replay" data-replay-controls aria-label="Replay controls">
+        <div class="live-page__replay-window" data-replay-window aria-label="Replay buffer window">
+          <div class="live-page__replay-window-track" aria-hidden="true">
+            <span class="live-page__replay-window-fill" data-replay-fill></span>
+            <span class="live-page__replay-window-now" aria-hidden="true"></span>
+          </div>
+          <div class="live-page__replay-window-labels">
+            <span data-replay-start>0s</span>
+            <span data-replay-end>NOW</span>
+          </div>
+        </div>
+
         <button
           type="button"
           class="live-page__replay-arm"
