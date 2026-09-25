@@ -52,6 +52,9 @@
     if(!m.ok||!m.sessionId){setStatus(m.error||'GitHub sign-in failed.','error');return}
     sessionId=m.sessionId;localWrite(SESSION_ID_KEY,m.sessionId);localWrite(SESSION_LOGIN_KEY,m.login||'GitHub user');setConnected(m.login||'GitHub user');setStatus('Signed in as '+(m.login||'GitHub user')+'.','success');if(dialog.open)dialog.close();
   });
+  window.addEventListener('matlock-broadcast:auth-expired',()=>{
+    localWrite(SESSION_ID_KEY,'');localWrite(SESSION_LOGIN_KEY,'');clear();setStatus('Your GitHub session expired. Sign in again.','error');
+  });
   window.MatlockBroadcastAuth={isConnected:()=>Boolean(sessionId),getSessionId:()=>sessionId,getLogin:()=>login,open:()=>dialog.showModal(),authBase:()=>authBase};
   restore();
 })();
