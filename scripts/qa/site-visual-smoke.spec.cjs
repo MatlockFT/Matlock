@@ -426,7 +426,7 @@ test.describe('Mobile site shell', () => {
       await expect(brand.locator('.mobile-brand-wordmark')).toHaveText('MATLOCK');
       const pumpkinIcon = brand.locator('.mobile-brand-pumpkin-icon');
       await expect(pumpkinIcon).toBeVisible();
-      await expect(pumpkinIcon).toHaveAttribute('src', /\/assets\/icons\/pumpkin-seasonal\.svg$/);
+      await expect(pumpkinIcon).toHaveAttribute('src', /\/assets\/icons\/pumpkin-seasonal\.svg(?:\?v=\d+)?$/);
       await expect(toggle).toBeVisible();
       await expect(banner).toBeHidden();
 

@@ -102,6 +102,11 @@
     {% endif %}
 
     <link
+        rel="stylesheet"
+        href="{{ '/assets/seasonal-header.css' | relative_url }}?v={{ site.asset_version }}"
+    >
+
+    <link
         rel="icon"
         type="image/svg+xml"
         href="{{ '/assets/favicon-matlock-v2.svg' | relative_url }}"
@@ -185,7 +190,7 @@
                     <span class="v3-wordmark">MATLOCK</span>
                     <span class="desktop-brand-pumpkin" aria-hidden="true">
                         <img
-                            src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}"
+                            src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}?v={{ site.asset_version }}"
                             alt=""
                             width="48"
                             height="48"
@@ -207,7 +212,7 @@
                     >
                     <span class="desktop-brand-pumpkin desktop-brand-pumpkin-image-logo" aria-hidden="true">
                         <img
-                            src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}"
+                            src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}?v={{ site.asset_version }}"
                             alt=""
                             width="42"
                             height="42"
@@ -225,7 +230,7 @@
                     href="{{ '/' | relative_url }}"
                     aria-label="MMA Matlock home"
                 >
-                    <span class="mobile-brand-wordmark">MATLOCK</span><span class="mobile-brand-pumpkin" aria-hidden="true" style="margin-left:-.18em"><img class="mobile-brand-pumpkin-icon" src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}" alt="" width="34" height="34" decoding="async" style="width:.94em;height:.94em;transform:translateY(.16em) rotate(-5deg);transform-origin:50% 100%"></span>
+                    <span class="mobile-brand-wordmark">MATLOCK</span><span class="mobile-brand-pumpkin" aria-hidden="true"><img class="mobile-brand-pumpkin-icon" src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}?v={{ site.asset_version }}" alt="" width="34" height="34" decoding="async"></span>
                 </a>
 
                 <button
