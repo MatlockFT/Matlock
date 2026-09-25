@@ -68,11 +68,22 @@ page_scripts:
 
         <button
           type="button"
-          class="live-page__media-button live-page__media-mute"
+          class="live-page__media-button live-page__media-mute is-muted"
           data-media-mute
-          aria-label="Mute"
-          title="Mute"
-        ><span aria-hidden="true" data-media-mute-icon>VOL</span></button>
+          aria-label="Unmute"
+          title="Unmute"
+        >
+          <svg class="live-page__volume-icon live-page__volume-icon--on" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9H4Z"></path>
+            <path d="M16 8.5c1.15.9 1.75 2.06 1.75 3.5S17.15 14.6 16 15.5"></path>
+            <path d="M18.7 6c2 1.55 3.05 3.55 3.05 6s-1.05 4.45-3.05 6"></path>
+          </svg>
+          <svg class="live-page__volume-icon live-page__volume-icon--muted" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9H4Z"></path>
+            <path d="m16.5 9.5 4 5"></path>
+            <path d="m20.5 9.5-4 5"></path>
+          </svg>
+        </button>
 
         <input
           class="live-page__volume"
@@ -81,7 +92,7 @@ page_scripts:
           min="0"
           max="100"
           step="1"
-          value="100"
+          value="0"
           aria-label="Volume"
         >
 
