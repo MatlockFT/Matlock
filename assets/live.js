@@ -202,10 +202,18 @@
     let stream = null;
 
     try {
+      const supportedCaptureConstraints =
+        navigator.mediaDevices.getSupportedConstraints?.() || {};
+      const videoConstraints = {
+        frameRate: { ideal: 30, max: 30 }
+      };
+
+      if (supportedCaptureConstraints.cursor) {
+        videoConstraints.cursor = "never";
+      }
+
       stream = await navigator.mediaDevices.getDisplayMedia({
-        video: {
-          frameRate: { ideal: 30, max: 30 }
-        },
+        video: videoConstraints,
         audio: true,
         preferCurrentTab: true,
         selfBrowserSurface: "include",
@@ -225,14 +233,37 @@
       }
 
       try {
-        await videoTrack.applyConstraints({
+        const trackConstraints = {
           frameRate: { max: 30 }
-        });
+        };
+        if (supportedCaptureConstraints.cursor) {
+          trackConstraints.cursor = "never";
+        }
+        await videoTrack.applyConstraints(trackConstraints);
       } catch {
-        // Capture can continue at the browser-selected rate.
+        // Capture can continue if an optional constraint is unavailable.
       }
 
       const captureMode = await restrictCaptureToPlayer(videoTrack);
+
+      // Give Chromium a rendering turn to apply the restriction/crop, then
+      // verify that the returned track actually resembles the 16:9 player.
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+
+      const captureSettings = videoTrack.getSettings?.() || {};
+      const targetRect = screen.getBoundingClientRect();
+      const targetRatio = targetRect.width / Math.max(1, targetRect.height);
+      const captureRatio =
+        captureSettings.width && captureSettings.height
+          ? captureSettings.width / captureSettings.height
+          : targetRatio;
+
+      if (
+        !Number.isFinite(captureRatio) ||
+        Math.abs(captureRatio - targetRatio) > 0.08
+      ) {
+        throw new Error("Player-only capture verification failed.");
+      }
 
       replayMimeType = chooseReplayMimeType();
       if (!replayMimeType || !replayMimeType.includes("mp4")) {
@@ -297,12 +328,12 @@
       console.warn("Replay buffer unavailable", error);
 
       const denied = error?.name === "NotAllowedError";
-      const cropFailure = !denied && /crop|restrict|current tab|player-only/i.test(String(error?.message || ""));
+      const cropFailure = !denied && /crop|restrict|current tab|player-only|verification/i.test(String(error?.message || ""));
       setReplayStatus(
         denied
           ? "Capture cancelled"
           : cropFailure
-            ? "Choose This Tab in Chrome/Edge"
+            ? "Player-only capture failed"
             : /MP4/i.test(String(error?.message || ""))
               ? "MP4 capture unsupported"
               : "Replay unavailable"
@@ -579,6 +610,7 @@
       controls: "0",
       fs: "0",
       iv_load_policy: "3",
+      disablekb: "1",
       rel: "0",
       enablejsapi: "1",
       origin: window.location.origin
