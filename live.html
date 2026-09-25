@@ -63,6 +63,22 @@ page_scripts:
       </div>
 
       <div class="live-page__actions">
+        <div class="live-page__replay" data-replay-controls>
+          <button
+            type="button"
+            class="live-page__replay-arm"
+            data-replay-arm
+            aria-pressed="false"
+          >Arm 15s replay</button>
+          <button
+            type="button"
+            class="live-page__replay-save"
+            data-replay-save
+            disabled
+          >Save last 15s</button>
+          <span class="live-page__replay-status" data-replay-status aria-live="polite">Off</span>
+        </div>
+
         <a
           class="live-page__watch-link"
           data-live-source
