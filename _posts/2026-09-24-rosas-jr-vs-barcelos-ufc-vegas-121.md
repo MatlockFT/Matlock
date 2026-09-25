@@ -90,11 +90,7 @@ The Meta APEX is hosting another event this weekend in Las Vegas and I gotta say
         <td>Raul Rosas Jr. vs. Raoni Barcelos</td>
       </tr>
 
-      <tr>
-        <td>Title Fights</td>
-        <td>0</td>
-        <td>None</td>
-      </tr>
+     
     </tbody>
   </table>
 </div>
@@ -1892,7 +1888,7 @@ There are few things to like about Demopoulos in this position such as her age, 
 On the flip side, older fighters are not doing bad these days, Jauregui hasn't fought since 2024, and Demopoulos has to feel like she is in a must-win position. I wouldn't be surprised if we see some very tough veteran grit and going all in on this fight. Nonetheless, I still favor Jauregui.
 
 **Pick: Yazmin Jauregui by Decision**
-
+---
 ## John Castaneda vs. Alateng Heili
 
 <section class="article-html-visual">
@@ -14281,21 +14277,28 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
 ## Luis Hernandez vs. Sedriques Dumas
 
 <section class="article-html-visual">
+
 <div class="fight-compare-sleek">
   <div class="fc-shell">
+
+    <!-- =====================================================
+         FIGHTER HEADER
+         ===================================================== -->
 
     <div class="fc-top">
 
       <div class="fc-fighter fc-left">
-        <div class="fc-portrait ring-left">
+
+        <div class="fc-portrait ring-left portrait-hernandez">
           <span class="fc-ring"></span>
           <span class="fc-ring fc-ring-inner"></span>
 
-          <img src="https://1str.com/wp-content/uploads/2026/09/Luis-Hernandez-UFC-fighter-MMA-356x276.png" alt="Luis Hernandez">
+          <img src="https://imagedelivery.net/kd_oB-9dZCrENaJzp7HSCA/ea9e3a02-9714-4bc6-0872-34edff2e7400/public" alt="Luis Hernandez">
         </div>
 
         <div class="fc-meta">
-          <span class="fc-division">LIGHT HEAVYWEIGHT</span>
+
+          <span class="fc-division">MIDDLEWEIGHT</span>
 
           <h2>Luis Hernandez</h2>
 
@@ -14312,7 +14315,9 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
             </div>
 
           </div>
+
         </div>
+
       </div>
 
 
@@ -14323,15 +14328,17 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
 
 
       <div class="fc-fighter fc-right">
-        <div class="fc-portrait ring-right">
+
+        <div class="fc-portrait ring-right portrait-dumas">
           <span class="fc-ring"></span>
           <span class="fc-ring fc-ring-inner"></span>
 
-          <img src="https://a.espncdn.com/combiner/i?img=/i/headshots/mma/players/full/5060467.png&amp;w=350&amp;h=254" alt="Sedriques Dumas">
+          <img src="https://imagedelivery.net/kd_oB-9dZCrENaJzp7HSCA/1f885aaa-09d7-460c-9279-00130bbe7100/public?updated_at=2023-06-11T00:45:55.505Z" alt="Sedriques Dumas">
         </div>
 
         <div class="fc-meta">
-          <span class="fc-division">LIGHT HEAVYWEIGHT</span>
+
+          <span class="fc-division">MIDDLEWEIGHT</span>
 
           <h2>Sedriques Dumas</h2>
 
@@ -14348,115 +14355,240 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
             </div>
 
           </div>
-        </div>
-      </div>
 
-    </div>
-
-
-    <div class="fc-form-wrap">
-
-      <div class="fc-column">
-
-        <div class="fc-form-row">
-          <span class="fc-result win">W</span>
-
-          <div class="fc-form-copy">
-            <strong>Hugo Guillon</strong>
-            <small>SUB · SEP 15, 2026 · R2 1:01</small>
-          </div>
-        </div>
-
-        <div class="fc-form-row">
-          <span class="fc-result win">W</span>
-
-          <div class="fc-form-copy">
-            <strong>Paulo Machado</strong>
-            <small>TKO · OCT 11, 2025 · R3 3:13</small>
-          </div>
-        </div>
-
-        <div class="fc-form-row">
-          <span class="fc-result win">W</span>
-
-          <div class="fc-form-copy">
-            <strong>Miles Hunsinger</strong>
-            <small>SUB · JUN 29, 2025 · R2 0:49</small>
-          </div>
-        </div>
-
-        <div class="fc-form-row">
-          <span class="fc-result win">W</span>
-
-          <div class="fc-form-copy">
-            <strong>Joaquin Campos</strong>
-            <small>SUB · APR 30, 2025 · R1 2:52</small>
-          </div>
-        </div>
-
-        <div class="fc-form-row">
-          <span class="fc-result win">W</span>
-
-          <div class="fc-form-copy">
-            <strong>Nick Lancaster</strong>
-            <small>SUB · MAY 12, 2024 · R1 2:56</small>
-          </div>
-        </div>
-
-      </div>
-
-
-      <div class="fc-column">
-
-        <div class="fc-form-row">
-          <span class="fc-result loss">L</span>
-
-          <div class="fc-form-copy">
-            <strong>Jackson McVey</strong>
-            <small>SUB · APR 25, 2026 · R1 2:14</small>
-          </div>
-        </div>
-
-        <div class="fc-form-row">
-          <span class="fc-result loss">L</span>
-
-          <div class="fc-form-copy">
-            <strong>Donte Johnson</strong>
-            <small>SUB · NOV 1, 2025 · R2 1:25</small>
-          </div>
-        </div>
-
-        <div class="fc-form-row">
-          <span class="fc-result nc">NC</span>
-
-          <div class="fc-form-copy">
-            <strong>Zach Reese</strong>
-            <small>NC · SEP 13, 2025 · R1 0:51</small>
-          </div>
-        </div>
-
-        <div class="fc-form-row">
-          <span class="fc-result loss">L</span>
-
-          <div class="fc-form-copy">
-            <strong>Michal Oleksiejczuk</strong>
-            <small>TKO · APR 12, 2025 · R1 2:49</small>
-          </div>
-        </div>
-
-        <div class="fc-form-row">
-          <span class="fc-result win">W</span>
-
-          <div class="fc-form-copy">
-            <strong>Denis Tiuliulin</strong>
-            <small>DEC · AUG 3, 2024 · R3 5:00</small>
-          </div>
         </div>
 
       </div>
 
     </div>
 
+
+
+    <!-- =====================================================
+         TALE OF THE TAPE
+         ===================================================== -->
+
+    <div class="fc-tale">
+
+      <div class="fc-section-title">
+        <span>Tale of the Tape</span>
+      </div>
+
+
+      <div class="fc-tale-row featured">
+        <strong>8-0</strong>
+        <span>Record</span>
+        <strong>10-5 (1 NC)</strong>
+      </div>
+
+
+      <div class="fc-tale-row">
+        <strong>30</strong>
+        <span>Age</span>
+        <strong>31</strong>
+      </div>
+
+
+      <div class="fc-tale-row">
+        <strong>5'9"</strong>
+        <span>Height</span>
+        <strong>6'2"</strong>
+      </div>
+
+
+      <div class="fc-tale-row">
+        <strong>73.5"</strong>
+        <span>Arm Reach</span>
+        <strong>79.0"</strong>
+      </div>
+
+
+      <div class="fc-tale-row">
+        <strong>0-0</strong>
+        <span>UFC Record</span>
+        <strong>3-5 (1 NC)</strong>
+      </div>
+
+
+      <div class="fc-tale-row">
+        <strong>8-0</strong>
+        <span>Record Outside UFC</span>
+        <strong>7-0</strong>
+      </div>
+
+
+      <div class="fc-tale-row">
+        <strong>8-0</strong>
+        <span>Total Finishes</span>
+        <strong>6-5</strong>
+      </div>
+
+
+      <div class="fc-tale-row">
+        <strong>3-0</strong>
+        <span>TKO / KO</span>
+        <strong>4-2</strong>
+      </div>
+
+
+      <div class="fc-tale-row">
+        <strong>5-0</strong>
+        <span>Submission</span>
+        <strong>2-3</strong>
+      </div>
+
+
+      <div class="fc-tale-row">
+        <strong>0-0</strong>
+        <span>Unanimous Decision</span>
+        <strong>4-0</strong>
+      </div>
+
+
+      <div class="fc-tale-row">
+        <strong>0-0</strong>
+        <span>Split Decision</span>
+        <strong>0-0</strong>
+      </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         RECENT FORM
+         ===================================================== -->
+
+    <div class="fc-form-section">
+
+      <div class="fc-section-title fc-form-title">
+        <span>Recent Form</span>
+      </div>
+
+
+      <div class="fc-form-wrap">
+
+        <!-- LUIS HERNANDEZ -->
+
+        <div class="fc-column">
+
+          <div class="fc-form-row">
+            <span class="fc-result win">W</span>
+
+            <div class="fc-form-copy">
+              <strong>Hugo Guillon</strong>
+              <small>SUB · SEP 15, 2026 · R2 1:01</small>
+            </div>
+          </div>
+
+
+          <div class="fc-form-row">
+            <span class="fc-result win">W</span>
+
+            <div class="fc-form-copy">
+              <strong>Paulo Machado</strong>
+              <small>TKO · OCT 11, 2025 · R3 3:13</small>
+            </div>
+          </div>
+
+
+          <div class="fc-form-row">
+            <span class="fc-result win">W</span>
+
+            <div class="fc-form-copy">
+              <strong>Miles Hunsinger</strong>
+              <small>SUB · JUN 29, 2025 · R2 0:49</small>
+            </div>
+          </div>
+
+
+          <div class="fc-form-row">
+            <span class="fc-result win">W</span>
+
+            <div class="fc-form-copy">
+              <strong>Joaquin Campos</strong>
+              <small>SUB · APR 30, 2025 · R1 2:52</small>
+            </div>
+          </div>
+
+
+          <div class="fc-form-row">
+            <span class="fc-result win">W</span>
+
+            <div class="fc-form-copy">
+              <strong>Nick Lancaster</strong>
+              <small>SUB · MAY 12, 2024 · R1 2:56</small>
+            </div>
+          </div>
+
+        </div>
+
+
+
+        <!-- SEDRIQUES DUMAS -->
+
+        <div class="fc-column">
+
+          <div class="fc-form-row">
+            <span class="fc-result loss">L</span>
+
+            <div class="fc-form-copy">
+              <strong>Jackson McVey</strong>
+              <small>SUB · APR 25, 2026 · R1 2:14</small>
+            </div>
+          </div>
+
+
+          <div class="fc-form-row">
+            <span class="fc-result loss">L</span>
+
+            <div class="fc-form-copy">
+              <strong>Donte Johnson</strong>
+              <small>SUB · NOV 1, 2025 · R2 1:25</small>
+            </div>
+          </div>
+
+
+          <div class="fc-form-row">
+            <span class="fc-result nc">NC</span>
+
+            <div class="fc-form-copy">
+              <strong>Zach Reese</strong>
+              <small>NC · SEP 13, 2025 · R1 0:51</small>
+            </div>
+          </div>
+
+
+          <div class="fc-form-row">
+            <span class="fc-result loss">L</span>
+
+            <div class="fc-form-copy">
+              <strong>Michal Oleksiejczuk</strong>
+              <small>TKO · APR 12, 2025 · R1 2:49</small>
+            </div>
+          </div>
+
+
+          <div class="fc-form-row">
+            <span class="fc-result win">W</span>
+
+            <div class="fc-form-copy">
+              <strong>Denis Tiuliulin</strong>
+              <small>DEC · AUG 3, 2024 · R3 5:00</small>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         OPPONENT STRENGTH
+         ===================================================== -->
 
     <div class="fc-opponents">
 
@@ -14476,86 +14608,13 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
 
     </div>
 
-
-    <div class="fc-tale">
-
-      <div class="fc-section-title">
-        <span>Tale of the Tape</span>
-      </div>
-
-      <div class="fc-tale-row featured">
-        <strong>8-0</strong>
-        <span>Record</span>
-        <strong>10-5 (1 NC)</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>30</strong>
-        <span>Age</span>
-        <strong>31</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>5'9"</strong>
-        <span>Height</span>
-        <strong>6'2"</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>73.5"</strong>
-        <span>Arm Reach</span>
-        <strong>79.0"</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>0-0</strong>
-        <span>UFC Record</span>
-        <strong>3-5 (1 NC)</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>8-0</strong>
-        <span>Record Outside UFC</span>
-        <strong>7-0</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>8-0</strong>
-        <span>Total Finishes</span>
-        <strong>6-5</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>3-0</strong>
-        <span>TKO / KO</span>
-        <strong>4-2</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>5-0</strong>
-        <span>Submission</span>
-        <strong>2-3</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>0-0</strong>
-        <span>Unanimous Decision</span>
-        <strong>4-0</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>0-0</strong>
-        <span>Split Decision</span>
-        <strong>0-0</strong>
-      </div>
-
-    </div>
-
   </div>
 </div>
 
 
+
 <style>
+
 .fight-compare-sleek {
   --bg: #07090d;
   --panel: #0f141b;
@@ -14579,10 +14638,14 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
   --neutral-soft: rgba(208,169,90,.14);
 
   width: 100%;
+
   margin: 28px 0;
+
   color: var(--text);
+
   font-family: inherit;
 }
+
 
 .fight-compare-sleek *,
 .fight-compare-sleek *::before,
@@ -14590,25 +14653,48 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
   box-sizing: border-box;
 }
 
+
+/* =========================================================
+   OUTER SHELL
+   ========================================================= */
+
+
 .fight-compare-sleek .fc-shell {
   position: relative;
+
   overflow: hidden;
 
   background:
-    radial-gradient(circle at 18% 0%, rgba(255,77,90,.13), transparent 30%),
-    radial-gradient(circle at 82% 0%, rgba(87,140,255,.13), transparent 30%),
-    linear-gradient(180deg, #0a0d12 0%, #07090d 100%);
+    radial-gradient(
+      circle at 18% 0%,
+      rgba(255,77,90,.13),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 82% 0%,
+      rgba(87,140,255,.13),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #0a0d12 0%,
+      #07090d 100%
+    );
 
-  border: 1px solid var(--line);
+  border:
+    1px solid var(--line);
 
   box-shadow:
     0 0 0 1px rgba(255,255,255,.02) inset,
-    0 18px 42px rgba(0,0,0,.3);
+    0 18px 42px rgba(0,0,0,.30);
 }
+
 
 .fight-compare-sleek .fc-shell::before {
   content: "";
+
   position: absolute;
+
   inset: 0;
 
   pointer-events: none;
@@ -14625,57 +14711,105 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
     );
 }
 
+
+/* =========================================================
+   FIGHTER HEADER
+   ========================================================= */
+
+
 .fight-compare-sleek .fc-top {
   display: grid;
-  grid-template-columns: 1fr 170px 1fr;
-  border-bottom: 1px solid var(--line);
+
+  grid-template-columns:
+    1fr
+    170px
+    1fr;
+
+  border-bottom:
+    1px solid var(--line);
 }
+
 
 .fight-compare-sleek .fc-fighter {
   position: relative;
-  min-height: 290px;
-  padding: 27px 22px 24px;
+
+  min-height: 300px;
+
+  padding:
+    28px
+    22px
+    25px;
 
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: center;
 }
 
+
 .fight-compare-sleek .fc-left {
-  border-right: 1px solid var(--line);
+  border-right:
+    1px solid var(--line);
 }
 
+
 .fight-compare-sleek .fc-right {
-  border-left: 1px solid var(--line);
+  border-left:
+    1px solid var(--line);
 }
+
+
+/* =========================================================
+   MATCHUP CENTER
+   ========================================================= */
+
 
 .fight-compare-sleek .fc-center-badge {
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
+
   justify-content: center;
 
   text-align: center;
 
-  border-left: 1px solid var(--line);
-  border-right: 1px solid var(--line);
+  border-left:
+    1px solid var(--line);
 
-  padding: 20px 12px;
+  border-right:
+    1px solid var(--line);
+
+  padding:
+    20px
+    12px;
 }
+
 
 .fight-compare-sleek .fc-center-badge strong {
   font-size: .82rem;
+
   font-weight: 900;
+
   text-transform: uppercase;
+
   letter-spacing: .18em;
 }
 
+
 .fight-compare-sleek .fc-center-badge i {
   display: block;
+
   width: 32px;
+
   height: 3px;
+
   margin-top: 13px;
+
   border-radius: 999px;
 
   background:
@@ -14687,109 +14821,187 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
     );
 }
 
+
+/* =========================================================
+   PORTRAITS
+   ========================================================= */
+
+
 .fight-compare-sleek .fc-portrait {
   position: relative;
 
-  width: 154px;
-  height: 154px;
+  width: 158px;
 
-  margin: 0 auto 17px;
+  height: 158px;
+
+  margin:
+    0
+    auto
+    18px;
 
   border-radius: 50%;
+
   overflow: hidden;
 
+  isolation: isolate;
+
   background:
-    radial-gradient(circle at 50% 18%, rgba(255,255,255,.08), transparent 52%),
-    linear-gradient(180deg, #0f141a, #090c10);
+    radial-gradient(
+      circle at 50% 22%,
+      rgba(255,255,255,.09),
+      transparent 52%
+    ),
+    linear-gradient(
+      180deg,
+      #11161d,
+      #080b0f
+    );
 
   box-shadow:
     0 0 0 1px rgba(255,255,255,.08) inset,
-    0 0 0 1px rgba(255,255,255,.08),
-    0 12px 26px rgba(0,0,0,.25);
+    0 0 0 1px rgba(255,255,255,.11),
+    0 12px 28px rgba(0,0,0,.32);
 }
+
 
 .fight-compare-sleek .fc-ring,
 .fight-compare-sleek .fc-ring-inner {
   position: absolute;
+
   border-radius: 50%;
+
   pointer-events: none;
+
+  z-index: 4;
 }
+
 
 .fight-compare-sleek .fc-ring {
   inset: 0;
-  border: 1px solid rgba(255,255,255,.22);
+
+  border:
+    1px solid rgba(255,255,255,.28);
 }
+
 
 .fight-compare-sleek .fc-ring-inner {
   inset: 8px;
-  border: 1px solid rgba(255,255,255,.055);
+
+  border:
+    1px solid rgba(255,255,255,.06);
 }
+
 
 .fight-compare-sleek .ring-left::before,
 .fight-compare-sleek .ring-right::before {
   content: "";
+
   position: absolute;
 
-  left: 17px;
-  right: 17px;
-  bottom: 12px;
+  left: 18px;
 
-  height: 38px;
+  right: 18px;
 
-  filter: blur(17px);
+  bottom: 8px;
+
+  height: 42px;
+
+  filter: blur(18px);
+
   border-radius: 50%;
+
+  z-index: 1;
 }
+
 
 .fight-compare-sleek .ring-left::before {
-  background: rgba(255,77,90,.20);
+  background:
+    rgba(255,77,90,.24);
 }
 
+
 .fight-compare-sleek .ring-right::before {
-  background: rgba(87,140,255,.20);
+  background:
+    rgba(87,140,255,.24);
 }
+
 
 .fight-compare-sleek .fc-portrait img {
   position: absolute;
+
   display: block;
+
+  left: 50%;
+
+  bottom: -34px;
+
   max-width: none;
+
   height: auto;
+
+  transform:
+    translateX(-50%);
+
+  transform-origin:
+    center bottom;
+
+  z-index: 2;
 }
 
-.fight-compare-sleek .ring-left img {
-  width: 108%;
-  left: 50%;
-  bottom: -64px;
-  transform: translateX(-50%);
+
+/*
+   THESE TWO SOURCE IMAGES ARE WIDER / SHORTER
+   THAN THE NORMAL SQUARE FIGHTER PNGS.
+
+   KEEP bottom: -34px.
+   SCALE EACH FIGHTER INSTEAD OF PUSHING
+   THE ENTIRE IMAGE FURTHER DOWN.
+*/
+
+
+.fight-compare-sleek .portrait-hernandez img {
+  width: 150%;
 }
 
-.fight-compare-sleek .ring-right img {
-  width: 106%;
-  left: 50%;
-  bottom: -64px;
-  transform: translateX(-50%);
+
+.fight-compare-sleek .portrait-dumas img {
+  width: 165%;
 }
+
+
+/* =========================================================
+   FIGHTER INFO
+   ========================================================= */
+
 
 .fight-compare-sleek .fc-meta {
   text-align: center;
+
   max-width: 100%;
 }
 
+
 .fight-compare-sleek .fc-division {
   display: inline-block;
+
   margin-bottom: 7px;
 
   color: #ff7983;
 
   font-size: .62rem;
+
   font-weight: 900;
 
   letter-spacing: .18em;
+
   text-transform: uppercase;
 }
+
 
 .fight-compare-sleek .fc-right .fc-division {
   color: #7fa4ff;
 }
+
 
 .fight-compare-sleek .fc-meta h2 {
   margin: 0;
@@ -14797,59 +15009,87 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
   color: var(--text);
 
   font-size: 1.08rem;
+
   line-height: 1.12;
+
   font-weight: 850;
 
   text-transform: uppercase;
+
   letter-spacing: .015em;
 }
+
+
+/* =========================================================
+   ODDS + LAST FIVE
+   ========================================================= */
+
 
 .fight-compare-sleek .fc-meta-strip {
   margin-top: 12px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   gap: 7px;
+
   flex-wrap: wrap;
 }
+
 
 .fight-compare-sleek .fc-odds,
 .fight-compare-sleek .fc-last5 {
   min-height: 31px;
 
   display: inline-flex;
+
   align-items: center;
 
   border-radius: 999px;
 }
 
+
 .fight-compare-sleek .fc-odds {
   gap: 6px;
-  padding: 0 11px;
 
-  border: 1px solid var(--line-strong);
-  background: rgba(255,255,255,.035);
+  padding:
+    0
+    11px;
+
+  border:
+    1px solid var(--line-strong);
+
+  background:
+    rgba(255,255,255,.035);
 }
+
 
 .fight-compare-sleek .fc-odds span {
   color: var(--muted);
 
   font-size: .53rem;
+
   font-weight: 900;
 
-  letter-spacing: .1em;
+  letter-spacing: .10em;
 }
+
 
 .fight-compare-sleek .fc-odds strong {
   font-size: .78rem;
+
   line-height: 1;
+
   font-weight: 900;
 }
 
+
 .fight-compare-sleek .fc-red-odds {
-  border-color: rgba(255,77,90,.32);
+  border-color:
+    rgba(255,77,90,.32);
 
   background:
     linear-gradient(
@@ -14859,12 +15099,15 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
     );
 }
 
+
 .fight-compare-sleek .fc-red-odds strong {
   color: #ff727d;
 }
 
+
 .fight-compare-sleek .fc-blue-odds {
-  border-color: rgba(87,140,255,.32);
+  border-color:
+    rgba(87,140,255,.32);
 
   background:
     linear-gradient(
@@ -14874,263 +15117,164 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
     );
 }
 
+
 .fight-compare-sleek .fc-blue-odds strong {
   color: #7fa4ff;
 }
 
+
 .fight-compare-sleek .fc-last5 {
   gap: 7px;
 
-  padding: 0 11px;
+  padding:
+    0
+    11px;
 
-  border: 1px solid var(--line);
+  border:
+    1px solid var(--line);
 
-  background: rgba(255,255,255,.025);
+  background:
+    rgba(255,255,255,.025);
 }
+
 
 .fight-compare-sleek .fc-last5-record {
-  font-size: .74rem;
+  font-size: .72rem;
+
   font-weight: 900;
 }
+
 
 .fight-compare-sleek .fc-last5-label {
   color: var(--muted);
 
   font-size: .52rem;
+
   font-weight: 800;
 
   text-transform: uppercase;
+
   letter-spacing: .11em;
 }
 
-.fight-compare-sleek .fc-form-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
 
-.fight-compare-sleek .fc-column {
-  padding: 12px 20px;
-}
+/* =========================================================
+   SECTION TITLES
+   ========================================================= */
 
-.fight-compare-sleek .fc-column:first-child {
-  border-right: 1px solid var(--line);
-}
-
-.fight-compare-sleek .fc-form-row {
-  display: grid;
-  grid-template-columns: 34px 1fr;
-
-  gap: 12px;
-  align-items: center;
-
-  padding: 14px 0;
-
-  border-bottom: 1px solid var(--line);
-}
-
-.fight-compare-sleek .fc-form-row:last-child {
-  border-bottom: 0;
-}
-
-.fight-compare-sleek .fc-result {
-  width: 28px;
-  height: 28px;
-
-  border-radius: 50%;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: .72rem;
-  font-weight: 900;
-}
-
-.fight-compare-sleek .fc-result.win {
-  color: var(--green);
-  background: var(--green-soft);
-
-  border: 1px solid rgba(63,208,123,.42);
-
-  box-shadow:
-    0 0 20px rgba(63,208,123,.09);
-}
-
-.fight-compare-sleek .fc-result.loss {
-  color: var(--red);
-  background: var(--red-soft);
-
-  border: 1px solid rgba(255,77,90,.42);
-
-  box-shadow:
-    0 0 20px rgba(255,77,90,.09);
-}
-
-.fight-compare-sleek .fc-result.nc {
-  color: var(--neutral);
-  background: var(--neutral-soft);
-
-  border: 1px solid rgba(208,169,90,.42);
-
-  font-size: .56rem;
-
-  box-shadow:
-    0 0 20px rgba(208,169,90,.07);
-}
-
-.fight-compare-sleek .fc-form-copy strong {
-  display: block;
-
-  font-size: .97rem;
-  line-height: 1.15;
-  font-weight: 700;
-}
-
-.fight-compare-sleek .fc-form-copy small {
-  display: block;
-
-  margin-top: 4px;
-
-  color: var(--muted);
-
-  font-size: .67rem;
-  line-height: 1.35;
-
-  letter-spacing: .055em;
-  text-transform: uppercase;
-}
-
-.fight-compare-sleek .fc-opponents {
-  display: grid;
-  grid-template-columns: 1fr 220px 1fr;
-
-  align-items: center;
-
-  border-top: 1px solid var(--line-strong);
-  border-bottom: 1px solid var(--line-strong);
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(255,77,90,.035),
-      rgba(255,255,255,.018) 50%,
-      rgba(87,140,255,.035)
-    );
-}
-
-.fight-compare-sleek .fc-opponent-stat {
-  padding: 19px 16px;
-  text-align: center;
-}
-
-.fight-compare-sleek .fc-opponent-stat strong {
-  display: block;
-
-  font-size: 1.28rem;
-  font-weight: 900;
-  line-height: 1;
-}
-
-.fight-compare-sleek .fc-opponent-stat span {
-  display: block;
-
-  margin-top: 6px;
-
-  color: var(--muted);
-
-  font-size: .67rem;
-  font-weight: 700;
-
-  letter-spacing: .1em;
-}
-
-.fight-compare-sleek .fc-opponent-label {
-  padding: 18px 12px;
-
-  text-align: center;
-
-  color: var(--muted);
-
-  font-size: .63rem;
-  font-weight: 900;
-
-  line-height: 1.4;
-  letter-spacing: .13em;
-}
-
-.fight-compare-sleek .fc-tale {
-  padding: 20px 18px 19px;
-}
 
 .fight-compare-sleek .fc-section-title {
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   margin-bottom: 12px;
 }
+
 
 .fight-compare-sleek .fc-section-title span {
   position: relative;
 
   display: inline-block;
 
-  padding: 0 14px;
+  padding:
+    0
+    14px;
 
   font-size: .73rem;
+
   font-weight: 900;
 
   text-transform: uppercase;
+
   letter-spacing: .17em;
 }
+
 
 .fight-compare-sleek .fc-section-title span::before,
 .fight-compare-sleek .fc-section-title span::after {
   content: "";
 
   position: absolute;
+
   top: 50%;
 
   width: 30px;
+
   height: 1px;
 
-  background: var(--line-strong);
+  background:
+    var(--line-strong);
 }
+
 
 .fight-compare-sleek .fc-section-title span::before {
   right: 100%;
 }
 
+
 .fight-compare-sleek .fc-section-title span::after {
   left: 100%;
 }
 
+
+/* =========================================================
+   TALE OF THE TAPE
+   ========================================================= */
+
+
+.fight-compare-sleek .fc-tale {
+  padding:
+    22px
+    18px
+    21px;
+
+  border-bottom:
+    1px solid var(--line-strong);
+}
+
+
 .fight-compare-sleek .fc-tale-row {
   display: grid;
-  grid-template-columns: 1fr 210px 1fr;
+
+  grid-template-columns:
+    1fr
+    210px
+    1fr;
 
   align-items: center;
 
   min-height: 46px;
 
-  padding: 0 8px;
+  padding:
+    0
+    8px;
 
-  border-top: 1px solid var(--line);
+  border-top:
+    1px solid var(--line);
 }
+
 
 .fight-compare-sleek .fc-tale-row strong {
   font-size: .95rem;
+
   font-weight: 850;
+
   line-height: 1;
 }
+
 
 .fight-compare-sleek .fc-tale-row strong:first-child {
   text-align: right;
 }
 
+
 .fight-compare-sleek .fc-tale-row strong:last-child {
   text-align: left;
 }
+
 
 .fight-compare-sleek .fc-tale-row span {
   color: var(--muted);
@@ -15138,16 +15282,21 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
   text-align: center;
 
   font-size: .67rem;
+
   font-weight: 850;
 
   text-transform: uppercase;
+
   letter-spacing: .11em;
 }
+
 
 .fight-compare-sleek .fc-tale-row.featured {
   margin-bottom: 4px;
 
-  border: 1px solid var(--line);
+  border:
+    1px solid var(--line);
+
   border-radius: 12px;
 
   background:
@@ -15159,9 +15308,252 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
     );
 }
 
+
 .fight-compare-sleek .fc-tale-row.featured strong {
   font-size: 1.06rem;
 }
+
+
+/* =========================================================
+   RECENT FORM
+   ========================================================= */
+
+
+.fight-compare-sleek .fc-form-section {
+  padding-top: 22px;
+}
+
+
+.fight-compare-sleek .fc-form-title {
+  margin-bottom: 8px;
+}
+
+
+.fight-compare-sleek .fc-form-wrap {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr;
+}
+
+
+.fight-compare-sleek .fc-column {
+  padding:
+    5px
+    20px
+    14px;
+}
+
+
+.fight-compare-sleek .fc-column:first-child {
+  border-right:
+    1px solid var(--line);
+}
+
+
+.fight-compare-sleek .fc-form-row {
+  display: grid;
+
+  grid-template-columns:
+    34px
+    1fr;
+
+  gap: 12px;
+
+  align-items: center;
+
+  padding:
+    14px
+    0;
+
+  border-bottom:
+    1px solid var(--line);
+}
+
+
+.fight-compare-sleek .fc-form-row:last-child {
+  border-bottom: 0;
+}
+
+
+.fight-compare-sleek .fc-result {
+  width: 28px;
+
+  height: 28px;
+
+  border-radius: 50%;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: .72rem;
+
+  font-weight: 900;
+}
+
+
+.fight-compare-sleek .fc-result.win {
+  color: var(--green);
+
+  background:
+    var(--green-soft);
+
+  border:
+    1px solid rgba(63,208,123,.42);
+
+  box-shadow:
+    0 0 20px rgba(63,208,123,.09);
+}
+
+
+.fight-compare-sleek .fc-result.loss {
+  color: var(--red);
+
+  background:
+    var(--red-soft);
+
+  border:
+    1px solid rgba(255,77,90,.42);
+
+  box-shadow:
+    0 0 20px rgba(255,77,90,.09);
+}
+
+
+.fight-compare-sleek .fc-result.nc {
+  color: var(--neutral);
+
+  background:
+    var(--neutral-soft);
+
+  border:
+    1px solid rgba(208,169,90,.42);
+
+  font-size: .56rem;
+
+  box-shadow:
+    0 0 20px rgba(208,169,90,.07);
+}
+
+
+.fight-compare-sleek .fc-form-copy strong {
+  display: block;
+
+  font-size: .97rem;
+
+  line-height: 1.15;
+
+  font-weight: 700;
+}
+
+
+.fight-compare-sleek .fc-form-copy small {
+  display: block;
+
+  margin-top: 4px;
+
+  color: var(--muted);
+
+  font-size: .67rem;
+
+  line-height: 1.35;
+
+  letter-spacing: .055em;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   OPPONENT COMBINED RECORD
+   ========================================================= */
+
+
+.fight-compare-sleek .fc-opponents {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    220px
+    1fr;
+
+  align-items: center;
+
+  border-top:
+    1px solid var(--line-strong);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,77,90,.035),
+      rgba(255,255,255,.018) 50%,
+      rgba(87,140,255,.035)
+    );
+}
+
+
+.fight-compare-sleek .fc-opponent-stat {
+  padding:
+    20px
+    16px;
+
+  text-align: center;
+}
+
+
+.fight-compare-sleek .fc-opponent-stat strong {
+  display: block;
+
+  font-size: 1.28rem;
+
+  font-weight: 900;
+
+  line-height: 1;
+}
+
+
+.fight-compare-sleek .fc-opponent-stat span {
+  display: block;
+
+  margin-top: 6px;
+
+  color: var(--muted);
+
+  font-size: .67rem;
+
+  font-weight: 700;
+
+  letter-spacing: .10em;
+}
+
+
+.fight-compare-sleek .fc-opponent-label {
+  padding:
+    18px
+    12px;
+
+  text-align: center;
+
+  color: var(--muted);
+
+  font-size: .63rem;
+
+  font-weight: 900;
+
+  line-height: 1.4;
+
+  letter-spacing: .13em;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
 
 @media (max-width: 760px) {
 
@@ -15169,33 +15561,62 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
     overflow-x: auto;
   }
 
+
   .fight-compare-sleek .fc-top,
-  .fight-compare-sleek .fc-form-wrap,
-  .fight-compare-sleek .fc-opponents,
-  .fight-compare-sleek .fc-tale {
+  .fight-compare-sleek .fc-tale,
+  .fight-compare-sleek .fc-form-section,
+  .fight-compare-sleek .fc-opponents {
     min-width: 680px;
   }
 
+
   .fight-compare-sleek .fc-top {
-    grid-template-columns: 1fr 150px 1fr;
+    grid-template-columns:
+      1fr
+      150px
+      1fr;
   }
+
 
   .fight-compare-sleek .fc-portrait {
-    width: 142px;
-    height: 142px;
+    width: 146px;
+
+    height: 146px;
   }
+
 
   .fight-compare-sleek .fc-tale-row {
-    grid-template-columns: 1fr 190px 1fr;
+    grid-template-columns:
+      1fr
+      190px
+      1fr;
   }
 
-  .fight-compare-sleek .ring-left img,
-  .fight-compare-sleek .ring-right img {
-    bottom: -65px;
+
+  /*
+     DO NOT PUSH THESE TO -64 / -65 AGAIN.
+     -34px IS THE BASELINE.
+  */
+
+
+  .fight-compare-sleek .fc-portrait img {
+    bottom: -34px;
+  }
+
+
+  .fight-compare-sleek .portrait-hernandez img {
+    width: 153%;
+  }
+
+
+  .fight-compare-sleek .portrait-dumas img {
+    width: 168%;
   }
 
 }
+
 </style>
+
 </section>
 **Sedriques Dumas** is a long, orthodox kickboxer who likes to work from range and tends to fight at a pretty measured pace. He uses his length well, mixes in kicks and will wrestle when it’s there, but his defensive grappling has been a problem. He’s coming off back-to-back submission losses.
 
@@ -19222,9 +19643,9 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
 }
 </style>
 </section>
-**Raoni Barcelos** is an orthodox veteran who’s genuinely well-rounded, with sharp boxing, good kicks and very strong defensive wrestling. He’s patient, technically sound and hard to hold down, with an 88% takedown defense rate in the UFC. He’s also on a five-fight winning streak, including recent decisions over Montel Jackson, Ricky Simon and Cody Garbrandt.
-
 **Raul Rosas Jr.** is a southpaw pressure grappler who wants to close distance, chain takedowns together and spend as much of the fight as possible controlling from top position or hunting the back. His striking is improving, but wrestling and scrambling are still clearly the engine of his game. He’s won five straight and most recently took a decision over Rob Font.
+
+**Raoni Barcelos** is an orthodox veteran who’s genuinely well-rounded, with sharp boxing, good kicks and very strong defensive wrestling. He’s patient, technically sound and hard to hold down, with an 88% takedown defense rate in the UFC. He’s also on a five-fight winning streak, including recent decisions over Montel Jackson, Ricky Simon and Cody Garbrandt.
 
 <section class="article-html-visual">
 <div class="fight-stats-sleek">
@@ -20027,3 +20448,16 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
 }
 </style>
 </section>
+Listen, I understand Barcelos is 39, but I clearly underestimated him and his peptides. The guy has been doing cool shit on the feet and winning fights. Rosas Jr. is a young, powerful donk, but I’m still trying to figure out exactly what his path to victory is here.
+
+Is it to take Barcelos down and simply control him? I think he’s going to have a lot of trouble doing that. Skill for skill, I think Barcelos is the better grappler and the better striker. It’s a five-round fight, but Barcelos only needs to win three of those five, and I really don’t see Rosas submitting him.
+
+So, in my mind, the Rosas path probably looks something like a Chael Sonnen-esque performance: relentless pressure, repeated takedowns, and Barcelos eventually finding himself stuck in bad positions on his back. Maybe Rosas survives the submission attempts, keeps resetting, and Barcelos simply can’t find a way out. The problem is that Rosas still has to consistently get him there first.
+
+That’s what makes this an intriguing matchup and a tough one to call. Despite all the logic and evidence I just so expertly provided, I think I still have to side with Rosas. You’d think I would have learned my lesson from the Payton Talbott fight, but apparently I haven’t. I’m still not completely sold on Barcelos, and although he has put together some really nice wins, I’m not convinced he can hold off a 21-year-old Rosas for five rounds.
+
+Part of me is absolutely cheering for Barcelos to pull it off, but he can’t just keep turning back the clock and eating the young. We have standards and practices!
+
+**Pick: Raul Rosas Jr. via Round 3 KO/TKO**
+
+That does it for my breakdown and picks. If I change my mind I'll say it on [X](https://x.com/MMAMATLOCK) and change it on [Verdict](https://verdictmma.com/profile/MMAMatlock)! Thanks for the follow!
