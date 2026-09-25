@@ -1509,3 +1509,31 @@ html[data-theme="light"] .live-page {
     margin-top: .85rem;
   }
 }
+
+
+/* Native YouTube playback owns transport controls; replay remains site UI. */
+.live-page__control-dock {
+  justify-content: flex-end;
+  min-height: 0;
+  padding: .45rem .05rem .35rem;
+}
+
+.live-page__replay {
+  margin-left: auto;
+}
+
+@media (max-width: 700px) {
+  .live-page__control-dock {
+    display: flex;
+    justify-content: flex-end;
+    padding: .4rem 0 .35rem;
+    overflow: visible;
+  }
+
+  .live-page__replay {
+    width: auto;
+    margin-left: auto;
+    padding-top: 0;
+    border-top: 0;
+  }
+}
