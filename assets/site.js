@@ -351,6 +351,33 @@
         const figures = [...document.querySelectorAll(".post-body figure.article-inline-video")];
         if (!figures.length) return;
 
+        const touchVideo =
+            window.matchMedia("(hover: none)").matches ||
+            window.matchMedia("(pointer: coarse)").matches;
+
+        const tryPlay = (figure, video) => {
+            if (
+                systemReducedMotion.matches ||
+                figure.dataset.videoManualPause === "true" ||
+                !video
+            ) return;
+
+            video.play().catch(() => {
+                // A visible play state is preferable to a dead-looking black frame.
+                figure.classList.add("is-paused");
+            });
+        };
+
+        const ensureLoaded = (figure, video) => {
+            if (!video) return;
+            if (touchVideo) video.preload = "auto";
+            if (video.networkState === HTMLMediaElement.NETWORK_EMPTY || video.readyState === 0) {
+                try {
+                    video.load();
+                } catch {}
+            }
+        };
+
         const visibilityObserver = "IntersectionObserver" in window
             ? new IntersectionObserver(entries => {
                 entries.forEach(entry => {
@@ -358,12 +385,25 @@
                     const video = figure.querySelector("video");
                     if (!video || figure.dataset.videoManualPause === "true") return;
                     if (entry.isIntersecting && entry.intersectionRatio >= 0.18 && !systemReducedMotion.matches) {
-                        video.play().catch(() => {});
+                        ensureLoaded(figure, video);
+                        tryPlay(figure, video);
                     } else if (!entry.isIntersecting || entry.intersectionRatio < 0.08) {
                         video.pause();
                     }
                 });
             }, { threshold: [0, 0.08, 0.18, 0.6] })
+            : null;
+
+        const preloadObserver = "IntersectionObserver" in window
+            ? new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    const figure = entry.target;
+                    const video = figure.querySelector("video");
+                    ensureLoaded(figure, video);
+                    preloadObserver.unobserve(figure);
+                });
+            }, { rootMargin: "700px 0px", threshold: 0 })
             : null;
 
         figures.forEach(figure => {
@@ -390,6 +430,8 @@
             video.setAttribute("loop", "");
             video.setAttribute("muted", "");
             video.setAttribute("playsinline", "");
+            video.setAttribute("webkit-playsinline", "");
+            video.preload = touchVideo ? "auto" : "metadata";
             video.tabIndex = 0;
             video.setAttribute("aria-keyshortcuts", "Space Enter M");
 
@@ -401,8 +443,33 @@
             `;
             stage.appendChild(controls);
 
+            const fallback = document.createElement("div");
+            fallback.className = "article-inline-video-fallback";
+            fallback.hidden = true;
+            fallback.innerHTML = `
+                <strong>Video didn't load</strong>
+                <div>
+                    <button type="button" data-video-reload>Reload video</button>
+                    <a data-video-open href="${video.currentSrc || video.src}" target="_blank" rel="noopener noreferrer">Open video</a>
+                </div>
+            `;
+            stage.appendChild(fallback);
+
             const playButton = controls.querySelector("[data-video-play]");
             const soundButton = controls.querySelector("[data-video-sound]");
+            const reloadButton = fallback.querySelector("[data-video-reload]");
+            const openLink = fallback.querySelector("[data-video-open]");
+
+            const clearError = () => {
+                figure.classList.remove("has-video-error");
+                fallback.hidden = true;
+            };
+
+            const showError = () => {
+                figure.classList.add("has-video-error");
+                fallback.hidden = false;
+                if (openLink) openLink.href = video.currentSrc || video.src;
+            };
 
             const sync = () => {
                 const paused = video.paused;
@@ -419,7 +486,8 @@
             const togglePlay = (manual = true) => {
                 if (video.paused) {
                     if (manual) figure.dataset.videoManualPause = "false";
-                    video.play().catch(() => {});
+                    ensureLoaded(figure, video);
+                    tryPlay(figure, video);
                 } else {
                     if (manual) figure.dataset.videoManualPause = "true";
                     video.pause();
@@ -433,13 +501,36 @@
             soundButton.addEventListener("click", event => {
                 event.stopPropagation();
                 video.muted = !video.muted;
-                if (video.paused && figure.dataset.videoManualPause !== "true") video.play().catch(() => {});
+                if (video.paused && figure.dataset.videoManualPause !== "true") tryPlay(figure, video);
                 sync();
             });
+            reloadButton?.addEventListener("click", event => {
+                event.stopPropagation();
+                clearError();
+                figure.dataset.videoManualPause = "false";
+                try {
+                    video.load();
+                } catch {}
+                tryPlay(figure, video);
+            });
+
             video.addEventListener("click", () => togglePlay());
             video.addEventListener("play", sync);
             video.addEventListener("pause", sync);
             video.addEventListener("volumechange", sync);
+            video.addEventListener("loadedmetadata", () => {
+                clearError();
+                if (touchVideo) tryPlay(figure, video);
+            });
+            video.addEventListener("loadeddata", () => {
+                clearError();
+                if (touchVideo) tryPlay(figure, video);
+            });
+            video.addEventListener("canplay", () => {
+                clearError();
+                if (touchVideo) tryPlay(figure, video);
+            });
+            video.addEventListener("error", showError);
             video.addEventListener("keydown", event => {
                 if (event.key === " " || event.key === "Enter") {
                     event.preventDefault();
@@ -456,9 +547,11 @@
                 video.pause();
             } else {
                 figure.dataset.videoManualPause = "false";
-                video.play().catch(() => {});
+                if (touchVideo) ensureLoaded(figure, video);
+                tryPlay(figure, video);
             }
 
+            preloadObserver?.observe(figure);
             visibilityObserver?.observe(figure);
             sync();
         });
@@ -475,5 +568,40 @@
         });
     }
 
+    function setupArticleBackToTop() {
+        const button = document.querySelector("[data-article-back-to-top]");
+        if (!button) return;
+
+        const mobile = window.matchMedia("(max-width: 760px)");
+
+        const sync = () => {
+            const visible = mobile.matches && window.scrollY > Math.max(520, window.innerHeight * 0.8);
+            button.hidden = !visible;
+            button.classList.toggle("is-visible", visible);
+        };
+
+        let frame = 0;
+        const scheduleSync = () => {
+            if (frame) return;
+            frame = requestAnimationFrame(() => {
+                frame = 0;
+                sync();
+            });
+        };
+
+        button.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: systemReducedMotion.matches ? "auto" : "smooth"
+            });
+        });
+
+        window.addEventListener("scroll", scheduleSync, { passive: true });
+        window.addEventListener("resize", scheduleSync);
+        mobile.addEventListener?.("change", sync);
+        sync();
+    }
+
     setupArticleVideos();
+    setupArticleBackToTop();
 })();
