@@ -518,6 +518,23 @@
         }
       ],
       "fast_check_until": "2026-09-27T06:00:00Z"
+    },
+    {
+      "id": "manual-youtube-live",
+      "name": "YouTube Live",
+      "short_name": "YouTube Live",
+      "country": "International",
+      "priority": 90,
+      "enabled": true,
+      "pinned_only": true,
+      "use_channel_name": true,
+      "coverage_note": "Manually supplied public YouTube live streams",
+      "pinned_videos": [
+        {
+          "video_id": "YikdtdLGxZA",
+          "title": "YouTube live stream"
+        }
+      ]
     }
   ]
 }
