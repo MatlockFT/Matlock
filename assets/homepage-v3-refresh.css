@@ -838,33 +838,6 @@ html[data-theme="dark"] body:has([data-globe-home]) {
     --v3-red: #f08a24;
 }
 
-/* Larger decorative pumpkin at the lower-right of the MATLOCK masthead. */
-.v3-wordmark {
-    position: relative;
-    display: inline-block;
-}
-
-.v3-wordmark::after {
-    position: absolute;
-    right: -1.72rem;
-    bottom: -.16rem;
-    width: clamp(1.15rem, 1.45vw, 1.5rem);
-    aspect-ratio: 1;
-    content: "";
-    background: url("/assets/icons/pumpkin.svg") center / contain no-repeat;
-    pointer-events: none;
-    user-select: none;
-}
-
-@media (max-width: 520px) {
-    .v3-wordmark::after {
-        right: -1.3rem;
-        bottom: -.1rem;
-        width: 1rem;
-    }
-}
-
-
 /* Homepage latest-news numbering removal */
 .v3-news-list {
     counter-reset: none;
