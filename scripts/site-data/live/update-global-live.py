@@ -364,6 +364,38 @@ def source_title_allowed(title, candidate):
     return any(term.casefold() in lowered for term in terms)
 
 
+def configured_video_candidates(promotion, channel_url):
+    candidates = []
+
+    for item in promotion.get("pinned_videos") or []:
+        if isinstance(item, str):
+            video_id = item.strip()
+            title = f"{promotion.get('short_name') or promotion['name']} live"
+        else:
+            video_id = str(item.get("video_id") or "").strip()
+            title = str(
+                item.get("title")
+                or f"{promotion.get('short_name') or promotion['name']} live"
+            ).strip()
+
+        if not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id):
+            continue
+
+        candidates.append(
+            {
+                "video_id": video_id,
+                "title": title,
+                "html_live": False,
+                "restricted": False,
+                "source_channel_url": channel_url,
+                "source_role": "promotion",
+                "require_terms": [],
+            }
+        )
+
+    return candidates
+
+
 def extract_stream_candidates(page_html, promotion, channel_config):
     candidates = []
     seen = set()
@@ -557,6 +589,13 @@ def probe_promotion(promotion, global_terms, previous_state):
                 continue
             seen_video_ids.add(video_id)
             candidates.append(candidate)
+
+    for candidate in configured_video_candidates(promotion, primary_channel_url):
+        video_id = candidate.get("video_id")
+        if not video_id or video_id in seen_video_ids:
+            continue
+        seen_video_ids.add(video_id)
+        candidates.append(candidate)
 
     if not candidates and len(fetch_errors) == len(channel_configs):
         return error_result(
