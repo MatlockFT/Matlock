@@ -160,6 +160,26 @@ const feeds = [
     }
 ];
 
+try {
+    const control = JSON.parse(
+        await readFile(resolve("assets/data/broadcast-control.json"), "utf8")
+    );
+    for (const source of control?.sources?.customNewsFeeds || []) {
+        const name = plainText(source?.name);
+        const feedUrl = safeUrl(source?.feedUrl);
+        const siteUrl = safeUrl(source?.siteUrl) || (feedUrl ? new URL(feedUrl).origin + "/" : "");
+        if (!name || !feedUrl || feeds.some(feed => feed.name.toLowerCase() === name.toLowerCase())) continue;
+        feeds.push({
+            name: truncate(name, 80),
+            siteUrl,
+            feedUrl,
+            priority: Number.isFinite(Number(source?.priority)) ? Number(source.priority) : 8
+        });
+    }
+} catch {
+    // Broadcast control is optional for the news builder.
+}
+
 const parser = new XMLParser({
     attributeNamePrefix: "@",
     ignoreAttributes: false,
