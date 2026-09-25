@@ -1258,18 +1258,18 @@
     source.href = event.watch_url || `https://www.youtube.com/watch?v=${event.video_id}`;
     source.hidden = false;
 
-    if (changingVideo && ytPlayer && typeof ytPlayer.cueVideoById === "function") {
+    if (changingVideo && ytPlayer && typeof ytPlayer.loadVideoById === "function") {
       stopLiveVerification();
       try {
-        ytPlayer.cueVideoById(event.video_id);
+        ytPlayer.loadVideoById(event.video_id);
         startLiveVerification();
-        updateMediaControls();
+        window.setTimeout(updateMediaControls, 120);
       } catch (error) {
         console.warn("Unable to switch YouTube live stream in-place", error);
-        try {
-          ytPlayer.destroy?.();
-        } catch {}
         ytPlayer = null;
+        window.clearInterval(playerControlTimer);
+        playerControlTimer = 0;
+        stopLiveVerification();
         player.src = embedUrl(event.video_id);
         player.addEventListener("load", () => attachYouTubePlayerApi(), { once: true });
       }
