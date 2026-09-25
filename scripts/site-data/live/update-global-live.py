@@ -609,7 +609,7 @@ def probe_promotion(promotion, global_terms, previous_state):
     )
 
     if api_items:
-        live_event = None
+        live_events = []
         upcoming = []
         restricted_title = None
         unembeddable_title = None
@@ -659,8 +659,7 @@ def probe_promotion(promotion, global_terms, previous_state):
                 if not status_data.get("embeddable", True):
                     unembeddable_title = title
                     continue
-                if live_event is None:
-                    live_event = event
+                live_events.append(event)
             else:
                 upcoming.append(event)
 
@@ -672,23 +671,26 @@ def probe_promotion(promotion, global_terms, previous_state):
             )
         )
 
-        if live_event:
+        if live_events:
             observed_at = now_iso()
-            live_event["observed_at"] = observed_at
+            for live_event in live_events:
+                live_event["observed_at"] = observed_at
+            primary_live_event = live_events[0]
             return {
                 "source": build_source(
                     promotion,
-                    live_event.get("channel_url") or primary_channel_url,
+                    primary_live_event.get("channel_url") or primary_channel_url,
                     "live",
                     None,
                     0,
                     observed_at,
                     checked_at,
                     "youtube_api",
-                    live_event.get("channel_id") or api_channel_id,
-                    live_event.get("channel_name") or api_channel_name,
+                    primary_live_event.get("channel_id") or api_channel_id,
+                    primary_live_event.get("channel_name") or api_channel_name,
                 ),
-                "event": live_event,
+                "event": primary_live_event,
+                "events": live_events,
                 "upcoming": upcoming,
             }
 
@@ -902,7 +904,10 @@ def main():
                 )
 
             sources[promotion["id"]] = result["source"]
-            if result.get("event"):
+            result_events = result.get("events")
+            if result_events is not None:
+                events.extend(event for event in result_events if event)
+            elif result.get("event"):
                 events.append(result["event"])
             upcoming.extend(result.get("upcoming") or [])
 
