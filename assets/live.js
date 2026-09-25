@@ -60,21 +60,54 @@
     if (replayStatus) replayStatus.textContent = message;
   };
 
-  const replaySupported = () =>
-    window.isSecureContext &&
-    Boolean(navigator.mediaDevices?.getDisplayMedia) &&
-    "MediaRecorder" in window &&
-    "CropTarget" in window &&
-    typeof window.CropTarget?.fromElement === "function";
+  const replaySupported = () => {
+    const hasElementCapture =
+      "RestrictionTarget" in window &&
+      typeof window.RestrictionTarget?.fromElement === "function";
+    const hasRegionCapture =
+      "CropTarget" in window &&
+      typeof window.CropTarget?.fromElement === "function";
+
+    return (
+      window.isSecureContext &&
+      Boolean(navigator.mediaDevices?.getDisplayMedia) &&
+      "MediaRecorder" in window &&
+      (hasElementCapture || hasRegionCapture)
+    );
+  };
 
   const chooseReplayMimeType = () => {
     const types = [
-      "video/webm;codecs=vp9,opus",
-      "video/webm;codecs=vp8,opus",
-      "video/webm"
+      "video/mp4",
+      "video/mp4;codecs=avc1.42E01E,mp4a.40.2",
+      "video/mp4;codecs=avc3.42E01E,mp4a.40.2"
     ];
 
     return types.find((type) => MediaRecorder.isTypeSupported?.(type)) || "";
+  };
+
+  const restrictCaptureToPlayer = async (videoTrack) => {
+    if (
+      "RestrictionTarget" in window &&
+      typeof window.RestrictionTarget?.fromElement === "function" &&
+      typeof videoTrack.restrictTo === "function"
+    ) {
+      const restrictionTarget = await RestrictionTarget.fromElement(screen);
+      await videoTrack.restrictTo(restrictionTarget);
+      return "element";
+    }
+
+    if (
+      "CropTarget" in window &&
+      typeof window.CropTarget?.fromElement === "function" &&
+      typeof videoTrack.cropTo === "function"
+    ) {
+      const cropTarget = await CropTarget.fromElement(screen);
+      await videoTrack.cropTo(cropTarget);
+      return "region";
+    }
+
+    throw new Error("Player-only capture is unavailable in this browser.");
   };
 
   const resetReplayUi = (status = "Off") => {
@@ -179,8 +212,8 @@
       });
 
       const [videoTrack] = stream.getVideoTracks();
-      if (!videoTrack || typeof videoTrack.cropTo !== "function") {
-        throw new Error("Player-only crop is unavailable in this browser.");
+      if (!videoTrack) {
+        throw new Error("No capture video track was returned.");
       }
 
       try {
@@ -197,12 +230,11 @@
         // Capture can continue at the browser-selected rate.
       }
 
-      const cropTarget = await CropTarget.fromElement(screen);
-      await videoTrack.cropTo(cropTarget);
+      const captureMode = await restrictCaptureToPlayer(videoTrack);
 
       replayMimeType = chooseReplayMimeType();
-      if (!replayMimeType || !replayMimeType.includes("webm")) {
-        throw new Error("A WebM MediaRecorder is required for the rolling buffer.");
+      if (!replayMimeType || !replayMimeType.includes("mp4")) {
+        throw new Error("MP4 MediaRecorder is unavailable in this browser.");
       }
 
       const recorderOptions = {
@@ -248,7 +280,12 @@
       }
 
       const hasAudio = stream.getAudioTracks().length > 0;
-      setReplayStatus(hasAudio ? "Buffering…" : "Buffering video only");
+      const captureLabel = captureMode === "element" ? "Player capture" : "Player crop";
+      setReplayStatus(
+        hasAudio
+          ? `${captureLabel} · buffering…`
+          : `${captureLabel} · video only`
+      );
       updateReplayReadyState();
       scheduleUiFade();
     } catch (error) {
@@ -256,13 +293,15 @@
       console.warn("Replay buffer unavailable", error);
 
       const denied = error?.name === "NotAllowedError";
-      const cropFailure = !denied && /crop|current tab|player-only/i.test(String(error?.message || ""));
+      const cropFailure = !denied && /crop|restrict|current tab|player-only/i.test(String(error?.message || ""));
       setReplayStatus(
         denied
           ? "Capture cancelled"
           : cropFailure
             ? "Choose This Tab in Chrome/Edge"
-            : "Replay unavailable"
+            : /MP4/i.test(String(error?.message || ""))
+              ? "MP4 capture unsupported"
+              : "Replay unavailable"
       );
 
       if (replayArm) replayArm.disabled = false;
@@ -294,55 +333,95 @@
       }
     });
 
-  const WEBM_CLUSTER_ID = [0x1f, 0x43, 0xb6, 0x75];
+  const readUint32 = (bytes, offset) =>
+    new DataView(bytes.buffer, bytes.byteOffset + offset, 4).getUint32(0);
 
-  const findBytePattern = (bytes, pattern, from = 0) => {
-    outer:
-    for (let index = Math.max(0, from); index <= bytes.length - pattern.length; index += 1) {
-      for (let offset = 0; offset < pattern.length; offset += 1) {
-        if (bytes[index + offset] !== pattern[offset]) continue outer;
+  const writeUint32 = (bytes, offset, value) =>
+    new DataView(bytes.buffer, bytes.byteOffset + offset, 4).setUint32(0, value >>> 0);
+
+  const readUint64 = (bytes, offset) => {
+    const view = new DataView(bytes.buffer, bytes.byteOffset + offset, 8);
+    return (BigInt(view.getUint32(0)) << 32n) | BigInt(view.getUint32(4));
+  };
+
+  const writeUint64 = (bytes, offset, value) => {
+    const normalized = BigInt(value);
+    const view = new DataView(bytes.buffer, bytes.byteOffset + offset, 8);
+    view.setUint32(0, Number((normalized >> 32n) & 0xffffffffn));
+    view.setUint32(4, Number(normalized & 0xffffffffn));
+  };
+
+  const mp4TypeAt = (bytes, offset) =>
+    String.fromCharCode(
+      bytes[offset],
+      bytes[offset + 1],
+      bytes[offset + 2],
+      bytes[offset + 3]
+    );
+
+  const parseMp4Boxes = (bytes, start = 0, end = bytes.length) => {
+    const boxes = [];
+    let offset = start;
+
+    while (offset + 8 <= end) {
+      let size = readUint32(bytes, offset);
+      const type = mp4TypeAt(bytes, offset + 4);
+      let headerSize = 8;
+
+      if (size === 1) {
+        if (offset + 16 > end) break;
+        const largeSize = readUint64(bytes, offset + 8);
+        if (largeSize > BigInt(Number.MAX_SAFE_INTEGER)) break;
+        size = Number(largeSize);
+        headerSize = 16;
+      } else if (size === 0) {
+        size = end - offset;
       }
-      return index;
+
+      if (size < headerSize || offset + size > end) break;
+
+      boxes.push({
+        type,
+        offset,
+        size,
+        headerSize,
+        dataStart: offset + headerSize,
+        end: offset + size
+      });
+
+      offset += size;
     }
+
+    return boxes;
+  };
+
+  const findMp4BoxStart = (bytes, wantedType) => {
+    const chars = [...wantedType].map((char) => char.charCodeAt(0));
+
+    for (let typeOffset = 4; typeOffset <= bytes.length - 4; typeOffset += 1) {
+      if (
+        bytes[typeOffset] !== chars[0] ||
+        bytes[typeOffset + 1] !== chars[1] ||
+        bytes[typeOffset + 2] !== chars[2] ||
+        bytes[typeOffset + 3] !== chars[3]
+      ) continue;
+
+      const start = typeOffset - 4;
+      if (start < 0 || start + 8 > bytes.length) continue;
+
+      const size = readUint32(bytes, start);
+      if (size >= 8 && start + size <= bytes.length) return start;
+
+      if (size === 1 && start + 16 <= bytes.length) {
+        const largeSize = readUint64(bytes, start + 8);
+        if (
+          largeSize >= 16n &&
+          largeSize <= BigInt(bytes.length - start)
+        ) return start;
+      }
+    }
+
     return -1;
-  };
-
-  const readEbmlVint = (bytes, offset) => {
-    if (offset >= bytes.length) return null;
-
-    const first = bytes[offset];
-    let mask = 0x80;
-    let length = 1;
-
-    while (length <= 8 && !(first & mask)) {
-      mask >>= 1;
-      length += 1;
-    }
-
-    if (length > 8 || offset + length > bytes.length) return null;
-
-    let value = first & (mask - 1);
-    for (let index = 1; index < length; index += 1) {
-      value = (value * 256) + bytes[offset + index];
-    }
-
-    return { length, value };
-  };
-
-  const readUnsignedBigEndian = (bytes, offset, length) => {
-    let value = 0;
-    for (let index = 0; index < length; index += 1) {
-      value = (value * 256) + bytes[offset + index];
-    }
-    return value;
-  };
-
-  const writeUnsignedBigEndian = (bytes, offset, length, value) => {
-    let remaining = Math.max(0, Math.floor(value));
-    for (let index = length - 1; index >= 0; index -= 1) {
-      bytes[offset + index] = remaining % 256;
-      remaining = Math.floor(remaining / 256);
-    }
   };
 
   const concatUint8Arrays = (arrays) => {
@@ -358,89 +437,75 @@
     return merged;
   };
 
-  const findClusterTimecode = (bytes, clusterOffset, nextClusterOffset) => {
-    const sizeInfo = readEbmlVint(bytes, clusterOffset + WEBM_CLUSTER_ID.length);
-    if (!sizeInfo) return null;
+  const rebaseMp4Fragments = (payload) => {
+    const baseDecodeTimes = new Map();
+    let sequence = 1;
 
-    const contentStart =
-      clusterOffset +
-      WEBM_CLUSTER_ID.length +
-      sizeInfo.length;
-    const scanEnd = Math.min(
-      nextClusterOffset > clusterOffset ? nextClusterOffset : bytes.length,
-      contentStart + 96
-    );
+    for (const moof of parseMp4Boxes(payload)) {
+      if (moof.type !== "moof") continue;
 
-    for (let offset = contentStart; offset < scanEnd - 2; offset += 1) {
-      if (bytes[offset] !== 0xe7) continue;
+      const moofChildren = parseMp4Boxes(payload, moof.dataStart, moof.end);
 
-      const valueSize = readEbmlVint(bytes, offset + 1);
-      if (!valueSize || valueSize.value < 1 || valueSize.value > 8) continue;
+      for (const child of moofChildren) {
+        if (child.type === "mfhd" && child.dataStart + 8 <= child.end) {
+          writeUint32(payload, child.dataStart + 4, sequence);
+          sequence += 1;
+        }
 
-      const valueOffset = offset + 1 + valueSize.length;
-      if (valueOffset + valueSize.value > bytes.length) continue;
+        if (child.type !== "traf") continue;
 
-      return {
-        valueOffset,
-        valueLength: valueSize.value,
-        value: readUnsignedBigEndian(bytes, valueOffset, valueSize.value)
-      };
+        const trafChildren = parseMp4Boxes(payload, child.dataStart, child.end);
+        const tfhd = trafChildren.find((box) => box.type === "tfhd");
+        const tfdt = trafChildren.find((box) => box.type === "tfdt");
+
+        if (!tfhd || !tfdt || tfhd.dataStart + 8 > tfhd.end) continue;
+
+        const trackId = readUint32(payload, tfhd.dataStart + 4);
+        const version = payload[tfdt.dataStart];
+        const valueOffset = tfdt.dataStart + 4;
+
+        if (version === 1) {
+          if (valueOffset + 8 > tfdt.end) continue;
+          const value = readUint64(payload, valueOffset);
+          if (!baseDecodeTimes.has(trackId)) baseDecodeTimes.set(trackId, value);
+          writeUint64(payload, valueOffset, value - baseDecodeTimes.get(trackId));
+        } else {
+          if (valueOffset + 4 > tfdt.end) continue;
+          const value = BigInt(readUint32(payload, valueOffset));
+          if (!baseDecodeTimes.has(trackId)) baseDecodeTimes.set(trackId, value);
+          const rebased = value - baseDecodeTimes.get(trackId);
+          writeUint32(payload, valueOffset, Number(rebased));
+        }
+      }
     }
 
-    return null;
+    return payload;
   };
 
-  const buildRollingWebm = async (chunks) => {
+  const buildRollingMp4 = async (chunks) => {
     if (!replayHeaderBlob) {
-      throw new Error("Replay WebM header is not available yet.");
+      throw new Error("Replay MP4 initialization segment is not available yet.");
     }
 
     const headerSource = new Uint8Array(await replayHeaderBlob.arrayBuffer());
-    const firstHeaderCluster = findBytePattern(headerSource, WEBM_CLUSTER_ID);
-    if (firstHeaderCluster <= 0) {
-      throw new Error("Replay WebM header could not be parsed.");
-    }
+    const firstHeaderMoof = findMp4BoxStart(headerSource, "moof");
+    const header =
+      firstHeaderMoof > 0
+        ? headerSource.slice(0, firstHeaderMoof)
+        : headerSource;
 
-    const header = headerSource.slice(0, firstHeaderCluster);
     const chunkArrays = await Promise.all(
       chunks.map(async (chunk) => new Uint8Array(await chunk.blob.arrayBuffer()))
     );
     const combined = concatUint8Arrays(chunkArrays);
-    const firstCluster = findBytePattern(combined, WEBM_CLUSTER_ID);
+    const firstMoof = findMp4BoxStart(combined, "moof");
 
-    if (firstCluster < 0) {
-      throw new Error("No complete WebM cluster exists in the replay window.");
+    if (firstMoof < 0) {
+      throw new Error("No complete MP4 fragment exists in the replay window.");
     }
 
-    const payload = combined.slice(firstCluster);
-    const clusters = [];
-    let searchFrom = 0;
-
-    while (searchFrom < payload.length) {
-      const offset = findBytePattern(payload, WEBM_CLUSTER_ID, searchFrom);
-      if (offset < 0) break;
-      clusters.push(offset);
-      searchFrom = offset + WEBM_CLUSTER_ID.length;
-    }
-
-    let baseTimecode = null;
-
-    for (let index = 0; index < clusters.length; index += 1) {
-      const clusterOffset = clusters[index];
-      const nextClusterOffset = clusters[index + 1] ?? payload.length;
-      const timecode = findClusterTimecode(payload, clusterOffset, nextClusterOffset);
-      if (!timecode) continue;
-
-      if (baseTimecode === null) baseTimecode = timecode.value;
-      writeUnsignedBigEndian(
-        payload,
-        timecode.valueOffset,
-        timecode.valueLength,
-        timecode.value - baseTimecode
-      );
-    }
-
-    return new Blob([header, payload], { type: "video/webm" });
+    const payload = rebaseMp4Fragments(combined.slice(firstMoof));
+    return new Blob([header, payload], { type: "video/mp4" });
   };
 
   const saveReplayBuffer = async () => {
@@ -473,7 +538,7 @@
 
     let blob;
     try {
-      blob = await buildRollingWebm(selected);
+      blob = await buildRollingMp4(selected);
     } catch (error) {
       console.warn("Replay assembly failed", error);
       updateReplayReadyState();
@@ -481,7 +546,7 @@
       return;
     }
 
-    const extension = "webm";
+    const extension = "mp4";
     const stamp = new Date()
       .toISOString()
       .replace(/[:.]/g, "-")
