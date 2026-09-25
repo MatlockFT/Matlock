@@ -18,28 +18,56 @@ sitemap: false
   <main class="broadcast" data-broadcast>
     <header class="topbar">
       <div class="brand">MMA MATLOCK</div>
-      <div class="status"><span class="live-dot"></span> LIVE NEWS DESK</div>
+      <div class="status"><span class="live-dot"></span> COMBAT NEWS LIVE</div>
       <time class="clock" data-clock>--:-- CT</time>
     </header>
 
-    <section class="stage" aria-live="polite">
-      <div class="media" data-media></div>
-      <div class="wash"></div>
-      <div class="content">
-        <div class="eyebrow" data-eyebrow>LATEST</div>
-        <h1 data-title>Loading MMA Matlock broadcast…</h1>
-        <p class="deck" data-deck></p>
-        <div class="meta">
-          <span data-source>MMA MATLOCK</span>
-          <span class="meta-sep">•</span>
-          <span data-time>LIVE</span>
+    <section class="stage" data-stage aria-live="polite">
+      <div class="feature-grid">
+        <div class="visual-panel" data-visual-panel>
+          <div class="visual-blur" data-visual-blur></div>
+          <img class="story-image" data-story-image alt="">
+          <iframe
+            class="video-frame"
+            data-video-frame
+            title="MMA video"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+          <div class="visual-badge" data-visual-badge>LATEST</div>
         </div>
+
+        <article class="story-panel">
+          <div class="story-kicker" data-eyebrow>LATEST NEWS</div>
+          <h1 data-title>Loading current combat sports news…</h1>
+          <p class="story-context" data-context></p>
+
+          <div class="coverage" data-coverage hidden>
+            <span class="coverage-label">Also covered by</span>
+            <span data-coverage-text></span>
+          </div>
+
+          <div class="story-meta">
+            <strong data-source>COMBAT SPORTS</strong>
+            <span>•</span>
+            <span data-time>LIVE</span>
+          </div>
+        </article>
       </div>
+
+      <div class="lower-rail">
+        <div class="rail-heading">
+          <span>COMING UP</span>
+          <small>Live rotation</small>
+        </div>
+        <div class="rail-items" data-rail-items></div>
+      </div>
+
       <div class="progress"><span data-progress></span></div>
     </section>
 
     <footer class="ticker">
-      <div class="ticker-label">COMBAT SPORTS</div>
+      <div class="ticker-label">LATEST</div>
       <div class="ticker-window">
         <div class="ticker-track" data-ticker-track>
           <span>Loading latest combat sports headlines…</span>
@@ -48,6 +76,7 @@ sitemap: false
       <div class="next-event" data-next-event>UPCOMING EVENTS</div>
     </footer>
   </main>
+
   <script src="/assets/broadcast-trial.js?v={{ site.asset_version }}"></script>
 </body>
 </html>
