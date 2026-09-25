@@ -329,12 +329,18 @@ html[data-theme="light"] .live-page__player-stage::before {
   flex-wrap: wrap;
 }
 
-.live-page__replay {
-  position: absolute;
-  z-index: 5;
-  right: clamp(.75rem, 1.4vw, 1.15rem);
-  bottom: clamp(.75rem, 1.4vw, 1.15rem);
+.live-page__replay-dock {
+  position: relative;
+  z-index: 4;
   display: flex;
+  justify-content: flex-end;
+  min-height: 64px;
+  padding: .65rem .1rem 0;
+}
+
+.live-page__replay {
+  position: relative;
+  display: inline-flex;
   align-items: center;
   gap: .65rem;
   pointer-events: auto;
@@ -425,7 +431,7 @@ html[data-theme="light"] .live-page__player-stage::before {
 .live-page__replay-status {
   position: absolute;
   right: 0;
-  bottom: calc(100% + .48rem);
+  top: calc(100% + .38rem);
   min-width: max-content;
   color: rgba(255,255,255,.66);
   font: 800 .5rem/1 var(--v3-sans);
@@ -704,9 +710,12 @@ html[data-theme="light"] .live-page__player-stage::before {
     justify-content: flex-start;
   }
 
+  .live-page__replay-dock {
+    min-height: 58px;
+    padding-top: .5rem;
+  }
+
   .live-page__replay {
-    right: .55rem;
-    bottom: .55rem;
     gap: .48rem;
   }
 
