@@ -183,6 +183,76 @@ for (const viewport of viewports) {
 
 
 
+test.describe('Article social sharing', () => {
+  const articlePath = '/2026/09/24/rosas-jr-vs-barcelos-ufc-vegas-121.html';
+
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('renders direct platform intents and both Instagram formats', async ({ page }) => {
+    const pageErrors = [];
+    page.on('pageerror', error => pageErrors.push(error.message));
+
+    await page.goto(targetUrl(articlePath), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-native-share-top]')).toBeVisible();
+    await expect(page.locator('[data-post-share]')).toBeVisible();
+
+    expect(await page.locator('[data-share-x]').getAttribute('href')).toContain('twitter.com/intent/tweet');
+    expect(await page.locator('[data-share-threads]').getAttribute('href')).toContain('threads.net/intent/post');
+    expect(await page.locator('[data-share-facebook]').getAttribute('href')).toContain('facebook.com/sharer/sharer.php');
+    expect(await page.locator('[data-share-reddit]').getAttribute('href')).toContain('reddit.com/submit');
+
+    await expect(page.locator('[data-share-instagram="post"]')).toBeVisible();
+    await expect(page.locator('[data-share-instagram="story"]')).toBeVisible();
+    expect(pageErrors).toEqual([]);
+  });
+});
+
+test.describe('Article native sharing on mobile', () => {
+  const articlePath = '/2026/09/24/rosas-jr-vs-barcelos-ufc-vegas-121.html';
+
+  test.use({
+    viewport: { width: 390, height: 844 },
+    isMobile: true,
+    hasTouch: true
+  });
+
+  test('top Share uses Web Share while platform links remain same-tab intents', async ({ page }) => {
+    await page.addInitScript(() => {
+      window.__mmaSharePayloads = [];
+      Object.defineProperty(navigator, 'share', {
+        configurable: true,
+        value: async payload => {
+          window.__mmaSharePayloads.push(payload);
+        }
+      });
+    });
+
+    const pageErrors = [];
+    page.on('pageerror', error => pageErrors.push(error.message));
+
+    await page.goto(targetUrl(articlePath), { waitUntil: 'domcontentloaded', timeout: 45000 });
+    await expect(page.locator('[data-native-share-top]')).toBeVisible();
+    await page.locator('[data-native-share-top]').click();
+
+    await expect.poll(async () => page.evaluate(() => window.__mmaSharePayloads.length)).toBe(1);
+    const payload = await page.evaluate(() => window.__mmaSharePayloads[0]);
+    expect(payload.url).toContain(articlePath);
+    expect(payload.title).toContain('Rosas Jr. vs. Barcelos');
+
+    for (const selector of [
+      '[data-share-x]',
+      '[data-share-threads]',
+      '[data-share-facebook]',
+      '[data-share-reddit]'
+    ]) {
+      await expect(page.locator(selector)).not.toHaveAttribute('target', '_blank');
+    }
+
+    expect(pageErrors).toEqual([]);
+  });
+});
+
+
 test.describe.skip('Original site theme isolation', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 
