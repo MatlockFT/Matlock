@@ -1,7 +1,51 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-25T06:58:36.492Z",
+  "generated_at": "2026-09-25T12:45:30.702Z",
   "changes": [
+    {
+      "id": "2026-09-25T12:45:30.702Z|rizin-abc-presents-rizin-55-2026-11-08|bout_changed|1",
+      "at": "2026-09-25T12:45:30.702Z",
+      "type": "bout_changed",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
+      "promotion": "RIZIN",
+      "event_title": "『abc presents RIZIN.55』",
+      "event_date": "2026-11-08",
+      "summary": "Taichi Nakajima vs 溝口司 changed to Taichi Nakajima vs Tsukasa Mizoguchi on 『abc presents RIZIN.55』.",
+      "details": {
+        "order": 9,
+        "section": "Fight Card",
+        "from": [
+          "Taichi Nakajima",
+          "溝口司"
+        ],
+        "to": [
+          "Taichi Nakajima",
+          "Tsukasa Mizoguchi"
+        ]
+      }
+    },
+    {
+      "id": "2026-09-25T12:45:30.702Z|rizin-abc-presents-rizin-55-2026-11-08|bout_changed|2",
+      "at": "2026-09-25T12:45:30.702Z",
+      "type": "bout_changed",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
+      "promotion": "RIZIN",
+      "event_title": "『abc presents RIZIN.55』",
+      "event_date": "2026-11-08",
+      "summary": "力也 vs 木村琉音 changed to Rikiya vs Rio Kimura on 『abc presents RIZIN.55』.",
+      "details": {
+        "order": 10,
+        "section": "Fight Card",
+        "from": [
+          "力也",
+          "木村琉音"
+        ],
+        "to": [
+          "Rikiya",
+          "Rio Kimura"
+        ]
+      }
+    },
     {
       "id": "2026-09-25T06:58:36.492Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|1",
       "at": "2026-09-25T06:58:36.492Z",
@@ -4675,36 +4719,6 @@
       "summary": "Yazmin Jauregui portrait source changed.",
       "details": {
         "fighter": "Yazmin Jauregui",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-332-2026-10-03-fight-card|portrait_changed|46",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Natalia Silva portrait source changed.",
-      "details": {
-        "fighter": "Natalia Silva",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-332-2026-10-03-fight-card|portrait_changed|47",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Wang Cong portrait source changed.",
-      "details": {
-        "fighter": "Wang Cong",
         "from_source": "sherdog",
         "to_source": "ufc"
       }
