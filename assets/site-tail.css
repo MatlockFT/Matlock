@@ -3599,3 +3599,61 @@ textarea:focus-visible {
         flex-basis: 100%;
     }
 }
+
+
+/* Mobile shell consolidation: single brand row + clean viewport scrolling */
+@media (max-width: 850px) {
+    /* The nav brand is the mobile masthead. Do not repeat a second logo row. */
+    .site-header > .logo-banner {
+        display: none !important;
+    }
+
+    .site-navigation .navigation-inner {
+        min-height: 52px;
+    }
+
+    .site-navigation .mobile-brand {
+        display: inline-flex !important;
+        align-items: center;
+        gap: .16em;
+        min-width: 0;
+        color: inherit;
+        font-family: "Edition Matlock", var(--font-display), Georgia, "Times New Roman", serif;
+        font-size: clamp(1.72rem, 8.4vw, 2.25rem);
+        font-weight: 400;
+        line-height: .8;
+        letter-spacing: .005em;
+        text-decoration: none;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    .mobile-brand-wordmark {
+        display: inline-block;
+    }
+
+    .mobile-brand-pumpkin {
+        display: inline-block;
+        flex: 0 0 auto;
+        font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+        font-size: .62em;
+        line-height: 1;
+        transform: translateY(.08em);
+    }
+
+    /* Mobile browsers render the viewport scrollbar over fixed site chrome.
+       Hide only that viewport indicator; touch scrolling and internal scrollers
+       such as the navigation panel remain fully functional. */
+    html,
+    body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+}
