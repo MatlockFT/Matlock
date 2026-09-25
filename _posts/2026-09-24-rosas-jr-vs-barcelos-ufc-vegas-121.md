@@ -14,7 +14,6 @@ tags:
   - ROSAS JR
   - BARCELOS
 show_toc: true
-toc_mode: fights
 pinned: false
 listing_visibility: normal
 spoiler_warning: false
@@ -157,7 +156,6 @@ It’s basically a little House of Horrors fight card.
 </style>
 </section>
 ## Vanessa Demopoulos vs. Yazmin Jauregui
-{: .article-fight-heading }
 
 <section class="article-html-visual">
 <div class="fight-compare-sleek">
@@ -1893,8 +1891,7 @@ On the flip side, older fighters are not doing bad these days, Jauregui hasn't f
 
 **Pick: Yazmin Jauregui by Decision**
 ---
-## John Castaneda vs. Alateng Heili
-{: .article-fight-heading }
+## John Castaneda vs. Alatengheili
 
 <section class="article-html-visual">
 <div class="fight-compare-sleek">
@@ -3660,7 +3657,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
 ---
 
 ## Montel Jackson vs. Ricky Simon
-{: .article-fight-heading }
 
 <section class="article-html-visual">
 <div class="fight-compare-sleek">
@@ -5825,7 +5821,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
 ---
 
 ## Elves Brener vs. Josiah Harrell
-{: .article-fight-heading }
 
 <section class="article-html-visual">
 <div class="fight-compare-sleek">
@@ -7977,7 +7972,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
 **Pick: Elves Brener via submission in round 1**
 ---
 ## Rodolfo Bellato vs. Christian Edwards
-{: .article-fight-heading }
 
 <section class="article-html-visual">
 <div class="fight-compare-sleek">
@@ -10110,7 +10104,6 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
 **Pick: Rodolfo Bellato via Decision**
 ---
 ## Rodolfo Vieira vs. Robert Bryczek
-{: .article-fight-heading }
 
 <section class="article-html-visual">
 <div class="fight-compare-sleek">
@@ -12192,7 +12185,6 @@ I have no real interest in this fight and don’t have a strong lean either way.
 **Pick: Rodolfo Vieira via Split Decision**
 ---
 ## Brady Hiestand vs. Rinya Nakamura
-{: .article-fight-heading }
 
 <section class="article-html-visual">
 <div class="fight-compare-sleek">
@@ -14285,7 +14277,6 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
 </figure>
 ---
 ## Luis Hernandez vs. Sedriques Dumas
-{: .article-fight-heading }
 
 <section class="article-html-visual">
 
@@ -16243,7 +16234,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 ---
 
 ## Ailin Perez vs. Norma Dumont
-{: .article-fight-heading }
 
 <section class="article-html-visual">
 <div class="fight-compare-sleek">
@@ -18388,7 +18378,6 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
 **Pick: Ailin Perez via Decision**
 ---
 ## Raul Rosas Jr. vs. Raoni Barcelos
-{: .article-fight-heading }
 
 <section class="article-html-visual">
 <div class="fight-compare-sleek">
