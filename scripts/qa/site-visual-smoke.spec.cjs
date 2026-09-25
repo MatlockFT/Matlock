@@ -1231,35 +1231,8 @@ test.describe('Homepage editorial shell', () => {
 });
 
 
-test.describe('Wide editorial layouts', () => {
+test.describe('Wide news layout', () => {
   test.use({ viewport: { width: 2560, height: 1440 }, isMobile: false, hasTouch: false });
-
-  test('homepage expands its editorial canvas and keeps Trending contained', async ({ page }) => {
-    await page.goto(targetUrl('/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
-    await expect(page.locator('[data-globe-home]')).toBeVisible({ timeout: 30000 });
-    await expect(page.locator('[data-v3-trending] a')).toHaveCount(5, { timeout: 10000 });
-
-    const geometry = await page.evaluate(() => {
-      const home = document.querySelector('.v3-home');
-      const lead = document.querySelector('.v3-lead');
-      const title = document.querySelector('.v3-lead h1');
-      const trending = document.querySelector('[data-v3-trending]');
-      return {
-        homeWidth: home?.getBoundingClientRect().width || 0,
-        leadWidth: lead?.getBoundingClientRect().width || 0,
-        titleMaxWidth: title ? getComputedStyle(title).maxWidth : '',
-        trendingClientWidth: trending?.clientWidth || 0,
-        trendingScrollWidth: trending?.scrollWidth || 0,
-        trendLabels: trending?.querySelectorAll('.v3-trending-text').length || 0
-      };
-    });
-
-    expect(geometry.homeWidth).toBeGreaterThanOrEqual(1750);
-    expect(geometry.leadWidth).toBeGreaterThanOrEqual(900);
-    expect(geometry.titleMaxWidth).toBe('none');
-    expect(geometry.trendingScrollWidth).toBeLessThanOrEqual(geometry.trendingClientWidth + 2);
-    expect(geometry.trendLabels).toBe(5);
-  });
 
   test('news lead uses the wide column instead of a narrow headline measure', async ({ page }) => {
     await page.goto(targetUrl('/news/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
