@@ -321,8 +321,41 @@
     return output.join('\n').replace(/\n{3,}/g, '\n\n').trim();
   }
 
+  function normalizeMarkdownDividers(text) {
+    const lines = String(text || '').replace(/\r\n?/g, '\n').split('\n');
+    const output = [];
+    let fence = '';
+
+    for (let index = 0; index < lines.length; index += 1) {
+      const line = lines[index];
+      const trimmed = line.trim();
+      const fenceMatch = trimmed.match(/^(`{3,}|~{3,})/);
+
+      if (fenceMatch) {
+        const marker = fenceMatch[1][0];
+        if (!fence) fence = marker;
+        else if (fence === marker) fence = '';
+        output.push(line);
+        continue;
+      }
+
+      if (!fence && trimmed === '---') {
+        if (output.length && output[output.length - 1] !== '') output.push('');
+        output.push('---');
+        const next = lines[index + 1];
+        if (next !== undefined && next.trim() !== '') output.push('');
+        continue;
+      }
+
+      output.push(line);
+    }
+
+    return output.join('\n');
+  }
+
   function fullMarkdown(publishedValue = currentPublished, options = {}) {
-    return `---\n${buildFrontmatter(publishedValue, options)}\n---\n\n${expandHtmlBlocks(bodyEditor.value).replace(/^\s+/, '')}`;
+    const body = normalizeMarkdownDividers(bodyEditor.value).replace(/^\s+/, '');
+    return `---\n${buildFrontmatter(publishedValue, options)}\n---\n\n${expandHtmlBlocks(body)}`;
   }
 
   function slugify(value) {
