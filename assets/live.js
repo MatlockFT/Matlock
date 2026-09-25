@@ -220,42 +220,19 @@
 
     try {
       const state = ytPlayer.getPlayerState?.();
-      let shouldSuppress = state === 0;
 
-      if (!shouldSuppress) {
-        const duration = Number(ytPlayer.getDuration?.() ?? 0);
-        const now = Date.now();
-        const prior =
-          liveDurationSample &&
-          liveDurationSample.videoId === currentVideoId
-            ? liveDurationSample
-            : null;
-
-        if (prior && duration > 0 && now - prior.at >= 750) {
-          if (duration > prior.duration + 0.25) {
-            liveVerificationMisses = 0;
-            verifiedLiveVideoId = currentVideoId;
-            hideEmbedFallback();
-          } else if (state === 1) {
-            // A live broadcast's duration keeps increasing. If a supposedly
-            // live video is actively playing but its duration stays fixed for
-            // several samples, it is the archived replay of an ended stream.
-            liveVerificationMisses += 1;
-          }
+      // Only YouTube's authoritative ENDED state may remove a stream from the
+      // player. Live broadcasts do not expose a reliable duration-growth
+      // pattern across every channel/player configuration, so a fixed
+      // getDuration() value must never be interpreted as "this is a replay."
+      if (state !== 0) {
+        if (state === 1 || state === 2 || state === 3) {
+          verifiedLiveVideoId = currentVideoId;
+          liveVerificationMisses = 0;
+          hideEmbedFallback();
         }
-
-        if (duration > 0) {
-          liveDurationSample = {
-            videoId: currentVideoId,
-            duration,
-            at: now
-          };
-        }
-
-        shouldSuppress = liveVerificationMisses >= 3;
+        return;
       }
-
-      if (!shouldSuppress) return;
 
       const endedVideoId = currentVideoId;
       suppressEndedVideo(endedVideoId);
