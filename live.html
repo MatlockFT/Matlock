@@ -22,7 +22,12 @@ page_scripts:
   data-editorial-v3
   data-status-url="{{ '/assets/data/global-live.json' | relative_url }}"
 >
-  <header class="live-page__head">
+  <div class="live-page__ambient" data-live-ambient-stage aria-hidden="true">
+    <div class="live-page__ambient-layer is-active" data-live-ambient-a></div>
+    <div class="live-page__ambient-layer" data-live-ambient-b></div>
+  </div>
+
+  <header class="live-page__head live-page__ui">
     <div>
       <p class="live-page__kicker">Live Fight Guide</p>
       <h1>Live MMA</h1>
@@ -36,12 +41,7 @@ page_scripts:
   </header>
 
   <section class="live-page__player-section" aria-labelledby="live-now-playing-title">
-    <div class="live-page__player-stage" data-live-ambient-stage>
-      <div class="live-page__ambient" aria-hidden="true">
-        <div class="live-page__ambient-layer is-active" data-live-ambient-a></div>
-        <div class="live-page__ambient-layer" data-live-ambient-b></div>
-      </div>
-
+    <div class="live-page__player-stage">
       <div class="live-page__player-frame" data-live-screen data-state="checking">
         <iframe
           class="live-page__player"
@@ -60,7 +60,7 @@ page_scripts:
       </div>
     </div>
 
-    <div class="live-page__now-playing">
+    <div class="live-page__now-playing live-page__ui">
       <div>
         <p class="live-page__label">Now playing</p>
         <h2 id="live-now-playing-title" data-live-title>Checking live MMA…</h2>
@@ -81,7 +81,7 @@ page_scripts:
     </div>
   </section>
 
-  <section class="live-page__section" aria-labelledby="live-now-title">
+  <section class="live-page__section live-page__ui" aria-labelledby="live-now-title">
     <header class="live-page__section-head">
       <div>
         <p class="live-page__label live-page__label--red">On air</p>
@@ -95,7 +95,7 @@ page_scripts:
     </div>
   </section>
 
-  <section class="live-page__section live-page__section--last" aria-labelledby="up-next-title">
+  <section class="live-page__section live-page__section--last live-page__ui" aria-labelledby="up-next-title">
     <header class="live-page__section-head">
       <div>
         <p class="live-page__label">Schedule</p>
