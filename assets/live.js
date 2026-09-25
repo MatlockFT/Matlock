@@ -114,8 +114,10 @@
     replayArm?.classList.remove("is-buffering");
     if (replayArm) {
       replayArm.disabled = false;
-      replayArm.textContent = "Arm 15s replay";
+      replayArm.textContent = "ARM";
       replayArm.setAttribute("aria-pressed", "false");
+      replayArm.setAttribute("aria-label", "Arm 15-second replay buffer");
+      replayArm.title = "Arm 15-second replay buffer";
     }
     if (replaySave) replaySave.disabled = true;
     setReplayStatus(status);
@@ -274,8 +276,10 @@
 
       if (replayArm) {
         replayArm.disabled = false;
-        replayArm.textContent = "Stop buffer";
+        replayArm.textContent = "";
         replayArm.setAttribute("aria-pressed", "true");
+        replayArm.setAttribute("aria-label", "Stop 15-second replay buffer");
+        replayArm.title = "Stop 15-second replay buffer";
         replayArm.classList.add("is-buffering");
       }
 
