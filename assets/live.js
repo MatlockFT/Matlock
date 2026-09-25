@@ -9,12 +9,14 @@
   const stateText = root.querySelector("[data-live-state]");
   const title = root.querySelector("[data-live-title]");
   const promotion = root.querySelector("[data-live-promotion]");
+  const nowPlayingLabel = root.querySelector("[data-live-now-label]");
   const source = root.querySelector("[data-live-source]");
   const refresh = root.querySelector("[data-live-refresh]");
   const standbyTitle = root.querySelector("[data-live-standby-title]");
   const standbyCopy = root.querySelector("[data-live-standby-copy]");
   const liveList = root.querySelector("[data-live-list]");
   const liveCount = root.querySelector("[data-live-count]");
+  const liveSection = root.querySelector("[data-live-section]");
   const upcomingList = root.querySelector("[data-upcoming-list]");
   const upcomingCount = root.querySelector("[data-upcoming-count]");
   const replayArm = root.querySelector("[data-replay-arm]");
@@ -1110,20 +1112,25 @@
     events.find((event) => event.video_id === videoId);
 
   const renderLiveEvents = (events) => {
-    if (!liveList || !liveCount) return;
+    if (!liveList || !liveCount || !liveSection) return;
 
     const active = Array.isArray(events) ? events : [];
-    liveCount.textContent = active.length === 1 ? "1 live" : `${active.length} live`;
+    const others = currentVideoId
+      ? active.filter(event => event.video_id !== currentVideoId)
+      : active;
 
-    if (!active.length) {
-      liveList.innerHTML =
-        '<div class="live-page__empty"><strong>Nothing is live right now.</strong><span>The next public fight stream will appear here automatically.</span></div>';
+    liveSection.hidden = others.length === 0;
+    liveCount.textContent =
+      others.length === 1 ? "1 other live" : `${others.length} other live`;
+
+    if (!others.length) {
+      liveList.innerHTML = "";
       return;
     }
 
     liveList.innerHTML = "";
 
-    for (const event of active) {
+    for (const event of others) {
       const button = document.createElement("button");
       button.type = "button";
       button.className = "live-page__row live-page__row--button";
@@ -1214,9 +1221,12 @@
     const changingVideo = currentVideoId !== event.video_id;
     currentVideoId = event.video_id;
     if (changingVideo) verifiedLiveVideoId = "";
+    root.classList.remove("is-offline");
+    root.classList.add("is-live");
     screen.dataset.state = "live";
     stateWrap?.classList.add("is-live");
     if (stateText) stateText.textContent = event.stale ? "Live status delayed" : "Live now";
+    if (nowPlayingLabel) nowPlayingLabel.textContent = "Now playing";
     title.textContent = event.title || "Live MMA";
     promotion.textContent =
       `${event.short_name || event.promotion || "MMA"} · ${event.country || "International"}`;
@@ -1236,15 +1246,22 @@
     }
 
     scheduleUiFade();
+    if (liveSection) liveSection.hidden = true;
     renderLiveEvents(lastData?.events || []);
   };
 
   const showStandby = (upcoming) => {
+    root.classList.remove("is-live");
+    root.classList.add("is-offline");
     screen.dataset.state = "offline";
     stateWrap?.classList.remove("is-live");
     if (stateText) stateText.textContent = "No fights live";
-    title.textContent = "No live broadcasts right now";
-    promotion.textContent = "See what is coming up next";
+    if (nowPlayingLabel) nowPlayingLabel.textContent = "Status";
+    title.textContent = "No fights live right now";
+    const upcomingCountValue = Array.isArray(upcoming) ? upcoming.length : 0;
+    promotion.textContent = upcomingCountValue
+      ? `${upcomingCountValue} upcoming public broadcast${upcomingCountValue === 1 ? "" : "s"}`
+      : "No scheduled public broadcasts yet";
     source.hidden = true;
 
     if (player.getAttribute("src")) player.removeAttribute("src");
