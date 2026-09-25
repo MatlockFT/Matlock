@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-09-25T05:26:48.857Z"
+      "checkedAt": "2026-09-25T10:27:40.186Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-25T05:27:11.027Z",
+      "checkedAt": "2026-09-25T10:28:05.246Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -196860,9 +196860,11 @@
         "officialThrough": "2026-09-19"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Sedriques Dumas",
+        "opponentId": "sedriques-dumas"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
@@ -284670,9 +284672,11 @@
         "officialThrough": "2026-09-19"
       },
       "booking": {
-        "event": "UFC Fight Night",
+        "event": "Jr. vs Barcelos",
         "date": "2026-09-26",
-        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026"
+        "source": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
+        "opponent": "Luis Hernandez",
+        "opponentId": "luis-hernandez"
       },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
