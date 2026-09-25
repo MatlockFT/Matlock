@@ -161,7 +161,7 @@ function insertBlock(text) {
   }
 
   function encodedStructuredConfig(config) {
-    return escapeHtml(encodeURIComponent(JSON.stringify(config || {})));
+    return encodeURIComponent(JSON.stringify(config || {}));
   }
 
   function pipeRows(text, width = 3) {
