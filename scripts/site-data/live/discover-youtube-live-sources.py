@@ -137,6 +137,36 @@ def search_global_event_videos(query, event_type):
     return videos, ""
 
 
+def lookup_video(video_id):
+    params = urllib.parse.urlencode({
+        "part":"snippet",
+        "id":video_id,
+        "key":API_KEY,
+    })
+    payload, error = fetch_json(f"https://www.googleapis.com/youtube/v3/videos?{params}")
+    if not payload:
+        return None, error
+
+    items = payload.get("items") or []
+    if not items:
+        return None, "Video not found"
+
+    snippet = items[0].get("snippet") or {}
+    channel_id = snippet.get("channelId")
+    if not channel_id:
+        return None, "Video has no channel ID"
+
+    return {
+        "video_id":video_id,
+        "watch_url":f"https://www.youtube.com/watch?v={video_id}",
+        "title":snippet.get("title") or "",
+        "channel_title":snippet.get("channelTitle") or "",
+        "channel_id":channel_id,
+        "channel_url":f"https://www.youtube.com/channel/{channel_id}",
+        "published_at":snippet.get("publishedAt"),
+    }, ""
+
+
 def search_channels(query):
     params = urllib.parse.urlencode({
         "part":"snippet",
@@ -179,14 +209,32 @@ def main():
 
     for entry in research:
         query = entry.get("search_query") or entry.get("promotion") or entry.get("event")
-        found, error = search_channels(query)
+        direct_video = None
+        video_id = (entry.get("video_id") or "").strip()
+        if video_id:
+            direct_video, error = lookup_video(video_id)
+            if direct_video:
+                found = [{
+                    "channel_id": direct_video["channel_id"],
+                    "channel_url": direct_video["channel_url"],
+                    "title": direct_video["channel_title"],
+                    "description": f"Uploader of {direct_video['title']}",
+                    "published_at": None,
+                    "score": 1000,
+                }]
+            else:
+                found = []
+        else:
+            found, error = search_channels(query)
+
         ranked = []
         for candidate in found:
-            candidate["score"] = score_candidate(
-                entry.get("promotion") or "",
-                candidate.get("title") or "",
-                candidate.get("description") or "",
-            )
+            if "score" not in candidate:
+                candidate["score"] = score_candidate(
+                    entry.get("promotion") or "",
+                    candidate.get("title") or "",
+                    candidate.get("description") or "",
+                )
             ranked.append(candidate)
         ranked.sort(key=lambda x:(-x["score"], x["title"]))
 
@@ -211,6 +259,7 @@ def main():
             "event":entry.get("event"),
             "query":query,
             "error":error or None,
+            "direct_video":direct_video,
             "candidates":ranked,
             "top_candidate_live":top_live,
             "top_candidate_upcoming":top_upcoming,
