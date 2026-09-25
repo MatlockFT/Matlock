@@ -317,9 +317,25 @@
             "LMC",
             "Liga Monstro"
           ]
+        },
+        {
+          "channel_url": "https://www.youtube.com/channel/UCeEf1KSLM06p5Wp5P_Y72Qw",
+          "role": "broadcast_partner",
+          "require_terms": [
+            "LMC",
+            "Liga Monstro"
+          ]
         }
       ],
-      "fast_check_until": "2026-09-26T06:00:00Z"
+      "fast_check_until": "2026-09-26T06:00:00Z",
+      "pinned_videos": [
+        {
+          "video_id": "NSG3v4z5uqc",
+          "title": "Liga Monstro Combate live",
+          "channel_url": "https://www.youtube.com/channel/UCeEf1KSLM06p5Wp5P_Y72Qw",
+          "source_role": "broadcast_partner"
+        }
+      ]
     },
     {
       "id": "shooto-brasil",
@@ -334,10 +350,6 @@
       "pinned_videos": [
         {
           "video_id": "xKtNvmTpuGM",
-          "title": "Shooto Brasil live"
-        },
-        {
-          "video_id": "NSG3v4z5uqc",
           "title": "Shooto Brasil live"
         }
       ]
