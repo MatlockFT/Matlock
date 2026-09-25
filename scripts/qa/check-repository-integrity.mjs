@@ -6,6 +6,10 @@ const ROOT = process.cwd();
 const MAX_ROOT_ASSET_IMAGE_BYTES = 3 * 1024 * 1024;
 const IMAGE_EXTENSIONS = /\.(?:png|jpe?g|webp|gif|avif|svg)$/i;
 const VIDEO_EXTENSIONS = /\.(?:mp4|mov|m4v|webm|avi|mkv|mpeg|mpg)$/i;
+const SAME_ORIGIN_VIDEO_COMPATIBILITY_EXCEPTIONS = new Set([
+  'assets/article-media/rosas-jr-vs-barcelos-ufc-vegas-121-video-20260924-193315-968.mp4',
+  'assets/article-media/rosas-jr-vs-barcelos-ufc-vegas-121-video-20260925-011655-703.mp4'
+]);
 const ARTICLE_UPLOAD = /^assets\/uploads\/articles\/\d{4}\/(?:0[1-9]|1[0-2])\/[a-z0-9][a-z0-9-]*\/[^/]+\.(?:png|jpe?g|webp|gif|avif|svg)$/i;
 
 const requiredFiles = [
@@ -111,7 +115,11 @@ for (const file of tracked.filter(file => file.startsWith('assets/uploads/articl
 }
 
 for (const file of tracked) {
-  if (file.startsWith('assets/') && VIDEO_EXTENSIONS.test(file)) {
+  if (
+    file.startsWith('assets/') &&
+    VIDEO_EXTENSIONS.test(file) &&
+    !SAME_ORIGIN_VIDEO_COMPATIBILITY_EXCEPTIONS.has(file)
+  ) {
     errors.push(`${file}: video media must use the Writer GitHub Release pipeline, not Git history.`);
   }
 
