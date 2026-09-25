@@ -64,13 +64,19 @@ jobs:
       - name: Install browser test runtime
         run: |
           npm install --no-save --no-package-lock @playwright/test@1.55.0
-          npx playwright install --with-deps chromium
+          npx playwright install --with-deps chromium webkit
 
       - name: Check desktop and mobile geometry
         env:
           SITE_BASE_URL: https://mmamatlock.com
           VISUAL_SMOKE_DIR: artifacts/site-visual-smoke
         run: npx playwright test scripts/qa/site-visual-smoke.spec.cjs --browser=chromium --reporter=line
+
+      - name: Verify article video playback in WebKit
+        env:
+          SITE_BASE_URL: https://mmamatlock.com
+          VISUAL_SMOKE_DIR: artifacts/site-visual-smoke-webkit
+        run: npx playwright test scripts/qa/site-visual-smoke.spec.cjs --browser=webkit --grep "Article native sharing on mobile" --reporter=line
 
       - name: Upload viewport screenshots
         if: always()
