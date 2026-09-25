@@ -81,6 +81,12 @@
         href="{{ '/assets/theme.css' | relative_url }}?v={{ site.asset_version }}"
     >
 
+    {% comment %}Discover the shared editorial CSS immediately instead of through @import.{% endcomment %}
+    {% if page.layout == "post" or page.page_styles contains "/assets/editorial-v3-shell.css" %}
+        <link rel="stylesheet" href="{{ '/assets/homepage-v3.css' | relative_url }}?v={{ site.asset_version }}">
+        <link rel="stylesheet" href="{{ '/assets/homepage-v3-refresh.css' | relative_url }}?v={{ site.asset_version }}">
+    {% endif %}
+
     {% for stylesheet in page.page_styles %}
         <link
             rel="stylesheet"
@@ -125,13 +131,12 @@
         >
     {% endunless %}
 
-    <link
-        rel="preload"
-        href="{{ '/Gobold%20Bold.woff' | relative_url }}"
-        as="font"
-        type="font/woff"
-        crossorigin
-    >
+    {% if page.v3_text_masthead or page.layout == "post" %}
+        <link rel="preload" href="{{ '/assets/fonts/edition-matlock.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="{{ '/assets/fonts/herkey.ttf' | relative_url }}" as="font" type="font/ttf" crossorigin>
+    {% else %}
+        <link rel="preload" href="{{ '/Gobold%20Bold.woff' | relative_url }}" as="font" type="font/woff" crossorigin>
+    {% endif %}
 
     {% unless page.noindex or page.ads == false %}
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5948515643609166"
@@ -185,7 +190,7 @@
                     <span class="v3-wordmark">MATLOCK</span>
                     <span class="desktop-brand-pumpkin" aria-hidden="true">
                         <img
-                            src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}"
+                            src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}?v={{ site.asset_version }}"
                             alt=""
                             width="48"
                             height="48"
@@ -207,7 +212,7 @@
                     >
                     <span class="desktop-brand-pumpkin desktop-brand-pumpkin-image-logo" aria-hidden="true">
                         <img
-                            src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}"
+                            src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}?v={{ site.asset_version }}"
                             alt=""
                             width="42"
                             height="42"
@@ -225,7 +230,10 @@
                     href="{{ '/' | relative_url }}"
                     aria-label="MMA Matlock home"
                 >
-                    <span class="mobile-brand-wordmark">MATLOCK</span><span class="mobile-brand-pumpkin" aria-hidden="true" style="margin-left:-.18em"><img class="mobile-brand-pumpkin-icon" src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}" alt="" width="34" height="34" decoding="async" style="width:.94em;height:.94em;transform:translateY(.16em) rotate(-5deg);transform-origin:50% 100%"></span>
+                    <span class="mobile-brand-wordmark">MATLOCK</span>
+                    <span class="mobile-brand-pumpkin" aria-hidden="true">
+                        <img class="mobile-brand-pumpkin-icon" src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}?v={{ site.asset_version }}" alt="" width="64" height="64" decoding="async">
+                    </span>
                 </a>
 
                 <button
