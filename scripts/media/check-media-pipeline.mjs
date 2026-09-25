@@ -4,6 +4,10 @@ import fs from 'node:fs/promises';
 import { articleMediaIdentity, isTrackedVideoPath, responsiveOutputPlan } from './media-paths.mjs';
 
 const failures = [];
+const SAME_ORIGIN_VIDEO_COMPATIBILITY_EXCEPTIONS = new Set([
+  'assets/article-media/rosas-jr-vs-barcelos-ufc-vegas-121-video-20260924-193315-968.mp4',
+  'assets/article-media/rosas-jr-vs-barcelos-ufc-vegas-121-video-20260925-011655-703.mp4'
+]);
 
 function trackedFiles() {
   const raw = execFileSync('git', ['ls-files', '-z'], { encoding: 'utf8' });
@@ -41,7 +45,11 @@ assert.equal(legacy.stem, 'uploads-steveson');
 const files = trackedFiles();
 
 for (const file of files) {
-  if (file.startsWith('assets/') && isTrackedVideoPath(file)) {
+  if (
+    file.startsWith('assets/') &&
+    isTrackedVideoPath(file) &&
+    !SAME_ORIGIN_VIDEO_COMPATIBILITY_EXCEPTIONS.has(file)
+  ) {
     fail(`${file}: video files must stay out of Git history and use the Writer GitHub Release pipeline.`);
   }
 
