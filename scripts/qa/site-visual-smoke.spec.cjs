@@ -424,7 +424,9 @@ test.describe('Mobile site shell', () => {
 
       await expect(brand).toBeVisible();
       await expect(brand.locator('.mobile-brand-wordmark')).toHaveText('MATLOCK');
-      await expect(brand.locator('.mobile-brand-pumpkin')).toHaveText('🎃');
+      const pumpkinIcon = brand.locator('.mobile-brand-pumpkin-icon');
+      await expect(pumpkinIcon).toBeVisible();
+      await expect(pumpkinIcon).toHaveAttribute('src', /\/assets\/icons\/pumpkin\.svg$/);
       await expect(toggle).toBeVisible();
       await expect(banner).toBeHidden();
 
@@ -1076,16 +1078,16 @@ test.describe('Homepage editorial shell', () => {
       return {
         headingColor: heading ? getComputedStyle(heading).color : null,
         trendingColor: trendingLabel ? getComputedStyle(trendingLabel).color : null,
-        pumpkin: pumpkinStyle?.content || null,
+        pumpkinBackground: pumpkinStyle?.backgroundImage || null,
         pumpkinBottom: pumpkinStyle?.bottom || null,
-        pumpkinSize: pumpkinStyle ? parseFloat(pumpkinStyle.fontSize) : 0
+        pumpkinWidth: pumpkinStyle ? parseFloat(pumpkinStyle.width) : 0
       };
     });
     expect(seasonalAccent.headingColor).toBe('rgb(17, 17, 17)');
     expect(seasonalAccent.trendingColor).toBe('rgb(196, 95, 0)');
-    expect(seasonalAccent.pumpkin).toContain('🎃');
+    expect(seasonalAccent.pumpkinBackground).toContain('/assets/icons/pumpkin.svg');
     expect(seasonalAccent.pumpkinBottom).not.toBe('auto');
-    expect(seasonalAccent.pumpkinSize).toBeGreaterThanOrEqual(18);
+    expect(seasonalAccent.pumpkinWidth).toBeGreaterThanOrEqual(16);
     expect(geometry.leadFont).toContain('Herkey');
     expect(geometry.sectionFont).toContain('Herkey');
     expect(geometry.historyFont).toContain('Herkey');
