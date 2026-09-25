@@ -4,7 +4,7 @@ const RAW_CONFIG='https://raw.githubusercontent.com/MatlockFT/Matlock/main/asset
 const NEWS='https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-news.json';
 const VIDEOS='https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-videos.json';
 const EVENTS='/assets/data/upcoming-events-live.json';
-const CONFIG_PATH='/contents/assets/data/broadcast-control.json';
+const LIVE_CONTROL=String(app.dataset.authBase||'').replace(/\\/$/,'')+'/api/broadcast/control';
 const DEFAULT={"version":1,"revision":1,"updatedAt":null,"modules":{"news":true,"video":true,"events":true,"ticker":true,"comingUp":true,"music":true},"rundown":["news","news","video","news","event"],"timing":{"newsSeconds":45,"eventSeconds":35,"transitionMs":650,"controlPollSeconds":10},"news":{"maxAgeHours":48,"maxItems":16,"sources":[],"requireContext":true,"contextFacts":4},"video":{"maxAgeHours":48,"maxItems":8,"minSeconds":20,"maxSeconds":600,"volume":50,"channels":[],"playFull":true},"events":{"maxItems":3,"usePosters":true},"audio":{"enabled":true,"musicUrl":"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3","musicVolume":14,"duckVolume":3.5},"ticker":{"enabled":true,"speedSeconds":240,"maxItems":14},"visual":{"flipNews":true,"showRail":true,"showClock":true,"showBadge":true,"showSource":true},"sources":{"customNewsFeeds":[],"customVideoChannels":[]},"hidden":{"news":[],"videos":[],"events":[]},"forceNext":null};
 const q=s=>app.querySelector(s),qa=s=>[...app.querySelectorAll(s)];
 let state=structuredClone(DEFAULT),saved=structuredClone(DEFAULT),feeds={news:null,videos:null,events:null},contentTab='news',dragIndex=-1,toastTimer=0;
@@ -26,7 +26,7 @@ async function loadAll(){
   q('[data-live-status]').textContent='Loading control…';
   try{
     const [cfg,news,videos,events]=await Promise.all([
-      fetchJson(RAW_CONFIG).catch(()=>fetchJson('/assets/data/broadcast-control.json')),
+      fetchJson(LIVE_CONTROL).catch(()=>fetchJson(RAW_CONFIG)).catch(()=>fetchJson('/assets/data/broadcast-control.json')),
       fetchJson(NEWS),fetchJson(VIDEOS),fetchJson(EVENTS)
     ]);
     state=deepMerge(DEFAULT,cfg);saved=clone(state);feeds={news,videos,events};renderAll();q('[data-live-status]').textContent='Control online';q('[data-live-status]').dataset.state='live';q('[data-live-config-label]').textContent='Revision '+(state.revision||'—');
@@ -123,17 +123,16 @@ function preset(name){
     headlines:{modules:{news:true,video:false,events:false},rundown:['news','news','news'],timing:{newsSeconds:50}},
     event:{modules:{news:true,video:true,events:true},rundown:['news','event','news','video','event'],timing:{newsSeconds:40,eventSeconds:50}}
   }[name];if(!p)return;state=deepMerge(state,p);renderAll();toast('Preset loaded into preview.')}
-function encode64(text){const b=new TextEncoder().encode(text);let s='';for(let i=0;i<b.length;i+=0x8000)s+=String.fromCharCode(...b.subarray(i,i+0x8000));return btoa(s)}
 async function saveLive(success='Broadcast control updated'){
   const auth=window.MatlockBroadcastAuth;if(!auth?.isConnected()){auth?.open();toast('Sign in with GitHub to apply changes.');throw new Error('Not signed in')}
   const apply=q('[data-apply-live]');apply.disabled=true;apply.textContent='Applying…';
   try{
-    const remote=await auth.githubFetch(CONFIG_PATH+'?ref=main');
     const next=clone(state);next.version=1;next.revision=Date.now();next.updatedAt=new Date().toISOString();
-    const body={message:'Update broadcast control',content:encode64(JSON.stringify(next,null,2)+'\n'),sha:remote.sha,branch:'main'};
-    await auth.githubFetch(CONFIG_PATH,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
-    state=next;saved=clone(next);renderAll();q('[data-live-config-label]').textContent='Revision '+next.revision;toast(success);
-  }catch(e){toast('Apply failed: '+e.message);throw e}
+    const response=await fetch(LIVE_CONTROL,{method:'PUT',mode:'cors',cache:'no-store',headers:{Accept:'application/json','Content-Type':'application/json','X-Writer-Session':auth.getSessionId()},body:JSON.stringify(next)});
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok)throw new Error(data.message||response.status+' '+response.statusText);
+    state=deepMerge(DEFAULT,data.config||next);saved=clone(state);renderAll();q('[data-live-config-label]').textContent='Revision '+state.revision;toast(success);
+  }catch(e){toast('Apply failed: '+e.message);if(e.message.toLowerCase().includes('session'))window.dispatchEvent(new CustomEvent('matlock-broadcast:auth-expired'));throw e}
   finally{apply.disabled=false;apply.textContent='Apply live'}
 }
 
