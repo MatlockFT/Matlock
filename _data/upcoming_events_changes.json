@@ -1,7 +1,166 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-24T20:38:25.686Z",
+  "generated_at": "2026-09-25T01:54:26.691Z",
   "changes": [
+    {
+      "id": "2026-09-25T01:54:26.691Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|1",
+      "at": "2026-09-25T01:54:26.691Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Mahammadali Osmanli vs Ilimbek Akylbek moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 4,
+        "to_order": 3,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-25T01:54:26.691Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|2",
+      "at": "2026-09-25T01:54:26.691Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Melissa Amaya vs Tina Black moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 5,
+        "to_order": 4,
+        "from_section": "Main Card",
+        "to_section": "Main Card"
+      }
+    },
+    {
+      "id": "2026-09-25T01:54:26.691Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|3",
+      "at": "2026-09-25T01:54:26.691Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Brady Hiestand vs Rinya Nakamura moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 6,
+        "to_order": 5,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-25T01:54:26.691Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|4",
+      "at": "2026-09-25T01:54:26.691Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Rodolfo Vieira vs Robert Bryczek moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 7,
+        "to_order": 6,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-25T01:54:26.691Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|5",
+      "at": "2026-09-25T01:54:26.691Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Rodolfo Bellato vs Christian Edwards moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 8,
+        "to_order": 7,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-25T01:54:26.691Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|6",
+      "at": "2026-09-25T01:54:26.691Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Elves Brener vs Josiah Harrell moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 9,
+        "to_order": 8,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-25T01:54:26.691Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|7",
+      "at": "2026-09-25T01:54:26.691Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Montel Jackson vs Ricky Simon moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 10,
+        "to_order": 9,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-25T01:54:26.691Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|8",
+      "at": "2026-09-25T01:54:26.691Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "John Castaneda vs Alatengheili moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 11,
+        "to_order": 10,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-25T01:54:26.691Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|9",
+      "at": "2026-09-25T01:54:26.691Z",
+      "type": "bout_moved",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Vanessa Demopoulos vs Yazmin Jauregui moved on Jr. vs Barcelos.",
+      "details": {
+        "from_order": 12,
+        "to_order": 11,
+        "from_section": "Prelims",
+        "to_section": "Prelims"
+      }
+    },
+    {
+      "id": "2026-09-25T01:54:26.691Z|ufc-fight-night-2026-09-26-fight-card|bout_removed|10",
+      "at": "2026-09-25T01:54:26.691Z",
+      "type": "bout_removed",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "Luis Hernandez vs Sedriques Dumas removed from Jr. vs Barcelos.",
+      "details": {
+        "order": 3,
+        "section": "Main Card",
+        "weight_class": "Light Heavyweight Bout"
+      }
+    },
     {
       "id": "2026-09-24T20:38:25.686Z|ufc-fight-night-2026-09-26-fight-card|bout_moved|1",
       "at": "2026-09-24T20:38:25.686Z",
@@ -4536,156 +4695,6 @@
       "summary": "Mick Parkin portrait source changed.",
       "details": {
         "fighter": "Mick Parkin",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-332-2026-10-03-fight-card|portrait_changed|63",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Rafael Dos Anjos portrait source changed.",
-      "details": {
-        "fighter": "Rafael Dos Anjos",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-332-2026-10-03-fight-card|portrait_changed|64",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Alexander Hernandez portrait source changed.",
-      "details": {
-        "fighter": "Alexander Hernandez",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-332-2026-10-03-fight-card|portrait_changed|65",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Marvin Vettori portrait source changed.",
-      "details": {
-        "fighter": "Marvin Vettori",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-332-2026-10-03-fight-card|portrait_changed|66",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Ismail Naurdiev portrait source changed.",
-      "details": {
-        "fighter": "Ismail Naurdiev",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-332-2026-10-03-fight-card|portrait_changed|67",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Court McGee portrait source changed.",
-      "details": {
-        "fighter": "Court McGee",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-332-2026-10-03-fight-card|portrait_changed|68",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-332-2026-10-03-fight-card",
-      "promotion": "UFC 332",
-      "event_title": "Silva vs Cong",
-      "event_date": "2026-10-03",
-      "summary": "Eric Nolan portrait source changed.",
-      "details": {
-        "fighter": "Eric Nolan",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-fight-night-2026-10-10-fight-card|portrait_changed|69",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-fight-night-2026-10-10-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Allen vs Duncan",
-      "event_date": "2026-10-10",
-      "summary": "Brendan Allen portrait source changed.",
-      "details": {
-        "fighter": "Brendan Allen",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-fight-night-2026-10-10-fight-card|portrait_changed|70",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-fight-night-2026-10-10-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Allen vs Duncan",
-      "event_date": "2026-10-10",
-      "summary": "Christian Leroy Duncan portrait source changed.",
-      "details": {
-        "fighter": "Christian Leroy Duncan",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-fight-night-2026-10-17-fight-card|portrait_changed|71",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Buckley vs Malott",
-      "event_date": "2026-10-17",
-      "summary": "Joaquin Buckley portrait source changed.",
-      "details": {
-        "fighter": "Joaquin Buckley",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-fight-night-2026-10-17-fight-card|portrait_changed|72",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-fight-night-2026-10-17-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Buckley vs Malott",
-      "event_date": "2026-10-17",
-      "summary": "Mike Malott portrait source changed.",
-      "details": {
-        "fighter": "Mike Malott",
         "from_source": "sherdog",
         "to_source": "ufc"
       }
