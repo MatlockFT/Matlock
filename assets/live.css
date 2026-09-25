@@ -1010,6 +1010,15 @@ html[data-theme="light"] .live-page__player-stage::before {
 }
 
 @media (max-width: 700px) {
+  body:has([data-live-page]) .logo-banner {
+    min-height: 54px !important;
+    padding: .22rem .7rem .18rem !important;
+  }
+
+  body:has([data-live-page]) .logo-banner .v3-wordmark {
+    font-size: clamp(2.4rem, 13vw, 3.15rem) !important;
+  }
+
   .live-page {
     width: min(calc(100% - 1rem), 1460px);
     padding-top: .55rem;
@@ -1149,6 +1158,16 @@ html[data-theme="light"] .live-page__player-stage::before {
 
 
 /* Layout consolidation — tighter page rhythm and shared alignment */
+body:has([data-live-page]) .logo-banner {
+  min-height: 64px !important;
+  padding: .3rem 1rem .26rem !important;
+}
+
+body:has([data-live-page]) .logo-banner .v3-wordmark {
+  font-size: clamp(2.65rem, 4vw, 3.8rem) !important;
+  line-height: .76 !important;
+}
+
 .live-page {
   --live-rule: rgba(255,255,255,.085);
   --live-rule-soft: rgba(255,255,255,.045);
@@ -1176,11 +1195,6 @@ html[data-theme="light"] .live-page {
 .live-page h1 {
   font-size: clamp(2.55rem, 4.8vw, 5.15rem);
   line-height: .88;
-}
-
-.live-page__status {
-  align-self: end;
-  margin-bottom: .2rem;
 }
 
 .live-page__player-section {
@@ -1316,13 +1330,6 @@ html[data-theme="light"] .live-page {
     margin-bottom: .2rem;
   }
 
-  .live-page__status {
-    justify-self: end;
-    align-self: end;
-    margin-bottom: .15rem;
-    font-size: .5rem;
-  }
-
   .live-page__player-section {
     padding-top: .5rem;
   }
@@ -1418,15 +1425,6 @@ html[data-theme="light"] .live-page {
 }
 
 @media (max-width: 420px) {
-  .live-page__status {
-    gap: .35rem;
-  }
-
-  .live-page__status-dot {
-    width: .4rem;
-    height: .4rem;
-  }
-
   .live-page__media-controls {
     justify-content: space-between;
   }
