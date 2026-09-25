@@ -59,13 +59,30 @@ function renderRundown(){
 }
 function selectedSet(path,allNames){const arr=getPath(state,path)||[];return arr.length?new Set(arr):new Set(allNames)}
 function renderSources(){
-  const newsNames=(feeds.news?.sources||[]).map(x=>x.name).filter(Boolean);
+  const customNews=state.sources?.customNewsFeeds||[];
+  const newsNames=[...new Set([...(feeds.news?.sources||[]).map(x=>x.name).filter(Boolean),...customNews.map(x=>x.name).filter(Boolean)])];
   const newsSet=selectedSet('news.sources',newsNames),nh=q('[data-news-sources]');nh.innerHTML='';
-  newsNames.forEach(name=>{const row=document.createElement('div');row.className='bc-source-row';row.innerHTML='<label><input type="checkbox"><span>'+escapeHtml(name)+'</span></label><small>'+((feeds.news?.sources||[]).find(x=>x.name===name)?.storyCount||0)+' stories</small>';const input=row.querySelector('input');input.checked=newsSet.has(name);input.onchange=()=>{const now=selectedSet('news.sources',newsNames);input.checked?now.add(name):now.delete(name);state.news.sources=now.size===newsNames.length?[]:[...now];renderSources();markDirty()};nh.append(row)});
+  newsNames.forEach(name=>{
+    const customIndex=customNews.findIndex(x=>x.name===name);
+    const row=document.createElement('div');row.className='bc-source-row';
+    row.innerHTML='<label><input type="checkbox"><span>'+escapeHtml(name)+'</span></label><div><small>'+((feeds.news?.sources||[]).find(x=>x.name===name)?.storyCount||0)+' stories</small>'+(customIndex>=0?'<button class="bc-source-delete" type="button" title="Remove custom feed">×</button>':'')+'</div>';
+    const input=row.querySelector('input');input.checked=newsSet.has(name);input.onchange=()=>{const now=selectedSet('news.sources',newsNames);input.checked?now.add(name):now.delete(name);state.news.sources=now.size===newsNames.length?[]:[...now];renderSources();markDirty()};
+    row.querySelector('.bc-source-delete')?.addEventListener('click',()=>{state.sources.customNewsFeeds.splice(customIndex,1);state.news.sources=(state.news.sources||[]).filter(x=>x!==name);renderSources();markDirty()});
+    nh.append(row);
+  });
   q('[data-news-source-summary]').textContent=(state.news.sources.length?state.news.sources.length:newsNames.length)+' of '+newsNames.length+' enabled';
 
-  const videoNames=[...new Set((feeds.videos?.videos||[]).map(x=>x.channel).filter(Boolean))],videoSet=selectedSet('video.channels',videoNames),vh=q('[data-video-sources]');vh.innerHTML='';
-  videoNames.forEach(name=>{const count=(feeds.videos?.videos||[]).filter(x=>x.channel===name).length;const row=document.createElement('div');row.className='bc-source-row';row.innerHTML='<label><input type="checkbox"><span>'+escapeHtml(name)+'</span></label><small>'+count+' uploads</small>';const input=row.querySelector('input');input.checked=videoSet.has(name);input.onchange=()=>{const now=selectedSet('video.channels',videoNames);input.checked?now.add(name):now.delete(name);state.video.channels=now.size===videoNames.length?[]:[...now];renderSources();markDirty()};vh.append(row)});
+  const customVideo=state.sources?.customVideoChannels||[];
+  const videoNames=[...new Set([...(feeds.videos?.videos||[]).map(x=>x.channel).filter(Boolean),...customVideo.map(x=>x.name).filter(Boolean)])];
+  const videoSet=selectedSet('video.channels',videoNames),vh=q('[data-video-sources]');vh.innerHTML='';
+  videoNames.forEach(name=>{
+    const count=(feeds.videos?.videos||[]).filter(x=>x.channel===name).length,customIndex=customVideo.findIndex(x=>x.name===name);
+    const row=document.createElement('div');row.className='bc-source-row';
+    row.innerHTML='<label><input type="checkbox"><span>'+escapeHtml(name)+'</span></label><div><small>'+count+' uploads</small>'+(customIndex>=0?'<button class="bc-source-delete" type="button" title="Remove custom channel">×</button>':'')+'</div>';
+    const input=row.querySelector('input');input.checked=videoSet.has(name);input.onchange=()=>{const now=selectedSet('video.channels',videoNames);input.checked?now.add(name):now.delete(name);state.video.channels=now.size===videoNames.length?[]:[...now];renderSources();markDirty()};
+    row.querySelector('.bc-source-delete')?.addEventListener('click',()=>{state.sources.customVideoChannels.splice(customIndex,1);state.video.channels=(state.video.channels||[]).filter(x=>x!==name);renderSources();markDirty()});
+    vh.append(row);
+  });
   q('[data-video-source-summary]').textContent=(state.video.channels.length?state.video.channels.length:videoNames.length)+' of '+videoNames.length+' enabled';
 }
 function escapeHtml(v){const d=document.createElement('div');d.textContent=v||'';return d.innerHTML}
@@ -127,6 +144,22 @@ qa('[data-preset]').forEach(b=>b.onclick=()=>preset(b.dataset.preset));
 qa('[data-content-tab]').forEach(b=>b.onclick=()=>{contentTab=b.dataset.contentTab;qa('[data-content-tab]').forEach(x=>x.classList.toggle('is-active',x===b));renderLiveList()});
 q('[data-all-news]').onclick=()=>{state.news.sources=[];renderSources();markDirty()};
 q('[data-all-video]').onclick=()=>{state.video.channels=[];renderSources();markDirty()};
+q('[data-add-news-source]').onclick=()=>{
+  const name=q('[data-custom-news-name]').value.trim(),url=q('[data-custom-news-url]').value.trim();
+  if(!name||!/^https:\/\//i.test(url)){toast('Add a source name and an https RSS/Atom URL.');return}
+  state.sources=state.sources||{customNewsFeeds:[],customVideoChannels:[]};
+  if(state.sources.customNewsFeeds.some(x=>x.name.toLowerCase()===name.toLowerCase())){toast('That source name already exists.');return}
+  state.sources.customNewsFeeds.push({name,feedUrl:url,siteUrl:new URL(url).origin+'/',priority:8});
+  q('[data-custom-news-name]').value='';q('[data-custom-news-url]').value='';renderSources();markDirty();toast('Custom news feed added. It will populate on the next feed refresh.');
+};
+q('[data-add-video-source]').onclick=()=>{
+  const name=q('[data-custom-video-name]').value.trim(),handle=q('[data-custom-video-handle]').value.trim();
+  if(!name||!/^@[A-Za-z0-9._-]+$/.test(handle)){toast('Add a channel name and a YouTube handle beginning with @.');return}
+  state.sources=state.sources||{customNewsFeeds:[],customVideoChannels:[]};
+  if(state.sources.customVideoChannels.some(x=>x.name.toLowerCase()===name.toLowerCase())){toast('That channel name already exists.');return}
+  state.sources.customVideoChannels.push({name,handle});
+  q('[data-custom-video-name]').value='';q('[data-custom-video-handle]').value='';renderSources();markDirty();toast('Custom YouTube channel added. It will populate on the next feed refresh.');
+};
 q('[data-apply-live]').onclick=()=>saveLive().catch(()=>{});
 q('[data-reset-draft]').onclick=()=>{state=clone(saved);renderAll();toast('Unsaved changes discarded.')};
 q('[data-custom-next]').onclick=()=>customForce('next');q('[data-custom-now]').onclick=()=>customForce('now');
