@@ -48,23 +48,6 @@ sitemap: false
       <div class="next-event" data-next-event>UPCOMING EVENTS</div>
     </footer>
   </main>
-
-  <script id="matlock-posts" type="application/json">
-  [
-  {% assign visible_posts = site.posts | where_exp: "post", "post.listing_visibility != 'direct-only'" %}
-  {% for post in visible_posts limit: 12 %}
-    {
-      "type": "article",
-      "title": {{ post.title | jsonify }},
-      "deck": {{ post.description | default: post.excerpt | strip_html | normalize_whitespace | truncate: 220 | jsonify }},
-      "url": {{ post.url | relative_url | jsonify }},
-      "image": {{ post.image.path | default: post.image | default: "" | relative_url | jsonify }},
-      "source": "MMA Matlock",
-      "publishedAt": {{ post.date | date_to_xmlschema | jsonify }}
-    }{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-  ]
-  </script>
   <script src="/assets/broadcast-trial.js?v={{ site.asset_version }}"></script>
 </body>
 </html>
