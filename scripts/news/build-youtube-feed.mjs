@@ -12,16 +12,20 @@ let channels=[
   {name:"ONE Championship",handle:"@ONEChampionship"}
 ];
 
-try {
-  const control=JSON.parse(await readFile(resolve("assets/data/broadcast-control.json"),"utf8"));
-  for(const channel of control?.sources?.customVideoChannels||[]){
-    const name=String(channel?.name||"").trim();
-    const handle=String(channel?.handle||"").trim();
-    if(!name||!/^@[A-Za-z0-9._-]+$/.test(handle)||channels.some(item=>item.name.toLowerCase()===name.toLowerCase()))continue;
-    channels.push({name,handle});
-  }
-}catch{
-  // Broadcast control is optional for the YouTube builder.
+async function broadcastControlConfig(){
+  try{
+    const response=await fetch("https://mmamatlock-writer-auth.netlify.app/api/broadcast/control",{headers:{accept:"application/json"},cache:"no-store"});
+    if(response.ok)return response.json();
+  }catch{}
+  try{return JSON.parse(await readFile(resolve("assets/data/broadcast-control.json"),"utf8"))}catch{return{}}
+}
+
+const broadcastControl=await broadcastControlConfig();
+for(const channel of broadcastControl?.sources?.customVideoChannels||[]){
+  const name=String(channel?.name||"").trim();
+  const handle=String(channel?.handle||"").trim();
+  if(!name||!/^@[A-Za-z0-9._-]+$/.test(handle)||channels.some(item=>item.name.toLowerCase()===name.toLowerCase()))continue;
+  channels.push({name,handle});
 }
 
 function argumentValue(name){const i=process.argv.indexOf(name);return i>=0?process.argv[i+1]:""}
