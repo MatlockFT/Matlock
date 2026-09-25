@@ -187,15 +187,18 @@
         <div class="logo-banner">
             <a href="{{ '/' | relative_url }}" aria-label="MMA Matlock home">
                 {% if page.v3_text_masthead or page.layout == "post" %}
-                    <span class="v3-wordmark">MATLOCK</span>
-                    <span class="desktop-brand-pumpkin" aria-hidden="true">
-                        <img
-                            src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}?v={{ site.asset_version }}"
-                            alt=""
-                            width="48"
-                            height="48"
-                            decoding="async"
-                        >
+                    <span class="v3-wordmark-wrap">
+                        <span class="v3-wordmark">MATLOCK</span>
+                        <span class="desktop-brand-pumpkin" aria-hidden="true">
+                            <img
+                                class="desktop-brand-pumpkin-icon"
+                                src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}?v={{ site.asset_version }}"
+                                alt=""
+                                width="48"
+                                height="48"
+                                decoding="async"
+                            >
+                        </span>
                     </span>
                 {% else %}
                     <img
@@ -210,15 +213,6 @@
                         fetchpriority="high"
                         decoding="async"
                     >
-                    <span class="desktop-brand-pumpkin desktop-brand-pumpkin-image-logo" aria-hidden="true">
-                        <img
-                            src="{{ '/assets/icons/pumpkin-seasonal.svg' | relative_url }}?v={{ site.asset_version }}"
-                            alt=""
-                            width="42"
-                            height="42"
-                            decoding="async"
-                        >
-                    </span>
                 {% endif %}
             </a>
         </div>
