@@ -23,7 +23,12 @@
             matchupPattern.test(heading.textContent || '')
         ));
 
-    const headings = explicitFightHeadings.length || mode === 'fights'
+    const useFightIndex =
+        explicitFightHeadings.length > 0 ||
+        mode === 'fights' ||
+        fightHeadings.length >= 3;
+
+    const headings = useFightIndex
         ? fightHeadings
         : allHeadings;
 
@@ -77,20 +82,20 @@
                 '(prefers-reduced-motion: reduce)'
             ).matches;
 
-            heading.scrollIntoView({
-                behavior: reduceMotion ? 'auto' : 'smooth',
-                block: 'start'
+            setOpen(false);
+
+            window.requestAnimationFrame(() => {
+                heading.scrollIntoView({
+                    behavior: reduceMotion ? 'auto' : 'smooth',
+                    block: 'start'
+                });
+
+                if (window.history && window.history.pushState) {
+                    window.history.pushState(null, '', '#' + id);
+                } else {
+                    window.location.hash = id;
+                }
             });
-
-            if (window.history && window.history.pushState) {
-                window.history.pushState(null, '', '#' + id);
-            } else {
-                window.location.hash = id;
-            }
-
-            toggle.setAttribute('aria-expanded', 'false');
-            panel.hidden = true;
-            navigation.classList.remove('is-open');
         });
 
         item.append(link);
