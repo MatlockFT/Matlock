@@ -685,3 +685,24 @@
   .writer-media-toolbar{display:none}
   .writer-media-resize-handle{display:none}
 }
+
+
+/* Structured MMA article builders */
+.writer-structured-dialog{max-width:min(1100px,96vw)}
+.writer-matchup-builder{display:grid;grid-template-columns:minmax(0,1fr) 54px minmax(0,1fr);gap:.8rem;align-items:start}
+.writer-matchup-builder-vs{display:grid;place-items:center;min-height:180px;color:#666;font:900 .68rem/1 var(--writer-font-ui,Arial,sans-serif);letter-spacing:.12em}
+.writer-fighter-builder{display:grid;gap:.58rem;min-width:0;padding:.75rem;border:1px solid rgba(255,255,255,.09);background:#0c0c0d}
+.writer-tale-portrait{position:relative;display:grid;place-items:center;width:150px;height:150px;margin:0 auto .2rem;overflow:hidden;border:1px solid rgba(255,255,255,.16);border-radius:50%;background:radial-gradient(circle at 50% 20%,rgba(255,255,255,.08),transparent 55%),#08090b;color:#666;font-size:.65rem;text-align:center;cursor:pointer;touch-action:none}
+.writer-tale-portrait.is-dragging{border-color:#e8e8e5;box-shadow:0 0 0 3px rgba(255,255,255,.05)}
+.writer-tale-portrait img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;cursor:grab;touch-action:none}
+.writer-tale-portrait img:active{cursor:grabbing}
+.writer-image-position-controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.45rem}
+.writer-image-position-controls label{display:grid;gap:.2rem;color:#747477;font-size:.58rem;font-weight:760;text-transform:uppercase;letter-spacing:.05em}
+.writer-image-position-controls input{width:100%}
+.writer-tale-stats-editor{display:grid;grid-template-columns:minmax(180px,.42fr) minmax(0,1fr);gap:1rem;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.09)}
+.writer-tale-stats-editor textarea{width:100%;min-height:220px}
+@media(max-width:760px){
+  .writer-matchup-builder{grid-template-columns:1fr}
+  .writer-matchup-builder-vs{min-height:auto;padding:.1rem 0}
+  .writer-tale-stats-editor{grid-template-columns:1fr}
+}
