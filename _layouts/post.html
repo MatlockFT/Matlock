@@ -308,6 +308,7 @@ layout: default
         data-share-url="{{ share_url | escape }}"
         data-share-title="{{ share_title | escape }}"
         data-share-text="{{ page.description | default: page.title | strip_html | escape }}"
+        data-share-image="{% if featured_src %}{{ featured_src | absolute_url | escape }}{% endif %}"
     >
         <div class="post-share-heading">
             <div>
@@ -330,49 +331,65 @@ layout: default
                 class="post-share-button post-native-share"
                 type="button"
                 data-native-share
-                aria-label="Share {{ page.title | escape }}"
+                aria-label="Open the share menu for {{ page.title | escape }}"
                 hidden
             >
                 Share
             </button>
 
-            <a
+            <button
                 class="post-share-button"
-                href="https://x.com/intent/tweet?text={{ share_title | url_encode }}&url={{ share_url | url_encode }}{% if twitter_username %}&via={{ twitter_username | url_encode }}{% endif %}"
-                target="_blank"
-                rel="noopener noreferrer"
+                type="button"
+                data-share-x
                 aria-label="Share {{ page.title | escape }} on X"
             >
                 X
-            </a>
+            </button>
 
-            <a
+            <button
                 class="post-share-button"
-                href="https://www.facebook.com/sharer/sharer.php?u={{ share_url | url_encode }}"
-                target="_blank"
-                rel="noopener noreferrer"
+                type="button"
+                data-share-threads
+                aria-label="Share {{ page.title | escape }} on Threads"
+            >
+                Threads
+            </button>
+
+            <button
+                class="post-share-button"
+                type="button"
+                data-share-facebook
                 aria-label="Share {{ page.title | escape }} on Facebook"
             >
                 Facebook
-            </a>
+            </button>
 
-            <a
+            <button
+                class="post-share-button post-share-button-instagram"
+                type="button"
+                data-share-instagram="post"
+                aria-label="Prepare an Instagram post for {{ page.title | escape }}"
+            >
+                IG Post
+            </button>
+
+            <button
+                class="post-share-button post-share-button-instagram"
+                type="button"
+                data-share-instagram="story"
+                aria-label="Prepare an Instagram story for {{ page.title | escape }}"
+            >
+                IG Story
+            </button>
+
+            <button
                 class="post-share-button"
-                href="https://www.reddit.com/submit?url={{ share_url | url_encode }}&title={{ share_title | url_encode }}"
-                target="_blank"
-                rel="noopener noreferrer"
+                type="button"
+                data-share-reddit
                 aria-label="Share {{ page.title | escape }} on Reddit"
             >
                 Reddit
-            </a>
-
-            <a
-                class="post-share-button"
-                href="mailto:?subject={{ share_title | url_encode }}&body={{ share_url | url_encode }}"
-                aria-label="Share {{ page.title | escape }} by email"
-            >
-                Email
-            </a>
+            </button>
 
             <button
                 class="post-share-button"
@@ -380,7 +397,7 @@ layout: default
                 data-copy-link
                 aria-label="Copy the link to {{ page.title | escape }}"
             >
-                Copy link
+                Copy
             </button>
         </div>
 
@@ -583,149 +600,7 @@ layout: default
 {% endif %}
 <script src="{{ '/assets/article-rail.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
 
-<script>
-    (function () {
-        const shareSection =
-            document.querySelector("[data-post-share]");
-
-        if (!shareSection) {
-            return;
-        }
-
-        const shareUrl =
-            shareSection.getAttribute("data-share-url");
-
-        const shareTitle =
-            shareSection.getAttribute("data-share-title");
-
-        const shareText =
-            shareSection.getAttribute("data-share-text");
-
-        const nativeShareButton =
-            shareSection.querySelector("[data-native-share]");
-
-        const copyButton =
-            shareSection.querySelector("[data-copy-link]");
-
-        const shareStatus =
-            shareSection.querySelector("[data-share-status]");
-
-        let statusTimer;
-
-        function setShareStatus(message) {
-            if (!shareStatus) {
-                return;
-            }
-
-            window.clearTimeout(statusTimer);
-            shareStatus.textContent = message;
-
-            statusTimer = window.setTimeout(function () {
-                shareStatus.textContent = "";
-            }, 3000);
-        }
-
-        if (nativeShareButton && navigator.share) {
-            nativeShareButton.hidden = false;
-
-            nativeShareButton.addEventListener(
-                "click",
-                async function () {
-                    try {
-                        await navigator.share({
-                            title: shareTitle,
-                            text: shareText,
-                            url: shareUrl
-                        });
-                    } catch (error) {
-                        if (error.name !== "AbortError") {
-                            setShareStatus(
-                                "The share menu could not be opened."
-                            );
-                        }
-                    }
-                }
-            );
-        }
-
-        async function copyLink() {
-            try {
-                if (
-                    navigator.clipboard &&
-                    window.isSecureContext
-                ) {
-                    await navigator.clipboard.writeText(
-                        shareUrl
-                    );
-                } else {
-                    const temporaryField =
-                        document.createElement("textarea");
-
-                    temporaryField.value = shareUrl;
-                    temporaryField.setAttribute(
-                        "readonly",
-                        ""
-                    );
-
-                    temporaryField.style.position =
-                        "fixed";
-
-                    temporaryField.style.left =
-                        "-9999px";
-
-                    document.body.appendChild(
-                        temporaryField
-                    );
-
-                    temporaryField.select();
-                    temporaryField.setSelectionRange(
-                        0,
-                        temporaryField.value.length
-                    );
-
-                    const copied =
-                        document.execCommand("copy");
-
-                    temporaryField.remove();
-
-                    if (!copied) {
-                        throw new Error(
-                            "Copy command was unsuccessful."
-                        );
-                    }
-                }
-
-                const originalCopyLabel =
-                    copyButton ? copyButton.textContent : "";
-
-                if (copyButton) {
-                    copyButton.textContent = "Copied";
-                    copyButton.disabled = true;
-
-                    window.setTimeout(function () {
-                        copyButton.textContent =
-                            originalCopyLabel;
-
-                        copyButton.disabled = false;
-                    }, 1600);
-                }
-
-                setShareStatus("Link copied.");
-            } catch (error) {
-                setShareStatus(
-                    "The link could not be copied."
-                );
-            }
-        }
-
-        if (copyButton) {
-            copyButton.addEventListener(
-                "click",
-                copyLink
-            );
-        }
-    }());
-</script>
+<script src="{{ '/assets/article-share.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const article =
