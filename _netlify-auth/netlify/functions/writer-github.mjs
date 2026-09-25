@@ -18,14 +18,14 @@ export function allowedPath(path, method) {
     if (value === '') return true;
     if (/^\/contents\/_posts(?:\?ref=main)?$/.test(value)) return true;
     if (/^\/contents\/_posts\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+\.md(?:\?ref=(?:main|[0-9a-f]{40}))?$/.test(value)) return true;
-    if (/^\/contents\/assets\/uploads\/[A-Za-z0-9._~!    if (/^\/contents\/assets\/uploads\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+(?:\?ref=main)?$/.test(value)) return true;'()+,;=@%\/-]+(?:\?ref=main)?$/.test(value)) return true;
+    if (/^\/contents\/assets\/uploads\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+(?:\?ref=main)?$/.test(value)) return true;
     if (/^\/contents\/assets\/data\/broadcast-control\.json(?:\?ref=main)?$/.test(value)) return true;
     if (/^\/commits\?path=_posts\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+\.md&per_page=(?:[1-9]|1\d|20)$/.test(value)) return true;
     return false;
   }
   if (method === 'PUT') {
     if (/^\/contents\/_posts\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+\.md$/.test(value)) return true;
-    if (/^\/contents\/assets\/uploads\/[A-Za-z0-9._~!    if (/^\/contents\/assets\/uploads\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+$/.test(value)) return true;'()+,;=@%\/-]+$/.test(value)) return true;
+    if (/^\/contents\/assets\/uploads\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+$/.test(value)) return true;
     if (value === '/contents/assets/data/broadcast-control.json') return true;
   }
   return false;
