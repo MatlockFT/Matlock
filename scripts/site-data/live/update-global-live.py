@@ -371,11 +371,19 @@ def configured_video_candidates(promotion, channel_url):
         if isinstance(item, str):
             video_id = item.strip()
             title = f"{promotion.get('short_name') or promotion['name']} live"
+            source_channel_url = channel_url
+            source_role = "promotion"
         else:
             video_id = str(item.get("video_id") or "").strip()
             title = str(
                 item.get("title")
                 or f"{promotion.get('short_name') or promotion['name']} live"
+            ).strip()
+            source_channel_url = (
+                normalize_channel_url(item.get("channel_url")) or channel_url
+            )
+            source_role = str(
+                item.get("source_role") or item.get("role") or "promotion"
             ).strip()
 
         if not re.fullmatch(r"[A-Za-z0-9_-]{11}", video_id):
@@ -387,8 +395,8 @@ def configured_video_candidates(promotion, channel_url):
                 "title": title,
                 "html_live": False,
                 "restricted": False,
-                "source_channel_url": channel_url,
-                "source_role": "promotion",
+                "source_channel_url": source_channel_url,
+                "source_role": source_role,
                 "require_terms": [],
             }
         )
