@@ -239,23 +239,45 @@ async function refreshControl(){
 }
 function scheduleControlPoll(){clearTimeout(controlTimer);controlTimer=setTimeout(refreshControl,Math.max(5,Number(cfg().timing.controlPollSeconds||10))*1000)}
 
+function reportPreviewState(stateName,message=""){
+  if(!IS_CONTROL_PREVIEW||window.parent===window)return;
+  try{window.parent.postMessage({type:"matlock-broadcast-preview-state",state:stateName,message,slideCount:slides.length,currentType:currentSlide?.type||null},location.origin)}catch{}
+}
 window.addEventListener("message",event=>{
   if(event.origin!==location.origin)return;
-  const m=event.data;if(!m||m.type!=="matlock-broadcast-control-preview"||!m.config)return;
-  previewControl=deepMerge(DEFAULT_CONTROL,m.config);rebuildSlides();processForce();configureBed();
-  if(m.restart&&IS_CONTROL_PREVIEW&&slides.length){
+  const m=event.data;if(!m||m.type!=="matlock-broadcast-control-preview"||!m.config||!IS_CONTROL_PREVIEW)return;
+  previewControl=deepMerge(DEFAULT_CONTROL,m.config);
+  if(m.feeds){
+    if(m.feeds.news)newsCache=m.feeds.news;
+    if(m.feeds.videos)videoCache=m.feeds.videos;
+    if(m.feeds.events)eventCache=normalizedEvents(m.feeds.events);
+  }
+  rebuildSlides();processForce();configureBed();
+  if(!slides.length){
+    clearTimeout(timer);clearTimeout(videoWatchdog);
+    currentSlide=null;els.title.textContent="No eligible content in this draft";els.eyebrow.textContent="PROGRAM MONITOR";els.source.textContent="MMA MATLOCK";els.time.textContent="PREVIEW";
+    renderFacts("CHECK FILTERS",["Enable at least one content module and make sure the freshness/source filters leave eligible stories, videos, or events."]);
+    setMediaImage("");reportPreviewState("empty");return;
+  }
+  if(m.restart||!currentSlide){
     clearTimeout(timer);clearTimeout(videoWatchdog);transitioning=false;
     if(currentSlide?.type==="video")resetVideoHost();
     index=0;currentSlide=null;
     const next=slides[index%slides.length];index=(index+1)%slides.length;
     renderSlideNow(next);
   }
+  reportPreviewState("ready");
 });
 if(!IS_CONTROL_PREVIEW)previewControl=null;
 
 async function boot(){
-  try{control=deepMerge(DEFAULT_CONTROL,await getWithFallback(CONTROL_REMOTE,CONTROL_FALLBACK));lastControlRevision=Number(control.revision||0)}catch{}
-  applyDisplay();configureBed();await refreshFeeds();scheduleControlPoll();setInterval(refreshFeeds,FEED_REFRESH_MS);
+  try{
+    control=deepMerge(DEFAULT_CONTROL,await getWithFallback(CONTROL_REMOTE,CONTROL_FALLBACK));lastControlRevision=Number(control.revision||0);
+    applyDisplay();configureBed();await refreshFeeds();scheduleControlPoll();setInterval(refreshFeeds,FEED_REFRESH_MS);
+    if(IS_CONTROL_PREVIEW)reportPreviewState(slides.length?"ready":"empty");
+  }catch(error){
+    if(IS_CONTROL_PREVIEW)reportPreviewState("error",error?.message||"Renderer failed to start");
+  }
 }
 function clock(){els.clock.textContent=new Intl.DateTimeFormat("en-US",{timeZone:"America/Chicago",hour:"numeric",minute:"2-digit",second:"2-digit"}).format(new Date())+" CT"}
 clock();setInterval(clock,1000);boot();
