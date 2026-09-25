@@ -1260,3 +1260,46 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
   text-transform:uppercase;
   cursor:pointer;
 }
+
+
+/* Site-wide in-article advertising */
+.post-page-v3 .post-body .article-ad-slot{
+  clear:both;
+  width:100%;
+  margin:2.15rem auto;
+  padding:1rem 0 1.15rem;
+  border-top:1px solid var(--v3-rule);
+  border-bottom:1px solid var(--v3-rule);
+  text-align:center;
+}
+.post-page-v3 .post-body .article-ad-slot[hidden]{
+  display:none!important;
+}
+.post-page-v3 .post-body .article-ad-label{
+  display:block;
+  margin:0 0 .65rem;
+  color:var(--v3-muted);
+  font:800 .46rem/1 var(--v3-sans);
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.post-page-v3 .post-body .article-ad-content{
+  width:100%;
+  max-width:100%;
+  min-height:90px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto;
+}
+.post-page-v3 .post-body .article-ad-content iframe,
+.post-page-v3 .post-body .article-ad-content img{
+  max-width:100%!important;
+}
+@media(max-width:760px){
+  .post-page-v3 .post-body .article-ad-slot{
+    margin:1.8rem auto;
+    padding:.9rem 0 1rem;
+  }
+}
