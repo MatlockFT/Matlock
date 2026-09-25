@@ -19,7 +19,7 @@
     const before = bodyEditor.value.slice(0, cursor);
     const lineStart = before.lastIndexOf('\n') + 1;
     const line = before.slice(lineStart).trim();
-    if (!/^\/(table|tale|pick|video|youtube|image|html|source|template|divider)$/.test(line)) return '';
+    if (!/^\/(stats|tale|pick|video|youtube|image|html|source|divider)$/.test(line)) return '';
     bodyEditor.setRangeText('', lineStart, cursor, 'end');
     return line.slice(1);
   }
@@ -273,50 +273,130 @@ Object.values(fields).forEach(el => {
     showToast('HTML visual removed.');
   });
 
-  app.querySelector('[data-table-insert]').addEventListener('click', () => {
-    const dialog = app.querySelector('[data-table-dialog]');
-    const headers = dialog.querySelector('[data-table-headers]').value.split(',').map(v => v.trim()).filter(Boolean);
-    const rows = dialog.querySelector('[data-table-rows]').value.split('\n').map(v => v.trim()).filter(Boolean);
-    if (headers.length < 2) { showToast('Add at least two column headers.'); return; }
-    const table = [
-      `| ${headers.join(' | ')} |`,
-      `| ${headers.map(() => '---').join(' | ')} |`,
-      ...rows.map(label => `| ${[label, ...Array(headers.length - 1).fill('')].join(' | ')} |`)
-    ].join('\n');
-    insertBlock(table);
+  app.querySelector('[data-stats-insert]').addEventListener('click', () => {
+    const dialog = app.querySelector('[data-stats-dialog]');
+    const rows = dialog.querySelector('[data-stats-rows]').value.trim();
+    if (!rows) { showToast('Add at least one stats row.'); return; }
+    const cfg = { rows };
+    saveStructuredBlock('stats', 'Stats', buildStatsVisual(cfg));
     dialog.close();
   });
 
   app.querySelector('[data-tale-insert]').addEventListener('click', () => {
     const dialog = app.querySelector('[data-tale-dialog]');
-    const a = dialog.querySelector('[data-tale-a]').value.trim() || 'FIGHTER A';
-    const b = dialog.querySelector('[data-tale-b]').value.trim() || 'FIGHTER B';
-    const labels = { record:'Record', age:'Age', height:'Height', reach:'Reach', weight:'Weight', stance:'Stance', ko:'KO/TKO Wins', sub:'Submission Wins', dec:'Decision Wins', r1:'1st-Round Finishes' };
-    const rows = Object.entries(labels).map(([key,label]) => {
-      const va = dialog.querySelector(`[data-tale-row="${key}"][data-side="a"]`).value.trim();
-      const vb = dialog.querySelector(`[data-tale-row="${key}"][data-side="b"]`).value.trim();
-      return `| ${label} | ${va} | ${vb} |`;
+    const collect = side => ({
+      name: dialog.querySelector(side === 'a' ? '[data-tale-a]' : '[data-tale-b]').value.trim(),
+      division: dialog.querySelector('[data-tale-division="' + side + '"]').value.trim(),
+      odds: dialog.querySelector('[data-tale-odds="' + side + '"]').value.trim(),
+      last5: dialog.querySelector('[data-tale-last5="' + side + '"]').value.trim(),
+      image: dialog.querySelector('[data-tale-image-path="' + side + '"]').value.trim(),
+      x: Number(dialog.querySelector('[data-tale-image-x="' + side + '"]').value || 50),
+      y: Number(dialog.querySelector('[data-tale-image-y="' + side + '"]').value || 50),
+      zoom: Number(dialog.querySelector('[data-tale-image-zoom="' + side + '"]').value || 100),
+      recent: dialog.querySelector('[data-tale-recent="' + side + '"]').value.trim(),
+      opponentsRecord: dialog.querySelector('[data-tale-opponents-record="' + side + '"]').value.trim(),
+      opponentsPct: dialog.querySelector('[data-tale-opponents-pct="' + side + '"]').value.trim()
     });
-    insertBlock([`|  | ${a.toUpperCase()} | ${b.toUpperCase()} |`, '| --- | ---: | ---: |', ...rows].join('\n'));
+    const cfg = { a: collect('a'), b: collect('b'), rows: dialog.querySelector('[data-tale-rows]').value.trim() || taleDefaultRows };
+    if (!cfg.a.name || !cfg.b.name) { showToast('Add both fighter names.'); return; }
+    saveStructuredBlock('tale', cfg.a.name + ' vs. ' + cfg.b.name, buildTaleVisual(cfg));
     dialog.close();
   });
 
   app.querySelector('[data-pick-insert]').addEventListener('click', () => {
     const dialog = app.querySelector('[data-pick-dialog]');
-    const fighter = dialog.querySelector('[data-pick-fighter]').value.trim();
-    if (!fighter) { showToast('Add the fighter you are picking.'); return; }
-    const method = dialog.querySelector('[data-pick-method]').value;
-    const round = dialog.querySelector('[data-pick-round]').value;
-    const confidence = dialog.querySelector('[data-pick-confidence]').value.trim();
-    const pick = `**Pick: ${fighter} by ${method}${round ? `, ${round}` : ''}**${confidence ? `\n\nConfidence: ${confidence}/10` : ''}`;
-    insertBlock(pick);
+    const cfg = {
+      fighter: dialog.querySelector('[data-pick-fighter]').value.trim(),
+      method: dialog.querySelector('[data-pick-method]').value,
+      round: dialog.querySelector('[data-pick-round]').value,
+      note: dialog.querySelector('[data-pick-note]').value.trim()
+    };
+    if (!cfg.fighter) { showToast('Add the fighter you are picking.'); return; }
+    saveStructuredBlock('pick', 'Pick · ' + cfg.fighter, buildPickVisual(cfg));
     dialog.close();
   });
 
-  app.querySelectorAll('[data-template]').forEach(button => button.addEventListener('click', () => {
-    app.querySelector('[data-template-dialog]').close();
-    resetNewArticle({ template: button.dataset.template });
-  }));
+  async function uploadTalePortrait(side, file) {
+    if (!file?.type?.startsWith('image/')) return;
+    if (!githubCredential) {
+      showToast('Connect GitHub before uploading fighter portraits.', 5000);
+      if (!connectDialog.open) connectDialog.showModal();
+      return;
+    }
+    const dialog = app.querySelector('[data-tale-dialog]');
+    const localUrl = URL.createObjectURL(file);
+    taleImagePreview(side, localUrl);
+    try {
+      const fighterName = dialog.querySelector(side === 'a' ? '[data-tale-a]' : '[data-tale-b]').value.trim();
+      const ext = file.name.match(/\.[^.]+$/)?.[0] || '.jpg';
+      const preferred = (slugify(fighterName || ('fighter-' + side)) || ('fighter-' + side)) + '-' + side + ext;
+      const path = await uploadAsset(file, preferred);
+      dialog.querySelector('[data-tale-image-path="' + side + '"]').value = path;
+      taleImagePreview(side);
+      showToast('Fighter portrait uploaded.');
+    } catch (error) {
+      showToast('Portrait upload failed: ' + error.message, 6000);
+    } finally {
+      window.setTimeout(() => URL.revokeObjectURL(localUrl), 1000);
+    }
+  }
+
+  ['a','b'].forEach(side => {
+    const dialog = app.querySelector('[data-tale-dialog]');
+    const drop = dialog.querySelector('[data-tale-image-drop="' + side + '"]');
+    const file = dialog.querySelector('[data-tale-image-file="' + side + '"]');
+    const path = dialog.querySelector('[data-tale-image-path="' + side + '"]');
+    const image = dialog.querySelector('[data-tale-image-preview="' + side + '"]');
+
+    drop.addEventListener('click', () => file.click());
+    drop.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); file.click(); }
+    });
+    ['dragenter','dragover'].forEach(type => drop.addEventListener(type, event => {
+      if (![...(event.dataTransfer?.items || [])].some(item => item.type.startsWith('image/'))) return;
+      event.preventDefault();
+      drop.classList.add('is-dragging');
+    }));
+    ['dragleave','drop'].forEach(type => drop.addEventListener(type, () => drop.classList.remove('is-dragging')));
+    drop.addEventListener('drop', event => {
+      const portrait = [...(event.dataTransfer?.files || [])].find(item => item.type.startsWith('image/'));
+      if (!portrait) return;
+      event.preventDefault();
+      uploadTalePortrait(side, portrait);
+    });
+    file.addEventListener('change', () => {
+      if (file.files?.[0]) uploadTalePortrait(side, file.files[0]);
+    });
+    path.addEventListener('input', () => taleImagePreview(side));
+    ['x','y','zoom'].forEach(axis => {
+      dialog.querySelector('[data-tale-image-' + axis + '="' + side + '"]').addEventListener('input', () => taleImagePreview(side));
+    });
+
+    let dragState = null;
+    image.addEventListener('pointerdown', event => {
+      if (image.hidden) return;
+      event.preventDefault();
+      image.setPointerCapture?.(event.pointerId);
+      dragState = {
+        x: event.clientX,
+        y: event.clientY,
+        startX: Number(dialog.querySelector('[data-tale-image-x="' + side + '"]').value || 50),
+        startY: Number(dialog.querySelector('[data-tale-image-y="' + side + '"]').value || 50),
+        rect: drop.getBoundingClientRect()
+      };
+    });
+    image.addEventListener('pointermove', event => {
+      if (!dragState) return;
+      const xInput = dialog.querySelector('[data-tale-image-x="' + side + '"]');
+      const yInput = dialog.querySelector('[data-tale-image-y="' + side + '"]');
+      xInput.value = String(Math.round(Math.max(0, Math.min(100, dragState.startX + ((event.clientX - dragState.x) / Math.max(1, dragState.rect.width)) * 100))));
+      yInput.value = String(Math.round(Math.max(0, Math.min(100, dragState.startY + ((event.clientY - dragState.y) / Math.max(1, dragState.rect.height)) * 100))));
+      taleImagePreview(side);
+    });
+    const stopDrag = () => { dragState = null; };
+    image.addEventListener('pointerup', stopDrag);
+    image.addEventListener('pointercancel', stopDrag);
+  });
 
   app.querySelector('[data-conflict-reload]').addEventListener('click', () => {
     conflictDialog.close();
