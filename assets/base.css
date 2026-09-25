@@ -17,9 +17,9 @@
     --text: var(--theme-text, #f4f4f4);
     --text-soft: var(--theme-text-soft, #d0d0d0);
     --muted: var(--theme-muted, #929292);
-    --accent: var(--theme-accent, #f08a24);
-    --accent-soft: var(--theme-accent-soft, #ffba75);
-    --accent-rgb: var(--theme-accent-rgb, 240, 138, 36);
+    --accent: var(--theme-accent, #ff4a54);
+    --accent-soft: var(--theme-accent-soft, #ff8990);
+    --accent-rgb: var(--theme-accent-rgb, 255, 74, 84);
     --green: var(--theme-success, #3ddd78);
     --content-width: var(--theme-content-width, 1240px);
     --reading-width: var(--theme-reading-width, 820px);
@@ -34,7 +34,7 @@
     --shadow: var(--theme-shadow, 0 20px 60px rgba(0, 0, 0, 0.32));
     --shadow-card: var(--theme-shadow-card, 0 15px 38px rgba(0, 0, 0, 0.28));
     --nav-blur: var(--theme-nav-blur, 14px);
-    --accent-wash: var(--theme-accent-wash, rgba(var(--accent-rgb), 0.1));
+    --accent-wash: var(--theme-accent-wash, rgba(255, 74, 84, 0.1));
 }
 
 *,
@@ -56,7 +56,7 @@ body {
     background:
         radial-gradient(
             circle at 50% -300px,
-            rgba(var(--accent-rgb), 0.12),
+            rgba(255, 74, 84, 0.12),
             transparent 620px
         ),
         var(--background);
@@ -263,7 +263,7 @@ select:focus-visible {
 .secondary-button:hover,
 .secondary-button:focus-visible {
     border-color: var(--accent);
-    background: rgba(var(--accent-rgb), 0.1);
+    background: rgba(255, 74, 84, 0.1);
     color: #ffffff;
 }
 
@@ -280,7 +280,7 @@ select:focus-visible {
     background:
         linear-gradient(
             135deg,
-            rgba(var(--accent-rgb), 0.09),
+            rgba(255, 74, 84, 0.09),
             transparent 55%
         ),
         var(--surface);
@@ -611,7 +611,7 @@ select:focus-visible {
     border: 1px solid var(--border);
     border-left: 4px solid var(--accent);
     border-radius: var(--radius-small);
-    background: rgba(var(--accent-rgb), 0.07);
+    background: rgba(255, 74, 84, 0.07);
 }
 
 .article-notice strong,
@@ -710,7 +710,7 @@ select:focus-visible {
     margin-left: 0;
     padding: 1rem 1.3rem;
     border-left: 4px solid var(--accent);
-    background: rgba(var(--accent-rgb), 0.07);
+    background: rgba(255, 74, 84, 0.07);
     color: var(--text-soft);
 }
 
@@ -803,7 +803,7 @@ select:focus-visible {
     background:
         radial-gradient(
             circle at 100% 0,
-            rgba(var(--accent-rgb), 0.2),
+            rgba(255, 74, 84, 0.2),
             transparent 430px
         ),
         var(--surface);
@@ -1249,12 +1249,12 @@ select:focus-visible {
     background:
         radial-gradient(
             circle at 100% 0,
-            rgba(var(--accent-rgb), 0.22),
+            rgba(255, 74, 84, 0.22),
             transparent 430px
         ),
         linear-gradient(
             135deg,
-            rgba(var(--accent-rgb), 0.06),
+            rgba(255, 74, 84, 0.06),
             transparent 58%
         ),
         var(--surface);
@@ -1464,7 +1464,7 @@ select:focus-visible {
     background:
         linear-gradient(
             130deg,
-            rgba(var(--accent-rgb), 0.08),
+            rgba(255, 74, 84, 0.08),
             transparent 48%
         ),
         var(--surface);
@@ -1519,7 +1519,7 @@ select:focus-visible {
     background:
         radial-gradient(
             circle at 100% 50%,
-            rgba(var(--accent-rgb), 0.15),
+            rgba(255, 74, 84, 0.15),
             transparent 340px
         ),
         var(--surface);
@@ -1567,7 +1567,7 @@ select:focus-visible {
     background:
         radial-gradient(
             circle at 100% 0,
-            rgba(var(--accent-rgb), 0.17),
+            rgba(255, 74, 84, 0.17),
             transparent 430px
         ),
         var(--surface);
@@ -1770,7 +1770,7 @@ select:focus-visible {
     padding: 1rem 1.2rem;
     border: 1px solid var(--accent);
     border-radius: var(--radius-small);
-    background: rgba(var(--accent-rgb), 0.08);
+    background: rgba(255, 74, 84, 0.08);
     text-decoration: none;
 }
 
@@ -1801,7 +1801,7 @@ select:focus-visible {
     padding: 1.25rem;
     border-left: 4px solid var(--accent);
     border-radius: 0 var(--radius-small) var(--radius-small) 0;
-    background: rgba(var(--accent-rgb), 0.07);
+    background: rgba(255, 74, 84, 0.07);
 }
 
 .privacy-disclaimer strong {
@@ -1938,7 +1938,7 @@ select:focus-visible {
     background:
         radial-gradient(
             circle at 100% 0,
-            rgba(var(--accent-rgb), 0.17),
+            rgba(255, 74, 84, 0.17),
             transparent 420px
         ),
         var(--surface);

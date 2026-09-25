@@ -256,7 +256,7 @@
     const pad = story ? 84 : 72;
     const copyTop = artHeight - (story ? 36 : 28);
 
-    ctx.fillStyle = '#f08a24';
+    ctx.fillStyle = '#ff4a54';
     ctx.fillRect(pad, copyTop, 86, 8);
 
     ctx.fillStyle = '#f5f1e8';

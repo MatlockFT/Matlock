@@ -523,11 +523,7 @@
             return sequence;
         };
 
-        const sequence = buildSequence();
-        const duplicate = buildSequence();
-        duplicate.setAttribute("aria-hidden", "true");
-        duplicate.querySelectorAll("a").forEach(link => { link.tabIndex = -1; });
-        newsTrack.replaceChildren(sequence, duplicate);
+        newsTrack.replaceChildren(buildSequence(), buildSequence());
         window.requestAnimationFrame(() => {
             const sequence = newsTrack.querySelector(".site-news-sequence");
             if (!sequence) return;

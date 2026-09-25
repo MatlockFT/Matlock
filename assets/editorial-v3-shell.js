@@ -18,19 +18,12 @@
     const syncRailHeight = () => {
       // Keep the deferred ticker row reserved until it mounts.
       const height = Math.max(83, Math.ceil(shell.getBoundingClientRect().height));
-      const value = `${height}px`;
-      if (document.documentElement.style.getPropertyValue('--v3-fixed-rail-height') !== value) {
-        document.documentElement.style.setProperty('--v3-fixed-rail-height', value);
-      }
+      document.documentElement.style.setProperty('--v3-fixed-rail-height', `${height}px`);
     };
 
     const adoptTicker = () => {
       const ticker = document.querySelector('.site-live-strip');
-      if (ticker) {
-        if (ticker.parentElement !== shell) shell.prepend(ticker);
-        // The ticker stays mounted: news/roster mutations no longer need to scan the page.
-        insertionObserver.disconnect();
-      }
+      if (ticker && ticker.parentElement !== shell) shell.prepend(ticker);
       syncRailHeight();
     };
 

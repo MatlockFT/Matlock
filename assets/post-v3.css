@@ -504,7 +504,7 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
 .post-page-v3 .post-body .matlock-stats-card td:first-child{font-weight:800;white-space:nowrap}
 .post-page-v3 .post-body .matlock-stats-card tbody tr:last-child td{border-bottom:0}
 
-.post-page-v3 .post-body .matlock-fight-card{--mfc-red:#f08a24;--mfc-blue:#578cff;--mfc-line:rgba(255,255,255,.105);--mfc-muted:#858b96;width:100%;margin:1.45rem 0 1.9rem;overflow:hidden;border:1px solid #2b3039;background:radial-gradient(circle at 14% 0%,rgba(240,138,36,.12),transparent 30%),radial-gradient(circle at 86% 0%,rgba(87,140,255,.12),transparent 30%),linear-gradient(180deg,#0a0d12,#07090d);color:#f4f6fa;font-family:var(--v3-sans)}
+.post-page-v3 .post-body .matlock-fight-card{--mfc-red:#ff4d5a;--mfc-blue:#578cff;--mfc-line:rgba(255,255,255,.105);--mfc-muted:#858b96;width:100%;margin:1.45rem 0 1.9rem;overflow:hidden;border:1px solid #2b3039;background:radial-gradient(circle at 14% 0%,rgba(255,77,90,.12),transparent 30%),radial-gradient(circle at 86% 0%,rgba(87,140,255,.12),transparent 30%),linear-gradient(180deg,#0a0d12,#07090d);color:#f4f6fa;font-family:var(--v3-sans)}
 .post-page-v3 .post-body .mfc-top{display:grid;grid-template-columns:1fr 120px 1fr;border-bottom:1px solid var(--mfc-line)}
 .post-page-v3 .post-body .mfc-fighter{display:flex;min-width:0;min-height:265px;flex-direction:column;align-items:center;justify-content:center;padding:1.25rem .9rem}
 .post-page-v3 .post-body .mfc-left-fighter{border-right:1px solid var(--mfc-line)}
@@ -514,10 +514,10 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
 .post-page-v3 .post-body .mfc-center i{display:block;width:34px;height:3px;margin-top:.7rem;background:linear-gradient(90deg,var(--mfc-red),#ddd,var(--mfc-blue))}
 .post-page-v3 .post-body .mfc-portrait{position:relative;width:142px;height:142px;margin:0 auto .9rem;overflow:hidden;border:1px solid rgba(255,255,255,.2);border-radius:50%;background:#0d1117}
 .post-page-v3 .post-body .mfc-portrait img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:var(--portrait-x) var(--portrait-y);transform:scale(var(--portrait-zoom));transform-origin:center}
-.post-page-v3 .post-body .mfc-left{box-shadow:0 0 24px rgba(240,138,36,.08)}
+.post-page-v3 .post-body .mfc-left{box-shadow:0 0 24px rgba(255,77,90,.08)}
 .post-page-v3 .post-body .mfc-right{box-shadow:0 0 24px rgba(87,140,255,.08)}
 .post-page-v3 .post-body .mfc-meta{text-align:center}
-.post-page-v3 .post-body .mfc-division{display:block;margin-bottom:.38rem;color:#ffba75;font-size:.52rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+.post-page-v3 .post-body .mfc-division{display:block;margin-bottom:.38rem;color:#ff7983;font-size:.52rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
 .post-page-v3 .post-body .mfc-right-fighter .mfc-division{color:#78a0ff}
 .post-page-v3 .post-body .mfc-name{display:block;color:#fff;font-family:"Herkey",Georgia,serif;font-size:1.05rem;font-weight:400;line-height:1.05}
 .post-page-v3 .post-body .mfc-meta-strip{display:flex;justify-content:center;gap:.42rem;margin-top:.65rem;flex-wrap:wrap}
@@ -530,7 +530,7 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
 .post-page-v3 .post-body .mfc-form-row:last-child{border-bottom:0}
 .post-page-v3 .post-body .mfc-result{display:grid;width:24px;height:24px;place-items:center;border-radius:50%;font-size:.58rem;font-weight:900}
 .post-page-v3 .post-body .mfc-result.win{color:#45d983;border:1px solid rgba(69,217,131,.4);background:rgba(69,217,131,.09)}
-.post-page-v3 .post-body .mfc-result.loss{color:#ffad66;border:1px solid rgba(240,138,36,.4);background:rgba(240,138,36,.09)}
+.post-page-v3 .post-body .mfc-result.loss{color:#ff5b67;border:1px solid rgba(255,91,103,.4);background:rgba(255,91,103,.09)}
 .post-page-v3 .post-body .mfc-result.draw{color:#d7b96a;border:1px solid rgba(215,185,106,.35);background:rgba(215,185,106,.08)}
 .post-page-v3 .post-body .mfc-form-row strong{display:block;color:#fff;font-size:.78rem;line-height:1.1}
 .post-page-v3 .post-body .mfc-form-row small{display:block;margin-top:.2rem;color:var(--mfc-muted);font-size:.52rem;line-height:1.3;letter-spacing:.045em;text-transform:uppercase}
@@ -1013,7 +1013,7 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
   .post-page-v3 .post-body .fight-compare-sleek .fc-column:first-child .fc-mobile-column-label,
   .post-page-v3 .post-body .fight-stats-sleek .fs-cage-column:first-child .fs-mobile-column-label,
   .post-page-v3 .post-body .matlock-fight-card .mfc-column:first-child .mfc-mobile-column-label{
-    border-top:2px solid rgba(240,138,36,.72);
+    border-top:2px solid rgba(255,77,90,.72);
   }
 
   .post-page-v3 .post-body .fight-compare-sleek .fc-column:last-child .fc-mobile-column-label,

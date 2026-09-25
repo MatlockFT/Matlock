@@ -38,7 +38,7 @@
 }
 
 :where(a, button, input, select, textarea, summary, [role="button"]):focus-visible {
-    outline: 2px solid var(--accent, #f08a24);
+    outline: 2px solid var(--accent, #ff4a54);
     outline-offset: 3px;
 }
 
@@ -117,7 +117,7 @@
 .simple-about-hero:focus-within,
 .privacy-hero:focus-within,
 .media-kit-card:focus-within {
-    border-color: rgba(var(--accent-rgb), 0.58);
+    border-color: rgba(255, 74, 84, 0.58);
     box-shadow: var(--micro-shadow-raised);
 }
 
@@ -154,8 +154,8 @@
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-    border-color: var(--accent, #f08a24);
-    box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.12);
+    border-color: var(--accent, #ff4a54);
+    box-shadow: 0 0 0 3px rgba(255, 74, 84, 0.12);
 }
 
 @media (hover: hover) and (pointer: fine) {

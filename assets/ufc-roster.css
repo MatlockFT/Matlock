@@ -17,7 +17,7 @@
 
 .ufc-roster-eyebrow {
     display: block;
-    color: var(--accent-soft, #ffba75);
+    color: var(--accent-soft, #ff8087);
     font-family: "Courier New", monospace;
     font-weight: 900;
     letter-spacing: 0.11em;
@@ -200,7 +200,7 @@
 
 .ufc-roster-card--removed .ufc-roster-event-pill {
     border-color: rgba(var(--accent-rgb), 0.3);
-    color: var(--accent-soft);
+    color: #ff8e95;
 }
 
 .ufc-roster-division {
@@ -225,7 +225,7 @@
 
 .ufc-roster-name a:hover,
 .ufc-roster-name a:focus-visible {
-    color: var(--accent-soft, #ffba75);
+    color: var(--accent-soft, #ff8087);
 }
 
 .ufc-roster-details,

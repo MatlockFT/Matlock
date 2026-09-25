@@ -75,7 +75,7 @@
 }
 
 .site-event-primary:focus-visible {
-    outline: 2px solid var(--accent, #f08a24);
+    outline: 2px solid var(--accent, #ff4a54);
     outline-offset: -2px;
 }
 
@@ -225,7 +225,7 @@ html[data-theme="dark"] .site-event-drawer .site-event-row:focus-visible .site-e
 }
 
 .site-event-row:focus-visible {
-    outline: 2px solid var(--accent, #f08a24);
+    outline: 2px solid var(--accent, #ff4a54);
     outline-offset: -2px;
 }
 
@@ -277,7 +277,7 @@ html[data-theme="dark"] .site-event-drawer .site-event-row:focus-visible .site-e
     align-items: center;
     padding: 0 .65rem;
     border-right: 1px solid rgba(255,255,255,.13);
-    color: var(--accent, #f08a24);
+    color: var(--accent, #ff4a54);
     font: 900 var(--site-ticker-font-size) "Courier New", monospace;
     letter-spacing: .11em;
     line-height: 1;
@@ -301,7 +301,8 @@ html[data-theme="dark"] .site-event-drawer .site-event-row:focus-visible .site-e
     will-change: transform;
 }
 
-/* The second sequence makes the normal scrolling animation seamless. */
+/* The news rail is operational information, not decorative motion. It keeps
+   moving even when the site's broader Motion: Reduced preference is active. */
 
 .site-news-sequence {
     display: flex;
@@ -350,7 +351,7 @@ html[data-theme="dark"] .site-event-drawer .site-event-row:focus-visible .site-e
 }
 
 .site-news-item:focus-visible {
-    outline: 1px solid var(--accent, #f08a24);
+    outline: 1px solid var(--accent, #ff4a54);
     outline-offset: 3px;
 }
 
@@ -378,6 +379,14 @@ html[data-theme="dark"] .site-event-drawer .site-event-row:focus-visible .site-e
 @keyframes site-news-scroll {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
+}
+
+/* Reduced-motion mode elsewhere in the shell pins transform:none !important.
+   Use the independent translate property here so the information rail can
+   still move without fighting that global transform rule. */
+@keyframes site-news-scroll-reduced-safe {
+    from { translate: 0 0; }
+    to { translate: -50% 0; }
 }
 
 @keyframes site-live-pulse {
@@ -482,17 +491,12 @@ html[data-theme="dark"] .site-event-drawer .site-event-row:focus-visible .site-e
     }
 
     .site-news-track {
-        animation: none !important;
-        transform: none !important;
-        translate: none !important;
-    }
-
-    .site-news-viewport {
-        overflow-x: auto;
+        animation: site-news-scroll-reduced-safe var(--site-news-duration, 70s) linear infinite !important;
+        animation-play-state: running !important;
     }
 
     .site-news-sequence:nth-child(2) {
-        display: none !important;
+        display: flex !important;
     }
 
     .site-event-primary-countdown[data-live="true"]::before {
@@ -513,19 +517,15 @@ html.reduce-motion .site-live-strip {
     animation: none !important;
 }
 
-/* Respect the saved preference as well as the operating system setting. */
+/* Match the shell rule's body-level specificity. The shell's older reduced-
+   motion override otherwise wins the cascade on desktop and pins the rail. */
 html.reduce-motion body .site-news-track {
-    animation: none !important;
-    transform: none !important;
-    translate: none !important;
-}
-
-html.reduce-motion body .site-news-viewport {
-    overflow-x: auto;
+    animation: site-news-scroll-reduced-safe var(--site-news-duration, 70s) linear infinite !important;
+    animation-play-state: running !important;
 }
 
 html.reduce-motion body .site-news-sequence:nth-child(2) {
-    display: none !important;
+    display: flex !important;
 }
 
 html.reduce-motion .site-event-primary-countdown[data-live="true"]::before {
@@ -542,3 +542,4 @@ html.reduce-motion body .site-news-viewport:hover .site-news-track,
 html.reduce-motion body .site-news-viewport:focus-within .site-news-track {
     animation-play-state: paused !important;
 }
+

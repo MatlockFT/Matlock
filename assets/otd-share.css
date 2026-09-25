@@ -39,7 +39,7 @@
 
 .otd-share-kicker {
     margin: 0 0 5px;
-    color: var(--theme-accent);
+    color: #e31b23;
     font: 700 0.76rem/1.1 Gobold, sans-serif;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -174,9 +174,9 @@
 }
 
 .otd-share-formats button[aria-pressed="true"] {
-    border-color: var(--theme-accent);
+    border-color: #e31b23;
     background: #1b0c0d;
-    box-shadow: inset 3px 0 0 var(--theme-accent);
+    box-shadow: inset 3px 0 0 #e31b23;
 }
 
 .otd-share-formats button[aria-pressed="true"] span {
@@ -199,8 +199,8 @@
 }
 
 .otd-share-action.is-primary {
-    border-color: var(--theme-accent);
-    background: var(--theme-accent);
+    border-color: #e31b23;
+    background: #e31b23;
     color: #fff;
 }
 
@@ -216,8 +216,8 @@
 }
 
 .otd-share-action.is-primary:not(:disabled):hover {
-    border-color: var(--theme-accent-soft);
-    background: var(--theme-accent-soft);
+    border-color: #f03a41;
+    background: #f03a41;
 }
 
 .otd-share-link-block {
@@ -347,7 +347,7 @@
     }
 
     .otd-share-formats button[aria-pressed="true"] {
-        box-shadow: inset 0 -3px 0 var(--theme-accent);
+        box-shadow: inset 0 -3px 0 #e31b23;
     }
 
     .otd-share-platforms {
