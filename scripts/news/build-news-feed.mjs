@@ -161,21 +161,15 @@ const feeds = [
 ];
 
 async function broadcastControlConfig() {
-    try {
-        const response = await fetch("https://mmamatlock-writer-auth.netlify.app/api/broadcast/control", {
-            headers: { accept: "application/json" },
-            cache: "no-store"
-        });
-        if (response.ok) return await response.json();
-    } catch {}
-
-    try {
-        return JSON.parse(
-            await readFile(resolve("assets/data/broadcast-control.json"), "utf8")
-        );
-    } catch {
-        return {};
+    for (const path of [
+        "assets/uploads/broadcast-control.json",
+        "assets/data/broadcast-control.json"
+    ]) {
+        try {
+            return JSON.parse(await readFile(resolve(path), "utf8"));
+        } catch {}
     }
+    return {};
 }
 
 const broadcastControl = await broadcastControlConfig();
