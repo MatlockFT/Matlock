@@ -402,6 +402,63 @@ test.describe.skip('Original site theme isolation', () => {
 });
 
 
+test.describe('Mobile site shell', () => {
+  test.use({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+
+  const routes = [
+    '/',
+    '/news/',
+    '/live/',
+    '/2026/09/24/rosas-jr-vs-barcelos-ufc-vegas-121.html'
+  ];
+
+  for (const route of routes) {
+    test(`${route} uses one consolidated mobile brand row`, async ({ page }) => {
+      await page.goto(targetUrl(route), { waitUntil: 'domcontentloaded', timeout: 45000 });
+      await page.evaluate(() => document.fonts?.ready).catch(() => {});
+      await page.waitForTimeout(150);
+
+      const brand = page.locator('.mobile-brand').first();
+      const toggle = page.locator('.navigation-toggle').first();
+      const banner = page.locator('.site-header > .logo-banner').first();
+
+      await expect(brand).toBeVisible();
+      await expect(brand.locator('.mobile-brand-wordmark')).toHaveText('MATLOCK');
+      await expect(brand.locator('.mobile-brand-pumpkin')).toHaveText('🎃');
+      await expect(toggle).toBeVisible();
+      await expect(banner).toBeHidden();
+
+      const geometry = await page.evaluate(() => {
+        const brand = document.querySelector('.mobile-brand')?.getBoundingClientRect();
+        const toggle = document.querySelector('.navigation-toggle')?.getBoundingClientRect();
+        const inner = document.querySelector('.navigation-inner')?.getBoundingClientRect();
+        const scrollbarDisplay = getComputedStyle(document.documentElement, '::-webkit-scrollbar').display;
+        const bodyScrollbarDisplay = getComputedStyle(document.body, '::-webkit-scrollbar').display;
+        return {
+          centerDelta: brand && toggle
+            ? Math.abs((brand.top + brand.height / 2) - (toggle.top + toggle.height / 2))
+            : 999,
+          brandLeft: brand?.left ?? -1,
+          toggleRight: toggle?.right ?? 9999,
+          innerLeft: inner?.left ?? -1,
+          innerRight: inner?.right ?? 9999,
+          scrollbarDisplay,
+          bodyScrollbarDisplay
+        };
+      });
+
+      expect(geometry.centerDelta, 'mobile brand and hamburger should share one row').toBeLessThanOrEqual(8);
+      expect(geometry.brandLeft).toBeGreaterThanOrEqual(geometry.innerLeft - 1);
+      expect(geometry.toggleRight).toBeLessThanOrEqual(geometry.innerRight + 1);
+      expect(
+        geometry.scrollbarDisplay === 'none' || geometry.bodyScrollbarDisplay === 'none',
+        'mobile viewport scrollbar should be hidden behind fixed chrome'
+      ).toBeTruthy();
+    });
+  }
+});
+
+
 test.describe('Live V3 site rollout', () => {
   test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
 
