@@ -14,8 +14,6 @@
   const refresh = root.querySelector("[data-live-refresh]");
   const standbyTitle = root.querySelector("[data-live-standby-title]");
   const standbyCopy = root.querySelector("[data-live-standby-copy]");
-  const embedFallback = root.querySelector("[data-live-embed-fallback]");
-  const embedFallbackLink = root.querySelector("[data-live-embed-fallback-link]");
   const liveList = root.querySelector("[data-live-list]");
   const liveCount = root.querySelector("[data-live-count]");
   const liveSection = root.querySelector("[data-live-section]");
@@ -58,6 +56,7 @@
   let verifiedLiveVideoId = "";
   let liveDurationSample = null;
   const endedVideoSuppressions = new Map();
+  const directOnlyVideoIds = new Set();
   let lastNonZeroVolume = 100;
 
   const UI_IDLE_DELAY = 5000;
@@ -165,7 +164,6 @@
 
   const hideEmbedFallback = () => {
     clearPlaybackHealthCheck();
-    if (embedFallback) embedFallback.hidden = true;
     root.classList.remove("has-embed-fallback");
   };
 
@@ -173,15 +171,25 @@
     if (!videoId || videoId !== currentVideoId || screen?.dataset.state !== "live") return;
 
     clearPlaybackHealthCheck();
-    const activeEvent = (lastData?.events || []).find(event => event.video_id === videoId);
-    if (embedFallbackLink) {
-      embedFallbackLink.href =
-        activeEvent?.watch_url ||
-        `https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}`;
+    directOnlyVideoIds.add(videoId);
+    console.warn("YouTube embedded playback unavailable; switching to direct playback", {
+      videoId,
+      reason
+    });
+
+    const activeEvents = (lastData?.events || [])
+      .filter(event => !isSuppressedEndedVideo(event?.video_id));
+    const nextEmbeddable = activeEvents.find(
+      event => event.video_id !== videoId && !directOnlyVideoIds.has(event.video_id)
+    );
+
+    if (nextEmbeddable) {
+      setPlayer(nextEmbeddable);
+    } else {
+      showDirectOnlyState(activeEvents);
     }
-    if (embedFallback) embedFallback.hidden = false;
-    root.classList.add("has-embed-fallback");
-    console.warn("YouTube embedded playback unavailable", { videoId, reason });
+
+    renderLiveEvents(activeEvents);
   };
 
   const startPlaybackHealthCheck = (videoId) => {
@@ -1202,14 +1210,26 @@
     liveList.innerHTML = "";
 
     for (const event of others) {
-      const button = document.createElement("button");
-      button.type = "button";
+      const directOnly = directOnlyVideoIds.has(event.video_id);
+      const button = document.createElement(directOnly ? "a" : "button");
+      if (directOnly) {
+        button.href = event.watch_url || `https://www.youtube.com/watch?v=${event.video_id}`;
+        button.target = "_blank";
+        button.rel = "noopener noreferrer";
+      } else {
+        button.type = "button";
+      }
       button.className = "live-page__row live-page__row--button";
+      if (directOnly) button.classList.add("is-direct-only");
       if (event.video_id === currentVideoId) button.classList.add("is-playing");
 
       const state = document.createElement("span");
       state.className = "live-page__row-state";
-      state.textContent = event.video_id === currentVideoId ? "Playing" : "Live";
+      state.textContent = directOnly
+        ? "Live · YouTube"
+        : event.video_id === currentVideoId
+          ? "Playing"
+          : "Live";
 
       const copy = document.createElement("div");
       copy.className = "live-page__row-copy";
@@ -1227,14 +1247,20 @@
 
       const action = document.createElement("span");
       action.className = "live-page__row-action";
-      action.textContent = event.video_id === currentVideoId ? "Now" : "Watch";
+      action.textContent = directOnly
+        ? "Open ↗"
+        : event.video_id === currentVideoId
+          ? "Now"
+          : "Watch";
 
       copy.append(name, meta);
       button.append(state, copy, action);
-      button.addEventListener("click", () => {
-        revealUi();
-        setPlayer(event);
-      });
+      if (!directOnly) {
+        button.addEventListener("click", () => {
+          revealUi();
+          setPlayer(event);
+        });
+      }
       liveList.append(button);
     }
   };
@@ -1288,7 +1314,12 @@
 
   const setPlayer = (event) => {
     if (!event || !event.video_id || isSuppressedEndedVideo(event.video_id)) return;
+    if (directOnlyVideoIds.has(event.video_id)) {
+      showDirectOnlyState(lastData?.events || [event]);
+      return;
+    }
 
+    root.classList.remove("is-direct-only");
     const previousVideoId = currentVideoId;
     const changingVideo = previousVideoId !== event.video_id;
     currentVideoId = event.video_id;
@@ -1346,8 +1377,52 @@
     renderLiveEvents(lastData?.events || []);
   };
 
+  const showDirectOnlyState = (events) => {
+    const active = (Array.isArray(events) ? events : [])
+      .filter(event => directOnlyVideoIds.has(event.video_id));
+    const featured = active[0] || null;
+
+    root.classList.remove("is-live", "is-offline");
+    root.classList.add("is-direct-only");
+    hideEmbedFallback();
+    screen.dataset.state = "direct-only";
+    stateWrap?.classList.add("is-live");
+    if (stateText) stateText.textContent = "Live on YouTube";
+    if (nowPlayingLabel) nowPlayingLabel.textContent = "Live streams";
+
+    if (featured) {
+      title.textContent = featured.title || "Live broadcast";
+      promotion.textContent =
+        `${featured.short_name || featured.promotion || "MMA"} · Direct playback required`;
+      source.href =
+        featured.watch_url ||
+        `https://www.youtube.com/watch?v=${encodeURIComponent(featured.video_id)}`;
+      source.hidden = false;
+    } else {
+      title.textContent = "Live broadcasts available";
+      promotion.textContent = "Open the live feed directly on YouTube.";
+      source.hidden = true;
+    }
+
+    if (player.getAttribute("src")) player.removeAttribute("src");
+    currentVideoId = "";
+    verifiedLiveVideoId = "";
+    window.clearInterval(playerControlTimer);
+    playerControlTimer = 0;
+    stopLiveVerification();
+    try {
+      ytPlayer?.destroy?.();
+    } catch {}
+    ytPlayer = null;
+    stopReplayBuffer("Off");
+    clearUiIdleTimer();
+    root.classList.remove("is-ui-idle");
+
+    renderLiveEvents(lastData?.events || active);
+  };
+
   const showStandby = (upcoming) => {
-    root.classList.remove("is-live");
+    root.classList.remove("is-live", "is-direct-only");
     root.classList.add("is-offline");
     hideEmbedFallback();
     screen.dataset.state = "offline";
@@ -1406,16 +1481,20 @@
     const currentStillLive = currentVideoId
       ? findEventByVideo(events, currentVideoId)
       : null;
+    const currentCanEmbed =
+      currentStillLive && !directOnlyVideoIds.has(currentStillLive.video_id);
 
-    if (currentStillLive) {
+    if (currentCanEmbed) {
       setPlayer(currentStillLive);
     } else {
+      const preferred = findEventById(events, data.selected_event_id);
       const selected =
-        findEventById(events, data.selected_event_id) ||
-        events[0] ||
+        (preferred && !directOnlyVideoIds.has(preferred.video_id) ? preferred : null) ||
+        events.find(event => !directOnlyVideoIds.has(event.video_id)) ||
         null;
 
       if (selected) setPlayer(selected);
+      else if (events.length) showDirectOnlyState(events);
       else showStandby(upcoming);
     }
 
