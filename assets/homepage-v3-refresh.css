@@ -954,3 +954,31 @@ html[data-theme="dark"] body:has([data-globe-home]) .site-event-drawer .site-eve
     letter-spacing: .12em;
     text-transform: uppercase;
 }
+
+
+/* V3 mobile shell uses the navigation brand as the only masthead */
+@media (max-width: 850px) {
+    body:has([data-globe-home]) .site-header > .logo-banner {
+        display: none !important;
+    }
+
+    body:has([data-globe-home]) .site-navigation .mobile-brand {
+        display: inline-flex !important;
+        align-items: center;
+        gap: .16em;
+        color: var(--v3-ink) !important;
+        font-family: "Edition Matlock", Georgia, "Times New Roman", serif !important;
+        font-size: clamp(1.72rem, 8.4vw, 2.25rem) !important;
+        font-weight: 400 !important;
+        line-height: .8 !important;
+        letter-spacing: .005em !important;
+        text-transform: uppercase !important;
+    }
+
+    body:has([data-globe-home]) .mobile-brand-pumpkin {
+        font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif !important;
+        font-size: .62em;
+        line-height: 1;
+        transform: translateY(.08em);
+    }
+}
