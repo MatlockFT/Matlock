@@ -14,6 +14,8 @@
   const refresh = root.querySelector("[data-live-refresh]");
   const standbyTitle = root.querySelector("[data-live-standby-title]");
   const standbyCopy = root.querySelector("[data-live-standby-copy]");
+  const embedFallback = root.querySelector("[data-live-embed-fallback]");
+  const embedFallbackLink = root.querySelector("[data-live-embed-fallback-link]");
   const liveList = root.querySelector("[data-live-list]");
   const liveCount = root.querySelector("[data-live-count]");
   const liveSection = root.querySelector("[data-live-section]");
@@ -50,6 +52,7 @@
   let ytPlayer = null;
   let ytApiPromise = null;
   let playerControlTimer = 0;
+  let playbackHealthTimer = 0;
   let liveVerificationTimer = 0;
   let liveVerificationMisses = 0;
   let verifiedLiveVideoId = "";
@@ -61,6 +64,7 @@
   const REPLAY_BUFFER_MS = 15000;
   const REPLAY_CHUNK_MS = 1000;
   const ENDED_VIDEO_SUPPRESS_MS = 30 * 60 * 1000;
+  const PLAYBACK_HEALTH_DELAY = 9000;
 
   const clearUiIdleTimer = () => {
     window.clearTimeout(uiIdleTimer);
@@ -154,6 +158,56 @@
     return Boolean(videoId && endedVideoSuppressions.has(videoId));
   };
 
+  const clearPlaybackHealthCheck = () => {
+    window.clearTimeout(playbackHealthTimer);
+    playbackHealthTimer = 0;
+  };
+
+  const hideEmbedFallback = () => {
+    clearPlaybackHealthCheck();
+    if (embedFallback) embedFallback.hidden = true;
+    root.classList.remove("has-embed-fallback");
+  };
+
+  const showEmbedFallback = (videoId, reason = "stuck") => {
+    if (!videoId || videoId !== currentVideoId || screen?.dataset.state !== "live") return;
+
+    clearPlaybackHealthCheck();
+    const activeEvent = (lastData?.events || []).find(event => event.video_id === videoId);
+    if (embedFallbackLink) {
+      embedFallbackLink.href =
+        activeEvent?.watch_url ||
+        `https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}`;
+    }
+    if (embedFallback) embedFallback.hidden = false;
+    root.classList.add("has-embed-fallback");
+    console.warn("YouTube embedded playback unavailable", { videoId, reason });
+  };
+
+  const startPlaybackHealthCheck = (videoId) => {
+    clearPlaybackHealthCheck();
+    if (!videoId) return;
+
+    playbackHealthTimer = window.setTimeout(() => {
+      if (videoId !== currentVideoId || screen?.dataset.state !== "live") return;
+
+      if (!ytPlayer || typeof ytPlayer.getPlayerState !== "function") {
+        showEmbedFallback(videoId, "player-api-unavailable");
+        return;
+      }
+
+      try {
+        const state = ytPlayer.getPlayerState();
+        const duration = Number(ytPlayer.getDuration?.() ?? 0);
+        if ((state === -1 || state === 5 || state == null) && duration <= 0) {
+          showEmbedFallback(videoId, "player-stuck-cued");
+        }
+      } catch {
+        showEmbedFallback(videoId, "player-state-unavailable");
+      }
+    }, PLAYBACK_HEALTH_DELAY);
+  };
+
   const stopLiveVerification = () => {
     window.clearInterval(liveVerificationTimer);
     liveVerificationTimer = 0;
@@ -181,6 +235,7 @@
           if (duration > prior.duration + 0.25) {
             liveVerificationMisses = 0;
             verifiedLiveVideoId = currentVideoId;
+            hideEmbedFallback();
           } else if (state === 1) {
             // A live broadcast's duration keeps increasing. If a supposedly
             // live video is actively playing but its duration stays fixed for
@@ -329,7 +384,11 @@
             updateMediaControls();
             verifyEmbeddedLiveState();
           },
-          onStateChange: () => {
+          onStateChange: (event) => {
+            const nextState = Number(event?.data);
+            if (nextState === 1 || nextState === 2 || nextState === 3) {
+              hideEmbedFallback();
+            }
             updateMediaControls();
             verifyEmbeddedLiveState();
           },
@@ -337,7 +396,10 @@
             setQualityLabel(event?.data || "auto");
             updateMediaControls();
           },
-          onError: updateMediaControls
+          onError: (event) => {
+            updateMediaControls();
+            showEmbedFallback(currentVideoId, `youtube-error-${event?.data ?? "unknown"}`);
+          }
         }
       });
 
@@ -1259,6 +1321,7 @@
     }
     root.classList.remove("is-offline");
     root.classList.add("is-live");
+    hideEmbedFallback();
     screen.dataset.state = "live";
     stateWrap?.classList.add("is-live");
     if (stateText) stateText.textContent = event.stale ? "Live status delayed" : "Live now";
@@ -1300,6 +1363,7 @@
       attachYouTubePlayerApi();
     }
 
+    startPlaybackHealthCheck(event.video_id);
     scheduleUiFade();
     if (liveSection) liveSection.hidden = true;
     renderLiveEvents(lastData?.events || []);
@@ -1308,6 +1372,7 @@
   const showStandby = (upcoming) => {
     root.classList.remove("is-live");
     root.classList.add("is-offline");
+    hideEmbedFallback();
     screen.dataset.state = "offline";
     stateWrap?.classList.remove("is-live");
     if (stateText) stateText.textContent = "No fights live";
