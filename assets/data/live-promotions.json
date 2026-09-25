@@ -330,7 +330,17 @@
       "enabled": true,
       "channel_url": "https://www.youtube.com/channel/UCsmEWs-nKmRSKDWxY_k4HjQ",
       "coverage_note": "Official Shooto Brasil channel; current events include YouTube coverage",
-      "fast_check_until": "2026-09-26T06:00:00Z"
+      "fast_check_until": "2026-09-26T06:00:00Z",
+      "pinned_videos": [
+        {
+          "video_id": "xKtNvmTpuGM",
+          "title": "Shooto Brasil live"
+        },
+        {
+          "video_id": "NSG3v4z5uqc",
+          "title": "Shooto Brasil live"
+        }
+      ]
     },
     {
       "id": "mangu",
