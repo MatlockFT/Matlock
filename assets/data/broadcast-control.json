@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "revision": 1,
+  "updatedAt": null,
+  "modules": {
+    "news": true,
+    "video": true,
+    "events": true,
+    "ticker": true,
+    "comingUp": true,
+    "music": true
+  },
+  "rundown": [
+    "news",
+    "news",
+    "video",
+    "news",
+    "event"
+  ],
+  "timing": {
+    "newsSeconds": 45,
+    "eventSeconds": 35,
+    "transitionMs": 650,
+    "controlPollSeconds": 10
+  },
+  "news": {
+    "maxAgeHours": 48,
+    "maxItems": 16,
+    "sources": [],
+    "requireContext": true,
+    "contextFacts": 4
+  },
+  "video": {
+    "maxAgeHours": 48,
+    "maxItems": 8,
+    "minSeconds": 20,
+    "maxSeconds": 600,
+    "volume": 50,
+    "channels": [],
+    "playFull": true
+  },
+  "events": {
+    "maxItems": 3,
+    "usePosters": true
+  },
+  "audio": {
+    "enabled": true,
+    "musicUrl": "https://opengameart.org/sites/default/files/8bit%20Bossa.mp3",
+    "musicVolume": 14,
+    "duckVolume": 3.5
+  },
+  "ticker": {
+    "enabled": true,
+    "speedSeconds": 240,
+    "maxItems": 14
+  },
+  "visual": {
+    "flipNews": true,
+    "showRail": true,
+    "showClock": true,
+    "showBadge": true,
+    "showSource": true
+  },
+  "hidden": {
+    "news": [],
+    "videos": [],
+    "events": []
+  },
+  "forceNext": null
+}
