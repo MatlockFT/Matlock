@@ -946,3 +946,79 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
     grid-column:1!important;
   }
 }
+
+
+/* Mobile stacked-column ownership labels */
+.post-page-v3 .post-body .fc-mobile-column-label,
+.post-page-v3 .post-body .fs-mobile-column-label,
+.post-page-v3 .post-body .mfc-mobile-column-label{
+  display:none;
+}
+
+@media(max-width:760px){
+  .post-page-v3 .post-body .fc-mobile-column-label,
+  .post-page-v3 .post-body .fs-mobile-column-label,
+  .post-page-v3 .post-body .mfc-mobile-column-label{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:.75rem;
+    width:100%;
+    min-width:0;
+    margin:0;
+    padding:.68rem 0 .58rem;
+    border-bottom:1px solid rgba(255,255,255,.12);
+    font-family:var(--v3-sans);
+  }
+
+  .post-page-v3 .post-body .fc-mobile-column-label span,
+  .post-page-v3 .post-body .fs-mobile-column-label span,
+  .post-page-v3 .post-body .mfc-mobile-column-label span{
+    flex:0 0 auto;
+    color:rgba(255,255,255,.42);
+    font-size:.46rem!important;
+    font-weight:900;
+    line-height:1;
+    letter-spacing:.11em!important;
+    text-transform:uppercase;
+  }
+
+  .post-page-v3 .post-body .fc-mobile-column-label strong,
+  .post-page-v3 .post-body .fs-mobile-column-label strong,
+  .post-page-v3 .post-body .mfc-mobile-column-label strong{
+    min-width:0;
+    color:#f3f5f7!important;
+    font-size:.66rem!important;
+    font-weight:900!important;
+    line-height:1.15!important;
+    letter-spacing:.025em;
+    text-align:right;
+    text-transform:uppercase;
+    overflow-wrap:anywhere;
+  }
+
+  /* Red/blue ownership survives after the desktop columns stack. */
+  .post-page-v3 .post-body .fight-compare-sleek .fc-column:first-child .fc-mobile-column-label,
+  .post-page-v3 .post-body .fight-stats-sleek .fs-cage-column:first-child .fs-mobile-column-label,
+  .post-page-v3 .post-body .matlock-fight-card .mfc-column:first-child .mfc-mobile-column-label{
+    border-top:2px solid rgba(255,77,90,.72);
+  }
+
+  .post-page-v3 .post-body .fight-compare-sleek .fc-column:last-child .fc-mobile-column-label,
+  .post-page-v3 .post-body .fight-stats-sleek .fs-cage-column:last-child .fs-mobile-column-label,
+  .post-page-v3 .post-body .matlock-fight-card .mfc-column:last-child .mfc-mobile-column-label{
+    border-top:2px solid rgba(87,140,255,.72);
+  }
+
+  .post-page-v3 .post-body .fight-compare-sleek .fc-column:first-child,
+  .post-page-v3 .post-body .fight-stats-sleek .fs-cage-column:first-child,
+  .post-page-v3 .post-body .matlock-fight-card .mfc-column:first-child{
+    padding-bottom:.45rem!important;
+  }
+
+  .post-page-v3 .post-body .fight-compare-sleek .fc-column:last-child,
+  .post-page-v3 .post-body .fight-stats-sleek .fs-cage-column:last-child,
+  .post-page-v3 .post-body .matlock-fight-card .mfc-column:last-child{
+    padding-top:.45rem!important;
+  }
+}
