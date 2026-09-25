@@ -7,6 +7,7 @@ body:has([data-live-page]) .site-main {
 body:has([data-live-page]) {
   position: relative;
   isolation: isolate;
+  background: #080808 !important;
 }
 
 body:has([data-live-page]) .site-header,
@@ -14,9 +15,11 @@ body:has([data-live-page]) .site-main,
 body:has([data-live-page]) .site-footer {
   position: relative;
   z-index: 1;
+  background: transparent !important;
 }
 
 body:has([data-live-page]) .site-header,
+body:has([data-live-page]) .v3-sticky-shell,
 body:has([data-live-page]) .site-footer {
   transition:
     opacity 2.6s ease,
@@ -24,6 +27,7 @@ body:has([data-live-page]) .site-footer {
 }
 
 body:has(.live-page.is-ui-idle) .site-header,
+body:has(.live-page.is-ui-idle) .v3-sticky-shell,
 body:has(.live-page.is-ui-idle) .site-footer {
   opacity: 0;
   transform: translateY(-4px);
@@ -35,15 +39,25 @@ body:has([data-live-page]) .site-header {
   box-shadow: none !important;
 }
 
+body:has([data-live-page]) .v3-sticky-shell {
+  background: rgba(8,8,8,.12) !important;
+  border-color: rgba(255,255,255,.055) !important;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.035),
+    0 12px 32px rgba(0,0,0,.08) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.12);
+  backdrop-filter: blur(18px) saturate(1.12);
+}
+
 body:has([data-live-page]) .logo-banner {
-  background: rgba(8,8,8,.08) !important;
+  background: rgba(8,8,8,.055) !important;
   border-color: rgba(255,255,255,.05) !important;
   -webkit-backdrop-filter: blur(16px) saturate(1.12);
   backdrop-filter: blur(16px) saturate(1.12);
 }
 
 body:has([data-live-page]) .site-navigation {
-  background: rgba(8,8,8,.14) !important;
+  background: rgba(8,8,8,.085) !important;
   border-color: rgba(255,255,255,.07) !important;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.035) !important;
   -webkit-backdrop-filter: blur(18px) saturate(1.16) !important;
@@ -56,7 +70,7 @@ body:has([data-live-page]) .navigation-panel {
 }
 
 body:has([data-live-page]) .site-live-strip {
-  background: rgba(8,8,8,.1) !important;
+  background: rgba(8,8,8,.07) !important;
   border-color: rgba(255,255,255,.055) !important;
   -webkit-backdrop-filter: blur(16px) saturate(1.14);
   backdrop-filter: blur(16px) saturate(1.14);
@@ -64,9 +78,10 @@ body:has([data-live-page]) .site-live-strip {
 
 html[data-theme="light"] body:has([data-live-page]) .logo-banner,
 html[data-theme="light"] body:has([data-live-page]) .site-navigation,
-html[data-theme="light"] body:has([data-live-page]) .site-live-strip {
-  background: rgba(255,255,255,.13) !important;
-  border-color: rgba(20,20,20,.07) !important;
+html[data-theme="light"] body:has([data-live-page]) .site-live-strip,
+html[data-theme="light"] body:has([data-live-page]) .v3-sticky-shell {
+  background: rgba(255,255,255,.1) !important;
+  border-color: rgba(20,20,20,.065) !important;
 }
 
 .live-page {
@@ -100,7 +115,7 @@ html[data-theme="light"] body:has([data-live-page]) .site-live-strip {
 }
 
 .live-page__ambient.is-ambient-active {
-  opacity: .28;
+  opacity: .24;
 }
 
 .live-page__ambient-layer {
@@ -130,11 +145,11 @@ html[data-theme="light"] body:has([data-live-page]) .site-live-strip {
 }
 
 html[data-theme="light"] .live-page__ambient.is-ambient-active {
-  opacity: .16;
+  opacity: .12;
 }
 
 html[data-theme="dark"] .live-page__ambient.is-ambient-active {
-  opacity: .32;
+  opacity: .24;
 }
 
 /* All non-video UI participates in the idle fade. */
@@ -248,7 +263,35 @@ html[data-theme="dark"] .live-page__ambient.is-ambient-active {
 
 .live-page__player-stage {
   position: relative;
+  z-index: 1;
+  isolation: isolate;
   overflow: visible;
+}
+
+.live-page__player-stage::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -7% -5% -10%;
+  border-radius: 18%;
+  background: var(--live-ambient-image, none) center / cover no-repeat;
+  filter: blur(clamp(54px, 5vw, 88px)) saturate(1.12) brightness(.56);
+  opacity: 0;
+  transform: scale(1.035);
+  pointer-events: none;
+  transition:
+    opacity .8s ease,
+    background-image .4s ease;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 12%, rgba(0,0,0,.78) 52%, transparent 82%);
+  mask-image: radial-gradient(ellipse at center, #000 12%, rgba(0,0,0,.78) 52%, transparent 82%);
+}
+
+.live-page.has-ambient-light .live-page__player-stage::before {
+  opacity: .27;
+}
+
+html[data-theme="light"] .live-page.has-ambient-light .live-page__player-stage::before {
+  opacity: .16;
 }
 
 .live-page__player-frame {
@@ -606,6 +649,7 @@ html[data-theme="light"] .live-page__section-head > span {
 
 @media (prefers-reduced-motion: reduce) {
   body:has([data-live-page]) .site-header,
+  body:has([data-live-page]) .v3-sticky-shell,
   body:has([data-live-page]) .site-footer,
   .live-page__ambient,
   .live-page__ambient-layer,
