@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Rosas Jr. vs. Barcelos | UFC Vegas 121"
-description: Raoni Barcelos will try to prove that these peptides really can turn back the clock.
+description: "UFC Vegas 121 full-card breakdown and predictions, headlined by Raul Rosas Jr. vs. Raoni Barcelos, with picks for Montel Jackson vs. Ricky Simon and the rest of the card."
 date: 2026-09-24
 category: Breakdown
 author: Matlock
@@ -10,9 +10,15 @@ image:
   alt: "Rosas Jr. vs. Barcelos | UFC Vegas 121"
   position: center center
 tags:
-  - UFC VEGAS 121
-  - ROSAS JR
-  - BARCELOS
+  - UFC Vegas 121
+  - Raul Rosas Jr.
+  - Raoni Barcelos
+  - UFC Fight Night
+  - UFC Predictions
+  - MMA Picks
+  - Fight Breakdown
+  - Montel Jackson
+  - Ricky Simon
 show_toc: true
 pinned: false
 listing_visibility: normal
