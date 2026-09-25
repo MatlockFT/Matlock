@@ -9,12 +9,15 @@
   const shareImage = section.dataset.shareImage || '';
   const featured = document.querySelector('.post-featured-image img');
 
-  const nativeButton = section.querySelector('[data-native-share]');
+  const nativeButtons = [
+    ...document.querySelectorAll('[data-native-share], [data-native-share-top]')
+  ];
   const copyButton = section.querySelector('[data-copy-link]');
-  const xButton = section.querySelector('[data-share-x]');
-  const threadsButton = section.querySelector('[data-share-threads]');
-  const facebookButton = section.querySelector('[data-share-facebook]');
-  const redditButton = section.querySelector('[data-share-reddit]');
+  const platformLinks = [
+    ...section.querySelectorAll(
+      '[data-share-x], [data-share-threads], [data-share-facebook], [data-share-reddit]'
+    )
+  ];
   const instagramButtons = [...section.querySelectorAll('[data-share-instagram]')];
   const status = section.querySelector('[data-share-status]');
   let statusTimer = 0;
@@ -31,25 +34,6 @@
       statusTimer = window.setTimeout(() => {
         status.textContent = '';
       }, timeout);
-    }
-  };
-
-  const shareThroughDevice = async (platform, payload = {}) => {
-    if (!navigator.share) return false;
-
-    const data = {
-      title: payload.title || shareTitle,
-      text: payload.text || shareText,
-      url: payload.url || shareUrl
-    };
-
-    try {
-      await navigator.share(data);
-      setStatus('Choose ' + platform + ' from the share sheet.');
-      return true;
-    } catch (error) {
-      if (error?.name === 'AbortError') return true;
-      return false;
     }
   };
 
@@ -102,77 +86,46 @@
     }
   };
 
-  if (nativeButton && navigator.share) {
-    nativeButton.hidden = false;
-    nativeButton.addEventListener('click', async () => {
-      try {
+  const runNativeShare = async (button) => {
+    try {
+      if (navigator.share) {
         await navigator.share({
           title: shareTitle,
           text: shareText,
           url: shareUrl
         });
-      } catch (error) {
-        if (error?.name !== 'AbortError') {
-          setStatus('The share menu could not be opened.');
-        }
+        return;
       }
+
+      await copyText(shareUrl);
+      const original = button?.textContent || 'Share';
+      if (button) button.textContent = 'Copied';
+      setStatus('Article link copied.');
+      window.setTimeout(() => {
+        if (button) button.textContent = original;
+      }, 1400);
+    } catch (error) {
+      if (error?.name !== 'AbortError') {
+        setStatus('The share menu could not be opened.');
+      }
+    }
+  };
+
+  nativeButtons.forEach(button => {
+    button.hidden = false;
+    button.addEventListener('click', () => runNativeShare(button));
+  });
+
+  platformLinks.forEach(link => {
+    link.addEventListener('click', event => {
+      // Phones get the real platform URL in the current tab. This avoids
+      // Chrome's blank popup tabs and gives installed apps/universal links
+      // their normal chance to intercept the URL.
+      if (touchLike) return;
+
+      event.preventDefault();
+      popup(link.href, 'mmaMatlockPlatformShare');
     });
-  }
-
-  xButton?.addEventListener('click', async () => {
-    if (touchLike && await shareThroughDevice('X', {
-      text: shareTitle,
-      url: shareUrl
-    })) return;
-
-    popup(
-      'https://twitter.com/intent/tweet?text=' +
-      encodeURIComponent(shareTitle) +
-      '&url=' +
-      encodeURIComponent(shareUrl),
-      'mmaMatlockXShare'
-    );
-  });
-
-  threadsButton?.addEventListener('click', async () => {
-    const text = shareTitle + '\n\n' + shareUrl;
-
-    if (touchLike && await shareThroughDevice('Threads', {
-      text,
-      url: shareUrl
-    })) return;
-
-    popup(
-      'https://www.threads.net/intent/post?text=' + encodeURIComponent(text),
-      'mmaMatlockThreadsShare'
-    );
-  });
-
-  facebookButton?.addEventListener('click', async () => {
-    if (touchLike && await shareThroughDevice('Facebook', {
-      text: shareTitle,
-      url: shareUrl
-    })) return;
-
-    const target =
-      'https://www.facebook.com/sharer/sharer.php?display=popup&u=' +
-      encodeURIComponent(shareUrl);
-    popup(target, 'mmaMatlockFacebookShare');
-  });
-
-  redditButton?.addEventListener('click', async () => {
-    if (touchLike && await shareThroughDevice('Reddit', {
-      text: shareTitle,
-      url: shareUrl
-    })) return;
-
-    popup(
-      'https://www.reddit.com/submit?url=' +
-      encodeURIComponent(shareUrl) +
-      '&title=' +
-      encodeURIComponent(shareTitle),
-      'mmaMatlockRedditShare'
-    );
   });
 
   copyButton?.addEventListener('click', flashCopy);
@@ -411,18 +364,6 @@
       button.textContent = old;
     }
   };
-
-  if (touchLike && navigator.share) {
-    [
-      [xButton, 'Share via X'],
-      [threadsButton, 'Share via Threads'],
-      [facebookButton, 'Share via Facebook'],
-      [redditButton, 'Share via Reddit']
-    ].forEach(([button, label]) => {
-      if (!button) return;
-      button.title = label + ' using your phone share sheet';
-    });
-  }
 
   instagramButtons.forEach(button => {
     button.addEventListener('click', () => {
