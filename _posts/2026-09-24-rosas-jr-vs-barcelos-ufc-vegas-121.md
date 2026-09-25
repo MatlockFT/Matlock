@@ -1890,7 +1890,9 @@ There are few things to like about Demopoulos in this position such as her age, 
 On the flip side, older fighters are not doing bad these days, Jauregui hasn't fought since 2024, and Demopoulos has to feel like she is in a must-win position. I wouldn't be surprised if we see some very tough veteran grit and going all in on this fight. Nonetheless, I still favor Jauregui.
 
 **Pick: Yazmin Jauregui by Decision**
+
 ---
+
 ## John Castaneda vs. Alatengheili
 
 <section class="article-html-visual">
@@ -5818,6 +5820,7 @@ At range, I don’t see Ricky having a lot of success against Montel Jackson. I 
 The tough part is deciding whether Jackson gets it done inside the distance or if this goes to a decision. I really want to give Ricky that respect, but Jackson has the potential to show out here. I'll lean into a stoppage as Ricky tries to close the distance.
 
 **Pick: Montel Jackson via KO/TKO in round 3**
+
 ---
 
 ## Elves Brener vs. Josiah Harrell
@@ -7970,7 +7973,9 @@ I sorta kinda agree with Harrell being the slight favorite because of his sheer 
 It’s an interesting fight for a card of this caliber, but I’ll give a slight nod to the underdog to be crafty enough to find a victory. Honestly, it could be a KO, but with how easily Jacobe Smith was able to move around on top, Brener may just find a submission. I’ll pick the club-and-sub for Brener to make it 12 submission victories on his record.
 
 **Pick: Elves Brener via submission in round 1**
+
 ---
+
 ## Rodolfo Bellato vs. Christian Edwards
 
 <section class="article-html-visual">
@@ -10102,7 +10107,9 @@ Personally, it’s not a fight I’m all that interested in, but my fingers are 
 If it does come down to a decision, I think Rodolfo’s volume, power, and full camp at American Top Team will be enough for him to take it.
 
 **Pick: Rodolfo Bellato via Decision**
+
 ---
+
 ## Rodolfo Vieira vs. Robert Bryczek
 
 <section class="article-html-visual">
@@ -12183,7 +12190,9 @@ We go from one Rodolfo to another, and from light heavyweight to middleweight...
 I have no real interest in this fight and don’t have a strong lean either way. I do feel like Vieira is a better grappler than Bryczek is a striker, though. This one smells like a decision stinker. I think Vieira will win by dictating where the fight takes place and controlling enough of the grappling exchanges to edge it out.
 
 **Pick: Rodolfo Vieira via Split Decision**
+
 ---
+
 ## Brady Hiestand vs. Rinya Nakamura
 
 <section class="article-html-visual">
@@ -14266,6 +14275,7 @@ This could potentially be Fight of the Night in my eyes. A lot of it really depe
 **Pick: Nakamura via KO/TKO in Round 2**
 
 ---
+
 For the two TUF Finale fights, I have very little info. Tina Black looks to be the better, more technical fighter so I'd imagine her opponent is gonna have to make the fight ugly. **Pick: Tina Black via Decision**
 
 I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence for me to pick him. **Pick: Mehemmedeli Osmanli**
@@ -14275,7 +14285,9 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
     <video autoplay loop muted playsinline preload="metadata" src="https://github.com/MatlockFT/Matlock/releases/download/writer-media-2026-09/rosas-jr-vs-barcelos-ufc-vegas-121-video-20260925-011655-703.mp4" aria-label="Article video"></video>
   </div>
 </figure>
+
 ---
+
 ## Luis Hernandez vs. Sedriques Dumas
 
 <section class="article-html-visual">
@@ -16231,6 +16243,7 @@ Hernandez will likely try to get this fight down to the mat and look for a submi
 That being said, the dude lost to Jackson McVey. The height and reach advantage may be significant, but that only really matters if the takedown defense is there. At 33%, I don’t think it’s going to be enough to keep Luis from plowing through, closing the distance, and getting Dumas to the mat.
 
 **Pick: Luis Hernandez via submission in Round 1**
+
 ---
 
 ## Ailin Perez vs. Norma Dumont
@@ -18376,7 +18389,9 @@ Yes, I’m picking Ailin Perez. It’s a tale as old as time: pick against a fig
 I think the control time will be significantly in Perez’s favor, if she doesn’t find a submission first. We shall see.
 
 **Pick: Ailin Perez via Decision**
+
 ---
+
 ## Raul Rosas Jr. vs. Raoni Barcelos
 
 <section class="article-html-visual">
