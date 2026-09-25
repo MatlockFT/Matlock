@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Rosas Jr. vs. Barcelos | UFC Vegas 121"
+title: Rosas Jr. vs. Barcelos - UFC Vegas 121
 description: "UFC Vegas 121 full-card breakdown and predictions, headlined by Raul Rosas Jr. vs. Raoni Barcelos, with picks for Montel Jackson vs. Ricky Simon and the rest of the card."
 date: 2026-09-24
 category: Breakdown
