@@ -250,6 +250,7 @@ layout: default
                 class="post-body{% if page.preserve_line_breaks %} post-body-preserve-breaks{% endif %}"
             >
                 {{ content }}
+                {% include article-ad.html %}
             </div>
         </div>
 
@@ -640,6 +641,7 @@ layout: default
 <script src="{{ '/assets/article-rail.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
 
 <script src="{{ '/assets/article-share.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
+<script src="{{ '/assets/article-ad.js' | relative_url }}?v={{ site.asset_version }}" defer></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const article =
