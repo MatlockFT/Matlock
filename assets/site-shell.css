@@ -760,8 +760,8 @@ html.reduce-motion .mma-gallery-image-button:hover img {
 
     .site-navigation .mobile-brand {
         display: inline-flex !important;
-        align-items: center;
-        gap: .16em;
+        align-items: flex-end;
+        gap: 0;
         min-width: 0;
         color: inherit;
         font-family: "Edition Matlock", var(--font-display), Georgia, "Times New Roman", serif;
@@ -775,21 +775,27 @@ html.reduce-motion .mma-gallery-image-button:hover img {
     }
 
     .mobile-brand-wordmark {
+        position: relative;
+        z-index: 1;
         display: inline-block;
     }
 
     .mobile-brand-pumpkin {
+        position: relative;
+        z-index: 2;
         display: inline-flex;
-        align-items: center;
+        align-items: flex-end;
         justify-content: center;
         flex: 0 0 auto;
+        margin-left: -.13em;
     }
 
     .mobile-brand-pumpkin-icon {
         display: block;
-        width: .72em;
-        height: .72em;
-        transform: translateY(.04em);
+        width: .84em;
+        height: .84em;
+        transform: translateY(.11em) rotate(-4deg);
+        transform-origin: 50% 100%;
     }
 
     /* Mobile browsers render the viewport scrollbar over fixed site chrome.
