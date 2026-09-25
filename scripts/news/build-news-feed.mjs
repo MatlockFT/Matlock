@@ -441,32 +441,48 @@ async function fetchArticleImage(story) {
 }
 
 function articleContextFromHtml(html) {
-    const metaKeys = new Set(["description","og:description","twitter:description"]);
-    for (const match of html.matchAll(/<meta\\b[^>]*>/gi)) {
+    const metaKeys = new Set(["description", "og:description", "twitter:description"]);
+
+    for (const match of html.matchAll(/<meta\b[^>]*>/gi)) {
         const tag = match[0];
         const key = (tagAttribute(tag, "property") || tagAttribute(tag, "name")).toLowerCase();
+
         if (!metaKeys.has(key)) continue;
+
         const text = plainText(tagAttribute(tag, "content"));
         if (text.length >= 90) return truncate(text, ARTICLE_CONTEXT_LIMIT);
     }
 
-    for (const match of html.matchAll(/<script\\b[^>]*type=["']application\\/ld\\+json[^"']*["'][^>]*>([\\s\\S]*?)<\\/script>/gi)) {
+    const ldJsonPattern = /<script\b[^>]*type=["']application\/ld\+json[^"']*["'][^>]*>([\s\S]*?)<\/script>/gi;
+
+    for (const match of html.matchAll(ldJsonPattern)) {
         try {
             const data = JSON.parse(decodeEntities(match[1]));
             const roots = Array.isArray(data) ? data : [data];
-            const entries = roots.flatMap(root => Array.isArray(root?.["@graph"]) ? root["@graph"] : [root]);
+            const entries = roots.flatMap(root =>
+                Array.isArray(root?.["@graph"]) ? root["@graph"] : [root]
+            );
+
             for (const entry of entries) {
                 const text = plainText(entry?.articleBody || entry?.description || "");
                 if (text.length >= 120) return truncate(text, ARTICLE_CONTEXT_LIMIT);
             }
-        } catch {}
+        } catch {
+            // Ignore malformed publisher JSON-LD and continue to paragraph fallback.
+        }
     }
 
-    const paragraphs = [...html.matchAll(/<p\\b[^>]*>([\\s\\S]*?)<\\/p>/gi)]
+    const paragraphPattern = /<p\b[^>]*>([\s\S]*?)<\/p>/gi;
+    const paragraphs = [...html.matchAll(paragraphPattern)]
         .map(match => plainText(match[1]))
         .filter(text => text.length >= 90)
-        .filter(text => !/subscribe|sign up|newsletter|advertisement|click here|follow us|cookie|privacy/i.test(text));
-    return paragraphs.length ? truncate(paragraphs.slice(0, 2).join(" "), ARTICLE_CONTEXT_LIMIT) : "";
+        .filter(text =>
+            !/subscribe|sign up|newsletter|advertisement|click here|follow us|cookie|privacy/i.test(text)
+        );
+
+    return paragraphs.length
+        ? truncate(paragraphs.slice(0, 2).join(" "), ARTICLE_CONTEXT_LIMIT)
+        : "";
 }
 
 async function fetchArticleContext(story) {
