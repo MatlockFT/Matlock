@@ -457,6 +457,85 @@ test.describe('Live V3 site rollout', () => {
     ['/live/', '[data-editorial-v3]'], ['/mma-yellowpages', '[data-editorial-v3]'],
     ['/picture-gallery', '[data-editorial-v3]']
   ];
+  test('verified live stream plays even when YouTube isLive flag is false', async ({ page }) => {
+    const liveEvent = {
+      event_id: 'fen:cv2svtEOyIw',
+      promotion_id: 'fen',
+      promotion: 'Fight Exclusive Night',
+      short_name: 'FEN',
+      country: 'Poland',
+      priority: 72,
+      video_id: 'cv2svtEOyIw',
+      title: 'FACE TO FACE + WAŻENIE PRZED FEN 63',
+      watch_url: 'https://www.youtube.com/watch?v=cv2svtEOyIw',
+      status: 'live',
+      is_live: true,
+      embeddable: true,
+      api_verified: true,
+      stale: false
+    };
+
+    await page.addInitScript(() => {
+      class FakePlayer {
+        constructor(_id, options) {
+          this.options = options || {};
+          this.duration = 100;
+          setTimeout(() => this.options.events?.onReady?.({ target: this }), 0);
+        }
+        getPlayerState() { return 5; }
+        getVideoData() { return { isLive: false }; }
+        getVolume() { return 0; }
+        isMuted() { return true; }
+        getCurrentTime() { return 0; }
+        getDuration() {
+          this.duration += 1;
+          return this.duration;
+        }
+        getPlaybackQuality() { return 'auto'; }
+        mute() { window.__liveMuteCalls = (window.__liveMuteCalls || 0) + 1; }
+        pauseVideo() {}
+        playVideo() { window.__livePlayCalls = (window.__livePlayCalls || 0) + 1; }
+        destroy() {}
+      }
+      window.YT = {
+        Player: FakePlayer,
+        PlayerState: { PLAYING: 1 }
+      };
+      window.__livePlayCalls = 0;
+      window.__liveMuteCalls = 0;
+    });
+
+    await page.route('**/assets/data/global-live.json*', route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          version: 5,
+          generated_at: new Date().toISOString(),
+          selected_event_id: liveEvent.event_id,
+          events: [liveEvent],
+          upcoming: [],
+          live_count: 1,
+          upcoming_count: 0,
+          sources: {}
+        })
+      })
+    );
+    await page.route('https://www.youtube.com/embed/**', route =>
+      route.fulfill({ status: 200, contentType: 'text/html', body: '<!doctype html><title>mock</title>' })
+    );
+
+    await page.goto(targetUrl('/live/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
+
+    await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'live');
+    await expect.poll(
+      () => page.evaluate(() => window.__livePlayCalls || 0),
+      { timeout: 7000 }
+    ).toBeGreaterThan(0);
+    expect(await page.evaluate(() => window.__liveMuteCalls || 0)).toBeGreaterThan(0);
+    await expect(page.locator('[data-live-screen]')).toHaveAttribute('data-state', 'live');
+  });
+
   test('ended Live video cannot autoplay or resurrect from stale status data', async ({ page }) => {
     const staleEvent = {
       event_id: 'test-promotion:abcdefghijk',
@@ -491,7 +570,7 @@ test.describe('Live V3 site rollout', () => {
           this.options = options || {};
           setTimeout(() => this.options.events?.onReady?.({ target: this }), 0);
         }
-        getPlayerState() { return 5; }
+        getPlayerState() { return 0; }
         getVideoData() { return { isLive: false }; }
         getVolume() { return 0; }
         isMuted() { return true; }
