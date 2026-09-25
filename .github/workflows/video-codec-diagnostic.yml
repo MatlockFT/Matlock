@@ -40,3 +40,36 @@ jobs:
               -show_entries stream=index,codec_name,codec_long_name,profile,codec_type,pix_fmt,width,height,r_frame_rate,avg_frame_rate \
               -of json "$file"
           done
+
+      - name: Inspect MP4 top-level box order
+        run: |
+          python3 - <<'PY'
+          import glob, os, struct
+          for path in sorted(glob.glob('/tmp/article-videos/*.mp4')):
+              print(f"===== BOXES {os.path.basename(path)} =====")
+              total = os.path.getsize(path)
+              with open(path, 'rb') as f:
+                  offset = 0
+                  while offset + 8 <= total:
+                      f.seek(offset)
+                      raw = f.read(8)
+                      if len(raw) < 8:
+                          break
+                      size32, typ = struct.unpack('>I4s', raw)
+                      typ = typ.decode('latin1')
+                      header = 8
+                      if size32 == 1:
+                          ext = f.read(8)
+                          if len(ext) < 8:
+                              break
+                          size = struct.unpack('>Q', ext)[0]
+                          header = 16
+                      elif size32 == 0:
+                          size = total - offset
+                      else:
+                          size = size32
+                      print(f"{typ} offset={offset} size={size}")
+                      if size < header:
+                          break
+                      offset += size
+          PY
