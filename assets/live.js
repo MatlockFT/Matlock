@@ -48,6 +48,8 @@
   let ytPlayer = null;
   let ytApiPromise = null;
   let playerControlTimer = 0;
+  let liveVerificationTimer = 0;
+  let liveVerificationMisses = 0;
   let lastNonZeroVolume = 100;
 
   const UI_IDLE_DELAY = 5000;
@@ -129,6 +131,77 @@
         : `Current quality: ${label} · YouTube manages selection automatically`;
   };
 
+  const stopLiveVerification = () => {
+    window.clearInterval(liveVerificationTimer);
+    liveVerificationTimer = 0;
+    liveVerificationMisses = 0;
+  };
+
+  const verifyEmbeddedLiveState = () => {
+    if (!ytPlayer || !currentVideoId || screen?.dataset.state !== "live") return;
+
+    try {
+      const state = ytPlayer.getPlayerState?.();
+      const videoData = ytPlayer.getVideoData?.();
+      const hasLiveFlag =
+        videoData &&
+        Object.prototype.hasOwnProperty.call(videoData, "isLive");
+
+      // ENDED is authoritative. The isLive field is exposed by YouTube's
+      // player data even though it is not part of the documented IFrame API;
+      // require two consecutive explicit false readings to avoid transient
+      // player initialization states.
+      if (state === 0) {
+        liveVerificationMisses = 2;
+      } else if (hasLiveFlag && videoData.isLive === false) {
+        liveVerificationMisses += 1;
+      } else if (hasLiveFlag && videoData.isLive === true) {
+        liveVerificationMisses = 0;
+      } else {
+        return;
+      }
+
+      if (liveVerificationMisses < 2) return;
+
+      const endedVideoId = currentVideoId;
+      const nextData = lastData
+        ? {
+            ...lastData,
+            selected_event_id: null,
+            events: (lastData.events || []).filter(
+              (event) => event.video_id !== endedVideoId
+            ),
+            live_count: Math.max(
+              0,
+              Number(lastData.live_count || 0) - 1
+            )
+          }
+        : { events: [], upcoming: [] };
+
+      lastData = nextData;
+      stopLiveVerification();
+
+      if (nextData.events.length) {
+        setPlayer(nextData.events[0]);
+      } else {
+        showStandby(nextData.upcoming || []);
+      }
+
+      renderLiveEvents(nextData.events || []);
+    } catch (error) {
+      console.warn("Unable to verify embedded YouTube live state", error);
+    }
+  };
+
+  const startLiveVerification = () => {
+    stopLiveVerification();
+    liveVerificationTimer = window.setInterval(
+      verifyEmbeddedLiveState,
+      5000
+    );
+    window.setTimeout(verifyEmbeddedLiveState, 2500);
+  };
+
   const updateMediaControls = () => {
     if (!ytPlayer || typeof ytPlayer.getPlayerState !== "function") return;
 
@@ -198,9 +271,14 @@
           onReady: () => {
             setQualityLabel("auto");
             startPlayerControlSync();
+            startLiveVerification();
             updateMediaControls();
+            verifyEmbeddedLiveState();
           },
-          onStateChange: updateMediaControls,
+          onStateChange: () => {
+            updateMediaControls();
+            verifyEmbeddedLiveState();
+          },
           onPlaybackQualityChange: (event) => {
             setQualityLabel(event?.data || "auto");
             updateMediaControls();
@@ -1120,6 +1198,7 @@
       ytPlayer = null;
       window.clearInterval(playerControlTimer);
       playerControlTimer = 0;
+      stopLiveVerification();
       player.addEventListener("load", () => attachYouTubePlayerApi(), { once: true });
     } else if (!ytPlayer) {
       attachYouTubePlayerApi();
@@ -1141,6 +1220,7 @@
     currentVideoId = "";
     window.clearInterval(playerControlTimer);
     playerControlTimer = 0;
+    stopLiveVerification();
     ytPlayer = null;
     stopReplayBuffer("Off");
     clearUiIdleTimer();
