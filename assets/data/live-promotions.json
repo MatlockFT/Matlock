@@ -478,6 +478,24 @@
       "channel_url": "https://www.youtube.com/channel/UCN7WmJ425uk_WIw0MQaBtXw",
       "coverage_note": "Full event streams on the official WCC channel",
       "fast_check_until": "2026-09-25T08:00:00Z"
+    },
+    {
+      "id": "one-championship",
+      "name": "ONE Championship",
+      "short_name": "ONE",
+      "country": "Singapore / Global",
+      "priority": 95,
+      "enabled": true,
+      "channel_url": "https://www.youtube.com/@ONEChampionship",
+      "coverage_note": "Official public live streams and fight broadcasts",
+      "access_note": "Availability may vary by territory",
+      "pinned_videos": [
+        {
+          "video_id": "b6Ih94J2IN8",
+          "title": "ONE Championship Live"
+        }
+      ],
+      "fast_check_until": "2026-09-27T06:00:00Z"
     }
   ]
 }
