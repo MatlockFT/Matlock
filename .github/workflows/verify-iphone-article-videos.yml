@@ -1,0 +1,119 @@
+name: Verify iPhone article videos
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/verify-iphone-article-videos.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Wait for asset 253 in production
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 60); do
+            html="$(curl -fsSL --retry 2 "https://mmamatlock.com/?iphone_video_probe=${GITHUB_RUN_ID}-$attempt" || true)"
+            if grep -Fq "?v=253" <<<"$html"; then
+              echo "Production is serving asset 253."
+              exit 0
+            fi
+            echo "Attempt $attempt/60: waiting for asset 253."
+            sleep 10
+          done
+          exit 1
+
+      - name: Install WebKit
+        run: |
+          npm install --no-save --no-package-lock @playwright/test@1.55.0
+          npx playwright install --with-deps webkit
+
+      - name: Verify iPhone-style playback and range delivery
+        run: |
+          node <<'NODE'
+          const { webkit, devices } = require('@playwright/test');
+
+          (async () => {
+            const browser = await webkit.launch();
+            const context = await browser.newContext({ ...devices['iPhone 14'] });
+            const page = await context.newPage();
+            const url = 'https://mmamatlock.com/2026/09/24/rosas-jr-vs-barcelos-ufc-vegas-121.html';
+
+            await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45000 });
+            const videos = page.locator('.post-body figure.article-inline-video video');
+            const count = await videos.count();
+            if (count !== 2) throw new Error('Expected 2 article videos, found ' + count);
+
+            for (let i = 0; i < count; i += 1) {
+              const video = videos.nth(i);
+              await video.scrollIntoViewIfNeeded();
+              const src = await video.getAttribute('src');
+              if (!src || !src.includes('/assets/article-media/')) {
+                throw new Error('Video ' + i + ' is not using same-origin article media: ' + src);
+              }
+
+              const absolute = new URL(src, url).toString();
+              const response = await context.request.get(absolute, {
+                headers: { Range: 'bytes=0-4095' },
+                timeout: 30000
+              });
+              const contentType = (response.headers()['content-type'] || '').split(';')[0].trim().toLowerCase();
+              const contentRange = response.headers()['content-range'] || '';
+              if (response.status() !== 206) throw new Error('Video ' + i + ' range status ' + response.status());
+              if (contentType !== 'video/mp4') throw new Error('Video ' + i + ' content-type ' + contentType);
+              if (!/^bytes 0-4095\\//i.test(contentRange)) throw new Error('Video ' + i + ' bad content-range ' + contentRange);
+              const bytes = await response.body();
+              if (bytes.length < 12 || bytes.toString('ascii', 4, 8) !== 'ftyp') {
+                throw new Error('Video ' + i + ' did not return MP4 bytes');
+              }
+
+              await page.waitForFunction(
+                index => {
+                  const node = document.querySelectorAll('.post-body figure.article-inline-video video')[index];
+                  return node && (node.readyState >= 1 || node.error);
+                },
+                i,
+                { timeout: 30000 }
+              );
+
+              const state = await video.evaluate(node => ({
+                readyState: node.readyState,
+                networkState: node.networkState,
+                error: node.error ? node.error.code : 0,
+                currentSrc: node.currentSrc,
+                paused: node.paused
+              }));
+              console.log('VIDEO_STATE', i, JSON.stringify(state));
+              if (state.error) throw new Error('Video ' + i + ' WebKit media error ' + state.error);
+              if (state.readyState < 1) throw new Error('Video ' + i + ' never loaded metadata');
+            }
+
+            await browser.close();
+          })().catch(error => {
+            console.error(error);
+            process.exit(1);
+          });
+          NODE
+
+      - name: Remove one-shot verifier
+        if: success()
+        run: |
+          set -euo pipefail
+          git config user.name "MatlockFT"
+          git config user.email "fighttalkmma@protonmail.com"
+          git rm .github/workflows/verify-iphone-article-videos.yml
+          git commit -m "Remove one-shot iPhone video verifier"
+          git push origin HEAD:main
