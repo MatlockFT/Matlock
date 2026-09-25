@@ -229,7 +229,7 @@ sitemap: false
         </div>
         <div class="bc-now-card">
           <div><span>Live config</span><strong data-live-config-label>Loading…</strong></div>
-          <small>OBS polls the raw control file automatically.</small>
+          <small>OBS polls the live control service automatically.</small>
         </div>
       </aside>
     </div>
@@ -243,11 +243,6 @@ sitemap: false
           <p>Your existing MMA Matlock GitHub sign-in is used to write the live broadcast control file. No token is stored in this page.</p>
           <button class="bc-button bc-button-primary bc-button-full" type="button" data-github-oauth>Sign in with GitHub</button>
           <p class="bc-auth-status" data-oauth-status>Checking sign-in…</p>
-          <details>
-            <summary>Advanced fallback</summary>
-            <label class="bc-field"><span>Fine-grained token</span><input type="password" data-github-token autocomplete="off" placeholder="github_pat_…"></label>
-            <button class="bc-button" type="button" data-github-authorize>Connect token</button>
-          </details>
           <button class="bc-text-button" type="button" data-github-signout hidden>Sign out</button>
         </div>
       </form>
