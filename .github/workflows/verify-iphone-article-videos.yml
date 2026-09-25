@@ -74,7 +74,7 @@ jobs:
               const contentRange = response.headers()['content-range'] || '';
               if (response.status() !== 206) throw new Error('Video ' + i + ' range status ' + response.status());
               if (contentType !== 'video/mp4') throw new Error('Video ' + i + ' content-type ' + contentType);
-              if (!/^bytes 0-4095\\//i.test(contentRange)) throw new Error('Video ' + i + ' bad content-range ' + contentRange);
+              if (!contentRange.toLowerCase().startsWith('bytes 0-4095/')) throw new Error('Video ' + i + ' bad content-range ' + contentRange);
               const bytes = await response.body();
               if (bytes.length < 12 || bytes.toString('ascii', 4, 8) !== 'ftyp') {
                 throw new Error('Video ' + i + ' did not return MP4 bytes');
