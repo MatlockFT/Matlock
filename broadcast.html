@@ -23,24 +23,20 @@ sitemap: false
     </header>
 
     <section class="stage" data-stage aria-live="polite">
-      <div class="feature-grid">
+      <div class="feature-grid" data-feature-grid>
         <div class="visual-panel" data-visual-panel>
           <div class="visual-blur" data-visual-blur></div>
           <img class="story-image" data-story-image alt="">
-          <iframe
-            class="video-frame"
-            data-video-frame
-            title="MMA video"
-            allow="autoplay; encrypted-media; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+          <div class="video-shell" data-video-shell aria-label="MMA video player">
+            <div id="broadcast-youtube-player"></div>
+          </div>
           <div class="visual-badge" data-visual-badge>LATEST</div>
         </div>
 
         <article class="story-panel">
           <div class="story-kicker" data-eyebrow>LATEST NEWS</div>
           <h1 data-title>Loading current combat sports news…</h1>
-          <p class="story-context" data-context></p>
+          <div class="story-context" data-context></div>
 
           <div class="coverage" data-coverage hidden>
             <span class="coverage-label">Also covered by</span>
@@ -77,6 +73,16 @@ sitemap: false
     </footer>
   </main>
 
+  <!-- CC0 music: "Bossa Nova" by Joth / OpenGameArt -->
+  <audio
+    data-music-bed
+    autoplay
+    loop
+    preload="auto"
+    src="https://opengameart.org/sites/default/files/8bit%20Bossa.mp3"
+  ></audio>
+
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="/assets/broadcast-trial.js?v={{ site.asset_version }}"></script>
 </body>
 </html>
