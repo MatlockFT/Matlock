@@ -44,15 +44,31 @@ jobs:
 
       - name: Publish live-state change
         shell: bash
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: |
-          if git diff --quiet -- assets/data/global-live.json; then
-            echo "No global live-state change."
-            exit 0
-          fi
-
           git config user.name "mma-matlock-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add assets/data/global-live.json
-          git commit -m "Update global MMA live status"
-          git pull --rebase origin main
-          git push origin HEAD:main
+
+          for attempt in 1 2 3; do
+            if git diff --quiet -- assets/data/global-live.json; then
+              echo "No global live-state change."
+              exit 0
+            fi
+
+            git add assets/data/global-live.json
+            git commit -m "Update global MMA live status"
+
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo "Main changed during live-state publish; regenerating against latest main (attempt ${attempt}/3)."
+            git fetch origin main
+            git reset --hard origin/main
+            python scripts/site-data/live/update-global-live.py
+            sleep 2
+          done
+
+          echo "Could not publish refreshed live state after 3 attempts."
+          exit 1
