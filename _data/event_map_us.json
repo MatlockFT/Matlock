@@ -4,8 +4,8 @@
   "source_regional_updated_at": null,
   "major_total": 11,
   "major_mapped": 1,
-  "regional_total": 114,
-  "regional_mapped": 114,
+  "regional_total": 113,
+  "regional_mapped": 113,
   "quarantined_count": 10,
   "quarantined": [
     {
@@ -120,42 +120,6 @@
     }
   ],
   "events": [
-    {
-      "id": "tuff_n_uff-tuff-n-uff-157-jackson-vs-2026-09-25",
-      "promotion": "Tuff-N-Uff",
-      "promotion_key": "tuff_n_uff",
-      "title": "Tuff-N-Uff 157: Jackson vs. Galvan",
-      "date": "2026-09-25",
-      "venue": "The Theater at SAHARA Las Vegas",
-      "location": "Las Vegas, NV",
-      "broadcast": "",
-      "official_url": "https://tuffnuff.com/2026/09/04/tuff-n-uff-157/",
-      "regional": true,
-      "level": "professional",
-      "source_key": "tuff_n_uff",
-      "source_label": "Tuff-N-Uff",
-      "latitude": 36.1699,
-      "longitude": -115.1398,
-      "poster_url": "https://tuffnuff.com/wp-content/uploads/2026/09/TNU-157-Web-1920x1080-1.jpg",
-      "ticket_url": "https://www.saharalasvegas.com/entertainment/tuff-n-uff-fight-viewing-party",
-      "main_event": {
-        "fighters": [
-          "Jackson",
-          "Galvan"
-        ],
-        "weight_class": "Flyweight Championship"
-      },
-      "city": "Las Vegas",
-      "state": "NV",
-      "state_code": "NV",
-      "country": "US",
-      "location_source": "location-text",
-      "location_precision": "city",
-      "map_location_source": "location-text",
-      "map_location_precision": "city",
-      "map_location_confidence": "city",
-      "map_dataset": "regional"
-    },
     {
       "id": "sherdog-247-fc-mma-at-the-venue-8-2026-09-26-north-versailles",
       "promotion": "247 FC",
