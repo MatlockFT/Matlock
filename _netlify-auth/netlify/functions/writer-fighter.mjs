@@ -127,9 +127,15 @@ export function parseUfcProfileSummary(html) {
     const match = text.match(new RegExp('\\b(\\d+)\\s+' + escaped + '\\b', 'i'));
     return match ? Number(match[1]) : null;
   };
-  const winsByKnockout = countBefore('Wins by Knockout');
-  const winsBySubmission = countBefore('Wins by Submission');
+  const rawWinsByKnockout = countBefore('Wins by Knockout');
+  const rawWinsBySubmission = countBefore('Wins by Submission');
   const firstRoundFinishes = countBefore('First Round Finishes');
+  const winsByKnockout = Number.isFinite(rawWinsByKnockout)
+    ? rawWinsByKnockout
+    : Number.isFinite(rawWinsBySubmission) ? 0 : null;
+  const winsBySubmission = Number.isFinite(rawWinsBySubmission)
+    ? rawWinsBySubmission
+    : Number.isFinite(rawWinsByKnockout) ? 0 : null;
   const wins = Number(record?.split('-')[0]) || null;
   const decisionWins = Number.isFinite(wins) && Number.isFinite(winsByKnockout) && Number.isFinite(winsBySubmission)
     ? Math.max(0, wins - winsByKnockout - winsBySubmission)
