@@ -204,8 +204,10 @@ test.describe('Broadcast control program monitor', () => {
     await expect(frame.locator('[data-title]')).not.toHaveText('', { timeout: 30000 });
 
     const width = page.locator('[data-path="visual.videoWidth"]');
-    await width.fill('70');
-    await width.dispatchEvent('input');
+    await width.evaluate(node => {
+      node.value = '70';
+      node.dispatchEvent(new Event('input', { bubbles: true }));
+    });
     await expect.poll(async () => frame.locator('[data-stage]').evaluate(node => node.style.getPropertyValue('--video-width'))).toBe('70%');
     await expect(page.locator('[data-preview-program]')).toHaveText('DRAFT');
 
