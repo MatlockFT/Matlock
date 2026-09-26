@@ -880,12 +880,16 @@ function insertBlock(text) {
     editingStructuredBlockId = id;
     if (meta.type === 'stats') {
       resetStatsDialog(meta.config);
-      app.querySelector('[data-stats-dialog]').showModal();
+      const dialog = app.querySelector('[data-stats-dialog]');
+      dialog.showModal();
+      resolveNearestMatchupLookups(dialog,'stats');
       return true;
     }
     if (meta.type === 'tale') {
       resetTaleDialog(meta.config);
-      app.querySelector('[data-tale-dialog]').showModal();
+      const dialog = app.querySelector('[data-tale-dialog]');
+      dialog.showModal();
+      resolveNearestMatchupLookups(dialog,'tale');
       return true;
     }
     if (meta.type === 'pick') {
