@@ -211,6 +211,8 @@ test.describe('Broadcast control program monitor', () => {
     await expect.poll(async () => frame.locator('[data-stage]').evaluate(node => node.style.getPropertyValue('--video-width'))).toBe('70%');
     await expect(page.locator('[data-preview-program]')).toHaveText('DRAFT');
 
+    await page.locator('[data-nav-target="sources"]').click();
+    await expect(page.locator('[data-section="sources"]')).toBeVisible();
     const firstNewsRow = page.locator('[data-news-sources] .bc-source-row').first();
     await expect(firstNewsRow).toBeVisible({ timeout: 30000 });
     const sourceName = (await firstNewsRow.locator('label span').textContent() || '').trim();
