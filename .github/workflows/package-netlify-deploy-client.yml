@@ -21,15 +21,15 @@ jobs:
           node-version: 22
       - name: Install Netlify MCP client
         run: |
-          mkdir -p .netlify-deploy-client
-          cd .netlify-deploy-client
+          mkdir -p netlify-deploy-client
+          cd netlify-deploy-client
           npm init -y >/dev/null
           npm install --ignore-scripts --no-audit --no-fund @netlify/mcp@1.16.0
       - name: Upload deploy client
         uses: actions/upload-artifact@v4
         with:
           name: netlify-deploy-client
-          path: .netlify-deploy-client
+          path: netlify-deploy-client
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 1
