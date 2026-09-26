@@ -400,7 +400,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('[data-html-block-rail]')).toBeVisible();
 
   // HTML visuals can be edited in place while seeing the finished visual.
-  const htmlVisualShell = page.locator('[data-preview-content] .writer-preview-html-shell').first();
+  const htmlVisualShell = page.locator('[data-preview-content] .writer-preview-html-shell').filter({ hasText:'Rendered HTML visual' }).first();
   await htmlVisualShell.hover();
   await htmlVisualShell.locator('[data-preview-html-visual-edit]').click();
   const htmlVisualSection = htmlVisualShell.locator('section[data-writer-html-block-id]');
@@ -414,7 +414,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await page.waitForTimeout(180);
   await htmlVisualShell.locator('[data-preview-html-visual-edit]').click();
 
-  const refreshedHtmlVisualShell = page.locator('[data-preview-content] .writer-preview-html-shell').first();
+  const refreshedHtmlVisualShell = page.locator('[data-preview-content] .writer-preview-html-shell').filter({ hasText:'Visually edited HTML.' }).first();
   await refreshedHtmlVisualShell.hover();
   await refreshedHtmlVisualShell.locator('[data-preview-html-source-edit]').click();
   await expect(page.locator('[data-html-dialog]')).toBeVisible();
