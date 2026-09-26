@@ -1,0 +1,78 @@
+name: Update Writer fighter data
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'scripts/matchmaker/build-writer-fighters.mjs'
+      - 'scripts/matchmaker/sources/ufcstats.mjs'
+      - 'scripts/matchmaker/sources/ufc.mjs'
+      - '.github/workflows/update-writer-fighters.yml'
+  schedule:
+    # Fighter data is lightweight enough to refresh hourly. Commits occur only when data changes.
+    - cron: '23 * * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: writer-fighter-data
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build verified Writer fighter index
+        run: node scripts/matchmaker/build-writer-fighters.mjs
+
+      - name: Validate generated fighter index
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const data = JSON.parse(fs.readFileSync('assets/data/writer-fighters.json', 'utf8'));
+          if (data.schemaVersion !== 1) throw new Error('Unexpected Writer fighter schema.');
+          if (!Array.isArray(data.fighters) || data.fighters.length < 500) throw new Error('Writer fighter index is implausibly small.');
+          if (!data.mirrorThrough) throw new Error('Writer fighter index is missing mirror freshness.');
+          const statsCount = data.fighters.filter(fighter =>
+            fighter.stats &&
+            fighter.stats.slpm != null &&
+            fighter.stats.sapm != null &&
+            fighter.stats.strAccuracy != null &&
+            fighter.stats.strDefense != null
+          ).length;
+          if (statsCount < 400) throw new Error('Writer fighter stat coverage is implausibly low: ' + statsCount);
+          const duplicateStatsIds = data.fighters
+            .filter(f => f.ufcStatsId)
+            .map(f => f.ufcStatsId)
+            .filter((id, index, all) => all.indexOf(id) !== index);
+          if (duplicateStatsIds.length) throw new Error('Duplicate UFCStats identities in Writer fighter index.');
+          console.log(JSON.stringify({
+            generatedAt: data.generatedAt,
+            builtAt: data.builtAt,
+            mirrorThrough: data.mirrorThrough,
+            fighters: data.fighters.length,
+            statsCount
+          }, null, 2));
+          NODE
+
+      - name: Commit refreshed fighter data
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- assets/data/writer-fighters.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Refresh Writer fighter data"
+          git pull --rebase -X theirs origin main
+          git push origin HEAD:main
