@@ -41,6 +41,17 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
             subAvg: '0.50',
             sample: { fights: 5, minutes: 50, latestBoutDate: '2026-09-01' }
           },
+          career: {
+            winsByKnockout: 5,
+            winsBySubmission: 2,
+            totalFinishes: 7,
+            decisionWins: 5,
+            unanimousDecisionWins: 4,
+            splitDecisionWins: 1,
+            majorityDecisionWins: 0,
+            otherDecisionWins: 0,
+            decisionBreakdownComplete: true
+          },
           recent: [{
             result: 'W',
             opponent: 'Recent Opponent',
@@ -59,8 +70,10 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
       headers: { 'access-control-allow-origin': '*' },
       body: JSON.stringify({
         ok: true,
-        source: 'UFCStats',
+        source: 'UFCStats+UFC.com',
         mode: 'live',
+        liveUfcStats: true,
+        liveUfcProfile: true,
         fetchedAt: '2026-09-26T18:01:00.000Z',
         sourceUrl: 'https://ufcstats.com/fighter-details/aaaaaaaaaaaaaaaa',
         profile: {
@@ -79,6 +92,14 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
             tdAccuracy: '50%',
             tdDefense: '80%',
             subAvg: '0.70'
+          },
+          career: {
+            winsByKnockout: 6,
+            winsBySubmission: 2,
+            totalFinishes: 8,
+            decisionWins: 4,
+            unanimousDecisionWins: 3,
+            splitDecisionWins: 1
           },
           ufcRecord: '6-1-0',
           latestBoutDate: '2026-09-01',
@@ -133,5 +154,24 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
   await expect(firstRow.locator('[data-structured-a]')).toHaveValue('9.99');
   await expect(sourceStatus).toContainText('LIVE UFCStats');
   await expect(input).toHaveAttribute('data-source-mode', 'live');
+
+  dialog.locator('[value="cancel"]').first().click();
+  await page.click('[data-tool="tale"]');
+  const taleDialog = page.locator('[data-tale-dialog]');
+  const taleA = taleDialog.locator('[data-tale-a]');
+  await taleA.fill('Lookup');
+  await taleDialog.locator('.writer-fighter-suggestion').first().click();
+
+  const taleRows = taleDialog.locator('[data-tale-row-list] .writer-comparison-row');
+  const values = async label => {
+    const row = taleRows.filter({ has: taleDialog.locator('[data-structured-label]', { hasText: label }) });
+    return row.locator('[data-structured-a]').inputValue();
+  };
+  await expect.poll(() => values('Total Finishes')).toBe('8');
+  await expect.poll(() => values('TKO / KO')).toBe('6');
+  await expect.poll(() => values('Submission')).toBe('2');
+  await expect.poll(() => values('Unanimous Decision')).toBe('3');
+  await expect.poll(() => values('Split Decision')).toBe('1');
+
   expect(pageErrors).toEqual([]);
 });
