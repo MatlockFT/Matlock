@@ -469,11 +469,21 @@ test.describe('Article fight navigation and spoiler picks', () => {
     await expect(page.locator('.fight-section-ambient')).toHaveCount(12);
     await expect(floatingToc.locator('[data-article-toc-list] li')).toHaveCount(12);
 
-    const tocTopBefore = await floatingToc.evaluate(node => Math.round(node.getBoundingClientRect().top));
     await page.evaluate(() => window.scrollTo(0, 2200));
-    await page.waitForTimeout(150);
-    const tocTopAfter = await floatingToc.evaluate(node => Math.round(node.getBoundingClientRect().top));
-    expect(Math.abs(tocTopAfter - tocTopBefore)).toBeLessThanOrEqual(4);
+    await page.waitForTimeout(180);
+    await expect(floatingToc).toHaveClass(/is-fixed/);
+    const fixedGeometry = await floatingToc.evaluate(node => {
+      const rect = node.getBoundingClientRect();
+      return {
+        top: Math.round(rect.top),
+        position: getComputedStyle(node).position,
+        left: Math.round(rect.left),
+        width: Math.round(rect.width)
+      };
+    });
+    expect(fixedGeometry.position).toBe('fixed');
+    expect(fixedGeometry.top).toBeGreaterThan(70);
+    expect(fixedGeometry.width).toBeGreaterThan(220);
 
     const fightShell = page.locator('.fight-section-ambient').first();
     const fightSurface = await fightShell.evaluate(node => {
