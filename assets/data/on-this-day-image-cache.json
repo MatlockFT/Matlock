@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-09-26T13:52:07.751Z",
+  "updatedAt": "2026-09-26T15:00:45.901Z",
   "entries": {
     "ufc:2018-09-08:ufc-228-woodley-vs-till": {
       "strategyVersion": 7,
@@ -1296,9 +1296,23 @@
     "strikeforce:2009-09-25:strikeforce-challengers-3-kennedy-vs-cummings": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T23:57:22.006Z",
-      "wikipediaTitle": "2009 in Strikeforce#Strikeforce Challengers 3: Kennedy vs. Cummings"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-09-26T14:58:42.889Z",
+      "wikipediaTitle": "2009 in Strikeforce#Strikeforce Challengers 3: Kennedy vs. Cummings",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2009-09-25-strikeforce-challengers-3-kennedy-vs-cummings-537e99662ccf8f01.jpg",
+      "imageAlt": "Strikeforce Challengers 3: Kennedy vs. Cummings event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/strikeforce-challengers-3-kennedy-vs-cummings",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/strikeforce-challengers-3-kennedy-vs-cummings",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "537e99662ccf8f01a2645596bd0a862e2afe23db332ecdd53891439f7925a318",
+      "posterRegistryKey": "2009-09-25::strikeforce challengers 3 kennedy vs cummings"
     },
     "pancrase:2004-08-22:pancrase-brave-7": {
       "strategyVersion": 6,
@@ -1366,9 +1380,23 @@
     "bellator:2013-09-27:bellator-101": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T23:57:22.006Z",
-      "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 101"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-09-26T14:58:57.990Z",
+      "wikipediaTitle": "Bellator MMA: Season Nine#Bellator 101",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2013-09-27-bellator-101-3ef5b54bdeb443d1.jpg",
+      "imageAlt": "Bellator 101 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/19944-bellator-101",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/19944-bellator-101",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "3ef5b54bdeb443d12106e585b132e6520a9d97a2b5f905e5f0d7f2c3250bee3a",
+      "posterRegistryKey": "2013-09-27::bellator 101"
     },
     "bellator:2019-09-27:bellator-dublin-227": {
       "strategyVersion": 6,
@@ -1394,9 +1422,23 @@
     "rizin:2020-09-27:rizin-24-saitama": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T23:57:22.006Z",
-      "wikipediaTitle": "2020 in Rizin Fighting Federation#Rizin 24 – Saitama"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-09-26T14:59:51.790Z",
+      "wikipediaTitle": "2020 in Rizin Fighting Federation#Rizin 24 – Saitama",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2020-09-27-rizin-24-saitama-b30bcffcac072eb7.jpg",
+      "imageAlt": "Rizin 24 – Saitama event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/72047-rizin-24",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/72047-rizin-24",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "b30bcffcac072eb7f04c27abd7b0e673498497a7377b5d5b667e1dfc317af3ea",
+      "posterRegistryKey": "2020-09-27::rizin 24 saitama"
     },
     "bellator:2010-08-19:bellator-25": {
       "strategyVersion": 6,
@@ -1429,9 +1471,23 @@
     "rizin:2025-09-28:rizin-51": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-08T23:57:22.006Z",
-      "wikipediaTitle": "2025 in Rizin Fighting Federation#Rizin 51"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-09-26T15:00:15.678Z",
+      "wikipediaTitle": "2025 in Rizin Fighting Federation#Rizin 51",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2025-09-28-rizin-51-337f3238559809ce.jpg",
+      "imageAlt": "Rizin 51 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/131022-rizin-51",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/131022-rizin-51",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "337f3238559809ceb4f7b48281b504508671e265e6cf360dab85271811efb117",
+      "posterRegistryKey": "2025-09-28::rizin 51"
     },
     "wec:2005-08-18:wec-16-clash-of-the-titans-2": {
       "strategyVersion": 6,
