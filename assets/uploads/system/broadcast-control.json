@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "revision": 1790387578016,
-  "updatedAt": "2026-09-26T01:52:58.016Z",
+  "revision": 1790388372559,
+  "updatedAt": "2026-09-26T02:06:12.559Z",
   "modules": {
-    "news": false,
+    "news": true,
     "video": true,
     "events": false,
-    "ticker": false,
-    "comingUp": false,
+    "ticker": true,
+    "comingUp": true,
     "music": false
   },
   "rundown": [
@@ -55,6 +55,10 @@
     "maxItems": 14
   },
   "visual": {
+    "layout": "splitDesk",
+    "videoWidth": 64,
+    "articleCardSeconds": 9,
+    "articleCharsPerCard": 340,
     "flipNews": true,
     "showRail": true,
     "showClock": true,
@@ -63,7 +67,9 @@
   },
   "sources": {
     "customNewsFeeds": [],
-    "customVideoChannels": []
+    "customVideoChannels": [],
+    "removedNewsSources": [],
+    "removedVideoChannels": []
   },
   "hidden": {
     "news": [],
