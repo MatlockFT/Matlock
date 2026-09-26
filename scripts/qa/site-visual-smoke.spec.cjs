@@ -443,6 +443,37 @@ test.describe('Article social sharing', () => {
   });
 });
 
+test.describe('Article fight navigation and spoiler picks', () => {
+  const articlePath = '/2026/09/24/rosas-jr-vs-barcelos-ufc-vegas-121.html';
+
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('keeps TOC floating, hides picks by default and adds per-fight ambient sections', async ({ page }) => {
+    const pageErrors = [];
+    page.on('pageerror', error => pageErrors.push(error.message));
+
+    await page.goto(targetUrl(articlePath), { waitUntil: 'domcontentloaded', timeout: 45000 });
+
+    const floatingToc = page.locator('.article-toc-floating');
+    const inlineToc = page.locator('.article-toc-inline');
+    const picks = page.locator('[data-article-picks]');
+
+    await expect(floatingToc).toBeVisible({ timeout: 10000 });
+    await expect(inlineToc).toBeHidden();
+    await expect(picks).toBeVisible({ timeout: 10000 });
+    await expect(picks.locator('[data-article-picks-panel]')).toBeHidden();
+
+    await picks.locator('[data-article-picks-toggle]').click();
+    await expect(picks.locator('[data-article-picks-panel]')).toBeVisible();
+    await expect(picks.locator('[data-article-picks-list] li')).toHaveCount(12);
+    await expect(page.locator('.fight-section-ambient')).toHaveCount(12);
+    await expect(floatingToc.locator('[data-article-toc-list] li')).toHaveCount(12);
+
+    expect(pageErrors).toEqual([]);
+  });
+});
+
+
 test.describe('Article native sharing on mobile', () => {
   const articlePath = '/2026/09/24/rosas-jr-vs-barcelos-ufc-vegas-121.html';
 
