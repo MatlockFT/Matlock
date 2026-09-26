@@ -247,7 +247,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await recent.locator('[data-recent-opponent]').fill('Gamma Fighter');
   await recent.locator('[data-recent-detail]').fill('DEC · R3');
   await taleDialog.locator('[data-tale-insert]').click();
-  await expect(page.locator('[data-preview-content]')).toContainText('ALPHA FIGHTER');
+  await expect(page.locator('[data-preview-content]')).toContainText('Alpha Fighter');
   await expect(page.locator('[data-preview-content]')).toContainText('10-1');
   await expect(page.locator('[data-preview-content]')).toContainText('Gamma Fighter');
 
