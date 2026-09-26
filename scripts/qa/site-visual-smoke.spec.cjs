@@ -194,6 +194,14 @@ test.describe('Broadcast control program monitor', () => {
     await page.goto(targetUrl('/broadcast-control/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
     await expect(page.locator('[data-program-monitor-frame]')).toBeVisible({ timeout: 30000 });
     await expect(page.locator('[data-preview-renderer]')).toHaveText('ONLINE', { timeout: 30000 });
+
+    const previewAudio = page.locator('[data-preview-audio]');
+    await expect(previewAudio).toBeVisible();
+    await expect(previewAudio).toHaveAttribute('aria-pressed','true');
+    await expect.poll(async () => page.locator('[data-program-monitor-frame]').evaluate(frame => frame.contentWindow.MatlockBroadcastPreview?.audioState?.().muted)).toBeTruthy();
+    await previewAudio.click();
+    await expect(previewAudio).toHaveAttribute('aria-pressed','false');
+    await expect.poll(async () => page.locator('[data-program-monitor-frame]').evaluate(frame => frame.contentWindow.MatlockBroadcastPreview?.audioState?.().muted)).toBeFalsy();
     await expect(page.locator('[data-path="visual.layout"]')).toHaveValue('splitDesk');
 
     const frame = page.frameLocator('[data-program-monitor-frame]');
@@ -273,7 +281,17 @@ test.describe('Broadcast control program monitor', () => {
     await expect(page.locator('[data-queue-ticker] .bc-queue-item').first()).toBeVisible({ timeout: 10000 });
     await expect(page.locator('[data-queue-ticker] .bc-queue-item').first().locator('.bc-queue-item-meta b')).not.toHaveText('');
     await expect(page.locator('[data-queue-video] .bc-queue-item').first()).toBeVisible({ timeout: 10000 });
-    await expect(page.locator('[data-queue-video] .bc-queue-item').first().locator('.bc-queue-item-meta b')).not.toHaveText('');
+    await expect(page.locator('[data-queue-video] .bc-queue-item').first().locator('.bc-queue-source-link')).toHaveAttribute('href', /youtube\.com\/watch/);
+    await expect(page.locator('[data-queue-video] .bc-queue-item').first().locator('.bc-queue-item-title-link')).toHaveAttribute('href', /youtube\.com\/watch/);
+    const firstArticleLink = page.locator('[data-queue-article] .bc-queue-item-title-link').first();
+    if (await firstArticleLink.count()) {
+      await expect(firstArticleLink).toHaveAttribute('href', /^https?:\/\//);
+    }
+    const repeatBadges = page.locator('.bc-queue-repeat');
+    const repeatCount = await repeatBadges.count();
+    for (let i = 0; i < repeatCount; i++) {
+      await expect(repeatBadges.nth(i)).toContainText(/REUSED ×[2-9]/);
+    }
     await expect(frame.locator('[data-title]')).not.toHaveText('', { timeout: 30000 });
 
     const width = page.locator('[data-path="visual.videoWidth"]');
