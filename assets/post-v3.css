@@ -1369,8 +1369,7 @@ html[data-theme="light"] .post-page-v3 .fight-section-ambient{
   .post-page-v3.post-page-has-toc .post-rail-section{display:none}
   .post-page-v3 .article-toc-floating{
     display:block;
-    position:sticky;
-    top:calc(var(--v3-fixed-rail-height,80px) + 1rem);
+    position:relative;
     width:100%;
     margin:0;
     padding:.6rem 0 0;
@@ -1378,6 +1377,22 @@ html[data-theme="light"] .post-page-v3 .fight-section-ambient{
     border-top:3px solid var(--v3-ink);
     background:var(--v3-paper);
     box-shadow:none;
+  }
+  .post-page-v3 .article-toc-floating.is-fixed{
+    position:fixed;
+    z-index:40;
+    top:var(--toc-fixed-top);
+    left:var(--toc-fixed-left);
+    width:var(--toc-fixed-width);
+    margin:0;
+  }
+  .post-page-v3 .article-toc-floating.is-bottomed{
+    position:absolute;
+    z-index:2;
+    top:var(--toc-bottom-top);
+    left:0;
+    width:100%;
+    margin:0;
   }
   .post-page-v3 .article-toc-floating .article-toc-panel{
     max-height:calc(100vh - var(--v3-fixed-rail-height,80px) - 7rem);
