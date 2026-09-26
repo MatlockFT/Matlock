@@ -722,3 +722,48 @@
 .writer-recent-row{display:grid;grid-template-columns:58px minmax(110px,.9fr) minmax(150px,1.45fr) 82px;gap:.32rem;align-items:center}
 .writer-tale-stats-editor{display:block;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.09)}.writer-subeditor-head-wide{margin:0 0 .55rem}.writer-subeditor-head-wide .eyebrow{margin:0 0 .14rem}.writer-subeditor-head-wide strong{font-size:.8rem;color:#ddd}.writer-tale-stats-editor textarea{display:none!important}
 @media(max-width:760px){.writer-stats-matchup{grid-template-columns:1fr}.writer-structured-vs{min-height:auto}.writer-comparison-head{display:none}.writer-comparison-row{grid-template-columns:1fr 1fr}.writer-comparison-row [data-structured-label]{grid-column:1/-1}.writer-row-actions{justify-content:flex-start}.writer-recent-row{grid-template-columns:70px minmax(0,1fr)}.writer-recent-row [data-recent-detail]{grid-column:1/-1}.writer-recent-row .writer-row-actions{grid-column:1/-1}.writer-builder-intro,.writer-subeditor-head-wide{align-items:flex-start;flex-direction:column}}
+
+
+/* Writer fighter lookup / source trust */
+.writer-fighter-lookup-field{position:relative}
+.writer-fighter-suggestions{
+  position:absolute;
+  z-index:80;
+  top:calc(100% - 1.25rem);
+  left:0;
+  right:0;
+  display:grid;
+  max-height:260px;
+  overflow:auto;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:9px;
+  background:#101011;
+  box-shadow:0 18px 45px rgba(0,0,0,.42);
+}
+.writer-fighter-suggestions[hidden]{display:none}
+.writer-fighter-suggestion{
+  display:grid;
+  gap:.16rem;
+  padding:.58rem .65rem;
+  border-bottom:1px solid rgba(255,255,255,.065);
+  cursor:pointer;
+}
+.writer-fighter-suggestion:last-child{border-bottom:0}
+.writer-fighter-suggestion:hover{background:#181819}
+.writer-fighter-suggestion strong{color:#f1f1ef;font-size:.74rem;line-height:1.15}
+.writer-fighter-suggestion span{color:#777;font-size:.58rem;line-height:1.25}
+.writer-fighter-source-status{
+  display:block;
+  min-height:.9rem;
+  margin-top:.2rem;
+  color:#666;
+  font-size:.56rem;
+  font-weight:700;
+  line-height:1.35;
+  letter-spacing:.015em;
+}
+.writer-fighter-source-status:empty{display:none}
+.writer-fighter-source-status[data-state="loading"]{color:#9a9a9a}
+.writer-fighter-source-status[data-state="live"]{color:#63c990}
+.writer-fighter-source-status[data-state="warning"]{color:#e0aa62}
+.writer-fighter-source-status[data-state="cached"]{color:#9a9a9a}
