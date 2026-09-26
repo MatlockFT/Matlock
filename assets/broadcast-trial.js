@@ -117,6 +117,10 @@ function videoSlide(v,{automatic=true}={}){
   if(!v.videoId)return null;
   return{type:"video",id:v.videoId,title:v.title||"Untitled video",source:v.channel||v.source||"YouTube",publishedAt:v.publishedAt||"",image:v.thumbnail||v.image||"",videoId:v.videoId,url:"https://www.youtube.com/watch?v="+encodeURIComponent(v.videoId),durationSeconds:duration};
 }
+function mainEventText(e){const raw=e?.main_event;if(raw&&typeof raw==="object"){const fighters=Array.isArray(raw.fighters)?raw.fighters.map(scalar).filter(Boolean):[];const matchup=fighters.length>=2?fighters.join(" vs. "):scalar(raw.name||raw.title);const wc=scalar(raw.weight_class);return[matchup,wc].filter(Boolean).join(" — ")}return scalar(raw)}
+function parseEventDate(e){const start=scalar(e?.starts_at);if(start){const d=safeDate(start);if(d)return{date:d,hasTime:true}}const day=scalar(e?.date);if(/^\d{4}-\d{2}-\d{2}$/.test(day)){const d=new Date(day+"T12:00:00");return Number.isNaN(d.getTime())?null:{date:d,hasTime:false}}const d=safeDate(day);return d?{date:d,hasTime:false}:null}
+function formatEventDate(e){const p=parseEventDate(e);if(!p)return"Date TBA";const opts=p.hasTime?{timeZone:"America/Chicago",weekday:"long",month:"long",day:"numeric",hour:"numeric",minute:"2-digit"}:{weekday:"long",month:"long",day:"numeric"};return p.date.toLocaleString("en-US",opts)+(p.hasTime?" CT":"")}
+function eventFacts(e){const facts=["When: "+formatEventDate(e)],main=mainEventText(e);if(main)facts.push("Main event: "+main);const venue=scalar(e.venue),location=scalar(e.location);if(venue||location)facts.push([venue,location].filter(Boolean).join(" · "));const broadcast=scalar(e.broadcast);if(broadcast)facts.push("Watch: "+broadcast);return facts}
 function eventSlide(e){
   if(!e)return null;
   return{type:"event",id:itemId("event",e),title:scalar(e.title)||scalar(e.promotion)||"Upcoming Event",source:scalar(e.promotion)||"MMA",publishedAt:"",image:cfg().events.usePosters?(scalar(e.poster_url)||scalar(e.image)||""):"",event:e,context:eventFacts(e)};
