@@ -140,6 +140,7 @@ button,input,select,textarea{font:inherit}.bc-app{min-height:100vh}
 .bc-program-health>div[data-state="good"]{border-color:#284f32;background:#0d1710}.bc-program-health>div[data-state="good"] strong{color:#9ed5a9}
 .bc-program-health>div[data-state="warn"]{border-color:#62451f;background:#19130c}.bc-program-health>div[data-state="warn"] strong{color:#efb76f}
 .bc-program-health>div[data-state="bad"]{border-color:#63352f;background:#1a0f0e}.bc-program-health>div[data-state="bad"] strong{color:#f09b8e}
+.bc-program-health>div[data-state="off"]{opacity:.62}.bc-program-health>div[data-state="off"] strong{color:#8a867f}
 .bc-program-more{padding:9px 10px;border-top:1px solid #242424;color:#77736c;font-size:10px;text-align:center}
 .bc-field.is-locked{opacity:.52}.bc-field.is-locked input,.bc-field.is-locked select{cursor:not-allowed}
 @media(max-width:1180px){.bc-program-health{grid-template-columns:1fr}.bc-program-health small{white-space:normal}}
