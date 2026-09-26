@@ -243,6 +243,51 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
       })
     });
   });
+  await page.route('**/assets/data/writer-fighters.json?writer-fighters=1', async route => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        schemaVersion: 1,
+        generatedAt: '2026-09-26T18:00:00.000Z',
+        builtAt: '2026-09-26T18:00:00.000Z',
+        mirrorThrough: '2026-09-26',
+        fighters: [{
+          id: 'lookup-fighter',
+          name: 'Lookup Fighter',
+          division: 'Lightweight',
+          record: '12-2-0',
+          ufcRecord: '6-1-0',
+          recordOutsideUfc: '6-1-0',
+          rank: 9,
+          image: 'https://example.com/lookup.png',
+          checkedAt: '2026-09-26T18:00:00.000Z',
+          ufcStatsId: 'aaaaaaaaaaaaaaaa',
+          sourceUrl: 'https://ufcstats.com/fighter-details/aaaaaaaaaaaaaaaa',
+          latestBoutDate: '2026-09-01',
+          mirrorThrough: '2026-09-26',
+          bio: { height: '5\' 10"', reach: '72"', dob: 'Jan 01, 1998' },
+          stats: {
+            slpm: '4.44',
+            sapm: '2.22',
+            strAccuracy: '50%',
+            strDefense: '60%',
+            tdAvg: '1.50',
+            tdAccuracy: '40%',
+            tdDefense: '70%',
+            subAvg: '0.50',
+            sample: { fights: 5, minutes: 50, latestBoutDate: '2026-09-01' }
+          },
+          recent: [{
+            result: 'W',
+            opponent: 'Recent Opponent',
+            method: 'Decision - Unanimous',
+            date: '2026-09-01'
+          }]
+        }]
+      })
+    });
+  });
+
   await page.route('https://mmamatlock-writer-auth.netlify.app/api/writer/fighter*', async route => {
     await route.fulfill({
       contentType: 'application/json',
