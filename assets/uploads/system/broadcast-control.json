@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "revision": 1790378766932,
-  "updatedAt": "2026-09-25T23:26:06.932Z",
+  "revision": 1790387578016,
+  "updatedAt": "2026-09-26T01:52:58.016Z",
   "modules": {
-    "news": true,
+    "news": false,
     "video": true,
-    "events": true,
-    "ticker": true,
-    "comingUp": true,
-    "music": true
+    "events": false,
+    "ticker": false,
+    "comingUp": false,
+    "music": false
   },
   "rundown": [
     "news",
