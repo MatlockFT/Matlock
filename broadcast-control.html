@@ -136,24 +136,62 @@ sitemap: false
             <section class="bc-card bc-program-pane bc-program-queue-pane">
               <div class="bc-card-head">
                 <div>
-                  <h2>Program queue</h2>
-                  <p data-program-queue-help>Auto is currently building the output queue.</p>
+                  <h2>Program lanes</h2>
+                  <p data-program-queue-help>Video and article/event queues run independently in Split Desk.</p>
                 </div>
-                <div class="bc-program-queue-actions">
-                  <strong class="bc-program-count" data-program-queue-count>0</strong>
-                  <button class="bc-text-button" type="button" data-program-clear>Clear manual</button>
-                </div>
+                <button class="bc-text-button" type="button" data-program-clear>Clear manual queues</button>
               </div>
 
               <div class="bc-program-split-note" data-program-split-note>
-                Split Desk runs video and article/event lanes in parallel. Your top-to-bottom order is preserved inside each lane.
+                Video stays running continuously. Article/event cards rotate independently beside it.
               </div>
 
-              <div class="bc-program-manual-head" data-program-manual-head hidden>
-                <span>YOUR PRIORITY QUEUE</span>
-                <small>Drag to reorder · drop new pool items anywhere</small>
+              <div class="bc-program-lanes">
+                <section class="bc-program-lane" data-program-lane="video">
+                  <div class="bc-program-lane-head">
+                    <div>
+                      <span>VIDEO QUEUE</span>
+                      <small>Always-running left lane</small>
+                    </div>
+                    <strong class="bc-program-count" data-program-video-count>0</strong>
+                  </div>
+                  <div class="bc-program-lane-now" data-program-video-now></div>
+                  <div class="bc-program-queue" data-program-manual-video></div>
+                </section>
+
+                <section class="bc-program-lane" data-program-lane="article">
+                  <div class="bc-program-lane-head">
+                    <div>
+                      <span>ARTICLE / EVENT QUEUE</span>
+                      <small>Right-side reader lane</small>
+                    </div>
+                    <strong class="bc-program-count" data-program-article-count>0</strong>
+                  </div>
+                  <div class="bc-program-lane-now" data-program-article-now></div>
+                  <div class="bc-program-queue" data-program-manual-article></div>
+                </section>
               </div>
-              <div class="bc-program-queue" data-program-manual-queue></div>
+
+              <section class="bc-program-ticker-panel">
+                <div class="bc-program-lane-head">
+                  <div>
+                    <span>TICKER FEED</span>
+                    <small>Exact headlines currently crawling across the bottom</small>
+                  </div>
+                  <strong class="bc-program-count" data-program-ticker-count>0</strong>
+                </div>
+                <div class="bc-program-ticker-controls">
+                  <label>
+                    <span>Ticker source</span>
+                    <select data-path="programming.tickerMode">
+                      <option value="auto">Auto headlines</option>
+                      <option value="articles">Follow article programming</option>
+                    </select>
+                  </label>
+                  <small data-program-ticker-note>Auto headlines keeps the crawl fresh even when the main program is Manual.</small>
+                </div>
+                <div class="bc-program-ticker-list" data-program-ticker-list></div>
+              </section>
 
               <div class="bc-program-auto-head" data-program-auto-head>
                 <span>ACTUAL RENDERER QUEUE</span>
