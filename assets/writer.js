@@ -2969,10 +2969,15 @@ function insertBlock(text) {
     try {
       const payload = await fetchLiveWriterFighter(fighter);
       applyLiveWriterFighter(dialog,type,side,fighter,payload);
-      input.dataset.sourceMode = 'live';
-      input.dataset.sourceFetchedAt = payload.fetchedAt || '';
-      input.dataset.latestBoutDate = payload.profile?.latestBoutDate || '';
-      input.dataset.sourceUrl = payload.sourceUrl || '';
+      input.dataset.sourceMode = payload.liveUfcStats ? 'live' : 'verified-cache';
+      input.dataset.sourceFetchedAt = payload.liveUfcStats
+        ? (payload.fetchedAt || '')
+        : (fighter.statsBuiltAt || fighter.checkedAt || '');
+      input.dataset.latestBoutDate = payload.profile?.latestBoutDate ||
+        fighter.latestBoutDate || fighter.stats?.sample?.latestBoutDate || '';
+      input.dataset.sourceUrl = payload.liveUfcStats
+        ? (payload.sourceUrl || fighter.sourceUrl || '')
+        : (fighter.sourceUrl || payload.sourceUrl || '');
       const sourceState = sourceStateForFighter(fighter,payload);
       setLookupStatus(input,sourceState.state,sourceState.text);
     } catch (error) {
