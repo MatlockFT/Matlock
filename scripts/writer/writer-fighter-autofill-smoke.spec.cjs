@@ -7,7 +7,7 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
   const pageErrors = [];
   page.on('pageerror', error => pageErrors.push(error.message));
 
-  await page.route('**/assets/data/writer-fighters.json?writer-fighters=1', async route => {
+  await page.route('**/assets/data/writer-fighters.json?writer-fighters=*', async route => {
     await route.fulfill({
       contentType: 'application/json',
       body: JSON.stringify({
