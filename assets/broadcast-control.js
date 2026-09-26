@@ -119,6 +119,9 @@ function renderAll(){renderInputs();renderRundown();renderSources();renderMetric
 function renderInputs(){
   qa('[data-path]').forEach(el=>{const v=getPath(state,el.dataset.path);if(el.type==='checkbox')el.checked=Boolean(v);else el.value=v??''});
   qa('[data-value-for]').forEach(el=>{const v=getPath(state,el.dataset.valueFor);el.textContent=v+'%'});
+  const split=state.visual?.layout==='splitDesk',width=Math.max(50,Math.min(76,Number(state.visual?.videoWidth||64)));
+  const map=q('[data-layout-map-main]');if(map)map.style.gridTemplateColumns=width+'fr '+(100-width)+'fr';
+  const note=q('[data-rundown-mode-note]');if(note)note.textContent=split?'Split Desk: video runs continuously in its own lane. News and Event blocks control the right-hand reader rotation.':'Classic layout: News, Video, and Event blocks rotate through the full main stage.';
 }
 const PRESETS={
   newsroom:{label:'Newsroom',modules:{news:true,video:true,events:true},rundown:['news','news','video','news','event'],timing:{newsSeconds:45,eventSeconds:35},video:{maxSeconds:600}},
