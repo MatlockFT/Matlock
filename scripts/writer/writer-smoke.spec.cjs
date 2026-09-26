@@ -243,7 +243,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
       })
     });
   });
-  await page.route('**/assets/data/writer-fighters.json?writer-fighters=1', async route => {
+  await page.route('**/assets/data/writer-fighters.json?writer-fighters=*', async route => {
     await route.fulfill({
       contentType: 'application/json',
       body: JSON.stringify({
