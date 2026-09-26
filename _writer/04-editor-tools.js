@@ -335,6 +335,387 @@ function insertBlock(text) {
     }
   }
 
+  let writerFighterDirectoryPromise = null;
+  const writerFighterLiveCache = new Map();
+
+  function normalizeFighterLookup(value) {
+    return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  }
+
+  async function loadWriterFighterDirectory() {
+    if (writerFighterDirectoryPromise) return writerFighterDirectoryPromise;
+    writerFighterDirectoryPromise = fetch('/assets/data/matchmaker/current.json?writer-fighters=1', { cache:'no-store' })
+      .then(response => {
+        if (!response.ok) throw new Error('Could not load fighter directory.');
+        return response.json();
+      })
+      .then(data => ({
+        generatedAt: data.generatedAt || '',
+        fighters: (Array.isArray(data.fighters) ? data.fighters : []).map(fighter => ({
+          id: fighter.id || '',
+          name: fighter.name || '',
+          division: fighter.division || '',
+          record: fighter.record || '',
+          rank: fighter.rank ?? null,
+          image: fighter.image || '',
+          checkedAt: fighter.checkedAt || data.generatedAt || '',
+          history: Array.isArray(fighter.verifiedMeetings) && fighter.verifiedMeetings.length
+            ? fighter.verifiedMeetings
+            : (Array.isArray(fighter.history) ? fighter.history : []),
+          booking: fighter.booking || null,
+          ufcStatsId: fighter.meetingCoverage?.ufcStatsId || '',
+          sourceUrl: fighter.meetingCoverage?.sourceUrl || '',
+          mirrorThrough: fighter.meetingCoverage?.mirrorThrough || null
+        })).filter(fighter => fighter.id && fighter.name)
+      }))
+      .catch(error => {
+        writerFighterDirectoryPromise = null;
+        throw error;
+      });
+    return writerFighterDirectoryPromise;
+  }
+
+  function writerFighterMatches(directory, query, limit = 8) {
+    const needle = normalizeFighterLookup(query);
+    if (!needle || needle.length < 2) return [];
+    return directory.fighters.map(fighter => {
+      const name = normalizeFighterLookup(fighter.name);
+      let score = 9;
+      if (name === needle) score = 0;
+      else if (name.startsWith(needle)) score = 1;
+      else if (name.split(' ').some(part => part.startsWith(needle))) score = 2;
+      else if (name.includes(needle)) score = 3;
+      else return null;
+      return { fighter, score };
+    }).filter(Boolean).sort((a,b) => a.score - b.score || a.fighter.name.localeCompare(b.fighter.name))
+      .slice(0,limit).map(entry => entry.fighter);
+  }
+
+  function lookupStatusElement(input) {
+    const host = input?.closest('.writer-field');
+    if (!host) return null;
+    let status = host.querySelector('.writer-fighter-source-status');
+    if (!status) {
+      status = document.createElement('small');
+      status.className = 'writer-fighter-source-status';
+      status.setAttribute('aria-live','polite');
+      host.append(status);
+    }
+    return status;
+  }
+
+  function setLookupStatus(input, state, message) {
+    const status = lookupStatusElement(input);
+    if (!status) return;
+    status.dataset.state = state || '';
+    status.textContent = message || '';
+  }
+
+  function lookupMenuElement(input) {
+    const host = input?.closest('.writer-field');
+    if (!host) return null;
+    host.classList.add('writer-fighter-lookup-field');
+    let menu = host.querySelector('.writer-fighter-suggestions');
+    if (!menu) {
+      menu = document.createElement('div');
+      menu.className = 'writer-fighter-suggestions';
+      menu.setAttribute('role','listbox');
+      menu.hidden = true;
+      host.append(menu);
+    }
+    return menu;
+  }
+
+  function formatLookupDate(value) {
+    if (!value) return 'unknown';
+    const date = new Date(value + (String(value).length === 10 ? 'T12:00:00' : ''));
+    if (Number.isNaN(date.getTime())) return value;
+    return date.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});
+  }
+
+  function ageFromDob(value) {
+    if (!value) return '';
+    const dob = new Date(value);
+    if (Number.isNaN(dob.getTime())) return '';
+    const now = new Date();
+    let age = now.getFullYear() - dob.getFullYear();
+    const beforeBirthday = now.getMonth() < dob.getMonth() ||
+      now.getMonth() === dob.getMonth() && now.getDate() < dob.getDate();
+    if (beforeBirthday) age--;
+    return age >= 0 && age < 100 ? String(age) : '';
+  }
+
+  function compactFightDetail(fight) {
+    return [fight.method || '', fight.date ? formatLookupDate(fight.date) : ''].filter(Boolean).join(' · ');
+  }
+
+  function recentRowsFromFighter(fighter, liveProfile = null) {
+    const live = Array.isArray(liveProfile?.recent) ? liveProfile.recent : [];
+    const history = live.length ? live : (fighter.history || []);
+    return history.slice(0,5).map(fight => ({
+      result: fight.result || '',
+      opponent: fight.opponent || fight.opponentName || '',
+      detail: compactFightDetail(fight)
+    })).filter(row => row.result || row.opponent);
+  }
+
+  function recordFromHistory(history, classes = null) {
+    const counts = { W:0,L:0,D:0 };
+    for (const fight of history || []) {
+      if (classes && !classes.has(fight.competitionClass || 'ufc')) continue;
+      if (Object.hasOwn(counts,fight.result)) counts[fight.result]++;
+    }
+    return (counts.W + counts.L + counts.D) ? counts.W + '-' + counts.L + '-' + counts.D : '';
+  }
+
+  function subtractRecords(overall, ufc) {
+    const parse = value => String(value || '').match(/^(\d+)-(\d+)-(\d+)/)?.slice(1,4).map(Number);
+    const total = parse(overall), inside = parse(ufc);
+    if (!total || !inside) return '';
+    const result = total.map((value,index) => Math.max(0,value - inside[index]));
+    return result.join('-');
+  }
+
+  function lastFiveFromRows(rows) {
+    return (rows || []).slice(0,5).map(row => row.result || '').filter(Boolean).join('');
+  }
+
+  function setComparisonValue(container, label, side, value) {
+    if (!container || value === null || value === undefined || value === '') return;
+    const wanted = normalizeFighterLookup(label);
+    const row = [...container.querySelectorAll('.writer-comparison-row')].find(item =>
+      normalizeFighterLookup(item.querySelector('[data-structured-label]')?.value) === wanted
+    );
+    if (!row) return;
+    const input = row.querySelector(side === 'a' ? '[data-structured-a]' : '[data-structured-b]');
+    if (input) input.value = String(value);
+  }
+
+  function fighterSourceMeta(input) {
+    if (!input) return null;
+    return {
+      fighterId: input.dataset.fighterId || null,
+      ufcStatsId: input.dataset.ufcStatsId || null,
+      mode: input.dataset.sourceMode || null,
+      fetchedAt: input.dataset.sourceFetchedAt || null,
+      latestBoutDate: input.dataset.latestBoutDate || null,
+      sourceUrl: input.dataset.sourceUrl || null
+    };
+  }
+
+  async function fetchLiveWriterFighter(fighter) {
+    if (!fighter?.ufcStatsId || !authBase) return null;
+    const cached = writerFighterLiveCache.get(fighter.ufcStatsId);
+    if (cached && Date.now() - cached.savedAt < 5 * 60 * 1000) return cached.data;
+    const response = await fetch(authBase + '/api/writer/fighter?id=' + encodeURIComponent(fighter.ufcStatsId), {
+      method:'GET',
+      mode:'cors',
+      cache:'no-store',
+      headers:{Accept:'application/json'}
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok || !data.ok || !data.profile) throw new Error(data.error || 'Live UFCStats lookup failed.');
+    writerFighterLiveCache.set(fighter.ufcStatsId,{savedAt:Date.now(),data});
+    return data;
+  }
+
+  function applyCachedWriterFighter(dialog, type, side, fighter) {
+    if (type === 'stats') {
+      const input = dialog.querySelector('[data-stats-fighter="' + side + '"]');
+      if (input) input.value = fighter.name;
+      refreshStatsNameHeaders(dialog);
+      return;
+    }
+
+    const nameInput = dialog.querySelector(side === 'a' ? '[data-tale-a]' : '[data-tale-b]');
+    if (nameInput) nameInput.value = fighter.name;
+    const division = dialog.querySelector('[data-tale-division="' + side + '"]');
+    if (division && fighter.division) division.value = fighter.division;
+    const image = dialog.querySelector('[data-tale-image-path="' + side + '"]');
+    if (image && fighter.image) image.value = fighter.image;
+    const recent = recentRowsFromFighter(fighter);
+    renderRecentRows(dialog.querySelector('[data-tale-form-list="' + side + '"]'),recent);
+    const last5 = dialog.querySelector('[data-tale-last5="' + side + '"]');
+    if (last5 && recent.length) last5.value = lastFiveFromRows(recent);
+    const rows = dialog.querySelector('[data-tale-row-list]');
+    const ufcRecord = recordFromHistory(fighter.history,new Set(['ufc']));
+    setComparisonValue(rows,'Record',side,fighter.record);
+    setComparisonValue(rows,'UFC Record',side,ufcRecord);
+    setComparisonValue(rows,'Record Outside UFC',side,subtractRecords(fighter.record,ufcRecord));
+    refreshTaleNameHeaders(dialog);
+    taleImagePreview(side);
+  }
+
+  function applyLiveWriterFighter(dialog, type, side, fighter, payload) {
+    const profile = payload?.profile || {};
+    if (type === 'stats') {
+      const rows = dialog.querySelector('[data-stats-row-list]');
+      const values = [
+        ['Significant Strikes / Minute',profile.stats?.slpm],
+        ['Sig. Strikes Absorbed / Minute',profile.stats?.sapm],
+        ['Striking Accuracy',profile.stats?.strAccuracy],
+        ['Striking Defense',profile.stats?.strDefense],
+        ['Takedowns / 15 Minutes',profile.stats?.tdAvg],
+        ['Takedown Accuracy',profile.stats?.tdAccuracy],
+        ['Takedown Defense',profile.stats?.tdDefense],
+        ['Submission Attempts / 15',profile.stats?.subAvg]
+      ];
+      for (const [label,value] of values) setComparisonValue(rows,label,side,value);
+      return;
+    }
+
+    const rows = dialog.querySelector('[data-tale-row-list]');
+    const overall = profile.record || fighter.record || '';
+    const ufcRecord = profile.ufcRecord || recordFromHistory(fighter.history,new Set(['ufc']));
+    setComparisonValue(rows,'Record',side,overall);
+    setComparisonValue(rows,'Age',side,ageFromDob(profile.dob));
+    setComparisonValue(rows,'Height',side,profile.height);
+    setComparisonValue(rows,'Arm Reach',side,profile.reach);
+    setComparisonValue(rows,'UFC Record',side,ufcRecord);
+    setComparisonValue(rows,'Record Outside UFC',side,subtractRecords(overall,ufcRecord));
+
+    const recent = recentRowsFromFighter(fighter,profile);
+    if (recent.length) {
+      renderRecentRows(dialog.querySelector('[data-tale-form-list="' + side + '"]'),recent);
+      const last5 = dialog.querySelector('[data-tale-last5="' + side + '"]');
+      if (last5) last5.value = lastFiveFromRows(recent);
+    }
+  }
+
+  function sourceStateForFighter(fighter, payload) {
+    const latest = payload?.profile?.latestBoutDate || null;
+    const bookingDate = fighter?.booking?.date || null;
+    const todayValue = today();
+    const pendingKnownFight = bookingDate && bookingDate <= todayValue && (!latest || latest < bookingDate);
+    if (pendingKnownFight) {
+      return {
+        state:'warning',
+        text:'UFCStats live, but the known ' + formatLookupDate(bookingDate) + ' fight is not posted yet. Latest source bout: ' + formatLookupDate(latest) + '.'
+      };
+    }
+    return {
+      state:'live',
+      text:'LIVE UFCStats · latest bout ' + formatLookupDate(latest) + ' · fetched ' +
+        new Date(payload.fetchedAt).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'})
+    };
+  }
+
+  async function selectWriterFighter(input, fighter, type, side) {
+    const dialog = type === 'stats' ? app.querySelector('[data-stats-dialog]') : app.querySelector('[data-tale-dialog]');
+    if (!input || !fighter || !dialog) return;
+    input.dataset.fighterId = fighter.id;
+    input.dataset.ufcStatsId = fighter.ufcStatsId || '';
+    input.value = fighter.name;
+    applyCachedWriterFighter(dialog,type,side,fighter);
+    setLookupStatus(input,'loading',fighter.ufcStatsId ? 'Cached profile loaded · checking UFCStats live…' : 'Cached profile loaded · no UFCStats identity available.');
+
+    if (!fighter.ufcStatsId) {
+      input.dataset.sourceMode = 'cached';
+      input.dataset.sourceFetchedAt = fighter.checkedAt || '';
+      input.dataset.latestBoutDate = fighter.history?.[0]?.date || '';
+      return;
+    }
+
+    try {
+      const payload = await fetchLiveWriterFighter(fighter);
+      applyLiveWriterFighter(dialog,type,side,fighter,payload);
+      input.dataset.sourceMode = 'live';
+      input.dataset.sourceFetchedAt = payload.fetchedAt || '';
+      input.dataset.latestBoutDate = payload.profile?.latestBoutDate || '';
+      input.dataset.sourceUrl = payload.sourceUrl || '';
+      const sourceState = sourceStateForFighter(fighter,payload);
+      setLookupStatus(input,sourceState.state,sourceState.text);
+    } catch (error) {
+      input.dataset.sourceMode = 'cached';
+      input.dataset.sourceFetchedAt = fighter.checkedAt || '';
+      input.dataset.latestBoutDate = fighter.history?.[0]?.date || '';
+      setLookupStatus(input,'warning','LIVE UFCStats unavailable · using verified cache from ' + formatLookupDate((fighter.checkedAt || '').slice(0,10)) + '.');
+    }
+  }
+
+  function installWriterFighterLookup(input, type, side) {
+    if (!input || input.dataset.lookupReady === 'true') return;
+    input.dataset.lookupReady = 'true';
+    input.autocomplete = 'off';
+    const menu = lookupMenuElement(input);
+    let matches = [];
+
+    const render = async () => {
+      const query = input.value.trim();
+      if (query.length < 2) { menu.hidden = true; menu.replaceChildren(); return; }
+      try {
+        const directory = await loadWriterFighterDirectory();
+        matches = writerFighterMatches(directory,query);
+        menu.replaceChildren(...matches.map((fighter,index) => {
+          const option = document.createElement('div');
+          option.className = 'writer-fighter-suggestion';
+          option.setAttribute('role','option');
+          option.dataset.index = String(index);
+          option.innerHTML = '<strong>' + escapeHtml(fighter.name) + '</strong><span>' +
+            escapeHtml([fighter.division,fighter.rank ? '#' + fighter.rank : '',fighter.record].filter(Boolean).join(' · ')) +
+            '</span>';
+          return option;
+        }));
+        menu.hidden = !matches.length;
+      } catch {
+        menu.hidden = true;
+        setLookupStatus(input,'warning','Fighter directory could not be loaded. Manual entry still works.');
+      }
+    };
+
+    input.addEventListener('input',() => {
+      delete input.dataset.fighterId;
+      delete input.dataset.ufcStatsId;
+      delete input.dataset.sourceMode;
+      setLookupStatus(input,'','');
+      render();
+    });
+    input.addEventListener('focus',render);
+    input.addEventListener('keydown',event => {
+      if (event.key === 'Escape') menu.hidden = true;
+      if (event.key === 'Enter' && !menu.hidden && matches[0]) {
+        event.preventDefault();
+        menu.hidden = true;
+        selectWriterFighter(input,matches[0],type,side);
+      }
+    });
+    menu.addEventListener('pointerdown',event => {
+      const option = event.target.closest('.writer-fighter-suggestion');
+      if (!option) return;
+      event.preventDefault();
+      const fighter = matches[Number(option.dataset.index)];
+      if (!fighter) return;
+      menu.hidden = true;
+      selectWriterFighter(input,fighter,type,side);
+    });
+    input.addEventListener('blur',() => window.setTimeout(() => { menu.hidden = true; },120));
+    input.addEventListener('change',async () => {
+      if (input.dataset.fighterId) return;
+      try {
+        const directory = await loadWriterFighterDirectory();
+        const exact = directory.fighters.find(fighter => normalizeFighterLookup(fighter.name) === normalizeFighterLookup(input.value));
+        if (exact) selectWriterFighter(input,exact,type,side);
+      } catch {}
+    });
+  }
+
+  async function resolveNearestMatchupLookups(dialog,type) {
+    if (!dialog) return;
+    try {
+      const directory = await loadWriterFighterDirectory();
+      for (const side of ['a','b']) {
+        const input = type === 'stats'
+          ? dialog.querySelector('[data-stats-fighter="' + side + '"]')
+          : dialog.querySelector(side === 'a' ? '[data-tale-a]' : '[data-tale-b]');
+        if (!input?.value || input.dataset.fighterId) continue;
+        const normalized = normalizeFighterLookup(input.value);
+        const fighter = directory.fighters.find(item => normalizeFighterLookup(item.name) === normalized);
+        if (fighter) selectWriterFighter(input,fighter,type,side);
+      }
+    } catch {}
+  }
+
   function structuredSection(type, config, inner) {
     return '<section class="article-html-visual" data-writer-block="' + type + '" data-writer-config="' +
       encodedStructuredConfig(config) + '">\n' + inner + '\n</section>';
@@ -447,6 +828,11 @@ function insertBlock(text) {
     const dialog=app.querySelector('[data-stats-dialog]');
     dialog.querySelector('[data-stats-fighter="a"]').value=config.fighterA||'';
     dialog.querySelector('[data-stats-fighter="b"]').value=config.fighterB||'';
+    ['a','b'].forEach(side => {
+      const input=dialog.querySelector('[data-stats-fighter="'+side+'"]');
+      for (const key of ['fighterId','ufcStatsId','sourceMode','sourceFetchedAt','latestBoutDate','sourceUrl']) delete input.dataset[key];
+      setLookupStatus(input,'','');
+    });
     renderComparisonRows(dialog.querySelector('[data-stats-row-list]'),config.rows,statsDefaultRowLabels);
     refreshStatsNameHeaders(dialog);
   }
@@ -464,6 +850,11 @@ function insertBlock(text) {
     const a=config.a||{}, b=config.b||{};
     dialog.querySelector('[data-tale-a]').value=a.name||'';
     dialog.querySelector('[data-tale-b]').value=b.name||'';
+    ['a','b'].forEach(side => {
+      const input=dialog.querySelector(side==='a'?'[data-tale-a]':'[data-tale-b]');
+      for (const key of ['fighterId','ufcStatsId','sourceMode','sourceFetchedAt','latestBoutDate','sourceUrl']) delete input.dataset[key];
+      setLookupStatus(input,'','');
+    });
     ['a','b'].forEach(side=>{
       const fighter=side==='a'?a:b;
       dialog.querySelector('[data-tale-division="'+side+'"]').value=fighter.division||'';
@@ -526,6 +917,7 @@ function insertBlock(text) {
       const dialog = app.querySelector('[data-stats-dialog]');
       applyNearestMatchup(dialog, 'stats');
       dialog.showModal();
+      resolveNearestMatchupLookups(dialog,'stats');
       return;
     }
     if (type === 'tale') {
@@ -534,6 +926,7 @@ function insertBlock(text) {
       const dialog = app.querySelector('[data-tale-dialog]');
       applyNearestMatchup(dialog, 'tale');
       dialog.showModal();
+      resolveNearestMatchupLookups(dialog,'tale');
       return;
     }
     if (type === 'prediction') {
