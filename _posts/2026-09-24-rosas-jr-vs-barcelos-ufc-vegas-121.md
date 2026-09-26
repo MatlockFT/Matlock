@@ -243,6 +243,91 @@ It’s basically a little House of Horrors fight card.
 
     </div>
 
+    <!-- =====================================================
+         TALE OF THE TAPE
+         ===================================================== -->
+
+    <div class="fc-tale">
+
+      <div class="fc-section-title">
+        <span>Tale of the Tape</span>
+      </div>
+
+      <div class="fc-tale-row featured">
+        <strong>11-8</strong>
+        <span>Record</span>
+        <strong>11-2</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>38</strong>
+        <span>Age</span>
+        <strong>27</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>5'2"</strong>
+        <span>Height</span>
+        <strong>5'3"</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>59.5"</strong>
+        <span>Arm Reach</span>
+        <strong>64.0"</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>5-5</strong>
+        <span>UFC Record</span>
+        <strong>3-2</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>6-3</strong>
+        <span>Record Outside UFC</span>
+        <strong>8-0</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>5-1</strong>
+        <span>Total Finishes</span>
+        <strong>7-2</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>1-0</strong>
+        <span>TKO / KO</span>
+        <strong>7-1</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>4-1</strong>
+        <span>Submission</span>
+        <strong>0-1</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>4-7</strong>
+        <span>Unanimous Decision</span>
+        <strong>4-0</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>2-0</strong>
+        <span>Split Decision</span>
+        <strong>0-0</strong>
+      </div>
+
+    </div>
+
+    <!-- =====================================================
+         RECENT FORM
+         ===================================================== -->
+
+    <div class="fc-section-title fc-form-title">
+      <span>Recent Form</span>
+    </div>
 
     <div class="fc-form-wrap">
 
@@ -349,6 +434,9 @@ It’s basically a little House of Horrors fight card.
 
     </div>
 
+    <!-- =====================================================
+         OPPONENT STRENGTH
+         ===================================================== -->
 
     <div class="fc-opponents">
 
@@ -369,79 +457,14 @@ It’s basically a little House of Horrors fight card.
     </div>
 
 
-    <div class="fc-tale">
 
-      <div class="fc-section-title">
-        <span>Tale of the Tape</span>
-      </div>
+    
 
-      <div class="fc-tale-row featured">
-        <strong>11-8</strong>
-        <span>Record</span>
-        <strong>11-2</strong>
-      </div>
 
-      <div class="fc-tale-row">
-        <strong>38</strong>
-        <span>Age</span>
-        <strong>27</strong>
-      </div>
+    
 
-      <div class="fc-tale-row">
-        <strong>5'2"</strong>
-        <span>Height</span>
-        <strong>5'3"</strong>
-      </div>
 
-      <div class="fc-tale-row">
-        <strong>59.5"</strong>
-        <span>Arm Reach</span>
-        <strong>64.0"</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>5-5</strong>
-        <span>UFC Record</span>
-        <strong>3-2</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>6-3</strong>
-        <span>Record Outside UFC</span>
-        <strong>8-0</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>5-1</strong>
-        <span>Total Finishes</span>
-        <strong>7-2</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>1-0</strong>
-        <span>TKO / KO</span>
-        <strong>7-1</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>4-1</strong>
-        <span>Submission</span>
-        <strong>0-1</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>4-7</strong>
-        <span>Unanimous Decision</span>
-        <strong>4-0</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>2-0</strong>
-        <span>Split Decision</span>
-        <strong>0-0</strong>
-      </div>
-
-    </div>
+    
 
   </div>
 </div>
@@ -1211,7 +1234,6 @@ She’s coming off a submission loss to Ketlen Souza and has been out for a whil
   <div class="fs-shell">
 
     <div class="fs-header">
-
       <div class="fs-fighter fs-fighter-left">
         <span class="fs-side-label">RED CORNER</span>
         <strong>Vanessa Demopoulos</strong>
@@ -1226,165 +1248,66 @@ She’s coming off a submission loss to Ketlen Souza and has been out for a whil
         <span class="fs-side-label">BLUE CORNER</span>
         <strong>Yazmin Jauregui</strong>
       </div>
-
     </div>
 
-
     <div class="fs-section">
-
-      <div class="fs-section-title">
-        <span>Striking</span>
-      </div>
+      <div class="fs-section-title"><span>Striking</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>2.96</strong>
+        <strong>3.37</strong>
         <span>Significant Strikes / Minute</span>
         <strong>6.64</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>5.12</strong>
+        <strong>5.39</strong>
         <span>Sig. Strikes Absorbed / Minute</span>
         <strong>5.25</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>36%</strong>
+        <strong>39%</strong>
         <span>Striking Accuracy</span>
         <strong>39%</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>0</strong>
-        <span>Total Knockdowns Landed</span>
-        <strong>2</strong>
+        <strong>41%</strong>
+        <span>Striking Defense</span>
+        <strong>54%</strong>
       </div>
-
     </div>
-
 
     <div class="fs-section fs-section-grappling">
-
-      <div class="fs-section-title">
-        <span>Grappling</span>
-      </div>
+      <div class="fs-section-title"><span>Grappling</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>1:51</strong>
-        <span>Control Time</span>
-        <strong>3:03</strong>
+        <strong>0.32</strong>
+        <span>Takedowns / 15 Minutes</span>
+        <strong>0.00</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>0</strong>
-        <span>Takedowns Landed</span>
-        <strong>0</strong>
+        <strong>9%</strong>
+        <span>Takedown Accuracy</span>
+        <strong>0%</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>3</strong>
-        <span>Takedowns Defended</span>
-        <strong>8</strong>
+        <strong>26%</strong>
+        <span>Takedown Defense</span>
+        <strong>100%</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>0</strong>
-        <span>Total Submission Attempts</span>
-        <strong>0</strong>
+        <strong>0.40</strong>
+        <span>Submission Attempts / 15</span>
+        <strong>0.00</strong>
       </div>
-
-    </div>
-
-
-    <div class="fs-cage-header">
-
-      <div class="fs-average fs-average-left">
-        <span>AVG. CAGE TIME</span>
-        <strong>12:42</strong>
-        <small>Demopoulos</small>
-      </div>
-
-      <div class="fs-cage-center">
-        <span>Recent UFC Cage Time</span>
-      </div>
-
-      <div class="fs-average fs-average-right">
-        <span>AVG. CAGE TIME</span>
-        <strong>8:30</strong>
-        <small>Jauregui</small>
-      </div>
-
-    </div>
-
-
-    <div class="fs-cage-grid">
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Vanessa Demopoulos</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Jamey-Lyn Horth</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Talita Alencar</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>3:28</strong>
-          <span>vs. Jaqueline Amorim</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Emily Ducote</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Kanako Murata</span>
-        </div>
-
-      </div>
-
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Yazmin Jauregui</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>3:02</strong>
-          <span>vs. Ketlen Souza</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Sam Hughes</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>0:20</strong>
-          <span>vs. Denise Gomes</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>9:06</strong>
-          <span>vs. Istela Nunes</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Iasmin Lucindo</span>
-        </div>
-
-      </div>
-
     </div>
 
   </div>
 </div>
-
 
 <style>
 .fight-stats-sleek {
@@ -1991,6 +1914,91 @@ Still, I think Jauregui is too sharp on the feet and should be able to win enoug
 
     </div>
 
+    <!-- =====================================================
+         TALE OF THE TAPE
+         ===================================================== -->
+
+    <div class="fc-tale">
+
+      <div class="fc-section-title">
+        <span>Tale of the Tape</span>
+      </div>
+
+      <div class="fc-tale-row featured">
+        <strong>21-8-1</strong>
+        <span>Record</span>
+        <strong>17-10-2</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>34</strong>
+        <span>Age</span>
+        <strong>34</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>5'6"</strong>
+        <span>Height</span>
+        <strong>5'5"</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>71.0"</strong>
+        <span>Arm Reach</span>
+        <strong>66.5"</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>4-4-1</strong>
+        <span>UFC Record</span>
+        <strong>5-3-1</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>17-4</strong>
+        <span>Record Outside UFC</span>
+        <strong>12-7-1</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>14-2</strong>
+        <span>Total Finishes</span>
+        <strong>8-4</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>7-2</strong>
+        <span>TKO / KO</span>
+        <strong>5-3</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>7-0</strong>
+        <span>Submission</span>
+        <strong>3-1</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>6-3</strong>
+        <span>Unanimous Decision</span>
+        <strong>6-5</strong>
+      </div>
+
+      <div class="fc-tale-row">
+        <strong>1-3</strong>
+        <span>Split Decision</span>
+        <strong>2-0</strong>
+      </div>
+
+    </div>
+
+    <!-- =====================================================
+         RECENT FORM
+         ===================================================== -->
+
+    <div class="fc-section-title fc-form-title">
+      <span>Recent Form</span>
+    </div>
 
     <div class="fc-form-wrap">
 
@@ -2097,6 +2105,9 @@ Still, I think Jauregui is too sharp on the feet and should be able to win enoug
 
     </div>
 
+    <!-- =====================================================
+         OPPONENT STRENGTH
+         ===================================================== -->
 
     <div class="fc-opponents">
 
@@ -2117,79 +2128,14 @@ Still, I think Jauregui is too sharp on the feet and should be able to win enoug
     </div>
 
 
-    <div class="fc-tale">
 
-      <div class="fc-section-title">
-        <span>Tale of the Tape</span>
-      </div>
+    
 
-      <div class="fc-tale-row featured">
-        <strong>21-8-1</strong>
-        <span>Record</span>
-        <strong>17-10-2</strong>
-      </div>
 
-      <div class="fc-tale-row">
-        <strong>34</strong>
-        <span>Age</span>
-        <strong>34</strong>
-      </div>
+    
 
-      <div class="fc-tale-row">
-        <strong>5'6"</strong>
-        <span>Height</span>
-        <strong>5'5"</strong>
-      </div>
 
-      <div class="fc-tale-row">
-        <strong>71.0"</strong>
-        <span>Arm Reach</span>
-        <strong>66.5"</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>4-4-1</strong>
-        <span>UFC Record</span>
-        <strong>5-3-1</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>17-4</strong>
-        <span>Record Outside UFC</span>
-        <strong>12-7-1</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>14-2</strong>
-        <span>Total Finishes</span>
-        <strong>8-4</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>7-2</strong>
-        <span>TKO / KO</span>
-        <strong>5-3</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>7-0</strong>
-        <span>Submission</span>
-        <strong>3-1</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>6-3</strong>
-        <span>Unanimous Decision</span>
-        <strong>6-5</strong>
-      </div>
-
-      <div class="fc-tale-row">
-        <strong>1-3</strong>
-        <span>Split Decision</span>
-        <strong>2-0</strong>
-      </div>
-
-    </div>
+    
 
   </div>
 </div>
@@ -2986,7 +2932,6 @@ Still, I think Jauregui is too sharp on the feet and should be able to win enoug
   <div class="fs-shell">
 
     <div class="fs-header">
-
       <div class="fs-fighter fs-fighter-left">
         <span class="fs-side-label">RED CORNER</span>
         <strong>John Castaneda</strong>
@@ -3001,165 +2946,66 @@ Still, I think Jauregui is too sharp on the feet and should be able to win enoug
         <span class="fs-side-label">BLUE CORNER</span>
         <strong>Alatengheili</strong>
       </div>
-
     </div>
 
-
     <div class="fs-section">
-
-      <div class="fs-section-title">
-        <span>Striking</span>
-      </div>
+      <div class="fs-section-title"><span>Striking</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>5.16</strong>
+        <strong>4.95</strong>
         <span>Significant Strikes / Minute</span>
-        <strong>2.63</strong>
+        <strong>2.82</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>5.12</strong>
+        <strong>5.07</strong>
         <span>Sig. Strikes Absorbed / Minute</span>
-        <strong>5.40</strong>
+        <strong>5.12</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>54%</strong>
+        <strong>51%</strong>
         <span>Striking Accuracy</span>
         <strong>32%</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>1</strong>
-        <span>Total Knockdowns Landed</span>
-        <strong>0</strong>
+        <strong>54%</strong>
+        <span>Striking Defense</span>
+        <strong>57%</strong>
       </div>
-
     </div>
-
 
     <div class="fs-section fs-section-grappling">
-
-      <div class="fs-section-title">
-        <span>Grappling</span>
-      </div>
+      <div class="fs-section-title"><span>Grappling</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>14:51</strong>
-        <span>Control Time</span>
-        <strong>8:34</strong>
+        <strong>1.49</strong>
+        <span>Takedowns / 15 Minutes</span>
+        <strong>1.74</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>8</strong>
-        <span>Takedowns Landed</span>
-        <strong>3</strong>
+        <strong>37%</strong>
+        <span>Takedown Accuracy</span>
+        <strong>43%</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>13</strong>
-        <span>Takedowns Defended</span>
-        <strong>1</strong>
+        <strong>75%</strong>
+        <span>Takedown Defense</span>
+        <strong>75%</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>0</strong>
-        <span>Total Submission Attempts</span>
-        <strong>0</strong>
+        <strong>0.10</strong>
+        <span>Submission Attempts / 15</span>
+        <strong>0.00</strong>
       </div>
-
-    </div>
-
-
-    <div class="fs-cage-header">
-
-      <div class="fs-average fs-average-left">
-        <span>AVG. CAGE TIME</span>
-        <strong>15:00</strong>
-        <small>Castaneda</small>
-      </div>
-
-      <div class="fs-cage-center">
-        <span>Recent UFC Cage Time</span>
-      </div>
-
-      <div class="fs-average fs-average-right">
-        <span>AVG. CAGE TIME</span>
-        <strong>12:09</strong>
-        <small>Heili</small>
-      </div>
-
-    </div>
-
-
-    <div class="fs-cage-grid">
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>John Castaneda</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Mark Vologdin</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Chris Gutierrez</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Daniel Marcos</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Kyung Ho Kang</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Muin Gafurov</span>
-        </div>
-
-      </div>
-
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Alatengheili</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Chris Gutierrez</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Chad Anheliger</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>0:47</strong>
-          <span>vs. Kevin Croom</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Gustavo Lopez</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Casey Kenney</span>
-        </div>
-
-      </div>
-
     </div>
 
   </div>
 </div>
-
 
 <style>
 .fight-stats-sleek {
@@ -5027,7 +4873,6 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
   <div class="fs-shell">
 
     <div class="fs-header">
-
       <div class="fs-fighter fs-fighter-left">
         <span class="fs-side-label">RED CORNER</span>
         <strong>Montel Jackson</strong>
@@ -5042,36 +4887,27 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
         <span class="fs-side-label">BLUE CORNER</span>
         <strong>Ricky Simon</strong>
       </div>
-
     </div>
 
-
-    <!-- =====================================================
-         STRIKING
-         ===================================================== -->
-
     <div class="fs-section">
-
-      <div class="fs-section-title">
-        <span>Striking</span>
-      </div>
+      <div class="fs-section-title"><span>Striking</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>2.61</strong>
+        <strong>3.02</strong>
         <span>Significant Strikes / Minute</span>
-        <strong>3.07</strong>
+        <strong>3.03</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>1.41</strong>
+        <strong>1.40</strong>
         <span>Sig. Strikes Absorbed / Minute</span>
-        <strong>4.28</strong>
+        <strong>3.90</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>50%</strong>
+        <strong>52%</strong>
         <span>Striking Accuracy</span>
-        <strong>41%</strong>
+        <strong>42%</strong>
       </div>
 
       <div class="fs-stat-row">
@@ -5079,30 +4915,15 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
         <span>Striking Defense</span>
         <strong>61%</strong>
       </div>
-
-      <div class="fs-stat-row">
-        <strong>3</strong>
-        <span>Knockdowns Landed · Last 5</span>
-        <strong>1</strong>
-      </div>
-
     </div>
 
-
-    <!-- =====================================================
-         GRAPPLING
-         ===================================================== -->
-
     <div class="fs-section fs-section-grappling">
-
-      <div class="fs-section-title">
-        <span>Grappling</span>
-      </div>
+      <div class="fs-section-title"><span>Grappling</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>1.81</strong>
+        <strong>2.71</strong>
         <span>Takedowns / 15 Minutes</span>
-        <strong>3.18</strong>
+        <strong>4.49</strong>
       </div>
 
       <div class="fs-stat-row">
@@ -5118,113 +4939,14 @@ However, I’m biased, but I also believe Castaneda is just the better fighter h
       </div>
 
       <div class="fs-stat-row">
-        <strong>1:38</strong>
-        <span>Control Time / 15 Minutes</span>
-        <strong>3:24</strong>
-      </div>
-
-      <div class="fs-stat-row">
         <strong>0.30</strong>
         <span>Submission Attempts / 15</span>
-        <strong>0.15</strong>
+        <strong>0.30</strong>
       </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         CAGE TIME
-         ===================================================== -->
-
-    <div class="fs-cage-header">
-
-      <div class="fs-average fs-average-left">
-        <span>AVG. CAGE TIME</span>
-        <strong>10:26</strong>
-        <small>Jackson</small>
-      </div>
-
-      <div class="fs-cage-center">
-        <span>Cage Time</span>
-      </div>
-
-      <div class="fs-average fs-average-right">
-        <span>AVG. CAGE TIME</span>
-        <strong>12:49</strong>
-        <small>Simon</small>
-      </div>
-
-    </div>
-
-
-    <div class="fs-cage-grid">
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Montel Jackson</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Raoni Barcelos</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Deiveson Figueiredo</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Daniel Marcos</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>0:18</strong>
-          <span>vs. Da'Mon Blackshear</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>3:42</strong>
-          <span>vs. Rani Yahya</span>
-        </div>
-
-      </div>
-
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Ricky Simon</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Adrian Yanez</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Raoni Barcelos</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Cameron Smotherman</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>3:58</strong>
-          <span>vs. Javid Basharat</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Vinicius Oliveira</span>
-        </div>
-
-      </div>
-
     </div>
 
   </div>
 </div>
-
 
 <style>
 .fight-stats-sleek {
@@ -7174,7 +6896,6 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
   <div class="fs-shell">
 
     <div class="fs-header">
-
       <div class="fs-fighter fs-fighter-left">
         <span class="fs-side-label">RED CORNER</span>
         <strong>Elves Brener</strong>
@@ -7189,28 +6910,19 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
         <span class="fs-side-label">BLUE CORNER</span>
         <strong>Josiah Harrell</strong>
       </div>
-
     </div>
 
-
-    <!-- =====================================================
-         STRIKING
-         ===================================================== -->
-
     <div class="fs-section">
-
-      <div class="fs-section-title">
-        <span>Striking</span>
-      </div>
+      <div class="fs-section-title"><span>Striking</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>5.22</strong>
+        <strong>4.76</strong>
         <span>Significant Strikes / Minute</span>
         <strong>2.32</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>6.52</strong>
+        <strong>5.86</strong>
         <span>Sig. Strikes Absorbed / Minute</span>
         <strong>10.94</strong>
       </div>
@@ -7226,28 +6938,13 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
         <span>Striking Defense</span>
         <strong>29%</strong>
       </div>
-
-      <div class="fs-stat-row">
-        <strong>1</strong>
-        <span>Knockdowns Landed · Last 5</span>
-        <strong>0</strong>
-      </div>
-
     </div>
 
-
-    <!-- =====================================================
-         GRAPPLING
-         ===================================================== -->
-
     <div class="fs-section fs-section-grappling">
-
-      <div class="fs-section-title">
-        <span>Grappling</span>
-      </div>
+      <div class="fs-section-title"><span>Grappling</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>1.11</strong>
+        <strong>0.99</strong>
         <span>Takedowns / 15 Minutes</span>
         <strong>0.00</strong>
       </div>
@@ -7265,113 +6962,14 @@ The tough part is deciding whether Jackson gets it done inside the distance or i
       </div>
 
       <div class="fs-stat-row">
-        <strong>1:30</strong>
-        <span>Control Time / 15 Minutes</span>
-        <strong>0:05</strong>
-      </div>
-
-      <div class="fs-stat-row">
         <strong>0.00</strong>
         <span>Submission Attempts / 15</span>
         <strong>0.00</strong>
       </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         CAGE TIME
-         ===================================================== -->
-
-    <div class="fs-cage-header">
-
-      <div class="fs-average fs-average-left">
-        <span>AVG. CAGE TIME</span>
-        <strong>12:25</strong>
-        <small>Brener</small>
-      </div>
-
-      <div class="fs-cage-center">
-        <span>Cage Time</span>
-      </div>
-
-      <div class="fs-average fs-average-right">
-        <span>AVG. CAGE TIME</span>
-        <strong>5:51</strong>
-        <small>Harrell</small>
-      </div>
-
-    </div>
-
-
-    <div class="fs-cage-grid">
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Elves Brener</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Esteban Ribovics</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>13:36</strong>
-          <span>vs. Joel Alvarez</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Myktybek Orolbai</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>4:01</strong>
-          <span>vs. Kaynan Kruschewsky</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>13:17</strong>
-          <span>vs. Guram Kutateladze</span>
-        </div>
-
-      </div>
-
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Josiah Harrell</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>3:01</strong>
-          <span>vs. Jacobe Smith</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>13:28</strong>
-          <span>vs. Bekmyrza Dosmatov</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Kegan Gennrich</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>3:25</strong>
-          <span>vs. Melvin Guillard</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>8:34</strong>
-          <span>vs. Quinton Parks Jr.</span>
-        </div>
-
-      </div>
-
     </div>
 
   </div>
 </div>
-
 
 <style>
 .fight-stats-sleek {
@@ -9304,7 +8902,6 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
   <div class="fs-shell">
 
     <div class="fs-header">
-
       <div class="fs-fighter fs-fighter-left">
         <span class="fs-side-label">RED CORNER</span>
         <strong>Rodolfo Bellato</strong>
@@ -9319,28 +8916,19 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
         <span class="fs-side-label">BLUE CORNER</span>
         <strong>Christian Edwards</strong>
       </div>
-
     </div>
 
-
-    <!-- =====================================================
-         STRIKING
-         ===================================================== -->
-
     <div class="fs-section">
-
-      <div class="fs-section-title">
-        <span>Striking</span>
-      </div>
+      <div class="fs-section-title"><span>Striking</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>5.44</strong>
+        <strong>5.37</strong>
         <span>Significant Strikes / Minute</span>
-        <strong>2.60</strong>
+        <strong>2.40</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>6.00</strong>
+        <strong>5.86</strong>
         <span>Sig. Strikes Absorbed / Minute</span>
         <strong>2.40</strong>
       </div>
@@ -9348,7 +8936,7 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
       <div class="fs-stat-row">
         <strong>60%</strong>
         <span>Striking Accuracy</span>
-        <strong>48%</strong>
+        <strong>50%</strong>
       </div>
 
       <div class="fs-stat-row">
@@ -9356,28 +8944,13 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
         <span>Striking Defense</span>
         <strong>55%</strong>
       </div>
-
-      <div class="fs-stat-row">
-        <strong>1</strong>
-        <span>Knockdowns Landed · Last 5</span>
-        <strong>0</strong>
-      </div>
-
     </div>
 
-
-    <!-- =====================================================
-         GRAPPLING
-         ===================================================== -->
-
     <div class="fs-section fs-section-grappling">
-
-      <div class="fs-section-title">
-        <span>Grappling</span>
-      </div>
+      <div class="fs-section-title"><span>Grappling</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>1.49</strong>
+        <strong>1.38</strong>
         <span>Takedowns / 15 Minutes</span>
         <strong>0.00</strong>
       </div>
@@ -9395,113 +8968,14 @@ It’s an interesting fight for a card of this caliber, but I’ll give a slight
       </div>
 
       <div class="fs-stat-row">
-        <strong>2:10</strong>
-        <span>Control Time / 15 Minutes</span>
-        <strong>1:17</strong>
-      </div>
-
-      <div class="fs-stat-row">
-        <strong>0.10</strong>
+        <strong>0.20</strong>
         <span>Submission Attempts / 15</span>
         <strong>0.00</strong>
       </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         CAGE TIME
-         ===================================================== -->
-
-    <div class="fs-cage-header">
-
-      <div class="fs-average fs-average-left">
-        <span>AVG. CAGE TIME</span>
-        <strong>9:22</strong>
-        <small>Bellato</small>
-      </div>
-
-      <div class="fs-cage-center">
-        <span>Cage Time</span>
-      </div>
-
-      <div class="fs-average fs-average-right">
-        <span>AVG. CAGE TIME</span>
-        <strong>12:38</strong>
-        <small>Edwards</small>
-      </div>
-
-    </div>
-
-
-    <div class="fs-cage-grid">
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Rodolfo Bellato</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>2:42</strong>
-          <span>vs. Luke Fernandez</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Navajo Stirling</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>4:59</strong>
-          <span>vs. Paul Craig</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Jimmy Crute</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>9:17</strong>
-          <span>vs. Ihor Potieria</span>
-        </div>
-
-      </div>
-
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Christian Edwards</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Modestas Bukauskas</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>9:22</strong>
-          <span>vs. Glendal Whitney</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>20:00</strong>
-          <span>vs. Luke Fernandez</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>2:38</strong>
-          <span>vs. Jake Collier</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>4:15</strong>
-          <span>vs. Jarome Hatch</span>
-        </div>
-
-      </div>
-
     </div>
 
   </div>
 </div>
-
 
 <style>
 .fight-stats-sleek {
@@ -11398,7 +10872,6 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
   <div class="fs-shell">
 
     <div class="fs-header">
-
       <div class="fs-fighter fs-fighter-left">
         <span class="fs-side-label">RED CORNER</span>
         <strong>Rodolfo Vieira</strong>
@@ -11413,28 +10886,19 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
         <span class="fs-side-label">BLUE CORNER</span>
         <strong>Robert Bryczek</strong>
       </div>
-
     </div>
 
-
-    <!-- =====================================================
-         STRIKING
-         ===================================================== -->
-
     <div class="fs-section">
-
-      <div class="fs-section-title">
-        <span>Striking</span>
-      </div>
+      <div class="fs-section-title"><span>Striking</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>3.46</strong>
+        <strong>3.43</strong>
         <span>Significant Strikes / Minute</span>
         <strong>2.80</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>4.04</strong>
+        <strong>4.28</strong>
         <span>Sig. Strikes Absorbed / Minute</span>
         <strong>4.51</strong>
       </div>
@@ -11442,7 +10906,7 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
       <div class="fs-stat-row">
         <strong>54%</strong>
         <span>Striking Accuracy</span>
-        <strong>38%</strong>
+        <strong>37%</strong>
       </div>
 
       <div class="fs-stat-row">
@@ -11450,30 +10914,15 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
         <span>Striking Defense</span>
         <strong>55%</strong>
       </div>
-
-      <div class="fs-stat-row">
-        <strong>1</strong>
-        <span>Knockdowns Landed · Last 5</span>
-        <strong>1</strong>
-      </div>
-
     </div>
 
-
-    <!-- =====================================================
-         GRAPPLING
-         ===================================================== -->
-
     <div class="fs-section fs-section-grappling">
-
-      <div class="fs-section-title">
-        <span>Grappling</span>
-      </div>
+      <div class="fs-section-title"><span>Grappling</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>2.52</strong>
+        <strong>2.87</strong>
         <span>Takedowns / 15 Minutes</span>
-        <strong>0.35</strong>
+        <strong>0.36</strong>
       </div>
 
       <div class="fs-stat-row">
@@ -11489,113 +10938,14 @@ If it does come down to a decision, I think Rodolfo’s volume, power, and full 
       </div>
 
       <div class="fs-stat-row">
-        <strong>3:40</strong>
-        <span>Control Time / 15 Minutes</span>
-        <strong>0:39</strong>
-      </div>
-
-      <div class="fs-stat-row">
-        <strong>0.69</strong>
+        <strong>0.90</strong>
         <span>Submission Attempts / 15</span>
-        <strong>0.37</strong>
+        <strong>0.40</strong>
       </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         CAGE TIME
-         ===================================================== -->
-
-    <div class="fs-cage-header">
-
-      <div class="fs-average fs-average-left">
-        <span>AVG. CAGE TIME</span>
-        <strong>11:26</strong>
-        <small>Vieira</small>
-      </div>
-
-      <div class="fs-cage-center">
-        <span>Cage Time</span>
-      </div>
-
-      <div class="fs-average fs-average-right">
-        <span>AVG. CAGE TIME</span>
-        <strong>11:29</strong>
-        <small>Bryczek</small>
-      </div>
-
-    </div>
-
-
-    <div class="fs-cage-grid">
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Rodolfo Vieira</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Eric McConico</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>12:24</strong>
-          <span>vs. Bo Nickal</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Tresean Gore</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Andre Petroski</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>4:48</strong>
-          <span>vs. Armen Petrosyan</span>
-        </div>
-
-      </div>
-
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Robert Bryczek</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Cam Rowston</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>11:43</strong>
-          <span>vs. Brad Tavares</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Ihor Potieria</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>0:56</strong>
-          <span>vs. Samuel Kristofic</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>2:41</strong>
-          <span>vs. Lee Chadwick</span>
-        </div>
-
-      </div>
-
     </div>
 
   </div>
 </div>
-
 
 <style>
 .fight-stats-sleek {
@@ -13488,7 +12838,6 @@ I have no real interest in this fight and don’t have a strong lean either way.
   <div class="fs-shell">
 
     <div class="fs-header">
-
       <div class="fs-fighter fs-fighter-left">
         <span class="fs-side-label">RED CORNER</span>
         <strong>Brady Hiestand</strong>
@@ -13503,36 +12852,27 @@ I have no real interest in this fight and don’t have a strong lean either way.
         <span class="fs-side-label">BLUE CORNER</span>
         <strong>Rinya Nakamura</strong>
       </div>
-
     </div>
 
-
-    <!-- =====================================================
-         STRIKING
-         ===================================================== -->
-
     <div class="fs-section">
-
-      <div class="fs-section-title">
-        <span>Striking</span>
-      </div>
+      <div class="fs-section-title"><span>Striking</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>2.63</strong>
+        <strong>2.70</strong>
         <span>Significant Strikes / Minute</span>
-        <strong>2.49</strong>
+        <strong>3.27</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>3.65</strong>
+        <strong>3.75</strong>
         <span>Sig. Strikes Absorbed / Minute</span>
-        <strong>1.45</strong>
+        <strong>1.72</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>51%</strong>
+        <strong>50%</strong>
         <span>Striking Accuracy</span>
-        <strong>53%</strong>
+        <strong>52%</strong>
       </div>
 
       <div class="fs-stat-row">
@@ -13540,30 +12880,15 @@ I have no real interest in this fight and don’t have a strong lean either way.
         <span>Striking Defense</span>
         <strong>63%</strong>
       </div>
-
-      <div class="fs-stat-row">
-        <strong>0</strong>
-        <span>Knockdowns Landed · Last 5</span>
-        <strong>1</strong>
-      </div>
-
     </div>
 
-
-    <!-- =====================================================
-         GRAPPLING
-         ===================================================== -->
-
     <div class="fs-section fs-section-grappling">
-
-      <div class="fs-section-title">
-        <span>Grappling</span>
-      </div>
+      <div class="fs-section-title"><span>Grappling</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>4.67</strong>
+        <strong>4.80</strong>
         <span>Takedowns / 15 Minutes</span>
-        <strong>1.93</strong>
+        <strong>2.58</strong>
       </div>
 
       <div class="fs-stat-row">
@@ -13579,113 +12904,14 @@ I have no real interest in this fight and don’t have a strong lean either way.
       </div>
 
       <div class="fs-stat-row">
-        <strong>6:43</strong>
-        <span>Control Time / 15 Minutes</span>
-        <strong>3:35</strong>
-      </div>
-
-      <div class="fs-stat-row">
-        <strong>1.05</strong>
+        <strong>1.10</strong>
         <span>Submission Attempts / 15</span>
-        <strong>1.34</strong>
+        <strong>1.40</strong>
       </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         CAGE TIME
-         ===================================================== -->
-
-    <div class="fs-cage-header">
-
-      <div class="fs-average fs-average-left">
-        <span>AVG. CAGE TIME</span>
-        <strong>12:59</strong>
-        <small>Hiestand</small>
-      </div>
-
-      <div class="fs-cage-center">
-        <span>Cage Time</span>
-      </div>
-
-      <div class="fs-average fs-average-right">
-        <span>AVG. CAGE TIME</span>
-        <strong>8:24</strong>
-        <small>Nakamura</small>
-      </div>
-
-    </div>
-
-
-    <div class="fs-cage-grid">
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Brady Hiestand</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>11:52</strong>
-          <span>vs. Garrett Armfield</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>14:21</strong>
-          <span>vs. Batgerel Danaa</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Fernie Garcia</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Ricky Turcios</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>3:20</strong>
-          <span>vs. Vince Murdock</span>
-        </div>
-
-      </div>
-
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Rinya Nakamura</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>1:02</strong>
-          <span>vs. Nathan Fletcher</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Muin Gafurov</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Carlos Vera</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Fernie Garcia</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>0:33</strong>
-          <span>vs. Toshiomi Kazama</span>
-        </div>
-
-      </div>
-
     </div>
 
   </div>
 </div>
-
 
 <style>
 .fight-stats-sleek {
@@ -14303,6 +13529,8 @@ This could potentially be Fight of the Night in my eyes. A lot of it really depe
 
 ## Melissa Amaya vs. Tina Black
 
+<div class="ufcstats-debut-note"><strong>UFCStats</strong><span>Melissa Amaya and Tina Black: UFC debuts — no UFC bout statistics yet.</span></div>
+
 For the two TUF Finale fights, I have very little info. Tina Black looks to be the better, more technical fighter so I'd imagine her opponent is gonna have to make the fight ugly. 
 
 <section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Tina%20Black%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%7D">
@@ -14313,6 +13541,8 @@ For the two TUF Finale fights, I have very little info. Tina Black looks to be t
 </section>
 
 ## Mahammadali Osmanli vs. Ilimbek Akylbek
+
+<div class="ufcstats-debut-note"><strong>UFCStats</strong><span>Mahammadali Osmanli and Ilimbek Akylbek: UFC debuts — no UFC bout statistics yet.</span></div>
 
 I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence for me to pick him. 
 
@@ -15680,7 +14910,6 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
   <div class="fs-shell">
 
     <div class="fs-header">
-
       <div class="fs-fighter fs-fighter-left">
         <span class="fs-side-label">RED CORNER</span>
         <strong>Luis Hernandez</strong>
@@ -15695,165 +14924,67 @@ I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence f
         <span class="fs-side-label">BLUE CORNER</span>
         <strong>Sedriques Dumas</strong>
       </div>
-
     </div>
 
-
     <div class="fs-section">
-
-      <div class="fs-section-title">
-        <span>Striking</span>
-      </div>
+      <div class="fs-section-title"><span>Striking</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>11.14</strong>
+        <strong>—</strong>
         <span>Significant Strikes / Minute</span>
         <strong>1.97</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>6.32</strong>
+        <strong>—</strong>
         <span>Sig. Strikes Absorbed / Minute</span>
         <strong>2.64</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>58%</strong>
+        <strong>—</strong>
         <span>Striking Accuracy</span>
         <strong>44%</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>0</strong>
-        <span>Total Knockdowns Landed</span>
-        <strong>0</strong>
+        <strong>—</strong>
+        <span>Striking Defense</span>
+        <strong>53%</strong>
       </div>
-
     </div>
-
 
     <div class="fs-section fs-section-grappling">
-
-      <div class="fs-section-title">
-        <span>Grappling</span>
-      </div>
+      <div class="fs-section-title"><span>Grappling</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>1:37</strong>
-        <span>Control Time</span>
-        <strong>23:38</strong>
+        <strong>—</strong>
+        <span>Takedowns / 15 Minutes</span>
+        <strong>1.30</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>1</strong>
-        <span>Takedowns Landed</span>
-        <strong>6</strong>
+        <strong>—</strong>
+        <span>Takedown Accuracy</span>
+        <strong>31%</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>1</strong>
-        <span>Takedowns Defended</span>
-        <strong>6</strong>
+        <strong>—</strong>
+        <span>Takedown Defense</span>
+        <strong>33%</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>1</strong>
-        <span>Total Submission Attempts</span>
-        <strong>1</strong>
+        <strong>—</strong>
+        <span>Submission Attempts / 15</span>
+        <strong>0.20</strong>
       </div>
-
     </div>
-
-
-    <div class="fs-cage-header">
-
-      <div class="fs-average fs-average-left">
-        <span>AVG. CAGE TIME</span>
-        <strong>6:10</strong>
-        <small>Hernandez</small>
-      </div>
-
-      <div class="fs-cage-center">
-        <span>Recent Cage Time</span>
-      </div>
-
-      <div class="fs-average fs-average-right">
-        <span>AVG. CAGE TIME</span>
-        <strong>5:28</strong>
-        <small>Dumas</small>
-      </div>
-
-    </div>
-
-
-    <div class="fs-cage-grid">
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Luis Hernandez</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>6:01</strong>
-          <span>vs. Hugo Guillon</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>13:13</strong>
-          <span>vs. Paulo Machado</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>5:49</strong>
-          <span>vs. Miles Hunsinger</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>2:52</strong>
-          <span>vs. Joaquin Campos</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>2:56</strong>
-          <span>vs. Nick Lancaster</span>
-        </div>
-
-      </div>
-
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Sedriques Dumas</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>2:14</strong>
-          <span>vs. Jackson McVey</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>6:25</strong>
-          <span>vs. Donte Johnson</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>0:51</strong>
-          <span>vs. Zach Reese</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>2:49</strong>
-          <span>vs. Michal Oleksiejczuk</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Denis Tiuliulin</span>
-        </div>
-
-      </div>
-
-    </div>
+    <div class="fs-source-note">Luis Hernandez is making his UFC debut; UFCStats has no UFC bout sample for him yet.</div>
 
   </div>
 </div>
-
 
 <style>
 .fight-stats-sleek {
@@ -16292,7 +15423,7 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
 </section>
 ---
 
-## Ailin Perez vs. Norma Dumont
+## Norma Dumont vs. Ailin Perez
 
 <section class="article-html-visual">
 <div class="fight-compare-sleek">
@@ -17618,7 +16749,6 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
   <div class="fs-shell">
 
     <div class="fs-header">
-
       <div class="fs-fighter fs-fighter-left">
         <span class="fs-side-label">RED CORNER</span>
         <strong>Norma Dumont</strong>
@@ -17633,36 +16763,27 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
         <span class="fs-side-label">BLUE CORNER</span>
         <strong>Ailin Perez</strong>
       </div>
-
     </div>
 
-
-    <!-- =====================================================
-         STRIKING
-         ===================================================== -->
-
     <div class="fs-section">
-
-      <div class="fs-section-title">
-        <span>Striking</span>
-      </div>
+      <div class="fs-section-title"><span>Striking</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>4.29</strong>
+        <strong>3.85</strong>
         <span>Significant Strikes / Minute</span>
-        <strong>2.85</strong>
+        <strong>2.88</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>2.63</strong>
+        <strong>2.33</strong>
         <span>Sig. Strikes Absorbed / Minute</span>
-        <strong>1.68</strong>
+        <strong>1.58</strong>
       </div>
 
       <div class="fs-stat-row">
-        <strong>52%</strong>
+        <strong>50%</strong>
         <span>Striking Accuracy</span>
-        <strong>57%</strong>
+        <strong>56%</strong>
       </div>
 
       <div class="fs-stat-row">
@@ -17670,30 +16791,15 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
         <span>Striking Defense</span>
         <strong>56%</strong>
       </div>
-
-      <div class="fs-stat-row">
-        <strong>0</strong>
-        <span>Knockdowns Landed · Last 5</span>
-        <strong>1</strong>
-      </div>
-
     </div>
 
-
-    <!-- =====================================================
-         GRAPPLING
-         ===================================================== -->
-
     <div class="fs-section fs-section-grappling">
-
-      <div class="fs-section-title">
-        <span>Grappling</span>
-      </div>
+      <div class="fs-section-title"><span>Grappling</span></div>
 
       <div class="fs-stat-row featured">
-        <strong>1.12</strong>
+        <strong>1.43</strong>
         <span>Takedowns / 15 Minutes</span>
-        <strong>4.56</strong>
+        <strong>4.90</strong>
       </div>
 
       <div class="fs-stat-row">
@@ -17709,113 +16815,14 @@ That being said, the dude lost to Jackson McVey. The height and reach advantage 
       </div>
 
       <div class="fs-stat-row">
-        <strong>3:14</strong>
-        <span>Control Time / 15 Minutes</span>
-        <strong>6:13</strong>
-      </div>
-
-      <div class="fs-stat-row">
         <strong>0.00</strong>
         <span>Submission Attempts / 15</span>
-        <strong>0.22</strong>
+        <strong>0.20</strong>
       </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         CAGE TIME
-         ===================================================== -->
-
-    <div class="fs-cage-header">
-
-      <div class="fs-average fs-average-left">
-        <span>AVG. CAGE TIME</span>
-        <strong>14:57</strong>
-        <small>Dumont</small>
-      </div>
-
-      <div class="fs-cage-center">
-        <span>Cage Time</span>
-      </div>
-
-      <div class="fs-average fs-average-right">
-        <span>AVG. CAGE TIME</span>
-        <strong>12:44</strong>
-        <small>Perez</small>
-      </div>
-
-    </div>
-
-
-    <div class="fs-cage-grid">
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Norma Dumont</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Joselyne Edwards</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Ketlen Vieira</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Irene Aldana</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Germaine de Randamie</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Chelsea Chandler</span>
-        </div>
-
-      </div>
-
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Ailin Perez</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Macy Chiasson</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Karol Rosa</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>3:52</strong>
-          <span>vs. Darya Zheleznyakova</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Joselyne Edwards</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Lucie Pudilova</span>
-        </div>
-
-      </div>
-
     </div>
 
   </div>
 </div>
-
 
 <style>
 .fight-stats-sleek {
@@ -19710,7 +18717,6 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
   <div class="fs-shell">
 
     <div class="fs-header">
-
       <div class="fs-fighter fs-fighter-left">
         <span class="fs-side-label">RED CORNER</span>
         <strong>Raul Rosas Jr.</strong>
@@ -19725,19 +18731,10 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
         <span class="fs-side-label">BLUE CORNER</span>
         <strong>Raoni Barcelos</strong>
       </div>
-
     </div>
 
-
-    <!-- =====================================================
-         STRIKING
-         ===================================================== -->
-
     <div class="fs-section">
-
-      <div class="fs-section-title">
-        <span>Striking</span>
-      </div>
+      <div class="fs-section-title"><span>Striking</span></div>
 
       <div class="fs-stat-row featured">
         <strong>1.34</strong>
@@ -19762,25 +18759,10 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
         <span>Striking Defense</span>
         <strong>60%</strong>
       </div>
-
-      <div class="fs-stat-row">
-        <strong>0</strong>
-        <span>Knockdowns Landed · Last 5</span>
-        <strong>0</strong>
-      </div>
-
     </div>
 
-
-    <!-- =====================================================
-         GRAPPLING
-         ===================================================== -->
-
     <div class="fs-section fs-section-grappling">
-
-      <div class="fs-section-title">
-        <span>Grappling</span>
-      </div>
+      <div class="fs-section-title"><span>Grappling</span></div>
 
       <div class="fs-stat-row featured">
         <strong>6.10</strong>
@@ -19801,113 +18783,14 @@ I think the control time will be significantly in Perez’s favor, if she doesn�
       </div>
 
       <div class="fs-stat-row">
-        <strong>3:28</strong>
-        <span>Control Time / 15 Minutes</span>
-        <strong>4:23</strong>
-      </div>
-
-      <div class="fs-stat-row">
-        <strong>0.9</strong>
+        <strong>0.90</strong>
         <span>Submission Attempts / 15</span>
-        <strong>0.7</strong>
+        <strong>0.70</strong>
       </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         CAGE TIME
-         ===================================================== -->
-
-    <div class="fs-cage-header">
-
-      <div class="fs-average fs-average-left">
-        <span>AVG. CAGE TIME</span>
-        <strong>10:42</strong>
-        <small>Rosas Jr.</small>
-      </div>
-
-      <div class="fs-cage-center">
-        <span>Cage Time</span>
-      </div>
-
-      <div class="fs-average fs-average-right">
-        <span>AVG. CAGE TIME</span>
-        <strong>13:47</strong>
-        <small>Barcelos</small>
-      </div>
-
-    </div>
-
-
-    <div class="fs-cage-grid">
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Raul Rosas Jr.</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Rob Font</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Vince Morales</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Aoriqileng</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>7:22</strong>
-          <span>vs. Ricky Turcios</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>0:54</strong>
-          <span>vs. Terrence Mitchell</span>
-        </div>
-
-      </div>
-
-
-      <div class="fs-cage-column">
-        <div class="fs-mobile-column-label"><span>CAGE TIME</span><strong>Raoni Barcelos</strong></div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Montel Jackson</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Ricky Simon</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Cody Garbrandt</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>15:00</strong>
-          <span>vs. Payton Talbott</span>
-        </div>
-
-        <div class="fs-cage-row">
-          <strong>12:04</strong>
-          <span>vs. Cristian Quinonez</span>
-        </div>
-
-      </div>
-
     </div>
 
   </div>
 </div>
-
 
 <style>
 .fight-stats-sleek {
