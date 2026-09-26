@@ -288,6 +288,76 @@ function plainText(value) {
         .trim();
 }
 
+
+function sanitizedInlineHtml(value) {
+    let html = String(value || "")
+        .replace(/<!--[\s\S]*?-->/g, " ")
+        .replace(/<script[\s\S]*?<\/script>/gi, " ")
+        .replace(/<style[\s\S]*?<\/style>/gi, " ")
+        .replace(/<a\b[^>]*>/gi, "")
+        .replace(/<\/a>/gi, "")
+        .replace(/<b\b[^>]*>/gi, "<strong>")
+        .replace(/<\/b>/gi, "</strong>")
+        .replace(/<i\b[^>]*>/gi, "<em>")
+        .replace(/<\/i>/gi, "</em>")
+        .replace(/<(strong|em)\b[^>]*>/gi, "<$1>")
+        .replace(/<br\b[^>]*\/?>/gi, "<br>")
+        .replace(/<(?!\/?(?:strong|em|br)\b)[^>]+>/gi, "");
+
+    const text = plainText(html);
+    if (!text) return "";
+
+    return html
+        .replace(/\s+/g, " ")
+        .replace(/>\s+</g, "><")
+        .trim();
+}
+
+function articleContextBlocksFromHtml(html, fallbackText = "") {
+    const blocks = [];
+    const pattern = /<(h2|h3|p|li)\b[^>]*>([\s\S]*?)<\/\1>/gi;
+    let total = 0;
+
+    for (const match of html.matchAll(pattern)) {
+        const tag = match[1].toLowerCase();
+        const raw = match[2];
+        const text = broadcastContextText(raw);
+        const minimum = tag === "h2" || tag === "h3" ? 10 : 45;
+
+        if (
+            text.length < minimum ||
+            /subscribe|sign up|newsletter|advertisement|click here|follow us|cookie|privacy/i.test(text)
+        ) {
+            continue;
+        }
+
+        const remaining = ARTICLE_CONTEXT_LIMIT - total;
+        if (remaining < 40) break;
+
+        let blockText = text;
+        let rich = sanitizedInlineHtml(raw);
+
+        if (blockText.length > remaining) {
+            blockText = truncate(blockText, remaining);
+            rich = "";
+        }
+
+        blocks.push({
+            type: tag === "li" ? "li" : tag,
+            html: rich || blockText
+        });
+        total += blockText.length;
+
+        if (total >= ARTICLE_CONTEXT_LIMIT) break;
+    }
+
+    if (!blocks.length && fallbackText) {
+        blocks.push({ type: "p", html: fallbackText });
+    }
+
+    return blocks;
+}
+
 function truncate(value, maximumLength) {
     if (value.length <= maximumLength) return value;
 
@@ -578,12 +648,18 @@ async function fetchArticleContext(story) {
             redirect: "follow",
             signal: controller.signal
         });
-        if (!response.ok) return "";
+        if (!response.ok) return { text: "", blocks: [] };
         const contentType = response.headers.get("content-type") || "";
-        if (contentType && !contentType.includes("html")) return "";
-        return articleContextFromHtml(await response.text(), story.title);
+        if (contentType && !contentType.includes("html")) return { text: "", blocks: [] };
+
+        const html = await response.text();
+        const text = articleContextFromHtml(html, story.title);
+        return {
+            text,
+            blocks: articleContextBlocksFromHtml(html, text)
+        };
     } catch {
-        return "";
+        return { text: "", blocks: [] };
     } finally {
         clearTimeout(timeout);
     }
@@ -592,11 +668,21 @@ async function fetchArticleContext(story) {
 async function enrichStoryContexts(stories) {
     const targets = stories.slice(0, 18);
     const contexts = await mapWithConcurrency(targets, ARTICLE_CONTEXT_CONCURRENCY, fetchArticleContext);
-    contexts.forEach((context, index) => {
+
+    contexts.forEach((payload, index) => {
         const story = targets[index];
         if (!story) return;
-        if (context && context.toLowerCase() !== String(story.excerpt || "").toLowerCase()) story.context = context;
-        else if (story.excerpt) story.context = story.excerpt;
+
+        const context = payload?.text || "";
+        if (context && context.toLowerCase() !== String(story.excerpt || "").toLowerCase()) {
+            story.context = context;
+        } else if (story.excerpt) {
+            story.context = story.excerpt;
+        }
+
+        if (Array.isArray(payload?.blocks) && payload.blocks.length) {
+            story.contextBlocks = payload.blocks;
+        }
     });
 }
 

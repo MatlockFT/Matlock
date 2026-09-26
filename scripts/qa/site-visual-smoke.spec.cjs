@@ -201,6 +201,14 @@ test.describe('Broadcast control program monitor', () => {
     await expect(frame.locator('[data-stage]')).toHaveClass(/split-desk/, { timeout: 30000 });
     await expect(frame.locator('[data-video-shell]')).toBeVisible({ timeout: 30000 });
     await expect(frame.locator('.article-reader-card')).toBeVisible({ timeout: 30000 });
+    await expect(frame.locator('.article-reader-body')).toBeVisible({ timeout: 30000 });
+    const readerStyle = await frame.locator('.article-reader-card').evaluate(node => {
+      const style = getComputedStyle(node);
+      return { background: style.backgroundColor, color: style.color };
+    });
+    expect(readerStyle.background).not.toBe('rgb(243, 240, 232)');
+    expect(readerStyle.background).not.toBe('rgb(255, 255, 255)');
+    expect(readerStyle.color).not.toBe('rgb(18, 18, 18)');
     await expect(frame.locator('[data-title]')).not.toHaveText('', { timeout: 30000 });
 
     const width = page.locator('[data-path="visual.videoWidth"]');

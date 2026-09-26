@@ -97,7 +97,7 @@ function newsSlides(){
     .filter(s=>!isHidden("news",s))
     .filter(s=>{const k=s.id||s.url;if(seen.has(k))return false;seen.add(k);return true})
     .slice(0,Math.max(0,Number(cfg().news.maxItems||16)))
-    .map(s=>({type:"news",id:itemId("news",s),title:s.title,context:s._context,excerpt:cleanContext(s.excerpt||""),source:s.source||"Combat Sports",publishedAt:s.publishedAt,image:imageFor(s),url:s.url,relatedSources:s.relatedSources||[]}));
+    .map(s=>({type:"news",id:itemId("news",s),title:s.title,context:s._context,contextBlocks:Array.isArray(s.contextBlocks)?s.contextBlocks:[],excerpt:cleanContext(s.excerpt||""),source:s.source||"Combat Sports",publishedAt:s.publishedAt,image:imageFor(s),url:s.url,relatedSources:s.relatedSources||[]}));
 }
 function videoSlides(){
   if(!cfg().modules.video)return[];
@@ -194,22 +194,72 @@ function articleReaderText(slide){
   const parts=[cleanContext(slide.context||""),cleanContext(slide.excerpt||"")].filter(Boolean);
   return [...new Set(parts)].join(" ");
 }
-function articleReaderCards(slide){
-  const text=articleReaderText(slide);
-  if(!text)return["No additional story context is available. Follow "+(slide.source||"the source")+" for the full report."];
-  const max=Math.max(220,Math.min(620,Number(cfg().visual.articleCharsPerCard||340)));
+function safeReaderInline(value){
+  const template=document.createElement("template");template.innerHTML=String(value||"");
+  const allowed=new Set(["STRONG","EM","BR"]);
+  const clean=node=>{
+    let html="";
+    node.childNodes.forEach(child=>{
+      if(child.nodeType===Node.TEXT_NODE){html+=escapeHtml(child.textContent||"");return}
+      if(child.nodeType!==Node.ELEMENT_NODE)return;
+      const tag=child.tagName;
+      if(tag==="BR"){html+="<br>";return}
+      const inside=clean(child);
+      if(allowed.has(tag))html+="<"+tag.toLowerCase()+">"+inside+"</"+tag.toLowerCase()+">";
+      else html+=inside;
+    });
+    return html;
+  };
+  return clean(template.content);
+}
+function readerPlain(value){
+  const div=document.createElement("div");div.innerHTML=String(value||"");return (div.textContent||"").replace(/\s+/g," ").trim();
+}
+function readerBlockHtml(block){
+  const type=["p","h2","h3","li"].includes(block?.type)?block.type:"p",inline=safeReaderInline(block?.html||"");
+  if(!inline)return"";
+  if(type==="li")return'<div class="article-reader-list-item"><span>•</span><p>'+inline+"</p></div>";
+  if(type==="h2"||type==="h3")return"<"+type+">"+inline+"</"+type+">";
+  return"<p>"+inline+"</p>";
+}
+function plainReaderCards(text,max){
+  if(!text)return[];
   const sentences=text.split(/(?<=[.!?])\s+(?=[A-Z0-9“"'(])/).map(x=>x.trim()).filter(Boolean);
   const cards=[];let current="";
   for(const sentence of sentences){
-    if(current&&current.length+1+sentence.length>max){cards.push(current);current=sentence}
+    if(current&&current.length+1+sentence.length>max){cards.push({html:"<p>"+escapeHtml(current)+"</p>"});current=sentence}
     else current=current?current+" "+sentence:sentence;
   }
-  if(current)cards.push(current);
-  return cards.length?cards:[text.slice(0,max)];
+  if(current)cards.push({html:"<p>"+escapeHtml(current)+"</p>"});
+  return cards.length?cards:[{html:"<p>"+escapeHtml(text.slice(0,max))+"</p>"}];
+}
+function articleReaderCards(slide){
+  const max=Math.max(220,Math.min(620,Number(cfg().visual.articleCharsPerCard||340)));
+  const sourceBlocks=Array.isArray(slide.contextBlocks)?slide.contextBlocks.filter(Boolean):[];
+  if(sourceBlocks.length){
+    const cards=[];let html="",count=0;
+    const flush=()=>{if(html){cards.push({html});html="";count=0}};
+    for(const block of sourceBlocks){
+      const blockHtml=readerBlockHtml(block);if(!blockHtml)continue;
+      const plain=readerPlain(blockHtml);if(!plain)continue;
+      if(plain.length>max){
+        flush();
+        cards.push(...plainReaderCards(plain,max));
+        continue;
+      }
+      if(html&&count+plain.length>max)flush();
+      html+=blockHtml;count+=plain.length;
+    }
+    flush();
+    if(cards.length)return cards;
+  }
+  const text=articleReaderText(slide);
+  if(!text)return[{html:"<p>No additional story context is available. Follow "+escapeHtml(slide.source||"the source")+" for the full report.</p>"}];
+  return plainReaderCards(text,max);
 }
 function drawArticleCard(slide,cards,cardIndex){
-  const body=cards[cardIndex]||"";
-  els.context.innerHTML='<div class="article-reader-card"><div class="article-reader-label">'+escapeHtml(slide.type==="event"?"EVENT BRIEF":"STORY")+'</div><p>'+escapeHtml(body)+'</p><div class="article-reader-page">CARD '+(cardIndex+1)+' / '+cards.length+'</div><div class="article-reader-source">'+escapeHtml(slide.source||"Combat Sports")+'</div></div>';
+  const body=cards[cardIndex]?.html||"";
+  els.context.innerHTML='<div class="article-reader-card"><div class="article-reader-label">'+escapeHtml(slide.type==="event"?"EVENT BRIEF":"STORY")+'</div><div class="article-reader-body">'+body+'</div><div class="article-reader-page">CARD '+(cardIndex+1)+' / '+cards.length+'</div><div class="article-reader-source">'+escapeHtml(slide.source||"Combat Sports")+'</div></div>';
 }
 function runArticleCards(slide){
   const cards=articleReaderCards(slide),pace=Math.max(5,Math.min(30,Number(cfg().visual.articleCardSeconds||9)))*1000;
@@ -315,7 +365,7 @@ function advance(){if(!slides.length||transitioning)return;const s=slides[index%
 function resolveForce(ref){
   if(!ref)return null;
   if(ref.type==="custom"&&ref.item)return{...ref.item,type:"custom",id:"custom-"+Date.now()};
-  if(ref.type==="news"){const all=[newsCache?.topStory,...(newsCache?.stories||[])].filter(Boolean),x=all.find(item=>itemId("news",item)===ref.id);if(!x)return null;return{type:"news",id:itemId("news",x),title:x.title,context:bestNewsContext(x),excerpt:cleanContext(x.excerpt||""),source:x.source||"Combat Sports",publishedAt:x.publishedAt,image:imageFor(x),relatedSources:x.relatedSources||[]}}
+  if(ref.type==="news"){const all=[newsCache?.topStory,...(newsCache?.stories||[])].filter(Boolean),x=all.find(item=>itemId("news",item)===ref.id);if(!x)return null;return{type:"news",id:itemId("news",x),title:x.title,context:bestNewsContext(x),contextBlocks:Array.isArray(x.contextBlocks)?x.contextBlocks:[],excerpt:cleanContext(x.excerpt||""),source:x.source||"Combat Sports",publishedAt:x.publishedAt,image:imageFor(x),relatedSources:x.relatedSources||[]}}
   if(ref.type==="video"){const x=(videoCache?.videos||[]).find(item=>itemId("video",item)===ref.id);if(!x)return null;return{type:"video",id:x.videoId,title:x.title,source:x.channel||"YouTube",publishedAt:x.publishedAt,image:x.thumbnail||"",videoId:x.videoId,durationSeconds:Number(x.durationSeconds||0)}}
   if(ref.type==="event"){const x=eventCache.find(item=>itemId("event",item)===ref.id);if(!x)return null;return{type:"event",id:itemId("event",x),title:scalar(x.title)||scalar(x.promotion)||"Upcoming Event",source:scalar(x.promotion)||"MMA",image:cfg().events.usePosters?(scalar(x.poster_url)||""):"",event:x,context:eventFacts(x)}}
   return null;

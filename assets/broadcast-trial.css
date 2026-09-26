@@ -96,3 +96,30 @@ h1{margin:0 0 25px;font-family:Georgia,"Times New Roman",serif;font-size:42px;li
 .split-video-empty{position:absolute;inset:0;display:grid;place-content:center;text-align:center;gap:10px;background:radial-gradient(circle at 50% 40%,#1a1a1a,#050505 72%);color:#8d8981}
 .split-video-empty strong{font:700 30px/1 "Gobold",Arial,sans-serif;letter-spacing:.08em;color:#e8e4db}
 .split-video-empty span{font-size:16px}
+
+/* Dark editorial article reader */
+.article-reader-card{
+  position:relative;
+  background:linear-gradient(180deg,#111317 0%,#0c0d10 100%);
+  color:#e9e6df;
+  border:1px solid #292c31;
+  box-shadow:inset 3px 0 0 rgba(242,139,37,.82),0 16px 40px rgba(0,0,0,.24);
+}
+.article-reader-card:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.025),transparent 22%);opacity:.8}
+.article-reader-body{position:relative;z-index:1;min-height:0;overflow:hidden}
+.article-reader-body p{margin:0 0 15px;font-family:Georgia,"Times New Roman",serif;font-size:21px;line-height:1.5;letter-spacing:-.004em;color:#ddd9d1}
+.article-reader-body p:last-child{margin-bottom:0}
+.article-reader-body h2,.article-reader-body h3{margin:0 0 12px;color:#f4f0e7}
+.article-reader-body h2{font:700 19px/1.18 "Gobold",Arial,sans-serif;letter-spacing:.025em;text-transform:uppercase}
+.article-reader-body h3{font:700 17px/1.22 Georgia,"Times New Roman",serif}
+.article-reader-body strong{color:#fff;font-weight:700}
+.article-reader-body em{color:#c8c3ba;font-style:italic}
+.article-reader-body br{display:block;content:"";margin-top:7px}
+.article-reader-list-item{display:grid;grid-template-columns:12px 1fr;gap:9px;align-items:start;margin:0 0 12px}
+.article-reader-list-item>span{color:var(--accent);font-size:14px;line-height:1.65}
+.article-reader-list-item p{margin:0}
+.article-reader-card .article-reader-label{color:var(--accent);position:relative;z-index:1}
+.article-reader-card .article-reader-page{color:#817c73;position:relative;z-index:1;border-top:1px solid #25282c;margin-top:auto}
+.article-reader-card .article-reader-source{color:#9a958c;position:relative;z-index:1}
+.stage.split-desk.event-reader .story-context .article-reader-card{background:linear-gradient(180deg,#111317,#0c0d10);color:#e9e6df;border-color:#292c31}
+.stage.split-desk.event-reader .article-reader-body p{font-family:Arial,Helvetica,sans-serif;font-size:19px;line-height:1.48;color:#d8d4cc}
