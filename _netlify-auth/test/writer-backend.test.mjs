@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { allowedPath, validateWriteBody } from '../netlify/functions/writer-github.mjs';
+import { parseUfcStatsProfile } from '../netlify/functions/writer-fighter.mjs';
 import {
   ACTIVE_UPLOAD_TTL_MS,
   COMPLETE_STATUS_TTL_MS,
@@ -95,4 +96,47 @@ test('Media status cleanup parsing and TTLs are deterministic', () => {
 
 test('Asset names are reduced to release-safe characters', () => {
   assert.equal(sanitizeAssetName('  weird / fight clip (1).mp4  '), 'weird-fight-clip-1-.mp4');
+});
+
+
+test('UFCStats fighter parser extracts live career metrics and recent form', () => {
+  const id = 'fe2babf95de24fb1';
+  const html = `
+    <span class="b-content__title-highlight">Raul Rosas Jr.</span>
+    <span class="b-content__title-record">Record: 13-1-0</span>
+    <li><i class="b-list__box-item-title">Height:</i> 5' 9"</li>
+    <li><i class="b-list__box-item-title">Reach:</i> 67"</li>
+    <li><i class="b-list__box-item-title">STANCE:</i> Southpaw</li>
+    <li><i class="b-list__box-item-title">DOB:</i> Oct 08, 2004</li>
+    <li><i class="b-list__box-item-title">SLpM:</i> 1.34</li>
+    <li><i class="b-list__box-item-title">Str. Acc.:</i> 42%</li>
+    <li><i class="b-list__box-item-title">SApM:</i> 1.24</li>
+    <li><i class="b-list__box-item-title">Str. Def.:</i> 52%</li>
+    <li><i class="b-list__box-item-title">TD Avg.:</i> 6.10</li>
+    <li><i class="b-list__box-item-title">TD Acc.:</i> 54%</li>
+    <li><i class="b-list__box-item-title">TD Def.:</i> 25%</li>
+    <li><i class="b-list__box-item-title">Sub. Avg.:</i> 0.9</li>
+    <table>
+      <tr class="b-fight-details__table-row" data-link="http://ufcstats.com/fight-details/aaaaaaaaaaaaaaaa">
+        <td><i class="b-flag__text">W</i></td>
+        <td>
+          <a href="http://ufcstats.com/fighter-details/${id}">Raul Rosas Jr.</a>
+          <a href="http://ufcstats.com/fighter-details/05339613bf8e9808">Rob Font</a>
+        </td>
+        <td><a href="http://ufcstats.com/event-details/bbbbbbbbbbbbbbbb">UFC 326: Test</a><p>Mar. 07, 2026</p></td>
+        <td>Decision - Unanimous</td>
+      </tr>
+    </table>
+  `;
+  const profile = parseUfcStatsProfile(html, id);
+  assert.equal(profile.name, 'Raul Rosas Jr.');
+  assert.equal(profile.record, '13-1-0');
+  assert.equal(profile.height, `5' 9"`);
+  assert.equal(profile.reach, '67"');
+  assert.equal(profile.stats.slpm, '1.34');
+  assert.equal(profile.stats.tdAccuracy, '54%');
+  assert.equal(profile.latestBoutDate, '2026-03-07');
+  assert.equal(profile.ufcRecord, '1-0-0');
+  assert.equal(profile.recent[0].opponent, 'Rob Font');
+  assert.equal(profile.recent[0].method, 'Decision - Unanimous');
 });
