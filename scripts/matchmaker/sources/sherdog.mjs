@@ -38,6 +38,33 @@ function fighterRecord(value) {
   return clean(value).match(/^(\d+)-(\d+)-(\d+)/)?.slice(1, 4).map(Number) || null;
 }
 
+function subtractRecords(overall, ufc) {
+  const a = fighterRecord(overall);
+  const b = fighterRecord(ufc);
+  if (!a || !b) return null;
+  return a.map((value, index) => Math.max(0, value - b[index])).join('-');
+}
+
+function compactMeasure(value) {
+  return clean(value).toLowerCase().replace(/\./g, '').replace(/\s+/g, ' ').trim();
+}
+
+function comparableBioMatches(fighter, parsed) {
+  const matches = [];
+  const expectedDob = compactMeasure(fighter.bio?.dob);
+  const actualDob = compactMeasure(parsed.bio?.dob);
+  if (expectedDob && expectedDob !== '--' && actualDob && actualDob !== 'n/a') {
+    matches.push({ field: 'dob', match: expectedDob === actualDob });
+  }
+  const expectedHeight = compactMeasure(fighter.bio?.height);
+  const actualHeight = compactMeasure(parsed.bio?.height);
+  if (expectedHeight && actualHeight) matches.push({ field: 'height', match: expectedHeight === actualHeight });
+  const expectedWeight = compactMeasure(fighter.bio?.weight);
+  const actualWeight = compactMeasure(parsed.bio?.weight);
+  if (expectedWeight && actualWeight) matches.push({ field: 'weight', match: expectedWeight === actualWeight });
+  return matches;
+}
+
 function nameTokens(value) {
   return clean(value)
     .normalize('NFD')
@@ -69,6 +96,9 @@ export function parseSherdogProfile(html, sourceUrl = null) {
   const text = stripHtml(source);
   const h1 = source.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i);
   const name = h1 ? stripHtml(h1[1]) : null;
+  const dob = text.match(/\bAGE\s+(?:\d+|N\/A)\s*\/\s*((?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+\d{1,2},\s+\d{4}|N\/A)\b/i)?.[1] || null;
+  const height = text.match(/\bHEIGHT\s+(\d+'\d+")\b/i)?.[1] || null;
+  const weight = text.match(/\bWEIGHT\s+(\d+\s+lbs?)\b/i)?.[1] || null;
   const winsMatch = text.match(/\bWins\s+(\d+)\b/i);
   const lossesMatch = text.match(/\bLosses\s+(\d+)\b/i);
   if (!winsMatch || !lossesMatch) return null;
@@ -91,15 +121,38 @@ export function parseSherdogProfile(html, sourceUrl = null) {
   if (![winsByKnockout, winsBySubmission, decisionWins].every(finite)) return null;
   if (winsByKnockout + winsBySubmission + decisionWins > wins) return null;
 
+  const decisions = { unanimous: 0, split: 0, majority: 0, other: 0 };
+  const proStart = source.search(/FIGHT\s+HISTORY\s*-\s*PRO/i);
+  const amateurStart = source.search(/FIGHT\s+HISTORY\s*-\s*AMATEUR/i);
+  const proSource = proStart >= 0
+    ? source.slice(proStart, amateurStart > proStart ? amateurStart : source.length)
+    : '';
+  for (const row of proSource.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)) {
+    const rowText = stripHtml(row[1]);
+    if (!/^win\b/i.test(rowText) || !/\bDecision\b/i.test(rowText)) continue;
+    if (/Decision\s*\(Unanimous\)/i.test(rowText)) decisions.unanimous++;
+    else if (/Decision\s*\(Split\)/i.test(rowText)) decisions.split++;
+    else if (/Decision\s*\(Majority\)/i.test(rowText)) decisions.majority++;
+    else decisions.other++;
+  }
+  const classifiedDecisionWins = decisions.unanimous + decisions.split + decisions.majority + decisions.other;
+
   return {
     name,
     record: `${wins}-${losses}-${draws}`,
     sourceUrl,
+    bio: { dob, height, weight },
     career: {
       winsByKnockout,
       winsBySubmission,
       totalFinishes: winsByKnockout + winsBySubmission,
-      decisionWins
+      decisionWins,
+      unanimousDecisionWins: decisions.unanimous,
+      splitDecisionWins: decisions.split,
+      majorityDecisionWins: decisions.majority,
+      otherDecisionWins: decisions.other,
+      decisionBreakdownKnownWins: classifiedDecisionWins,
+      decisionBreakdownComplete: classifiedDecisionWins === decisionWins
     }
   };
 }
@@ -130,15 +183,13 @@ async function fetchText(url) {
 }
 
 async function lookupCareer(fighter) {
-  const expectedRecord = fighterRecord(fighter.record);
-  if (!expectedRecord) return null;
-  const expected = expectedRecord.join('-');
   let search;
   try {
     search = await fetchText(`${SHERDOG}/stats/fightfinder?SearchTxt=${encodeURIComponent(fighter.name)}`);
   } catch {
     return null;
   }
+
   const candidates = parseSherdogSearchProfiles(search);
   const matches = [];
   for (const candidate of candidates) {
@@ -149,12 +200,23 @@ async function lookupCareer(fighter) {
       continue;
     }
     const parsed = parseSherdogProfile(page, candidate.href);
-    if (!parsed || parsed.record !== expected) continue;
+    if (!parsed) continue;
+
     const score = Math.max(nameScore(parsed.name || '', fighter.name), nameScore(candidate.label || '', fighter.name));
-    if (!score) continue;
-    matches.push({ ...parsed, score });
-    if (score >= 1000) break;
+    if (score < 500) continue;
+
+    const bioChecks = comparableBioMatches(fighter, parsed);
+    const bioMatches = bioChecks.filter(check => check.match).length;
+    const bioConflicts = bioChecks.filter(check => !check.match).length;
+    if (bioConflicts) continue;
+
+    const exactName = score >= 900;
+    if (!exactName && bioMatches < 1) continue;
+    if (exactName && bioChecks.length > 0 && bioMatches < 1) continue;
+
+    matches.push({ ...parsed, score: score + bioMatches * 100, bioMatches });
   }
+
   if (!matches.length) return null;
   matches.sort((a, b) => b.score - a.score);
   if (matches.length > 1 && matches[0].score === matches[1].score && matches[0].sourceUrl !== matches[1].sourceUrl) {
@@ -167,26 +229,46 @@ function applyFallback(fighter, fallback) {
   const source = fallback?.career;
   if (!source) return false;
   fighter.career ||= {};
-  const before = JSON.stringify(fighter.career);
+  const before = JSON.stringify({ record: fighter.record, recordOutsideUfc: fighter.recordOutsideUfc, career: fighter.career });
+
   for (const field of ['winsByKnockout', 'winsBySubmission', 'totalFinishes', 'decisionWins']) {
     if (!finite(fighter.career[field]) && finite(source[field])) fighter.career[field] = source[field];
   }
-  const classified =
-    (finite(fighter.career.unanimousDecisionWins) ? fighter.career.unanimousDecisionWins : 0) +
-    (finite(fighter.career.splitDecisionWins) ? fighter.career.splitDecisionWins : 0) +
-    (finite(fighter.career.majorityDecisionWins) ? fighter.career.majorityDecisionWins : 0) +
-    (finite(fighter.career.otherDecisionWins) ? fighter.career.otherDecisionWins : 0);
-  if (finite(fighter.career.decisionWins)) {
-    fighter.career.decisionBreakdownKnownWins = classified;
-    fighter.career.decisionBreakdownComplete = classified >= fighter.career.decisionWins;
+
+  if (source.decisionBreakdownComplete) {
+    for (const field of [
+      'unanimousDecisionWins',
+      'splitDecisionWins',
+      'majorityDecisionWins',
+      'otherDecisionWins',
+      'decisionBreakdownKnownWins'
+    ]) {
+      if (finite(source[field])) fighter.career[field] = source[field];
+    }
+    fighter.career.decisionBreakdownComplete = true;
+  } else {
+    const classified =
+      (finite(fighter.career.unanimousDecisionWins) ? fighter.career.unanimousDecisionWins : 0) +
+      (finite(fighter.career.splitDecisionWins) ? fighter.career.splitDecisionWins : 0) +
+      (finite(fighter.career.majorityDecisionWins) ? fighter.career.majorityDecisionWins : 0) +
+      (finite(fighter.career.otherDecisionWins) ? fighter.career.otherDecisionWins : 0);
+    if (finite(fighter.career.decisionWins)) {
+      fighter.career.decisionBreakdownKnownWins = classified;
+      fighter.career.decisionBreakdownComplete = classified >= fighter.career.decisionWins;
+    }
+  }
+
+  if (fallback.record) {
+    fighter.record = fallback.record;
+    fighter.recordOutsideUfc = subtractRecords(fallback.record, fighter.ufcRecord);
   }
   fighter.careerSource = {
     source: 'Sherdog',
     sourceUrl: fallback.sourceUrl || null,
-    recordMatched: true,
+    identityVerifiedBy: fallback.identityVerifiedBy || null,
     checkedAt: fallback.checkedAt || new Date().toISOString()
   };
-  return JSON.stringify(fighter.career) !== before;
+  return JSON.stringify({ record: fighter.record, recordOutsideUfc: fighter.recordOutsideUfc, career: fighter.career }) !== before;
 }
 
 async function mapLimit(items, limit, worker) {
@@ -219,7 +301,7 @@ export async function enrichSherdogCareers(fighters, { cachePath } = {}) {
     const entry = cache.fighters[cacheKey];
     if (
       entry &&
-      entry.record === fighter.record &&
+      entry.observedRecord === fighter.record &&
       entry.miss !== true &&
       completeCareerCore(entry.career)
     ) {
@@ -228,7 +310,7 @@ export async function enrichSherdogCareers(fighters, { cachePath } = {}) {
     }
     if (
       entry &&
-      entry.record === fighter.record &&
+      entry.observedRecord === fighter.record &&
       entry.miss === true &&
       Date.now() - Date.parse(entry.checkedAt || 0) < 7 * 86400000
     ) {
@@ -250,9 +332,11 @@ export async function enrichSherdogCareers(fighters, { cachePath } = {}) {
     if (hit) {
       const entry = {
         name: fighter.name,
-        record: fighter.record,
+        observedRecord: fighter.record,
+        record: hit.record,
         checkedAt,
         sourceUrl: hit.sourceUrl,
+        identityVerifiedBy: hit.bioMatches ? 'name+bio' : 'exact-name',
         career: hit.career
       };
       cache.fighters[cacheKey] = entry;
@@ -262,7 +346,7 @@ export async function enrichSherdogCareers(fighters, { cachePath } = {}) {
     } else {
       cache.fighters[cacheKey] = {
         name: fighter.name,
-        record: fighter.record,
+        observedRecord: fighter.record,
         checkedAt,
         miss: true
       };
