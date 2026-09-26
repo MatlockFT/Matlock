@@ -1589,3 +1589,15 @@ html[data-theme="dark"] .post-page-v3 .article-toc-floating a.is-active{
     transition:none!important;
   }
 }
+
+
+/* Writer-generated head-to-head stats v2 */
+.post-page-v3 .post-body .matlock-stats-card.matlock-stats-compare{overflow:hidden;background:rgba(127,127,127,.018)}
+.post-page-v3 .post-body .matlock-stats-compare th{color:var(--v3-muted);vertical-align:bottom}
+.post-page-v3 .post-body .matlock-stats-compare th:first-child,.post-page-v3 .post-body .matlock-stats-compare td:first-child{text-align:right}
+.post-page-v3 .post-body .matlock-stats-compare th:nth-child(2),.post-page-v3 .post-body .matlock-stats-compare td:nth-child(2){text-align:center}
+.post-page-v3 .post-body .matlock-stats-compare th:last-child,.post-page-v3 .post-body .matlock-stats-compare td:last-child{text-align:left}
+.post-page-v3 .post-body .matlock-stats-compare th:first-child,.post-page-v3 .post-body .matlock-stats-compare th:last-child{color:var(--v3-ink);font-size:.68rem;letter-spacing:.035em}
+.post-page-v3 .post-body .matlock-stats-compare td:first-child,.post-page-v3 .post-body .matlock-stats-compare td:last-child{color:var(--v3-ink);font-weight:850;font-variant-numeric:tabular-nums}
+.post-page-v3 .post-body .matlock-stats-compare td:nth-child(2){color:var(--v3-muted);font-size:.66rem;font-weight:760;letter-spacing:.025em}
+@media(max-width:600px){.post-page-v3 .post-body .matlock-stats-compare th,.post-page-v3 .post-body .matlock-stats-compare td{padding:.55rem .35rem}.post-page-v3 .post-body .matlock-stats-compare td:nth-child(2){font-size:.58rem}}
