@@ -54,3 +54,5 @@ button,input,select,textarea{font:inherit}.bc-app{min-height:100vh}
 .bc-source-restore-list button{border:1px solid #333;background:#111;color:#8f8b83;border-radius:999px;padding:5px 8px;cursor:pointer;font-size:10px}
 .bc-source-restore-list button:hover{border-color:#694520;color:#efb16f}
 @media(max-width:720px){.bc-layout-controls{grid-template-columns:1fr}}
+
+.bc-rundown-mode-note{margin:0 0 12px;padding:9px 11px;border-left:3px solid var(--orange);background:#12100d;color:#918c84;font-size:11px;line-height:1.45}
