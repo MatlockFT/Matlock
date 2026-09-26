@@ -55,7 +55,11 @@
     "maxItems": 14
   },
   "visual": {
-    "flipNews": true,
+    "layout": "splitDesk",
+    "videoWidth": 64,
+    "articleCardSeconds": 9,
+    "articleCharsPerCard": 340,
+    "flipNews": false,
     "showRail": true,
     "showClock": true,
     "showBadge": true,
@@ -69,6 +73,8 @@
   "forceNext": null,
   "sources": {
     "customNewsFeeds": [],
-    "customVideoChannels": []
+    "customVideoChannels": [],
+    "removedNewsSources": [],
+    "removedVideoChannels": []
   }
 }

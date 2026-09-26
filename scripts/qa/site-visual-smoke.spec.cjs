@@ -187,24 +187,44 @@ for (const viewport of viewports) {
 test.describe('Broadcast control program monitor', () => {
   test.use({ viewport: { width: 1440, height: 1000 }, isMobile: false, hasTouch: false });
 
-  test('renders the real broadcast output and reacts to preset changes', async ({ page }) => {
+  test('renders modular split desk, updates layout, and removes/restores sources', async ({ page }) => {
     const pageErrors = [];
     page.on('pageerror', error => pageErrors.push(error.message));
 
     await page.goto(targetUrl('/broadcast-control/'), { waitUntil: 'domcontentloaded', timeout: 45000 });
     await expect(page.locator('[data-program-monitor-frame]')).toBeVisible({ timeout: 30000 });
     await expect(page.locator('[data-preview-renderer]')).toHaveText('ONLINE', { timeout: 30000 });
+    await expect(page.locator('[data-path="visual.layout"]')).toHaveValue('splitDesk');
 
     const frame = page.frameLocator('[data-program-monitor-frame]');
     await expect(frame.locator('[data-broadcast]')).toBeVisible({ timeout: 30000 });
-    await expect(frame.locator('[data-title]')).not.toHaveText('Loading current combat sports news…', { timeout: 30000 });
+    await expect(frame.locator('[data-stage]')).toHaveClass(/split-desk/, { timeout: 30000 });
+    await expect(frame.locator('[data-video-shell]')).toBeVisible({ timeout: 30000 });
+    await expect(frame.locator('.article-reader-card')).toBeVisible({ timeout: 30000 });
     await expect(frame.locator('[data-title]')).not.toHaveText('', { timeout: 30000 });
+
+    const width = page.locator('[data-path="visual.videoWidth"]');
+    await width.evaluate(node => {
+      node.value = '70';
+      node.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    await expect.poll(async () => frame.locator('[data-stage]').evaluate(node => node.style.getPropertyValue('--video-width'))).toBe('70%');
+    await expect(page.locator('[data-preview-program]')).toHaveText('DRAFT');
+
+    const firstNewsRow = page.locator('[data-news-sources] .bc-source-row').first();
+    await expect(firstNewsRow).toBeVisible({ timeout: 30000 });
+    const sourceName = (await firstNewsRow.locator('label span').textContent() || '').trim();
+    expect(sourceName).toBeTruthy();
+    await firstNewsRow.locator('.bc-source-remove').click();
+    await expect(page.locator('[data-news-sources] .bc-source-removed')).toContainText(sourceName);
+    await page.locator('[data-news-sources] [data-restore-source="news"]').filter({ hasText: sourceName }).click();
+    await expect(page.locator('[data-news-sources] .bc-source-row').filter({ hasText: sourceName })).toBeVisible();
 
     await page.locator('[data-preset="video"]').click();
     await expect(page.locator('[data-draft-title]')).toContainText('Video heavy');
-    await expect(page.locator('[data-preview-program]')).toHaveText('DRAFT');
     await expect(page.locator('[data-preview-renderer]')).toHaveText('ONLINE', { timeout: 10000 });
-    await expect(frame.locator('[data-title]')).not.toHaveText('', { timeout: 10000 });
+    await expect(frame.locator('[data-stage]')).toHaveClass(/split-desk/);
+    await expect(frame.locator('.article-reader-card')).toBeVisible();
 
     expect(pageErrors).toEqual([]);
   });
