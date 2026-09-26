@@ -1,92 +1,8 @@
 {
   "version": 5,
-  "generated_at": "2026-09-26T01:41:06Z",
-  "selected_event_id": "manual-youtube-live:YikdtdLGxZA",
+  "generated_at": "2026-09-26T06:36:22Z",
+  "selected_event_id": "tuff-n-uff:iRW8qArVe7Q",
   "events": [
-    {
-      "event_id": "manual-youtube-live:YikdtdLGxZA",
-      "promotion_id": "manual-youtube-live",
-      "promotion": "Master Vic PodcasTV",
-      "short_name": "Master Vic PodcasTV",
-      "country": "International",
-      "priority": 90,
-      "coverage_note": "Manually supplied public YouTube live streams",
-      "access_note": null,
-      "channel_url": null,
-      "channel_id": "UCtfufNe71Uj9-yXjk5X1c3g",
-      "channel_name": "Master Vic PodcasTV",
-      "video_id": "YikdtdLGxZA",
-      "title": "MMA México 9",
-      "watch_url": "https://www.youtube.com/watch?v=YikdtdLGxZA",
-      "status": "live",
-      "is_live": true,
-      "embeddable": true,
-      "scheduled_start_time": null,
-      "scheduled_end_time": null,
-      "actual_start_time": "2026-09-25T22:33:34Z",
-      "actual_end_time": null,
-      "concurrent_viewers": "2128",
-      "api_verified": true,
-      "stale": false,
-      "observed_at": "2026-09-26T01:41:06Z",
-      "source_role": "promotion"
-    },
-    {
-      "event_id": "liga-monstro-combate:ZF3yOJK-3Fg",
-      "promotion_id": "liga-monstro-combate",
-      "promotion": "Liga Monstro Combate",
-      "short_name": "LMC",
-      "country": "Brazil",
-      "priority": 80,
-      "coverage_note": "Promotion channel + filtered RedeTV! broadcast partner; LMC 3 airs on RedeTV! YouTube",
-      "access_note": null,
-      "channel_url": "https://www.youtube.com/channel/UCd7VVhgnd2eCv9JEghvR_1w",
-      "channel_id": "UCd7VVhgnd2eCv9JEghvR_1w",
-      "channel_name": "RedeTV",
-      "video_id": "ZF3yOJK-3Fg",
-      "title": "🚨🥊 AO VIVO 🚨🥊  | LIGA MONSTRO COMBATE 3 na REDETV!",
-      "watch_url": "https://www.youtube.com/watch?v=ZF3yOJK-3Fg",
-      "status": "live",
-      "is_live": true,
-      "embeddable": true,
-      "scheduled_start_time": "2026-09-25T20:30:00Z",
-      "scheduled_end_time": null,
-      "actual_start_time": "2026-09-25T20:26:10Z",
-      "actual_end_time": null,
-      "concurrent_viewers": "2400",
-      "api_verified": true,
-      "stale": false,
-      "observed_at": "2026-09-26T01:41:06Z",
-      "source_role": "broadcast_partner"
-    },
-    {
-      "event_id": "mma-mexico:YikdtdLGxZA",
-      "promotion_id": "mma-mexico",
-      "promotion": "MMA México",
-      "short_name": "MMA México",
-      "country": "Mexico",
-      "priority": 72,
-      "coverage_note": "Promotion coverage via Master Vic channel; monitor public live fight streams",
-      "access_note": null,
-      "channel_url": "https://www.youtube.com/@MasterVicPodcasTV",
-      "channel_id": "UCtfufNe71Uj9-yXjk5X1c3g",
-      "channel_name": "Master Vic PodcasTV",
-      "video_id": "YikdtdLGxZA",
-      "title": "MMA México 9",
-      "watch_url": "https://www.youtube.com/watch?v=YikdtdLGxZA",
-      "status": "live",
-      "is_live": true,
-      "embeddable": true,
-      "scheduled_start_time": null,
-      "scheduled_end_time": null,
-      "actual_start_time": "2026-09-25T22:33:34Z",
-      "actual_end_time": null,
-      "concurrent_viewers": "2128",
-      "api_verified": true,
-      "stale": false,
-      "observed_at": "2026-09-26T01:41:05Z",
-      "source_role": "promotion"
-    },
     {
       "event_id": "tuff-n-uff:iRW8qArVe7Q",
       "promotion_id": "tuff-n-uff",
@@ -109,10 +25,10 @@
       "scheduled_end_time": null,
       "actual_start_time": "2026-09-26T00:48:55Z",
       "actual_end_time": null,
-      "concurrent_viewers": "259",
+      "concurrent_viewers": "3",
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-26T01:41:05Z",
+      "observed_at": "2026-09-26T06:36:21Z",
       "source_role": "promotion"
     }
   ],
@@ -170,7 +86,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T22:50:10Z",
+      "observed_at": "2026-09-26T06:36:21Z",
       "source_role": "promotion"
     },
     {
@@ -198,7 +114,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T22:50:10Z",
+      "observed_at": "2026-09-26T06:36:21Z",
       "source_role": "promotion"
     },
     {
@@ -226,7 +142,7 @@
       "concurrent_viewers": null,
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T22:50:10Z",
+      "observed_at": "2026-09-26T06:36:21Z",
       "source_role": "promotion"
     }
   ],
@@ -246,7 +162,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:50:10Z"
+      "last_checked_at": "2026-09-26T06:36:21Z"
     },
     "a1-combat": {
       "promotion": "A1 Combat",
@@ -280,7 +196,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-26T01:41:05Z"
+      "last_checked_at": "2026-09-26T06:36:21Z"
     },
     "afc-korea": {
       "promotion": "Angel's Fighting Championship",
@@ -314,7 +230,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:50:09Z"
+      "last_checked_at": "2026-09-26T06:36:20Z"
     },
     "ararat-wfc": {
       "promotion": "Ararat World Fighting Championship",
@@ -331,7 +247,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:50:10Z"
+      "last_checked_at": "2026-09-26T06:36:21Z"
     },
     "ares": {
       "promotion": "ARES Fighting Championship",
@@ -365,7 +281,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:50:10Z"
+      "last_checked_at": "2026-09-26T06:36:21Z"
     },
     "bcm-promotions": {
       "promotion": "BCM Promotions",
@@ -416,7 +332,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:50:09Z"
+      "last_checked_at": "2026-09-26T06:36:20Z"
     },
     "empire-mma-colombia": {
       "promotion": "Empire MMA",
@@ -450,7 +366,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T17:32:45Z",
-      "last_checked_at": "2026-09-25T22:50:10Z"
+      "last_checked_at": "2026-09-26T06:36:21Z"
     },
     "fnc": {
       "promotion": "Fight Nation Championship",
@@ -552,7 +468,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-24T02:19:06Z",
-      "last_checked_at": "2026-09-25T22:50:09Z"
+      "last_checked_at": "2026-09-26T06:36:20Z"
     },
     "levels-fight-league": {
       "promotion": "Levels Fight League",
@@ -569,7 +485,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:50:09Z"
+      "last_checked_at": "2026-09-26T06:36:20Z"
     },
     "lfa": {
       "promotion": "Legacy Fighting Alliance",
@@ -595,15 +511,15 @@
       "priority": 80,
       "coverage_note": "Promotion channel + filtered RedeTV! broadcast partner; LMC 3 airs on RedeTV! YouTube",
       "access_note": null,
-      "channel_url": "https://www.youtube.com/channel/UCd7VVhgnd2eCv9JEghvR_1w",
-      "channel_id": "UCd7VVhgnd2eCv9JEghvR_1w",
-      "channel_name": "RedeTV",
-      "status": "live",
+      "channel_url": "https://www.youtube.com/@ligamonstrocombate",
+      "channel_id": "UClGFqfpNtUpUD1v51mw3VbQ",
+      "channel_name": "LMC | Liga Monstro Combate",
+      "status": "offline",
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-26T01:41:06Z",
-      "last_checked_at": "2026-09-26T01:41:05Z"
+      "last_checked_at": "2026-09-26T06:36:21Z"
     },
     "lux": {
       "promotion": "LUX Fight League",
@@ -620,7 +536,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:50:09Z"
+      "last_checked_at": "2026-09-26T06:36:20Z"
     },
     "mangu": {
       "promotion": "Mangu Professional League",
@@ -637,7 +553,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:50:10Z"
+      "last_checked_at": "2026-09-26T06:36:21Z"
     },
     "manual-youtube-live": {
       "promotion": "YouTube Live",
@@ -649,12 +565,12 @@
       "channel_url": null,
       "channel_id": "UCtfufNe71Uj9-yXjk5X1c3g",
       "channel_name": "Master Vic PodcasTV",
-      "status": "live",
+      "status": "offline",
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-26T01:41:06Z",
-      "last_checked_at": "2026-09-26T01:41:06Z"
+      "last_checked_at": "2026-09-26T06:36:21Z"
     },
     "mfl": {
       "promotion": "Mexico Fight League",
@@ -683,12 +599,12 @@
       "channel_url": "https://www.youtube.com/@MasterVicPodcasTV",
       "channel_id": "UCtfufNe71Uj9-yXjk5X1c3g",
       "channel_name": "Master Vic PodcasTV",
-      "status": "live",
+      "status": "offline",
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-26T01:41:05Z",
-      "last_checked_at": "2026-09-26T01:41:05Z"
+      "last_checked_at": "2026-09-26T06:36:21Z"
     },
     "naiza": {
       "promotion": "NAIZA Fighting Championship",
@@ -705,7 +621,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:50:09Z"
+      "last_checked_at": "2026-09-26T06:36:20Z"
     },
     "octagon-central-asia": {
       "promotion": "OCTAGON",
@@ -739,7 +655,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T15:59:14Z",
-      "last_checked_at": "2026-09-26T01:41:06Z"
+      "last_checked_at": "2026-09-26T06:36:21Z"
     },
     "open-fight-latam": {
       "promotion": "Open Fight LATAM",
@@ -756,7 +672,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:50:09Z"
+      "last_checked_at": "2026-09-26T06:36:20Z"
     },
     "real-fight-arena": {
       "promotion": "Real Fight Arena",
@@ -773,7 +689,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T16:55:14Z",
-      "last_checked_at": "2026-09-25T22:50:09Z"
+      "last_checked_at": "2026-09-26T06:36:21Z"
     },
     "road-fc": {
       "promotion": "ROAD FC",
@@ -790,7 +706,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:50:09Z"
+      "last_checked_at": "2026-09-26T06:36:20Z"
     },
     "samurai-fight-house": {
       "promotion": "Samurai Fight House",
@@ -807,7 +723,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:50:09Z"
+      "last_checked_at": "2026-09-26T06:36:20Z"
     },
     "sft-combat": {
       "promotion": "SFT Combat",
@@ -824,7 +740,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:50:09Z"
+      "last_checked_at": "2026-09-26T06:36:20Z"
     },
     "shooto-brasil": {
       "promotion": "Shooto Brasil",
@@ -857,8 +773,8 @@
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": "2026-09-26T01:41:05Z",
-      "last_checked_at": "2026-09-26T01:41:05Z"
+      "last_success_at": "2026-09-26T06:36:21Z",
+      "last_checked_at": "2026-09-26T06:36:20Z"
     },
     "ugp": {
       "promotion": "Ultimo Guerrero en Pie",
@@ -892,7 +808,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:50:09Z"
+      "last_checked_at": "2026-09-26T06:36:20Z"
     },
     "wcc-peru": {
       "promotion": "Warriors Combat Championship",
@@ -930,7 +846,7 @@
     }
   },
   "monitored_count": 41,
-  "live_count": 4,
+  "live_count": 1,
   "upcoming_count": 4,
   "youtube_api_configured": true,
   "api_verified_source_count": 41
