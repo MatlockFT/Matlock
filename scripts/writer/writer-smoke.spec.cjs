@@ -517,7 +517,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   expect(remote.text).toContain('<figcaption>Writer smoke caption</figcaption>');
   expect(remote.text).toContain('youtube.com/embed/dQw4w9WgXcQ');
   expect(remote.text).toContain('| Metric | Alpha | Beta |');
-  expect(remote.text).toContain('ALPHA FIGHTER');
+  expect(remote.text).toContain('Alpha Fighter');
 
   await page.click('[data-show-library]');
   await expect(page.locator('[data-library-list]')).toContainText('Writer Production Smoke Test', { timeout: 10000 });
