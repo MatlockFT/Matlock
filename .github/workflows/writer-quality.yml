@@ -18,6 +18,11 @@ on:
       - "assets/writer-ux.css"
       - "assets/writer-splitflow.js"
       - "assets/writer-splitflow.css"
+      - "assets/writer-live.js"
+      - "assets/writer-live.css"
+      - "assets/live-writer-public.js"
+      - "assets/live-writer-public.css"
+      - "live-notes.html"
       - "scripts/writer/writer-smoke.spec.cjs"
       - "scripts/writer/writer-fighter-autofill-smoke.spec.cjs"
       - "scripts/writer/writer-wordtools-smoke.spec.cjs"
@@ -42,6 +47,11 @@ on:
       - "assets/writer-ux.css"
       - "assets/writer-splitflow.js"
       - "assets/writer-splitflow.css"
+      - "assets/writer-live.js"
+      - "assets/writer-live.css"
+      - "assets/live-writer-public.js"
+      - "assets/live-writer-public.css"
+      - "live-notes.html"
       - "scripts/writer/writer-smoke.spec.cjs"
       - "scripts/writer/writer-fighter-autofill-smoke.spec.cjs"
       - "scripts/writer/writer-wordtools-smoke.spec.cjs"
@@ -76,6 +86,8 @@ jobs:
         run: |
           node --check assets/writer.js
           node --check assets/writer-auth.js
+          node --check assets/writer-live.js
+          node --check assets/live-writer-public.js
 
       - name: Install auth bridge dependency
         working-directory: _netlify-auth
