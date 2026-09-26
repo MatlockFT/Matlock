@@ -10,7 +10,7 @@ const VIDEOS_FALLBACK='/assets/data/mma-videos.json';
 const EVENTS='/assets/data/upcoming-events-live.json';
 const DEFAULT={"version":1,"revision":1,"updatedAt":null,"modules":{"news":true,"video":true,"events":true,"ticker":true,"comingUp":true,"music":true},"rundown":["news","news","video","news","event"],"timing":{"newsSeconds":45,"eventSeconds":35,"transitionMs":650,"controlPollSeconds":10},"news":{"maxAgeHours":48,"maxItems":16,"sources":[],"requireContext":true,"contextFacts":4},"video":{"maxAgeHours":48,"maxItems":8,"minSeconds":20,"maxSeconds":600,"volume":50,"channels":[],"playFull":true},"events":{"maxItems":3,"usePosters":true},"audio":{"enabled":true,"musicUrl":"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3","musicVolume":14,"duckVolume":3.5},"ticker":{"enabled":true,"speedSeconds":240,"maxItems":14},"visual":{"layout":"splitDesk","videoWidth":64,"articleCardSeconds":9,"articleCharsPerCard":340,"flipNews":false,"showRail":true,"showClock":true,"showBadge":true,"showSource":true},"sources":{"customNewsFeeds":[],"customVideoChannels":[],"removedNewsSources":[],"removedVideoChannels":[]},"hidden":{"news":[],"videos":[],"events":[]},"forceNext":null};
 const q=s=>app.querySelector(s),qa=s=>[...app.querySelectorAll(s)];
-let state=structuredClone(DEFAULT),saved=structuredClone(DEFAULT),feeds={news:null,videos:null,events:null},contentTab='news',dragIndex=-1,toastTimer=0,feedWarnings=[],previewReady=false,previewLoadTimer=0,previewSyncTimer=0,previewFrameLoaded=false,feedsReady=false;
+let state=structuredClone(DEFAULT),saved=structuredClone(DEFAULT),feeds={news:null,videos:null,events:null},contentTab='news',dragIndex=-1,toastTimer=0,feedWarnings=[],previewReady=false,previewLoadTimer=0,previewSyncTimer=0,previewFrameLoaded=false,feedsReady=false,previewQueue=null;
 
 function clone(v){return JSON.parse(JSON.stringify(v))}
 function deepMerge(base,extra){const out=clone(base);for(const[k,v]of Object.entries(extra||{})){if(v&&typeof v==='object'&&!Array.isArray(v)&&out[k]&&typeof out[k]==='object'&&!Array.isArray(out[k]))out[k]=deepMerge(out[k],v);else out[k]=v}return out}
@@ -25,6 +25,11 @@ function markDirty({restartPreview=false}={}){
   apply.disabled=!pending;
   apply.dataset.pending=String(pending);
   apply.textContent=pending?'Apply changes live':'Live is current';
+  qa('[data-save-config]').forEach(button=>{
+    button.disabled=!pending;
+    button.dataset.pending=String(pending);
+    button.textContent=pending?'Save config':'Saved';
+  });
   renderDraftState();
   updatePreview(restartPreview);
 }
@@ -68,6 +73,7 @@ function updatePreview(restart=false){
     const api=frame.contentWindow.MatlockBroadcastPreview;
     if(api&&typeof api.apply==='function'){
       const result=api.apply(payload)||{};
+      previewQueue=result.queue||null;renderQueue();
       previewReady=true;
       clearInterval(previewSyncTimer);
       if(result.state==='empty')setPreviewStatus('Renderer online, but this draft has no eligible content.','empty');
@@ -95,7 +101,7 @@ function startPreviewSync(){
 }
 function restartProgramMonitor(){
   const frame=q('[data-program-monitor-frame]');if(!frame)return;
-  previewReady=false;previewFrameLoaded=false;
+  previewReady=false;previewFrameLoaded=false;previewQueue=null;renderQueue();
   const overlay=q('[data-preview-overlay]');if(overlay)overlay.hidden=false;
   setPreviewStatus('Restarting the real broadcast renderer…','connecting');
   clearTimeout(previewLoadTimer);clearInterval(previewSyncTimer);
@@ -116,7 +122,7 @@ async function loadAll(){
   else{status.textContent='Control online';status.dataset.state='live'}
   q('[data-live-config-label]').textContent='Revision '+(state.revision||'—');
 }
-function renderAll(){renderInputs();renderRundown();renderSources();renderMetrics();renderLiveList();renderPresetState();q('[data-revision]').textContent=state.revision||'—';markDirty()}
+function renderAll(){renderInputs();renderRundown();renderSources();renderMetrics();renderLiveList();renderQueue();renderPresetState();q('[data-revision]').textContent=state.revision||'—';markDirty()}
 function renderInputs(){
   qa('[data-path]').forEach(el=>{const v=getPath(state,el.dataset.path);if(el.type==='checkbox')el.checked=Boolean(v);else el.value=v??''});
   qa('[data-value-for]').forEach(el=>{const v=getPath(state,el.dataset.valueFor);el.textContent=v+'%'});
@@ -238,6 +244,73 @@ function renderSources(){
   vh.querySelectorAll('[data-restore-source="video"]').forEach(btn=>btn.onclick=()=>restoreSource('video',decodeURIComponent(btn.dataset.sourceName)));
   q('[data-video-source-summary]').textContent=videoNames.length+' active'+(removedVideo.length?' · '+removedVideo.length+' removed':'');
 }
+function queueAge(value){
+  const t=Date.parse(value);if(!Number.isFinite(t))return'';
+  const sec=Math.max(0,Math.round((Date.now()-t)/1000));
+  if(sec<60)return sec+'s ago';if(sec<3600)return Math.floor(sec/60)+'m ago';if(sec<86400)return Math.floor(sec/3600)+'h ago';return Math.floor(sec/86400)+'d ago';
+}
+function queueDuration(seconds){
+  const total=Math.max(0,Math.round(Number(seconds)||0));if(!total)return'';
+  const m=Math.floor(total/60),s=String(total%60).padStart(2,'0');return m+':'+s;
+}
+function queueRow(entry,index){
+  const meta=[];
+  if(entry?.source)meta.push('<b>'+escapeHtml(entry.source)+'</b>');
+  if(entry?.type)meta.push('<span class="bc-queue-type">'+escapeHtml(entry.type)+'</span>');
+  const age=queueAge(entry?.publishedAt);if(age)meta.push('<span>'+escapeHtml(age)+'</span>');
+  const duration=queueDuration(entry?.durationSeconds);if(duration)meta.push('<span>'+escapeHtml(duration)+'</span>');
+  return '<article class="bc-queue-item"><div class="bc-queue-item-index">'+String(index+1).padStart(2,'0')+'</div><div class="bc-queue-item-main"><strong class="bc-queue-item-title">'+escapeHtml(entry?.title||'Untitled')+'</strong><div class="bc-queue-item-meta">'+meta.join('')+'</div></div></article>';
+}
+function renderQueueList(selector,items){
+  const host=q(selector);if(!host)return;
+  host.innerHTML=items?.length?items.map(queueRow).join(''):'<div class="bc-queue-empty">Nothing is queued in this lane.</div>';
+}
+function renderQueueNow(selector,label,item){
+  const host=q(selector);if(!host)return;
+  if(!item){host.hidden=true;host.innerHTML='';return}
+  host.hidden=false;host.innerHTML='<strong>'+escapeHtml(label)+'</strong>'+escapeHtml(item.title||'')+' · '+escapeHtml(item.source||'');
+}
+function renderQueue(){
+  const stateEl=q('[data-queue-state]'),modeEl=q('[data-queue-mode]');
+  if(!stateEl||!modeEl)return;
+  const queue=previewQueue;
+  if(!queue){
+    stateEl.textContent='SYNCING';
+    modeEl.textContent='Waiting for the broadcast renderer to return the exact draft queue.';
+    ['article','video','ticker','program'].forEach(name=>{const count=q('[data-queue-'+name+'-count]');if(count)count.textContent='0'});
+    renderQueueList('[data-queue-article]',[]);renderQueueList('[data-queue-video]',[]);renderQueueList('[data-queue-ticker]',[]);renderQueueList('[data-queue-program]',[]);
+    return;
+  }
+  const split=queue.mode==='splitDesk';
+  stateEl.textContent=dirty()?'DRAFT QUEUE':'LIVE-CONFIG QUEUE';
+  modeEl.textContent=split?'Split Desk · article and video lanes rotate independently.':'Classic layout · one main program queue.';
+  const article=queue.article||[],video=queue.video||[],ticker=queue.ticker||[],program=queue.program||[];
+  q('[data-queue-article-count]').textContent=article.length;
+  q('[data-queue-video-count]').textContent=video.length;
+  q('[data-queue-ticker-count]').textContent=ticker.length;
+  q('[data-queue-program-count]').textContent=program.length;
+  q('[data-queue-card="article"]').hidden=!split;
+  q('[data-queue-card="video"]').hidden=!split;
+  q('[data-queue-classic-card]').hidden=split;
+  renderQueueNow('[data-queue-article-now]','ON AIR',queue.currentArticle);
+  renderQueueNow('[data-queue-video-now]','ON AIR',queue.currentVideo);
+  renderQueueNow('[data-queue-program-now]','ON AIR',queue.currentProgram);
+  renderQueueList('[data-queue-article]',article);
+  renderQueueList('[data-queue-video]',video);
+  renderQueueList('[data-queue-ticker]',ticker);
+  renderQueueList('[data-queue-program]',program);
+}
+function installSectionSaveButtons(){
+  qa('.bc-section-head').forEach(head=>{
+    if(head.querySelector('[data-save-config]'))return;
+    const button=document.createElement('button');
+    button.type='button';button.className='bc-button bc-section-save';button.dataset.saveConfig='';
+    button.textContent='Saved';button.disabled=true;
+    button.onclick=()=>saveLive('Broadcast configuration saved').catch(()=>{});
+    head.append(button);
+  });
+}
+
 function escapeHtml(v){const d=document.createElement('div');d.textContent=v||'';return d.innerHTML}
 function liveItems(){
   if(contentTab==='news')return [feeds.news?.topStory,...(feeds.news?.stories||[])].filter(Boolean).slice(0,30).map(x=>({type:'news',item:x,title:x.title,meta:x.source,image:x.image}));
@@ -335,6 +408,7 @@ monitorFrame?.addEventListener('load',()=>{
 window.addEventListener('message',event=>{
   if(event.origin!==location.origin)return;
   const message=event.data;if(!message||message.type!=='matlock-broadcast-preview-state')return;
+  if(message.queue){previewQueue=message.queue;renderQueue()}
   if(message.state==='connected'){
     setPreviewStatus('Renderer connected. Loading program…','connecting');
     updatePreview(true);
@@ -351,5 +425,5 @@ window.addEventListener('resize',scaleProgramMonitor);
 if(window.ResizeObserver){new ResizeObserver(scaleProgramMonitor).observe(q('[data-preview-shell]'))}
 window.addEventListener('matlock-broadcast:auth',()=>toast('GitHub connected. You can apply changes live.'));
 window.addEventListener('beforeunload',e=>{if(!dirty())return;e.preventDefault();e.returnValue=''});
-scaleProgramMonitor();loadAll();
+installSectionSaveButtons();scaleProgramMonitor();loadAll();
 })();
