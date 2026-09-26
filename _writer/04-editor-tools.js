@@ -627,7 +627,10 @@ function insertBlock(text) {
     setComparisonValue(rows,'Arm Reach',side,profile.reach);
     setComparisonValue(rows,'UFC Record',side,ufcRecord);
     setComparisonValue(rows,'Record Outside UFC',side,subtractRecords(overall,ufcRecord));
-    applyCareerComparisonValues(rows,side,profile.career || fighter.career);
+    applyCareerComparisonValues(rows,side,{
+      ...(fighter.career || {}),
+      ...(profile.career || {})
+    });
 
     const recent = recentRowsFromFighter(fighter,profile);
     if (recent.length) {
