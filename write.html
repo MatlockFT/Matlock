@@ -398,8 +398,8 @@ page_scripts:
       <header><div><p class="eyebrow">Fight visual</p><h2>Fight Stats</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
       <div class="writer-dialog-body">
         <div class="writer-builder-intro">
-          <div><strong>Head-to-head stats</strong><p>Start typing a fighter name. Writer loads the verified UFCStats dataset immediately and checks the live profile when available. Every field stays editable.</p></div>
-          <span>UFCStats-ready</span>
+          <div><strong>Head-to-head stats</strong><p>Start typing a fighter name. Writer fills the verified UFCStats sample immediately, checks live data when available, and marks metrics N/A when the fighter has no UFCStats sample yet. Every field stays editable.</p></div>
+          <span>Verified + live</span>
         </div>
         <div class="writer-stats-matchup">
           <label class="writer-field"><span>Red / Fighter A</span><input data-stats-fighter="a" placeholder="Raul Rosas Jr."></label>
@@ -426,8 +426,8 @@ page_scripts:
       <header><div><p class="eyebrow">Fight visual</p><h2>Tale of the Tape</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
       <div class="writer-dialog-body">
         <div class="writer-builder-intro">
-          <div><strong>Choose the fighters</strong><p>Start typing a name. Writer fills the portrait, division, record, bio and recent form from the verified UFCStats dataset, then checks the live profile when available and warns if a new fight has not posted yet.</p></div>
-          <span>Live lookup</span>
+          <div><strong>Choose the fighters</strong><p>Start typing a name. Writer fills the verified directory data first, including full career finish and decision totals when available, then checks live sources without clearing cached values. Truly unavailable fields are marked N/A instead of left blank.</p></div>
+          <span>Verified fallback</span>
         </div>
         <div class="writer-matchup-builder">
           <section class="writer-fighter-builder" data-tale-side-panel="a">
