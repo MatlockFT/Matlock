@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import { clean, key } from './ufc.mjs';
 
 const SHERDOG = 'https://www.sherdog.com';
+const UFCFIGHT = 'https://ufcfight.net';
 const UA = 'Mozilla/5.0 (compatible; MMAMatlockWriterCareer/1.0; +https://mmamatlock.com/write/)';
 
 const finite = value => Number.isFinite(value);
@@ -46,14 +47,30 @@ function subtractRecords(overall, ufc) {
 }
 
 function compactMeasure(value) {
-  return clean(value).toLowerCase().replace(/\./g, '').replace(/\s+/g, ' ').trim();
+  return clean(value)
+    .replace(/[′’]/g, "'")
+    .replace(/[″”]/g, '"')
+    .toLowerCase()
+    .replace(/\./g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function dateKey(value) {
+  const text = clean(value);
+  if (!text || text === '--' || /^n\/a$/i.test(text)) return '';
+  const numeric = text.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (numeric) return `${numeric[3]}-${String(numeric[1]).padStart(2, '0')}-${String(numeric[2]).padStart(2, '0')}`;
+  const parsed = new Date(text);
+  if (Number.isNaN(parsed.getTime())) return compactMeasure(text);
+  return parsed.toISOString().slice(0, 10);
 }
 
 function comparableBioMatches(fighter, parsed) {
   const matches = [];
-  const expectedDob = compactMeasure(fighter.bio?.dob);
-  const actualDob = compactMeasure(parsed.bio?.dob);
-  if (expectedDob && expectedDob !== '--' && actualDob && actualDob !== 'n/a') {
+  const expectedDob = dateKey(fighter.bio?.dob);
+  const actualDob = dateKey(parsed.bio?.dob);
+  if (expectedDob && actualDob) {
     matches.push({ field: 'dob', match: expectedDob === actualDob });
   }
   const expectedHeight = compactMeasure(fighter.bio?.height);
@@ -89,6 +106,104 @@ function nameScore(actual, expected) {
   const needed = Math.min(2, Math.min(a.length, b.length));
   if (shared < needed || !surnameShared) return 0;
   return 500 + shared * 25;
+}
+
+function fighterSlug(name) {
+  return clean(name)
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/['’]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+export function parseUfcFightProfile(html, sourceUrl = null) {
+  const source = String(html || '');
+  const text = stripHtml(source);
+  const headingMatches = [...source.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/gi)]
+    .map(match => stripHtml(match[1]))
+    .filter(Boolean);
+  const name = headingMatches.find(value => !/^(?:record|statistics|fight history|biography)$/i.test(value)) || null;
+  const recordMatch = text.match(/\bW-L-D\s+(\d+)-(\d+)-(\d+)\b/i);
+  if (!recordMatch) return null;
+
+  const wins = Number(recordMatch[1]);
+  const losses = Number(recordMatch[2]);
+  const draws = Number(recordMatch[3]);
+  const winStart = text.search(/\bWINS\s+\d+\b/i);
+  const lossStart = text.search(/\bLOSSES\s+\d+\b/i);
+  if (winStart < 0 || lossStart <= winStart) return null;
+  const winSection = text.slice(winStart, lossStart);
+  const count = label => {
+    const match = winSection.match(new RegExp(label + '\\s+(\\d+)', 'i'));
+    return match ? Number(match[1]) : null;
+  };
+  const winsByKnockout = count('KO\\s*\\/\\s*TKO');
+  const winsBySubmission = count('SUB');
+  const decisionWins = count('DECISION');
+  if (![winsByKnockout, winsBySubmission, decisionWins].every(finite)) return null;
+  if (winsByKnockout + winsBySubmission + decisionWins > wins) return null;
+
+  const dob = text.match(/\bBIRTHDATE\s+(\d{1,2}\/\d{1,2}\/\d{4})\b/i)?.[1] || null;
+  const htWt = text.match(/\bHT\s*\/\s*WT\s+([^,]+),\s*(\d+\s+lbs?)\b/i);
+  const height = htWt?.[1] || null;
+  const weight = htWt?.[2] || null;
+
+  const decisions = { unanimous: 0, split: 0, majority: 0, other: 0 };
+  const historyStart = source.search(/Fight History/i);
+  const historySource = historyStart >= 0 ? source.slice(historyStart) : '';
+  for (const row of historySource.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)) {
+    const rowText = stripHtml(row[1]).replace(/[–—]/g, '-');
+    if (!/\bW\b/i.test(rowText) || !/Decision/i.test(rowText)) continue;
+    if (/Decision\s*-?\s*Unanimous/i.test(rowText)) decisions.unanimous++;
+    else if (/Decision\s*-?\s*Split/i.test(rowText)) decisions.split++;
+    else if (/Decision\s*-?\s*Majority/i.test(rowText)) decisions.majority++;
+    else decisions.other++;
+  }
+  const classifiedDecisionWins = decisions.unanimous + decisions.split + decisions.majority + decisions.other;
+
+  return {
+    source: 'UFCFight.net',
+    name,
+    record: `${wins}-${losses}-${draws}`,
+    sourceUrl,
+    bio: { dob, height, weight },
+    career: {
+      winsByKnockout,
+      winsBySubmission,
+      totalFinishes: winsByKnockout + winsBySubmission,
+      decisionWins,
+      unanimousDecisionWins: decisions.unanimous,
+      splitDecisionWins: decisions.split,
+      majorityDecisionWins: decisions.majority,
+      otherDecisionWins: decisions.other,
+      decisionBreakdownKnownWins: classifiedDecisionWins,
+      decisionBreakdownComplete: classifiedDecisionWins === decisionWins
+    }
+  };
+}
+
+async function lookupUfcFightCareer(fighter) {
+  const slug = fighterSlug(fighter.name);
+  if (!slug) return null;
+  const sourceUrl = `${UFCFIGHT}/${slug}/`;
+  let page;
+  try {
+    page = await fetchText(sourceUrl);
+  } catch {
+    return null;
+  }
+  const parsed = parseUfcFightProfile(page, sourceUrl);
+  if (!parsed) return null;
+  const score = nameScore(parsed.name || '', fighter.name);
+  if (score < 900) return null;
+  const bioChecks = comparableBioMatches(fighter, parsed);
+  const bioMatches = bioChecks.filter(check => check.match).length;
+  const bioConflicts = bioChecks.filter(check => !check.match).length;
+  if (bioConflicts) return null;
+  if (bioChecks.length && bioMatches < 1) return null;
+  return { ...parsed, score: score + bioMatches * 100, bioMatches };
 }
 
 export function parseSherdogProfile(html, sourceUrl = null) {
@@ -138,6 +253,7 @@ export function parseSherdogProfile(html, sourceUrl = null) {
   const classifiedDecisionWins = decisions.unanimous + decisions.split + decisions.majority + decisions.other;
 
   return {
+    source: 'Sherdog',
     name,
     record: `${wins}-${losses}-${draws}`,
     sourceUrl,
@@ -183,6 +299,9 @@ async function fetchText(url) {
 }
 
 async function lookupCareer(fighter) {
+  const direct = await lookupUfcFightCareer(fighter);
+  if (direct) return direct;
+
   let search;
   try {
     search = await fetchText(`${SHERDOG}/stats/fightfinder?SearchTxt=${encodeURIComponent(fighter.name)}`);
@@ -263,7 +382,7 @@ function applyFallback(fighter, fallback) {
     fighter.recordOutsideUfc = subtractRecords(fallback.record, fighter.ufcRecord);
   }
   fighter.careerSource = {
-    source: 'Sherdog',
+    source: fallback.source || 'secondary',
     sourceUrl: fallback.sourceUrl || null,
     identityVerifiedBy: fallback.identityVerifiedBy || null,
     checkedAt: fallback.checkedAt || new Date().toISOString()
@@ -335,6 +454,7 @@ export async function enrichSherdogCareers(fighters, { cachePath } = {}) {
         observedRecord: fighter.record,
         record: hit.record,
         checkedAt,
+        source: hit.source || 'secondary',
         sourceUrl: hit.sourceUrl,
         identityVerifiedBy: hit.bioMatches ? 'name+bio' : 'exact-name',
         career: hit.career
@@ -360,11 +480,17 @@ export async function enrichSherdogCareers(fighters, { cachePath } = {}) {
     await fs.writeFile(path, JSON.stringify(cache, null, 2) + '\n');
   }
 
+  const sourceCounts = {};
+  for (const fighter of fighters) {
+    const source = fighter.careerSource?.source;
+    if (source) sourceCounts[source] = (sourceCounts[source] || 0) + 1;
+  }
   return {
     targets: targets.length,
     resolved,
     missed,
     appliedFromCache,
+    sourceCounts,
     complete: fighters.filter(fighter => completeDisplayedCareer(fighter.career)).length
   };
 }
