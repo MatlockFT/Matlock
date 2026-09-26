@@ -173,11 +173,12 @@ async function broadcastControlConfig() {
 }
 
 const broadcastControl = await broadcastControlConfig();
+const removedBroadcastNewsSources = new Set(broadcastControl?.sources?.removedNewsSources || []);
 for (const source of broadcastControl?.sources?.customNewsFeeds || []) {
     const name = plainText(source?.name);
     const feedUrl = safeUrl(source?.feedUrl);
     const siteUrl = safeUrl(source?.siteUrl) || (feedUrl ? new URL(feedUrl).origin + "/" : "");
-    if (!name || !feedUrl || feeds.some(feed => feed.name.toLowerCase() === name.toLowerCase())) continue;
+    if (!name || !feedUrl || removedBroadcastNewsSources.has(name) || feeds.some(feed => feed.name.toLowerCase() === name.toLowerCase())) continue;
     feeds.push({
         name: truncate(name, 80),
         siteUrl,
