@@ -501,9 +501,10 @@ function renderProgramHealth(){
     return;
   }
   const video=(previewQueue.video||[]).length,reader=(previewQueue.article||[]).length,ticker=(previewQueue.ticker||[]).length;
+  const readerOn=Boolean(state.modules?.news||state.modules?.events),tickerOn=Boolean(state.modules?.ticker&&state.ticker?.enabled!==false);
   setProgramHealth('[data-program-health-video]',video?'good':'bad',video?'READY':'EMPTY',video?video+' eligible video'+(video===1?'':'s'):'No eligible video — check sources / freshness');
-  setProgramHealth('[data-program-health-reader]',reader?'good':programMode()==='manual'?'warn':'bad',reader?'READY':programMode()==='manual'?'IDLE':'EMPTY',reader?reader+' article / event item'+(reader===1?'':'s'):programMode()==='manual'?'Manual reader queue is empty':'No eligible reader content');
-  setProgramHealth('[data-program-health-ticker]',ticker?'good':'warn',ticker?'READY':'EMPTY',ticker?ticker+' crawl headline'+(ticker===1?'':'s'):'Ticker has no qualifying headlines');
+  setProgramHealth('[data-program-health-reader]',!readerOn?'off':reader?'good':programMode()==='manual'?'warn':'bad',!readerOn?'OFF':reader?'READY':programMode()==='manual'?'IDLE':'EMPTY',!readerOn?'News and Events modules are disabled':reader?reader+' article / event item'+(reader===1?'':'s'):programMode()==='manual'?'Manual reader queue is empty':'No eligible reader content');
+  setProgramHealth('[data-program-health-ticker]',!tickerOn?'off':ticker?'good':'warn',!tickerOn?'OFF':ticker?'READY':'EMPTY',!tickerOn?'Ticker module is disabled':ticker?ticker+' crawl headline'+(ticker===1?'':'s'):'Ticker has no qualifying headlines');
 }
 function renderProgramming(){
   if(!q('[data-program-pool]'))return;
