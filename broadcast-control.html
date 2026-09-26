@@ -132,27 +132,7 @@ sitemap: false
             </div>
           </div>
 
-          <div class="bc-programming-grid">
-            <section class="bc-card bc-program-pane">
-              <div class="bc-card-head">
-                <div>
-                  <h2>Content pool</h2>
-                  <p>Latest material discovered by the active news and video feeds. Drag or click Add.</p>
-                </div>
-                <strong class="bc-program-count" data-program-pool-count>0</strong>
-              </div>
-              <div class="bc-program-toolbar">
-                <div class="bc-program-tabs" role="tablist">
-                  <button type="button" class="is-active" data-program-pool-tab="all">All</button>
-                  <button type="button" data-program-pool-tab="news">News</button>
-                  <button type="button" data-program-pool-tab="video">Videos</button>
-                  <button type="button" data-program-pool-tab="event">Events</button>
-                </div>
-                <input type="search" data-program-search placeholder="Search pool…" aria-label="Search content pool">
-              </div>
-              <div class="bc-program-pool" data-program-pool></div>
-            </section>
-
+          <div class="bc-programming-grid bc-programming-queue-only">
             <section class="bc-card bc-program-pane bc-program-queue-pane">
               <div class="bc-card-head">
                 <div>
@@ -446,6 +426,26 @@ sitemap: false
           <div><span>Renderer</span><strong data-preview-renderer>CONNECTING</strong></div>
           <div><span>Program</span><strong data-preview-program>DRAFT</strong></div>
         </div>
+
+        <section class="bc-preview-pool" data-preview-pool>
+          <div class="bc-preview-pool-head">
+            <div>
+              <span>CONTENT POOL</span>
+              <small>Drag into Programming or click Add</small>
+            </div>
+            <strong class="bc-program-count" data-program-pool-count>0</strong>
+          </div>
+          <div class="bc-program-toolbar bc-preview-pool-toolbar">
+            <div class="bc-program-tabs" role="tablist" aria-label="Content pool type">
+              <button type="button" class="is-active" data-program-pool-tab="all">All</button>
+              <button type="button" data-program-pool-tab="news">News</button>
+              <button type="button" data-program-pool-tab="video">Videos</button>
+              <button type="button" data-program-pool-tab="event">Events</button>
+            </div>
+            <input type="search" data-program-search placeholder="Search…" aria-label="Search content pool">
+          </div>
+          <div class="bc-program-pool bc-preview-pool-grid" data-program-pool></div>
+        </section>
 
         <div class="bc-now-card">
           <div><span>Live config</span><strong data-live-config-label>Loading…</strong></div>
