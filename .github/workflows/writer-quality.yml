@@ -43,6 +43,7 @@ on:
       - "assets/writer-splitflow.js"
       - "assets/writer-splitflow.css"
       - "scripts/writer/writer-smoke.spec.cjs"
+      - "scripts/writer/writer-fighter-autofill-smoke.spec.cjs"
       - "scripts/writer/writer-wordtools-smoke.spec.cjs"
       - "scripts/writer/writer-layout-smoke.spec.cjs"
       - "scripts/writer/writer-splitflow-smoke.spec.cjs"
