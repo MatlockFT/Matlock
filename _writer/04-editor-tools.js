@@ -356,7 +356,7 @@ function insertBlock(text) {
       let data;
       let compact = true;
       try {
-        data = await fetchJson('/assets/data/writer-fighters.json?writer-fighters=1');
+        data = await fetchJson('/assets/data/writer-fighters.json?writer-fighters=' + Date.now());
       } catch {
         compact = false;
         data = await fetchJson('/assets/data/matchmaker/current.json?writer-fighters=1');
