@@ -89,7 +89,7 @@ sitemap: false
           </div>
 
           <div class="bc-card">
-            <div class="bc-card-head"><div><h2>Modules</h2><p>Kill or restore any part of the channel without changing code.</p></div></div>
+            <div class="bc-card-head"><div><h2>Modules</h2><p>Enable or disable supporting parts of the channel. Split Desk keeps the video desk always on.</p></div></div>
             <div class="bc-switch-grid">
               <label class="bc-switch"><input type="checkbox" data-path="modules.news"><span></span><b>News</b><small>External MMA articles</small></label>
               <label class="bc-switch" data-video-module-switch><input type="checkbox" data-path="modules.video"><span></span><b>Video desk</b><small>Always on in Split Desk</small></label>
@@ -334,8 +334,8 @@ sitemap: false
         <section class="bc-section" data-section="timing" hidden>
           <div class="bc-section-head"><div><p class="bc-eyebrow">Pacing + mix</p><h1>Timing &amp; audio</h1><p>Control how long viewers sit with information and how the audio behaves.</p></div></div>
           <div class="bc-card bc-two-col">
-            <label class="bc-field"><span>News duration <em>seconds</em></span><input type="number" min="10" max="180" data-path="timing.newsSeconds"></label>
-            <label class="bc-field"><span>Event duration <em>seconds</em></span><input type="number" min="10" max="180" data-path="timing.eventSeconds"></label>
+            <label class="bc-field" data-legacy-only-field><span>News duration <em>seconds · Classic only</em></span><input type="number" min="10" max="180" data-path="timing.newsSeconds"></label>
+            <label class="bc-field" data-legacy-only-field><span>Event duration <em>seconds · Classic only</em></span><input type="number" min="10" max="180" data-path="timing.eventSeconds"></label>
             <label class="bc-field"><span>Transition <em>milliseconds</em></span><input type="number" min="0" max="3000" step="50" data-path="timing.transitionMs"></label>
             <label class="bc-field"><span>Control polling <em>seconds</em></span><input type="number" min="5" max="120" data-path="timing.controlPollSeconds"></label>
           </div>
