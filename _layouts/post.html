@@ -36,7 +36,7 @@ layout: default
 {% assign featured_position = page.image.position | default: page.image_position %}
 
 <article
-    class="post-page post-page-v3"
+    class="post-page post-page-v3{% if page.show_toc %} post-page-has-toc{% endif %}"
     data-globe-home
     data-editorial-v3
     aria-labelledby="post-title"
@@ -217,29 +217,34 @@ layout: default
             {% endif %}
 
             {% if page.show_toc %}
+                <section class="article-picks-summary" data-article-picks hidden>
+                    <button class="article-picks-toggle" type="button" aria-expanded="false" aria-controls="article-picks-panel" data-article-picks-toggle>
+                        <span class="article-picks-heading">
+                            <span class="article-picks-kicker">Spoiler-free</span>
+                            <strong>My Picks</strong>
+                            <small>Predictions are hidden until you reveal them.</small>
+                        </span>
+                        <span class="article-picks-toggle-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="article-picks-panel" id="article-picks-panel" data-article-picks-panel hidden>
+                        <ol data-article-picks-list></ol>
+                        <p class="article-picks-note">Select a pick to jump straight to that fight.</p>
+                    </div>
+                </section>
+
                 <nav
-                    class="article-toc"
-                    aria-labelledby="article-toc-title"
+                    class="article-toc article-toc-inline"
+                    aria-labelledby="article-toc-title-inline"
                     data-article-toc
+                    data-toc-surface="inline"
                     data-toc-mode="{{ page.toc_mode | default: 'sections' }}"
                     hidden
                 >
-                    <button
-                        class="article-toc-toggle"
-                        type="button"
-                        aria-expanded="false"
-                        aria-controls="article-toc-panel"
-                        data-article-toc-toggle
-                    >
-                        <strong id="article-toc-title">In this article</strong>
+                    <button class="article-toc-toggle" type="button" aria-expanded="false" aria-controls="article-toc-panel-inline" data-article-toc-toggle>
+                        <strong id="article-toc-title-inline">In this article</strong>
                         <span class="article-toc-toggle-icon" aria-hidden="true"></span>
                     </button>
-                    <div
-                        class="article-toc-panel"
-                        id="article-toc-panel"
-                        data-article-toc-panel
-                        hidden
-                    >
+                    <div class="article-toc-panel" id="article-toc-panel-inline" data-article-toc-panel hidden>
                         <ol data-article-toc-list></ol>
                     </div>
                 </nav>
@@ -248,6 +253,7 @@ layout: default
             <div
                 id="article-content"
                 class="post-body{% if page.preserve_line_breaks %} post-body-preserve-breaks{% endif %}"
+                data-fight-glow="{{ page.fight_glow | default: false }}"
             >
                 {{ content }}
                 {% include article-ad.html %}
@@ -400,6 +406,25 @@ layout: default
         
 
         <aside class="post-rail" aria-label="More MMA reading">
+            {% if page.show_toc %}
+                <nav
+                    class="article-toc article-toc-floating"
+                    aria-labelledby="article-toc-title-floating"
+                    data-article-toc
+                    data-toc-surface="floating"
+                    data-toc-mode="{{ page.toc_mode | default: 'sections' }}"
+                    hidden
+                >
+                    <button class="article-toc-toggle" type="button" aria-expanded="true" aria-controls="article-toc-panel-floating" data-article-toc-toggle>
+                        <strong id="article-toc-title-floating">In this article</strong>
+                        <span class="article-toc-toggle-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="article-toc-panel" id="article-toc-panel-floating" data-article-toc-panel>
+                        <ol data-article-toc-list></ol>
+                    </div>
+                </nav>
+            {% endif %}
+
             <section class="post-rail-section post-rail-originals" aria-labelledby="post-rail-originals-title">
                 <header class="post-rail-heading">
                     <p>From Matlock</p>
