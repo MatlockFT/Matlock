@@ -9,6 +9,7 @@ on:
       - 'scripts/matchmaker/build-writer-fighters.mjs'
       - 'scripts/matchmaker/sources/ufcstats.mjs'
       - 'scripts/matchmaker/sources/ufc.mjs'
+      - 'scripts/matchmaker/sources/sherdog.mjs'
       - '.github/workflows/update-writer-fighters.yml'
   schedule:
     # Fighter data is lightweight enough to refresh hourly. Commits occur only when data changes.
@@ -24,7 +25,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -66,7 +67,15 @@ jobs:
           const statsCount = data.fighters.filter(completeStats).length;
           const careerCount = data.fighters.filter(completeCareer).length;
           if (statsCount < 400) throw new Error('Writer fighter stat coverage is implausibly low: ' + statsCount);
-          if (careerCount < 400) throw new Error('Writer fighter career coverage is implausibly low: ' + careerCount);
+          const minimumCareerCoverage = Math.max(800, Math.floor(data.fighters.length * 0.90));
+          if (careerCount < minimumCareerCoverage) {
+            const missing = data.fighters.filter(fighter => !completeCareer(fighter)).slice(0, 20).map(fighter => fighter.name);
+            throw new Error('Writer fighter career coverage is incomplete: ' + careerCount + '/' + data.fighters.length + '; examples: ' + missing.join(', '));
+          }
+          const incompleteBooked = data.fighters.filter(fighter => fighter.booking && !completeCareer(fighter));
+          if (incompleteBooked.length) {
+            throw new Error('Booked fighters have incomplete Writer career data: ' + incompleteBooked.map(fighter => fighter.name).join(', '));
+          }
 
           // Brad is a regression sentinel because this exact veteran profile exposed a partial-autofill bug.
           // If a future source/parser change would recreate blank Tale or Stats fields, do not publish it.
@@ -117,7 +126,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- assets/data/writer-fighters.json
+          git add -- assets/data/writer-fighters.json assets/data/writer-fighter-career-fallbacks.json
           git diff --cached --quiet && exit 0
           git commit -m "Refresh Writer fighter data"
           git pull --rebase -X theirs origin main
