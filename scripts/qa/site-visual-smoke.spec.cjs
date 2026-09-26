@@ -215,6 +215,26 @@ test.describe('Broadcast control program monitor', () => {
     expect(readerStyle.background).not.toBe('rgb(243, 240, 232)');
     expect(readerStyle.background).not.toBe('rgb(255, 255, 255)');
     expect(readerStyle.color).not.toBe('rgb(18, 18, 18)');
+
+    const tickerStyle = await frame.locator('footer.ticker').evaluate(node => {
+      const style = getComputedStyle(node);
+      return { background: style.backgroundColor, color: style.color };
+    });
+    expect(tickerStyle.background).not.toBe('rgb(243, 240, 232)');
+    expect(tickerStyle.background).not.toBe('rgb(255, 255, 255)');
+    expect(tickerStyle.color).not.toBe('rgb(17, 17, 17)');
+
+    for (const target of ['overview','rundown','queue','sources','timing','display','live-content','custom']) {
+      await page.locator('[data-nav-target="'+target+'"]').click();
+      await expect(page.locator('[data-section="'+target+'"] [data-save-config]')).toBeVisible();
+    }
+
+    await page.locator('[data-nav-target="queue"]').click();
+    await expect(page.locator('[data-queue-state]')).not.toHaveText('SYNCING', { timeout: 10000 });
+    await expect(page.locator('[data-queue-ticker] .bc-queue-item').first()).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('[data-queue-ticker] .bc-queue-item').first().locator('.bc-queue-item-meta b')).not.toHaveText('');
+    await expect(page.locator('[data-queue-video] .bc-queue-item').first()).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('[data-queue-video] .bc-queue-item').first().locator('.bc-queue-item-meta b')).not.toHaveText('');
     await expect(frame.locator('[data-title]')).not.toHaveText('', { timeout: 30000 });
 
     const width = page.locator('[data-path="visual.videoWidth"]');
