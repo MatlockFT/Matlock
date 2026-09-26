@@ -145,10 +145,13 @@
     syncTimer = window.setTimeout(() => pushNow(), delay);
   }
 
+  const onEditorInput = () => queueSync();
+  const onTitleInput = () => queueSync();
+
   function attachLiveListeners() {
     if (previewObserver) return;
-    editor.addEventListener('input', queueSync);
-    titleInput.addEventListener('input', queueSync);
+    editor.addEventListener('input', onEditorInput);
+    titleInput.addEventListener('input', onTitleInput);
     previewObserver = new MutationObserver(() => queueSync(260));
     previewObserver.observe(preview, { childList: true, subtree: true, characterData: true, attributes: true });
   }
@@ -156,8 +159,8 @@
   function detachLiveListeners() {
     window.clearTimeout(syncTimer);
     syncTimer = 0;
-    editor.removeEventListener('input', queueSync);
-    titleInput.removeEventListener('input', queueSync);
+    editor.removeEventListener('input', onEditorInput);
+    titleInput.removeEventListener('input', onTitleInput);
     previewObserver?.disconnect();
     previewObserver = null;
   }
@@ -205,7 +208,6 @@
       attachLiveListeners();
       updateControls();
       setSyncState('Live. New edits sync automatically.', 'success');
-      window.open(publicUrl(), '_blank', 'noopener');
     } catch (error) {
       active = false;
       updateControls();
