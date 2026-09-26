@@ -136,6 +136,8 @@ function renderInputs(){
   q('[data-video-module-switch]')?.classList.toggle('is-locked',split);
   qa('[data-split-video-segment]').forEach(el=>el.hidden=split);
   qa('[data-legacy-only]').forEach(el=>{el.classList.toggle('is-locked',split);const input=el.querySelector('input,select,button');if(input)input.disabled=split});
+  qa('[data-legacy-only-field]').forEach(el=>{el.classList.toggle('is-locked',split);const input=el.querySelector('input,select,button');if(input)input.disabled=split});
+  const health=q('[data-program-health]');if(health)health.hidden=!split;
 }
 const PRESETS={
   newsroom:{label:'Newsroom',modules:{news:true,video:true,events:true},rundown:['news','news','video','news','event'],timing:{newsSeconds:45,eventSeconds:35},video:{maxAgeHours:48,maxItems:8,maxSeconds:600}},
