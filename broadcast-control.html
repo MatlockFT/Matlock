@@ -75,7 +75,8 @@ sitemap: false
             <article><span>Fresh news</span><strong data-metric-news>—</strong><small>eligible stories</small></article>
             <article><span>Videos</span><strong data-metric-videos>—</strong><small>eligible uploads</small></article>
             <article><span>Events</span><strong data-metric-events>—</strong><small>upcoming cards</small></article>
-            <article><span>Manual queue</span><strong data-metric-rundown>—</strong><small>priority items</small></article>
+            <article><span>Reader picks</span><strong data-metric-reader-queue>—</strong><small>manual articles / events</small></article>
+            <article><span>Video picks</span><strong data-metric-video-queue>—</strong><small>manual video priorities</small></article>
           </div>
 
           <div class="bc-draft-strip" data-draft-strip>
@@ -91,7 +92,7 @@ sitemap: false
             <div class="bc-card-head"><div><h2>Modules</h2><p>Kill or restore any part of the channel without changing code.</p></div></div>
             <div class="bc-switch-grid">
               <label class="bc-switch"><input type="checkbox" data-path="modules.news"><span></span><b>News</b><small>External MMA articles</small></label>
-              <label class="bc-switch"><input type="checkbox" data-path="modules.video"><span></span><b>Videos</b><small>YouTube segments</small></label>
+              <label class="bc-switch" data-video-module-switch><input type="checkbox" data-path="modules.video"><span></span><b>Video desk</b><small>Always on in Split Desk</small></label>
               <label class="bc-switch"><input type="checkbox" data-path="modules.events"><span></span><b>Events</b><small>Upcoming fight cards</small></label>
               <label class="bc-switch"><input type="checkbox" data-path="modules.ticker"><span></span><b>Ticker</b><small>Bottom news crawl</small></label>
               <label class="bc-switch"><input type="checkbox" data-path="modules.comingUp"><span></span><b>Coming up</b><small>Next three items rail</small></label>
@@ -102,10 +103,10 @@ sitemap: false
           <div class="bc-card">
             <div class="bc-card-head"><div><h2>Presets</h2><p>Use these as starting points. You can alter every setting afterward.</p></div></div>
             <div class="bc-presets">
-              <button type="button" data-preset="newsroom" aria-pressed="false"><strong>Newsroom</strong><span>Balanced news, video and events</span><em>Load preset</em></button>
-              <button type="button" data-preset="video" aria-pressed="false"><strong>Video heavy</strong><span>More long-form YouTube</span><em>Load preset</em></button>
-              <button type="button" data-preset="headlines" aria-pressed="false"><strong>Headlines only</strong><span>No videos or event boards</span><em>Load preset</em></button>
-              <button type="button" data-preset="event" aria-pressed="false"><strong>Event day</strong><span>More upcoming-card coverage</span><em>Load preset</em></button>
+              <button type="button" data-preset="newsroom" aria-pressed="false"><strong>Newsroom</strong><span>Balanced reader with continuous video</span><em>Load preset</em></button>
+              <button type="button" data-preset="video" aria-pressed="false"><strong>Fresh video</strong><span>Broader, fresher video rotation</span><em>Load preset</em></button>
+              <button type="button" data-preset="headlines" aria-pressed="false"><strong>Article focus</strong><span>News-only reader; video keeps running</span><em>Load preset</em></button>
+              <button type="button" data-preset="event" aria-pressed="false"><strong>Event day</strong><span>Mix fight cards into the reader</span><em>Load preset</em></button>
             </div>
           </div>
         </section>
@@ -128,8 +129,14 @@ sitemap: false
             <div class="bc-program-modes" role="group" aria-label="Programming mode">
               <button type="button" data-program-mode="auto"><strong>Auto</strong><span>Feeds build the loop</span></button>
               <button type="button" data-program-mode="hybrid"><strong>Hybrid</strong><span>Your picks first, Auto fills behind</span></button>
-              <button type="button" data-program-mode="manual"><strong>Manual</strong><span>Only your queue airs</span></button>
+              <button type="button" data-program-mode="manual"><strong>Manual</strong><span>Reader exact · video stays alive</span></button>
             </div>
+          </div>
+
+          <div class="bc-program-health" data-program-health>
+            <div data-program-health-video data-state="syncing"><span>VIDEO</span><strong>SYNCING</strong><small>Checking eligible rotation</small></div>
+            <div data-program-health-reader data-state="syncing"><span>READER</span><strong>SYNCING</strong><small>Checking article / event lane</small></div>
+            <div data-program-health-ticker data-state="syncing"><span>TICKER</span><strong>SYNCING</strong><small>Checking crawl headlines</small></div>
           </div>
 
           <div class="bc-programming-grid bc-programming-queue-only">
@@ -194,8 +201,8 @@ sitemap: false
               </section>
 
               <div class="bc-program-auto-head" data-program-auto-head>
-                <span>ACTUAL RENDERER QUEUE</span>
-                <small data-program-output-note>Auto-selected items currently eligible to air.</small>
+                <span>RESOLVED OUTPUT</span>
+                <small data-program-output-note>Exact items the renderer has resolved for each lane.</small>
               </div>
               <div class="bc-program-output" data-program-output></div>
             </section>
@@ -204,8 +211,8 @@ sitemap: false
           <section class="bc-card bc-program-auto-rules">
             <div class="bc-card-head">
               <div>
-                <h2>Auto fill recipe</h2>
-                <p>Used by Auto and as the filler behind your manual priorities in Hybrid.</p>
+                <h2>Reader auto-fill recipe</h2>
+                <p>Controls the article / event lane in Split Desk. Video is programmed separately above.</p>
               </div>
             </div>
             <p class="bc-rundown-mode-note" data-rundown-mode-note></p>
@@ -213,7 +220,7 @@ sitemap: false
             <div class="bc-add-segment">
               <span>Add segment</span>
               <button type="button" data-add-segment="news">+ News</button>
-              <button type="button" data-add-segment="video">+ Video</button>
+              <button type="button" data-add-segment="video" data-split-video-segment>+ Video</button>
               <button type="button" data-add-segment="event">+ Event</button>
             </div>
             <div class="bc-two-col bc-program-rule-fields">
@@ -393,11 +400,11 @@ sitemap: false
 
           <div class="bc-card">
             <div class="bc-switch-grid">
-              <label class="bc-switch"><input type="checkbox" data-path="visual.flipNews"><span></span><b>Alternate news sides</b><small>Image left / right</small></label>
+              <label class="bc-switch" data-legacy-only><input type="checkbox" data-path="visual.flipNews"><span></span><b>Alternate news sides</b><small>Classic layout only</small></label>
               <label class="bc-switch"><input type="checkbox" data-path="visual.showRail"><span></span><b>Coming-up rail</b><small>Three-item preview</small></label>
               <label class="bc-switch"><input type="checkbox" data-path="visual.showBadge"><span></span><b>Media badge</b><small>Latest / now playing</small></label>
               <label class="bc-switch"><input type="checkbox" data-path="visual.showSource"><span></span><b>Source attribution</b><small>Publisher / channel</small></label>
-              <label class="bc-switch"><input type="checkbox" data-path="events.usePosters"><span></span><b>Event posters</b><small>Use artwork when available</small></label>
+              <label class="bc-switch" data-legacy-only><input type="checkbox" data-path="events.usePosters"><span></span><b>Event posters</b><small>Classic layout only</small></label>
             </div>
           </div>
           <div class="bc-card bc-two-col">
