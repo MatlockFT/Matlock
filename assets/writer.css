@@ -765,5 +765,6 @@
 .writer-fighter-source-status:empty{display:none}
 .writer-fighter-source-status[data-state="loading"]{color:#9a9a9a}
 .writer-fighter-source-status[data-state="live"]{color:#63c990}
+.writer-fighter-source-status[data-state="verified"]{color:#7ca9e6}
 .writer-fighter-source-status[data-state="warning"]{color:#e0aa62}
 .writer-fighter-source-status[data-state="cached"]{color:#9a9a9a}
