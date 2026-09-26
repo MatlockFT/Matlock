@@ -198,10 +198,10 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('#writer-body')).toHaveValue(/\[EMBED X\]\(https:\/\/x\.com\/MMAMatlock\/status\/2100109052697051428\)/);
   await expect(page.locator('[data-preview-content] blockquote.twitter-tweet a')).toHaveAttribute('href', 'https://x.com/MMAMatlock/status/2100109052697051428');
 
-  await page.click('[data-tool="table"]');
-  await page.fill('[data-table-headers]', 'Metric, Alpha, Beta');
-  await page.fill('[data-table-rows]', 'Record\nReach');
-  await page.click('[data-table-insert]');
+  // Markdown tables remain supported in source/preview even though the old
+  // standalone Table toolbar tool was intentionally removed.
+  const beforeTable = await editor.inputValue();
+  await editor.fill(beforeTable + '\n\n| Metric | Alpha | Beta |\n| --- | --- | --- |\n| Record |  |  |\n| Reach |  |  |');
   await expect(page.locator('[data-preview-content]')).toContainText('Metric');
   await expect(page.locator('[data-preview-content]')).toContainText('Reach');
 
