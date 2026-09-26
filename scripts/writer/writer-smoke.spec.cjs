@@ -217,16 +217,39 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await previewTableShell.locator('[data-preview-table-edit]').click();
   await expect(page.locator('[data-preview-content] table').first()).toContainText('10-1');
 
+  // Structured Fight Stats: normal fields, no pipe-delimited row syntax.
+  await page.click('[data-tool="stats"]');
+  const statsDialog = page.locator('[data-stats-dialog]');
+  await statsDialog.locator('[data-stats-fighter="a"]').fill('Alpha Fighter');
+  await statsDialog.locator('[data-stats-fighter="b"]').fill('Beta Fighter');
+  const firstStatRow = statsDialog.locator('[data-stats-row-list] .writer-comparison-row').first();
+  await expect(firstStatRow.locator('[data-structured-label]')).toHaveValue('Significant Strikes / Minute');
+  await firstStatRow.locator('[data-structured-a]').fill('4.20');
+  await firstStatRow.locator('[data-structured-b]').fill('3.10');
+  await statsDialog.locator('[data-stats-insert]').click();
+  await expect(page.locator('[data-preview-content]')).toContainText('Alpha Fighter');
+  await expect(page.locator('[data-preview-content]')).toContainText('4.20');
+
+  // Structured Tale of the Tape: direct comparison and recent-form controls.
   await page.click('[data-tool="tale"]');
-  await page.fill('[data-tale-a]', 'Alpha Fighter');
-  await page.fill('[data-tale-b]', 'Beta Fighter');
-  await page.fill('[data-tale-row="record"][data-side="a"]', '10-1');
-  await page.fill('[data-tale-row="record"][data-side="b"]', '9-2');
-  await page.fill('[data-tale-row="reach"][data-side="a"]', '72 in');
-  await page.fill('[data-tale-row="reach"][data-side="b"]', '70 in');
-  await page.click('[data-tale-insert]');
+  const taleDialog = page.locator('[data-tale-dialog]');
+  await taleDialog.locator('[data-tale-a]').fill('Alpha Fighter');
+  await taleDialog.locator('[data-tale-b]').fill('Beta Fighter');
+  const taleRows = taleDialog.locator('[data-tale-row-list] .writer-comparison-row');
+  await expect(taleRows).toHaveCount(11);
+  await taleRows.nth(0).locator('[data-structured-a]').fill('10-1');
+  await taleRows.nth(0).locator('[data-structured-b]').fill('9-2');
+  await taleRows.nth(3).locator('[data-structured-a]').fill('72 in');
+  await taleRows.nth(3).locator('[data-structured-b]').fill('70 in');
+  await taleDialog.locator('[data-tale-form-add="a"]').click();
+  const recent = taleDialog.locator('[data-tale-form-list="a"] .writer-recent-row').first();
+  await recent.locator('[data-recent-result]').selectOption('W');
+  await recent.locator('[data-recent-opponent]').fill('Gamma Fighter');
+  await recent.locator('[data-recent-detail]').fill('DEC · R3');
+  await taleDialog.locator('[data-tale-insert]').click();
   await expect(page.locator('[data-preview-content]')).toContainText('ALPHA FIGHTER');
   await expect(page.locator('[data-preview-content]')).toContainText('10-1');
+  await expect(page.locator('[data-preview-content]')).toContainText('Gamma Fighter');
 
   await page.click('[data-tool="html"]');
   await page.fill('[data-html-label]', 'Smoke visual');
