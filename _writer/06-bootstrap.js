@@ -273,34 +273,58 @@ Object.values(fields).forEach(el => {
     showToast('HTML visual removed.');
   });
 
-  app.querySelector('[data-stats-insert]').addEventListener('click', () => {
-    const dialog = app.querySelector('[data-stats-dialog]');
-    const rows = dialog.querySelector('[data-stats-rows]').value.trim();
-    if (!rows) { showToast('Add at least one stats row.'); return; }
-    const cfg = { rows };
-    saveStructuredBlock('stats', 'Stats', buildStatsVisual(cfg));
-    dialog.close();
+  const statsDialog=app.querySelector('[data-stats-dialog]');
+  const taleDialog=app.querySelector('[data-tale-dialog]');
+
+  statsDialog.querySelectorAll('[data-stats-fighter]').forEach(input=>input.addEventListener('input',()=>refreshStatsNameHeaders(statsDialog)));
+  statsDialog.addEventListener('click',event=>{
+    const rowAction=event.target.closest('[data-structured-action]');
+    if(rowAction){applyStructuredRowAction(rowAction);return;}
+    const preset=event.target.closest('[data-stats-preset]')?.dataset.statsPreset;
+    if(preset==='ufc'){renderComparisonRows(statsDialog.querySelector('[data-stats-row-list]'),[],statsDefaultRowLabels);return;}
+    if(preset==='blank'){renderComparisonRows(statsDialog.querySelector('[data-stats-row-list]'),[]);return;}
+    if(event.target.closest('[data-stats-add-row]')) appendComparisonRow(statsDialog.querySelector('[data-stats-row-list]'));
   });
 
-  app.querySelector('[data-tale-insert]').addEventListener('click', () => {
-    const dialog = app.querySelector('[data-tale-dialog]');
-    const collect = side => ({
-      name: dialog.querySelector(side === 'a' ? '[data-tale-a]' : '[data-tale-b]').value.trim(),
-      division: dialog.querySelector('[data-tale-division="' + side + '"]').value.trim(),
-      odds: dialog.querySelector('[data-tale-odds="' + side + '"]').value.trim(),
-      last5: dialog.querySelector('[data-tale-last5="' + side + '"]').value.trim(),
-      image: dialog.querySelector('[data-tale-image-path="' + side + '"]').value.trim(),
-      x: Number(dialog.querySelector('[data-tale-image-x="' + side + '"]').value || 50),
-      y: Number(dialog.querySelector('[data-tale-image-y="' + side + '"]').value || 50),
-      zoom: Number(dialog.querySelector('[data-tale-image-zoom="' + side + '"]').value || 100),
-      recent: dialog.querySelector('[data-tale-recent="' + side + '"]').value.trim(),
-      opponentsRecord: dialog.querySelector('[data-tale-opponents-record="' + side + '"]').value.trim(),
-      opponentsPct: dialog.querySelector('[data-tale-opponents-pct="' + side + '"]').value.trim()
+  taleDialog.addEventListener('click',event=>{
+    const rowAction=event.target.closest('[data-structured-action]');
+    if(rowAction){applyStructuredRowAction(rowAction);return;}
+    if(event.target.closest('[data-tale-rows-reset]')){renderComparisonRows(taleDialog.querySelector('[data-tale-row-list]'),[],taleDefaultRowLabels);return;}
+    if(event.target.closest('[data-tale-row-add]')){appendComparisonRow(taleDialog.querySelector('[data-tale-row-list]'));return;}
+    const formSide=event.target.closest('[data-tale-form-add]')?.dataset.taleFormAdd;
+    if(formSide) appendRecentRow(taleDialog.querySelector('[data-tale-form-list="'+formSide+'"]'));
+  });
+
+  app.querySelector('[data-stats-insert]').addEventListener('click',()=>{
+    const fighterA=statsDialog.querySelector('[data-stats-fighter="a"]').value.trim();
+    const fighterB=statsDialog.querySelector('[data-stats-fighter="b"]').value.trim();
+    const rows=collectComparisonRows(statsDialog.querySelector('[data-stats-row-list]'));
+    if(!rows.length){showToast('Add at least one stat row.');return;}
+    const cfg={version:2,fighterA,fighterB,rows};
+    const label=fighterA&&fighterB?fighterA+' vs. '+fighterB+' · Stats':'Fight Stats';
+    saveStructuredBlock('stats',label,buildStatsVisual(cfg));
+    statsDialog.close();
+  });
+
+  app.querySelector('[data-tale-insert]').addEventListener('click',()=>{
+    const collect=side=>({
+      name:taleDialog.querySelector(side==='a'?'[data-tale-a]':'[data-tale-b]').value.trim(),
+      division:taleDialog.querySelector('[data-tale-division="'+side+'"]').value.trim(),
+      odds:taleDialog.querySelector('[data-tale-odds="'+side+'"]').value.trim(),
+      last5:taleDialog.querySelector('[data-tale-last5="'+side+'"]').value.trim(),
+      image:taleDialog.querySelector('[data-tale-image-path="'+side+'"]').value.trim(),
+      x:Number(taleDialog.querySelector('[data-tale-image-x="'+side+'"]').value||50),
+      y:Number(taleDialog.querySelector('[data-tale-image-y="'+side+'"]').value||50),
+      zoom:Number(taleDialog.querySelector('[data-tale-image-zoom="'+side+'"]').value||100),
+      recent:collectRecentRows(taleDialog.querySelector('[data-tale-form-list="'+side+'"]')),
+      opponentsRecord:taleDialog.querySelector('[data-tale-opponents-record="'+side+'"]').value.trim(),
+      opponentsPct:taleDialog.querySelector('[data-tale-opponents-pct="'+side+'"]').value.trim()
     });
-    const cfg = { a: collect('a'), b: collect('b'), rows: dialog.querySelector('[data-tale-rows]').value.trim() || taleDefaultRows };
-    if (!cfg.a.name || !cfg.b.name) { showToast('Add both fighter names.'); return; }
-    saveStructuredBlock('tale', cfg.a.name + ' vs. ' + cfg.b.name, buildTaleVisual(cfg));
-    dialog.close();
+    const cfg={version:2,a:collect('a'),b:collect('b'),rows:collectComparisonRows(taleDialog.querySelector('[data-tale-row-list]'))};
+    if(!cfg.a.name||!cfg.b.name){showToast('Add both fighter names.');return;}
+    if(!cfg.rows.length) cfg.rows=normalizeComparisonRows([],taleDefaultRowLabels);
+    saveStructuredBlock('tale',cfg.a.name+' vs. '+cfg.b.name,buildTaleVisual(cfg));
+    taleDialog.close();
   });
 
   app.querySelector('[data-pick-insert]').addEventListener('click', () => {
