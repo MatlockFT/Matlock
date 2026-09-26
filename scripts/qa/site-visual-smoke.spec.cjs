@@ -222,6 +222,8 @@ test.describe('Broadcast control program monitor', () => {
     await page.locator('[data-news-sources] [data-restore-source="news"]').filter({ hasText: sourceName }).click();
     await expect(page.locator('[data-news-sources] .bc-source-row').filter({ hasText: sourceName })).toBeVisible();
 
+    await page.locator('[data-nav-target="overview"]').click();
+    await expect(page.locator('[data-section="overview"]')).toBeVisible();
     await page.locator('[data-preset="video"]').click();
     await expect(page.locator('[data-draft-title]')).toContainText('Video heavy');
     await expect(page.locator('[data-preview-renderer]')).toHaveText('ONLINE', { timeout: 10000 });
