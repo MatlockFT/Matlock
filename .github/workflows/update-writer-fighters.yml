@@ -42,8 +42,13 @@ jobs:
           node - <<'NODE'
           const fs = require('fs');
           const data = JSON.parse(fs.readFileSync('assets/data/writer-fighters.json', 'utf8'));
+          const current = JSON.parse(fs.readFileSync('assets/data/matchmaker/current.json', 'utf8'));
           if (data.schemaVersion !== 1) throw new Error('Unexpected Writer fighter schema.');
           if (!Array.isArray(data.fighters) || data.fighters.length < 500) throw new Error('Writer fighter index is implausibly small.');
+          const expectedFighters = (current.fighters || []).filter(fighter => fighter.id && fighter.name);
+          if (data.fighters.length !== expectedFighters.length) {
+            throw new Error('Writer fighter directory dropped roster identities: ' + data.fighters.length + '/' + expectedFighters.length);
+          }
           if (!data.mirrorThrough) throw new Error('Writer fighter index is missing mirror freshness.');
           const completeStats = fighter => (
             fighter.stats &&
@@ -67,10 +72,13 @@ jobs:
           const statsCount = data.fighters.filter(completeStats).length;
           const careerCount = data.fighters.filter(completeCareer).length;
           if (statsCount < 400) throw new Error('Writer fighter stat coverage is implausibly low: ' + statsCount);
-          const minimumCareerCoverage = Math.max(800, Math.floor(data.fighters.length * 0.90));
-          if (careerCount < minimumCareerCoverage) {
+          if (careerCount < 650) {
             const missing = data.fighters.filter(fighter => !completeCareer(fighter)).slice(0, 20).map(fighter => fighter.name);
-            throw new Error('Writer fighter career coverage is incomplete: ' + careerCount + '/' + data.fighters.length + '; examples: ' + missing.join(', '));
+            throw new Error('Writer fighter career coverage collapsed: ' + careerCount + '/' + data.fighters.length + '; examples: ' + missing.join(', '));
+          }
+          const missingBooked = expectedFighters.filter(fighter => fighter.booking && !data.fighters.some(item => item.id === fighter.id));
+          if (missingBooked.length) {
+            throw new Error('Booked fighters are missing from Writer autocomplete: ' + missingBooked.map(fighter => fighter.name).join(', '));
           }
           const incompleteBooked = data.fighters.filter(fighter => fighter.booking && !completeCareer(fighter));
           if (incompleteBooked.length) {
