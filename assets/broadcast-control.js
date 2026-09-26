@@ -394,14 +394,16 @@ function moveProgramEntry(from,to){
 }
 function renderProgramManualQueue(){
   const host=q('[data-program-manual-queue]');if(!host)return;
-  const queue=manualProgramQueue(),mode=programMode(),manualVisible=mode!=='auto';
-  q('[data-program-manual-head]').hidden=!manualVisible;
-  host.hidden=!manualVisible;
+  const queue=manualProgramQueue(),mode=programMode(),head=q('[data-program-manual-head]');
+  head.hidden=false;
+  const headLabel=head.querySelector('span'),headNote=head.querySelector('small');
+  if(headLabel)headLabel.textContent=mode==='auto'?'SAVED MANUAL QUEUE · INACTIVE':'YOUR PRIORITY QUEUE';
+  if(headNote)headNote.textContent=mode==='auto'?'Drop anything here to switch to Hybrid':mode==='manual'?'Drag to set the exact looping order':'Drag to reorder · Auto fills behind';
+  host.hidden=false;host.classList.toggle('is-inactive',mode==='auto');
   q('[data-program-clear]').disabled=!queue.length;
   q('[data-program-queue-count]').textContent=mode==='auto'?(previewQueue?(previewQueue.article?.length||0)+(previewQueue.video?.length||0)+(previewQueue.program?.length||0):0):queue.length;
-  if(!manualVisible)return;
   host.innerHTML='';
-  if(!queue.length){host.innerHTML='<div class="bc-program-empty">Drop articles, videos or events here. '+(mode==='manual'?'Nothing will air until you add something.':'Auto will fill the channel until you add priorities.')+'</div>'}
+  if(!queue.length){host.innerHTML='<div class="bc-program-empty">Drop articles, videos or events here. '+(mode==='auto'?'Your first drop switches the draft to Hybrid.':mode==='manual'?'Nothing will air until you add something.':'Auto will fill the channel until you add priorities.')+'</div>'}
   queue.forEach((entry,index)=>{
     const row=document.createElement('article');row.className='bc-program-item bc-program-queue-item';row.draggable=true;row.dataset.programQueueIndex=String(index);row.innerHTML=programEntryMarkup(entry,{queueIndex:index});
     row.querySelector('[data-program-remove]').onclick=()=>removeProgramEntry(index);
