@@ -314,28 +314,43 @@ function sanitizedInlineHtml(value) {
 }
 
 function articleContextBlocksFromHtml(html, fallbackText = "") {
+    const boilerplate =
+        /subscribe|sign up|newsletter|advertisement|adblock|ad blocker|click here|follow us|cookie|privacy|terms of use|javascript|enable cookies|log in|register/i;
+    const paragraphs = [...html.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
+        .map(match => ({
+            raw: match[1],
+            text: broadcastContextText(match[1])
+        }))
+        .filter(entry => entry.text.length >= 90)
+        .filter(entry => !boilerplate.test(entry.text));
+
+    if (!paragraphs.length) {
+        return fallbackText ? [{ type: "p", html: fallbackText }] : [];
+    }
+
+    const fallback = plainText(fallbackText).toLowerCase();
+    const related = fallback
+        ? paragraphs.filter(entry => {
+            const text = entry.text.toLowerCase();
+            const probe = text.slice(0, Math.min(90, text.length));
+            const fallbackProbe = fallback.slice(0, Math.min(90, fallback.length));
+            return (
+                (probe.length >= 45 && fallback.includes(probe)) ||
+                (fallbackProbe.length >= 45 && text.includes(fallbackProbe))
+            );
+        })
+        : [];
+
+    const chosen = related.length ? related : paragraphs.slice(0, 2);
     const blocks = [];
-    const pattern = /<(h2|h3|p|li)\b[^>]*>([\s\S]*?)<\/\1>/gi;
     let total = 0;
 
-    for (const match of html.matchAll(pattern)) {
-        const tag = match[1].toLowerCase();
-        const raw = match[2];
-        const text = broadcastContextText(raw);
-        const minimum = tag === "h2" || tag === "h3" ? 10 : 45;
-
-        if (
-            text.length < minimum ||
-            /subscribe|sign up|newsletter|advertisement|click here|follow us|cookie|privacy/i.test(text)
-        ) {
-            continue;
-        }
-
+    for (const entry of chosen) {
         const remaining = ARTICLE_CONTEXT_LIMIT - total;
-        if (remaining < 40) break;
+        if (remaining < 60) break;
 
-        let blockText = text;
-        let rich = sanitizedInlineHtml(raw);
+        let blockText = entry.text;
+        let rich = sanitizedInlineHtml(entry.raw);
 
         if (blockText.length > remaining) {
             blockText = truncate(blockText, remaining);
@@ -343,7 +358,7 @@ function articleContextBlocksFromHtml(html, fallbackText = "") {
         }
 
         blocks.push({
-            type: tag === "li" ? "li" : tag,
+            type: "p",
             html: rich || blockText
         });
         total += blockText.length;
@@ -351,11 +366,9 @@ function articleContextBlocksFromHtml(html, fallbackText = "") {
         if (total >= ARTICLE_CONTEXT_LIMIT) break;
     }
 
-    if (!blocks.length && fallbackText) {
-        blocks.push({ type: "p", html: fallbackText });
-    }
-
-    return blocks;
+    return blocks.length
+        ? blocks
+        : (fallbackText ? [{ type: "p", html: fallbackText }] : []);
 }
 
 function truncate(value, maximumLength) {
