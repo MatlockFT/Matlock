@@ -413,6 +413,7 @@ const output = {
 
 if (fighters.length < 500) throw new Error(`Writer fighter index is implausibly small: ${fighters.length}`);
 if (withStats < 400) throw new Error(`Writer fighter index has implausibly low stat coverage: ${withStats}`);
+if (withCareer < 400) throw new Error(`Writer fighter index has implausibly low career-method coverage: ${withCareer}`);
 
 await fs.writeFile(OUTPUT_PATH, JSON.stringify(output, null, 2) + '\n');
 console.log(`Writer fighter index: ${fighters.length} fighters, ${withStats} with UFCStats career metrics, ${withBio} with Tale data, ${withCareer} with career-method totals. Mirror through ${mirrorThrough || 'unknown'}.`);
