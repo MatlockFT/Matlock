@@ -2772,6 +2772,10 @@ function insertBlock(text) {
     return (rows || []).slice(0,5).map(row => row.result || '').filter(Boolean).join('');
   }
 
+  function displayComparisonValue(value) {
+    return value === null || value === undefined || value === '' ? 'N/A' : value;
+  }
+
   function setComparisonValue(container, label, side, value) {
     if (!container || value === null || value === undefined || value === '') return;
     const wanted = normalizeFighterLookup(label);
@@ -2784,12 +2788,12 @@ function insertBlock(text) {
   }
 
   function applyCareerComparisonValues(container, side, career) {
-    if (!container || !career) return;
-    setComparisonValue(container,'Total Finishes',side,career.totalFinishes);
-    setComparisonValue(container,'TKO / KO',side,career.winsByKnockout);
-    setComparisonValue(container,'Submission',side,career.winsBySubmission);
-    setComparisonValue(container,'Unanimous Decision',side,career.unanimousDecisionWins);
-    setComparisonValue(container,'Split Decision',side,career.splitDecisionWins);
+    const source = career || {};
+    setComparisonValue(container,'Total Finishes',side,displayComparisonValue(source.totalFinishes));
+    setComparisonValue(container,'TKO / KO',side,displayComparisonValue(source.winsByKnockout));
+    setComparisonValue(container,'Submission',side,displayComparisonValue(source.winsBySubmission));
+    setComparisonValue(container,'Unanimous Decision',side,displayComparisonValue(source.unanimousDecisionWins));
+    setComparisonValue(container,'Split Decision',side,displayComparisonValue(source.splitDecisionWins));
   }
 
   function fighterSourceMeta(input) {
@@ -2835,14 +2839,14 @@ function insertBlock(text) {
       if (input) input.value = fighter.name;
       const rows = dialog.querySelector('[data-stats-row-list]');
       const values = [
-        ['Significant Strikes / Minute',fighter.stats?.slpm],
-        ['Sig. Strikes Absorbed / Minute',fighter.stats?.sapm],
-        ['Striking Accuracy',fighter.stats?.strAccuracy],
-        ['Striking Defense',fighter.stats?.strDefense],
-        ['Takedowns / 15 Minutes',fighter.stats?.tdAvg],
-        ['Takedown Accuracy',fighter.stats?.tdAccuracy],
-        ['Takedown Defense',fighter.stats?.tdDefense],
-        ['Submission Attempts / 15',fighter.stats?.subAvg]
+        ['Significant Strikes / Minute',displayComparisonValue(fighter.stats?.slpm)],
+        ['Sig. Strikes Absorbed / Minute',displayComparisonValue(fighter.stats?.sapm)],
+        ['Striking Accuracy',displayComparisonValue(fighter.stats?.strAccuracy)],
+        ['Striking Defense',displayComparisonValue(fighter.stats?.strDefense)],
+        ['Takedowns / 15 Minutes',displayComparisonValue(fighter.stats?.tdAvg)],
+        ['Takedown Accuracy',displayComparisonValue(fighter.stats?.tdAccuracy)],
+        ['Takedown Defense',displayComparisonValue(fighter.stats?.tdDefense)],
+        ['Submission Attempts / 15',displayComparisonValue(fighter.stats?.subAvg)]
       ];
       for (const [label,value] of values) setComparisonValue(rows,label,side,value);
       refreshStatsNameHeaders(dialog);
@@ -2861,12 +2865,12 @@ function insertBlock(text) {
     if (last5 && recent.length) last5.value = lastFiveFromRows(recent);
     const rows = dialog.querySelector('[data-tale-row-list]');
     const ufcRecord = fighter.ufcRecord || recordFromHistory(fighter.history,new Set(['ufc']));
-    setComparisonValue(rows,'Record',side,fighter.record);
-    setComparisonValue(rows,'Age',side,ageFromDob(fighter.bio?.dob));
-    setComparisonValue(rows,'Height',side,fighter.bio?.height);
-    setComparisonValue(rows,'Arm Reach',side,fighter.bio?.reach);
-    setComparisonValue(rows,'UFC Record',side,ufcRecord);
-    setComparisonValue(rows,'Record Outside UFC',side,fighter.recordOutsideUfc || subtractRecords(fighter.record,ufcRecord));
+    setComparisonValue(rows,'Record',side,displayComparisonValue(fighter.record));
+    setComparisonValue(rows,'Age',side,displayComparisonValue(ageFromDob(fighter.bio?.dob)));
+    setComparisonValue(rows,'Height',side,displayComparisonValue(fighter.bio?.height));
+    setComparisonValue(rows,'Arm Reach',side,displayComparisonValue(fighter.bio?.reach));
+    setComparisonValue(rows,'UFC Record',side,displayComparisonValue(ufcRecord));
+    setComparisonValue(rows,'Record Outside UFC',side,displayComparisonValue(fighter.recordOutsideUfc || subtractRecords(fighter.record,ufcRecord)));
     applyCareerComparisonValues(rows,side,fighter.career);
     refreshTaleNameHeaders(dialog);
     taleImagePreview(side);
