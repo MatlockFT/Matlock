@@ -20,6 +20,7 @@ tags:
   - Montel Jackson
   - Ricky Simon
 show_toc: true
+fight_glow: true
 pinned: false
 listing_visibility: normal
 spoiler_warning: false
@@ -14300,6 +14301,8 @@ This could potentially be Fight of the Night in my eyes. A lot of it really depe
 </section>
 ---
 
+## Melissa Amaya vs. Tina Black
+
 For the two TUF Finale fights, I have very little info. Tina Black looks to be the better, more technical fighter so I'd imagine her opponent is gonna have to make the fight ugly. 
 
 <section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Tina%20Black%22%2C%22method%22%3A%22Decision%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%7D">
@@ -14308,6 +14311,9 @@ For the two TUF Finale fights, I have very little info. Tina Black looks to be t
   <div class="article-pick-card__main"><strong>Tina Black</strong><span>Decision</span></div>
 </aside>
 </section>
+
+## Mahammadali Osmanli vs. Ilimbek Akylbek
+
 I saw a clip of Osmanli hitting a buggy choke and that is good enough evidence for me to pick him. 
 
 <section class="article-html-visual" data-writer-block="pick" data-writer-config="%7B%22fighter%22%3A%22Mehemmedeli%20Osmanli%22%2C%22method%22%3A%22%22%2C%22round%22%3A%22%22%2C%22note%22%3A%22%22%7D">
