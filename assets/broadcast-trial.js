@@ -417,7 +417,7 @@ async function boot(){
   try{
     control=deepMerge(DEFAULT_CONTROL,await getWithFallback(CONTROL_REMOTE,CONTROL_FALLBACK));lastControlRevision=Number(control.revision||0);
     applyDisplay();configureBed();await refreshFeeds();scheduleControlPoll();setInterval(refreshFeeds,FEED_REFRESH_MS);
-    if(IS_CONTROL_PREVIEW)reportPreviewState(slides.length?"ready":"empty");
+    if(IS_CONTROL_PREVIEW)reportPreviewState("connected");
   }catch(error){
     if(IS_CONTROL_PREVIEW)reportPreviewState("error",error?.message||"Renderer failed to start");
   }
