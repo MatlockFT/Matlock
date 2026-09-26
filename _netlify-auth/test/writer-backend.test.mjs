@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 
 import { allowedPath, validateWriteBody } from '../netlify/functions/writer-github.mjs';
 import { parseUfcProfileSummary, parseUfcStatsProfile } from '../netlify/functions/writer-fighter.mjs';
+import { parseUfcFightProfile } from '../../scripts/matchmaker/sources/sherdog.mjs';
 import {
   ACTIVE_UPLOAD_TTL_MS,
   COMPLETE_STATUS_TTL_MS,
@@ -187,4 +188,35 @@ test('UFC official profile parser treats omitted zero-value career cards as zero
   assert.equal(submissionOnly.career.winsBySubmission, 8);
   assert.equal(submissionOnly.career.totalFinishes, 8);
   assert.equal(submissionOnly.career.decisionWins, 7);
+});
+
+
+test('direct career fallback parser extracts record, finish methods, bio and decision subtypes', () => {
+  const html = `
+    <article>
+      <h1>Adam Livingston MMA Profile Record and Fight History</h1>
+      <h2>ADAM LIVINGSTON</h2>
+      <div>W-L-D 8-1-0</div>
+      <div>BIRTHDATE 8/15/2001 (25)</div>
+      <div>HT / WT 6′ 1″, 155 lbs</div>
+      <section>WINS 8 KO/TKO 5 SUB 1 DECISION 2 LOSSES 1 KO/TKO 0 SUB 1 DECISION 0</section>
+      <h2>Adam Livingston Fight History</h2>
+      <table>
+        <tr><td>Sep 1, 2026</td><td>Hunter Smith</td><td>W (Decision – Split)</td></tr>
+        <tr><td>Jun 16, 2023</td><td>Daniel Mahoney</td><td>W (Decision – Unanimous)</td></tr>
+      </table>
+    </article>
+  `;
+  const profile = parseUfcFightProfile(html, 'https://ufcfight.net/adam-livingston/');
+  assert.equal(profile.name, 'ADAM LIVINGSTON');
+  assert.equal(profile.record, '8-1-0');
+  assert.equal(profile.career.winsByKnockout, 5);
+  assert.equal(profile.career.winsBySubmission, 1);
+  assert.equal(profile.career.totalFinishes, 6);
+  assert.equal(profile.career.decisionWins, 2);
+  assert.equal(profile.career.unanimousDecisionWins, 1);
+  assert.equal(profile.career.splitDecisionWins, 1);
+  assert.equal(profile.career.decisionBreakdownComplete, true);
+  assert.equal(profile.bio.dob, '8/15/2001');
+  assert.equal(profile.bio.weight, '155 lbs');
 });
