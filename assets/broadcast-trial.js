@@ -326,6 +326,7 @@ function seenForceId(){try{return localStorage.getItem(forceStorageKey())||""}ca
 function markForceSeen(id){try{localStorage.setItem(forceStorageKey(),id)}catch{}}
 function processForce(){
   const force=cfg().forceNext;if(!force?.requestId||force.requestId===seenForceId())return;
+  const requestTime=Number(force.requestId);if(Number.isFinite(requestTime)&&Date.now()-requestTime>5*60*1000){markForceSeen(force.requestId);return}
   const item=resolveForce(force.ref);if(!item)return;
   if(force.mode==="now"&&transitioning&&item.type!=="video"){setTimeout(processForce,Math.max(250,Number(cfg().timing.transitionMs||650)+100));return}
   markForceSeen(force.requestId);
@@ -357,9 +358,10 @@ async function refreshControl(){
 }
 function scheduleControlPoll(){clearTimeout(controlTimer);controlTimer=setTimeout(refreshControl,Math.max(5,Number(cfg().timing.controlPollSeconds||10))*1000)}
 
+function programItemCount(){return slides.length+(isSplitDesk()?videoSlides().length:0)}
 function reportPreviewState(stateName,message=""){
   if(!IS_CONTROL_PREVIEW||window.parent===window)return;
-  try{window.parent.postMessage({type:"matlock-broadcast-preview-state",state:stateName,message,slideCount:slides.length,currentType:currentSlide?.type||null},location.origin)}catch{}
+  try{window.parent.postMessage({type:"matlock-broadcast-preview-state",state:stateName,message,slideCount:programItemCount(),currentType:currentSlide?.type||null},location.origin)}catch{}
 }
 function applyControlPreview(m){
   if(!IS_CONTROL_PREVIEW||!m||m.type!=="matlock-broadcast-control-preview"||!m.config)return{state:"error",slideCount:slides.length};
@@ -371,10 +373,22 @@ function applyControlPreview(m){
   }
   rebuildSlides();processForce();configureBed();
   if(!slides.length){
-    clearTimeout(timer);clearTimeout(videoWatchdog);
-    currentSlide=null;els.title.textContent="No eligible content in this draft";els.eyebrow.textContent="PROGRAM MONITOR";els.source.textContent="MMA MATLOCK";els.time.textContent="PREVIEW";
+    clearTimeout(timer);
+    const splitVideos=isSplitDesk()?videoSlides():[];
+    currentSlide=null;
+    if(splitVideos.length){
+      ensureSplitVideo();
+      els.title.textContent="Waiting for an eligible article";
+      els.eyebrow.textContent="ARTICLE READER";els.source.textContent="MMA MATLOCK";els.time.textContent="PREVIEW";
+      els.context.innerHTML='<div class="article-reader-card"><div class="article-reader-label">ARTICLE LANE</div><p>No story currently passes the article filters. The video lane remains live.</p><div class="article-reader-page">CHECK SOURCES / FRESHNESS</div></div>';
+      reportPreviewState("ready");
+      return{state:"ready",slideCount:splitVideos.length,currentType:"video"};
+    }
+    clearTimeout(videoWatchdog);
+    els.title.textContent="No eligible content in this draft";els.eyebrow.textContent="PROGRAM MONITOR";els.source.textContent="MMA MATLOCK";els.time.textContent="PREVIEW";
     renderFacts("CHECK FILTERS",["Enable at least one content module and make sure the freshness/source filters leave eligible stories, videos, or events."]);
-    setMediaImage("");reportPreviewState("empty");
+    if(isSplitDesk())splitVideoFallback("No eligible video or article content.");else setMediaImage("");
+    reportPreviewState("empty");
     return{state:"empty",slideCount:0,currentType:null};
   }
   if(m.restart||!currentSlide){
@@ -386,7 +400,7 @@ function applyControlPreview(m){
     renderSlideNow(next);
   }
   reportPreviewState("ready");
-  return{state:"ready",slideCount:slides.length,currentType:currentSlide?.type||null};
+  return{state:"ready",slideCount:programItemCount(),currentType:currentSlide?.type||null};
 }
 if(IS_CONTROL_PREVIEW){
   window.MatlockBroadcastPreview={apply:applyControlPreview};
