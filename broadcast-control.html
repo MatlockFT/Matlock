@@ -49,11 +49,12 @@ sitemap: false
         <nav aria-label="Broadcast control sections">
           <button type="button" class="is-active" data-nav-target="overview"><span>01</span> Overview</button>
           <button type="button" data-nav-target="rundown"><span>02</span> Rundown</button>
-          <button type="button" data-nav-target="sources"><span>03</span> Sources</button>
-          <button type="button" data-nav-target="timing"><span>04</span> Timing + audio</button>
-          <button type="button" data-nav-target="display"><span>05</span> Display</button>
-          <button type="button" data-nav-target="live-content"><span>06</span> Live content</button>
-          <button type="button" data-nav-target="custom"><span>07</span> Custom card</button>
+          <button type="button" data-nav-target="queue"><span>03</span> Queue</button>
+          <button type="button" data-nav-target="sources"><span>04</span> Sources</button>
+          <button type="button" data-nav-target="timing"><span>05</span> Timing + audio</button>
+          <button type="button" data-nav-target="display"><span>06</span> Display</button>
+          <button type="button" data-nav-target="live-content"><span>07</span> Live content</button>
+          <button type="button" data-nav-target="custom"><span>08</span> Custom card</button>
         </nav>
 
         <div class="bc-nav-bottom">
@@ -128,6 +129,61 @@ sitemap: false
             <label class="bc-field"><span>Maximum video items</span><input type="number" min="1" max="30" data-path="video.maxItems"></label>
             <label class="bc-field"><span>Maximum event items</span><input type="number" min="0" max="20" data-path="events.maxItems"></label>
             <label class="bc-field"><span>News freshness window <em>hours</em></span><input type="number" min="1" max="168" data-path="news.maxAgeHours"></label>
+          </div>
+        </section>
+
+        <section class="bc-section" data-section="queue" hidden>
+          <div class="bc-section-head">
+            <div>
+              <p class="bc-eyebrow">Transmission queue</p>
+              <h1>Queue inspector</h1>
+              <p>Exact items currently eligible to air from this draft. Order and source attribution come directly from the broadcast renderer, not source totals.</p>
+            </div>
+          </div>
+
+          <div class="bc-queue-state">
+            <div>
+              <span>QUEUE STATE</span>
+              <strong data-queue-state>Waiting for renderer…</strong>
+            </div>
+            <small data-queue-mode>Program queue will appear when the preview is synchronized.</small>
+          </div>
+
+          <div class="bc-queue-grid">
+            <section class="bc-card bc-queue-card" data-queue-card="article">
+              <div class="bc-card-head">
+                <div><h2>Article / event lane</h2><p>Right-side reader order in Split Desk.</p></div>
+                <strong class="bc-queue-count" data-queue-article-count>0</strong>
+              </div>
+              <div class="bc-queue-now" data-queue-article-now hidden></div>
+              <div class="bc-queue-list" data-queue-article></div>
+            </section>
+
+            <section class="bc-card bc-queue-card" data-queue-card="video">
+              <div class="bc-card-head">
+                <div><h2>Video lane</h2><p>Exact YouTube rotation and source channel.</p></div>
+                <strong class="bc-queue-count" data-queue-video-count>0</strong>
+              </div>
+              <div class="bc-queue-now" data-queue-video-now hidden></div>
+              <div class="bc-queue-list" data-queue-video></div>
+            </section>
+
+            <section class="bc-card bc-queue-card bc-queue-card-wide" data-queue-card="ticker">
+              <div class="bc-card-head">
+                <div><h2>Ticker rotation</h2><p>Every headline currently crawling across the bottom of the broadcast.</p></div>
+                <strong class="bc-queue-count" data-queue-ticker-count>0</strong>
+              </div>
+              <div class="bc-queue-list bc-queue-list-ticker" data-queue-ticker></div>
+            </section>
+
+            <section class="bc-card bc-queue-card bc-queue-card-wide" data-queue-classic-card hidden>
+              <div class="bc-card-head">
+                <div><h2>Classic program order</h2><p>Used when the main layout is set to Classic rotating layout.</p></div>
+                <strong class="bc-queue-count" data-queue-program-count>0</strong>
+              </div>
+              <div class="bc-queue-now" data-queue-program-now hidden></div>
+              <div class="bc-queue-list" data-queue-program></div>
+            </section>
           </div>
         </section>
 
