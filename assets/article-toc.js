@@ -214,6 +214,66 @@
         });
     }
 
+
+    const floatingNavigation = navigations.find((navigation) => (
+        navigation.dataset.tocSurface === 'floating'
+    ));
+    const floatingRail = floatingNavigation?.closest('.post-rail');
+    const readingLayout = floatingNavigation?.closest('.post-reading-layout');
+
+    const syncFloatingNavigation = () => {
+        if (!floatingNavigation || !floatingRail || !readingLayout) return;
+
+        const desktop = window.matchMedia('(min-width: 1041px)').matches;
+
+        if (!desktop) {
+            floatingNavigation.classList.remove('is-fixed', 'is-bottomed');
+            floatingNavigation.style.removeProperty('--toc-fixed-left');
+            floatingNavigation.style.removeProperty('--toc-fixed-width');
+            floatingNavigation.style.removeProperty('--toc-fixed-top');
+            floatingNavigation.style.removeProperty('--toc-bottom-top');
+            return;
+        }
+
+        const railRect = floatingRail.getBoundingClientRect();
+        const layoutRect = readingLayout.getBoundingClientRect();
+        const navHeight = floatingNavigation.offsetHeight;
+        const rootStyles = getComputedStyle(document.documentElement);
+        const fixedRailHeight = parseFloat(
+            rootStyles.getPropertyValue('--v3-fixed-rail-height')
+        ) || 80;
+        const top = fixedRailHeight + 16;
+        const bottomLimit = layoutRect.bottom - 16;
+
+        floatingNavigation.style.setProperty('--toc-fixed-left', railRect.left + 'px');
+        floatingNavigation.style.setProperty('--toc-fixed-width', railRect.width + 'px');
+        floatingNavigation.style.setProperty('--toc-fixed-top', top + 'px');
+
+        if (layoutRect.top >= top) {
+            floatingNavigation.classList.remove('is-fixed', 'is-bottomed');
+            return;
+        }
+
+        if (bottomLimit <= top + navHeight) {
+            floatingNavigation.classList.remove('is-fixed');
+            floatingNavigation.classList.add('is-bottomed');
+
+            const railTopInLayout = Math.max(
+                0,
+                readingLayout.scrollHeight - navHeight - 16
+            );
+
+            floatingNavigation.style.setProperty(
+                '--toc-bottom-top',
+                railTopInLayout + 'px'
+            );
+            return;
+        }
+
+        floatingNavigation.classList.remove('is-bottomed');
+        floatingNavigation.classList.add('is-fixed');
+    };
+
     const setActiveHeading = () => {
         let current = headings[0];
         headings.forEach((heading) => {
@@ -228,10 +288,15 @@
     let scrollFrame = 0;
     const scheduleActiveHeading = () => {
         window.cancelAnimationFrame(scrollFrame);
-        scrollFrame = window.requestAnimationFrame(setActiveHeading);
+        scrollFrame = window.requestAnimationFrame(() => {
+            setActiveHeading();
+            syncFloatingNavigation();
+        });
     };
 
     window.addEventListener('scroll', scheduleActiveHeading, { passive: true });
     window.addEventListener('resize', scheduleActiveHeading, { passive: true });
+    window.addEventListener('load', scheduleActiveHeading, { once: true });
     setActiveHeading();
+    syncFloatingNavigation();
 }());
