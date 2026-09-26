@@ -449,11 +449,13 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('#writer-body')).toHaveValue(/Closing section/);
   await expect(page.locator('#writer-body')).toHaveValue(/Writer smoke image/);
   await expect(page.locator('#writer-body')).toHaveValue(/youtube\.com\/embed\/dQw4w9WgXcQ/);
-  await expect(page.locator('#writer-body')).toHaveValue(/ALPHA FIGHTER/);
+  await expect(page.locator('#writer-body')).toHaveValue(/HTML VISUAL · Alpha Fighter vs\. Beta Fighter/);
   await expect(page.locator('[data-html-block-panel-toggle]')).toBeVisible();
   await expect(page.locator('[data-html-block-rail]')).toBeHidden();
   await page.locator('[data-html-block-panel-toggle]').click();
   await expect(page.locator('[data-html-block-rail]')).toBeVisible();
+  await expect(page.locator('[data-preview-content]')).toContainText('Alpha Fighter');
+  await expect(page.locator('[data-preview-content]')).toContainText('Beta Fighter');
   await expect(page.locator('[data-preview-content] img[alt="Writer smoke image"]')).toBeVisible();
   await expect(page.locator('[data-preview-content] iframe')).toHaveAttribute('src', /youtube\.com\/embed\/dQw4w9WgXcQ/);
 
