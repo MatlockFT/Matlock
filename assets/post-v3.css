@@ -1331,8 +1331,11 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
 
 .post-page-v3 .article-toc-floating{
   --toc-accent:var(--v3-red);
-  border-left:0;
-  border-radius:14px;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  backdrop-filter:none;
 }
 .post-page-v3 .article-toc-floating .article-toc-toggle{
   min-height:0;
@@ -1382,6 +1385,7 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
 }
 .post-page-v3 .article-toc-floating .article-toc-panel{
   padding:.35rem 0 .1rem;
+  overflow-x:hidden;
 }
 .post-page-v3 .article-toc-floating ol{
   display:grid;
@@ -1430,14 +1434,14 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
   padding-left:1.08rem;
   background:rgba(127,127,127,.06);
   color:var(--v3-ink);
-  transform:translateX(2px);
+  transform:none;
 }
 .post-page-v3 .article-toc-floating a.is-active{
   padding-left:1.08rem;
   background:rgba(240,138,36,.075);
   color:var(--v3-ink);
   font-weight:850;
-  transform:translateX(2px);
+  transform:none;
 }
 .post-page-v3 .article-toc-floating a.is-active::before{
   height:18px;
@@ -1489,14 +1493,15 @@ html[data-theme="light"] .post-page-v3 .fight-section-ambient{
   .post-page-v3 .article-toc-floating{
     display:block;
     position:relative;
+    box-sizing:border-box;
     width:100%;
     margin:0;
-    padding:.72rem .72rem .65rem;
-    border:1px solid var(--v3-rule);
-    border-top:2px solid var(--v3-ink);
-    background:color-mix(in srgb,var(--v3-paper) 96%,transparent);
-    box-shadow:0 12px 34px rgba(0,0,0,.06);
-    backdrop-filter:blur(8px);
+    padding:0;
+    border:0;
+    background:transparent;
+    box-shadow:none;
+    backdrop-filter:none;
+    overflow-x:hidden;
   }
   .post-page-v3 .article-toc-floating.is-fixed{
     position:fixed;
@@ -1517,6 +1522,7 @@ html[data-theme="light"] .post-page-v3 .fight-section-ambient{
   .post-page-v3 .article-toc-floating .article-toc-panel{
     max-height:calc(100vh - var(--v3-fixed-rail-height,80px) - 7rem);
     overflow-y:auto;
+    overflow-x:hidden;
     overscroll-behavior:contain;
     scrollbar-width:thin;
   }
@@ -1563,8 +1569,8 @@ html[data-theme="light"] .post-page-v3 .fight-section-ambient{
 
 
 html[data-theme="dark"] .post-page-v3 .article-toc-floating{
-  background:color-mix(in srgb,var(--v3-paper) 94%,#171717 6%);
-  box-shadow:0 16px 40px rgba(0,0,0,.22);
+  background:transparent;
+  box-shadow:none;
 }
 html[data-theme="dark"] .post-page-v3 .article-toc-floating a:hover,
 html[data-theme="dark"] .post-page-v3 .article-toc-floating a:focus-visible{
