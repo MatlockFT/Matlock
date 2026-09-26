@@ -398,6 +398,7 @@ fighters.sort((a, b) => a.name.localeCompare(b.name));
 const sherdogCareer = await enrichSherdogCareers(fighters, {
   cachePath: 'assets/data/writer-fighter-career-fallbacks.json'
 });
+console.log('Writer career fallback summary: ' + JSON.stringify(sherdogCareer));
 const mirrorThrough = eventRows.map(row => parseDate(row.DATE)).filter(Boolean).sort().at(-1) || null;
 const withCareer = fighters.filter(fighter => completeDisplayedCareer(fighter.career)).length;
 
@@ -429,7 +430,7 @@ if (withStats < 400) throw new Error(`Writer fighter index has implausibly low s
 const minimumCareerCoverage = Math.max(800, Math.floor(fighters.length * 0.90));
 if (withCareer < minimumCareerCoverage) {
   const missing = fighters.filter(fighter => !completeDisplayedCareer(fighter.career)).slice(0, 20).map(fighter => fighter.name);
-  throw new Error(`Writer fighter index has incomplete career-method coverage: ${withCareer}/${fighters.length}; examples: ${missing.join(', ')}`);
+  throw new Error(`Writer fighter index has incomplete career-method coverage: ${withCareer}/${fighters.length}; fallback=${JSON.stringify(sherdogCareer)}; examples: ${missing.join(', ')}`);
 }
 const incompleteBooked = fighters.filter(fighter => fighter.booking && !completeDisplayedCareer(fighter.career));
 if (incompleteBooked.length) {
