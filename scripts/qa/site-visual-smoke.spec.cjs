@@ -200,9 +200,15 @@ test.describe('Broadcast control program monitor', () => {
     await expect(frame.locator('[data-broadcast]')).toBeVisible({ timeout: 30000 });
     await expect(frame.locator('[data-stage]')).toHaveClass(/split-desk/, { timeout: 30000 });
     await expect(frame.locator('[data-video-shell]')).toBeVisible({ timeout: 30000 });
+
+    const newsToggle = page.locator('[data-path="modules.news"]');
+    if (!(await newsToggle.isChecked())) {
+      await newsToggle.check();
+    }
+    await expect(page.locator('[data-preview-program]')).toHaveText('DRAFT');
+    await expect(frame.locator('[data-title]')).not.toHaveText('Waiting for an eligible article', { timeout: 30000 });
     await expect(frame.locator('.article-reader-card')).toBeVisible({ timeout: 30000 });
     await expect(frame.locator('.article-reader-body')).toBeVisible({ timeout: 30000 });
-    await expect(frame.locator('[data-title]')).not.toHaveText('Waiting for an eligible article', { timeout: 30000 });
     const readerStyle = await frame.locator('.article-reader-card').evaluate(node => {
       const style = getComputedStyle(node);
       return { background: style.backgroundColor, color: style.color };
