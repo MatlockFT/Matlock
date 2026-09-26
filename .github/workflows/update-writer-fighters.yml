@@ -44,14 +44,52 @@ jobs:
           if (data.schemaVersion !== 1) throw new Error('Unexpected Writer fighter schema.');
           if (!Array.isArray(data.fighters) || data.fighters.length < 500) throw new Error('Writer fighter index is implausibly small.');
           if (!data.mirrorThrough) throw new Error('Writer fighter index is missing mirror freshness.');
-          const statsCount = data.fighters.filter(fighter =>
+          const completeStats = fighter => (
             fighter.stats &&
             fighter.stats.slpm != null &&
             fighter.stats.sapm != null &&
             fighter.stats.strAccuracy != null &&
-            fighter.stats.strDefense != null
-          ).length;
+            fighter.stats.strDefense != null &&
+            fighter.stats.tdAvg != null &&
+            fighter.stats.tdAccuracy != null &&
+            fighter.stats.tdDefense != null &&
+            fighter.stats.subAvg != null
+          );
+          const completeCareer = fighter => (
+            fighter.career &&
+            Number.isFinite(fighter.career.totalFinishes) &&
+            Number.isFinite(fighter.career.winsByKnockout) &&
+            Number.isFinite(fighter.career.winsBySubmission) &&
+            Number.isFinite(fighter.career.unanimousDecisionWins) &&
+            Number.isFinite(fighter.career.splitDecisionWins)
+          );
+          const statsCount = data.fighters.filter(completeStats).length;
+          const careerCount = data.fighters.filter(completeCareer).length;
           if (statsCount < 400) throw new Error('Writer fighter stat coverage is implausibly low: ' + statsCount);
+          if (careerCount < 400) throw new Error('Writer fighter career coverage is implausibly low: ' + careerCount);
+
+          // Brad is a regression sentinel because this exact veteran profile exposed a partial-autofill bug.
+          // If a future source/parser change would recreate blank Tale or Stats fields, do not publish it.
+          const brad = data.fighters.find(fighter => fighter.name === 'Brad Tavares');
+          if (!brad) throw new Error('Brad Tavares regression sentinel is missing from Writer fighter data.');
+          const bradRequired = {
+            record: brad.record,
+            ufcRecord: brad.ufcRecord,
+            recordOutsideUfc: brad.recordOutsideUfc,
+            height: brad.bio?.height,
+            reach: brad.bio?.reach,
+            dob: brad.bio?.dob
+          };
+          const missingBradProfile = Object.entries(bradRequired).filter(([, value]) => !String(value || '').trim());
+          if (missingBradProfile.length) {
+            throw new Error('Brad Tavares profile regression: missing ' + missingBradProfile.map(([key]) => key).join(', '));
+          }
+          if (!completeStats(brad)) throw new Error('Brad Tavares regression: one or more of the 8 Writer stats is missing.');
+          if (!completeCareer(brad)) throw new Error('Brad Tavares regression: one or more career Tale values is missing.');
+          if (!Array.isArray(brad.recent) || brad.recent.length < 5) {
+            throw new Error('Brad Tavares regression: recent form is incomplete.');
+          }
+
           const duplicateStatsIds = data.fighters
             .filter(f => f.ufcStatsId)
             .map(f => f.ufcStatsId)
@@ -62,7 +100,15 @@ jobs:
             builtAt: data.builtAt,
             mirrorThrough: data.mirrorThrough,
             fighters: data.fighters.length,
-            statsCount
+            statsCount,
+            careerCount,
+            brad: {
+              record: brad.record,
+              ufcRecord: brad.ufcRecord,
+              latestBoutDate: brad.latestBoutDate,
+              statsFights: brad.stats?.sample?.fights,
+              career: brad.career
+            }
           }, null, 2));
           NODE
 
