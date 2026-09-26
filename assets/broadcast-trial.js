@@ -135,8 +135,16 @@ function buildSlides(){
   }
   return out;
 }
+function tickerItems(){
+  return [newsCache?.topStory,...(newsCache?.stories||[])]
+    .filter(Boolean)
+    .filter(s=>s.title&&fresh(s.publishedAt,cfg().news.maxAgeHours))
+    .filter(s=>!isRemovedSource("news",s.source))
+    .filter(s=>!isHidden("news",s))
+    .slice(0,Math.max(3,Number(cfg().ticker.maxItems||14)));
+}
 function renderTicker(){
-  const items=[newsCache?.topStory,...(newsCache?.stories||[])].filter(Boolean).filter(s=>s.title&&fresh(s.publishedAt,cfg().news.maxAgeHours)).filter(s=>!isRemovedSource("news",s.source)).filter(s=>!isHidden("news",s)).slice(0,Math.max(3,Number(cfg().ticker.maxItems||14)));
+  const items=tickerItems();
   if(!items.length){els.ticker.innerHTML="<span>Waiting for fresh combat sports headlines…</span>";return}
   const html=items.map(s=>"<span>"+escapeHtml(s.title)+"</span>").join("");els.ticker.innerHTML=html+html;
 }
@@ -409,9 +417,49 @@ async function refreshControl(){
 function scheduleControlPoll(){clearTimeout(controlTimer);controlTimer=setTimeout(refreshControl,Math.max(5,Number(cfg().timing.controlPollSeconds||10))*1000)}
 
 function programItemCount(){return slides.length+(isSplitDesk()?videoSlides().length:0)}
+function rotateQueue(list,start){
+  if(!list.length)return[];
+  const at=((Number(start)||0)%list.length+list.length)%list.length;
+  return list.slice(at).concat(list.slice(0,at));
+}
+function queueEntry(item){
+  if(!item)return null;
+  return {
+    type:item.type||"news",
+    id:item.id||item.videoId||"",
+    title:item.title||"",
+    source:item.source||"Combat Sports",
+    publishedAt:item.publishedAt||"",
+    durationSeconds:Number(item.durationSeconds||0)
+  };
+}
+function previewQueueSnapshot(){
+  const split=isSplitDesk(),videos=videoSlides(),ticker=tickerItems().map(s=>queueEntry({type:"ticker",id:itemId("news",s),title:s.title,source:s.source||"Combat Sports",publishedAt:s.publishedAt}));
+  if(split){
+    return {
+      mode:"splitDesk",
+      currentArticle:queueEntry(currentSlide&&currentSlide.type!=="video"?currentSlide:null),
+      currentVideo:queueEntry(videos.find(v=>v.videoId===splitVideoId)||null),
+      article:rotateQueue(slides,index).map(queueEntry).filter(Boolean),
+      video:rotateQueue(videos,splitVideoIndex).map(queueEntry).filter(Boolean),
+      ticker,
+      program:[]
+    };
+  }
+  return {
+    mode:"legacy",
+    currentArticle:null,
+    currentVideo:null,
+    article:[],
+    video:[],
+    ticker,
+    currentProgram:queueEntry(currentSlide),
+    program:rotateQueue(slides,index).map(queueEntry).filter(Boolean)
+  };
+}
 function reportPreviewState(stateName,message=""){
   if(!IS_CONTROL_PREVIEW||window.parent===window)return;
-  try{window.parent.postMessage({type:"matlock-broadcast-preview-state",state:stateName,message,slideCount:programItemCount(),currentType:currentSlide?.type||null},location.origin)}catch{}
+  try{window.parent.postMessage({type:"matlock-broadcast-preview-state",state:stateName,message,slideCount:programItemCount(),currentType:currentSlide?.type||null,queue:previewQueueSnapshot()},location.origin)}catch{}
 }
 function applyControlPreview(m){
   if(!IS_CONTROL_PREVIEW||!m||m.type!=="matlock-broadcast-control-preview"||!m.config)return{state:"error",slideCount:slides.length};
@@ -432,14 +480,14 @@ function applyControlPreview(m){
       els.eyebrow.textContent="ARTICLE READER";els.source.textContent="MMA MATLOCK";els.time.textContent="PREVIEW";
       els.context.innerHTML='<div class="article-reader-card"><div class="article-reader-label">ARTICLE LANE</div><div class="article-reader-body"><p>No story currently passes the article filters. The video lane remains live.</p></div><div class="article-reader-page">CHECK SOURCES / FRESHNESS</div></div>';
       reportPreviewState("ready");
-      return{state:"ready",slideCount:splitVideos.length,currentType:"video"};
+      return{state:"ready",slideCount:splitVideos.length,currentType:"video",queue:previewQueueSnapshot()};
     }
     clearTimeout(videoWatchdog);
     els.title.textContent="No eligible content in this draft";els.eyebrow.textContent="PROGRAM MONITOR";els.source.textContent="MMA MATLOCK";els.time.textContent="PREVIEW";
     renderFacts("CHECK FILTERS",["Enable at least one content module and make sure the freshness/source filters leave eligible stories, videos, or events."]);
     if(isSplitDesk())splitVideoFallback("No eligible video or article content.");else setMediaImage("");
     reportPreviewState("empty");
-    return{state:"empty",slideCount:0,currentType:null};
+    return{state:"empty",slideCount:0,currentType:null,queue:previewQueueSnapshot()};
   }
   if(m.restart||!currentSlide){
     clearTimeout(timer);if(!isSplitDesk())clearTimeout(videoWatchdog);transitioning=false;
@@ -450,10 +498,10 @@ function applyControlPreview(m){
     renderSlideNow(next);
   }
   reportPreviewState("ready");
-  return{state:"ready",slideCount:programItemCount(),currentType:currentSlide?.type||null};
+  return{state:"ready",slideCount:programItemCount(),currentType:currentSlide?.type||null,queue:previewQueueSnapshot()};
 }
 if(IS_CONTROL_PREVIEW){
-  window.MatlockBroadcastPreview={apply:applyControlPreview};
+  window.MatlockBroadcastPreview={apply:applyControlPreview,snapshot:previewQueueSnapshot};
 }
 window.addEventListener("message",event=>{
   if(event.origin!==location.origin)return;
