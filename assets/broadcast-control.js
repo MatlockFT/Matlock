@@ -257,11 +257,15 @@ function queueDuration(seconds){
 function safeQueueUrl(value){
   try{const url=new URL(String(value||''));return /^https?:$/.test(url.protocol)?url.href:''}catch{return''}
 }
+function queueHost(value){
+  try{return new URL(String(value||'')).hostname.replace(/^www\./,'')}catch{return''}
+}
 function queueRow(entry,index){
-  const meta=[],url=safeQueueUrl(entry?.url),source=escapeHtml(entry?.source||'');
+  const meta=[],url=safeQueueUrl(entry?.url),source=escapeHtml(entry?.source||''),host=queueHost(url);
   if(entry?.source){
     meta.push(url?'<a class="bc-queue-source-link" href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">'+source+' ↗</a>':'<b>'+source+'</b>');
   }
+  if(host)meta.push('<span>'+escapeHtml(host)+'</span>');
   if(entry?.type)meta.push('<span class="bc-queue-type">'+escapeHtml(entry.type)+'</span>');
   const age=queueAge(entry?.publishedAt);if(age)meta.push('<span>'+escapeHtml(age)+'</span>');
   const duration=queueDuration(entry?.durationSeconds);if(duration)meta.push('<span>'+escapeHtml(duration)+'</span>');
@@ -278,7 +282,11 @@ function renderQueueList(selector,items){
 function renderQueueNow(selector,label,item){
   const host=q(selector);if(!host)return;
   if(!item){host.hidden=true;host.innerHTML='';return}
-  host.hidden=false;host.innerHTML='<strong>'+escapeHtml(label)+'</strong>'+escapeHtml(item.title||'')+' · '+escapeHtml(item.source||'');
+  const url=safeQueueUrl(item.url),title=escapeHtml(item.title||''),source=escapeHtml(item.source||'');
+  const body=url?'<a href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">'+title+'</a>':'<span>'+title+'</span>';
+  const sourceHtml=url?'<a class="bc-queue-source-link" href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">'+source+' ↗</a>':source;
+  const reused=Number(item.repeatCount||0)>1?'<span class="bc-queue-repeat">REUSED ×'+Number(item.repeatCount)+'</span>':'';
+  host.hidden=false;host.innerHTML='<strong>'+escapeHtml(label)+'</strong>'+body+' · '+sourceHtml+reused;
 }
 function renderQueue(){
   const stateEl=q('[data-queue-state]'),modeEl=q('[data-queue-mode]');
