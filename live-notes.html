@@ -1,0 +1,42 @@
+---
+layout: default
+title: Live Notes
+description: Live writing and event notes from Matlock.
+permalink: /live-notes/
+noindex: true
+sitemap: false
+ads: false
+v3_text_masthead: true
+page_preconnects:
+  - https://mmamatlock-writer-auth.netlify.app
+page_styles:
+  - /assets/editorial-v3-shell.css
+  - /assets/post-v3.css
+  - /assets/live-writer-public.css
+page_scripts:
+  - /assets/editorial-v3-shell.js
+  - /assets/live-writer-public.js
+---
+
+<section class="live-writer-page" data-live-writer-public data-active="false">
+  <header class="live-writer-page-head">
+    <p class="live-writer-page-kicker">Matlock live writer</p>
+    <h1 class="live-writer-page-title" data-live-public-title>Live notes</h1>
+    <div class="live-writer-page-meta">
+      <span class="live-writer-badge" data-live-public-status data-state="ended">OFFLINE</span>
+      <span data-live-public-meta>Checking live status…</span>
+    </div>
+  </header>
+
+  <p class="live-writer-public-error" data-live-public-error hidden>Live updates temporarily unavailable. Retrying automatically.</p>
+
+  <article class="post-page post-page-v3">
+    <div class="post-reading-layout">
+      <div class="post-reading-main">
+        <div class="post-body post-body-preserve-breaks live-writer-public-body" data-live-public-body aria-live="polite">
+          <p class="live-writer-empty">Checking for a live writing session…</p>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
