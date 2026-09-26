@@ -352,6 +352,7 @@ async function saveLive(success='Broadcast control updated'){
   const auth=window.MatlockBroadcastAuth;
   if(!auth?.isConnected()){auth?.open();toast('Sign in with GitHub to apply changes.');throw new Error('Not signed in')}
   const apply=q('[data-apply-live]');apply.disabled=true;apply.textContent='Applying…';
+  qa('[data-save-config]').forEach(button=>{button.disabled=true;button.textContent='Saving…'});
   try{
     let remote=null;
     try{remote=await auth.githubFetch(CONFIG_API_PATH+'?ref=main')}catch(error){if(error?.status!==404)throw error}
