@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-09-26T20:43:47.897Z",
-  "builtAt": "2026-09-26T21:32:12.693Z",
+  "builtAt": "2026-09-26T21:58:50.020Z",
   "mirrorThrough": "2026-09-19",
   "sources": {
     "fighters": "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_details.csv",
@@ -18,17 +18,14 @@
     "fighters": 1007,
     "withStats": 732,
     "withBio": 947,
-    "withCareer": 742,
+    "withCareer": 733,
     "sherdogCareer": {
-      "targets": 0,
+      "mode": "live-on-selection",
+      "targets": 9,
       "resolved": 0,
       "missed": 0,
-      "appliedFromCache": 9,
-      "sourceCounts": {
-        "Sherdog": 8,
-        "UFC.com+Sherdog": 1
-      },
-      "complete": 9
+      "appliedFromCache": 0,
+      "complete": 733
     }
   },
   "fighters": [
@@ -14621,9 +14618,9 @@
       "id": "cody-chovancek",
       "name": "Cody Chovancek",
       "division": "Bantamweight",
-      "record": "9-0-0",
+      "record": "1-0-0",
       "ufcRecord": "0-0-0",
-      "recordOutsideUfc": "9-0-0",
+      "recordOutsideUfc": "1-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/CHOVANCEK_CODY_R_09-16.png?itok=v2G8Yooy",
       "booking": {
@@ -14647,25 +14644,19 @@
       },
       "stats": null,
       "career": {
-        "winsByKnockout": 4,
-        "winsBySubmission": 2,
+        "winsByKnockout": null,
+        "winsBySubmission": null,
         "firstRoundFinishes": null,
-        "totalFinishes": 6,
-        "decisionWins": 3,
-        "unanimousDecisionWins": 3,
+        "totalFinishes": null,
+        "decisionWins": null,
+        "unanimousDecisionWins": 0,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": true,
-        "decisionBreakdownKnownWins": 3
+        "decisionBreakdownComplete": false,
+        "decisionBreakdownKnownWins": 0
       },
-      "recent": [],
-      "careerSource": {
-        "source": "Sherdog",
-        "sourceUrl": "https://www.sherdog.com/fighter/Cody-Chovancek-288663",
-        "identityVerifiedBy": "curated-name+upcoming-bout",
-        "checkedAt": "2026-09-26T21:31:00.000Z"
-      }
+      "recent": []
     },
     {
       "id": "cody-durden",
@@ -15553,9 +15544,9 @@
       "id": "cristian-perez-gonzalez",
       "name": "Cristian Perez Gonzalez",
       "division": "Lightweight",
-      "record": "15-2-0",
+      "record": "1-1-0",
       "ufcRecord": "0-0-0",
-      "recordOutsideUfc": "15-2-0",
+      "recordOutsideUfc": "1-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/PEREZ_CRISTIAN_L_08-26.png?itok=LIbBOleP",
       "booking": {
@@ -15573,25 +15564,19 @@
       "bio": null,
       "stats": null,
       "career": {
-        "winsByKnockout": 6,
-        "winsBySubmission": 6,
+        "winsByKnockout": null,
+        "winsBySubmission": null,
         "firstRoundFinishes": null,
-        "totalFinishes": 12,
-        "decisionWins": 3,
-        "unanimousDecisionWins": 3,
+        "totalFinishes": null,
+        "decisionWins": null,
+        "unanimousDecisionWins": 0,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": true,
-        "decisionBreakdownKnownWins": 3
+        "decisionBreakdownComplete": false,
+        "decisionBreakdownKnownWins": 0
       },
-      "recent": [],
-      "careerSource": {
-        "source": "Sherdog",
-        "sourceUrl": "https://www.sherdog.com/fighter/Cristian-Perez-244701",
-        "identityVerifiedBy": "curated-name+dob+upcoming-bout",
-        "checkedAt": "2026-09-26T21:31:00.000Z"
-      }
+      "recent": []
     },
     {
       "id": "cristian-quinonez",
@@ -32458,9 +32443,9 @@
       "id": "javad-mahjoub",
       "name": "Javad Mahjoub",
       "division": "Heavyweight",
-      "record": "5-0-0",
+      "record": "0-0-0",
       "ufcRecord": "0-0-0",
-      "recordOutsideUfc": "5-0-0",
+      "recordOutsideUfc": "0-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
       "booking": {
@@ -32484,25 +32469,19 @@
       },
       "stats": null,
       "career": {
-        "winsByKnockout": 3,
-        "winsBySubmission": 1,
+        "winsByKnockout": null,
+        "winsBySubmission": null,
         "firstRoundFinishes": null,
-        "totalFinishes": 4,
-        "decisionWins": 1,
-        "unanimousDecisionWins": 1,
+        "totalFinishes": null,
+        "decisionWins": null,
+        "unanimousDecisionWins": 0,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": true,
-        "decisionBreakdownKnownWins": 1
+        "decisionBreakdownComplete": false,
+        "decisionBreakdownKnownWins": 0
       },
-      "recent": [],
-      "careerSource": {
-        "source": "Sherdog",
-        "sourceUrl": "https://www.sherdog.com/fighter/Javad-Majhoub-433196",
-        "identityVerifiedBy": "curated-name+upcoming-bout",
-        "checkedAt": "2026-09-26T21:31:00.000Z"
-      }
+      "recent": []
     },
     {
       "id": "javier-reyes",
@@ -36776,9 +36755,9 @@
       "id": "joseph-kropschot",
       "name": "Joseph Kropschot",
       "division": "Middleweight",
-      "record": "9-3-0",
+      "record": "1-0-0",
       "ufcRecord": "0-0-0",
-      "recordOutsideUfc": "9-3-0",
+      "recordOutsideUfc": "1-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/KROPSCHOT_JOE_R_08-11.png?itok=3FsiQXS0",
       "booking": {
@@ -36796,25 +36775,19 @@
       "bio": null,
       "stats": null,
       "career": {
-        "winsByKnockout": 2,
-        "winsBySubmission": 6,
+        "winsByKnockout": null,
+        "winsBySubmission": null,
         "firstRoundFinishes": null,
-        "totalFinishes": 8,
-        "decisionWins": 1,
-        "unanimousDecisionWins": 1,
+        "totalFinishes": null,
+        "decisionWins": null,
+        "unanimousDecisionWins": 0,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": true,
-        "decisionBreakdownKnownWins": 1
+        "decisionBreakdownComplete": false,
+        "decisionBreakdownKnownWins": 0
       },
-      "recent": [],
-      "careerSource": {
-        "source": "Sherdog",
-        "sourceUrl": "https://www.sherdog.com/fighter/Joseph-Kropschot-248331",
-        "identityVerifiedBy": "curated-name+upcoming-bout",
-        "checkedAt": "2026-09-26T21:31:00.000Z"
-      }
+      "recent": []
     },
     {
       "id": "joseph-lowry",
@@ -44957,9 +44930,9 @@
       "id": "louis-jourdain",
       "name": "Louis Jourdain",
       "division": "Bantamweight",
-      "record": "9-3-0",
+      "record": "1-0-0",
       "ufcRecord": "0-0-0",
-      "recordOutsideUfc": "9-3-0",
+      "recordOutsideUfc": "1-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/JOURDAIN_LOUIS_L_09-30.png?itok=hXNV4FbV",
       "booking": {
@@ -44983,25 +44956,19 @@
       },
       "stats": null,
       "career": {
-        "winsByKnockout": 4,
-        "winsBySubmission": 2,
+        "winsByKnockout": null,
+        "winsBySubmission": null,
         "firstRoundFinishes": null,
-        "totalFinishes": 6,
-        "decisionWins": 3,
-        "unanimousDecisionWins": 3,
+        "totalFinishes": null,
+        "decisionWins": null,
+        "unanimousDecisionWins": 0,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": true,
-        "decisionBreakdownKnownWins": 3
+        "decisionBreakdownComplete": false,
+        "decisionBreakdownKnownWins": 0
       },
-      "recent": [],
-      "careerSource": {
-        "source": "Sherdog",
-        "sourceUrl": "https://www.sherdog.com/fighter/Louis-Jourdain-210837",
-        "identityVerifiedBy": "curated-name+upcoming-bout",
-        "checkedAt": "2026-09-26T21:31:00.000Z"
-      }
+      "recent": []
     },
     {
       "id": "louis-lee-scott",
@@ -45327,9 +45294,9 @@
       "id": "lucas-armand",
       "name": "Lucas Armand",
       "division": "Heavyweight",
-      "record": "6-0-0",
+      "record": "0-0-0",
       "ufcRecord": "0-0-0",
-      "recordOutsideUfc": "6-0-0",
+      "recordOutsideUfc": "0-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
       "booking": {
@@ -45353,25 +45320,19 @@
       },
       "stats": null,
       "career": {
-        "winsByKnockout": 5,
-        "winsBySubmission": 0,
+        "winsByKnockout": null,
+        "winsBySubmission": null,
         "firstRoundFinishes": null,
-        "totalFinishes": 5,
-        "decisionWins": 1,
-        "unanimousDecisionWins": 1,
+        "totalFinishes": null,
+        "decisionWins": null,
+        "unanimousDecisionWins": 0,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": true,
-        "decisionBreakdownKnownWins": 1
+        "decisionBreakdownComplete": false,
+        "decisionBreakdownKnownWins": 0
       },
-      "recent": [],
-      "careerSource": {
-        "source": "Sherdog",
-        "sourceUrl": "https://www.sherdog.com/fighter/Lucas-Armand-420549",
-        "identityVerifiedBy": "curated-name+upcoming-bout",
-        "checkedAt": "2026-09-26T21:31:00.000Z"
-      }
+      "recent": []
     },
     {
       "id": "lucas-brennan",
@@ -45576,9 +45537,9 @@
       "id": "lucia-szabova",
       "name": "Lucia Szabova",
       "division": "Women's Flyweight",
-      "record": "10-0-0",
+      "record": "0-0-0",
       "ufcRecord": "0-0-0",
-      "recordOutsideUfc": "10-0-0",
+      "recordOutsideUfc": "0-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/2022-02/womens-silhouette-RED-corner.png?itok=SXsY1AgG",
       "booking": {
@@ -45602,25 +45563,19 @@
       },
       "stats": null,
       "career": {
-        "winsByKnockout": 3,
-        "winsBySubmission": 4,
+        "winsByKnockout": null,
+        "winsBySubmission": null,
         "firstRoundFinishes": null,
-        "totalFinishes": 7,
-        "decisionWins": 3,
-        "unanimousDecisionWins": 3,
+        "totalFinishes": null,
+        "decisionWins": null,
+        "unanimousDecisionWins": 0,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": true,
-        "decisionBreakdownKnownWins": 3
+        "decisionBreakdownComplete": false,
+        "decisionBreakdownKnownWins": 0
       },
-      "recent": [],
-      "careerSource": {
-        "source": "Sherdog",
-        "sourceUrl": "https://www.sherdog.com/fighter/Lucia-Szabova-363981",
-        "identityVerifiedBy": "curated-name+upcoming-bout",
-        "checkedAt": "2026-09-26T21:31:00.000Z"
-      }
+      "recent": []
     },
     {
       "id": "lucie-pudilova",
@@ -46798,9 +46753,9 @@
       "id": "mahammadali-osmanli",
       "name": "Mahammadali Osmanli",
       "division": null,
-      "record": "13-1-0",
+      "record": null,
       "ufcRecord": "0-0-0",
-      "recordOutsideUfc": "13-1-0",
+      "recordOutsideUfc": null,
       "rank": null,
       "image": null,
       "booking": {
@@ -46824,25 +46779,19 @@
       },
       "stats": null,
       "career": {
-        "winsByKnockout": 2,
-        "winsBySubmission": 9,
+        "winsByKnockout": null,
+        "winsBySubmission": null,
         "firstRoundFinishes": null,
-        "totalFinishes": 11,
-        "decisionWins": 2,
-        "unanimousDecisionWins": 2,
+        "totalFinishes": null,
+        "decisionWins": null,
+        "unanimousDecisionWins": 0,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": true,
-        "decisionBreakdownKnownWins": 2
+        "decisionBreakdownComplete": false,
+        "decisionBreakdownKnownWins": 0
       },
-      "recent": [],
-      "careerSource": {
-        "source": "UFC.com+Sherdog",
-        "sourceUrl": "https://www.ufc.com.br/athlete/mahammadali-osmanli",
-        "identityVerifiedBy": "curated-official-profile+fight-history",
-        "checkedAt": "2026-09-26T21:31:00.000Z"
-      }
+      "recent": []
     },
     {
       "id": "hayisaer-maheshate",
@@ -64212,9 +64161,9 @@
       "id": "roberto-soldic",
       "name": "Roberto Soldic",
       "division": "Welterweight",
-      "record": "21-4-0",
+      "record": "0-0-0",
       "ufcRecord": "0-0-0",
-      "recordOutsideUfc": "21-4-0",
+      "recordOutsideUfc": "0-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
       "booking": {
@@ -64238,25 +64187,19 @@
       },
       "stats": null,
       "career": {
-        "winsByKnockout": 18,
-        "winsBySubmission": 1,
+        "winsByKnockout": null,
+        "winsBySubmission": null,
         "firstRoundFinishes": null,
-        "totalFinishes": 19,
-        "decisionWins": 2,
-        "unanimousDecisionWins": 2,
+        "totalFinishes": null,
+        "decisionWins": null,
+        "unanimousDecisionWins": 0,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": true,
-        "decisionBreakdownKnownWins": 2
+        "decisionBreakdownComplete": false,
+        "decisionBreakdownKnownWins": 0
       },
-      "recent": [],
-      "careerSource": {
-        "source": "Sherdog",
-        "sourceUrl": "https://www.sherdog.com/fighter/Roberto-Soldic-180781",
-        "identityVerifiedBy": "curated-name+upcoming-bout",
-        "checkedAt": "2026-09-26T21:31:00.000Z"
-      }
+      "recent": []
     },
     {
       "id": "rodolfo-bellato",
