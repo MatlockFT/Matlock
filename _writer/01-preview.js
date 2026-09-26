@@ -767,9 +767,7 @@
     if (!enabled) {
       window.clearTimeout(table._writerTableTimer);
       persistPreviewTable(table);
-      // Re-render after the click handler finishes so the editable table is not
-      // replaced while the browser is still completing the interaction.
-      requestAnimationFrame(() => updatePreview());
+      updatePreview();
     }
   }
 
