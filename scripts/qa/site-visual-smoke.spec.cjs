@@ -495,6 +495,53 @@ test.describe('Article fight navigation and spoiler picks', () => {
 });
 
 
+test.describe('UFC Vegas 121 stat-card consistency', () => {
+  const articlePath = '/2026/09/24/rosas-jr-vs-barcelos-ufc-vegas-121.html';
+
+  test.use({ viewport: { width: 1365, height: 900 }, isMobile: false, hasTouch: false });
+
+  test('standardizes UFCStats hierarchy across fight cards', async ({ page }) => {
+    await page.goto(targetUrl(articlePath), { waitUntil: 'domcontentloaded', timeout: 45000 });
+
+    const cards = page.locator('.fight-stats-sleek');
+    await expect(cards).toHaveCount(10);
+
+    for (let index = 0; index < 10; index += 1) {
+      const labels = await cards.nth(index).locator('.fs-stat-row > span').allTextContents();
+      expect(labels).toEqual([
+        'Significant Strikes / Minute',
+        'Sig. Strikes Absorbed / Minute',
+        'Striking Accuracy',
+        'Striking Defense',
+        'Takedowns / 15 Minutes',
+        'Takedown Accuracy',
+        'Takedown Defense',
+        'Submission Attempts / 15'
+      ]);
+    }
+
+    await expect(page.locator('h2#norma-dumont-vs-ailin-perez')).toBeVisible();
+
+    for (const heading of [
+      'Vanessa Demopoulos vs. Yazmin Jauregui',
+      'John Castaneda vs. Alatengheili'
+    ]) {
+      const section = page.locator('.fight-section-ambient', { has: page.locator('h2', { hasText: heading }) });
+      const order = await section.locator('.fight-compare-sleek .fc-shell > div').evaluateAll(nodes => (
+        nodes.map(node => node.className).filter(Boolean)
+      ));
+      expect(order.slice(0, 5)).toEqual([
+        'fc-top',
+        'fc-tale',
+        'fc-section-title fc-form-title',
+        'fc-form-wrap',
+        'fc-opponents'
+      ]);
+    }
+  });
+});
+
+
 test.describe('Article native sharing on mobile', () => {
   const articlePath = '/2026/09/24/rosas-jr-vs-barcelos-ufc-vegas-121.html';
 
