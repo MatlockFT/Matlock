@@ -74,7 +74,7 @@ function updatePreview(restart=false){
     const api=frame.contentWindow.MatlockBroadcastPreview;
     if(api&&typeof api.apply==='function'){
       const result=api.apply(payload)||{};
-      previewQueue=result.queue||null;renderQueue();renderProgramOutput();renderProgramManualQueue();
+      previewQueue=result.queue||null;renderQueue();renderProgramOutput();renderProgramManualQueue();renderProgramHealth();
       previewReady=true;
       clearInterval(previewSyncTimer);
       if(result.state==='empty')setPreviewStatus('Renderer online, but this draft has no eligible content.','empty');
@@ -125,17 +125,23 @@ async function loadAll(){
 }
 function renderAll(){renderInputs();renderRundown();renderSources();renderMetrics();renderLiveList();renderQueue();renderProgramming();renderPresetState();q('[data-revision]').textContent=state.revision||'—';markDirty()}
 function renderInputs(){
+  const split=state.visual?.layout==='splitDesk';
+  if(split)state.modules.video=true;
   qa('[data-path]').forEach(el=>{const v=getPath(state,el.dataset.path);if(el.type==='checkbox')el.checked=Boolean(v);else el.value=v??''});
   qa('[data-value-for]').forEach(el=>{const v=getPath(state,el.dataset.valueFor);el.textContent=v+'%'});
-  const split=state.visual?.layout==='splitDesk',width=Math.max(50,Math.min(76,Number(state.visual?.videoWidth||64)));
+  const width=Math.max(50,Math.min(76,Number(state.visual?.videoWidth||64)));
   const map=q('[data-layout-map-main]');if(map)map.style.gridTemplateColumns=width+'fr '+(100-width)+'fr';
-  const note=q('[data-rundown-mode-note]');if(note)note.textContent=split?'Split Desk: video runs continuously in its own lane. News and Event blocks control the right-hand reader rotation.':'Classic layout: News, Video, and Event blocks rotate through the full main stage.';
+  const note=q('[data-rundown-mode-note]');if(note)note.textContent=split?'Split Desk: the video desk is continuous. This recipe controls only the right-hand News / Event reader.':'Classic layout: News, Video, and Event blocks rotate through the full main stage.';
+  const videoToggle=q('[data-video-module-switch] input');if(videoToggle)videoToggle.disabled=split;
+  q('[data-video-module-switch]')?.classList.toggle('is-locked',split);
+  qa('[data-split-video-segment]').forEach(el=>el.hidden=split);
+  qa('[data-legacy-only]').forEach(el=>{el.classList.toggle('is-locked',split);const input=el.querySelector('input,select,button');if(input)input.disabled=split});
 }
 const PRESETS={
-  newsroom:{label:'Newsroom',modules:{news:true,video:true,events:true},rundown:['news','news','video','news','event'],timing:{newsSeconds:45,eventSeconds:35},video:{maxSeconds:600}},
-  video:{label:'Video heavy',modules:{news:true,video:true,events:true},rundown:['news','video','news','video','event'],timing:{newsSeconds:40,eventSeconds:30},video:{maxSeconds:900}},
-  headlines:{label:'Headlines only',modules:{news:true,video:false,events:false},rundown:['news','news','news'],timing:{newsSeconds:50}},
-  event:{label:'Event day',modules:{news:true,video:true,events:true},rundown:['news','event','news','video','event'],timing:{newsSeconds:40,eventSeconds:50}}
+  newsroom:{label:'Newsroom',modules:{news:true,video:true,events:true},rundown:['news','news','event'],timing:{newsSeconds:45,eventSeconds:35},video:{maxAgeHours:48,maxItems:8,maxSeconds:600}},
+  video:{label:'Fresh video',modules:{news:true,video:true,events:true},rundown:['news','news','event'],timing:{newsSeconds:40,eventSeconds:30},video:{maxAgeHours:24,maxItems:14,maxSeconds:900}},
+  headlines:{label:'Article focus',modules:{news:true,video:true,events:false},rundown:['news','news','news'],timing:{newsSeconds:50},video:{maxAgeHours:48,maxItems:8}},
+  event:{label:'Event day',modules:{news:true,video:true,events:true},rundown:['news','event','news','event'],timing:{newsSeconds:40,eventSeconds:50},video:{maxAgeHours:48,maxItems:8}}
 };
 function subsetMatches(target,subset){
   if(Array.isArray(subset))return Array.isArray(target)&&JSON.stringify(target)===JSON.stringify(subset);
@@ -164,8 +170,10 @@ function renderDraftState(){
   strip.classList.toggle('is-dirty',pending);
   title.textContent=(preset?.label||'Custom program')+(pending?' · DRAFT':' · LIVE');
   status.textContent=pending?'Changes are loaded in the preview. Click Apply changes live to send them to OBS.':'This is the saved program OBS is polling now.';
-  const mode=programMode(),count=manualProgramQueue().length;
-  host.innerHTML='<span class="bc-draft-segment" data-type="'+mode+'">'+mode.toUpperCase()+'</span>'+(count?'<span class="bc-draft-segment" data-type="manual">'+count+' MANUAL</span>':'');
+  const mode=programMode(),queue=manualProgramQueue(),videoCount=queue.filter(x=>x.type==='video').length,readerCount=queue.length-videoCount;
+  host.innerHTML='<span class="bc-draft-segment" data-type="'+mode+'">'+mode.toUpperCase()+'</span>'
+    +(videoCount?'<span class="bc-draft-segment" data-type="manual">'+videoCount+' VIDEO</span>':'')
+    +(readerCount?'<span class="bc-draft-segment" data-type="manual">'+readerCount+' READER</span>':'');
   renderPresetState();
 }
 function renderMetrics(){
@@ -175,11 +183,14 @@ function renderMetrics(){
   const news=stories.filter(x=>Date.now()-Date.parse(x.publishedAt)<=Number(state.news.maxAgeHours||48)*3600000).filter(x=>!removedNews.has(x.source)).filter(x=>!enabledNews.length||enabledNews.includes(x.source));
   const vids=(feeds.videos?.videos||[]).filter(v=>{const d=Number(v.durationSeconds||0);return Date.now()-Date.parse(v.publishedAt)<=Number(state.video.maxAgeHours||48)*3600000&&d>=state.video.minSeconds&&d<=state.video.maxSeconds}).filter(v=>!removedVideo.has(v.channel)).filter(v=>!enabledVideo.length||enabledVideo.includes(v.channel));
   const events=(feeds.events?.events||[]).filter(e=>normalize(e.date)>=(new Date().toISOString().slice(0,10)));
-  q('[data-metric-news]').textContent=news.length;q('[data-metric-videos]').textContent=vids.length;q('[data-metric-events]').textContent=events.length;q('[data-metric-rundown]').textContent=manualProgramQueue().length;
+  const queue=manualProgramQueue(),videoPicks=queue.filter(x=>x.type==='video').length,readerPicks=queue.length-videoPicks;
+  q('[data-metric-news]').textContent=news.length;q('[data-metric-videos]').textContent=vids.length;q('[data-metric-events]').textContent=events.length;
+  q('[data-metric-reader-queue]').textContent=readerPicks;q('[data-metric-video-queue]').textContent=videoPicks;
 }
 function renderRundown(){
   const host=q('[data-rundown]');host.innerHTML='';
   state.rundown.forEach((type,i)=>{
+    if(state.visual?.layout==='splitDesk'&&type==='video')return;
     const el=document.createElement('div');el.className='bc-rundown-item';el.draggable=true;el.dataset.type=type;el.dataset.index=i;
     el.innerHTML='<i></i><strong>'+type.toUpperCase()+'</strong><button type="button" aria-label="Remove">×</button>';
     el.querySelector('button').onclick=()=>{state.rundown.splice(i,1);renderRundown();renderMetrics();markDirty({restartPreview:true})};
@@ -317,7 +328,7 @@ function programEntryMarkup(entry,{queueIndex=null}={}){
     const count=manualProgramQueue().filter(x=>x.type===entry.type&&x.id===entry.id).length;if(count>1)meta.push('<span class="bc-program-queued">REUSED ×'+count+'</span>');
   }
   const titleHtml=url?'<a class="bc-program-title" href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">'+escapeHtml(title)+'</a>':'<span class="bc-program-title">'+escapeHtml(title)+'</span>';
-  const action=queueIndex===null?'<button type="button" data-program-add>Add</button>':'<button type="button" class="remove" data-program-remove>Remove</button>';
+  const action=queueIndex===null?'<button type="button" data-program-add>'+(type==='video'?'Add to video':'Add to reader')+'</button>':'<button type="button" class="remove" data-program-remove>Remove</button>';
   const thumbHtml=queueIndex===null?'<div class="bc-program-thumb'+(thumb?'':' is-empty')+'">'+(thumb?'<img src="'+escapeHtml(thumb)+'" alt="" loading="lazy">':'<span>'+escapeHtml(type.toUpperCase())+'</span>')+'</div>':'';
   return thumbHtml+'<div class="bc-program-grip" aria-hidden="true">⠿</div><div class="bc-program-main">'+titleHtml+'<div class="bc-program-meta">'+meta.join('')+'</div></div><div class="bc-program-item-actions">'+action+'</div>';
 }
@@ -332,11 +343,11 @@ function currentOutputGroups(){
 function renderProgramOutput(){
   const host=q('[data-program-output]');if(!host)return;
   const mode=programMode(),groups=currentOutputGroups();
-  q('[data-program-output-note]').textContent=mode==='manual'?'Renderer output from your manual queue.':mode==='hybrid'?'Your priorities plus current Auto fill.':'Auto-selected items currently eligible to air.';
+  q('[data-program-output-note]').textContent=mode==='manual'?'Exact Manual result after fallback rules.':mode==='hybrid'?'Manual priorities plus the current Auto fill.':'Current Auto-selected output.';
   if(!previewQueue){host.innerHTML='<div class="bc-program-empty">Waiting for the renderer queue…</div>';return}
   host.innerHTML=groups.map(group=>{
-    const rows=(group.items||[]).slice(0,40).map((item,i)=>queueRow(item,i)).join('');
-    return '<div class="bc-program-output-group"><span>'+escapeHtml(group.label)+'</span>'+(rows||'<div class="bc-program-empty">No eligible items in this lane.</div>')+'</div>';
+    const items=group.items||[],rows=items.slice(0,12).map((item,i)=>queueRow(item,i)).join(''),more=Math.max(0,items.length-12);
+    return '<div class="bc-program-output-group"><span>'+escapeHtml(group.label)+'</span>'+(rows||'<div class="bc-program-empty">No eligible items in this lane.</div>')+(more?'<div class="bc-program-more">+'+more+' more eligible items</div>':'')+'</div>';
   }).join('');
 }
 function renderProgramPool(){
@@ -477,6 +488,21 @@ function renderProgramManualQueue(){
   renderLaneNow('[data-program-article-now]',previewQueue?.currentArticle,'No article/event currently on air.');
   renderTickerProgramming();
 }
+function setProgramHealth(selector,stateName,label,detail){
+  const el=q(selector);if(!el)return;el.dataset.state=stateName;el.querySelector('strong').textContent=label;el.querySelector('small').textContent=detail;
+}
+function renderProgramHealth(){
+  if(!previewQueue){
+    setProgramHealth('[data-program-health-video]','syncing','SYNCING','Checking eligible rotation');
+    setProgramHealth('[data-program-health-reader]','syncing','SYNCING','Checking article / event lane');
+    setProgramHealth('[data-program-health-ticker]','syncing','SYNCING','Checking crawl headlines');
+    return;
+  }
+  const video=(previewQueue.video||[]).length,reader=(previewQueue.article||[]).length,ticker=(previewQueue.ticker||[]).length;
+  setProgramHealth('[data-program-health-video]',video?'good':'bad',video?'READY':'EMPTY',video?video+' eligible video'+(video===1?'':'s'):'No eligible video — check sources / freshness');
+  setProgramHealth('[data-program-health-reader]',reader?'good':programMode()==='manual'?'warn':'bad',reader?'READY':programMode()==='manual'?'IDLE':'EMPTY',reader?reader+' article / event item'+(reader===1?'':'s'):programMode()==='manual'?'Manual reader queue is empty':'No eligible reader content');
+  setProgramHealth('[data-program-health-ticker]',ticker?'good':'warn',ticker?'READY':'EMPTY',ticker?ticker+' crawl headline'+(ticker===1?'':'s'):'Ticker has no qualifying headlines');
+}
 function renderProgramming(){
   if(!q('[data-program-pool]'))return;
   state.programming=state.programming||{mode:'auto',tickerMode:'auto',manualQueue:[]};
@@ -491,7 +517,7 @@ function renderProgramming(){
   qa('[data-program-mode]').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.programMode===mode)));
   q('[data-program-auto-head]').hidden=false;
   q('[data-program-split-note]').hidden=state.visual?.layout!=='splitDesk';
-  renderProgramPool();renderProgramManualQueue();renderProgramOutput();
+  renderProgramPool();renderProgramManualQueue();renderProgramOutput();renderProgramHealth();
 }
 function queueAge(value){
   const t=Date.parse(value);if(!Number.isFinite(t))return'';
@@ -635,8 +661,8 @@ async function saveLive(success='Broadcast control updated'){
 }
 
 qa('[data-nav-target]').forEach(btn=>btn.onclick=()=>{qa('[data-nav-target]').forEach(x=>x.classList.toggle('is-active',x===btn));qa('[data-section]').forEach(s=>s.hidden=s.dataset.section!==btn.dataset.navTarget)});
-qa('[data-path]').forEach(el=>{const event=el.type==='range'?'input':'change';el.addEventListener(event,()=>{let v=el.type==='checkbox'?el.checked:el.value;if(el.type==='number'||el.type==='range')v=Number(v);setPath(state,el.dataset.path,v);renderInputs();renderMetrics();markDirty({restartPreview:/^(modules|news\.sources|video\.channels|events\.|visual\.layout|programming\.)/.test(el.dataset.path)})})});
-qa('[data-add-segment]').forEach(b=>b.onclick=()=>{state.rundown.push(b.dataset.addSegment);renderRundown();renderMetrics();markDirty({restartPreview:true})});
+qa('[data-path]').forEach(el=>{const event=el.type==='range'?'input':'change';el.addEventListener(event,()=>{let v=el.type==='checkbox'?el.checked:el.value;if(el.type==='number'||el.type==='range')v=Number(v);setPath(state,el.dataset.path,v);if(el.dataset.path==='visual.layout'&&v==='splitDesk')state.modules.video=true;renderInputs();renderRundown();renderMetrics();markDirty({restartPreview:/^(modules|news\.sources|video\.channels|events\.|visual\.layout|programming\.)/.test(el.dataset.path)})})});
+qa('[data-add-segment]').forEach(b=>b.onclick=()=>{if(state.visual?.layout==='splitDesk'&&b.dataset.addSegment==='video'){toast('Video is programmed in the Video Queue in Split Desk.');return}state.rundown.push(b.dataset.addSegment);renderRundown();renderMetrics();markDirty({restartPreview:true})});
 qa('[data-preset]').forEach(b=>b.onclick=()=>preset(b.dataset.preset));
 qa('[data-content-tab]').forEach(b=>b.onclick=()=>{contentTab=b.dataset.contentTab;qa('[data-content-tab]').forEach(x=>x.classList.toggle('is-active',x===b));renderLiveList()});
 q('[data-all-news]').onclick=()=>{state.news.sources=[];renderSources();markDirty({restartPreview:true})};
@@ -696,7 +722,7 @@ monitorFrame?.addEventListener('load',()=>{
 window.addEventListener('message',event=>{
   if(event.origin!==location.origin)return;
   const message=event.data;if(!message||message.type!=='matlock-broadcast-preview-state')return;
-  if(message.queue){previewQueue=message.queue;renderQueue();renderProgramOutput();renderProgramManualQueue()}
+  if(message.queue){previewQueue=message.queue;renderQueue();renderProgramOutput();renderProgramManualQueue();renderProgramHealth()}
   if(message.state==='connected'){
     setPreviewStatus('Renderer connected. Loading program…','connecting');
     updatePreview(true);
