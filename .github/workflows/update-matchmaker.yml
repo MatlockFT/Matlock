@@ -19,7 +19,10 @@ on:
       - 'scripts/matchmaker/**'
       - '.github/workflows/update-matchmaker.yml'
   schedule:
-    - cron: '37 6,18 * * *'
+    # Weekdays: refresh the verified roster/history every four hours.
+    - cron: '37 */4 * * 1-5'
+    # Fight weekends: refresh hourly so newly posted UFCStats history propagates quickly.
+    - cron: '17 * * * 0,6'
 permissions:
   contents: write
 concurrency:
