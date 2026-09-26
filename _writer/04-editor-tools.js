@@ -538,13 +538,18 @@ function insertBlock(text) {
   }
 
   async function fetchLiveWriterFighter(fighter) {
-    if (!fighter?.ufcStatsId || !authBase) return null;
-    const cached = writerFighterLiveCache.get(fighter.ufcStatsId);
+    if (!fighter?.name || !authBase) return null;
+    const cacheKey = fighter.ufcStatsId || fighter.id || normalizeFighterLookup(fighter.name);
+    const cached = writerFighterLiveCache.get(cacheKey);
     if (cached && Date.now() - cached.savedAt < 5 * 60 * 1000) return cached.data;
     const query = new URLSearchParams({
-      id:fighter.ufcStatsId,
-      slug:fighter.id || ''
+      slug:fighter.id || '',
+      name:fighter.name || ''
     });
+    if (fighter.ufcStatsId) query.set('id',fighter.ufcStatsId);
+    if (fighter.bio?.dob) query.set('dob',fighter.bio.dob);
+    if (fighter.bio?.height) query.set('height',fighter.bio.height);
+    if (fighter.bio?.weight) query.set('weight',fighter.bio.weight);
     const response = await fetch(authBase + '/api/writer/fighter?' + query.toString(), {
       method:'GET',
       mode:'cors',
@@ -553,7 +558,7 @@ function insertBlock(text) {
     });
     const data = await response.json().catch(() => ({}));
     if (!response.ok || !data.ok || !data.profile) throw new Error(data.error || 'Live fighter lookup failed.');
-    writerFighterLiveCache.set(fighter.ufcStatsId,{savedAt:Date.now(),data});
+    writerFighterLiveCache.set(cacheKey,{savedAt:Date.now(),data});
     return data;
   }
 
@@ -672,10 +677,13 @@ function insertBlock(text) {
       };
     }
     if (!payload?.liveUfcStats) {
+      const careerStatus = payload?.liveCareerFallback
+        ? ' · career checked live via ' + (payload.careerSource || 'fallback')
+        : (payload?.liveUfcProfile ? ' · UFC profile checked live' : '');
       return {
         state:'verified',
         text:'Verified UFCStats data loaded · live UFCStats probe unavailable' +
-          (payload?.liveUfcProfile ? ' · UFC profile checked live' : '') +
+          careerStatus +
           ' · sample through ' + formatLookupDate(latest)
       };
     }
@@ -698,14 +706,14 @@ function insertBlock(text) {
     input.dataset.sourceFetchedAt = fighter.statsBuiltAt || fighter.checkedAt || '';
     input.dataset.latestBoutDate = fighter.latestBoutDate || fighter.stats?.sample?.latestBoutDate || fighter.history?.[0]?.date || '';
     input.dataset.sourceUrl = fighter.sourceUrl || '';
-    setLookupStatus(input,cachedState.state,cachedState.text + (fighter.ufcStatsId ? ' · checking live…' : ''));
-
-    if (!fighter.ufcStatsId) return;
+    setLookupStatus(input,cachedState.state,cachedState.text + ' · checking live…');
 
     try {
       const payload = await fetchLiveWriterFighter(fighter);
       applyLiveWriterFighter(dialog,type,side,fighter,payload);
-      input.dataset.sourceMode = payload.liveUfcStats ? 'live' : 'verified-cache';
+      input.dataset.sourceMode = payload.liveUfcStats
+        ? 'live'
+        : (payload.liveCareerFallback || payload.liveUfcProfile ? 'live-profile' : 'verified-cache');
       input.dataset.sourceFetchedAt = payload.liveUfcStats
         ? (payload.fetchedAt || '')
         : (fighter.statsBuiltAt || fighter.checkedAt || '');
