@@ -276,6 +276,11 @@ Object.values(fields).forEach(el => {
   const statsDialog=app.querySelector('[data-stats-dialog]');
   const taleDialog=app.querySelector('[data-tale-dialog]');
 
+  ['a','b'].forEach(side => {
+    installWriterFighterLookup(statsDialog.querySelector('[data-stats-fighter="' + side + '"]'),'stats',side);
+    installWriterFighterLookup(taleDialog.querySelector(side === 'a' ? '[data-tale-a]' : '[data-tale-b]'),'tale',side);
+  });
+
   statsDialog.querySelectorAll('[data-stats-fighter]').forEach(input=>input.addEventListener('input',()=>refreshStatsNameHeaders(statsDialog)));
   taleDialog.querySelectorAll('[data-tale-a],[data-tale-b]').forEach(input=>input.addEventListener('input',()=>refreshTaleNameHeaders(taleDialog)));
   statsDialog.addEventListener('click',event=>{
@@ -301,7 +306,14 @@ Object.values(fields).forEach(el => {
     const fighterB=statsDialog.querySelector('[data-stats-fighter="b"]').value.trim();
     const rows=collectComparisonRows(statsDialog.querySelector('[data-stats-row-list]'));
     if(!rows.length){showToast('Add at least one stat row.');return;}
-    const cfg={version:2,fighterA,fighterB,rows};
+    const cfg={
+      version:3,
+      fighterA,
+      fighterB,
+      rows,
+      sourceA:fighterSourceMeta(statsDialog.querySelector('[data-stats-fighter="a"]')),
+      sourceB:fighterSourceMeta(statsDialog.querySelector('[data-stats-fighter="b"]'))
+    };
     const label=fighterA&&fighterB?fighterA+' vs. '+fighterB+' · Stats':'Fight Stats';
     saveStructuredBlock('stats',label,buildStatsVisual(cfg));
     statsDialog.close();
@@ -319,9 +331,10 @@ Object.values(fields).forEach(el => {
       zoom:Number(taleDialog.querySelector('[data-tale-image-zoom="'+side+'"]').value||100),
       recent:collectRecentRows(taleDialog.querySelector('[data-tale-form-list="'+side+'"]')),
       opponentsRecord:taleDialog.querySelector('[data-tale-opponents-record="'+side+'"]').value.trim(),
-      opponentsPct:taleDialog.querySelector('[data-tale-opponents-pct="'+side+'"]').value.trim()
+      opponentsPct:taleDialog.querySelector('[data-tale-opponents-pct="'+side+'"]').value.trim(),
+      source:fighterSourceMeta(taleDialog.querySelector(side==='a'?'[data-tale-a]':'[data-tale-b]'))
     });
-    const cfg={version:2,a:collect('a'),b:collect('b'),rows:collectComparisonRows(taleDialog.querySelector('[data-tale-row-list]'))};
+    const cfg={version:3,a:collect('a'),b:collect('b'),rows:collectComparisonRows(taleDialog.querySelector('[data-tale-row-list]'))};
     if(!cfg.a.name||!cfg.b.name){showToast('Add both fighter names.');return;}
     if(!cfg.rows.length) cfg.rows=normalizeComparisonRows([],taleDefaultRowLabels);
     saveStructuredBlock('tale',cfg.a.name+' vs. '+cfg.b.name,buildTaleVisual(cfg));
