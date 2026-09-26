@@ -239,6 +239,23 @@ test.describe('Broadcast control program monitor', () => {
     expect(tickerStyle.background).not.toBe('rgb(255, 255, 255)');
     expect(tickerStyle.color).not.toBe('rgb(17, 17, 17)');
 
+    await expect(frame.locator('.next-event-label')).toHaveText('NEXT EVENT');
+    await expect(frame.locator('.next-event-name')).not.toHaveText('');
+    const nextEventUi = await frame.locator('[data-next-event]').evaluate(node => {
+      const root = getComputedStyle(node);
+      const name = getComputedStyle(node.querySelector('.next-event-name'));
+      return {
+        justifyItems: root.justifyItems,
+        textAlign: root.textAlign,
+        weight: name.fontWeight,
+        family: name.fontFamily
+      };
+    });
+    expect(nextEventUi.justifyItems).toBe('center');
+    expect(nextEventUi.textAlign).toBe('center');
+    expect(Number(nextEventUi.weight)).toBeGreaterThanOrEqual(700);
+    expect(nextEventUi.family.toLowerCase()).toContain('gobold');
+
     for (const target of ['overview','rundown','queue','sources','timing','display','live-content','custom']) {
       await page.locator('[data-nav-target="'+target+'"]').click();
       await expect(page.locator('[data-section="'+target+'"] [data-save-config]')).toBeVisible();
