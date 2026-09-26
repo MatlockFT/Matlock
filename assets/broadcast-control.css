@@ -96,3 +96,27 @@ button,input,select,textarea{font:inherit}.bc-app{min-height:100vh}
 @media(max-width:680px){.bc-program-modes{grid-template-columns:1fr}.bc-program-toolbar{align-items:stretch;flex-direction:column}.bc-program-toolbar input{width:100%}}
 
 .bc-program-queue.is-inactive{border-color:#34302a;background:#0b0a08}.bc-program-queue.is-inactive .bc-program-item{opacity:.72}.bc-program-queue.is-inactive .bc-program-empty{color:#8a7a68}
+
+/* Put the ingest/content pool under Program Monitor and use the whole rail. */
+.bc-programming-grid.bc-programming-queue-only{grid-template-columns:1fr}
+.bc-preview-column{overflow:hidden}
+.bc-preview-pool{min-height:0;flex:1;display:flex;flex-direction:column;border:1px solid #292929;border-radius:10px;background:#0d0d0d;overflow:hidden}
+.bc-preview-pool-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 12px 9px;border-bottom:1px solid #242424}
+.bc-preview-pool-head>div{display:grid;gap:3px;min-width:0}.bc-preview-pool-head span{font:700 10px/1 Gobold,Arial,sans-serif;letter-spacing:.1em;color:#e4dfd6}.bc-preview-pool-head small{color:#68645e;font-size:9px}
+.bc-preview-pool-toolbar{margin:0;padding:8px 9px;border-bottom:1px solid #202020;background:#0a0a0a;align-items:center}
+.bc-preview-pool-toolbar .bc-program-tabs{gap:4px}.bc-preview-pool-toolbar .bc-program-tabs button{padding:5px 7px;font-size:9px}.bc-preview-pool-toolbar input{width:110px;min-width:0;padding:6px 7px;font-size:10px}
+.bc-preview-pool-grid{flex:1;min-height:0;max-height:none!important;overflow:auto!important;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start;gap:7px;padding:8px!important}
+.bc-program-pool-item{grid-template-columns:18px minmax(0,1fr) auto!important;grid-template-rows:auto auto;gap:7px 8px!important;padding:8px!important;align-items:start!important;min-width:0}
+.bc-program-pool-item .bc-program-thumb{grid-column:1/-1;position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:6px;background:#151515;border:1px solid #252525}
+.bc-program-pool-item .bc-program-thumb img{width:100%;height:100%;display:block;object-fit:cover}
+.bc-program-pool-item .bc-program-thumb.is-empty{display:grid;place-items:center;background:linear-gradient(135deg,#151515,#0d0d0d);color:#5e5a54;font:700 9px/1 Gobold,Arial,sans-serif;letter-spacing:.09em}
+.bc-program-pool-item .bc-program-grip{font-size:12px;align-self:start;margin-top:1px}
+.bc-program-pool-item .bc-program-title{font-size:11px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.bc-program-pool-item .bc-program-meta{gap:4px 6px;margin-top:4px;font-size:8px}
+.bc-program-pool-item .bc-program-item-actions{align-self:start}.bc-program-pool-item .bc-program-item-actions button{padding:4px 6px;font-size:8px}
+.bc-program-pool-item .bc-program-queued{padding:1px 4px}
+.bc-now-card{margin-top:0}
+@media(max-width:1350px){.bc-preview-pool-grid{grid-template-columns:1fr}.bc-preview-pool-toolbar{align-items:stretch;flex-direction:column}.bc-preview-pool-toolbar input{width:100%}}
+@media(max-width:1050px){.bc-preview-column{overflow:visible}.bc-preview-pool{max-height:620px}.bc-preview-pool-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){.bc-preview-pool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.bc-preview-pool-grid{grid-template-columns:1fr}}
