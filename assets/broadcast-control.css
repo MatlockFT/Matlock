@@ -94,3 +94,5 @@ button,input,select,textarea{font:inherit}.bc-app{min-height:100vh}
 .bc-program-auto-rules{margin-top:0}.bc-program-rule-fields{margin-top:14px}
 @media(max-width:1050px){.bc-programming-grid{grid-template-columns:1fr}.bc-program-mode-card{grid-template-columns:1fr}.bc-program-pool{max-height:480px}}
 @media(max-width:680px){.bc-program-modes{grid-template-columns:1fr}.bc-program-toolbar{align-items:stretch;flex-direction:column}.bc-program-toolbar input{width:100%}}
+
+.bc-program-queue.is-inactive{border-color:#34302a;background:#0b0a08}.bc-program-queue.is-inactive .bc-program-item{opacity:.72}.bc-program-queue.is-inactive .bc-program-empty{color:#8a7a68}
