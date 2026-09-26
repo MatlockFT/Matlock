@@ -469,6 +469,27 @@ test.describe('Article fight navigation and spoiler picks', () => {
     await expect(page.locator('.fight-section-ambient')).toHaveCount(12);
     await expect(floatingToc.locator('[data-article-toc-list] li')).toHaveCount(12);
 
+    const tocTopBefore = await floatingToc.evaluate(node => Math.round(node.getBoundingClientRect().top));
+    await page.evaluate(() => window.scrollTo(0, 2200));
+    await page.waitForTimeout(150);
+    const tocTopAfter = await floatingToc.evaluate(node => Math.round(node.getBoundingClientRect().top));
+    expect(Math.abs(tocTopAfter - tocTopBefore)).toBeLessThanOrEqual(4);
+
+    const fightShell = page.locator('.fight-section-ambient').first();
+    const fightSurface = await fightShell.evaluate(node => {
+      const style = getComputedStyle(node);
+      return {
+        background: style.backgroundColor,
+        borderTopWidth: style.borderTopWidth,
+        boxShadow: style.boxShadow,
+        filter: style.filter
+      };
+    });
+    expect(fightSurface.background).toBe('rgba(0, 0, 0, 0)');
+    expect(fightSurface.borderTopWidth).toBe('0px');
+    expect(fightSurface.boxShadow).toBe('none');
+    expect(fightSurface.filter).toContain('drop-shadow');
+
     expect(pageErrors).toEqual([]);
   });
 });
