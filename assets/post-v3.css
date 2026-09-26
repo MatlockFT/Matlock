@@ -17,6 +17,7 @@
 .post-page-v3 .article-toc.is-open .article-toc-toggle-icon::after{transform:rotate(0)}
 .post-page-v3 .article-toc-panel{padding:.1rem 0 .7rem}
 .post-page-v3 .article-toc-panel[hidden]{display:none}
+.post-page-v3 .article-toc-panel.is-animating{overflow:hidden!important;will-change:height,opacity,transform}
 .post-page-v3 .article-toc ol{display:grid;gap:0;margin:.15rem 0 0;padding:0;list-style:none;counter-reset:none}
 .post-page-v3 .article-toc li{margin:0;padding:0;border-top:1px solid var(--v3-rule)}
 .post-page-v3 .article-toc li:last-child{border-bottom:1px solid var(--v3-rule)}
