@@ -2404,19 +2404,23 @@ function insertBlock(text) {
 
   let editingStructuredBlockId = '';
 
-  const taleDefaultRows = [
-    'Record |  | ',
-    'Age |  | ',
-    'Height |  | ',
-    'Arm Reach |  | ',
-    'UFC Record |  | ',
-    'Record Outside UFC |  | ',
-    'Total Finishes |  | ',
-    'TKO / KO |  | ',
-    'Submission |  | ',
-    'Unanimous Decision |  | ',
-    'Split Decision |  | '
-  ].join('\n');
+  const taleDefaultRowLabels = [
+    'Record','Age','Height','Arm Reach','UFC Record','Record Outside UFC',
+    'Total Finishes','TKO / KO','Submission','Unanimous Decision','Split Decision'
+  ];
+
+  const statsDefaultRowLabels = [
+    'Significant Strikes / Minute',
+    'Sig. Strikes Absorbed / Minute',
+    'Striking Accuracy',
+    'Striking Defense',
+    'Takedowns / 15 Minutes',
+    'Takedown Accuracy',
+    'Takedown Defense',
+    'Submission Attempts / 15'
+  ];
+
+  const taleDefaultRows = taleDefaultRowLabels.map(label => label + ' |  | ').join('\n');
 
   function structuredMeta(code) {
     const source = String(code || '');
@@ -2439,29 +2443,147 @@ function insertBlock(text) {
     });
   }
 
+  function normalizeComparisonRows(value, fallbackLabels = []) {
+    if (Array.isArray(value)) {
+      const rows = value.map(row => {
+        if (Array.isArray(row)) return { label: row[0] || '', a: row[1] || '', b: row[2] || '' };
+        return {
+          label: String(row?.label ?? row?.stat ?? ''),
+          a: String(row?.a ?? row?.left ?? row?.value ?? ''),
+          b: String(row?.b ?? row?.right ?? row?.fighter ?? '')
+        };
+      }).filter(row => row.label || row.a || row.b);
+      if (rows.length) return rows;
+    }
+    const legacy = pipeRows(value, 3).map(row => ({ label: row[0], a: row[1], b: row[2] }));
+    if (legacy.length) return legacy;
+    return fallbackLabels.map(label => ({ label, a: '', b: '' }));
+  }
+
+  function normalizeRecentRows(value) {
+    if (Array.isArray(value)) {
+      return value.map(row => ({
+        result: String(row?.result || '').toUpperCase(),
+        opponent: String(row?.opponent || ''),
+        detail: String(row?.detail || '')
+      })).filter(row => row.result || row.opponent || row.detail);
+    }
+    return pipeRows(value, 3).map(row => ({ result:String(row[0]||'').toUpperCase(), opponent:row[1]||'', detail:row[2]||'' }));
+  }
+
+  function comparisonRowElement(row = {}) {
+    const item=document.createElement('div');
+    item.className='writer-comparison-row';
+    item.innerHTML='<input type="text" data-structured-label aria-label="Row label">'+
+      '<input type="text" data-structured-a aria-label="Fighter A value">'+
+      '<input type="text" data-structured-b aria-label="Fighter B value">'+
+      '<div class="writer-row-actions">'+
+      '<button type="button" data-structured-action="up" title="Move row up" aria-label="Move row up">↑</button>'+
+      '<button type="button" data-structured-action="down" title="Move row down" aria-label="Move row down">↓</button>'+
+      '<button type="button" data-structured-action="remove" title="Remove row" aria-label="Remove row">×</button></div>';
+    item.querySelector('[data-structured-label]').value=row.label||'';
+    item.querySelector('[data-structured-a]').value=row.a||'';
+    item.querySelector('[data-structured-b]').value=row.b||'';
+    return item;
+  }
+
+  function renderComparisonRows(container, value, fallbackLabels = []) {
+    if (!container) return;
+    const rows=normalizeComparisonRows(value,fallbackLabels);
+    container.replaceChildren(...rows.map(comparisonRowElement));
+  }
+
+  function appendComparisonRow(container, row = {}) {
+    if (!container) return;
+    const item=comparisonRowElement(row);
+    container.append(item);
+    item.querySelector('[data-structured-label]')?.focus();
+  }
+
+  function collectComparisonRows(container) {
+    if (!container) return [];
+    return [...container.querySelectorAll('.writer-comparison-row')].map(item=>({
+      label:item.querySelector('[data-structured-label]')?.value.trim()||'',
+      a:item.querySelector('[data-structured-a]')?.value.trim()||'',
+      b:item.querySelector('[data-structured-b]')?.value.trim()||''
+    })).filter(row=>row.label||row.a||row.b);
+  }
+
+  function recentRowElement(row = {}) {
+    const item=document.createElement('div');
+    item.className='writer-recent-row';
+    item.innerHTML='<select data-recent-result aria-label="Result"><option value="">—</option><option value="W">W</option><option value="L">L</option><option value="D">D</option><option value="NC">NC</option></select>'+
+      '<input type="text" data-recent-opponent placeholder="Opponent" aria-label="Opponent">'+
+      '<input type="text" data-recent-detail placeholder="DEC · JUN 14, 2025 · R3 5:00" aria-label="Fight detail">'+
+      '<div class="writer-row-actions">'+
+      '<button type="button" data-structured-action="up" title="Move fight up" aria-label="Move fight up">↑</button>'+
+      '<button type="button" data-structured-action="down" title="Move fight down" aria-label="Move fight down">↓</button>'+
+      '<button type="button" data-structured-action="remove" title="Remove fight" aria-label="Remove fight">×</button></div>';
+    item.querySelector('[data-recent-result]').value=row.result||'';
+    item.querySelector('[data-recent-opponent]').value=row.opponent||'';
+    item.querySelector('[data-recent-detail]').value=row.detail||'';
+    return item;
+  }
+
+  function renderRecentRows(container, value) {
+    if(!container) return;
+    container.replaceChildren(...normalizeRecentRows(value).map(recentRowElement));
+  }
+
+  function appendRecentRow(container, row = {}) {
+    if(!container) return;
+    const item=recentRowElement(row);
+    container.append(item);
+    item.querySelector('[data-recent-result]')?.focus();
+  }
+
+  function collectRecentRows(container) {
+    if(!container) return [];
+    return [...container.querySelectorAll('.writer-recent-row')].map(item=>({
+      result:item.querySelector('[data-recent-result]')?.value||'',
+      opponent:item.querySelector('[data-recent-opponent]')?.value.trim()||'',
+      detail:item.querySelector('[data-recent-detail]')?.value.trim()||''
+    })).filter(row=>row.result||row.opponent||row.detail);
+  }
+
+  function applyStructuredRowAction(button) {
+    const action=button?.dataset?.structuredAction;
+    const row=button?.closest('.writer-comparison-row, .writer-recent-row');
+    if(!action||!row) return;
+    if(action==='remove'){row.remove();return;}
+    if(action==='up'&&row.previousElementSibling){row.parentElement.insertBefore(row,row.previousElementSibling);return;}
+    if(action==='down'&&row.nextElementSibling){row.parentElement.insertBefore(row.nextElementSibling,row);}
+  }
+
+  function refreshStatsNameHeaders(dialog) {
+    if(!dialog) return;
+    ['a','b'].forEach(side=>{
+      const value=dialog.querySelector('[data-stats-fighter="'+side+'"]')?.value.trim();
+      const header=dialog.querySelector('[data-stats-name-header="'+side+'"]');
+      if(header) header.textContent=value||(side==='a'?'Fighter A':'Fighter B');
+    });
+  }
+
   function structuredSection(type, config, inner) {
     return '<section class="article-html-visual" data-writer-block="' + type + '" data-writer-config="' +
       encodedStructuredConfig(config) + '">\n' + inner + '\n</section>';
   }
 
   function buildStatsVisual(config) {
-    const body = pipeRows(config.rows, 3).map(row =>
-      '<tr><td>' + escapeHtml(row[0]) + '</td><td>' + escapeHtml(row[1]) +
-      '</td><td>' + escapeHtml(row[2]) + '</td></tr>'
-    ).join('');
-    return structuredSection('stats', config,
-      '<div class="matlock-stats-card"><table><thead><tr><th>STAT</th><th>COUNT / LEADER</th><th>FIGHTER(S)</th></tr></thead><tbody>' +
-      body + '</tbody></table></div>'
+    const rows=normalizeComparisonRows(config.rows,[]);
+    const fighterA=String(config.fighterA||'Fighter A').trim()||'Fighter A';
+    const fighterB=String(config.fighterB||'Fighter B').trim()||'Fighter B';
+    const body=rows.map(row=>'<tr><td>'+escapeHtml(row.a||'—')+'</td><td>'+escapeHtml(row.label)+'</td><td>'+escapeHtml(row.b||'—')+'</td></tr>').join('');
+    return structuredSection('stats',config,
+      '<div class="matlock-stats-card matlock-stats-compare"><table><thead><tr><th>'+escapeHtml(fighterA)+'</th><th>STAT</th><th>'+escapeHtml(fighterB)+'</th></tr></thead><tbody>'+body+'</tbody></table></div>'
     );
   }
 
-  function recentFormMarkup(text) {
-    return pipeRows(text, 3).map(row => {
-      const result = String(row[0] || '').toUpperCase();
-      const resultClass = result === 'W' ? 'win' : result === 'L' ? 'loss' : 'draw';
-      return '<div class="mfc-form-row"><span class="mfc-result ' + resultClass + '">' +
-        escapeHtml(result || '—') + '</span><div><strong>' + escapeHtml(row[1]) +
-        '</strong><small>' + escapeHtml(row[2]) + '</small></div></div>';
+  function recentFormMarkup(value) {
+    return normalizeRecentRows(value).map(row=>{
+      const result=String(row.result||'').toUpperCase();
+      const resultClass=result==='W'?'win':result==='L'?'loss':'draw';
+      return '<div class="mfc-form-row"><span class="mfc-result '+resultClass+'">'+escapeHtml(result||'—')+'</span><div><strong>'+escapeHtml(row.opponent)+'</strong><small>'+escapeHtml(row.detail)+'</small></div></div>';
     }).join('');
   }
 
@@ -2485,34 +2607,18 @@ function insertBlock(text) {
   }
 
   function buildTaleVisual(config) {
-    const a = config.a || {};
-    const b = config.b || {};
-    const taleRows = pipeRows(config.rows, 3).map((row, index) =>
-      '<div class="mfc-tale-row' + (index === 0 ? ' featured' : '') + '"><strong>' +
-      escapeHtml(row[1]) + '</strong><span>' + escapeHtml(row[0]) +
-      '</span><strong>' + escapeHtml(row[2]) + '</strong></div>'
-    ).join('');
-    const recentA = recentFormMarkup(a.recent);
-    const recentB = recentFormMarkup(b.recent);
-    const recent = recentA || recentB
-      ? '<div class="mfc-form-wrap"><div class="mfc-column"><div class="mfc-mobile-column-label"><span>RECENT FORM</span><strong>' +
-        escapeHtml(a.name || 'Fighter A') + '</strong></div>' + recentA +
-        '</div><div class="mfc-column"><div class="mfc-mobile-column-label"><span>RECENT FORM</span><strong>' +
-        escapeHtml(b.name || 'Fighter B') + '</strong></div>' + recentB + '</div></div>'
+    const a=config.a||{}, b=config.b||{};
+    const rows=normalizeComparisonRows(config.rows,taleDefaultRowLabels);
+    const taleRows=rows.map((row,index)=>'<div class="mfc-tale-row'+(index===0?' featured':'')+'"><strong>'+escapeHtml(row.a)+'</strong><span>'+escapeHtml(row.label)+'</span><strong>'+escapeHtml(row.b)+'</strong></div>').join('');
+    const recentA=recentFormMarkup(a.recent), recentB=recentFormMarkup(b.recent);
+    const recent=recentA||recentB
+      ? '<div class="mfc-form-wrap"><div class="mfc-column"><div class="mfc-mobile-column-label"><span>RECENT FORM</span><strong>'+escapeHtml(a.name||'Fighter A')+'</strong></div>'+recentA+'</div><div class="mfc-column"><div class="mfc-mobile-column-label"><span>RECENT FORM</span><strong>'+escapeHtml(b.name||'Fighter B')+'</strong></div>'+recentB+'</div></div>'
       : '';
-    const opponents = (a.opponentsRecord || b.opponentsRecord || a.opponentsPct || b.opponentsPct)
-      ? '<div class="mfc-opponents"><div><strong>' + escapeHtml(a.opponentsRecord || '—') +
-        '</strong><span>' + escapeHtml(a.opponentsPct || '') + '</span></div><p>OPPONENTS COMBINED RECORD</p><div><strong>' +
-        escapeHtml(b.opponentsRecord || '—') + '</strong><span>' + escapeHtml(b.opponentsPct || '') + '</span></div></div>'
+    const opponents=(a.opponentsRecord||b.opponentsRecord||a.opponentsPct||b.opponentsPct)
+      ? '<div class="mfc-opponents"><div><strong>'+escapeHtml(a.opponentsRecord||'—')+'</strong><span>'+escapeHtml(a.opponentsPct||'')+'</span></div><p>OPPONENTS COMBINED RECORD</p><div><strong>'+escapeHtml(b.opponentsRecord||'—')+'</strong><span>'+escapeHtml(b.opponentsPct||'')+'</span></div></div>'
       : '';
-    const inner = '<div class="matlock-fight-card"><div class="mfc-top">' +
-      fighterTopMarkup('left', a) +
-      '<div class="mfc-center"><strong>MATCHUP</strong><i></i></div>' +
-      fighterTopMarkup('right', b) +
-      '</div>' + recent + opponents +
-      '<div class="mfc-tale"><div class="mfc-section-title">TALE OF THE TAPE</div>' +
-      taleRows + '</div></div>';
-    return structuredSection('tale', config, inner);
+    const inner='<div class="matlock-fight-card"><div class="mfc-top">'+fighterTopMarkup('left',a)+'<div class="mfc-center"><strong>MATCHUP</strong><i></i></div>'+fighterTopMarkup('right',b)+'</div><div class="mfc-tale"><div class="mfc-section-title">TALE OF THE TAPE</div>'+taleRows+'</div>'+recent+opponents+'</div>';
+    return structuredSection('tale',config,inner);
   }
 
   function buildPickVisual(config) {
@@ -2567,7 +2673,11 @@ function insertBlock(text) {
   }
 
   function resetStatsDialog(config = {}) {
-    app.querySelector('[data-stats-dialog] [data-stats-rows]').value = config.rows || '';
+    const dialog=app.querySelector('[data-stats-dialog]');
+    dialog.querySelector('[data-stats-fighter="a"]').value=config.fighterA||'';
+    dialog.querySelector('[data-stats-fighter="b"]').value=config.fighterB||'';
+    renderComparisonRows(dialog.querySelector('[data-stats-row-list]'),config.rows,statsDefaultRowLabels);
+    refreshStatsNameHeaders(dialog);
   }
 
   function resetPickDialog(config = {}) {
@@ -2579,26 +2689,25 @@ function insertBlock(text) {
   }
 
   function resetTaleDialog(config = {}) {
-    const dialog = app.querySelector('[data-tale-dialog]');
-    const a = config.a || {};
-    const b = config.b || {};
-    dialog.querySelector('[data-tale-a]').value = a.name || '';
-    dialog.querySelector('[data-tale-b]').value = b.name || '';
-    ['a','b'].forEach(side => {
-      const fighter = side === 'a' ? a : b;
-      dialog.querySelector('[data-tale-division="' + side + '"]').value = fighter.division || '';
-      dialog.querySelector('[data-tale-odds="' + side + '"]').value = fighter.odds || '';
-      dialog.querySelector('[data-tale-last5="' + side + '"]').value = fighter.last5 || '';
-      dialog.querySelector('[data-tale-image-path="' + side + '"]').value = fighter.image || '';
-      dialog.querySelector('[data-tale-image-x="' + side + '"]').value = fighter.x ?? 50;
-      dialog.querySelector('[data-tale-image-y="' + side + '"]').value = fighter.y ?? 50;
-      dialog.querySelector('[data-tale-image-zoom="' + side + '"]').value = fighter.zoom ?? 100;
-      dialog.querySelector('[data-tale-recent="' + side + '"]').value = fighter.recent || '';
-      dialog.querySelector('[data-tale-opponents-record="' + side + '"]').value = fighter.opponentsRecord || '';
-      dialog.querySelector('[data-tale-opponents-pct="' + side + '"]').value = fighter.opponentsPct || '';
+    const dialog=app.querySelector('[data-tale-dialog]');
+    const a=config.a||{}, b=config.b||{};
+    dialog.querySelector('[data-tale-a]').value=a.name||'';
+    dialog.querySelector('[data-tale-b]').value=b.name||'';
+    ['a','b'].forEach(side=>{
+      const fighter=side==='a'?a:b;
+      dialog.querySelector('[data-tale-division="'+side+'"]').value=fighter.division||'';
+      dialog.querySelector('[data-tale-odds="'+side+'"]').value=fighter.odds||'';
+      dialog.querySelector('[data-tale-last5="'+side+'"]').value=fighter.last5||'';
+      dialog.querySelector('[data-tale-image-path="'+side+'"]').value=fighter.image||'';
+      dialog.querySelector('[data-tale-image-x="'+side+'"]').value=fighter.x??50;
+      dialog.querySelector('[data-tale-image-y="'+side+'"]').value=fighter.y??50;
+      dialog.querySelector('[data-tale-image-zoom="'+side+'"]').value=fighter.zoom??100;
+      dialog.querySelector('[data-tale-opponents-record="'+side+'"]').value=fighter.opponentsRecord||'';
+      dialog.querySelector('[data-tale-opponents-pct="'+side+'"]').value=fighter.opponentsPct||'';
+      renderRecentRows(dialog.querySelector('[data-tale-form-list="'+side+'"]'),fighter.recent);
       taleImagePreview(side);
     });
-    dialog.querySelector('[data-tale-rows]').value = config.rows || taleDefaultRows;
+    renderComparisonRows(dialog.querySelector('[data-tale-row-list]'),config.rows,taleDefaultRowLabels);
   }
 
   function openStructuredBlockById(id) {
@@ -3426,34 +3535,58 @@ Object.values(fields).forEach(el => {
     showToast('HTML visual removed.');
   });
 
-  app.querySelector('[data-stats-insert]').addEventListener('click', () => {
-    const dialog = app.querySelector('[data-stats-dialog]');
-    const rows = dialog.querySelector('[data-stats-rows]').value.trim();
-    if (!rows) { showToast('Add at least one stats row.'); return; }
-    const cfg = { rows };
-    saveStructuredBlock('stats', 'Stats', buildStatsVisual(cfg));
-    dialog.close();
+  const statsDialog=app.querySelector('[data-stats-dialog]');
+  const taleDialog=app.querySelector('[data-tale-dialog]');
+
+  statsDialog.querySelectorAll('[data-stats-fighter]').forEach(input=>input.addEventListener('input',()=>refreshStatsNameHeaders(statsDialog)));
+  statsDialog.addEventListener('click',event=>{
+    const rowAction=event.target.closest('[data-structured-action]');
+    if(rowAction){applyStructuredRowAction(rowAction);return;}
+    const preset=event.target.closest('[data-stats-preset]')?.dataset.statsPreset;
+    if(preset==='ufc'){renderComparisonRows(statsDialog.querySelector('[data-stats-row-list]'),[],statsDefaultRowLabels);return;}
+    if(preset==='blank'){renderComparisonRows(statsDialog.querySelector('[data-stats-row-list]'),[]);return;}
+    if(event.target.closest('[data-stats-add-row]')) appendComparisonRow(statsDialog.querySelector('[data-stats-row-list]'));
   });
 
-  app.querySelector('[data-tale-insert]').addEventListener('click', () => {
-    const dialog = app.querySelector('[data-tale-dialog]');
-    const collect = side => ({
-      name: dialog.querySelector(side === 'a' ? '[data-tale-a]' : '[data-tale-b]').value.trim(),
-      division: dialog.querySelector('[data-tale-division="' + side + '"]').value.trim(),
-      odds: dialog.querySelector('[data-tale-odds="' + side + '"]').value.trim(),
-      last5: dialog.querySelector('[data-tale-last5="' + side + '"]').value.trim(),
-      image: dialog.querySelector('[data-tale-image-path="' + side + '"]').value.trim(),
-      x: Number(dialog.querySelector('[data-tale-image-x="' + side + '"]').value || 50),
-      y: Number(dialog.querySelector('[data-tale-image-y="' + side + '"]').value || 50),
-      zoom: Number(dialog.querySelector('[data-tale-image-zoom="' + side + '"]').value || 100),
-      recent: dialog.querySelector('[data-tale-recent="' + side + '"]').value.trim(),
-      opponentsRecord: dialog.querySelector('[data-tale-opponents-record="' + side + '"]').value.trim(),
-      opponentsPct: dialog.querySelector('[data-tale-opponents-pct="' + side + '"]').value.trim()
+  taleDialog.addEventListener('click',event=>{
+    const rowAction=event.target.closest('[data-structured-action]');
+    if(rowAction){applyStructuredRowAction(rowAction);return;}
+    if(event.target.closest('[data-tale-rows-reset]')){renderComparisonRows(taleDialog.querySelector('[data-tale-row-list]'),[],taleDefaultRowLabels);return;}
+    if(event.target.closest('[data-tale-row-add]')){appendComparisonRow(taleDialog.querySelector('[data-tale-row-list]'));return;}
+    const formSide=event.target.closest('[data-tale-form-add]')?.dataset.taleFormAdd;
+    if(formSide) appendRecentRow(taleDialog.querySelector('[data-tale-form-list="'+formSide+'"]'));
+  });
+
+  app.querySelector('[data-stats-insert]').addEventListener('click',()=>{
+    const fighterA=statsDialog.querySelector('[data-stats-fighter="a"]').value.trim();
+    const fighterB=statsDialog.querySelector('[data-stats-fighter="b"]').value.trim();
+    const rows=collectComparisonRows(statsDialog.querySelector('[data-stats-row-list]'));
+    if(!rows.length){showToast('Add at least one stat row.');return;}
+    const cfg={version:2,fighterA,fighterB,rows};
+    const label=fighterA&&fighterB?fighterA+' vs. '+fighterB+' · Stats':'Fight Stats';
+    saveStructuredBlock('stats',label,buildStatsVisual(cfg));
+    statsDialog.close();
+  });
+
+  app.querySelector('[data-tale-insert]').addEventListener('click',()=>{
+    const collect=side=>({
+      name:taleDialog.querySelector(side==='a'?'[data-tale-a]':'[data-tale-b]').value.trim(),
+      division:taleDialog.querySelector('[data-tale-division="'+side+'"]').value.trim(),
+      odds:taleDialog.querySelector('[data-tale-odds="'+side+'"]').value.trim(),
+      last5:taleDialog.querySelector('[data-tale-last5="'+side+'"]').value.trim(),
+      image:taleDialog.querySelector('[data-tale-image-path="'+side+'"]').value.trim(),
+      x:Number(taleDialog.querySelector('[data-tale-image-x="'+side+'"]').value||50),
+      y:Number(taleDialog.querySelector('[data-tale-image-y="'+side+'"]').value||50),
+      zoom:Number(taleDialog.querySelector('[data-tale-image-zoom="'+side+'"]').value||100),
+      recent:collectRecentRows(taleDialog.querySelector('[data-tale-form-list="'+side+'"]')),
+      opponentsRecord:taleDialog.querySelector('[data-tale-opponents-record="'+side+'"]').value.trim(),
+      opponentsPct:taleDialog.querySelector('[data-tale-opponents-pct="'+side+'"]').value.trim()
     });
-    const cfg = { a: collect('a'), b: collect('b'), rows: dialog.querySelector('[data-tale-rows]').value.trim() || taleDefaultRows };
-    if (!cfg.a.name || !cfg.b.name) { showToast('Add both fighter names.'); return; }
-    saveStructuredBlock('tale', cfg.a.name + ' vs. ' + cfg.b.name, buildTaleVisual(cfg));
-    dialog.close();
+    const cfg={version:2,a:collect('a'),b:collect('b'),rows:collectComparisonRows(taleDialog.querySelector('[data-tale-row-list]'))};
+    if(!cfg.a.name||!cfg.b.name){showToast('Add both fighter names.');return;}
+    if(!cfg.rows.length) cfg.rows=normalizeComparisonRows([],taleDefaultRowLabels);
+    saveStructuredBlock('tale',cfg.a.name+' vs. '+cfg.b.name,buildTaleVisual(cfg));
+    taleDialog.close();
   });
 
   app.querySelector('[data-pick-insert]').addEventListener('click', () => {
