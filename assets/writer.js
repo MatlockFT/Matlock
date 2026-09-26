@@ -2920,6 +2920,13 @@ function insertBlock(text) {
     const latest = fighter.latestBoutDate || fighter.stats?.sample?.latestBoutDate || fighter.history?.[0]?.date || null;
     const bookingDate = fighter?.booking?.date || null;
     const todayValue = today();
+    if (!fighter.stats) {
+      return {
+        state:'verified',
+        text:'No UFCStats sample yet · unavailable Stats fields marked N/A' +
+          (fighter.careerSource?.source ? ' · career verified via ' + fighter.careerSource.source : '')
+      };
+    }
     const pendingKnownFight = bookingDate && bookingDate <= todayValue && (!latest || latest < bookingDate);
     if (pendingKnownFight) {
       return {
@@ -2951,6 +2958,12 @@ function insertBlock(text) {
       const careerStatus = payload?.liveCareerFallback
         ? ' · career checked live via ' + (payload.careerSource || 'fallback')
         : (payload?.liveUfcProfile ? ' · UFC profile checked live' : '');
+      if (!fighter.stats) {
+        return {
+          state:'verified',
+          text:'No UFCStats sample yet · unavailable Stats fields marked N/A' + careerStatus
+        };
+      }
       return {
         state:'verified',
         text:'Verified UFCStats data loaded · live UFCStats probe unavailable' +
