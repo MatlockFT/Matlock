@@ -156,7 +156,12 @@ jobs:
           npm install --no-save --no-package-lock @playwright/test@1.55.0
           npx playwright install --with-deps chromium
 
+      - name: Exercise fighter autofill workflow
+        env:
+          WRITER_BASE_URL: https://mmamatlock.com/write/
+        run: npx playwright test scripts/writer/writer-fighter-autofill-smoke.spec.cjs --workers=1 --reporter=line
+
       - name: Exercise production Writer workflow
         env:
           WRITER_BASE_URL: https://mmamatlock.com/write/
-        run: npx playwright test scripts/writer/writer-fighter-autofill-smoke.spec.cjs scripts/writer/writer-smoke.spec.cjs scripts/writer/writer-wordtools-smoke.spec.cjs scripts/writer/writer-layout-smoke.spec.cjs scripts/writer/writer-splitflow-smoke.spec.cjs --workers=1 --reporter=line
+        run: npx playwright test scripts/writer/writer-smoke.spec.cjs scripts/writer/writer-wordtools-smoke.spec.cjs scripts/writer/writer-layout-smoke.spec.cjs scripts/writer/writer-splitflow-smoke.spec.cjs --workers=1 --reporter=line
