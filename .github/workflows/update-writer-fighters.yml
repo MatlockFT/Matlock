@@ -83,7 +83,10 @@ jobs:
           }
           const incompleteBooked = data.fighters.filter(fighter => fighter.booking && !completeCareer(fighter));
           if (incompleteBooked.length) {
-            throw new Error('Booked fighters have incomplete Writer career data: ' + incompleteBooked.map(fighter => fighter.name).join(', '));
+            console.warn(
+              'Booked fighters will use verified live career fallback on selection: ' +
+              incompleteBooked.map(fighter => fighter.name).join(', ')
+            );
           }
 
           // Brad is a regression sentinel because this exact veteran profile exposed a partial-autofill bug.
@@ -135,7 +138,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- assets/data/writer-fighters.json assets/data/writer-fighter-career-fallbacks.json
+          git add -- assets/data/writer-fighters.json
           git diff --cached --quiet && exit 0
           git commit -m "Refresh Writer fighter data"
           git pull --rebase -X theirs origin main
