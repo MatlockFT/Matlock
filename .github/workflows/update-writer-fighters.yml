@@ -10,6 +10,7 @@ on:
       - 'scripts/matchmaker/sources/ufcstats.mjs'
       - 'scripts/matchmaker/sources/ufc.mjs'
       - 'scripts/matchmaker/sources/sherdog.mjs'
+      - 'assets/data/writer-fighter-career-fallbacks.json'
       - '.github/workflows/update-writer-fighters.yml'
   schedule:
     # Fighter data is lightweight enough to refresh hourly. Commits occur only when data changes.
