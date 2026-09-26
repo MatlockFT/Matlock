@@ -61,6 +61,36 @@ export function parseProfile(html, fighter, checkedAt) {
   const division = field(html, 'hero-profile__division-title').replace(/ Division$/i, '');
   const record = field(html, 'hero-profile__division-body').match(/\d+-\d+-\d+/)?.[0] || null;
   if (!division || !record) throw new Error(`Missing profile division/record: ${fighter.id}`);
+
+  // UFC athlete pages expose career-level win-method totals. Keep these separate from
+  // UFCStats bout history: the former covers the fighter's full pro record while the
+  // latter is authoritative for UFC bout-by-bout subtype counts.
+  const profileText = clean(html);
+  const countBefore = label => {
+    const match = profileText.match(new RegExp('\\b(\\d+)\\s+' + label.replace(/[.*+?^$()|[\\]{}\\]/g, '\\export function parseProfile(html, fighter, checkedAt) {
+  const division = field(html, 'hero-profile__division-title').replace(/ Division$/i, '');
+  const record = field(html, 'hero-profile__division-body').match(/\d+-\d+-\d+/)?.[0] || null;
+  if (!division || !record) throw new Error(`Missing profile division/record: ${fighter.id}`);
+  const historyBlock = html.match(/field--name-qna-ufc[^>]*>([\s\S]*?)<\/div>/)?.[1] || '';') + '\\b', 'i'));
+    return match ? Number(match[1]) : null;
+  };
+  const recordWins = Number(record.split('-')[0]) || 0;
+  const winsByKnockout = countBefore('Wins by Knockout');
+  const winsBySubmission = countBefore('Wins by Submission');
+  const firstRoundFinishes = countBefore('First Round Finishes');
+  const decisionWins = Number.isFinite(winsByKnockout) && Number.isFinite(winsBySubmission)
+    ? Math.max(0, recordWins - winsByKnockout - winsBySubmission)
+    : null;
+  const career = {
+    winsByKnockout,
+    winsBySubmission,
+    firstRoundFinishes,
+    decisionWins,
+    totalFinishes: Number.isFinite(winsByKnockout) && Number.isFinite(winsBySubmission)
+      ? winsByKnockout + winsBySubmission
+      : null
+  };
+
   const historyBlock = html.match(/field--name-qna-ufc[^>]*>([\s\S]*?)<\/div>/)?.[1] || '';
   const history = [];
   for (const [, p] of historyBlock.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/g)) {
@@ -73,5 +103,15 @@ export function parseProfile(html, fighter, checkedAt) {
     history.push({ date, result, text, opponentIds: [] });
   }
   history.sort((a, b) => b.date.localeCompare(a.date));
-  return { ...fighter, profileStatus: profileStatus(html), division, record, history, historyCoverage: 'UFC profile listed bouts; may be incomplete', checkedAt, lastFight: history[0]?.date || null };
+  return {
+    ...fighter,
+    profileStatus: profileStatus(html),
+    division,
+    record,
+    career,
+    history,
+    historyCoverage: 'UFC profile listed bouts; may be incomplete',
+    checkedAt,
+    lastFight: history[0]?.date || null
+  };
 }
