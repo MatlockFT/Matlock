@@ -612,6 +612,24 @@
       "safeToRegenerate": true,
       "safeToDeleteFromRepository": false,
       "publicContract": true
+    },
+    {
+      "id": "writer-fighter-career-fallback-cache",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/writer-fighter-career-fallbacks.json"
+      ],
+      "lifecycle": "operational-cache",
+      "owner": "writer",
+      "producers": [
+        "scripts/matchmaker/sources/sherdog.mjs"
+      ],
+      "consumers": [
+        "scripts/matchmaker/build-writer-fighters.mjs"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
     }
   ]
 }
