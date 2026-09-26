@@ -170,6 +170,50 @@ for (const row of fightRows) {
   });
 }
 
+const statsIdsByName = new Map();
+for (const row of fighterRows) {
+  const id = statsId(row.URL);
+  const name = clean([row.FIRST, row.LAST].filter(Boolean).join(' '));
+  if (!id || !name) continue;
+  const nameKey = key(name);
+  const ids = statsIdsByName.get(nameKey) || [];
+  ids.push(id);
+  statsIdsByName.set(nameKey, ids);
+}
+function uniqueStatsId(name) {
+  const ids = statsIdsByName.get(key(name)) || [];
+  return ids.length === 1 ? ids[0] : null;
+}
+
+const resultHistoryByStatsId = new Map();
+function pushResult(statsIdValue, row) {
+  if (!statsIdValue) return;
+  const list = resultHistoryByStatsId.get(statsIdValue) || [];
+  list.push(row);
+  resultHistoryByStatsId.set(statsIdValue, list);
+}
+for (const row of fightRows) {
+  const names = clean(row.BOUT).split(/\s+vs\.?\s+/i).map(clean);
+  const outcomes = clean(row.OUTCOME).split('/').map(value => value.toUpperCase());
+  if (names.length !== 2 || outcomes.length !== 2) continue;
+  const aId = uniqueStatsId(names[0]);
+  const bId = uniqueStatsId(names[1]);
+  const date = eventDates.get(key(row.EVENT)) || null;
+  const common = {
+    date,
+    event: clean(row.EVENT) || null,
+    method: clean(row.METHOD) || null,
+    round: Number(row.ROUND) || null,
+    time: clean(row.TIME) || null,
+    sourceUrl: String(row.URL || '').replace(/^http:/i, 'https:')
+  };
+  pushResult(aId, { ...common, result: outcomes[0] || null, opponent: names[1], opponentStatsId: bId });
+  pushResult(bId, { ...common, result: outcomes[1] || null, opponent: names[0], opponentStatsId: aId });
+}
+for (const history of resultHistoryByStatsId.values()) {
+  history.sort((a,b) => String(b.date || '').localeCompare(String(a.date || '')));
+}
+
 const mirrorFighters = new Map();
 for (const row of fighterRows) {
   const id = statsId(row.URL);
@@ -251,10 +295,19 @@ for (const fighter of current.fighters || []) {
   const mirrorName = mirror?.name || fighter.name;
   const stats = metrics(totalsByName.get(key(mirrorName)));
   const bio = bioById.get(ufcStatsId) || null;
-  const history = Array.isArray(fighter.verifiedMeetings) && fighter.verifiedMeetings.length
+  const verifiedHistory = Array.isArray(fighter.verifiedMeetings) && fighter.verifiedMeetings.length
     ? fighter.verifiedMeetings
     : (Array.isArray(fighter.history) ? fighter.history : []);
-  const ufcRecord = countRecord(history, new Set(['ufc']));
+  const mirrorHistory = resultHistoryByStatsId.get(ufcStatsId) || [];
+  const recentHistory = mirrorHistory.length ? mirrorHistory : verifiedHistory;
+  const ufcMirrorHistory = mirrorHistory.filter(fight => /^(?:UFC\b|Noche UFC\b)/i.test(fight.event || ''));
+  const ufcRecord = ufcMirrorHistory.length
+    ? (() => {
+        const counts = { W:0,L:0,D:0 };
+        for (const fight of ufcMirrorHistory) if (Object.hasOwn(counts,fight.result)) counts[fight.result]++;
+        return counts.W + '-' + counts.L + '-' + counts.D;
+      })()
+    : countRecord(verifiedHistory, new Set(['ufc']));
   if (stats) withStats++;
   if (bio) withBio++;
   fighters.push({
@@ -270,13 +323,13 @@ for (const fighter of current.fighters || []) {
     checkedAt: fighter.checkedAt || current.generatedAt || builtAt,
     ufcStatsId,
     sourceUrl: mirror?.url || ('https://ufcstats.com/fighter-details/' + ufcStatsId),
-    latestBoutDate: stats?.sample?.latestBoutDate || history[0]?.date || null,
+    latestBoutDate: stats?.sample?.latestBoutDate || recentHistory[0]?.date || null,
     mirrorThrough: fighter.meetingCoverage?.mirrorThrough || null,
     bio,
     stats,
-    recent: history.slice(0, 5).map(fight => ({
+    recent: recentHistory.slice(0, 5).map(fight => ({
       result: fight.result || null,
-      opponent: fight.opponentName || null,
+      opponent: fight.opponent || fight.opponentName || null,
       date: fight.date || null,
       method: fight.method || null,
       round: fight.round || null,
