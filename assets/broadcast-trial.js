@@ -430,7 +430,7 @@ function applyControlPreview(m){
       ensureSplitVideo();
       els.title.textContent="Waiting for an eligible article";
       els.eyebrow.textContent="ARTICLE READER";els.source.textContent="MMA MATLOCK";els.time.textContent="PREVIEW";
-      els.context.innerHTML='<div class="article-reader-card"><div class="article-reader-label">ARTICLE LANE</div><p>No story currently passes the article filters. The video lane remains live.</p><div class="article-reader-page">CHECK SOURCES / FRESHNESS</div></div>';
+      els.context.innerHTML='<div class="article-reader-card"><div class="article-reader-label">ARTICLE LANE</div><div class="article-reader-body"><p>No story currently passes the article filters. The video lane remains live.</p></div><div class="article-reader-page">CHECK SOURCES / FRESHNESS</div></div>';
       reportPreviewState("ready");
       return{state:"ready",slideCount:splitVideos.length,currentType:"video"};
     }
