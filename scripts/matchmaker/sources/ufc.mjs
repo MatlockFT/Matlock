@@ -75,9 +75,18 @@ export function parseProfile(html, fighter, checkedAt) {
     return match ? Number(match[1]) : null;
   };
   const recordWins = Number(record.split('-')[0]) || 0;
-  const winsByKnockout = countBefore('Wins by Knockout');
-  const winsBySubmission = countBefore('Wins by Submission');
+  const rawWinsByKnockout = countBefore('Wins by Knockout');
+  const rawWinsBySubmission = countBefore('Wins by Submission');
   const firstRoundFinishes = countBefore('First Round Finishes');
+
+  // UFC omits some zero-value method cards instead of rendering "0". Once either
+  // KO/TKO or submission data is present, a missing counterpart is a real zero.
+  const winsByKnockout = Number.isFinite(rawWinsByKnockout)
+    ? rawWinsByKnockout
+    : Number.isFinite(rawWinsBySubmission) ? 0 : null;
+  const winsBySubmission = Number.isFinite(rawWinsBySubmission)
+    ? rawWinsBySubmission
+    : Number.isFinite(rawWinsByKnockout) ? 0 : null;
   const decisionWins = Number.isFinite(winsByKnockout) && Number.isFinite(winsBySubmission)
     ? Math.max(0, recordWins - winsByKnockout - winsBySubmission)
     : null;
