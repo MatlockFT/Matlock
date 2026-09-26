@@ -138,6 +138,46 @@ function subtractRecords(overall, ufc) {
   return a.map((value, index) => Math.max(0, value - b[index])).join('-');
 }
 
+function decisionBreakdown(history) {
+  const counts = { unanimous: 0, split: 0, majority: 0, other: 0 };
+  for (const fight of history || []) {
+    if (fight.result !== 'W') continue;
+    const method = clean(fight.method).toLowerCase();
+    if (!method.includes('decision')) continue;
+    if (method.includes('unanimous')) counts.unanimous++;
+    else if (method.includes('split')) counts.split++;
+    else if (method.includes('majority')) counts.majority++;
+    else counts.other++;
+  }
+  return counts;
+}
+
+function normalizedCareer(career, history) {
+  const decisions = decisionBreakdown(history);
+  const winsByKnockout = Number.isFinite(career?.winsByKnockout) ? career.winsByKnockout : null;
+  const winsBySubmission = Number.isFinite(career?.winsBySubmission) ? career.winsBySubmission : null;
+  const totalFinishes = Number.isFinite(career?.totalFinishes)
+    ? career.totalFinishes
+    : Number.isFinite(winsByKnockout) && Number.isFinite(winsBySubmission)
+      ? winsByKnockout + winsBySubmission
+      : null;
+  const decisionWins = Number.isFinite(career?.decisionWins) ? career.decisionWins : null;
+  const classifiedDecisionWins = decisions.unanimous + decisions.split + decisions.majority + decisions.other;
+  return {
+    winsByKnockout,
+    winsBySubmission,
+    firstRoundFinishes: Number.isFinite(career?.firstRoundFinishes) ? career.firstRoundFinishes : null,
+    totalFinishes,
+    decisionWins,
+    unanimousDecisionWins: decisions.unanimous,
+    splitDecisionWins: decisions.split,
+    majorityDecisionWins: decisions.majority,
+    otherDecisionWins: decisions.other,
+    decisionBreakdownComplete: decisionWins !== null ? classifiedDecisionWins >= decisionWins : false,
+    decisionBreakdownKnownWins: classifiedDecisionWins
+  };
+}
+
 const current = JSON.parse(await fs.readFile(DATA_PATH, 'utf8'));
 const builtAt = new Date().toISOString();
 
@@ -300,6 +340,7 @@ for (const fighter of current.fighters || []) {
     : (Array.isArray(fighter.history) ? fighter.history : []);
   const mirrorHistory = resultHistoryByStatsId.get(ufcStatsId) || [];
   const recentHistory = mirrorHistory.length ? mirrorHistory : verifiedHistory;
+  const career = normalizedCareer(fighter.career, mirrorHistory.length ? mirrorHistory : verifiedHistory);
   const ufcMirrorHistory = mirrorHistory.filter(fight => /^(?:UFC\b|Noche UFC\b)/i.test(fight.event || ''));
   const ufcRecord = ufcMirrorHistory.length
     ? (() => {
@@ -327,6 +368,7 @@ for (const fighter of current.fighters || []) {
     mirrorThrough: fighter.meetingCoverage?.mirrorThrough || null,
     bio,
     stats,
+    career,
     recent: recentHistory.slice(0, 5).map(fight => ({
       result: fight.result || null,
       opponent: fight.opponent || fight.opponentName || null,
@@ -342,6 +384,11 @@ for (const fighter of current.fighters || []) {
 
 fighters.sort((a, b) => a.name.localeCompare(b.name));
 const mirrorThrough = eventRows.map(row => parseDate(row.DATE)).filter(Boolean).sort().at(-1) || null;
+const withCareer = fighters.filter(fighter =>
+  fighter.career &&
+  Number.isFinite(fighter.career.winsByKnockout) &&
+  Number.isFinite(fighter.career.winsBySubmission)
+).length;
 
 const output = {
   schemaVersion: 1,
@@ -358,13 +405,15 @@ const output = {
   coverage: {
     fighters: fighters.length,
     withStats,
-    withBio
+    withBio,
+    withCareer
   },
   fighters
 };
 
 if (fighters.length < 500) throw new Error(`Writer fighter index is implausibly small: ${fighters.length}`);
 if (withStats < 400) throw new Error(`Writer fighter index has implausibly low stat coverage: ${withStats}`);
+if (withCareer < 400) throw new Error(`Writer fighter index has implausibly low career-method coverage: ${withCareer}`);
 
 await fs.writeFile(OUTPUT_PATH, JSON.stringify(output, null, 2) + '\n');
-console.log(`Writer fighter index: ${fighters.length} fighters, ${withStats} with UFCStats career metrics, ${withBio} with Tale data. Mirror through ${mirrorThrough || 'unknown'}.`);
+console.log(`Writer fighter index: ${fighters.length} fighters, ${withStats} with UFCStats career metrics, ${withBio} with Tale data, ${withCareer} with career-method totals. Mirror through ${mirrorThrough || 'unknown'}.`);
