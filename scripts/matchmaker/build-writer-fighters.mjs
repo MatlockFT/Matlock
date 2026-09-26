@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import { clean, key } from './sources/ufc.mjs';
 import { parseCsv, statsId } from './sources/ufcstats.mjs';
-import { completeDisplayedCareer, enrichSherdogCareers } from './sources/sherdog.mjs';
+import { completeDisplayedCareer } from './sources/sherdog.mjs';
 
 const DATA_PATH = 'assets/data/matchmaker/current.json';
 const OUTPUT_PATH = 'assets/data/writer-fighters.json';
@@ -401,10 +401,21 @@ fighters.sort((a, b) => a.name.localeCompare(b.name));
 const priorityCareerFighters = fighters.filter(fighter =>
   fighter.booking && !completeDisplayedCareer(fighter.career)
 );
-const sherdogCareer = await enrichSherdogCareers(priorityCareerFighters, {
-  cachePath: 'assets/data/writer-fighter-career-fallbacks.json'
-});
-console.log('Writer career fallback summary: ' + JSON.stringify(sherdogCareer));
+// The scheduled cache build must stay deterministic and bounded. Missing career-method
+// fields are repaired live when the fighter is selected in Writer via /api/writer/fighter.
+// Do not crawl third-party fighter sites from this hourly job.
+const sherdogCareer = {
+  mode: 'live-on-selection',
+  targets: priorityCareerFighters.length,
+  resolved: 0,
+  missed: 0,
+  appliedFromCache: 0,
+  complete: fighters.filter(fighter => completeDisplayedCareer(fighter.career)).length
+};
+console.log('Writer live-career fallback queue: ' + JSON.stringify({
+  targets: sherdogCareer.targets,
+  names: priorityCareerFighters.map(fighter => fighter.name)
+}));
 const mirrorThrough = eventRows.map(row => parseDate(row.DATE)).filter(Boolean).sort().at(-1) || null;
 const withCareer = fighters.filter(fighter => completeDisplayedCareer(fighter.career)).length;
 
@@ -444,7 +455,10 @@ if (withCareer < minimumCareerCoverage) {
 }
 const incompleteBooked = fighters.filter(fighter => fighter.booking && !completeDisplayedCareer(fighter.career));
 if (incompleteBooked.length) {
-  throw new Error('Booked fighters have incomplete Writer career data: ' + incompleteBooked.map(fighter => fighter.name).join(', '));
+  console.warn(
+    'Booked fighters queued for live Writer career fallback: ' +
+    incompleteBooked.map(fighter => fighter.name).join(', ')
+  );
 }
 
 await fs.writeFile(OUTPUT_PATH, JSON.stringify(output, null, 2) + '\n');
