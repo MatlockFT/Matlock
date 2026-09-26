@@ -20,10 +20,11 @@ async function broadcastControlConfig(){
 }
 
 const broadcastControl=await broadcastControlConfig();
+const removedBroadcastVideoSources=new Set(broadcastControl?.sources?.removedVideoChannels||[]);
 for(const channel of broadcastControl?.sources?.customVideoChannels||[]){
   const name=String(channel?.name||"").trim();
   const handle=String(channel?.handle||"").trim();
-  if(!name||!/^@[A-Za-z0-9._-]+$/.test(handle)||channels.some(item=>item.name.toLowerCase()===name.toLowerCase()))continue;
+  if(!name||removedBroadcastVideoSources.has(name)||!/^@[A-Za-z0-9._-]+$/.test(handle)||channels.some(item=>item.name.toLowerCase()===name.toLowerCase()))continue;
   channels.push({name,handle});
 }
 
