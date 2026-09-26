@@ -593,6 +593,25 @@
       "safeToRegenerate": false,
       "safeToDeleteFromRepository": false,
       "publicContract": false
+    },
+    {
+      "id": "writer-fighter-index",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/writer-fighters.json"
+      ],
+      "lifecycle": "generated-public-runtime",
+      "owner": "writer",
+      "producers": [
+        "scripts/matchmaker/build-writer-fighters.mjs"
+      ],
+      "consumers": [
+        "assets/writer.js",
+        "_writer/04-editor-tools.js"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": true
     }
   ]
 }
