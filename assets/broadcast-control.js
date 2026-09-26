@@ -164,7 +164,8 @@ function renderDraftState(){
   strip.classList.toggle('is-dirty',pending);
   title.textContent=(preset?.label||'Custom program')+(pending?' · DRAFT':' · LIVE');
   status.textContent=pending?'Changes are loaded in the preview. Click Apply changes live to send them to OBS.':'This is the saved program OBS is polling now.';
-  host.innerHTML=(state.rundown||[]).map(type=>'<span class="bc-draft-segment" data-type="'+type+'">'+type.toUpperCase()+'</span>').join('');
+  const mode=programMode(),count=manualProgramQueue().length;
+  host.innerHTML='<span class="bc-draft-segment" data-type="'+mode+'">'+mode.toUpperCase()+'</span>'+(count?'<span class="bc-draft-segment" data-type="manual">'+count+' MANUAL</span>':'');
   renderPresetState();
 }
 function renderMetrics(){
@@ -174,7 +175,7 @@ function renderMetrics(){
   const news=stories.filter(x=>Date.now()-Date.parse(x.publishedAt)<=Number(state.news.maxAgeHours||48)*3600000).filter(x=>!removedNews.has(x.source)).filter(x=>!enabledNews.length||enabledNews.includes(x.source));
   const vids=(feeds.videos?.videos||[]).filter(v=>{const d=Number(v.durationSeconds||0);return Date.now()-Date.parse(v.publishedAt)<=Number(state.video.maxAgeHours||48)*3600000&&d>=state.video.minSeconds&&d<=state.video.maxSeconds}).filter(v=>!removedVideo.has(v.channel)).filter(v=>!enabledVideo.length||enabledVideo.includes(v.channel));
   const events=(feeds.events?.events||[]).filter(e=>normalize(e.date)>=(new Date().toISOString().slice(0,10)));
-  q('[data-metric-news]').textContent=news.length;q('[data-metric-videos]').textContent=vids.length;q('[data-metric-events]').textContent=events.length;q('[data-metric-rundown]').textContent=state.rundown.length;
+  q('[data-metric-news]').textContent=news.length;q('[data-metric-videos]').textContent=vids.length;q('[data-metric-events]').textContent=events.length;q('[data-metric-rundown]').textContent=manualProgramQueue().length;
 }
 function renderRundown(){
   const host=q('[data-rundown]');host.innerHTML='';
@@ -434,7 +435,7 @@ function renderProgramming(){
   q('[data-program-mode-title]').textContent=copy[0];q('[data-program-mode-copy]').textContent=copy[1];
   q('[data-program-queue-help]').textContent=mode==='auto'?'The renderer-generated queue is read-only until you add a manual priority.':mode==='hybrid'?'Drag priorities into any order. Auto content fills behind them.':'This queue loops indefinitely in your order.';
   qa('[data-program-mode]').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.programMode===mode)));
-  q('[data-program-auto-head]').hidden=mode==='manual';
+  q('[data-program-auto-head]').hidden=false;
   q('[data-program-split-note]').hidden=state.visual?.layout!=='splitDesk';
   renderProgramPool();renderProgramManualQueue();renderProgramOutput();
 }
