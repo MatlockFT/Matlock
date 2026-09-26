@@ -288,17 +288,17 @@ test('Writer usability layer keeps long-form editing compact and predictable', a
   await page.keyboard.press('Enter');
   await expect(editor).toHaveValue('> Quote\n');
 
-  // Slash commands surface existing insert tools instead of adding more toolbar buttons.
-  await editor.fill('/tab');
+  // Slash commands surface current insert tools instead of adding more toolbar buttons.
+  await editor.fill('/stats');
   await editor.focus();
   await expect(page.locator('[data-writer-ux-slash-menu]')).toBeVisible();
-  await expect(page.locator('[data-writer-ux-slash-menu]')).toContainText('Table');
+  await expect(page.locator('[data-writer-ux-slash-menu]')).toContainText('Stats');
   await page.keyboard.press('Enter');
   await expect(editor).toHaveValue('');
-  const tableDialog = page.locator('[data-table-dialog]');
-  await expect(tableDialog).toBeVisible();
+  const statsDialog = page.locator('[data-stats-dialog]');
+  await expect(statsDialog).toBeVisible();
   await page.keyboard.press('Escape');
-  await expect(tableDialog).not.toBeVisible();
+  await expect(statsDialog).not.toBeVisible();
 
   // Outline openness is remembered and the rail remains the same H2/H3 navigator.
   await editor.fill('## One\nText\n\n### Two\nText');
