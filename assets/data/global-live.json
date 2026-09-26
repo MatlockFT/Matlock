@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "generated_at": "2026-09-25T23:00:55Z",
+  "generated_at": "2026-09-26T01:41:06Z",
   "selected_event_id": "manual-youtube-live:YikdtdLGxZA",
   "events": [
     {
@@ -25,10 +25,10 @@
       "scheduled_end_time": null,
       "actual_start_time": "2026-09-25T22:33:34Z",
       "actual_end_time": null,
-      "concurrent_viewers": "305",
+      "concurrent_viewers": "2128",
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T23:00:55Z",
+      "observed_at": "2026-09-26T01:41:06Z",
       "source_role": "promotion"
     },
     {
@@ -53,10 +53,10 @@
       "scheduled_end_time": null,
       "actual_start_time": "2026-09-25T20:26:10Z",
       "actual_end_time": null,
-      "concurrent_viewers": "2092",
+      "concurrent_viewers": "2400",
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T23:00:55Z",
+      "observed_at": "2026-09-26T01:41:06Z",
       "source_role": "broadcast_partner"
     },
     {
@@ -81,14 +81,12 @@
       "scheduled_end_time": null,
       "actual_start_time": "2026-09-25T22:33:34Z",
       "actual_end_time": null,
-      "concurrent_viewers": "305",
+      "concurrent_viewers": "2128",
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T23:00:54Z",
+      "observed_at": "2026-09-26T01:41:05Z",
       "source_role": "promotion"
-    }
-  ],
-  "upcoming": [
+    },
     {
       "event_id": "tuff-n-uff:iRW8qArVe7Q",
       "promotion_id": "tuff-n-uff",
@@ -104,19 +102,21 @@
       "video_id": "iRW8qArVe7Q",
       "title": "Tuff-N-Uff 157 Live from THE POOL at Sahara",
       "watch_url": "https://www.youtube.com/watch?v=iRW8qArVe7Q",
-      "status": "upcoming",
-      "is_live": false,
+      "status": "live",
+      "is_live": true,
       "embeddable": true,
       "scheduled_start_time": "2026-09-26T00:45:00Z",
       "scheduled_end_time": null,
-      "actual_start_time": null,
+      "actual_start_time": "2026-09-26T00:48:55Z",
       "actual_end_time": null,
-      "concurrent_viewers": null,
+      "concurrent_viewers": "259",
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-25T23:00:54Z",
+      "observed_at": "2026-09-26T01:41:05Z",
       "source_role": "promotion"
-    },
+    }
+  ],
+  "upcoming": [
     {
       "event_id": "fnc:EtbyNuJ2yGo",
       "promotion_id": "fnc",
@@ -280,7 +280,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T23:00:54Z"
+      "last_checked_at": "2026-09-26T01:41:05Z"
     },
     "afc-korea": {
       "promotion": "Angel's Fighting Championship",
@@ -297,7 +297,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:10:54Z"
+      "last_checked_at": "2026-09-26T01:41:05Z"
     },
     "apfc": {
       "promotion": "Anthony Pettis Fighting Championship",
@@ -382,7 +382,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:10:55Z"
+      "last_checked_at": "2026-09-26T01:41:05Z"
     },
     "budo-sento": {
       "promotion": "Budo Sento Championship",
@@ -433,7 +433,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:10:54Z"
+      "last_checked_at": "2026-09-26T01:41:05Z"
     },
     "fen": {
       "promotion": "Fight Exclusive Night",
@@ -484,7 +484,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:10:54Z"
+      "last_checked_at": "2026-09-26T01:41:05Z"
     },
     "fusion-fight-league": {
       "promotion": "Fusion Fight League",
@@ -586,7 +586,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:10:54Z"
+      "last_checked_at": "2026-09-26T01:41:05Z"
     },
     "liga-monstro-combate": {
       "promotion": "Liga Monstro Combate",
@@ -602,8 +602,8 @@
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": "2026-09-25T23:00:55Z",
-      "last_checked_at": "2026-09-25T23:00:54Z"
+      "last_success_at": "2026-09-26T01:41:06Z",
+      "last_checked_at": "2026-09-26T01:41:05Z"
     },
     "lux": {
       "promotion": "LUX Fight League",
@@ -653,8 +653,8 @@
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": "2026-09-25T23:00:55Z",
-      "last_checked_at": "2026-09-25T23:00:55Z"
+      "last_success_at": "2026-09-26T01:41:06Z",
+      "last_checked_at": "2026-09-26T01:41:06Z"
     },
     "mfl": {
       "promotion": "Mexico Fight League",
@@ -671,7 +671,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:10:54Z"
+      "last_checked_at": "2026-09-26T01:41:05Z"
     },
     "mma-mexico": {
       "promotion": "MMA México",
@@ -687,8 +687,8 @@
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": "2026-09-25T23:00:54Z",
-      "last_checked_at": "2026-09-25T23:00:54Z"
+      "last_success_at": "2026-09-26T01:41:05Z",
+      "last_checked_at": "2026-09-26T01:41:05Z"
     },
     "naiza": {
       "promotion": "NAIZA Fighting Championship",
@@ -739,7 +739,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T15:59:14Z",
-      "last_checked_at": "2026-09-25T23:00:54Z"
+      "last_checked_at": "2026-09-26T01:41:06Z"
     },
     "open-fight-latam": {
       "promotion": "Open Fight LATAM",
@@ -841,7 +841,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T22:10:55Z",
-      "last_checked_at": "2026-09-25T23:00:54Z"
+      "last_checked_at": "2026-09-26T01:41:05Z"
     },
     "tuff-n-uff": {
       "promotion": "Tuff-N-Uff",
@@ -853,12 +853,12 @@
       "channel_url": "https://www.youtube.com/user/TuffNUffTV",
       "channel_id": "UCFhFc55-s4Ct3t79SCN-I4Q",
       "channel_name": "Tuff-N-Uff",
-      "status": "upcoming",
+      "status": "live",
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": null,
-      "last_checked_at": "2026-09-25T23:00:53Z"
+      "last_success_at": "2026-09-26T01:41:05Z",
+      "last_checked_at": "2026-09-26T01:41:05Z"
     },
     "ugp": {
       "promotion": "Ultimo Guerrero en Pie",
@@ -909,7 +909,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T02:51:01Z",
-      "last_checked_at": "2026-09-25T22:10:55Z"
+      "last_checked_at": "2026-09-26T01:41:05Z"
     },
     "wow-fc": {
       "promotion": "WOW Fight Company",
@@ -926,12 +926,12 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T22:10:55Z"
+      "last_checked_at": "2026-09-26T01:41:05Z"
     }
   },
   "monitored_count": 41,
-  "live_count": 3,
-  "upcoming_count": 5,
+  "live_count": 4,
+  "upcoming_count": 4,
   "youtube_api_configured": true,
   "api_verified_source_count": 41
 }
