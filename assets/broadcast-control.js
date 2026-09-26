@@ -378,6 +378,7 @@ function queueDropIndex(host,event){
 }
 function positionProgramPlaceholder(host,index){
   const slot=ensureProgramPlaceholder(),rows=[...host.querySelectorAll('.bc-program-item')];
+  slot.dataset.dropIndex=String(index);
   const ref=rows[index]||null;host.insertBefore(slot,ref);
 }
 function programLane(type){return type==='video'?'video':'article'}
@@ -449,7 +450,7 @@ function renderProgramLane(lane){
     if(!programDrag)return;
     const dragLane=programDrag.kind==='pool'?programLane(programDrag.entry.type):programDrag.lane;if(dragLane!==lane)return;
     event.preventDefault();
-    const slot=programPlaceholder,children=[...host.children],dropIndex=slot?children.indexOf(slot):rows.length,drag=programDrag;
+    const slot=programPlaceholder,dropIndex=slot?Number(slot.dataset.dropIndex||0):rows.length,drag=programDrag;
     if(drag.kind==='pool'){
       const queue=manualProgramQueue(),globalIndex=laneInsertGlobalIndex(lane,dropIndex);queue.splice(globalIndex,0,drag.entry);
       if(programMode()==='auto')state.programming.mode='hybrid';
@@ -660,7 +661,7 @@ q('[data-add-video-source]').onclick=()=>{
   q('[data-custom-video-name]').value='';q('[data-custom-video-handle]').value='';renderSources();markDirty();toast('Custom YouTube channel added. It will populate on the next feed refresh.');
 };
 qa('[data-program-mode]').forEach(btn=>btn.onclick=()=>{
-  state.programming=state.programming||{mode:'auto',manualQueue:[]};state.programming.mode=btn.dataset.programMode;
+  state.programming=state.programming||{mode:'auto',tickerMode:'auto',manualQueue:[]};state.programming.mode=btn.dataset.programMode;
   renderProgramming();markDirty({restartPreview:true});
 });
 qa('[data-program-pool-tab]').forEach(btn=>btn.onclick=()=>{programPoolTab=btn.dataset.programPoolTab;renderProgramPool()});
