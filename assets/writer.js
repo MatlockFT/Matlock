@@ -2612,34 +2612,57 @@ function insertBlock(text) {
 
   async function loadWriterFighterDirectory() {
     if (writerFighterDirectoryPromise) return writerFighterDirectoryPromise;
-    writerFighterDirectoryPromise = fetch('/assets/data/matchmaker/current.json?writer-fighters=1', { cache:'no-store' })
-      .then(response => {
-        if (!response.ok) throw new Error('Could not load fighter directory.');
-        return response.json();
-      })
-      .then(data => ({
+
+    const fetchJson = async url => {
+      const response = await fetch(url, { cache:'no-store' });
+      if (!response.ok) throw new Error('Could not load ' + url);
+      return response.json();
+    };
+
+    writerFighterDirectoryPromise = (async () => {
+      let data;
+      let compact = true;
+      try {
+        data = await fetchJson('/assets/data/writer-fighters.json?writer-fighters=1');
+      } catch {
+        compact = false;
+        data = await fetchJson('/assets/data/matchmaker/current.json?writer-fighters=1');
+      }
+
+      return {
         generatedAt: data.generatedAt || '',
+        builtAt: data.builtAt || data.generatedAt || '',
+        mirrorThrough: data.mirrorThrough || '',
         fighters: (Array.isArray(data.fighters) ? data.fighters : []).map(fighter => ({
           id: fighter.id || '',
           name: fighter.name || '',
           division: fighter.division || '',
           record: fighter.record || '',
+          ufcRecord: fighter.ufcRecord || '',
+          recordOutsideUfc: fighter.recordOutsideUfc || '',
           rank: fighter.rank ?? null,
           image: fighter.image || '',
           checkedAt: fighter.checkedAt || data.generatedAt || '',
-          history: Array.isArray(fighter.verifiedMeetings) && fighter.verifiedMeetings.length
-            ? fighter.verifiedMeetings
-            : (Array.isArray(fighter.history) ? fighter.history : []),
+          statsBuiltAt: compact ? (data.builtAt || data.generatedAt || '') : '',
+          history: compact
+            ? (Array.isArray(fighter.recent) ? fighter.recent : [])
+            : (Array.isArray(fighter.verifiedMeetings) && fighter.verifiedMeetings.length
+              ? fighter.verifiedMeetings
+              : (Array.isArray(fighter.history) ? fighter.history : [])),
           booking: fighter.booking || null,
-          ufcStatsId: fighter.meetingCoverage?.ufcStatsId || '',
-          sourceUrl: fighter.meetingCoverage?.sourceUrl || '',
-          mirrorThrough: fighter.meetingCoverage?.mirrorThrough || null
+          ufcStatsId: fighter.ufcStatsId || fighter.meetingCoverage?.ufcStatsId || '',
+          sourceUrl: fighter.sourceUrl || fighter.meetingCoverage?.sourceUrl || '',
+          mirrorThrough: fighter.mirrorThrough || fighter.meetingCoverage?.mirrorThrough || data.mirrorThrough || null,
+          latestBoutDate: fighter.latestBoutDate || null,
+          bio: fighter.bio || null,
+          stats: fighter.stats || null
         })).filter(fighter => fighter.id && fighter.name)
-      }))
-      .catch(error => {
-        writerFighterDirectoryPromise = null;
-        throw error;
-      });
+      };
+    })().catch(error => {
+      writerFighterDirectoryPromise = null;
+      throw error;
+    });
+
     return writerFighterDirectoryPromise;
   }
 
@@ -2791,6 +2814,18 @@ function insertBlock(text) {
     if (type === 'stats') {
       const input = dialog.querySelector('[data-stats-fighter="' + side + '"]');
       if (input) input.value = fighter.name;
+      const rows = dialog.querySelector('[data-stats-row-list]');
+      const values = [
+        ['Significant Strikes / Minute',fighter.stats?.slpm],
+        ['Sig. Strikes Absorbed / Minute',fighter.stats?.sapm],
+        ['Striking Accuracy',fighter.stats?.strAccuracy],
+        ['Striking Defense',fighter.stats?.strDefense],
+        ['Takedowns / 15 Minutes',fighter.stats?.tdAvg],
+        ['Takedown Accuracy',fighter.stats?.tdAccuracy],
+        ['Takedown Defense',fighter.stats?.tdDefense],
+        ['Submission Attempts / 15',fighter.stats?.subAvg]
+      ];
+      for (const [label,value] of values) setComparisonValue(rows,label,side,value);
       refreshStatsNameHeaders(dialog);
       return;
     }
@@ -2806,10 +2841,13 @@ function insertBlock(text) {
     const last5 = dialog.querySelector('[data-tale-last5="' + side + '"]');
     if (last5 && recent.length) last5.value = lastFiveFromRows(recent);
     const rows = dialog.querySelector('[data-tale-row-list]');
-    const ufcRecord = recordFromHistory(fighter.history,new Set(['ufc']));
+    const ufcRecord = fighter.ufcRecord || recordFromHistory(fighter.history,new Set(['ufc']));
     setComparisonValue(rows,'Record',side,fighter.record);
+    setComparisonValue(rows,'Age',side,ageFromDob(fighter.bio?.dob));
+    setComparisonValue(rows,'Height',side,fighter.bio?.height);
+    setComparisonValue(rows,'Arm Reach',side,fighter.bio?.reach);
     setComparisonValue(rows,'UFC Record',side,ufcRecord);
-    setComparisonValue(rows,'Record Outside UFC',side,subtractRecords(fighter.record,ufcRecord));
+    setComparisonValue(rows,'Record Outside UFC',side,fighter.recordOutsideUfc || subtractRecords(fighter.record,ufcRecord));
     refreshTaleNameHeaders(dialog);
     taleImagePreview(side);
   }
@@ -2850,6 +2888,26 @@ function insertBlock(text) {
     }
   }
 
+  function cachedSourceStateForFighter(fighter) {
+    const latest = fighter.latestBoutDate || fighter.stats?.sample?.latestBoutDate || fighter.history?.[0]?.date || null;
+    const bookingDate = fighter?.booking?.date || null;
+    const todayValue = today();
+    const pendingKnownFight = bookingDate && bookingDate <= todayValue && (!latest || latest < bookingDate);
+    if (pendingKnownFight) {
+      return {
+        state:'warning',
+        text:'Verified UFCStats mirror has not posted the known ' + formatLookupDate(bookingDate) +
+          ' fight yet. Stats currently run through ' + formatLookupDate(latest || fighter.mirrorThrough) + '.'
+      };
+    }
+    const refreshed = fighter.statsBuiltAt || fighter.checkedAt;
+    return {
+      state:'verified',
+      text:'VERIFIED UFCStats mirror · stats through ' + formatLookupDate(latest || fighter.mirrorThrough) +
+        (refreshed ? ' · refreshed ' + new Date(refreshed).toLocaleTimeString([],{hour:'numeric',minute:'2-digit'}) : '')
+    };
+  }
+
   function sourceStateForFighter(fighter, payload) {
     const latest = payload?.profile?.latestBoutDate || null;
     const bookingDate = fighter?.booking?.date || null;
@@ -2875,14 +2933,14 @@ function insertBlock(text) {
     input.dataset.ufcStatsId = fighter.ufcStatsId || '';
     input.value = fighter.name;
     applyCachedWriterFighter(dialog,type,side,fighter);
-    setLookupStatus(input,'loading',fighter.ufcStatsId ? 'Cached profile loaded · checking UFCStats live…' : 'Cached profile loaded · no UFCStats identity available.');
+    const cachedState = cachedSourceStateForFighter(fighter);
+    input.dataset.sourceMode = 'verified-cache';
+    input.dataset.sourceFetchedAt = fighter.statsBuiltAt || fighter.checkedAt || '';
+    input.dataset.latestBoutDate = fighter.latestBoutDate || fighter.stats?.sample?.latestBoutDate || fighter.history?.[0]?.date || '';
+    input.dataset.sourceUrl = fighter.sourceUrl || '';
+    setLookupStatus(input,cachedState.state,cachedState.text + (fighter.ufcStatsId ? ' · checking live…' : ''));
 
-    if (!fighter.ufcStatsId) {
-      input.dataset.sourceMode = 'cached';
-      input.dataset.sourceFetchedAt = fighter.checkedAt || '';
-      input.dataset.latestBoutDate = fighter.history?.[0]?.date || '';
-      return;
-    }
+    if (!fighter.ufcStatsId) return;
 
     try {
       const payload = await fetchLiveWriterFighter(fighter);
@@ -2894,10 +2952,11 @@ function insertBlock(text) {
       const sourceState = sourceStateForFighter(fighter,payload);
       setLookupStatus(input,sourceState.state,sourceState.text);
     } catch (error) {
-      input.dataset.sourceMode = 'cached';
-      input.dataset.sourceFetchedAt = fighter.checkedAt || '';
-      input.dataset.latestBoutDate = fighter.history?.[0]?.date || '';
-      setLookupStatus(input,'warning','LIVE UFCStats unavailable · using verified cache from ' + formatLookupDate((fighter.checkedAt || '').slice(0,10)) + '.');
+      input.dataset.sourceMode = 'verified-cache';
+      input.dataset.sourceFetchedAt = fighter.statsBuiltAt || fighter.checkedAt || '';
+      input.dataset.latestBoutDate = fighter.latestBoutDate || fighter.stats?.sample?.latestBoutDate || fighter.history?.[0]?.date || '';
+      const fallbackState = cachedSourceStateForFighter(fighter);
+      setLookupStatus(input,fallbackState.state,'LIVE UFCStats unavailable · ' + fallbackState.text);
     }
   }
 
