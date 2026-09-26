@@ -45,7 +45,7 @@ h1{margin:0 0 25px;font-family:Arial,Helvetica,sans-serif;font-size:42px;line-he
 .ticker-track span:before{content:"◆";color:var(--accent);margin-right:14px;font-size:9px}
 .next-event{min-width:0;display:grid;grid-template-rows:auto auto auto;align-content:center;justify-items:center;gap:4px;padding:10px 18px 9px;border-left:1px solid #2a2d31;background:#101216;text-align:center;overflow:hidden}
 .next-event-label{font:700 10px/1 "Gobold",Arial,sans-serif;letter-spacing:.13em;color:var(--accent)}
-.next-event-name{display:block;max-width:100%;font:700 15px/1.05 "Gobold",Arial,sans-serif;letter-spacing:.025em;color:#f3f0e9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.next-event-name{display:block;max-width:100%;font:700 14px/1.08 "Gobold",Arial,sans-serif;letter-spacing:.02em;color:#f3f0e9;white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:normal;word-break:normal;text-wrap:balance}
 .next-event-date{font:700 11px/1 Arial,Helvetica,sans-serif;letter-spacing:.075em;color:#8f8b84;white-space:nowrap}
 .stage.layout-flip .visual-panel{order:2;border-right:0;border-left:1px solid var(--rule)}
 .stage.layout-flip .story-panel{order:1}

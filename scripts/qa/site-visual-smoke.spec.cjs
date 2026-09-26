@@ -256,6 +256,13 @@ test.describe('Broadcast control program monitor', () => {
     expect(Number(nextEventUi.weight)).toBeGreaterThanOrEqual(700);
     expect(nextEventUi.family.toLowerCase()).toContain('gobold');
 
+    const nextEventWrap = await frame.locator('.next-event-name').evaluate(node => {
+      const style = getComputedStyle(node);
+      return { whiteSpace: style.whiteSpace, textOverflow: style.textOverflow, overflow: style.overflow };
+    });
+    expect(nextEventWrap.whiteSpace).toBe('normal');
+    expect(nextEventWrap.textOverflow).toBe('clip');
+
     for (const target of ['overview','rundown','queue','sources','timing','display','live-content','custom']) {
       await page.locator('[data-nav-target="'+target+'"]').click();
       await expect(page.locator('[data-section="'+target+'"] [data-save-config]')).toBeVisible();
