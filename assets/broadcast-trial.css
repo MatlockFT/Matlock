@@ -92,3 +92,7 @@ h1{margin:0 0 25px;font-family:Georgia,"Times New Roman",serif;font-size:42px;li
 @media (prefers-reduced-motion:reduce){
   .article-reader-card{transition:none}
 }
+
+.split-video-empty{position:absolute;inset:0;display:grid;place-content:center;text-align:center;gap:10px;background:radial-gradient(circle at 50% 40%,#1a1a1a,#050505 72%);color:#8d8981}
+.split-video-empty strong{font:700 30px/1 "Gobold",Arial,sans-serif;letter-spacing:.08em;color:#e8e4db}
+.split-video-empty span{font-size:16px}
