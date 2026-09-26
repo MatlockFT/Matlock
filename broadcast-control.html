@@ -183,6 +183,44 @@ sitemap: false
 
         <section class="bc-section" data-section="display" hidden>
           <div class="bc-section-head"><div><p class="bc-eyebrow">Presentation</p><h1>Display</h1><p>Control the pieces viewers see without touching CSS.</p></div></div>
+          <div class="bc-card bc-layout-card">
+            <div class="bc-card-head">
+              <div>
+                <h2>Layout canvas</h2>
+                <p>The main 16:9 program is modular. Split Desk keeps video running on the left while stories paginate on the right.</p>
+              </div>
+            </div>
+            <div class="bc-layout-controls">
+              <label class="bc-field">
+                <span>Main layout</span>
+                <select data-path="visual.layout">
+                  <option value="splitDesk">Split Desk · video + article cards</option>
+                  <option value="legacy">Classic rotating layout</option>
+                </select>
+              </label>
+              <label class="bc-field">
+                <span>Video lane width <em data-value-for="visual.videoWidth">64%</em></span>
+                <input type="range" min="50" max="76" step="1" data-path="visual.videoWidth">
+              </label>
+              <label class="bc-field">
+                <span>Article card pace <em>seconds</em></span>
+                <input type="number" min="5" max="30" step="1" data-path="visual.articleCardSeconds">
+              </label>
+              <label class="bc-field">
+                <span>Text per article card <em>characters</em></span>
+                <input type="number" min="220" max="620" step="20" data-path="visual.articleCharsPerCard">
+              </label>
+            </div>
+            <div class="bc-layout-map" aria-hidden="true">
+              <div class="bc-layout-map-main">
+                <span class="bc-layout-map-video">VIDEO · ALWAYS ON</span>
+                <span class="bc-layout-map-story">ARTICLE CARDS</span>
+              </div>
+              <div class="bc-layout-map-rail">COMING UP</div>
+              <div class="bc-layout-map-ticker">TICKER</div>
+            </div>
+          </div>
+
           <div class="bc-card">
             <div class="bc-switch-grid">
               <label class="bc-switch"><input type="checkbox" data-path="visual.flipNews"><span></span><b>Alternate news sides</b><small>Image left / right</small></label>
