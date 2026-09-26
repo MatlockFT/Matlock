@@ -74,3 +74,5 @@ button,input,select,textarea{font:inherit}.bc-app{min-height:100vh}
 .bc-queue-source-link{color:#b9b3aa!important;text-decoration:none}.bc-queue-source-link:hover{text-decoration:underline;text-underline-offset:2px}
 .bc-queue-open{color:var(--orange)!important;text-decoration:none;font-weight:800;letter-spacing:.04em}.bc-queue-open:hover{text-decoration:underline}
 .bc-queue-repeat{display:inline-flex;align-items:center;padding:2px 5px;border:1px solid #70401b;border-radius:999px;background:#1a1109;color:#f0a45d!important;font-weight:800;letter-spacing:.05em}
+
+.bc-queue-now a{color:#e7e3dc;text-decoration:none}.bc-queue-now a:hover{text-decoration:underline;text-underline-offset:2px}.bc-queue-now .bc-queue-source-link{margin-left:4px}.bc-queue-now .bc-queue-repeat{margin-left:8px}
