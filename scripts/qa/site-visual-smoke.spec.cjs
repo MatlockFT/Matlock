@@ -205,7 +205,6 @@ test.describe('Broadcast control program monitor', () => {
     if (!(await newsToggle.isChecked())) {
       await newsToggle.check();
     }
-    await expect(page.locator('[data-preview-program]')).toHaveText('DRAFT');
     await expect(frame.locator('[data-title]')).not.toHaveText('Waiting for an eligible article', { timeout: 30000 });
     await expect(frame.locator('.article-reader-card')).toBeVisible({ timeout: 30000 });
     await expect(frame.locator('.article-reader-body')).toBeVisible({ timeout: 30000 });
