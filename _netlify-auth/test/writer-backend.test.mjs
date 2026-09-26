@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 
 import { allowedPath, validateWriteBody } from '../netlify/functions/writer-github.mjs';
 import { parseUfcProfileSummary, parseUfcStatsProfile } from '../netlify/functions/writer-fighter.mjs';
+import { hasCompleteDisplayedCareer, parseUfcFightCareerProfile } from '../netlify/functions/_writer-career-fallback.mjs';
 import { parseUfcFightProfile } from '../../scripts/matchmaker/sources/sherdog.mjs';
 import {
   ACTIVE_UPLOAD_TTL_MS,
@@ -219,4 +220,30 @@ test('direct career fallback parser extracts record, finish methods, bio and dec
   assert.equal(profile.career.decisionBreakdownComplete, true);
   assert.equal(profile.bio.dob, '8/15/2001');
   assert.equal(profile.bio.weight, '155 lbs');
+});
+
+
+test('on-demand career fallback parser fills all displayed Tale career fields', () => {
+  const html = `
+    <article>
+      <h2>AKBAR ABDULLAEV</h2>
+      <div>W-L-D 14-0-0</div>
+      <div>HT / WT 5′ 9″, 155 lbs</div>
+      <div>BIRTHDATE 9/21/1997 (28)</div>
+      <section>WINS 14 KO/TKO 13 SUB 1 DECISION 0 LOSSES 0 KO/TKO 0 SUB 0 DECISION 0</section>
+      <h2>Akbar Abdullaev Fight History</h2>
+      <table>
+        <tr><td>Sep 15, 2026</td><td>Ednilson Santos</td><td>W (KO/TKO)</td></tr>
+      </table>
+    </article>
+  `;
+  const profile = parseUfcFightCareerProfile(html, 'https://ufcfight.net/akbar-abdullaev/');
+  assert.equal(profile.name, 'AKBAR ABDULLAEV');
+  assert.equal(profile.record, '14-0-0');
+  assert.equal(profile.career.totalFinishes, 14);
+  assert.equal(profile.career.winsByKnockout, 13);
+  assert.equal(profile.career.winsBySubmission, 1);
+  assert.equal(profile.career.unanimousDecisionWins, 0);
+  assert.equal(profile.career.splitDecisionWins, 0);
+  assert.equal(hasCompleteDisplayedCareer(profile.career), true);
 });
