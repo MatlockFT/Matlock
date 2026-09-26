@@ -380,7 +380,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('[data-html-block-panel-toggle]')).toBeVisible();
   await expect(page.locator('[data-html-block-panel-toggle]')).toHaveAttribute('aria-expanded', 'true');
   await expect(page.locator('[data-html-block-rail]')).toBeVisible();
-  await expect(page.locator('[data-html-block-edit]')).toContainText('Smoke visual');
+  await expect(page.locator('[data-html-block-edit][title*="Smoke visual"]')).toContainText('Smoke visual');
   await expect(page.locator('[data-preview-content]')).toContainText('Rendered HTML visual');
   await expect(page.locator('[data-local-status]')).toContainText('Saved locally', { timeout: 5000 });
 
