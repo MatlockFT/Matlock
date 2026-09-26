@@ -10,7 +10,7 @@ const VIDEOS_FALLBACK='/assets/data/mma-videos.json';
 const EVENTS='/assets/data/upcoming-events-live.json';
 const DEFAULT={"version":1,"revision":1,"updatedAt":null,"modules":{"news":true,"video":true,"events":true,"ticker":true,"comingUp":true,"music":true},"rundown":["news","news","video","news","event"],"timing":{"newsSeconds":45,"eventSeconds":35,"transitionMs":650,"controlPollSeconds":10},"news":{"maxAgeHours":48,"maxItems":16,"sources":[],"requireContext":true,"contextFacts":4},"video":{"maxAgeHours":48,"maxItems":8,"minSeconds":20,"maxSeconds":600,"volume":50,"channels":[],"playFull":true},"events":{"maxItems":3,"usePosters":true},"audio":{"enabled":true,"musicUrl":"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3","musicVolume":14,"duckVolume":3.5},"ticker":{"enabled":true,"speedSeconds":240,"maxItems":14},"visual":{"layout":"splitDesk","videoWidth":64,"articleCardSeconds":9,"articleCharsPerCard":340,"flipNews":false,"showRail":true,"showClock":true,"showBadge":true,"showSource":true},"sources":{"customNewsFeeds":[],"customVideoChannels":[],"removedNewsSources":[],"removedVideoChannels":[]},"hidden":{"news":[],"videos":[],"events":[]},"forceNext":null};
 const q=s=>app.querySelector(s),qa=s=>[...app.querySelectorAll(s)];
-let state=structuredClone(DEFAULT),saved=structuredClone(DEFAULT),feeds={news:null,videos:null,events:null},contentTab='news',dragIndex=-1,toastTimer=0,feedWarnings=[],previewReady=false,previewLoadTimer=0,previewSyncTimer=0,previewFrameLoaded=false;
+let state=structuredClone(DEFAULT),saved=structuredClone(DEFAULT),feeds={news:null,videos:null,events:null},contentTab='news',dragIndex=-1,toastTimer=0,feedWarnings=[],previewReady=false,previewLoadTimer=0,previewSyncTimer=0,previewFrameLoaded=false,feedsReady=false;
 
 function clone(v){return JSON.parse(JSON.stringify(v))}
 function deepMerge(base,extra){const out=clone(base);for(const[k,v]of Object.entries(extra||{})){if(v&&typeof v==='object'&&!Array.isArray(v)&&out[k]&&typeof out[k]==='object'&&!Array.isArray(out[k]))out[k]=deepMerge(out[k],v);else out[k]=v}return out}
@@ -62,6 +62,7 @@ function updatePreview(restart=false){
   const frame=q('[data-program-monitor-frame]'),program=q('[data-preview-program]');
   if(program)program.textContent=dirty()?'DRAFT':'LIVE';
   if(!frame?.contentWindow)return false;
+  if(!feedsReady){setPreviewStatus('Renderer loaded. Waiting for current feeds…','connecting');return false}
   const payload=previewPayload(restart);
   try{
     const api=frame.contentWindow.MatlockBroadcastPreview;
@@ -110,7 +111,7 @@ async function loadAll(){
     fetchJson(VIDEOS).catch(()=>fetchJson(VIDEOS_FALLBACK)).catch(()=>{feedWarnings.push('videos');return {videos:[]}}),
     fetchJson(EVENTS).catch(()=>{feedWarnings.push('events');return {events:[]}})
   ]);
-  state=deepMerge(DEFAULT,cfg);saved=clone(state);feeds={news,videos,events};renderAll();
+  state=deepMerge(DEFAULT,cfg);saved=clone(state);feeds={news,videos,events};feedsReady=true;renderAll();
   if(feedWarnings.length){status.textContent='Control online · '+feedWarnings.length+' feed issue'+(feedWarnings.length===1?'':'s');status.dataset.state='partial'}
   else{status.textContent='Control online';status.dataset.state='live'}
   q('[data-live-config-label]').textContent='Revision '+(state.revision||'—');
@@ -340,6 +341,7 @@ window.addEventListener('message',event=>{
   }else if(message.state==='ready'){
     previewReady=true;clearInterval(previewSyncTimer);setPreviewStatus(message.slideCount?('Renderer online · '+message.slideCount+' programmed items'):'Renderer online · no eligible items','ready');
   }else if(message.state==='empty'){
+    if(!feedsReady){previewReady=false;setPreviewStatus('Renderer online. Waiting for current feeds…','connecting');startPreviewSync();return}
     previewReady=true;clearInterval(previewSyncTimer);setPreviewStatus('Renderer online, but this draft has no eligible content.','empty');
   }else if(message.state==='error'){
     previewReady=false;setPreviewStatus(message.message||'Broadcast renderer error.','error');
