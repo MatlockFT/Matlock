@@ -194,8 +194,8 @@ page_scripts:
             <button type="button" data-tool="video" title="Upload or insert video">Video</button>
             <button type="button" data-tool="youtube" title="Insert YouTube">YouTube</button>
             <button type="button" data-tool="x" title="Insert X / Twitter post">Tweet</button>
-            <button type="button" data-tool="stats" title="Build article stats card">Stats</button>
-            <button type="button" data-tool="tale" title="Build editable fight comparison">Tale of Tape</button>
+            <button type="button" data-tool="stats" title="Build structured head-to-head fight stats">Stats</button>
+            <button type="button" data-tool="tale" title="Build structured Tale of the Tape">Tale of Tape</button>
             <button type="button" data-tool="prediction" title="Insert styled Matlock pick">Pick</button>
             <button type="button" data-tool="html" title="Insert or edit a self-contained HTML visual">HTML</button>
             <button type="button" class="writer-visuals-toggle" data-html-block-panel-toggle aria-expanded="false" title="Browse embedded HTML visuals" hidden>Visuals <span data-html-block-count>0</span></button>
@@ -393,12 +393,29 @@ page_scripts:
     </form>
   </dialog>
 
-  <dialog class="writer-dialog writer-dialog-wide writer-structured-dialog" data-stats-dialog>
+  <dialog class="writer-dialog writer-dialog-wide writer-structured-dialog writer-stats-dialog" data-stats-dialog>
     <form method="dialog">
-      <header><div><p class="eyebrow">Article visual</p><h2>Stats</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
-      <div class="writer-dialog-body writer-dialog-grid">
-        <p class="writer-dialog-note writer-field-wide">Same three-column stats treatment used in the UFC Vegas 121 article. Add one row per line as <strong>Stat | Value | Fighter(s)</strong>.</p>
-        <label class="writer-field writer-field-wide"><span>Stats rows</span><textarea rows="12" data-stats-rows spellcheck="false" placeholder="Oldest | 39 | Raoni Barcelos&#10;Youngest | 21 | Raul Rosas Jr."></textarea></label>
+      <header><div><p class="eyebrow">Fight visual</p><h2>Fight Stats</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
+      <div class="writer-dialog-body">
+        <div class="writer-builder-intro">
+          <div><strong>Head-to-head stats</strong><p>Enter the fighters once, then fill normal stat rows. No pipes, no row syntax.</p></div>
+          <span>UFCStats-ready</span>
+        </div>
+        <div class="writer-stats-matchup">
+          <label class="writer-field"><span>Red / Fighter A</span><input data-stats-fighter="a" placeholder="Raul Rosas Jr."></label>
+          <div class="writer-structured-vs">VS</div>
+          <label class="writer-field"><span>Blue / Fighter B</span><input data-stats-fighter="b" placeholder="Raoni Barcelos"></label>
+        </div>
+        <div class="writer-structured-toolbar">
+          <div>
+            <button class="writer-button writer-button-subtle writer-button-small" type="button" data-stats-preset="ufc">UFCStats standard</button>
+            <button class="writer-button writer-button-subtle writer-button-small" type="button" data-stats-preset="blank">Clear rows</button>
+          </div>
+          <button class="writer-button writer-button-subtle writer-button-small" type="button" data-stats-add-row>+ Add stat</button>
+        </div>
+        <div class="writer-comparison-head" aria-hidden="true"><span>Stat</span><span data-stats-name-header="a">Fighter A</span><span data-stats-name-header="b">Fighter B</span><span>Row</span></div>
+        <div class="writer-comparison-rows" data-stats-row-list></div>
+        <p class="writer-dialog-note writer-structured-footnote">The standard preset matches the UFCStats metrics used in your current breakdown cards. Add, remove, rename, or reorder anything.</p>
       </div>
       <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-stats-insert>Insert stats</button></footer>
     </form>
@@ -427,7 +444,10 @@ page_scripts:
               <label><span>Y</span><input type="range" min="0" max="100" value="50" data-tale-image-y="a"></label>
               <label><span>Zoom</span><input type="range" min="90" max="180" value="100" data-tale-image-zoom="a"></label>
             </div>
-            <label class="writer-field"><span>Recent form <small>W/L | Opponent | Detail</small></span><textarea rows="6" data-tale-recent="a" spellcheck="false" placeholder="W | Opponent | DEC · JUN 14, 2025 · R3 5:00"></textarea></label>
+            <div class="writer-recent-editor">
+              <div class="writer-subeditor-head"><span>Recent form</span><button class="writer-button writer-button-subtle writer-button-small" type="button" data-tale-form-add="a">+ Fight</button></div>
+              <div class="writer-recent-list" data-tale-form-list="a"></div>
+            </div>
             <div class="writer-dialog-grid writer-dialog-grid-two">
               <label class="writer-field"><span>Opponents record</span><input data-tale-opponents-record="a" placeholder="45-14"></label>
               <label class="writer-field"><span>Win %</span><input data-tale-opponents-pct="a" placeholder="76%"></label>
@@ -452,7 +472,10 @@ page_scripts:
               <label><span>Y</span><input type="range" min="0" max="100" value="50" data-tale-image-y="b"></label>
               <label><span>Zoom</span><input type="range" min="90" max="180" value="100" data-tale-image-zoom="b"></label>
             </div>
-            <label class="writer-field"><span>Recent form <small>W/L | Opponent | Detail</small></span><textarea rows="6" data-tale-recent="b" spellcheck="false" placeholder="L | Opponent | SUB · SEP 14, 2024 · R1 3:02"></textarea></label>
+            <div class="writer-recent-editor">
+              <div class="writer-subeditor-head"><span>Recent form</span><button class="writer-button writer-button-subtle writer-button-small" type="button" data-tale-form-add="b">+ Fight</button></div>
+              <div class="writer-recent-list" data-tale-form-list="b"></div>
+            </div>
             <div class="writer-dialog-grid writer-dialog-grid-two">
               <label class="writer-field"><span>Opponents record</span><input data-tale-opponents-record="b" placeholder="48-18"></label>
               <label class="writer-field"><span>Win %</span><input data-tale-opponents-pct="b" placeholder="73%"></label>
@@ -460,21 +483,16 @@ page_scripts:
           </section>
         </div>
         <section class="writer-tale-stats-editor">
-          <div>
-            <p class="eyebrow">Tale rows</p>
-            <p class="writer-dialog-note">One row per line as <strong>Label | Fighter A | Fighter B</strong>. Add, remove or rename anything.</p>
+          <div class="writer-subeditor-head writer-subeditor-head-wide">
+            <div><p class="eyebrow">Tale of the Tape</p><strong>Comparison rows</strong></div>
+            <div>
+              <button class="writer-button writer-button-subtle writer-button-small" type="button" data-tale-rows-reset>Reset standard rows</button>
+              <button class="writer-button writer-button-subtle writer-button-small" type="button" data-tale-row-add>+ Add row</button>
+            </div>
           </div>
-          <textarea rows="12" data-tale-rows spellcheck="false">Record |  | 
-Age |  | 
-Height |  | 
-Arm Reach |  | 
-UFC Record |  | 
-Record Outside UFC |  | 
-Total Finishes |  | 
-TKO / KO |  | 
-Submission |  | 
-Unanimous Decision |  | 
-Split Decision |  | </textarea>
+          <div class="writer-comparison-head" aria-hidden="true"><span>Attribute</span><span>Fighter A</span><span>Fighter B</span><span>Row</span></div>
+          <div class="writer-comparison-rows" data-tale-row-list></div>
+        </section>
         </section>
       </div>
       <footer class="writer-dialog-actions"><button class="writer-button writer-button-subtle" value="cancel">Cancel</button><button class="writer-button writer-button-primary" type="button" data-tale-insert>Insert Tale of the Tape</button></footer>
