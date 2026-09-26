@@ -160,3 +160,31 @@ test('UFC official profile parser extracts career win-method totals', () => {
   assert.equal(profile.career.decisionWins, 14);
   assert.equal(profile.career.firstRoundFinishes, 5);
 });
+
+test('UFC official profile parser treats omitted zero-value career cards as zero', () => {
+  const knockoutOnly = parseUfcProfileSummary(`
+    <main>
+      <h1>Alex Pereira</h1>
+      <div>13-4-0 (W-L-D)</div>
+      <div><strong>11</strong> Wins by Knockout</div>
+      <div><strong>5</strong> First Round Finishes</div>
+    </main>
+  `);
+  assert.equal(knockoutOnly.career.winsByKnockout, 11);
+  assert.equal(knockoutOnly.career.winsBySubmission, 0);
+  assert.equal(knockoutOnly.career.totalFinishes, 11);
+  assert.equal(knockoutOnly.career.decisionWins, 2);
+
+  const submissionOnly = parseUfcProfileSummary(`
+    <main>
+      <h1>Example Grappler</h1>
+      <div>15-1-0 (W-L-D)</div>
+      <div><strong>8</strong> Wins by Submission</div>
+      <div><strong>4</strong> First Round Finishes</div>
+    </main>
+  `);
+  assert.equal(submissionOnly.career.winsByKnockout, 0);
+  assert.equal(submissionOnly.career.winsBySubmission, 8);
+  assert.equal(submissionOnly.career.totalFinishes, 8);
+  assert.equal(submissionOnly.career.decisionWins, 7);
+});
