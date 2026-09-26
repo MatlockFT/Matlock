@@ -398,7 +398,7 @@ page_scripts:
       <header><div><p class="eyebrow">Fight visual</p><h2>Fight Stats</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
       <div class="writer-dialog-body">
         <div class="writer-builder-intro">
-          <div><strong>Head-to-head stats</strong><p>Enter the fighters once, then fill normal stat rows. No pipes, no row syntax.</p></div>
+          <div><strong>Head-to-head stats</strong><p>Start typing a fighter name, choose the match, and Writer loads the current UFCStats profile automatically. Every field stays editable.</p></div>
           <span>UFCStats-ready</span>
         </div>
         <div class="writer-stats-matchup">
@@ -425,6 +425,10 @@ page_scripts:
     <form method="dialog">
       <header><div><p class="eyebrow">Fight visual</p><h2>Tale of the Tape</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
       <div class="writer-dialog-body">
+        <div class="writer-builder-intro">
+          <div><strong>Choose the fighters</strong><p>Start typing a name. Writer fills the portrait, division, record, bio, recent form and sourced Tale rows, then tells you whether UFCStats is live or still waiting on a new fight.</p></div>
+          <span>Live lookup</span>
+        </div>
         <div class="writer-matchup-builder">
           <section class="writer-fighter-builder" data-tale-side-panel="a">
             <div class="writer-tale-portrait" data-tale-image-drop="a" tabindex="0" role="button" aria-label="Choose Fighter A portrait">
