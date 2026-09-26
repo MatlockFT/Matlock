@@ -30,6 +30,7 @@ const els={
   image:q("[data-story-image]"),videoShell:q("[data-video-shell]"),title:q("[data-title]"),context:q("[data-context]"),
   source:q("[data-source]"),time:q("[data-time]"),eyebrow:q("[data-eyebrow]"),badge:q("[data-visual-badge]"),
   progress:q("[data-progress]"),ticker:q("[data-ticker-track]"),tickerFooter:q("footer.ticker"),event:q("[data-next-event]"),
+  eventName:q("[data-next-event-name]"),eventDate:q("[data-next-event-date]"),
   coverage:q("[data-coverage]"),coverageText:q("[data-coverage-text]"),rail:q("[data-rail-items]"),
   lowerRail:q(".lower-rail"),visual:q("[data-visual-panel]"),bed:q("[data-music-bed]"),storyMeta:q(".story-meta")
 };
@@ -57,6 +58,22 @@ function isRemovedSource(type,name){const key=type==="video"?"removedVideoChanne
 async function getJson(url){const u=new URL(url,location.href);u.searchParams.set("_",Date.now());const r=await fetch(u,{cache:"no-store",headers:{accept:"application/json"}});if(!r.ok)throw new Error(r.status);return r.json()}
 async function getWithFallback(primary,fallback){try{return await getJson(primary)}catch{return getJson(fallback)}}
 function relativeTime(v){const d=safeDate(v);if(!d)return"LIVE";const m=Math.max(0,Math.round((Date.now()-d.getTime())/60000));if(m<2)return"JUST NOW";if(m<60)return m+" MIN AGO";const h=Math.round(m/60);if(h<24)return h+" HR AGO";return d.toLocaleDateString("en-US",{month:"short",day:"numeric"}).toUpperCase()}
+function tickerEventDate(value){
+  const raw=scalar(value);if(!raw)return"DATE TBA";
+  let d=null;
+  if(/^\d{4}-\d{2}-\d{2}$/.test(raw))d=new Date(raw+"T12:00:00");
+  else d=safeDate(raw);
+  if(!d)return raw.toUpperCase();
+  return new Intl.DateTimeFormat("en-US",{month:"short",day:"numeric",year:d.getFullYear()!==new Date().getFullYear()?"numeric":undefined}).format(d).toUpperCase();
+}
+function renderNextEvent(){
+  const next=eventCache[0];
+  if(!els.eventName||!els.eventDate)return;
+  if(!next){els.eventName.textContent="NO EVENT QUEUED";els.eventDate.textContent="CHECK SCHEDULE";return}
+  const name=scalar(next.title)||scalar(next.promotion)||"UPCOMING EVENT";
+  els.eventName.textContent=String(name).toUpperCase();
+  els.eventDate.textContent=tickerEventDate(scalar(next.date)||scalar(next.starts_at));
+}
 function imageFor(story){return story.image||story.imageUrl||story.thumbnail||story.ogImage||""}
 function escapeHtml(v){const d=document.createElement("div");d.textContent=v||"";return d.innerHTML}
 function cleanContext(value){
@@ -400,8 +417,7 @@ async function refreshFeeds(){
     getWithFallback(VIDEOS_REMOTE,VIDEOS_FALLBACK).catch(()=>videoCache),
     getJson(EVENTS).catch(()=>({events:eventCache}))
   ]);
-  newsCache=news||newsCache;videoCache=videos||videoCache;eventCache=normalizedEvents(events||{events:[]});rebuildSlides();processForce();
-  const next=eventCache[0];if(next)els.event.textContent="NEXT: "+String(scalar(next.promotion)||"EVENT").toUpperCase()+" · "+String(scalar(next.date)||"");
+  newsCache=news||newsCache;videoCache=videos||videoCache;eventCache=normalizedEvents(events||{events:[]});rebuildSlides();processForce();renderNextEvent();
   if(!currentSlide&&!timer)advance();
 }
 async function refreshControl(){
