@@ -400,12 +400,20 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('[data-html-block-rail]')).toBeVisible();
 
   // HTML visuals can be edited in place while seeing the finished visual.
-  const htmlVisualShell = page.locator('[data-preview-content] .writer-preview-html-shell').filter({ hasText:'Rendered HTML visual' }).first();
+  // The preview shell is re-rendered after visual edits, so key the smoke test to the
+  // persistent block id instead of holding a text-filtered locator across that render.
+  const initialHtmlVisualShell = page.locator('[data-preview-content] .writer-preview-html-shell').filter({ hasText:'Rendered HTML visual' }).first();
+  const htmlVisualSection = initialHtmlVisualShell.locator('section[data-writer-html-block-id]');
+  const htmlBlockId = await htmlVisualSection.getAttribute('data-writer-html-block-id');
+  expect(htmlBlockId).toBeTruthy();
+  const htmlVisualShell = page.locator('[data-preview-content] .writer-preview-html-shell').filter({
+    has: page.locator(`section[data-writer-html-block-id="${htmlBlockId}"]`)
+  }).first();
+
   await htmlVisualShell.hover();
   await htmlVisualShell.locator('[data-preview-html-visual-edit]').click();
-  const htmlVisualSection = htmlVisualShell.locator('section[data-writer-html-block-id]');
-  await expect(htmlVisualSection).toHaveAttribute('contenteditable', 'true');
-  await htmlVisualSection.evaluate(section => {
+  await expect(htmlVisualShell.locator('section[data-writer-html-block-id]')).toHaveAttribute('contenteditable', 'true');
+  await htmlVisualShell.locator('section[data-writer-html-block-id]').evaluate(section => {
     const paragraph = section.querySelector('p');
     paragraph.textContent = 'Visually edited HTML.';
     section.dispatchEvent(new InputEvent('input', { bubbles: true, inputType: 'insertText', data: 'Visually edited HTML.' }));
@@ -414,9 +422,8 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await page.waitForTimeout(180);
   await htmlVisualShell.locator('[data-preview-html-visual-edit]').click();
 
-  const refreshedHtmlVisualShell = page.locator('[data-preview-content] .writer-preview-html-shell').filter({ hasText:'Visually edited HTML.' }).first();
-  await refreshedHtmlVisualShell.hover();
-  await refreshedHtmlVisualShell.locator('[data-preview-html-source-edit]').click();
+  await htmlVisualShell.hover();
+  await htmlVisualShell.locator('[data-preview-html-source-edit]').click();
   await expect(page.locator('[data-html-dialog]')).toBeVisible();
   await expect(page.locator('[data-html-code]')).toHaveValue(/Visually edited HTML\./);
   await page.locator('[data-html-dialog]').getByRole('button', { name: 'Cancel' }).click();
