@@ -11,10 +11,12 @@ page_styles:
   - /assets/writer-wordtools.css
   - /assets/writer-ux.css
   - /assets/writer-splitflow.css
+  - /assets/writer-live.css
 page_scripts:
   - /assets/writer.js
   - /assets/writer-auth.js
   - /assets/writer-wordtools.js
+  - /assets/writer-live.js
 ---
 
 <section class="writer-app" data-writer-app data-repo="MatlockFT/Matlock" data-media-repo="MatlockFT/Matlock" data-auth-base="https://mmamatlock-writer-auth.netlify.app">
@@ -29,6 +31,7 @@ page_scripts:
       <div class="writer-top-secondary">
         <button class="writer-button writer-button-subtle" type="button" data-show-library>Library</button>
         <button class="writer-button writer-button-subtle" type="button" data-new-article>New</button>
+        <button class="writer-button writer-button-subtle writer-live-trigger" type="button" data-live-writer-toggle data-state="idle" aria-pressed="false" aria-expanded="false" aria-controls="writer-live-panel">Live</button>
         <button class="writer-button writer-button-subtle" type="button" data-github-connect data-connected="false" title="Connect GitHub">GitHub</button>
       </div>
       <div class="writer-publish-actions">
@@ -52,6 +55,29 @@ page_scripts:
       <a href="#" data-live-link hidden target="_blank" rel="noopener noreferrer">Open live ↗</a>
     </div>
   </div>
+
+  <section class="writer-live-panel" id="writer-live-panel" data-live-writer-panel hidden aria-label="Live Writer controls">
+    <header class="writer-live-panel-header">
+      <div>
+        <strong>Live Writer</strong>
+        <p>Send this article preview to the public page while you type.</p>
+      </div>
+      <button class="writer-live-close" type="button" data-live-writer-close aria-label="Close Live Writer">×</button>
+    </header>
+    <div class="writer-live-panel-body">
+      <div class="writer-live-status" data-live-writer-status data-state="idle">Not live</div>
+      <div class="writer-live-public">
+        <span>Public page</span>
+        <a href="/live-notes/" data-live-writer-public-link target="_blank" rel="noopener noreferrer">/live-notes/</a>
+      </div>
+      <p class="writer-live-sync-state" data-live-writer-sync-state data-state="idle">Ready.</p>
+      <div class="writer-live-actions">
+        <button class="writer-button writer-button-primary" type="button" data-live-writer-start>Go Live</button>
+        <button class="writer-button writer-button-subtle" type="button" data-live-writer-push disabled>Push now</button>
+        <button class="writer-button writer-button-danger" type="button" data-live-writer-end hidden>End Live</button>
+      </div>
+    </div>
+  </section>
 
   <section class="writer-library" data-library-view>
     <header class="writer-library-header">
