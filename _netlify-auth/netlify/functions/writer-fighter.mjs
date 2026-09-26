@@ -1,4 +1,5 @@
 import { corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mjs';
+import { fetchCareerFallback, hasCompleteDisplayedCareer } from './_writer-career-fallback.mjs';
 
 const UFCSTATS_BASE = 'https://ufcstats.com/fighter-details/';
 const UFC_PROFILE_BASE = 'https://www.ufc.com/athlete/';
@@ -267,32 +268,46 @@ export default async function handler(request) {
   const url = new URL(request.url);
   const statsId = String(url.searchParams.get('id') || '').toLowerCase();
   const slug = String(url.searchParams.get('slug') || '').toLowerCase();
-  if (!ID_RE.test(statsId)) {
-    return Response.json({ok:false,error:'A valid UFCStats fighter id is required.'},{status:400,headers});
+  const name = String(url.searchParams.get('name') || '').trim().slice(0, 100);
+  const expectedBio = {
+    dob:String(url.searchParams.get('dob') || '').trim().slice(0, 40),
+    height:String(url.searchParams.get('height') || '').trim().slice(0, 30),
+    weight:String(url.searchParams.get('weight') || '').trim().slice(0, 30)
+  };
+  const validStatsId = ID_RE.test(statsId);
+  if (statsId && !validStatsId) {
+    return Response.json({ok:false,error:'Invalid UFCStats fighter id.'},{status:400,headers});
+  }
+  if (!validStatsId && !name) {
+    return Response.json({ok:false,error:'A fighter name or valid UFCStats fighter id is required.'},{status:400,headers});
   }
   if (slug && !SLUG_RE.test(slug)) {
     return Response.json({ok:false,error:'Invalid UFC athlete slug.'},{status:400,headers});
   }
 
   const fetchedAt = new Date().toISOString();
-  const [statsResult, officialResult] = await Promise.allSettled([
-    fetchProfile(statsId),
-    slug ? fetchOfficialProfile(slug) : Promise.resolve(null)
+  const [statsResult, officialResult, fallbackResult] = await Promise.allSettled([
+    validStatsId ? fetchProfile(statsId) : Promise.resolve(null),
+    slug ? fetchOfficialProfile(slug) : Promise.resolve(null),
+    name ? fetchCareerFallback({name,...expectedBio}) : Promise.resolve(null)
   ]);
 
   const statsResolved = statsResult.status === 'fulfilled' ? statsResult.value : null;
   const officialResolved = officialResult.status === 'fulfilled' ? officialResult.value : null;
+  const fallbackResolved = fallbackResult.status === 'fulfilled' ? fallbackResult.value : null;
   const liveStats = Boolean(statsResolved?.profile);
   const liveOfficial = Boolean(officialResolved?.profile);
+  const liveCareerFallback = Boolean(fallbackResolved?.career);
 
-  if (!liveStats && !liveOfficial) {
+  if (!liveStats && !liveOfficial && !liveCareerFallback) {
     const reasons = [
       statsResult.status === 'rejected' ? 'UFCStats: ' + statsResult.reason?.message : '',
-      officialResult.status === 'rejected' ? 'UFC profile: ' + officialResult.reason?.message : ''
+      officialResult.status === 'rejected' ? 'UFC profile: ' + officialResult.reason?.message : '',
+      fallbackResult.status === 'rejected' ? 'Career fallback: ' + fallbackResult.reason?.message : ''
     ].filter(Boolean);
     return Response.json({
       ok:false,
-      source:'UFCStats+UFC.com',
+      source:'UFCStats+UFC.com+career fallback',
       mode:'live',
       fetchedAt,
       error:reasons.join(' · ') || 'Live fighter lookup failed'
@@ -301,10 +316,19 @@ export default async function handler(request) {
 
   const statsProfile = statsResolved?.profile || {};
   const officialProfile = officialResolved?.profile || {};
+  const fallbackProfile = fallbackResolved || {};
+
+  // Start with fallback career data, then let UFC.com override any career values it
+  // actually exposes. Null/undefined official fields never erase verified fallback data.
+  const career = {...(fallbackProfile.career || {})};
+  for (const [field,value] of Object.entries(officialProfile.career || {})) {
+    if (value !== null && value !== undefined && value !== '') career[field] = value;
+  }
+
   const profile = {
     ...statsProfile,
-    record: officialProfile.record || statsProfile.record || null,
-    career: officialProfile.career || statsProfile.career || null
+    record: officialProfile.record || fallbackProfile.record || statsProfile.record || null,
+    career:Object.keys(career).length ? career : null
   };
   const core = [
     profile.stats?.slpm,
@@ -315,16 +339,23 @@ export default async function handler(request) {
 
   return Response.json({
     ok:true,
-    source:'UFCStats+UFC.com',
+    source:'UFCStats+UFC.com+career fallback',
     mode:'live',
     fetchedAt,
-    sourceUrl:statsResolved?.sourceUrl || officialResolved?.sourceUrl || null,
+    sourceUrl:statsResolved?.sourceUrl || officialResolved?.sourceUrl || fallbackProfile.sourceUrl || null,
     officialSourceUrl:officialResolved?.sourceUrl || null,
+    careerSourceUrl:fallbackProfile.sourceUrl || null,
+    careerSource:fallbackProfile.source || null,
     liveUfcStats:liveStats && core.length >= 2,
     liveUfcProfile:liveOfficial,
+    liveCareerFallback,
+    completeCareer:hasCompleteDisplayedCareer(profile.career),
     warnings:[
-      !liveStats ? (statsResult.status === 'rejected' ? statsResult.reason?.message : 'UFCStats unavailable') : null,
-      slug && !liveOfficial ? (officialResult.status === 'rejected' ? officialResult.reason?.message : 'UFC profile unavailable') : null
+      validStatsId && !liveStats ? (statsResult.status === 'rejected' ? statsResult.reason?.message : 'UFCStats unavailable') : null,
+      slug && !liveOfficial ? (officialResult.status === 'rejected' ? officialResult.reason?.message : 'UFC profile unavailable') : null,
+      name && !liveCareerFallback && !hasCompleteDisplayedCareer(officialProfile.career)
+        ? (fallbackResult.status === 'rejected' ? fallbackResult.reason?.message : 'Career fallback unavailable')
+        : null
     ].filter(Boolean),
     profile
   }, {status:200,headers});
