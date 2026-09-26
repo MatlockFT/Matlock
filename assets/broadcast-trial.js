@@ -30,7 +30,7 @@ const els={
   image:q("[data-story-image]"),videoShell:q("[data-video-shell]"),title:q("[data-title]"),context:q("[data-context]"),
   source:q("[data-source]"),time:q("[data-time]"),eyebrow:q("[data-eyebrow]"),badge:q("[data-visual-badge]"),
   progress:q("[data-progress]"),ticker:q("[data-ticker-track]"),tickerFooter:q("footer.ticker"),event:q("[data-next-event]"),
-  clock:q("[data-clock]"),coverage:q("[data-coverage]"),coverageText:q("[data-coverage-text]"),rail:q("[data-rail-items]"),
+  coverage:q("[data-coverage]"),coverageText:q("[data-coverage-text]"),rail:q("[data-rail-items]"),
   lowerRail:q(".lower-rail"),visual:q("[data-visual-panel]"),bed:q("[data-music-bed]"),storyMeta:q(".story-meta")
 };
 
@@ -166,10 +166,9 @@ function applyDisplay(){
   if(split)els.stage.style.setProperty("--video-width",Math.max(50,Math.min(76,Number(c.visual.videoWidth||64)))+"%");
   else els.stage.style.removeProperty("--video-width");
   els.tickerFooter.style.display=tickerOn?"grid":"none";
-  els.root.style.gridTemplateRows=tickerOn?"72px 912px 96px":"72px 1008px 0px";
+  els.root.style.gridTemplateRows=tickerOn?"984px 96px":"1080px 0px";
   els.lowerRail.style.display=railOn?"grid":"none";
   els.stage.style.gridTemplateRows=railOn?"1fr 148px":"1fr 0px";
-  els.clock.style.display=c.visual.showClock?"block":"none";
   els.badge.style.display=c.visual.showBadge?"block":"none";
   els.storyMeta.style.display=c.visual.showSource?"flex":"none";
   els.ticker.style.animationDuration=Math.max(20,Number(c.ticker.speedSeconds||240))+"s";
@@ -521,6 +520,5 @@ async function boot(){
     if(IS_CONTROL_PREVIEW)reportPreviewState("error",error?.message||"Renderer failed to start");
   }
 }
-function clock(){els.clock.textContent=new Intl.DateTimeFormat("en-US",{timeZone:"America/Chicago",hour:"numeric",minute:"2-digit",second:"2-digit"}).format(new Date())+" CT"}
-clock();setInterval(clock,1000);boot();
+boot();
 })();
