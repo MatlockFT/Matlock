@@ -177,3 +177,59 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
 
   expect(pageErrors).toEqual([]);
 });
+
+
+test('Brad Tavares stays complete when the live probe fails', async ({ page }) => {
+  test.setTimeout(45000);
+  const pageErrors = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
+
+  await page.route('https://mmamatlock-writer-auth.netlify.app/api/writer/fighter*', async route => {
+    await route.fulfill({
+      status: 502,
+      contentType: 'application/json',
+      headers: { 'access-control-allow-origin': '*' },
+      body: JSON.stringify({ ok:false, error:'simulated live source outage' })
+    });
+  });
+
+  await page.goto(BASE, { waitUntil:'domcontentloaded' });
+  await page.click('[data-library-new]');
+
+  await page.click('[data-tool="stats"]');
+  const statsDialog = page.locator('[data-stats-dialog]');
+  const statsInput = statsDialog.locator('[data-stats-fighter="a"]');
+  await statsInput.fill('Brad Tavares');
+  await statsDialog.locator('.writer-fighter-suggestion', { hasText:'Brad Tavares' }).first().click();
+
+  const statValues = await statsDialog.locator('[data-stats-row-list] [data-structured-a]').evaluateAll(nodes =>
+    nodes.map(node => node.value.trim())
+  );
+  expect(statValues).toHaveLength(8);
+  expect(statValues.every(Boolean)).toBe(true);
+  await expect(statsInput.locator('xpath=..').locator('.writer-fighter-source-status')).toContainText('Verified stats loaded');
+
+  await statsDialog.locator('button[value="cancel"]').first().click();
+
+  await page.click('[data-tool="tale"]');
+  const taleDialog = page.locator('[data-tale-dialog]');
+  const taleInput = taleDialog.locator('[data-tale-a]');
+  await taleInput.fill('Brad Tavares');
+  await taleDialog.locator('.writer-fighter-suggestion', { hasText:'Brad Tavares' }).first().click();
+
+  const taleRows = taleDialog.locator('[data-tale-row-list] .writer-comparison-row');
+  await expect(taleRows).toHaveCount(11);
+  const taleValues = await taleRows.locator('[data-structured-a]').evaluateAll(nodes =>
+    nodes.map(node => node.value.trim())
+  );
+  expect(taleValues.every(Boolean)).toBe(true);
+
+  await expect(taleRows.nth(6).locator('[data-structured-a]')).not.toHaveValue('');
+  await expect(taleRows.nth(7).locator('[data-structured-a]')).not.toHaveValue('');
+  await expect(taleRows.nth(8).locator('[data-structured-a]')).not.toHaveValue('');
+  await expect(taleRows.nth(9).locator('[data-structured-a]')).not.toHaveValue('');
+  await expect(taleRows.nth(10).locator('[data-structured-a]')).not.toHaveValue('');
+  await expect(taleInput.locator('xpath=..').locator('.writer-fighter-source-status')).toContainText('Verified stats loaded');
+
+  expect(pageErrors).toEqual([]);
+});
