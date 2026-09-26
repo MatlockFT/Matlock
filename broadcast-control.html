@@ -48,13 +48,11 @@ sitemap: false
         <div class="bc-nav-title">Console</div>
         <nav aria-label="Broadcast control sections">
           <button type="button" class="is-active" data-nav-target="overview"><span>01</span> Overview</button>
-          <button type="button" data-nav-target="rundown"><span>02</span> Rundown</button>
-          <button type="button" data-nav-target="queue"><span>03</span> Queue</button>
-          <button type="button" data-nav-target="sources"><span>04</span> Sources</button>
-          <button type="button" data-nav-target="timing"><span>05</span> Timing + audio</button>
-          <button type="button" data-nav-target="display"><span>06</span> Display</button>
-          <button type="button" data-nav-target="live-content"><span>07</span> Live content</button>
-          <button type="button" data-nav-target="custom"><span>08</span> Custom card</button>
+          <button type="button" data-nav-target="programming"><span>02</span> Programming</button>
+          <button type="button" data-nav-target="sources"><span>03</span> Sources</button>
+          <button type="button" data-nav-target="timing"><span>04</span> Timing + audio</button>
+          <button type="button" data-nav-target="display"><span>05</span> Display</button>
+          <button type="button" data-nav-target="custom"><span>06</span> Custom card</button>
         </nav>
 
         <div class="bc-nav-bottom">
@@ -77,7 +75,7 @@ sitemap: false
             <article><span>Fresh news</span><strong data-metric-news>—</strong><small>eligible stories</small></article>
             <article><span>Videos</span><strong data-metric-videos>—</strong><small>eligible uploads</small></article>
             <article><span>Events</span><strong data-metric-events>—</strong><small>upcoming cards</small></article>
-            <article><span>Rundown</span><strong data-metric-rundown>—</strong><small>segment pattern</small></article>
+            <article><span>Manual queue</span><strong data-metric-rundown>—</strong><small>priority items</small></article>
           </div>
 
           <div class="bc-draft-strip" data-draft-strip>
@@ -110,6 +108,103 @@ sitemap: false
               <button type="button" data-preset="event" aria-pressed="false"><strong>Event day</strong><span>More upcoming-card coverage</span><em>Load preset</em></button>
             </div>
           </div>
+        </section>
+
+        <section class="bc-section" data-section="programming" hidden>
+          <div class="bc-section-head">
+            <div>
+              <p class="bc-eyebrow">Channel programming</p>
+              <h1>Programming desk</h1>
+              <p>Everything the feeds discover lands in the content pool. Drag anything you want into your manual queue, reorder it, or let Auto fill the channel for you.</p>
+            </div>
+          </div>
+
+          <div class="bc-program-mode-card">
+            <div class="bc-program-mode-copy">
+              <span>PROGRAM MODE</span>
+              <strong data-program-mode-title>AUTO</strong>
+              <small data-program-mode-copy>Fresh eligible content programs itself.</small>
+            </div>
+            <div class="bc-program-modes" role="group" aria-label="Programming mode">
+              <button type="button" data-program-mode="auto"><strong>Auto</strong><span>Feeds build the loop</span></button>
+              <button type="button" data-program-mode="hybrid"><strong>Hybrid</strong><span>Your picks first, Auto fills behind</span></button>
+              <button type="button" data-program-mode="manual"><strong>Manual</strong><span>Only your queue airs</span></button>
+            </div>
+          </div>
+
+          <div class="bc-programming-grid">
+            <section class="bc-card bc-program-pane">
+              <div class="bc-card-head">
+                <div>
+                  <h2>Content pool</h2>
+                  <p>Latest material discovered by the active news and video feeds. Drag or click Add.</p>
+                </div>
+                <strong class="bc-program-count" data-program-pool-count>0</strong>
+              </div>
+              <div class="bc-program-toolbar">
+                <div class="bc-program-tabs" role="tablist">
+                  <button type="button" class="is-active" data-program-pool-tab="all">All</button>
+                  <button type="button" data-program-pool-tab="news">News</button>
+                  <button type="button" data-program-pool-tab="video">Videos</button>
+                  <button type="button" data-program-pool-tab="event">Events</button>
+                </div>
+                <input type="search" data-program-search placeholder="Search pool…" aria-label="Search content pool">
+              </div>
+              <div class="bc-program-pool" data-program-pool></div>
+            </section>
+
+            <section class="bc-card bc-program-pane bc-program-queue-pane">
+              <div class="bc-card-head">
+                <div>
+                  <h2>Program queue</h2>
+                  <p data-program-queue-help>Auto is currently building the output queue.</p>
+                </div>
+                <div class="bc-program-queue-actions">
+                  <strong class="bc-program-count" data-program-queue-count>0</strong>
+                  <button class="bc-text-button" type="button" data-program-clear>Clear manual</button>
+                </div>
+              </div>
+
+              <div class="bc-program-split-note" data-program-split-note>
+                Split Desk runs video and article/event lanes in parallel. Your top-to-bottom order is preserved inside each lane.
+              </div>
+
+              <div class="bc-program-manual-head" data-program-manual-head hidden>
+                <span>YOUR PRIORITY QUEUE</span>
+                <small>Drag to reorder · drop new pool items anywhere</small>
+              </div>
+              <div class="bc-program-queue" data-program-manual-queue></div>
+
+              <div class="bc-program-auto-head" data-program-auto-head>
+                <span>ACTUAL RENDERER QUEUE</span>
+                <small data-program-output-note>Auto-selected items currently eligible to air.</small>
+              </div>
+              <div class="bc-program-output" data-program-output></div>
+            </section>
+          </div>
+
+          <section class="bc-card bc-program-auto-rules">
+            <div class="bc-card-head">
+              <div>
+                <h2>Auto fill recipe</h2>
+                <p>Used by Auto and as the filler behind your manual priorities in Hybrid.</p>
+              </div>
+            </div>
+            <p class="bc-rundown-mode-note" data-rundown-mode-note></p>
+            <div class="bc-rundown" data-rundown></div>
+            <div class="bc-add-segment">
+              <span>Add segment</span>
+              <button type="button" data-add-segment="news">+ News</button>
+              <button type="button" data-add-segment="video">+ Video</button>
+              <button type="button" data-add-segment="event">+ Event</button>
+            </div>
+            <div class="bc-two-col bc-program-rule-fields">
+              <label class="bc-field"><span>Maximum news items</span><input type="number" min="1" max="80" data-path="news.maxItems"></label>
+              <label class="bc-field"><span>Maximum video items</span><input type="number" min="1" max="60" data-path="video.maxItems"></label>
+              <label class="bc-field"><span>Maximum event items</span><input type="number" min="0" max="30" data-path="events.maxItems"></label>
+              <label class="bc-field"><span>News freshness window <em>hours</em></span><input type="number" min="1" max="168" data-path="news.maxAgeHours"></label>
+            </div>
+          </section>
         </section>
 
         <section class="bc-section" data-section="rundown" hidden>

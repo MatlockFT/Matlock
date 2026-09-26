@@ -271,27 +271,39 @@ test.describe('Broadcast control program monitor', () => {
     expect(nextEventWrap.whiteSpace).toBe('normal');
     expect(nextEventWrap.textOverflow).toBe('clip');
 
-    for (const target of ['overview','rundown','queue','sources','timing','display','live-content','custom']) {
+    for (const target of ['overview','programming','sources','timing','display','custom']) {
       await page.locator('[data-nav-target="'+target+'"]').click();
       await expect(page.locator('[data-section="'+target+'"] [data-save-config]')).toBeVisible();
     }
+    await expect(page.locator('[data-nav-target="rundown"]')).toHaveCount(0);
+    await expect(page.locator('[data-nav-target="queue"]')).toHaveCount(0);
+    await expect(page.locator('[data-nav-target="live-content"]')).toHaveCount(0);
 
-    await page.locator('[data-nav-target="queue"]').click();
-    await expect(page.locator('[data-queue-state]')).not.toHaveText('SYNCING', { timeout: 10000 });
-    await expect(page.locator('[data-queue-ticker] .bc-queue-item').first()).toBeVisible({ timeout: 10000 });
-    await expect(page.locator('[data-queue-ticker] .bc-queue-item').first().locator('.bc-queue-source-link')).not.toHaveText('');
-    await expect(page.locator('[data-queue-video] .bc-queue-item').first()).toBeVisible({ timeout: 10000 });
-    await expect(page.locator('[data-queue-video] .bc-queue-item').first().locator('.bc-queue-source-link')).toHaveAttribute('href', /youtube\.com\/watch/);
-    await expect(page.locator('[data-queue-video] .bc-queue-item').first().locator('.bc-queue-item-title-link')).toHaveAttribute('href', /youtube\.com\/watch/);
-    const firstArticleLink = page.locator('[data-queue-article] .bc-queue-item-title-link').first();
-    if (await firstArticleLink.count()) {
-      await expect(firstArticleLink).toHaveAttribute('href', /^https?:\/\//);
-    }
-    const repeatBadges = page.locator('.bc-queue-repeat');
-    const repeatCount = await repeatBadges.count();
-    for (let i = 0; i < repeatCount; i++) {
-      await expect(repeatBadges.nth(i)).toContainText(/REUSED ×[2-9]/);
-    }
+    await page.locator('[data-nav-target="programming"]').click();
+    await expect(page.locator('[data-section="programming"]')).toBeVisible();
+    await expect(page.locator('[data-program-mode="auto"]')).toHaveAttribute('aria-pressed','true');
+    await page.locator('[data-program-pool-tab="news"]').click();
+    const poolItems = page.locator('[data-program-pool] .bc-program-item');
+    await expect(poolItems.first()).toBeVisible({ timeout: 10000 });
+    await expect(poolItems.first().locator('.bc-program-title')).toHaveAttribute('href', /^https?:\/\//);
+
+    const firstPoolTitle = (await poolItems.first().locator('.bc-program-title').textContent() || '').trim();
+    await poolItems.first().dragTo(page.locator('[data-program-manual-queue]'));
+    await expect(page.locator('[data-program-mode="hybrid"]')).toHaveAttribute('aria-pressed','true');
+    await expect(page.locator('[data-program-manual-queue] .bc-program-queue-item')).toHaveCount(1);
+    await expect(page.locator('[data-program-manual-queue] .bc-program-title')).toHaveText(firstPoolTitle);
+
+    await page.locator('[data-program-mode="manual"]').click();
+    await expect(page.locator('[data-program-mode="manual"]')).toHaveAttribute('aria-pressed','true');
+    await expect.poll(async () => page.locator('[data-program-monitor-frame]').evaluate(frame => {
+      const q = frame.contentWindow.MatlockBroadcastPreview?.snapshot?.();
+      return (q?.article?.length || 0) + (q?.video?.length || 0) + (q?.program?.length || 0);
+    })).toBe(1);
+    await expect(page.locator('[data-program-output] .bc-queue-item').first()).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('[data-program-output] .bc-queue-item').first().locator('.bc-queue-item-title-link')).toHaveAttribute('href', /^https?:\/\//);
+
+    await page.locator('[data-program-mode="auto"]').click();
+    await expect(page.locator('[data-program-mode="auto"]')).toHaveAttribute('aria-pressed','true');
     await expect(frame.locator('[data-title]')).not.toHaveText('', { timeout: 30000 });
 
     const width = page.locator('[data-path="visual.videoWidth"]');

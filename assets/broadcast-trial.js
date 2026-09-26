@@ -20,6 +20,7 @@ const DEFAULT_CONTROL={
   ticker:{enabled:true,speedSeconds:240,maxItems:14},
   visual:{layout:"splitDesk",videoWidth:64,articleCardSeconds:9,articleCharsPerCard:340,flipNews:false,showRail:true,showClock:true,showBadge:true,showSource:true},
   sources:{customNewsFeeds:[],customVideoChannels:[],removedNewsSources:[],removedVideoChannels:[]},
+  programming:{mode:"auto",manualQueue:[]},
   hidden:{news:[],videos:[],events:[]},
   forceNext:null
 };
@@ -101,46 +102,80 @@ function renderFacts(label,facts){
 }
 function bestNewsContext(s){for(const candidate of [s.context,s.excerpt,s.summary,s.description]){const clean=cleanContext(candidate);if(clean.length>=60)return clean}return""}
 
-function newsSlides(){
+function programmingMode(){const mode=cfg().programming?.mode;return["auto","hybrid","manual"].includes(mode)?mode:"auto"}
+function manualProgramEntries(){return Array.isArray(cfg().programming?.manualQueue)?cfg().programming.manualQueue:[]}
+function slideKey(slide){return (slide?.type||"")+"|"+(slide?.id||slide?.videoId||slide?.url||slide?.title||"")}
+function newsSlide(s,{automatic=true}={}){
+  if(!s)return null;
+  const context=bestNewsContext(s);
+  if(automatic&&(!s.title||!s.url||!fresh(s.publishedAt,cfg().news.maxAgeHours)))return null;
+  return{type:"news",id:itemId("news",s),title:s.title||"Untitled",context,contextBlocks:Array.isArray(s.contextBlocks)?s.contextBlocks:[],excerpt:cleanContext(s.excerpt||""),source:s.source||"Combat Sports",publishedAt:s.publishedAt||"",image:imageFor(s),url:s.url||"",relatedSources:s.relatedSources||[]};
+}
+function videoSlide(v,{automatic=true}={}){
+  if(!v)return null;const duration=Number(v.durationSeconds||0);
+  if(automatic&&(!v.title||!v.videoId||!fresh(v.publishedAt,cfg().video.maxAgeHours)||v.embeddable===false||v.liveBroadcastContent==="live"||duration<Number(cfg().video.minSeconds||0)||duration>Number(cfg().video.maxSeconds||3600)))return null;
+  if(!v.videoId)return null;
+  return{type:"video",id:v.videoId,title:v.title||"Untitled video",source:v.channel||v.source||"YouTube",publishedAt:v.publishedAt||"",image:v.thumbnail||v.image||"",videoId:v.videoId,url:"https://www.youtube.com/watch?v="+encodeURIComponent(v.videoId),durationSeconds:duration};
+}
+function eventSlide(e){
+  if(!e)return null;
+  return{type:"event",id:itemId("event",e),title:scalar(e.title)||scalar(e.promotion)||"Upcoming Event",source:scalar(e.promotion)||"MMA",publishedAt:"",image:cfg().events.usePosters?(scalar(e.poster_url)||scalar(e.image)||""):"",event:e,context:eventFacts(e)};
+}
+function autoNewsSlides(){
   if(!cfg().modules.news)return[];
   const enabled=cfg().news.sources||[],seen=new Set();
   return [newsCache?.topStory,...(newsCache?.stories||[])]
     .filter(Boolean)
-    .map(s=>({...s,_context:bestNewsContext(s)}))
-    .filter(s=>s.title&&s.url&&fresh(s.publishedAt,cfg().news.maxAgeHours))
     .filter(s=>!enabled.length||enabled.includes(s.source))
     .filter(s=>!isRemovedSource("news",s.source))
-    .filter(s=>!cfg().news.requireContext||s._context)
     .filter(s=>!isHidden("news",s))
-    .filter(s=>{const k=s.id||s.url;if(seen.has(k))return false;seen.add(k);return true})
-    .slice(0,Math.max(0,Number(cfg().news.maxItems||16)))
-    .map(s=>({type:"news",id:itemId("news",s),title:s.title,context:s._context,contextBlocks:Array.isArray(s.contextBlocks)?s.contextBlocks:[],excerpt:cleanContext(s.excerpt||""),source:s.source||"Combat Sports",publishedAt:s.publishedAt,image:imageFor(s),url:s.url,relatedSources:s.relatedSources||[]}));
+    .map(s=>newsSlide(s,{automatic:true}))
+    .filter(Boolean)
+    .filter(s=>!cfg().news.requireContext||s.context)
+    .filter(s=>{const k=slideKey(s);if(seen.has(k))return false;seen.add(k);return true})
+    .slice(0,Math.max(0,Number(cfg().news.maxItems||16)));
 }
-function videoSlides(){
+function autoVideoSlides(){
   if(!cfg().modules.video)return[];
   const channels=cfg().video.channels||[];
   return (videoCache?.videos||[])
-    .filter(v=>{
-      const duration=Number(v?.durationSeconds||0);
-      return v?.title&&v?.videoId&&fresh(v.publishedAt,cfg().video.maxAgeHours)&&v.embeddable!==false&&v.liveBroadcastContent!=="live"&&duration>=Number(cfg().video.minSeconds||0)&&duration<=Number(cfg().video.maxSeconds||3600);
-    })
     .filter(v=>!channels.length||channels.includes(v.channel))
     .filter(v=>!isRemovedSource("video",v.channel))
     .filter(v=>!isHidden("video",v))
-    .slice(0,Math.max(0,Number(cfg().video.maxItems||8)))
-    .map(v=>({type:"video",id:v.videoId,title:v.title,source:v.channel||"YouTube",publishedAt:v.publishedAt,image:v.thumbnail||"",videoId:v.videoId,url:"https://www.youtube.com/watch?v="+encodeURIComponent(v.videoId),durationSeconds:Number(v.durationSeconds||0)}));
+    .map(v=>videoSlide(v,{automatic:true}))
+    .filter(Boolean)
+    .slice(0,Math.max(0,Number(cfg().video.maxItems||8)));
 }
-function mainEventText(e){const raw=e?.main_event;if(raw&&typeof raw==="object"){const fighters=Array.isArray(raw.fighters)?raw.fighters.map(scalar).filter(Boolean):[];const matchup=fighters.length>=2?fighters.join(" vs. "):scalar(raw.name||raw.title);const wc=scalar(raw.weight_class);return[matchup,wc].filter(Boolean).join(" — ")}return scalar(raw)}
-function parseEventDate(e){const start=scalar(e?.starts_at);if(start){const d=safeDate(start);if(d)return{date:d,hasTime:true}}const day=scalar(e?.date);if(/^\d{4}-\d{2}-\d{2}$/.test(day)){const d=new Date(day+"T12:00:00");return Number.isNaN(d.getTime())?null:{date:d,hasTime:false}}const d=safeDate(day);return d?{date:d,hasTime:false}:null}
-function formatEventDate(e){const p=parseEventDate(e);if(!p)return"Date TBA";const opts=p.hasTime?{timeZone:"America/Chicago",weekday:"long",month:"long",day:"numeric",hour:"numeric",minute:"2-digit"}:{weekday:"long",month:"long",day:"numeric"};return p.date.toLocaleString("en-US",opts)+(p.hasTime?" CT":"")}
-function eventFacts(e){const facts=["When: "+formatEventDate(e)],main=mainEventText(e);if(main)facts.push("Main event: "+main);const venue=scalar(e.venue),location=scalar(e.location);if(venue||location)facts.push([venue,location].filter(Boolean).join(" · "));const broadcast=scalar(e.broadcast);if(broadcast)facts.push("Watch: "+broadcast);return facts}
-function eventSlides(){
+function autoEventSlides(){
   if(!cfg().modules.events)return[];
-  return eventCache.filter(e=>!isHidden("event",e)).slice(0,Math.max(0,Number(cfg().events.maxItems||3))).map(e=>({type:"event",id:itemId("event",e),title:scalar(e.title)||scalar(e.promotion)||"Upcoming Event",source:scalar(e.promotion)||"MMA",publishedAt:"",image:cfg().events.usePosters?(scalar(e.poster_url)||scalar(e.image)||""):"",event:e,context:eventFacts(e)}));
+  return eventCache.filter(e=>!isHidden("event",e)).slice(0,Math.max(0,Number(cfg().events.maxItems||3))).map(eventSlide).filter(Boolean);
 }
-function buildSlides(){
-  const split=isSplitDesk();
-  const queues={news:newsSlides(),video:split?[]:videoSlides(),event:eventSlides()},out=[];
+function resolveManualProgramEntry(entry){
+  if(!entry?.type||!entry?.id)return null;
+  const type=entry.type,snapshot=entry.item||{};
+  if(type==="news"){
+    if(!cfg().modules.news||(cfg().hidden?.news||[]).includes(entry.id))return null;
+    const all=[newsCache?.topStory,...(newsCache?.stories||[])].filter(Boolean),current=all.find(item=>itemId("news",item)===entry.id);
+    return newsSlide(current||snapshot,{automatic:false});
+  }
+  if(type==="video"){
+    if(!cfg().modules.video||(cfg().hidden?.videos||[]).includes(entry.id))return null;
+    const current=(videoCache?.videos||[]).find(item=>itemId("video",item)===entry.id);
+    return videoSlide(current||snapshot,{automatic:false});
+  }
+  if(type==="event"){
+    if(!cfg().modules.events||(cfg().hidden?.events||[]).includes(entry.id))return null;
+    const current=eventCache.find(item=>itemId("event",item)===entry.id);
+    return eventSlide(current||snapshot);
+  }
+  return null;
+}
+function manualSlides(){return manualProgramEntries().map(resolveManualProgramEntry).filter(Boolean)}
+function appendAutoUnique(manual,auto){
+  const manualKeys=new Set(manual.map(slideKey));return manual.concat(auto.filter(item=>!manualKeys.has(slideKey(item))));
+}
+function buildAutoSlides(split){
+  const queues={news:autoNewsSlides(),video:split?[]:autoVideoSlides(),event:autoEventSlides()},out=[];
   const allowed=split?["news","event"]:["news","video","event"];
   const pattern=(cfg().rundown||[]).filter(x=>allowed.includes(x));
   const recipe=pattern.length?pattern:(split?["news","event"]:["news"]);
@@ -152,13 +187,39 @@ function buildSlides(){
   }
   return out;
 }
-function tickerItems(){
+function videoSlides(){
+  const mode=programmingMode(),auto=autoVideoSlides(),manual=manualSlides().filter(x=>x.type==="video");
+  if(mode==="manual")return manual;
+  if(mode==="hybrid")return appendAutoUnique(manual,auto);
+  return auto;
+}
+function buildSlides(){
+  const split=isSplitDesk(),mode=programmingMode();
+  const manual=manualSlides().filter(item=>!split||item.type!=="video");
+  if(mode==="manual")return manual;
+  const auto=buildAutoSlides(split);
+  if(mode==="hybrid")return appendAutoUnique(manual,auto);
+  return auto;
+}
+function autoTickerItems(){
   return [newsCache?.topStory,...(newsCache?.stories||[])]
     .filter(Boolean)
     .filter(s=>s.title&&fresh(s.publishedAt,cfg().news.maxAgeHours))
     .filter(s=>!isRemovedSource("news",s.source))
     .filter(s=>!isHidden("news",s))
     .slice(0,Math.max(3,Number(cfg().ticker.maxItems||14)));
+}
+function tickerItems(){
+  const mode=programmingMode(),manual=manualProgramEntries().filter(x=>x.type==="news").map(entry=>{
+    const current=[newsCache?.topStory,...(newsCache?.stories||[])].filter(Boolean).find(item=>itemId("news",item)===entry.id);
+    return current||entry.item||null;
+  }).filter(Boolean);
+  if(mode==="manual")return manual.slice(0,Math.max(3,Number(cfg().ticker.maxItems||14)));
+  const auto=autoTickerItems();
+  if(mode==="hybrid"){
+    const keys=new Set(manual.map(item=>itemId("news",item)));return manual.concat(auto.filter(item=>!keys.has(itemId("news",item)))).slice(0,Math.max(3,Number(cfg().ticker.maxItems||14)));
+  }
+  return auto;
 }
 function renderTicker(){
   const items=tickerItems();
