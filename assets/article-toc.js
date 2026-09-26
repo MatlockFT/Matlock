@@ -67,10 +67,60 @@
 
         list.replaceChildren();
 
-        const setOpen = (open) => {
+        const setOpen = (open, animate = false) => {
             toggle.setAttribute('aria-expanded', String(open));
-            panel.hidden = !open;
             navigation.classList.toggle('is-open', open);
+
+            if (!animate || reduceMotion() || typeof panel.animate !== 'function') {
+                panel.getAnimations?.().forEach((animation) => animation.cancel());
+                panel.classList.remove('is-animating');
+                panel.hidden = !open;
+                return;
+            }
+
+            panel.getAnimations().forEach((animation) => animation.cancel());
+            panel.classList.add('is-animating');
+
+            if (open) {
+                panel.hidden = false;
+                const targetHeight = panel.scrollHeight;
+                const animation = panel.animate(
+                    [
+                        { height: '0px', opacity: 0, transform: 'translateY(-4px)' },
+                        { height: targetHeight + 'px', opacity: 1, transform: 'translateY(0)' }
+                    ],
+                    {
+                        duration: 190,
+                        easing: 'cubic-bezier(.2,.75,.25,1)',
+                        fill: 'both'
+                    }
+                );
+
+                animation.addEventListener('finish', () => {
+                    panel.classList.remove('is-animating');
+                    animation.cancel();
+                }, { once: true });
+                return;
+            }
+
+            const startHeight = panel.getBoundingClientRect().height;
+            const animation = panel.animate(
+                [
+                    { height: startHeight + 'px', opacity: 1, transform: 'translateY(0)' },
+                    { height: '0px', opacity: 0, transform: 'translateY(-4px)' }
+                ],
+                {
+                    duration: 155,
+                    easing: 'cubic-bezier(.4,0,.6,1)',
+                    fill: 'both'
+                }
+            );
+
+            animation.addEventListener('finish', () => {
+                panel.hidden = true;
+                panel.classList.remove('is-animating');
+                animation.cancel();
+            }, { once: true });
         };
 
         headings.forEach((heading) => {
@@ -83,7 +133,7 @@
 
             link.addEventListener('click', (event) => {
                 event.preventDefault();
-                if (navigation.dataset.tocSurface !== 'floating') setOpen(false);
+                if (navigation.dataset.tocSurface !== 'floating') setOpen(false, true);
                 window.requestAnimationFrame(() => goToHeading(heading));
             });
 
@@ -93,10 +143,10 @@
         });
 
         toggle.addEventListener('click', () => {
-            setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+            setOpen(toggle.getAttribute('aria-expanded') !== 'true', true);
         });
 
-        setOpen(navigation.dataset.tocSurface === 'floating');
+        setOpen(navigation.dataset.tocSurface === 'floating', false);
         navigation.hidden = false;
     });
 
