@@ -111,6 +111,8 @@ jobs:
         run: node scripts/matchmaker/snapshot-temporal-state.mjs
       - name: Build historical UFC candidate universe
         run: node scripts/matchmaker/build-historical-universe.mjs
+      - name: Build Writer fighter autofill index
+        run: node scripts/matchmaker/build-writer-fighters.mjs
       - name: Check engine against refreshed data
         run: node scripts/matchmaker/check-matchmaker.mjs
       - name: Audit published recommendations
@@ -124,7 +126,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- assets/data/matchmaker
+          git add -- assets/data/matchmaker assets/data/writer-fighters.json
           git diff --cached --quiet && exit 0
           git commit -m "Refresh verified Matchmaker data"
           # Only generated Matchmaker data is committed here. If main advanced during collection,
