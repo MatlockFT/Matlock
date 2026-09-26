@@ -157,9 +157,11 @@ function renderDraftState(){
   renderPresetState();
 }
 function renderMetrics(){
+  const removedNews=new Set(state.sources?.removedNewsSources||[]),removedVideo=new Set(state.sources?.removedVideoChannels||[]);
+  const enabledNews=state.news.sources||[],enabledVideo=state.video.channels||[];
   const stories=[feeds.news?.topStory,...(feeds.news?.stories||[])].filter(Boolean);
-  const news=stories.filter(x=>Date.now()-Date.parse(x.publishedAt)<=Number(state.news.maxAgeHours||48)*3600000);
-  const vids=(feeds.videos?.videos||[]).filter(v=>{const d=Number(v.durationSeconds||0);return Date.now()-Date.parse(v.publishedAt)<=Number(state.video.maxAgeHours||48)*3600000&&d>=state.video.minSeconds&&d<=state.video.maxSeconds});
+  const news=stories.filter(x=>Date.now()-Date.parse(x.publishedAt)<=Number(state.news.maxAgeHours||48)*3600000).filter(x=>!removedNews.has(x.source)).filter(x=>!enabledNews.length||enabledNews.includes(x.source));
+  const vids=(feeds.videos?.videos||[]).filter(v=>{const d=Number(v.durationSeconds||0);return Date.now()-Date.parse(v.publishedAt)<=Number(state.video.maxAgeHours||48)*3600000&&d>=state.video.minSeconds&&d<=state.video.maxSeconds}).filter(v=>!removedVideo.has(v.channel)).filter(v=>!enabledVideo.length||enabledVideo.includes(v.channel));
   const events=(feeds.events?.events||[]).filter(e=>normalize(e.date)>=(new Date().toISOString().slice(0,10)));
   q('[data-metric-news]').textContent=news.length;q('[data-metric-videos]').textContent=vids.length;q('[data-metric-events]').textContent=events.length;q('[data-metric-rundown]').textContent=state.rundown.length;
 }
@@ -192,7 +194,7 @@ function restoreSource(kind,name){
 }
 function removedSourceBlock(kind,names){
   if(!names.length)return'';
-  return '<div class="bc-source-removed"><span>Removed</span><div class="bc-source-restore-list">'+names.map(name=>'<button type="button" data-restore-source="'+kind+'" data-source-name="'+escapeHtml(name)+'">Restore '+escapeHtml(name)+'</button>').join('')+'</div></div>';
+  return '<div class="bc-source-removed"><span>Removed</span><div class="bc-source-restore-list">'+names.map(name=>'<button type="button" data-restore-source="'+kind+'" data-source-name="'+encodeURIComponent(name)+'">Restore '+escapeHtml(name)+'</button>').join('')+'</div></div>';
 }
 function renderSources(){
   state.sources=state.sources||{customNewsFeeds:[],customVideoChannels:[],removedNewsSources:[],removedVideoChannels:[]};
@@ -212,7 +214,7 @@ function renderSources(){
     nh.append(row);
   });
   nh.insertAdjacentHTML('beforeend',removedSourceBlock('news',removedNews));
-  nh.querySelectorAll('[data-restore-source="news"]').forEach(btn=>btn.onclick=()=>restoreSource('news',btn.dataset.sourceName));
+  nh.querySelectorAll('[data-restore-source="news"]').forEach(btn=>btn.onclick=()=>restoreSource('news',decodeURIComponent(btn.dataset.sourceName)));
   q('[data-news-source-summary]').textContent=newsNames.length+' active'+(removedNews.length?' · '+removedNews.length+' removed':'');
 
   const customVideo=state.sources.customVideoChannels||[];
@@ -229,7 +231,7 @@ function renderSources(){
     vh.append(row);
   });
   vh.insertAdjacentHTML('beforeend',removedSourceBlock('video',removedVideo));
-  vh.querySelectorAll('[data-restore-source="video"]').forEach(btn=>btn.onclick=()=>restoreSource('video',btn.dataset.sourceName));
+  vh.querySelectorAll('[data-restore-source="video"]').forEach(btn=>btn.onclick=()=>restoreSource('video',decodeURIComponent(btn.dataset.sourceName)));
   q('[data-video-source-summary]').textContent=videoNames.length+' active'+(removedVideo.length?' · '+removedVideo.length+' removed':'');
 }
 function escapeHtml(v){const d=document.createElement('div');d.textContent=v||'';return d.innerHTML}
