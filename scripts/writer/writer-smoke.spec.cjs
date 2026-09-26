@@ -217,6 +217,66 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await previewTableShell.locator('[data-preview-table-edit]').click();
   await expect(page.locator('[data-preview-content] table').first()).toContainText('10-1');
 
+  // Fighter lookup is deterministic in smoke: directory match + live UFCStats response.
+  await page.route('**/assets/data/matchmaker/current.json?writer-fighters=1', async route => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        generatedAt: '2026-09-26T18:00:00.000Z',
+        fighters: [{
+          id: 'lookup-fighter',
+          name: 'Lookup Fighter',
+          division: 'Lightweight',
+          record: '12-2-0',
+          rank: 9,
+          image: 'https://example.com/lookup.png',
+          checkedAt: '2026-09-26T18:00:00.000Z',
+          verifiedMeetings: [{
+            result: 'W',
+            opponentName: 'Recent Opponent',
+            competitionClass: 'ufc',
+            method: 'Decision - Unanimous',
+            date: '2026-09-01'
+          }],
+          meetingCoverage: { ufcStatsId: 'aaaaaaaaaaaaaaaa' }
+        }]
+      })
+    });
+  });
+  await page.route('https://mmamatlock-writer-auth.netlify.app/api/writer/fighter*', async route => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        ok: true,
+        source: 'UFCStats',
+        mode: 'live',
+        fetchedAt: '2026-09-26T18:01:00.000Z',
+        sourceUrl: 'https://ufcstats.com/fighter-details/aaaaaaaaaaaaaaaa',
+        profile: {
+          statsId: 'aaaaaaaaaaaaaaaa',
+          name: 'Lookup Fighter',
+          record: '12-2-0',
+          height: '5\' 10"',
+          reach: '72"',
+          dob: 'Jan 01, 1998',
+          stats: {
+            slpm: '9.99',
+            sapm: '1.11',
+            strAccuracy: '61%',
+            strDefense: '67%',
+            tdAvg: '2.50',
+            tdAccuracy: '50%',
+            tdDefense: '80%',
+            subAvg: '0.7'
+          },
+          ufcRecord: '6-1-0',
+          latestBoutDate: '2026-09-01',
+          recent: [{ result:'W', opponent:'Recent Opponent', method:'Decision - Unanimous', date:'2026-09-01' }]
+        }
+      })
+    });
+  });
+
   // Structured Fight Stats: normal fields, no pipe-delimited row syntax.
   await page.click('[data-tool="stats"]');
   const statsDialog = page.locator('[data-stats-dialog]');
@@ -229,6 +289,17 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await statsDialog.locator('[data-stats-insert]').click();
   await expect(page.locator('[data-preview-content]')).toContainText('Alpha Fighter');
   await expect(page.locator('[data-preview-content]')).toContainText('4.20');
+
+  // Typing a fighter name offers a match; choosing it applies live UFCStats values.
+  await page.click('[data-tool="stats"]');
+  const lookupStatsDialog = page.locator('[data-stats-dialog]');
+  const lookupInput = lookupStatsDialog.locator('[data-stats-fighter="a"]');
+  await lookupInput.fill('Lookup');
+  await expect(lookupStatsDialog.locator('.writer-fighter-suggestion')).toContainText('Lookup Fighter');
+  await lookupStatsDialog.locator('.writer-fighter-suggestion').click();
+  await expect(lookupStatsDialog.locator('[data-stats-row-list] .writer-comparison-row').first().locator('[data-structured-a]')).toHaveValue('9.99');
+  await expect(lookupStatsDialog.locator('.writer-fighter-source-status')).toContainText('LIVE UFCStats');
+  await page.keyboard.press('Escape');
 
   // Structured Tale of the Tape: direct comparison and recent-form controls.
   await page.click('[data-tool="tale"]');
