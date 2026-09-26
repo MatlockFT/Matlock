@@ -67,11 +67,11 @@ export function parseProfile(html, fighter, checkedAt) {
   // latter is authoritative for UFC bout-by-bout subtype counts.
   const profileText = clean(html);
   const countBefore = label => {
-    const match = profileText.match(new RegExp('\\b(\\d+)\\s+' + label.replace(/[.*+?^$()|[\\]{}\\]/g, '\\export function parseProfile(html, fighter, checkedAt) {
-  const division = field(html, 'hero-profile__division-title').replace(/ Division$/i, '');
-  const record = field(html, 'hero-profile__division-body').match(/\d+-\d+-\d+/)?.[0] || null;
-  if (!division || !record) throw new Error(`Missing profile division/record: ${fighter.id}`);
-  const historyBlock = html.match(/field--name-qna-ufc[^>]*>([\s\S]*?)<\/div>/)?.[1] || '';') + '\\b', 'i'));
+    const lower = profileText.toLowerCase();
+    const index = lower.indexOf(label.toLowerCase());
+    if (index < 0) return null;
+    const before = profileText.slice(Math.max(0, index - 48), index);
+    const match = before.match(/(\d+)\s*$/);
     return match ? Number(match[1]) : null;
   };
   const recordWins = Number(record.split('-')[0]) || 0;
