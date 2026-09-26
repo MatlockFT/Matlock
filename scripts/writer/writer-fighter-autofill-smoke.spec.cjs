@@ -233,3 +233,90 @@ test('Brad Tavares stays complete when the live probe fails', async ({ page }) =
 
   expect(pageErrors).toEqual([]);
 });
+
+
+test('fighters without a UFCStats sample show explicit N/A instead of blanks', async ({ page }) => {
+  test.setTimeout(45000);
+  const pageErrors = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
+
+  await page.route('**/assets/data/writer-fighters.json?writer-fighters=*', async route => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        schemaVersion: 1,
+        generatedAt: '2026-09-26T21:32:12.000Z',
+        builtAt: '2026-09-26T21:32:12.000Z',
+        mirrorThrough: '2026-09-19',
+        fighters: [{
+          id: 'new-signing',
+          name: 'New Signing',
+          division: 'Lightweight',
+          record: '6-0-0',
+          ufcRecord: '0-0-0',
+          recordOutsideUfc: '6-0-0',
+          image: '',
+          checkedAt: '2026-09-26T21:32:12.000Z',
+          ufcStatsId: '',
+          sourceUrl: null,
+          latestBoutDate: null,
+          bio: { height: null, reach: null, dob: null },
+          stats: null,
+          career: {
+            winsByKnockout: 5,
+            winsBySubmission: 0,
+            totalFinishes: 5,
+            decisionWins: 1,
+            unanimousDecisionWins: 1,
+            splitDecisionWins: 0,
+            majorityDecisionWins: 0,
+            otherDecisionWins: 0,
+            decisionBreakdownComplete: true
+          },
+          recent: []
+        }]
+      })
+    });
+  });
+
+  await page.route('https://mmamatlock-writer-auth.netlify.app/api/writer/fighter*', async route => {
+    await route.fulfill({
+      status: 502,
+      contentType: 'application/json',
+      headers: { 'access-control-allow-origin': '*' },
+      body: JSON.stringify({ ok:false, error:'simulated unavailable live sources' })
+    });
+  });
+
+  await page.goto(BASE, { waitUntil:'domcontentloaded' });
+  await page.click('[data-library-new]');
+
+  await page.click('[data-tool="stats"]');
+  const statsDialog = page.locator('[data-stats-dialog]');
+  const statsInput = statsDialog.locator('[data-stats-fighter="a"]');
+  await statsInput.fill('New Signing');
+  await statsDialog.locator('.writer-fighter-suggestion', { hasText:'New Signing' }).click();
+
+  const statValues = await statsDialog.locator('[data-stats-row-list] [data-structured-a]').evaluateAll(nodes =>
+    nodes.map(node => node.value.trim())
+  );
+  expect(statValues).toHaveLength(8);
+  expect(statValues.every(value => value === 'N/A')).toBe(true);
+
+  await statsDialog.locator('button[value="cancel"]').first().click();
+  await page.click('[data-tool="tale"]');
+
+  const taleDialog = page.locator('[data-tale-dialog]');
+  const taleInput = taleDialog.locator('[data-tale-a]');
+  await taleInput.fill('New Signing');
+  await taleDialog.locator('.writer-fighter-suggestion', { hasText:'New Signing' }).click();
+
+  const taleValues = await taleDialog.locator('[data-tale-row-list] [data-structured-a]').evaluateAll(nodes =>
+    nodes.map(node => node.value.trim())
+  );
+  expect(taleValues).toHaveLength(11);
+  expect(taleValues.every(Boolean)).toBe(true);
+  expect(taleValues).toContain('N/A');
+
+  expect(pageErrors).toEqual([]);
+});
