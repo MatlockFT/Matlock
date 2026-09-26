@@ -288,6 +288,9 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
         ok: true,
         source: 'UFCStats',
         mode: 'live',
+        liveUfcStats: true,
+        liveUfcProfile: false,
+        liveCareerFallback: false,
         fetchedAt: '2026-09-26T18:01:00.000Z',
         sourceUrl: 'https://ufcstats.com/fighter-details/aaaaaaaaaaaaaaaa',
         profile: {
