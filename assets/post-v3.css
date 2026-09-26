@@ -1397,3 +1397,31 @@ html[data-theme="light"] .post-page-v3 .fight-section-ambient{
       drop-shadow(0 0 20px rgba(var(--fight-glow-rgb),.09));
   }
 }
+
+
+/* UFCStats sourcing notes inside article fight stat visuals. */
+.post-page-v3 .fs-source-note{
+  padding:.7rem 1rem;
+  border-top:1px solid rgba(255,255,255,.08);
+  color:#8f98a4;
+  font:700 .58rem/1.4 var(--v3-sans);
+  letter-spacing:.025em;
+  text-align:center;
+}
+.post-page-v3 .ufcstats-debut-note{
+  display:flex;
+  align-items:baseline;
+  gap:.65rem;
+  margin:.75rem 0 1.2rem;
+  padding:.65rem .8rem;
+  border-left:3px solid var(--v3-red);
+  background:transparent;
+  color:var(--v3-muted);
+  font:650 .68rem/1.4 var(--v3-sans);
+}
+.post-page-v3 .ufcstats-debut-note strong{
+  color:var(--v3-ink);
+  font-size:.58rem;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+}
