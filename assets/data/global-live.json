@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "generated_at": "2026-09-26T15:06:02Z",
+  "generated_at": "2026-09-26T18:31:11Z",
   "selected_event_id": "mangu:Pr_QIAp96Fs",
   "events": [
     {
@@ -25,10 +25,38 @@
       "scheduled_end_time": null,
       "actual_start_time": "2026-09-26T13:24:48Z",
       "actual_end_time": null,
-      "concurrent_viewers": "38435",
+      "concurrent_viewers": "79650",
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-26T15:06:02Z",
+      "observed_at": "2026-09-26T18:31:10Z",
+      "source_role": "promotion"
+    },
+    {
+      "event_id": "fen:nJQmC8iSuR8",
+      "promotion_id": "fen",
+      "promotion": "Fight Exclusive Night",
+      "short_name": "FEN",
+      "country": "Poland",
+      "priority": 72,
+      "coverage_note": "Free YouTube fight coverage varies; FEN 63 includes the first three fights",
+      "access_note": "Main card may be carried by CANAL+",
+      "channel_url": "https://www.youtube.com/channel/UCRolEb7xwuPcRbsPyEWGK2Q",
+      "channel_id": "UCRolEb7xwuPcRbsPyEWGK2Q",
+      "channel_name": "FEN MMA",
+      "video_id": "nJQmC8iSuR8",
+      "title": "FEN 63 | STUDIO + 3 WALKI + CEREMONIA | Kruk vs Kornik",
+      "watch_url": "https://www.youtube.com/watch?v=nJQmC8iSuR8",
+      "status": "live",
+      "is_live": true,
+      "embeddable": true,
+      "scheduled_start_time": "2026-09-26T17:00:00Z",
+      "scheduled_end_time": null,
+      "actual_start_time": "2026-09-26T16:43:44Z",
+      "actual_end_time": null,
+      "concurrent_viewers": "486",
+      "api_verified": true,
+      "stale": false,
+      "observed_at": "2026-09-26T18:31:10Z",
       "source_role": "promotion"
     },
     {
@@ -53,43 +81,14 @@
       "scheduled_end_time": null,
       "actual_start_time": "2026-09-26T13:25:27Z",
       "actual_end_time": null,
-      "concurrent_viewers": "1804",
+      "concurrent_viewers": "6282",
       "api_verified": true,
       "stale": false,
-      "observed_at": "2026-09-26T15:06:02Z",
+      "observed_at": "2026-09-26T18:31:10Z",
       "source_role": "promotion"
     }
   ],
-  "upcoming": [
-    {
-      "event_id": "fen:nJQmC8iSuR8",
-      "promotion_id": "fen",
-      "promotion": "Fight Exclusive Night",
-      "short_name": "FEN",
-      "country": "Poland",
-      "priority": 72,
-      "coverage_note": "Free YouTube fight coverage varies; FEN 63 includes the first three fights",
-      "access_note": "Main card may be carried by CANAL+",
-      "channel_url": "https://www.youtube.com/channel/UCRolEb7xwuPcRbsPyEWGK2Q",
-      "channel_id": "UCRolEb7xwuPcRbsPyEWGK2Q",
-      "channel_name": "FEN MMA",
-      "video_id": "nJQmC8iSuR8",
-      "title": "FEN 63 | STUDIO + 3 WALKI + CEREMONIA | Kruk vs Kornik",
-      "watch_url": "https://www.youtube.com/watch?v=nJQmC8iSuR8",
-      "status": "upcoming",
-      "is_live": false,
-      "embeddable": true,
-      "scheduled_start_time": "2026-09-26T17:00:00Z",
-      "scheduled_end_time": null,
-      "actual_start_time": null,
-      "actual_end_time": null,
-      "concurrent_viewers": null,
-      "api_verified": true,
-      "stale": false,
-      "observed_at": "2026-09-26T15:06:02Z",
-      "source_role": "promotion"
-    }
-  ],
+  "upcoming": [],
   "sources": {
     "559-fights": {
       "promotion": "559 Fights",
@@ -123,7 +122,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T23:00:53Z"
+      "last_checked_at": "2026-09-26T18:31:09Z"
     },
     "aeternum": {
       "promotion": "Aeternum Fight League",
@@ -140,7 +139,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-26T15:06:02Z"
+      "last_checked_at": "2026-09-26T18:31:10Z"
     },
     "afc-korea": {
       "promotion": "Angel's Fighting Championship",
@@ -190,8 +189,8 @@
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": "2026-09-26T15:06:02Z",
-      "last_checked_at": "2026-09-26T15:06:02Z"
+      "last_success_at": "2026-09-26T18:31:10Z",
+      "last_checked_at": "2026-09-26T18:31:10Z"
     },
     "ares": {
       "promotion": "ARES Fighting Championship",
@@ -208,7 +207,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T23:00:54Z"
+      "last_checked_at": "2026-09-26T18:31:10Z"
     },
     "babilon": {
       "promotion": "Babilon MMA",
@@ -259,7 +258,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T23:00:53Z"
+      "last_checked_at": "2026-09-26T18:31:09Z"
     },
     "deep": {
       "promotion": "DEEP / DEEP JEWELS",
@@ -305,12 +304,12 @@
       "channel_url": "https://www.youtube.com/channel/UCRolEb7xwuPcRbsPyEWGK2Q",
       "channel_id": "UCRolEb7xwuPcRbsPyEWGK2Q",
       "channel_name": "FEN MMA",
-      "status": "upcoming",
+      "status": "live",
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": "2026-09-25T17:32:45Z",
-      "last_checked_at": "2026-09-26T15:06:02Z"
+      "last_success_at": "2026-09-26T18:31:10Z",
+      "last_checked_at": "2026-09-26T18:31:10Z"
     },
     "fnc": {
       "promotion": "Fight Nation Championship",
@@ -327,7 +326,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-26T11:43:34Z",
-      "last_checked_at": "2026-09-26T15:06:00Z"
+      "last_checked_at": "2026-09-26T18:31:09Z"
     },
     "front-street-fights": {
       "promotion": "Front Street Fights",
@@ -361,7 +360,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T23:00:54Z"
+      "last_checked_at": "2026-09-26T18:31:10Z"
     },
     "gma-vietnam": {
       "promotion": "Gods of Martial Arts",
@@ -378,7 +377,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T23:00:54Z"
+      "last_checked_at": "2026-09-26T18:31:10Z"
     },
     "grachan": {
       "promotion": "GRACHAN",
@@ -395,7 +394,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T23:00:53Z"
+      "last_checked_at": "2026-09-26T18:31:09Z"
     },
     "inka": {
       "promotion": "Inka Fighting Championship",
@@ -463,7 +462,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-26T01:41:06Z",
-      "last_checked_at": "2026-09-26T06:36:21Z"
+      "last_checked_at": "2026-09-26T18:31:10Z"
     },
     "lux": {
       "promotion": "LUX Fight League",
@@ -496,8 +495,8 @@
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
-      "last_success_at": "2026-09-26T15:06:02Z",
-      "last_checked_at": "2026-09-26T15:06:01Z"
+      "last_success_at": "2026-09-26T18:31:10Z",
+      "last_checked_at": "2026-09-26T18:31:10Z"
     },
     "manual-youtube-live": {
       "promotion": "YouTube Live",
@@ -514,7 +513,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-26T01:41:06Z",
-      "last_checked_at": "2026-09-26T06:36:21Z"
+      "last_checked_at": "2026-09-26T18:31:10Z"
     },
     "mfl": {
       "promotion": "Mexico Fight League",
@@ -548,7 +547,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-26T01:41:05Z",
-      "last_checked_at": "2026-09-26T06:36:21Z"
+      "last_checked_at": "2026-09-26T18:31:09Z"
     },
     "naiza": {
       "promotion": "NAIZA Fighting Championship",
@@ -582,7 +581,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T23:00:53Z"
+      "last_checked_at": "2026-09-26T18:31:09Z"
     },
     "one-championship": {
       "promotion": "ONE Championship",
@@ -599,7 +598,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T15:59:14Z",
-      "last_checked_at": "2026-09-26T15:06:02Z"
+      "last_checked_at": "2026-09-26T18:31:10Z"
     },
     "open-fight-latam": {
       "promotion": "Open Fight LATAM",
@@ -701,7 +700,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T22:10:55Z",
-      "last_checked_at": "2026-09-26T01:41:05Z"
+      "last_checked_at": "2026-09-26T18:31:10Z"
     },
     "tuff-n-uff": {
       "promotion": "Tuff-N-Uff",
@@ -718,7 +717,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-26T06:36:21Z",
-      "last_checked_at": "2026-09-26T11:43:33Z"
+      "last_checked_at": "2026-09-26T18:31:09Z"
     },
     "ugp": {
       "promotion": "Ultimo Guerrero en Pie",
@@ -735,7 +734,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-25T23:00:54Z"
+      "last_checked_at": "2026-09-26T18:31:09Z"
     },
     "versus-mma": {
       "promotion": "Versus MMA",
@@ -790,8 +789,8 @@
     }
   },
   "monitored_count": 41,
-  "live_count": 2,
-  "upcoming_count": 1,
+  "live_count": 3,
+  "upcoming_count": 0,
   "youtube_api_configured": true,
   "api_verified_source_count": 41
 }
