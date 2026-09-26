@@ -73,9 +73,9 @@ h1{margin:0 0 25px;font-family:Arial,Helvetica,sans-serif;font-size:42px;line-he
 .stage.split-desk .visual-blur,.stage.split-desk .story-image{display:none!important}
 .stage.split-desk .video-shell{display:block!important}
 .stage.split-desk .visual-badge{background:rgba(8,8,8,.88);color:#f5f1e9;border-left:4px solid var(--accent);max-width:80%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.stage.split-desk .story-panel{order:2;position:relative!important;left:auto!important;bottom:auto!important;width:auto!important;pointer-events:auto!important;padding:30px 34px 24px;background:#111!important;border:0!important;display:flex;flex-direction:column;overflow:hidden}
+.stage.split-desk .story-panel{order:2;position:relative!important;left:auto!important;bottom:auto!important;width:auto!important;pointer-events:auto!important;padding:26px 28px 22px;background:#111!important;border:0!important;display:flex;flex-direction:column;overflow:hidden}
 .stage.split-desk .story-kicker{margin-bottom:12px;font-size:12px}
-.stage.split-desk .story-panel h1,.stage.split-desk .story-panel h1.is-long{margin:0 0 16px;font-family:Arial,Helvetica,sans-serif;font-size:34px;line-height:1.08;letter-spacing:-.02em;text-shadow:none}
+.stage.split-desk .story-panel h1{margin:0 0 14px;font-family:Arial,Helvetica,sans-serif;font-size:30px;line-height:1.08;letter-spacing:-.018em;text-shadow:none}.stage.split-desk .story-panel h1.is-long{font-size:27px;line-height:1.1}
 .stage.split-desk .story-context{display:block!important;max-width:none;min-height:0;flex:1;position:relative;margin:0}
 .stage.split-desk .coverage{display:none!important}
 .stage.split-desk .story-meta{margin-top:14px;padding-top:13px;border-top:1px solid var(--rule);font-size:12px}
@@ -106,7 +106,7 @@ h1{margin:0 0 25px;font-family:Arial,Helvetica,sans-serif;font-size:42px;line-he
 }
 .article-reader-card:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.025),transparent 22%);opacity:.8}
 .article-reader-body{position:relative;z-index:1;min-height:0;overflow:hidden}
-.article-reader-body p{margin:0 0 15px;font-family:Arial,Helvetica,sans-serif;font-size:21px;line-height:1.5;letter-spacing:-.004em;color:#ddd9d1}
+.article-reader-body p{margin:0 0 14px;font-family:Arial,Helvetica,sans-serif;font-size:20px;line-height:1.48;letter-spacing:-.003em;color:#ddd9d1}
 .article-reader-body p:last-child{margin-bottom:0}
 .article-reader-body h2,.article-reader-body h3{margin:0 0 12px;color:#f4f0e7}
 .article-reader-body h2{font:700 19px/1.18 "Gobold",Arial,sans-serif;letter-spacing:.025em;text-transform:uppercase}

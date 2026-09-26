@@ -140,7 +140,7 @@ function autoNewsSlides(){
     .slice(0,Math.max(0,Number(cfg().news.maxItems||16)));
 }
 function autoVideoSlides(){
-  if(!cfg().modules.video)return[];
+  if(!cfg().modules.video&&!isSplitDesk())return[];
   const channels=cfg().video.channels||[];
   return (videoCache?.videos||[])
     .filter(v=>!channels.length||channels.includes(v.channel))
@@ -163,7 +163,7 @@ function resolveManualProgramEntry(entry){
     return newsSlide(current||snapshot,{automatic:false});
   }
   if(type==="video"){
-    if(!cfg().modules.video||(cfg().hidden?.videos||[]).includes(entry.id))return null;
+    if((!cfg().modules.video&&!isSplitDesk())||(cfg().hidden?.videos||[]).includes(entry.id))return null;
     const current=(videoCache?.videos||[]).find(item=>itemId("video",item)===entry.id);
     return videoSlide(current||snapshot,{automatic:false});
   }
