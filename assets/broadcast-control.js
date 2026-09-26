@@ -304,6 +304,7 @@ function programDuration(seconds){
 }
 function programEntryMarkup(entry,{queueIndex=null}={}){
   const type=entry.type,item=entry.item||entry,raw=item||{},title=type==='event'?(raw.title||raw.promotion||'Upcoming event'):(raw.title||'Untitled');
+  const thumb=raw.thumbnail||raw.image||raw.imageUrl||raw.ogImage||raw.poster_url||'';
   const source=type==='video'?(raw.channel||raw.source||'YouTube'):type==='event'?(raw.promotion||raw.source||'MMA'):(raw.source||'Combat Sports');
   const url=programUrl(type,raw),meta=[];
   meta.push('<span class="bc-program-type">'+escapeHtml(type)+'</span>');
@@ -317,7 +318,8 @@ function programEntryMarkup(entry,{queueIndex=null}={}){
   }
   const titleHtml=url?'<a class="bc-program-title" href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">'+escapeHtml(title)+'</a>':'<span class="bc-program-title">'+escapeHtml(title)+'</span>';
   const action=queueIndex===null?'<button type="button" data-program-add>Add</button>':'<button type="button" class="remove" data-program-remove>Remove</button>';
-  return '<div class="bc-program-grip" aria-hidden="true">⠿</div><div class="bc-program-main">'+titleHtml+'<div class="bc-program-meta">'+meta.join('')+'</div></div><div class="bc-program-item-actions">'+action+'</div>';
+  const thumbHtml=queueIndex===null?'<div class="bc-program-thumb'+(thumb?'':' is-empty')+'">'+(thumb?'<img src="'+escapeHtml(thumb)+'" alt="" loading="lazy">':'<span>'+escapeHtml(type.toUpperCase())+'</span>')+'</div>':'';
+  return thumbHtml+'<div class="bc-program-grip" aria-hidden="true">⠿</div><div class="bc-program-main">'+titleHtml+'<div class="bc-program-meta">'+meta.join('')+'</div></div><div class="bc-program-item-actions">'+action+'</div>';
 }
 function currentOutputGroups(){
   if(!previewQueue)return[];
@@ -349,7 +351,7 @@ function renderProgramPool(){
   if(!items.length){host.innerHTML='<div class="bc-program-empty">No pool items match this view.</div>';return}
   host.innerHTML='';
   items.forEach(entry=>{
-    const row=document.createElement('article');row.className='bc-program-item';row.draggable=true;row.dataset.programPoolKey=programKey(entry.type,entry.item);
+    const row=document.createElement('article');row.className='bc-program-item bc-program-pool-item';row.draggable=true;row.dataset.programPoolKey=programKey(entry.type,entry.item);
     row.innerHTML=programEntryMarkup(entry);
     row.querySelector('[data-program-add]').onclick=()=>addProgramEntry(entry.type,entry.item);
     row.addEventListener('dragstart',event=>{
