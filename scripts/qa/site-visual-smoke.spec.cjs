@@ -281,6 +281,10 @@ test.describe('Broadcast control program monitor', () => {
 
     await page.locator('[data-nav-target="programming"]').click();
     await expect(page.locator('[data-section="programming"]')).toBeVisible();
+    await expect(page.locator('.bc-preview-column [data-program-pool]')).toBeVisible();
+    await expect(page.locator('[data-section="programming"] [data-program-pool]')).toHaveCount(0);
+    const poolLayout = await page.locator('.bc-preview-column [data-program-pool]').evaluate(node => getComputedStyle(node).gridTemplateColumns);
+    expect(poolLayout.split(' ').length).toBeGreaterThanOrEqual(2);
     await expect(page.locator('[data-program-mode="auto"]')).toHaveAttribute('aria-pressed','true');
     await page.locator('[data-program-pool-tab="news"]').click();
     const poolItems = page.locator('[data-program-pool] .bc-program-item');
