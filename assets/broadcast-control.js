@@ -8,7 +8,7 @@ const NEWS_FALLBACK='/assets/data/mma-news.json';
 const VIDEOS='https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-videos.json';
 const VIDEOS_FALLBACK='/assets/data/mma-videos.json';
 const EVENTS='/assets/data/upcoming-events-live.json';
-const DEFAULT={"version":1,"revision":1,"updatedAt":null,"modules":{"news":true,"video":true,"events":true,"ticker":true,"comingUp":true,"music":true},"rundown":["news","news","video","news","event"],"timing":{"newsSeconds":45,"eventSeconds":35,"transitionMs":650,"controlPollSeconds":10},"news":{"maxAgeHours":48,"maxItems":16,"sources":[],"requireContext":true,"contextFacts":4},"video":{"maxAgeHours":48,"maxItems":8,"minSeconds":20,"maxSeconds":600,"volume":50,"channels":[],"playFull":true},"events":{"maxItems":3,"usePosters":true},"audio":{"enabled":true,"musicUrl":"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3","musicVolume":14,"duckVolume":3.5},"ticker":{"enabled":true,"speedSeconds":240,"maxItems":14},"visual":{"layout":"splitDesk","videoWidth":64,"articleCardSeconds":9,"articleCharsPerCard":340,"flipNews":false,"showRail":true,"showClock":true,"showBadge":true,"showSource":true},"sources":{"customNewsFeeds":[],"customVideoChannels":[],"removedNewsSources":[],"removedVideoChannels":[]},"programming":{"mode":"auto","manualQueue":[]},"hidden":{"news":[],"videos":[],"events":[]},"forceNext":null};
+const DEFAULT={"version":1,"revision":1,"updatedAt":null,"modules":{"news":true,"video":true,"events":true,"ticker":true,"comingUp":true,"music":true},"rundown":["news","news","video","news","event"],"timing":{"newsSeconds":45,"eventSeconds":35,"transitionMs":650,"controlPollSeconds":10},"news":{"maxAgeHours":48,"maxItems":16,"sources":[],"requireContext":true,"contextFacts":4},"video":{"maxAgeHours":48,"maxItems":8,"minSeconds":20,"maxSeconds":600,"volume":50,"channels":[],"playFull":true},"events":{"maxItems":3,"usePosters":true},"audio":{"enabled":true,"musicUrl":"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3","musicVolume":14,"duckVolume":3.5},"ticker":{"enabled":true,"speedSeconds":240,"maxItems":14},"visual":{"layout":"splitDesk","videoWidth":64,"articleCardSeconds":9,"articleCharsPerCard":340,"flipNews":false,"showRail":true,"showClock":true,"showBadge":true,"showSource":true},"sources":{"customNewsFeeds":[],"customVideoChannels":[],"removedNewsSources":[],"removedVideoChannels":[]},"programming":{"mode":"auto","tickerMode":"auto","manualQueue":[]},"hidden":{"news":[],"videos":[],"events":[]},"forceNext":null};
 const q=s=>app.querySelector(s),qa=s=>[...app.querySelectorAll(s)];
 let state=structuredClone(DEFAULT),saved=structuredClone(DEFAULT),feeds={news:null,videos:null,events:null},contentTab='news',dragIndex=-1,toastTimer=0,feedWarnings=[],previewReady=false,previewLoadTimer=0,previewSyncTimer=0,previewFrameLoaded=false,feedsReady=false,previewQueue=null,previewMuted=true,programPoolTab='all',programSearch='',programDrag=null,programPlaceholder=null;
 
@@ -249,7 +249,7 @@ function renderSources(){
 
 function programMode(){const mode=state.programming?.mode;return ['auto','hybrid','manual'].includes(mode)?mode:'auto'}
 function manualProgramQueue(){
-  state.programming=state.programming||{mode:'auto',manualQueue:[]};
+  state.programming=state.programming||{mode:'auto',tickerMode:'auto',manualQueue:[]};
   state.programming.manualQueue=Array.isArray(state.programming.manualQueue)?state.programming.manualQueue:[];
   return state.programming.manualQueue;
 }
@@ -324,8 +324,8 @@ function programEntryMarkup(entry,{queueIndex=null}={}){
 function currentOutputGroups(){
   if(!previewQueue)return[];
   if(previewQueue.mode==='splitDesk')return[
-    {label:'ARTICLE / EVENT LANE',items:previewQueue.article||[]},
-    {label:'VIDEO LANE',items:previewQueue.video||[]}
+    {label:'VIDEO OUTPUT',items:previewQueue.video||[]},
+    {label:'ARTICLE / EVENT OUTPUT',items:previewQueue.article||[]}
   ];
   return[{label:'PROGRAM ORDER',items:previewQueue.program||[]}];
 }
@@ -367,11 +367,11 @@ function ensureProgramPlaceholder(){
   programPlaceholder=document.createElement('div');programPlaceholder.className='bc-program-drop-slot';return programPlaceholder;
 }
 function cleanupProgramDrag(){
-  q('[data-program-manual-queue]')?.classList.remove('is-drop-active');
+  qa('[data-program-manual-video],[data-program-manual-article]').forEach(host=>host.classList.remove('is-drop-active'));
   programPlaceholder?.remove();programDrag=null;
 }
 function queueDropIndex(host,event){
-  const rows=[...host.querySelectorAll('.bc-program-item')].filter(row=>row!==event.target.closest('.is-dragging'));
+  const rows=[...host.querySelectorAll('.bc-program-item')].filter(row=>!row.classList.contains('is-dragging'));
   const y=event.clientY;
   for(let i=0;i<rows.length;i++){const rect=rows[i].getBoundingClientRect();if(y<rect.top+rect.height/2)return i}
   return rows.length;
@@ -380,64 +380,113 @@ function positionProgramPlaceholder(host,index){
   const slot=ensureProgramPlaceholder(),rows=[...host.querySelectorAll('.bc-program-item')];
   const ref=rows[index]||null;host.insertBefore(slot,ref);
 }
-function addProgramEntry(type,item,index=manualProgramQueue().length){
-  const queue=manualProgramQueue(),entry=snapshotProgramEntry(type,item);
-  index=Math.max(0,Math.min(queue.length,index));queue.splice(index,0,entry);
+function programLane(type){return type==='video'?'video':'article'}
+function manualLaneEntries(lane){
+  return manualProgramQueue().map((entry,index)=>({entry,index})).filter(x=>programLane(x.entry.type)===lane);
+}
+function laneInsertGlobalIndex(lane,laneIndex){
+  const queue=manualProgramQueue(),laneRows=manualLaneEntries(lane);
+  laneIndex=Math.max(0,Math.min(laneRows.length,laneIndex));
+  if(!laneRows.length)return lane==='article'?0:queue.length;
+  if(laneIndex<laneRows.length)return laneRows[laneIndex].index;
+  return laneRows[laneRows.length-1].index+1;
+}
+function addProgramEntry(type,item,laneIndex=null){
+  const lane=programLane(type),queue=manualProgramQueue(),entry=snapshotProgramEntry(type,item);
+  const globalIndex=laneIndex===null?laneInsertGlobalIndex(lane,manualLaneEntries(lane).length):laneInsertGlobalIndex(lane,laneIndex);
+  queue.splice(globalIndex,0,entry);
   if(programMode()==='auto')state.programming.mode='hybrid';
-  renderProgramming();markDirty({restartPreview:true});toast(programMode()==='manual'?'Added to manual loop.':'Added as a manual priority.');
+  renderProgramming();markDirty({restartPreview:true});toast(lane==='video'?'Added to Video Queue.':'Added to Article / Event Queue.');
 }
 function removeProgramEntry(index){
   manualProgramQueue().splice(index,1);renderProgramming();markDirty({restartPreview:true});
 }
-function moveProgramEntry(from,to){
-  const queue=manualProgramQueue();if(from<0||from>=queue.length)return;
-  const [entry]=queue.splice(from,1);if(from<to)to--;to=Math.max(0,Math.min(queue.length,to));queue.splice(to,0,entry);
-  renderProgramming();markDirty({restartPreview:true});
+function moveProgramEntryWithinLane(fromGlobal,laneTo){
+  const queue=manualProgramQueue();if(fromGlobal<0||fromGlobal>=queue.length)return;
+  const [entry]=queue.splice(fromGlobal,1),lane=programLane(entry.type);
+  const laneRows=manualLaneEntries(lane);laneTo=Math.max(0,Math.min(laneRows.length,laneTo));
+  let target;
+  if(!laneRows.length)target=lane==='article'?0:queue.length;
+  else if(laneTo<laneRows.length)target=laneRows[laneTo].index;
+  else target=laneRows[laneRows.length-1].index+1;
+  queue.splice(target,0,entry);renderProgramming();markDirty({restartPreview:true});
 }
-function renderProgramManualQueue(){
-  const host=q('[data-program-manual-queue]');if(!host)return;
-  const queue=manualProgramQueue(),mode=programMode(),head=q('[data-program-manual-head]');
-  head.hidden=false;
-  const headLabel=head.querySelector('span'),headNote=head.querySelector('small');
-  if(headLabel)headLabel.textContent=mode==='auto'?'SAVED MANUAL QUEUE · INACTIVE':'YOUR PRIORITY QUEUE';
-  if(headNote)headNote.textContent=mode==='auto'?'Drop anything here to switch to Hybrid':mode==='manual'?'Drag to set the exact looping order':'Drag to reorder · Auto fills behind';
-  host.hidden=false;host.classList.toggle('is-inactive',mode==='auto');
-  q('[data-program-clear]').disabled=!queue.length;
-  q('[data-program-queue-count]').textContent=mode==='auto'?(previewQueue?(previewQueue.article?.length||0)+(previewQueue.video?.length||0)+(previewQueue.program?.length||0):0):queue.length;
-  host.innerHTML='';
-  if(!queue.length){host.innerHTML='<div class="bc-program-empty">Drop articles, videos or events here. '+(mode==='auto'?'Your first drop switches the draft to Hybrid.':mode==='manual'?'Nothing will air until you add something.':'Auto will fill the channel until you add priorities.')+'</div>'}
-  queue.forEach((entry,index)=>{
-    const row=document.createElement('article');row.className='bc-program-item bc-program-queue-item';row.draggable=true;row.dataset.programQueueIndex=String(index);row.innerHTML=programEntryMarkup(entry,{queueIndex:index});
+function renderLaneNow(selector,item,fallback){
+  const host=q(selector);if(!host)return;
+  if(!item){host.innerHTML='<span>'+escapeHtml(fallback)+'</span>';return}
+  const url=safeQueueUrl(item.url),title=escapeHtml(item.title||''),source=escapeHtml(item.source||'');
+  host.innerHTML='<b>ON AIR</b>'+(url?'<a href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">'+title+'</a>':'<span>'+title+'</span>')+(source?' <em>'+source+'</em>':'');
+}
+function renderProgramLane(lane){
+  const host=q(lane==='video'?'[data-program-manual-video]':'[data-program-manual-article]');if(!host)return;
+  const mode=programMode(),rows=manualLaneEntries(lane),count=q(lane==='video'?'[data-program-video-count]':'[data-program-article-count]');
+  count.textContent=rows.length;
+  host.classList.toggle('is-inactive',mode==='auto');host.innerHTML='';
+  const emptyCopy=mode==='auto'
+    ? (lane==='video'?'Auto video is currently running. Drop videos here to take priority.':'Auto articles/events are currently rotating. Drop stories here to take priority.')
+    : mode==='manual'
+      ? (lane==='video'?'No manual videos. Eligible Auto video will keep running as fallback.':'No manual articles/events. The reader lane will remain idle.')
+      : (lane==='video'?'No video priorities. Auto video fills this lane.':'No article priorities. Auto articles/events fill this lane.');
+  if(!rows.length)host.innerHTML='<div class="bc-program-empty">'+emptyCopy+'</div>';
+  rows.forEach(({entry,index},laneIndex)=>{
+    const row=document.createElement('article');row.className='bc-program-item bc-program-queue-item';row.draggable=true;row.dataset.programQueueIndex=String(index);row.dataset.programLane=lane;row.innerHTML=programEntryMarkup(entry,{queueIndex:index});
     row.querySelector('[data-program-remove]').onclick=()=>removeProgramEntry(index);
     row.addEventListener('dragstart',event=>{
-      programDrag={kind:'queue',index};row.classList.add('is-dragging');event.dataTransfer.effectAllowed='move';event.dataTransfer.setData('text/plain',entry.id||'queue');
+      programDrag={kind:'queue',index,lane};row.classList.add('is-dragging');event.dataTransfer.effectAllowed='move';event.dataTransfer.setData('text/plain',entry.id||'queue');
     });
     row.addEventListener('dragend',()=>{row.classList.remove('is-dragging');cleanupProgramDrag()});
     host.append(row);
   });
   host.ondragover=event=>{
-    if(!programDrag)return;event.preventDefault();host.classList.add('is-drop-active');event.dataTransfer.dropEffect=programDrag.kind==='pool'?'copy':'move';
+    if(!programDrag)return;
+    const dragLane=programDrag.kind==='pool'?programLane(programDrag.entry.type):programDrag.lane;
+    if(dragLane!==lane)return;
+    event.preventDefault();host.classList.add('is-drop-active');event.dataTransfer.dropEffect=programDrag.kind==='pool'?'copy':'move';
     positionProgramPlaceholder(host,queueDropIndex(host,event));
   };
   host.ondragleave=event=>{if(!host.contains(event.relatedTarget)){host.classList.remove('is-drop-active');programPlaceholder?.remove()}};
   host.ondrop=event=>{
-    if(!programDrag)return;event.preventDefault();
-    const slot=programPlaceholder,children=[...host.children],dropIndex=slot?children.indexOf(slot):queue.length,drag=programDrag;
-    if(drag.kind==='pool'){const entry=drag.entry;const snapshot=entry.item||{};const type=entry.type;const queueNow=manualProgramQueue();queueNow.splice(Math.max(0,Math.min(queueNow.length,dropIndex)),0,entry);if(programMode()==='auto')state.programming.mode='hybrid';}
-    else moveProgramEntry(drag.index,dropIndex);
-    cleanupProgramDrag();
-    if(drag.kind==='pool'){renderProgramming();markDirty({restartPreview:true});toast('Added to the manual priority queue.')}
+    if(!programDrag)return;
+    const dragLane=programDrag.kind==='pool'?programLane(programDrag.entry.type):programDrag.lane;if(dragLane!==lane)return;
+    event.preventDefault();
+    const slot=programPlaceholder,children=[...host.children],dropIndex=slot?children.indexOf(slot):rows.length,drag=programDrag;
+    if(drag.kind==='pool'){
+      const queue=manualProgramQueue(),globalIndex=laneInsertGlobalIndex(lane,dropIndex);queue.splice(globalIndex,0,drag.entry);
+      if(programMode()==='auto')state.programming.mode='hybrid';
+      cleanupProgramDrag();renderProgramming();markDirty({restartPreview:true});toast(lane==='video'?'Added to Video Queue.':'Added to Article / Event Queue.');
+    }else{
+      cleanupProgramDrag();moveProgramEntryWithinLane(drag.index,dropIndex);
+    }
   };
+}
+function renderTickerProgramming(){
+  const host=q('[data-program-ticker-list]');if(!host)return;
+  const items=previewQueue?.ticker||[],mode=state.programming?.tickerMode==='articles'?'articles':'auto';
+  q('[data-program-ticker-count]').textContent=items.length;
+  q('[data-program-ticker-note]').textContent=mode==='auto'
+    ? 'Auto headlines stays fresh independently of Manual/Hybrid article programming.'
+    : 'Follow article programming mirrors your programmed news selection; Auto fills only when the article program is Auto/Hybrid.';
+  host.innerHTML=items.length?items.map((item,i)=>queueRow(item,i)).join(''):'<div class="bc-program-empty">Ticker is enabled, but no headlines currently qualify.</div>';
+}
+function renderProgramManualQueue(){
+  const queue=manualProgramQueue(),mode=programMode();
+  q('[data-program-clear]').disabled=!queue.length;
+  renderProgramLane('video');renderProgramLane('article');
+  renderLaneNow('[data-program-video-now]',previewQueue?.currentVideo,'Waiting for video playback…');
+  renderLaneNow('[data-program-article-now]',previewQueue?.currentArticle,'No article/event currently on air.');
+  renderTickerProgramming();
 }
 function renderProgramming(){
   if(!q('[data-program-pool]'))return;
+  state.programming=state.programming||{mode:'auto',tickerMode:'auto',manualQueue:[]};
+  if(!['auto','articles'].includes(state.programming.tickerMode))state.programming.tickerMode='auto';
   const mode=programMode(),copy={
-    auto:['AUTO','Fresh eligible content programs itself. Dragging something into the queue automatically switches to Hybrid.'],
-    hybrid:['HYBRID','Your manual priorities air first; fresh Auto content fills the loop behind them.'],
-    manual:['MANUAL','Only your queue is allowed to air. The pool still refreshes, but it cannot change the loop.']
+    auto:['AUTO','Fresh eligible content programs itself. Dragging into either lane switches the draft to Hybrid.'],
+    hybrid:['HYBRID','Your manual video/article priorities run first; Auto fills each lane behind them.'],
+    manual:['MANUAL','Your article queue is exact. Video uses your manual playlist when present and falls back to eligible Auto video when empty.']
   }[mode];
   q('[data-program-mode-title]').textContent=copy[0];q('[data-program-mode-copy]').textContent=copy[1];
-  q('[data-program-queue-help]').textContent=mode==='auto'?'The renderer-generated queue is read-only until you add a manual priority.':mode==='hybrid'?'Drag priorities into any order. Auto content fills behind them.':'This queue loops indefinitely in your order.';
+  q('[data-program-queue-help]').textContent=mode==='auto'?'Both lanes are currently Auto. Drag from the Pool into either lane to take priority.':mode==='hybrid'?'Edit Video and Article/Event queues independently. Auto fills behind them.':'Article/Event follows your exact queue; Video follows your manual playlist or Auto fallback if empty.';
   qa('[data-program-mode]').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.programMode===mode)));
   q('[data-program-auto-head]').hidden=false;
   q('[data-program-split-note]').hidden=state.visual?.layout!=='splitDesk';
@@ -585,7 +634,7 @@ async function saveLive(success='Broadcast control updated'){
 }
 
 qa('[data-nav-target]').forEach(btn=>btn.onclick=()=>{qa('[data-nav-target]').forEach(x=>x.classList.toggle('is-active',x===btn));qa('[data-section]').forEach(s=>s.hidden=s.dataset.section!==btn.dataset.navTarget)});
-qa('[data-path]').forEach(el=>{const event=el.type==='range'?'input':'change';el.addEventListener(event,()=>{let v=el.type==='checkbox'?el.checked:el.value;if(el.type==='number'||el.type==='range')v=Number(v);setPath(state,el.dataset.path,v);renderInputs();renderMetrics();markDirty({restartPreview:/^(modules|news\.sources|video\.channels|events\.|visual\.layout)/.test(el.dataset.path)})})});
+qa('[data-path]').forEach(el=>{const event=el.type==='range'?'input':'change';el.addEventListener(event,()=>{let v=el.type==='checkbox'?el.checked:el.value;if(el.type==='number'||el.type==='range')v=Number(v);setPath(state,el.dataset.path,v);renderInputs();renderMetrics();markDirty({restartPreview:/^(modules|news\.sources|video\.channels|events\.|visual\.layout|programming\.)/.test(el.dataset.path)})})});
 qa('[data-add-segment]').forEach(b=>b.onclick=()=>{state.rundown.push(b.dataset.addSegment);renderRundown();renderMetrics();markDirty({restartPreview:true})});
 qa('[data-preset]').forEach(b=>b.onclick=()=>preset(b.dataset.preset));
 qa('[data-content-tab]').forEach(b=>b.onclick=()=>{contentTab=b.dataset.contentTab;qa('[data-content-tab]').forEach(x=>x.classList.toggle('is-active',x===b));renderLiveList()});
@@ -616,7 +665,7 @@ qa('[data-program-mode]').forEach(btn=>btn.onclick=()=>{
 });
 qa('[data-program-pool-tab]').forEach(btn=>btn.onclick=()=>{programPoolTab=btn.dataset.programPoolTab;renderProgramPool()});
 q('[data-program-search]')?.addEventListener('input',event=>{programSearch=event.target.value.trim();renderProgramPool()});
-q('[data-program-clear]')?.addEventListener('click',()=>{if(!manualProgramQueue().length)return;state.programming.manualQueue=[];renderProgramming();markDirty({restartPreview:true});toast('Manual queue cleared.')});
+q('[data-program-clear]')?.addEventListener('click',()=>{if(!manualProgramQueue().length)return;state.programming.manualQueue=[];renderProgramming();markDirty({restartPreview:true});toast('Manual Video and Article queues cleared.')});
 q('[data-apply-live]').onclick=()=>saveLive().catch(()=>{});
 q('[data-reset-draft]').onclick=()=>{state=clone(saved);renderAll();updatePreview(true);toast('Draft discarded. Preview restored to the live program.')};
 q('[data-custom-next]').onclick=()=>customForce('next');q('[data-custom-now]').onclick=()=>customForce('now');
