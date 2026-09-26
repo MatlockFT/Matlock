@@ -2564,6 +2564,44 @@ function insertBlock(text) {
     });
   }
 
+  function refreshTaleNameHeaders(dialog) {
+    if(!dialog) return;
+    ['a','b'].forEach(side=>{
+      const input=dialog.querySelector(side==='a'?'[data-tale-a]':'[data-tale-b]');
+      const header=dialog.querySelector('[data-tale-name-header="'+side+'"]');
+      if(header) header.textContent=input?.value.trim()||(side==='a'?'Fighter A':'Fighter B');
+    });
+  }
+
+  function nearestMatchupNames() {
+    const before=bodyEditor.value.slice(0,bodyEditor.selectionStart);
+    const headings=[...before.matchAll(/^##\s+(.+)$/gm)];
+    const title=headings.at(-1)?.[1]?.trim()||'';
+    const match=title.match(/^(.+?)\s+(?:vs\.?|versus)\s+(.+)$/i);
+    if(!match) return null;
+    return { a:match[1].trim(), b:match[2].trim() };
+  }
+
+  function applyNearestMatchup(dialog,type) {
+    const matchup=nearestMatchupNames();
+    if(!matchup||!dialog) return;
+    if(type==='stats'){
+      const a=dialog.querySelector('[data-stats-fighter="a"]');
+      const b=dialog.querySelector('[data-stats-fighter="b"]');
+      if(a&&!a.value) a.value=matchup.a;
+      if(b&&!b.value) b.value=matchup.b;
+      refreshStatsNameHeaders(dialog);
+      return;
+    }
+    if(type==='tale'){
+      const a=dialog.querySelector('[data-tale-a]');
+      const b=dialog.querySelector('[data-tale-b]');
+      if(a&&!a.value) a.value=matchup.a;
+      if(b&&!b.value) b.value=matchup.b;
+      refreshTaleNameHeaders(dialog);
+    }
+  }
+
   function structuredSection(type, config, inner) {
     return '<section class="article-html-visual" data-writer-block="' + type + '" data-writer-config="' +
       encodedStructuredConfig(config) + '">\n' + inner + '\n</section>';
@@ -2708,6 +2746,7 @@ function insertBlock(text) {
       taleImagePreview(side);
     });
     renderComparisonRows(dialog.querySelector('[data-tale-row-list]'),config.rows,taleDefaultRowLabels);
+    refreshTaleNameHeaders(dialog);
   }
 
   function openStructuredBlockById(id) {
@@ -2751,13 +2790,17 @@ function insertBlock(text) {
     if (type === 'stats') {
       editingStructuredBlockId = '';
       resetStatsDialog();
-      app.querySelector('[data-stats-dialog]').showModal();
+      const dialog = app.querySelector('[data-stats-dialog]');
+      applyNearestMatchup(dialog, 'stats');
+      dialog.showModal();
       return;
     }
     if (type === 'tale') {
       editingStructuredBlockId = '';
       resetTaleDialog();
-      app.querySelector('[data-tale-dialog]').showModal();
+      const dialog = app.querySelector('[data-tale-dialog]');
+      applyNearestMatchup(dialog, 'tale');
+      dialog.showModal();
       return;
     }
     if (type === 'prediction') {
@@ -3539,6 +3582,7 @@ Object.values(fields).forEach(el => {
   const taleDialog=app.querySelector('[data-tale-dialog]');
 
   statsDialog.querySelectorAll('[data-stats-fighter]').forEach(input=>input.addEventListener('input',()=>refreshStatsNameHeaders(statsDialog)));
+  taleDialog.querySelectorAll('[data-tale-a],[data-tale-b]').forEach(input=>input.addEventListener('input',()=>refreshTaleNameHeaders(taleDialog)));
   statsDialog.addEventListener('click',event=>{
     const rowAction=event.target.closest('[data-structured-action]');
     if(rowAction){applyStructuredRowAction(rowAction);return;}
