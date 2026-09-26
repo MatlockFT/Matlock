@@ -1,7 +1,9 @@
 import { corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mjs';
 
 const UFCSTATS_BASE = 'https://ufcstats.com/fighter-details/';
+const UFC_PROFILE_BASE = 'https://www.ufc.com/athlete/';
 const ID_RE = /^[a-f0-9]{16}$/i;
+const SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/i;
 
 function decode(value) {
   return String(value || '')
@@ -116,6 +118,36 @@ function recordFromRows(rows) {
   return counts.W + '-' + counts.L + '-' + counts.D + (counts.NC ? ' (' + counts.NC + ' NC)' : '');
 }
 
+export function parseUfcProfileSummary(html) {
+  const text = clean(html);
+  const record = text.match(/\b(\d+-\d+-\d+)\s*\(W-L-D\)/i)?.[1] ||
+    text.match(/\b(\d+-\d+-\d+)\b/)?.[1] || null;
+  const countBefore = label => {
+    const escaped = escapeRegex(label);
+    const match = text.match(new RegExp('\\b(\\d+)\\s+' + escaped + '\\b', 'i'));
+    return match ? Number(match[1]) : null;
+  };
+  const winsByKnockout = countBefore('Wins by Knockout');
+  const winsBySubmission = countBefore('Wins by Submission');
+  const firstRoundFinishes = countBefore('First Round Finishes');
+  const wins = Number(record?.split('-')[0]) || null;
+  const decisionWins = Number.isFinite(wins) && Number.isFinite(winsByKnockout) && Number.isFinite(winsBySubmission)
+    ? Math.max(0, wins - winsByKnockout - winsBySubmission)
+    : null;
+  return {
+    record,
+    career: {
+      winsByKnockout,
+      winsBySubmission,
+      firstRoundFinishes,
+      decisionWins,
+      totalFinishes: Number.isFinite(winsByKnockout) && Number.isFinite(winsBySubmission)
+        ? winsByKnockout + winsBySubmission
+        : null
+    }
+  };
+}
+
 export function parseUfcStatsProfile(html, statsId) {
   const source = String(html || '');
   const title = source.match(/b-content__title-highlight[^>]*>([\s\S]*?)<\/(?:span|h2)>/i);
@@ -148,6 +180,35 @@ export function parseUfcStatsProfile(html, statsId) {
     latestBoutDate: history[0]?.date || null,
     recent: history.slice(0,5)
   };
+}
+
+async function fetchOfficialProfile(slug) {
+  const sourceUrl = UFC_PROFILE_BASE + slug;
+  let lastError;
+  for (let attempt=0; attempt<3; attempt++) {
+    try {
+      const response = await fetch(sourceUrl, {
+        headers: {
+          'Accept': 'text/html,application/xhtml+xml',
+          'User-Agent': 'Mozilla/5.0 (compatible; MMAMatlockWriter/1.0; +https://mmamatlock.com/write/)'
+        },
+        redirect:'follow',
+        signal:AbortSignal.timeout(12000)
+      });
+      if (!response.ok) throw new Error('UFC profile returned HTTP ' + response.status);
+      const html = await response.text();
+      if (html.length < 5000) throw new Error('UFC profile returned an incomplete page');
+      const profile = parseUfcProfileSummary(html);
+      if (!profile.record && !Number.isFinite(profile.career?.winsByKnockout)) {
+        throw new Error('UFC profile did not expose career method data');
+      }
+      return { profile, sourceUrl };
+    } catch (error) {
+      lastError = error;
+      if (attempt < 2) await new Promise(resolve => setTimeout(resolve,500*(attempt+1)));
+    }
+  }
+  throw lastError;
 }
 
 async function fetchProfile(statsId) {
@@ -199,32 +260,68 @@ export default async function handler(request) {
 
   const url = new URL(request.url);
   const statsId = String(url.searchParams.get('id') || '').toLowerCase();
+  const slug = String(url.searchParams.get('slug') || '').toLowerCase();
   if (!ID_RE.test(statsId)) {
     return Response.json({ok:false,error:'A valid UFCStats fighter id is required.'},{status:400,headers});
   }
+  if (slug && !SLUG_RE.test(slug)) {
+    return Response.json({ok:false,error:'Invalid UFC athlete slug.'},{status:400,headers});
+  }
 
-  try {
-    const resolved = await fetchProfile(statsId);
-    const profile = resolved.profile;
-    const core = [profile.stats.slpm,profile.stats.sapm,profile.stats.strAccuracy,profile.stats.strDefense].filter(Boolean);
-    if (core.length < 2) throw new Error('UFCStats profile did not expose enough career statistics');
-    return Response.json({
-      ok:true,
-      source:'UFCStats',
-      mode:'live',
-      fetchedAt:new Date().toISOString(),
-      sourceUrl:resolved.sourceUrl,
-      profile
-    }, {status:200,headers});
-  } catch (error) {
+  const fetchedAt = new Date().toISOString();
+  const [statsResult, officialResult] = await Promise.allSettled([
+    fetchProfile(statsId),
+    slug ? fetchOfficialProfile(slug) : Promise.resolve(null)
+  ]);
+
+  const statsResolved = statsResult.status === 'fulfilled' ? statsResult.value : null;
+  const officialResolved = officialResult.status === 'fulfilled' ? officialResult.value : null;
+  const liveStats = Boolean(statsResolved?.profile);
+  const liveOfficial = Boolean(officialResolved?.profile);
+
+  if (!liveStats && !liveOfficial) {
+    const reasons = [
+      statsResult.status === 'rejected' ? 'UFCStats: ' + statsResult.reason?.message : '',
+      officialResult.status === 'rejected' ? 'UFC profile: ' + officialResult.reason?.message : ''
+    ].filter(Boolean);
     return Response.json({
       ok:false,
-      source:'UFCStats',
+      source:'UFCStats+UFC.com',
       mode:'live',
-      fetchedAt:new Date().toISOString(),
-      error:error instanceof Error ? error.message : 'UFCStats lookup failed'
+      fetchedAt,
+      error:reasons.join(' · ') || 'Live fighter lookup failed'
     }, {status:502,headers});
   }
+
+  const statsProfile = statsResolved?.profile || {};
+  const officialProfile = officialResolved?.profile || {};
+  const profile = {
+    ...statsProfile,
+    record: officialProfile.record || statsProfile.record || null,
+    career: officialProfile.career || statsProfile.career || null
+  };
+  const core = [
+    profile.stats?.slpm,
+    profile.stats?.sapm,
+    profile.stats?.strAccuracy,
+    profile.stats?.strDefense
+  ].filter(Boolean);
+
+  return Response.json({
+    ok:true,
+    source:'UFCStats+UFC.com',
+    mode:'live',
+    fetchedAt,
+    sourceUrl:statsResolved?.sourceUrl || officialResolved?.sourceUrl || null,
+    officialSourceUrl:officialResolved?.sourceUrl || null,
+    liveUfcStats:liveStats && core.length >= 2,
+    liveUfcProfile:liveOfficial,
+    warnings:[
+      !liveStats ? (statsResult.status === 'rejected' ? statsResult.reason?.message : 'UFCStats unavailable') : null,
+      slug && !liveOfficial ? (officialResult.status === 'rejected' ? officialResult.reason?.message : 'UFC profile unavailable') : null
+    ].filter(Boolean),
+    profile
+  }, {status:200,headers});
 }
 
 export const config = {
