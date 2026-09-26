@@ -163,15 +163,17 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
   await taleDialog.locator('.writer-fighter-suggestion').first().click();
 
   const taleRows = taleDialog.locator('[data-tale-row-list] .writer-comparison-row');
-  const values = async label => {
-    const row = taleRows.filter({ has: taleDialog.locator('[data-structured-label]', { hasText: label }) });
-    return row.locator('[data-structured-a]').inputValue();
-  };
-  await expect.poll(() => values('Total Finishes')).toBe('8');
-  await expect.poll(() => values('TKO / KO')).toBe('6');
-  await expect.poll(() => values('Submission')).toBe('2');
-  await expect.poll(() => values('Unanimous Decision')).toBe('3');
-  await expect.poll(() => values('Split Decision')).toBe('1');
+  await expect(taleRows).toHaveCount(11);
+  await expect(taleRows.nth(6).locator('[data-structured-label]')).toHaveValue('Total Finishes');
+  await expect(taleRows.nth(6).locator('[data-structured-a]')).toHaveValue('8');
+  await expect(taleRows.nth(7).locator('[data-structured-label]')).toHaveValue('TKO / KO');
+  await expect(taleRows.nth(7).locator('[data-structured-a]')).toHaveValue('6');
+  await expect(taleRows.nth(8).locator('[data-structured-label]')).toHaveValue('Submission');
+  await expect(taleRows.nth(8).locator('[data-structured-a]')).toHaveValue('2');
+  await expect(taleRows.nth(9).locator('[data-structured-label]')).toHaveValue('Unanimous Decision');
+  await expect(taleRows.nth(9).locator('[data-structured-a]')).toHaveValue('3');
+  await expect(taleRows.nth(10).locator('[data-structured-label]')).toHaveValue('Split Decision');
+  await expect(taleRows.nth(10).locator('[data-structured-a]')).toHaveValue('1');
 
   expect(pageErrors).toEqual([]);
 });
