@@ -434,7 +434,8 @@ function queueEntry(item){
   };
 }
 function previewQueueSnapshot(){
-  const split=isSplitDesk(),videos=videoSlides(),ticker=tickerItems().map(s=>queueEntry({type:"ticker",id:itemId("news",s),title:s.title,source:s.source||"Combat Sports",publishedAt:s.publishedAt}));
+  const split=isSplitDesk(),videos=videoSlides(),tickerOn=Boolean(cfg().modules.ticker&&cfg().ticker.enabled!==false);
+  const ticker=(tickerOn?tickerItems():[]).map(s=>queueEntry({type:"ticker",id:itemId("news",s),title:s.title,source:s.source||"Combat Sports",publishedAt:s.publishedAt}));
   if(split){
     return {
       mode:"splitDesk",
