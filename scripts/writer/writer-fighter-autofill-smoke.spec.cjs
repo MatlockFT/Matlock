@@ -235,6 +235,132 @@ test('Brad Tavares stays complete when the live probe fails', async ({ page }) =
 });
 
 
+
+test('partial cached career is completed by the verified live fallback', async ({ page }) => {
+  test.setTimeout(45000);
+  const pageErrors = [];
+  page.on('pageerror', error => pageErrors.push(error.message));
+
+  await page.route('**/assets/data/writer-fighters.json?writer-fighters=*', async route => {
+    await route.fulfill({
+      contentType: 'application/json',
+      body: JSON.stringify({
+        schemaVersion: 1,
+        generatedAt: '2026-09-26T21:40:00.000Z',
+        builtAt: '2026-09-26T21:40:00.000Z',
+        mirrorThrough: '2026-09-19',
+        fighters: [{
+          id: 'partial-career',
+          name: 'Partial Career',
+          division: 'Welterweight',
+          record: '9-2-0',
+          ufcRecord: '1-0-0',
+          recordOutsideUfc: '8-2-0',
+          rank: null,
+          image: '',
+          checkedAt: '2026-09-26T21:40:00.000Z',
+          ufcStatsId: 'bbbbbbbbbbbbbbbb',
+          sourceUrl: 'https://ufcstats.com/fighter-details/bbbbbbbbbbbbbbbb',
+          latestBoutDate: '2026-08-01',
+          mirrorThrough: '2026-09-19',
+          bio: { height: '6\' 0"', reach: '75"', dob: 'Jan 02, 1997', weight: '170 lbs.' },
+          stats: {
+            slpm: '3.50',
+            sapm: '2.20',
+            strAccuracy: '48%',
+            strDefense: '58%',
+            tdAvg: '1.10',
+            tdAccuracy: '42%',
+            tdDefense: '71%',
+            subAvg: '0.30',
+            sample: { fights: 1, minutes: 15, latestBoutDate: '2026-08-01' }
+          },
+          career: {
+            winsByKnockout: null,
+            winsBySubmission: null,
+            totalFinishes: null,
+            decisionWins: null,
+            unanimousDecisionWins: 0,
+            splitDecisionWins: 0,
+            majorityDecisionWins: 0,
+            otherDecisionWins: 0,
+            decisionBreakdownComplete: false
+          },
+          recent: [{
+            result: 'W',
+            opponent: 'UFC Opponent',
+            method: 'Decision - Unanimous',
+            date: '2026-08-01'
+          }]
+        }]
+      })
+    });
+  });
+
+  await page.route('https://mmamatlock-writer-auth.netlify.app/api/writer/fighter*', async route => {
+    await new Promise(resolve => setTimeout(resolve, 120));
+    await route.fulfill({
+      contentType: 'application/json',
+      headers: { 'access-control-allow-origin': '*' },
+      body: JSON.stringify({
+        ok: true,
+        source: 'UFCStats+UFC.com+career fallback',
+        mode: 'live',
+        liveUfcStats: false,
+        liveUfcProfile: false,
+        liveCareerFallback: true,
+        completeCareer: true,
+        careerSource: 'UFCFight.net',
+        careerSourceUrl: 'https://ufcfight.net/partial-career/',
+        fetchedAt: '2026-09-26T21:41:00.000Z',
+        profile: {
+          name: 'Partial Career',
+          record: '9-2-0',
+          career: {
+            winsByKnockout: 4,
+            winsBySubmission: 2,
+            totalFinishes: 6,
+            decisionWins: 3,
+            unanimousDecisionWins: 2,
+            splitDecisionWins: 1,
+            majorityDecisionWins: 0,
+            otherDecisionWins: 0,
+            decisionBreakdownComplete: true
+          }
+        }
+      })
+    });
+  });
+
+  await page.goto(BASE, { waitUntil:'domcontentloaded' });
+  await page.click('[data-library-new]');
+  await page.click('[data-tool="tale"]');
+
+  const dialog = page.locator('[data-tale-dialog]');
+  const input = dialog.locator('[data-tale-a]');
+  await input.fill('Partial Career');
+  await dialog.locator('.writer-fighter-suggestion', { hasText:'Partial Career' }).click();
+
+  const rows = dialog.locator('[data-tale-row-list] .writer-comparison-row');
+  await expect(rows).toHaveCount(11);
+
+  await expect(rows.nth(6).locator('[data-structured-a]')).toHaveValue('6');
+  await expect(rows.nth(7).locator('[data-structured-a]')).toHaveValue('4');
+  await expect(rows.nth(8).locator('[data-structured-a]')).toHaveValue('2');
+  await expect(rows.nth(9).locator('[data-structured-a]')).toHaveValue('2');
+  await expect(rows.nth(10).locator('[data-structured-a]')).toHaveValue('1');
+
+  const status = input.locator('xpath=..').locator('.writer-fighter-source-status');
+  await expect(status).toContainText('career checked live via UFCFight.net');
+  await expect(input).toHaveAttribute('data-source-mode', 'live-profile');
+
+  const values = await rows.locator('[data-structured-a]').evaluateAll(nodes =>
+    nodes.map(node => node.value.trim())
+  );
+  expect(values.every(Boolean)).toBe(true);
+  expect(pageErrors).toEqual([]);
+});
+
 test('fighters without a UFCStats sample show explicit N/A instead of blanks', async ({ page }) => {
   test.setTimeout(45000);
   const pageErrors = [];
