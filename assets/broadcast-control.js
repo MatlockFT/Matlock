@@ -10,7 +10,7 @@ const VIDEOS_FALLBACK='/assets/data/mma-videos.json';
 const EVENTS='/assets/data/upcoming-events-live.json';
 const DEFAULT={"version":1,"revision":1,"updatedAt":null,"modules":{"news":true,"video":true,"events":true,"ticker":true,"comingUp":true,"music":true},"rundown":["news","news","video","news","event"],"timing":{"newsSeconds":45,"eventSeconds":35,"transitionMs":650,"controlPollSeconds":10},"news":{"maxAgeHours":48,"maxItems":16,"sources":[],"requireContext":true,"contextFacts":4},"video":{"maxAgeHours":48,"maxItems":8,"minSeconds":20,"maxSeconds":600,"volume":50,"channels":[],"playFull":true},"events":{"maxItems":3,"usePosters":true},"audio":{"enabled":true,"musicUrl":"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3","musicVolume":14,"duckVolume":3.5},"ticker":{"enabled":true,"speedSeconds":240,"maxItems":14},"visual":{"layout":"splitDesk","videoWidth":64,"articleCardSeconds":9,"articleCharsPerCard":340,"flipNews":false,"showRail":true,"showClock":true,"showBadge":true,"showSource":true},"sources":{"customNewsFeeds":[],"customVideoChannels":[],"removedNewsSources":[],"removedVideoChannels":[]},"hidden":{"news":[],"videos":[],"events":[]},"forceNext":null};
 const q=s=>app.querySelector(s),qa=s=>[...app.querySelectorAll(s)];
-let state=structuredClone(DEFAULT),saved=structuredClone(DEFAULT),feeds={news:null,videos:null,events:null},contentTab='news',dragIndex=-1,toastTimer=0,feedWarnings=[],previewReady=false,previewLoadTimer=0,previewSyncTimer=0,previewFrameLoaded=false,feedsReady=false,previewQueue=null;
+let state=structuredClone(DEFAULT),saved=structuredClone(DEFAULT),feeds={news:null,videos:null,events:null},contentTab='news',dragIndex=-1,toastTimer=0,feedWarnings=[],previewReady=false,previewLoadTimer=0,previewSyncTimer=0,previewFrameLoaded=false,feedsReady=false,previewQueue=null,previewMuted=true;
 
 function clone(v){return JSON.parse(JSON.stringify(v))}
 function deepMerge(base,extra){const out=clone(base);for(const[k,v]of Object.entries(extra||{})){if(v&&typeof v==='object'&&!Array.isArray(v)&&out[k]&&typeof out[k]==='object'&&!Array.isArray(out[k]))out[k]=deepMerge(out[k],v);else out[k]=v}return out}
@@ -60,7 +60,8 @@ function previewPayload(restart=false){
     type:'matlock-broadcast-control-preview',
     config:state,
     feeds:{news:feeds.news||{stories:[]},videos:feeds.videos||{videos:[]},events:feeds.events||{events:[]}},
-    restart:Boolean(restart)
+    restart:Boolean(restart),
+    previewMuted:Boolean(previewMuted)
   };
 }
 function updatePreview(restart=false){
@@ -253,13 +254,26 @@ function queueDuration(seconds){
   const total=Math.max(0,Math.round(Number(seconds)||0));if(!total)return'';
   const m=Math.floor(total/60),s=String(total%60).padStart(2,'0');return m+':'+s;
 }
+function safeQueueUrl(value){
+  try{const url=new URL(String(value||''));return /^https?:$/.test(url.protocol)?url.href:''}catch{return''}
+}
+function queueHost(value){
+  try{return new URL(String(value||'')).hostname.replace(/^www\./,'')}catch{return''}
+}
 function queueRow(entry,index){
-  const meta=[];
-  if(entry?.source)meta.push('<b>'+escapeHtml(entry.source)+'</b>');
+  const meta=[],url=safeQueueUrl(entry?.url),source=escapeHtml(entry?.source||''),host=queueHost(url);
+  if(entry?.source){
+    meta.push(url?'<a class="bc-queue-source-link" href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">'+source+' ↗</a>':'<b>'+source+'</b>');
+  }
+  if(host)meta.push('<span>'+escapeHtml(host)+'</span>');
   if(entry?.type)meta.push('<span class="bc-queue-type">'+escapeHtml(entry.type)+'</span>');
   const age=queueAge(entry?.publishedAt);if(age)meta.push('<span>'+escapeHtml(age)+'</span>');
   const duration=queueDuration(entry?.durationSeconds);if(duration)meta.push('<span>'+escapeHtml(duration)+'</span>');
-  return '<article class="bc-queue-item"><div class="bc-queue-item-index">'+String(index+1).padStart(2,'0')+'</div><div class="bc-queue-item-main"><strong class="bc-queue-item-title">'+escapeHtml(entry?.title||'Untitled')+'</strong><div class="bc-queue-item-meta">'+meta.join('')+'</div></div></article>';
+  if(Number(entry?.repeatCount||0)>1)meta.push('<span class="bc-queue-repeat">REUSED ×'+Number(entry.repeatCount)+'</span>');
+  if(url)meta.push('<a class="bc-queue-open" href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">OPEN SOURCE ↗</a>');
+  const title=escapeHtml(entry?.title||'Untitled');
+  const titleHtml=url?'<a class="bc-queue-item-title bc-queue-item-title-link" href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">'+title+'</a>':'<strong class="bc-queue-item-title">'+title+'</strong>';
+  return '<article class="bc-queue-item"><div class="bc-queue-item-index">'+String(index+1).padStart(2,'0')+'</div><div class="bc-queue-item-main">'+titleHtml+'<div class="bc-queue-item-meta">'+meta.join('')+'</div></div></article>';
 }
 function renderQueueList(selector,items){
   const host=q(selector);if(!host)return;
@@ -268,7 +282,11 @@ function renderQueueList(selector,items){
 function renderQueueNow(selector,label,item){
   const host=q(selector);if(!host)return;
   if(!item){host.hidden=true;host.innerHTML='';return}
-  host.hidden=false;host.innerHTML='<strong>'+escapeHtml(label)+'</strong>'+escapeHtml(item.title||'')+' · '+escapeHtml(item.source||'');
+  const url=safeQueueUrl(item.url),title=escapeHtml(item.title||''),source=escapeHtml(item.source||'');
+  const body=url?'<a href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">'+title+'</a>':'<span>'+title+'</span>';
+  const sourceHtml=url?'<a class="bc-queue-source-link" href="'+escapeHtml(url)+'" target="_blank" rel="noopener noreferrer">'+source+' ↗</a>':source;
+  const reused=Number(item.repeatCount||0)>1?'<span class="bc-queue-repeat">REUSED ×'+Number(item.repeatCount)+'</span>':'';
+  host.hidden=false;host.innerHTML='<strong>'+escapeHtml(label)+'</strong>'+body+' · '+sourceHtml+reused;
 }
 function renderQueue(){
   const stateEl=q('[data-queue-state]'),modeEl=q('[data-queue-mode]');
@@ -397,6 +415,20 @@ q('[data-add-video-source]').onclick=()=>{
 q('[data-apply-live]').onclick=()=>saveLive().catch(()=>{});
 q('[data-reset-draft]').onclick=()=>{state=clone(saved);renderAll();updatePreview(true);toast('Draft discarded. Preview restored to the live program.')};
 q('[data-custom-next]').onclick=()=>customForce('next');q('[data-custom-now]').onclick=()=>customForce('now');
+function renderPreviewAudioButton(){
+  const button=q('[data-preview-audio]');if(!button)return;
+  button.setAttribute('aria-pressed',String(previewMuted));
+  button.textContent=previewMuted?'🔇 Preview muted':'🔊 Preview audio';
+}
+function setPreviewMuted(value){
+  previewMuted=Boolean(value);
+  try{localStorage.setItem('matlock-broadcast-control:preview-muted',previewMuted?'1':'0')}catch{}
+  renderPreviewAudioButton();
+  updatePreview(false);
+}
+try{previewMuted=localStorage.getItem('matlock-broadcast-control:preview-muted')!=='0'}catch{previewMuted=true}
+renderPreviewAudioButton();
+q('[data-preview-audio]').onclick=()=>setPreviewMuted(!previewMuted);
 q('[data-preview-restart]').onclick=restartProgramMonitor;
 const monitorFrame=q('[data-program-monitor-frame]');
 monitorFrame?.addEventListener('load',()=>{
