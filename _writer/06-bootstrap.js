@@ -277,6 +277,7 @@ Object.values(fields).forEach(el => {
   const taleDialog=app.querySelector('[data-tale-dialog]');
 
   statsDialog.querySelectorAll('[data-stats-fighter]').forEach(input=>input.addEventListener('input',()=>refreshStatsNameHeaders(statsDialog)));
+  taleDialog.querySelectorAll('[data-tale-a],[data-tale-b]').forEach(input=>input.addEventListener('input',()=>refreshTaleNameHeaders(taleDialog)));
   statsDialog.addEventListener('click',event=>{
     const rowAction=event.target.closest('[data-structured-action]');
     if(rowAction){applyStructuredRowAction(rowAction);return;}
