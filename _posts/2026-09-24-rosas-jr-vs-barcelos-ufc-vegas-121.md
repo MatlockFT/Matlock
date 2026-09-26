@@ -30,8 +30,6 @@ published: true
 
 The Meta APEX is hosting another event this weekend in Las Vegas and I gotta say... I’m not mad at it. This card has a little bit of everything I enjoy, and I’m not above a good hate-watch either.
 
-It’s basically a little House of Horrors fight card.
-
 <section class="article-html-visual">
 <div class="card-stats-table">
   <table>
@@ -13539,7 +13537,6 @@ For the two TUF Finale fights, I have very little info. Tina Black looks to be t
   <div class="article-pick-card__main"><strong>Tina Black</strong><span>Decision</span></div>
 </aside>
 </section>
-
 ## Mahammadali Osmanli vs. Ilimbek Akylbek
 
 <div class="ufcstats-debut-note"><strong>UFCStats</strong><span>Mahammadali Osmanli and Ilimbek Akylbek: UFC debuts — no UFC bout statistics yet.</span></div>
