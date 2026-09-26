@@ -19,6 +19,7 @@ on:
       - "assets/writer-splitflow.js"
       - "assets/writer-splitflow.css"
       - "scripts/writer/writer-smoke.spec.cjs"
+      - "scripts/writer/writer-fighter-autofill-smoke.spec.cjs"
       - "scripts/writer/writer-wordtools-smoke.spec.cjs"
       - "scripts/writer/writer-layout-smoke.spec.cjs"
       - "scripts/writer/writer-splitflow-smoke.spec.cjs"
@@ -158,4 +159,4 @@ jobs:
       - name: Exercise production Writer workflow
         env:
           WRITER_BASE_URL: https://mmamatlock.com/write/
-        run: npx playwright test scripts/writer/writer-smoke.spec.cjs scripts/writer/writer-wordtools-smoke.spec.cjs scripts/writer/writer-layout-smoke.spec.cjs scripts/writer/writer-splitflow-smoke.spec.cjs --workers=1 --reporter=line
+        run: npx playwright test scripts/writer/writer-fighter-autofill-smoke.spec.cjs scripts/writer/writer-smoke.spec.cjs scripts/writer/writer-wordtools-smoke.spec.cjs scripts/writer/writer-layout-smoke.spec.cjs scripts/writer/writer-splitflow-smoke.spec.cjs --workers=1 --reporter=line
