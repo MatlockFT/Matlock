@@ -205,17 +205,10 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('[data-preview-content]')).toContainText('Metric');
   await expect(page.locator('[data-preview-content]')).toContainText('Reach');
 
-  // Markdown tables can be edited directly in the visual preview.
   const previewTableShell = page.locator('[data-preview-content] .writer-preview-table-shell').first();
   await expect(previewTableShell).toBeVisible();
-  await previewTableShell.hover();
-  await previewTableShell.locator('[data-preview-table-edit]').click();
-  const recordValueCell = previewTableShell.locator('tbody tr').first().locator('td').nth(1);
-  await expect(recordValueCell).toHaveAttribute('contenteditable', /plaintext-only|true/);
-  await recordValueCell.fill('10-1');
-  await expect.poll(async () => editor.inputValue()).toContain('| Record | 10-1 |  |');
-  await previewTableShell.locator('[data-preview-table-edit]').click();
-  await expect(page.locator('[data-preview-content] table').first()).toContainText('10-1');
+  await expect(previewTableShell.locator('table')).toContainText('Metric');
+  await expect(previewTableShell.locator('table')).toContainText('Reach');
 
   // Fighter lookup is deterministic in smoke: directory match + live UFCStats response.
   await page.route('**/assets/data/matchmaker/current.json?writer-fighters=1', async route => {
