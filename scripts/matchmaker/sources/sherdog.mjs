@@ -285,23 +285,35 @@ export function parseSherdogSearchProfiles(html) {
   return found.slice(0, 8);
 }
 
-async function fetchText(url) {
-  const response = await fetch(url, {
-    redirect: 'follow',
-    signal: AbortSignal.timeout(8000),
-    headers: {
-      'user-agent': UA,
-      accept: 'text/html,application/xhtml+xml,*/*;q=0.8'
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+async function fetchText(url, { attempts = 3 } = {}) {
+  let lastError;
+  for (let attempt = 0; attempt < attempts; attempt++) {
+    try {
+      const response = await fetch(url, {
+        redirect: 'follow',
+        signal: AbortSignal.timeout(10000),
+        headers: {
+          'user-agent': UA,
+          accept: 'text/html,application/xhtml+xml,*/*;q=0.8'
+        }
+      });
+      if (response.ok) return response.text();
+      const error = new Error(`Career source HTTP ${response.status}: ${url}`);
+      error.status = response.status;
+      if (response.status === 404) throw error;
+      lastError = error;
+    } catch (error) {
+      if (error?.status === 404) throw error;
+      lastError = error;
     }
-  });
-  if (!response.ok) throw new Error(`Sherdog HTTP ${response.status}: ${url}`);
-  return response.text();
+    if (attempt < attempts - 1) await sleep(350 * (attempt + 1));
+  }
+  throw lastError || new Error(`Career source request failed: ${url}`);
 }
 
-async function lookupCareer(fighter) {
-  const direct = await lookupUfcFightCareer(fighter);
-  if (direct) return direct;
-
+async function lookupSherdogCareer(fighter) {
   let search;
   try {
     search = await fetchText(`${SHERDOG}/stats/fightfinder?SearchTxt=${encodeURIComponent(fighter.name)}`);
@@ -438,16 +450,38 @@ export async function enrichSherdogCareers(fighters, { cachePath } = {}) {
     targets.push({ fighter, cacheKey });
   }
 
+  const checkedAt = new Date().toISOString();
+
+  // Stage 1: use predictable direct profile URLs at low concurrency. Keeping this
+  // separate avoids rate-limiting the direct source and Sherdog at the same time.
+  const directResults = await mapLimit(targets, 2, async target => {
+    await sleep(125);
+    const hit = await lookupUfcFightCareer(target.fighter);
+    return { ...target, hit };
+  });
+
+  const resolvedByKey = new Map();
+  for (const result of directResults) {
+    if (result.hit) resolvedByKey.set(result.cacheKey, result);
+  }
+
+  // Stage 2: only unresolved identities hit Sherdog's search endpoint, sequentially.
+  const unresolved = targets.filter(target => !resolvedByKey.has(target.cacheKey));
+  const sherdogResults = await mapLimit(unresolved, 1, async target => {
+    await sleep(225);
+    const hit = await lookupSherdogCareer(target.fighter);
+    return { ...target, hit };
+  });
+  for (const result of sherdogResults) {
+    if (result.hit) resolvedByKey.set(result.cacheKey, result);
+  }
+
   let resolved = 0;
   let missed = 0;
   let cacheChanged = false;
-  const checkedAt = new Date().toISOString();
-  const results = await mapLimit(targets, 8, async ({ fighter, cacheKey }) => {
-    const hit = await lookupCareer(fighter);
-    return { fighter, cacheKey, hit };
-  });
-
-  for (const { fighter, cacheKey, hit } of results) {
+  for (const { fighter, cacheKey } of targets) {
+    const result = resolvedByKey.get(cacheKey);
+    const hit = result?.hit || null;
     if (hit) {
       const entry = {
         name: fighter.name,
