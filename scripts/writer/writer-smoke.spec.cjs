@@ -336,7 +336,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(lookupStatsDialog.locator('.writer-fighter-suggestion')).toContainText('Lookup Fighter');
   await lookupStatsDialog.locator('.writer-fighter-suggestion').click();
   await expect(lookupStatsDialog.locator('[data-stats-row-list] .writer-comparison-row').first().locator('[data-structured-a]')).toHaveValue('9.99');
-  await expect(lookupStatsDialog.locator('.writer-fighter-source-status')).toContainText('LIVE UFCStats');
+  await expect(lookupStatsInput.locator('xpath=..').locator('.writer-fighter-source-status')).toContainText('LIVE UFCStats');
   await page.keyboard.press('Escape');
 
   // Structured Tale of the Tape: direct comparison and recent-form controls.
