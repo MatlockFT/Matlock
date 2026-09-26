@@ -127,10 +127,11 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
 
   const firstRow = dialog.locator('[data-stats-row-list] .writer-comparison-row').first();
   await expect(firstRow.locator('[data-structured-a]')).toHaveValue('4.44');
-  await expect(dialog.locator('.writer-fighter-source-status')).toContainText('checking live');
+  const sourceStatus = input.locator('xpath=..').locator('.writer-fighter-source-status');
+  await expect(sourceStatus).toContainText('checking live');
 
   await expect(firstRow.locator('[data-structured-a]')).toHaveValue('9.99');
-  await expect(dialog.locator('.writer-fighter-source-status')).toContainText('LIVE UFCStats');
+  await expect(sourceStatus).toContainText('LIVE UFCStats');
   await expect(input).toHaveAttribute('data-source-mode', 'live');
   expect(pageErrors).toEqual([]);
 });
