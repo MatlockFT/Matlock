@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import { clean, key } from './sources/ufc.mjs';
 import { parseCsv, statsId } from './sources/ufcstats.mjs';
+import { completeDisplayedCareer, enrichSherdogCareers } from './sources/sherdog.mjs';
 
 const DATA_PATH = 'assets/data/matchmaker/current.json';
 const OUTPUT_PATH = 'assets/data/writer-fighters.json';
@@ -152,16 +153,26 @@ function decisionBreakdown(history) {
   return counts;
 }
 
-function normalizedCareer(career, history) {
+function normalizedCareer(career, history, record) {
   const decisions = decisionBreakdown(history);
-  const winsByKnockout = Number.isFinite(career?.winsByKnockout) ? career.winsByKnockout : null;
-  const winsBySubmission = Number.isFinite(career?.winsBySubmission) ? career.winsBySubmission : null;
+  const rawKnockout = Number.isFinite(career?.winsByKnockout) ? career.winsByKnockout : null;
+  const rawSubmission = Number.isFinite(career?.winsBySubmission) ? career.winsBySubmission : null;
+
+  // UFC athlete pages omit zero-value method cards for some fighters. If one finish
+  // category is present, a missing counterpart is a verified zero rather than unknown.
+  const winsByKnockout = rawKnockout !== null ? rawKnockout : rawSubmission !== null ? 0 : null;
+  const winsBySubmission = rawSubmission !== null ? rawSubmission : rawKnockout !== null ? 0 : null;
   const totalFinishes = Number.isFinite(career?.totalFinishes)
     ? career.totalFinishes
     : Number.isFinite(winsByKnockout) && Number.isFinite(winsBySubmission)
       ? winsByKnockout + winsBySubmission
       : null;
-  const decisionWins = Number.isFinite(career?.decisionWins) ? career.decisionWins : null;
+  const recordWins = Number(clean(record).match(/^(\d+)-/)?.[1]);
+  const decisionWins = Number.isFinite(career?.decisionWins)
+    ? career.decisionWins
+    : Number.isFinite(recordWins) && Number.isFinite(totalFinishes)
+      ? Math.max(0, recordWins - totalFinishes)
+      : null;
   const classifiedDecisionWins = decisions.unanimous + decisions.split + decisions.majority + decisions.other;
   return {
     winsByKnockout,
@@ -340,7 +351,7 @@ for (const fighter of current.fighters || []) {
     : (Array.isArray(fighter.history) ? fighter.history : []);
   const mirrorHistory = resultHistoryByStatsId.get(ufcStatsId) || [];
   const recentHistory = mirrorHistory.length ? mirrorHistory : verifiedHistory;
-  const career = normalizedCareer(fighter.career, mirrorHistory.length ? mirrorHistory : verifiedHistory);
+  const career = normalizedCareer(fighter.career, mirrorHistory.length ? mirrorHistory : verifiedHistory, fighter.record);
   const ufcMirrorHistory = mirrorHistory.filter(fight => /^(?:UFC\b|Noche UFC\b)/i.test(fight.event || ''));
   const ufcRecord = ufcMirrorHistory.length
     ? (() => {
@@ -383,12 +394,12 @@ for (const fighter of current.fighters || []) {
 }
 
 fighters.sort((a, b) => a.name.localeCompare(b.name));
+
+const sherdogCareer = await enrichSherdogCareers(fighters, {
+  cachePath: 'assets/data/writer-fighter-career-fallbacks.json'
+});
 const mirrorThrough = eventRows.map(row => parseDate(row.DATE)).filter(Boolean).sort().at(-1) || null;
-const withCareer = fighters.filter(fighter =>
-  fighter.career &&
-  Number.isFinite(fighter.career.winsByKnockout) &&
-  Number.isFinite(fighter.career.winsBySubmission)
-).length;
+const withCareer = fighters.filter(fighter => completeDisplayedCareer(fighter.career)).length;
 
 const output = {
   schemaVersion: 1,
@@ -400,20 +411,30 @@ const output = {
     bios: TOTT_URL,
     fightStats: STATS_URL,
     fightResults: FIGHT_URL,
-    events: EVENT_URL
+    events: EVENT_URL,
+    careerFallback: 'https://www.sherdog.com/stats/fightfinder'
   },
   coverage: {
     fighters: fighters.length,
     withStats,
     withBio,
-    withCareer
+    withCareer,
+    sherdogCareer
   },
   fighters
 };
 
 if (fighters.length < 500) throw new Error(`Writer fighter index is implausibly small: ${fighters.length}`);
 if (withStats < 400) throw new Error(`Writer fighter index has implausibly low stat coverage: ${withStats}`);
-if (withCareer < 400) throw new Error(`Writer fighter index has implausibly low career-method coverage: ${withCareer}`);
+const minimumCareerCoverage = Math.max(800, Math.floor(fighters.length * 0.90));
+if (withCareer < minimumCareerCoverage) {
+  const missing = fighters.filter(fighter => !completeDisplayedCareer(fighter.career)).slice(0, 20).map(fighter => fighter.name);
+  throw new Error(`Writer fighter index has incomplete career-method coverage: ${withCareer}/${fighters.length}; examples: ${missing.join(', ')}`);
+}
+const incompleteBooked = fighters.filter(fighter => fighter.booking && !completeDisplayedCareer(fighter.career));
+if (incompleteBooked.length) {
+  throw new Error('Booked fighters have incomplete Writer career data: ' + incompleteBooked.map(fighter => fighter.name).join(', '));
+}
 
 await fs.writeFile(OUTPUT_PATH, JSON.stringify(output, null, 2) + '\n');
-console.log(`Writer fighter index: ${fighters.length} fighters, ${withStats} with UFCStats career metrics, ${withBio} with Tale data, ${withCareer} with career-method totals. Mirror through ${mirrorThrough || 'unknown'}.`);
+console.log(`Writer fighter index: ${fighters.length} fighters, ${withStats} with UFCStats career metrics, ${withBio} with Tale data, ${withCareer} with complete displayed career totals. Sherdog resolved ${sherdogCareer.resolved}, reused ${sherdogCareer.appliedFromCache}, missed ${sherdogCareer.missed}. Mirror through ${mirrorThrough || 'unknown'}.`);
