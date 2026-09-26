@@ -243,9 +243,8 @@ function reportPreviewState(stateName,message=""){
   if(!IS_CONTROL_PREVIEW||window.parent===window)return;
   try{window.parent.postMessage({type:"matlock-broadcast-preview-state",state:stateName,message,slideCount:slides.length,currentType:currentSlide?.type||null},location.origin)}catch{}
 }
-window.addEventListener("message",event=>{
-  if(event.origin!==location.origin)return;
-  const m=event.data;if(!m||m.type!=="matlock-broadcast-control-preview"||!m.config||!IS_CONTROL_PREVIEW)return;
+function applyControlPreview(m){
+  if(!IS_CONTROL_PREVIEW||!m||m.type!=="matlock-broadcast-control-preview"||!m.config)return{state:"error",slideCount:slides.length};
   previewControl=deepMerge(DEFAULT_CONTROL,m.config);
   if(m.feeds){
     if(m.feeds.news)newsCache=m.feeds.news;
@@ -257,7 +256,8 @@ window.addEventListener("message",event=>{
     clearTimeout(timer);clearTimeout(videoWatchdog);
     currentSlide=null;els.title.textContent="No eligible content in this draft";els.eyebrow.textContent="PROGRAM MONITOR";els.source.textContent="MMA MATLOCK";els.time.textContent="PREVIEW";
     renderFacts("CHECK FILTERS",["Enable at least one content module and make sure the freshness/source filters leave eligible stories, videos, or events."]);
-    setMediaImage("");reportPreviewState("empty");return;
+    setMediaImage("");reportPreviewState("empty");
+    return{state:"empty",slideCount:0,currentType:null};
   }
   if(m.restart||!currentSlide){
     clearTimeout(timer);clearTimeout(videoWatchdog);transitioning=false;
@@ -267,6 +267,15 @@ window.addEventListener("message",event=>{
     renderSlideNow(next);
   }
   reportPreviewState("ready");
+  return{state:"ready",slideCount:slides.length,currentType:currentSlide?.type||null};
+}
+if(IS_CONTROL_PREVIEW){
+  window.MatlockBroadcastPreview={apply:applyControlPreview};
+}
+window.addEventListener("message",event=>{
+  if(event.origin!==location.origin)return;
+  const m=event.data;if(!m||m.type!=="matlock-broadcast-control-preview")return;
+  applyControlPreview(m);
 });
 if(!IS_CONTROL_PREVIEW)previewControl=null;
 else reportPreviewState("connected");
