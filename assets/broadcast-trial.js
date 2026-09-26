@@ -20,6 +20,7 @@ const DEFAULT_CONTROL={
   ticker:{enabled:true,speedSeconds:240,maxItems:14},
   visual:{layout:"splitDesk",videoWidth:64,articleCardSeconds:9,articleCharsPerCard:340,flipNews:false,showRail:true,showClock:true,showBadge:true,showSource:true},
   sources:{customNewsFeeds:[],customVideoChannels:[],removedNewsSources:[],removedVideoChannels:[]},
+  programming:{mode:"auto",manualQueue:[]},
   hidden:{news:[],videos:[],events:[]},
   forceNext:null
 };
