@@ -279,7 +279,7 @@ test.describe('Broadcast control program monitor', () => {
     await page.locator('[data-nav-target="queue"]').click();
     await expect(page.locator('[data-queue-state]')).not.toHaveText('SYNCING', { timeout: 10000 });
     await expect(page.locator('[data-queue-ticker] .bc-queue-item').first()).toBeVisible({ timeout: 10000 });
-    await expect(page.locator('[data-queue-ticker] .bc-queue-item').first().locator('.bc-queue-item-meta b')).not.toHaveText('');
+    await expect(page.locator('[data-queue-ticker] .bc-queue-item').first().locator('.bc-queue-source-link')).not.toHaveText('');
     await expect(page.locator('[data-queue-video] .bc-queue-item').first()).toBeVisible({ timeout: 10000 });
     await expect(page.locator('[data-queue-video] .bc-queue-item').first().locator('.bc-queue-source-link')).toHaveAttribute('href', /youtube\.com\/watch/);
     await expect(page.locator('[data-queue-video] .bc-queue-item').first().locator('.bc-queue-item-title-link')).toHaveAttribute('href', /youtube\.com\/watch/);
