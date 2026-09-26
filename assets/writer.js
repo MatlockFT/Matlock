@@ -1339,6 +1339,9 @@
     if (!range || !markdown) return false;
 
     bodyEditor.value = bodyEditor.value.slice(0, range.start) + markdown + bodyEditor.value.slice(range.end);
+    // Programmatic textarea writes do not fire input. Emit it so every source-of-truth
+    // listener (preview, outline, word count, autosave state) observes visual table edits.
+    bodyEditor.dispatchEvent(new Event('input', { bubbles: true }));
     scheduleAutosave();
     return true;
   }
