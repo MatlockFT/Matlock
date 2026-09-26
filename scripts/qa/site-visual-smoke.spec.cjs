@@ -200,6 +200,21 @@ test.describe('Broadcast control program monitor', () => {
     await expect(frame.locator('[data-broadcast]')).toBeVisible({ timeout: 30000 });
     await expect(frame.locator('[data-stage]')).toHaveClass(/split-desk/, { timeout: 30000 });
     await expect(frame.locator('[data-video-shell]')).toBeVisible({ timeout: 30000 });
+    await expect(frame.locator('.topbar')).toHaveCount(0);
+    await expect(frame.locator('[data-clock]')).toHaveCount(0);
+    await expect(frame.locator('body')).not.toContainText('COMBAT NEWS LIVE');
+
+    const programFonts = await frame.locator('[data-broadcast]').evaluate(root => {
+      const seen = new Set();
+      [root, ...root.querySelectorAll('*')].forEach(node => {
+        const family = getComputedStyle(node).fontFamily;
+        if (family) seen.add(family);
+      });
+      return [...seen];
+    });
+    const normalizedFonts = programFonts.map(f => f.toLowerCase());
+    expect(normalizedFonts.every(f => f.includes('gobold') || f.includes('arial') || f.includes('helvetica') || f.includes('sans-serif'))).toBeTruthy();
+
 
     const newsToggle = page.locator('[data-path="modules.news"]');
     if (!(await newsToggle.isChecked())) {
