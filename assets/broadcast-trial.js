@@ -20,7 +20,7 @@ const DEFAULT_CONTROL={
   ticker:{enabled:true,speedSeconds:240,maxItems:14},
   visual:{layout:"splitDesk",videoWidth:64,articleCardSeconds:9,articleCharsPerCard:340,flipNews:false,showRail:true,showClock:true,showBadge:true,showSource:true},
   sources:{customNewsFeeds:[],customVideoChannels:[],removedNewsSources:[],removedVideoChannels:[]},
-  programming:{mode:"auto",manualQueue:[]},
+  programming:{mode:"auto",tickerMode:"auto",manualQueue:[]},
   hidden:{news:[],videos:[],events:[]},
   forceNext:null
 };
@@ -193,7 +193,7 @@ function buildAutoSlides(split){
 }
 function videoSlides(){
   const mode=programmingMode(),auto=autoVideoSlides(),manual=manualSlides().filter(x=>x.type==="video");
-  if(mode==="manual")return manual;
+  if(mode==="manual")return manual.length?manual:auto;
   if(mode==="hybrid")return appendAutoUnique(manual,auto);
   return auto;
 }
@@ -214,14 +214,17 @@ function autoTickerItems(){
     .slice(0,Math.max(3,Number(cfg().ticker.maxItems||14)));
 }
 function tickerItems(){
+  const tickerMode=cfg().programming?.tickerMode==="articles"?"articles":"auto";
+  const auto=autoTickerItems();
+  if(tickerMode==="auto")return auto;
   const mode=programmingMode(),manual=manualProgramEntries().filter(x=>x.type==="news").map(entry=>{
     const current=[newsCache?.topStory,...(newsCache?.stories||[])].filter(Boolean).find(item=>itemId("news",item)===entry.id);
     return current||entry.item||null;
   }).filter(Boolean);
   if(mode==="manual")return manual.slice(0,Math.max(3,Number(cfg().ticker.maxItems||14)));
-  const auto=autoTickerItems();
   if(mode==="hybrid"){
-    const keys=new Set(manual.map(item=>itemId("news",item)));return manual.concat(auto.filter(item=>!keys.has(itemId("news",item)))).slice(0,Math.max(3,Number(cfg().ticker.maxItems||14)));
+    const keys=new Set(manual.map(item=>itemId("news",item)));
+    return manual.concat(auto.filter(item=>!keys.has(itemId("news",item)))).slice(0,Math.max(3,Number(cfg().ticker.maxItems||14)));
   }
   return auto;
 }

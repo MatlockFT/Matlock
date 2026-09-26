@@ -292,17 +292,30 @@ test.describe('Broadcast control program monitor', () => {
     await expect(poolItems.first().locator('.bc-program-title')).toHaveAttribute('href', /^https?:\/\//);
 
     const firstPoolTitle = (await poolItems.first().locator('.bc-program-title').textContent() || '').trim();
-    await poolItems.first().dragTo(page.locator('[data-program-manual-queue]'));
+    await poolItems.first().dragTo(page.locator('[data-program-manual-article]'));
     await expect(page.locator('[data-program-mode="hybrid"]')).toHaveAttribute('aria-pressed','true');
-    await expect(page.locator('[data-program-manual-queue] .bc-program-queue-item')).toHaveCount(1);
-    await expect(page.locator('[data-program-manual-queue] .bc-program-title')).toHaveText(firstPoolTitle);
+    await expect(page.locator('[data-program-manual-article] .bc-program-queue-item')).toHaveCount(1);
+    await expect(page.locator('[data-program-manual-article] .bc-program-title')).toHaveText(firstPoolTitle);
+    await expect(page.locator('[data-program-manual-video]')).toBeVisible();
 
     await page.locator('[data-program-mode="manual"]').click();
     await expect(page.locator('[data-program-mode="manual"]')).toHaveAttribute('aria-pressed','true');
     await expect.poll(async () => page.locator('[data-program-monitor-frame]').evaluate(frame => {
       const q = frame.contentWindow.MatlockBroadcastPreview?.snapshot?.();
-      return (q?.article?.length || 0) + (q?.video?.length || 0) + (q?.program?.length || 0);
+      return q?.article?.length || 0;
     })).toBe(1);
+    await expect.poll(async () => page.locator('[data-program-monitor-frame]').evaluate(frame => {
+      const q = frame.contentWindow.MatlockBroadcastPreview?.snapshot?.();
+      return q?.video?.length || 0;
+    })).toBeGreaterThan(0);
+    await expect(page.locator('[data-program-video-now]')).toBeVisible();
+    await expect(page.locator('[data-program-article-now]')).toBeVisible();
+
+    await expect(page.locator('[data-program-ticker-list] .bc-queue-item').first()).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('[data-program-ticker-list] .bc-queue-source-link').first()).toHaveAttribute('href', /^https?:\/\//);
+    await expect(page.locator('[data-path="programming.tickerMode"]')).toHaveValue('auto');
+    await expect.poll(async () => page.locator('[data-program-monitor-frame]').evaluate(frame => frame.contentWindow.MatlockBroadcastPreview?.snapshot?.().ticker?.length || 0)).toBeGreaterThan(0);
+
     await expect(page.locator('[data-program-output] .bc-queue-item').first()).toBeVisible({ timeout: 10000 });
     await expect(page.locator('[data-program-output] .bc-queue-item').first().locator('.bc-queue-item-title-link')).toHaveAttribute('href', /^https?:\/\//);
 
