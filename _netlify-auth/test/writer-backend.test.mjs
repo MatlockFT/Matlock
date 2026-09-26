@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { allowedPath, validateWriteBody } from '../netlify/functions/writer-github.mjs';
-import { parseUfcStatsProfile } from '../netlify/functions/writer-fighter.mjs';
+import { parseUfcProfileSummary, parseUfcStatsProfile } from '../netlify/functions/writer-fighter.mjs';
 import {
   ACTIVE_UPLOAD_TTL_MS,
   COMPLETE_STATUS_TTL_MS,
@@ -139,4 +139,24 @@ test('UFCStats fighter parser extracts live career metrics and recent form', () 
   assert.equal(profile.ufcRecord, '1-0-0');
   assert.equal(profile.recent[0].opponent, 'Rob Font');
   assert.equal(profile.recent[0].method, 'Decision - Unanimous');
+});
+
+
+test('UFC official profile parser extracts career win-method totals', () => {
+  const html = `
+    <main>
+      <h1>Brad Tavares</h1>
+      <div>21-13-0 (W-L-D)</div>
+      <div><strong>5</strong> Wins by Knockout</div>
+      <div><strong>2</strong> Wins by Submission</div>
+      <div><strong>5</strong> First Round Finishes</div>
+    </main>
+  `;
+  const profile = parseUfcProfileSummary(html);
+  assert.equal(profile.record, '21-13-0');
+  assert.equal(profile.career.winsByKnockout, 5);
+  assert.equal(profile.career.winsBySubmission, 2);
+  assert.equal(profile.career.totalFinishes, 7);
+  assert.equal(profile.career.decisionWins, 14);
+  assert.equal(profile.career.firstRoundFinishes, 5);
 });
