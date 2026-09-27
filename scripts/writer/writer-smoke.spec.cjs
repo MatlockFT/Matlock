@@ -633,7 +633,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(articleDetails).not.toHaveAttribute('open', '');
   await expect(page.locator('#writer-body')).toHaveValue(/Closing section/);
   await expect(page.locator('#writer-body')).toHaveValue(/Writer smoke image/);
-  await expect(page.locator('#writer-body')).toHaveValue(/ALPHA FIGHTER/);
+  await expect(page.locator('#writer-body')).toHaveValue(/Alpha Fighter/);
   await expect(page.locator('[data-preview-content]')).toContainText('Visually edited HTML.');
   await articleDetails.locator(':scope > summary').click();
   await expect(articleDetails).toHaveAttribute('open', '');
@@ -675,7 +675,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   expect(remote.text).toContain('Visually edited HTML.');
   expect(remote.text).toContain('Writer smoke image');
   expect(remote.text).toContain('dQw4w9WgXcQ');
-  expect(remote.text).toContain('ALPHA FIGHTER');
+  expect(remote.text).toContain('Alpha Fighter');
 
   expect(pageErrors).toEqual([]);
 });
