@@ -1062,7 +1062,7 @@ function insertBlock(text) {
       dialog.querySelector('[data-tale-image-path="'+side+'"]').value=fighter.image||'';
       dialog.querySelector('[data-tale-image-x="'+side+'"]').value=fighter.x??50;
       dialog.querySelector('[data-tale-image-y="'+side+'"]').value=fighter.y??50;
-      dialog.querySelector('[data-tale-image-zoom="'+side+'"]').value=fighter.zoom??100;
+      dialog.querySelector('[data-tale-image-zoom="'+side+'"]').value=Math.max(100,Number(fighter.zoom??100)||100);
       dialog.querySelector('[data-tale-opponents-record="'+side+'"]').value=fighter.opponentsRecord||'';
       dialog.querySelector('[data-tale-opponents-pct="'+side+'"]').value=fighter.opponentsPct||'';
       renderRecentRows(dialog.querySelector('[data-tale-form-list="'+side+'"]'),fighter.recent);
