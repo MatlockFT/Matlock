@@ -1,6 +1,6 @@
 {
   "schemaVersion": 5,
-  "generatedAt": "2026-09-26T22:03:58.718Z",
+  "generatedAt": "2026-09-27T00:34:59.622Z",
   "engineVersion": 2,
   "mode": "temporal-historical-universe-v5",
   "lookbackDays": 730,
@@ -19,16 +19,16 @@
   },
   "rankingSnapshotCoverage": {
     "archiveStart": "2026-09-10",
-    "archiveEnd": "2026-09-26",
-    "snapshotsAvailable": 13,
+    "archiveEnd": "2026-09-27",
+    "snapshotsAvailable": 14,
     "sampledCasesWithSnapshot": 0,
     "sampledCasesWithoutSnapshot": 120,
     "maxSnapshotAgeDays": 14
   },
   "temporalStateCoverage": {
     "archiveStart": "2026-09-15",
-    "archiveEnd": "2026-09-26",
-    "snapshotsAvailable": 8,
+    "archiveEnd": "2026-09-27",
+    "snapshotsAvailable": 9,
     "sampledCasesWithSnapshot": 0,
     "sampledCasesWithoutSnapshot": 120,
     "maxSnapshotAgeDays": 7

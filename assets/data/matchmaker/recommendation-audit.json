@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-26T22:03:58.718Z",
+  "generatedAt": "2026-09-27T00:34:59.622Z",
   "engineVersion": 2,
   "subjects": 206,
   "publishedRecommendations": 566,
@@ -12,27 +12,27 @@
   "caseCounts": {
     "rebound-pairing": 241,
     "rising-vs-rising": 162,
-    "step-up-vs-rebound": 63,
+    "step-up-vs-rebound": 62,
     "ranking-opportunity": 42,
-    "rankings-progression": 29,
+    "rankings-progression": 30,
     "divisional-sorting": 15,
     "title-case": 7,
     "title-eliminator": 5,
     "prospect-test": 2
   },
   "confidenceCounts": {
-    "high": 522,
-    "medium": 27,
+    "high": 523,
+    "medium": 26,
     "low": 17
   },
   "averageRecentOpponentLinkCoverage": 0.9076,
   "sameCardRecommendations": 32,
   "sameCardRecommendationRatio": 0.0565,
-  "asymmetricTopThreeRecommendations": 188,
-  "asymmetricTopThreeRatio": 0.3322,
+  "asymmetricTopThreeRecommendations": 195,
+  "asymmetricTopThreeRatio": 0.3445,
   "publicPublishedRecommendations": 546,
-  "publicAsymmetricTopThreeRecommendations": 152,
-  "publicAsymmetricTopThreeRatio": 0.2784,
+  "publicAsymmetricTopThreeRecommendations": 160,
+  "publicAsymmetricTopThreeRatio": 0.293,
   "engineGenericDivisionalSortingRecommendations": 15,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -421,6 +421,31 @@
     },
     {
       "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Alonzo Menifield",
+      "opponent": "Billy Elekana",
+      "pairScore": 80,
+      "case": "rankings-progression",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Rodolfo Bellato",
+          "score": 89,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Diyar Nurgozhay",
+          "score": 84,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Modestas Bukauskas",
+          "score": 83,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
       "fighter": "Iwo Baraniewski",
       "opponent": "Julius Walker",
       "pairScore": 91,
@@ -472,25 +497,25 @@
     {
       "event": "Crypto.com UFC 331: Van vs Pantoja 2",
       "fighter": "Marlon Vera",
-      "opponent": "Farid Basharat",
-      "pairScore": 61,
+      "opponent": "Raul Rosas Jr.",
+      "pairScore": 72,
       "case": "rankings-progression",
       "fighterRank": "Another option",
       "opponentTopThree": [
         {
-          "opponent": "Bryce Mitchell",
-          "score": 90,
+          "opponent": "Farid Basharat",
+          "score": 89,
           "case": "rankings-progression"
         },
         {
-          "opponent": "Victor Henry",
-          "score": 80,
+          "opponent": "Raoni Barcelos",
+          "score": 85,
           "case": "rankings-progression"
         },
         {
-          "opponent": "Davey Grant",
-          "score": 77,
-          "case": "rankings-progression"
+          "opponent": "Aiemann Zahabi",
+          "score": 84,
+          "case": "step-up-vs-rebound"
         }
       ]
     },
@@ -653,17 +678,17 @@
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Ramon Taveras",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
           "opponent": "Damien Anderson",
           "score": 94,
           "case": "rebound-pairing"
         },
         {
           "opponent": "Javier Reyes",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Manolo Zecchini",
           "score": 94,
           "case": "rebound-pairing"
         }
@@ -747,10 +772,35 @@
     {
       "event": "Crypto.com UFC 331: Van vs Pantoja 2",
       "fighter": "Brunno Ferreira",
+      "opponent": "Rodolfo Vieira",
+      "pairScore": 90,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Dusko Todorovic",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Jun Yong Park",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Zachary Reese",
+          "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
+      "fighter": "Brunno Ferreira",
       "opponent": "Mansur Abdul Malik",
       "pairScore": 89,
       "case": "rebound-pairing",
-      "fighterRank": "Alternative",
+      "fighterRank": "Another option",
       "opponentTopThree": [
         {
           "opponent": "Azamat Bekoev",
@@ -765,31 +815,6 @@
         {
           "opponent": "Ryan Loder",
           "score": 93,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Brunno Ferreira",
-      "opponent": "Torrez Finney",
-      "pairScore": 89,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Marco Tulio",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Treston Vines",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Azamat Bekoev",
-          "score": 91,
           "case": "rebound-pairing"
         }
       ]
@@ -816,31 +841,6 @@
           "opponent": "Dooho Choi",
           "score": 92,
           "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Joanderson Brito",
-      "opponent": "Mairon Santos Alves",
-      "pairScore": 88,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Melquizael Costa",
-          "score": 97,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Youssef Zalal",
-          "score": 90,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Steve Garcia",
-          "score": 89,
-          "case": "ranking-opportunity"
         }
       ]
     }
