@@ -30,14 +30,14 @@ published: true
 
 
 <section class="article-html-visual" data-post-fight-results="ufc-vegas-121">
-  <div class="pick-results">
+  <div class="pick-results pick-results--matlock">
     <div class="pick-results__head">
-      <div>
-        <span class="pick-results__eyebrow">POST-FIGHT RESULTS</span>
-        <h2>How the picks did</h2>
+      <div class="pick-results__title-wrap">
+        <span class="pick-results__eyebrow">Post-Fight Results</span>
+        <h2>My Picks</h2>
       </div>
       <div class="pick-results__score" aria-label="8 correct picks out of 11">
-        <strong>8–3</strong>
+        <strong>8-3</strong>
         <span>73%</span>
       </div>
     </div>
@@ -57,113 +57,130 @@ published: true
     </div>
 
     <div class="pick-results__foot">
-      <span>FINAL RECORD</span>
-      <strong>8 / 11 CORRECT</strong>
+      <span>Final Record</span>
+      <strong>8 / 11 Correct</strong>
     </div>
   </div>
 
   <style>
-    .pick-results {
-      --pr-green: #169c52;
-      --pr-green-bg: rgba(22,156,82,.10);
-      --pr-red: #d84242;
-      --pr-red-bg: rgba(216,66,66,.10);
-      --pr-line: rgba(127,127,127,.22);
+    .pick-results--matlock {
+      --pr-text: #f4efe7;
+      --pr-muted: rgba(244, 239, 231, .62);
+      --pr-line: rgba(214, 161, 88, .22);
+      --pr-line-strong: rgba(214, 161, 88, .38);
+      --pr-accent: #d78b2c;
+      --pr-green: #31bf72;
+      --pr-green-soft: rgba(49, 191, 114, .14);
+      --pr-red: #ef5a5a;
+      --pr-red-soft: rgba(239, 90, 90, .14);
       margin: 0 0 32px;
       border: 1px solid var(--pr-line);
-      background: var(--body-bg, #fff);
-      color: inherit;
+      border-top: 2px solid var(--pr-accent);
+      background:
+        linear-gradient(180deg, rgba(215,139,44,.06) 0%, rgba(215,139,44,0) 72px),
+        linear-gradient(180deg, #0a0a0a 0%, #070707 100%);
+      color: var(--pr-text);
+      box-shadow: 0 14px 28px rgba(0,0,0,.24);
       overflow: hidden;
     }
 
-    .pick-results *,
-    .pick-results *::before,
-    .pick-results *::after { box-sizing: border-box; }
+    .pick-results--matlock *,
+    .pick-results--matlock *::before,
+    .pick-results--matlock *::after {
+      box-sizing: border-box;
+    }
 
-    .pick-results__head {
+    .pick-results--matlock .pick-results__head {
       display: flex;
-      align-items: center;
+      align-items: end;
       justify-content: space-between;
-      gap: 24px;
-      padding: 22px 24px 20px;
+      gap: 20px;
+      padding: 22px 24px 18px;
       border-bottom: 1px solid var(--pr-line);
     }
 
-    .pick-results__eyebrow {
+    .pick-results--matlock .pick-results__eyebrow {
       display: block;
-      margin-bottom: 5px;
-      font-size: .67rem;
+      margin-bottom: 8px;
+      color: var(--pr-accent);
+      font-size: .68rem;
       font-weight: 900;
       letter-spacing: .16em;
       text-transform: uppercase;
-      opacity: .58;
+      opacity: .92;
     }
 
-    .pick-results__head h2 {
+    .pick-results--matlock .pick-results__title-wrap h2 {
       margin: 0;
-      font-size: clamp(1.35rem, 2.8vw, 2rem);
-      line-height: 1;
-      letter-spacing: -.025em;
+      color: var(--pr-text);
+      font-size: clamp(1.4rem, 2.8vw, 2.15rem);
+      line-height: .98;
+      letter-spacing: -.02em;
     }
 
-    .pick-results__score {
+    .pick-results--matlock .pick-results__score {
       display: flex;
       align-items: baseline;
-      gap: 12px;
+      gap: 10px;
+      flex: 0 0 auto;
       white-space: nowrap;
       font-variant-numeric: tabular-nums;
     }
 
-    .pick-results__score strong {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      line-height: 1;
-      letter-spacing: -.055em;
+    .pick-results--matlock .pick-results__score strong {
+      color: var(--pr-text);
+      font-size: clamp(2rem, 5vw, 3.3rem);
+      line-height: .9;
+      letter-spacing: -.06em;
     }
 
-    .pick-results__score span {
+    .pick-results--matlock .pick-results__score span {
       color: var(--pr-green);
       font-size: 1rem;
       font-weight: 900;
+      letter-spacing: .02em;
     }
 
-    .pick-results__list {
+    .pick-results--matlock .pick-results__list {
       display: grid;
       grid-template-columns: 1fr 1fr;
     }
 
-    .pick-results__row {
+    .pick-results--matlock .pick-results__row {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 14px;
       min-width: 0;
-      padding: 13px 16px;
+      padding: 14px 16px;
+      background: rgba(255,255,255,.01);
       border-bottom: 1px solid var(--pr-line);
     }
 
-    .pick-results__row:nth-child(odd) {
+    .pick-results--matlock .pick-results__row:nth-child(odd) {
       border-right: 1px solid var(--pr-line);
     }
 
-    .pick-results__row span {
+    .pick-results--matlock .pick-results__row span {
       min-width: 0;
-      font-size: .86rem;
-      font-weight: 750;
+      color: var(--pr-text);
+      font-size: .92rem;
+      font-weight: 700;
       line-height: 1.25;
     }
 
-    .pick-results__row strong {
+    .pick-results--matlock .pick-results__row strong {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       flex: 0 0 auto;
-      font-size: .67rem;
+      font-size: .68rem;
       font-weight: 900;
-      letter-spacing: .07em;
+      letter-spacing: .09em;
       text-transform: uppercase;
     }
 
-    .pick-results__row i {
+    .pick-results--matlock .pick-results__row i {
       display: inline-grid;
       place-items: center;
       width: 20px;
@@ -174,90 +191,124 @@ published: true
       line-height: 1;
     }
 
-    .pick-results__row.is-correct strong { color: var(--pr-green); }
-    .pick-results__row.is-correct i { background: var(--pr-green-bg); }
+    .pick-results--matlock .pick-results__row.is-correct strong { color: var(--pr-green); }
 
-    .pick-results__row.is-wrong strong { color: var(--pr-red); }
-    .pick-results__row.is-wrong i { background: var(--pr-red-bg); }
+    .pick-results--matlock .pick-results__row.is-correct i {
+      color: var(--pr-green);
+      background: var(--pr-green-soft);
+      border: 1px solid rgba(49,191,114,.28);
+    }
 
-    .pick-results__foot {
+    .pick-results--matlock .pick-results__row.is-wrong strong { color: var(--pr-red); }
+
+    .pick-results--matlock .pick-results__row.is-wrong i {
+      color: var(--pr-red);
+      background: var(--pr-red-soft);
+      border: 1px solid rgba(239,90,90,.28);
+    }
+
+    .pick-results--matlock .pick-results__foot {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
       padding: 14px 18px;
-      background: rgba(127,127,127,.055);
+      background: rgba(215,139,44,.06);
+      border-top: 1px solid var(--pr-line-strong);
     }
 
-    .pick-results__foot span {
-      font-size: .63rem;
+    .pick-results--matlock .pick-results__foot span {
+      color: var(--pr-muted);
+      font-size: .66rem;
       font-weight: 900;
-      letter-spacing: .15em;
-      opacity: .55;
+      letter-spacing: .16em;
+      text-transform: uppercase;
     }
 
-    .pick-results__foot strong {
-      font-size: .88rem;
+    .pick-results--matlock .pick-results__foot strong {
+      color: var(--pr-text);
+      font-size: .9rem;
       font-weight: 900;
-      letter-spacing: .06em;
+      letter-spacing: .08em;
+      text-transform: uppercase;
     }
 
     @media (max-width: 680px) {
-      .pick-results { margin-bottom: 25px; }
-
-      .pick-results__head {
-        padding: 17px 15px 15px;
-        gap: 14px;
+      .pick-results--matlock {
+        margin-bottom: 24px;
       }
 
-      .pick-results__eyebrow { font-size: .58rem; }
-      .pick-results__head h2 { font-size: 1.35rem; }
+      .pick-results--matlock .pick-results__head {
+        padding: 16px 14px 14px;
+        gap: 12px;
+      }
 
-      .pick-results__score {
+      .pick-results--matlock .pick-results__eyebrow {
+        margin-bottom: 7px;
+        font-size: .57rem;
+      }
+
+      .pick-results--matlock .pick-results__title-wrap h2 {
+        font-size: 1.4rem;
+      }
+
+      .pick-results--matlock .pick-results__score {
         gap: 8px;
       }
 
-      .pick-results__score strong { font-size: 1.75rem; }
-      .pick-results__score span { font-size: .78rem; }
+      .pick-results--matlock .pick-results__score strong {
+        font-size: 1.95rem;
+      }
 
-      .pick-results__list {
+      .pick-results--matlock .pick-results__score span {
+        font-size: .78rem;
+      }
+
+      .pick-results--matlock .pick-results__list {
         grid-template-columns: 1fr;
       }
 
-      .pick-results__row,
-      .pick-results__row:nth-child(odd) {
+      .pick-results--matlock .pick-results__row,
+      .pick-results--matlock .pick-results__row:nth-child(odd) {
         border-right: 0;
       }
 
-      .pick-results__row {
+      .pick-results--matlock .pick-results__row {
         padding: 11px 13px;
       }
 
-      .pick-results__row span {
-        font-size: .79rem;
+      .pick-results--matlock .pick-results__row span {
+        font-size: .8rem;
       }
 
-      .pick-results__row strong {
-        font-size: .6rem;
+      .pick-results--matlock .pick-results__row strong {
+        font-size: .58rem;
+        letter-spacing: .08em;
       }
 
-      .pick-results__row i {
+      .pick-results--matlock .pick-results__row i {
         width: 18px;
         height: 18px;
+        font-size: .7rem;
       }
 
-      .pick-results__foot {
+      .pick-results--matlock .pick-results__foot {
         padding: 12px 13px;
+      }
+
+      .pick-results--matlock .pick-results__foot strong {
+        font-size: .77rem;
       }
     }
 
     @media (prefers-reduced-motion: no-preference) {
-      .pick-results__row {
-        transition: background-color .18s ease;
+      .pick-results--matlock .pick-results__row {
+        transition: background-color .16s ease;
       }
 
-      .pick-results__row.is-correct:hover { background: var(--pr-green-bg); }
-      .pick-results__row.is-wrong:hover { background: var(--pr-red-bg); }
+      .pick-results--matlock .pick-results__row:hover {
+        background: rgba(215,139,44,.05);
+      }
     }
   </style>
 </section>
