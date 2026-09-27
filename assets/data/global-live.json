@@ -1,37 +1,8 @@
 {
   "version": 5,
-  "generated_at": "2026-09-26T23:41:28Z",
-  "selected_event_id": "samurai-fight-house:dWK52flkViI",
-  "events": [
-    {
-      "event_id": "samurai-fight-house:dWK52flkViI",
-      "promotion_id": "samurai-fight-house",
-      "promotion": "Samurai Fight House",
-      "short_name": "SFH",
-      "country": "Argentina",
-      "priority": 75,
-      "coverage_note": "Pro and amateur event streams",
-      "access_note": null,
-      "channel_url": "https://www.youtube.com/@samuraifighthouseLIVE",
-      "channel_id": "UCYwPDAGgjk79gkO44UJqDqQ",
-      "channel_name": "Samurai Fight House",
-      "video_id": "dWK52flkViI",
-      "title": "SAMURAI FIGHT HOUSE 31 VERGARA VS FIGUEREDO",
-      "watch_url": "https://www.youtube.com/watch?v=dWK52flkViI",
-      "status": "live",
-      "is_live": true,
-      "embeddable": true,
-      "scheduled_start_time": "2026-09-26T21:30:00Z",
-      "scheduled_end_time": null,
-      "actual_start_time": "2026-09-26T21:29:12Z",
-      "actual_end_time": null,
-      "concurrent_viewers": "1342",
-      "api_verified": true,
-      "stale": false,
-      "observed_at": "2026-09-26T23:41:27Z",
-      "source_role": "promotion"
-    }
-  ],
+  "generated_at": "2026-09-27T07:07:55Z",
+  "selected_event_id": null,
+  "events": [],
   "upcoming": [],
   "sources": {
     "559-fights": {
@@ -49,7 +20,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-26T21:24:50Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "a1-combat": {
       "promotion": "A1 Combat",
@@ -117,7 +88,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-26T21:24:50Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "ararat-wfc": {
       "promotion": "Ararat World Fighting Championship",
@@ -134,7 +105,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-26T18:31:10Z",
-      "last_checked_at": "2026-09-26T21:24:50Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "ares": {
       "promotion": "ARES Fighting Championship",
@@ -168,7 +139,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-26T21:24:50Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "bcm-promotions": {
       "promotion": "BCM Promotions",
@@ -219,7 +190,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-26T21:24:50Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "empire-mma-colombia": {
       "promotion": "Empire MMA",
@@ -253,7 +224,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-26T18:31:10Z",
-      "last_checked_at": "2026-09-26T21:24:50Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "fnc": {
       "promotion": "Fight Nation Championship",
@@ -355,7 +326,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-24T02:19:06Z",
-      "last_checked_at": "2026-09-26T21:24:50Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "levels-fight-league": {
       "promotion": "Levels Fight League",
@@ -372,7 +343,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-26T21:24:50Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "lfa": {
       "promotion": "Legacy Fighting Alliance",
@@ -423,7 +394,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-26T21:24:50Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "mangu": {
       "promotion": "Mangu Professional League",
@@ -440,7 +411,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-26T18:31:10Z",
-      "last_checked_at": "2026-09-26T21:24:50Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "manual-youtube-live": {
       "promotion": "YouTube Live",
@@ -508,7 +479,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-26T21:24:50Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "octagon-central-asia": {
       "promotion": "OCTAGON",
@@ -559,7 +530,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-26T21:24:50Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "real-fight-arena": {
       "promotion": "Real Fight Arena",
@@ -576,7 +547,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-25T16:55:14Z",
-      "last_checked_at": "2026-09-26T21:24:50Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "road-fc": {
       "promotion": "ROAD FC",
@@ -593,7 +564,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-26T21:24:50Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "samurai-fight-house": {
       "promotion": "Samurai Fight House",
@@ -605,12 +576,12 @@
       "channel_url": "https://www.youtube.com/@samuraifighthouseLIVE",
       "channel_id": "UCYwPDAGgjk79gkO44UJqDqQ",
       "channel_name": "Samurai Fight House",
-      "status": "live",
+      "status": "offline",
       "verification": "youtube_api",
       "last_error": null,
       "error_count": 0,
       "last_success_at": "2026-09-26T23:41:27Z",
-      "last_checked_at": "2026-09-26T23:41:26Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "sft-combat": {
       "promotion": "SFT Combat",
@@ -627,7 +598,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-26T21:24:50Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "shooto-brasil": {
       "promotion": "Shooto Brasil",
@@ -695,7 +666,7 @@
       "last_error": null,
       "error_count": 0,
       "last_success_at": null,
-      "last_checked_at": "2026-09-26T21:24:50Z"
+      "last_checked_at": "2026-09-27T07:07:54Z"
     },
     "wcc-peru": {
       "promotion": "Warriors Combat Championship",
@@ -733,7 +704,7 @@
     }
   },
   "monitored_count": 41,
-  "live_count": 1,
+  "live_count": 0,
   "upcoming_count": 0,
   "youtube_api_configured": true,
   "api_verified_source_count": 41
