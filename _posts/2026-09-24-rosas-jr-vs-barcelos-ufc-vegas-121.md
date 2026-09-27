@@ -43,17 +43,73 @@ published: true
     </div>
 
     <div class="pick-results__list">
-      <div class="pick-results__row is-correct"><span>Demopoulos vs. Jauregui</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
-      <div class="pick-results__row is-wrong"><span>Castaneda vs. Alatengheili</span><strong><i aria-hidden="true">×</i> Incorrect</strong></div>
-      <div class="pick-results__row is-correct"><span>Jackson vs. Simon</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
-      <div class="pick-results__row is-correct"><span>Brener vs. Harrell</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
-      <div class="pick-results__row is-wrong"><span>Bellato vs. Edwards</span><strong><i aria-hidden="true">×</i> Incorrect</strong></div>
-      <div class="pick-results__row is-correct"><span>Vieira vs. Bryczek</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
-      <div class="pick-results__row is-wrong"><span>Hiestand vs. Nakamura</span><strong><i aria-hidden="true">×</i> Incorrect</strong></div>
-      <div class="pick-results__row is-correct"><span>Amaya vs. Black</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
-      <div class="pick-results__row is-correct"><span>Dumas vs. Hernandez</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
-      <div class="pick-results__row is-correct"><span>Dumont vs. Perez</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
-      <div class="pick-results__row is-correct"><span>Rosas Jr. vs. Barcelos</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+
+      <div class="pick-results__row is-correct">
+        <div class="pick-results__row-head"><span>Demopoulos vs. Jauregui</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+        <div class="pick-results__detail"><b>Pick</b><span>Jauregui · Decision</span></div>
+        <div class="pick-results__detail"><b>Result</b><span>Jauregui · TKO R1</span></div>
+      </div>
+
+      <div class="pick-results__row is-wrong">
+        <div class="pick-results__row-head"><span>Castaneda vs. Alatengheili</span><strong><i aria-hidden="true">×</i> Incorrect</strong></div>
+        <div class="pick-results__detail"><b>Pick</b><span>Castaneda · KO/TKO R2</span></div>
+        <div class="pick-results__detail"><b>Result</b><span>Alatengheili · Split Decision</span></div>
+      </div>
+
+      <div class="pick-results__row is-correct">
+        <div class="pick-results__row-head"><span>Jackson vs. Simon</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+        <div class="pick-results__detail"><b>Pick</b><span>Jackson · KO/TKO R3</span></div>
+        <div class="pick-results__detail"><b>Result</b><span>Jackson · TKO R2</span></div>
+      </div>
+
+      <div class="pick-results__row is-correct">
+        <div class="pick-results__row-head"><span>Brener vs. Harrell</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+        <div class="pick-results__detail"><b>Pick</b><span>Brener · Submission R1</span></div>
+        <div class="pick-results__detail"><b>Result</b><span>Brener · KO R1</span></div>
+      </div>
+
+      <div class="pick-results__row is-wrong">
+        <div class="pick-results__row-head"><span>Bellato vs. Edwards</span><strong><i aria-hidden="true">×</i> Incorrect</strong></div>
+        <div class="pick-results__detail"><b>Pick</b><span>Bellato · Decision</span></div>
+        <div class="pick-results__detail"><b>Result</b><span>Edwards · TKO R3</span></div>
+      </div>
+
+      <div class="pick-results__row is-correct">
+        <div class="pick-results__row-head"><span>Vieira vs. Bryczek</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+        <div class="pick-results__detail"><b>Pick</b><span>Vieira · Split Decision</span></div>
+        <div class="pick-results__detail"><b>Result</b><span>Vieira · Unanimous Decision</span></div>
+      </div>
+
+      <div class="pick-results__row is-wrong">
+        <div class="pick-results__row-head"><span>Hiestand vs. Nakamura</span><strong><i aria-hidden="true">×</i> Incorrect</strong></div>
+        <div class="pick-results__detail"><b>Pick</b><span>Nakamura · KO/TKO R2</span></div>
+        <div class="pick-results__detail"><b>Result</b><span>Hiestand · Submission R2</span></div>
+      </div>
+
+      <div class="pick-results__row is-correct">
+        <div class="pick-results__row-head"><span>Amaya vs. Black</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+        <div class="pick-results__detail"><b>Pick</b><span>Black · Decision</span></div>
+        <div class="pick-results__detail"><b>Result</b><span>Black · TKO R2</span></div>
+      </div>
+
+      <div class="pick-results__row is-correct">
+        <div class="pick-results__row-head"><span>Dumas vs. Hernandez</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+        <div class="pick-results__detail"><b>Pick</b><span>Hernandez · Submission R1</span></div>
+        <div class="pick-results__detail"><b>Result</b><span>Hernandez · Submission R1</span></div>
+      </div>
+
+      <div class="pick-results__row is-correct">
+        <div class="pick-results__row-head"><span>Dumont vs. Perez</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+        <div class="pick-results__detail"><b>Pick</b><span>Perez · Decision</span></div>
+        <div class="pick-results__detail"><b>Result</b><span>Perez · Unanimous Decision</span></div>
+      </div>
+
+      <div class="pick-results__row is-correct">
+        <div class="pick-results__row-head"><span>Rosas Jr. vs. Barcelos</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+        <div class="pick-results__detail"><b>Pick</b><span>Rosas Jr. · KO/TKO R3</span></div>
+        <div class="pick-results__detail"><b>Result</b><span>Rosas Jr. · KO R5</span></div>
+      </div>
+
     </div>
 
     <div class="pick-results__foot">
@@ -107,7 +163,6 @@ published: true
       font-weight: 900;
       letter-spacing: .16em;
       text-transform: uppercase;
-      opacity: .92;
     }
 
     .pick-results--matlock .pick-results__title-wrap h2 {
@@ -138,7 +193,6 @@ published: true
       color: var(--pr-green);
       font-size: 1rem;
       font-weight: 900;
-      letter-spacing: .02em;
     }
 
     .pick-results--matlock .pick-results__list {
@@ -147,61 +201,100 @@ published: true
     }
 
     .pick-results--matlock .pick-results__row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
       min-width: 0;
-      padding: 14px 16px;
-      background: rgba(255,255,255,.01);
+      padding: 14px 16px 13px;
       border-bottom: 1px solid var(--pr-line);
+      background: rgba(255,255,255,.01);
     }
 
     .pick-results--matlock .pick-results__row:nth-child(odd) {
       border-right: 1px solid var(--pr-line);
     }
 
-    .pick-results--matlock .pick-results__row span {
-      min-width: 0;
-      color: var(--pr-text);
-      font-size: .92rem;
-      font-weight: 700;
-      line-height: 1.25;
+    .pick-results--matlock .pick-results__row-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
     }
 
-    .pick-results--matlock .pick-results__row strong {
+    .pick-results--matlock .pick-results__row-head > span {
+      min-width: 0;
+      color: var(--pr-text);
+      font-size: .9rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .pick-results--matlock .pick-results__row-head strong {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
       flex: 0 0 auto;
-      font-size: .68rem;
+      font-size: .62rem;
       font-weight: 900;
-      letter-spacing: .09em;
+      letter-spacing: .08em;
       text-transform: uppercase;
     }
 
-    .pick-results--matlock .pick-results__row i {
+    .pick-results--matlock .pick-results__row-head i {
       display: inline-grid;
       place-items: center;
-      width: 20px;
-      height: 20px;
+      width: 19px;
+      height: 19px;
       border-radius: 50%;
       font-style: normal;
-      font-size: .78rem;
+      font-size: .72rem;
       line-height: 1;
     }
 
-    .pick-results--matlock .pick-results__row.is-correct strong { color: var(--pr-green); }
+    .pick-results--matlock .pick-results__detail {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      align-items: baseline;
+      gap: 8px;
+      min-width: 0;
+      padding: 3px 0;
+    }
 
-    .pick-results--matlock .pick-results__row.is-correct i {
+    .pick-results--matlock .pick-results__detail b {
+      color: var(--pr-accent);
+      font-size: .58rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .pick-results--matlock .pick-results__detail span {
+      min-width: 0;
+      color: var(--pr-muted);
+      font-size: .76rem;
+      font-weight: 650;
+      line-height: 1.3;
+    }
+
+    .pick-results--matlock .pick-results__detail + .pick-results__detail {
+      border-top: 1px solid rgba(255,255,255,.045);
+      margin-top: 3px;
+      padding-top: 6px;
+    }
+
+    .pick-results--matlock .pick-results__row.is-correct .pick-results__row-head strong {
+      color: var(--pr-green);
+    }
+
+    .pick-results--matlock .pick-results__row.is-correct .pick-results__row-head i {
       color: var(--pr-green);
       background: var(--pr-green-soft);
       border: 1px solid rgba(49,191,114,.28);
     }
 
-    .pick-results--matlock .pick-results__row.is-wrong strong { color: var(--pr-red); }
+    .pick-results--matlock .pick-results__row.is-wrong .pick-results__row-head strong {
+      color: var(--pr-red);
+    }
 
-    .pick-results--matlock .pick-results__row.is-wrong i {
+    .pick-results--matlock .pick-results__row.is-wrong .pick-results__row-head i {
       color: var(--pr-red);
       background: var(--pr-red-soft);
       border: 1px solid rgba(239,90,90,.28);
@@ -274,22 +367,27 @@ published: true
       }
 
       .pick-results--matlock .pick-results__row {
-        padding: 11px 13px;
+        padding: 12px 13px 11px;
       }
 
-      .pick-results--matlock .pick-results__row span {
-        font-size: .8rem;
+      .pick-results--matlock .pick-results__row-head > span {
+        font-size: .82rem;
       }
 
-      .pick-results--matlock .pick-results__row strong {
-        font-size: .58rem;
-        letter-spacing: .08em;
+      .pick-results--matlock .pick-results__row-head strong {
+        font-size: .56rem;
       }
 
-      .pick-results--matlock .pick-results__row i {
-        width: 18px;
-        height: 18px;
-        font-size: .7rem;
+      .pick-results--matlock .pick-results__detail {
+        grid-template-columns: 43px 1fr;
+      }
+
+      .pick-results--matlock .pick-results__detail b {
+        font-size: .54rem;
+      }
+
+      .pick-results--matlock .pick-results__detail span {
+        font-size: .72rem;
       }
 
       .pick-results--matlock .pick-results__foot {
