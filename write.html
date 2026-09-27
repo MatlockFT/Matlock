@@ -452,7 +452,7 @@ page_scripts:
       <header><div><p class="eyebrow">Fight visual</p><h2>Tale of the Tape</h2></div><button class="writer-dialog-close" value="cancel" aria-label="Close">×</button></header>
       <div class="writer-dialog-body">
         <div class="writer-builder-intro">
-          <div><strong>Choose the fighters</strong><p>Start typing a name. Writer fills the verified directory data first, including full career finish and decision totals when available, then checks live sources without clearing cached values. Truly unavailable fields are marked N/A instead of left blank.</p></div>
+          <div><strong>Choose the fighters</strong><p>Start typing a name. Writer fills verified fighter data first, then checks live sources without clearing cached values. Recent form is shown as a numeric Last 5 record. Published fight cards also refresh moneylines automatically when a live line is available; the fallback moneyline fields are optional.</p></div>
           <span>Verified fallback</span>
         </div>
         <div class="writer-matchup-builder">
@@ -465,7 +465,7 @@ page_scripts:
             <label class="writer-field"><span>Fighter A</span><input data-tale-a placeholder="Fighter A"></label>
             <label class="writer-field"><span>Division</span><input data-tale-division="a" placeholder="Bantamweight"></label>
             <div class="writer-dialog-grid writer-dialog-grid-two">
-              <label class="writer-field"><span>Moneyline</span><input data-tale-odds="a" placeholder="-325"></label>
+              <label class="writer-field"><span>Fallback ML <small>optional</small></span><input data-tale-odds="a" placeholder="Auto"></label>
               <label class="writer-field"><span>Last 5</span><input data-tale-last5="a" placeholder="2-2-1"></label>
             </div>
             <label class="writer-field"><span>Image path / URL</span><input data-tale-image-path="a" placeholder="/assets/uploads/..."></label>
@@ -493,7 +493,7 @@ page_scripts:
             <label class="writer-field"><span>Fighter B</span><input data-tale-b placeholder="Fighter B"></label>
             <label class="writer-field"><span>Division</span><input data-tale-division="b" placeholder="Bantamweight"></label>
             <div class="writer-dialog-grid writer-dialog-grid-two">
-              <label class="writer-field"><span>Moneyline</span><input data-tale-odds="b" placeholder="+260"></label>
+              <label class="writer-field"><span>Fallback ML <small>optional</small></span><input data-tale-odds="b" placeholder="Auto"></label>
               <label class="writer-field"><span>Last 5</span><input data-tale-last5="b" placeholder="3-2"></label>
             </div>
             <label class="writer-field"><span>Image path / URL</span><input data-tale-image-path="b" placeholder="/assets/uploads/..."></label>
