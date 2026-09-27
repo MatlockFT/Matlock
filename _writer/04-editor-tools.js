@@ -638,7 +638,18 @@ function insertBlock(text) {
     const division = dialog.querySelector('[data-tale-division="' + side + '"]');
     if (division && fighter.division) division.value = fighter.division;
     const image = dialog.querySelector('[data-tale-image-path="' + side + '"]');
-    if (image && fighter.image) image.value = fighter.image;
+    if (image && fighter.image) {
+      const previousImage = image.value.trim();
+      if (previousImage && previousImage !== fighter.image) {
+        const xInput=dialog.querySelector('[data-tale-image-x="' + side + '"]');
+        const yInput=dialog.querySelector('[data-tale-image-y="' + side + '"]');
+        const zoomInput=dialog.querySelector('[data-tale-image-zoom="' + side + '"]');
+        if (xInput) xInput.value='50';
+        if (yInput) yInput.value='50';
+        if (zoomInput) zoomInput.value='100';
+      }
+      image.value = fighter.image;
+    }
     const recent = recentRowsFromFighter(fighter);
     renderRecentRows(dialog.querySelector('[data-tale-form-list="' + side + '"]'),recent);
     const last5 = dialog.querySelector('[data-tale-last5="' + side + '"]');
