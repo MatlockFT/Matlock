@@ -160,33 +160,6 @@ const feeds = [
     }
 ];
 
-async function broadcastControlConfig() {
-    for (const path of [
-        "assets/uploads/system/broadcast-control.json",
-        "assets/data/broadcast-control.json"
-    ]) {
-        try {
-            return JSON.parse(await readFile(resolve(path), "utf8"));
-        } catch {}
-    }
-    return {};
-}
-
-const broadcastControl = await broadcastControlConfig();
-const removedBroadcastNewsSources = new Set(broadcastControl?.sources?.removedNewsSources || []);
-for (const source of broadcastControl?.sources?.customNewsFeeds || []) {
-    const name = plainText(source?.name);
-    const feedUrl = safeUrl(source?.feedUrl);
-    const siteUrl = safeUrl(source?.siteUrl) || (feedUrl ? new URL(feedUrl).origin + "/" : "");
-    if (!name || !feedUrl || removedBroadcastNewsSources.has(name) || feeds.some(feed => feed.name.toLowerCase() === name.toLowerCase())) continue;
-    feeds.push({
-        name: truncate(name, 80),
-        siteUrl,
-        feedUrl,
-        priority: Number.isFinite(Number(source?.priority)) ? Number(source.priority) : 8
-    });
-}
-
 const parser = new XMLParser({
     attributeNamePrefix: "@",
     ignoreAttributes: false,
@@ -319,7 +292,7 @@ function articleContextBlocksFromHtml(html, fallbackText = "") {
     const paragraphs = [...html.matchAll(/<p\b[^>]*>([\s\S]*?)<\/p>/gi)]
         .map(match => ({
             raw: match[1],
-            text: broadcastContextText(match[1])
+            text: articleContextText(match[1])
         }))
         .filter(entry => entry.text.length >= 90)
         .filter(entry => !boilerplate.test(entry.text));
@@ -550,7 +523,7 @@ async function fetchArticleImage(story) {
     }
 }
 
-function broadcastContextText(value) {
+function articleContextText(value) {
     const text = plainText(value)
         .replace(/\bRead the Full Article Here\b.*$/i, "")
         .replace(/\bAdvertisement\b/gi, " ")
@@ -576,7 +549,7 @@ function broadcastContextText(value) {
 function articleContextFromHtml(html, storyTitle = "") {
     const paragraphPattern = /<p\b[^>]*>([\s\S]*?)<\/p>/gi;
     const paragraphs = [...html.matchAll(paragraphPattern)]
-        .map(match => broadcastContextText(match[1]))
+        .map(match => articleContextText(match[1]))
         .filter(text => text.length >= 90)
         .filter(text =>
             !/subscribe|sign up|newsletter|advertisement|click here|follow us|cookie|privacy/i.test(text)
@@ -612,7 +585,7 @@ function articleContextFromHtml(html, storyTitle = "") {
             );
 
             for (const entry of entries) {
-                const text = broadcastContextText(entry?.articleBody || "");
+                const text = articleContextText(entry?.articleBody || "");
                 if (text.length >= 140) return text;
             }
         } catch {
@@ -642,7 +615,7 @@ function articleContextFromHtml(html, storyTitle = "") {
 
         if (!metaKeys.has(key)) continue;
 
-        const text = broadcastContextText(tagAttribute(tag, "content"));
+        const text = articleContextText(tagAttribute(tag, "content"));
         if (text.length >= 90) return text;
     }
 

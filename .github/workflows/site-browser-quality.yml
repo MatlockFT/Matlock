@@ -158,7 +158,6 @@ jobs:
           event-map|/event-map/
           ufc-roster|/ufc-roster/
           on-this-day|/on-this-day/
-          live|/live/
           PAGES
 
       - name: Enforce mobile performance gate

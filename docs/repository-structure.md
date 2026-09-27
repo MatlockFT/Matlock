@@ -163,7 +163,6 @@ scripts/
   site-data/
     events/
     ufc/
-    live/
   qa/
 ```
 
