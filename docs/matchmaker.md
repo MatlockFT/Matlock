@@ -8,7 +8,7 @@ Run `node scripts/matchmaker/update-matchmaker.mjs` to refresh source data, then
 
 `assets/matchmaker-engine.js` is the deterministic recommendation engine. `scripts/matchmaker/sources/ufc.mjs` handles UFC event results, rankings and athlete-profile context. `scripts/matchmaker/sources/ufcstats.mjs` supplies structured prior-opponent history for rematch detection. The site's canonical UFC roster, upcoming schedule and portrait registry are reused. Visitors never trigger source scraping; the browser only reads normalized published JSON.
 
-The refresh workflow also runs recommendation-level validation. `scripts/matchmaker/audit-recommendations.mjs` audits the current engine and the actual public shortlist separately, including reciprocal-fit asymmetry and generic fallback usage. `scripts/matchmaker/build-historical-universe.mjs` builds an offline UFCStats-backed candidate universe that includes historical fighters absent from today's public Matchmaker roster. `scripts/matchmaker/backtest-recommendations-v4.mjs` reconstructs pre-fight states and compares the engine's recommendations with the fighter's eventual next UFC opponent; `scripts/matchmaker/refine-backtest-classifications.mjs` separates future weight-class moves from genuine data-coverage failures. The backtest is diagnostic calibration evidence, not an instruction to imitate every UFC booking.
+The refresh workflow also runs recommendation-level validation. When official rankings change, `scripts/matchmaker/reconcile-ranking-changes.mjs` reruns the public shortlist against the previous and current ranking states while holding the refreshed roster, results, bookings and fight history constant. The resulting `ranking-reconciliation.json` records which recommendations changed specifically because of the ranking update. `scripts/matchmaker/audit-recommendations.mjs` audits the current engine and the actual public shortlist separately, including reciprocal-fit asymmetry and generic fallback usage. `scripts/matchmaker/build-historical-universe.mjs` builds an offline UFCStats-backed candidate universe that includes historical fighters absent from today's public Matchmaker roster. `scripts/matchmaker/backtest-recommendations-v4.mjs` reconstructs pre-fight states and compares the engine's recommendations with the fighter's eventual next UFC opponent; `scripts/matchmaker/refine-backtest-classifications.mjs` separates future weight-class moves from genuine data-coverage failures. The backtest is diagnostic calibration evidence, not an instruction to imitate every UFC booking.
 
 ## Engine principles
 
@@ -51,7 +51,7 @@ The clean evaluation set therefore contains only cases where the subject and act
 ## Data quality and failure behavior
 
 - Completed cards require verified results for every bout.
-- Current rankings are captured as dated snapshots; later data is not retroactively treated as a historical ranking.
+- Current rankings are captured as dated snapshots; later data is not retroactively treated as a historical ranking. If UFC changes the board after an earlier same-day capture, the refresh also stores a timestamped intra-day snapshot instead of letting the first capture hide the update.
 - Daily active-roster and booking state is captured immutably for future temporal tests.
 - Active-roster membership comes from the canonical roster collector. The live engine does not invent active status.
 - Upcoming UFC cards and the site's schedule/roster monitor are used to exclude already-booked fighters.
