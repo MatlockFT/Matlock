@@ -367,6 +367,9 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('[data-preview-content] .fight-compare-sleek')).toBeVisible();
   await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-center-badge')).toContainText('MATCHUP');
   await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-section-title').first()).toContainText('Tale of the Tape');
+  await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-left .fc-odds')).toHaveClass('fc-odds fc-red-odds');
+  await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-right .fc-odds')).toHaveClass('fc-odds fc-blue-odds');
+  await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-form-section')).toBeVisible();
 
   await page.click('[data-tool="html"]');
   await page.fill('[data-html-label]', 'Smoke visual');
