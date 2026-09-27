@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { clean, key, slug, parseEvent, parseProfile, parseRankings } from './sources/ufc.mjs';
+import { clean, key, slug, parseEvent, parseProfile, parseRankings, officialResultArticleCandidates, applyOfficialResultArticles } from './sources/ufc.mjs';
 import { parseMirrorHistory } from './sources/ufcstats.mjs';
 import { validateData } from './validate.mjs';
 import { reconcileRoster } from './roster.mjs';
@@ -31,6 +31,23 @@ async function get(url, maxAge = 0) {
   }
   throw error;
 }
+
+async function getOptional(url) {
+  try {
+    const response = await fetch(url, {
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MMAMatlockMatchmaker/1.0; +https://mmamatlock.com/)' },
+      signal: AbortSignal.timeout(18000)
+    });
+    if (response.status === 404) return null;
+    if (!response.ok) throw new Error(`HTTP ${response.status}: ${url}`);
+    const body = await response.text();
+    retrievedAt.set(url, new Date().toISOString());
+    return body;
+  } catch (error) {
+    console.warn(`Optional result source unavailable: ${error.message}`);
+    return null;
+  }
+}
 async function mapLimit(items, limit, fn) {
   const results = new Array(items.length); let cursor = 0;
   await Promise.all(Array.from({ length: limit }, async () => { while (cursor < items.length) { const i = cursor++; results[i] = await fn(items[i], i); } }));
@@ -46,6 +63,36 @@ if (eventUrls.length < 5) throw new Error('Event directory incomplete');
 const parsedEvents = await mapLimit(eventUrls, 4, async url => {
   try { return parseEvent(await get(url), url); } catch (e) { console.warn(e.message); return null; }
 });
+
+// UFC's event-detail pages sometimes remain in an "upcoming/live" state after the card is over.
+// For very recent cards, reconcile against UFC's own Results / Prelim Results / Scorecards articles.
+// The event is promoted to "completed" only when every bout can be assigned a verified outcome.
+const recentCutoff = new Date(now.getTime() - 3 * 86400000).toISOString().slice(0, 10);
+const recentUnfinished = parsedEvents.filter(event =>
+  event &&
+  !event.completed &&
+  event.date >= recentCutoff &&
+  event.date <= today
+);
+await mapLimit(recentUnfinished, 2, async event => {
+  const candidates = officialResultArticleCandidates(event);
+  const articles = (await Promise.all(candidates.map(async url => {
+    const html = await getOptional(url);
+    return html ? { url, html } : null;
+  }))).filter(Boolean);
+
+  if (!articles.length) return event;
+  applyOfficialResultArticles(event, articles);
+
+  if (event.completed) {
+    console.log(`Post-fight fallback completed ${event.title} from ${event.resultSources?.length || 0} official UFC article source(s).`);
+  } else {
+    const resolved = event.bouts.filter(bout => bout.fighters.every(fighter => ['W', 'L', 'D', 'NC'].includes(fighter.result))).length;
+    console.log(`Post-fight fallback found ${resolved}/${event.bouts.length} results for ${event.title}; waiting for the remaining official results.`);
+  }
+  return event;
+});
+
 const completed = parsedEvents.filter(e => e?.completed && e.date <= today).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 6);
 if (completed.length < 2) throw new Error('Fewer than two verified completed events. Retaining previous data.');
 const images = await read('_data/fighter_portraits.json', {});
