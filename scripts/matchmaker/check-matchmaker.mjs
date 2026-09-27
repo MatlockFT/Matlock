@@ -4,7 +4,7 @@ import './check-bookings.mjs';
 import fs from 'node:fs';
 import { createRequire } from 'node:module';
 import { validateData } from './validate.mjs';
-import { parseEvent, parseRankings, parseProfile, eventDate, officialResultArticleCandidates, applyOfficialResultArticles } from './sources/ufc.mjs';
+import { parseEvent, parseRankings, parseProfile, eventDate, officialResultArticleCandidates, secondaryResultArticleCandidates, applyOfficialResultArticles } from './sources/ufc.mjs';
 import { parseFighterDirectory, parseFighterHistory, parseMirrorHistory } from './sources/ufcstats.mjs';
 import { reconcileProfileHistory } from './history-reconcile.mjs';
 const require = createRequire(import.meta.url), E = require('../../assets/matchmaker-engine.js');
@@ -36,6 +36,25 @@ assert.equal(fallbackEvent.completed, true, 'Official UFC result article fallbac
 assert.deepEqual(fallbackEvent.bouts[0].fighters.map(f => f.result), ['W', 'L']);
 assert.deepEqual(fallbackEvent.bouts[1].fighters.map(f => f.result), ['L', 'W']);
 assert.match(fallbackEvent.bouts[0].method, /KO/i);
+
+const dqEvent = {
+  id: 'ufc-fight-night-september-26-2026',
+  title: 'UFC Fight Night: Rosas Jr. vs Barcelos',
+  date: '2026-09-26',
+  completed: false,
+  bouts: [
+    { fighters: [{ id: 'mahammadali-osmanli', name: 'Mahammadali Osmanli', result: null }, { id: 'ilimbek-akylbek', name: 'Ilimbek Akylbek', result: null }], method: '' }
+  ]
+};
+const secondaryCandidates = secondaryResultArticleCandidates(dqEvent);
+assert(secondaryCandidates.includes('https://www.fightful.com/mma/ufc-fight-night-rosas-jr-vs-barcelos-results/'));
+applyOfficialResultArticles(dqEvent, [{
+  url: 'https://www.fightful.com/mma/ufc-fight-night-rosas-jr-vs-barcelos-results/',
+  html: '<ul><li>TUF 34 Bantamweight Finals: Ilimbek Akylbek def. Mehemmedeli Osmanli by disqualification (illegal knee) at 2:19 of Round 1</li></ul>'
+}]);
+assert.equal(dqEvent.completed, true, 'Secondary full-results fallback must resolve a DQ omitted from the UFC article');
+assert.deepEqual(dqEvent.bouts[0].fighters.map(f => f.result), ['L', 'W']);
+assert.match(dqEvent.bouts[0].method, /disqualification/i);
 
 const nocheCandidates = officialResultArticleCandidates({
   title: 'Noche UFC: Silva vs Delgado',

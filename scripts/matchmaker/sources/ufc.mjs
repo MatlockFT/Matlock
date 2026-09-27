@@ -37,13 +37,34 @@ export function officialResultArticleCandidates(event) {
   return [...new Set(paths)].map(path => `https://www.ufc.com/news/${path}`);
 }
 
-function resultHeadings(html) {
-  const headings = [];
-  for (const match of String(html || '').matchAll(/<h[2-5]\b[^>]*>([\s\S]*?)<\/h[2-5]>/gi)) {
+function resultStatements(html) {
+  const statements = [];
+  for (const match of String(html || '').matchAll(/<(?:h[2-5]|li|p)\b[^>]*>([\s\S]*?)<\/(?:h[2-5]|li|p)>/gi)) {
     const text = clean(match[1]);
-    if (text) headings.push(text);
+    if (text) statements.push(text);
   }
-  return headings;
+  return statements;
+}
+
+function fighterNeedles(name) {
+  const normalized = clean(name);
+  const full = key(normalized);
+  const tokens = normalized.split(/\s+/).map(token => key(token)).filter(Boolean);
+  while (tokens.length > 1 && /^(?:jr|sr|ii|iii|iv)$/.test(tokens.at(-1))) tokens.pop();
+  const surname = tokens.at(-1) || '';
+  return [...new Set([full, surname.length >= 4 ? surname : ''].filter(Boolean))];
+}
+
+function statementHasFighter(textKey, name) {
+  return fighterNeedles(name).some(needle => textKey.includes(needle));
+}
+
+export function secondaryResultArticleCandidates(event) {
+  const full = newsSlug(event?.title || '');
+  if (!full) return [];
+  const sponsorStripped = full.replace(/^.*?(ufc-\d+)/, '$1');
+  return [...new Set([full, sponsorStripped].filter(Boolean))]
+    .map(slug => `https://www.fightful.com/mma/${slug}-results/`);
 }
 
 export function applyOfficialResultArticles(event, articles = []) {
@@ -53,7 +74,7 @@ export function applyOfficialResultArticles(event, articles = []) {
   const headings = [];
   for (const article of articles) {
     if (!article?.html) continue;
-    const articleHeadings = resultHeadings(article.html);
+    const articleHeadings = resultStatements(article.html);
     if (!articleHeadings.length) continue;
     headings.push(...articleHeadings.map(text => ({ text, source: article.url || null })));
     if (article.url) sourceUrls.push(article.url);
@@ -72,16 +93,16 @@ export function applyOfficialResultArticles(event, articles = []) {
 
     for (const heading of headings) {
       const textKey = key(heading.text);
-      if (!textKey.includes(leftKey) || !textKey.includes(rightKey)) continue;
+      if (!statementHasFighter(textKey, left.name) || !statementHasFighter(textKey, right.name)) continue;
 
-      const defeated = heading.text.match(/\bdefeat(?:ed|s)\b/i);
+      const defeated = heading.text.match(/\b(?:defeated|defeats|def\.)\s+/i);
       if (defeated?.index !== undefined) {
         const before = heading.text.slice(0, defeated.index);
         const winnerKey = key(before);
-        if (winnerKey.includes(leftKey)) {
+        if (statementHasFighter(winnerKey, left.name)) {
           left.result = 'W';
           right.result = 'L';
-        } else if (winnerKey.includes(rightKey)) {
+        } else if (statementHasFighter(winnerKey, right.name)) {
           left.result = 'L';
           right.result = 'W';
         } else {

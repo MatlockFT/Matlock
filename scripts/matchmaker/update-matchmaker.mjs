@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { clean, key, slug, parseEvent, parseProfile, parseRankings, officialResultArticleCandidates, applyOfficialResultArticles } from './sources/ufc.mjs';
+import { clean, key, slug, parseEvent, parseProfile, parseRankings, officialResultArticleCandidates, secondaryResultArticleCandidates, applyOfficialResultArticles } from './sources/ufc.mjs';
 import { parseMirrorHistory } from './sources/ufcstats.mjs';
 import { validateData } from './validate.mjs';
 import { reconcileRoster } from './roster.mjs';
@@ -81,14 +81,29 @@ await mapLimit(recentUnfinished, 2, async event => {
     return html ? { url, html } : null;
   }))).filter(Boolean);
 
-  if (!articles.length) return event;
-  applyOfficialResultArticles(event, articles);
+  if (articles.length) applyOfficialResultArticles(event, articles);
+
+  let resolved = event.bouts.filter(bout => bout.fighters.every(fighter => ['W', 'L', 'D', 'NC'].includes(fighter.result))).length;
+
+  // UFC occasionally omits a non-standard finish (for example a DQ) from its live article
+  // while the rest of the card is already final. Only after UFC has resolved most of the
+  // card do we consult a secondary full-results page, and the same two-fighter matching
+  // rules must still resolve every remaining bout before the event can publish.
+  if (!event.completed && resolved >= Math.max(1, event.bouts.length - 2)) {
+    const secondary = (await Promise.all(secondaryResultArticleCandidates(event).map(async url => {
+      const html = await getOptional(url);
+      return html ? { url, html } : null;
+    }))).filter(Boolean);
+    if (secondary.length) {
+      applyOfficialResultArticles(event, secondary);
+      resolved = event.bouts.filter(bout => bout.fighters.every(fighter => ['W', 'L', 'D', 'NC'].includes(fighter.result))).length;
+    }
+  }
 
   if (event.completed) {
-    console.log(`Post-fight fallback completed ${event.title} from ${event.resultSources?.length || 0} official UFC article source(s).`);
+    console.log(`Post-fight fallback completed ${event.title} from ${event.resultSources?.length || 0} verified result source(s).`);
   } else {
-    const resolved = event.bouts.filter(bout => bout.fighters.every(fighter => ['W', 'L', 'D', 'NC'].includes(fighter.result))).length;
-    console.log(`Post-fight fallback found ${resolved}/${event.bouts.length} results for ${event.title}; waiting for the remaining official results.`);
+    console.log(`Post-fight fallback found ${resolved}/${event.bouts.length} results for ${event.title}; waiting for the remaining verified result.`);
   }
   return event;
 });
