@@ -1,3 +1,4 @@
+import { readFile, writeFile } from 'node:fs/promises';
 import { dateLabel, fighter, loadData, loadPortraitCache, mergePromotion, portraitFor, updatedLabel } from './upcoming-events-data.mjs';
 
 const ORIGIN = 'https://www.ufc.com';
@@ -240,6 +241,14 @@ function divisionFrom(chunk) {
   return 'Weight class TBA';
 }
 
+function oddsFrom(chunk) {
+  const plain = text(chunk);
+  const match = plain.match(/(?:^|\s)([+-]\d{2,5}|EVEN|-)[\s\u00a0]+odds[\s\u00a0]+([+-]\d{2,5}|EVEN|-)(?:\s|$)/i);
+  if (!match) return ['', ''];
+  const normalize = value => /^even$/i.test(value) ? 'EVEN' : value === '-' ? '' : value;
+  return [normalize(match[1]), normalize(match[2])];
+}
+
 function bouts(html) {
   const src = decode(html).replaceAll('\\/', '/');
   const markers = sectionMarkers(src);
@@ -252,7 +261,7 @@ function bouts(html) {
     for (const mk of markers) { if (mk.i > start) break; section = mk.section; }
     const key = fighters.map(f => f.href).sort().join('|');
     if (out.some(b => b.key === key)) continue;
-    out.push({ key, section, division: divisionFrom(chunk), fighters });
+    out.push({ key, section, division: divisionFrom(chunk), fighters, odds: oddsFrom(chunk) });
   }
   return out.map(({ key, ...bout }) => bout);
 }
@@ -318,7 +327,10 @@ const candidates = unique.map(e => {
     const rows = grouped[kind] || []; if (!rows.length) continue;
     sections.push({ kind, title: label, time: e.times[kind] || 'Time TBA', bouts: rows.map((b, i) => ({
       order: order++, label: kind === 'main' && i === 0 ? 'Main Event' : kind === 'main' && i === 1 ? 'Co-Main Event' : '', weight_class: b.division,
-      fighters: b.fighters.map(x => fighter(x.name, portraitFor(x.name, previous, cache)))
+      fighters: b.fighters.map((x, fighterIndex) => ({
+        ...fighter(x.name, portraitFor(x.name, previous, cache)),
+        moneyline: b.odds?.[fighterIndex] || ''
+      }))
     })) });
   }
   return {
@@ -338,4 +350,62 @@ const candidates = unique.map(e => {
   };
 });
 
+const LIVE_ODDS_PATH = 'assets/live-ufc-odds.json';
+
+async function publishLiveOddsFeed(events) {
+  let previousFeed = { events: [] };
+  try { previousFeed = JSON.parse(await readFile(LIVE_ODDS_PATH, 'utf8')); } catch {}
+
+  const todayIso = isoDay(new Date());
+  const byKey = new Map(
+    (Array.isArray(previousFeed?.events) ? previousFeed.events : [])
+      .filter(event => String(event?.date || '') >= todayIso)
+      .map(event => [event.official_url || event.id, event])
+  );
+
+  for (const event of events) {
+    const fights = (event.sections || []).flatMap(section => (section.bouts || []).map(bout => ({
+      fighters: (bout.fighters || []).map(fighterRow => ({
+        name: fighterRow.name,
+        moneyline: fighterRow.moneyline || ''
+      }))
+    }))).filter(fight =>
+      fight.fighters.length === 2 &&
+      fight.fighters[0].moneyline &&
+      fight.fighters[1].moneyline
+    );
+
+    const key = event.official_url || event.id;
+    if (!fights.length) {
+      if (!byKey.has(key)) continue;
+      continue;
+    }
+    byKey.set(key, {
+      id: event.id,
+      date: event.date,
+      official_url: event.official_url,
+      fights
+    });
+  }
+
+  const eventsOut = [...byKey.values()]
+    .filter(event => String(event?.date || '') >= todayIso)
+    .sort((a,b) => String(a.date).localeCompare(String(b.date)));
+
+  const previousComparable = JSON.stringify(previousFeed?.events || []);
+  const nextComparable = JSON.stringify(eventsOut);
+  if (previousComparable === nextComparable) {
+    console.log('UFC live odds unchanged.');
+    return;
+  }
+
+  await writeFile(LIVE_ODDS_PATH, JSON.stringify({
+    generated_at: new Date().toISOString(),
+    source: 'UFC.com',
+    events: eventsOut
+  }, null, 2) + '\n');
+  console.log(`Published live UFC odds for ${eventsOut.reduce((sum,event) => sum + event.fights.length,0)} fight(s).`);
+}
+
+await publishLiveOddsFeed(candidates);
 await mergePromotion('ufc', candidates, { maxEventDrop: 1, maxBoutDrop: 3 });
