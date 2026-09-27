@@ -2769,7 +2769,15 @@ function insertBlock(text) {
   }
 
   function lastFiveFromRows(rows) {
-    return (rows || []).slice(0,5).map(row => row.result || '').filter(Boolean).join('');
+    const counts = { W:0, L:0, D:0, NC:0 };
+    for (const row of (rows || []).slice(0,5)) {
+      const result = String(row?.result || '').toUpperCase();
+      if (Object.hasOwn(counts,result)) counts[result]++;
+    }
+    const total = counts.W + counts.L + counts.D + counts.NC;
+    if (!total) return '';
+    const third = counts.D + counts.NC;
+    return counts.W + '-' + counts.L + (third ? '-' + third : '');
   }
 
   function displayComparisonValue(value) {
@@ -2804,6 +2812,7 @@ function insertBlock(text) {
       mode: input.dataset.sourceMode || null,
       fetchedAt: input.dataset.sourceFetchedAt || null,
       latestBoutDate: input.dataset.latestBoutDate || null,
+      bookingDate: input.dataset.bookingDate || null,
       sourceUrl: input.dataset.sourceUrl || null
     };
   }
@@ -2983,6 +2992,7 @@ function insertBlock(text) {
     if (!input || !fighter || !dialog) return;
     input.dataset.fighterId = fighter.id;
     input.dataset.ufcStatsId = fighter.ufcStatsId || '';
+    input.dataset.bookingDate = fighter.booking?.date || '';
     input.value = fighter.name;
     applyCachedWriterFighter(dialog,type,side,fighter);
     const cachedState = cachedSourceStateForFighter(fighter);
@@ -3051,6 +3061,7 @@ function insertBlock(text) {
       delete input.dataset.fighterId;
       delete input.dataset.ufcStatsId;
       delete input.dataset.sourceMode;
+      delete input.dataset.bookingDate;
       setLookupStatus(input,'','');
       render();
     });
@@ -3159,11 +3170,13 @@ function insertBlock(text) {
   function fighterTopMarkup(side, fighter) {
     const odds=String(fighter.odds||'').trim()||'—';
     const oddsClass=side==='left'?' fc-red-odds':' fc-blue-odds';
+    const liveSide=side==='left'?'a':'b';
     return '<div class="fc-fighter fc-'+side+'">'+
       fighterPortraitMarkup(side,fighter)+
       '<div class="fc-meta"><span class="fc-division">'+escapeHtml(fighter.division||'')+
       '</span><h2>'+escapeHtml(fighter.name||'')+
-      '</h2><div class="fc-meta-strip"><div class="fc-odds'+oddsClass+'"><span>ML</span><strong>'+
+      '</h2><div class="fc-meta-strip"><div class="fc-odds'+oddsClass+'" data-live-odds-side="'+liveSide+
+      '" data-live-odds-fighter="'+escapeHtml(fighter.name||'')+'" data-live-odds-state="pending"><span>ML</span><strong data-live-odds-value>'+
       escapeHtml(odds)+'</strong></div><div class="fc-last5"><span class="fc-last5-record">'+
       escapeHtml(fighter.last5||'—')+'</span><span class="fc-last5-label">Last 5</span></div></div></div></div>';
   }
@@ -3189,8 +3202,10 @@ function insertBlock(text) {
         '<div class="fc-opponent-stat"><strong>'+escapeHtml(b.opponentsRecord||'—')+'</strong><span>'+
         escapeHtml(b.opponentsPct||'')+'</span></div></div>'
       : '';
+    const eventDate=String(config.eventDate||a.source?.bookingDate||b.source?.bookingDate||'').trim();
     const inner=
-      '<div class="fight-compare-sleek"><div class="fc-shell">'+
+      '<div class="fight-compare-sleek" data-live-odds-matchup data-live-odds-fighter-a="'+escapeHtml(a.name||'')+
+      '" data-live-odds-fighter-b="'+escapeHtml(b.name||'')+'" data-live-odds-event-date="'+escapeHtml(eventDate)+'"><div class="fc-shell">'+
         '<div class="fc-top">'+fighterTopMarkup('left',a)+
           '<div class="fc-center-badge"><strong>MATCHUP</strong><i></i></div>'+
           fighterTopMarkup('right',b)+'</div>'+
@@ -3257,7 +3272,7 @@ function insertBlock(text) {
     dialog.querySelector('[data-stats-fighter="b"]').value=config.fighterB||'';
     ['a','b'].forEach(side => {
       const input=dialog.querySelector('[data-stats-fighter="'+side+'"]');
-      for (const key of ['fighterId','ufcStatsId','sourceMode','sourceFetchedAt','latestBoutDate','sourceUrl']) delete input.dataset[key];
+      for (const key of ['fighterId','ufcStatsId','sourceMode','sourceFetchedAt','latestBoutDate','bookingDate','sourceUrl']) delete input.dataset[key];
       setLookupStatus(input,'','');
     });
     renderComparisonRows(dialog.querySelector('[data-stats-row-list]'),config.rows,statsDefaultRowLabels);
@@ -3279,7 +3294,7 @@ function insertBlock(text) {
     dialog.querySelector('[data-tale-b]').value=b.name||'';
     ['a','b'].forEach(side => {
       const input=dialog.querySelector(side==='a'?'[data-tale-a]':'[data-tale-b]');
-      for (const key of ['fighterId','ufcStatsId','sourceMode','sourceFetchedAt','latestBoutDate','sourceUrl']) delete input.dataset[key];
+      for (const key of ['fighterId','ufcStatsId','sourceMode','sourceFetchedAt','latestBoutDate','bookingDate','sourceUrl']) delete input.dataset[key];
       setLookupStatus(input,'','');
     });
     ['a','b'].forEach(side=>{
@@ -4196,7 +4211,8 @@ Object.values(fields).forEach(el => {
       opponentsPct:taleDialog.querySelector('[data-tale-opponents-pct="'+side+'"]').value.trim(),
       source:fighterSourceMeta(taleDialog.querySelector(side==='a'?'[data-tale-a]':'[data-tale-b]'))
     });
-    const cfg={version:3,a:collect('a'),b:collect('b'),rows:collectComparisonRows(taleDialog.querySelector('[data-tale-row-list]'))};
+    const cfg={version:4,a:collect('a'),b:collect('b'),rows:collectComparisonRows(taleDialog.querySelector('[data-tale-row-list]'))};
+    cfg.eventDate=cfg.a.source?.bookingDate||cfg.b.source?.bookingDate||'';
     if(!cfg.a.name||!cfg.b.name){showToast('Add both fighter names.');return;}
     if(!cfg.rows.length) cfg.rows=normalizeComparisonRows([],taleDefaultRowLabels);
     saveStructuredBlock('tale',cfg.a.name+' vs. '+cfg.b.name,buildTaleVisual(cfg));
