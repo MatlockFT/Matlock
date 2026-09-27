@@ -334,7 +334,8 @@ Object.values(fields).forEach(el => {
       opponentsPct:taleDialog.querySelector('[data-tale-opponents-pct="'+side+'"]').value.trim(),
       source:fighterSourceMeta(taleDialog.querySelector(side==='a'?'[data-tale-a]':'[data-tale-b]'))
     });
-    const cfg={version:3,a:collect('a'),b:collect('b'),rows:collectComparisonRows(taleDialog.querySelector('[data-tale-row-list]'))};
+    const cfg={version:4,a:collect('a'),b:collect('b'),rows:collectComparisonRows(taleDialog.querySelector('[data-tale-row-list]'))};
+    cfg.eventDate=cfg.a.source?.bookingDate||cfg.b.source?.bookingDate||'';
     if(!cfg.a.name||!cfg.b.name){showToast('Add both fighter names.');return;}
     if(!cfg.rows.length) cfg.rows=normalizeComparisonRows([],taleDefaultRowLabels);
     saveStructuredBlock('tale',cfg.a.name+' vs. '+cfg.b.name,buildTaleVisual(cfg));
