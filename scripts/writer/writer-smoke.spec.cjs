@@ -433,6 +433,15 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   expect(outputCrop.boxHeight).toBeCloseTo(editorCrop.boxHeight,3);
   expect(outputCrop.position).toBe(editorCrop.position);
   expect(outputCrop.bottom).toBe(editorCrop.bottom);
+  // Neither editor nor output may expose the image boundary inside the circle.
+  expect(editorCrop.boxLeft).toBeLessThanOrEqual(0.001);
+  expect(editorCrop.boxTop).toBeLessThanOrEqual(0.001);
+  expect(editorCrop.boxLeft + editorCrop.boxWidth).toBeGreaterThanOrEqual(0.999);
+  expect(editorCrop.boxTop + editorCrop.boxHeight).toBeGreaterThanOrEqual(0.999);
+  expect(outputCrop.boxLeft).toBeLessThanOrEqual(0.001);
+  expect(outputCrop.boxTop).toBeLessThanOrEqual(0.001);
+  expect(outputCrop.boxLeft + outputCrop.boxWidth).toBeGreaterThanOrEqual(0.999);
+  expect(outputCrop.boxTop + outputCrop.boxHeight).toBeGreaterThanOrEqual(0.999);
 
   // Writer preview hydrates official UFC moneylines without waiting for the Netlify backend.
   await page.click('[data-tool="tale"]');
