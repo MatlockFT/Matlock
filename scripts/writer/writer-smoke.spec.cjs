@@ -401,8 +401,9 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
 
   // Re-open the existing Tale block, change placement, and prove that editing
   // persists to the structured config and re-renders the actual visual.
-  const taleRailCard = page.locator('.writer-html-block-card').filter({ hasText:'Alpha Fighter vs. Beta Fighter' }).first();
-  await taleRailCard.locator('[data-html-block-edit]').click();
+  const taleBlockId = await taleSection.getAttribute('data-writer-html-block-id');
+  expect(taleBlockId).toBeTruthy();
+  await page.locator('[data-html-block-edit="' + taleBlockId + '"]').click();
   await expect(taleDialog).toBeVisible();
   await taleDialog.locator('[data-tale-image-x="a"]').evaluate(node => { node.value='24'; node.dispatchEvent(new Event('input',{bubbles:true})); });
   await taleDialog.locator('[data-tale-image-y="a"]').evaluate(node => { node.value='71'; node.dispatchEvent(new Event('input',{bubbles:true})); });
