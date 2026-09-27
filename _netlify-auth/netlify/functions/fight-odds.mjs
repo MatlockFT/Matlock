@@ -211,6 +211,66 @@ export function extractMoneylines(competition, payload, fighterA, fighterB) {
   return null;
 }
 
+function fittFights(payload) {
+  const segments = payload?.page?.content?.gamepackage?.cardSegs;
+  if (!Array.isArray(segments)) return [];
+  return segments.flatMap(segment => Array.isArray(segment?.mtchs) ? segment.mtchs : []);
+}
+
+function fittFighterName(value) {
+  return value?.dspNm || value?.displayName ||
+    [value?.frstNm,value?.lstNm].filter(Boolean).join(' ') || '';
+}
+
+function fittMoneyline(value) {
+  const markets = Array.isArray(value?.bets?.odds) ? value.bets.odds : [];
+  const market = markets.find(item =>
+    String(item?.abbreviation || item?.displayName || '').toUpperCase() === 'ML' ||
+    /money\s*line/i.test(String(item?.displayName || ''))
+  );
+  const odds = market?.values?.[0]?.odds ?? market?.values?.[0]?.value;
+  return formatAmericanOdds(odds);
+}
+
+export function extractFittMoneylines(payload, fighterA, fighterB) {
+  for (const fight of fittFights(payload)) {
+    const away = fight?.awy || fight?.away;
+    const home = fight?.hme || fight?.home;
+    const awayName = fittFighterName(away);
+    const homeName = fittFighterName(home);
+    const matchesDirect =
+      sameFighterName(awayName,fighterA) && sameFighterName(homeName,fighterB);
+    const matchesReverse =
+      sameFighterName(awayName,fighterB) && sameFighterName(homeName,fighterA);
+    if (!matchesDirect && !matchesReverse) continue;
+    const awayOdds = fittMoneyline(away);
+    const homeOdds = fittMoneyline(home);
+    if (!awayOdds || !homeOdds) return null;
+    const provider = away?.bets?.provider?.name || home?.bets?.provider?.name || null;
+    return matchesDirect
+      ? {fighterA:awayOdds,fighterB:homeOdds,provider}
+      : {fighterA:homeOdds,fighterB:awayOdds,provider};
+  }
+  return null;
+}
+
+export function parseEspnFittHtml(html) {
+  const source = String(html || '');
+  const marker = "window['__espnfitt__']=";
+  const start = source.indexOf(marker);
+  if (start < 0) return null;
+  const payloadStart = start + marker.length;
+  const scriptEnd = source.indexOf('</script>',payloadStart);
+  if (scriptEnd < 0) return null;
+  let raw = source.slice(payloadStart,scriptEnd).trim();
+  if (raw.endsWith(';')) raw = raw.slice(0,-1).trim();
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
 function isoDateOffset(value, days) {
   const date = DATE_RE.test(String(value || ''))
     ? new Date(String(value) + 'T12:00:00Z')
@@ -235,6 +295,31 @@ async function fetchJson(url, { optional=false } = {}) {
   if (optional && (response.status === 404 || response.status === 400)) return null;
   if (!response.ok) throw new Error('ESPN returned HTTP ' + response.status);
   return response.json();
+}
+
+async function fetchFittEvent(eventId) {
+  const url = 'https://www.espn.com/mma/fightcenter/_/id/' + encodeURIComponent(eventId) + '/league/ufc';
+  let lastError = null;
+  for (let attempt=0; attempt<2; attempt++) {
+    try {
+      const response = await fetch(url,{
+        headers:{
+          Accept:'text/html,application/xhtml+xml',
+          'Accept-Language':'en-US,en;q=0.8',
+          'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/141.0.0.0 Safari/537.36'
+        },
+        redirect:'follow',
+        signal:AbortSignal.timeout(10000)
+      });
+      if (!response.ok) throw new Error('ESPN FightCenter returned HTTP ' + response.status);
+      const payload = parseEspnFittHtml(await response.text());
+      if (!payload) throw new Error('ESPN FightCenter odds payload was unavailable');
+      return payload;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw lastError || new Error('ESPN FightCenter lookup failed');
 }
 
 async function findMatchup(fighterA, fighterB, eventDate) {
@@ -301,16 +386,27 @@ export default async function handler(request) {
     }
 
     const { event, competition } = matchup;
-    let payload = competition.odds || null;
-    if (!payload || (Array.isArray(payload) && !payload.length)) {
-      payload = await fetchJson(
-        CORE_BASE + '/events/' + encodeURIComponent(event.id) +
-        '/competitions/' + encodeURIComponent(competition.id) + '/odds',
-        {optional:true}
-      );
+    let odds = null;
+
+    try {
+      const fitt = await fetchFittEvent(event.id);
+      odds = extractFittMoneylines(fitt,fighterA,fighterB);
+    } catch {
+      // FightCenter can occasionally serve an interstitial; fall through to core odds.
     }
 
-    const odds = extractMoneylines(competition,payload,fighterA,fighterB);
+    if (!odds) {
+      let payload = competition.odds || null;
+      if (!payload || (Array.isArray(payload) && !payload.length)) {
+        payload = await fetchJson(
+          CORE_BASE + '/events/' + encodeURIComponent(event.id) +
+          '/competitions/' + encodeURIComponent(competition.id) + '/odds',
+          {optional:true}
+        );
+      }
+      odds = extractMoneylines(competition,payload,fighterA,fighterB);
+    }
+
     if (!odds) {
       return Response.json({
         ok:true,available:false,source:'ESPN',fetchedAt,
