@@ -10,6 +10,10 @@ on:
       - "_writer/**"
       - "scripts/writer/build-frontend-bundles.mjs"
       - "assets/writer-auth.js"
+      - "assets/post-writer-actions.js"
+      - "assets/post-v3.css"
+      - "_layouts/post.html"
+      - "_layouts/default.html"
       - "assets/writer.css"
       - "assets/writer-wordtools.js"
       - "assets/writer-wordtools-core.js"
@@ -39,6 +43,10 @@ on:
       - "_writer/**"
       - "scripts/writer/build-frontend-bundles.mjs"
       - "assets/writer-auth.js"
+      - "assets/post-writer-actions.js"
+      - "assets/post-v3.css"
+      - "_layouts/post.html"
+      - "_layouts/default.html"
       - "assets/writer.css"
       - "assets/writer-wordtools.js"
       - "assets/writer-wordtools-core.js"
@@ -86,6 +94,7 @@ jobs:
         run: |
           node --check assets/writer.js
           node --check assets/writer-auth.js
+          node --check assets/post-writer-actions.js
           node --check assets/writer-live.js
           node --check assets/live-writer-public.js
 
