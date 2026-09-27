@@ -168,6 +168,44 @@ function insertBlock(text) {
     return encodeURIComponent(JSON.stringify(config || {}));
   }
 
+  function normalizeTalePortrait(fighter = {}) {
+    const portrait = fighter?.portrait && typeof fighter.portrait === 'object' ? fighter.portrait : {};
+    const clamp=(value,min,max,fallback)=>{
+      const number=Number(value);
+      return Math.max(min,Math.min(max,Number.isFinite(number)?number:fallback));
+    };
+    return {
+      x:clamp(portrait.x ?? fighter.x,0,100,50),
+      y:clamp(portrait.y ?? fighter.y,0,100,50),
+      zoom:clamp(portrait.zoom ?? fighter.zoom,100,250,100)
+    };
+  }
+
+  function normalizeTaleConfig(config = {}) {
+    const normalized={...config,version:Math.max(6,Number(config.version)||0)};
+    normalized.a={...(config.a||{}),portrait:normalizeTalePortrait(config.a||{})};
+    normalized.b={...(config.b||{}),portrait:normalizeTalePortrait(config.b||{})};
+    for(const fighter of [normalized.a,normalized.b]){
+      delete fighter.x;
+      delete fighter.y;
+      delete fighter.zoom;
+    }
+    return normalized;
+  }
+
+  function updateTalePortraitConfig(blockId, side, crop) {
+    if(!['a','b'].includes(side)) return null;
+    const block=htmlBlocks.get(blockId);
+    const meta=structuredMeta(block?.code);
+    if(!block||meta?.type!=='tale') return null;
+    const config=normalizeTaleConfig(meta.config);
+    config[side].portrait=normalizeTalePortrait({portrait:crop});
+    block.code=buildTaleVisual(config);
+    htmlBlocks.set(blockId,block);
+    scheduleAutosave();
+    return {config,portrait:config[side].portrait};
+  }
+
   function pipeRows(text, width = 3) {
     return String(text || '').split('\n').map(line => line.trim()).filter(Boolean).map(line => {
       const cells = line.split('|').map(cell => cell.trim());
@@ -890,13 +928,11 @@ function insertBlock(text) {
 
   function fighterPortraitMarkup(side, fighter) {
     const image=String(fighter.image||'').trim();
-    const x=Number(fighter.x ?? 50);
-    const y=Number(fighter.y ?? 50);
-    const zoom=Math.max(100,Number(fighter.zoom ?? 100)||100);
-    return '<div class="fc-portrait ring-'+side+'">'+
+    const portrait=normalizeTalePortrait(fighter);
+    return '<div class="fc-portrait ring-'+side+'" data-portrait-side="'+(side==='left'?'a':'b')+'">'+
       '<span class="fc-ring"></span><span class="fc-ring fc-ring-inner"></span>'+
       (image?'<img class="fc-portrait-source" data-portrait-source src="'+escapeHtml(image)+'" alt="'+escapeHtml(fighter.name||'')+
-        '" data-portrait-x="'+x+'" data-portrait-y="'+y+'" data-portrait-zoom="'+zoom+'">':'')+
+        '" data-portrait-x="'+portrait.x+'" data-portrait-y="'+portrait.y+'" data-portrait-zoom="'+portrait.zoom+'">':'')+
       '</div>';
   }
 
@@ -915,6 +951,7 @@ function insertBlock(text) {
   }
 
   function buildTaleVisual(config) {
+    config=normalizeTaleConfig(config);
     const a=config.a||{}, b=config.b||{};
     const rows=normalizeComparisonRows(config.rows,taleDefaultRowLabels);
     const taleRows=rows.map((row,index)=>
@@ -1065,10 +1102,11 @@ function insertBlock(text) {
       dialog.querySelector('[data-tale-division="'+side+'"]').value=fighter.division||'';
       dialog.querySelector('[data-tale-odds="'+side+'"]').value=fighter.odds||'';
       dialog.querySelector('[data-tale-last5="'+side+'"]').value=fighter.last5||'';
+      const portrait=normalizeTalePortrait(fighter);
       dialog.querySelector('[data-tale-image-path="'+side+'"]').value=fighter.image||'';
-      dialog.querySelector('[data-tale-image-x="'+side+'"]').value=fighter.x??50;
-      dialog.querySelector('[data-tale-image-y="'+side+'"]').value=fighter.y??50;
-      dialog.querySelector('[data-tale-image-zoom="'+side+'"]').value=Math.max(100,Number(fighter.zoom??100)||100);
+      dialog.querySelector('[data-tale-image-x="'+side+'"]').value=portrait.x;
+      dialog.querySelector('[data-tale-image-y="'+side+'"]').value=portrait.y;
+      dialog.querySelector('[data-tale-image-zoom="'+side+'"]').value=portrait.zoom;
       dialog.querySelector('[data-tale-opponents-record="'+side+'"]').value=fighter.opponentsRecord||'';
       dialog.querySelector('[data-tale-opponents-pct="'+side+'"]').value=fighter.opponentsPct||'';
       renderRecentRows(dialog.querySelector('[data-tale-form-list="'+side+'"]'),fighter.recent);
