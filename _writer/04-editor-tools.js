@@ -888,33 +888,6 @@ function insertBlock(text) {
     }).join('');
   }
 
-  function portraitCropStyle(xValue=50, yValue=50, zoomValue=100) {
-    const clamp=(value,min,max,fallback)=>{
-      const number=Number(value);
-      return Math.max(min,Math.min(max,Number.isFinite(number)?number:fallback));
-    };
-    const x=clamp(xValue,0,100,50);
-    const y=clamp(yValue,0,100,50);
-    const zoom=clamp(zoomValue,50,250,100)/100;
-    const tx=Math.round((x-50)*1000)/1000;
-    const ty=Math.round((y-50)*1000)/1000;
-    return [
-      'position:absolute!important',
-      'inset:0!important',
-      'left:0!important',
-      'top:0!important',
-      'right:0!important',
-      'bottom:0!important',
-      'width:100%!important',
-      'height:100%!important',
-      'max-width:none!important',
-      'object-fit:cover!important',
-      'object-position:50% 50%!important',
-      'transform:translate('+tx+'%,'+ty+'%) scale('+zoom+')!important',
-      'transform-origin:50% 50%!important'
-    ].join(';')+';';
-  }
-
   function fighterPortraitMarkup(side, fighter) {
     const image=String(fighter.image||'').trim();
     const x=Number(fighter.x ?? 50);
@@ -923,8 +896,8 @@ function insertBlock(text) {
     const style='--portrait-x:'+x+'%;--portrait-y:'+y+'%;--portrait-zoom:'+(zoom/100)+';';
     return '<div class="fc-portrait ring-'+side+'" style="'+style+'">'+
       '<span class="fc-ring"></span><span class="fc-ring fc-ring-inner"></span>'+
-      (image?'<img src="'+escapeHtml(image)+'" alt="'+escapeHtml(fighter.name||'')+'" style="'+
-        portraitCropStyle(x,y,zoom)+'">':'')+
+      (image?'<img src="'+escapeHtml(image)+'" alt="'+escapeHtml(fighter.name||'')+
+        '" data-portrait-x="'+x+'" data-portrait-y="'+y+'" data-portrait-zoom="'+zoom+'">':'')+
       '</div>';
   }
 
@@ -1027,7 +1000,10 @@ function insertBlock(text) {
     drop.style.setProperty('--portrait-x', x + '%');
     drop.style.setProperty('--portrait-y', y + '%');
     drop.style.setProperty('--portrait-zoom', String(zoom/100));
-    image.setAttribute('style',portraitCropStyle(x,y,zoom));
+    image.dataset.portraitX = String(x);
+    image.dataset.portraitY = String(y);
+    image.dataset.portraitZoom = String(zoom);
+    window.MatlockPortraitCrop?.apply?.(image,{x,y,zoom,frame:drop});
   }
 
   function resetStatsDialog(config = {}) {
