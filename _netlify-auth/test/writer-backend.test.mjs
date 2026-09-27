@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { allowedPath, validateWriteBody } from '../netlify/functions/writer-github.mjs';
+import { allowedPath, validateDeleteBody, validateWriteBody } from '../netlify/functions/writer-github.mjs';
 import { parseUfcProfileSummary, parseUfcStatsProfile } from '../netlify/functions/writer-fighter.mjs';
 import { hasCompleteDisplayedCareer, parseUfcFightCareerProfile } from '../netlify/functions/_writer-career-fallback.mjs';
 import { parseUfcFightProfile } from '../../scripts/matchmaker/sources/sherdog.mjs';
@@ -18,7 +18,9 @@ test('Writer GitHub proxy only allows scoped article and upload paths', () => {
   assert.equal(allowedPath('/contents/_posts?ref=main', 'GET'), true);
   assert.equal(allowedPath('/contents/_posts/2026-09-24-test.md?ref=main', 'GET'), true);
   assert.equal(allowedPath('/contents/_posts/2026-09-24-test.md', 'PUT'), true);
+  assert.equal(allowedPath('/contents/_posts/2026-09-24-test.md', 'DELETE'), true);
   assert.equal(allowedPath('/contents/assets/uploads/example.webp', 'PUT'), true);
+  assert.equal(allowedPath('/contents/assets/uploads/example.webp', 'DELETE'), false);
   assert.equal(allowedPath('/contents/assets/uploads/articles/2026/09/article-slug/cover.webp', 'PUT'), true);
   assert.equal(allowedPath('/repos/MatlockFT/Matlock/actions', 'GET'), false);
   assert.equal(allowedPath('/contents/_config.yml', 'PUT'), false);
@@ -43,6 +45,26 @@ test('Writer write validation rejects branch escapes and oversized articles', ()
     message: 'Update test',
     content: 'A'.repeat(3 * 1024 * 1024)
   }), /Article file is too large/);
+});
+
+test('Writer delete validation requires main branch and a GitHub blob SHA', () => {
+  assert.doesNotThrow(() => validateDeleteBody('/contents/_posts/2026-09-24-test.md', {
+    branch: 'main',
+    message: 'Delete test',
+    sha: '0123456789abcdef0123456789abcdef01234567'
+  }));
+
+  assert.throws(() => validateDeleteBody('/contents/_posts/2026-09-24-test.md', {
+    branch: 'other',
+    message: 'Delete test',
+    sha: '0123456789abcdef0123456789abcdef01234567'
+  }), /main branch/);
+
+  assert.throws(() => validateDeleteBody('/contents/_posts/2026-09-24-test.md', {
+    branch: 'main',
+    message: 'Delete test',
+    sha: 'not-a-sha'
+  }), /file SHA/);
 });
 
 test('Video metadata validation enforces extension, MIME, size and chunk count', () => {
