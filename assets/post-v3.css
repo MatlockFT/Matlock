@@ -2113,7 +2113,7 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
 /* Writer-generated portraits use a canvas crop layer. The source IMG is only a
    centered fallback and image loader, which isolates the crop from legacy Vegas
    portrait offsets and every responsive CSS rule around the card. */
-.article-html-visual[data-writer-block="tale"] .fight-compare-sleek .fc-portrait > img[data-portrait-source],
+.article-html-visual[data-writer-block="tale"] .fight-compare-sleek .fc-portrait > img,
 .writer-tale-portrait > img[data-portrait-source]{
   position:absolute!important;
   inset:0!important;
@@ -2140,7 +2140,8 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
   z-index:1!important;
   pointer-events:none!important;
 }
-.portrait-canvas-ready > img[data-portrait-source]{
+.article-html-visual[data-writer-block="tale"] .portrait-canvas-ready > img,
+.writer-tale-portrait.portrait-canvas-ready > img[data-portrait-source]{
   opacity:0!important;
   visibility:hidden!important;
 }
