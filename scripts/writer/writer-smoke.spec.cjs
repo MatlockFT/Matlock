@@ -367,14 +367,21 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
     const style = getComputedStyle(img);
     const matrix = new DOMMatrix(style.transform);
     const rect = img.getBoundingClientRect();
+    const frame = img.parentElement.getBoundingClientRect();
     return {
       scaleX: matrix.a,
       scaleY: matrix.d,
-      translateX: matrix.e / Math.max(1, rect.width),
-      translateY: matrix.f / Math.max(1, rect.height),
+      translateX: matrix.e / Math.max(1, frame.width),
+      translateY: matrix.f / Math.max(1, frame.height),
+      boxLeft: (rect.left-frame.left) / Math.max(1,frame.width),
+      boxTop: (rect.top-frame.top) / Math.max(1,frame.height),
+      boxWidth: rect.width / Math.max(1,frame.width),
+      boxHeight: rect.height / Math.max(1,frame.height),
       objectFit: style.objectFit,
       objectPosition: style.objectPosition,
-      transformOrigin: style.transformOrigin
+      transformOrigin: style.transformOrigin,
+      position: style.position,
+      bottom: style.bottom
     };
   });
 
@@ -397,14 +404,21 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
     const style = getComputedStyle(img);
     const matrix = new DOMMatrix(style.transform);
     const rect = img.getBoundingClientRect();
+    const frame = img.parentElement.getBoundingClientRect();
     return {
       scaleX: matrix.a,
       scaleY: matrix.d,
-      translateX: matrix.e / Math.max(1, rect.width),
-      translateY: matrix.f / Math.max(1, rect.height),
+      translateX: matrix.e / Math.max(1, frame.width),
+      translateY: matrix.f / Math.max(1, frame.height),
+      boxLeft: (rect.left-frame.left) / Math.max(1,frame.width),
+      boxTop: (rect.top-frame.top) / Math.max(1,frame.height),
+      boxWidth: rect.width / Math.max(1,frame.width),
+      boxHeight: rect.height / Math.max(1,frame.height),
       objectFit: style.objectFit,
       objectPosition: style.objectPosition,
-      transformOrigin: style.transformOrigin
+      transformOrigin: style.transformOrigin,
+      position: style.position,
+      bottom: style.bottom
     };
   });
   expect(outputCrop.objectFit).toBe(editorCrop.objectFit);
@@ -413,6 +427,12 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   expect(outputCrop.scaleY).toBeCloseTo(editorCrop.scaleY,3);
   expect(outputCrop.translateX).toBeCloseTo(editorCrop.translateX,3);
   expect(outputCrop.translateY).toBeCloseTo(editorCrop.translateY,3);
+  expect(outputCrop.boxLeft).toBeCloseTo(editorCrop.boxLeft,3);
+  expect(outputCrop.boxTop).toBeCloseTo(editorCrop.boxTop,3);
+  expect(outputCrop.boxWidth).toBeCloseTo(editorCrop.boxWidth,3);
+  expect(outputCrop.boxHeight).toBeCloseTo(editorCrop.boxHeight,3);
+  expect(outputCrop.position).toBe(editorCrop.position);
+  expect(outputCrop.bottom).toBe(editorCrop.bottom);
 
   // Writer preview hydrates official UFC moneylines without waiting for the Netlify backend.
   await page.click('[data-tool="tale"]');

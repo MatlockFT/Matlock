@@ -888,15 +888,43 @@ function insertBlock(text) {
     }).join('');
   }
 
+  function portraitCropStyle(xValue=50, yValue=50, zoomValue=100) {
+    const clamp=(value,min,max,fallback)=>{
+      const number=Number(value);
+      return Math.max(min,Math.min(max,Number.isFinite(number)?number:fallback));
+    };
+    const x=clamp(xValue,0,100,50);
+    const y=clamp(yValue,0,100,50);
+    const zoom=clamp(zoomValue,50,250,100)/100;
+    const tx=Math.round((x-50)*1000)/1000;
+    const ty=Math.round((y-50)*1000)/1000;
+    return [
+      'position:absolute!important',
+      'inset:0!important',
+      'left:0!important',
+      'top:0!important',
+      'right:0!important',
+      'bottom:0!important',
+      'width:100%!important',
+      'height:100%!important',
+      'max-width:none!important',
+      'object-fit:cover!important',
+      'object-position:50% 50%!important',
+      'transform:translate('+tx+'%,'+ty+'%) scale('+zoom+')!important',
+      'transform-origin:50% 50%!important'
+    ].join(';')+';';
+  }
+
   function fighterPortraitMarkup(side, fighter) {
     const image=String(fighter.image||'').trim();
     const x=Number(fighter.x ?? 50);
     const y=Number(fighter.y ?? 50);
-    const zoom=Number(fighter.zoom ?? 100)/100;
-    const style='--portrait-x:'+x+'%;--portrait-y:'+y+'%;--portrait-zoom:'+zoom+';';
+    const zoom=Number(fighter.zoom ?? 100);
+    const style='--portrait-x:'+x+'%;--portrait-y:'+y+'%;--portrait-zoom:'+(zoom/100)+';';
     return '<div class="fc-portrait ring-'+side+'" style="'+style+'">'+
       '<span class="fc-ring"></span><span class="fc-ring fc-ring-inner"></span>'+
-      (image?'<img src="'+escapeHtml(image)+'" alt="'+escapeHtml(fighter.name||'')+'">':'')+
+      (image?'<img src="'+escapeHtml(image)+'" alt="'+escapeHtml(fighter.name||'')+'" style="'+
+        portraitCropStyle(x,y,zoom)+'">':'')+
       '</div>';
   }
 
@@ -991,16 +1019,15 @@ function insertBlock(text) {
     if (!drop || !image || !empty) return;
     const x = Number(dialog.querySelector('[data-tale-image-x="' + side + '"]')?.value || 50);
     const y = Number(dialog.querySelector('[data-tale-image-y="' + side + '"]')?.value || 50);
-    const zoom = Number(dialog.querySelector('[data-tale-image-zoom="' + side + '"]')?.value || 100) / 100;
+    const zoom = Number(dialog.querySelector('[data-tale-image-zoom="' + side + '"]')?.value || 100);
     const src = localUrl || (path ? writerPreviewAssetUrl(path) : '');
     image.hidden = !src;
     empty.hidden = Boolean(src);
     if (src) image.src = src;
     drop.style.setProperty('--portrait-x', x + '%');
     drop.style.setProperty('--portrait-y', y + '%');
-    drop.style.setProperty('--portrait-zoom', String(zoom));
-    image.style.objectPosition = '';
-    image.style.transform = '';
+    drop.style.setProperty('--portrait-zoom', String(zoom/100));
+    image.setAttribute('style',portraitCropStyle(x,y,zoom));
   }
 
   function resetStatsDialog(config = {}) {
