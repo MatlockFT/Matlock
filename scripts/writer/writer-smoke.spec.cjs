@@ -583,6 +583,24 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
     expect(desktopCropAgain[key]).toBeCloseTo(desktopCrop[key], 3);
   }
 
+  // Pick visual uses a neutral blue treatment and a dark native-select scheme.
+  await page.click('[data-tool="prediction"]');
+  const pickDialog = page.locator('[data-pick-dialog]');
+  await expect(pickDialog).toBeVisible();
+  await expect(pickDialog.locator('h2')).toHaveText("Matlock's Pick");
+  const pickMethod = pickDialog.locator('[data-pick-method]');
+  const pickRound = pickDialog.locator('[data-pick-round]');
+  await expect(pickMethod).toHaveCSS('color-scheme','dark');
+  await expect(pickMethod.locator('option').nth(1)).toHaveCSS('background-color','rgb(17, 17, 19)');
+  await expect(pickRound.locator('option').first()).toHaveCSS('color','rgb(240, 240, 238)');
+  await pickDialog.locator('[data-pick-fighter]').fill('Alpha Fighter');
+  await pickMethod.selectOption({label:'Decision'});
+  await pickDialog.locator('[data-pick-insert]').click();
+  const pickCard = page.locator('[data-preview-content] .article-pick-card').filter({hasText:'Alpha Fighter'}).last();
+  await expect(pickCard).toBeVisible();
+  await expect(pickCard.locator('.article-pick-card__label')).toHaveText("Matlock's Pick");
+  await expect(pickCard).toHaveCSS('border-left-color','rgb(87, 140, 255)');
+
   const splitter = page.locator('[data-writer-splitter]');
   await splitter.focus();
   const beforeSplit = Number(await splitter.getAttribute('aria-valuenow'));
