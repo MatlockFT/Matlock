@@ -1410,3 +1410,99 @@ body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{
   color:#e7a1a1;
   outline:0;
 }
+
+
+/* Responsive Tale editor containment */
+.writer-shell .writer-structured-dialog{
+  width:min(1100px,calc(100vw - 2rem));
+  max-width:calc(100vw - 2rem);
+  overflow-x:hidden;
+}
+.writer-shell .writer-structured-dialog form,
+.writer-shell .writer-structured-dialog .writer-dialog-body,
+.writer-shell .writer-matchup-builder,
+.writer-shell .writer-fighter-builder,
+.writer-shell .writer-tale-stats-editor,
+.writer-shell .writer-comparison-rows{
+  min-width:0;
+  max-width:100%;
+}
+.writer-shell .writer-structured-dialog .writer-dialog-body{
+  overflow-x:hidden;
+  container-type:inline-size;
+}
+.writer-shell .writer-fighter-builder{
+  container-type:inline-size;
+  overflow:hidden;
+}
+.writer-shell .writer-fighter-builder .writer-field,
+.writer-shell .writer-fighter-builder .writer-dialog-grid,
+.writer-shell .writer-fighter-builder input,
+.writer-shell .writer-fighter-builder select,
+.writer-shell .writer-fighter-builder textarea{
+  min-width:0!important;
+  max-width:100%!important;
+}
+.writer-shell .writer-fighter-builder input[type="text"],
+.writer-shell .writer-fighter-builder input[type="url"],
+.writer-shell .writer-fighter-builder input:not([type]){
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.writer-shell .writer-recent-row{
+  min-width:0;
+}
+.writer-shell .writer-recent-row>*{
+  min-width:0;
+}
+.writer-shell .writer-recent-row input,
+.writer-shell .writer-recent-row select{
+  max-width:100%;
+}
+.writer-shell .writer-comparison-row{
+  min-width:0;
+}
+.writer-shell .writer-comparison-row>*{
+  min-width:0;
+}
+
+@container (max-width: 470px){
+  .writer-shell .writer-recent-row{
+    grid-template-columns:64px minmax(0,1fr)!important;
+  }
+  .writer-shell .writer-recent-row [data-recent-detail]{
+    grid-column:1/-1;
+  }
+  .writer-shell .writer-recent-row .writer-row-actions{
+    grid-column:1/-1;
+    justify-content:flex-start;
+  }
+}
+
+@container (max-width: 820px){
+  .writer-shell .writer-matchup-builder{
+    grid-template-columns:1fr!important;
+  }
+  .writer-shell .writer-matchup-builder-vs{
+    min-height:auto!important;
+    padding:.2rem 0!important;
+  }
+  .writer-shell .writer-comparison-head{
+    display:none!important;
+  }
+  .writer-shell .writer-comparison-row{
+    grid-template-columns:1fr 1fr!important;
+  }
+  .writer-shell .writer-comparison-row [data-structured-label]{
+    grid-column:1/-1;
+  }
+  .writer-shell .writer-comparison-row .writer-row-actions{
+    grid-column:1/-1;
+    justify-content:flex-start;
+  }
+  .writer-shell .writer-subeditor-head-wide,
+  .writer-shell .writer-builder-intro{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}
