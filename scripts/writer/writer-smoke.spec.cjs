@@ -330,6 +330,8 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await statsDialog.locator('[data-stats-insert]').click();
   await expect(page.locator('[data-preview-content]')).toContainText('Alpha Fighter');
   await expect(page.locator('[data-preview-content]')).toContainText('4.20');
+  await expect(page.locator('[data-preview-content] .fight-stats-sleek')).toBeVisible();
+  await expect(page.locator('[data-preview-content] .fight-stats-sleek .fs-section-title')).toContainText(['Striking', 'Grappling']);
 
   // Typing a fighter name offers a match; choosing it applies live UFCStats values.
   await page.click('[data-tool="stats"]');
@@ -362,6 +364,9 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('[data-preview-content]')).toContainText('Alpha Fighter');
   await expect(page.locator('[data-preview-content]')).toContainText('10-1');
   await expect(page.locator('[data-preview-content]')).toContainText('Gamma Fighter');
+  await expect(page.locator('[data-preview-content] .fight-compare-sleek')).toBeVisible();
+  await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-center-badge')).toContainText('MATCHUP');
+  await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-section-title').first()).toContainText('Tale of the Tape');
 
   await page.click('[data-tool="html"]');
   await page.fill('[data-html-label]', 'Smoke visual');
