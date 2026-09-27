@@ -1453,6 +1453,188 @@
     if (button) button.textContent = enabled ? 'Done' : 'Edit visually';
   }
 
+  function previewTalePortraitNodes(section, side) {
+    const root = section?.querySelector(side === 'a' ? '.fc-left' : '.fc-right');
+    const frame = root?.querySelector('.fc-portrait');
+    const image = frame?.querySelector('img[data-portrait-source], img');
+    return { root, frame, image };
+  }
+
+  function renderPreviewTalePortrait(section, side, crop) {
+    const { frame, image } = previewTalePortraitNodes(section, side);
+    if (!frame || !image) return false;
+    image.dataset.portraitX = String(crop.x);
+    image.dataset.portraitY = String(crop.y);
+    image.dataset.portraitZoom = String(crop.zoom);
+    return Boolean(window.MatlockPortraitCrop?.render?.(image, {
+      x: crop.x,
+      y: crop.y,
+      zoom: crop.zoom,
+      frame
+    }));
+  }
+
+  function persistPreviewTalePortrait(section, blockId, side, crop) {
+    const saved = updateTalePortraitConfig(blockId, side, crop);
+    if (!saved) return null;
+    section.dataset.writerConfig = encodedStructuredConfig(saved.config);
+    renderPreviewTalePortrait(section, side, saved.portrait);
+    return saved;
+  }
+
+  function taleCropDelta(frame, dx, dy) {
+    const canvas = frame?.querySelector('canvas.matlock-portrait-canvas');
+    let render = null;
+    try { render = JSON.parse(canvas?.dataset?.portraitRender || 'null'); } catch {}
+    const frameWidth = Math.max(1, Number(render?.frameWidth) || frame?.getBoundingClientRect().width || 1);
+    const frameHeight = Math.max(1, Number(render?.frameHeight) || frame?.getBoundingClientRect().height || 1);
+    const maxShiftX = Math.max(0, ((Number(render?.drawWidth) || frameWidth) - frameWidth) / 2);
+    const maxShiftY = Math.max(0, ((Number(render?.drawHeight) || frameHeight) - frameHeight) / 2);
+    return {
+      x: maxShiftX > 0.5 ? (dx / maxShiftX) * 50 : 0,
+      y: maxShiftY > 0.5 ? (dy / maxShiftY) * 50 : 0
+    };
+  }
+
+  function setPreviewTaleEditing(shell, enabled) {
+    const section = shell?.querySelector('section[data-writer-html-block-id][data-writer-block="tale"]');
+    if (!section) return false;
+    const blockId = section.dataset.writerHtmlBlockId || '';
+    const block = htmlBlocks.get(blockId);
+    const meta = structuredMeta(block?.code);
+    if (!block || meta?.type !== 'tale') return false;
+
+    if (!enabled) {
+      const session = shell._writerTaleCropSession;
+      if (session) {
+        for (const side of ['a','b']) {
+          persistPreviewTalePortrait(section, blockId, side, session.crops[side]);
+        }
+      }
+      shell._writerTaleCropSession = null;
+      shell.classList.remove('is-editing','is-tale-portrait-editing');
+      section.removeAttribute('data-tale-portrait-editing');
+      shell.querySelector('[data-tale-crop-controls]')?.remove();
+      const editButton = shell.querySelector('[data-preview-html-visual-edit]');
+      const label = shell.querySelector('.writer-preview-block-tools>span');
+      if (editButton) editButton.textContent = 'Edit visually';
+      if (label) label.textContent = block.label;
+      scheduleAutosave();
+      updatePreview();
+      showToast('Portrait placement saved.');
+      return true;
+    }
+
+    if (shell._writerTaleCropSession) return true;
+
+    const config = normalizeTaleConfig(meta.config);
+    const session = {
+      crops: {
+        a: { ...normalizeTalePortrait(config.a) },
+        b: { ...normalizeTalePortrait(config.b) }
+      },
+      drag: null
+    };
+    shell._writerTaleCropSession = session;
+    shell.classList.add('is-editing','is-tale-portrait-editing');
+    section.removeAttribute('contenteditable');
+    section.removeAttribute('spellcheck');
+    section.dataset.talePortraitEditing = 'true';
+
+    const tools = shell.querySelector('.writer-preview-block-tools');
+    const label = tools?.querySelector(':scope>span');
+    const editButton = tools?.querySelector('[data-preview-html-visual-edit]');
+    if (label) label.textContent = 'PORTRAIT POSITIONING';
+    if (editButton) editButton.textContent = 'Done';
+
+    const panel = document.createElement('div');
+    panel.className = 'writer-tale-crop-controls';
+    panel.dataset.taleCropControls = 'true';
+    panel.innerHTML =
+      '<div class="writer-tale-crop-help">Drag the actual portraits to position them. These are the saved article crops.</div>'+
+      '<div class="writer-tale-crop-grid">'+
+      ['a','b'].map(side => {
+        const fighter = config[side] || {};
+        const crop = session.crops[side];
+        return '<div class="writer-tale-crop-control" data-tale-crop-side="'+side+'">'+
+          '<strong>'+escapeHtml(fighter.name || (side === 'a' ? 'Fighter A' : 'Fighter B'))+'</strong>'+
+          '<label><span>Zoom</span><input type="range" min="100" max="200" step="1" value="'+crop.zoom+'" data-tale-preview-zoom="'+side+'"></label>'+
+          '<button type="button" data-tale-preview-reset="'+side+'">Reset</button>'+
+        '</div>';
+      }).join('')+
+      '</div>';
+    shell.append(panel);
+
+    const clamp = (value,min,max) => Math.max(min,Math.min(max,value));
+
+    for (const side of ['a','b']) {
+      const { frame, image } = previewTalePortraitNodes(section, side);
+      if (!frame || !image) continue;
+      frame.dataset.editablePortrait = 'true';
+      frame.tabIndex = 0;
+      frame.setAttribute('aria-label','Drag to position '+(config[side]?.name || 'fighter')+' portrait');
+      renderPreviewTalePortrait(section, side, session.crops[side]);
+
+      frame.addEventListener('pointerdown', event => {
+        if (event.button !== 0) return;
+        event.preventDefault();
+        event.stopPropagation();
+        frame.setPointerCapture?.(event.pointerId);
+        session.drag = {
+          side,
+          pointerId:event.pointerId,
+          startClientX:event.clientX,
+          startClientY:event.clientY,
+          start:{...session.crops[side]}
+        };
+        frame.classList.add('is-positioning');
+      });
+
+      frame.addEventListener('pointermove', event => {
+        const drag = session.drag;
+        if (!drag || drag.side !== side || drag.pointerId !== event.pointerId) return;
+        event.preventDefault();
+        const delta = taleCropDelta(
+          frame,
+          event.clientX - drag.startClientX,
+          event.clientY - drag.startClientY
+        );
+        const next = session.crops[side];
+        next.x = Math.round(clamp(drag.start.x + delta.x,0,100) * 10) / 10;
+        next.y = Math.round(clamp(drag.start.y + delta.y,0,100) * 10) / 10;
+        renderPreviewTalePortrait(section, side, next);
+      });
+
+      const finishDrag = event => {
+        const drag = session.drag;
+        if (!drag || drag.side !== side || (event?.pointerId != null && drag.pointerId !== event.pointerId)) return;
+        frame.classList.remove('is-positioning');
+        session.drag = null;
+        persistPreviewTalePortrait(section, blockId, side, session.crops[side]);
+      };
+      frame.addEventListener('pointerup', finishDrag);
+      frame.addEventListener('pointercancel', finishDrag);
+
+      const zoom = panel.querySelector('[data-tale-preview-zoom="'+side+'"]');
+      zoom?.addEventListener('input', () => {
+        session.crops[side].zoom = clamp(Number(zoom.value)||100,100,200);
+        renderPreviewTalePortrait(section, side, session.crops[side]);
+      });
+      zoom?.addEventListener('change', () => {
+        persistPreviewTalePortrait(section, blockId, side, session.crops[side]);
+      });
+
+      panel.querySelector('[data-tale-preview-reset="'+side+'"]')?.addEventListener('click', () => {
+        session.crops[side] = {x:50,y:50,zoom:100};
+        if (zoom) zoom.value = '100';
+        renderPreviewTalePortrait(section, side, session.crops[side]);
+        persistPreviewTalePortrait(section, blockId, side, session.crops[side]);
+      });
+    }
+
+    return true;
+  }
+
   function hydratePreviewHtmlVisuals() {
     if (!previewContent) return;
     previewContent.querySelectorAll('section[data-writer-html-block-id]').forEach(section => {
@@ -1474,12 +1656,18 @@
 
       tools.querySelector('[data-preview-html-visual-edit]').addEventListener('click', event => {
         event.stopPropagation();
+        const meta = structuredMeta(block.code);
+        if (meta?.type === 'tale') {
+          setPreviewTaleEditing(shell, !shell.classList.contains('is-tale-portrait-editing'));
+          return;
+        }
         setPreviewHtmlEditing(shell, !shell.classList.contains('is-editing'));
       });
 
       tools.querySelector('[data-preview-html-source-edit]').addEventListener('click', event => {
         event.stopPropagation();
-        if (shell.classList.contains('is-editing')) setPreviewHtmlEditing(shell, false);
+        if (shell.classList.contains('is-tale-portrait-editing')) setPreviewTaleEditing(shell, false);
+        else if (shell.classList.contains('is-editing')) setPreviewHtmlEditing(shell, false);
         openHtmlDialog(id);
       });
 
@@ -1489,10 +1677,10 @@
       });
 
       section.addEventListener('keydown', event => {
-        if (event.key === 'Escape' && shell.classList.contains('is-editing')) {
-          event.preventDefault();
-          setPreviewHtmlEditing(shell, false);
-        }
+        if (event.key !== 'Escape' || !shell.classList.contains('is-editing')) return;
+        event.preventDefault();
+        if (shell.classList.contains('is-tale-portrait-editing')) setPreviewTaleEditing(shell, false);
+        else setPreviewHtmlEditing(shell, false);
       });
 
       section.addEventListener('click', event => {
@@ -2570,6 +2758,44 @@ function insertBlock(text) {
     return encodeURIComponent(JSON.stringify(config || {}));
   }
 
+  function normalizeTalePortrait(fighter = {}) {
+    const portrait = fighter?.portrait && typeof fighter.portrait === 'object' ? fighter.portrait : {};
+    const clamp=(value,min,max,fallback)=>{
+      const number=Number(value);
+      return Math.max(min,Math.min(max,Number.isFinite(number)?number:fallback));
+    };
+    return {
+      x:clamp(portrait.x ?? fighter.x,0,100,50),
+      y:clamp(portrait.y ?? fighter.y,0,100,50),
+      zoom:clamp(portrait.zoom ?? fighter.zoom,100,250,100)
+    };
+  }
+
+  function normalizeTaleConfig(config = {}) {
+    const normalized={...config,version:Math.max(6,Number(config.version)||0)};
+    normalized.a={...(config.a||{}),portrait:normalizeTalePortrait(config.a||{})};
+    normalized.b={...(config.b||{}),portrait:normalizeTalePortrait(config.b||{})};
+    for(const fighter of [normalized.a,normalized.b]){
+      delete fighter.x;
+      delete fighter.y;
+      delete fighter.zoom;
+    }
+    return normalized;
+  }
+
+  function updateTalePortraitConfig(blockId, side, crop) {
+    if(!['a','b'].includes(side)) return null;
+    const block=htmlBlocks.get(blockId);
+    const meta=structuredMeta(block?.code);
+    if(!block||meta?.type!=='tale') return null;
+    const config=normalizeTaleConfig(meta.config);
+    config[side].portrait=normalizeTalePortrait({portrait:crop});
+    block.code=buildTaleVisual(config);
+    htmlBlocks.set(blockId,block);
+    scheduleAutosave();
+    return {config,portrait:config[side].portrait};
+  }
+
   function pipeRows(text, width = 3) {
     return String(text || '').split('\n').map(line => line.trim()).filter(Boolean).map(line => {
       const cells = line.split('|').map(cell => cell.trim());
@@ -3002,7 +3228,18 @@ function insertBlock(text) {
     const division = dialog.querySelector('[data-tale-division="' + side + '"]');
     if (division && fighter.division) division.value = fighter.division;
     const image = dialog.querySelector('[data-tale-image-path="' + side + '"]');
-    if (image && fighter.image) image.value = fighter.image;
+    if (image && fighter.image) {
+      const previousImage = image.value.trim();
+      if (previousImage && previousImage !== fighter.image) {
+        const xInput=dialog.querySelector('[data-tale-image-x="' + side + '"]');
+        const yInput=dialog.querySelector('[data-tale-image-y="' + side + '"]');
+        const zoomInput=dialog.querySelector('[data-tale-image-zoom="' + side + '"]');
+        if (xInput) xInput.value='50';
+        if (yInput) yInput.value='50';
+        if (zoomInput) zoomInput.value='100';
+      }
+      image.value = fighter.image;
+    }
     const recent = recentRowsFromFighter(fighter);
     renderRecentRows(dialog.querySelector('[data-tale-form-list="' + side + '"]'),recent);
     const last5 = dialog.querySelector('[data-tale-last5="' + side + '"]');
@@ -3292,13 +3529,11 @@ function insertBlock(text) {
 
   function fighterPortraitMarkup(side, fighter) {
     const image=String(fighter.image||'').trim();
-    const x=Number(fighter.x ?? 50);
-    const y=Number(fighter.y ?? 50);
-    const zoom=Math.max(100,Number(fighter.zoom ?? 100)||100);
-    return '<div class="fc-portrait ring-'+side+'">'+
+    const portrait=normalizeTalePortrait(fighter);
+    return '<div class="fc-portrait ring-'+side+'" data-portrait-side="'+(side==='left'?'a':'b')+'">'+
       '<span class="fc-ring"></span><span class="fc-ring fc-ring-inner"></span>'+
       (image?'<img class="fc-portrait-source" data-portrait-source src="'+escapeHtml(image)+'" alt="'+escapeHtml(fighter.name||'')+
-        '" data-portrait-x="'+x+'" data-portrait-y="'+y+'" data-portrait-zoom="'+zoom+'">':'')+
+        '" data-portrait-x="'+portrait.x+'" data-portrait-y="'+portrait.y+'" data-portrait-zoom="'+portrait.zoom+'">':'')+
       '</div>';
   }
 
@@ -3317,6 +3552,7 @@ function insertBlock(text) {
   }
 
   function buildTaleVisual(config) {
+    config=normalizeTaleConfig(config);
     const a=config.a||{}, b=config.b||{};
     const rows=normalizeComparisonRows(config.rows,taleDefaultRowLabels);
     const taleRows=rows.map((row,index)=>
@@ -3467,10 +3703,11 @@ function insertBlock(text) {
       dialog.querySelector('[data-tale-division="'+side+'"]').value=fighter.division||'';
       dialog.querySelector('[data-tale-odds="'+side+'"]').value=fighter.odds||'';
       dialog.querySelector('[data-tale-last5="'+side+'"]').value=fighter.last5||'';
+      const portrait=normalizeTalePortrait(fighter);
       dialog.querySelector('[data-tale-image-path="'+side+'"]').value=fighter.image||'';
-      dialog.querySelector('[data-tale-image-x="'+side+'"]').value=fighter.x??50;
-      dialog.querySelector('[data-tale-image-y="'+side+'"]').value=fighter.y??50;
-      dialog.querySelector('[data-tale-image-zoom="'+side+'"]').value=Math.max(100,Number(fighter.zoom??100)||100);
+      dialog.querySelector('[data-tale-image-x="'+side+'"]').value=portrait.x;
+      dialog.querySelector('[data-tale-image-y="'+side+'"]').value=portrait.y;
+      dialog.querySelector('[data-tale-image-zoom="'+side+'"]').value=portrait.zoom;
       dialog.querySelector('[data-tale-opponents-record="'+side+'"]').value=fighter.opponentsRecord||'';
       dialog.querySelector('[data-tale-opponents-pct="'+side+'"]').value=fighter.opponentsPct||'';
       renderRecentRows(dialog.querySelector('[data-tale-form-list="'+side+'"]'),fighter.recent);
@@ -4370,15 +4607,17 @@ Object.values(fields).forEach(el => {
       odds:taleDialog.querySelector('[data-tale-odds="'+side+'"]').value.trim(),
       last5:taleDialog.querySelector('[data-tale-last5="'+side+'"]').value.trim(),
       image:taleDialog.querySelector('[data-tale-image-path="'+side+'"]').value.trim(),
-      x:Number(taleDialog.querySelector('[data-tale-image-x="'+side+'"]').value||50),
-      y:Number(taleDialog.querySelector('[data-tale-image-y="'+side+'"]').value||50),
-      zoom:Math.max(100,Number(taleDialog.querySelector('[data-tale-image-zoom="'+side+'"]').value||100)),
+      portrait:{
+        x:Number(taleDialog.querySelector('[data-tale-image-x="'+side+'"]').value||50),
+        y:Number(taleDialog.querySelector('[data-tale-image-y="'+side+'"]').value||50),
+        zoom:Math.max(100,Number(taleDialog.querySelector('[data-tale-image-zoom="'+side+'"]').value||100))
+      },
       recent:collectRecentRows(taleDialog.querySelector('[data-tale-form-list="'+side+'"]')),
       opponentsRecord:taleDialog.querySelector('[data-tale-opponents-record="'+side+'"]').value.trim(),
       opponentsPct:taleDialog.querySelector('[data-tale-opponents-pct="'+side+'"]').value.trim(),
       source:fighterSourceMeta(taleDialog.querySelector(side==='a'?'[data-tale-a]':'[data-tale-b]'))
     });
-    const cfg={version:5,a:collect('a'),b:collect('b'),rows:collectComparisonRows(taleDialog.querySelector('[data-tale-row-list]'))};
+    const cfg={version:6,a:collect('a'),b:collect('b'),rows:collectComparisonRows(taleDialog.querySelector('[data-tale-row-list]'))};
     cfg.eventDate=cfg.a.source?.bookingDate||cfg.b.source?.bookingDate||'';
     if(!cfg.a.name||!cfg.b.name){showToast('Add both fighter names.');return;}
     if(!cfg.rows.length) cfg.rows=normalizeComparisonRows([],taleDefaultRowLabels);
