@@ -386,6 +386,125 @@ function scheduleAutosave() {
     return match ? `/${match[1]}/${match[2]}/${match[3]}/${match[4]}.html` : '';
   }
 
+  function markArticleUnpublished(text) {
+    const normalized = String(text || '').replace(/\r\n?/g, '\n');
+    const match = normalized.match(/^---\n([\s\S]*?)\n---\n?/);
+    if (!match) throw new Error('Article frontmatter is missing.');
+
+    let frontmatter = match[1];
+    if (/^published:/m.test(frontmatter)) {
+      frontmatter = frontmatter.replace(/^published:.*$/m, 'published: false');
+    } else {
+      frontmatter = `${frontmatter.trimEnd()}\npublished: false`;
+    }
+    frontmatter = frontmatter.replace(/^publish_at:.*(?:\n|$)/m, '').trimEnd();
+
+    return `---\n${frontmatter}\n---\n${normalized.slice(match[0].length)}`;
+  }
+
+  function updateLibraryCacheEntry(path, patch) {
+    const cache = loadLibraryCache();
+    if (cache[path]) {
+      cache[path] = { ...cache[path], ...patch };
+      saveLibraryCache(cache);
+    }
+  }
+
+  function removeLibraryCacheEntry(path) {
+    const cache = loadLibraryCache();
+    if (cache[path]) {
+      delete cache[path];
+      saveLibraryCache(cache);
+    }
+  }
+
+  async function unpublishLibraryArticle(path) {
+    const entry = libraryEntries.find(item => item.path === path);
+    if (!entry || entry.status !== 'published') return;
+    if (!githubCredential) { connectDialog.showModal(); return; }
+
+    const title = entry.title || entry.name;
+    if (!window.confirm(`Unpublish “${title}”?\n\nIt will be removed from the public site after the next deployment, but the article will stay in Writer as a draft.`)) return;
+
+    const apiPath = `/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}`;
+    try {
+      const data = await githubFetch(`${apiPath}?ref=main`);
+      const unpublishedText = markArticleUnpublished(decodeBase64(data.content));
+      const result = await githubFetch(apiPath, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: `Unpublish ${entry.name}`,
+          content: encodeBase64(unpublishedText),
+          sha: data.sha,
+          branch: 'main'
+        })
+      }, true);
+
+      entry.sha = result.content?.sha || data.sha;
+      entry.status = 'draft';
+      entry.publishAt = '';
+      updateLibraryCacheEntry(path, { sha: entry.sha, status: 'draft', publishAt: '' });
+
+      if (currentPath === path) {
+        currentSha = entry.sha;
+        currentPublished = false;
+        fields.publishAt.value = '';
+        originalFrontmatter = parseFrontmatter(unpublishedText).frontmatter;
+        updateSaveButtonLabel();
+        updateLiveLink();
+        updateDocumentStatus();
+      }
+
+      renderLibrary();
+      showToast('Article unpublished. The public site is redeploying now.', 5000);
+      loadLibrary({ hydrate: true });
+    } catch (error) {
+      showToast(`Could not unpublish: ${error.message}`, 6000);
+    }
+  }
+
+  async function deleteLibraryArticle(path) {
+    const entry = libraryEntries.find(item => item.path === path);
+    if (!entry) return;
+    if (!githubCredential) { connectDialog.showModal(); return; }
+
+    const title = entry.title || entry.name;
+    const liveWarning = entry.status === 'published'
+      ? '\n\nThis article is currently public. Its page will disappear after the next deployment.'
+      : '';
+    if (!window.confirm(`Delete “${title}”?\n\nThis removes the article source file from Writer and GitHub. Git history can still recover it, but there is no undo button in Writer.${liveWarning}`)) return;
+
+    const apiPath = `/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}`;
+    try {
+      const data = await githubFetch(`${apiPath}?ref=main`);
+      await githubFetch(apiPath, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: `Delete ${entry.name}`,
+          sha: data.sha,
+          branch: 'main'
+        })
+      }, true);
+
+      removeLibraryCacheEntry(path);
+      libraryEntries = libraryEntries.filter(item => item.path !== path);
+      try { localStorage.removeItem(`matlock-writer:${path}`); } catch {}
+
+      if (currentPath === path) {
+        resetNewArticle();
+        showLibrary();
+      }
+
+      renderLibrary();
+      showToast('Article deleted from GitHub. The public site is redeploying now.', 5000);
+      loadLibrary({ hydrate: true });
+    } catch (error) {
+      showToast(`Could not delete: ${error.message}`, 6000);
+    }
+  }
+
   function renderLibrary() {
     const counts = {
       total: libraryEntries.length,
@@ -413,7 +532,7 @@ function scheduleAutosave() {
           <div class="writer-library-card-meta"><span class="writer-status-badge is-${status}">${escapeHtml(statusText)}</span>${entry.category ? `<span>${escapeHtml(entry.category)}</span>` : ''}</div>
           <h3>${escapeHtml(entry.title || entry.name)}</h3>
           <p>${escapeHtml(entry.description || edited || entry.name)}</p>
-          <div class="writer-library-card-foot"><span>${escapeHtml(edited)}</span><div class="writer-library-actions"><button type="button" data-library-edit>Edit</button><button type="button" data-library-duplicate>Duplicate</button>${live ? `<a href="${escapeHtml(live)}" target="_blank" rel="noopener noreferrer">View live</a>` : ''}</div></div>
+          <div class="writer-library-card-foot"><span>${escapeHtml(edited)}</span><div class="writer-library-actions"><button type="button" data-library-edit>Edit</button><button type="button" data-library-duplicate>Duplicate</button>${status === 'published' ? '<button type="button" data-library-unpublish>Unpublish</button>' : ''}<button type="button" data-library-delete>Delete</button>${live ? `<a href="${escapeHtml(live)}" target="_blank" rel="noopener noreferrer">View live</a>` : ''}</div></div>
         </div>
       </article>`;
     }).join('');
