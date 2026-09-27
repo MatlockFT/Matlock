@@ -23,6 +23,7 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
           ufcRecord: '6-1-0',
           recordOutsideUfc: '6-1-0',
           rank: 9,
+          booking: { date:'2026-10-03', opponentId:'lookup-opponent' },
           image: 'https://example.com/lookup.png',
           checkedAt: '2026-09-26T18:00:00.000Z',
           ufcStatsId: 'aaaaaaaaaaaaaaaa',
@@ -161,6 +162,8 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
   const taleA = taleDialog.locator('[data-tale-a]');
   await taleA.fill('Lookup');
   await taleDialog.locator('.writer-fighter-suggestion').first().click();
+  await expect(taleDialog.locator('[data-tale-last5="a"]')).toHaveValue('1-0');
+  await expect(taleA).toHaveAttribute('data-booking-date','2026-10-03');
 
   const taleRows = taleDialog.locator('[data-tale-row-list] .writer-comparison-row');
   await expect(taleRows).toHaveCount(11);
