@@ -1000,12 +1000,23 @@ function insertBlock(text) {
     const fighter = String(config.fighter || '').trim();
     const method = String(config.method || '').trim();
     const round = String(config.round || '').trim();
-    const result = [method, round].filter(Boolean).join(' · ');
     const note = String(config.note || '').trim();
-    const inner = '<aside class="article-pick-card"><span class="article-pick-card__label">Matlock\'s Pick</span>' +
-      '<div class="article-pick-card__main"><strong>' + escapeHtml(fighter) + '</strong>' +
-      (result ? '<span>' + escapeHtml(result) + '</span>' : '') + '</div>' +
-      (note ? '<p>' + escapeHtml(note) + '</p>' : '') + '</aside>';
+    const chips =
+      (method ? '<span class="article-pick-card__chip article-pick-card__chip--method"><small>Method</small><strong>' + escapeHtml(method) + '</strong></span>' : '') +
+      (round ? '<span class="article-pick-card__chip"><small>Round</small><strong>' + escapeHtml(round) + '</strong></span>' : '');
+    const inner =
+      '<aside class="article-pick-card">' +
+        '<div class="article-pick-card__accent" aria-hidden="true"><span>M</span></div>' +
+        '<div class="article-pick-card__content">' +
+          '<div class="article-pick-card__topline">' +
+            '<span class="article-pick-card__label">Matlock\'s Pick</span>' +
+            '<span class="article-pick-card__kicker">Fight prediction</span>' +
+          '</div>' +
+          '<strong class="article-pick-card__fighter">' + escapeHtml(fighter) + '</strong>' +
+          (chips ? '<div class="article-pick-card__chips">' + chips + '</div>' : '') +
+          (note ? '<p class="article-pick-card__note">' + escapeHtml(note) + '</p>' : '') +
+        '</div>' +
+      '</aside>';
     return structuredSection('pick', config, inner);
   }
 
