@@ -151,11 +151,22 @@
     });
 
     const picksRoot = document.querySelector('[data-article-picks]');
+    const postFightResultsNode = article.querySelector('[data-post-fight-results]');
+    let postFightResults = null;
+
+    if (postFightResultsNode) {
+        try {
+            postFightResults = JSON.parse(postFightResultsNode.textContent || '{}');
+        } catch (error) {
+            console.warn('Unable to parse post-fight pick results.', error);
+        }
+    }
 
     if (picksRoot) {
         const picksToggle = picksRoot.querySelector('[data-article-picks-toggle]');
         const picksPanel = picksRoot.querySelector('[data-article-picks-panel]');
         const picksList = picksRoot.querySelector('[data-article-picks-list]');
+        const picksHeading = picksRoot.querySelector('.article-picks-heading');
         const pickCards = Array.from(article.querySelectorAll('.article-pick-card'));
 
         const findFightHeading = (card) => {
@@ -173,32 +184,113 @@
         if (picksToggle && picksPanel && picksList && pickCards.length) {
             picksList.replaceChildren();
 
+            const resultsByPick = postFightResults?.picks || {};
+            const hasResults = Boolean(
+                postFightResults &&
+                postFightResults.record &&
+                postFightResults.percentage &&
+                Object.keys(resultsByPick).length
+            );
+
+            if (hasResults) {
+                picksRoot.classList.add('has-post-fight-results');
+
+                if (picksHeading && !picksHeading.querySelector('.article-picks-heading-meta')) {
+                    const headingMeta = document.createElement('span');
+                    headingMeta.className = 'article-picks-heading-meta';
+
+                    const kicker = document.createElement('span');
+                    kicker.className = 'article-picks-kicker';
+                    kicker.textContent = 'Post-Fight Results';
+
+                    const score = document.createElement('span');
+                    score.className = 'article-picks-score';
+                    score.setAttribute(
+                        'aria-label',
+                        postFightResults.correct + ' correct picks out of ' + postFightResults.total
+                    );
+
+                    const record = document.createElement('strong');
+                    record.textContent = postFightResults.record;
+
+                    const percentage = document.createElement('span');
+                    percentage.textContent = postFightResults.percentage;
+
+                    score.append(record, percentage);
+                    headingMeta.append(kicker, score);
+                    picksHeading.append(headingMeta);
+                }
+            }
+
             pickCards.forEach((card, index) => {
                 const fighter = card.querySelector('.article-pick-card__main strong')?.textContent?.trim() || 'Pick ' + (index + 1);
                 const detail = card.querySelector('.article-pick-card__main span')?.textContent?.trim() || '';
                 const heading = findFightHeading(card);
                 const matchup = heading?.textContent?.trim() || 'Fight ' + (index + 1);
+                const result = resultsByPick[fighter] || null;
 
                 const item = document.createElement('li');
                 const link = document.createElement('a');
-                const matchupLabel = document.createElement('span');
-                const pickLine = document.createElement('span');
-                const fighterName = document.createElement('strong');
 
-                link.href = heading ? '#' + heading.id : '#';
+                const itemHead = document.createElement('span');
+                itemHead.className = 'article-picks-item-head';
+
+                const matchupLabel = document.createElement('span');
                 matchupLabel.className = 'article-picks-matchup';
                 matchupLabel.textContent = matchup;
+                itemHead.append(matchupLabel);
+
+                if (result) {
+                    const status = document.createElement('span');
+                    status.className = 'article-picks-status ' + (result.correct ? 'is-correct' : 'is-incorrect');
+                    status.textContent = result.correct ? 'Correct' : 'Incorrect';
+                    itemHead.append(status);
+                    link.classList.add(result.correct ? 'is-correct' : 'is-incorrect');
+                }
+
+                const pickLine = document.createElement('span');
                 pickLine.className = 'article-picks-selection';
+
+                if (hasResults) {
+                    const pickLabel = document.createElement('b');
+                    pickLabel.className = 'article-picks-line-label';
+                    pickLabel.textContent = 'Pick';
+                    pickLine.append(pickLabel);
+                }
+
+                const pickValue = document.createElement('span');
+                pickValue.className = 'article-picks-line-value';
+
+                const fighterName = document.createElement('strong');
                 fighterName.textContent = fighter;
-                pickLine.append(fighterName);
+                pickValue.append(fighterName);
 
                 if (detail) {
                     const method = document.createElement('span');
                     method.textContent = detail;
-                    pickLine.append(method);
+                    pickValue.append(method);
                 }
 
-                link.append(matchupLabel, pickLine);
+                pickLine.append(pickValue);
+                link.append(itemHead, pickLine);
+
+                if (result) {
+                    const resultLine = document.createElement('span');
+                    resultLine.className = 'article-picks-result';
+
+                    const resultLabel = document.createElement('b');
+                    resultLabel.className = 'article-picks-line-label';
+                    resultLabel.textContent = 'Result';
+
+                    const resultValue = document.createElement('span');
+                    resultValue.className = 'article-picks-line-value';
+                    resultValue.textContent = result.result;
+
+                    resultLine.append(resultLabel, resultValue);
+                    link.append(resultLine);
+                }
+
+                link.href = heading ? '#' + heading.id : '#';
 
                 if (heading) {
                     link.addEventListener('click', (event) => {
