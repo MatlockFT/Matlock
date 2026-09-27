@@ -1,50 +1,58 @@
 {
-  "generatedAt": "2026-09-27T16:01:41.213Z",
+  "generatedAt": "2026-09-27T16:11:51.601Z",
   "engineVersion": 2,
-  "subjects": 206,
-  "publishedRecommendations": 566,
+  "subjects": 230,
+  "publishedRecommendations": 635,
   "recommendationSlots": {
-    "0": 16,
+    "0": 17,
     "1": 1,
     "2": 2,
-    "3": 187
+    "3": 210
   },
   "caseCounts": {
-    "rebound-pairing": 241,
-    "rising-vs-rising": 162,
-    "step-up-vs-rebound": 62,
-    "ranking-opportunity": 42,
-    "rankings-progression": 30,
-    "divisional-sorting": 15,
+    "rebound-pairing": 266,
+    "rising-vs-rising": 190,
+    "step-up-vs-rebound": 70,
+    "ranking-opportunity": 45,
+    "rankings-progression": 37,
+    "divisional-sorting": 14,
     "title-case": 7,
     "title-eliminator": 5,
-    "prospect-test": 2
+    "prospect-test": 1
   },
   "confidenceCounts": {
-    "high": 523,
-    "medium": 26,
-    "low": 17
+    "high": 589,
+    "medium": 31,
+    "low": 15
   },
-  "averageRecentOpponentLinkCoverage": 0.9076,
-  "sameCardRecommendations": 32,
-  "sameCardRecommendationRatio": 0.0565,
-  "asymmetricTopThreeRecommendations": 195,
-  "asymmetricTopThreeRatio": 0.3445,
-  "publicPublishedRecommendations": 546,
-  "publicAsymmetricTopThreeRecommendations": 160,
-  "publicAsymmetricTopThreeRatio": 0.293,
-  "engineGenericDivisionalSortingRecommendations": 15,
+  "averageRecentOpponentLinkCoverage": 0.9042,
+  "sameCardRecommendations": 36,
+  "sameCardRecommendationRatio": 0.0567,
+  "asymmetricTopThreeRecommendations": 204,
+  "asymmetricTopThreeRatio": 0.3213,
+  "publicPublishedRecommendations": 616,
+  "publicAsymmetricTopThreeRecommendations": 164,
+  "publicAsymmetricTopThreeRatio": 0.2662,
+  "engineGenericDivisionalSortingRecommendations": 14,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
   "latestEventPublic": {
-    "id": "cryptocom-ufc-331",
-    "title": "Crypto.com UFC 331: Van vs Pantoja 2",
-    "date": "2026-09-19",
+    "id": "ufc-fight-night-september-26-2026",
+    "title": "UFC Fight Night: Rosas Jr. vs Barcelos",
+    "date": "2026-09-26",
     "subjects": 24,
-    "publicRecommendations": 67,
-    "noClearMatchupSubjects": 0
+    "publicRecommendations": 69,
+    "noClearMatchupSubjects": 1
   },
   "eventPublicSummary": [
+    {
+      "id": "ufc-fight-night-september-26-2026",
+      "title": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "date": "2026-09-26",
+      "subjects": 24,
+      "publicRecommendations": 69,
+      "noClearMatchupSubjects": 1
+    },
     {
       "id": "cryptocom-ufc-331",
       "title": "Crypto.com UFC 331: Van vs Pantoja 2",
@@ -66,7 +74,7 @@
       "title": "UFC Fight Night: Hooker vs Parnasse",
       "date": "2026-09-05",
       "subjects": 28,
-      "publicRecommendations": 75,
+      "publicRecommendations": 76,
       "noClearMatchupSubjects": 1
     },
     {
@@ -175,13 +183,6 @@
       "rationale": "Klaudia Sygula and Nina Milosevic occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
     },
     {
-      "event": "UFC Fight Night: Hooker vs Parnasse",
-      "fighter": "Matthieu Letho Duclos",
-      "opponent": "Eric McConico",
-      "score": 88,
-      "rationale": "Matthieu Letho Duclos and Eric McConico occupy a comparable competitive tier, and the matchup would clarify their position in the division without forcing an artificial leap up or down."
-    },
-    {
       "event": "UFC Fight Night: Nurmagomedov vs Song",
       "fighter": "Song Yadong",
       "opponent": "Aiemann Zahabi",
@@ -219,6 +220,406 @@
   ],
   "publicGenericExamples": [],
   "asymmetricExamples": [
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Ailin Perez",
+      "opponent": "Luana Santos",
+      "pairScore": 82,
+      "case": "rankings-progression",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Yana Santos",
+          "score": 90,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Norma Dumont",
+          "score": 85,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Jacqueline Cavalcanti",
+          "score": 84,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Sedriques Dumas",
+      "opponent": "Oumar Sy",
+      "pairScore": 91,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Julius Walker",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Rodolfo Bellato",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Iwo Baraniewski",
+          "score": 92,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Valesca Machado",
+      "opponent": "Shanelle Dyer",
+      "pairScore": 87,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Nicolle Caliari",
+          "score": 92,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Stephanie Bruna Luciano",
+          "score": 89,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Sam Hughes",
+          "score": 85,
+          "case": "prospect-test"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Brady Hiestand",
+      "opponent": "Heili Alateng",
+      "pairScore": 85,
+      "case": "rising-vs-rising",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Raoni Barcelos",
+          "score": 91,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Davey Grant",
+          "score": 90,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Victor Henry",
+          "score": 90,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Brady Hiestand",
+      "opponent": "Montel Jackson",
+      "pairScore": 83,
+      "case": "rising-vs-rising",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Bryce Mitchell",
+          "score": 92,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Heili Alateng",
+          "score": 87,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Davey Grant",
+          "score": 86,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Rinya Nakamura",
+      "opponent": "Borislav Nikolic",
+      "pairScore": 91,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Francesco Nuzzi",
+          "score": 96,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Hector de Sousa Santiago",
+          "score": 96,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Ilimbek Akylbek",
+          "score": 95,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Rinya Nakamura",
+      "opponent": "Ethyn Ewing",
+      "pairScore": 91,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Colby Thicknesse",
+          "score": 92,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Jakub Wiklacz",
+          "score": 92,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Serhiy Sidey",
+          "score": 92,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Rinya Nakamura",
+      "opponent": "Hector de Sousa Santiago",
+      "pairScore": 91,
+      "case": "step-up-vs-rebound",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Borislav Nikolic",
+          "score": 96,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Francesco Nuzzi",
+          "score": 96,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Ilimbek Akylbek",
+          "score": 95,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Rodolfo Vieira",
+      "opponent": "Shara Magomedov",
+      "pairScore": 88,
+      "case": "rankings-progression",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Bo Nickal",
+          "score": 92,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Tresean Gore",
+          "score": 90,
+          "case": "rankings-progression"
+        },
+        {
+          "opponent": "Dustin Stoltzfus",
+          "score": 88,
+          "case": "rankings-progression"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Robert Bryczek",
+      "opponent": "Azamat Bekoev",
+      "pairScore": 93,
+      "case": "rebound-pairing",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Ozzy Diaz",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Vlasto Cepo",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Djorden Santos",
+          "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Robert Bryczek",
+      "opponent": "Vlasto Cepo",
+      "pairScore": 93,
+      "case": "rebound-pairing",
+      "fighterRank": "Another option",
+      "opponentTopThree": [
+        {
+          "opponent": "Azamat Bekoev",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Ozzy Diaz",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Djorden Santos",
+          "score": 93,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Josiah Harrell",
+      "opponent": "Artur Minev",
+      "pairScore": 93,
+      "case": "rebound-pairing",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Richie Miranda",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Damian Rzepecki",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Mark Choinski",
+          "score": 94,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Montel Jackson",
+      "opponent": "Heili Alateng",
+      "pairScore": 87,
+      "case": "rising-vs-rising",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Raoni Barcelos",
+          "score": 91,
+          "case": "ranking-opportunity"
+        },
+        {
+          "opponent": "Davey Grant",
+          "score": 90,
+          "case": "rising-vs-rising"
+        },
+        {
+          "opponent": "Victor Henry",
+          "score": 90,
+          "case": "rising-vs-rising"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "John Castaneda",
+      "opponent": "Rinya Nakamura",
+      "pairScore": 90,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Borislav Nikolic",
+          "score": 91,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Ethyn Ewing",
+          "score": 91,
+          "case": "step-up-vs-rebound"
+        },
+        {
+          "opponent": "Hector de Sousa Santiago",
+          "score": 91,
+          "case": "step-up-vs-rebound"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Vanessa Demopoulos",
+      "opponent": "Shauna Bannon",
+      "pairScore": 90,
+      "case": "rebound-pairing",
+      "fighterRank": "Best match",
+      "opponentTopThree": [
+        {
+          "opponent": "Gigi Canuto",
+          "score": 90,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Marina Spasic",
+          "score": 90,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Melissa Amaya",
+          "score": 90,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Vanessa Demopoulos",
+      "opponent": "Montserrat Conejo",
+      "pairScore": 89,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Xiong Jingnan",
+          "score": 93,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Marina Spasic",
+          "score": 90,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Luana Pinheiro",
+          "score": 89,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
     {
       "event": "Crypto.com UFC 331: Van vs Pantoja 2",
       "fighter": "Alexandre Pantoja",
@@ -421,426 +822,26 @@
     },
     {
       "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Alonzo Menifield",
-      "opponent": "Billy Elekana",
-      "pairScore": 80,
+      "fighter": "Marlon Vera",
+      "opponent": "Raul Rosas Jr.",
+      "pairScore": 74,
       "case": "rankings-progression",
       "fighterRank": "Alternative",
       "opponentTopThree": [
         {
-          "opponent": "Rodolfo Bellato",
-          "score": 89,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Diyar Nurgozhay",
-          "score": 84,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Modestas Bukauskas",
-          "score": 83,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Iwo Baraniewski",
-      "opponent": "Julius Walker",
-      "pairScore": 91,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Kevin Christian",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Luke Fernandez",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Oumar Sy",
-          "score": 93,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Marlon Vera",
-      "opponent": "Umar Nurmagomedov",
-      "pairScore": 72,
-      "case": "step-up-vs-rebound",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Sean Omalley",
+          "opponent": "Aiemann Zahabi",
           "score": 87,
           "case": "step-up-vs-rebound"
         },
         {
-          "opponent": "David Martinez",
-          "score": 81,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Aiemann Zahabi",
-          "score": 80,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Marlon Vera",
-      "opponent": "Raul Rosas Jr.",
-      "pairScore": 72,
-      "case": "rankings-progression",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
           "opponent": "Farid Basharat",
-          "score": 89,
+          "score": 86,
           "case": "rankings-progression"
         },
         {
-          "opponent": "Raoni Barcelos",
-          "score": 85,
+          "opponent": "David Martinez",
+          "score": 78,
           "case": "rankings-progression"
-        },
-        {
-          "opponent": "Aiemann Zahabi",
-          "score": 84,
-          "case": "step-up-vs-rebound"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Tai Tuivasa",
-      "opponent": "Alvin Hines",
-      "pairScore": 76,
-      "case": "rebound-pairing",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Elisha Ellison",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Alexander Poppeck",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Gable Steveson",
-          "score": 94,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Tai Tuivasa",
-      "opponent": "Elisha Ellison",
-      "pairScore": 76,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Alexander Poppeck",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Alvin Hines",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Terrance Chatman",
-          "score": 95,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Tai Tuivasa",
-      "opponent": "Guilherme Pat",
-      "pairScore": 75,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Gable Steveson",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Alexander Poppeck",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Alvin Hines",
-          "score": 94,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Robelis Despaigne",
-      "opponent": "Gokhan Saricam",
-      "pairScore": 86,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Jose Montanha Da Silva",
-          "score": 93,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Sean Sharaf",
-          "score": 93,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Jovan Leka",
-          "score": 90,
-          "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Michael Aswell Jr.",
-      "opponent": "David Onama",
-      "pairScore": 95,
-      "case": "ranking-opportunity",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Christian Rodriguez",
-          "score": 98,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Bogdan Grad",
-          "score": 96,
-          "case": "ranking-opportunity"
-        },
-        {
-          "opponent": "Sean Woodson",
-          "score": 96,
-          "case": "ranking-opportunity"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Joosang Yoo",
-      "opponent": "Manolo Zecchini",
-      "pairScore": 92,
-      "case": "rebound-pairing",
-      "fighterRank": "Best match",
-      "opponentTopThree": [
-        {
-          "opponent": "Roberto Romero",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Austin Bashi",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Damien Anderson",
-          "score": 94,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Joosang Yoo",
-      "opponent": "Ryan Kuse",
-      "pairScore": 92,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Damien Anderson",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Javier Reyes",
-          "score": 94,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Manolo Zecchini",
-          "score": 94,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Joosang Yoo",
-      "opponent": "Austin Bashi",
-      "pairScore": 91,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Damien Anderson",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Otari Tanzilovi",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Zhu Kangjie",
-          "score": 95,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Ryan Gandra",
-      "opponent": "Tresean Gore",
-      "pairScore": 83,
-      "case": "rising-vs-rising",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Dustin Stoltzfus",
-          "score": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Jacob Malkoun",
-          "score": 94,
-          "case": "rising-vs-rising"
-        },
-        {
-          "opponent": "Bo Nickal",
-          "score": 91,
-          "case": "rankings-progression"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Edmen Shahbazyan",
-      "opponent": "Shara Magomedov",
-      "pairScore": 85,
-      "case": "rankings-progression",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Bo Nickal",
-          "score": 92,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Tresean Gore",
-          "score": 89,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "Dustin Stoltzfus",
-          "score": 88,
-          "case": "rankings-progression"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Brunno Ferreira",
-      "opponent": "Rodolfo Vieira",
-      "pairScore": 90,
-      "case": "rebound-pairing",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Dusko Todorovic",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Jun Yong Park",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Zachary Reese",
-          "score": 93,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Brunno Ferreira",
-      "opponent": "Mansur Abdul Malik",
-      "pairScore": 89,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Azamat Bekoev",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Eric McConico",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Ryan Loder",
-          "score": 93,
-          "case": "rebound-pairing"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Giga Chikadze",
-      "opponent": "Muhammad Naimov",
-      "pairScore": 87,
-      "case": "rebound-pairing",
-      "fighterRank": "Another option",
-      "opponentTopThree": [
-        {
-          "opponent": "Jose Miguel Delgado",
-          "score": 95,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Morgan Charriere",
-          "score": 93,
-          "case": "rebound-pairing"
-        },
-        {
-          "opponent": "Dooho Choi",
-          "score": 92,
-          "case": "rebound-pairing"
         }
       ]
     }
