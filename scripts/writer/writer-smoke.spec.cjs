@@ -511,13 +511,38 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await page.locator('[data-html-dialog]').getByRole('button', { name: 'Cancel' }).click();
 
   const previewContent = page.locator('[data-preview-content]');
-  const desktopHtml = await previewContent.innerHTML();
+  const stablePreviewText = await previewContent.innerText();
+  const responsiveTale = page.locator('[data-preview-content] section[data-writer-block="tale"][data-writer-html-block-id="' + taleBlockId + '"]');
+  const desktopConfig = await responsiveTale.getAttribute('data-writer-config');
+  const desktopCanvas = responsiveTale.locator('.fc-left .fc-portrait > canvas.matlock-portrait-canvas');
+  await expect.poll(async () => Boolean(await desktopCanvas.getAttribute('data-portrait-render'))).toBe(true);
+  const desktopCrop = JSON.parse(await desktopCanvas.getAttribute('data-portrait-render'));
+
   await page.click('[data-preview-size="mobile"]');
   await expect(page.locator('[data-preview-frame]')).toHaveAttribute('data-preview-size', 'mobile');
-  expect(await previewContent.innerHTML()).toBe(desktopHtml);
+  expect(await previewContent.innerText()).toBe(stablePreviewText);
+  expect(await responsiveTale.getAttribute('data-writer-config')).toBe(desktopConfig);
+  await expect.poll(async () => {
+    const raw = await desktopCanvas.getAttribute('data-portrait-render');
+    return raw ? JSON.parse(raw).frameWidth : 0;
+  }).toBeLessThan(desktopCrop.frameWidth);
+  const mobileCrop = JSON.parse(await desktopCanvas.getAttribute('data-portrait-render'));
+  for (const key of ['x','y','zoom','leftRatio','topRatio','widthRatio','heightRatio']) {
+    expect(mobileCrop[key]).toBeCloseTo(desktopCrop[key], 3);
+  }
+
   await page.click('[data-preview-size="desktop"]');
   await expect(page.locator('[data-preview-frame]')).toHaveAttribute('data-preview-size', 'desktop');
-  expect(await previewContent.innerHTML()).toBe(desktopHtml);
+  expect(await previewContent.innerText()).toBe(stablePreviewText);
+  expect(await responsiveTale.getAttribute('data-writer-config')).toBe(desktopConfig);
+  await expect.poll(async () => {
+    const raw = await desktopCanvas.getAttribute('data-portrait-render');
+    return raw ? JSON.parse(raw).frameWidth : 0;
+  }).toBeGreaterThan(mobileCrop.frameWidth);
+  const desktopCropAgain = JSON.parse(await desktopCanvas.getAttribute('data-portrait-render'));
+  for (const key of ['x','y','zoom','leftRatio','topRatio','widthRatio','heightRatio']) {
+    expect(desktopCropAgain[key]).toBeCloseTo(desktopCrop[key], 3);
+  }
 
   const splitter = page.locator('[data-writer-splitter]');
   await splitter.focus();
