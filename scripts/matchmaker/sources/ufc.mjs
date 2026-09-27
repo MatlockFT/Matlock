@@ -2,6 +2,114 @@
 export const clean = (s = '') => String(s).replace(/<script\b[\s\S]*?<\/script>/gi, '').replace(/<[^>]+>/g, ' ').replace(/&#x([\da-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16))).replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(+n)).replace(/&amp;/g, '&').replace(/&nbsp;/g, ' ').replace(/&quot;/g, '"').replace(/&apos;|&#039;/g, "'").replace(/\s+/g, ' ').trim();
 export const key = s => clean(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
 export const slug = u => u?.match(/\/athlete\/([^/?#"\s]+)/)?.[1] || '';
+
+const newsSlug = value => clean(value)
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/[’']/g, '')
+  .toLowerCase()
+  .replace(/\./g, '')
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-+|-+$/g, '');
+
+export function officialResultArticleCandidates(event) {
+  const title = clean(event?.title || '');
+  if (!title) return [];
+
+  const separator = title.indexOf(':');
+  const brand = separator >= 0 ? title.slice(0, separator) : title;
+  const matchup = separator >= 0
+    ? title.slice(separator + 1)
+    : (event?.bouts?.[0]?.fighters || []).map(fighter => fighter.name).filter(Boolean).join(' vs ');
+
+  const full = newsSlug(title);
+  const brandSlug = newsSlug(brand);
+  const matchupSlug = newsSlug(matchup);
+  const paths = [
+    full && `${full}-results`,
+    full && `${full}-prelim-results`,
+    full && `${full}-official-scorecards`,
+    brandSlug && matchupSlug && `${brandSlug}-results-${matchupSlug}`,
+    brandSlug && matchupSlug && `${brandSlug}-prelim-results-${matchupSlug}`,
+    brandSlug && matchupSlug && `${brandSlug}-official-scorecards-${matchupSlug}`
+  ].filter(Boolean);
+
+  return [...new Set(paths)].map(path => `https://www.ufc.com/news/${path}`);
+}
+
+function resultHeadings(html) {
+  const headings = [];
+  for (const match of String(html || '').matchAll(/<h[2-5]\b[^>]*>([\s\S]*?)<\/h[2-5]>/gi)) {
+    const text = clean(match[1]);
+    if (text) headings.push(text);
+  }
+  return headings;
+}
+
+export function applyOfficialResultArticles(event, articles = []) {
+  if (!event?.bouts?.length) return event;
+
+  const sourceUrls = [];
+  const headings = [];
+  for (const article of articles) {
+    if (!article?.html) continue;
+    const articleHeadings = resultHeadings(article.html);
+    if (!articleHeadings.length) continue;
+    headings.push(...articleHeadings.map(text => ({ text, source: article.url || null })));
+    if (article.url) sourceUrls.push(article.url);
+  }
+  if (!headings.length) return event;
+
+  let patched = 0;
+  for (const bout of event.bouts) {
+    if (!Array.isArray(bout.fighters) || bout.fighters.length !== 2) continue;
+    if (bout.fighters.every(fighter => ['W', 'L', 'D', 'NC'].includes(fighter.result))) continue;
+
+    const [left, right] = bout.fighters;
+    const leftKey = key(left.name);
+    const rightKey = key(right.name);
+    if (!leftKey || !rightKey) continue;
+
+    for (const heading of headings) {
+      const textKey = key(heading.text);
+      if (!textKey.includes(leftKey) || !textKey.includes(rightKey)) continue;
+
+      const defeated = heading.text.match(/\bdefeat(?:ed|s)\b/i);
+      if (defeated?.index !== undefined) {
+        const before = heading.text.slice(0, defeated.index);
+        const winnerKey = key(before);
+        if (winnerKey.includes(leftKey)) {
+          left.result = 'W';
+          right.result = 'L';
+        } else if (winnerKey.includes(rightKey)) {
+          left.result = 'L';
+          right.result = 'W';
+        } else {
+          continue;
+        }
+      } else if (/\b(?:majority|split|unanimous)?\s*draw\b/i.test(heading.text)) {
+        left.result = right.result = 'D';
+      } else if (/\bno\s+contest\b|\bruled\s+an?\s+NC\b/i.test(heading.text)) {
+        left.result = right.result = 'NC';
+      } else {
+        continue;
+      }
+
+      const by = heading.text.match(/\bby\s+(.+)$/i)?.[1];
+      if (by) bout.method = clean(by);
+      bout.resultSource = heading.source || bout.resultSource || null;
+      patched++;
+      break;
+    }
+  }
+
+  if (patched) {
+    event.completed = event.bouts.every(bout => bout.fighters.every(fighter => ['W', 'L', 'D', 'NC'].includes(fighter.result)));
+    event.resultSources = [...new Set([...(event.resultSources || []), ...sourceUrls].filter(Boolean))];
+  }
+
+  return event;
+}
 export const profileStatus = html => clean(html).match(/\b(?:Fighter\s+)?Status\s*(Active|Not Fighting|Inactive|Retired)\b/i)?.[1] || null;
 const field = (html, cls) => clean(html.match(new RegExp(`class="[^"]*\\b${cls}[^\"]*"[^>]*>([\\s\\S]*?)<\\/[^>]+>`))?.[1]);
 export function eventDate(html, timestamp) {
