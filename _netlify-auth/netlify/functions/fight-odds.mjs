@@ -254,6 +254,26 @@ export function extractFittMoneylines(payload, fighterA, fighterB) {
   return null;
 }
 
+export function extractFittCardOdds(payload) {
+  return fittFights(payload).map(fight => {
+    const away = fight?.awy || fight?.away;
+    const home = fight?.hme || fight?.home;
+    const awayName = fittFighterName(away);
+    const homeName = fittFighterName(home);
+    const awayOdds = fittMoneyline(away);
+    const homeOdds = fittMoneyline(home);
+    if (!awayName || !homeName || !awayOdds || !homeOdds) return null;
+    return {
+      competitionId:String(fight?.id || ''),
+      provider:away?.bets?.provider?.name || home?.bets?.provider?.name || null,
+      fighters:[
+        {name:awayName,moneyline:awayOdds},
+        {name:homeName,moneyline:homeOdds}
+      ]
+    };
+  }).filter(Boolean);
+}
+
 export function parseEspnFittHtml(html) {
   const source = String(html || '');
   const marker = "window['__espnfitt__']=";
@@ -387,9 +407,11 @@ export default async function handler(request) {
 
     const { event, competition } = matchup;
     let odds = null;
+    let cardOdds = [];
 
     try {
       const fitt = await fetchFittEvent(event.id);
+      cardOdds = extractFittCardOdds(fitt);
       odds = extractFittMoneylines(fitt,fighterA,fighterB);
     } catch {
       // FightCenter can occasionally serve an interstitial; fall through to core odds.
@@ -413,6 +435,7 @@ export default async function handler(request) {
         eventId:event.id || null,
         competitionId:competition.id || null,
         eventDate:competition.date || event.date || null,
+        cardOdds,
         reason:'line-not-posted'
       },{status:200,headers});
     }
@@ -426,6 +449,7 @@ export default async function handler(request) {
       eventId:event.id || null,
       competitionId:competition.id || null,
       eventDate:competition.date || event.date || null,
+      cardOdds,
       fighterA:{name:fighterA,moneyline:odds.fighterA},
       fighterB:{name:fighterB,moneyline:odds.fighterB}
     },{status:200,headers});
