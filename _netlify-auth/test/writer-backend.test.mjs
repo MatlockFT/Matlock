@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 
 import { allowedPath, validateDeleteBody, validateWriteBody } from '../netlify/functions/writer-github.mjs';
 import { parseUfcProfileSummary, parseUfcStatsProfile } from '../netlify/functions/writer-fighter.mjs';
-import { extractFittCardOdds, extractFittMoneylines, extractMoneylines, formatAmericanOdds, parseEspnFittHtml } from '../netlify/functions/fight-odds.mjs';
+import { extractFittCardOdds, extractFittMoneylines, extractMoneylines, formatAmericanOdds, parseEspnFittHtml, scoreboardDateQueries } from '../netlify/functions/fight-odds.mjs';
 import { hasCompleteDisplayedCareer, parseUfcFightCareerProfile } from '../netlify/functions/_writer-career-fallback.mjs';
 import { parseUfcFightProfile } from '../../scripts/matchmaker/sources/sherdog.mjs';
 import {
@@ -269,6 +269,16 @@ test('on-demand career fallback parser fills all displayed Tale career fields', 
   assert.equal(profile.career.unanimousDecisionWins, 0);
   assert.equal(profile.career.splitDecisionWins, 0);
   assert.equal(hasCompleteDisplayedCareer(profile.career), true);
+});
+
+test('fight odds lookup searches the upcoming UFC window when no date is stored', () => {
+  const queries = scoreboardDateQueries('', new Date('2026-09-27T12:00:00Z'));
+  assert.deepEqual(queries, ['20260927-20261226']);
+});
+
+test('fight odds lookup keeps exact fight-date checks but falls back to the upcoming window', () => {
+  const queries = scoreboardDateQueries('2026-10-03', new Date('2026-09-27T12:00:00Z'));
+  assert.deepEqual(queries, ['20261002','20261003','20261004','20260927-20261226']);
 });
 
 test('fight odds formatter keeps American moneylines compact', () => {
