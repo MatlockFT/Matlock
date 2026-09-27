@@ -29,387 +29,59 @@ published: true
 ---
 
 
-<section class="article-html-visual" data-post-fight-results="ufc-vegas-121">
-  <div class="pick-results pick-results--matlock">
-    <div class="pick-results__head">
-      <div class="pick-results__title-wrap">
-        <span class="pick-results__eyebrow">Post-Fight Results</span>
-        <h2>My Picks</h2>
-      </div>
-      <div class="pick-results__score" aria-label="8 correct picks out of 11">
-        <strong>8-3</strong>
-        <span>73%</span>
-      </div>
-    </div>
-
-    <div class="pick-results__list">
-
-      <div class="pick-results__row is-correct">
-        <div class="pick-results__row-head"><span>Demopoulos vs. Jauregui</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
-        <div class="pick-results__detail"><b>Pick</b><span>Jauregui · Decision</span></div>
-        <div class="pick-results__detail"><b>Result</b><span>Jauregui · TKO R1</span></div>
-      </div>
-
-      <div class="pick-results__row is-wrong">
-        <div class="pick-results__row-head"><span>Castaneda vs. Alatengheili</span><strong><i aria-hidden="true">×</i> Incorrect</strong></div>
-        <div class="pick-results__detail"><b>Pick</b><span>Castaneda · KO/TKO R2</span></div>
-        <div class="pick-results__detail"><b>Result</b><span>Alatengheili · Split Decision</span></div>
-      </div>
-
-      <div class="pick-results__row is-correct">
-        <div class="pick-results__row-head"><span>Jackson vs. Simon</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
-        <div class="pick-results__detail"><b>Pick</b><span>Jackson · KO/TKO R3</span></div>
-        <div class="pick-results__detail"><b>Result</b><span>Jackson · TKO R2</span></div>
-      </div>
-
-      <div class="pick-results__row is-correct">
-        <div class="pick-results__row-head"><span>Brener vs. Harrell</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
-        <div class="pick-results__detail"><b>Pick</b><span>Brener · Submission R1</span></div>
-        <div class="pick-results__detail"><b>Result</b><span>Brener · KO R1</span></div>
-      </div>
-
-      <div class="pick-results__row is-wrong">
-        <div class="pick-results__row-head"><span>Bellato vs. Edwards</span><strong><i aria-hidden="true">×</i> Incorrect</strong></div>
-        <div class="pick-results__detail"><b>Pick</b><span>Bellato · Decision</span></div>
-        <div class="pick-results__detail"><b>Result</b><span>Edwards · TKO R3</span></div>
-      </div>
-
-      <div class="pick-results__row is-correct">
-        <div class="pick-results__row-head"><span>Vieira vs. Bryczek</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
-        <div class="pick-results__detail"><b>Pick</b><span>Vieira · Split Decision</span></div>
-        <div class="pick-results__detail"><b>Result</b><span>Vieira · Unanimous Decision</span></div>
-      </div>
-
-      <div class="pick-results__row is-wrong">
-        <div class="pick-results__row-head"><span>Hiestand vs. Nakamura</span><strong><i aria-hidden="true">×</i> Incorrect</strong></div>
-        <div class="pick-results__detail"><b>Pick</b><span>Nakamura · KO/TKO R2</span></div>
-        <div class="pick-results__detail"><b>Result</b><span>Hiestand · Submission R2</span></div>
-      </div>
-
-      <div class="pick-results__row is-correct">
-        <div class="pick-results__row-head"><span>Amaya vs. Black</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
-        <div class="pick-results__detail"><b>Pick</b><span>Black · Decision</span></div>
-        <div class="pick-results__detail"><b>Result</b><span>Black · TKO R2</span></div>
-      </div>
-
-      <div class="pick-results__row is-correct">
-        <div class="pick-results__row-head"><span>Dumas vs. Hernandez</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
-        <div class="pick-results__detail"><b>Pick</b><span>Hernandez · Submission R1</span></div>
-        <div class="pick-results__detail"><b>Result</b><span>Hernandez · Submission R1</span></div>
-      </div>
-
-      <div class="pick-results__row is-correct">
-        <div class="pick-results__row-head"><span>Dumont vs. Perez</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
-        <div class="pick-results__detail"><b>Pick</b><span>Perez · Decision</span></div>
-        <div class="pick-results__detail"><b>Result</b><span>Perez · Unanimous Decision</span></div>
-      </div>
-
-      <div class="pick-results__row is-correct">
-        <div class="pick-results__row-head"><span>Rosas Jr. vs. Barcelos</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
-        <div class="pick-results__detail"><b>Pick</b><span>Rosas Jr. · KO/TKO R3</span></div>
-        <div class="pick-results__detail"><b>Result</b><span>Rosas Jr. · KO R5</span></div>
-      </div>
-
-    </div>
-
-    <div class="pick-results__foot">
-      <span>Final Record</span>
-      <strong>8 / 11 Correct</strong>
-    </div>
-  </div>
-
-  <style>
-    .pick-results--matlock {
-      --pr-text: #f4efe7;
-      --pr-muted: rgba(244, 239, 231, .62);
-      --pr-line: rgba(214, 161, 88, .22);
-      --pr-line-strong: rgba(214, 161, 88, .38);
-      --pr-accent: #d78b2c;
-      --pr-green: #31bf72;
-      --pr-green-soft: rgba(49, 191, 114, .14);
-      --pr-red: #ef5a5a;
-      --pr-red-soft: rgba(239, 90, 90, .14);
-      margin: 0 0 32px;
-      border: 1px solid var(--pr-line);
-      border-top: 2px solid var(--pr-accent);
-      background:
-        linear-gradient(180deg, rgba(215,139,44,.06) 0%, rgba(215,139,44,0) 72px),
-        linear-gradient(180deg, #0a0a0a 0%, #070707 100%);
-      color: var(--pr-text);
-      box-shadow: 0 14px 28px rgba(0,0,0,.24);
-      overflow: hidden;
+<script type="application/json" data-post-fight-results>
+{
+  "record": "8-3",
+  "percentage": "73%",
+  "correct": 8,
+  "total": 11,
+  "picks": {
+    "Yazmin Jauregui": {
+      "correct": true,
+      "result": "Yazmin Jauregui · TKO R1"
+    },
+    "John Castaneda": {
+      "correct": false,
+      "result": "Alatengheili · Split Decision"
+    },
+    "Montel Jackson": {
+      "correct": true,
+      "result": "Montel Jackson · TKO R2"
+    },
+    "Elves Brener": {
+      "correct": true,
+      "result": "Elves Brener · KO R1"
+    },
+    "Rodolfo Bellato": {
+      "correct": false,
+      "result": "Christian Edwards · TKO R3"
+    },
+    "Rodolfo Vieira": {
+      "correct": true,
+      "result": "Rodolfo Vieira · Unanimous Decision"
+    },
+    "Nakamura": {
+      "correct": false,
+      "result": "Brady Hiestand · Submission R2"
+    },
+    "Tina Black": {
+      "correct": true,
+      "result": "Tina Black · TKO R2"
+    },
+    "Luis Hernandez": {
+      "correct": true,
+      "result": "Luis Hernandez · Submission R1"
+    },
+    "Ailin Perez": {
+      "correct": true,
+      "result": "Ailin Perez · Unanimous Decision"
+    },
+    "Raul Rosas Jr.": {
+      "correct": true,
+      "result": "Raul Rosas Jr. · KO R5"
     }
-
-    .pick-results--matlock *,
-    .pick-results--matlock *::before,
-    .pick-results--matlock *::after {
-      box-sizing: border-box;
-    }
-
-    .pick-results--matlock .pick-results__head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 22px 24px 18px;
-      border-bottom: 1px solid var(--pr-line);
-    }
-
-    .pick-results--matlock .pick-results__eyebrow {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--pr-accent);
-      font-size: .68rem;
-      font-weight: 900;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-
-    .pick-results--matlock .pick-results__title-wrap h2 {
-      margin: 0;
-      color: var(--pr-text);
-      font-size: clamp(1.4rem, 2.8vw, 2.15rem);
-      line-height: .98;
-      letter-spacing: -.02em;
-    }
-
-    .pick-results--matlock .pick-results__score {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-      flex: 0 0 auto;
-      white-space: nowrap;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .pick-results--matlock .pick-results__score strong {
-      color: var(--pr-text);
-      font-size: clamp(2rem, 5vw, 3.3rem);
-      line-height: .9;
-      letter-spacing: -.06em;
-    }
-
-    .pick-results--matlock .pick-results__score span {
-      color: var(--pr-green);
-      font-size: 1rem;
-      font-weight: 900;
-    }
-
-    .pick-results--matlock .pick-results__list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .pick-results--matlock .pick-results__row {
-      min-width: 0;
-      padding: 14px 16px 13px;
-      border-bottom: 1px solid var(--pr-line);
-      background: rgba(255,255,255,.01);
-    }
-
-    .pick-results--matlock .pick-results__row:nth-child(odd) {
-      border-right: 1px solid var(--pr-line);
-    }
-
-    .pick-results--matlock .pick-results__row-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 10px;
-    }
-
-    .pick-results--matlock .pick-results__row-head > span {
-      min-width: 0;
-      color: var(--pr-text);
-      font-size: .9rem;
-      font-weight: 800;
-      line-height: 1.2;
-    }
-
-    .pick-results--matlock .pick-results__row-head strong {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      flex: 0 0 auto;
-      font-size: .62rem;
-      font-weight: 900;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .pick-results--matlock .pick-results__row-head i {
-      display: inline-grid;
-      place-items: center;
-      width: 19px;
-      height: 19px;
-      border-radius: 50%;
-      font-style: normal;
-      font-size: .72rem;
-      line-height: 1;
-    }
-
-    .pick-results--matlock .pick-results__detail {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      align-items: baseline;
-      gap: 8px;
-      min-width: 0;
-      padding: 3px 0;
-    }
-
-    .pick-results--matlock .pick-results__detail b {
-      color: var(--pr-accent);
-      font-size: .58rem;
-      font-weight: 900;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .pick-results--matlock .pick-results__detail span {
-      min-width: 0;
-      color: var(--pr-muted);
-      font-size: .76rem;
-      font-weight: 650;
-      line-height: 1.3;
-    }
-
-    .pick-results--matlock .pick-results__detail + .pick-results__detail {
-      border-top: 1px solid rgba(255,255,255,.045);
-      margin-top: 3px;
-      padding-top: 6px;
-    }
-
-    .pick-results--matlock .pick-results__row.is-correct .pick-results__row-head strong {
-      color: var(--pr-green);
-    }
-
-    .pick-results--matlock .pick-results__row.is-correct .pick-results__row-head i {
-      color: var(--pr-green);
-      background: var(--pr-green-soft);
-      border: 1px solid rgba(49,191,114,.28);
-    }
-
-    .pick-results--matlock .pick-results__row.is-wrong .pick-results__row-head strong {
-      color: var(--pr-red);
-    }
-
-    .pick-results--matlock .pick-results__row.is-wrong .pick-results__row-head i {
-      color: var(--pr-red);
-      background: var(--pr-red-soft);
-      border: 1px solid rgba(239,90,90,.28);
-    }
-
-    .pick-results--matlock .pick-results__foot {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 18px;
-      background: rgba(215,139,44,.06);
-      border-top: 1px solid var(--pr-line-strong);
-    }
-
-    .pick-results--matlock .pick-results__foot span {
-      color: var(--pr-muted);
-      font-size: .66rem;
-      font-weight: 900;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
-
-    .pick-results--matlock .pick-results__foot strong {
-      color: var(--pr-text);
-      font-size: .9rem;
-      font-weight: 900;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    @media (max-width: 680px) {
-      .pick-results--matlock {
-        margin-bottom: 24px;
-      }
-
-      .pick-results--matlock .pick-results__head {
-        padding: 16px 14px 14px;
-        gap: 12px;
-      }
-
-      .pick-results--matlock .pick-results__eyebrow {
-        margin-bottom: 7px;
-        font-size: .57rem;
-      }
-
-      .pick-results--matlock .pick-results__title-wrap h2 {
-        font-size: 1.4rem;
-      }
-
-      .pick-results--matlock .pick-results__score {
-        gap: 8px;
-      }
-
-      .pick-results--matlock .pick-results__score strong {
-        font-size: 1.95rem;
-      }
-
-      .pick-results--matlock .pick-results__score span {
-        font-size: .78rem;
-      }
-
-      .pick-results--matlock .pick-results__list {
-        grid-template-columns: 1fr;
-      }
-
-      .pick-results--matlock .pick-results__row,
-      .pick-results--matlock .pick-results__row:nth-child(odd) {
-        border-right: 0;
-      }
-
-      .pick-results--matlock .pick-results__row {
-        padding: 12px 13px 11px;
-      }
-
-      .pick-results--matlock .pick-results__row-head > span {
-        font-size: .82rem;
-      }
-
-      .pick-results--matlock .pick-results__row-head strong {
-        font-size: .56rem;
-      }
-
-      .pick-results--matlock .pick-results__detail {
-        grid-template-columns: 43px 1fr;
-      }
-
-      .pick-results--matlock .pick-results__detail b {
-        font-size: .54rem;
-      }
-
-      .pick-results--matlock .pick-results__detail span {
-        font-size: .72rem;
-      }
-
-      .pick-results--matlock .pick-results__foot {
-        padding: 12px 13px;
-      }
-
-      .pick-results--matlock .pick-results__foot strong {
-        font-size: .77rem;
-      }
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-      .pick-results--matlock .pick-results__row {
-        transition: background-color .16s ease;
-      }
-
-      .pick-results--matlock .pick-results__row:hover {
-        background: rgba(215,139,44,.05);
-      }
-    }
-  </style>
-</section>
+  }
+}</script>
 
 
 The Meta APEX is hosting another event this weekend in Las Vegas and I gotta say... I’m not mad at it. This card has a little bit of everything I enjoy, and I’m not above a good hate-watch either.
