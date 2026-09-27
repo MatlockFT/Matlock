@@ -342,16 +342,24 @@ async function fetchFittEvent(eventId) {
   throw lastError || new Error('ESPN FightCenter lookup failed');
 }
 
-async function findMatchup(fighterA, fighterB, eventDate) {
-  const dates = eventDate
-    ? [isoDateOffset(eventDate,-1), eventDate, isoDateOffset(eventDate,1)]
-    : [new Date().toISOString().slice(0,10)];
-  const seen = new Set();
+export function scoreboardDateQueries(eventDate, now = new Date()) {
+  const today = now.toISOString().slice(0,10);
+  const queries = [];
+  if (eventDate && DATE_RE.test(eventDate)) {
+    queries.push(
+      espnDate(isoDateOffset(eventDate,-1)),
+      espnDate(eventDate),
+      espnDate(isoDateOffset(eventDate,1))
+    );
+  }
+  const futureEnd = isoDateOffset(today,90);
+  queries.push(espnDate(today) + '-' + espnDate(futureEnd));
+  return [...new Set(queries)];
+}
 
-  for (const date of dates) {
-    if (seen.has(date)) continue;
-    seen.add(date);
-    const payload = await fetchJson(SCOREBOARD + '?dates=' + espnDate(date));
+async function findMatchup(fighterA, fighterB, eventDate) {
+  for (const dates of scoreboardDateQueries(eventDate)) {
+    const payload = await fetchJson(SCOREBOARD + '?dates=' + dates + '&limit=200');
     for (const event of payload?.events || []) {
       for (const competition of event?.competitions || []) {
         if (!matchupCompetitors(competition,fighterA,fighterB)) continue;

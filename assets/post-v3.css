@@ -3271,3 +3271,212 @@ html[data-theme="dark"] .post-page-v3 .article-toc-floating a.is-active{
   .post-page-v3 .post-writer-actions-status{width:100%;margin-left:0;padding-top:.15rem}
 }
 
+
+
+/* Container-aware fight card responsiveness */
+/* These components often live inside the Writer's narrow preview while the browser
+   viewport itself is still desktop-wide. Container queries keep them stable based
+   on the space they actually receive instead of the window width. */
+.post-page-v3 .post-body .fight-compare-sleek,
+.post-page-v3 .post-body .fight-stats-sleek{
+  container-type:inline-size;
+}
+
+@container (max-width: 620px){
+  .fight-compare-sleek .fc-shell,
+  .fight-stats-sleek .fs-shell{
+    overflow:hidden!important;
+  }
+
+  .fight-compare-sleek .fc-top{
+    min-width:0!important;
+    grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr)!important;
+  }
+  .fight-compare-sleek .fc-fighter{
+    min-width:0!important;
+    min-height:210px!important;
+    padding:.85rem .42rem!important;
+  }
+  .fight-compare-sleek .fc-center-badge{
+    min-width:0!important;
+    padding:.35rem .12rem!important;
+  }
+  .fight-compare-sleek .fc-center-badge strong{
+    display:none!important;
+  }
+  .fight-compare-sleek .fc-center-badge i{
+    width:22px!important;
+    max-width:72%!important;
+  }
+  .fight-compare-sleek .fc-portrait{
+    width:clamp(82px,26cqi,110px)!important;
+    height:clamp(82px,26cqi,110px)!important;
+    margin-bottom:.65rem!important;
+  }
+  .fight-compare-sleek .fc-meta{
+    min-width:0!important;
+    width:100%!important;
+  }
+  .fight-compare-sleek .fc-meta h2{
+    max-width:100%!important;
+    font-size:clamp(.72rem,3.8cqi,.92rem)!important;
+    line-height:1.05!important;
+    overflow-wrap:anywhere!important;
+    text-wrap:balance;
+  }
+  .fight-compare-sleek .fc-division{
+    max-width:100%!important;
+    font-size:.46rem!important;
+    line-height:1.2!important;
+    letter-spacing:.08em!important;
+    overflow-wrap:anywhere!important;
+  }
+  .fight-compare-sleek .fc-meta-strip{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    justify-items:center!important;
+    gap:.32rem!important;
+    margin-top:.5rem!important;
+  }
+  .fight-compare-sleek .fc-odds,
+  .fight-compare-sleek .fc-last5{
+    width:max-content!important;
+    max-width:100%!important;
+    min-height:26px!important;
+    padding:.28rem .48rem!important;
+  }
+  .fight-compare-sleek .fc-odds strong,
+  .fight-compare-sleek .fc-last5-record{
+    font-size:.68rem!important;
+  }
+  .fight-compare-sleek .fc-last5-label,
+  .fight-compare-sleek .fc-odds span{
+    font-size:.44rem!important;
+  }
+
+  .fight-compare-sleek .fc-tale,
+  .fight-compare-sleek .fc-form-section,
+  .fight-compare-sleek .fc-opponents{
+    min-width:0!important;
+    width:100%!important;
+  }
+  .fight-compare-sleek .fc-tale{
+    padding:.85rem .5rem!important;
+  }
+  .fight-compare-sleek .fc-tale-row{
+    min-width:0!important;
+    width:100%!important;
+    grid-template-columns:minmax(0,1fr) minmax(72px,38%) minmax(0,1fr)!important;
+    gap:.22rem!important;
+    padding:0 .14rem!important;
+  }
+  .fight-compare-sleek .fc-tale-row strong{
+    min-width:0!important;
+    font-size:clamp(.68rem,3.6cqi,.88rem)!important;
+    overflow-wrap:anywhere!important;
+  }
+  .fight-compare-sleek .fc-tale-row span{
+    min-width:0!important;
+    padding:0 .1rem!important;
+    font-size:.46rem!important;
+    line-height:1.16!important;
+    letter-spacing:.035em!important;
+    overflow-wrap:anywhere!important;
+  }
+  .fight-compare-sleek .fc-section-title span::before,
+  .fight-compare-sleek .fc-section-title span::after{
+    display:none!important;
+  }
+  .fight-compare-sleek .fc-form-wrap{
+    min-width:0!important;
+    grid-template-columns:1fr!important;
+  }
+  .fight-compare-sleek .fc-column{
+    min-width:0!important;
+    padding:.2rem .65rem!important;
+  }
+  .fight-compare-sleek .fc-column:first-child{
+    border-right:0!important;
+    border-bottom:1px solid var(--line)!important;
+  }
+  .fight-compare-sleek .fc-form-row{
+    min-width:0!important;
+    grid-template-columns:28px minmax(0,1fr)!important;
+  }
+  .fight-compare-sleek .fc-form-copy,
+  .fight-compare-sleek .fc-form-copy strong,
+  .fight-compare-sleek .fc-form-copy small{
+    min-width:0!important;
+    max-width:100%!important;
+    overflow-wrap:anywhere!important;
+  }
+  .fight-compare-sleek .fc-opponents{
+    grid-template-columns:minmax(0,1fr) minmax(74px,30%) minmax(0,1fr)!important;
+  }
+
+  .fight-stats-sleek .fs-header,
+  .fight-stats-sleek .fs-section{
+    min-width:0!important;
+    width:100%!important;
+  }
+  .fight-stats-sleek .fs-header{
+    grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr)!important;
+  }
+  .fight-stats-sleek .fs-header-center strong{
+    display:none!important;
+  }
+  .fight-stats-sleek .fs-fighter{
+    min-width:0!important;
+    padding:.7rem .35rem!important;
+  }
+  .fight-stats-sleek .fs-fighter strong{
+    max-width:100%!important;
+    font-size:clamp(.68rem,3.4cqi,.86rem)!important;
+    overflow-wrap:anywhere!important;
+  }
+  .fight-stats-sleek .fs-section{
+    padding:.78rem .4rem!important;
+  }
+  .fight-stats-sleek .fs-stat-row{
+    min-width:0!important;
+    width:100%!important;
+    grid-template-columns:minmax(0,1fr) minmax(82px,42%) minmax(0,1fr)!important;
+    gap:.18rem!important;
+  }
+  .fight-stats-sleek .fs-stat-row strong{
+    min-width:0!important;
+    font-size:clamp(.68rem,3.4cqi,.86rem)!important;
+    overflow-wrap:anywhere!important;
+  }
+  .fight-stats-sleek .fs-stat-row span{
+    min-width:0!important;
+    padding:0 .14rem!important;
+    font-size:.46rem!important;
+    line-height:1.15!important;
+    letter-spacing:.03em!important;
+    overflow-wrap:anywhere!important;
+  }
+}
+
+@container (max-width: 430px){
+  .fight-compare-sleek .fc-top{
+    grid-template-columns:minmax(0,1fr) 30px minmax(0,1fr)!important;
+  }
+  .fight-compare-sleek .fc-fighter{
+    min-height:190px!important;
+    padding:.7rem .24rem!important;
+  }
+  .fight-compare-sleek .fc-portrait{
+    width:78px!important;
+    height:78px!important;
+  }
+  .fight-compare-sleek .fc-meta h2{
+    font-size:.69rem!important;
+  }
+  .fight-compare-sleek .fc-division{
+    font-size:.41rem!important;
+  }
+  .fight-compare-sleek .fc-tale-row{
+    grid-template-columns:minmax(0,1fr) minmax(66px,40%) minmax(0,1fr)!important;
+  }
+}
