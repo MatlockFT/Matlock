@@ -1,289 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-27T00:44:13.424Z",
+  "generated_at": "2026-09-27T05:54:01.671Z",
   "events": [
-    {
-      "id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion_key": "ufc",
-      "promotion": "UFC Fight Night",
-      "title": "Jr. vs Barcelos",
-      "date": "2026-09-26",
-      "date_label": "Saturday · September 26, 2026",
-      "starts_at": "",
-      "expires_at": "",
-      "venue": "Venue TBA",
-      "broadcast": "Paramount+ · UFC Fight Pass",
-      "official_url": "https://www.ufc.com/event/ufc-fight-night-september-26-2026",
-      "updated_label": "September 26, 2026",
-      "sections": [
-        {
-          "kind": "main",
-          "title": "Main Card",
-          "time": "8:00 PM ET",
-          "bouts": [
-            {
-              "order": 1,
-              "label": "Main Event",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Raul Rosas Jr.",
-                  "initials": "RRJ",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/ROSAS_JR_RAUL_L_03-29.png?itok=WrV_fpkM",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Raoni Barcelos",
-                  "initials": "RB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/BARCELOS_RAONI_L_01-18.png?itok=wbdKRVUn",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
-              "weight_class": "Women's Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Norma Dumont",
-                  "initials": "ND",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/DUMONT_NORMA_L_04-25.png?itok=uOQsIEx0",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Ailin Perez",
-                  "initials": "AP",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/PEREZ_AILIN_L_02-28.png?itok=sPy9HJ2B",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 3,
-              "label": "",
-              "weight_class": "Light Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Luis Hernandez",
-                  "initials": "LH",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/HERNANDEZ_LUIS_L_09-15.png?itok=6xYGQztr",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Sedriques Dumas",
-                  "initials": "SD",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/DUMAS_SEDRIQUES_L_04-12.png?itok=x6aJnKrz",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 4,
-              "label": "",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Mahammadali Osmanli",
-                  "initials": "MO",
-                  "image": "",
-                  "image_source": "",
-                  "image_framing": ""
-                },
-                {
-                  "name": "Ilimbek Akylbek",
-                  "initials": "IA",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
-              "weight_class": "Women's Strawweight Bout",
-              "fighters": [
-                {
-                  "name": "Melissa Amaya",
-                  "initials": "MA",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/2022-02/womens-silhouette-RED-corner.png?itok=SXsY1AgG",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Tina Black",
-                  "initials": "TB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2021-10/71799%252Fprofile-galery%252Ffullbodyright-picture%252FMACHADO_VALESCA_R.png?itok=VJN-8B59",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "kind": "prelims",
-          "title": "Prelims",
-          "time": "5:00 PM ET",
-          "bouts": [
-            {
-              "order": 6,
-              "label": "",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Brady Hiestand",
-                  "initials": "BH",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-04/HIESTAND_BRADY_L_04-22.png?itok=Ny5RUBiZ",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Rinya Nakamura",
-                  "initials": "RN",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-08/NAKAMURA_RINYA_L%298_26.png?itok=l7Gg0V6_",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 7,
-              "label": "",
-              "weight_class": "Middleweight Bout",
-              "fighters": [
-                {
-                  "name": "Rodolfo Vieira",
-                  "initials": "RV",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/VIEIRA_RODOLFO_L_04-25.png?itok=lZzBJfMR",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Robert Bryczek",
-                  "initials": "RB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-02/BRYZCEK_ROBERT_L_02-10.png?itok=xbrgBOJC",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 8,
-              "label": "",
-              "weight_class": "Light Heavyweight Bout",
-              "fighters": [
-                {
-                  "name": "Rodolfo Bellato",
-                  "initials": "RB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/BELLATO_RODOLFO_L.png?itok=HfYoV0Vf",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Christian Edwards",
-                  "initials": "CE",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/EDWARDS_CHRISTIAN_R_05-16.png?itok=9hKWjz5V",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 9,
-              "label": "",
-              "weight_class": "Lightweight Bout",
-              "fighters": [
-                {
-                  "name": "Elves Brener",
-                  "initials": "EB",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/BRENNER_ELVES_L_08-02.png?itok=mY8muzRL",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Josiah Harrell",
-                  "initials": "JH",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-07/HARRELL_JOSIAH_L_07-08.png?itok=lmzL1uHT",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 10,
-              "label": "",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "Montel Jackson",
-                  "initials": "MJ",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/JACKSON_MONTEL_L_04-25.png?itok=34cpNdxi",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Ricky Simon",
-                  "initials": "RS",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/SIMON_RICKY_L_03-28.png?itok=sJteSJT_",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 11,
-              "label": "",
-              "weight_class": "Bantamweight Bout",
-              "fighters": [
-                {
-                  "name": "John Castaneda",
-                  "initials": "JC",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/CASTANEDA_JOHN_L_04-18.png?itok=0hwSejmd",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Alatengheili",
-                  "initials": "A",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-04/ALATENGHEILI_L_05-18.png?itok=tO6xLHed",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 12,
-              "label": "",
-              "weight_class": "Women's Strawweight Bout",
-              "fighters": [
-                {
-                  "name": "Vanessa Demopoulos",
-                  "initials": "VD",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-04/DEMOPOULOS_VANESSA_L_04-05.png?itok=mEN09m_H",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Yazmin Jauregui",
-                  "initials": "YJ",
-                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-09/JAUREGUI_YAZMIN_L_09-14.png?itok=nqoagzOS",
-                  "image_source": "ufc",
-                  "image_framing": "safe"
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
     {
       "id": "dwcs-season-10-week-8-2026-09-29",
       "promotion_key": "dwcs",
@@ -295,7 +13,7 @@
       "broadcast": "Paramount+",
       "official_url": "https://www.ufc.com/dwcs#season-10-week-8",
       "source_card_url": "https://www.sherdog.com/events/Dana-Whites-Contender-Series-Contender-Series-2026-Week-8-112634",
-      "updated_label": "September 26, 2026",
+      "updated_label": "September 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -430,7 +148,7 @@
       "venue": "長崎スタジアムシティ HAPPINESS ARENA",
       "broadcast": "RIZIN 100 CLUB · RIZIN LIVE · ABEMA · Sky PerfecTV",
       "official_url": "https://jp.rizinff.com/_ct/17852438",
-      "updated_label": "September 26, 2026",
+      "updated_label": "September 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -748,7 +466,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · CBS · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-332",
-      "updated_label": "September 26, 2026",
+      "updated_label": "September 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1058,7 +776,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-october-10-2026",
-      "updated_label": "September 26, 2026",
+      "updated_label": "September 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1102,7 +820,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-october-17-2026",
-      "updated_label": "September 26, 2026",
+      "updated_label": "September 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1405,7 +1123,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-333",
-      "updated_label": "September 26, 2026",
+      "updated_label": "September 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1624,7 +1342,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-october-31-2026",
-      "updated_label": "September 26, 2026",
+      "updated_label": "September 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1710,7 +1428,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-fight-night-november-07-2026",
-      "updated_label": "September 26, 2026",
+      "updated_label": "September 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1752,7 +1470,7 @@
       "venue": "LaLa arena TOKYO-BAY",
       "broadcast": "RIZIN 100 CLUB",
       "official_url": "https://jp.rizinff.com/_ct/17852466",
-      "updated_label": "September 26, 2026",
+      "updated_label": "September 27, 2026",
       "sections": [
         {
           "kind": "main",
@@ -1986,7 +1704,7 @@
       "venue": "Venue TBA",
       "broadcast": "Paramount+ · UFC Fight Pass",
       "official_url": "https://www.ufc.com/event/ufc-334",
-      "updated_label": "September 26, 2026",
+      "updated_label": "September 27, 2026",
       "sections": [
         {
           "kind": "main",

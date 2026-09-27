@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-25T12:45:30.702Z",
+  "generated_at": "2026-09-27T05:54:39.236Z",
   "changes": [
+    {
+      "id": "2026-09-27T05:54:39.236Z|ufc-fight-night-2026-09-26-fight-card|event_removed|1",
+      "at": "2026-09-27T05:54:39.236Z",
+      "type": "event_removed",
+      "event_id": "ufc-fight-night-2026-09-26-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Jr. vs Barcelos",
+      "event_date": "2026-09-26",
+      "summary": "UFC Fight Night Jr. vs Barcelos removed from Upcoming Events.",
+      "details": {
+        "bout_count": 12,
+        "venue": "Venue TBA",
+        "date": "2026-09-26"
+      }
+    },
     {
       "id": "2026-09-25T12:45:30.702Z|rizin-abc-presents-rizin-55-2026-11-08|bout_changed|1",
       "at": "2026-09-25T12:45:30.702Z",
@@ -4704,21 +4719,6 @@
       "summary": "Vanessa Demopoulos portrait source changed.",
       "details": {
         "fighter": "Vanessa Demopoulos",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-fight-night-2026-09-26-fight-card|portrait_changed|45",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Yazmin Jauregui portrait source changed.",
-      "details": {
-        "fighter": "Yazmin Jauregui",
         "from_source": "sherdog",
         "to_source": "ufc"
       }
