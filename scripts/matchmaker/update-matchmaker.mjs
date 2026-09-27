@@ -14,6 +14,32 @@ await fs.mkdir(cacheDir, { recursive: true });
 await fs.mkdir(root, { recursive: true });
 const read = async (file, fallback) => JSON.parse(await fs.readFile(file, 'utf8').catch(() => JSON.stringify(fallback)));
 const previous = await read(path.join(root, 'current.json'), null);
+
+const normalizeRankingValue = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+const rankingIdentity = item => `${normalizeRankingValue(item?.division)}|${item?.id || normalizeRankingValue(item?.name)}`;
+function diffRankings(before = [], after = []) {
+  const oldMap = new Map(before.map(item => [rankingIdentity(item), item]));
+  const newMap = new Map(after.map(item => [rankingIdentity(item), item]));
+  const identities = [...new Set([...oldMap.keys(), ...newMap.keys()])].sort();
+  const changes = [];
+  for (const identity of identities) {
+    const oldItem = oldMap.get(identity) || null;
+    const newItem = newMap.get(identity) || null;
+    const oldRank = oldItem?.rank ?? null;
+    const newRank = newItem?.rank ?? null;
+    const oldInterim = Boolean(oldItem?.interim);
+    const newInterim = Boolean(newItem?.interim);
+    if (oldRank === newRank && oldInterim === newInterim && Boolean(oldItem) === Boolean(newItem)) continue;
+    changes.push({
+      id: newItem?.id || oldItem?.id || null,
+      name: newItem?.name || oldItem?.name || null,
+      division: newItem?.division || oldItem?.division || null,
+      before: oldItem ? { rank: oldRank, interim: oldInterim } : null,
+      after: newItem ? { rank: newRank, interim: newInterim } : null
+    });
+  }
+  return changes;
+}
 async function get(url, maxAge = 0) {
   const file = path.join(cacheDir, Buffer.from(url).toString('base64url') + '.json');
   const cached = await read(file, null);
@@ -116,6 +142,7 @@ const byAlias = new Map(registry.flatMap(f => [f.id, ...f.aliases].map(id => [id
 const resolve = id => byAlias.get(id) || id;
 for (const e of parsedEvents.filter(Boolean)) for (const b of e.bouts) for (const f of b.fighters) f.id = resolve(f.id);
 for (const r of rankings) r.id = resolve(r.id);
+const rankingChanges = Array.isArray(previous?.rankingsCurrent) ? diffRankings(previous.rankingsCurrent, rankings) : [];
 const retainedEvents = [...completed, ...(previous?.events || []).filter(e => !completed.some(c => c.id === e.id))].sort((a, b) => b.date.localeCompare(a.date));
 const participants = new Set(retainedEvents.flatMap(e => e.bouts.flatMap(b => b.fighters.map(f => f.id))));
 const eventNamesById = new Map();
@@ -296,6 +323,12 @@ const data = {
   fighters,
   events,
   rankingsCurrent: rankings,
+  rankingCheck: {
+    checkedAt,
+    changed: rankingChanges.length > 0,
+    changeCount: rankingChanges.length,
+    previousGeneratedAt: previous?.generatedAt || null
+  },
   bookings: [...oldBookings.values()],
   coverage: {
     profileFailures: failed,
@@ -310,7 +343,21 @@ const data = {
 validateData(data);
 reconcileRoster(data, roster, rosterOverrides);
 reconcileBookings(data, roster, schedule);
-await fs.writeFile(path.join(snapshotsDir, `${today}.json`), JSON.stringify({ capturedAt: checkedAt, rankings }, null, 2) + '\n', { flag: 'wx' }).catch(e => { if (e.code !== 'EEXIST') throw e; });
+const rankingSnapshot = { capturedAt: checkedAt, rankings };
+await fs.writeFile(path.join(snapshotsDir, `${today}.json`), JSON.stringify(rankingSnapshot, null, 2) + '\n', { flag: 'wx' }).catch(e => { if (e.code !== 'EEXIST') throw e; });
+if (rankingChanges.length) {
+  const timestampName = checkedAt.replace(/:/g, '-');
+  await fs.writeFile(path.join(snapshotsDir, `${timestampName}.json`), JSON.stringify(rankingSnapshot, null, 2) + '\n', { flag: 'wx' }).catch(e => { if (e.code !== 'EEXIST') throw e; });
+  await fs.writeFile(path.join(root, 'ranking-transition.json'), JSON.stringify({
+    schemaVersion: 1,
+    detectedAt: checkedAt,
+    previousGeneratedAt: previous?.generatedAt || null,
+    before: previous.rankingsCurrent,
+    after: rankings,
+    changes: rankingChanges
+  }, null, 2) + '\n');
+  console.log(`Official rankings changed: ${rankingChanges.length} ranking entr${rankingChanges.length === 1 ? 'y' : 'ies'} updated; preserving an intra-day snapshot and scheduling recommendation reconciliation.`);
+}
 await fs.writeFile(path.join(root, 'current.json.tmp'), JSON.stringify(data, null, 2) + '\n');
 await fs.rename(path.join(root, 'current.json.tmp'), path.join(root, 'current.json'));
 console.log(`Validated: ${fighters.length} fighters, ${events.length} cards, ${bookings.length} announced pairings. Profile failures: ${failed}. Prior-opponent coverage: ${statsVerified}/${historyTargets.length}.`);
