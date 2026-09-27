@@ -103,6 +103,8 @@ Object.values(fields).forEach(el => {
     const card = event.target.closest('[data-library-path]');
     if (!card) return;
     const path = card.dataset.libraryPath;
+    if (event.target.closest('[data-library-unpublish]')) { void unpublishLibraryArticle(path); return; }
+    if (event.target.closest('[data-library-delete]')) { void deleteLibraryArticle(path); return; }
     if (event.target.closest('[data-library-edit]')) loadArticle(path);
     if (event.target.closest('[data-library-duplicate]')) duplicateArticle(path);
   });
