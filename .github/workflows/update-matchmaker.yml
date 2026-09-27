@@ -59,6 +59,7 @@ jobs:
           node --check scripts/matchmaker/check-contextual-rematches.mjs
           node --check scripts/matchmaker/check-turnaround-timing.mjs
           node --check scripts/matchmaker/audit-recommendations.mjs
+          node --check scripts/matchmaker/reconcile-ranking-changes.mjs
           node --check scripts/matchmaker/backtest-recommendations.mjs
           node scripts/matchmaker/enrich-official-portraits.mjs --self-test
           node scripts/matchmaker/check-verified-history-v2.mjs
@@ -103,6 +104,8 @@ jobs:
         run: node scripts/matchmaker/apply-ranking-identity-aliases.mjs
       - name: Canonicalize verified UFC fight history
         run: node scripts/matchmaker/enrich-verified-history.mjs
+      - name: Reconcile official ranking changes
+        run: node scripts/matchmaker/reconcile-ranking-changes.mjs
       - name: Check verified history invariants
         run: node scripts/matchmaker/check-verified-history-v2.mjs
       - name: Report unverified active histories
