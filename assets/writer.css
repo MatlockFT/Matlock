@@ -827,3 +827,93 @@
   color:#e3a0a0;
   outline:0;
 }
+
+
+/* Responsive Tale editor containment */
+.writer-structured-dialog{
+  width:min(1100px,calc(100vw - 2rem));
+  max-width:calc(100vw - 2rem);
+  overflow-x:hidden;
+}
+.writer-structured-dialog form,
+.writer-structured-dialog .writer-dialog-body,
+.writer-matchup-builder,
+.writer-fighter-builder,
+.writer-tale-stats-editor,
+.writer-comparison-rows{
+  min-width:0;
+  max-width:100%;
+}
+.writer-structured-dialog .writer-dialog-body{
+  overflow-x:hidden;
+  container-type:inline-size;
+}
+.writer-fighter-builder{
+  container-type:inline-size;
+  overflow:hidden;
+}
+.writer-fighter-builder .writer-field,
+.writer-fighter-builder .writer-dialog-grid,
+.writer-fighter-builder input,
+.writer-fighter-builder select,
+.writer-fighter-builder textarea{
+  min-width:0!important;
+  max-width:100%!important;
+}
+.writer-fighter-builder input[type="text"],
+.writer-fighter-builder input[type="url"],
+.writer-fighter-builder input:not([type]){
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.writer-recent-row,
+.writer-recent-row>*,
+.writer-comparison-row,
+.writer-comparison-row>*{
+  min-width:0;
+}
+.writer-recent-row input,
+.writer-recent-row select{
+  max-width:100%;
+}
+
+@container (max-width: 470px){
+  .writer-recent-row{
+    grid-template-columns:64px minmax(0,1fr)!important;
+  }
+  .writer-recent-row [data-recent-detail]{
+    grid-column:1/-1;
+  }
+  .writer-recent-row .writer-row-actions{
+    grid-column:1/-1;
+    justify-content:flex-start;
+  }
+}
+
+@container (max-width: 820px){
+  .writer-matchup-builder{
+    grid-template-columns:1fr!important;
+  }
+  .writer-matchup-builder-vs{
+    min-height:auto!important;
+    padding:.2rem 0!important;
+  }
+  .writer-comparison-head{
+    display:none!important;
+  }
+  .writer-comparison-row{
+    grid-template-columns:1fr 1fr!important;
+  }
+  .writer-comparison-row [data-structured-label]{
+    grid-column:1/-1;
+  }
+  .writer-comparison-row .writer-row-actions{
+    grid-column:1/-1;
+    justify-content:flex-start;
+  }
+  .writer-subeditor-head-wide,
+  .writer-builder-intro{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}
