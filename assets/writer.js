@@ -3105,54 +3105,104 @@ function insertBlock(text) {
   }
 
   function buildStatsVisual(config) {
-    const rows=normalizeComparisonRows(config.rows,[]);
+    const rows=normalizeComparisonRows(config.rows,statsDefaultRowLabels);
     const fighterA=String(config.fighterA||'Fighter A').trim()||'Fighter A';
     const fighterB=String(config.fighterB||'Fighter B').trim()||'Fighter B';
-    const body=rows.map(row=>'<tr><td>'+escapeHtml(row.a||'—')+'</td><td>'+escapeHtml(row.label)+'</td><td>'+escapeHtml(row.b||'—')+'</td></tr>').join('');
-    return structuredSection('stats',config,
-      '<div class="matlock-stats-card matlock-stats-compare"><table><thead><tr><th>'+escapeHtml(fighterA)+'</th><th>STAT</th><th>'+escapeHtml(fighterB)+'</th></tr></thead><tbody>'+body+'</tbody></table></div>'
-    );
+    const renderRows=(items)=>items.map((row,index)=>
+      '<div class="fs-stat-row'+(index===0?' featured':'')+'"><strong>'+
+      escapeHtml(row.a||'—')+'</strong><span>'+escapeHtml(row.label)+'</span><strong>'+
+      escapeHtml(row.b||'—')+'</strong></div>'
+    ).join('');
+    const striking=rows.slice(0,4);
+    const grappling=rows.slice(4,8);
+    const inner=
+      '<div class="fight-stats-sleek"><div class="fs-shell">'+
+        '<div class="fs-header">'+
+          '<div class="fs-fighter fs-fighter-left"><span class="fs-side-label">RED CORNER</span><strong>'+escapeHtml(fighterA)+'</strong></div>'+
+          '<div class="fs-header-center"><strong>STATS</strong><i></i></div>'+
+          '<div class="fs-fighter fs-fighter-right"><span class="fs-side-label">BLUE CORNER</span><strong>'+escapeHtml(fighterB)+'</strong></div>'+
+        '</div>'+
+        '<div class="fs-section">'+
+          '<div class="fs-section-title"><span>Striking</span></div>'+
+          renderRows(striking)+
+        '</div>'+
+        '<div class="fs-section fs-section-grappling">'+
+          '<div class="fs-section-title"><span>Grappling</span></div>'+
+          renderRows(grappling)+
+        '</div>'+
+      '</div></div>';
+    return structuredSection('stats',config,inner);
   }
 
   function recentFormMarkup(value) {
     return normalizeRecentRows(value).map(row=>{
       const result=String(row.result||'').toUpperCase();
       const resultClass=result==='W'?'win':result==='L'?'loss':'draw';
-      return '<div class="mfc-form-row"><span class="mfc-result '+resultClass+'">'+escapeHtml(result||'—')+'</span><div><strong>'+escapeHtml(row.opponent)+'</strong><small>'+escapeHtml(row.detail)+'</small></div></div>';
+      return '<div class="fc-form-row"><span class="fc-result '+resultClass+'">'+escapeHtml(result||'—')+
+        '</span><div class="fc-form-copy"><strong>'+escapeHtml(row.opponent)+
+        '</strong><small>'+escapeHtml(row.detail)+'</small></div></div>';
     }).join('');
   }
 
   function fighterPortraitMarkup(side, fighter) {
-    const image = String(fighter.image || '').trim();
-    const style = '--portrait-x:' + Number(fighter.x || 50) + '%;--portrait-y:' +
-      Number(fighter.y || 50) + '%;--portrait-zoom:' + (Number(fighter.zoom || 100) / 100) + ';';
-    return '<div class="mfc-portrait mfc-' + side + '" style="' + style + '">' +
-      (image ? '<img src="' + escapeHtml(image) + '" alt="' + escapeHtml(fighter.name || '') + '">' : '') +
+    const image=String(fighter.image||'').trim();
+    const x=Number(fighter.x ?? 50);
+    const y=Number(fighter.y ?? 50);
+    const zoom=Number(fighter.zoom ?? 100)/100;
+    const style='--portrait-x:'+x+'%;--portrait-y:'+y+'%;--portrait-zoom:'+zoom+';';
+    return '<div class="fc-portrait ring-'+side+'" style="'+style+'">'+
+      '<span class="fc-ring"></span><span class="fc-ring fc-ring-inner"></span>'+
+      (image?'<img src="'+escapeHtml(image)+'" alt="'+escapeHtml(fighter.name||'')+'">':'')+
       '</div>';
   }
 
+  function fighterOddsClass(odds) {
+    const value=String(odds||'').trim();
+    if (/^-/.test(value)) return ' fc-favorite';
+    if (/^\+/.test(value)) return ' fc-underdog';
+    return '';
+  }
+
   function fighterTopMarkup(side, fighter) {
-    return '<div class="mfc-fighter mfc-' + side + '-fighter">' +
-      fighterPortraitMarkup(side, fighter) +
-      '<div class="mfc-meta"><span class="mfc-division">' + escapeHtml(fighter.division || '') +
-      '</span><strong class="mfc-name">' + escapeHtml(fighter.name || '') +
-      '</strong><div class="mfc-meta-strip"><span class="mfc-odds">ML <b>' +
-      escapeHtml(fighter.odds || '—') + '</b></span><span class="mfc-last5"><b>' +
-      escapeHtml(fighter.last5 || '—') + '</b> LAST 5</span></div></div></div>';
+    const odds=String(fighter.odds||'').trim()||'—';
+    return '<div class="fc-fighter fc-'+side+'">'+
+      fighterPortraitMarkup(side,fighter)+
+      '<div class="fc-meta"><span class="fc-division">'+escapeHtml(fighter.division||'')+
+      '</span><h2>'+escapeHtml(fighter.name||'')+
+      '</h2><div class="fc-meta-strip"><div class="fc-odds'+fighterOddsClass(odds)+'"><span>ML</span><strong>'+
+      escapeHtml(odds)+'</strong></div><div class="fc-last5"><span class="fc-last5-record">'+
+      escapeHtml(fighter.last5||'—')+'</span><span class="fc-last5-label">Last 5</span></div></div></div></div>';
   }
 
   function buildTaleVisual(config) {
     const a=config.a||{}, b=config.b||{};
     const rows=normalizeComparisonRows(config.rows,taleDefaultRowLabels);
-    const taleRows=rows.map((row,index)=>'<div class="mfc-tale-row'+(index===0?' featured':'')+'"><strong>'+escapeHtml(row.a)+'</strong><span>'+escapeHtml(row.label)+'</span><strong>'+escapeHtml(row.b)+'</strong></div>').join('');
+    const taleRows=rows.map((row,index)=>
+      '<div class="fc-tale-row'+(index===0?' featured':'')+'"><strong>'+escapeHtml(row.a||'—')+
+      '</strong><span>'+escapeHtml(row.label)+'</span><strong>'+escapeHtml(row.b||'—')+'</strong></div>'
+    ).join('');
     const recentA=recentFormMarkup(a.recent), recentB=recentFormMarkup(b.recent);
     const recent=recentA||recentB
-      ? '<div class="mfc-form-wrap"><div class="mfc-column"><div class="mfc-mobile-column-label"><span>RECENT FORM</span><strong>'+escapeHtml(a.name||'Fighter A')+'</strong></div>'+recentA+'</div><div class="mfc-column"><div class="mfc-mobile-column-label"><span>RECENT FORM</span><strong>'+escapeHtml(b.name||'Fighter B')+'</strong></div>'+recentB+'</div></div>'
+      ? '<div class="fc-section-title fc-form-title"><span>Recent Form</span></div>'+
+        '<div class="fc-form-wrap"><div class="fc-column"><div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>'+
+        escapeHtml(a.name||'Fighter A')+'</strong></div>'+recentA+
+        '</div><div class="fc-column"><div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>'+
+        escapeHtml(b.name||'Fighter B')+'</strong></div>'+recentB+'</div></div>'
       : '';
     const opponents=(a.opponentsRecord||b.opponentsRecord||a.opponentsPct||b.opponentsPct)
-      ? '<div class="mfc-opponents"><div><strong>'+escapeHtml(a.opponentsRecord||'—')+'</strong><span>'+escapeHtml(a.opponentsPct||'')+'</span></div><p>OPPONENTS COMBINED RECORD</p><div><strong>'+escapeHtml(b.opponentsRecord||'—')+'</strong><span>'+escapeHtml(b.opponentsPct||'')+'</span></div></div>'
+      ? '<div class="fc-opponents"><div class="fc-opponent-stat"><strong>'+escapeHtml(a.opponentsRecord||'—')+
+        '</strong><span>'+escapeHtml(a.opponentsPct||'')+'</span></div><div class="fc-opponent-label">OPPONENTS COMBINED RECORD</div>'+
+        '<div class="fc-opponent-stat"><strong>'+escapeHtml(b.opponentsRecord||'—')+'</strong><span>'+
+        escapeHtml(b.opponentsPct||'')+'</span></div></div>'
       : '';
-    const inner='<div class="matlock-fight-card"><div class="mfc-top">'+fighterTopMarkup('left',a)+'<div class="mfc-center"><strong>MATCHUP</strong><i></i></div>'+fighterTopMarkup('right',b)+'</div><div class="mfc-tale"><div class="mfc-section-title">TALE OF THE TAPE</div>'+taleRows+'</div>'+recent+opponents+'</div>';
+    const inner=
+      '<div class="fight-compare-sleek"><div class="fc-shell">'+
+        '<div class="fc-top">'+fighterTopMarkup('left',a)+
+          '<div class="fc-center-badge"><strong>MATCHUP</strong><i></i></div>'+
+          fighterTopMarkup('right',b)+'</div>'+
+        '<div class="fc-tale"><div class="fc-section-title"><span>Tale of the Tape</span></div>'+taleRows+'</div>'+
+        recent+opponents+
+      '</div></div>';
     return structuredSection('tale',config,inner);
   }
 
