@@ -4,10 +4,45 @@ import './check-bookings.mjs';
 import fs from 'node:fs';
 import { createRequire } from 'node:module';
 import { validateData } from './validate.mjs';
-import { parseEvent, parseRankings, parseProfile, eventDate } from './sources/ufc.mjs';
+import { parseEvent, parseRankings, parseProfile, eventDate, officialResultArticleCandidates, applyOfficialResultArticles } from './sources/ufc.mjs';
 import { parseFighterDirectory, parseFighterHistory, parseMirrorHistory } from './sources/ufcstats.mjs';
 import { reconcileProfileHistory } from './history-reconcile.mjs';
 const require = createRequire(import.meta.url), E = require('../../assets/matchmaker-engine.js');
+
+const fallbackEvent = {
+  id: 'ufc-fight-night-september-26-2026',
+  title: 'UFC Fight Night: Rosas Jr. vs Barcelos',
+  date: '2026-09-26',
+  source: 'https://www.ufc.com/event/ufc-fight-night-september-26-2026',
+  completed: false,
+  bouts: [
+    { fighters: [{ id: 'raul-rosas-jr', name: 'Raul Rosas Jr.', result: null }, { id: 'raoni-barcelos', name: 'Raoni Barcelos', result: null }], method: '' },
+    { fighters: [{ id: 'norma-dumont', name: 'Norma Dumont', result: null }, { id: 'ailin-perez', name: 'Ailin Perez', result: null }], method: '' }
+  ]
+};
+const fallbackCandidates = officialResultArticleCandidates(fallbackEvent);
+assert(fallbackCandidates.includes('https://www.ufc.com/news/ufc-fight-night-rosas-jr-vs-barcelos-results'));
+assert(fallbackCandidates.includes('https://www.ufc.com/news/ufc-fight-night-rosas-jr-vs-barcelos-prelim-results'));
+assert(fallbackCandidates.includes('https://www.ufc.com/news/ufc-fight-night-rosas-jr-vs-barcelos-official-scorecards'));
+
+applyOfficialResultArticles(fallbackEvent, [{
+  url: 'https://www.ufc.com/news/ufc-fight-night-rosas-jr-vs-barcelos-results',
+  html: `
+    <h3>Bantamweight Main Event - Raul Rosas Jr. defeated Raoni Barcelos by KO (strikes) at 2:14 of Round 5</h3>
+    <h3>Bantamweight Bout: Ailin Perez defeated Norma Dumont by unanimous decision (30-27, 29-28, 29-28)</h3>
+  `
+}]);
+assert.equal(fallbackEvent.completed, true, 'Official UFC result article fallback must complete a fully resolved card');
+assert.deepEqual(fallbackEvent.bouts[0].fighters.map(f => f.result), ['W', 'L']);
+assert.deepEqual(fallbackEvent.bouts[1].fighters.map(f => f.result), ['L', 'W']);
+assert.match(fallbackEvent.bouts[0].method, /KO/i);
+
+const nocheCandidates = officialResultArticleCandidates({
+  title: 'Noche UFC: Silva vs Delgado',
+  bouts: [{ fighters: [{ name: 'Jean Silva' }, { name: 'Jose Miguel Delgado' }] }]
+});
+assert(nocheCandidates.includes('https://www.ufc.com/news/noche-ufc-results-silva-vs-delgado'), 'Noche alternate UFC results slug must be generated');
+
 const bout = (date, result = 'W', opponentIds = [], text = '') => ({ date, result, opponentIds, text });
 const make = (id, rank = 8, extra = {}) => ({ id, name: id.toUpperCase(), active: true, division: 'Flyweight', rank, lastFight: '2026-08-01', history: [bout('2026-08-01'), bout('2026-05-01'), bout('2026-02-01')], ...extra });
 const context = { asOf: '2026-09-10', event: { date: '2026-08-01', bouts: [{ fighters: [{ id: 'alpha', result: 'W' }, { id: 'bravo', result: 'L' }] }] }, locks: [], overrides: {} };
