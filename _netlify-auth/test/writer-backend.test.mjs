@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 
 import { allowedPath, validateWriteBody } from '../netlify/functions/writer-github.mjs';
 import { parseUfcProfileSummary, parseUfcStatsProfile } from '../netlify/functions/writer-fighter.mjs';
-import { extractMoneylines, formatAmericanOdds } from '../netlify/functions/fight-odds.mjs';
+import { extractFittMoneylines, extractMoneylines, formatAmericanOdds, parseEspnFittHtml } from '../netlify/functions/fight-odds.mjs';
 import { hasCompleteDisplayedCareer, parseUfcFightCareerProfile } from '../netlify/functions/_writer-career-fallback.mjs';
 import { parseUfcFightProfile } from '../../scripts/matchmaker/sources/sherdog.mjs';
 import {
@@ -298,4 +298,30 @@ test('fight odds parser supports named MMA outcomes without home-away semantics'
     extractMoneylines(competition,payload,'Natalia Silva','Wang Cong'),
     {fighterA:'-170',fighterB:'+145',provider:'DraftKings'}
   );
+});
+
+
+test('ESPN FightCenter embedded odds map directly to MMA fighter names', () => {
+  const fitt = {
+    page:{content:{gamepackage:{cardSegs:[{mtchs:[{
+      id:'fight-1',
+      awy:{
+        dspNm:'Wang Cong',
+        bets:{provider:{name:'BetMGM'},odds:[{abbreviation:'ML',values:[{odds:'+145'}]}]}
+      },
+      hme:{
+        dspNm:'Natalia Silva',
+        bets:{provider:{name:'BetMGM'},odds:[{abbreviation:'ML',values:[{odds:'-170'}]}]}
+      }
+    }]}]}}}
+  };
+  assert.deepEqual(
+    extractFittMoneylines(fitt,'Natalia Silva','Wang Cong'),
+    {fighterA:'-170',fighterB:'+145',provider:'BetMGM'}
+  );
+});
+
+test('ESPN FightCenter HTML parser extracts the embedded JSON payload', () => {
+  const html = '<html><script>window[\'__espnfitt__\']={"page":{"content":{}}};</script></html>';
+  assert.deepEqual(parseEspnFittHtml(html),{page:{content:{}}});
 });
