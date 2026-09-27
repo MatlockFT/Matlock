@@ -985,9 +985,10 @@ function insertBlock(text) {
     const dialog = app.querySelector('[data-tale-dialog]');
     if (!dialog) return;
     const path = dialog.querySelector('[data-tale-image-path="' + side + '"]')?.value.trim() || '';
+    const drop = dialog.querySelector('[data-tale-image-drop="' + side + '"]');
     const image = dialog.querySelector('[data-tale-image-preview="' + side + '"]');
     const empty = dialog.querySelector('[data-tale-image-empty="' + side + '"]');
-    if (!image || !empty) return;
+    if (!drop || !image || !empty) return;
     const x = Number(dialog.querySelector('[data-tale-image-x="' + side + '"]')?.value || 50);
     const y = Number(dialog.querySelector('[data-tale-image-y="' + side + '"]')?.value || 50);
     const zoom = Number(dialog.querySelector('[data-tale-image-zoom="' + side + '"]')?.value || 100) / 100;
@@ -995,8 +996,11 @@ function insertBlock(text) {
     image.hidden = !src;
     empty.hidden = Boolean(src);
     if (src) image.src = src;
-    image.style.objectPosition = x + '% ' + y + '%';
-    image.style.transform = 'scale(' + zoom + ')';
+    drop.style.setProperty('--portrait-x', x + '%');
+    drop.style.setProperty('--portrait-y', y + '%');
+    drop.style.setProperty('--portrait-zoom', String(zoom));
+    image.style.objectPosition = '';
+    image.style.transform = '';
   }
 
   function resetStatsDialog(config = {}) {
