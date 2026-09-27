@@ -356,34 +356,17 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await taleRows.nth(3).locator('[data-structured-a]').fill('72 in');
   await taleRows.nth(3).locator('[data-structured-b]').fill('70 in');
 
-  // Portrait panning/zoom must be true WYSIWYG: the editor crop math and rendered
-  // article crop math are the same even when the final card is a different size.
+  // Portrait placement uses one canvas renderer in the editor and output. The
+  // saved config is the contract; both surfaces render from the same x/y/zoom state.
   const cropSource = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="500"><rect width="300" height="500" fill="black"/><circle cx="105" cy="180" r="70" fill="white"/></svg>');
   await taleDialog.locator('[data-tale-image-path="a"]').fill(cropSource);
   await taleDialog.locator('[data-tale-image-x="a"]').evaluate(node => { node.value='63'; node.dispatchEvent(new Event('input',{bubbles:true})); });
   await taleDialog.locator('[data-tale-image-y="a"]').evaluate(node => { node.value='37'; node.dispatchEvent(new Event('input',{bubbles:true})); });
   await taleDialog.locator('[data-tale-image-zoom="a"]').evaluate(node => { node.value='132'; node.dispatchEvent(new Event('input',{bubbles:true})); });
-  const editorCrop = await taleDialog.locator('[data-tale-image-preview="a"]').evaluate(img => {
-    const style = getComputedStyle(img);
-    const matrix = new DOMMatrix(style.transform);
-    const rect = img.getBoundingClientRect();
-    const frame = img.parentElement.getBoundingClientRect();
-    return {
-      scaleX: matrix.a,
-      scaleY: matrix.d,
-      translateX: matrix.e / Math.max(1, frame.width),
-      translateY: matrix.f / Math.max(1, frame.height),
-      boxLeft: (rect.left-frame.left) / Math.max(1,frame.width),
-      boxTop: (rect.top-frame.top) / Math.max(1,frame.height),
-      boxWidth: rect.width / Math.max(1,frame.width),
-      boxHeight: rect.height / Math.max(1,frame.height),
-      objectFit: style.objectFit,
-      objectPosition: style.objectPosition,
-      transformOrigin: style.transformOrigin,
-      position: style.position,
-      bottom: style.bottom
-    };
-  });
+  const editorCanvas = taleDialog.locator('[data-tale-image-drop="a"] > canvas.matlock-portrait-canvas');
+  await expect(editorCanvas).toBeVisible();
+  await expect.poll(async () => Boolean(await editorCanvas.getAttribute('data-portrait-render'))).toBe(true);
+  const editorRender = JSON.parse(await editorCanvas.getAttribute('data-portrait-render'));
 
   await taleDialog.locator('[data-tale-form-add="a"]').click();
   const recent = taleDialog.locator('[data-tale-form-list="a"] .writer-recent-row').first();
@@ -394,54 +377,49 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('[data-preview-content]')).toContainText('Alpha Fighter');
   await expect(page.locator('[data-preview-content]')).toContainText('10-1');
   await expect(page.locator('[data-preview-content]')).toContainText('Gamma Fighter');
-  await expect(page.locator('[data-preview-content] .fight-compare-sleek')).toBeVisible();
-  await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-center-badge')).toContainText('MATCHUP');
-  await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-section-title').first()).toContainText('Tale of the Tape');
-  await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-left .fc-odds')).toHaveClass('fc-odds fc-red-odds');
-  await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-right .fc-odds')).toHaveClass('fc-odds fc-blue-odds');
-  await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-form-section')).toBeVisible();
-  const outputCrop = await page.locator('[data-preview-content] .fight-compare-sleek .fc-left .fc-portrait img').evaluate(img => {
-    const style = getComputedStyle(img);
-    const matrix = new DOMMatrix(style.transform);
-    const rect = img.getBoundingClientRect();
-    const frame = img.parentElement.getBoundingClientRect();
-    return {
-      scaleX: matrix.a,
-      scaleY: matrix.d,
-      translateX: matrix.e / Math.max(1, frame.width),
-      translateY: matrix.f / Math.max(1, frame.height),
-      boxLeft: (rect.left-frame.left) / Math.max(1,frame.width),
-      boxTop: (rect.top-frame.top) / Math.max(1,frame.height),
-      boxWidth: rect.width / Math.max(1,frame.width),
-      boxHeight: rect.height / Math.max(1,frame.height),
-      objectFit: style.objectFit,
-      objectPosition: style.objectPosition,
-      transformOrigin: style.transformOrigin,
-      position: style.position,
-      bottom: style.bottom
-    };
-  });
-  expect(outputCrop.objectFit).toBe(editorCrop.objectFit);
-  expect(outputCrop.objectPosition).toBe(editorCrop.objectPosition);
-  expect(outputCrop.scaleX).toBeCloseTo(editorCrop.scaleX,3);
-  expect(outputCrop.scaleY).toBeCloseTo(editorCrop.scaleY,3);
-  expect(outputCrop.translateX).toBeCloseTo(editorCrop.translateX,3);
-  expect(outputCrop.translateY).toBeCloseTo(editorCrop.translateY,3);
-  expect(outputCrop.boxLeft).toBeCloseTo(editorCrop.boxLeft,3);
-  expect(outputCrop.boxTop).toBeCloseTo(editorCrop.boxTop,3);
-  expect(outputCrop.boxWidth).toBeCloseTo(editorCrop.boxWidth,3);
-  expect(outputCrop.boxHeight).toBeCloseTo(editorCrop.boxHeight,3);
-  expect(outputCrop.position).toBe(editorCrop.position);
-  expect(outputCrop.bottom).toBe(editorCrop.bottom);
-  // Neither editor nor output may expose the image boundary inside the circle.
-  expect(editorCrop.boxLeft).toBeLessThanOrEqual(0.001);
-  expect(editorCrop.boxTop).toBeLessThanOrEqual(0.001);
-  expect(editorCrop.boxLeft + editorCrop.boxWidth).toBeGreaterThanOrEqual(0.999);
-  expect(editorCrop.boxTop + editorCrop.boxHeight).toBeGreaterThanOrEqual(0.999);
-  expect(outputCrop.boxLeft).toBeLessThanOrEqual(0.001);
-  expect(outputCrop.boxTop).toBeLessThanOrEqual(0.001);
-  expect(outputCrop.boxLeft + outputCrop.boxWidth).toBeGreaterThanOrEqual(0.999);
-  expect(outputCrop.boxTop + outputCrop.boxHeight).toBeGreaterThanOrEqual(0.999);
+  const taleSection = page.locator('[data-preview-content] section[data-writer-block="tale"]').filter({ hasText:'Alpha Fighter' }).first();
+  await expect(taleSection.locator('.fight-compare-sleek')).toBeVisible();
+  await expect(taleSection.locator('.fc-center-badge')).toContainText('MATCHUP');
+  await expect(taleSection.locator('.fc-section-title').first()).toContainText('Tale of the Tape');
+  await expect(taleSection.locator('.fc-left .fc-odds')).toHaveClass('fc-odds fc-red-odds');
+  await expect(taleSection.locator('.fc-right .fc-odds')).toHaveClass('fc-odds fc-blue-odds');
+  await expect(taleSection.locator('.fc-form-section')).toBeVisible();
+
+  const insertedConfig = await taleSection.evaluate(section => JSON.parse(decodeURIComponent(section.dataset.writerConfig)));
+  expect(insertedConfig.a.x).toBe(63);
+  expect(insertedConfig.a.y).toBe(37);
+  expect(insertedConfig.a.zoom).toBe(132);
+
+  const outputCanvas = taleSection.locator('.fc-left .fc-portrait > canvas.matlock-portrait-canvas');
+  await expect(outputCanvas).toBeVisible();
+  await expect.poll(async () => Boolean(await outputCanvas.getAttribute('data-portrait-render'))).toBe(true);
+  const outputRender = JSON.parse(await outputCanvas.getAttribute('data-portrait-render'));
+  for (const key of ['x','y','zoom','leftRatio','topRatio','widthRatio','heightRatio']) {
+    expect(outputRender[key]).toBeCloseTo(editorRender[key], 3);
+  }
+  await expect(taleSection.locator('.fc-left .fc-portrait')).toHaveClass(/portrait-canvas-ready/);
+
+  // Re-open the existing Tale block, change placement, and prove that editing
+  // persists to the structured config and re-renders the actual visual.
+  const taleRailCard = page.locator('.writer-html-block-card').filter({ hasText:'Alpha Fighter vs. Beta Fighter' }).first();
+  await taleRailCard.locator('[data-html-block-edit]').click();
+  await expect(taleDialog).toBeVisible();
+  await taleDialog.locator('[data-tale-image-x="a"]').evaluate(node => { node.value='24'; node.dispatchEvent(new Event('input',{bubbles:true})); });
+  await taleDialog.locator('[data-tale-image-y="a"]').evaluate(node => { node.value='71'; node.dispatchEvent(new Event('input',{bubbles:true})); });
+  await taleDialog.locator('[data-tale-image-zoom="a"]').evaluate(node => { node.value='146'; node.dispatchEvent(new Event('input',{bubbles:true})); });
+  await taleDialog.locator('[data-tale-insert]').click();
+
+  const updatedTaleSection = page.locator('[data-preview-content] section[data-writer-block="tale"]').filter({ hasText:'Alpha Fighter' }).first();
+  const updatedConfig = await updatedTaleSection.evaluate(section => JSON.parse(decodeURIComponent(section.dataset.writerConfig)));
+  expect(updatedConfig.a.x).toBe(24);
+  expect(updatedConfig.a.y).toBe(71);
+  expect(updatedConfig.a.zoom).toBe(146);
+  const updatedCanvas = updatedTaleSection.locator('.fc-left .fc-portrait > canvas.matlock-portrait-canvas');
+  await expect.poll(async () => Boolean(await updatedCanvas.getAttribute('data-portrait-render'))).toBe(true);
+  const updatedRender = JSON.parse(await updatedCanvas.getAttribute('data-portrait-render'));
+  expect(updatedRender.x).toBe(24);
+  expect(updatedRender.y).toBe(71);
+  expect(updatedRender.zoom).toBe(146);
 
   // Writer preview hydrates official UFC moneylines without waiting for the Netlify backend.
   await page.click('[data-tool="tale"]');
