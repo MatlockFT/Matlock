@@ -1005,7 +1005,15 @@ function insertBlock(text) {
     dialog.querySelector('[data-stats-fighter="b"]').value=config.fighterB||'';
     ['a','b'].forEach(side => {
       const input=dialog.querySelector('[data-stats-fighter="'+side+'"]');
+      const source=side==='a'?(config.sourceA||{}):(config.sourceB||{});
       for (const key of ['fighterId','ufcStatsId','sourceMode','sourceFetchedAt','latestBoutDate','bookingDate','sourceUrl']) delete input.dataset[key];
+      if (source.fighterId) input.dataset.fighterId=source.fighterId;
+      if (source.ufcStatsId) input.dataset.ufcStatsId=source.ufcStatsId;
+      if (source.mode) input.dataset.sourceMode=source.mode;
+      if (source.fetchedAt) input.dataset.sourceFetchedAt=source.fetchedAt;
+      if (source.latestBoutDate) input.dataset.latestBoutDate=source.latestBoutDate;
+      if (source.bookingDate) input.dataset.bookingDate=source.bookingDate;
+      if (source.sourceUrl) input.dataset.sourceUrl=source.sourceUrl;
       setLookupStatus(input,'','');
     });
     renderComparisonRows(dialog.querySelector('[data-stats-row-list]'),config.rows,statsDefaultRowLabels);
@@ -1027,7 +1035,16 @@ function insertBlock(text) {
     dialog.querySelector('[data-tale-b]').value=b.name||'';
     ['a','b'].forEach(side => {
       const input=dialog.querySelector(side==='a'?'[data-tale-a]':'[data-tale-b]');
+      const fighter=side==='a'?a:b;
+      const source=fighter.source||{};
       for (const key of ['fighterId','ufcStatsId','sourceMode','sourceFetchedAt','latestBoutDate','bookingDate','sourceUrl']) delete input.dataset[key];
+      if (source.fighterId) input.dataset.fighterId=source.fighterId;
+      if (source.ufcStatsId) input.dataset.ufcStatsId=source.ufcStatsId;
+      if (source.mode) input.dataset.sourceMode=source.mode;
+      if (source.fetchedAt) input.dataset.sourceFetchedAt=source.fetchedAt;
+      if (source.latestBoutDate) input.dataset.latestBoutDate=source.latestBoutDate;
+      if (source.bookingDate||config.eventDate) input.dataset.bookingDate=source.bookingDate||config.eventDate;
+      if (source.sourceUrl) input.dataset.sourceUrl=source.sourceUrl;
       setLookupStatus(input,'','');
     });
     ['a','b'].forEach(side=>{
