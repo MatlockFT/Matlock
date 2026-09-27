@@ -784,3 +784,46 @@
   transform:none;
 }
 
+
+
+/* Writer visual browser delete controls */
+.writer-html-block-card{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:.28rem;
+  padding:.3rem .38rem;
+}
+.writer-html-block-card-main{
+  display:flex;
+  align-items:center;
+  gap:.45rem;
+  min-width:0;
+  padding:.15rem .1rem;
+  border:0;
+  background:transparent;
+  color:inherit;
+  cursor:pointer;
+  text-align:left;
+}
+.writer-html-block-card-main:focus-visible{
+  outline:2px solid #ddd;
+  outline-offset:2px;
+}
+.writer-html-block-delete{
+  align-self:center;
+  padding:.32rem .45rem;
+  border:1px solid rgba(180,80,80,.18);
+  border-radius:5px;
+  background:transparent;
+  color:#936c6c;
+  cursor:pointer;
+  font-size:.6rem;
+  font-weight:760;
+}
+.writer-html-block-delete:hover,
+.writer-html-block-delete:focus-visible{
+  border-color:rgba(214,104,104,.4);
+  background:rgba(176,72,72,.10);
+  color:#e3a0a0;
+  outline:0;
+}
