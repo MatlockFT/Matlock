@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 
 import { allowedPath, validateWriteBody } from '../netlify/functions/writer-github.mjs';
 import { parseUfcProfileSummary, parseUfcStatsProfile } from '../netlify/functions/writer-fighter.mjs';
-import { extractFittMoneylines, extractMoneylines, formatAmericanOdds, parseEspnFittHtml } from '../netlify/functions/fight-odds.mjs';
+import { extractFittCardOdds, extractFittMoneylines, extractMoneylines, formatAmericanOdds, parseEspnFittHtml } from '../netlify/functions/fight-odds.mjs';
 import { hasCompleteDisplayedCareer, parseUfcFightCareerProfile } from '../netlify/functions/_writer-career-fallback.mjs';
 import { parseUfcFightProfile } from '../../scripts/matchmaker/sources/sherdog.mjs';
 import {
@@ -324,4 +324,28 @@ test('ESPN FightCenter embedded odds map directly to MMA fighter names', () => {
 test('ESPN FightCenter HTML parser extracts the embedded JSON payload', () => {
   const html = '<html><script>window[\'__espnfitt__\']={"page":{"content":{}}};</script></html>';
   assert.deepEqual(parseEspnFittHtml(html),{page:{content:{}}});
+});
+
+
+test('ESPN FightCenter parser can return all posted moneylines on a card', () => {
+  const fitt = {
+    page:{content:{gamepackage:{cardSegs:[{mtchs:[
+      {
+        id:'fight-1',
+        awy:{dspNm:'Wang Cong',bets:{provider:{name:'BetMGM'},odds:[{abbreviation:'ML',values:[{odds:'+145'}]}]}},
+        hme:{dspNm:'Natalia Silva',bets:{provider:{name:'BetMGM'},odds:[{abbreviation:'ML',values:[{odds:'-170'}]}]}}
+      },
+      {
+        id:'fight-2',
+        awy:{dspNm:'Fighter Blue',bets:{provider:{name:'BetMGM'},odds:[{abbreviation:'ML',values:[{odds:'+110'}]}]}},
+        hme:{dspNm:'Fighter Red',bets:{provider:{name:'BetMGM'},odds:[{abbreviation:'ML',values:[{odds:'-130'}]}]}}
+      }
+    ]}]}}}
+  };
+  const rows = extractFittCardOdds(fitt);
+  assert.equal(rows.length,2);
+  assert.deepEqual(rows[0].fighters,[
+    {name:'Wang Cong',moneyline:'+145'},
+    {name:'Natalia Silva',moneyline:'-170'}
+  ]);
 });
