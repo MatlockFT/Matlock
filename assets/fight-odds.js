@@ -3,8 +3,7 @@
 
   const API = 'https://mmamatlock-writer-auth.netlify.app/api/fight-odds';
   const STATIC_ODDS = '/assets/live-ufc-odds.json';
-  const cards = [...document.querySelectorAll('[data-live-odds-matchup]')];
-  if (!cards.length && !document.querySelector('.fc-last5-record')) return;
+  const currentCards = () => [...document.querySelectorAll('[data-live-odds-matchup]')];
 
   function numericLastFive(value) {
     const raw = String(value || '').trim().toUpperCase().replace(/\s+/g,'');
@@ -20,8 +19,6 @@
     const numeric = numericLastFive(node.textContent);
     if (numeric) node.textContent = numeric;
   });
-
-  if (!cards.length) return;
 
   function normalizedName(value) {
     return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'')
@@ -184,7 +181,7 @@
 
   function groupedCards() {
     const groups = new Map();
-    for (const card of cards) {
+    for (const card of currentCards()) {
       const date = card.dataset.liveOddsEventDate || '';
       const key = /^\d{4}-\d{2}-\d{2}$/.test(date)
         ? 'date:' + date
@@ -201,6 +198,7 @@
   }
 
   function pollDelay() {
+    const cards = currentCards();
     const dates = cards.map(card => card.dataset.liveOddsEventDate)
       .filter(value => /^\d{4}-\d{2}-\d{2}$/.test(value))
       .map(value => new Date(value + 'T12:00:00').getTime());
@@ -222,6 +220,20 @@
 
   refreshAll();
   schedule();
+
+  let mutationRefresh = 0;
+  const observer = new MutationObserver(mutations => {
+    const hasNewFightCard = mutations.some(mutation =>
+      [...mutation.addedNodes].some(node =>
+        node.nodeType === 1 &&
+        (node.matches?.('[data-live-odds-matchup]') || node.querySelector?.('[data-live-odds-matchup]'))
+      )
+    );
+    if (!hasNewFightCard) return;
+    window.clearTimeout(mutationRefresh);
+    mutationRefresh = window.setTimeout(refreshAll,80);
+  });
+  observer.observe(document.documentElement,{childList:true,subtree:true});
 
   document.addEventListener('visibilitychange',() => {
     if (document.visibilityState === 'visible') {
