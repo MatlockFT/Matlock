@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-27T17:25:00.000Z",
+  "generated_at": "2026-09-27T17:42:21.502Z",
   "source": "UFC.com",
   "events": [
     {
@@ -9,32 +9,81 @@
       "fights": [
         {
           "fighters": [
-            { "name": "Natalia Silva", "moneyline": "-205" },
-            { "name": "Wang Cong", "moneyline": "+170" }
+            {
+              "name": "Natalia Silva",
+              "moneyline": "-205"
+            },
+            {
+              "name": "Wang Cong",
+              "moneyline": "+170"
+            }
           ]
         },
         {
           "fighters": [
-            { "name": "Deiveson Figueiredo", "moneyline": "+475" },
-            { "name": "Payton Talbott", "moneyline": "-650" }
+            {
+              "name": "Deiveson Figueiredo",
+              "moneyline": "+475"
+            },
+            {
+              "name": "Payton Talbott",
+              "moneyline": "-650"
+            }
           ]
         },
         {
           "fighters": [
-            { "name": "King Green", "moneyline": "+220" },
-            { "name": "Esteban Ribovics", "moneyline": "-275" }
+            {
+              "name": "King Green",
+              "moneyline": "+220"
+            },
+            {
+              "name": "Esteban Ribovics",
+              "moneyline": "-275"
+            }
           ]
         },
         {
           "fighters": [
-            { "name": "Roberto Soldic", "moneyline": "-300" },
-            { "name": "Khaos Williams", "moneyline": "+240" }
+            {
+              "name": "Roberto Soldic",
+              "moneyline": "-300"
+            },
+            {
+              "name": "Khaos Williams",
+              "moneyline": "+240"
+            }
           ]
         },
         {
           "fighters": [
-            { "name": "Ateba Gautier", "moneyline": "-200" },
-            { "name": "Roman Kopylov", "moneyline": "+165" }
+            {
+              "name": "Ateba Gautier",
+              "moneyline": "-200"
+            },
+            {
+              "name": "Roman Kopylov",
+              "moneyline": "+165"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-333-2026-10-24-fight-card",
+      "date": "2026-10-24",
+      "official_url": "https://www.ufc.com/event/ufc-333",
+      "fights": [
+        {
+          "fighters": [
+            {
+              "name": "Alexander Volkanovski",
+              "moneyline": "-115"
+            },
+            {
+              "name": "Movsar Evloev",
+              "moneyline": "-105"
+            }
           ]
         }
       ]
