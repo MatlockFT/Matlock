@@ -28,6 +28,241 @@ preserve_line_breaks: true
 published: true
 ---
 
+
+<section class="article-html-visual" data-post-fight-results="ufc-vegas-121">
+  <div class="pick-results">
+    <div class="pick-results__head">
+      <div>
+        <span class="pick-results__eyebrow">POST-FIGHT RESULTS</span>
+        <h2>How the picks did</h2>
+      </div>
+      <div class="pick-results__score" aria-label="8 correct picks out of 11">
+        <strong>8–3</strong>
+        <span>73%</span>
+      </div>
+    </div>
+
+    <div class="pick-results__list">
+      <div class="pick-results__row is-correct"><span>Demopoulos vs. Jauregui</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+      <div class="pick-results__row is-wrong"><span>Castaneda vs. Alatengheili</span><strong><i aria-hidden="true">×</i> Incorrect</strong></div>
+      <div class="pick-results__row is-correct"><span>Jackson vs. Simon</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+      <div class="pick-results__row is-correct"><span>Brener vs. Harrell</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+      <div class="pick-results__row is-wrong"><span>Bellato vs. Edwards</span><strong><i aria-hidden="true">×</i> Incorrect</strong></div>
+      <div class="pick-results__row is-correct"><span>Vieira vs. Bryczek</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+      <div class="pick-results__row is-wrong"><span>Hiestand vs. Nakamura</span><strong><i aria-hidden="true">×</i> Incorrect</strong></div>
+      <div class="pick-results__row is-correct"><span>Amaya vs. Black</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+      <div class="pick-results__row is-correct"><span>Dumas vs. Hernandez</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+      <div class="pick-results__row is-correct"><span>Dumont vs. Perez</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+      <div class="pick-results__row is-correct"><span>Rosas Jr. vs. Barcelos</span><strong><i aria-hidden="true">✓</i> Correct</strong></div>
+    </div>
+
+    <div class="pick-results__foot">
+      <span>FINAL RECORD</span>
+      <strong>8 / 11 CORRECT</strong>
+    </div>
+  </div>
+
+  <style>
+    .pick-results {
+      --pr-green: #169c52;
+      --pr-green-bg: rgba(22,156,82,.10);
+      --pr-red: #d84242;
+      --pr-red-bg: rgba(216,66,66,.10);
+      --pr-line: rgba(127,127,127,.22);
+      margin: 0 0 32px;
+      border: 1px solid var(--pr-line);
+      background: var(--body-bg, #fff);
+      color: inherit;
+      overflow: hidden;
+    }
+
+    .pick-results *,
+    .pick-results *::before,
+    .pick-results *::after { box-sizing: border-box; }
+
+    .pick-results__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 22px 24px 20px;
+      border-bottom: 1px solid var(--pr-line);
+    }
+
+    .pick-results__eyebrow {
+      display: block;
+      margin-bottom: 5px;
+      font-size: .67rem;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      opacity: .58;
+    }
+
+    .pick-results__head h2 {
+      margin: 0;
+      font-size: clamp(1.35rem, 2.8vw, 2rem);
+      line-height: 1;
+      letter-spacing: -.025em;
+    }
+
+    .pick-results__score {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .pick-results__score strong {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1;
+      letter-spacing: -.055em;
+    }
+
+    .pick-results__score span {
+      color: var(--pr-green);
+      font-size: 1rem;
+      font-weight: 900;
+    }
+
+    .pick-results__list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .pick-results__row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-width: 0;
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--pr-line);
+    }
+
+    .pick-results__row:nth-child(odd) {
+      border-right: 1px solid var(--pr-line);
+    }
+
+    .pick-results__row span {
+      min-width: 0;
+      font-size: .86rem;
+      font-weight: 750;
+      line-height: 1.25;
+    }
+
+    .pick-results__row strong {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex: 0 0 auto;
+      font-size: .67rem;
+      font-weight: 900;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .pick-results__row i {
+      display: inline-grid;
+      place-items: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      font-style: normal;
+      font-size: .78rem;
+      line-height: 1;
+    }
+
+    .pick-results__row.is-correct strong { color: var(--pr-green); }
+    .pick-results__row.is-correct i { background: var(--pr-green-bg); }
+
+    .pick-results__row.is-wrong strong { color: var(--pr-red); }
+    .pick-results__row.is-wrong i { background: var(--pr-red-bg); }
+
+    .pick-results__foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 18px;
+      background: rgba(127,127,127,.055);
+    }
+
+    .pick-results__foot span {
+      font-size: .63rem;
+      font-weight: 900;
+      letter-spacing: .15em;
+      opacity: .55;
+    }
+
+    .pick-results__foot strong {
+      font-size: .88rem;
+      font-weight: 900;
+      letter-spacing: .06em;
+    }
+
+    @media (max-width: 680px) {
+      .pick-results { margin-bottom: 25px; }
+
+      .pick-results__head {
+        padding: 17px 15px 15px;
+        gap: 14px;
+      }
+
+      .pick-results__eyebrow { font-size: .58rem; }
+      .pick-results__head h2 { font-size: 1.35rem; }
+
+      .pick-results__score {
+        gap: 8px;
+      }
+
+      .pick-results__score strong { font-size: 1.75rem; }
+      .pick-results__score span { font-size: .78rem; }
+
+      .pick-results__list {
+        grid-template-columns: 1fr;
+      }
+
+      .pick-results__row,
+      .pick-results__row:nth-child(odd) {
+        border-right: 0;
+      }
+
+      .pick-results__row {
+        padding: 11px 13px;
+      }
+
+      .pick-results__row span {
+        font-size: .79rem;
+      }
+
+      .pick-results__row strong {
+        font-size: .6rem;
+      }
+
+      .pick-results__row i {
+        width: 18px;
+        height: 18px;
+      }
+
+      .pick-results__foot {
+        padding: 12px 13px;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .pick-results__row {
+        transition: background-color .18s ease;
+      }
+
+      .pick-results__row.is-correct:hover { background: var(--pr-green-bg); }
+      .pick-results__row.is-wrong:hover { background: var(--pr-red-bg); }
+    }
+  </style>
+</section>
+
+
 The Meta APEX is hosting another event this weekend in Las Vegas and I gotta say... I’m not mad at it. This card has a little bit of everything I enjoy, and I’m not above a good hate-watch either.
 
 <section class="article-html-visual">
