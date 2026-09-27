@@ -421,6 +421,12 @@
   function normalizeWriterHtmlBlockCode(code) {
     let source=String(code||'');
     if (/data-writer-block="pick"/.test(source)) {
+      const match=source.match(/data-writer-config="([^"]+)"/);
+      if (match) {
+        try {
+          return buildPickVisual(JSON.parse(decodeURIComponent(match[1])));
+        } catch {}
+      }
       source=source.replace(/>\s*(?:MATLOCK PICK|Matlock Pick)\s*</g, ">Matlock's Pick<");
     }
     return source;
