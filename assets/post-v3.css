@@ -2119,19 +2119,14 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
   inset:0!important;
   left:0!important;
   top:0!important;
-  right:0!important;
-  bottom:0!important;
+  right:auto!important;
+  bottom:auto!important;
   width:100%!important;
   height:100%!important;
   max-width:none!important;
   object-fit:cover!important;
   object-position:50% 50%!important;
-  transform:
-    translate(
-      calc(var(--portrait-x,50%) - 50%),
-      calc(var(--portrait-y,50%) - 50%)
-    )
-    scale(var(--portrait-zoom,1))!important;
+  transform:none!important;
   transform-origin:50% 50%!important;
 }
 .article-html-visual[data-writer-block="tale"] .fight-compare-sleek .fc-result.draw{
