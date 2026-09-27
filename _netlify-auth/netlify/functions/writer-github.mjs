@@ -23,23 +23,11 @@ export function allowedPath(path, method) {
     return false;
   }
   if (method === 'PUT') {
-    if (/^\/contents\/_posts\/[A-Za-z0-9._~!  if (method === 'PUT') {
     if (/^\/contents\/_posts\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+\.md$/.test(value)) return true;
     if (/^\/contents\/assets\/uploads\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+$/.test(value)) return true;
-  }
-  return false;'()+,;=@%\/-]+\.md$/.test(value)) return true;
-    if (/^\/contents\/assets\/uploads\/[A-Za-z0-9._~!  if (method === 'PUT') {
-    if (/^\/contents\/_posts\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+\.md$/.test(value)) return true;
-    if (/^\/contents\/assets\/uploads\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+$/.test(value)) return true;
-  }
-  return false;'()+,;=@%\/-]+$/.test(value)) return true;
   }
   if (method === 'DELETE') {
-    if (/^\/contents\/_posts\/[A-Za-z0-9._~!  if (method === 'PUT') {
     if (/^\/contents\/_posts\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+\.md$/.test(value)) return true;
-    if (/^\/contents\/assets\/uploads\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+$/.test(value)) return true;
-  }
-  return false;'()+,;=@%\/-]+\.md$/.test(value)) return true;
   }
   return false;
 }
