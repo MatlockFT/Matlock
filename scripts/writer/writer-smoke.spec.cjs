@@ -392,6 +392,18 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('[data-preview-content]')).toContainText('Rendered HTML visual');
   await expect(page.locator('[data-local-status]')).toContainText('Saved locally', { timeout: 5000 });
 
+  // Every visual can be removed directly from the Visuals browser without opening its editor.
+  await page.click('[data-tool="html"]');
+  await page.fill('[data-html-label]', 'Disposable visual');
+  await page.fill('[data-html-code]', '<div class="writer-disposable-visual">Delete this visual.</div>');
+  await page.click('[data-html-insert]');
+  const disposableCard = page.locator('.writer-html-block-card').filter({ hasText:'Disposable visual' });
+  await expect(disposableCard.locator('[data-html-block-delete]')).toBeVisible();
+  page.once('dialog', dialog => dialog.accept());
+  await disposableCard.locator('[data-html-block-delete]').click();
+  await expect(page.locator('.writer-html-block-card').filter({ hasText:'Disposable visual' })).toHaveCount(0);
+  await expect(page.locator('[data-preview-content]')).not.toContainText('Delete this visual.');
+
   // Embedded visuals live in a vertical, scroll-ready browser instead of a horizontal strip.
   const visualList = page.locator('.writer-html-block-list');
   const visualListLayout = await visualList.evaluate(node => ({

@@ -514,6 +514,11 @@ Object.values(fields).forEach(el => {
       htmlBlockPanelToggle?.focus();
       return;
     }
+    const deleteButton = event.target.closest('[data-html-block-delete]');
+    if (deleteButton) {
+      deleteHtmlBlockById(deleteButton.dataset.htmlBlockDelete);
+      return;
+    }
     const button = event.target.closest('[data-html-block-edit]');
     if (!button) return;
     openHtmlBlockById(button.dataset.htmlBlockEdit);

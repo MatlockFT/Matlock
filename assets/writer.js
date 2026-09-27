@@ -506,18 +506,34 @@
       </div>
       <div class="writer-html-block-list">
         ${blocks.map((block, index) => `
-          <button type="button" class="writer-html-block-card" data-html-block-edit="${escapeHtml(block.id)}" title="Edit ${escapeHtml(block.label)}">
-            <span class="writer-html-block-index">${index + 1}</span>
-            <span class="writer-html-block-card-copy">
-              <strong>${escapeHtml(block.label)}</strong>
-              <small>HTML visual · #${escapeHtml(block.id)}</small>
-            </span>
-            <span class="writer-html-block-action">Edit HTML</span>
-          </button>
+          <div class="writer-html-block-card">
+            <button type="button" class="writer-html-block-card-main" data-html-block-edit="${escapeHtml(block.id)}" title="Edit ${escapeHtml(block.label)}">
+              <span class="writer-html-block-index">${index + 1}</span>
+              <span class="writer-html-block-card-copy">
+                <strong>${escapeHtml(block.label)}</strong>
+                <small>HTML visual · #${escapeHtml(block.id)}</small>
+              </span>
+              <span class="writer-html-block-action">Edit HTML</span>
+            </button>
+            <button type="button" class="writer-html-block-delete" data-html-block-delete="${escapeHtml(block.id)}" aria-label="Delete ${escapeHtml(block.label)}" title="Delete ${escapeHtml(block.label)}">Delete</button>
+          </div>
         `).join('')}
       </div>`;
 
     setHtmlBlockPanel(htmlBlockPanelOpen);
+  }
+
+  function deleteHtmlBlockById(id, { confirmDelete = true } = {}) {
+    const block = htmlBlocks.get(id);
+    if (!block) return false;
+    if (confirmDelete && !window.confirm('Delete "' + (block.label || 'this visual') + '"?')) return false;
+    replaceHtmlToken(id, '');
+    htmlBlocks.delete(id);
+    renderHtmlBlockRail();
+    scheduleAutosave();
+    updatePreview();
+    showToast('Visual removed.');
+    return true;
   }
 
   function focusHtmlBlockToken(id) {
@@ -4525,6 +4541,11 @@ Object.values(fields).forEach(el => {
     if (event.target.closest('[data-html-block-panel-close]')) {
       setHtmlBlockPanel(false);
       htmlBlockPanelToggle?.focus();
+      return;
+    }
+    const deleteButton = event.target.closest('[data-html-block-delete]');
+    if (deleteButton) {
+      deleteHtmlBlockById(deleteButton.dataset.htmlBlockDelete);
       return;
     }
     const button = event.target.closest('[data-html-block-edit]');

@@ -1367,3 +1367,46 @@ body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{
     transform:none;
   }
 }
+
+
+/* Writer visual browser delete controls */
+.writer-shell .writer-html-block-card{
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:.28rem;
+  padding:.28rem .34rem;
+}
+.writer-shell .writer-html-block-card-main{
+  display:grid;
+  grid-template-columns:26px minmax(0,1fr) auto;
+  align-items:center;
+  gap:.55rem;
+  min-width:0;
+  width:100%;
+  padding:.2rem .12rem;
+  border:0;
+  background:transparent;
+  color:inherit;
+  cursor:pointer;
+  text-align:left;
+}
+.writer-shell .writer-html-block-card-main:focus-visible{
+  outline:1px solid rgba(255,255,255,.32);
+  outline-offset:2px;
+}
+.writer-shell .writer-html-block-delete{
+  align-self:center;
+  padding:.34rem .46rem;
+  border:0;
+  border-radius:3px;
+  background:transparent;
+  color:#7b5f5f;
+  cursor:pointer;
+  font-size:.6rem;
+  font-weight:760;
+}
+.writer-shell .writer-html-block-delete:hover,
+.writer-shell .writer-html-block-delete:focus-visible{
+  background:rgba(176,72,72,.12);
+  color:#e7a1a1;
+  outline:0;
+}
