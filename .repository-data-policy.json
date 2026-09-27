@@ -277,61 +277,6 @@
       "publicContract": false
     },
     {
-      "id": "live-status-runtime",
-      "storage": "public-runtime",
-      "paths": [
-        "assets/data/global-live.json"
-      ],
-      "lifecycle": "generated-public-runtime",
-      "owner": "live",
-      "producers": [
-        "scripts/site-data/live/update-global-live.py"
-      ],
-      "consumers": [
-        "browser:live-and-site-ticker"
-      ],
-      "safeToRegenerate": true,
-      "safeToDeleteFromRepository": false,
-      "publicContract": true
-    },
-    {
-      "id": "live-source-registry",
-      "storage": "public-runtime",
-      "paths": [
-        "assets/data/live-promotions.json"
-      ],
-      "lifecycle": "curated-operational-input",
-      "owner": "live",
-      "producers": [
-        "manual:promotion-source-registry"
-      ],
-      "consumers": [
-        "scripts/site-data/live"
-      ],
-      "safeToRegenerate": false,
-      "safeToDeleteFromRepository": false,
-      "publicContract": false
-    },
-    {
-      "id": "live-source-discovery-state",
-      "storage": "public-runtime",
-      "paths": [
-        "assets/data/live-source-candidates.json",
-        "assets/data/live-source-discovery.json"
-      ],
-      "lifecycle": "operational-cache",
-      "owner": "live",
-      "producers": [
-        "scripts/site-data/live/discover-youtube-live-sources.py"
-      ],
-      "consumers": [
-        "scripts/site-data/live/update-global-live.py"
-      ],
-      "safeToRegenerate": true,
-      "safeToDeleteFromRepository": false,
-      "publicContract": false
-    },
-    {
       "id": "matchmaker-current",
       "storage": "public-runtime",
       "paths": [
@@ -446,43 +391,6 @@
         "assets/site-ticker.js"
       ],
       "safeToRegenerate": true,
-      "safeToDeleteFromRepository": false,
-      "publicContract": true
-    },
-    {
-      "id": "mma-videos-runtime-fallback",
-      "storage": "public-runtime",
-      "paths": [
-        "assets/data/mma-videos.json"
-      ],
-      "lifecycle": "generated-public-runtime",
-      "owner": "news",
-      "producers": [
-        "scripts/news/build-youtube-feed.mjs"
-      ],
-      "consumers": [
-        "assets/broadcast-trial.js"
-      ],
-      "safeToRegenerate": true,
-      "safeToDeleteFromRepository": false,
-      "publicContract": true
-    },
-    {
-      "id": "broadcast-control-runtime",
-      "storage": "public-runtime",
-      "paths": [
-        "assets/data/broadcast-control.json"
-      ],
-      "lifecycle": "curated-public-runtime",
-      "owner": "broadcast",
-      "producers": [
-        "broadcast-control.html",
-        "assets/broadcast-control.js"
-      ],
-      "consumers": [
-        "assets/broadcast-trial.js"
-      ],
-      "safeToRegenerate": false,
       "safeToDeleteFromRepository": false,
       "publicContract": true
     },
