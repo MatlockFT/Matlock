@@ -919,3 +919,104 @@
     flex-direction:column;
   }
 }
+
+
+/* Direct Tale portrait editing in rendered preview */
+.writer-preview-html-shell.is-tale-portrait-editing{
+  outline:1px solid rgba(255,255,255,.34);
+  outline-offset:5px;
+}
+.writer-preview-html-shell.is-tale-portrait-editing .fc-portrait[data-editable-portrait]{
+  cursor:grab!important;
+  touch-action:none!important;
+  outline:1px dashed rgba(255,255,255,.55);
+  outline-offset:4px;
+  box-shadow:0 0 0 5px rgba(255,255,255,.035),0 12px 28px rgba(0,0,0,.28);
+}
+.writer-preview-html-shell.is-tale-portrait-editing .fc-portrait[data-editable-portrait]:hover,
+.writer-preview-html-shell.is-tale-portrait-editing .fc-portrait[data-editable-portrait]:focus-visible{
+  outline-color:rgba(255,255,255,.9);
+}
+.writer-preview-html-shell.is-tale-portrait-editing .fc-portrait[data-editable-portrait].is-positioning{
+  cursor:grabbing!important;
+  outline-style:solid;
+}
+.writer-tale-crop-controls{
+  display:grid;
+  gap:.5rem;
+  margin:.65rem 0 1rem;
+  padding:.65rem;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:7px;
+  background:#0b0b0c;
+  color:#d8d8d8;
+  font-family:var(--writer-font-ui,Arial,sans-serif);
+}
+.writer-tale-crop-help{
+  color:#89898b;
+  font-size:.66rem;
+  line-height:1.4;
+}
+.writer-tale-crop-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:.55rem;
+}
+.writer-tale-crop-control{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:end;
+  gap:.38rem .55rem;
+  min-width:0;
+  padding:.55rem;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:6px;
+  background:#101011;
+}
+.writer-tale-crop-control>strong{
+  grid-column:1/-1;
+  min-width:0;
+  overflow:hidden;
+  color:#f0f0ee;
+  font-size:.68rem;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.writer-tale-crop-control label{
+  display:grid;
+  grid-template-columns:auto minmax(90px,1fr);
+  align-items:center;
+  gap:.5rem;
+  min-width:0;
+}
+.writer-tale-crop-control label span{
+  color:#7f7f82;
+  font-size:.56rem;
+  font-weight:800;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.writer-tale-crop-control input[type="range"]{
+  width:100%;
+  min-width:90px;
+}
+.writer-tale-crop-control button{
+  min-height:28px;
+  padding:.32rem .5rem;
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:4px;
+  background:#171719;
+  color:#aaa;
+  cursor:pointer;
+  font-size:.58rem;
+  font-weight:800;
+}
+.writer-tale-crop-control button:hover,
+.writer-tale-crop-control button:focus-visible{
+  border-color:rgba(255,255,255,.26);
+  color:#fff;
+}
+@media(max-width:700px){
+  .writer-tale-crop-grid{grid-template-columns:1fr}
+  .writer-tale-crop-control{grid-template-columns:minmax(0,1fr) auto}
+}

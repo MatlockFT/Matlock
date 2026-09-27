@@ -386,9 +386,13 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(taleSection.locator('.fc-form-section')).toBeVisible();
 
   const insertedConfig = await taleSection.evaluate(section => JSON.parse(decodeURIComponent(section.dataset.writerConfig)));
-  expect(insertedConfig.a.x).toBe(63);
-  expect(insertedConfig.a.y).toBe(37);
-  expect(insertedConfig.a.zoom).toBe(132);
+  expect(insertedConfig.version).toBe(6);
+  expect(insertedConfig.a.portrait.x).toBe(63);
+  expect(insertedConfig.a.portrait.y).toBe(37);
+  expect(insertedConfig.a.portrait.zoom).toBe(132);
+  expect(insertedConfig.a.x).toBeUndefined();
+  expect(insertedConfig.a.y).toBeUndefined();
+  expect(insertedConfig.a.zoom).toBeUndefined();
 
   const outputCanvas = taleSection.locator('.fc-left .fc-portrait > canvas.matlock-portrait-canvas');
   await expect(outputCanvas).toBeVisible();
@@ -399,28 +403,63 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   }
   await expect(taleSection.locator('.fc-left .fc-portrait')).toHaveClass(/portrait-canvas-ready/);
 
-  // Re-open the existing Tale block, change placement, and prove that editing
-  // persists to the structured config and re-renders the actual visual.
+  // Final portrait placement is edited on the actual rendered Tale card.
   const taleBlockId = await taleSection.getAttribute('data-writer-html-block-id');
   expect(taleBlockId).toBeTruthy();
-  await page.locator('[data-html-block-edit="' + taleBlockId + '"]').click();
-  await expect(taleDialog).toBeVisible();
-  await taleDialog.locator('[data-tale-image-x="a"]').evaluate(node => { node.value='24'; node.dispatchEvent(new Event('input',{bubbles:true})); });
-  await taleDialog.locator('[data-tale-image-y="a"]').evaluate(node => { node.value='71'; node.dispatchEvent(new Event('input',{bubbles:true})); });
-  await taleDialog.locator('[data-tale-image-zoom="a"]').evaluate(node => { node.value='146'; node.dispatchEvent(new Event('input',{bubbles:true})); });
-  await taleDialog.locator('[data-tale-insert]').click();
+  const taleShell = taleSection.locator('xpath=..');
+  await taleShell.locator('[data-preview-html-visual-edit]').click();
+  await expect(taleShell).toHaveClass(/is-tale-portrait-editing/);
+  await expect(taleShell.locator('[data-tale-crop-controls]')).toBeVisible();
+  await expect(taleShell.locator('[data-tale-crop-side="a"]')).toContainText('Alpha Fighter');
 
-  const updatedTaleSection = page.locator('[data-preview-content] section[data-writer-block="tale"]').filter({ hasText:'Alpha Fighter' }).first();
+  const directFrame = taleSection.locator('.fc-left .fc-portrait');
+  const directBox = await directFrame.boundingBox();
+  expect(directBox).toBeTruthy();
+  const cx = directBox.x + directBox.width / 2;
+  const cy = directBox.y + directBox.height / 2;
+  await page.mouse.move(cx,cy);
+  await page.mouse.down();
+  await page.mouse.move(cx + 18,cy + 14,{steps:4});
+  await page.mouse.up();
+
+  const directZoom = taleShell.locator('[data-tale-preview-zoom="a"]');
+  await directZoom.evaluate(node => {
+    node.value='146';
+    node.dispatchEvent(new Event('input',{bubbles:true}));
+    node.dispatchEvent(new Event('change',{bubbles:true}));
+  });
+
+  const directConfig = await taleSection.evaluate(section => JSON.parse(decodeURIComponent(section.dataset.writerConfig)));
+  expect(directConfig.version).toBe(6);
+  expect(directConfig.a.portrait.x).not.toBe(63);
+  expect(directConfig.a.portrait.y).not.toBe(37);
+  expect(directConfig.a.portrait.zoom).toBe(146);
+  const directCrop = {...directConfig.a.portrait};
+
+  await taleShell.locator('[data-preview-html-visual-edit]').click();
+  const updatedTaleSection = page.locator('[data-preview-content] section[data-writer-block="tale"][data-writer-html-block-id="' + taleBlockId + '"]');
+  await expect(updatedTaleSection).toBeVisible();
   const updatedConfig = await updatedTaleSection.evaluate(section => JSON.parse(decodeURIComponent(section.dataset.writerConfig)));
-  expect(updatedConfig.a.x).toBe(24);
-  expect(updatedConfig.a.y).toBe(71);
-  expect(updatedConfig.a.zoom).toBe(146);
+  expect(updatedConfig.a.portrait).toEqual(directCrop);
   const updatedCanvas = updatedTaleSection.locator('.fc-left .fc-portrait > canvas.matlock-portrait-canvas');
   await expect.poll(async () => Boolean(await updatedCanvas.getAttribute('data-portrait-render'))).toBe(true);
   const updatedRender = JSON.parse(await updatedCanvas.getAttribute('data-portrait-render'));
-  expect(updatedRender.x).toBe(24);
-  expect(updatedRender.y).toBe(71);
+  expect(updatedRender.x).toBeCloseTo(directCrop.x,3);
+  expect(updatedRender.y).toBeCloseTo(directCrop.y,3);
   expect(updatedRender.zoom).toBe(146);
+
+  // Reopening the structured Tale editor and changing non-image data must not
+  // reset the final crop established on the actual visual.
+  await page.locator('[data-html-block-edit="' + taleBlockId + '"]').click();
+  await expect(taleDialog).toBeVisible();
+  await expect(taleDialog.locator('[data-tale-image-x="a"]')).toHaveValue(String(directCrop.x));
+  await expect(taleDialog.locator('[data-tale-image-y="a"]')).toHaveValue(String(directCrop.y));
+  await expect(taleDialog.locator('[data-tale-image-zoom="a"]')).toHaveValue('146');
+  await taleDialog.locator('[data-tale-division="a"]').fill('Test Division');
+  await taleDialog.locator('[data-tale-insert]').click();
+  const persistedTaleSection = page.locator('[data-preview-content] section[data-writer-block="tale"][data-writer-html-block-id="' + taleBlockId + '"]');
+  const persistedConfig = await persistedTaleSection.evaluate(section => JSON.parse(decodeURIComponent(section.dataset.writerConfig)));
+  expect(persistedConfig.a.portrait).toEqual(directCrop);
 
   // Writer preview hydrates official UFC moneylines without waiting for the Netlify backend.
   await page.click('[data-tool="tale"]');

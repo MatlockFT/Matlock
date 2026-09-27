@@ -328,15 +328,17 @@ Object.values(fields).forEach(el => {
       odds:taleDialog.querySelector('[data-tale-odds="'+side+'"]').value.trim(),
       last5:taleDialog.querySelector('[data-tale-last5="'+side+'"]').value.trim(),
       image:taleDialog.querySelector('[data-tale-image-path="'+side+'"]').value.trim(),
-      x:Number(taleDialog.querySelector('[data-tale-image-x="'+side+'"]').value||50),
-      y:Number(taleDialog.querySelector('[data-tale-image-y="'+side+'"]').value||50),
-      zoom:Math.max(100,Number(taleDialog.querySelector('[data-tale-image-zoom="'+side+'"]').value||100)),
+      portrait:{
+        x:Number(taleDialog.querySelector('[data-tale-image-x="'+side+'"]').value||50),
+        y:Number(taleDialog.querySelector('[data-tale-image-y="'+side+'"]').value||50),
+        zoom:Math.max(100,Number(taleDialog.querySelector('[data-tale-image-zoom="'+side+'"]').value||100))
+      },
       recent:collectRecentRows(taleDialog.querySelector('[data-tale-form-list="'+side+'"]')),
       opponentsRecord:taleDialog.querySelector('[data-tale-opponents-record="'+side+'"]').value.trim(),
       opponentsPct:taleDialog.querySelector('[data-tale-opponents-pct="'+side+'"]').value.trim(),
       source:fighterSourceMeta(taleDialog.querySelector(side==='a'?'[data-tale-a]':'[data-tale-b]'))
     });
-    const cfg={version:5,a:collect('a'),b:collect('b'),rows:collectComparisonRows(taleDialog.querySelector('[data-tale-row-list]'))};
+    const cfg={version:6,a:collect('a'),b:collect('b'),rows:collectComparisonRows(taleDialog.querySelector('[data-tale-row-list]'))};
     cfg.eventDate=cfg.a.source?.bookingDate||cfg.b.source?.bookingDate||'';
     if(!cfg.a.name||!cfg.b.name){showToast('Add both fighter names.');return;}
     if(!cfg.rows.length) cfg.rows=normalizeComparisonRows([],taleDefaultRowLabels);
