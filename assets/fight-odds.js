@@ -2,6 +2,7 @@
   'use strict';
 
   const API = 'https://mmamatlock-writer-auth.netlify.app/api/fight-odds';
+  const STATIC_ODDS = '/assets/live-ufc-odds.json';
   const cards = [...document.querySelectorAll('[data-live-odds-matchup]')];
   if (!cards.length && !document.querySelector('.fc-last5-record')) return;
 
@@ -28,6 +29,53 @@
       .replace(/[^a-z0-9]+/g,' ').trim().split(' ').sort().join(' ');
   }
 
+  let staticFeed = null;
+  let staticFeedFetchedAt = 0;
+
+  async function loadStaticOdds() {
+    if (staticFeed && Date.now() - staticFeedFetchedAt < 45000) return staticFeed;
+    const response = await fetch(STATIC_ODDS + '?t=' + Date.now(), {
+      cache:'no-store',
+      credentials:'same-origin',
+      headers:{Accept:'application/json'}
+    });
+    if (!response.ok) throw new Error('static odds unavailable');
+    staticFeed = await response.json();
+    staticFeedFetchedAt = Date.now();
+    return staticFeed;
+  }
+
+  async function staticOddsFor(card) {
+    const fighterA = normalizedName(card.dataset.liveOddsFighterA || '');
+    const fighterB = normalizedName(card.dataset.liveOddsFighterB || '');
+    const eventDate = card.dataset.liveOddsEventDate || '';
+    if (!fighterA || !fighterB) return null;
+    const feed = await loadStaticOdds();
+    const events = Array.isArray(feed?.events) ? feed.events : [];
+    const candidates = /^\d{4}-\d{2}-\d{2}$/.test(eventDate)
+      ? events.filter(event => event.date === eventDate)
+      : events;
+    for (const event of candidates) {
+      for (const fight of event.fights || []) {
+        const fighters = fight.fighters || [];
+        const a = fighters.find(row => normalizedName(row.name) === fighterA);
+        const b = fighters.find(row => normalizedName(row.name) === fighterB);
+        if (!a?.moneyline || !b?.moneyline) continue;
+        return {
+          ok:true,
+          available:true,
+          source:feed.source || 'UFC.com',
+          provider:feed.source || 'UFC.com',
+          fetchedAt:feed.generated_at || new Date().toISOString(),
+          eventDate:event.date || null,
+          fighterA:{name:card.dataset.liveOddsFighterA || '',moneyline:a.moneyline},
+          fighterB:{name:card.dataset.liveOddsFighterB || '',moneyline:b.moneyline}
+        };
+      }
+    }
+    return null;
+  }
+
   function setMoneylines(card, moneylineA, moneylineB, meta = {}) {
     const left = card.querySelector('[data-live-odds-side="a"]');
     const right = card.querySelector('[data-live-odds-side="b"]');
@@ -37,7 +85,8 @@
     if (b) b.textContent = moneylineB;
     const checked = meta.fetchedAt ? new Date(meta.fetchedAt) : new Date();
     const provider = meta.provider ? ' · ' + meta.provider : '';
-    const title = 'Live moneyline via ESPN' + provider + ' · checked ' +
+    const source = meta.source || 'live feed';
+    const title = 'Live moneyline via ' + source + provider + ' · checked ' +
       checked.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
     for (const pill of [left,right]) {
       if (!pill) continue;
@@ -91,6 +140,11 @@
     const fighterB = card.dataset.liveOddsFighterB || '';
     const date = card.dataset.liveOddsEventDate || '';
     if (!fighterA || !fighterB) return null;
+    try {
+      const staticData = await staticOddsFor(card);
+      if (staticData) return staticData;
+    } catch {}
+
     const params = new URLSearchParams({fighterA,fighterB});
     if (/^\d{4}-\d{2}-\d{2}$/.test(date)) params.set('date',date);
     const response = await fetch(API + '?' + params.toString(),{
