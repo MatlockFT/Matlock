@@ -2110,11 +2110,11 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
 
 }
 
-/* Writer portrait sources are usually UFC full-body PNGs rather than the pre-cropped
-   Vegas 121 assets. X/Y are true pan coordinates now, not object-position hints.
-   The exact same crop transform is used by the article card and the Writer editor. */
-.article-html-visual[data-writer-block="tale"] .fight-compare-sleek .fc-portrait img,
-.writer-tale-portrait img{
+/* Writer-generated portraits use a canvas crop layer. The source IMG is only a
+   centered fallback and image loader, which isolates the crop from legacy Vegas
+   portrait offsets and every responsive CSS rule around the card. */
+.article-html-visual[data-writer-block="tale"] .fight-compare-sleek .fc-portrait > img,
+.writer-tale-portrait > img[data-portrait-source]{
   position:absolute!important;
   inset:0!important;
   left:0!important;
@@ -2128,6 +2128,25 @@ html[data-theme="dark"] .post-page-v3 .post-rail-thumb{
   object-position:50% 50%!important;
   transform:none!important;
   transform-origin:50% 50%!important;
+  z-index:0!important;
+}
+.matlock-portrait-canvas{
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  z-index:1!important;
+  pointer-events:none!important;
+}
+.article-html-visual[data-writer-block="tale"] .portrait-canvas-ready > img,
+.writer-tale-portrait.portrait-canvas-ready > img[data-portrait-source]{
+  opacity:0!important;
+  visibility:hidden!important;
+}
+.article-html-visual[data-writer-block="tale"] .fight-compare-sleek .fc-portrait .fc-ring{
+  z-index:2;
 }
 .article-html-visual[data-writer-block="tale"] .fight-compare-sleek .fc-result.draw{
   color:#d6b765;

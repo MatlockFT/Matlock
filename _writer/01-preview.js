@@ -864,6 +864,7 @@
 
       tools.querySelector('[data-preview-html-visual-edit]').addEventListener('click', event => {
         event.stopPropagation();
+        if (section.dataset.writerBlock && openStructuredBlockById(id)) return;
         setPreviewHtmlEditing(shell, !shell.classList.contains('is-editing'));
       });
 
