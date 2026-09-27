@@ -1020,3 +1020,23 @@
   .writer-tale-crop-grid{grid-template-columns:1fr}
   .writer-tale-crop-control{grid-template-columns:minmax(0,1fr) auto}
 }
+
+
+/* Pick dialog dropdown contrast */
+.writer-shell [data-pick-dialog] select,
+.writer-app [data-pick-dialog] select{
+  color-scheme:dark;
+  background-color:#0b0b0c!important;
+  color:#f0f0ee!important;
+  border-color:rgba(255,255,255,.12)!important;
+}
+.writer-shell [data-pick-dialog] select option,
+.writer-app [data-pick-dialog] select option{
+  background:#111113;
+  color:#f0f0ee;
+}
+.writer-shell [data-pick-dialog] select option:checked,
+.writer-app [data-pick-dialog] select option:checked{
+  background:#244b86;
+  color:#fff;
+}

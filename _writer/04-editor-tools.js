@@ -1002,7 +1002,7 @@ function insertBlock(text) {
     const round = String(config.round || '').trim();
     const result = [method, round].filter(Boolean).join(' · ');
     const note = String(config.note || '').trim();
-    const inner = '<aside class="article-pick-card"><span class="article-pick-card__label">MATLOCK PICK</span>' +
+    const inner = '<aside class="article-pick-card"><span class="article-pick-card__label">Matlock\'s Pick</span>' +
       '<div class="article-pick-card__main"><strong>' + escapeHtml(fighter) + '</strong>' +
       (result ? '<span>' + escapeHtml(result) + '</span>' : '') + '</div>' +
       (note ? '<p>' + escapeHtml(note) + '</p>' : '') + '</aside>';
