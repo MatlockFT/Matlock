@@ -465,7 +465,7 @@ test.describe('Article fight navigation and spoiler picks', () => {
 
     await picks.locator('[data-article-picks-toggle]').click();
     await expect(picks.locator('[data-article-picks-panel]')).toBeVisible();
-    await expect(picks.locator('[data-article-picks-list] li')).toHaveCount(12);
+    await expect(picks.locator('[data-article-picks-list] li')).toHaveCount(11);\n    await expect(picks).toHaveClass(/has-post-fight-results/);\n    await expect(picks.locator('.article-picks-score')).toContainText('8-3');\n    await expect(picks.locator('.article-picks-result')).toHaveCount(11);
     await expect(page.locator('.fight-section-ambient')).toHaveCount(12);
     await expect(floatingToc.locator('[data-article-toc-list] li')).toHaveCount(12);
 
