@@ -81,8 +81,8 @@
     if (a) a.textContent = moneylineA;
     if (b) b.textContent = moneylineB;
     const checked = meta.fetchedAt ? new Date(meta.fetchedAt) : new Date();
-    const provider = meta.provider ? ' · ' + meta.provider : '';
     const source = meta.source || 'live feed';
+    const provider = meta.provider && meta.provider !== source ? ' · ' + meta.provider : '';
     const title = 'Live moneyline via ' + source + provider + ' · checked ' +
       checked.toLocaleTimeString([],{hour:'numeric',minute:'2-digit'});
     for (const pill of [left,right]) {
