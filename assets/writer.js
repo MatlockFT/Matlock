@@ -418,10 +418,19 @@
     });
   }
 
+  function normalizeWriterHtmlBlockCode(code) {
+    let source=String(code||'');
+    if (/data-writer-block="pick"/.test(source)) {
+      source=source.replace(/>\s*(?:MATLOCK PICK|Matlock Pick)\s*</g, ">Matlock's Pick<");
+    }
+    return source;
+  }
+
   function collapseRawHtmlSections(text) {
     return String(text || '').replace(/<section\b[\s\S]*?<\/section>/gi, code => {
       const id = htmlBlockId();
-      const block = { id, label: inferHtmlLabel(code), code: code.trim() };
+      const normalized=normalizeWriterHtmlBlockCode(code.trim());
+      const block = { id, label: inferHtmlLabel(normalized), code: normalized };
       htmlBlocks.set(id, block);
       return htmlBlockToken(block);
     });
@@ -431,7 +440,7 @@
     htmlBlocks = new Map();
     for (const item of Array.isArray(savedBlocks) ? savedBlocks : []) {
       if (!item?.id || !item?.code) continue;
-      htmlBlocks.set(String(item.id), { id: String(item.id), label: cleanHtmlLabel(item.label), code: String(item.code) });
+      htmlBlocks.set(String(item.id), { id: String(item.id), label: cleanHtmlLabel(item.label), code: normalizeWriterHtmlBlockCode(item.code) });
     }
     const source = String(body || '');
     if (htmlBlocks.size) return source;
@@ -3592,7 +3601,7 @@ function insertBlock(text) {
     const round = String(config.round || '').trim();
     const result = [method, round].filter(Boolean).join(' · ');
     const note = String(config.note || '').trim();
-    const inner = '<aside class="article-pick-card"><span class="article-pick-card__label">MATLOCK PICK</span>' +
+    const inner = '<aside class="article-pick-card"><span class="article-pick-card__label">Matlock\'s Pick</span>' +
       '<div class="article-pick-card__main"><strong>' + escapeHtml(fighter) + '</strong>' +
       (result ? '<span>' + escapeHtml(result) + '</span>' : '') + '</div>' +
       (note ? '<p>' + escapeHtml(note) + '</p>' : '') + '</aside>';
