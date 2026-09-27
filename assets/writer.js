@@ -3606,21 +3606,18 @@ function insertBlock(text) {
     const method = String(config.method || '').trim();
     const round = String(config.round || '').trim();
     const note = String(config.note || '').trim();
-    const chips =
-      (method ? '<span class="article-pick-card__chip article-pick-card__chip--method"><small>Method</small><strong>' + escapeHtml(method) + '</strong></span>' : '') +
-      (round ? '<span class="article-pick-card__chip"><small>Round</small><strong>' + escapeHtml(round) + '</strong></span>' : '');
+    const result =
+      (method ? '<span class="article-pick-card__method">' + escapeHtml(method) + '</span>' : '') +
+      (method && round ? '<span class="article-pick-card__dot" aria-hidden="true"></span>' : '') +
+      (round ? '<span class="article-pick-card__round">' + escapeHtml(round) + '</span>' : '');
     const inner =
-      '<aside class="article-pick-card">' +
-        '<div class="article-pick-card__accent" aria-hidden="true"><span>M</span></div>' +
-        '<div class="article-pick-card__content">' +
-          '<div class="article-pick-card__topline">' +
-            '<span class="article-pick-card__label">Matlock\'s Pick</span>' +
-            '<span class="article-pick-card__kicker">Fight prediction</span>' +
-          '</div>' +
+      '<aside class="article-pick-card article-pick-card--slim">' +
+        '<div class="article-pick-card__rule"><span>Matlock\'s Pick</span></div>' +
+        '<div class="article-pick-card__centerline">' +
           '<strong class="article-pick-card__fighter">' + escapeHtml(fighter) + '</strong>' +
-          (chips ? '<div class="article-pick-card__chips">' + chips + '</div>' : '') +
-          (note ? '<p class="article-pick-card__note">' + escapeHtml(note) + '</p>' : '') +
+          (result ? '<span class="article-pick-card__divider" aria-hidden="true"></span><span class="article-pick-card__result">' + result + '</span>' : '') +
         '</div>' +
+        (note ? '<p class="article-pick-card__note">' + escapeHtml(note) + '</p>' : '') +
       '</aside>';
     return structuredSection('pick', config, inner);
   }
