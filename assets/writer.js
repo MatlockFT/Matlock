@@ -1474,6 +1474,7 @@
 
       tools.querySelector('[data-preview-html-visual-edit]').addEventListener('click', event => {
         event.stopPropagation();
+        if (section.dataset.writerBlock && openStructuredBlockById(id)) return;
         setPreviewHtmlEditing(shell, !shell.classList.contains('is-editing'));
       });
 
@@ -3294,11 +3295,10 @@ function insertBlock(text) {
     const image=String(fighter.image||'').trim();
     const x=Number(fighter.x ?? 50);
     const y=Number(fighter.y ?? 50);
-    const zoom=Number(fighter.zoom ?? 100);
-    const style='--portrait-x:'+x+'%;--portrait-y:'+y+'%;--portrait-zoom:'+(zoom/100)+';';
-    return '<div class="fc-portrait ring-'+side+'" style="'+style+'">'+
+    const zoom=Math.max(100,Number(fighter.zoom ?? 100)||100);
+    return '<div class="fc-portrait ring-'+side+'">'+
       '<span class="fc-ring"></span><span class="fc-ring fc-ring-inner"></span>'+
-      (image?'<img src="'+escapeHtml(image)+'" alt="'+escapeHtml(fighter.name||'')+
+      (image?'<img class="fc-portrait-source" data-portrait-source src="'+escapeHtml(image)+'" alt="'+escapeHtml(fighter.name||'')+
         '" data-portrait-x="'+x+'" data-portrait-y="'+y+'" data-portrait-zoom="'+zoom+'">':'')+
       '</div>';
   }
@@ -3398,14 +3398,21 @@ function insertBlock(text) {
     const src = localUrl || (path ? writerPreviewAssetUrl(path) : '');
     image.hidden = !src;
     empty.hidden = Boolean(src);
-    if (src) image.src = src;
-    drop.style.setProperty('--portrait-x', x + '%');
-    drop.style.setProperty('--portrait-y', y + '%');
-    drop.style.setProperty('--portrait-zoom', String(zoom/100));
     image.dataset.portraitX = String(x);
     image.dataset.portraitY = String(y);
-    image.dataset.portraitZoom = String(zoom);
-    window.MatlockPortraitCrop?.apply?.(image,{x,y,zoom,frame:drop});
+    image.dataset.portraitZoom = String(Math.max(100,zoom||100));
+    if (src) {
+      const nextSrc = new URL(src,location.href).href;
+      if (image.src !== nextSrc) {
+        drop.classList.remove('portrait-canvas-ready');
+        image.src = src;
+      }
+      window.MatlockPortraitCrop?.render?.(image,{x,y,zoom:Math.max(100,zoom||100),frame:drop});
+    } else {
+      image.removeAttribute('src');
+      drop.classList.remove('portrait-canvas-ready');
+      drop.querySelector(':scope > canvas.matlock-portrait-canvas')?.remove();
+    }
   }
 
   function resetStatsDialog(config = {}) {
@@ -4372,7 +4379,7 @@ Object.values(fields).forEach(el => {
       opponentsPct:taleDialog.querySelector('[data-tale-opponents-pct="'+side+'"]').value.trim(),
       source:fighterSourceMeta(taleDialog.querySelector(side==='a'?'[data-tale-a]':'[data-tale-b]'))
     });
-    const cfg={version:4,a:collect('a'),b:collect('b'),rows:collectComparisonRows(taleDialog.querySelector('[data-tale-row-list]'))};
+    const cfg={version:5,a:collect('a'),b:collect('b'),rows:collectComparisonRows(taleDialog.querySelector('[data-tale-row-list]'))};
     cfg.eventDate=cfg.a.source?.bookingDate||cfg.b.source?.bookingDate||'';
     if(!cfg.a.name||!cfg.b.name){showToast('Add both fighter names.');return;}
     if(!cfg.rows.length) cfg.rows=normalizeComparisonRows([],taleDefaultRowLabels);
@@ -4425,12 +4432,16 @@ Object.values(fields).forEach(el => {
     const path = dialog.querySelector('[data-tale-image-path="' + side + '"]');
     const image = dialog.querySelector('[data-tale-image-preview="' + side + '"]');
 
-    drop.addEventListener('click', event => {
-      if (!image.hidden && event.target === image) return;
-      file.click();
+    drop.addEventListener('click', () => {
+      // Once a portrait exists, single-click is reserved for drag positioning.
+      // Double-click remains the replace-image shortcut.
+      if (image.hidden) file.click();
     });
     drop.addEventListener('dblclick', event => {
-      if (!image.hidden && event.target === image) file.click();
+      if (!image.hidden) {
+        event.preventDefault();
+        file.click();
+      }
     });
     drop.addEventListener('keydown', event => {
       if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); file.click(); }
@@ -4456,29 +4467,37 @@ Object.values(fields).forEach(el => {
     });
 
     let dragState = null;
-    image.addEventListener('pointerdown', event => {
-      if (image.hidden) return;
+    drop.addEventListener('pointerdown', event => {
+      if (image.hidden || event.button !== 0) return;
       event.preventDefault();
-      image.setPointerCapture?.(event.pointerId);
+      drop.setPointerCapture?.(event.pointerId);
       dragState = {
-        x: event.clientX,
-        y: event.clientY,
-        startX: Number(dialog.querySelector('[data-tale-image-x="' + side + '"]').value || 50),
-        startY: Number(dialog.querySelector('[data-tale-image-y="' + side + '"]').value || 50),
-        rect: drop.getBoundingClientRect()
+        pointerId:event.pointerId,
+        x:event.clientX,
+        y:event.clientY,
+        startX:Number(dialog.querySelector('[data-tale-image-x="' + side + '"]').value || 50),
+        startY:Number(dialog.querySelector('[data-tale-image-y="' + side + '"]').value || 50),
+        rect:drop.getBoundingClientRect()
       };
+      drop.classList.add('is-positioning');
     });
-    image.addEventListener('pointermove', event => {
-      if (!dragState) return;
+    drop.addEventListener('pointermove', event => {
+      if (!dragState || event.pointerId !== dragState.pointerId) return;
       const xInput = dialog.querySelector('[data-tale-image-x="' + side + '"]');
       const yInput = dialog.querySelector('[data-tale-image-y="' + side + '"]');
-      xInput.value = String(Math.round(Math.max(0, Math.min(100, dragState.startX + ((event.clientX - dragState.x) / Math.max(1, dragState.rect.width)) * 100))));
-      yInput.value = String(Math.round(Math.max(0, Math.min(100, dragState.startY + ((event.clientY - dragState.y) / Math.max(1, dragState.rect.height)) * 100))));
+      const dx=((event.clientX-dragState.x)/Math.max(1,dragState.rect.width))*100;
+      const dy=((event.clientY-dragState.y)/Math.max(1,dragState.rect.height))*100;
+      xInput.value=String(Math.round(Math.max(0,Math.min(100,dragState.startX+dx))));
+      yInput.value=String(Math.round(Math.max(0,Math.min(100,dragState.startY+dy))));
       taleImagePreview(side);
     });
-    const stopDrag = () => { dragState = null; };
-    image.addEventListener('pointerup', stopDrag);
-    image.addEventListener('pointercancel', stopDrag);
+    const stopDrag = event => {
+      if (!dragState || (event?.pointerId != null && event.pointerId !== dragState.pointerId)) return;
+      drop.classList.remove('is-positioning');
+      dragState=null;
+    };
+    drop.addEventListener('pointerup',stopDrag);
+    drop.addEventListener('pointercancel',stopDrag);
   });
 
   app.querySelector('[data-conflict-reload]').addEventListener('click', () => {
