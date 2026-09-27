@@ -180,7 +180,10 @@ const activeOfficial = activeFighters.filter(official).length;
 const activeRatio = activeFighters.length ? activeOfficial / activeFighters.length : 0;
 
 if (participantMissing.length) {
-  throw new Error(`Official UFC portrait coverage missing for displayed fighters: ${participantMissing.map(fighter => fighter.name).join(', ')}`);
+  // A newly debuted fighter can legitimately have only UFC's silhouette while the rest
+  // of the profile is live. Missing art must not block a verified post-fight card from
+  // publishing; the Matchmaker UI already has a built-in fighter placeholder.
+  console.warn(`Official UFC portrait unavailable for displayed fighters; using UI placeholder: ${participantMissing.map(fighter => fighter.name).join(', ')}`);
 }
 if (activeFighters.length && activeRatio < 0.9) {
   throw new Error(`Official UFC portrait extraction coverage implausibly low: ${activeOfficial}/${activeFighters.length}`);
@@ -203,5 +206,5 @@ data.coverage.officialUfcPortraitFailures = failures;
 
 await fs.writeFile(`${currentFile}.tmp`, JSON.stringify(data, null, 2) + '\n');
 await fs.rename(`${currentFile}.tmp`, currentFile);
-console.log(`Official UFC portraits: ${portraitById.size}/${targets.length} targets; active ${activeOfficial}/${activeFighters.length}; displayed ${participantFighters.length}/${participantFighters.length}.`);
+console.log(`Official UFC portraits: ${portraitById.size}/${targets.length} targets; active ${activeOfficial}/${activeFighters.length}; displayed ${participantFighters.length - participantMissing.length}/${participantFighters.length}.`);
 if (failures.length) console.warn(`UFC portrait fallbacks retained for ${failures.length} fighters: ${failures.map(item => item.name).join(', ')}`);
