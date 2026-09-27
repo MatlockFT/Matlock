@@ -843,6 +843,188 @@
     if (button) button.textContent = enabled ? 'Done' : 'Edit visually';
   }
 
+  function previewTalePortraitNodes(section, side) {
+    const root = section?.querySelector(side === 'a' ? '.fc-left' : '.fc-right');
+    const frame = root?.querySelector('.fc-portrait');
+    const image = frame?.querySelector('img[data-portrait-source], img');
+    return { root, frame, image };
+  }
+
+  function renderPreviewTalePortrait(section, side, crop) {
+    const { frame, image } = previewTalePortraitNodes(section, side);
+    if (!frame || !image) return false;
+    image.dataset.portraitX = String(crop.x);
+    image.dataset.portraitY = String(crop.y);
+    image.dataset.portraitZoom = String(crop.zoom);
+    return Boolean(window.MatlockPortraitCrop?.render?.(image, {
+      x: crop.x,
+      y: crop.y,
+      zoom: crop.zoom,
+      frame
+    }));
+  }
+
+  function persistPreviewTalePortrait(section, blockId, side, crop) {
+    const saved = updateTalePortraitConfig(blockId, side, crop);
+    if (!saved) return null;
+    section.dataset.writerConfig = encodedStructuredConfig(saved.config);
+    renderPreviewTalePortrait(section, side, saved.portrait);
+    return saved;
+  }
+
+  function taleCropDelta(frame, dx, dy) {
+    const canvas = frame?.querySelector('canvas.matlock-portrait-canvas');
+    let render = null;
+    try { render = JSON.parse(canvas?.dataset?.portraitRender || 'null'); } catch {}
+    const frameWidth = Math.max(1, Number(render?.frameWidth) || frame?.getBoundingClientRect().width || 1);
+    const frameHeight = Math.max(1, Number(render?.frameHeight) || frame?.getBoundingClientRect().height || 1);
+    const maxShiftX = Math.max(0, ((Number(render?.drawWidth) || frameWidth) - frameWidth) / 2);
+    const maxShiftY = Math.max(0, ((Number(render?.drawHeight) || frameHeight) - frameHeight) / 2);
+    return {
+      x: maxShiftX > 0.5 ? (dx / maxShiftX) * 50 : 0,
+      y: maxShiftY > 0.5 ? (dy / maxShiftY) * 50 : 0
+    };
+  }
+
+  function setPreviewTaleEditing(shell, enabled) {
+    const section = shell?.querySelector('section[data-writer-html-block-id][data-writer-block="tale"]');
+    if (!section) return false;
+    const blockId = section.dataset.writerHtmlBlockId || '';
+    const block = htmlBlocks.get(blockId);
+    const meta = structuredMeta(block?.code);
+    if (!block || meta?.type !== 'tale') return false;
+
+    if (!enabled) {
+      const session = shell._writerTaleCropSession;
+      if (session) {
+        for (const side of ['a','b']) {
+          persistPreviewTalePortrait(section, blockId, side, session.crops[side]);
+        }
+      }
+      shell._writerTaleCropSession = null;
+      shell.classList.remove('is-editing','is-tale-portrait-editing');
+      section.removeAttribute('data-tale-portrait-editing');
+      shell.querySelector('[data-tale-crop-controls]')?.remove();
+      const editButton = shell.querySelector('[data-preview-html-visual-edit]');
+      const label = shell.querySelector('.writer-preview-block-tools>span');
+      if (editButton) editButton.textContent = 'Edit visually';
+      if (label) label.textContent = block.label;
+      scheduleAutosave();
+      updatePreview();
+      showToast('Portrait placement saved.');
+      return true;
+    }
+
+    if (shell._writerTaleCropSession) return true;
+
+    const config = normalizeTaleConfig(meta.config);
+    const session = {
+      crops: {
+        a: { ...normalizeTalePortrait(config.a) },
+        b: { ...normalizeTalePortrait(config.b) }
+      },
+      drag: null
+    };
+    shell._writerTaleCropSession = session;
+    shell.classList.add('is-editing','is-tale-portrait-editing');
+    section.removeAttribute('contenteditable');
+    section.removeAttribute('spellcheck');
+    section.dataset.talePortraitEditing = 'true';
+
+    const tools = shell.querySelector('.writer-preview-block-tools');
+    const label = tools?.querySelector(':scope>span');
+    const editButton = tools?.querySelector('[data-preview-html-visual-edit]');
+    if (label) label.textContent = 'PORTRAIT POSITIONING';
+    if (editButton) editButton.textContent = 'Done';
+
+    const panel = document.createElement('div');
+    panel.className = 'writer-tale-crop-controls';
+    panel.dataset.taleCropControls = 'true';
+    panel.innerHTML =
+      '<div class="writer-tale-crop-help">Drag the actual portraits to position them. These are the saved article crops.</div>'+
+      '<div class="writer-tale-crop-grid">'+
+      ['a','b'].map(side => {
+        const fighter = config[side] || {};
+        const crop = session.crops[side];
+        return '<div class="writer-tale-crop-control" data-tale-crop-side="'+side+'">'+
+          '<strong>'+escapeHtml(fighter.name || (side === 'a' ? 'Fighter A' : 'Fighter B'))+'</strong>'+
+          '<label><span>Zoom</span><input type="range" min="100" max="200" step="1" value="'+crop.zoom+'" data-tale-preview-zoom="'+side+'"></label>'+
+          '<button type="button" data-tale-preview-reset="'+side+'">Reset</button>'+
+        '</div>';
+      }).join('')+
+      '</div>';
+    shell.append(panel);
+
+    const clamp = (value,min,max) => Math.max(min,Math.min(max,value));
+
+    for (const side of ['a','b']) {
+      const { frame, image } = previewTalePortraitNodes(section, side);
+      if (!frame || !image) continue;
+      frame.dataset.editablePortrait = 'true';
+      frame.tabIndex = 0;
+      frame.setAttribute('aria-label','Drag to position '+(config[side]?.name || 'fighter')+' portrait');
+      renderPreviewTalePortrait(section, side, session.crops[side]);
+
+      frame.addEventListener('pointerdown', event => {
+        if (event.button !== 0) return;
+        event.preventDefault();
+        event.stopPropagation();
+        frame.setPointerCapture?.(event.pointerId);
+        session.drag = {
+          side,
+          pointerId:event.pointerId,
+          startClientX:event.clientX,
+          startClientY:event.clientY,
+          start:{...session.crops[side]}
+        };
+        frame.classList.add('is-positioning');
+      });
+
+      frame.addEventListener('pointermove', event => {
+        const drag = session.drag;
+        if (!drag || drag.side !== side || drag.pointerId !== event.pointerId) return;
+        event.preventDefault();
+        const delta = taleCropDelta(
+          frame,
+          event.clientX - drag.startClientX,
+          event.clientY - drag.startClientY
+        );
+        const next = session.crops[side];
+        next.x = Math.round(clamp(drag.start.x + delta.x,0,100) * 10) / 10;
+        next.y = Math.round(clamp(drag.start.y + delta.y,0,100) * 10) / 10;
+        renderPreviewTalePortrait(section, side, next);
+      });
+
+      const finishDrag = event => {
+        const drag = session.drag;
+        if (!drag || drag.side !== side || (event?.pointerId != null && drag.pointerId !== event.pointerId)) return;
+        frame.classList.remove('is-positioning');
+        session.drag = null;
+        persistPreviewTalePortrait(section, blockId, side, session.crops[side]);
+      };
+      frame.addEventListener('pointerup', finishDrag);
+      frame.addEventListener('pointercancel', finishDrag);
+
+      const zoom = panel.querySelector('[data-tale-preview-zoom="'+side+'"]');
+      zoom?.addEventListener('input', () => {
+        session.crops[side].zoom = clamp(Number(zoom.value)||100,100,200);
+        renderPreviewTalePortrait(section, side, session.crops[side]);
+      });
+      zoom?.addEventListener('change', () => {
+        persistPreviewTalePortrait(section, blockId, side, session.crops[side]);
+      });
+
+      panel.querySelector('[data-tale-preview-reset="'+side+'"]')?.addEventListener('click', () => {
+        session.crops[side] = {x:50,y:50,zoom:100};
+        if (zoom) zoom.value = '100';
+        renderPreviewTalePortrait(section, side, session.crops[side]);
+        persistPreviewTalePortrait(section, blockId, side, session.crops[side]);
+      });
+    }
+
+    return true;
+  }
+
   function hydratePreviewHtmlVisuals() {
     if (!previewContent) return;
     previewContent.querySelectorAll('section[data-writer-html-block-id]').forEach(section => {
@@ -864,12 +1046,18 @@
 
       tools.querySelector('[data-preview-html-visual-edit]').addEventListener('click', event => {
         event.stopPropagation();
+        const meta = structuredMeta(block.code);
+        if (meta?.type === 'tale') {
+          setPreviewTaleEditing(shell, !shell.classList.contains('is-tale-portrait-editing'));
+          return;
+        }
         setPreviewHtmlEditing(shell, !shell.classList.contains('is-editing'));
       });
 
       tools.querySelector('[data-preview-html-source-edit]').addEventListener('click', event => {
         event.stopPropagation();
-        if (shell.classList.contains('is-editing')) setPreviewHtmlEditing(shell, false);
+        if (shell.classList.contains('is-tale-portrait-editing')) setPreviewTaleEditing(shell, false);
+        else if (shell.classList.contains('is-editing')) setPreviewHtmlEditing(shell, false);
         openHtmlDialog(id);
       });
 
@@ -879,10 +1067,10 @@
       });
 
       section.addEventListener('keydown', event => {
-        if (event.key === 'Escape' && shell.classList.contains('is-editing')) {
-          event.preventDefault();
-          setPreviewHtmlEditing(shell, false);
-        }
+        if (event.key !== 'Escape' || !shell.classList.contains('is-editing')) return;
+        event.preventDefault();
+        if (shell.classList.contains('is-tale-portrait-editing')) setPreviewTaleEditing(shell, false);
+        else setPreviewHtmlEditing(shell, false);
       });
 
       section.addEventListener('click', event => {
