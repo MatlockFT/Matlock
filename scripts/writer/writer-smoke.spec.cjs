@@ -608,7 +608,7 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(pickCard.locator('.article-pick-card__chips')).toContainText('Round 3');
   await expect(pickCard.locator('.article-pick-card__note')).toContainText('Sharp range management');
   await expect(pickCard).toHaveCSS('border-top-color','rgba(132, 169, 255, 0.24)');
-  await expect(pickCard.locator('.article-pick-card__accent')).toHaveCSS('background-color','rgba(0, 0, 0, 0)');
+  await expect(pickCard.locator('.article-pick-card__accent')).toHaveCSS('background-color','rgb(11, 16, 24)');
 
   const splitter = page.locator('[data-writer-splitter]');
   await splitter.focus();
