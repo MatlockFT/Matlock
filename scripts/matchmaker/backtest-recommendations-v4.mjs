@@ -70,7 +70,7 @@ async function loadDatedSnapshots(directory, payloadKey) {
   catch (error) { if (error?.code === 'ENOENT') return []; throw error; }
   const snapshots = [];
   for (const entry of entries) {
-    const match = entry.isFile() && entry.name.match(/^(\d{4}-\d{2}-\d{2})\.json$/);
+    const match = entry.isFile() && entry.name.match(/^(\d{4}-\d{2}-\d{2})(?:T[^/]+)?\.json$/);
     if (!match) continue;
     try {
       const raw = JSON.parse(await fs.readFile(`${directory}/${entry.name}`, 'utf8'));
