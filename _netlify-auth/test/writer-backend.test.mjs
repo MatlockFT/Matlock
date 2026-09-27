@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 
 import { allowedPath, validateWriteBody } from '../netlify/functions/writer-github.mjs';
 import { parseUfcProfileSummary, parseUfcStatsProfile } from '../netlify/functions/writer-fighter.mjs';
+import { extractMoneylines, formatAmericanOdds } from '../netlify/functions/fight-odds.mjs';
 import { hasCompleteDisplayedCareer, parseUfcFightCareerProfile } from '../netlify/functions/_writer-career-fallback.mjs';
 import { parseUfcFightProfile } from '../../scripts/matchmaker/sources/sherdog.mjs';
 import {
@@ -246,4 +247,55 @@ test('on-demand career fallback parser fills all displayed Tale career fields', 
   assert.equal(profile.career.unanimousDecisionWins, 0);
   assert.equal(profile.career.splitDecisionWins, 0);
   assert.equal(hasCompleteDisplayedCareer(profile.career), true);
+});
+
+
+test('fight odds formatter keeps American moneylines compact', () => {
+  assert.equal(formatAmericanOdds(-1050), '-1050');
+  assert.equal(formatAmericanOdds(675), '+675');
+  assert.equal(formatAmericanOdds('+120'), '+120');
+  assert.equal(formatAmericanOdds('EVEN'), 'EVEN');
+  assert.equal(formatAmericanOdds(null), null);
+});
+
+test('fight odds parser maps ESPN home and away moneylines to named fighters', () => {
+  const competition = {
+    competitors: [
+      { id:'a1', homeAway:'home', athlete:{displayName:'Natalia Silva'} },
+      { id:'b1', homeAway:'away', athlete:{displayName:'Wang Cong'} }
+    ]
+  };
+  const payload = {
+    items: [{
+      provider:{name:'ESPN BET',priority:1},
+      homeTeamOdds:{favorite:true,moneyLine:-180},
+      awayTeamOdds:{favorite:false,moneyLine:150}
+    }]
+  };
+  assert.deepEqual(
+    extractMoneylines(competition,payload,'Natalia Silva','Wang Cong'),
+    {fighterA:'-180',fighterB:'+150',provider:'ESPN BET'}
+  );
+});
+
+test('fight odds parser supports named MMA outcomes without home-away semantics', () => {
+  const competition = {
+    competitors: [
+      { id:'a1', order:1, athlete:{displayName:'Natalia Silva'} },
+      { id:'b1', order:2, athlete:{displayName:'Wang Cong'} }
+    ]
+  };
+  const payload = {
+    items: [{
+      provider:{name:'DraftKings',priority:1},
+      outcomes:[
+        {name:'Wang Cong',moneyLine:145},
+        {name:'Natalia Silva',moneyLine:-170}
+      ]
+    }]
+  };
+  assert.deepEqual(
+    extractMoneylines(competition,payload,'Natalia Silva','Wang Cong'),
+    {fighterA:'-170',fighterB:'+145',provider:'DraftKings'}
+  );
 });
