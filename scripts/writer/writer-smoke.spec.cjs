@@ -371,6 +371,17 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-right .fc-odds')).toHaveClass('fc-odds fc-blue-odds');
   await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-form-section')).toBeVisible();
 
+  // Writer preview hydrates official UFC moneylines without waiting for the Netlify backend.
+  await page.click('[data-tool="tale"]');
+  const liveOddsDialog = page.locator('[data-tale-dialog]');
+  await liveOddsDialog.locator('[data-tale-a]').fill('Natalia Silva');
+  await liveOddsDialog.locator('[data-tale-b]').fill('Wang Cong');
+  await liveOddsDialog.locator('[data-tale-insert]').click();
+  const liveOddsCard = page.locator('[data-preview-content] [data-live-odds-matchup][data-live-odds-fighter-a="Natalia Silva"][data-live-odds-fighter-b="Wang Cong"]');
+  await expect(liveOddsCard).toBeVisible();
+  await expect(liveOddsCard.locator('[data-live-odds-side="a"] [data-live-odds-value]')).toHaveText('-205', { timeout: 5000 });
+  await expect(liveOddsCard.locator('[data-live-odds-side="b"] [data-live-odds-value]')).toHaveText('+170', { timeout: 5000 });
+
   await page.click('[data-tool="html"]');
   await page.fill('[data-html-label]', 'Smoke visual');
 
