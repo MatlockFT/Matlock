@@ -157,10 +157,11 @@
     ];
     for (const [img, fighter] of pairs) {
       if (!img || !fighter) continue;
+      const portrait = fighter?.portrait && typeof fighter.portrait === 'object' ? fighter.portrait : fighter;
       render(img, {
-        x: fighter.x ?? 50,
-        y: fighter.y ?? 50,
-        zoom: fighter.zoom ?? 100
+        x: portrait?.x ?? 50,
+        y: portrait?.y ?? 50,
+        zoom: portrait?.zoom ?? 100
       });
     }
   }
