@@ -892,11 +892,10 @@ function insertBlock(text) {
     const image=String(fighter.image||'').trim();
     const x=Number(fighter.x ?? 50);
     const y=Number(fighter.y ?? 50);
-    const zoom=Number(fighter.zoom ?? 100);
-    const style='--portrait-x:'+x+'%;--portrait-y:'+y+'%;--portrait-zoom:'+(zoom/100)+';';
-    return '<div class="fc-portrait ring-'+side+'" style="'+style+'">'+
+    const zoom=Math.max(100,Number(fighter.zoom ?? 100)||100);
+    return '<div class="fc-portrait ring-'+side+'">'+
       '<span class="fc-ring"></span><span class="fc-ring fc-ring-inner"></span>'+
-      (image?'<img src="'+escapeHtml(image)+'" alt="'+escapeHtml(fighter.name||'')+
+      (image?'<img class="fc-portrait-source" data-portrait-source src="'+escapeHtml(image)+'" alt="'+escapeHtml(fighter.name||'')+
         '" data-portrait-x="'+x+'" data-portrait-y="'+y+'" data-portrait-zoom="'+zoom+'">':'')+
       '</div>';
   }
@@ -996,14 +995,21 @@ function insertBlock(text) {
     const src = localUrl || (path ? writerPreviewAssetUrl(path) : '');
     image.hidden = !src;
     empty.hidden = Boolean(src);
-    if (src) image.src = src;
-    drop.style.setProperty('--portrait-x', x + '%');
-    drop.style.setProperty('--portrait-y', y + '%');
-    drop.style.setProperty('--portrait-zoom', String(zoom/100));
     image.dataset.portraitX = String(x);
     image.dataset.portraitY = String(y);
-    image.dataset.portraitZoom = String(zoom);
-    window.MatlockPortraitCrop?.apply?.(image,{x,y,zoom,frame:drop});
+    image.dataset.portraitZoom = String(Math.max(100,zoom||100));
+    if (src) {
+      const nextSrc = new URL(src,location.href).href;
+      if (image.src !== nextSrc) {
+        drop.classList.remove('portrait-canvas-ready');
+        image.src = src;
+      }
+      window.MatlockPortraitCrop?.render?.(image,{x,y,zoom:Math.max(100,zoom||100),frame:drop});
+    } else {
+      image.removeAttribute('src');
+      drop.classList.remove('portrait-canvas-ready');
+      drop.querySelector(':scope > canvas.matlock-portrait-canvas')?.remove();
+    }
   }
 
   function resetStatsDialog(config = {}) {
