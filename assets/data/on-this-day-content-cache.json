@@ -1,7 +1,7 @@
 {
   "version": 1,
   "strategyVersion": 2,
-  "updatedAt": "2026-09-23T01:06:44.349Z",
+  "updatedAt": "2026-09-27T14:49:19.760Z",
   "entries": {
     "pancrase:2013-04-21:pancrase-sakaguchi-dojo-vs-pancrase": {
       "strategyVersion": 2,
@@ -15342,6 +15342,14 @@
       "status": "no-main-event",
       "sourceType": "wikipedia-structured",
       "wikipediaTitle": "List of Pancrase events"
+    },
+    "ufc:2026-09-26:ufc-fight-night-rosas-jr-vs-barcelos": {
+      "strategyVersion": 1,
+      "checkedAt": "2026-09-27T14:49:19.760Z",
+      "status": "main-event-found",
+      "sourceType": "event-title",
+      "wikipediaTitle": "UFC Fight Night: Rosas Jr. vs. Barcelos",
+      "mainEvent": "Rosas Jr. vs. Barcelos"
     }
   }
 }
