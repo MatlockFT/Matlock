@@ -26,6 +26,9 @@ export function allowedPath(path, method) {
     if (/^\/contents\/_posts\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+\.md$/.test(value)) return true;
     if (/^\/contents\/assets\/uploads\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+$/.test(value)) return true;
   }
+  if (method === 'DELETE') {
+    if (/^\/contents\/_posts\/[A-Za-z0-9._~!$&'()+,;=@%\/-]+\.md$/.test(value)) return true;
+  }
   return false;
 }
 
@@ -47,6 +50,14 @@ export function validateWriteBody(apiPath, body) {
   if (bytes > limit) throw new Error(isUpload ? 'Uploaded image is too large after optimization.' : 'Article file is too large.');
 }
 
+export function validateDeleteBody(apiPath, body) {
+  if (!body || typeof body !== 'object') throw new Error('Invalid request body.');
+  if (body.branch && body.branch !== 'main') throw new Error('Writer can only update the main branch.');
+  if (!body.message || typeof body.message !== 'string' || body.message.length > 180) throw new Error('Invalid commit message.');
+  if (!body.sha || !/^[0-9a-f]{40}$/i.test(body.sha)) throw new Error('Invalid file SHA.');
+  if (!/^\/contents\/_posts\/.+\.md$/.test(String(apiPath || ''))) throw new Error('Writer can only delete article files.');
+}
+
 export default async function handler(request) {
   const origin = normalizeOrigin(request.headers.get('origin'));
   const headers = corsHeaders(request);
@@ -57,7 +68,7 @@ export default async function handler(request) {
       status: 204,
       headers: {
         ...headers,
-        'Access-Control-Allow-Methods': 'GET, PUT, OPTIONS',
+        'Access-Control-Allow-Methods': 'GET, PUT, DELETE, OPTIONS',
         'Access-Control-Allow-Headers': 'Accept, Content-Type, X-Writer-Session'
       }
     });
@@ -79,9 +90,12 @@ export default async function handler(request) {
   }
 
   let bodyText = undefined;
-  if (request.method === 'PUT') {
+  if (request.method === 'PUT' || request.method === 'DELETE') {
     const body = await request.json().catch(() => null);
-    try { validateWriteBody(apiPath, body); } catch (error) {
+    try {
+      if (request.method === 'PUT') validateWriteBody(apiPath, body);
+      else validateDeleteBody(apiPath, body);
+    } catch (error) {
       return Response.json({ message: error.message }, { status: 400, headers });
     }
     bodyText = JSON.stringify({ ...body, branch: 'main' });

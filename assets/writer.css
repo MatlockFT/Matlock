@@ -768,3 +768,26 @@
 .writer-fighter-source-status[data-state="verified"]{color:#7ca9e6}
 .writer-fighter-source-status[data-state="warning"]{color:#e0aa62}
 .writer-fighter-source-status[data-state="cached"]{color:#9a9a9a}
+
+/* Writer article lifecycle actions */
+.writer-library-actions [data-library-unpublish]{
+  border-color:#5a4630;
+  background:#17130e;
+  color:#e7c99a;
+}
+.writer-library-actions [data-library-delete]{
+  border-color:#6a3030;
+  background:#1d0e0e;
+  color:#ffb3b3;
+}
+.writer-library-actions [data-library-delete]:hover{
+  border-color:#9b4141;
+  background:#311313;
+  color:#fff;
+}
+.writer-library-actions button:disabled{
+  opacity:.42;
+  cursor:wait;
+  transform:none;
+}
+

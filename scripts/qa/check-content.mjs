@@ -133,7 +133,7 @@ for (const filename of readdirSync(postsDirectory).filter(
         (published === 'true' ? failures : warnings).push(
             `${filename}: missing featured image`
         );
-        if (published !== 'true') continue;
+        continue;
     }
 
     const imagePath = imageBlock[1]
