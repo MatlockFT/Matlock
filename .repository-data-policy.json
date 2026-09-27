@@ -374,17 +374,22 @@
       "storage": "public-runtime",
       "paths": [
         "assets/data/matchmaker/backtest-report.json",
-        "assets/data/matchmaker/recommendation-audit.json"
+        "assets/data/matchmaker/recommendation-audit.json",
+        "assets/data/matchmaker/ranking-transition.json",
+        "assets/data/matchmaker/ranking-reconciliation.json"
       ],
       "lifecycle": "generated-validation-data",
       "owner": "matchmaker",
       "producers": [
         "scripts/matchmaker/backtest-recommendations-v4.mjs",
-        "scripts/matchmaker/audit-recommendations.mjs"
+        "scripts/matchmaker/audit-recommendations.mjs",
+        "scripts/matchmaker/update-matchmaker.mjs",
+        "scripts/matchmaker/reconcile-ranking-changes.mjs"
       ],
       "consumers": [
         "docs/matchmaker.md",
-        "ci:matchmaker-validation"
+        "ci:matchmaker-validation",
+        "scripts/matchmaker/reconcile-ranking-changes.mjs"
       ],
       "safeToRegenerate": true,
       "safeToDeleteFromRepository": false,
