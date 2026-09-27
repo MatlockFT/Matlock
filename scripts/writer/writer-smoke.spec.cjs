@@ -600,15 +600,17 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await pickDialog.locator('[data-pick-insert]').click();
   const pickCard = page.locator('[data-preview-content] .article-pick-card').filter({hasText:'Alpha Fighter'}).last();
   await expect(pickCard).toBeVisible();
-  await expect(pickCard.locator('.article-pick-card__label')).toHaveText("Matlock's Pick");
-  await expect(pickCard.locator('.article-pick-card__kicker')).toHaveText('Fight prediction');
-  await expect(pickCard.locator('.article-pick-card__accent')).toContainText('M');
+  await expect(pickCard).toHaveClass(/article-pick-card--slim/);
+  await expect(pickCard.locator('.article-pick-card__rule')).toContainText("Matlock's Pick");
   await expect(pickCard.locator('.article-pick-card__fighter')).toHaveText('Alpha Fighter');
-  await expect(pickCard.locator('.article-pick-card__chip--method')).toContainText('Decision');
-  await expect(pickCard.locator('.article-pick-card__chips')).toContainText('Round 3');
+  await expect(pickCard.locator('.article-pick-card__method')).toHaveText('Decision');
+  await expect(pickCard.locator('.article-pick-card__round')).toHaveText('Round 3');
   await expect(pickCard.locator('.article-pick-card__note')).toContainText('Sharp range management');
-  await expect(pickCard).toHaveCSS('border-top-color','rgba(132, 169, 255, 0.24)');
-  await expect(pickCard.locator('.article-pick-card__accent')).toHaveCSS('background-color','rgb(11, 16, 24)');
+  await expect(pickCard.locator('.article-pick-card__accent')).toHaveCount(0);
+  await expect(pickCard.locator('.article-pick-card__centerline')).toHaveCSS('justify-content','center');
+  await expect(pickCard).toHaveCSS('border-top-color','rgba(117, 161, 255, 0.34)');
+  const pickBox = await pickCard.boundingBox();
+  expect(pickBox.height).toBeLessThan(150);
 
   const splitter = page.locator('[data-writer-splitter]');
   await splitter.focus();

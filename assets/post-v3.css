@@ -3714,3 +3714,176 @@ html[data-theme="dark"] .post-page-v3 .article-toc-floating a.is-active{
     grid-template-columns:minmax(0,1fr) minmax(66px,40%) minmax(0,1fr)!important;
   }
 }
+
+
+/* Slim modern Matlock's Pick */
+.post-page-v3 .post-body .article-pick-card.article-pick-card--slim{
+  --pick-blue:#578cff;
+  --pick-blue-soft:rgba(87,140,255,.16);
+  --pick-line:rgba(117,161,255,.36);
+  position:relative!important;
+  isolation:isolate;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  justify-items:center;
+  gap:.48rem!important;
+  width:100%!important;
+  min-width:0!important;
+  margin:1.35rem 0 1.6rem!important;
+  padding:.68rem clamp(.85rem,3vw,1.4rem) .72rem!important;
+  overflow:hidden;
+  border:0!important;
+  border-top:1px solid rgba(117,161,255,.34)!important;
+  border-bottom:1px solid rgba(117,161,255,.22)!important;
+  border-radius:0!important;
+  background:
+    linear-gradient(90deg,transparent 0%,rgba(87,140,255,.035) 20%,rgba(87,140,255,.075) 50%,rgba(87,140,255,.035) 80%,transparent 100%),
+    repeating-linear-gradient(118deg,transparent 0 19px,rgba(255,255,255,.012) 19px 20px)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.02),
+    inset 0 -1px 0 rgba(255,255,255,.015)!important;
+  color:#f4f6fa;
+  text-align:center;
+  font-family:var(--v3-sans)
+}
+.post-page-v3 .post-body .article-pick-card.article-pick-card--slim::before,
+.post-page-v3 .post-body .article-pick-card.article-pick-card--slim::after{
+  content:"";
+  position:absolute;
+  top:0;
+  width:22%;
+  height:1px;
+  z-index:2;
+  background:linear-gradient(90deg,transparent,var(--pick-blue),transparent)
+}
+.post-page-v3 .post-body .article-pick-card.article-pick-card--slim::before{left:7%}
+.post-page-v3 .post-body .article-pick-card.article-pick-card--slim::after{right:7%}
+.post-page-v3 .post-body .article-pick-card__rule{
+  display:grid;
+  grid-template-columns:minmax(30px,1fr) auto minmax(30px,1fr);
+  align-items:center;
+  gap:.7rem;
+  width:min(100%,520px);
+  color:#8eafff;
+  font:900 .54rem/1 var(--v3-sans);
+  letter-spacing:.11em;
+  text-transform:uppercase
+}
+.post-page-v3 .post-body .article-pick-card__rule::before,
+.post-page-v3 .post-body .article-pick-card__rule::after{
+  content:"";
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(117,161,255,.34))
+}
+.post-page-v3 .post-body .article-pick-card__rule::after{
+  background:linear-gradient(90deg,rgba(117,161,255,.34),transparent)
+}
+.post-page-v3 .post-body .article-pick-card__rule span{
+  display:block;
+  white-space:nowrap
+}
+.post-page-v3 .post-body .article-pick-card__centerline{
+  display:flex;
+  min-width:0;
+  max-width:100%;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(.65rem,2.4vw,1.15rem);
+  flex-wrap:wrap
+}
+.post-page-v3 .post-body .article-pick-card__fighter{
+  display:block!important;
+  min-width:0;
+  margin:0!important;
+  color:#f5f7fb!important;
+  font-family:"Herkey",Georgia,serif!important;
+  font-size:clamp(1.08rem,2.4vw,1.48rem)!important;
+  font-weight:400!important;
+  line-height:1!important;
+  letter-spacing:.005em!important;
+  text-wrap:balance;
+  overflow-wrap:anywhere
+}
+.post-page-v3 .post-body .article-pick-card__divider{
+  flex:0 0 auto;
+  width:1px;
+  height:21px;
+  background:linear-gradient(180deg,transparent,rgba(117,161,255,.62),transparent)
+}
+.post-page-v3 .post-body .article-pick-card__result{
+  display:flex;
+  min-width:0;
+  align-items:center;
+  justify-content:center;
+  gap:.62rem;
+  color:#dfe7f8;
+  font:850 .62rem/1 var(--v3-sans);
+  letter-spacing:.085em;
+  text-transform:uppercase
+}
+.post-page-v3 .post-body .article-pick-card__method{
+  color:#b8ccff
+}
+.post-page-v3 .post-body .article-pick-card__round{
+  color:#a6adb9
+}
+.post-page-v3 .post-body .article-pick-card__dot{
+  width:3px;
+  height:3px;
+  flex:0 0 3px;
+  border-radius:50%;
+  background:#578cff;
+  box-shadow:0 0 9px rgba(87,140,255,.55)
+}
+.post-page-v3 .post-body .article-pick-card.article-pick-card--slim .article-pick-card__note{
+  width:min(100%,620px);
+  margin:.02rem auto 0!important;
+  padding:.42rem 0 0!important;
+  border:0!important;
+  border-top:1px solid rgba(255,255,255,.055)!important;
+  color:#9299a5!important;
+  font:600 .68rem/1.4 var(--v3-sans)!important;
+  letter-spacing:.005em;
+  text-align:center!important
+}
+/* Retire the previous emblem / chip layout when old CSS is still cached around the block. */
+.post-page-v3 .post-body .article-pick-card--slim .article-pick-card__accent,
+.post-page-v3 .post-body .article-pick-card--slim .article-pick-card__content,
+.post-page-v3 .post-body .article-pick-card--slim .article-pick-card__topline,
+.post-page-v3 .post-body .article-pick-card--slim .article-pick-card__kicker,
+.post-page-v3 .post-body .article-pick-card--slim .article-pick-card__chips,
+.post-page-v3 .post-body .article-pick-card--slim .article-pick-card__chip{
+  all:unset
+}
+
+@media(max-width:650px){
+  .post-page-v3 .post-body .article-pick-card.article-pick-card--slim{
+    grid-template-columns:1fr!important;
+    gap:.42rem!important;
+    padding:.64rem .65rem .68rem!important
+  }
+  .post-page-v3 .post-body .article-pick-card__rule{
+    gap:.48rem;
+    font-size:.49rem;
+    letter-spacing:.095em
+  }
+  .post-page-v3 .post-body .article-pick-card__centerline{
+    gap:.48rem .72rem;
+  }
+  .post-page-v3 .post-body .article-pick-card__fighter{
+    flex:1 1 100%;
+    font-size:clamp(1.02rem,5.4vw,1.28rem)!important
+  }
+  .post-page-v3 .post-body .article-pick-card__divider{
+    display:none
+  }
+  .post-page-v3 .post-body .article-pick-card__result{
+    flex:1 1 100%;
+    font-size:.58rem;
+    letter-spacing:.07em
+  }
+  .post-page-v3 .post-body .article-pick-card.article-pick-card--slim .article-pick-card__note{
+    padding-top:.36rem!important;
+    font-size:.64rem!important
+  }
+}
