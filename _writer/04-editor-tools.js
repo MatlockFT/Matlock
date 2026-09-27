@@ -889,20 +889,14 @@ function insertBlock(text) {
       '</div>';
   }
 
-  function fighterOddsClass(odds) {
-    const value=String(odds||'').trim();
-    if (/^-/.test(value)) return ' fc-favorite';
-    if (/^\+/.test(value)) return ' fc-underdog';
-    return '';
-  }
-
   function fighterTopMarkup(side, fighter) {
     const odds=String(fighter.odds||'').trim()||'—';
+    const oddsClass=side==='left'?' fc-red-odds':' fc-blue-odds';
     return '<div class="fc-fighter fc-'+side+'">'+
       fighterPortraitMarkup(side,fighter)+
       '<div class="fc-meta"><span class="fc-division">'+escapeHtml(fighter.division||'')+
       '</span><h2>'+escapeHtml(fighter.name||'')+
-      '</h2><div class="fc-meta-strip"><div class="fc-odds'+fighterOddsClass(odds)+'"><span>ML</span><strong>'+
+      '</h2><div class="fc-meta-strip"><div class="fc-odds'+oddsClass+'"><span>ML</span><strong>'+
       escapeHtml(odds)+'</strong></div><div class="fc-last5"><span class="fc-last5-record">'+
       escapeHtml(fighter.last5||'—')+'</span><span class="fc-last5-label">Last 5</span></div></div></div></div>';
   }
@@ -916,11 +910,11 @@ function insertBlock(text) {
     ).join('');
     const recentA=recentFormMarkup(a.recent), recentB=recentFormMarkup(b.recent);
     const recent=recentA||recentB
-      ? '<div class="fc-section-title fc-form-title"><span>Recent Form</span></div>'+
+      ? '<div class="fc-form-section"><div class="fc-section-title fc-form-title"><span>Recent Form</span></div>'+
         '<div class="fc-form-wrap"><div class="fc-column"><div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>'+
         escapeHtml(a.name||'Fighter A')+'</strong></div>'+recentA+
         '</div><div class="fc-column"><div class="fc-mobile-column-label"><span>RECENT FORM</span><strong>'+
-        escapeHtml(b.name||'Fighter B')+'</strong></div>'+recentB+'</div></div>'
+        escapeHtml(b.name||'Fighter B')+'</strong></div>'+recentB+'</div></div></div>'
       : '';
     const opponents=(a.opponentsRecord||b.opponentsRecord||a.opponentsPct||b.opponentsPct)
       ? '<div class="fc-opponents"><div class="fc-opponent-stat"><strong>'+escapeHtml(a.opponentsRecord||'—')+
