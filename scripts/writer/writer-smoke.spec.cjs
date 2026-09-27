@@ -355,6 +355,29 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await taleRows.nth(0).locator('[data-structured-b]').fill('9-2');
   await taleRows.nth(3).locator('[data-structured-a]').fill('72 in');
   await taleRows.nth(3).locator('[data-structured-b]').fill('70 in');
+
+  // Portrait panning/zoom must be true WYSIWYG: the editor crop math and rendered
+  // article crop math are the same even when the final card is a different size.
+  const cropSource = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="500"><rect width="300" height="500" fill="black"/><circle cx="105" cy="180" r="70" fill="white"/></svg>');
+  await taleDialog.locator('[data-tale-image-path="a"]').fill(cropSource);
+  await taleDialog.locator('[data-tale-image-x="a"]').evaluate(node => { node.value='63'; node.dispatchEvent(new Event('input',{bubbles:true})); });
+  await taleDialog.locator('[data-tale-image-y="a"]').evaluate(node => { node.value='37'; node.dispatchEvent(new Event('input',{bubbles:true})); });
+  await taleDialog.locator('[data-tale-image-zoom="a"]').evaluate(node => { node.value='132'; node.dispatchEvent(new Event('input',{bubbles:true})); });
+  const editorCrop = await taleDialog.locator('[data-tale-image-preview="a"]').evaluate(img => {
+    const style = getComputedStyle(img);
+    const matrix = new DOMMatrix(style.transform);
+    const rect = img.getBoundingClientRect();
+    return {
+      scaleX: matrix.a,
+      scaleY: matrix.d,
+      translateX: matrix.e / Math.max(1, rect.width),
+      translateY: matrix.f / Math.max(1, rect.height),
+      objectFit: style.objectFit,
+      objectPosition: style.objectPosition,
+      transformOrigin: style.transformOrigin
+    };
+  });
+
   await taleDialog.locator('[data-tale-form-add="a"]').click();
   const recent = taleDialog.locator('[data-tale-form-list="a"] .writer-recent-row').first();
   await recent.locator('[data-recent-result]').selectOption('W');
@@ -370,6 +393,26 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-left .fc-odds')).toHaveClass('fc-odds fc-red-odds');
   await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-right .fc-odds')).toHaveClass('fc-odds fc-blue-odds');
   await expect(page.locator('[data-preview-content] .fight-compare-sleek .fc-form-section')).toBeVisible();
+  const outputCrop = await page.locator('[data-preview-content] .fight-compare-sleek .fc-left .fc-portrait img').evaluate(img => {
+    const style = getComputedStyle(img);
+    const matrix = new DOMMatrix(style.transform);
+    const rect = img.getBoundingClientRect();
+    return {
+      scaleX: matrix.a,
+      scaleY: matrix.d,
+      translateX: matrix.e / Math.max(1, rect.width),
+      translateY: matrix.f / Math.max(1, rect.height),
+      objectFit: style.objectFit,
+      objectPosition: style.objectPosition,
+      transformOrigin: style.transformOrigin
+    };
+  });
+  expect(outputCrop.objectFit).toBe(editorCrop.objectFit);
+  expect(outputCrop.objectPosition).toBe(editorCrop.objectPosition);
+  expect(outputCrop.scaleX).toBeCloseTo(editorCrop.scaleX,3);
+  expect(outputCrop.scaleY).toBeCloseTo(editorCrop.scaleY,3);
+  expect(outputCrop.translateX).toBeCloseTo(editorCrop.translateX,3);
+  expect(outputCrop.translateY).toBeCloseTo(editorCrop.translateY,3);
 
   // Writer preview hydrates official UFC moneylines without waiting for the Netlify backend.
   await page.click('[data-tool="tale"]');
