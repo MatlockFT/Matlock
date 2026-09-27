@@ -135,14 +135,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          meaningful="$(git status --porcelain -- _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json _data/event_map_us.json _data/event_map_location_report.json || true)"
+          meaningful="$(git status --porcelain -- _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json assets/live-ufc-odds.json _data/event_map_us.json _data/event_map_location_report.json || true)"
           if [ -z "$meaningful" ]; then
             echo "No meaningful MMA event, map, watchdog, location, or portrait changes. Timestamp-only refresh discarded."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- _data/upcoming_events.json _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json _data/event_map_us.json _data/event_map_location_report.json
+          git add -- _data/upcoming_events.json _data/upcoming_events_changes.json _data/upcoming_events_verdict_watch.json _data/fighter_portraits.json assets/fighter-portraits.json assets/live-ufc-odds.json _data/event_map_us.json _data/event_map_location_report.json
           git commit -m "Refresh upcoming MMA event data"
           git pull --rebase origin main
           git push origin HEAD:main
