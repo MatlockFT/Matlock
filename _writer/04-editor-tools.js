@@ -437,7 +437,9 @@ function insertBlock(text, { preserveScroll = false } = {}) {
           latestBoutDate: fighter.latestBoutDate || null,
           bio: fighter.bio || null,
           stats: fighter.stats || null,
-          career: fighter.career || null
+          career: fighter.career || null,
+          opponentStrength: fighter.opponentStrength || null,
+          careerHistorySource: fighter.careerHistorySource || null
         })).filter(fighter => fighter.id && fighter.name)
       };
     })().catch(error => {
@@ -765,6 +767,18 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     setComparisonValue(rows,'UFC Record',side,displayComparisonValue(ufcRecord));
     setComparisonValue(rows,'Record Outside UFC',side,displayComparisonValue(fighter.recordOutsideUfc || subtractRecords(fighter.record,ufcRecord)));
     applyCareerComparisonValues(rows,side,fighter.career);
+    const strength=fighter.opponentStrength;
+    if (strength?.complete && strength.record && Number.isFinite(Number(strength.winPct))) {
+      const recordInput=dialog.querySelector('[data-tale-opponents-record="' + side + '"]');
+      const pctInput=dialog.querySelector('[data-tale-opponents-pct="' + side + '"]');
+      if (canAutoFillTaleOpponentStrength(recordInput,pctInput)) {
+        const pct=Number(strength.winPct) + '%';
+        recordInput.value=strength.record;
+        pctInput.value=pct;
+        recordInput.dataset.autoOpponentValue=strength.record;
+        pctInput.dataset.autoOpponentValue=pct;
+      }
+    }
     refreshTaleNameHeaders(dialog);
     taleImagePreview(side);
   }
