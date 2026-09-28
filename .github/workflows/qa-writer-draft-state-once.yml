@@ -1,0 +1,36 @@
+name: QA Writer Draft State
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/qa-writer-draft-state-once.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            scripts/writer/writer-smoke.spec.cjs
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.12.0"
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save --no-package-lock @playwright/test@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Run Writer draft/session QA
+        env:
+          WRITER_BASE_URL: https://mmamatlock.com/write/
+        run: |
+          npx playwright test scripts/writer/writer-smoke.spec.cjs --workers=1 --reporter=line
