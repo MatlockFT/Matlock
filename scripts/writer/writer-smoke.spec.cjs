@@ -779,7 +779,57 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('#writer-body')).toHaveValue(/Writer smoke image/);
   await expect(page.locator('#writer-body')).toHaveValue(/Alpha Fighter/);
   await expect(page.locator('[data-preview-content]')).toContainText('Visually edited HTML.');
-  await articleDetails.locator(':scope > summary').click();
+
+  // A damaged autosave can retain visual placeholder tokens while losing the
+  // htmlBlocks payload. Reload must repair those base visuals from GitHub
+  // instead of showing literal [HTML VISUAL ...] text in the preview.
+  const recoveryTokenBody = await page.locator('#writer-body').inputValue();
+  await page.evaluate(({ path, sha, body, articleDate, filename }) => {
+    localStorage.setItem(`matlock-writer:${path}`, JSON.stringify({
+      title: 'Writer Production Smoke Test',
+      description: 'Production validation article for the MMA Matlock Writer workflow.',
+      date: articleDate,
+      category: 'Breakdown',
+      tags: 'Writer QA',
+      imagePath: '',
+      imageAlt: '',
+      imagePosition: 'center center',
+      filename,
+      publishAt: '',
+      showToc: false,
+      spoilerWarning: false,
+      pinned: false,
+      body,
+      htmlBlocks: [],
+      currentPath: path,
+      currentSha: sha,
+      originalFrontmatter: '',
+      currentPublished: false,
+      savedAt: Date.now()
+    }));
+  }, {
+    path: `_posts/${filename}`,
+    sha: remote.sha,
+    body: recoveryTokenBody,
+    articleDate: date,
+    filename
+  });
+
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await expect(page.locator('[data-editor-view]')).toBeVisible();
+  await expect(page.locator('[data-save-state]')).toContainText('visuals repaired');
+  await expect(page.locator('[data-preview-content] .writer-preview-visual-recovery')).toHaveCount(0);
+  await expect(page.locator('[data-preview-content] section[data-writer-block="tale"]')).toBeVisible();
+  await expect(page.locator('[data-preview-content]')).toContainText('Alpha Fighter');
+  await expect(page.locator('[data-html-block-panel-toggle]')).toBeVisible();
+
+  // Saving the repaired local state makes the recovered visual payload durable
+  // again and clears the temporary browser recovery record.
+  await page.click('[data-save-draft]');
+  await expect(page.locator('[data-save-state]')).toContainText('Saved', { timeout: 10000 });
+
+  const articleDetailsAfterRepair = page.locator('.writer-meta');
+  await articleDetailsAfterRepair.locator(':scope > summary').click();
   await expect(articleDetails).toHaveAttribute('open', '');
   const advancedAfterLibrary = page.locator('.writer-meta-advanced');
   if (!(await advancedAfterLibrary.evaluate(el => el.open))) await advancedAfterLibrary.locator(':scope > summary').click();
