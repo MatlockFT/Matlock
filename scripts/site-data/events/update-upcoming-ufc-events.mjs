@@ -5,6 +5,12 @@ const ORIGIN = 'https://www.ufc.com';
 const EVENTS_URL = `${ORIGIN}/events`;
 const TICKETS_URL = `${ORIGIN}/tickets`;
 const ESPN_SCOREBOARD = 'https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard';
+const BEST_FIGHT_ODDS = 'https://www.bestfightodds.com/';
+const BFO_PROVIDER_NAMES = new Map([
+  [21,'FanDuel'],[22,'DraftKings'],[23,'BetMGM'],[24,'Caesars'],[25,'BetRivers'],
+  [20,'BetWay'],[26,'Unibet'],[29,'Kalshi'],[28,'Polymarket']
+]);
+const BFO_PROVIDER_PRIORITY = [21,22,23,24,25,20,26,29,28];
 const UA = 'Mozilla/5.0 (compatible; MMAMatlockUpcomingEvents/4.5; +https://mmamatlock.com/)';
 const MAX_DAYS = 240;
 const DISCOVERY_DAYS = 100;
@@ -249,6 +255,117 @@ function oddsFrom(chunk) {
   return [normalize(match[1]), normalize(match[2])];
 }
 
+function normalizeOddsName(value) {
+  let normalized = String(value || '')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .toLowerCase().replace(/\b(jr|sr|ii|iii|iv)\b/g,' ')
+    .replace(/[^a-z0-9]+/g,' ').trim();
+  if (normalized === 'king green') normalized = 'bobby green';
+  return normalized.split(' ').sort().join(' ');
+}
+
+function formatOdds(value) {
+  const raw = String(value || '').trim();
+  if (/^even$/i.test(raw)) return 'EVEN';
+  const number = Number(raw.replace(/^\+/,''));
+  if (!Number.isFinite(number) || number === 0) return '';
+  return number > 0 ? '+' + Math.round(number) : String(Math.round(number));
+}
+
+function parseBestFightOddsMarkets(html) {
+  const markets = new Map();
+  for (const rowMatch of String(html || '').matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)) {
+    const row = rowMatch[1];
+    const fighterMatch = row.match(/<a\b[^>]*href=["']\/fighters\/[^"']+["'][^>]*>[\s\S]*?<span\b[^>]*class=["'][^"']*\bt-b-fcc\b[^"']*["'][^>]*>([\s\S]*?)<\/span>/i);
+    const fighterName = text(fighterMatch?.[1] || '');
+    if (!fighterName) continue;
+    const cells = [...row.matchAll(/<td\b[^>]*data-li=["']\[(\d+),([12]),(\d+)\]["'][^>]*>([\s\S]*?)<\/td>/gi)];
+    for (const cell of cells) {
+      const providerId = Number(cell[1]);
+      const side = Number(cell[2]);
+      const matchupId = String(cell[3]);
+      const moneyline = formatOdds(text(cell[4]).match(/(?:[+-]\d{2,5}|EVEN)/i)?.[0] || '');
+      if (!moneyline) continue;
+      if (!markets.has(matchupId)) markets.set(matchupId,{fighters:{},prices:new Map()});
+      const market = markets.get(matchupId);
+      market.fighters[side] = fighterName;
+      if (!market.prices.has(providerId)) market.prices.set(providerId,{});
+      market.prices.get(providerId)[side] = moneyline;
+    }
+  }
+
+  return [...markets.entries()].map(([matchupId,market]) => {
+    if (!market.fighters[1] || !market.fighters[2]) return null;
+    for (const providerId of BFO_PROVIDER_PRIORITY) {
+      const prices = market.prices.get(providerId);
+      if (!prices?.[1] || !prices?.[2]) continue;
+      return {
+        matchupId,
+        provider:BFO_PROVIDER_NAMES.get(providerId) || 'BestFightOdds',
+        fighters:[
+          {name:market.fighters[1],moneyline:prices[1]},
+          {name:market.fighters[2],moneyline:prices[2]}
+        ]
+      };
+    }
+    return null;
+  }).filter(Boolean);
+}
+
+function bestFightOddsPair(markets, fighterA, fighterB) {
+  const a = normalizeOddsName(fighterA);
+  const b = normalizeOddsName(fighterB);
+  for (const market of markets) {
+    const first = market.fighters?.[0];
+    const second = market.fighters?.[1];
+    if (!first || !second) continue;
+    const one = normalizeOddsName(first.name);
+    const two = normalizeOddsName(second.name);
+    if (one === a && two === b) {
+      return {a:first.moneyline,b:second.moneyline,provider:market.provider};
+    }
+    if (one === b && two === a) {
+      return {a:second.moneyline,b:first.moneyline,provider:market.provider};
+    }
+  }
+  return null;
+}
+
+async function enrichCandidateOddsFromBestFightOdds(events) {
+  let html;
+  try {
+    html = await get(BEST_FIGHT_ODDS);
+  } catch (error) {
+    console.warn('BestFightOdds unavailable: ' + error.message);
+    return 0;
+  }
+  const markets = parseBestFightOddsMarkets(html);
+  if (!markets.length) {
+    console.warn('BestFightOdds returned no parseable moneyline markets.');
+    return 0;
+  }
+
+  let filled = 0;
+  for (const event of events) {
+    for (const section of event.sections || []) {
+      for (const bout of section.bouts || []) {
+        const left = bout.fighters?.[0];
+        const right = bout.fighters?.[1];
+        if (!left?.name || !right?.name) continue;
+        const pair = bestFightOddsPair(markets,left.name,right.name);
+        if (!pair) continue;
+        left.moneyline = pair.a;
+        right.moneyline = pair.b;
+        bout.odds_source = 'BestFightOdds';
+        bout.odds_provider = pair.provider;
+        filled++;
+      }
+    }
+  }
+  console.log(`BestFightOdds supplied current lines for ${filled} UFC fight(s).`);
+  return filled;
+}
+
 function bouts(html) {
   const src = decode(html).replaceAll('\\/', '/');
   const markers = sectionMarkers(src);
@@ -365,6 +482,8 @@ async function publishLiveOddsFeed(events) {
 
   for (const event of events) {
     const fights = (event.sections || []).flatMap(section => (section.bouts || []).map(bout => ({
+      source:bout.odds_source || 'UFC.com',
+      provider:bout.odds_provider || (bout.odds_source || 'UFC.com'),
       fighters: (bout.fighters || []).map(fighterRow => ({
         name: fighterRow.name,
         moneyline: fighterRow.moneyline || ''
@@ -401,11 +520,12 @@ async function publishLiveOddsFeed(events) {
 
   await writeFile(LIVE_ODDS_PATH, JSON.stringify({
     generated_at: new Date().toISOString(),
-    source: 'UFC.com',
+    source: 'UFC.com + BestFightOdds',
     events: eventsOut
   }, null, 2) + '\n');
   console.log(`Published live UFC odds for ${eventsOut.reduce((sum,event) => sum + event.fights.length,0)} fight(s).`);
 }
 
+await enrichCandidateOddsFromBestFightOdds(candidates);
 await publishLiveOddsFeed(candidates);
 await mergePromotion('ufc', candidates, { maxEventDrop: 1, maxBoutDrop: 3 });
