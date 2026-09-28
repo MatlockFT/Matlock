@@ -255,9 +255,9 @@ async function githubFetch(path, options = {}, requireAuth = false) {
     currentSha = '';
     originalFrontmatter = '';
     currentPublished = false;
-    filenameTouched = Boolean(saved.filename);
     fields.filename.disabled = false;
     applyState({ ...saved, currentPath: '', currentSha: '', currentPublished: false }, { remote: true });
+    filenameTouched = Boolean(saved.filename);
     dirty = true;
     setArticleDetailsOpen(false);
     showEditor({ route: 'new', updateRoute, replaceRoute });
@@ -305,7 +305,7 @@ function scheduleAutosave() {
   function resetNewArticle({ template = '', updateRoute = true, replaceRoute = false, allowExistingLocal = false } = {}) {
     if (dirty && !window.confirm('Start a new article and leave the current unsaved changes?')) return false;
     const existingLocal = readLocalNewDraft();
-    if (!template && existingLocal && !allowExistingLocal) {
+    if (existingLocal && !allowExistingLocal) {
       showToast('A browser-only draft already exists. Resume or discard it from the Library before starting another.', 6000);
       showLibrary({ updateRoute: true });
       return false;
