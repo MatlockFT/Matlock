@@ -1627,3 +1627,102 @@ body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{
   background:#244b86;
   color:#fff;
 }
+
+
+/* Desktop writer: lock the outer page to the viewport and let editor/preview scroll internally. */
+@media(min-width:1101px){
+  body.writer-shell:has(.writer-app > [data-editor-view]:not([hidden])){
+    height:100vh;
+    height:100dvh;
+    min-height:0;
+    overflow:hidden;
+  }
+
+  body.writer-shell:has(.writer-app > [data-editor-view]:not([hidden])) .writer-shell-main{
+    height:100vh;
+    height:100dvh;
+    min-height:0;
+    overflow:hidden;
+  }
+
+  .writer-shell .writer-app:has(> [data-editor-view]:not([hidden])){
+    display:flex;
+    flex-direction:column;
+    height:calc(100vh - 1rem);
+    height:calc(100dvh - 1rem);
+    min-height:0;
+    margin:.5rem auto;
+    overflow:hidden;
+  }
+
+  .writer-shell .writer-app:has(> [data-editor-view]:not([hidden])) > .writer-topbar,
+  .writer-shell .writer-app:has(> [data-editor-view]:not([hidden])) > .writer-statusbar,
+  .writer-shell .writer-app:has(> [data-editor-view]:not([hidden])) > .writer-live-panel{
+    flex:0 0 auto;
+  }
+
+  .writer-shell .writer-app > [data-editor-view]:not([hidden]){
+    display:flex;
+    flex:1 1 auto;
+    min-height:0;
+    flex-direction:column;
+    overflow:hidden;
+  }
+
+  .writer-shell [data-editor-view] > .writer-modebar{
+    flex:0 0 auto;
+  }
+
+  .writer-shell [data-editor-view] > .writer-workspace{
+    flex:1 1 auto;
+    min-height:0;
+    height:auto;
+    align-items:stretch;
+    overflow:hidden;
+  }
+
+  .writer-shell .writer-editor-pane,
+  .writer-shell .writer-preview-pane{
+    height:100%;
+    min-height:0;
+  }
+
+  .writer-shell .writer-editor-pane{
+    display:flex;
+    min-height:0;
+    flex-direction:column;
+    overflow:hidden;
+  }
+
+  .writer-shell .writer-meta,
+  .writer-shell .writer-toolbar,
+  .writer-shell .writer-html-block-rail,
+  .writer-shell .writer-editor-footer{
+    flex:0 0 auto;
+  }
+
+  .writer-shell .writer-editor-dropzone{
+    flex:1 1 auto;
+    min-height:0;
+    overflow:hidden;
+  }
+
+  .writer-shell .writer-body-editor{
+    width:100%;
+    height:100%;
+    min-height:0;
+    max-height:none;
+    resize:none;
+    overflow:auto;
+    overscroll-behavior:contain;
+  }
+
+  .writer-shell .writer-preview-pane{
+    overflow:auto;
+    overscroll-behavior:contain;
+  }
+
+  .writer-shell .writer-splitter{
+    align-self:stretch;
+  }
+}
