@@ -1,12 +1,13 @@
 import fs from 'node:fs/promises';
 import { parseSherdogCareerProfile } from '../../_netlify-auth/netlify/functions/_writer-career-fallback.mjs';
 
-const POST_PATH = process.env.WRITER_STRENGTH_POST || '_posts/2026-09-25-ufc-332.md';
+const POST_PATH_INPUT = String(process.env.WRITER_STRENGTH_POST || '').trim();
 const CACHE_PATH = 'assets/data/writer-opponent-strength.json';
 const WRITER_PATH = 'assets/data/writer-fighters.json';
 const UA = 'Mozilla/5.0 (compatible; MMAMatlockOpponentStrength/1.0; +https://mmamatlock.com/write/)';
 const MAX_RECORD_AGE_MS = 6 * 86400000;
-const SHERDOG_EVENT_URL = process.env.SHERDOG_EVENT_URL || 'https://www.sherdog.com/events/UFC-332-Silva-vs-Wang-114123';
+const SHERDOG_EVENT_URL_INPUT = String(process.env.SHERDOG_EVENT_URL || '').trim();
+const SHERDOG_UPCOMING_URL = 'https://www.sherdog.com/organizations/Ultimate-Fighting-Championship-UFC-2/upcoming-events/0';
 const HISTORY_ALIASES = new Map([
   ['benardo sopaj','Bernardo Sopai'],
   ['ateba gautier','Ateba Abega Gautier'],
@@ -160,6 +161,59 @@ async function readJson(path,fallback) {
   try { return JSON.parse(await fs.readFile(path,'utf8')); } catch { return fallback; }
 }
 
+async function resolvePostPath(input) {
+  if(input) return input;
+  const names=(await fs.readdir('_posts'))
+    .filter(name=>/\.md$/i.test(name))
+    .sort()
+    .reverse();
+  let publishedFallback=null;
+  for(const name of names){
+    const path='_posts/'+name;
+    let source='';
+    try { source=await fs.readFile(path,'utf8'); } catch { continue; }
+    if(!source.includes('data-writer-block="tale"')) continue;
+    if(/^published:\s*false\s*$/mi.test(source)) return path;
+    if(!publishedFallback) publishedFallback=path;
+  }
+  return publishedFallback;
+}
+
+function parseSherdogEventLinks(html) {
+  const out=[];
+  const seen=new Set();
+  for(const match of String(html||'').matchAll(/<a\b[^>]*href=["'](\/events\/[a-z0-9][^"'?#]*-\d+)["'][^>]*>([\s\S]*?)<\/a>/gi)){
+    const href=absoluteSherdogUrl(match[1]);
+    const label=text(match[2]);
+    if(!href||seen.has(href)) continue;
+    seen.add(href);
+    out.push({href,label});
+  }
+  return out.slice(0,20);
+}
+
+async function discoverSherdogEventUrl(targetNames) {
+  const indexHtml=await fetchText(SHERDOG_UPCOMING_URL,{attempts:3,timeout:15000});
+  const candidates=parseSherdogEventLinks(indexHtml);
+  if(!candidates.length) throw new Error('Sherdog upcoming-events page exposed no event links.');
+
+  let best=null;
+  await mapLimit(candidates,3,async candidate=>{
+    await sleep(60);
+    let html;
+    try { html=await fetchText(candidate.href,{attempts:2,timeout:12000}); } catch { return; }
+    const entries=parseSherdogEventFighters(html);
+    const matched=targetNames.filter(name=>matchEventFighter(entries,name)).length;
+    if(!best || matched>best.matched) best={...candidate,matched,total:entries.length};
+  });
+  const required=Math.min(6,Math.max(2,Math.ceil(targetNames.length*0.4)));
+  if(!best || best.matched<required){
+    throw new Error('Could not match draft fighters to a Sherdog upcoming event; best match was '+(best?.matched||0)+'/'+targetNames.length+'.');
+  }
+  console.log('Matched Sherdog event: '+best.href+' ('+best.matched+'/'+targetNames.length+' draft fighters)');
+  return best.href;
+}
+
 async function mapLimit(items,limit,worker) {
   const results=new Array(items.length);
   let cursor=0;
@@ -289,6 +343,12 @@ function buildTale(config) {
     encodeURIComponent(JSON.stringify(config))+'">\n'+inner+'\n</section>';
 }
 
+const POST_PATH=await resolvePostPath(POST_PATH_INPUT);
+if(!POST_PATH){
+  console.log('No Tale-based article draft found; nothing to refresh.');
+  process.exit(0);
+}
+console.log('Opponent-strength article: '+POST_PATH);
 const markdown=await fs.readFile(POST_PATH,'utf8');
 const configs=extractTaleConfigs(markdown);
 if(!configs.length) throw new Error('No Tale blocks found in '+POST_PATH);
@@ -299,6 +359,7 @@ const targetNames=[...new Set(configs.flatMap(config=>[config.a?.name,config.b?.
 console.log('Refreshing all-career opponent strength for '+targetNames.length+' fighters.');
 
 const profiles=new Map();
+const SHERDOG_EVENT_URL=SHERDOG_EVENT_URL_INPUT || await discoverSherdogEventUrl(targetNames);
 const eventHtml=await fetchText(SHERDOG_EVENT_URL,{attempts:3,timeout:15000});
 const eventFighters=parseSherdogEventFighters(eventHtml);
 if(eventFighters.length<20) throw new Error('Sherdog event page exposed only '+eventFighters.length+' fighter links.');
@@ -391,6 +452,7 @@ for(const name of targetNames){
   console.log(name+': '+strength.record+' / '+strength.winPct+'% ('+strength.bouts+' bouts)');
 }
 existing.updatedAt=new Date().toISOString();
+existing.lastRefresh={postPath:POST_PATH,eventUrl:SHERDOG_EVENT_URL,checkedAt:existing.updatedAt};
 await fs.writeFile(CACHE_PATH,JSON.stringify(existing,null,2)+'\n');
 
 let changed=0;
