@@ -2642,18 +2642,28 @@ function insertQuoteBlock() {
   updatePreview();
 }
 
-function insertBlock(text) {
+function insertBlock(text, { preserveScroll = false } = {}) {
   const start = bodyEditor.selectionStart;
   const end = bodyEditor.selectionEnd;
+  const editorScrollTop = bodyEditor.scrollTop;
+  const editorScrollLeft = bodyEditor.scrollLeft;
   const before = bodyEditor.value.slice(0, start);
   const after = bodyEditor.value.slice(end);
   const prefix = !before ? '' : before.endsWith('\n\n') ? '' : before.endsWith('\n') ? '\n' : '\n\n';
   const suffix = !after ? '\n\n' : after.startsWith('\n\n') ? '' : after.startsWith('\n') ? '\n' : '\n\n';
   const inserted = `${prefix}${String(text).trim()}${suffix}`;
   bodyEditor.setRangeText(inserted, start, end, 'end');
-  bodyEditor.focus();
+  bodyEditor.focus({ preventScroll: preserveScroll });
   const cursor = start + inserted.length;
   bodyEditor.setSelectionRange(cursor, cursor);
+  if (preserveScroll) {
+    bodyEditor.scrollTop = editorScrollTop;
+    bodyEditor.scrollLeft = editorScrollLeft;
+    requestAnimationFrame(() => {
+      bodyEditor.scrollTop = editorScrollTop;
+      bodyEditor.scrollLeft = editorScrollLeft;
+    });
+  }
   scheduleAutosave();
   updatePreview();
 }
@@ -3623,7 +3633,8 @@ function insertBlock(text) {
   }
 
   function saveStructuredBlock(type, label, code) {
-    if (editingStructuredBlockId && htmlBlocks.has(editingStructuredBlockId)) {
+    const insertingNewBlock = !(editingStructuredBlockId && htmlBlocks.has(editingStructuredBlockId));
+    if (!insertingNewBlock) {
       const block = htmlBlocks.get(editingStructuredBlockId);
       block.label = label;
       block.code = code;
@@ -3633,11 +3644,11 @@ function insertBlock(text) {
       const id = htmlBlockId();
       const block = { id, label, code };
       htmlBlocks.set(id, block);
-      insertBlock(htmlBlockToken(block));
+      insertBlock(htmlBlockToken(block), { preserveScroll: true });
     }
     editingStructuredBlockId = '';
+    if (insertingNewBlock) setHtmlBlockPanel(false);
     renderHtmlBlockRail();
-    setHtmlBlockPanel(true);
     scheduleAutosave();
     updatePreview();
   }
@@ -4553,9 +4564,9 @@ Object.values(fields).forEach(el => {
       const id = htmlBlockId();
       const block = { id, label, code: normalizedCode };
       htmlBlocks.set(id, block);
-      insertBlock(htmlBlockToken(block));
+      insertBlock(htmlBlockToken(block), { preserveScroll: true });
+      setHtmlBlockPanel(false);
       renderHtmlBlockRail();
-      setHtmlBlockPanel(true);
       showToast('HTML visual inserted. Open Visuals anytime to edit it.');
     }
 
@@ -4810,9 +4821,9 @@ Object.values(fields).forEach(el => {
     const id = htmlBlockId();
     const block = { id, label: inferHtmlLabel(normalizedCode), code: normalizedCode };
     htmlBlocks.set(id, block);
-    insertBlock(htmlBlockToken(block));
+    insertBlock(htmlBlockToken(block), { preserveScroll: true });
+    setHtmlBlockPanel(false);
     renderHtmlBlockRail();
-    setHtmlBlockPanel(true);
     showToast('HTML visual added. Open Visuals anytime to edit it.');
   });
 
