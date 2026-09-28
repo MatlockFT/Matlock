@@ -439,12 +439,58 @@ function scheduleAutosave() {
     renderLibrary();
   }
 
+  function localAutosaveForEntry(entry) {
+    if (!entry?.path) return null;
+    try {
+      const raw = localStorage.getItem(`matlock-writer:${entry.path}`);
+      if (!raw) return null;
+      const saved = JSON.parse(raw);
+      if (!saved || saved.currentPath !== entry.path) return null;
+      // Only merge local metadata into the normal card when it was based on the
+      // exact GitHub revision represented by this Library entry. A SHA mismatch
+      // is a real remote/local conflict and must not silently masquerade as fresh.
+      if (entry.sha && saved.currentSha !== entry.sha) return null;
+      const hasWork = [
+        saved.title,
+        saved.body,
+        saved.description,
+        saved.imagePath
+      ].some(value => String(value || '').trim());
+      return hasWork ? saved : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function libraryDisplayEntry(entry) {
+    const local = localAutosaveForEntry(entry);
+    if (!local) return { ...entry, hasLocalChanges: false };
+
+    const localTags = Array.isArray(local.tags)
+      ? local.tags
+      : String(local.tags || '').split(',').map(value => value.trim()).filter(Boolean);
+
+    return {
+      ...entry,
+      title: Object.prototype.hasOwnProperty.call(local, 'title') ? local.title : entry.title,
+      description: Object.prototype.hasOwnProperty.call(local, 'description') ? local.description : entry.description,
+      date: Object.prototype.hasOwnProperty.call(local, 'date') ? local.date : entry.date,
+      category: Object.prototype.hasOwnProperty.call(local, 'category') ? local.category : entry.category,
+      tags: Object.prototype.hasOwnProperty.call(local, 'tags') ? localTags : entry.tags,
+      imagePath: Object.prototype.hasOwnProperty.call(local, 'imagePath') ? local.imagePath : entry.imagePath,
+      publishAt: Object.prototype.hasOwnProperty.call(local, 'publishAt') ? local.publishAt : entry.publishAt,
+      hasLocalChanges: true,
+      localSavedAt: local.savedAt || 0
+    };
+  }
+
   function filteredLibraryEntries() {
     const query = (librarySearch.value || '').trim().toLowerCase();
     return libraryEntries.filter(entry => {
-      if (libraryFilter !== 'all' && entry.status !== libraryFilter) return false;
+      const display = libraryDisplayEntry(entry);
+      if (libraryFilter !== 'all' && display.status !== libraryFilter) return false;
       if (!query) return true;
-      return [entry.title, entry.name, entry.category, ...(entry.tags || [])].join(' ').toLowerCase().includes(query);
+      return [display.title, display.name, display.category, ...(display.tags || [])].join(' ').toLowerCase().includes(query);
     });
   }
 
@@ -610,19 +656,24 @@ function scheduleAutosave() {
       return;
     }
 
-    const remoteCards = entries.map(entry => {
+    const remoteCards = entries.map(remoteEntry => {
+      const entry = libraryDisplayEntry(remoteEntry);
       const image = normalizeImagePath(entry.imagePath);
       const status = entry.status || 'unknown';
       const statusText = status === 'scheduled' ? `Scheduled ${formatDateTime(entry.publishAt)}` : status === 'published' ? 'Published' : status === 'draft' ? 'Draft' : 'Loading';
-      const edited = entry.editedAt ? `Edited ${formatDateTime(entry.editedAt)}` : entry.date ? `Dated ${formatDate(entry.date)}` : '';
-      const live = libraryLiveUrl(entry);
-      return `<article class="writer-library-card" data-library-path="${escapeHtml(entry.path)}">
+      const remoteEdited = entry.editedAt ? `Edited ${formatDateTime(entry.editedAt)}` : entry.date ? `Dated ${formatDate(entry.date)}` : '';
+      const localEdited = entry.hasLocalChanges && entry.localSavedAt
+        ? `Local changes ${new Date(entry.localSavedAt).toLocaleString([], { dateStyle:'medium', timeStyle:'short' })}`
+        : entry.hasLocalChanges ? 'Local changes not yet saved to GitHub' : '';
+      const edited = localEdited || remoteEdited;
+      const live = libraryLiveUrl(remoteEntry);
+      return `<article class="writer-library-card${entry.hasLocalChanges ? ' writer-library-card-has-local' : ''}" data-library-path="${escapeHtml(entry.path)}">
         <div class="writer-library-thumb">${image ? `<img src="${escapeHtml(image)}" alt="" loading="lazy">` : '<span>MATLOCK</span>'}</div>
         <div class="writer-library-card-body">
-          <div class="writer-library-card-meta"><span class="writer-status-badge is-${status}">${escapeHtml(statusText)}</span>${entry.category ? `<span>${escapeHtml(entry.category)}</span>` : ''}</div>
+          <div class="writer-library-card-meta"><span class="writer-status-badge is-${status}">${escapeHtml(statusText)}</span>${entry.hasLocalChanges ? '<span class="writer-library-local-changes">Local changes</span>' : ''}${entry.category ? `<span>${escapeHtml(entry.category)}</span>` : ''}</div>
           <h3>${escapeHtml(entry.title || entry.name)}</h3>
           <p>${escapeHtml(entry.description || edited || entry.name)}</p>
-          <div class="writer-library-card-foot"><span>${escapeHtml(edited)}</span><div class="writer-library-actions"><button type="button" data-library-edit>Edit</button><button type="button" data-library-duplicate>Duplicate</button>${status === 'published' ? '<button type="button" data-library-unpublish>Unpublish</button>' : ''}<button type="button" data-library-delete>Delete</button>${live ? `<a href="${escapeHtml(live)}" target="_blank" rel="noopener noreferrer">View live</a>` : ''}</div></div>
+          <div class="writer-library-card-foot"><span>${escapeHtml(edited)}</span><div class="writer-library-actions"><button type="button" data-library-edit>${entry.hasLocalChanges ? 'Resume' : 'Edit'}</button><button type="button" data-library-duplicate>Duplicate</button>${status === 'published' ? '<button type="button" data-library-unpublish>Unpublish</button>' : ''}<button type="button" data-library-delete>Delete</button>${live ? `<a href="${escapeHtml(live)}" target="_blank" rel="noopener noreferrer">View live</a>` : ''}</div></div>
         </div>
       </article>`;
     }).join('');
