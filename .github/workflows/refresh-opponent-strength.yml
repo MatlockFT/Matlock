@@ -16,7 +16,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: writer-opponent-strength
+  group: writer-opponent-strength-fast-v2
   cancel-in-progress: true
 
 jobs:
