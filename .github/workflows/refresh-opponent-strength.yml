@@ -1,5 +1,5 @@
 name: Refresh opponent strength
-# Re-run marker: complete-history source selection
+# Re-run marker: direct-history refresh
 
 on:
   workflow_dispatch:
