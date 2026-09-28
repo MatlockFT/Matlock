@@ -1731,7 +1731,8 @@ body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{
 /* Writer screen separation: Library is navigation, Editor owns publishing controls. */
 .writer-shell .writer-app[data-writer-screen="library"] .writer-publish-actions,
 .writer-shell .writer-app[data-writer-screen="library"] [data-live-writer-toggle],
-.writer-shell .writer-app[data-writer-screen="library"] [data-show-library]{
+.writer-shell .writer-app[data-writer-screen="library"] [data-show-library],
+.writer-shell .writer-app[data-writer-screen="library"] [data-new-article]{
   display:none!important;
 }
 .writer-shell .writer-app[data-writer-screen="library"] .writer-status-meta{
