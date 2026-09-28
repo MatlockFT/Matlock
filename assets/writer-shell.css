@@ -1726,3 +1726,32 @@ body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{
     align-self:stretch;
   }
 }
+
+
+/* Writer screen separation: Library is navigation, Editor owns publishing controls. */
+.writer-shell .writer-app[data-writer-screen="library"] .writer-publish-actions,
+.writer-shell .writer-app[data-writer-screen="library"] [data-live-writer-toggle],
+.writer-shell .writer-app[data-writer-screen="library"] [data-show-library]{
+  display:none!important;
+}
+.writer-shell .writer-app[data-writer-screen="library"] .writer-status-meta{
+  display:none!important;
+}
+.writer-shell .writer-app[data-writer-screen="library"] .writer-statusbar{
+  justify-content:flex-start;
+}
+.writer-shell .writer-app[data-writer-screen="editor"] [data-library-new]{
+  display:none!important;
+}
+.writer-shell .writer-library-card-local{
+  border-bottom-color:rgba(185,170,116,.28);
+}
+.writer-shell .writer-library-card-local .writer-library-thumb{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px dashed rgba(185,170,116,.26);
+  color:#b9aa74;
+  font-size:.65rem;
+  letter-spacing:.12em;
+}
