@@ -384,7 +384,32 @@
     return String(value || 'HTML visual').replace(/[\]\r\n]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 80) || 'HTML visual';
   }
 
-  function inferHtmlLabel(code) {
+  function structuredHtmlLabel(code) {
+    const source = String(code || '');
+    const type = source.match(/data-writer-block=["']([^"']+)["']/i)?.[1] || '';
+    const encoded = source.match(/data-writer-config=["']([^"']+)["']/i)?.[1] || '';
+    if (!type || !encoded) return '';
+    try {
+      const config = JSON.parse(decodeURIComponent(encoded));
+      if (type === 'tale') {
+        const a = String(config?.a?.name || '').trim();
+        const b = String(config?.b?.name || '').trim();
+        if (a && b) return cleanHtmlLabel(a + ' vs. ' + b);
+      }
+      if (type === 'stats') {
+        const a = String(config?.fighterA || '').trim();
+        const b = String(config?.fighterB || '').trim();
+        if (a && b) return cleanHtmlLabel(a + ' vs. ' + b + ' · Stats');
+      }
+      if (type === 'pick') {
+        const fighter = String(config?.fighter || '').trim();
+        if (fighter) return cleanHtmlLabel('Pick · ' + fighter);
+      }
+    } catch {}
+    return '';
+  }
+
+  function legacyHtmlLabel(code) {
     const heading = String(code || '').match(/<h[1-6][^>]*>([\s\S]*?)<\/h[1-6]>/i);
     if (heading) {
       const label = heading[1].replace(/<[^>]+>/g, ' ').replace(/&nbsp;/gi, ' ').replace(/\s+/g, ' ').trim();
@@ -393,6 +418,10 @@
     const sectionClass = String(code || '').match(/<section\b[^>]*class=["']([^"']+)["']/i);
     if (sectionClass) return cleanHtmlLabel(sectionClass[1].split(/\s+/).join(' '));
     return 'HTML visual';
+  }
+
+  function inferHtmlLabel(code) {
+    return structuredHtmlLabel(code) || legacyHtmlLabel(code);
   }
 
   function normalizeHtmlVisual(code) {
@@ -411,10 +440,16 @@
   }
 
   function expandHtmlBlocks(text, { preview = false } = {}) {
-    return String(text || '').replace(/^\[HTML VISUAL · .*? · #([A-Za-z0-9_-]+)\]\s*$/gm, (token, id) => {
-      const code = htmlBlocks.get(id)?.code || token;
-      if (!preview || code === token) return code;
-      return code.replace(/^<section\b/i, '<section data-writer-html-block-id="' + id + '"');
+    return String(text || '').replace(/^\[HTML VISUAL · (.*?) · #([A-Za-z0-9_-]+)\]\s*$/gm, (token, label, id) => {
+      const code = htmlBlocks.get(id)?.code || '';
+      if (code) {
+        if (!preview) return code;
+        return code.replace(/^<section\b/i, '<section data-writer-html-block-id="' + id + '"');
+      }
+      if (!preview) return token;
+      return '<div class="writer-preview-visual-recovery" data-missing-html-block="' + escapeHtml(id) + '">' +
+        '<strong>Visual recovery needed</strong><span>' + escapeHtml(cleanHtmlLabel(label)) + '</span>' +
+        '<small>The article text is safe, but this local visual source is missing.</small></div>';
     });
   }
 
@@ -432,6 +467,18 @@
     return source;
   }
 
+  function rawHtmlVisualSections(text) {
+    return [...String(text || '').matchAll(/<section\b[\s\S]*?<\/section>/gi)].map(match => {
+      const code = normalizeWriterHtmlBlockCode(match[0].trim());
+      return {
+        code,
+        label: inferHtmlLabel(code),
+        legacyLabel: legacyHtmlLabel(code),
+        type: code.match(/data-writer-block=["']([^"']+)["']/i)?.[1] || ''
+      };
+    });
+  }
+
   function collapseRawHtmlSections(text) {
     return String(text || '').replace(/<section\b[\s\S]*?<\/section>/gi, code => {
       const id = htmlBlockId();
@@ -442,15 +489,73 @@
     });
   }
 
+  function htmlVisualTokenRefs(text) {
+    return [...String(text || '').matchAll(/^\[HTML VISUAL · (.*?) · #([A-Za-z0-9_-]+)\]\s*$/gm)].map(match => ({
+      token: match[0],
+      label: cleanHtmlLabel(match[1]),
+      id: match[2],
+      index: match.index
+    }));
+  }
+
+  function repairSavedHtmlVisualState(savedState, remoteState = null) {
+    const saved = { ...(savedState || {}) };
+    const blocks = new Map();
+    for (const item of Array.isArray(saved.htmlBlocks) ? saved.htmlBlocks : []) {
+      if (!item?.id || !item?.code) continue;
+      blocks.set(String(item.id), {
+        id: String(item.id),
+        label: cleanHtmlLabel(item.label || inferHtmlLabel(item.code)),
+        code: normalizeWriterHtmlBlockCode(item.code)
+      });
+    }
+
+    const refs = htmlVisualTokenRefs(saved.body || '');
+    const remoteSections = rawHtmlVisualSections(remoteState?.body || '');
+    const usedRemote = new Set();
+    let recovered = 0;
+    let unresolved = 0;
+
+    const normalizedLabel = value => cleanHtmlLabel(value).toLowerCase();
+
+    for (const ref of refs) {
+      if (blocks.get(ref.id)?.code) continue;
+
+      let matchIndex = remoteSections.findIndex((section, index) => {
+        if (usedRemote.has(index)) return false;
+        const wanted = normalizedLabel(ref.label);
+        return wanted === normalizedLabel(section.label) || wanted === normalizedLabel(section.legacyLabel);
+      });
+
+      // Older Writer revisions gave generic raw HTML blocks labels such as
+      // "article-html-visual". Preserve their original order when repairing.
+      if (matchIndex < 0 && normalizedLabel(ref.label) === 'article-html-visual') {
+        matchIndex = remoteSections.findIndex((section, index) => !usedRemote.has(index) && normalizedLabel(section.legacyLabel) === 'article-html-visual');
+      }
+
+      if (matchIndex >= 0) {
+        const section = remoteSections[matchIndex];
+        usedRemote.add(matchIndex);
+        blocks.set(ref.id, { id: ref.id, label: section.label, code: section.code });
+        recovered += 1;
+      } else {
+        unresolved += 1;
+      }
+    }
+
+    saved.htmlBlocks = [...blocks.values()];
+    return { state: saved, recovered, unresolved, tokenCount: refs.length };
+  }
+
   function prepareEditorBody(body, savedBlocks = []) {
     htmlBlocks = new Map();
     for (const item of Array.isArray(savedBlocks) ? savedBlocks : []) {
       if (!item?.id || !item?.code) continue;
-      htmlBlocks.set(String(item.id), { id: String(item.id), label: cleanHtmlLabel(item.label), code: normalizeWriterHtmlBlockCode(item.code) });
+      htmlBlocks.set(String(item.id), { id: String(item.id), label: cleanHtmlLabel(item.label || inferHtmlLabel(item.code)), code: normalizeWriterHtmlBlockCode(item.code) });
     }
-    const source = String(body || '');
-    if (htmlBlocks.size) return source;
-    return collapseRawHtmlSections(source);
+    // A valid recovery can contain both tokenized visuals and raw sections.
+    // Always collapse remaining raw sections instead of assuming one format.
+    return collapseRawHtmlSections(String(body || ''));
   }
 
   function htmlBlockAtCursor() {
@@ -2074,11 +2179,24 @@ function scheduleAutosave() {
       if (remoteState && saved.currentSha !== remoteState.currentSha) return false;
       const hasWork = (saved.title || saved.body || '').trim();
       if (!hasWork) return false;
-      applyState(saved, { remote: Boolean(remoteState) });
+
+      const repaired = repairSavedHtmlVisualState(saved, remoteState);
+      applyState(repaired.state, { remote: Boolean(remoteState) });
       dirty = true;
       showEditor();
-      setSaveState('Local changes restored');
-      showToast('Restored your unsaved local changes.');
+      setSaveState(repaired.recovered ? 'Local changes restored · visuals repaired' : 'Local changes restored');
+
+      if (repaired.unresolved) {
+        showToast(
+          `Restored local changes. ${repaired.recovered ? repaired.recovered + ' visual' + (repaired.recovered === 1 ? '' : 's') + ' repaired. ' : ''}` +
+          `${repaired.unresolved} local visual${repaired.unresolved === 1 ? '' : 's'} still need recovery.`,
+          8000
+        );
+      } else if (repaired.recovered) {
+        showToast(`Restored your local changes and repaired ${repaired.recovered} visual${repaired.recovered === 1 ? '' : 's'} from the GitHub copy.`, 6500);
+      } else {
+        showToast('Restored your unsaved local changes.');
+      }
       return true;
     } catch { return false; }
   }
