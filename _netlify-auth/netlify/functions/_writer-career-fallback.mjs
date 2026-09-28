@@ -375,10 +375,11 @@ async function sherdogLookup(expected) {
 }
 
 export async function fetchCareerFallback(expected) {
-  const direct = await directLookup(expected);
-  if (direct?.historyComplete) return direct;
+  // Sherdog is the primary non-UFC career source because regional records and
+  // newly completed fights are more likely to be reflected there first.
   const sherdog = await sherdogLookup(expected);
-  return sherdog || direct;
+  if (sherdog) return sherdog;
+  return directLookup(expected);
 }
 
 export function hasCompleteDisplayedCareer(career) {
