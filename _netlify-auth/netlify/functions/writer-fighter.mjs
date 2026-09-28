@@ -113,7 +113,7 @@ function fightRows(html, selfId) {
   return rows.sort((a,b) => String(b.date || '').localeCompare(String(a.date || '')));
 }
 
-function mergeRecentHistory(primary = [], secondary = []) {
+export function mergeRecentHistory(primary = [], secondary = []) {
   const rows=[];
   const seen=new Set();
   for(const fight of [...(primary||[]),...(secondary||[])]) {
