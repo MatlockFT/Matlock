@@ -9,10 +9,10 @@ async function openWriter(page) {
   await expect(page.locator('[data-writer-app]')).toBeVisible();
   const more = page.locator('[data-writer-mode-more]');
   if (!(await more.evaluate(el => el.open))) await more.locator('summary').click();
-  await expect(page.locator('button[data-writer-sync-scroll]')).toBeVisible();
+  await expect(page.locator('button[data-writer-sync-scroll]')).toHaveCount(0);
 }
 
-test('split workflow persists views, fills the viewport and keeps editor/preview navigation connected', async ({ page }) => {
+test('split workflow persists views, fills the viewport and keeps editor/preview scrolling independent', async ({ page }) => {
   await page.setViewportSize({ width: 1920, height: 1080 });
   await openWriter(page);
 
@@ -23,7 +23,6 @@ test('split workflow persists views, fills the viewport and keeps editor/preview
   const previewFrame = page.locator('[data-preview-frame]');
   const toolbar = page.locator('.writer-toolbar');
   const splitter = page.locator('[data-writer-splitter]');
-  const syncButton = page.locator('button[data-writer-sync-scroll]');
 
   await page.click('[data-view="split"]');
   await page.click('[data-preview-size="mobile"]');
@@ -95,20 +94,28 @@ test('split workflow persists views, fills the viewport and keeps editor/preview
 
   await editor.fill(body);
   await expect(page.locator('[data-preview-content] h2', { hasText: 'Target Section' })).toBeVisible();
-  await expect(syncButton).toHaveAttribute('aria-pressed', 'true');
 
+  await previewPane.evaluate(el => { el.scrollTop = 0; });
   await editor.evaluate(el => {
     el.scrollTop = (el.scrollHeight - el.clientHeight) * 0.62;
     el.dispatchEvent(new Event('scroll'));
   });
   await page.waitForTimeout(100);
 
-  const previewProgress = await previewPane.evaluate(el => {
+  const previewProgressAfterEditorScroll = await previewPane.evaluate(el => {
     const max = el.scrollHeight - el.clientHeight;
     return max > 0 ? el.scrollTop / max : 0;
   });
-  expect(previewProgress).toBeGreaterThan(0.45);
-  expect(previewProgress).toBeLessThan(0.78);
+  expect(previewProgressAfterEditorScroll).toBeLessThan(0.05);
+
+  const editorScrollBeforePreview = await editor.evaluate(el => el.scrollTop);
+  await previewPane.evaluate(el => {
+    el.scrollTop = (el.scrollHeight - el.clientHeight) * 0.7;
+    el.dispatchEvent(new Event('scroll'));
+  });
+  await page.waitForTimeout(100);
+  const editorScrollAfterPreview = await editor.evaluate(el => el.scrollTop);
+  expect(Math.abs(editorScrollAfterPreview - editorScrollBeforePreview)).toBeLessThanOrEqual(2);
 
   const targetIndex = body.indexOf('## Target Section');
   await page.locator('[data-preview-content] h2', { hasText: 'Target Section' }).click();
@@ -118,12 +125,9 @@ test('split workflow persists views, fills the viewport and keeps editor/preview
   if (await page.locator('[data-library-view]').isVisible()) await page.click('[data-library-new]');
   const moreAfterReload = page.locator('[data-writer-mode-more]');
   if (!(await moreAfterReload.evaluate(el => el.open))) await moreAfterReload.locator('summary').click();
-  await expect(page.locator('button[data-writer-sync-scroll]')).toBeVisible();
+  await expect(page.locator('button[data-writer-sync-scroll]')).toHaveCount(0);
   await expect(workspace).toHaveAttribute('data-view-mode', 'split');
   await expect(previewFrame).toHaveAttribute('data-preview-size', 'mobile');
   await expect(splitter).toHaveAttribute('aria-valuenow', String(changedSplit));
-
-  await syncButton.click();
-  await expect(syncButton).toHaveAttribute('aria-pressed', 'false');
-  expect(await page.evaluate(() => localStorage.getItem('mma-writer-sync-scroll'))).toBe('0');
+  expect(await page.evaluate(() => localStorage.getItem('mma-writer-sync-scroll'))).toBeNull();
 });
