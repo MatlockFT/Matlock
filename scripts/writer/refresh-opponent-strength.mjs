@@ -1,5 +1,5 @@
 import fs from 'node:fs/promises';
-import { fetchCareerFallback } from '../../_netlify-auth/netlify/functions/_writer-career-fallback.mjs';
+import { fetchCareerFallback, parseUfcFightCareerProfile } from '../../_netlify-auth/netlify/functions/_writer-career-fallback.mjs';
 
 const POST_PATH = process.env.WRITER_STRENGTH_POST || '_posts/2026-09-25-ufc-332.md';
 const CACHE_PATH = 'assets/data/writer-opponent-strength.json';
@@ -91,6 +91,17 @@ async function fetchText(url,{attempts=2,timeout=9000}={}) {
     if(attempt<attempts-1) await sleep(300*(attempt+1));
   }
   throw lastError || new Error('Request failed: '+url);
+}
+
+async function directHistoryLookup(name) {
+  const slug=slugify(name);
+  if(!slug) return null;
+  const sourceUrl='https://ufcfight.net/'+slug+'/';
+  let html;
+  try { html=await fetchText(sourceUrl); } catch { return null; }
+  const profile=parseUfcFightCareerProfile(html,sourceUrl);
+  if(!profile?.name || !likelySameName(profile.name,name)) return null;
+  return profile;
 }
 
 async function directRecordLookup(name) {
@@ -257,11 +268,17 @@ console.log('Refreshing all-career opponent strength for '+targetNames.length+' 
 
 const profiles=new Map();
 await mapLimit(targetNames,2,async name=>{
-  await sleep(200);
-  let profile=await fetchCareerFallback({name});
+  await sleep(160);
+  let profile=await directHistoryLookup(name);
+  if(!profile?.historyComplete || !Array.isArray(profile.history) || !profile.history.length){
+    profile=await fetchCareerFallback({name});
+  }
   if(!profile?.historyComplete || !Array.isArray(profile.history) || !profile.history.length){
     const alias=HISTORY_ALIASES.get(normalize(name));
-    if(alias) profile=await fetchCareerFallback({name:alias});
+    if(alias){
+      profile=await directHistoryLookup(alias);
+      if(!profile?.historyComplete) profile=await fetchCareerFallback({name:alias});
+    }
   }
   if(!profile?.historyComplete || !Array.isArray(profile.history) || !profile.history.length){
     throw new Error('Complete professional history unavailable for '+name);
