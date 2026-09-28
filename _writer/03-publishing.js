@@ -122,6 +122,7 @@
   try {
     const remote = await githubFetch(`/contents/${encodeURIComponent(currentPath).replace(/%2F/g,'/')}?ref=main`);
     if (remote.sha && remote.sha !== currentSha) {
+      persistLocalAutosave();
       pendingConflictMode = mode;
       pendingRemoteSha = remote.sha;
       conflictDialog.showModal();
