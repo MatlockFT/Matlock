@@ -48,7 +48,6 @@
       fields.filename.disabled = Boolean(currentPath);
       dirty = false;
       updateSaveButtonLabel();
-      updateUrlPath();
     }
     updatePreview();
     updateDocumentStatus();
@@ -654,6 +653,10 @@ function scheduleAutosave() {
 
   async function duplicateArticle(path) {
     if (dirty && !window.confirm('Duplicate another article and leave the current unsaved changes?')) return;
+    if (readLocalNewDraft()) {
+      showToast('A browser-only draft already exists. Resume or discard it before duplicating another article.', 6000);
+      return;
+    }
     clearLocalFeaturedPreview();
     try {
       const data = await githubFetch(`/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}?ref=main`);
