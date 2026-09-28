@@ -212,12 +212,8 @@ async function githubFetch(path, options = {}, requireAuth = false) {
     setPublishingControls(Boolean(githubCredential));
   }
 
-  function showLibrary({ updateRoute = true, replaceRoute = false, skipDirtyCheck = false } = {}) {
-    if (dirty && !skipDirtyCheck) {
-      if (!window.confirm('Return to the Library? Your current changes are saved locally and can be resumed.')) return false;
-      persistLocalAutosave();
-      dirty = false;
-    } else if (dirty) {
+  function showLibrary({ updateRoute = true, replaceRoute = false } = {}) {
+    if (dirty) {
       persistLocalAutosave();
       dirty = false;
     }
@@ -297,12 +293,11 @@ function scheduleAutosave() {
       if (remoteState && saved.currentSha !== remoteState.currentSha) return false;
       const hasWork = (saved.title || saved.body || '').trim();
       if (!hasWork) return false;
-      if (remoteState && !window.confirm('A local autosave exists for this article. Restore it?')) return false;
       applyState(saved, { remote: Boolean(remoteState) });
       dirty = true;
       showEditor();
-      setSaveState('Restored local changes');
-      showToast('Restored your local autosave.');
+      setSaveState('Local changes restored');
+      showToast('Restored your unsaved local changes.');
       return true;
     } catch { return false; }
   }
@@ -312,7 +307,7 @@ function scheduleAutosave() {
     const existingLocal = readLocalNewDraft();
     if (!template && existingLocal && !allowExistingLocal) {
       showToast('A browser-only draft already exists. Resume or discard it from the Library before starting another.', 6000);
-      showLibrary({ updateRoute: true, skipDirtyCheck: true });
+      showLibrary({ updateRoute: true });
       return false;
     }
     clearLocalFeaturedPreview();
