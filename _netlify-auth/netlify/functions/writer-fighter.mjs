@@ -113,6 +113,23 @@ function fightRows(html, selfId) {
   return rows.sort((a,b) => String(b.date || '').localeCompare(String(a.date || '')));
 }
 
+function mergeRecentHistory(primary = [], secondary = []) {
+  const rows=[];
+  const seen=new Set();
+  for(const fight of [...(primary||[]),...(secondary||[])]) {
+    if(!fight) continue;
+    const opponent=String(fight.opponent || fight.opponentName || '').trim();
+    const date=String(fight.date || '').trim();
+    const result=String(fight.result || '').trim().toUpperCase();
+    if(!opponent || !result) continue;
+    const key=(date || 'undated')+'|'+opponent.toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+    if(seen.has(key)) continue;
+    seen.add(key);
+    rows.push({...fight,opponent,result});
+  }
+  return rows.sort((a,b)=>String(b.date||'').localeCompare(String(a.date||''))).slice(0,5);
+}
+
 function recordFromRows(rows) {
   const counts = { W:0, L:0, D:0, NC:0 };
   for (const row of rows) if (row.result && Object.hasOwn(counts,row.result)) counts[row.result]++;
@@ -325,12 +342,20 @@ export default async function handler(request) {
     if (value !== null && value !== undefined && value !== '') career[field] = value;
   }
 
-  const fallbackHistory = fallbackProfile.historyComplete && Array.isArray(fallbackProfile.history)
+  const fallbackHistory = Array.isArray(fallbackProfile.history)
     ? fallbackProfile.history
     : [];
-  const recent = fallbackHistory.length
-    ? fallbackHistory.slice(0,5)
-    : (Array.isArray(statsProfile.recent) ? statsProfile.recent : []);
+  const completeFallbackHistory = fallbackProfile.historyComplete ? fallbackHistory : [];
+  // Recent Form does not require proof that the entire career was parsed. A verified
+  // Sherdog row is still useful for a regional/TUF newcomer even when full-history
+  // completeness cannot be established.
+  const fallbackRecent = Array.isArray(fallbackProfile.recent) && fallbackProfile.recent.length
+    ? fallbackProfile.recent
+    : fallbackHistory.slice(0,5);
+  const recent = mergeRecentHistory(
+    fallbackRecent,
+    Array.isArray(statsProfile.recent) ? statsProfile.recent : []
+  );
   const profile = {
     ...statsProfile,
     record: officialProfile.record || fallbackProfile.record || statsProfile.record || null,
@@ -339,12 +364,15 @@ export default async function handler(request) {
     weight:statsProfile.weight || fallbackProfile.bio?.weight || null,
     bio:statsProfile.bio || fallbackProfile.bio || null,
     career:Object.keys(career).length ? career : null,
-    history:fallbackHistory,
+    // Opponent-strength calculations still only receive complete professional history.
+    history:completeFallbackHistory,
     recent,
-    latestBoutDate:fallbackHistory[0]?.date || statsProfile.latestBoutDate || fallbackProfile.latestBoutDate || null,
-    historyComplete:Boolean(fallbackHistory.length && fallbackProfile.historyComplete),
-    historySource:fallbackHistory.length ? (fallbackProfile.source || null) : null,
-    historySourceUrl:fallbackHistory.length ? (fallbackProfile.sourceUrl || null) : null
+    latestBoutDate:recent[0]?.date || statsProfile.latestBoutDate || fallbackProfile.latestBoutDate || null,
+    historyComplete:Boolean(completeFallbackHistory.length && fallbackProfile.historyComplete),
+    historySource:completeFallbackHistory.length ? (fallbackProfile.source || null) : null,
+    historySourceUrl:completeFallbackHistory.length ? (fallbackProfile.sourceUrl || null) : null,
+    recentSource:fallbackRecent.length ? (fallbackProfile.source || null) : (statsResolved?.sourceUrl ? 'UFCStats' : null),
+    recentSourceUrl:fallbackRecent.length ? (fallbackProfile.sourceUrl || null) : (statsResolved?.sourceUrl || null)
   };
   const core = [
     profile.stats?.slpm,
