@@ -5,6 +5,7 @@ import { completeDisplayedCareer } from './sources/sherdog.mjs';
 
 const DATA_PATH = 'assets/data/matchmaker/current.json';
 const OUTPUT_PATH = 'assets/data/writer-fighters.json';
+const OPPONENT_STRENGTH_PATH = 'assets/data/writer-opponent-strength.json';
 
 const FIGHT_URL = 'https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fight_results.csv';
 const EVENT_URL = 'https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_event_details.csv';
@@ -194,6 +195,11 @@ let previousWriter = null;
 try {
   previousWriter = JSON.parse(await fs.readFile(OUTPUT_PATH, 'utf8'));
 } catch {}
+let opponentStrengthCache = { fighters:{} };
+try {
+  const loaded = JSON.parse(await fs.readFile(OPPONENT_STRENGTH_PATH, 'utf8'));
+  if (loaded?.fighters && typeof loaded.fighters === 'object') opponentStrengthCache = loaded;
+} catch {}
 const builtAt = new Date().toISOString();
 
 const [fightText, eventText, fighterText, tottText, statText] = await Promise.all([
@@ -353,8 +359,17 @@ for (const fighter of current.fighters || []) {
     ? fighter.verifiedMeetings
     : (Array.isArray(fighter.history) ? fighter.history : []);
   const mirrorHistory = resultHistoryByStatsId.get(ufcStatsId) || [];
-  const recentHistory = mirrorHistory.length ? mirrorHistory : verifiedHistory;
-  const career = normalizedCareer(fighter.career, mirrorHistory.length ? mirrorHistory : verifiedHistory, fighter.record);
+  const strengthEntry = opponentStrengthCache.fighters?.[key(fighter.name)] || null;
+  const strengthCheckedAt = Date.parse(strengthEntry?.checkedAt || 0);
+  const cachedCareerHistory = strengthEntry?.historyComplete &&
+    Array.isArray(strengthEntry.history) &&
+    Date.now() - strengthCheckedAt < 14 * 86400000
+      ? strengthEntry.history
+      : [];
+  const recentHistory = cachedCareerHistory.length
+    ? cachedCareerHistory
+    : (mirrorHistory.length ? mirrorHistory : verifiedHistory);
+  const career = normalizedCareer(fighter.career, cachedCareerHistory.length ? cachedCareerHistory : (mirrorHistory.length ? mirrorHistory : verifiedHistory), fighter.record);
   const ufcMirrorHistory = mirrorHistory.filter(fight => /^(?:UFC\b|Noche UFC\b)/i.test(fight.event || ''));
   const ufcRecord = ufcMirrorHistory.length
     ? (() => {
@@ -383,6 +398,13 @@ for (const fighter of current.fighters || []) {
     bio,
     stats,
     career,
+    opponentStrength: strengthEntry?.opponentStrength?.complete ? strengthEntry.opponentStrength : null,
+    careerHistorySource: cachedCareerHistory.length ? {
+      source: strengthEntry.source || null,
+      sourceUrl: strengthEntry.sourceUrl || null,
+      checkedAt: strengthEntry.checkedAt || null,
+      complete:true
+    } : null,
     recent: recentHistory.slice(0, 5).map(fight => ({
       result: fight.result || null,
       opponent: fight.opponent || fight.opponentName || null,
