@@ -623,6 +623,89 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     return data;
   }
 
+  function parseOpponentRecord(value) {
+    const match = String(value || '').match(/\b(\d+)\s*-\s*(\d+)(?:\s*-\s*(\d+))?/);
+    if (!match) return null;
+    return {
+      wins:Number(match[1]),
+      losses:Number(match[2]),
+      draws:Number(match[3] || 0)
+    };
+  }
+
+  function canAutoFillTaleOpponentStrength(recordInput,pctInput) {
+    if (!recordInput || !pctInput) return false;
+    const recordValue=recordInput.value.trim();
+    const pctValue=pctInput.value.trim();
+    if (!recordValue && !pctValue) return true;
+    const autoRecord=recordInput.dataset.autoOpponentValue || '';
+    const autoPct=pctInput.dataset.autoOpponentValue || '';
+    return Boolean(autoRecord || autoPct) && recordValue === autoRecord && pctValue === autoPct;
+  }
+
+  async function populateTaleOpponentStrength(dialog,side,fighter,liveProfile=null) {
+    if (!dialog || !fighter) return;
+    const recordInput=dialog.querySelector('[data-tale-opponents-record="' + side + '"]');
+    const pctInput=dialog.querySelector('[data-tale-opponents-pct="' + side + '"]');
+    if (!canAutoFillTaleOpponentStrength(recordInput,pctInput)) return;
+
+    const recent=recentRowsFromFighter(fighter,liveProfile)
+      .filter(row => row.opponent)
+      .slice(0,5);
+    if (!recent.length) return;
+
+    const requestKey=normalizeFighterLookup(fighter.name) + '|' +
+      recent.map(row => normalizeFighterLookup(row.opponent)).join('|');
+    recordInput.dataset.opponentStrengthRequest=requestKey;
+    pctInput.dataset.opponentStrengthRequest=requestKey;
+
+    let directory;
+    try {
+      directory=await loadWriterFighterDirectory();
+    } catch {
+      return;
+    }
+
+    const records=await Promise.all(recent.map(async row => {
+      const wanted=normalizeFighterLookup(row.opponent);
+      const cachedOpponent=directory.fighters.find(item => normalizeFighterLookup(item.name) === wanted);
+      const cachedRecord=parseOpponentRecord(cachedOpponent?.record);
+      if (cachedRecord) return cachedRecord;
+
+      try {
+        const payload=await fetchLiveWriterFighter({name:row.opponent});
+        return parseOpponentRecord(payload?.profile?.record);
+      } catch {
+        return null;
+      }
+    }));
+
+    if (recordInput.dataset.opponentStrengthRequest !== requestKey ||
+        pctInput.dataset.opponentStrengthRequest !== requestKey ||
+        !canAutoFillTaleOpponentStrength(recordInput,pctInput)) return;
+
+    // Never publish a partial strength-of-schedule number as if it were complete.
+    if (records.some(record => !record)) {
+      if (recordInput.value === (recordInput.dataset.autoOpponentValue || '')) recordInput.value='';
+      if (pctInput.value === (pctInput.dataset.autoOpponentValue || '')) pctInput.value='';
+      delete recordInput.dataset.autoOpponentValue;
+      delete pctInput.dataset.autoOpponentValue;
+      return;
+    }
+
+    const wins=records.reduce((total,record) => total + record.wins,0);
+    const losses=records.reduce((total,record) => total + record.losses,0);
+    const denominator=wins + losses;
+    if (!denominator) return;
+
+    const combined=wins + '-' + losses;
+    const winPct=Math.round((wins / denominator) * 100) + '%';
+    recordInput.value=combined;
+    pctInput.value=winPct;
+    recordInput.dataset.autoOpponentValue=combined;
+    pctInput.dataset.autoOpponentValue=winPct;
+  }
+
   function applyCachedWriterFighter(dialog, type, side, fighter) {
     if (type === 'stats') {
       const input = dialog.querySelector('[data-stats-fighter="' + side + '"]');
@@ -664,6 +747,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     renderRecentRows(dialog.querySelector('[data-tale-form-list="' + side + '"]'),recent);
     const last5 = dialog.querySelector('[data-tale-last5="' + side + '"]');
     if (last5 && recent.length) last5.value = lastFiveFromRows(recent);
+    populateTaleOpponentStrength(dialog,side,fighter);
     const rows = dialog.querySelector('[data-tale-row-list]');
     const ufcRecord = fighter.ufcRecord || recordFromHistory(fighter.history,new Set(['ufc']));
     setComparisonValue(rows,'Record',side,displayComparisonValue(fighter.record));
@@ -715,6 +799,7 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       const last5 = dialog.querySelector('[data-tale-last5="' + side + '"]');
       if (last5) last5.value = lastFiveFromRows(recent);
     }
+    populateTaleOpponentStrength(dialog,side,fighter,profile);
   }
 
   function cachedSourceStateForFighter(fighter) {
@@ -854,6 +939,20 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       delete input.dataset.ufcStatsId;
       delete input.dataset.sourceMode;
       delete input.dataset.bookingDate;
+      if (type === 'tale') {
+        const recordInput=dialog.querySelector('[data-tale-opponents-record="' + side + '"]');
+        const pctInput=dialog.querySelector('[data-tale-opponents-pct="' + side + '"]');
+        if (recordInput) {
+          recordInput.value='';
+          delete recordInput.dataset.autoOpponentValue;
+          delete recordInput.dataset.opponentStrengthRequest;
+        }
+        if (pctInput) {
+          pctInput.value='';
+          delete pctInput.dataset.autoOpponentValue;
+          delete pctInput.dataset.opponentStrengthRequest;
+        }
+      }
       setLookupStatus(input,'','');
       render();
     });
@@ -1137,8 +1236,14 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       dialog.querySelector('[data-tale-image-x="'+side+'"]').value=portrait.x;
       dialog.querySelector('[data-tale-image-y="'+side+'"]').value=portrait.y;
       dialog.querySelector('[data-tale-image-zoom="'+side+'"]').value=portrait.zoom;
-      dialog.querySelector('[data-tale-opponents-record="'+side+'"]').value=fighter.opponentsRecord||'';
-      dialog.querySelector('[data-tale-opponents-pct="'+side+'"]').value=fighter.opponentsPct||'';
+      const opponentsRecordInput=dialog.querySelector('[data-tale-opponents-record="'+side+'"]');
+      const opponentsPctInput=dialog.querySelector('[data-tale-opponents-pct="'+side+'"]');
+      opponentsRecordInput.value=fighter.opponentsRecord||'';
+      opponentsPctInput.value=fighter.opponentsPct||'';
+      delete opponentsRecordInput.dataset.autoOpponentValue;
+      delete opponentsRecordInput.dataset.opponentStrengthRequest;
+      delete opponentsPctInput.dataset.autoOpponentValue;
+      delete opponentsPctInput.dataset.opponentStrengthRequest;
       renderRecentRows(dialog.querySelector('[data-tale-form-list="'+side+'"]'),fighter.recent);
       taleImagePreview(side);
     });
