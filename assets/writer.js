@@ -1829,7 +1829,6 @@
       fields.filename.disabled = Boolean(currentPath);
       dirty = false;
       updateSaveButtonLabel();
-      updateUrlPath();
     }
     updatePreview();
     updateDocumentStatus();
@@ -1879,7 +1878,8 @@
 }
 
 function setPublishingControls(enabled) {
-  const active = Boolean(enabled) && !saveInFlight && !imageUploadInFlight && !videoUploadInFlight;
+  const editing = Boolean(editorView && !editorView.hidden);
+  const active = Boolean(enabled) && editing && !saveInFlight && !imageUploadInFlight && !videoUploadInFlight;
   saveDraftButton.disabled = !active;
   publishButton.disabled = !active;
   scheduleButton.disabled = !active;
@@ -1971,22 +1971,81 @@ async function githubFetch(path, options = {}, requireAuth = false) {
   }
 }
 
-  function showLibrary() {
-    if (dirty && !window.confirm('Leave the editor with unsaved changes? Your local autosave will remain available.')) return;
-    libraryView.hidden = false;
-    editorView.hidden = true;
-    setSaveState('Library');
-    setDocumentStatus('Library');
-    history.replaceState(null, '', '/write/');
-    renderLibrary();
+  function writerUrl(mode, path = '') {
+    const url = new URL('/write/', location.origin);
+    if (mode === 'new') url.searchParams.set('new', '1');
+    if (mode === 'article' && path) url.searchParams.set('path', path);
+    return url.pathname + url.search;
   }
 
-  function showEditor() {
-    libraryView.hidden = true;
-    editorView.hidden = false;
+  function setWriterRoute(mode, { path = '', replace = false } = {}) {
+    const target = writerUrl(mode, path);
+    const current = location.pathname + location.search;
+    if (target === current) return;
+    history[replace ? 'replaceState' : 'pushState'](null, '', target);
+  }
+
+  function setWriterScreen(screen) {
+    app.dataset.writerScreen = screen;
+    const editing = screen === 'editor';
+    libraryView.hidden = editing;
+    editorView.hidden = !editing;
+    setPublishingControls(Boolean(githubCredential));
+  }
+
+  function showLibrary({ updateRoute = true, replaceRoute = false } = {}) {
+    if (dirty) {
+      persistLocalAutosave();
+      dirty = false;
+    }
+    setWriterScreen('library');
+    setSaveState('Library');
+    setDocumentStatus('Library');
+    setLocalStatus('Local autosave ready', 'ready');
+    if (updateRoute) setWriterRoute('library', { replace: replaceRoute });
+    renderLibrary();
+    return true;
+  }
+
+  function showEditor({ route = '', path = '', updateRoute = true, replaceRoute = false } = {}) {
+    setWriterScreen('editor');
+    if (updateRoute) {
+      const mode = route || (path || currentPath ? 'article' : 'new');
+      setWriterRoute(mode, { path: path || currentPath, replace: replaceRoute });
+    }
   }
 
   function localKey() { return `matlock-writer:${currentPath || 'new'}`; }
+
+  function readLocalNewDraft() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('matlock-writer:new') || 'null');
+      if (!saved) return null;
+      const hasWork = ((saved.title || '') + (saved.body || '')).trim();
+      return hasWork ? saved : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function resumeLocalNewDraft({ updateRoute = true, replaceRoute = false } = {}) {
+    const saved = readLocalNewDraft();
+    if (!saved) return false;
+    clearLocalFeaturedPreview();
+    currentPath = '';
+    currentSha = '';
+    originalFrontmatter = '';
+    currentPublished = false;
+    filenameTouched = Boolean(saved.filename);
+    fields.filename.disabled = false;
+    applyState({ ...saved, currentPath: '', currentSha: '', currentPublished: false }, { remote: true });
+    dirty = true;
+    setArticleDetailsOpen(false);
+    showEditor({ route: 'new', updateRoute, replaceRoute });
+    setSaveState('Local draft • unsaved to GitHub');
+    setLocalStatus(saved.savedAt ? `Saved locally · ${new Date(saved.savedAt).toLocaleTimeString([], { hour:'numeric', minute:'2-digit' })}` : 'Saved locally', 'saved');
+    return true;
+  }
 
 function persistLocalAutosave() {
   if (!dirty) return;
@@ -2015,18 +2074,23 @@ function scheduleAutosave() {
       if (remoteState && saved.currentSha !== remoteState.currentSha) return false;
       const hasWork = (saved.title || saved.body || '').trim();
       if (!hasWork) return false;
-      if (remoteState && !window.confirm('A local autosave exists for this article. Restore it?')) return false;
       applyState(saved, { remote: Boolean(remoteState) });
       dirty = true;
       showEditor();
-      setSaveState('Restored local changes');
-      showToast('Restored your local autosave.');
+      setSaveState('Local changes restored');
+      showToast('Restored your unsaved local changes.');
       return true;
     } catch { return false; }
   }
 
-  function resetNewArticle({ template = '' } = {}) {
-    if (dirty && !window.confirm('Start a new article and leave the current unsaved changes?')) return;
+  function resetNewArticle({ template = '', updateRoute = true, replaceRoute = false, allowExistingLocal = false } = {}) {
+    if (dirty && !window.confirm('Start a new article and leave the current unsaved changes?')) return false;
+    const existingLocal = readLocalNewDraft();
+    if (!template && existingLocal && !allowExistingLocal) {
+      showToast('A browser-only draft already exists. Resume or discard it from the Library before starting another.', 6000);
+      showLibrary({ updateRoute: true });
+      return false;
+    }
     clearLocalFeaturedPreview();
     currentPath = '';
     currentSha = '';
@@ -2041,10 +2105,10 @@ function scheduleAutosave() {
     }
     applyState(initial, { remote: true });
     setArticleDetailsOpen(true);
-    showEditor();
-    history.replaceState(null, '', '/write/');
-    if (!template) maybeRestoreLocal('matlock-writer:new');
+    showEditor({ route: 'new', updateRoute, replaceRoute });
     setSaveState(template ? 'New article from template' : 'New article');
+    setLocalStatus('Local autosave ready', 'ready');
+    return true;
   }
 
   function articleStatus(meta) {
@@ -2287,21 +2351,43 @@ function scheduleAutosave() {
   }
 
   function renderLibrary() {
+    const localDraft = readLocalNewDraft();
     const counts = {
-      total: libraryEntries.length,
-      draft: libraryEntries.filter(x => x.status === 'draft').length,
+      total: libraryEntries.length + (localDraft ? 1 : 0),
+      draft: libraryEntries.filter(x => x.status === 'draft').length + (localDraft ? 1 : 0),
       scheduled: libraryEntries.filter(x => x.status === 'scheduled').length,
       published: libraryEntries.filter(x => x.status === 'published').length
     };
     libraryStats.innerHTML = `<span><strong>${counts.total}</strong> total</span><span><strong>${counts.draft}</strong> drafts</span><span><strong>${counts.scheduled}</strong> scheduled</span><span><strong>${counts.published}</strong> published</span>`;
 
     const entries = filteredLibraryEntries();
-    if (!entries.length) {
+    const query = (librarySearch.value || '').trim().toLowerCase();
+    const localDraftMatches =
+      Boolean(localDraft) &&
+      (libraryFilter === 'all' || libraryFilter === 'draft') &&
+      (!query || [localDraft.title, localDraft.filename, localDraft.category].filter(Boolean).join(' ').toLowerCase().includes(query));
+
+    const localDraftCard = localDraftMatches ? (() => {
+      const title = String(localDraft.title || '').trim() || 'Untitled local draft';
+      const savedAt = localDraft.savedAt ? new Date(localDraft.savedAt) : null;
+      const edited = savedAt && !Number.isNaN(savedAt.getTime()) ? `Saved locally ${savedAt.toLocaleString([], { dateStyle:'medium', timeStyle:'short' })}` : 'Saved locally in this browser';
+      return `<article class="writer-library-card writer-library-card-local" data-library-local-draft>
+        <div class="writer-library-thumb"><span>LOCAL</span></div>
+        <div class="writer-library-card-body">
+          <div class="writer-library-card-meta"><span class="writer-status-badge is-draft">Local draft</span><span>Not yet saved to GitHub</span></div>
+          <h3>${escapeHtml(title)}</h3>
+          <p>${escapeHtml(edited)}</p>
+          <div class="writer-library-card-foot"><span>${escapeHtml(localDraft.filename || 'Browser recovery draft')}</span><div class="writer-library-actions"><button type="button" data-library-resume-local>Resume</button><button type="button" data-library-discard-local>Discard</button></div></div>
+        </div>
+      </article>`;
+    })() : '';
+
+    if (!entries.length && !localDraftCard) {
       libraryList.innerHTML = '<div class="writer-library-empty">No matching articles.</div>';
       return;
     }
 
-    libraryList.innerHTML = entries.map(entry => {
+    const remoteCards = entries.map(entry => {
       const image = normalizeImagePath(entry.imagePath);
       const status = entry.status || 'unknown';
       const statusText = status === 'scheduled' ? `Scheduled ${formatDateTime(entry.publishAt)}` : status === 'published' ? 'Published' : status === 'draft' ? 'Draft' : 'Loading';
@@ -2317,6 +2403,8 @@ function scheduleAutosave() {
         </div>
       </article>`;
     }).join('');
+
+    libraryList.innerHTML = localDraftCard + remoteCards;
   }
 
   async function loadArticle(path, { force = false } = {}) {
@@ -2329,7 +2417,7 @@ function scheduleAutosave() {
       applyState(state, { remote: true });
       const restored = maybeRestoreLocal(`matlock-writer:${path}`, state);
       if (!restored) dirty = false;
-      showEditor();
+      showEditor({ route: 'article', path });
       if ((state.body || '').trim() || state.title) setArticleDetailsOpen(false);
       setSaveState(currentPublished ? 'Published article' : fields.publishAt.value ? 'Scheduled article' : 'Draft article');
       showToast('Article loaded.');
@@ -2341,6 +2429,10 @@ function scheduleAutosave() {
 
   async function duplicateArticle(path) {
     if (dirty && !window.confirm('Duplicate another article and leave the current unsaved changes?')) return;
+    if (readLocalNewDraft()) {
+      showToast('A browser-only draft already exists. Resume or discard it before duplicating another article.', 6000);
+      return;
+    }
     clearLocalFeaturedPreview();
     try {
       const data = await githubFetch(`/contents/${encodeURIComponent(path).replace(/%2F/g,'/')}?ref=main`);
@@ -2358,10 +2450,12 @@ function scheduleAutosave() {
       fields.filename.disabled = false;
       filenameTouched = true;
       setArticleDetailsOpen(true);
-      showEditor();
+      showEditor({ route: 'new' });
       dirty = true;
-      setSaveState('Duplicated • unsaved');
-      showToast('Article duplicated into a new draft.');
+      persistLocalAutosave();
+      setSaveState('Duplicated • local draft');
+      setLocalStatus('Saved locally', 'saved');
+      showToast('Article duplicated into a local draft.');
     } catch (error) {
       showToast(`Could not duplicate article: ${error.message}`, 5000);
     }
@@ -2598,9 +2692,7 @@ async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
 
   function updateUrlPath() {
     if (!currentPath) return;
-    const url = new URL(location.href);
-    url.searchParams.set('path', currentPath);
-    history.replaceState(null, '', url.pathname + url.search);
+    setWriterRoute('article', { path: currentPath, replace: true });
   }
 
   function insertAtCursor(before, after = '', placeholder = '') {
@@ -4413,6 +4505,18 @@ Object.values(fields).forEach(el => {
   });
 
   libraryList.addEventListener('click', event => {
+    if (event.target.closest('[data-library-resume-local]')) {
+      resumeLocalNewDraft();
+      return;
+    }
+    if (event.target.closest('[data-library-discard-local]')) {
+      if (!window.confirm('Discard this browser-only draft? This cannot be undone from Writer.')) return;
+      try { localStorage.removeItem('matlock-writer:new'); } catch {}
+      renderLibrary();
+      showToast('Local draft discarded.');
+      return;
+    }
+
     const card = event.target.closest('[data-library-path]');
     if (!card) return;
     const path = card.dataset.libraryPath;
@@ -4933,21 +5037,31 @@ window.addEventListener('matlock-writer:auth-expired', () => setPublishingContro
   updateSaveButtonLabel();
   loadLibrary({ hydrate: false });
 
-  const path = new URLSearchParams(location.search).get('path');
-  if (path && /^_posts\/.+\.md$/i.test(path)) {
-    loadArticle(path);
-  } else {
-    const hasNewDraft = (() => {
-      try {
-        const saved = JSON.parse(localStorage.getItem('matlock-writer:new') || 'null');
-        return Boolean(saved && ((saved.title || '') + (saved.body || '')).trim());
-      } catch { return false; }
-    })();
-    if (hasNewDraft) {
-      showEditor();
-      maybeRestoreLocal('matlock-writer:new');
-    } else {
-      showLibrary();
+  async function routeFromLocation({ fromPopState = false } = {}) {
+    const params = new URLSearchParams(location.search);
+    const path = params.get('path');
+    const wantsNew = params.get('new') === '1';
+
+    if (fromPopState && dirty) {
+      persistLocalAutosave();
+      dirty = false;
     }
+
+    if (path && /^_posts\/.+\.md$/i.test(path)) {
+      await loadArticle(path, { force: fromPopState });
+      return;
+    }
+
+    if (wantsNew) {
+      if (!resumeLocalNewDraft({ updateRoute: false })) {
+        resetNewArticle({ updateRoute: false, allowExistingLocal: true });
+      }
+      return;
+    }
+
+    showLibrary({ updateRoute: false, skipDirtyCheck: true });
   }
+
+  window.addEventListener('popstate', () => { void routeFromLocation({ fromPopState: true }); });
+  void routeFromLocation();
 })();
