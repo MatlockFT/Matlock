@@ -576,21 +576,43 @@ function scheduleAutosave() {
   }
 
   function renderLibrary() {
+    const localDraft = readLocalNewDraft();
     const counts = {
-      total: libraryEntries.length,
-      draft: libraryEntries.filter(x => x.status === 'draft').length,
+      total: libraryEntries.length + (localDraft ? 1 : 0),
+      draft: libraryEntries.filter(x => x.status === 'draft').length + (localDraft ? 1 : 0),
       scheduled: libraryEntries.filter(x => x.status === 'scheduled').length,
       published: libraryEntries.filter(x => x.status === 'published').length
     };
     libraryStats.innerHTML = `<span><strong>${counts.total}</strong> total</span><span><strong>${counts.draft}</strong> drafts</span><span><strong>${counts.scheduled}</strong> scheduled</span><span><strong>${counts.published}</strong> published</span>`;
 
     const entries = filteredLibraryEntries();
-    if (!entries.length) {
+    const query = (librarySearch.value || '').trim().toLowerCase();
+    const localDraftMatches =
+      Boolean(localDraft) &&
+      (libraryFilter === 'all' || libraryFilter === 'draft') &&
+      (!query || [localDraft.title, localDraft.filename, localDraft.category].filter(Boolean).join(' ').toLowerCase().includes(query));
+
+    const localDraftCard = localDraftMatches ? (() => {
+      const title = String(localDraft.title || '').trim() || 'Untitled local draft';
+      const savedAt = localDraft.savedAt ? new Date(localDraft.savedAt) : null;
+      const edited = savedAt && !Number.isNaN(savedAt.getTime()) ? `Saved locally ${savedAt.toLocaleString([], { dateStyle:'medium', timeStyle:'short' })}` : 'Saved locally in this browser';
+      return `<article class="writer-library-card writer-library-card-local" data-library-local-draft>
+        <div class="writer-library-thumb"><span>LOCAL</span></div>
+        <div class="writer-library-card-body">
+          <div class="writer-library-card-meta"><span class="writer-status-badge is-draft">Local draft</span><span>Not yet saved to GitHub</span></div>
+          <h3>${escapeHtml(title)}</h3>
+          <p>${escapeHtml(edited)}</p>
+          <div class="writer-library-card-foot"><span>${escapeHtml(localDraft.filename || 'Browser recovery draft')}</span><div class="writer-library-actions"><button type="button" data-library-resume-local>Resume</button><button type="button" data-library-discard-local>Discard</button></div></div>
+        </div>
+      </article>`;
+    })() : '';
+
+    if (!entries.length && !localDraftCard) {
       libraryList.innerHTML = '<div class="writer-library-empty">No matching articles.</div>';
       return;
     }
 
-    libraryList.innerHTML = entries.map(entry => {
+    const remoteCards = entries.map(entry => {
       const image = normalizeImagePath(entry.imagePath);
       const status = entry.status || 'unknown';
       const statusText = status === 'scheduled' ? `Scheduled ${formatDateTime(entry.publishAt)}` : status === 'published' ? 'Published' : status === 'draft' ? 'Draft' : 'Loading';
@@ -606,6 +628,8 @@ function scheduleAutosave() {
         </div>
       </article>`;
     }).join('');
+
+    libraryList.innerHTML = localDraftCard + remoteCards;
   }
 
   async function loadArticle(path, { force = false } = {}) {
@@ -618,7 +642,7 @@ function scheduleAutosave() {
       applyState(state, { remote: true });
       const restored = maybeRestoreLocal(`matlock-writer:${path}`, state);
       if (!restored) dirty = false;
-      showEditor();
+      showEditor({ route: 'article', path });
       if ((state.body || '').trim() || state.title) setArticleDetailsOpen(false);
       setSaveState(currentPublished ? 'Published article' : fields.publishAt.value ? 'Scheduled article' : 'Draft article');
       showToast('Article loaded.');
@@ -647,10 +671,12 @@ function scheduleAutosave() {
       fields.filename.disabled = false;
       filenameTouched = true;
       setArticleDetailsOpen(true);
-      showEditor();
+      showEditor({ route: 'new' });
       dirty = true;
-      setSaveState('Duplicated • unsaved');
-      showToast('Article duplicated into a new draft.');
+      persistLocalAutosave();
+      setSaveState('Duplicated • local draft');
+      setLocalStatus('Saved locally', 'saved');
+      showToast('Article duplicated into a local draft.');
     } catch (error) {
       showToast(`Could not duplicate article: ${error.message}`, 5000);
     }
