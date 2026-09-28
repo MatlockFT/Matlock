@@ -412,11 +412,17 @@ async function sherdogLookup(expected) {
 }
 
 export async function fetchCareerFallback(expected) {
-  // Sherdog is the primary non-UFC career source because regional records and
-  // newly completed fights are more likely to be reflected there first.
+  // Prefer Sherdog when it provides a complete professional history because it
+  // tends to reflect regional activity quickly. An identified but incomplete
+  // Sherdog profile must not block a complete UFCFight history, though.
   const sherdog = await sherdogLookup(expected);
-  if (sherdog) return sherdog;
-  return directLookup(expected);
+  if (sherdog?.historyComplete) return sherdog;
+
+  const direct = await directLookup(expected);
+  if (direct?.historyComplete) return direct;
+
+  // Partial profiles can still supply verified bio/career/recent information.
+  return sherdog || direct || null;
 }
 
 export function hasCompleteDisplayedCareer(career) {
