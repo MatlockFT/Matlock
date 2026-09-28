@@ -25,7 +25,7 @@ jobs:
 
       - name: Create focused draft-state test
         run: |
-          cat > /tmp/writer-draft-state.spec.cjs <<'NODE'
+          cat > qa-writer-draft-state.spec.cjs <<'NODE'
           const { test, expect } = require('@playwright/test');
 
           const BASE='https://mmamatlock.com/write/';
@@ -193,4 +193,4 @@ jobs:
       - name: Run focused Writer draft/session QA
         env:
           NODE_PATH: ${{ github.workspace }}/node_modules
-        run: npx playwright test /tmp/writer-draft-state.spec.cjs --workers=1 --reporter=line
+        run: npx playwright test qa-writer-draft-state.spec.cjs --workers=1 --reporter=line
