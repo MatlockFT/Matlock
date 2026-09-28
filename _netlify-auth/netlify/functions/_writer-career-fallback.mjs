@@ -78,6 +78,88 @@ function identityChecks(expected, actual) {
   return checks;
 }
 
+function historyDate(value) {
+  const text = clean(value);
+  const slash = text.match(/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s*\/\s*(\d{1,2})\s*\/\s*(\d{4})\b/i);
+  if (slash) {
+    const months = {jan:1,feb:2,mar:3,apr:4,may:5,jun:6,jul:7,aug:8,sep:9,oct:10,nov:11,dec:12};
+    const month = months[slash[1].slice(0,3).toLowerCase()];
+    return `${slash[3]}-${String(month).padStart(2,'0')}-${String(Number(slash[2])).padStart(2,'0')}`;
+  }
+  const parsed = new Date(text);
+  return Number.isNaN(parsed.getTime()) ? null : parsed.toISOString().slice(0,10);
+}
+
+function tableCells(source) {
+  return [...String(source || '').matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/gi)].map(match => match[1]);
+}
+
+function linkedLabel(source, pattern) {
+  const match = String(source || '').match(new RegExp('<a\\b[^>]*href=["\\\'](' + pattern + ')["\\\'][^>]*>([\\s\\S]*?)<\\/a>','i'));
+  return match ? { href:match[1], label:clean(match[2]) } : null;
+}
+
+function parseUfcFightHistory(source) {
+  const start = String(source || '').search(/Fight History/i);
+  if (start < 0) return [];
+  const historySource = String(source || '').slice(start);
+  const rows = [];
+  for (const match of historySource.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)) {
+    const cells = tableCells(match[1]);
+    if (cells.length < 3) continue;
+    const date = historyDate(cells[0]);
+    const opponent = clean(cells[1]);
+    const outcome = clean(cells[2]).replace(/[–—]/g,'-');
+    const result = outcome.match(/\b(W|L|D|NC)\b/i)?.[1]?.toUpperCase() || '';
+    if (!date || !opponent || !result) continue;
+    const method = outcome.match(/\(([^)]+)\)/)?.[1] || outcome.replace(/^\s*(?:W|L|D|NC)\s*/i,'').trim();
+    rows.push({result,opponent,date,method:method || null});
+  }
+  return rows.sort((a,b) => String(b.date).localeCompare(String(a.date)));
+}
+
+function parseSherdogHistory(source) {
+  const proStart = String(source || '').search(/FIGHT\s+HISTORY\s*-\s*PRO/i);
+  if (proStart < 0) return [];
+  const amateurStart = String(source || '').search(/FIGHT\s+HISTORY\s*-\s*AMATEUR/i);
+  const proSource = String(source || '').slice(proStart, amateurStart > proStart ? amateurStart : undefined);
+  const rows = [];
+  for (const match of proSource.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)) {
+    const cells = tableCells(match[1]);
+    const rowText = clean(match[1]).replace(/[–—]/g,'-');
+    const rawResult = clean(cells[0] || '').toLowerCase();
+    const result = rawResult.startsWith('win') ? 'W'
+      : rawResult.startsWith('loss') ? 'L'
+      : rawResult.startsWith('draw') ? 'D'
+      : /no\s*contest|\bnc\b/i.test(rawResult) ? 'NC'
+      : rowText.match(/^win\b/i) ? 'W'
+      : rowText.match(/^loss\b/i) ? 'L'
+      : rowText.match(/^draw\b/i) ? 'D'
+      : rowText.match(/^nc\b|^no\s*contest\b/i) ? 'NC'
+      : '';
+    const opponentLink = linkedLabel(cells[1] || match[1], '\\/fighter\\/[a-z0-9][a-z0-9-]*-\\d+');
+    const opponent = opponentLink?.label || clean(cells[1] || '');
+    const date = historyDate(cells[2] || rowText.match(/(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s*\/\s*\d{1,2}\s*\/\s*\d{4}/i)?.[0] || '');
+    if (!result || !opponent || !date) continue;
+    const eventLink = linkedLabel(cells[2] || '', '\\/events\\/[^"\\\']+');
+    const methodCell = String(cells[3] || '');
+    const method = clean(methodCell.split(/<br\b/i)[0]) || null;
+    const round = Number(clean(cells[4] || '')) || null;
+    const time = clean(cells[5] || '') || null;
+    rows.push({
+      result,
+      opponent,
+      date,
+      event:eventLink?.label || null,
+      method,
+      round,
+      time,
+      opponentSourceUrl:opponentLink ? new URL(opponentLink.href, SHERDOG_BASE).toString() : null
+    });
+  }
+  return rows.sort((a,b) => String(b.date).localeCompare(String(a.date)));
+}
+
 function decisionBreakdownFromHistory(source, decisionWins) {
   const result = {unanimous:0, split:0, majority:0, other:0};
   for (const row of String(source || '').matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)) {
@@ -135,12 +217,18 @@ export function parseUfcFightCareerProfile(html, sourceUrl = null) {
     weight: htWt?.[2] || null
   };
 
+  const history = parseUfcFightHistory(source);
+  const expectedFights = wins + losses + draws;
   return {
     source:'UFCFight.net',
     sourceUrl,
     name,
     record:`${wins}-${losses}-${draws}`,
     bio,
+    history,
+    recent:history.slice(0,5),
+    latestBoutDate:history[0]?.date || null,
+    historyComplete:history.length >= expectedFights,
     career:{
       winsByKnockout,
       winsBySubmission,
@@ -201,12 +289,18 @@ export function parseSherdogCareerProfile(html, sourceUrl = null) {
     ? source.slice(historyStart, amateurStart > historyStart ? amateurStart : source.length)
     : source;
 
+  const history = parseSherdogHistory(source);
+  const expectedFights = wins + losses + draws;
   return {
     source:'Sherdog',
     sourceUrl,
     name,
     record:`${wins}-${losses}-${draws}`,
     bio,
+    history,
+    recent:history.slice(0,5),
+    latestBoutDate:history[0]?.date || null,
+    historyComplete:history.length >= expectedFights,
     career:{
       winsByKnockout,
       winsBySubmission,
@@ -282,8 +376,9 @@ async function sherdogLookup(expected) {
 
 export async function fetchCareerFallback(expected) {
   const direct = await directLookup(expected);
-  if (direct) return direct;
-  return sherdogLookup(expected);
+  if (direct?.historyComplete) return direct;
+  const sherdog = await sherdogLookup(expected);
+  return sherdog || direct;
 }
 
 export function hasCompleteDisplayedCareer(career) {
