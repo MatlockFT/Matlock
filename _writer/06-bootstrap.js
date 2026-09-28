@@ -100,6 +100,18 @@ Object.values(fields).forEach(el => {
   });
 
   libraryList.addEventListener('click', event => {
+    if (event.target.closest('[data-library-resume-local]')) {
+      resumeLocalNewDraft();
+      return;
+    }
+    if (event.target.closest('[data-library-discard-local]')) {
+      if (!window.confirm('Discard this browser-only draft? This cannot be undone from Writer.')) return;
+      try { localStorage.removeItem('matlock-writer:new'); } catch {}
+      renderLibrary();
+      showToast('Local draft discarded.');
+      return;
+    }
+
     const card = event.target.closest('[data-library-path]');
     if (!card) return;
     const path = card.dataset.libraryPath;
@@ -620,21 +632,31 @@ window.addEventListener('matlock-writer:auth-expired', () => setPublishingContro
   updateSaveButtonLabel();
   loadLibrary({ hydrate: false });
 
-  const path = new URLSearchParams(location.search).get('path');
-  if (path && /^_posts\/.+\.md$/i.test(path)) {
-    loadArticle(path);
-  } else {
-    const hasNewDraft = (() => {
-      try {
-        const saved = JSON.parse(localStorage.getItem('matlock-writer:new') || 'null');
-        return Boolean(saved && ((saved.title || '') + (saved.body || '')).trim());
-      } catch { return false; }
-    })();
-    if (hasNewDraft) {
-      showEditor();
-      maybeRestoreLocal('matlock-writer:new');
-    } else {
-      showLibrary();
+  async function routeFromLocation({ fromPopState = false } = {}) {
+    const params = new URLSearchParams(location.search);
+    const path = params.get('path');
+    const wantsNew = params.get('new') === '1';
+
+    if (fromPopState && dirty) {
+      persistLocalAutosave();
+      dirty = false;
     }
+
+    if (path && /^_posts\/.+\.md$/i.test(path)) {
+      await loadArticle(path, { force: fromPopState });
+      return;
+    }
+
+    if (wantsNew) {
+      if (!resumeLocalNewDraft({ updateRoute: false })) {
+        resetNewArticle({ updateRoute: false, allowExistingLocal: true });
+      }
+      return;
+    }
+
+    showLibrary({ updateRoute: false, skipDirtyCheck: true });
   }
+
+  window.addEventListener('popstate', () => { void routeFromLocation({ fromPopState: true }); });
+  void routeFromLocation();
 })();
