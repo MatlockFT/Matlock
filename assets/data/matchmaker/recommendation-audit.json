@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-09-28T16:08:52.662Z",
+  "generatedAt": "2026-09-28T16:59:22.005Z",
   "engineVersion": 2,
   "subjects": 230,
-  "publishedRecommendations": 635,
+  "publishedRecommendations": 638,
   "recommendationSlots": {
-    "0": 17,
+    "0": 16,
     "1": 1,
     "2": 2,
-    "3": 210
+    "3": 211
   },
   "caseCounts": {
-    "rebound-pairing": 266,
+    "rebound-pairing": 269,
     "rising-vs-rising": 190,
     "step-up-vs-rebound": 70,
     "ranking-opportunity": 45,
@@ -21,18 +21,18 @@
     "prospect-test": 1
   },
   "confidenceCounts": {
-    "high": 589,
+    "high": 592,
     "medium": 31,
     "low": 15
   },
   "averageRecentOpponentLinkCoverage": 0.9042,
   "sameCardRecommendations": 36,
-  "sameCardRecommendationRatio": 0.0567,
-  "asymmetricTopThreeRecommendations": 203,
+  "sameCardRecommendationRatio": 0.0564,
+  "asymmetricTopThreeRecommendations": 204,
   "asymmetricTopThreeRatio": 0.3197,
-  "publicPublishedRecommendations": 616,
-  "publicAsymmetricTopThreeRecommendations": 162,
-  "publicAsymmetricTopThreeRatio": 0.263,
+  "publicPublishedRecommendations": 619,
+  "publicAsymmetricTopThreeRecommendations": 163,
+  "publicAsymmetricTopThreeRatio": 0.2633,
   "engineGenericDivisionalSortingRecommendations": 14,
   "genericDivisionalSortingRecommendations": 0,
   "publicSafetyFailures": [],
@@ -41,8 +41,8 @@
     "title": "UFC Fight Night: Rosas Jr. vs Barcelos",
     "date": "2026-09-26",
     "subjects": 24,
-    "publicRecommendations": 69,
-    "noClearMatchupSubjects": 1
+    "publicRecommendations": 72,
+    "noClearMatchupSubjects": 0
   },
   "eventPublicSummary": [
     {
@@ -50,8 +50,8 @@
       "title": "UFC Fight Night: Rosas Jr. vs Barcelos",
       "date": "2026-09-26",
       "subjects": 24,
-      "publicRecommendations": 69,
-      "noClearMatchupSubjects": 1
+      "publicRecommendations": 72,
+      "noClearMatchupSubjects": 0
     },
     {
       "id": "cryptocom-ufc-331",
@@ -266,6 +266,31 @@
         {
           "opponent": "Iwo Baraniewski",
           "score": 92,
+          "case": "rebound-pairing"
+        }
+      ]
+    },
+    {
+      "event": "UFC Fight Night: Rosas Jr. vs Barcelos",
+      "fighter": "Mahammadali Osmanli",
+      "opponent": "John Yannis",
+      "pairScore": 93,
+      "case": "rebound-pairing",
+      "fighterRank": "Alternative",
+      "opponentTopThree": [
+        {
+          "opponent": "Mark Vologdin",
+          "score": 95,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Xiao Long",
+          "score": 94,
+          "case": "rebound-pairing"
+        },
+        {
+          "opponent": "Josias Musasa",
+          "score": 93,
           "case": "rebound-pairing"
         }
       ]
@@ -817,31 +842,6 @@
           "opponent": "Rj Harris",
           "score": 93,
           "case": "rising-vs-rising"
-        }
-      ]
-    },
-    {
-      "event": "Crypto.com UFC 331: Van vs Pantoja 2",
-      "fighter": "Marlon Vera",
-      "opponent": "Raul Rosas Jr.",
-      "pairScore": 74,
-      "case": "rankings-progression",
-      "fighterRank": "Alternative",
-      "opponentTopThree": [
-        {
-          "opponent": "Aiemann Zahabi",
-          "score": 87,
-          "case": "step-up-vs-rebound"
-        },
-        {
-          "opponent": "Farid Basharat",
-          "score": 86,
-          "case": "rankings-progression"
-        },
-        {
-          "opponent": "David Martinez",
-          "score": 78,
-          "case": "rankings-progression"
         }
       ]
     }
