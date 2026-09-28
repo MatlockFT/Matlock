@@ -108,6 +108,9 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(page.locator('[data-editor-view]')).toBeVisible();
   expect(new URL(page.url()).searchParams.get('new')).toBe('1');
   await expect(page.locator('[data-save-draft]')).toBeVisible();
+  await expect(page.locator('[data-save-draft]')).toBeEnabled();
+  await expect(page.locator('[data-schedule]')).toBeEnabled();
+  await expect(page.locator('[data-publish]')).toBeEnabled();
   await expect(page.locator('.writer-preview-article')).toHaveClass(/post-page-v3/);
   await expect(page.locator('.writer-preview-article')).toHaveAttribute('data-editorial-v3', '');
   await expect(page.locator('[data-preview-author]')).toHaveText('Matlock');
