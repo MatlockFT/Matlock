@@ -24,6 +24,10 @@ function normalize(value) {
     .replace(/[^a-z0-9]+/g,' ').trim();
 }
 
+function dataKey(value) {
+  return normalize(value).replace(/\s+/g,'');
+}
+
 function slugify(value) {
   return normalize(value).replace(/\s+/g,'-');
 }
