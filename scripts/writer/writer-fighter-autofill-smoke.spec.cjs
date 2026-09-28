@@ -65,6 +65,27 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
   });
 
   await page.route('https://mmamatlock-writer-auth.netlify.app/api/writer/fighter*', async route => {
+    const requestUrl = new URL(route.request().url());
+    if (requestUrl.searchParams.get('name') === 'Recent Opponent') {
+      await route.fulfill({
+        contentType: 'application/json',
+        headers: { 'access-control-allow-origin': '*' },
+        body: JSON.stringify({
+          ok: true,
+          source: 'career fallback',
+          mode: 'live',
+          liveUfcStats: false,
+          liveUfcProfile: false,
+          liveCareerFallback: true,
+          fetchedAt: '2026-09-26T18:01:00.000Z',
+          profile: {
+            name: 'Recent Opponent',
+            record: '10-2-0'
+          }
+        })
+      });
+      return;
+    }
     await new Promise(resolve => setTimeout(resolve, 80));
     await route.fulfill({
       contentType: 'application/json',
@@ -177,6 +198,8 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
   await expect(taleRows.nth(9).locator('[data-structured-a]')).toHaveValue('3');
   await expect(taleRows.nth(10).locator('[data-structured-label]')).toHaveValue('Split Decision');
   await expect(taleRows.nth(10).locator('[data-structured-a]')).toHaveValue('1');
+  await expect(taleDialog.locator('[data-tale-opponents-record="a"]')).toHaveValue('10-2');
+  await expect(taleDialog.locator('[data-tale-opponents-pct="a"]')).toHaveValue('83%');
 
   expect(pageErrors).toEqual([]);
 });
