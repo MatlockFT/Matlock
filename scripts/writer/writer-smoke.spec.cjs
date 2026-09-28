@@ -474,7 +474,11 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   expect(updatedRender.zoom).toBe(146);
 
   // Reopening the structured Tale editor and changing non-image data must not
-  // reset the final crop established on the actual visual.
+  // reset the final crop established on the actual visual. The Visuals browser
+  // intentionally stays closed after placement, so open it explicitly first.
+  if (await page.locator('[data-html-block-rail]').isHidden()) {
+    await page.locator('[data-html-block-panel-toggle]').click();
+  }
   await page.locator('[data-html-block-edit="' + taleBlockId + '"]').click();
   await expect(taleDialog).toBeVisible();
   await expect(taleDialog.locator('[data-tale-image-x="a"]')).toHaveValue(String(directCrop.x));
