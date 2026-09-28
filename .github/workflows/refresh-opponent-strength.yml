@@ -1,5 +1,5 @@
 name: Refresh opponent strength
-# Re-run marker: direct-history refresh
+# Re-run marker: direct-sherdog graph
 
 on:
   workflow_dispatch:
