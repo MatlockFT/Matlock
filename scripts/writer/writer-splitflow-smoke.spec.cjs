@@ -35,8 +35,42 @@ test('split workflow persists views, fills the viewport and keeps editor/preview
   const previewBox = await previewPane.boundingBox();
   expect(dropzoneBox).not.toBeNull();
   expect(previewBox).not.toBeNull();
-  expect(dropzoneBox.height).toBeGreaterThan(850);
-  expect(Math.abs(dropzoneBox.height - previewBox.height)).toBeLessThanOrEqual(3);
+  expect(dropzoneBox.height).toBeGreaterThan(300);
+  expect(dropzoneBox.height).toBeLessThan(previewBox.height);
+
+  const viewportLayout = await page.evaluate(() => {
+    const workspaceEl = document.querySelector('[data-workspace]');
+    const editorPaneEl = document.querySelector('.writer-editor-pane');
+    const previewPaneEl = document.querySelector('.writer-preview-pane');
+    const workspaceRect = workspaceEl.getBoundingClientRect();
+    const editorRect = editorPaneEl.getBoundingClientRect();
+    const previewRect = previewPaneEl.getBoundingClientRect();
+    return {
+      viewportHeight: window.innerHeight,
+      documentHeight: document.documentElement.scrollHeight,
+      workspaceBottom: workspaceRect.bottom,
+      editorHeight: editorRect.height,
+      previewHeight: previewRect.height,
+      bodyOverflow: getComputedStyle(document.body).overflow,
+    };
+  });
+  expect(viewportLayout.documentHeight).toBeLessThanOrEqual(viewportLayout.viewportHeight + 2);
+  expect(viewportLayout.workspaceBottom).toBeLessThanOrEqual(viewportLayout.viewportHeight + 2);
+  expect(Math.abs(viewportLayout.editorHeight - viewportLayout.previewHeight)).toBeLessThanOrEqual(3);
+  expect(viewportLayout.bodyOverflow).toBe('hidden');
+
+  const tallPreviewHeight = previewBox.height;
+  await page.setViewportSize({ width: 1920, height: 820 });
+  await expect.poll(async () => (await previewPane.boundingBox())?.height || 0).toBeLessThan(tallPreviewHeight - 150);
+  const resizedLayout = await page.evaluate(() => ({
+    viewportHeight: window.innerHeight,
+    documentHeight: document.documentElement.scrollHeight,
+    previewBottom: document.querySelector('.writer-preview-pane').getBoundingClientRect().bottom,
+  }));
+  expect(resizedLayout.documentHeight).toBeLessThanOrEqual(resizedLayout.viewportHeight + 2);
+  expect(resizedLayout.previewBottom).toBeLessThanOrEqual(resizedLayout.viewportHeight + 2);
+  await page.setViewportSize({ width: 1920, height: 1080 });
+
   expect(await toolbar.evaluate(el => getComputedStyle(el).position)).toBe('sticky');
 
   const beforeSplit = Number(await splitter.getAttribute('aria-valuenow'));
