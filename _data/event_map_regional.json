@@ -480,23 +480,6 @@
       "poster_url": "https://www.nitrotickets.com/storage/advertimage/1289/1786464280_hFdMF.jpg"
     },
     {
-      "id": "cfc-southeast-cage-fighting-championships-jackson-2026-10-10",
-      "promotion": "Cage Fighting Championships",
-      "promotion_key": "cfc_southeast",
-      "title": "Cage Fighting Championships — Jackson",
-      "date": "2026-10-10",
-      "venue": "",
-      "location": "Jackson, MS",
-      "broadcast": "",
-      "official_url": "https://www.cfcfights.com/",
-      "regional": true,
-      "level": "pro-am",
-      "source_key": "cfc_southeast",
-      "source_label": "Cage Fighting Championships",
-      "latitude": 32.2988,
-      "longitude": -90.1848
-    },
-    {
       "id": "sherdog-cffc-chosen-few-fighting-championships-29-2026-10-10-madison",
       "promotion": "CFFC",
       "promotion_key": "sherdog_discovery",
@@ -846,6 +829,24 @@
       "level": "regional",
       "source_key": "sherdog_discovery",
       "source_label": "Sherdog regional discovery"
+    },
+    {
+      "id": "afc_alaska-afc-oct-23-2026-2026-10-23",
+      "promotion": "Alaska Fighting Championships",
+      "promotion_key": "afc_alaska",
+      "title": "AFC Oct 23, 2026",
+      "date": "2026-10-23",
+      "venue": "Sullivan Arena",
+      "location": "Anchorage, AK",
+      "broadcast": "Zone Sports",
+      "official_url": "https://alaskafighting.com/",
+      "regional": true,
+      "level": "regional",
+      "source_key": "afc_alaska",
+      "source_label": "Alaska Fighting Championships",
+      "latitude": 61.2181,
+      "longitude": -149.9003,
+      "poster_url": "https://alaskafighting.com/wp-content/uploads/2024/11/AFC_WEBSITE-pic3.jpg"
     },
     {
       "id": "lfa_official-lfa-244-woodley-vs-havener-2026-10-23",
@@ -1258,6 +1259,21 @@
       "source_label": "California Amateur Mixed Martial Arts Organization",
       "latitude": 39.0099,
       "longitude": -121.423
+    },
+    {
+      "id": "cfc-southeast-cage-fighting-championships-decatur-2026-11-14",
+      "promotion": "Cage Fighting Championships",
+      "promotion_key": "cfc_southeast",
+      "title": "Cage Fighting Championships — Decatur",
+      "date": "2026-11-14",
+      "venue": "",
+      "location": "Decatur, AL",
+      "broadcast": "",
+      "official_url": "https://www.cfcfights.com/",
+      "regional": true,
+      "level": "pro-am",
+      "source_key": "cfc_southeast",
+      "source_label": "Cage Fighting Championships"
     },
     {
       "id": "nitro-game-show-x-11-14-2026-11-14",
