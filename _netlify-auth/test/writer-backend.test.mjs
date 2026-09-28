@@ -2,9 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { allowedPath, validateDeleteBody, validateWriteBody } from '../netlify/functions/writer-github.mjs';
-import { parseUfcProfileSummary, parseUfcStatsProfile } from '../netlify/functions/writer-fighter.mjs';
+import { mergeRecentHistory, parseUfcProfileSummary, parseUfcStatsProfile } from '../netlify/functions/writer-fighter.mjs';
 import { extractBestFightOddsCardOdds, extractBestFightOddsMoneylines, extractFittCardOdds, extractFittMoneylines, extractMoneylines, formatAmericanOdds, normalizeFighterName, parseBestFightOddsHtml, parseEspnFittHtml, scoreboardDateQueries } from '../netlify/functions/fight-odds.mjs';
-import { hasCompleteDisplayedCareer, parseSherdogCareerProfile, parseUfcFightCareerProfile } from '../netlify/functions/_writer-career-fallback.mjs';
+import { hasCompleteDisplayedCareer, namesLikelySame, parseSherdogCareerProfile, parseUfcFightCareerProfile } from '../netlify/functions/_writer-career-fallback.mjs';
 import { parseUfcFightProfile } from '../../scripts/matchmaker/sources/sherdog.mjs';
 import {
   ACTIVE_UPLOAD_TTL_MS,
@@ -317,6 +317,52 @@ test('Sherdog fallback exposes complete professional history for pre-UFC fighter
   assert.equal(profile.history[0].date,'2026-03-07');
   assert.equal(profile.history[5].opponent,'Jonathan Martin');
   assert.equal(profile.latestBoutDate,'2026-03-07');
+});
+
+test('regional recent form survives even when full career completeness is unavailable', () => {
+  const merged = mergeRecentHistory(
+    [
+      {result:'W',opponent:'Regional Five',date:'2026-02-01',method:'TKO'},
+      {result:'W',opponent:'Regional Four',date:'2025-12-01',method:'Decision'},
+      {result:'W',opponent:'Regional Three',date:'2025-10-01',method:'Submission'},
+      {result:'L',opponent:'Regional Two',date:'2025-08-01',method:'Decision'}
+    ],
+    [
+      {result:'W',opponent:'UFC Opponent',date:'2026-03-01',method:'Decision'},
+      {result:'W',opponent:'Regional Five',date:'2026-02-01',method:'TKO'}
+    ]
+  );
+  assert.deepEqual(merged.map(row => row.opponent),[
+    'UFC Opponent','Regional Five','Regional Four','Regional Three','Regional Two'
+  ]);
+});
+
+test('Sherdog fallback accepts minor spelling variants only as likely name matches', () => {
+  assert.equal(namesLikelySame('Benardo Sopaj','Bernardo Sopai'),true);
+  assert.equal(namesLikelySame('Eric Nolan','Eric Nolan'),true);
+  assert.equal(namesLikelySame('Eric Nolan','Eric Nelson'),false);
+});
+
+test('Sherdog parser still exposes recent pro fights when full-history completeness is false', () => {
+  const html = `
+    <main>
+      <h1>Example Regional</h1>
+      <div>Wins 8</div><div>KO / TKO 4</div><div>SUBMISSIONS 2</div><div>DECISIONS 2</div>
+      <div>Losses 1</div><div>Draws 0</div>
+      <h2>FIGHT HISTORY - PRO</h2>
+      <table>
+        <tr><td>win</td><td><a href="/fighter/A-1">Opponent A</a></td><td>Sep / 01 / 2026</td><td>TKO</td><td>1</td><td>1:00</td></tr>
+        <tr><td>win</td><td><a href="/fighter/B-2">Opponent B</a></td><td>Jun / 01 / 2026</td><td>Decision (Unanimous)</td><td>3</td><td>5:00</td></tr>
+        <tr><td>win</td><td><a href="/fighter/C-3">Opponent C</a></td><td>Mar / 01 / 2026</td><td>Submission</td><td>2</td><td>2:00</td></tr>
+        <tr><td>win</td><td><a href="/fighter/D-4">Opponent D</a></td><td>Jan / 01 / 2026</td><td>TKO</td><td>1</td><td>3:00</td></tr>
+        <tr><td>win</td><td><a href="/fighter/E-5">Opponent E</a></td><td>Oct / 01 / 2025</td><td>Decision (Split)</td><td>3</td><td>5:00</td></tr>
+      </table>
+    </main>
+  `;
+  const profile=parseSherdogCareerProfile(html,'https://www.sherdog.com/fighter/Example-Regional-1');
+  assert.equal(profile.historyComplete,false);
+  assert.equal(profile.recent.length,5);
+  assert.deepEqual(profile.recent.map(row=>row.opponent),['Opponent A','Opponent B','Opponent C','Opponent D','Opponent E']);
 });
 
 test('BestFightOdds parser prefers sportsbook prices and resolves full-card fallbacks', () => {
