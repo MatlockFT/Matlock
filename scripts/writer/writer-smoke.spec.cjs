@@ -740,21 +740,21 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
 
   // If the browser has newer unsaved metadata for a GitHub-backed article,
   // Library must show that local title/cover instead of a stale cached card.
-  await page.evaluate(({ path, sha }) => {
+  await page.evaluate(({ path, sha, articleDate }) => {
     localStorage.setItem(`matlock-writer:${path}`, JSON.stringify({
       currentPath: path,
       currentSha: sha,
       currentPublished: false,
       title: 'Writer Production Smoke Test — Local Revision',
       description: 'Newer local metadata that has not reached GitHub yet.',
-      date: '${date}',
+      date: articleDate,
       category: 'Breakdown',
       tags: 'Writer QA, Local Revision',
       imagePath: 'https://example.com/writer-new-cover.jpg',
       savedAt: Date.now(),
       body: 'Local recovery body'
     }));
-  }, { path: `_posts/${filename}`, sha: remote.sha });
+  }, { path: `_posts/${filename}`, sha: remote.sha, articleDate: date });
 
   await page.click('[data-show-library]');
   await expect(page.locator('[data-library-list]')).toContainText('Writer Production Smoke Test — Local Revision', { timeout: 10000 });
