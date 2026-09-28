@@ -17,7 +17,7 @@ permissions:
 
 concurrency:
   group: writer-opponent-strength
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   refresh:
@@ -26,7 +26,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
+          sparse-checkout: |
+            _netlify-auth/netlify/functions
+            _posts/2026-09-25-ufc-332.md
+            assets/data
+            scripts/matchmaker
+            scripts/writer
+          sparse-checkout-cone-mode: true
 
       - uses: actions/setup-node@v4
         with:
