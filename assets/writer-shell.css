@@ -1763,3 +1763,26 @@ body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{
   color:#cdbd80;
   font-weight:700;
 }
+
+
+/* Writer visual recovery state. */
+.writer-shell .writer-preview-visual-recovery{
+  margin:1rem 0;
+  padding:.9rem 1rem;
+  border:1px solid rgba(205,189,128,.28);
+  border-radius:10px;
+  background:rgba(205,189,128,.07);
+  display:grid;
+  gap:.2rem;
+}
+.writer-shell .writer-preview-visual-recovery strong{
+  font-size:.72rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.writer-shell .writer-preview-visual-recovery span{
+  font-weight:700;
+}
+.writer-shell .writer-preview-visual-recovery small{
+  opacity:.7;
+}
