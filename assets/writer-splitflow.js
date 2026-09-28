@@ -13,7 +13,6 @@
 
   const VIEW_KEY = 'mma-writer-view-mode';
   const PREVIEW_SIZE_KEY = 'mma-writer-preview-size';
-  const SYNC_KEY = 'mma-writer-sync-scroll';
 
   const safeGet = key => {
     try { return localStorage.getItem(key); } catch { return null; }
@@ -46,49 +45,10 @@
     if (size) safeSet(PREVIEW_SIZE_KEY, size.dataset.previewSize);
   });
 
-  const syncButton = document.createElement('button');
-  syncButton.type = 'button';
-  syncButton.className = 'writer-splitflow-sync';
-  syncButton.dataset.writerSyncScroll = '';
-  syncButton.textContent = 'Sync scroll';
-  syncButton.title = 'Keep the editor and preview at roughly the same place';
-
-  const toolActions = app.querySelector('[data-writer-mode-more-panel]') || modeActions;
-  toolActions.insertAdjacentElement('afterbegin', syncButton);
-
-  let syncEnabled = safeGet(SYNC_KEY) !== '0';
-  function updateSyncButton() {
-    syncButton.setAttribute('aria-pressed', String(syncEnabled));
-    syncButton.classList.toggle('is-active', syncEnabled);
-    app.dataset.writerSyncScroll = syncEnabled ? 'on' : 'off';
-  }
-  updateSyncButton();
-
-  syncButton.addEventListener('click', () => {
-    syncEnabled = !syncEnabled;
-    safeSet(SYNC_KEY, syncEnabled ? '1' : '0');
-    updateSyncButton();
-  });
-
-  let syncing = false;
-  let syncRaf = 0;
-
-  function syncScroll(source, target) {
-    if (!syncEnabled || syncing || workspace.dataset.viewMode !== 'split') return;
-    cancelAnimationFrame(syncRaf);
-    syncRaf = requestAnimationFrame(() => {
-      const sourceMax = Math.max(0, source.scrollHeight - source.clientHeight);
-      const targetMax = Math.max(0, target.scrollHeight - target.clientHeight);
-      if (!sourceMax || !targetMax) return;
-      const progress = Math.max(0, Math.min(1, source.scrollTop / sourceMax));
-      syncing = true;
-      target.scrollTop = progress * targetMax;
-      requestAnimationFrame(() => { syncing = false; });
-    });
-  }
-
-  editor.addEventListener('scroll', () => syncScroll(editor, previewPane), { passive: true });
-  previewPane.addEventListener('scroll', () => syncScroll(previewPane, editor), { passive: true });
+  // Editor and preview intentionally scroll independently. The previous
+  // percentage-based scroll coupling made split view fight the user's input,
+  // especially now that both panes are viewport-contained.
+  try { localStorage.removeItem('mma-writer-sync-scroll'); } catch {}
 
   function markdownHeadingMatches() {
     return Array.from(editor.value.matchAll(/^(#{2,3})[ \t]+(.+)$/gm));
@@ -109,13 +69,10 @@
     const totalLines = Math.max(1, editor.value.split('\n').length - 1);
     const line = Math.max(0, before.split('\n').length - 1);
     const editorMax = Math.max(0, editor.scrollHeight - editor.clientHeight);
-
-    syncing = true;
     editor.focus({ preventScroll: true });
     editor.setSelectionRange(index, index);
     editor.scrollTop = editorMax * (line / totalLines);
     editor.dispatchEvent(new Event('select', { bubbles: true }));
-    requestAnimationFrame(() => { syncing = false; });
   });
 
   if (splitter) {
