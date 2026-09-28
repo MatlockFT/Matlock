@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "source_major_generated_at": "2026-09-28T07:37:47.956Z",
+  "source_major_generated_at": "2026-09-28T14:52:38.398Z",
   "source_regional_updated_at": null,
   "major_total": 10,
   "major_mapped": 1,
@@ -130,27 +130,6 @@
             {
               "order": 1,
               "label": "Main Event",
-              "weight_class": "Strawweight",
-              "fighters": [
-                {
-                  "name": "Camila Reynoso",
-                  "initials": "CR",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1730210572reynoso.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Aieza Ramos Bertolso",
-                  "initials": "ARB",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1768269758IMG_2302.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
               "weight_class": "Lightweight",
               "fighters": [
                 {
@@ -164,6 +143,27 @@
                   "name": "Loai Abushaar",
                   "initials": "LA",
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1767728957loaiabushaar.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Heavyweight",
+              "fighters": [
+                {
+                  "name": "Zaurbek Sabanov",
+                  "initials": "ZS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1717954841FpL_RstXEAMCzSH.jpeg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Adama Diop",
+                  "initials": "AD",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1772148782Diop-ceinture.png",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
@@ -193,6 +193,27 @@
             {
               "order": 4,
               "label": "",
+              "weight_class": "Strawweight",
+              "fighters": [
+                {
+                  "name": "Camila Reynoso",
+                  "initials": "CR",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1730210572reynoso.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Aieza Ramos Bertolso",
+                  "initials": "ARB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1768269758IMG_2302.jpeg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
               "weight_class": "Featherweight",
               "fighters": [
                 {
@@ -206,27 +227,6 @@
                   "name": "Erick Visconde",
                   "initials": "EV",
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732766598visconde.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
-              "weight_class": "Heavyweight",
-              "fighters": [
-                {
-                  "name": "Zaurbek Sabanov",
-                  "initials": "ZS",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1717954841FpL_RstXEAMCzSH.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Adama Diop",
-                  "initials": "AD",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1772148782Diop-ceinture.png",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }

@@ -1,7 +1,71 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-27T05:54:39.236Z",
+  "generated_at": "2026-09-28T14:53:24.658Z",
   "changes": [
+    {
+      "id": "2026-09-28T14:53:24.658Z|dwcs-season-10-week-8-2026-09-29|bout_moved|1",
+      "at": "2026-09-28T14:53:24.658Z",
+      "type": "bout_moved",
+      "event_id": "dwcs-season-10-week-8-2026-09-29",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 8",
+      "event_date": "2026-09-29",
+      "summary": "George Staines vs Loai Abushaar moved on Season 10 · Week 8.",
+      "details": {
+        "from_order": 2,
+        "to_order": 1,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
+    {
+      "id": "2026-09-28T14:53:24.658Z|dwcs-season-10-week-8-2026-09-29|bout_moved|2",
+      "at": "2026-09-28T14:53:24.658Z",
+      "type": "bout_moved",
+      "event_id": "dwcs-season-10-week-8-2026-09-29",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 8",
+      "event_date": "2026-09-29",
+      "summary": "Zaurbek Sabanov vs Adama Diop moved on Season 10 · Week 8.",
+      "details": {
+        "from_order": 5,
+        "to_order": 2,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
+    {
+      "id": "2026-09-28T14:53:24.658Z|dwcs-season-10-week-8-2026-09-29|bout_moved|3",
+      "at": "2026-09-28T14:53:24.658Z",
+      "type": "bout_moved",
+      "event_id": "dwcs-season-10-week-8-2026-09-29",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 8",
+      "event_date": "2026-09-29",
+      "summary": "Camila Reynoso vs Aieza Ramos Bertolso moved on Season 10 · Week 8.",
+      "details": {
+        "from_order": 1,
+        "to_order": 4,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
+    {
+      "id": "2026-09-28T14:53:24.658Z|dwcs-season-10-week-8-2026-09-29|bout_moved|4",
+      "at": "2026-09-28T14:53:24.658Z",
+      "type": "bout_moved",
+      "event_id": "dwcs-season-10-week-8-2026-09-29",
+      "promotion": "DWCS",
+      "event_title": "Season 10 · Week 8",
+      "event_date": "2026-09-29",
+      "summary": "Ilias Bulaid vs Erick Visconde moved on Season 10 · Week 8.",
+      "details": {
+        "from_order": 4,
+        "to_order": 5,
+        "from_section": "Fight Card",
+        "to_section": "Fight Card"
+      }
+    },
     {
       "id": "2026-09-27T05:54:39.236Z|ufc-fight-night-2026-09-26-fight-card|event_removed|1",
       "at": "2026-09-27T05:54:39.236Z",
@@ -4659,66 +4723,6 @@
       "summary": "Josiah Harrell portrait source changed.",
       "details": {
         "fighter": "Josiah Harrell",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-fight-night-2026-09-26-fight-card|portrait_changed|41",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Elves Brener portrait source changed.",
-      "details": {
-        "fighter": "Elves Brener",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-fight-night-2026-09-26-fight-card|portrait_changed|42",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Norma Dumont portrait source changed.",
-      "details": {
-        "fighter": "Norma Dumont",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-fight-night-2026-09-26-fight-card|portrait_changed|43",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Ailin Perez portrait source changed.",
-      "details": {
-        "fighter": "Ailin Perez",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-fight-night-2026-09-26-fight-card|portrait_changed|44",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Vanessa Demopoulos portrait source changed.",
-      "details": {
-        "fighter": "Vanessa Demopoulos",
         "from_source": "sherdog",
         "to_source": "ufc"
       }

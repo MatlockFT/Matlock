@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-28T07:37:47.956Z",
+  "generated_at": "2026-09-28T14:52:38.398Z",
   "events": [
     {
       "id": "dwcs-season-10-week-8-2026-09-29",
@@ -23,27 +23,6 @@
             {
               "order": 1,
               "label": "Main Event",
-              "weight_class": "Strawweight",
-              "fighters": [
-                {
-                  "name": "Camila Reynoso",
-                  "initials": "CR",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1730210572reynoso.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Aieza Ramos Bertolso",
-                  "initials": "ARB",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1768269758IMG_2302.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 2,
-              "label": "Co-Main Event",
               "weight_class": "Lightweight",
               "fighters": [
                 {
@@ -57,6 +36,27 @@
                   "name": "Loai Abushaar",
                   "initials": "LA",
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1767728957loaiabushaar.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Heavyweight",
+              "fighters": [
+                {
+                  "name": "Zaurbek Sabanov",
+                  "initials": "ZS",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1717954841FpL_RstXEAMCzSH.jpeg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Adama Diop",
+                  "initials": "AD",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1772148782Diop-ceinture.png",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
@@ -86,6 +86,27 @@
             {
               "order": 4,
               "label": "",
+              "weight_class": "Strawweight",
+              "fighters": [
+                {
+                  "name": "Camila Reynoso",
+                  "initials": "CR",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1730210572reynoso.jpg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                },
+                {
+                  "name": "Aieza Ramos Bertolso",
+                  "initials": "ARB",
+                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1768269758IMG_2302.jpeg",
+                  "image_source": "sherdog",
+                  "image_framing": "safe"
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
               "weight_class": "Featherweight",
               "fighters": [
                 {
@@ -99,27 +120,6 @@
                   "name": "Erick Visconde",
                   "initials": "EV",
                   "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1732766598visconde.jpg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                }
-              ]
-            },
-            {
-              "order": 5,
-              "label": "",
-              "weight_class": "Heavyweight",
-              "fighters": [
-                {
-                  "name": "Zaurbek Sabanov",
-                  "initials": "ZS",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1717954841FpL_RstXEAMCzSH.jpeg",
-                  "image_source": "sherdog",
-                  "image_framing": "safe"
-                },
-                {
-                  "name": "Adama Diop",
-                  "initials": "AD",
-                  "image": "https://www.sherdog.com/image_crop/300/300/_images/fighter/1772148782Diop-ceinture.png",
                   "image_source": "sherdog",
                   "image_framing": "safe"
                 }
@@ -484,7 +484,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/SILVA_NATALIA_L_01-24.png?itok=A5iY_ScW",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-205"
+                  "moneyline": "-210"
                 },
                 {
                   "name": "Wang Cong",
@@ -492,9 +492,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/CONG_WANG_L_02-07.png?itok=LBnTljRc",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+170"
+                  "moneyline": "+162"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             },
             {
               "order": 2,
@@ -507,7 +509,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-10/FIGUEIREDO_DEIVESON_L_10-11.png?itok=arHv-wVH",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+475"
+                  "moneyline": "+430"
                 },
                 {
                   "name": "Payton Talbott",
@@ -515,9 +517,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/TALBOTT_PAYTON_L_06-28.png?itok=SCY_KVRR",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-650"
+                  "moneyline": "-670"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             },
             {
               "order": 3,
@@ -530,7 +534,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/GREEN_KING_L_07-11.png?itok=VfpfdCUg",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+220"
+                  "moneyline": "+196"
                 },
                 {
                   "name": "Esteban Ribovics",
@@ -538,9 +542,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-09/RIBOVICS_ESTEBAN_L_05-11.png?itok=sQBu-_E0",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-275"
+                  "moneyline": "-260"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             },
             {
               "order": 4,
@@ -553,7 +559,7 @@
                   "image": "",
                   "image_source": "",
                   "image_framing": "",
-                  "moneyline": "-300"
+                  "moneyline": "-340"
                 },
                 {
                   "name": "Khaos Williams",
@@ -561,9 +567,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/WILLIAMS_KHAOS_L_06-07.png?itok=tv-XQtv9",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+240"
+                  "moneyline": "+250"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             },
             {
               "order": 5,
@@ -576,7 +584,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/GAUTIER_ATEBA_L_05-09.png?itok=dydh3iVk",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-200"
+                  "moneyline": "-205"
                 },
                 {
                   "name": "Roman Kopylov",
@@ -584,9 +592,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/KOPYLOV_ROMAN_L_05-09.png?itok=Lc4htX8o",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+165"
+                  "moneyline": "+158"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             }
           ]
         },
@@ -606,7 +616,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/RODRIGUEZ_IMANOL_L_02-28.png?itok=_Y1p2V-L",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-172"
                 },
                 {
                   "name": "Alden Coria",
@@ -614,9 +624,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/CORIA_ALDEN_L_07-18.png?itok=lobuZB80",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+134"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             },
             {
               "order": 7,
@@ -629,7 +641,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/PINAS_DAMIAN_L_07-11.png?itok=y63owkBX",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-520"
                 },
                 {
                   "name": "Andrey Pulyaev",
@@ -637,9 +649,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/PULYAEV_ANDREY_R_03-22.png?itok=jWF656q7",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+350"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             },
             {
               "order": 8,
@@ -652,7 +666,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/MCGHEE_MARCUS_L_06-06.png?itok=DOTo3j44",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-150"
                 },
                 {
                   "name": "Benardo Sopaj",
@@ -660,9 +674,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/6/SOPAJ_BENARDO_L_03-02.png?itok=fxyt7hIc",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+118"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             },
             {
               "order": 9,
@@ -675,7 +691,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/WINT_ANTHONY_L_08-22.png?itok=IYWOKGSa",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-390"
                 },
                 {
                   "name": "Lucas Armand",
@@ -683,9 +699,11 @@
                   "image": "",
                   "image_source": "",
                   "image_framing": "",
-                  "moneyline": ""
+                  "moneyline": "+280"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             }
           ]
         },
@@ -705,7 +723,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/WALKER_JOHNNY_L_08-23.png?itok=cy7jdBoB",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-150"
                 },
                 {
                   "name": "Mick Parkin",
@@ -713,9 +731,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/5/PARKIN_MICK_L_07-27.png?itok=OX9b6Fw2",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+118"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             },
             {
               "order": 11,
@@ -728,7 +748,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-10/5/DOS_ANJOS_RAFAEL_L_12-03.png?itok=5J-7Ljft",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+200"
                 },
                 {
                   "name": "Alexander Hernandez",
@@ -736,9 +756,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/HERNANDEZ_ALEXANDER_L_09-13.png?itok=B5l45CwH",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-265"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             },
             {
               "order": 12,
@@ -751,7 +773,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/VETTORI_MARVIN_L_12-06.png?itok=FdvoLxjF",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+102"
                 },
                 {
                   "name": "Ismail Naurdiev",
@@ -759,9 +781,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/NAURDIEV_ISMAIL_L_11-22.png?itok=PK0HzWkv",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-130"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             },
             {
               "order": 13,
@@ -774,7 +798,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-10/MCGEE_COURT_L_10-05.png?itok=CVRx8xXQ",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+200"
                 },
                 {
                   "name": "Eric Nolan",
@@ -782,9 +806,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/NOLAN_ERIC_R_08-16.png?itok=Lf5rUsnh",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-265"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             }
           ]
         }
@@ -1195,7 +1221,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/VOLKANOVSKI_ALEXANDER_L_BELT_01-31.png?itok=hfZR81xh",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-115"
+                  "moneyline": "-113"
                 },
                 {
                   "name": "Movsar Evloev",
@@ -1203,9 +1229,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/EVLOEV_MOVSAR_L_03-21.png?itok=X2qAuG7T",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-105"
+                  "moneyline": "-113"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             },
             {
               "order": 2,
@@ -1218,7 +1246,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/YAN_PETR_L_BELT_04-09.png?itok=rEIQhNvw",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-172"
                 },
                 {
                   "name": "Merab Dvalishvili",
@@ -1226,9 +1254,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2022-08/DVALISHVILI_MERAB_L_08-20.png?itok=UNfxCucB",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+140"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             },
             {
               "order": 3,
@@ -1802,7 +1832,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/GANE_CIRYL_L_BELT_01-22.png?itok=6Dy6iwAT",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-265"
                 },
                 {
                   "name": "Josh Hokit",
@@ -1810,9 +1840,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/HOKIT_JOSH_L_06-14.png?itok=Es1_9BbW",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+200"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             },
             {
               "order": 2,
@@ -1825,7 +1857,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/HARRISON_KAYLA_L_BELTMOCK.png?itok=goxu4s1i",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "-210"
                 },
                 {
                   "name": "Amanda Nunes",
@@ -1833,9 +1865,11 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/NUNES_AMANDA_R.png?itok=IWn0DcbC",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": ""
+                  "moneyline": "+162"
                 }
-              ]
+              ],
+              "odds_source": "BestFightOdds",
+              "odds_provider": "FanDuel"
             },
             {
               "order": 3,

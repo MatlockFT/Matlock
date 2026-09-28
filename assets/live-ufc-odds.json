@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-09-27T17:42:21.502Z",
-  "source": "UFC.com",
+  "generated_at": "2026-09-28T14:51:17.430Z",
+  "source": "UFC.com + BestFightOdds",
   "events": [
     {
       "id": "ufc-332-2026-10-03-fight-card",
@@ -8,62 +8,184 @@
       "official_url": "https://www.ufc.com/event/ufc-332",
       "fights": [
         {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
           "fighters": [
             {
               "name": "Natalia Silva",
-              "moneyline": "-205"
+              "moneyline": "-210"
             },
             {
               "name": "Wang Cong",
-              "moneyline": "+170"
+              "moneyline": "+162"
             }
           ]
         },
         {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
           "fighters": [
             {
               "name": "Deiveson Figueiredo",
-              "moneyline": "+475"
+              "moneyline": "+430"
             },
             {
               "name": "Payton Talbott",
-              "moneyline": "-650"
+              "moneyline": "-670"
             }
           ]
         },
         {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
           "fighters": [
             {
               "name": "King Green",
-              "moneyline": "+220"
+              "moneyline": "+196"
             },
             {
               "name": "Esteban Ribovics",
-              "moneyline": "-275"
+              "moneyline": "-260"
             }
           ]
         },
         {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
           "fighters": [
             {
               "name": "Roberto Soldic",
-              "moneyline": "-300"
+              "moneyline": "-340"
             },
             {
               "name": "Khaos Williams",
-              "moneyline": "+240"
+              "moneyline": "+250"
             }
           ]
         },
         {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
           "fighters": [
             {
               "name": "Ateba Gautier",
-              "moneyline": "-200"
+              "moneyline": "-205"
             },
             {
               "name": "Roman Kopylov",
-              "moneyline": "+165"
+              "moneyline": "+158"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
+          "fighters": [
+            {
+              "name": "Imanol Rodriguez",
+              "moneyline": "-172"
+            },
+            {
+              "name": "Alden Coria",
+              "moneyline": "+134"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
+          "fighters": [
+            {
+              "name": "Damian Pinas",
+              "moneyline": "-520"
+            },
+            {
+              "name": "Andrey Pulyaev",
+              "moneyline": "+350"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
+          "fighters": [
+            {
+              "name": "Marcus McGhee",
+              "moneyline": "-150"
+            },
+            {
+              "name": "Benardo Sopaj",
+              "moneyline": "+118"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
+          "fighters": [
+            {
+              "name": "Anthony Wint",
+              "moneyline": "-390"
+            },
+            {
+              "name": "Lucas Armand",
+              "moneyline": "+280"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
+          "fighters": [
+            {
+              "name": "Johnny Walker",
+              "moneyline": "-150"
+            },
+            {
+              "name": "Mick Parkin",
+              "moneyline": "+118"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
+          "fighters": [
+            {
+              "name": "Rafael Dos Anjos",
+              "moneyline": "+200"
+            },
+            {
+              "name": "Alexander Hernandez",
+              "moneyline": "-265"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
+          "fighters": [
+            {
+              "name": "Marvin Vettori",
+              "moneyline": "+102"
+            },
+            {
+              "name": "Ismail Naurdiev",
+              "moneyline": "-130"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
+          "fighters": [
+            {
+              "name": "Court McGee",
+              "moneyline": "+200"
+            },
+            {
+              "name": "Eric Nolan",
+              "moneyline": "-265"
             }
           ]
         }
@@ -75,14 +197,65 @@
       "official_url": "https://www.ufc.com/event/ufc-333",
       "fights": [
         {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
           "fighters": [
             {
               "name": "Alexander Volkanovski",
-              "moneyline": "-115"
+              "moneyline": "-113"
             },
             {
               "name": "Movsar Evloev",
-              "moneyline": "-105"
+              "moneyline": "-113"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
+          "fighters": [
+            {
+              "name": "Petr Yan",
+              "moneyline": "-172"
+            },
+            {
+              "name": "Merab Dvalishvili",
+              "moneyline": "+140"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-2026-11-14-polymarket-ufc-334",
+      "date": "2026-11-14",
+      "official_url": "https://www.ufc.com/event/ufc-334",
+      "fights": [
+        {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
+          "fighters": [
+            {
+              "name": "Ciryl Gane",
+              "moneyline": "-265"
+            },
+            {
+              "name": "Josh Hokit",
+              "moneyline": "+200"
+            }
+          ]
+        },
+        {
+          "source": "BestFightOdds",
+          "provider": "FanDuel",
+          "fighters": [
+            {
+              "name": "Kayla Harrison",
+              "moneyline": "-210"
+            },
+            {
+              "name": "Amanda Nunes",
+              "moneyline": "+162"
             }
           ]
         }
