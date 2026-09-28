@@ -377,7 +377,7 @@ for(const name of targetNames){
     complete:true
   };
   strengthByName.set(normalize(name),strength);
-  existing.fighters[normalize(name)]={
+  existing.fighters[dataKey(name)]={
     name,
     record:profile.record||null,
     checkedAt:new Date().toISOString(),
@@ -401,7 +401,7 @@ const updatedMarkdown=markdown.replace(
     let touched=false;
     for(const side of ['a','b']){
       const fighter=config[side];
-      const cached=existing.fighters[normalize(fighter?.name)];
+      const cached=existing.fighters[dataKey(fighter?.name)];
       if(!fighter||!cached) continue;
       const recent=recentRows(cached.history);
       fighter.recent=recent;
