@@ -545,6 +545,25 @@
       "publicContract": false
     },
     {
+      "id": "writer-opponent-strength-cache",
+      "storage": "public-runtime",
+      "paths": [
+        "assets/data/writer-opponent-strength.json"
+      ],
+      "lifecycle": "operational-cache",
+      "owner": "writer",
+      "producers": [
+        "scripts/writer/refresh-opponent-strength.mjs"
+      ],
+      "consumers": [
+        "scripts/matchmaker/build-writer-fighters.mjs",
+        "_writer/04-editor-tools.js"
+      ],
+      "safeToRegenerate": true,
+      "safeToDeleteFromRepository": false,
+      "publicContract": false
+    },
+    {
       "id": "writer-fighter-index",
       "storage": "public-runtime",
       "paths": [
