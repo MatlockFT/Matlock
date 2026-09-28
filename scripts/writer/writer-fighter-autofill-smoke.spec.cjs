@@ -58,6 +58,18 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
             opponent: 'Recent Opponent',
             method: 'Decision - Unanimous',
             date: '2026-09-01'
+          }],
+          historyComplete: true,
+          history: [{
+            result: 'W',
+            opponent: 'Recent Opponent',
+            method: 'Decision - Unanimous',
+            date: '2026-09-01'
+          },{
+            result: 'W',
+            opponent: 'Old Opponent',
+            method: 'KO/TKO',
+            date: '2024-01-01'
           }]
         }]
       })
@@ -66,7 +78,8 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
 
   await page.route('https://mmamatlock-writer-auth.netlify.app/api/writer/fighter*', async route => {
     const requestUrl = new URL(route.request().url());
-    if (requestUrl.searchParams.get('name') === 'Recent Opponent') {
+    if (['Recent Opponent','Old Opponent'].includes(requestUrl.searchParams.get('name'))) {
+      const opponentName=requestUrl.searchParams.get('name');
       await route.fulfill({
         contentType: 'application/json',
         headers: { 'access-control-allow-origin': '*' },
@@ -79,8 +92,8 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
           liveCareerFallback: true,
           fetchedAt: '2026-09-26T18:01:00.000Z',
           profile: {
-            name: 'Recent Opponent',
-            record: '10-2-0'
+            name: opponentName,
+            record: opponentName === 'Recent Opponent' ? '10-2-0' : '20-8-0'
           }
         })
       });
@@ -198,8 +211,8 @@ test('fighter lookup autofills verified stats and live UFCStats can override the
   await expect(taleRows.nth(9).locator('[data-structured-a]')).toHaveValue('3');
   await expect(taleRows.nth(10).locator('[data-structured-label]')).toHaveValue('Split Decision');
   await expect(taleRows.nth(10).locator('[data-structured-a]')).toHaveValue('1');
-  await expect(taleDialog.locator('[data-tale-opponents-record="a"]')).toHaveValue('10-2');
-  await expect(taleDialog.locator('[data-tale-opponents-pct="a"]')).toHaveValue('83%');
+  await expect(taleDialog.locator('[data-tale-opponents-record="a"]')).toHaveValue('30-10');
+  await expect(taleDialog.locator('[data-tale-opponents-pct="a"]')).toHaveValue('75%');
 
   expect(pageErrors).toEqual([]);
 });
