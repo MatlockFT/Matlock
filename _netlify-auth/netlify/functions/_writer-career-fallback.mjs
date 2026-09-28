@@ -53,7 +53,7 @@ function editDistance(a, b) {
   return row[right.length];
 }
 
-function namesLikelySame(a,b) {
+export function namesLikelySame(a,b) {
   const left=normalizeName(a);
   const right=normalizeName(b);
   if(!left||!right) return false;
