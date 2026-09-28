@@ -325,10 +325,23 @@ export default async function handler(request) {
     if (value !== null && value !== undefined && value !== '') career[field] = value;
   }
 
+  const fallbackHistory = fallbackProfile.historyComplete && Array.isArray(fallbackProfile.history)
+    ? fallbackProfile.history
+    : [];
+  const recent = fallbackHistory.length
+    ? fallbackHistory.slice(0,5)
+    : (Array.isArray(statsProfile.recent) ? statsProfile.recent : []);
   const profile = {
     ...statsProfile,
     record: officialProfile.record || fallbackProfile.record || statsProfile.record || null,
-    career:Object.keys(career).length ? career : null
+    bio:statsProfile.bio || fallbackProfile.bio || null,
+    career:Object.keys(career).length ? career : null,
+    history:fallbackHistory,
+    recent,
+    latestBoutDate:fallbackHistory[0]?.date || statsProfile.latestBoutDate || fallbackProfile.latestBoutDate || null,
+    historyComplete:Boolean(fallbackHistory.length && fallbackProfile.historyComplete),
+    historySource:fallbackHistory.length ? (fallbackProfile.source || null) : null,
+    historySourceUrl:fallbackHistory.length ? (fallbackProfile.sourceUrl || null) : null
   };
   const core = [
     profile.stats?.slpm,
