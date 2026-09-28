@@ -2596,8 +2596,10 @@ function scheduleAutosave() {
       if (!restored) dirty = false;
       showEditor({ route: 'article', path });
       if ((state.body || '').trim() || state.title) setArticleDetailsOpen(false);
-      setSaveState(currentPublished ? 'Published article' : fields.publishAt.value ? 'Scheduled article' : 'Draft article');
-      showToast('Article loaded.');
+      if (!restored) {
+        setSaveState(currentPublished ? 'Published article' : fields.publishAt.value ? 'Scheduled article' : 'Draft article');
+      }
+      showToast(restored ? 'Article loaded with local changes.' : 'Article loaded.');
     } catch (error) {
       setSaveState('Load failed');
       showToast(`Could not load article: ${error.message}`, 5000);
