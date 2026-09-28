@@ -6,6 +6,12 @@ const CACHE_PATH = 'assets/data/writer-opponent-strength.json';
 const WRITER_PATH = 'assets/data/writer-fighters.json';
 const UA = 'Mozilla/5.0 (compatible; MMAMatlockOpponentStrength/1.0; +https://mmamatlock.com/write/)';
 const MAX_RECORD_AGE_MS = 6 * 86400000;
+const HISTORY_ALIASES = new Map([
+  ['benardo sopaj','Bernardo Sopai'],
+  ['ateba gautier','Ateba Abega Gautier'],
+  ['khaos williams','Kalinn Williams'],
+  ['bobby green','King Green']
+]);
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -251,19 +257,18 @@ console.log('Refreshing all-career opponent strength for '+targetNames.length+' 
 
 const profiles=new Map();
 await mapLimit(targetNames,2,async name=>{
-  const known=directory.get(normalize(name))||{};
   await sleep(200);
-  const profile=await fetchCareerFallback({
-    name,
-    dob:known.bio?.dob||null,
-    height:known.bio?.height||null,
-    weight:known.bio?.weight||null
-  });
+  let profile=await fetchCareerFallback({name});
+  if(!profile?.historyComplete || !Array.isArray(profile.history) || !profile.history.length){
+    const alias=HISTORY_ALIASES.get(normalize(name));
+    if(alias) profile=await fetchCareerFallback({name:alias});
+  }
   if(!profile?.historyComplete || !Array.isArray(profile.history) || !profile.history.length){
     throw new Error('Complete professional history unavailable for '+name);
   }
   profiles.set(normalize(name),profile);
-  console.log('History '+name+': '+profile.history.length+' pro bouts via '+profile.source);
+  console.log('History '+name+': '+profile.history.length+' pro bouts via '+profile.source+
+    (normalize(profile.name)!==normalize(name)?' ['+(profile.name||'alias')+']':''));
 });
 
 const existing=await readJson(CACHE_PATH,{schemaVersion:1,updatedAt:null,fighters:{},opponents:{}});
