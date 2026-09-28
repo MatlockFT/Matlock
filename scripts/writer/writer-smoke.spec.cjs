@@ -98,9 +98,16 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await page.goto(BASE, { waitUntil: 'domcontentloaded' });
   await expect(page.locator('[data-writer-app]')).toBeVisible();
   await expect(page.locator('[data-library-view]')).toBeVisible();
+  expect(new URL(page.url()).pathname).toBe('/write/');
+  expect(new URL(page.url()).search).toBe('');
+  await expect(page.locator('[data-save-draft]')).toBeHidden();
+  await expect(page.locator('[data-schedule]')).toBeHidden();
+  await expect(page.locator('[data-publish]')).toBeHidden();
 
   await page.click('[data-library-new]');
   await expect(page.locator('[data-editor-view]')).toBeVisible();
+  expect(new URL(page.url()).searchParams.get('new')).toBe('1');
+  await expect(page.locator('[data-save-draft]')).toBeVisible();
   await expect(page.locator('.writer-preview-article')).toHaveClass(/post-page-v3/);
   await expect(page.locator('.writer-preview-article')).toHaveAttribute('data-editorial-v3', '');
   await expect(page.locator('[data-preview-author]')).toHaveText('Matlock');
@@ -134,6 +141,21 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
 
   await expect(page.locator('[data-save-state]')).toContainText('Unsaved');
   await expect(page.locator('[data-local-status]')).toContainText('Saved locally', { timeout: 5000 });
+
+  // Library and editor are distinct states. Leaving the editor snapshots locally
+  // without a recovery prompt, and the browser-only draft is visible in Library.
+  await page.click('[data-show-library]');
+  await expect(page.locator('[data-library-view]')).toBeVisible();
+  expect(new URL(page.url()).pathname).toBe('/write/');
+  expect(new URL(page.url()).search).toBe('');
+  await expect(page.locator('[data-save-draft]')).toBeHidden();
+  const localDraftCard = page.locator('[data-library-local-draft]');
+  await expect(localDraftCard).toBeVisible();
+  await expect(localDraftCard).toContainText('Writer Production Smoke Test');
+  await localDraftCard.locator('[data-library-resume-local]').click();
+  await expect(page.locator('[data-editor-view]')).toBeVisible();
+  expect(new URL(page.url()).searchParams.get('new')).toBe('1');
+  await expect(page.locator('#writer-body')).toHaveValue(/Closing section/);
 
   const editor = page.locator('#writer-body');
   await editor.evaluate(el => { el.focus(); el.setSelectionRange(250, 250); });
@@ -698,6 +720,8 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
 
   await page.click('[data-save-draft]');
   await expect(page.locator('[data-save-state]')).toContainText('Saved', { timeout: 10000 });
+  expect(new URL(page.url()).searchParams.get('new')).toBeNull();
+  expect(new URL(page.url()).searchParams.get('path')).toBe(`_posts/${filename}`);
   await expect.poll(() => Boolean(remote && /published:\s*false/.test(remote.text))).toBe(true);
   expect(remote.text).toContain('<section class="article-html-visual">');
   expect(remote.text).toContain('<div class="writer-smoke-visual">');
@@ -713,7 +737,11 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
 
   await page.click('[data-show-library]');
   await expect(page.locator('[data-library-list]')).toContainText('Writer Production Smoke Test', { timeout: 10000 });
+  expect(new URL(page.url()).search).toBe('');
+  await expect(page.locator('[data-save-draft]')).toBeHidden();
+  await expect(page.locator('[data-library-local-draft]')).toHaveCount(0);
   await page.locator('[data-library-path]').filter({ hasText: 'Writer Production Smoke Test' }).locator('[data-library-edit]').click();
+  await expect.poll(() => new URL(page.url()).searchParams.get('path')).toBe(`_posts/${filename}`);
   const articleDetails = page.locator('.writer-meta');
   await expect(articleDetails).not.toHaveAttribute('open', '');
   await expect(page.locator('#writer-body')).toHaveValue(/Closing section/);
