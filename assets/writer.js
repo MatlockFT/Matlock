@@ -1877,13 +1877,13 @@
   return githubCredential.startsWith('session:');
 }
 
-function setPublishingControls(enabled) {
+function setPublishingControls() {
   const editing = Boolean(editorView && !editorView.hidden);
-  const active = Boolean(enabled) && editing && !saveInFlight && !imageUploadInFlight && !videoUploadInFlight;
+  const active = editing && !saveInFlight && !imageUploadInFlight && !videoUploadInFlight;
   saveDraftButton.disabled = !active;
   publishButton.disabled = !active;
   scheduleButton.disabled = !active;
-  uploadButton.disabled = !active || !selectedImageFile;
+  uploadButton.disabled = !active || !selectedImageFile || !githubCredential;
 }
 
 function expireGithubConnection(message = 'GitHub session expired. Sign in again to save or publish.') {
