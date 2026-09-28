@@ -30,6 +30,34 @@ function opponentMarkup(a,b) {
 const directory = JSON.parse(await fs.readFile(DIRECTORY_PATH,'utf8'));
 const byName = new Map((directory.fighters || []).map(f => [normalize(f.name),f]));
 const liveCache = new Map();
+const supplementalRecords = new Map(Object.entries({
+  "Viviane Araujo":"14-8-0",
+  "Andrea Lee":"13-11-0",
+  "Ariane da Silva":"17-11-0",
+  "Bruna Brasil":"11-7-1",
+  "Henry Cejudo":"16-6-0",
+  "Yanis Ghemmouri":"13-4-0",
+  "Andreas Gustafsson":"12-3-0",
+  "Carlston Harris":"19-8-0",
+  "Rolando Bedoya":"14-5-0",
+  "Tre'ston Vines":"10-4-0",
+  "Robert Valentin":"12-6-0",
+  "Jose Daniel Medina":"11-7-0",
+  "Stewart Nicoll":"8-4-0",
+  "Timmy Cuamba":"10-4-0",
+  "Ricky Turcios":"12-6-0",
+  "Lukasz Brzeski":"9-7-1",
+  "Mohammed Usman":"11-4-0",
+  "Caio Machado":"8-4-1",
+  "Jamal Pogues":"12-6-0",
+  "Kurt Holobaugh":"22-10-0",
+  "Austin Hubbard":"16-11-0",
+  "JunYong Park":"19-7-0",
+  "Siyar Bahadurzada":"24-8-1",
+  "Michael Chiesa":"20-7-0",
+  "Alex Morono":"24-13-0",
+  "Matt Brown":"24-19-0"
+}).map(([name,record]) => [normalize(name),record]));
 
 async function liveRecord(name) {
   const key = normalize(name);
@@ -51,8 +79,11 @@ async function liveRecord(name) {
 }
 
 async function recordForOpponent(name) {
-  const cached = parseRecord(byName.get(normalize(name))?.record);
+  const normalized = normalize(name);
+  const cached = parseRecord(byName.get(normalized)?.record);
   if (cached) return cached;
+  const supplemental = parseRecord(supplementalRecords.get(normalized));
+  if (supplemental) return supplemental;
   return liveRecord(name);
 }
 
