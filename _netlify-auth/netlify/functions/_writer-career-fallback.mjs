@@ -34,6 +34,36 @@ function normalizeName(value) {
     .replace(/[^a-z0-9]+/g, ' ')
     .trim();
 }
+function editDistance(a, b) {
+  const left=String(a||''), right=String(b||'');
+  const row=Array.from({length:right.length+1},(_,i)=>i);
+  for(let i=1;i<=left.length;i++){
+    let prev=row[0];
+    row[0]=i;
+    for(let j=1;j<=right.length;j++){
+      const hold=row[j];
+      row[j]=Math.min(
+        row[j]+1,
+        row[j-1]+1,
+        prev+(left[i-1]===right[j-1]?0:1)
+      );
+      prev=hold;
+    }
+  }
+  return row[right.length];
+}
+
+function namesLikelySame(a,b) {
+  const left=normalizeName(a);
+  const right=normalizeName(b);
+  if(!left||!right) return false;
+  if(left===right) return true;
+  const lt=left.split(' '), rt=right.split(' ');
+  if(lt.length!==rt.length || lt.length<2) return false;
+  return lt.every((token,index) =>
+    token.length>=4 && rt[index].length>=4 && editDistance(token,rt[index])<=1
+  );
+}
 
 function slugify(value) {
   return normalizeName(value).replace(/\s+/g, '-');
@@ -339,8 +369,15 @@ async function get(url, {attempts=2, timeout=5500} = {}) {
 
 function verified(profile, expected) {
   if (!profile?.career || !profile.name || !expected?.name) return false;
-  if (normalizeName(profile.name) !== normalizeName(expected.name)) return false;
+  const exactName = normalizeName(profile.name) === normalizeName(expected.name);
   const checks = identityChecks(expected, profile.bio);
+  if (!exactName) {
+    if (!namesLikelySame(profile.name, expected.name)) return false;
+    // Fuzzy spelling tolerance is only allowed when at least one independent
+    // identity field also agrees, preventing a typo match from selecting the
+    // wrong fighter.
+    if (!checks.length) return false;
+  }
   if (checks.some(check => !check.match)) return false;
   return true;
 }
@@ -363,7 +400,7 @@ async function sherdogLookup(expected) {
     const search = await get(SHERDOG_BASE + '/stats/fightfinder?SearchTxt=' + encodeURIComponent(expected.name), {attempts:1,timeout:4500});
     const candidates = parseSherdogSearchProfiles(search);
     for (const candidate of candidates) {
-      if (normalizeName(candidate.label) !== normalizeName(expected.name)) continue;
+      if (!namesLikelySame(candidate.label, expected.name)) continue;
       try {
         const html = await get(candidate.href, {attempts:1,timeout:4500});
         const profile = parseSherdogCareerProfile(html, candidate.href);
