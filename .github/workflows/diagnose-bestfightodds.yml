@@ -23,8 +23,18 @@ jobs:
           const html = await response.text();
           console.log('status', response.status, 'length', html.length);
           for (const needle of ['Anthony Wint','Natalia Silva','Court McGee']) {
-            const i = html.indexOf(needle);
-            console.log('\n===', needle, 'index', i, '===');
-            console.log(i >= 0 ? html.slice(Math.max(0,i-1800), i+2600) : 'NOT FOUND');
+            const indexes=[];
+            let from=0;
+            while (true) {
+              const i=html.indexOf(needle,from);
+              if (i < 0) break;
+              indexes.push(i);
+              from=i+needle.length;
+            }
+            console.log('\n===', needle, 'indexes', indexes, '===');
+            for (const [n,i] of indexes.entries()) {
+              console.log('\n--- occurrence',n+1,'---');
+              console.log(html.slice(Math.max(0,i-1200), i+4200));
+            }
           }
           NODE
