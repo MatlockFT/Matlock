@@ -738,11 +738,39 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   expect(remote.text).toContain('| Metric | Alpha | Beta |');
   expect(remote.text).toContain('Alpha Fighter');
 
+  // If the browser has newer unsaved metadata for a GitHub-backed article,
+  // Library must show that local title/cover instead of a stale cached card.
+  await page.evaluate(({ path, sha }) => {
+    localStorage.setItem(`matlock-writer:${path}`, JSON.stringify({
+      currentPath: path,
+      currentSha: sha,
+      currentPublished: false,
+      title: 'Writer Production Smoke Test — Local Revision',
+      description: 'Newer local metadata that has not reached GitHub yet.',
+      date: '${date}',
+      category: 'Breakdown',
+      tags: 'Writer QA, Local Revision',
+      imagePath: 'https://example.com/writer-new-cover.jpg',
+      savedAt: Date.now(),
+      body: 'Local recovery body'
+    }));
+  }, { path: `_posts/${filename}`, sha: remote.sha });
+
   await page.click('[data-show-library]');
-  await expect(page.locator('[data-library-list]')).toContainText('Writer Production Smoke Test', { timeout: 10000 });
+  await expect(page.locator('[data-library-list]')).toContainText('Writer Production Smoke Test — Local Revision', { timeout: 10000 });
   expect(new URL(page.url()).search).toBe('');
   await expect(page.locator('[data-save-draft]')).toBeHidden();
   await expect(page.locator('[data-library-local-draft]')).toHaveCount(0);
+  const localRevisionCard = page.locator('[data-library-path]').filter({ hasText: 'Writer Production Smoke Test — Local Revision' });
+  await expect(localRevisionCard).toContainText('Local changes');
+  await expect(localRevisionCard.locator('img')).toHaveAttribute('src', 'https://example.com/writer-new-cover.jpg');
+  await expect(localRevisionCard.locator('[data-library-edit]')).toHaveText('Resume');
+
+  // Remove the synthetic local override so the rest of this workflow exercises
+  // the durable GitHub draft path.
+  await page.evaluate(path => localStorage.removeItem(`matlock-writer:${path}`), `_posts/${filename}`);
+  await page.locator('[data-library-filter="all"]').click();
+  await expect(page.locator('[data-library-list]')).toContainText('Writer Production Smoke Test');
   await page.locator('[data-library-path]').filter({ hasText: 'Writer Production Smoke Test' }).locator('[data-library-edit]').click();
   await expect.poll(() => new URL(page.url()).searchParams.get('path')).toBe(`_posts/${filename}`);
   const articleDetails = page.locator('.writer-meta');
