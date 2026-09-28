@@ -188,6 +188,11 @@ jobs:
           WRITER_BASE_URL: https://mmamatlock.com/write/
         run: npx playwright test scripts/writer/writer-fighter-autofill-smoke.spec.cjs --workers=1 --reporter=line
 
+      - name: Exercise visual recovery workflow
+        env:
+          WRITER_BASE_URL: https://mmamatlock.com/write/
+        run: npx playwright test scripts/writer/writer-visual-recovery-smoke.spec.cjs --workers=1 --reporter=line
+
       - name: Exercise production Writer workflow
         env:
           WRITER_BASE_URL: https://mmamatlock.com/write/
