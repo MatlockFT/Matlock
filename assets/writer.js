@@ -3523,18 +3523,16 @@ function insertBlock(text, { preserveScroll = false } = {}) {
   }
 
   async function populateTaleOpponentStrength(dialog,side,fighter,liveProfile=null) {
-    if (!dialog || !fighter) return;
+    if (!dialog || !fighter || !liveProfile?.historyComplete || !Array.isArray(liveProfile.history)) return;
     const recordInput=dialog.querySelector('[data-tale-opponents-record="' + side + '"]');
     const pctInput=dialog.querySelector('[data-tale-opponents-pct="' + side + '"]');
     if (!canAutoFillTaleOpponentStrength(recordInput,pctInput)) return;
 
-    const recent=recentRowsFromFighter(fighter,liveProfile)
-      .filter(row => row.opponent)
-      .slice(0,5);
-    if (!recent.length) return;
+    const opponents=liveProfile.history.map(row => String(row?.opponent || '').trim()).filter(Boolean);
+    if (!opponents.length) return;
 
     const requestKey=normalizeFighterLookup(fighter.name) + '|' +
-      recent.map(row => normalizeFighterLookup(row.opponent)).join('|');
+      opponents.map(normalizeFighterLookup).join('|');
     recordInput.dataset.opponentStrengthRequest=requestKey;
     pctInput.dataset.opponentStrengthRequest=requestKey;
 
@@ -3545,23 +3543,34 @@ function insertBlock(text, { preserveScroll = false } = {}) {
       return;
     }
 
-    const records=await Promise.all(recent.map(async row => {
-      const wanted=normalizeFighterLookup(row.opponent);
-      const cachedOpponent=directory.fighters.find(item => normalizeFighterLookup(item.name) === wanted);
-      const cachedRecord=parseOpponentRecord(cachedOpponent?.record);
-      if (cachedRecord) return cachedRecord;
-
-      try {
-        const payload=await fetchLiveWriterFighter({name:row.opponent});
-        return parseOpponentRecord(payload?.profile?.record);
-      } catch {
-        return null;
+    const uniqueNames=[...new Map(opponents.map(name => [normalizeFighterLookup(name),name])).values()];
+    const recordByName=new Map();
+    let cursor=0;
+    const workers=Array.from({length:Math.min(4,uniqueNames.length)},async () => {
+      while (cursor < uniqueNames.length) {
+        const name=uniqueNames[cursor++];
+        const wanted=normalizeFighterLookup(name);
+        const cachedOpponent=directory.fighters.find(item => normalizeFighterLookup(item.name) === wanted);
+        const cachedRecord=parseOpponentRecord(cachedOpponent?.record);
+        if (cachedRecord) {
+          recordByName.set(wanted,cachedRecord);
+          continue;
+        }
+        try {
+          const payload=await fetchLiveWriterFighter({name});
+          recordByName.set(wanted,parseOpponentRecord(payload?.profile?.record));
+        } catch {
+          recordByName.set(wanted,null);
+        }
       }
-    }));
+    });
+    await Promise.all(workers);
 
     if (recordInput.dataset.opponentStrengthRequest !== requestKey ||
         pctInput.dataset.opponentStrengthRequest !== requestKey ||
         !canAutoFillTaleOpponentStrength(recordInput,pctInput)) return;
+
+    const records=opponents.map(name => recordByName.get(normalizeFighterLookup(name)) || null);
 
     // Never publish a partial strength-of-schedule number as if it were complete.
     if (records.some(record => !record)) {
@@ -3626,7 +3635,6 @@ function insertBlock(text, { preserveScroll = false } = {}) {
     renderRecentRows(dialog.querySelector('[data-tale-form-list="' + side + '"]'),recent);
     const last5 = dialog.querySelector('[data-tale-last5="' + side + '"]');
     if (last5 && recent.length) last5.value = lastFiveFromRows(recent);
-    populateTaleOpponentStrength(dialog,side,fighter);
     const rows = dialog.querySelector('[data-tale-row-list]');
     const ufcRecord = fighter.ufcRecord || recordFromHistory(fighter.history,new Set(['ufc']));
     setComparisonValue(rows,'Record',side,displayComparisonValue(fighter.record));
