@@ -229,8 +229,6 @@ async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
 
   function updateUrlPath() {
     if (!currentPath) return;
-    const url = new URL(location.href);
-    url.searchParams.set('path', currentPath);
-    history.replaceState(null, '', url.pathname + url.search);
+    setWriterRoute('article', { path: currentPath, replace: true });
   }
 
