@@ -21,9 +21,11 @@
   });
 
   function normalizedName(value) {
-    return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    let normalized = String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'')
       .toLowerCase().replace(/\b(jr|sr|ii|iii|iv)\b/g,' ')
-      .replace(/[^a-z0-9]+/g,' ').trim().split(' ').sort().join(' ');
+      .replace(/[^a-z0-9]+/g,' ').trim();
+    if (normalized === 'king green') normalized = 'bobby green';
+    return normalized.split(' ').sort().join(' ');
   }
 
   let staticFeed = null;
