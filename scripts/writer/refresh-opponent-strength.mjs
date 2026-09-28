@@ -167,16 +167,14 @@ async function resolvePostPath(input) {
     .filter(name=>/\.md$/i.test(name))
     .sort()
     .reverse();
-  let publishedFallback=null;
   for(const name of names){
     const path='_posts/'+name;
     let source='';
     try { source=await fs.readFile(path,'utf8'); } catch { continue; }
     if(!source.includes('data-writer-block="tale"')) continue;
     if(/^published:\s*false\s*$/mi.test(source)) return path;
-    if(!publishedFallback) publishedFallback=path;
   }
-  return publishedFallback;
+  return null;
 }
 
 function parseSherdogEventLinks(html) {
