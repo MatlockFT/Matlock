@@ -1,0 +1,48 @@
+name: Diagnose career history parser
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/diagnose-career-history.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            _netlify-auth/netlify/functions
+          sparse-checkout-cone-mode: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.12.0"
+      - name: Inspect live history sources
+        run: |
+          node --input-type=module <<'NODE'
+          import { parseSherdogCareerProfile, parseUfcFightCareerProfile } from './_netlify-auth/netlify/functions/_writer-career-fallback.mjs';
+          const urls=[
+            ['UFCFight','https://ufcfight.net/natalia-silva/'],
+            ['Sherdog','https://www.sherdog.com/fighter/Natalia-Silva-193033']
+          ];
+          for(const [label,url] of urls){
+            try{
+              const r=await fetch(url,{headers:{'user-agent':'Mozilla/5.0 (compatible; MMAMatlockDiagnostic/1.0)'},redirect:'follow'});
+              const html=await r.text();
+              console.log('\n===',label,'status',r.status,'length',html.length,'===');
+              const p=label==='UFCFight'?parseUfcFightCareerProfile(html,url):parseSherdogCareerProfile(html,url);
+              console.log('profile',JSON.stringify(p?{
+                name:p.name,record:p.record,historyLength:p.history?.length,
+                historyComplete:p.historyComplete,first:p.history?.[0],last:p.history?.at?.(-1)
+              }:null));
+              for(const needle of ['Fight History','FIGHT HISTORY','W-L-D','Wins 20']){
+                const i=html.indexOf(needle);
+                console.log('needle',needle,i,i>=0?html.slice(Math.max(0,i-400),i+1200).replace(/\s+/g,' '):'');
+              }
+            }catch(e){console.log(label,'ERROR',e?.stack||e)}
+          }
+          NODE
