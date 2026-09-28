@@ -303,7 +303,11 @@ function scheduleAutosave() {
   }
 
   function resetNewArticle({ template = '', updateRoute = true, replaceRoute = false, allowExistingLocal = false } = {}) {
-    if (dirty && !window.confirm('Start a new article and leave the current unsaved changes?')) return false;
+    if (dirty) {
+      if (!window.confirm('Start a new article and leave the current unsaved changes?')) return false;
+      persistLocalAutosave();
+      dirty = false;
+    }
     const existingLocal = readLocalNewDraft();
     if (existingLocal && !allowExistingLocal) {
       showToast('A browser-only draft already exists. Resume or discard it from the Library before starting another.', 6000);
@@ -627,7 +631,11 @@ function scheduleAutosave() {
   }
 
   async function loadArticle(path, { force = false } = {}) {
-    if (!force && dirty && !window.confirm('Open another article and leave the current unsaved changes?')) return;
+    if (!force && dirty) {
+      if (!window.confirm('Open another article and leave the current unsaved changes?')) return;
+      persistLocalAutosave();
+      dirty = false;
+    }
     clearLocalFeaturedPreview();
     setSaveState('Loading…');
     try {
@@ -647,7 +655,11 @@ function scheduleAutosave() {
   }
 
   async function duplicateArticle(path) {
-    if (dirty && !window.confirm('Duplicate another article and leave the current unsaved changes?')) return;
+    if (dirty) {
+      if (!window.confirm('Duplicate another article and leave the current unsaved changes?')) return;
+      persistLocalAutosave();
+      dirty = false;
+    }
     if (readLocalNewDraft()) {
       showToast('A browser-only draft already exists. Resume or discard it before duplicating another article.', 6000);
       return;
