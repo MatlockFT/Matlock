@@ -92,7 +92,7 @@
         connectButton.textContent = 'GitHub';
         connectButton.dataset.connected = 'false';
         connectButton.title = 'Connect GitHub';
-        setStatus('GitHub session could not be restored. Please sign in again.', 'error');
+        setStatus('GitHub sign-in expired. Please sign in again.', 'error');
       }
     }, 150);
   }
@@ -101,8 +101,8 @@
     if (!value) return;
     tokenInput.value = value;
     connectButton.disabled = true;
-    connectButton.textContent = restoring ? 'Restoring GitHub…' : 'Connecting…';
-    setStatus(restoring ? 'Restoring your GitHub session…' : `Authorized as ${login || 'GitHub user'}. Connecting Writer…`, 'working');
+    connectButton.textContent = restoring ? 'Checking GitHub…' : 'Connecting…';
+    setStatus(restoring ? 'Checking GitHub sign-in…' : `Authorized as ${login || 'GitHub user'}. Connecting Writer…`, 'working');
     monitorConnectionAttempt(login, { server });
     manualAuthorizeButton.click();
   }
@@ -124,7 +124,7 @@
   async function restoreSession() {
     const id = localRead(SESSION_ID_KEY);
     if (id) {
-      setStatus('Restoring your GitHub session…', 'working');
+      setStatus('Checking GitHub sign-in…', 'working');
       const status = await verifyServerSession(id);
       if (status) {
         localWrite(SESSION_LOGIN_KEY, status.login || 'GitHub user');
