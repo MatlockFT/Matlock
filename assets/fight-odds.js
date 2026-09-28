@@ -112,6 +112,17 @@
     setUnavailable(card,data?.reason);
     return false;
   }
+  function responseHasCardMarket(card,data) {
+    if (!Array.isArray(data?.cardOdds) || !data.cardOdds.length) return false;
+    const a=normalizedName(card.dataset.liveOddsFighterA || '');
+    const b=normalizedName(card.dataset.liveOddsFighterB || '');
+    return data.cardOdds.some(item => {
+      const names=(item.fighters || []).map(fighter => normalizedName(fighter.name));
+      return names.includes(a) && names.includes(b) &&
+        (item.fighters || []).every(fighter => Boolean(fighter.moneyline));
+    });
+  }
+
 
   function applyEventCardOdds(group, data) {
     const resolved = new Set();
@@ -155,7 +166,7 @@
         headers:{Accept:'application/json'}
       });
       apiData = await response.json().catch(() => null);
-      if (response.ok && apiData && (apiData.available || apiData.cardOdds?.length)) return apiData;
+      if (response.ok && apiData && (apiData.available || responseHasCardMarket(card,apiData))) return apiData;
     } catch {}
 
     try {
