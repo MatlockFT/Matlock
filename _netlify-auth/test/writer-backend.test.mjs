@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 
 import { allowedPath, validateDeleteBody, validateWriteBody } from '../netlify/functions/writer-github.mjs';
 import { parseUfcProfileSummary, parseUfcStatsProfile } from '../netlify/functions/writer-fighter.mjs';
-import { extractFittCardOdds, extractFittMoneylines, extractMoneylines, formatAmericanOdds, parseEspnFittHtml, scoreboardDateQueries } from '../netlify/functions/fight-odds.mjs';
+import { extractBestFightOddsCardOdds, extractBestFightOddsMoneylines, extractFittCardOdds, extractFittMoneylines, extractMoneylines, formatAmericanOdds, normalizeFighterName, parseBestFightOddsHtml, parseEspnFittHtml, scoreboardDateQueries } from '../netlify/functions/fight-odds.mjs';
 import { hasCompleteDisplayedCareer, parseSherdogCareerProfile, parseUfcFightCareerProfile } from '../netlify/functions/_writer-career-fallback.mjs';
 import { parseUfcFightProfile } from '../../scripts/matchmaker/sources/sherdog.mjs';
 import {
@@ -317,6 +317,43 @@ test('Sherdog fallback exposes complete professional history for pre-UFC fighter
   assert.equal(profile.history[0].date,'2026-03-07');
   assert.equal(profile.history[5].opponent,'Jonathan Martin');
   assert.equal(profile.latestBoutDate,'2026-03-07');
+});
+
+test('BestFightOdds parser prefers sportsbook prices and resolves full-card fallbacks', () => {
+  const html = `
+    <table class="odds-table"><tbody>
+      <tr><th><a href="/fighters/anthony-wint-16320"><span class="t-b-fcc">Anthony Wint</span></a></th>
+        <td class="but-sg" data-li="[29,1,45074]"><span>-382</span></td>
+        <td class="but-sg" data-li="[21,1,45074]"><span>-390</span></td>
+        <td class="but-sg" data-li="[20,1,45074]"><span class="bestbet">-350</span></td>
+      </tr>
+      <tr><th><a href="/fighters/lucas-armand-22904"><span class="t-b-fcc">Lucas Armand</span></a></th>
+        <td class="but-sg" data-li="[29,2,45074]"><span>+279</span></td>
+        <td class="but-sg" data-li="[21,2,45074]"><span class="bestbet">+280</span></td>
+        <td class="but-sg" data-li="[20,2,45074]"><span>+260</span></td>
+      </tr>
+      <tr><th><a href="/fighters/king-green-19196"><span class="t-b-fcc">King Green</span></a></th>
+        <td class="but-sg" data-li="[21,1,45051]"><span>+200</span></td>
+      </tr>
+      <tr><th><a href="/fighters/esteban-ribovics-14245"><span class="t-b-fcc">Esteban Ribovics</span></a></th>
+        <td class="but-sg" data-li="[21,2,45051]"><span>-240</span></td>
+      </tr>
+    </tbody></table>
+  `;
+  const markets = parseBestFightOddsHtml(html);
+  assert.equal(markets.length,2);
+  assert.deepEqual(
+    extractBestFightOddsMoneylines(html,'Anthony Wint','Lucas Armand'),
+    {fighterA:'-390',fighterB:'+280',provider:'FanDuel'}
+  );
+  assert.deepEqual(
+    extractBestFightOddsMoneylines(html,'Bobby Green','Esteban Ribovics'),
+    {fighterA:'+200',fighterB:'-240',provider:'FanDuel'}
+  );
+  const card = extractBestFightOddsCardOdds(html);
+  assert.equal(card.length,2);
+  assert.equal(card[0].source,'BestFightOdds');
+  assert.equal(normalizeFighterName('King Green'),normalizeFighterName('Bobby Green'));
 });
 
 test('fight odds lookup searches the upcoming UFC window when no date is stored', () => {
