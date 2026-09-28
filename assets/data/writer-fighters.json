@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-09-28T16:08:52.662Z",
-  "builtAt": "2026-09-28T16:09:25.242Z",
+  "builtAt": "2026-09-28T16:25:53.019Z",
   "mirrorThrough": "2026-09-26",
   "sources": {
     "fighters": "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_details.csv",
@@ -1607,55 +1607,80 @@
         "firstRoundFinishes": 3,
         "totalFinishes": 9,
         "decisionWins": 4,
-        "unanimousDecisionWins": 2,
+        "unanimousDecisionWins": 4,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 2
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 4
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "118-83",
+        "winPct": 59,
+        "wins": 118,
+        "losses": 83,
+        "draws": 1,
+        "bouts": 17,
+        "uniqueOpponents": 17,
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Alden-Coria-203015",
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "W",
           "opponent": "Stewart Nicoll",
           "date": "2026-07-18",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Du Plessis vs. Usman",
-          "sourceUrl": "https://ufcstats.com/fight-details/410e6b9e01660b35"
+          "event": "UFC Fight Night 281 - Du Plessis vs. Usman",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Luis Gurule",
           "date": "2026-02-21",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Strickland vs. Hernandez",
-          "sourceUrl": "https://ufcstats.com/fight-details/ac39c1f00ae31e58"
+          "event": "UFC Fight Night 267 - Strickland vs. Hernandez",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Alessandro Costa",
           "date": "2025-09-13",
-          "method": "KO/TKO",
+          "method": "TKO (Punches)",
           "round": 3,
           "time": "0:47",
-          "event": "Noche UFC: Lopes vs. Silva",
-          "sourceUrl": "https://ufcstats.com/fight-details/a1e193425e716b42"
+          "event": "UFC Fight Night 259 - Noche UFC: Lopes vs. Silva",
+          "sourceUrl": null
         },
         {
           "result": "W",
-          "opponent": "Alessandro Costa",
-          "date": null,
-          "method": "KO/TKO",
-          "round": 3,
-          "time": "0:47",
-          "event": "UFC Fight Night: Lopes vs. Silva",
-          "sourceUrl": "https://ufcstats.com/fight-details/a1e193425e716b42"
+          "opponent": "German Orpineda Ponce",
+          "date": "2025-05-25",
+          "method": "TKO (Elbows)",
+          "round": 2,
+          "time": "3:21",
+          "event": "Fury FC 104 - Fury Fighting Championship 104: Yannis vs. Aguirre",
+          "sourceUrl": null
+        },
+        {
+          "result": "NC",
+          "opponent": "Paris Moran",
+          "date": "2025-01-12",
+          "method": "No Contest (Overturned)",
+          "round": 1,
+          "time": "3:12",
+          "event": "Fury FC 100 - Fury Fighting Championship 100",
+          "sourceUrl": null
         }
       ]
     },
@@ -2578,65 +2603,80 @@
         "firstRoundFinishes": 8,
         "totalFinishes": 10,
         "decisionWins": 8,
-        "unanimousDecisionWins": 4,
+        "unanimousDecisionWins": 7,
         "splitDecisionWins": 1,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 5
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 8
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "477-241",
+        "winPct": 66,
+        "wins": 477,
+        "losses": 241,
+        "draws": 4,
+        "bouts": 27,
+        "uniqueOpponents": 27,
+        "checkedAt": "2026-09-28T16:25:52.841Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Alexander-Hernandez-97669",
+        "checkedAt": "2026-09-28T16:25:52.841Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "L",
           "opponent": "Rafa Garcia",
           "date": "2026-04-25",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Sterling vs. Zalal",
-          "sourceUrl": "https://ufcstats.com/fight-details/84951374e4cdc679"
+          "event": "UFC Fight Night 274 - Sterling vs. Zalal",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Diego Ferreira",
           "date": "2025-09-13",
-          "method": "KO/TKO",
+          "method": "TKO (Punches)",
           "round": 2,
           "time": "3:46",
-          "event": "Noche UFC: Lopes vs. Silva",
-          "sourceUrl": "https://ufcstats.com/fight-details/202c47db69768356"
+          "event": "UFC Fight Night 259 - Noche UFC: Lopes vs. Silva",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Chase Hooper",
           "date": "2025-08-16",
-          "method": "KO/TKO",
+          "method": "TKO (Punches)",
           "round": 1,
           "time": "4:58",
-          "event": "UFC 319: Du Plessis vs. Chimaev",
-          "sourceUrl": "https://ufcstats.com/fight-details/1d8dc0fb5d47357f"
+          "event": "UFC 319 - Du Plessis vs. Chimaev",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Kurt Holobaugh",
           "date": "2025-03-15",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Vettori vs. Dolidze 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/d8f40b82364b6411"
+          "event": "UFC Fight Night 254 - Vettori vs. Dolidze 2",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Austin Hubbard",
           "date": "2024-10-05",
-          "method": "Decision - Split",
+          "method": "Decision (Split)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 307: Pereira vs. Rountree Jr.",
-          "sourceUrl": "https://ufcstats.com/fight-details/e8aad69aace1d31f"
+          "event": "UFC 307 - Pereira vs. Rountree",
+          "sourceUrl": null
         }
       ]
     },
@@ -4946,55 +4986,80 @@
         "firstRoundFinishes": 5,
         "totalFinishes": 8,
         "decisionWins": 2,
-        "unanimousDecisionWins": 0,
+        "unanimousDecisionWins": 2,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 0
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 2
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "159-94",
+        "winPct": 63,
+        "wins": 159,
+        "losses": 94,
+        "draws": 3,
+        "bouts": 15,
+        "uniqueOpponents": 15,
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Andrey-Pulyaev-398399",
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "L",
           "opponent": "Nursulton Ruziboev",
           "date": "2026-06-27",
-          "method": "Submission",
+          "method": "Technical Submission (Neck Crank)",
           "round": 1,
           "time": "3:58",
-          "event": "UFC Fight Night: Fiziev vs. Torres",
-          "sourceUrl": "https://ufcstats.com/fight-details/5e7f4ba1210f433d"
+          "event": "UFC Fight Night 280 - Fiziev vs. Torres",
+          "sourceUrl": null
         },
         {
           "result": "L",
-          "opponent": "Ateba Gautier",
+          "opponent": "Ateba Abega Gautier",
           "date": "2026-01-24",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 324: Gaethje vs. Pimblett",
-          "sourceUrl": "https://ufcstats.com/fight-details/33be2456161c14c3"
+          "event": "UFC 324 - Gaethje vs. Pimblett",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Nick Klein",
           "date": "2025-08-02",
-          "method": "KO/TKO",
+          "method": "TKO (Body Kick and Punches)",
           "round": 2,
           "time": "1:31",
-          "event": "UFC Fight Night: Taira vs. Park",
-          "sourceUrl": "https://ufcstats.com/fight-details/b3c695728e177fd4"
+          "event": "UFC on ESPN 71 - Taira vs. Park",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Christian Leroy Duncan",
           "date": "2025-03-22",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Edwards vs. Brady",
-          "sourceUrl": "https://ufcstats.com/fight-details/8af2b589d5e9c1ae"
+          "event": "UFC Fight Night 255 - Edwards vs. Brady",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Liam Anderson",
+          "date": "2024-08-27",
+          "method": "Decision (Unanimous)",
+          "round": 3,
+          "time": "5:00",
+          "event": "Dana White's Contender Series - Contender Series 2024: Week 3",
+          "sourceUrl": null
         }
       ]
     },
@@ -5608,24 +5673,79 @@
         "totalFinishes": 7,
         "decisionWins": 1,
         "unanimousDecisionWins": 0,
-        "splitDecisionWins": 0,
+        "splitDecisionWins": 1,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 0
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 1
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "31-36",
+        "winPct": 46,
+        "wins": 31,
+        "losses": 36,
+        "draws": 0,
+        "bouts": 8,
+        "uniqueOpponents": 8,
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Anthony-Wint-383061",
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "W",
           "opponent": "Terrance Chatman",
           "date": "2026-08-22",
-          "method": "Submission",
+          "method": "Technical Submission (Arm-Triangle Choke)",
           "round": 1,
           "time": "4:29",
-          "event": "UFC Fight Night: Hernandez vs. Rodrigues",
-          "sourceUrl": "https://ufcstats.com/fight-details/a6873fd459587d17"
+          "event": "UFC Fight Night 285 - Hernandez vs. Rodrigues",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Matthew Adams",
+          "date": "2026-08-11",
+          "method": "TKO (Punches)",
+          "round": 1,
+          "time": "0:34",
+          "event": "Dana White's Contender Series - Contender Series 2026: Week 1",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Jamahl Tatum",
+          "date": "2026-03-15",
+          "method": "TKO (Punches)",
+          "round": 1,
+          "time": "0:37",
+          "event": "Fury FC 117 - Fury Fighting Championship 117: Wint vs. Tatum",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Miles Banks",
+          "date": "2025-11-21",
+          "method": "KO (Punches)",
+          "round": 1,
+          "time": "0:21",
+          "event": "Fury FC - Challenger Series 15",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Emmanuel Verdier",
+          "date": "2025-06-25",
+          "method": "TKO (Punches)",
+          "round": 3,
+          "time": "4:02",
+          "event": "Xtreme Fighting Championships - XFC Young Guns 9-10",
+          "sourceUrl": null
         }
       ]
     },
@@ -6486,62 +6606,77 @@
         "unanimousDecisionWins": 1,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
-        "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 1
+        "otherDecisionWins": 1,
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 2
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "88-83",
+        "winPct": 51,
+        "wins": 88,
+        "losses": 83,
+        "draws": 2,
+        "bouts": 12,
+        "uniqueOpponents": 12,
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Ateba-Abega-Gautier-386979",
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "W",
-          "opponent": "Ozzy Diaz",
+          "opponent": "Osman Diaz",
           "date": "2026-05-09",
-          "method": "KO/TKO",
+          "method": "TKO (Punches)",
           "round": 2,
           "time": "1:10",
-          "event": "UFC 328: Chimaev vs. Strickland",
-          "sourceUrl": "https://ufcstats.com/fight-details/770c5302e32916ea"
+          "event": "UFC 328 - Chimaev vs. Strickland",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Andrey Pulyaev",
           "date": "2026-01-24",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 324: Gaethje vs. Pimblett",
-          "sourceUrl": "https://ufcstats.com/fight-details/33be2456161c14c3"
+          "event": "UFC 324 - Gaethje vs. Pimblett",
+          "sourceUrl": null
         },
         {
           "result": "W",
-          "opponent": "Tre'ston Vines",
+          "opponent": "Treston Vines",
           "date": "2025-10-04",
-          "method": "KO/TKO",
+          "method": "KO (Elbows and Punches)",
           "round": 1,
           "time": "1:41",
-          "event": "UFC 320: Ankalaev vs. Pereira 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/9418ebb3db2a4bae"
+          "event": "UFC 320 - Ankalaev vs. Pereira 2",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Robert Valentin",
           "date": "2025-07-19",
-          "method": "KO/TKO",
+          "method": "TKO (Punches)",
           "round": 1,
           "time": "1:10",
-          "event": "UFC 318: Holloway vs. Poirier 3",
-          "sourceUrl": "https://ufcstats.com/fight-details/72e477b41f44e358"
+          "event": "UFC 318 - Holloway vs. Poirier 3",
+          "sourceUrl": null
         },
         {
           "result": "W",
-          "opponent": "Jose Daniel Medina",
+          "opponent": "Jose Medina",
           "date": "2025-03-29",
-          "method": "KO/TKO",
+          "method": "KO (Punches and Knee)",
           "round": 1,
           "time": "3:32",
-          "event": "UFC Fight Night: Moreno vs. Erceg",
-          "sourceUrl": "https://ufcstats.com/fight-details/64fe6e61a24dbf39"
+          "event": "UFC on ESPN 64 - Moreno vs. Erceg",
+          "sourceUrl": null
         }
       ]
     },
@@ -7481,45 +7616,80 @@
         "firstRoundFinishes": 7,
         "totalFinishes": 11,
         "decisionWins": 2,
-        "unanimousDecisionWins": 1,
+        "unanimousDecisionWins": 2,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 1
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 2
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "108-54",
+        "winPct": 67,
+        "wins": 108,
+        "losses": 54,
+        "draws": 1,
+        "bouts": 16,
+        "uniqueOpponents": 16,
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Bernardo-Sopai-226661",
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "W",
-          "opponent": "Timmy Cuamba",
+          "opponent": "Timothy Cuamba",
           "date": "2026-05-16",
-          "method": "Submission",
+          "method": "Submission (Rear-Naked Choke)",
           "round": 2,
           "time": "2:25",
-          "event": "UFC Fight Night: Allen vs. Costa",
-          "sourceUrl": "https://ufcstats.com/fight-details/a6ec8573a9d38c51"
+          "event": "UFC Fight Night 276 - Allen vs. Costa",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Ricky Turcios",
           "date": "2025-01-18",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 311: Makhachev vs. Moicano",
-          "sourceUrl": "https://ufcstats.com/fight-details/95ba27bea09cd84e"
+          "event": "UFC 311 - Makhachev vs. Moicano",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Vinicius Oliveira",
           "date": "2024-03-02",
-          "method": "KO/TKO",
+          "method": "KO (Flying Knee)",
           "round": 3,
           "time": "4:41",
-          "event": "UFC Fight Night: Rozenstruik vs. Gaziev",
-          "sourceUrl": "https://ufcstats.com/fight-details/cde2f88251b73305"
+          "event": "UFC Fight Night 238 - Rozenstruik vs. Gaziev",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Geovane Vargas",
+          "date": "2023-12-30",
+          "method": "TKO (Submission to Punches)",
+          "round": 1,
+          "time": "0:00",
+          "event": "Allstars Fight Night - AFN 4",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Julien Lopez",
+          "date": "2023-02-25",
+          "method": "KO (Punch)",
+          "round": 1,
+          "time": "0:20",
+          "event": "FCR 15 - Fight Club Rush 15",
+          "sourceUrl": null
         }
       ]
     },
@@ -8447,65 +8617,80 @@
         "firstRoundFinishes": 13,
         "totalFinishes": 23,
         "decisionWins": 13,
-        "unanimousDecisionWins": 7,
-        "splitDecisionWins": 2,
+        "unanimousDecisionWins": 9,
+        "splitDecisionWins": 4,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 9
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 13
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "1018-532",
+        "winPct": 66,
+        "wins": 1018,
+        "losses": 532,
+        "draws": 21,
+        "bouts": 55,
+        "uniqueOpponents": 54,
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/King-Green-27953",
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "W",
           "opponent": "Terrance McKinney",
           "date": "2026-07-11",
-          "method": "KO/TKO",
+          "method": "TKO (Punches)",
           "round": 1,
           "time": "4:59",
-          "event": "UFC 329: McGregor vs. Holloway 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/a26ea74f2e908842"
+          "event": "UFC 329 - McGregor vs. Holloway 2",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Jeremy Stephens",
           "date": "2026-05-09",
-          "method": "Submission",
+          "method": "Submission (Rear-Naked Choke)",
           "round": 1,
           "time": "4:20",
-          "event": "UFC 328: Chimaev vs. Strickland",
-          "sourceUrl": "https://ufcstats.com/fight-details/1158a27a1a04b971"
+          "event": "UFC 328 - Chimaev vs. Strickland",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Daniel Zellhuber",
           "date": "2026-02-28",
-          "method": "KO/TKO",
+          "method": "TKO (Punches)",
           "round": 2,
           "time": "4:55",
-          "event": "UFC Fight Night: Moreno vs. Kavanagh",
-          "sourceUrl": "https://ufcstats.com/fight-details/81f3d28d30d17378"
+          "event": "UFC Fight Night 268 - Moreno vs. Kavanagh",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Lance Gibson Jr.",
           "date": "2025-12-13",
-          "method": "Decision - Split",
+          "method": "Decision (Split)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Royval vs. Kape",
-          "sourceUrl": "https://ufcstats.com/fight-details/fc4ab243d21b795d"
+          "event": "UFC on ESPN 73 - Royval vs. Kape",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Mauricio Ruffy",
           "date": "2025-03-08",
-          "method": "KO/TKO",
+          "method": "KO (Spinning Wheel Kick)",
           "round": 1,
           "time": "2:07",
-          "event": "UFC 313: Pereira vs. Ankalaev",
-          "sourceUrl": "https://ufcstats.com/fight-details/231968c02cdfe65e"
+          "event": "UFC 313 - Pereira vs. Ankalaev",
+          "sourceUrl": null
         }
       ]
     },
@@ -15852,65 +16037,80 @@
         "firstRoundFinishes": null,
         "totalFinishes": 12,
         "decisionWins": 11,
-        "unanimousDecisionWins": 7,
+        "unanimousDecisionWins": 11,
         "splitDecisionWins": 1,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 8
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 12
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "780-381",
+        "winPct": 67,
+        "wins": 780,
+        "losses": 381,
+        "draws": 12,
+        "bouts": 40,
+        "uniqueOpponents": 39,
+        "checkedAt": "2026-09-28T16:25:52.841Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Court-McGee-34124",
+        "checkedAt": "2026-09-28T16:25:52.841Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "L",
           "opponent": "Michael Chiesa",
           "date": "2025-06-14",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Usman vs. Buckley",
-          "sourceUrl": "https://ufcstats.com/fight-details/e861e9cc0118c670"
+          "event": "UFC on ESPN 69 - Usman vs. Buckley",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Tim Means",
           "date": "2024-10-05",
-          "method": "Submission",
+          "method": "Submission (Neck Crank)",
           "round": 1,
           "time": "3:19",
-          "event": "UFC 307: Pereira vs. Rountree Jr.",
-          "sourceUrl": "https://ufcstats.com/fight-details/84b3577229880760"
+          "event": "UFC 307 - Pereira vs. Rountree",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Alex Morono",
           "date": "2024-04-06",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Allen vs. Curtis 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/0b9cd718d7e329e8"
+          "event": "UFC Fight Night 240 - Allen vs. Curtis 2",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Matt Brown",
           "date": "2023-05-13",
-          "method": "KO/TKO",
+          "method": "KO (Punch)",
           "round": 1,
           "time": "4:09",
-          "event": "UFC Fight Night: Rozenstruik vs. Almeida",
-          "sourceUrl": "https://ufcstats.com/fight-details/f2ced83baf0457fc"
+          "event": "UFC on ABC 4 - Rozenstruik vs. Almeida",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Jeremiah Wells",
           "date": "2022-06-18",
-          "method": "KO/TKO",
+          "method": "KO (Punch)",
           "round": 1,
           "time": "1:34",
-          "event": "UFC Fight Night: Kattar vs. Emmett",
-          "sourceUrl": "https://ufcstats.com/fight-details/9a92d376fba2379d"
+          "event": "UFC on ESPN 37 - Kattar vs. Emmett",
+          "sourceUrl": null
         }
       ]
     },
@@ -16448,28 +16648,73 @@
         "decisionBreakdownComplete": false,
         "decisionBreakdownKnownWins": 0
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "76-46",
+        "winPct": 62,
+        "wins": 76,
+        "losses": 46,
+        "draws": 0,
+        "bouts": 11,
+        "uniqueOpponents": 11,
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Damian-Pinas-426729",
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "W",
           "opponent": "Cesar Almeida",
           "date": "2026-07-11",
-          "method": "KO/TKO",
+          "method": "KO (Punch)",
           "round": 1,
           "time": "4:44",
-          "event": "UFC 329: McGregor vs. Holloway 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/b223b10ef19f912c"
+          "event": "UFC 329 - McGregor vs. Holloway 2",
+          "sourceUrl": null
         },
         {
           "result": "W",
-          "opponent": "Wes Schultz",
+          "opponent": "Wesley Schultz",
           "date": "2026-02-28",
-          "method": "KO/TKO",
+          "method": "TKO (Punches)",
           "round": 1,
           "time": "2:30",
-          "event": "UFC Fight Night: Moreno vs. Kavanagh",
-          "sourceUrl": "https://ufcstats.com/fight-details/c6a85b67fdd2ef3d"
+          "event": "UFC Fight Night 268 - Moreno vs. Kavanagh",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Vitor Costa",
+          "date": "2025-09-30",
+          "method": "TKO (Punches)",
+          "round": 1,
+          "time": "1:46",
+          "event": "Dana White's Contender Series - Contender Series 2025: Week 8",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Wesley da Silva Marques",
+          "date": "2024-12-13",
+          "method": "KO (Punch)",
+          "round": 1,
+          "time": "1:59",
+          "event": "Shooto Brazil 127 - Magon vs. Santos",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Jhony Gregory",
+          "date": "2024-09-20",
+          "method": "TKO (Punches)",
+          "round": 1,
+          "time": "4:01",
+          "event": "Shooto Brazil 125 - Gadelha vs. Soares",
+          "sourceUrl": null
         }
       ]
     },
@@ -18876,65 +19121,80 @@
         "firstRoundFinishes": 11,
         "totalFinishes": 18,
         "decisionWins": 7,
-        "unanimousDecisionWins": 4,
+        "unanimousDecisionWins": 5,
         "splitDecisionWins": 2,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 6
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 7
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "577-273",
+        "winPct": 68,
+        "wins": 577,
+        "losses": 273,
+        "draws": 18,
+        "bouts": 33,
+        "uniqueOpponents": 29,
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Deiveson-Figueiredo-110485",
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "L",
-          "opponent": "Song Yadong",
+          "opponent": "Yadong Song",
           "date": "2026-05-30",
-          "method": "Submission",
+          "method": "Submission (Guillotine Choke)",
           "round": 2,
           "time": "4:42",
-          "event": "UFC Fight Night: Song vs. Figueiredo",
-          "sourceUrl": "https://ufcstats.com/fight-details/423f32dd018ac218"
+          "event": "UFC Fight Night 277 - Song vs. Figueiredo",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Umar Nurmagomedov",
           "date": "2026-01-24",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 324: Gaethje vs. Pimblett",
-          "sourceUrl": "https://ufcstats.com/fight-details/6c9f4799990c3c33"
+          "event": "UFC 324 - Gaethje vs. Pimblett",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Montel Jackson",
           "date": "2025-10-11",
-          "method": "Decision - Split",
+          "method": "Decision (Split)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Oliveira vs. Gamrot",
-          "sourceUrl": "https://ufcstats.com/fight-details/f295eb2a7b0ba4b7"
+          "event": "UFC Fight Night 261 - Oliveira vs. Gamrot",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Cory Sandhagen",
           "date": "2025-05-03",
-          "method": "KO/TKO",
+          "method": "TKO (Knee Injury)",
           "round": 2,
           "time": "4:08",
-          "event": "UFC Fight Night: Sandhagen vs. Figueiredo",
-          "sourceUrl": "https://ufcstats.com/fight-details/9b3bade95e1dd484"
+          "event": "UFC on ESPN 67 - Sandhagen vs. Figueiredo",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Petr Yan",
           "date": "2024-11-23",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 5,
           "time": "5:00",
-          "event": "UFC Fight Night: Yan vs. Figueiredo",
-          "sourceUrl": "https://ufcstats.com/fight-details/f53573316a4f349f"
+          "event": "UFC Fight Night 248 - Yan vs. Figueiredo",
+          "sourceUrl": null
         }
       ]
     },
@@ -23152,35 +23412,80 @@
         "firstRoundFinishes": 3,
         "totalFinishes": 6,
         "decisionWins": 2,
-        "unanimousDecisionWins": 0,
+        "unanimousDecisionWins": 2,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 0
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 2
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "89-53",
+        "winPct": 63,
+        "wins": 89,
+        "losses": 53,
+        "draws": 3,
+        "bouts": 13,
+        "uniqueOpponents": 12,
+        "checkedAt": "2026-09-28T16:25:52.841Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Eric-Nolan-346419",
+        "checkedAt": "2026-09-28T16:25:52.841Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "L",
           "opponent": "Farman Hasanov",
           "date": "2026-06-27",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Fiziev vs. Torres",
-          "sourceUrl": "https://ufcstats.com/fight-details/6a35ff33b8597904"
+          "event": "UFC Fight Night 280 - Fiziev vs. Torres",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Baisangur Susurkaev",
           "date": "2025-08-16",
-          "method": "Submission",
+          "method": "Submission (Rear-Naked Choke)",
           "round": 2,
           "time": "2:01",
-          "event": "UFC 319: Du Plessis vs. Chimaev",
-          "sourceUrl": "https://ufcstats.com/fight-details/5efd13a12be06706"
+          "event": "UFC 319 - Du Plessis vs. Chimaev",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Blayne Richards",
+          "date": "2025-05-24",
+          "method": "KO (Punch)",
+          "round": 1,
+          "time": "3:06",
+          "event": "CFFC 142 - Cage Fury Fighting Championships 142: Fernandez vs. Edwards",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Trevor Gudde",
+          "date": "2024-12-13",
+          "method": "KO (Punch)",
+          "round": 2,
+          "time": "1:17",
+          "event": "CFFC 138 - Cage Fury Fighting Championships 138: Fernandez vs. Ellis",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Aireon Tavarres",
+          "date": "2024-10-18",
+          "method": "KO (Punch)",
+          "round": 1,
+          "time": "3:06",
+          "event": "CFFC 137 - Cage Fury Fighting Championships 137: Dilemme vs. Samaniego",
+          "sourceUrl": null
         }
       ]
     },
@@ -23470,58 +23775,73 @@
         "decisionBreakdownComplete": true,
         "decisionBreakdownKnownWins": 3
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "261-133",
+        "winPct": 66,
+        "wins": 261,
+        "losses": 133,
+        "draws": 4,
+        "bouts": 19,
+        "uniqueOpponents": 19,
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Esteban-Ribovics-214867",
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "W",
           "opponent": "Edson Barboza",
           "date": "2026-08-15",
-          "method": "KO/TKO",
+          "method": "TKO (Punches)",
           "round": 2,
           "time": "1:32",
-          "event": "UFC 330: Makhachev vs. Machado Garry",
-          "sourceUrl": "https://ufcstats.com/fight-details/8e482cead0c7eb15"
+          "event": "UFC 330 - Makhachev vs. Garry",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Mateusz Gamrot",
           "date": "2026-04-11",
-          "method": "Submission",
+          "method": "Submission (Arm-Triangle Choke)",
           "round": 2,
           "time": "4:19",
-          "event": "UFC 327: Prochazka vs. Ulberg",
-          "sourceUrl": "https://ufcstats.com/fight-details/62b5ce408c150fa8"
+          "event": "UFC 327 - Prochazka vs. Ulberg",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Elves Brener",
           "date": "2025-08-02",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Taira vs. Park",
-          "sourceUrl": "https://ufcstats.com/fight-details/878941394f9e3538"
+          "event": "UFC on ESPN 71 - Taira vs. Park",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Nasrat Haqparast",
           "date": "2025-03-01",
-          "method": "Decision - Split",
+          "method": "Decision (Split)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Kape vs. Almabayev",
-          "sourceUrl": "https://ufcstats.com/fight-details/061990783b9bdb36"
+          "event": "UFC Fight Night 253 - Kape vs. Almabayev",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Daniel Zellhuber",
           "date": "2024-09-14",
-          "method": "Decision - Split",
+          "method": "Decision (Split)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 306: Riyadh Season Noche UFC",
-          "sourceUrl": "https://ufcstats.com/fight-details/27d98a8ee6608e27"
+          "event": "UFC 306 - Noche UFC: O'Malley vs. Dvalishvili",
+          "sourceUrl": null
         }
       ]
     },
@@ -29558,18 +29878,73 @@
         "decisionBreakdownComplete": true,
         "decisionBreakdownKnownWins": 0
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "46-28",
+        "winPct": 62,
+        "wins": 46,
+        "losses": 28,
+        "draws": 0,
+        "bouts": 7,
+        "uniqueOpponents": 7,
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Imanol-Rodriguez-418935",
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "W",
           "opponent": "Kevin Borjas",
           "date": "2026-02-28",
-          "method": "KO/TKO",
+          "method": "TKO (Punches)",
           "round": 2,
           "time": "4:21",
-          "event": "UFC Fight Night: Moreno vs. Kavanagh",
-          "sourceUrl": "https://ufcstats.com/fight-details/15068d7b095ca9bd"
+          "event": "UFC Fight Night 268 - Moreno vs. Kavanagh",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Roque Conceicao Moreira Junior",
+          "date": "2025-10-07",
+          "method": "TKO (Punches)",
+          "round": 1,
+          "time": "2:12",
+          "event": "Dana White's Contender Series - Contender Series 2025: Week 9",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Alberto Trujillo",
+          "date": "2024-09-22",
+          "method": "TKO (Punches)",
+          "round": 1,
+          "time": "4:27",
+          "event": "Fury FC 96 - Fury Fighting Championship 96: Silva vs. Gurule",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Tyrell Hill",
+          "date": "2024-07-12",
+          "method": "TKO (Punches)",
+          "round": 1,
+          "time": "1:50",
+          "event": "Fury FC 93 - Fury Fighting Championship 93: Esteves vs. Walker",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Emmanuel Berumen",
+          "date": "2024-02-24",
+          "method": "Submission (Rear-Naked Choke)",
+          "round": 1,
+          "time": "1:30",
+          "event": "Combate Global - USA vs. Ecuador",
+          "sourceUrl": null
         }
       ]
     },
@@ -30147,65 +30522,80 @@
         "firstRoundFinishes": 16,
         "totalFinishes": 19,
         "decisionWins": 6,
-        "unanimousDecisionWins": 3,
+        "unanimousDecisionWins": 5,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
-        "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 3
+        "otherDecisionWins": 1,
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 6
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "395-210",
+        "winPct": 65,
+        "wins": 395,
+        "losses": 210,
+        "draws": 7,
+        "bouts": 33,
+        "uniqueOpponents": 33,
+        "checkedAt": "2026-09-28T16:25:52.841Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Ismail-Naurdiev-168833",
+        "checkedAt": "2026-09-28T16:25:52.841Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "W",
           "opponent": "Ryan Loder",
           "date": "2025-11-22",
-          "method": "KO/TKO",
+          "method": "KO (Punch)",
           "round": 1,
           "time": "1:26",
-          "event": "UFC Fight Night: Tsarukyan vs. Hooker",
-          "sourceUrl": "https://ufcstats.com/fight-details/335064c3380e2f10"
+          "event": "UFC Fight Night 265 - Tsarukyan vs. Hooker",
+          "sourceUrl": null
         },
         {
           "result": "L",
-          "opponent": "JunYong Park",
+          "opponent": "Jun Yong Park",
           "date": "2025-06-21",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Hill vs. Rountree Jr.",
-          "sourceUrl": "https://ufcstats.com/fight-details/5fcf18bcd2a020f1"
+          "event": "UFC on ABC 8 - Hill vs. Rountree",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Bruno Silva",
           "date": "2024-10-26",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 308: Topuria vs. Holloway",
-          "sourceUrl": "https://ufcstats.com/fight-details/bde635a4f345bc3e"
-        },
-        {
-          "result": "L",
-          "opponent": "Sean Brady",
-          "date": "2020-02-29",
-          "method": "Decision - Unanimous",
-          "round": 3,
-          "time": "5:00",
-          "event": "UFC Fight Night: Benavidez vs. Figueiredo",
-          "sourceUrl": "https://ufcstats.com/fight-details/533d0b5c0adfa15f"
+          "event": "UFC 308 - Topuria vs. Holloway",
+          "sourceUrl": null
         },
         {
           "result": "W",
-          "opponent": "Siyar Bahadurzada",
-          "date": "2019-09-28",
-          "method": "Decision - Unanimous",
-          "round": 3,
-          "time": "5:00",
-          "event": "UFC Fight Night: Hermansson vs. Cannonier",
-          "sourceUrl": "https://ufcstats.com/fight-details/18d84b333b28de36"
+          "opponent": "Tahar Hadbi",
+          "date": "2023-12-08",
+          "method": "Submission (Guillotine Choke)",
+          "round": 1,
+          "time": "1:10",
+          "event": "Brave CF 79 - Brave Combat Federation 79",
+          "sourceUrl": null
+        },
+        {
+          "result": "L",
+          "opponent": "Vadym Kutsyi",
+          "date": "2022-12-17",
+          "method": "TKO (Punches)",
+          "round": 1,
+          "time": "3:23",
+          "event": "Brave CF 68 - Brave Combat Federation 68",
+          "sourceUrl": null
         }
       ]
     },
@@ -36408,65 +36798,80 @@
         "firstRoundFinishes": 17,
         "totalFinishes": 20,
         "decisionWins": 2,
-        "unanimousDecisionWins": 1,
+        "unanimousDecisionWins": 2,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 1
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 2
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "474-253",
+        "winPct": 65,
+        "wins": 474,
+        "losses": 253,
+        "draws": 6,
+        "bouts": 33,
+        "uniqueOpponents": 32,
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Johnny-Walker-170203",
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "L",
           "opponent": "Dominick Reyes",
           "date": "2026-04-11",
-          "method": "Decision - Split",
+          "method": "Decision (Split)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 327: Prochazka vs. Ulberg",
-          "sourceUrl": "https://ufcstats.com/fight-details/c4d060cff018979a"
+          "event": "UFC 327 - Prochazka vs. Ulberg",
+          "sourceUrl": null
         },
         {
           "result": "W",
-          "opponent": "Zhang Mingyang",
+          "opponent": "Mingyang Zhang",
           "date": "2025-08-23",
-          "method": "KO/TKO",
+          "method": "TKO (Leg Kicks and Punches)",
           "round": 2,
           "time": "2:37",
-          "event": "UFC Fight Night: Walker vs. Zhang",
-          "sourceUrl": "https://ufcstats.com/fight-details/2eecf0c36192e40c"
+          "event": "UFC Fight Night 257 - Walker vs. Zhang",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Volkan Oezdemir",
           "date": "2024-06-22",
-          "method": "KO/TKO",
+          "method": "KO (Punch)",
           "round": 1,
           "time": "2:28",
-          "event": "UFC Fight Night: Whittaker vs. Aliskerov",
-          "sourceUrl": "https://ufcstats.com/fight-details/9d5f562e0572058c"
+          "event": "UFC on ABC 6 - Whittaker vs. Aliskerov",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Magomed Ankalaev",
           "date": "2024-01-13",
-          "method": "KO/TKO",
+          "method": "KO (Punches)",
           "round": 2,
           "time": "2:42",
-          "event": "UFC Fight Night: Ankalaev vs. Walker 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/f2b407019b2a5c15"
+          "event": "UFC Fight Night 234 - Ankalaev vs. Walker 2",
+          "sourceUrl": null
         },
         {
           "result": "NC",
           "opponent": "Magomed Ankalaev",
           "date": "2023-10-21",
-          "method": "Could Not Continue",
+          "method": "No Contest (Illegal Knee)",
           "round": 1,
           "time": "3:13",
-          "event": "UFC 294: Makhachev vs. Volkanovski 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/821960adf5bfa15c"
+          "event": "UFC 294 - Makhachev vs. Volkanovski 2",
+          "sourceUrl": null
         }
       ]
     },
@@ -43239,65 +43644,80 @@
         "firstRoundFinishes": 8,
         "totalFinishes": 10,
         "decisionWins": 6,
-        "unanimousDecisionWins": 1,
+        "unanimousDecisionWins": 5,
         "splitDecisionWins": 1,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 2
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 6
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "253-162",
+        "winPct": 61,
+        "wins": 253,
+        "losses": 162,
+        "draws": 0,
+        "bouts": 21,
+        "uniqueOpponents": 21,
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Kalinn-Williams-198129",
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "W",
           "opponent": "Nikolay Veretennikov",
           "date": "2026-05-16",
-          "method": "KO/TKO",
+          "method": "TKO (Punches)",
           "round": 1,
           "time": "3:31",
-          "event": "UFC Fight Night: Allen vs. Costa",
-          "sourceUrl": "https://ufcstats.com/fight-details/ec32745308e2b055"
+          "event": "UFC Fight Night 276 - Allen vs. Costa",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Andreas Gustafsson",
           "date": "2025-06-07",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 316: Dvalishvili vs. O'Malley 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/f0488a4486a64af0"
+          "event": "UFC 316 - Dvalishvili vs. O'Malley 2",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Gabriel Bonfim",
           "date": "2025-02-15",
-          "method": "Submission",
+          "method": "Technical Submission (Brabo Choke)",
           "round": 2,
           "time": "4:58",
-          "event": "UFC Fight Night: Cannonier vs. Rodrigues",
-          "sourceUrl": "https://ufcstats.com/fight-details/7b9f169016746f81"
+          "event": "UFC Fight Night 251 - Cannonier vs. Rodrigues",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Carlston Harris",
           "date": "2024-05-18",
-          "method": "KO/TKO",
+          "method": "KO (Punch)",
           "round": 1,
           "time": "1:30",
-          "event": "UFC Fight Night: Barboza vs. Murphy",
-          "sourceUrl": "https://ufcstats.com/fight-details/85ddb65429a9d517"
+          "event": "UFC Fight Night 241 - Barboza vs. Murphy",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Rolando Bedoya",
           "date": "2023-05-06",
-          "method": "Decision - Split",
+          "method": "Decision (Split)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 288: Sterling vs. Cejudo",
-          "sourceUrl": "https://ufcstats.com/fight-details/4c9bbd9758be1168"
+          "event": "UFC 288 - Sterling vs. Cejudo",
+          "sourceUrl": null
         }
       ]
     },
@@ -46466,7 +46886,7 @@
       "checkedAt": "2026-09-26T11:42:37.212Z",
       "ufcStatsId": "20e04625a5395a06",
       "sourceUrl": "https://ufcstats.com/fighter-details/20e04625a5395a06",
-      "latestBoutDate": null,
+      "latestBoutDate": "2026-03-07",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": null,
@@ -46482,16 +46902,82 @@
         "firstRoundFinishes": null,
         "totalFinishes": null,
         "decisionWins": null,
-        "unanimousDecisionWins": 0,
+        "unanimousDecisionWins": 1,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
         "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 0
+        "decisionBreakdownKnownWins": 1
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
-      "recent": []
+      "opponentStrength": {
+        "record": "31-57",
+        "winPct": 35,
+        "wins": 31,
+        "losses": 57,
+        "draws": 0,
+        "bouts": 6,
+        "uniqueOpponents": 6,
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Lucas-Armand-420549",
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
+      "recent": [
+        {
+          "result": "W",
+          "opponent": "Cameron Graham",
+          "date": "2026-03-07",
+          "method": "TKO (Strikes)",
+          "round": 4,
+          "time": "0:16",
+          "event": "2 Piece Promotions - War at the Wex 8",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Braxton Smith",
+          "date": "2025-11-22",
+          "method": "TKO (Strikes)",
+          "round": 1,
+          "time": "1:54",
+          "event": "2 Piece Promotions - War at the Wex 7",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Lawrence Phillips",
+          "date": "2025-06-28",
+          "method": "TKO",
+          "round": 2,
+          "time": "3:59",
+          "event": "2 Piece Promotions 5 - Let the Games Begin...",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Marcus Maulding",
+          "date": "2025-05-17",
+          "method": "TKO (Strikes)",
+          "round": 1,
+          "time": "1:38",
+          "event": "WXC 97 - Redemption",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Chris Cameron",
+          "date": "2025-02-08",
+          "method": "TKO (Retirement)",
+          "round": 2,
+          "time": "5:00",
+          "event": "2 Piece Promotions - War at the Wex 2",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "lucas-brennan",
@@ -50107,58 +50593,73 @@
         "decisionBreakdownComplete": true,
         "decisionBreakdownKnownWins": 2
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "121-76",
+        "winPct": 61,
+        "wins": 121,
+        "losses": 76,
+        "draws": 0,
+        "bouts": 13,
+        "uniqueOpponents": 13,
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Marcus-McGhee-122153",
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "W",
           "opponent": "John Yannis",
           "date": "2026-06-06",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Muhammad vs. Bonfim",
-          "sourceUrl": "https://ufcstats.com/fight-details/90940d93d6e0998f"
+          "event": "UFC Fight Night 278 - Muhammad vs. Bonfim",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Petr Yan",
           "date": "2025-07-26",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Whittaker vs. De Ridder",
-          "sourceUrl": "https://ufcstats.com/fight-details/d4d4ee045b0ca695"
+          "event": "UFC on ABC 9 - Whittaker vs. de Ridder",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Jonathan Martinez",
           "date": "2024-11-16",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 309: Jones vs. Miocic",
-          "sourceUrl": "https://ufcstats.com/fight-details/2a930e2d7e1f87a9"
+          "event": "UFC 309 - Jones vs. Miocic",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Gaston Bolanos",
           "date": "2024-01-13",
-          "method": "KO/TKO",
-          "round": 2,
+          "method": "TKO (Spinning Wheel Kick and Punches)",
+          "round": 3,
           "time": "3:29",
-          "event": "UFC Fight Night: Ankalaev vs. Walker 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/03de7404decde12f"
+          "event": "UFC Fight Night 234 - Ankalaev vs. Walker 2",
+          "sourceUrl": null
         },
         {
           "result": "W",
-          "opponent": "JP Buys",
+          "opponent": "J.P. Buys",
           "date": "2023-08-12",
-          "method": "KO/TKO",
+          "method": "KO (Punch)",
           "round": 1,
           "time": "2:19",
-          "event": "UFC Fight Night: Luque vs. Dos Anjos",
-          "sourceUrl": "https://ufcstats.com/fight-details/2c160a1d1fdbf0b0"
+          "event": "UFC on ESPN 51 - Luque vs. dos Anjos",
+          "sourceUrl": null
         }
       ]
     },
@@ -51185,65 +51686,80 @@
         "firstRoundFinishes": 11,
         "totalFinishes": 11,
         "decisionWins": 8,
-        "unanimousDecisionWins": 7,
+        "unanimousDecisionWins": 8,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 7
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 8
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "473-221",
+        "winPct": 68,
+        "wins": 473,
+        "losses": 221,
+        "draws": 5,
+        "bouts": 30,
+        "uniqueOpponents": 27,
+        "checkedAt": "2026-09-28T16:25:52.841Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Marvin-Vettori-80421",
+        "checkedAt": "2026-09-28T16:25:52.841Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "L",
           "opponent": "Brunno Ferreira",
           "date": "2025-12-06",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 323: Dvalishvili vs. Yan 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/3c683da1924b6c44"
+          "event": "UFC 323 - Dvalishvili vs. Yan 2",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Brendan Allen",
           "date": "2025-07-19",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 318: Holloway vs. Poirier 3",
-          "sourceUrl": "https://ufcstats.com/fight-details/8e1feda9141602f1"
+          "event": "UFC 318 - Holloway vs. Poirier 3",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Roman Dolidze",
           "date": "2025-03-15",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 5,
           "time": "5:00",
-          "event": "UFC Fight Night: Vettori vs. Dolidze 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/67f7163e536d62e2"
+          "event": "UFC Fight Night 254 - Vettori vs. Dolidze 2",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Jared Cannonier",
           "date": "2023-06-17",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 5,
           "time": "5:00",
-          "event": "UFC Fight Night: Vettori vs. Cannonier",
-          "sourceUrl": "https://ufcstats.com/fight-details/175d9e1ac0725145"
+          "event": "UFC on ESPN 47 - Vettori vs. Cannonier",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Roman Dolidze",
           "date": "2023-03-18",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 286: Edwards vs. Usman 3",
-          "sourceUrl": "https://ufcstats.com/fight-details/5e9c027fb24efc2b"
+          "event": "UFC 286 - Edwards vs. Usman 3",
+          "sourceUrl": null
         }
       ]
     },
@@ -54259,58 +54775,73 @@
         "decisionBreakdownComplete": true,
         "decisionBreakdownKnownWins": 3
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "103-106",
+        "winPct": 49,
+        "wins": 103,
+        "losses": 106,
+        "draws": 2,
+        "bouts": 11,
+        "uniqueOpponents": 11,
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Mick-Parkin-224411",
+        "checkedAt": "2026-09-28T16:25:52.840Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "L",
           "opponent": "Marcin Tybura",
           "date": "2025-03-22",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Edwards vs. Brady",
-          "sourceUrl": "https://ufcstats.com/fight-details/dd229687cb62c871"
+          "event": "UFC Fight Night 255 - Edwards vs. Brady",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Lukasz Brzeski",
           "date": "2024-07-27",
-          "method": "KO/TKO",
+          "method": "KO (Punches)",
           "round": 1,
           "time": "3:23",
-          "event": "UFC 304: Edwards vs. Muhammad 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/a5558e8fec59a687"
+          "event": "UFC 304 - Edwards vs. Muhammad 2",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Mohammed Usman",
           "date": "2024-03-23",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Ribas vs. Namajunas",
-          "sourceUrl": "https://ufcstats.com/fight-details/3223b7e196a07224"
+          "event": "UFC on ESPN 53 - Ribas vs. Namajunas",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Caio Machado",
           "date": "2023-11-18",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Allen vs. Craig",
-          "sourceUrl": "https://ufcstats.com/fight-details/36f10b949b935b8c"
+          "event": "UFC Fight Night 232 - Allen vs. Craig",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Jamal Pogues",
           "date": "2023-07-22",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Aspinall vs. Tybura",
-          "sourceUrl": "https://ufcstats.com/fight-details/89b96bc5f3e824c5"
+          "event": "UFC Fight Night 224 - Aspinall vs. Tybura",
+          "sourceUrl": null
         }
       ]
     },
@@ -57110,65 +57641,80 @@
         "firstRoundFinishes": null,
         "totalFinishes": 12,
         "decisionWins": 8,
-        "unanimousDecisionWins": 6,
+        "unanimousDecisionWins": 7,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
         "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 6
+        "decisionBreakdownKnownWins": 7
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "193-122",
+        "winPct": 61,
+        "wins": 193,
+        "losses": 122,
+        "draws": 4,
+        "bouts": 26,
+        "uniqueOpponents": 23,
+        "checkedAt": "2026-09-28T16:25:52.838Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Natalia-Silva-193033",
+        "checkedAt": "2026-09-28T16:25:52.838Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "W",
           "opponent": "Rose Namajunas",
           "date": "2026-01-24",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 324: Gaethje vs. Pimblett",
-          "sourceUrl": "https://ufcstats.com/fight-details/d63c9aa4f4873001"
+          "event": "UFC 324 - Gaethje vs. Pimblett",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Alexa Grasso",
           "date": "2025-05-10",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 315: Muhammad vs. Della Maddalena",
-          "sourceUrl": "https://ufcstats.com/fight-details/0f53eb509d0ffeb9"
+          "event": "UFC 315 - Muhammad vs. Della Maddalena",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Jessica Andrade",
           "date": "2024-09-07",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Burns vs. Brady",
-          "sourceUrl": "https://ufcstats.com/fight-details/bcfaf1dd78f12f97"
+          "event": "UFC Fight Night 242 - Burns vs. Brady",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Viviane Araujo",
           "date": "2024-02-03",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Dolidze vs. Imavov",
-          "sourceUrl": "https://ufcstats.com/fight-details/7b1882dc76786d77"
+          "event": "UFC Fight Night 235 - Dolidze vs. Imavov",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Andrea Lee",
           "date": "2023-08-19",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 292: Sterling vs. O'Malley",
-          "sourceUrl": "https://ufcstats.com/fight-details/8c7b5b21b3532027"
+          "event": "UFC 292 - Sterling vs. O'Malley",
+          "sourceUrl": null
         }
       ]
     },
@@ -60990,65 +61536,80 @@
         "firstRoundFinishes": 1,
         "totalFinishes": 8,
         "decisionWins": 3,
-        "unanimousDecisionWins": 2,
+        "unanimousDecisionWins": 3,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 2
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 3
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "134-54",
+        "winPct": 71,
+        "wins": 134,
+        "losses": 54,
+        "draws": 2,
+        "bouts": 12,
+        "uniqueOpponents": 12,
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Payton-Talbott-296553",
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "W",
           "opponent": "Henry Cejudo",
           "date": "2025-12-06",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 323: Dvalishvili vs. Yan 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/1dc29f4c6fcdd356"
+          "event": "UFC 323 - Dvalishvili vs. Yan 2",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Felipe Lima",
           "date": "2025-06-28",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 317: Topuria vs. Oliveira",
-          "sourceUrl": "https://ufcstats.com/fight-details/f6a3c78f15ff26c7"
+          "event": "UFC 317 - Topuria vs. Oliveira",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Raoni Barcelos",
           "date": "2025-01-18",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 311: Makhachev vs. Moicano",
-          "sourceUrl": "https://ufcstats.com/fight-details/d14f98b24691d082"
+          "event": "UFC 311 - Makhachev vs. Moicano",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Yanis Ghemmouri",
           "date": "2024-06-29",
-          "method": "KO/TKO",
+          "method": "KO (Punches)",
           "round": 1,
           "time": "0:19",
-          "event": "UFC 303: Pereira vs. Prochazka 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/5f8a92f10e5451ce"
+          "event": "UFC 303 - Pereira vs. Prochazka 2",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Cameron Saaiman",
           "date": "2024-03-23",
-          "method": "KO/TKO",
+          "method": "TKO (Punches)",
           "round": 2,
           "time": "0:21",
-          "event": "UFC Fight Night: Ribas vs. Namajunas",
-          "sourceUrl": "https://ufcstats.com/fight-details/127be512f86618b2"
+          "event": "UFC on ESPN 53 - Ribas vs. Namajunas",
+          "sourceUrl": null
         }
       ]
     },
@@ -62406,65 +62967,80 @@
         "firstRoundFinishes": null,
         "totalFinishes": 16,
         "decisionWins": 16,
-        "unanimousDecisionWins": 11,
-        "splitDecisionWins": 1,
+        "unanimousDecisionWins": 13,
+        "splitDecisionWins": 2,
         "majorityDecisionWins": 0,
-        "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 12
+        "otherDecisionWins": 1,
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 16
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "975-492",
+        "winPct": 66,
+        "wins": 975,
+        "losses": 492,
+        "draws": 14,
+        "bouts": 49,
+        "uniqueOpponents": 48,
+        "checkedAt": "2026-09-28T16:25:52.841Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Rafael-dos-Anjos-11675",
+        "checkedAt": "2026-09-28T16:25:52.841Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "L",
           "opponent": "Geoff Neal",
           "date": "2024-10-26",
-          "method": "KO/TKO",
+          "method": "TKO (Knee Injury)",
           "round": 1,
           "time": "1:30",
-          "event": "UFC 308: Topuria vs. Holloway",
-          "sourceUrl": "https://ufcstats.com/fight-details/1d65c141776949d6"
+          "event": "UFC 308 - Topuria vs. Holloway",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Mateusz Gamrot",
           "date": "2024-03-09",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 299: O'Malley vs. Vera 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/8baff440b82afd2b"
+          "event": "UFC 299 - O'Malley vs. Vera 2",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Vicente Luque",
           "date": "2023-08-12",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 5,
           "time": "5:00",
-          "event": "UFC Fight Night: Luque vs. Dos Anjos",
-          "sourceUrl": "https://ufcstats.com/fight-details/e346f2b7af63e804"
+          "event": "UFC on ESPN 51 - Luque vs. dos Anjos",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Bryan Barberena",
           "date": "2022-12-03",
-          "method": "Submission",
+          "method": "Submission (Neck Crank)",
           "round": 2,
           "time": "3:20",
-          "event": "UFC Fight Night: Thompson vs. Holland",
-          "sourceUrl": "https://ufcstats.com/fight-details/f17813d03fcd8e7a"
+          "event": "UFC on ESPN 42 - Thompson vs. Holland",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Rafael Fiziev",
           "date": "2022-07-09",
-          "method": "KO/TKO",
+          "method": "KO (Punches)",
           "round": 5,
           "time": "0:18",
-          "event": "UFC Fight Night: Dos Anjos vs. Fiziev",
-          "sourceUrl": "https://ufcstats.com/fight-details/be69cbf1f1671c8e"
+          "event": "UFC on ESPN 39 - Dos Anjos vs. Fiziev",
+          "sourceUrl": null
         }
       ]
     },
@@ -65848,7 +66424,7 @@
       "checkedAt": "2026-09-26T11:42:39.251Z",
       "ufcStatsId": "5a229cbd9cdd28ca",
       "sourceUrl": "https://ufcstats.com/fighter-details/5a229cbd9cdd28ca",
-      "latestBoutDate": null,
+      "latestBoutDate": "2025-02-20",
       "mirrorThrough": "2026-09-26",
       "bio": {
         "height": null,
@@ -65864,16 +66440,82 @@
         "firstRoundFinishes": null,
         "totalFinishes": null,
         "decisionWins": null,
-        "unanimousDecisionWins": 0,
+        "unanimousDecisionWins": 2,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
         "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 0
+        "decisionBreakdownKnownWins": 2
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
-      "recent": []
+      "opponentStrength": {
+        "record": "463-254",
+        "winPct": 65,
+        "wins": 463,
+        "losses": 254,
+        "draws": 5,
+        "bouts": 26,
+        "uniqueOpponents": 25,
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Roberto-Soldic-180781",
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
+      "recent": [
+        {
+          "result": "W",
+          "opponent": "Saygid Guseyn Arslanaliev",
+          "date": "2025-02-20",
+          "method": "KO (Punch)",
+          "round": 1,
+          "time": "1:55",
+          "event": "One Championship - ONE 171: Qatar",
+          "sourceUrl": null
+        },
+        {
+          "result": "L",
+          "opponent": "Zebaztian Kadestam",
+          "date": "2023-05-05",
+          "method": "TKO (Punches)",
+          "round": 2,
+          "time": "0:45",
+          "event": "One Championship - One on Prime Video 10: Johnson vs. Moraes 3",
+          "sourceUrl": null
+        },
+        {
+          "result": "NC",
+          "opponent": "Murad Ramazanov",
+          "date": "2022-12-02",
+          "method": "No Contest (Accidental Knee to Groin)",
+          "round": 1,
+          "time": "2:01",
+          "event": "One Championship - One on Prime Video 5: De Ridder vs. Malykhin",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Mamed Khalidov",
+          "date": "2021-12-18",
+          "method": "KO (Punch)",
+          "round": 2,
+          "time": "3:40",
+          "event": "KSW 65 - Khalidov vs. Soldic",
+          "sourceUrl": null
+        },
+        {
+          "result": "W",
+          "opponent": "Patrik Kincl",
+          "date": "2021-09-04",
+          "method": "TKO (Punches)",
+          "round": 3,
+          "time": "2:55",
+          "event": "KSW 63 - Crime Of The Century",
+          "sourceUrl": null
+        }
+      ]
     },
     {
       "id": "rodolfo-bellato",
@@ -66419,65 +67061,80 @@
         "firstRoundFinishes": 1,
         "totalFinishes": 12,
         "decisionWins": 3,
-        "unanimousDecisionWins": 1,
+        "unanimousDecisionWins": 2,
         "splitDecisionWins": 1,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 2
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 3
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "291-151",
+        "winPct": 66,
+        "wins": 291,
+        "losses": 151,
+        "draws": 1,
+        "bouts": 20,
+        "uniqueOpponents": 20,
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Roman-Kopylov-232601",
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "W",
           "opponent": "Marco Tulio",
           "date": "2026-05-09",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 328: Chimaev vs. Strickland",
-          "sourceUrl": "https://ufcstats.com/fight-details/9d35723a53749931"
+          "event": "UFC 328 - Chimaev vs. Strickland",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Gregory Rodrigues",
           "date": "2025-11-15",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 322: Della Maddalena vs. Makhachev",
-          "sourceUrl": "https://ufcstats.com/fight-details/ebb012c5f3fd0cbb"
+          "event": "UFC 322 - Della Maddalena vs. Makhachev",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Paulo Costa",
           "date": "2025-07-19",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 318: Holloway vs. Poirier 3",
-          "sourceUrl": "https://ufcstats.com/fight-details/23c963be9de38205"
+          "event": "UFC 318 - Holloway vs. Poirier 3",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Chris Curtis",
           "date": "2025-01-11",
-          "method": "KO/TKO",
+          "method": "TKO (Head Kick)",
           "round": 3,
           "time": "4:59",
-          "event": "UFC Fight Night: Dern vs. Ribas 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/aa38e39397dbea72"
+          "event": "UFC Fight Night 249 - Dern vs. Ribas 2",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Cesar Almeida",
           "date": "2024-06-01",
-          "method": "Decision - Split",
+          "method": "Decision (Split)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 302: Makhachev vs. Poirier",
-          "sourceUrl": "https://ufcstats.com/fight-details/ee24be90a01f552e"
+          "event": "UFC 302 - Makhachev vs. Poirier",
+          "sourceUrl": null
         }
       ]
     },
@@ -78443,65 +79100,80 @@
         "firstRoundFinishes": 3,
         "totalFinishes": 4,
         "decisionWins": 6,
-        "unanimousDecisionWins": 4,
+        "unanimousDecisionWins": 6,
         "splitDecisionWins": 0,
         "majorityDecisionWins": 0,
         "otherDecisionWins": 0,
-        "decisionBreakdownComplete": false,
-        "decisionBreakdownKnownWins": 4
+        "decisionBreakdownComplete": true,
+        "decisionBreakdownKnownWins": 6
       },
-      "opponentStrength": null,
-      "careerHistorySource": null,
+      "opponentStrength": {
+        "record": "104-62",
+        "winPct": 63,
+        "wins": 104,
+        "losses": 62,
+        "draws": 1,
+        "bouts": 11,
+        "uniqueOpponents": 11,
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
+      "careerHistorySource": {
+        "source": "Sherdog",
+        "sourceUrl": "https://www.sherdog.com/fighter/Cong-Wang-413126",
+        "checkedAt": "2026-09-28T16:25:52.839Z",
+        "complete": true
+      },
       "recent": [
         {
           "result": "W",
           "opponent": "Tracy Cortez",
           "date": "2026-07-11",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 329: McGregor vs. Holloway 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/e84c3f1f9a33fa90"
+          "event": "UFC 329 - McGregor vs. Holloway 2",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Eduarda Moura",
           "date": "2026-02-07",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC Fight Night: Bautista vs. Oliveira",
-          "sourceUrl": "https://ufcstats.com/fight-details/84e8ccc3c97c2b4c"
+          "event": "UFC Fight Night 266 - Bautista vs. Oliveira",
+          "sourceUrl": null
         },
         {
           "result": "W",
-          "opponent": "Ariane da Silva",
+          "opponent": "Ariane Lipski da Silva",
           "date": "2025-06-07",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 316: Dvalishvili vs. O'Malley 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/d078e9046aa86307"
+          "event": "UFC 316 - Dvalishvili vs. O'Malley 2",
+          "sourceUrl": null
         },
         {
           "result": "W",
           "opponent": "Bruna Brasil",
           "date": "2025-02-08",
-          "method": "Decision - Unanimous",
+          "method": "Decision (Unanimous)",
           "round": 3,
           "time": "5:00",
-          "event": "UFC 312: Du Plessis vs. Strickland 2",
-          "sourceUrl": "https://ufcstats.com/fight-details/946cae1beed2baec"
+          "event": "UFC 312 - Du Plessis vs. Strickland 2",
+          "sourceUrl": null
         },
         {
           "result": "L",
           "opponent": "Gabriella Fernandes",
           "date": "2024-11-23",
-          "method": "Submission",
+          "method": "Technical Submission (Rear-Naked Choke)",
           "round": 2,
           "time": "3:49",
-          "event": "UFC Fight Night: Yan vs. Figueiredo",
-          "sourceUrl": "https://ufcstats.com/fight-details/64d6d51219e0664c"
+          "event": "UFC Fight Night 248 - Yan vs. Figueiredo",
+          "sourceUrl": null
         }
       ]
     },
