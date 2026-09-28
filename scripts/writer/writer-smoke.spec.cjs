@@ -472,6 +472,13 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await expect(liveOddsCard.locator('[data-live-odds-side="a"] [data-live-odds-value]')).toHaveText('-205', { timeout: 5000 });
   await expect(liveOddsCard.locator('[data-live-odds-side="b"] [data-live-odds-value]')).toHaveText('+170', { timeout: 5000 });
 
+  const editorBeforeVisualInsert = await page.locator('#writer-body').evaluate(el => {
+    const max = Math.max(0, el.scrollHeight - el.clientHeight);
+    el.scrollTop = max * 0.55;
+    return el.scrollTop;
+  });
+  expect(editorBeforeVisualInsert).toBeGreaterThan(40);
+
   await page.click('[data-tool="html"]');
   await page.fill('[data-html-label]', 'Smoke visual');
 
@@ -487,17 +494,25 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await page.fill('[data-html-code]', '<div class="writer-smoke-visual"><h2>Smoke Visual</h2><p>Rendered HTML visual.</p></div><style>.writer-smoke-visual{padding:12px}</style>');
   await page.click('[data-html-insert]');
   await expect(page.locator('[data-html-block-panel-toggle]')).toBeVisible();
-  await expect(page.locator('[data-html-block-panel-toggle]')).toHaveAttribute('aria-expanded', 'true');
-  await expect(page.locator('[data-html-block-rail]')).toBeVisible();
-  await expect(page.locator('[data-html-block-edit][title*="Smoke visual"]')).toContainText('Smoke visual');
+  await expect(page.locator('[data-html-block-panel-toggle]')).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.locator('[data-html-block-rail]')).toBeHidden();
+  await expect.poll(async () => page.locator('#writer-body').evaluate(el => el.scrollTop)).toBeCloseTo(editorBeforeVisualInsert, 0);
   await expect(page.locator('[data-preview-content]')).toContainText('Rendered HTML visual');
   await expect(page.locator('[data-local-status]')).toContainText('Saved locally', { timeout: 5000 });
+
+  // The Visuals browser only opens when the author explicitly asks for it.
+  await page.locator('[data-html-block-panel-toggle]').click();
+  await expect(page.locator('[data-html-block-rail]')).toBeVisible();
+  await expect(page.locator('[data-html-block-edit][title*="Smoke visual"]')).toContainText('Smoke visual');
 
   // Every visual can be removed directly from the Visuals browser without opening its editor.
   await page.click('[data-tool="html"]');
   await page.fill('[data-html-label]', 'Disposable visual');
   await page.fill('[data-html-code]', '<div class="writer-disposable-visual">Delete this visual.</div>');
   await page.click('[data-html-insert]');
+  await expect(page.locator('[data-html-block-panel-toggle]')).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.locator('[data-html-block-rail]')).toBeHidden();
+  await page.locator('[data-html-block-panel-toggle]').click();
   const disposableCard = page.locator('.writer-html-block-card').filter({ hasText:'Disposable visual' });
   await expect(disposableCard.locator('[data-html-block-delete]')).toBeVisible();
   page.once('dialog', dialog => dialog.accept());
