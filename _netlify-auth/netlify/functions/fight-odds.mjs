@@ -19,13 +19,15 @@ const BFO_PROVIDER_PRIORITY = [21,22,23,24,25,20,26,29,28];
 let bestFightOddsCache = { fetchedAt:0, html:'' };
 
 export function normalizeFighterName(value) {
-  return String(value || '')
+  let normalized = String(value || '')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
     .replace(/\b(jr|sr|ii|iii|iv)\b/g, ' ')
     .replace(/[^a-z0-9]+/g, ' ')
     .trim();
+  if (normalized === 'king green') normalized = 'bobby green';
+  return normalized;
 }
 
 function sameFighterName(a, b) {
