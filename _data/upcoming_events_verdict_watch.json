@@ -47,11 +47,11 @@
       "verdict_event_id": "1952",
       "verdict_url": "https://verdictmma.com/event/1952",
       "verdict_date": "2026-10-03",
-      "local_fight_count": 13,
+      "local_fight_count": 14,
       "verdict_fight_count": 13,
       "local_main_count": 5,
       "verdict_main_count": 5,
-      "local_prelim_count": 8,
+      "local_prelim_count": 9,
       "verdict_prelim_count": 8,
       "confirmed_local_bouts": 12
     },
@@ -427,6 +427,23 @@
       ]
     },
     {
+      "type": "bout_count_mismatch",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "verdict_event_id": "1952",
+      "local_fight_count": 14,
+      "verdict_fight_count": 13
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "verdict_event_id": "1952",
+      "order": 13,
+      "fighters": [
+        "Jacobe Smith",
+        "Bruce Whitehead"
+      ]
+    },
+    {
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-332-2026-10-03-fight-card",
       "verdict_event_id": "1952",
@@ -435,6 +452,15 @@
         "Marcus McGhee",
         "Benardo Sopaj"
       ]
+    },
+    {
+      "type": "section_count_mismatch",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "verdict_event_id": "1952",
+      "local_main_count": 5,
+      "verdict_main_count": 5,
+      "local_prelim_count": 9,
+      "verdict_prelim_count": 8
     },
     {
       "type": "bout_count_mismatch",

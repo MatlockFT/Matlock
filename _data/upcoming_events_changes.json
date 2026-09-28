@@ -1,7 +1,38 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-28T14:53:24.658Z",
+  "generated_at": "2026-09-28T21:56:16.258Z",
   "changes": [
+    {
+      "id": "2026-09-28T21:56:16.258Z|ufc-332-2026-10-03-fight-card|bout_moved|1",
+      "at": "2026-09-28T21:56:16.258Z",
+      "type": "bout_moved",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Court McGee vs Eric Nolan moved on Silva vs Cong.",
+      "details": {
+        "from_order": 13,
+        "to_order": 14,
+        "from_section": "Early Prelims",
+        "to_section": "Early Prelims"
+      }
+    },
+    {
+      "id": "2026-09-28T21:56:16.258Z|ufc-332-2026-10-03-fight-card|bout_added|2",
+      "at": "2026-09-28T21:56:16.258Z",
+      "type": "bout_added",
+      "event_id": "ufc-332-2026-10-03-fight-card",
+      "promotion": "UFC 332",
+      "event_title": "Silva vs Cong",
+      "event_date": "2026-10-03",
+      "summary": "Jacobe Smith vs Bruce Whitehead added to Silva vs Cong.",
+      "details": {
+        "order": 13,
+        "section": "Early Prelims",
+        "weight_class": "Welterweight Bout"
+      }
+    },
     {
       "id": "2026-09-28T14:53:24.658Z|dwcs-season-10-week-8-2026-09-29|bout_moved|1",
       "at": "2026-09-28T14:53:24.658Z",
@@ -4694,35 +4725,6 @@
       "summary": "John Castaneda portrait source changed.",
       "details": {
         "fighter": "John Castaneda",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-fight-night-2026-09-26-fight-card|portrait_added|39",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_added",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Alatengheili portrait added.",
-      "details": {
-        "fighter": "Alatengheili",
-        "source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-fight-night-2026-09-26-fight-card|portrait_changed|40",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Josiah Harrell portrait source changed.",
-      "details": {
-        "fighter": "Josiah Harrell",
         "from_source": "sherdog",
         "to_source": "ufc"
       }
