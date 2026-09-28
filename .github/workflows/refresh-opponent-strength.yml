@@ -1,13 +1,18 @@
 name: Refresh opponent strength
-# Re-run marker: direct-sherdog graph
 
 on:
   workflow_dispatch:
     inputs:
       post_path:
-        description: "Article markdown containing Tale blocks"
+        description: "Optional article markdown path; blank auto-selects newest unpublished Tale draft"
         required: false
-        default: "_posts/2026-09-25-ufc-332.md"
+        default: ""
+      event_url:
+        description: "Optional Sherdog event URL; blank auto-discovers the matching UFC event"
+        required: false
+        default: ""
+  schedule:
+    - cron: "17 12 * * 2,5"
   push:
     branches: [main]
     paths:
@@ -20,7 +25,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: writer-opponent-strength-fast-v2
+  group: writer-opponent-strength
   cancel-in-progress: true
 
 jobs:
@@ -33,7 +38,7 @@ jobs:
           fetch-depth: 1
           sparse-checkout: |
             _netlify-auth/netlify/functions
-            _posts/2026-09-25-ufc-332.md
+            _posts
             assets/data
             scripts/matchmaker
             scripts/writer
@@ -48,7 +53,8 @@ jobs:
 
       - name: Refresh full-career opponent strength
         env:
-          WRITER_STRENGTH_POST: ${{ inputs.post_path || '_posts/2026-09-25-ufc-332.md' }}
+          WRITER_STRENGTH_POST: ${{ inputs.post_path || '' }}
+          SHERDOG_EVENT_URL: ${{ inputs.event_url || '' }}
         run: node scripts/writer/refresh-opponent-strength.mjs
 
       - name: Rebuild Writer fighter cache
@@ -56,7 +62,7 @@ jobs:
 
       - name: Validate generated data
         run: |
-          node -e "const fs=require('fs');const c=JSON.parse(fs.readFileSync('assets/data/writer-opponent-strength.json'));if(!c.updatedAt||Object.keys(c.fighters||{}).length<20)throw Error('strength cache incomplete');console.log('Strength fighters:',Object.keys(c.fighters).length)"
+          node -e "const fs=require('fs');const c=JSON.parse(fs.readFileSync('assets/data/writer-opponent-strength.json'));if(!c.updatedAt||Object.keys(c.fighters||{}).length<20)throw Error('strength cache incomplete');console.log('Strength fighters:',Object.keys(c.fighters).length,'last refresh:',c.lastRefresh?.postPath||'none')"
           node -e "const fs=require('fs');const d=JSON.parse(fs.readFileSync('assets/data/writer-fighters.json'));const hits=(d.fighters||[]).filter(f=>f.opponentStrength?.complete);if(hits.length<20)throw Error('Writer cache missing strength data');console.log('Writer strength rows:',hits.length)"
           git diff --check
 
@@ -68,8 +74,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/data/writer-opponent-strength.json assets/data/writer-fighters.json "$WRITER_STRENGTH_POST"
+          git add assets/data/writer-opponent-strength.json assets/data/writer-fighters.json _posts
           git commit -m "Refresh full-career opponent strength"
           git push origin HEAD:main
-        env:
-          WRITER_STRENGTH_POST: ${{ inputs.post_path || '_posts/2026-09-25-ufc-332.md' }}
