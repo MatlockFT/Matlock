@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { allowedPath, validateDeleteBody, validateWriteBody } from '../netlify/functions/writer-github.mjs';
 import { parseUfcProfileSummary, parseUfcStatsProfile } from '../netlify/functions/writer-fighter.mjs';
 import { extractFittCardOdds, extractFittMoneylines, extractMoneylines, formatAmericanOdds, parseEspnFittHtml, scoreboardDateQueries } from '../netlify/functions/fight-odds.mjs';
-import { hasCompleteDisplayedCareer, parseUfcFightCareerProfile } from '../netlify/functions/_writer-career-fallback.mjs';
+import { hasCompleteDisplayedCareer, parseSherdogCareerProfile, parseUfcFightCareerProfile } from '../netlify/functions/_writer-career-fallback.mjs';
 import { parseUfcFightProfile } from '../../scripts/matchmaker/sources/sherdog.mjs';
 import {
   ACTIVE_UPLOAD_TTL_MS,
@@ -269,6 +269,54 @@ test('on-demand career fallback parser fills all displayed Tale career fields', 
   assert.equal(profile.career.unanimousDecisionWins, 0);
   assert.equal(profile.career.splitDecisionWins, 0);
   assert.equal(hasCompleteDisplayedCareer(profile.career), true);
+});
+
+test('Sherdog fallback exposes complete professional history for pre-UFC fighters', () => {
+  const html = `
+    <main>
+      <h1>Lucas Armand</h1>
+      <div>AGE 30 / Oct 26, 1995</div>
+      <div>WEIGHT 265 lbs</div>
+      <section>
+        <div>Wins 6</div>
+        <div>KO / TKO 5</div>
+        <div>SUBMISSIONS 0</div>
+        <div>DECISIONS 1</div>
+        <div>Losses 0</div>
+        <div>Draws 0</div>
+      </section>
+      <h2>FIGHT HISTORY - PRO</h2>
+      <table>
+        <tr>
+          <td>win</td>
+          <td><a href="/fighter/Cameron-Graham-296215">Cameron Graham</a></td>
+          <td><a href="/events/2PP-War-at-the-Wex-8-111552">War at the Wex 8</a> Mar / 07 / 2026</td>
+          <td>TKO (Strikes)<br>Vance Swerdan</td><td>4</td><td>0:16</td>
+        </tr>
+        <tr>
+          <td>win</td>
+          <td><a href="/fighter/Braxton-Smith-159321">Braxton Smith</a></td>
+          <td><a href="/events/2PP-War-at-the-Wex-7-110361">War at the Wex 7</a> Nov / 22 / 2025</td>
+          <td>TKO (Strikes)<br>Vance Swerdan</td><td>1</td><td>1:54</td>
+        </tr>
+        <tr><td>win</td><td><a href="/fighter/Lawrence-Phillips-336823">Lawrence Phillips</a></td><td>Jun / 28 / 2025</td><td>TKO</td><td>2</td><td>3:59</td></tr>
+        <tr><td>win</td><td><a href="/fighter/Marcus-Maulding-241031">Marcus Maulding</a></td><td>May / 17 / 2025</td><td>TKO (Strikes)</td><td>1</td><td>1:38</td></tr>
+        <tr><td>win</td><td><a href="/fighter/Chris-Cameron-243999">Chris Cameron</a></td><td>Feb / 08 / 2025</td><td>TKO (Retirement)</td><td>2</td><td>5:00</td></tr>
+        <tr><td>win</td><td><a href="/fighter/Jonathan-Martin-299429">Jonathan Martin</a></td><td>Nov / 16 / 2024</td><td>Decision (Unanimous)</td><td>3</td><td>5:00</td></tr>
+      </table>
+      <h2>FIGHT HISTORY - AMATEUR</h2>
+      <table><tr><td>loss</td><td>Amateur Opponent</td><td>Dec / 02 / 2023</td></tr></table>
+    </main>
+  `;
+  const profile = parseSherdogCareerProfile(html,'https://www.sherdog.com/fighter/Lucas-Armand-420549');
+  assert.equal(profile.record,'6-0-0');
+  assert.equal(profile.historyComplete,true);
+  assert.equal(profile.history.length,6);
+  assert.equal(profile.recent.length,5);
+  assert.equal(profile.history[0].opponent,'Cameron Graham');
+  assert.equal(profile.history[0].date,'2026-03-07');
+  assert.equal(profile.history[5].opponent,'Jonathan Martin');
+  assert.equal(profile.latestBoutDate,'2026-03-07');
 });
 
 test('fight odds lookup searches the upcoming UFC window when no date is stored', () => {
