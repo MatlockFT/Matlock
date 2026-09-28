@@ -3,6 +3,20 @@ import { corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mj
 const SCOREBOARD = 'https://site.api.espn.com/apis/site/v2/sports/mma/ufc/scoreboard';
 const CORE_BASE = 'https://sports.core.api.espn.com/v2/sports/mma/leagues/ufc';
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const BEST_FIGHT_ODDS = 'https://www.bestfightodds.com/';
+const BFO_PROVIDER_NAMES = new Map([
+  [21,'FanDuel'],
+  [22,'DraftKings'],
+  [23,'BetMGM'],
+  [24,'Caesars'],
+  [25,'BetRivers'],
+  [20,'BetWay'],
+  [26,'Unibet'],
+  [29,'Kalshi'],
+  [28,'Polymarket']
+]);
+const BFO_PROVIDER_PRIORITY = [21,22,23,24,25,20,26,29,28];
+let bestFightOddsCache = { fetchedAt:0, html:'' };
 
 export function normalizeFighterName(value) {
   return String(value || '')
@@ -22,6 +36,143 @@ function sameFighterName(a, b) {
   const l = left.split(' ').sort().join(' ');
   const r = right.split(' ').sort().join(' ');
   return l === r;
+}
+
+function decodeHtml(value) {
+  return String(value || '')
+    .replace(/&#x([0-9a-f]+);/gi,(_,hex) => String.fromCodePoint(parseInt(hex,16)))
+    .replace(/&#(\d+);/g,(_,dec) => String.fromCodePoint(Number(dec)))
+    .replace(/&nbsp;/gi,' ')
+    .replace(/&amp;/gi,'&')
+    .replace(/&quot;/gi,'"')
+    .replace(/&#0?39;|&apos;/gi,"'")
+    .replace(/&lt;/gi,'<')
+    .replace(/&gt;/gi,'>');
+}
+
+function htmlText(value) {
+  return decodeHtml(String(value || '').replace(/<script\b[\s\S]*?<\/script>/gi,' ')
+    .replace(/<style\b[\s\S]*?<\/style>/gi,' ')
+    .replace(/<[^>]+>/g,' '))
+    .replace(/\s+/g,' ')
+    .trim();
+}
+
+function bfoPairForMarket(market) {
+  for (const providerId of BFO_PROVIDER_PRIORITY) {
+    const prices = market?.prices?.get(providerId);
+    if (!prices?.[1] || !prices?.[2]) continue;
+    return {
+      fighterA:prices[1],
+      fighterB:prices[2],
+      provider:BFO_PROVIDER_NAMES.get(providerId) || ('Book ' + providerId)
+    };
+  }
+  return null;
+}
+
+export function parseBestFightOddsHtml(html) {
+  const markets = new Map();
+  for (const match of String(html || '').matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)) {
+    const row = match[1];
+    const fighterMatch = row.match(/<a\b[^>]*href=["']\/fighters\/[^"']+["'][^>]*>[\s\S]*?<span\b[^>]*class=["'][^"']*\bt-b-fcc\b[^"']*["'][^>]*>([\s\S]*?)<\/span>/i);
+    const fighter = htmlText(fighterMatch?.[1] || '');
+    if (!fighter) continue;
+
+    const priceCells = [...row.matchAll(/<td\b[^>]*data-li=["']\[(\d+),([12]),(\d+)\]["'][^>]*>([\s\S]*?)<\/td>/gi)];
+    if (!priceCells.length) continue;
+
+    for (const cell of priceCells) {
+      const providerId = Number(cell[1]);
+      const side = Number(cell[2]);
+      const matchupId = String(cell[3]);
+      const moneyline = formatAmericanOdds(htmlText(cell[4]).match(/(?:[+-]\d{2,5}|EVEN)/i)?.[0] || '');
+      if (!moneyline) continue;
+      if (!markets.has(matchupId)) {
+        markets.set(matchupId,{matchupId,fighters:{},prices:new Map()});
+      }
+      const market = markets.get(matchupId);
+      market.fighters[side] = fighter;
+      if (!market.prices.has(providerId)) market.prices.set(providerId,{});
+      market.prices.get(providerId)[side] = moneyline;
+    }
+  }
+
+  return [...markets.values()]
+    .map(market => {
+      const pair = bfoPairForMarket(market);
+      if (!pair || !market.fighters[1] || !market.fighters[2]) return null;
+      return {
+        matchupId:market.matchupId,
+        provider:pair.provider,
+        fighters:[
+          {name:market.fighters[1],moneyline:pair.fighterA},
+          {name:market.fighters[2],moneyline:pair.fighterB}
+        ]
+      };
+    })
+    .filter(Boolean);
+}
+
+export function extractBestFightOddsMoneylines(html, fighterA, fighterB) {
+  for (const market of parseBestFightOddsHtml(html)) {
+    const first = market.fighters?.[0];
+    const second = market.fighters?.[1];
+    if (!first || !second) continue;
+    if (sameFighterName(first.name,fighterA) && sameFighterName(second.name,fighterB)) {
+      return {fighterA:first.moneyline,fighterB:second.moneyline,provider:market.provider};
+    }
+    if (sameFighterName(first.name,fighterB) && sameFighterName(second.name,fighterA)) {
+      return {fighterA:second.moneyline,fighterB:first.moneyline,provider:market.provider};
+    }
+  }
+  return null;
+}
+
+export function extractBestFightOddsCardOdds(html) {
+  return parseBestFightOddsHtml(html).map(market => ({
+    competitionId:'bfo-' + market.matchupId,
+    source:'BestFightOdds',
+    provider:market.provider,
+    fighters:market.fighters
+  }));
+}
+
+function cardOddsKey(market) {
+  return (market?.fighters || []).map(row => normalizeFighterName(row?.name)).filter(Boolean).sort().join('|');
+}
+
+function mergeCardOdds(primary, fallback) {
+  const out = [];
+  const seen = new Set();
+  for (const market of [...(primary || []),...(fallback || [])]) {
+    const key = cardOddsKey(market);
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(market);
+  }
+  return out;
+}
+
+async function fetchBestFightOddsHtml() {
+  const now = Date.now();
+  if (bestFightOddsCache.html && now - bestFightOddsCache.fetchedAt < 45000) {
+    return bestFightOddsCache.html;
+  }
+  const response = await fetch(BEST_FIGHT_ODDS,{
+    headers:{
+      Accept:'text/html,application/xhtml+xml',
+      'Accept-Language':'en-US,en;q=0.8',
+      'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/154.0.0.0 Safari/537.36'
+    },
+    redirect:'follow',
+    signal:AbortSignal.timeout(12000)
+  });
+  if (!response.ok) throw new Error('BestFightOdds returned HTTP ' + response.status);
+  const html = await response.text();
+  if (!/bestfightodds/i.test(html) || html.length < 10000) throw new Error('BestFightOdds response was incomplete');
+  bestFightOddsCache = {fetchedAt:now,html};
+  return html;
 }
 
 function competitorName(competitor) {
@@ -404,72 +555,91 @@ export default async function handler(request) {
   }
 
   const fetchedAt = new Date().toISOString();
+  let matchup = null;
+  let odds = null;
+  let oddsSource = null;
+  let cardOdds = [];
+  const warnings = [];
+
   try {
-    const matchup = await findMatchup(fighterA,fighterB,eventDate || null);
-    if (!matchup) {
-      return Response.json({
-        ok:true,available:false,source:'ESPN',fetchedAt,
-        reason:'matchup-not-found'
-      },{status:200,headers});
-    }
+    matchup = await findMatchup(fighterA,fighterB,eventDate || null);
+  } catch (error) {
+    warnings.push('ESPN matchup lookup: ' + (error?.message || 'unavailable'));
+  }
 
+  if (matchup) {
     const { event, competition } = matchup;
-    let odds = null;
-    let cardOdds = [];
-
     try {
       const fitt = await fetchFittEvent(event.id);
-      cardOdds = extractFittCardOdds(fitt);
+      cardOdds = extractFittCardOdds(fitt).map(market => ({...market,source:'ESPN'}));
       odds = extractFittMoneylines(fitt,fighterA,fighterB);
-    } catch {
-      // FightCenter can occasionally serve an interstitial; fall through to core odds.
+      if (odds) oddsSource = 'ESPN';
+    } catch (error) {
+      warnings.push('ESPN FightCenter: ' + (error?.message || 'unavailable'));
     }
 
     if (!odds) {
-      let payload = competition.odds || null;
-      if (!payload || (Array.isArray(payload) && !payload.length)) {
-        payload = await fetchJson(
-          CORE_BASE + '/events/' + encodeURIComponent(event.id) +
-          '/competitions/' + encodeURIComponent(competition.id) + '/odds',
-          {optional:true}
-        );
+      try {
+        let payload = competition.odds || null;
+        if (!payload || (Array.isArray(payload) && !payload.length)) {
+          payload = await fetchJson(
+            CORE_BASE + '/events/' + encodeURIComponent(event.id) +
+            '/competitions/' + encodeURIComponent(competition.id) + '/odds',
+            {optional:true}
+          );
+        }
+        odds = extractMoneylines(competition,payload,fighterA,fighterB);
+        if (odds) oddsSource = 'ESPN';
+      } catch (error) {
+        warnings.push('ESPN core odds: ' + (error?.message || 'unavailable'));
       }
-      odds = extractMoneylines(competition,payload,fighterA,fighterB);
     }
+  }
 
+  try {
+    const bestFightOddsHtml = await fetchBestFightOddsHtml();
+    const bfoCardOdds = extractBestFightOddsCardOdds(bestFightOddsHtml);
+    cardOdds = mergeCardOdds(cardOdds,bfoCardOdds);
     if (!odds) {
-      return Response.json({
-        ok:true,available:false,source:'ESPN',fetchedAt,
-        eventId:event.id || null,
-        competitionId:competition.id || null,
-        eventDate:competition.date || event.date || null,
-        cardOdds,
-        reason:'line-not-posted'
-      },{status:200,headers});
+      odds = extractBestFightOddsMoneylines(bestFightOddsHtml,fighterA,fighterB);
+      if (odds) oddsSource = 'BestFightOdds';
     }
+  } catch (error) {
+    warnings.push('BestFightOdds: ' + (error?.message || 'unavailable'));
+  }
 
+  const event = matchup?.event || null;
+  const competition = matchup?.competition || null;
+
+  if (!odds) {
     return Response.json({
       ok:true,
-      available:true,
-      source:'ESPN',
-      provider:odds.provider,
-      fetchedAt,
-      eventId:event.id || null,
-      competitionId:competition.id || null,
-      eventDate:competition.date || event.date || null,
-      cardOdds,
-      fighterA:{name:fighterA,moneyline:odds.fighterA},
-      fighterB:{name:fighterB,moneyline:odds.fighterB}
-    },{status:200,headers});
-  } catch (error) {
-    return Response.json({
-      ok:false,
       available:false,
-      source:'ESPN',
+      source:matchup ? 'ESPN + BestFightOdds' : 'BestFightOdds',
       fetchedAt,
-      error:error?.message || 'Live odds lookup failed'
-    },{status:502,headers});
+      eventId:event?.id || null,
+      competitionId:competition?.id || null,
+      eventDate:competition?.date || event?.date || (eventDate || null),
+      cardOdds,
+      reason:matchup ? 'line-not-posted' : 'matchup-not-found',
+      warnings
+    },{status:200,headers});
   }
+
+  return Response.json({
+    ok:true,
+    available:true,
+    source:oddsSource || 'live odds',
+    provider:odds.provider,
+    fetchedAt,
+    eventId:event?.id || null,
+    competitionId:competition?.id || null,
+    eventDate:competition?.date || event?.date || (eventDate || null),
+    cardOdds,
+    fighterA:{name:fighterA,moneyline:odds.fighterA},
+    fighterB:{name:fighterB,moneyline:odds.fighterB},
+    warnings
+  },{status:200,headers});
 }
 
 export const config = {
