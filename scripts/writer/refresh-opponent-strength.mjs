@@ -1,11 +1,12 @@
 import fs from 'node:fs/promises';
-import { fetchCareerFallback, parseUfcFightCareerProfile } from '../../_netlify-auth/netlify/functions/_writer-career-fallback.mjs';
+import { parseSherdogCareerProfile } from '../../_netlify-auth/netlify/functions/_writer-career-fallback.mjs';
 
 const POST_PATH = process.env.WRITER_STRENGTH_POST || '_posts/2026-09-25-ufc-332.md';
 const CACHE_PATH = 'assets/data/writer-opponent-strength.json';
 const WRITER_PATH = 'assets/data/writer-fighters.json';
 const UA = 'Mozilla/5.0 (compatible; MMAMatlockOpponentStrength/1.0; +https://mmamatlock.com/write/)';
 const MAX_RECORD_AGE_MS = 6 * 86400000;
+const SHERDOG_EVENT_URL = process.env.SHERDOG_EVENT_URL || 'https://www.sherdog.com/events/UFC-332-Silva-vs-Wang-114123';
 const HISTORY_ALIASES = new Map([
   ['benardo sopaj','Bernardo Sopai'],
   ['ateba gautier','Ateba Abega Gautier'],
@@ -46,6 +47,7 @@ function likelySameName(a,b) {
   if(!left||!right) return false;
   if(left===right) return true;
   const lt=left.split(' '), rt=right.split(' ');
+  if(lt.length===rt.length && [...lt].sort().join(' ')===[...rt].sort().join(' ')) return true;
   if(lt.length!==rt.length || lt.length<2) return false;
   return lt.every((token,index)=>token.length>=4 && rt[index].length>=4 && editDistance(token,rt[index])<=1);
 }
@@ -93,34 +95,60 @@ async function fetchText(url,{attempts=2,timeout=9000}={}) {
   throw lastError || new Error('Request failed: '+url);
 }
 
-async function directHistoryLookup(name) {
-  const slug=slugify(name);
-  if(!slug) return null;
-  const sourceUrl='https://ufcfight.net/'+slug+'/';
+function absoluteSherdogUrl(href) {
+  try { return new URL(href,'https://www.sherdog.com').toString(); } catch { return null; }
+}
+
+function parseSherdogEventFighters(html) {
+  const found=[];
+  const seen=new Set();
+  for(const match of String(html||'').matchAll(/<a\b[^>]*href=["'](\/fighter\/[a-z0-9][a-z0-9-]*-\d+)["'][^>]*>([\s\S]*?)<\/a>/gi)){
+    const href=absoluteSherdogUrl(match[1]);
+    const label=text(match[2]);
+    if(!href||!label||seen.has(href)) continue;
+    seen.add(href);
+    found.push({href,label});
+  }
+  return found;
+}
+
+function targetAlias(name) {
+  return HISTORY_ALIASES.get(normalize(name)) || name;
+}
+
+function matchEventFighter(entries,name) {
+  const alias=targetAlias(name);
+  return entries.find(entry=>normalize(entry.label)===normalize(name)) ||
+    entries.find(entry=>normalize(entry.label)===normalize(alias)) ||
+    entries.find(entry=>likelySameName(entry.label,name)) ||
+    entries.find(entry=>likelySameName(entry.label,alias)) ||
+    null;
+}
+
+async function sherdogHistoryLookup(url,expectedName) {
   let html;
-  try { html=await fetchText(sourceUrl); } catch { return null; }
-  const profile=parseUfcFightCareerProfile(html,sourceUrl);
-  if(!profile?.name || !likelySameName(profile.name,name)) return null;
+  try { html=await fetchText(url,{attempts:3,timeout:12000}); } catch { return null; }
+  const profile=parseSherdogCareerProfile(html,url);
+  if(!profile?.name) return null;
+  const alias=targetAlias(expectedName);
+  if(!likelySameName(profile.name,expectedName) && !likelySameName(profile.name,alias)) return null;
   return profile;
 }
 
-async function directRecordLookup(name) {
-  const slug=slugify(name);
-  if(!slug) return null;
-  const sourceUrl='https://ufcfight.net/'+slug+'/';
+async function sherdogRecordLookup(url,expectedName) {
   let html;
-  try { html=await fetchText(sourceUrl); } catch { return null; }
+  try { html=await fetchText(url,{attempts:3,timeout:12000}); } catch { return null; }
   const clean=text(html);
-  const heading=[...html.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/gi)]
-    .map(m=>text(m[1])).find(value=>! /^(?:record|statistics|fight history|biography)$/i.test(value));
-  if(heading && !likelySameName(heading,name)) return null;
-  const record=clean.match(/\bW-L-D\s+(\d+)-(\d+)-(\d+)\b/i);
-  if(!record) return null;
+  const name=text(html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i)?.[1] || expectedName);
+  const wins=clean.match(/\bWins\s+(\d+)\b/i);
+  const losses=clean.match(/\bLosses\s+(\d+)\b/i);
+  if(!wins||!losses) return null;
+  const draws=clean.match(/\bDraws?\s+(\d+)\b/i);
   return {
-    name:heading || name,
-    record:record[1]+'-'+record[2]+'-'+record[3],
-    source:'UFCFight.net',
-    sourceUrl
+    name:name||expectedName,
+    record:wins[1]+'-'+losses[1]+'-'+(draws?.[1]||0),
+    source:'Sherdog',
+    sourceUrl:url
   };
 }
 
@@ -267,62 +295,53 @@ const targetNames=[...new Set(configs.flatMap(config=>[config.a?.name,config.b?.
 console.log('Refreshing all-career opponent strength for '+targetNames.length+' fighters.');
 
 const profiles=new Map();
-await mapLimit(targetNames,2,async name=>{
-  await sleep(160);
-  let profile=await directHistoryLookup(name);
+const eventHtml=await fetchText(SHERDOG_EVENT_URL,{attempts:3,timeout:15000});
+const eventFighters=parseSherdogEventFighters(eventHtml);
+if(eventFighters.length<20) throw new Error('Sherdog event page exposed only '+eventFighters.length+' fighter links.');
+
+await mapLimit(targetNames,3,async name=>{
+  const eventFighter=matchEventFighter(eventFighters,name);
+  if(!eventFighter) throw new Error('Sherdog event profile link unavailable for '+name);
+  await sleep(90);
+  const profile=await sherdogHistoryLookup(eventFighter.href,name);
   if(!profile?.historyComplete || !Array.isArray(profile.history) || !profile.history.length){
-    profile=await fetchCareerFallback({name});
-  }
-  if(!profile?.historyComplete || !Array.isArray(profile.history) || !profile.history.length){
-    const alias=HISTORY_ALIASES.get(normalize(name));
-    if(alias){
-      profile=await directHistoryLookup(alias);
-      if(!profile?.historyComplete) profile=await fetchCareerFallback({name:alias});
-    }
-  }
-  if(!profile?.historyComplete || !Array.isArray(profile.history) || !profile.history.length){
-    throw new Error('Complete professional history unavailable for '+name);
+    throw new Error('Complete Sherdog professional history unavailable for '+name);
   }
   profiles.set(normalize(name),profile);
-  console.log('History '+name+': '+profile.history.length+' pro bouts via '+profile.source+
-    (normalize(profile.name)!==normalize(name)?' ['+(profile.name||'alias')+']':''));
+  console.log('History '+name+': '+profile.history.length+' pro bouts via Sherdog ['+eventFighter.href+']');
 });
-
 const existing=await readJson(CACHE_PATH,{schemaVersion:1,updatedAt:null,fighters:{},opponents:{}});
 existing.schemaVersion=1;
 existing.fighters ||= {};
 existing.opponents ||= {};
 const now=Date.now();
-const allOpponentNames=[...new Set([...profiles.values()].flatMap(profile=>
-  profile.history.map(fight=>String(fight.opponent||'').trim()).filter(Boolean)
-))];
-console.log('Resolving '+allOpponentNames.length+' unique opponent records.');
+const opponentTargets=new Map();
+for(const profile of profiles.values()){
+  for(const fight of profile.history){
+    const name=String(fight.opponent||'').trim();
+    const url=fight.opponentSourceUrl || null;
+    if(!name) continue;
+    const key=url || normalize(name);
+    if(!opponentTargets.has(key)) opponentTargets.set(key,{name,url});
+  }
+}
+console.log('Resolving '+opponentTargets.size+' unique opponent records from direct Sherdog profiles.');
 
 const opponentRecords=new Map();
 const unresolved=[];
-await mapLimit(allOpponentNames,4,async name=>{
+await mapLimit([...opponentTargets.values()],4,async target=>{
+  const name=target.name;
   const cacheKey=normalize(name);
   const cached=existing.opponents[cacheKey];
-  if(cached?.record && Date.now()-Date.parse(cached.checkedAt||0)<MAX_RECORD_AGE_MS){
+  if(cached?.record && cached?.sourceUrl===target.url && Date.now()-Date.parse(cached.checkedAt||0)<MAX_RECORD_AGE_MS){
     opponentRecords.set(cacheKey,cached);
     return;
   }
 
-  await sleep(90);
-  let hit=await directRecordLookup(name);
-  if(!hit){
-    try {
-      const fallback=await fetchCareerFallback({name});
-      if(fallback?.record) hit={
-        name:fallback.name||name,
-        record:fallback.record,
-        source:fallback.source||'career fallback',
-        sourceUrl:fallback.sourceUrl||null
-      };
-    } catch {}
-  }
+  await sleep(70);
+  let hit=target.url ? await sherdogRecordLookup(target.url,name) : null;
   if(!parseRecord(hit?.record)){
-    unresolved.push(name);
+    unresolved.push(name+(target.url?' ['+target.url+']':''));
     return;
   }
   const entry={...hit,name,checkedAt:new Date().toISOString()};
@@ -333,7 +352,6 @@ await mapLimit(allOpponentNames,4,async name=>{
 if(unresolved.length){
   throw new Error('Unresolved opponent records ('+unresolved.length+'): '+unresolved.sort().join(', '));
 }
-
 const strengthByName=new Map();
 for(const name of targetNames){
   const profile=profiles.get(normalize(name));
