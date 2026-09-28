@@ -293,11 +293,24 @@ function scheduleAutosave() {
       if (remoteState && saved.currentSha !== remoteState.currentSha) return false;
       const hasWork = (saved.title || saved.body || '').trim();
       if (!hasWork) return false;
-      applyState(saved, { remote: Boolean(remoteState) });
+
+      const repaired = repairSavedHtmlVisualState(saved, remoteState);
+      applyState(repaired.state, { remote: Boolean(remoteState) });
       dirty = true;
       showEditor();
-      setSaveState('Local changes restored');
-      showToast('Restored your unsaved local changes.');
+      setSaveState(repaired.recovered ? 'Local changes restored · visuals repaired' : 'Local changes restored');
+
+      if (repaired.unresolved) {
+        showToast(
+          `Restored local changes. ${repaired.recovered ? repaired.recovered + ' visual' + (repaired.recovered === 1 ? '' : 's') + ' repaired. ' : ''}` +
+          `${repaired.unresolved} local visual${repaired.unresolved === 1 ? '' : 's'} still need recovery.`,
+          8000
+        );
+      } else if (repaired.recovered) {
+        showToast(`Restored your local changes and repaired ${repaired.recovered} visual${repaired.recovered === 1 ? '' : 's'} from the GitHub copy.`, 6500);
+      } else {
+        showToast('Restored your unsaved local changes.');
+      }
       return true;
     } catch { return false; }
   }
