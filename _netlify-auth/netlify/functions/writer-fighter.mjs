@@ -334,6 +334,9 @@ export default async function handler(request) {
   const profile = {
     ...statsProfile,
     record: officialProfile.record || fallbackProfile.record || statsProfile.record || null,
+    dob:statsProfile.dob || fallbackProfile.bio?.dob || null,
+    height:statsProfile.height || fallbackProfile.bio?.height || null,
+    weight:statsProfile.weight || fallbackProfile.bio?.weight || null,
     bio:statsProfile.bio || fallbackProfile.bio || null,
     career:Object.keys(career).length ? career : null,
     history:fallbackHistory,
