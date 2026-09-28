@@ -467,6 +467,8 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   await liveOddsDialog.locator('[data-tale-a]').fill('Natalia Silva');
   await liveOddsDialog.locator('[data-tale-b]').fill('Wang Cong');
   await liveOddsDialog.locator('[data-tale-insert]').click();
+  await expect(page.locator('[data-html-block-panel-toggle]')).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.locator('[data-html-block-rail]')).toBeHidden();
   const liveOddsCard = page.locator('[data-preview-content] [data-live-odds-matchup][data-live-odds-fighter-a="Natalia Silva"][data-live-odds-fighter-b="Wang Cong"]');
   await expect(liveOddsCard).toBeVisible();
   await expect(liveOddsCard.locator('[data-live-odds-side="a"] [data-live-odds-value]')).toHaveText('-205', { timeout: 5000 });
