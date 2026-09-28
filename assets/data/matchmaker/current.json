@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-09-28T18:44:48.419Z"
+      "checkedAt": "2026-09-28T23:32:35.281Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-28T18:45:32.163Z",
+      "checkedAt": "2026-09-28T23:33:04.681Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -131073,7 +131073,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Silva vs Cong",
+        "date": "2026-10-03",
+        "source": "https://www.ufc.com/event/ufc-332",
+        "opponent": "Bruce Whitehead",
+        "opponentId": null
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -188017,7 +188023,7 @@
         "event": "Silva vs Cong",
         "date": "2026-10-03",
         "source": "https://www.ufc.com/event/ufc-332",
-        "opponent": "Roberto Soldic",
+        "opponent": "Roberto Soldić",
         "opponentId": "roberto-soldic"
       },
       "rosterEligibility": {
