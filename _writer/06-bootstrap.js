@@ -251,9 +251,9 @@ Object.values(fields).forEach(el => {
       const id = htmlBlockId();
       const block = { id, label, code: normalizedCode };
       htmlBlocks.set(id, block);
-      insertBlock(htmlBlockToken(block));
+      insertBlock(htmlBlockToken(block), { preserveScroll: true });
+      setHtmlBlockPanel(false);
       renderHtmlBlockRail();
-      setHtmlBlockPanel(true);
       showToast('HTML visual inserted. Open Visuals anytime to edit it.');
     }
 
@@ -508,9 +508,9 @@ Object.values(fields).forEach(el => {
     const id = htmlBlockId();
     const block = { id, label: inferHtmlLabel(normalizedCode), code: normalizedCode };
     htmlBlocks.set(id, block);
-    insertBlock(htmlBlockToken(block));
+    insertBlock(htmlBlockToken(block), { preserveScroll: true });
+    setHtmlBlockPanel(false);
     renderHtmlBlockRail();
-    setHtmlBlockPanel(true);
     showToast('HTML visual added. Open Visuals anytime to edit it.');
   });
 
