@@ -61,8 +61,8 @@
         return {
           ok:true,
           available:true,
-          source:feed.source || 'UFC.com',
-          provider:feed.source || 'UFC.com',
+          source:fight.source || feed.source || 'UFC.com',
+          provider:fight.provider || fight.source || feed.source || 'UFC.com',
           fetchedAt:feed.generated_at || new Date().toISOString(),
           eventDate:event.date || null,
           fighterA:{name:card.dataset.liveOddsFighterA || '',moneyline:a.moneyline},
@@ -112,7 +112,8 @@
   }
 
   function applyEventCardOdds(group, data) {
-    if (!Array.isArray(data?.cardOdds) || !data.cardOdds.length) return false;
+    const resolved = new Set();
+    if (!Array.isArray(data?.cardOdds) || !data.cardOdds.length) return resolved;
     for (const card of group) {
       const a = normalizedName(card.dataset.liveOddsFighterA);
       const b = normalizedName(card.dataset.liveOddsFighterB);
@@ -120,16 +121,18 @@
         const names = (item.fighters || []).map(fighter => normalizedName(fighter.name));
         return names.includes(a) && names.includes(b);
       });
-      if (!market) {
-        setUnavailable(card,'line-not-posted');
-        continue;
-      }
+      if (!market) continue;
       const aLine = (market.fighters || []).find(fighter => normalizedName(fighter.name) === a)?.moneyline;
       const bLine = (market.fighters || []).find(fighter => normalizedName(fighter.name) === b)?.moneyline;
-      if (aLine && bLine) setMoneylines(card,aLine,bLine,{...data,provider:market.provider});
-      else setUnavailable(card,'line-not-posted');
+      if (!aLine || !bLine) continue;
+      setMoneylines(card,aLine,bLine,{
+        ...data,
+        source:market.source || data.source,
+        provider:market.provider || data.provider
+      });
+      resolved.add(card);
     }
-    return true;
+    return resolved;
   }
 
   async function requestOdds(card) {
@@ -137,23 +140,29 @@
     const fighterB = card.dataset.liveOddsFighterB || '';
     const date = card.dataset.liveOddsEventDate || '';
     if (!fighterA || !fighterB) return null;
+
+    let apiData = null;
+    try {
+      const params = new URLSearchParams({fighterA,fighterB});
+      if (/^\d{4}-\d{2}-\d{2}$/.test(date)) params.set('date',date);
+      const response = await fetch(API + '?' + params.toString(),{
+        method:'GET',
+        mode:'cors',
+        credentials:'omit',
+        cache:'no-store',
+        headers:{Accept:'application/json'}
+      });
+      apiData = await response.json().catch(() => null);
+      if (response.ok && apiData && (apiData.available || apiData.cardOdds?.length)) return apiData;
+    } catch {}
+
     try {
       const staticData = await staticOddsFor(card);
       if (staticData) return staticData;
     } catch {}
 
-    const params = new URLSearchParams({fighterA,fighterB});
-    if (/^\d{4}-\d{2}-\d{2}$/.test(date)) params.set('date',date);
-    const response = await fetch(API + '?' + params.toString(),{
-      method:'GET',
-      mode:'cors',
-      credentials:'omit',
-      cache:'no-store',
-      headers:{Accept:'application/json'}
-    });
-    const data = await response.json().catch(() => null);
-    if (!response.ok || !data) throw new Error('odds request failed');
-    return data;
+    if (apiData) return apiData;
+    throw new Error('odds request failed');
   }
 
   async function refreshGroup(group) {
@@ -162,16 +171,19 @@
     try {
       const representative = group[0];
       const data = await requestOdds(representative);
-      if (!applyEventCardOdds(group,data)) {
-        applyResponse(representative,data);
-        await Promise.all(group.slice(1).map(async card => {
-          try {
-            applyResponse(card,await requestOdds(card));
-          } catch {
-            setUnavailable(card);
-          }
-        }));
+      const resolved = applyEventCardOdds(group,data);
+
+      if (!resolved.has(representative) && applyResponse(representative,data)) {
+        resolved.add(representative);
       }
+
+      await Promise.all(group.filter(card => card !== representative && !resolved.has(card)).map(async card => {
+        try {
+          if (applyResponse(card,await requestOdds(card))) resolved.add(card);
+        } catch {
+          setUnavailable(card);
+        }
+      }));
     } catch {
       group.forEach(card => setUnavailable(card));
     } finally {
