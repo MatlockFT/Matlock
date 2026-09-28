@@ -1756,3 +1756,10 @@ body.writer-wordtools-fullscreen .writer-app.writer-wordtools-fullscreen-app{
   font-size:.65rem;
   letter-spacing:.12em;
 }
+.writer-shell .writer-library-card-has-local{
+  border-bottom-color:rgba(185,170,116,.20);
+}
+.writer-shell .writer-library-local-changes{
+  color:#cdbd80;
+  font-weight:700;
+}
