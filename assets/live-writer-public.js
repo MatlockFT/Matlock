@@ -2,7 +2,7 @@
   const root = document.querySelector('[data-live-writer-public]');
   if (!root) return;
 
-  const API = 'https://mmamatlock-writer-auth.netlify.app/api/live-writer';
+  const FEED = 'https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/uploads/live-writer.json';
   const title = root.querySelector('[data-live-public-title]');
   const status = root.querySelector('[data-live-public-status]');
   const meta = root.querySelector('[data-live-public-meta]');
@@ -56,24 +56,27 @@
 
   function nextDelay(live) {
     if (document.hidden) return 15000;
-    return live?.active ? 1000 : 4000;
+    return live?.active ? 2500 : 6000;
   }
 
   async function poll() {
     if (stopped) return;
     let live = null;
     try {
-      const response = await fetch(API, {
+      const response = await fetch(FEED + '?v=' + Date.now(), {
         method: 'GET',
         mode: 'cors',
         cache: 'no-store',
         headers: { Accept: 'application/json' }
       });
-      const data = await response.json().catch(() => ({}));
-      if (!response.ok || !data.ok) throw new Error(data.error || 'Live feed unavailable.');
-      live = data.live;
+      if (response.status === 404) {
+        live = { active:false, title:'Live notes', html:'', text:'', version:0, updatedAt:null };
+      } else {
+        if (!response.ok) throw new Error('Live feed unavailable.');
+        live = await response.json();
+      }
       render(live);
-    } catch (err) {
+    } catch {
       if (error) {
         error.textContent = 'Live updates temporarily unavailable. Retrying automatically.';
         error.hidden = false;
