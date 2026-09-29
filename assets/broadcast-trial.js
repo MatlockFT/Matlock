@@ -487,11 +487,9 @@ function articleReaderCards(slide){
 }
 function buildArticleCardNode(slide,cards,cardIndex){
   const body=cards[cardIndex]?.html||"",wrap=document.createElement("div");
-  const source=escapeHtml(slide.source||"Combat Sports");
-  const time=escapeHtml(slide.type==="event"?"UPCOMING":slide.type==="custom"?"MANUAL":relativeTime(slide.publishedAt));
   const stateClass=(cardIndex===0?" is-first-card":"")+(cardIndex===cards.length-1?" is-last-card":"");
   const continuation=cardIndex>0?'<span class="article-reader-continuation">CONTINUED</span>':"";
-  wrap.innerHTML='<div class="article-reader-card'+stateClass+'"><div class="article-reader-topline"><div class="article-reader-credit"><strong>'+source+'</strong><span>•</span><span>'+time+'</span></div><div class="article-reader-page">'+continuation+'<span>'+(cardIndex+1)+' / '+cards.length+'</span></div></div><div class="article-reader-body">'+body+'</div></div>';
+  wrap.innerHTML='<div class="article-reader-card'+stateClass+'"><div class="article-reader-topline"><div class="article-reader-page">'+continuation+'<span>PAGE '+(cardIndex+1)+' / '+cards.length+'</span></div></div><div class="article-reader-body">'+body+'</div></div>';
   return wrap.firstElementChild;
 }
 function drawArticleCard(slide,cards,cardIndex,{crossfade=true}={}){
