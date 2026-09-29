@@ -71,7 +71,7 @@
 
   const controlledKeys = [
     'layout','title','description','date','category','author','image','tags',
-    'show_toc','pinned','listing_visibility','spoiler_warning','preserve_line_breaks','home_feature','home_feature_until','publish_at','published'
+    'show_toc','pinned','listing_visibility','spoiler_warning','preserve_line_breaks','news_feature','news_feature_until','publish_at','published'
   ];
 
   const templateBodies = {
@@ -282,8 +282,8 @@
     const imageAlt = fields.imageAlt.value.trim();
     const imagePosition = fields.imagePosition.value;
     const publishIso = clearSchedule ? '' : localInputToIso(fields.publishAt.value);
-    const homeFeature = Boolean(fields.homeFeature?.checked);
-    const homeFeatureUntilIso = homeFeature ? localInputToIso(fields.homeFeatureUntil?.value) : '';
+    const newsFeature = Boolean(fields.newsFeature?.checked);
+    const newsFeatureUntilIso = newsFeature ? localInputToIso(fields.newsFeatureUntil?.value) : '';
     return {
       layout: ['layout: post'],
       title: [`title: ${yamlQuote(fields.title.value.trim())}`],
@@ -298,8 +298,8 @@
       listing_visibility: ['listing_visibility: normal'],
       spoiler_warning: [`spoiler_warning: ${fields.spoilerWarning.checked ? 'true' : 'false'}`],
       preserve_line_breaks: ['preserve_line_breaks: true'],
-      home_feature: homeFeature ? ['home_feature: true'] : [],
-      home_feature_until: homeFeature && homeFeatureUntilIso ? [`home_feature_until: ${yamlQuote(homeFeatureUntilIso)}`] : [],
+      news_feature: newsFeature ? ['news_feature: true'] : [],
+      news_feature_until: newsFeature && newsFeatureUntilIso ? [`news_feature_until: ${yamlQuote(newsFeatureUntilIso)}`] : [],
       publish_at: publishIso && !publishedValue ? [`publish_at: ${yamlQuote(publishIso)}`] : [],
       published: [`published: ${publishedValue ? 'true' : 'false'}`]
     };
