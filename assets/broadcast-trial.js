@@ -9,7 +9,7 @@ const CONTROL_FALLBACK="/assets/data/broadcast-control.json";
 const FEED_REFRESH_MS=300000;
 
 const DEFAULT_CONTROL={
-  version:1,revision:1,updatedAt:null,
+  version:1,revision:1,updatedAt:null,clockEpoch:"2026-01-01T00:00:00.000Z",
   modules:{news:true,video:true,events:true,ticker:true,comingUp:true,music:true},
   rundown:["news","news","video","news","event"],
   timing:{newsSeconds:45,eventSeconds:35,transitionMs:650,controlPollSeconds:10},
@@ -258,7 +258,9 @@ function applyDisplay(){
   els.stage.style.gridTemplateRows=railOn?"1fr 148px":"1fr 0px";
   els.badge.style.display=c.visual.showBadge?"block":"none";
   els.storyMeta.style.display=c.visual.showSource?"flex":"none";
-  els.ticker.style.animationDuration=Math.max(20,Number(c.ticker.speedSeconds||240))+"s";
+  const tickerSeconds=Math.max(20,Number(c.ticker.speedSeconds||240));
+  els.ticker.style.animationDuration=tickerSeconds+"s";
+  if(!IS_CONTROL_PREVIEW){const phase=(cycleOffsetMs(tickerSeconds*1000)/1000);els.ticker.style.animationDelay="-"+phase.toFixed(3)+"s"}else els.ticker.style.animationDelay="0s";
   renderTicker();renderRail();configureBed();
 }
 function rebuildSlides(){
@@ -269,7 +271,7 @@ function chicagoDateKey(){const parts=new Intl.DateTimeFormat("en-US",{timeZone:
 function normalizedEvents(data){const list=Array.isArray(data?.events)?data.events:[],today=chicagoDateKey();return list.filter(x=>{const day=scalar(x?.date);if(/^\d{4}-\d{2}-\d{2}$/.test(day))return day>=today;const p=parseEventDate(x);return p&&p.date.getTime()>Date.now()-6*3600000}).sort((a,b)=>String(scalar(a.starts_at)||scalar(a.date)).localeCompare(String(scalar(b.starts_at)||scalar(b.date))))}
 
 function liveClockAnchorMs(){
-  const configured=Date.parse(cfg().updatedAt||"");
+  const configured=Date.parse(cfg().clockEpoch||cfg().updatedAt||"");
   return Number.isFinite(configured)?configured:Date.UTC(2026,0,1,0,0,0);
 }
 function cycleOffsetMs(totalMs){
@@ -332,7 +334,7 @@ document.addEventListener("click",configureBed,{once:true});
 
 function resetVideoHost(){try{videoPlayer?.destroy()}catch{}videoPlayer=null;clearTimeout(videoWatchdog);videoWatchdog=0;els.videoShell.innerHTML='<div id="broadcast-youtube-player"></div>'}
 function fadeVideoOut(done){if(!videoPlayer||typeof videoPlayer.getVolume!=="function"){done();return}let start=Number(cfg().video.volume||50);try{start=Number(videoPlayer.getVolume())||start}catch{}let step=0;const steps=12,iv=setInterval(()=>{step++;try{videoPlayer.setVolume(Math.max(0,Math.round(start*(1-step/steps))))}catch{}if(step>=steps){clearInterval(iv);done()}},60)}
-function beginProgress(ms){els.progress.style.transition="none";els.progress.style.width="0";requestAnimationFrame(()=>{els.progress.style.transition="width "+ms+"ms linear";els.progress.style.width="100%"})}
+function beginProgress(ms,startPercent=0){els.progress.style.transition="none";els.progress.style.width=Math.max(0,Math.min(100,Number(startPercent)||0))+"%";requestAnimationFrame(()=>{els.progress.style.transition="width "+ms+"ms linear";els.progress.style.width="100%"})}
 function articleReaderText(slide){
   if(slide.type==="event")return (Array.isArray(slide.context)?slide.context:contextFacts(slide.context)).join(" ");
   const parts=[cleanContext(slide.context||""),cleanContext(slide.excerpt||"")].filter(Boolean);
@@ -378,7 +380,7 @@ function plainReaderCards(text,max){
   return cards.length?cards:[{html:"<p>"+escapeHtml(text.slice(0,max))+"</p>"}];
 }
 function articleReaderCards(slide){
-  const max=Math.max(220,Math.min(620,Number(cfg().visual.articleCharsPerCard||340)));
+  const max=Math.max(200,Math.min(320,Number(cfg().visual.articleCharsPerCard||320)));
   const sourceBlocks=Array.isArray(slide.contextBlocks)?slide.contextBlocks.filter(Boolean):[];
   if(sourceBlocks.length){
     const cards=[];let html="",count=0;
@@ -420,7 +422,8 @@ function runArticleCards(slide,{startCardIndex=0,firstRemainingMs=null}={}){
   const show=()=>{
     const remaining=first&&Number.isFinite(Number(firstRemainingMs))?Math.max(100,Number(firstRemainingMs)):pace;
     drawArticleCard(slide,cards,cardIndex,{crossfade:Boolean(els.context.querySelector(".article-reader-card"))});
-    beginProgress(remaining);first=false;
+    const startPercent=first?Math.max(0,Math.min(99.5,(1-remaining/pace)*100)):0;
+    beginProgress(remaining,startPercent);first=false;
     clearTimeout(timer);
     timer=setTimeout(()=>{
       cardIndex++;
@@ -431,7 +434,7 @@ function runArticleCards(slide,{startCardIndex=0,firstRemainingMs=null}={}){
   show();
 }
 function splitVideoFallback(message="Waiting for an eligible video…"){
-  resetVideoHost();splitVideoId="";
+  resetVideoHost();splitVideoId="";els.videoShell.classList.remove("is-covering");
   els.videoShell.innerHTML='<div class="split-video-empty"><strong>VIDEO DESK</strong><span>'+escapeHtml(message)+'</span></div>';
   els.badge.textContent="VIDEO DESK";
   fadeBed(cfg().audio.musicVolume,700);
@@ -441,8 +444,8 @@ function revealVideoTransition(){setTimeout(()=>els.videoShell.classList.remove(
 function scheduleSplitVideoBoundary(next,remainingSeconds){
   clearTimeout(videoWatchdog);
   const ms=Math.max(250,Number(remainingSeconds||0)*1000),lead=Math.min(700,Math.max(220,ms*.22));
-  if(ms<=lead+120){coverVideoTransition();videoWatchdog=setTimeout(next,ms);return}
-  videoWatchdog=setTimeout(()=>{coverVideoTransition();videoWatchdog=setTimeout(next,lead)},ms-lead);
+  if(ms<=lead+120){coverVideoTransition();videoWatchdog=setTimeout(next,ms+80);return}
+  videoWatchdog=setTimeout(()=>{coverVideoTransition();videoWatchdog=setTimeout(next,lead+80)},ms-lead);
 }
 async function startSplitVideo(slide,{startSeconds=0,remainingSeconds=null,clockSynced=false}={}){
   if(!isSplitDesk()||!slide?.videoId)return;
