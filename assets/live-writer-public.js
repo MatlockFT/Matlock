@@ -2,7 +2,7 @@
   const root = document.querySelector('[data-live-writer-public]');
   if (!root) return;
 
-  const FEED = 'https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/uploads/live-writer.json';
+  const FEED = 'https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/uploads/runtime/live-writer.json';
   const title = root.querySelector('[data-live-public-title]');
   const status = root.querySelector('[data-live-public-status]');
   const meta = root.querySelector('[data-live-public-meta]');
