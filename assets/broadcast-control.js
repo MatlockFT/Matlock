@@ -279,7 +279,7 @@ function compactProgramItem(type,item){
   if(type==='news')return{
     id:item.id||item.url||'',title:item.title||'',source:item.source||'Combat Sports',url:item.url||'',publishedAt:item.publishedAt||'',
     image:item.image||item.imageUrl||item.thumbnail||item.ogImage||'',context:item.context||item.excerpt||item.summary||item.description||'',
-    contextBlocks:Array.isArray(item.contextBlocks)?item.contextBlocks:[],excerpt:item.excerpt||'',relatedSources:Array.isArray(item.relatedSources)?item.relatedSources:[]
+    contextBlocks:Array.isArray(item.contextBlocks)?item.contextBlocks:[],fullText:typeof item.fullText==='string'?item.fullText:'',fullTextBlocks:Array.isArray(item.fullTextBlocks)?item.fullTextBlocks:[],excerpt:item.excerpt||'',relatedSources:Array.isArray(item.relatedSources)?item.relatedSources:[]
   };
   if(type==='video')return{
     videoId:item.videoId||'',title:item.title||'',channel:item.channel||item.source||'YouTube',publishedAt:item.publishedAt||'',
