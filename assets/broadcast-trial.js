@@ -33,7 +33,7 @@ const els={
   progress:q("[data-progress]"),ticker:q("[data-ticker-track]"),tickerFooter:q("footer.ticker"),event:q("[data-next-event]"),
   eventName:q("[data-next-event-name]"),eventDate:q("[data-next-event-date]"),
   coverage:q("[data-coverage]"),coverageText:q("[data-coverage-text]"),rail:q("[data-rail-items]"),
-  lowerRail:q(".lower-rail"),visual:q("[data-visual-panel]"),bed:q("[data-music-bed]"),storyMeta:q(".story-meta")
+  lowerRail:q(".lower-rail"),visual:q("[data-visual-panel]"),bed:q("[data-music-bed]"),storyMeta:q(".story-meta"),storyPanel:q(".story-panel")
 };
 
 let control=structuredClone(DEFAULT_CONTROL),previewControl=null,previewMuted=false;
@@ -604,6 +604,14 @@ function ensureSplitVideo(){
 function renderSplitDeskSlide(s,{startCardIndex=0,firstRemainingMs=null}={}){
   currentSlide=s;els.stage.classList.remove("event-mode","layout-flip","video-mode","event-reader");els.visual.querySelector(".event-board")?.remove();
   ensureSplitVideo();
+  const art=String(s.image||"").trim();
+  if(els.storyPanel){
+    els.storyPanel.classList.toggle("has-story-art",Boolean(art));
+    if(art){
+      const safeArt=art.replace(/\\/g,"\\\\").replace(/"/g,'\\"').replace(/[\r\n]/g,"");
+      els.storyPanel.style.setProperty("--story-art",'url("'+safeArt+'")');
+    }else els.storyPanel.style.removeProperty("--story-art");
+  }
   els.title.textContent=s.title||"Combat Sports Update";els.title.classList.toggle("is-long",String(s.title||"").length>92);
   els.source.textContent=(s.source||"Combat Sports").toUpperCase();
   els.time.textContent=s.type==="event"?"UPCOMING":s.type==="custom"?"MANUAL":relativeTime(s.publishedAt);
