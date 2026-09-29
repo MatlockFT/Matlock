@@ -431,6 +431,23 @@ test('Writer production workflow survives long-form editing, rich blocks, restor
   // Final portrait placement is edited on the actual rendered Tale card.
   const taleBlockId = await taleSection.getAttribute('data-writer-html-block-id');
   expect(taleBlockId).toBeTruthy();
+
+  // Unrelated article typing must not tear down a rendered Tale visual. Rebuilding
+  // the section here used to destroy the crop canvas, briefly show the raw image,
+  // and sometimes leave the portrait at the wrong vertical position.
+  await taleSection.evaluate(section => { section.dataset.writerPreviewStable = 'true'; });
+  await outputCanvas.evaluate(canvas => { canvas.dataset.writerPreviewStable = 'true'; });
+  await page.locator('#writer-body').evaluate(editor => {
+    editor.value += '\n\nPreview stability typing check.';
+    editor.dispatchEvent(new Event('input', { bubbles:true }));
+  });
+  await expect(taleSection).toHaveAttribute('data-writer-preview-stable', 'true');
+  await expect(outputCanvas).toHaveAttribute('data-writer-preview-stable', 'true');
+  const typingStableRender = JSON.parse(await outputCanvas.getAttribute('data-portrait-render'));
+  for (const key of ['x','y','zoom','leftRatio','topRatio','widthRatio','heightRatio']) {
+    expect(typingStableRender[key]).toBeCloseTo(outputRender[key], 3);
+  }
+
   const taleShell = taleSection.locator('xpath=..');
   await taleShell.locator('[data-preview-html-visual-edit]').click();
   await expect(taleShell).toHaveClass(/is-tale-portrait-editing/);

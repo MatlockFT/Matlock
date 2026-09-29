@@ -253,6 +253,15 @@
 
   function previewEmbedKey(node) {
     if (!node || node.nodeType !== Node.ELEMENT_NODE) return '';
+    if (node.matches('.writer-preview-html-shell')) {
+      const section = node.querySelector(':scope > section[data-writer-html-block-id]');
+      const id = section?.dataset.writerHtmlBlockId || '';
+      if (id) return `html:${id}`;
+    }
+    if (node.matches('section[data-writer-html-block-id]')) {
+      const id = node.dataset.writerHtmlBlockId || '';
+      if (id) return `html:${id}`;
+    }
     if (node.matches('.writer-embed[data-writer-embed-src]')) {
       return `youtube:${node.getAttribute('data-writer-embed-src') || ''}`;
     }
@@ -301,6 +310,24 @@
     else existing.style.removeProperty('--media-width');
   }
 
+  function preservePreviewKeyedNode(existing, next, key) {
+    if (!key) return false;
+    if (key.startsWith('html:')) {
+      const shell = existing.matches?.('.writer-preview-html-shell')
+        ? existing
+        : existing.closest?.('.writer-preview-html-shell');
+      if (!shell) return false;
+      const section = next.matches?.('section[data-writer-html-block-id]')
+        ? next
+        : next.querySelector?.('section[data-writer-html-block-id]');
+      const id = section?.dataset.writerHtmlBlockId || '';
+      const source = id ? (htmlBlocks.get(id)?.code || '') : '';
+      return shell._writerHtmlSourceCode === source;
+    }
+    syncPreviewMediaLayout(existing, next);
+    return true;
+  }
+
   function patchPreviewContent(html) {
     const template = document.createElement('template');
     template.innerHTML = html || '<p class="writer-preview-empty">Start writing on the left. Your article will appear here immediately.</p>';
@@ -312,13 +339,17 @@
       const nextKey = previewEmbedKey(next);
       if (nextKey) {
         if (cursor && previewEmbedKey(cursor) === nextKey) {
-          syncPreviewMediaLayout(cursor, next);
-          cursor = cursor.nextElementSibling;
+          if (preservePreviewKeyedNode(cursor, next, nextKey)) {
+            cursor = cursor.nextElementSibling;
+            continue;
+          }
+          const old = cursor;
+          cursor = old.nextElementSibling;
+          previewContent.replaceChild(next, old);
           continue;
         }
         const existing = [...previewContent.children].find(child => previewEmbedKey(child) === nextKey);
-        if (existing) {
-          syncPreviewMediaLayout(existing, next);
+        if (existing && preservePreviewKeyedNode(existing, next, nextKey)) {
           previewContent.insertBefore(existing, cursor || null);
           cursor = existing.nextElementSibling;
           continue;
@@ -820,6 +851,8 @@
     const block = htmlBlocks.get(id);
     if (!block) return false;
     block.code = previewHtmlCode(section);
+    const shell = section.closest('.writer-preview-html-shell');
+    if (shell) shell._writerHtmlSourceCode = block.code;
     scheduleAutosave();
     return true;
   }
@@ -869,6 +902,9 @@
     if (!saved) return null;
     section.dataset.writerConfig = encodedStructuredConfig(saved.config);
     renderPreviewTalePortrait(section, side, saved.portrait);
+    const shell = section.closest('.writer-preview-html-shell');
+    const block = htmlBlocks.get(blockId);
+    if (shell && block) shell._writerHtmlSourceCode = block.code;
     return saved;
   }
 
@@ -1036,6 +1072,7 @@
 
       const shell = document.createElement('div');
       shell.className = 'writer-preview-html-shell';
+      shell._writerHtmlSourceCode = block.code;
       section.replaceWith(shell);
       shell.append(section);
 
@@ -1078,6 +1115,10 @@
         const link = event.target.closest('a[href]');
         if (link) event.preventDefault();
       });
+
+      if (structuredMeta(block.code)?.type === 'tale') {
+        window.MatlockPortraitCrop?.hydrate?.(section);
+      }
     });
   }
 
