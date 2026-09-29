@@ -81,9 +81,9 @@ h1{margin:0 0 25px;font-family:Arial,Helvetica,sans-serif;font-size:42px;line-he
 .stage.split-desk .story-context{display:block!important;max-width:none;min-height:0;flex:1;position:relative;margin:0}
 .stage.split-desk .coverage{display:none!important}
 .stage.split-desk .story-meta{display:none!important}
-.article-reader-card{height:100%;min-height:0;padding:0;background:transparent;color:#e9e6df;border:0;display:flex;flex-direction:column;justify-content:flex-start;transition:opacity .85s cubic-bezier(.22,.61,.36,1),transform .85s cubic-bezier(.22,.61,.36,1)}
-.article-reader-card.is-switching,.article-reader-card.is-exiting{opacity:0;transform:translateY(-8px) scale(1.004)}
-.article-reader-card.is-entering{opacity:0;transform:translateY(10px) scale(.996)}
+.article-reader-card{height:100%;min-height:0;padding:0;background:transparent;color:#e9e6df;border:0;display:flex;flex-direction:column;justify-content:flex-start;transition:opacity .18s ease,transform .18s ease}
+.article-reader-card.is-switching,.article-reader-card.is-exiting{opacity:0;transform:translateY(-4px)}
+.article-reader-card.is-entering{opacity:0;transform:translateY(4px)}
 .article-reader-card p{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:27px;line-height:1.43;letter-spacing:-.006em}
 .article-reader-card .article-reader-label{display:none}
 .article-reader-card .article-reader-page{font:700 11px/1 Arial,sans-serif;color:#8f8a81;letter-spacing:.075em;text-transform:uppercase;white-space:nowrap}
@@ -108,8 +108,10 @@ h1{margin:0 0 25px;font-family:Arial,Helvetica,sans-serif;font-size:42px;line-he
   box-shadow:none;
 }
 .article-reader-card:after{display:none}
-.article-reader-body{position:relative;z-index:1;min-height:0;overflow:hidden;padding-top:2px}
-.article-reader-body p{margin:0 0 14px;font-family:Arial,Helvetica,sans-serif;font-size:24px;line-height:1.39;letter-spacing:-.003em;color:#d9d5cd}.article-reader-card.is-first-card .article-reader-body>p:first-child{font-size:27px;line-height:1.37;color:#f3efe7;padding-left:14px;border-left:3px solid rgba(242,139,37,.9)}.article-reader-body>p+p{padding-top:12px;border-top:1px solid rgba(255,255,255,.07)}
+.article-reader-body{position:relative;z-index:1;min-height:0;overflow:hidden;flex:1;display:flex;flex-direction:column;justify-content:center;padding:10px 0 14px}
+.article-reader-body p{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:23px;line-height:1.47;letter-spacing:-.003em;color:#ddd9d1}
+.article-reader-card.is-first-card .article-reader-body>p:first-child{font-size:25px;line-height:1.43;color:#f4f0e8;font-weight:600}
+.article-reader-body>p+p{margin-top:15px;padding-top:15px;border-top:1px solid rgba(255,255,255,.08)}
 .article-reader-body h2+.article-reader-list-item,.article-reader-body h3+.article-reader-list-item{margin-top:4px}
 .article-reader-body p:last-child{margin-bottom:0}
 .article-reader-body h2,.article-reader-body h3{margin:0 0 12px;color:#f4f0e7}
@@ -123,10 +125,12 @@ h1{margin:0 0 25px;font-family:Arial,Helvetica,sans-serif;font-size:42px;line-he
 .article-reader-card .article-reader-label{display:none}
 .article-reader-card .article-reader-page{color:#8f8a81;position:relative;z-index:1}
 .article-reader-card .article-reader-source{display:none}
-.article-reader-footer{position:relative;z-index:1;margin-top:auto;padding-top:11px;border-top:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:26px}
-.article-reader-credit{display:flex;align-items:center;gap:8px;min-width:0;font:700 11px/1 Arial,sans-serif;letter-spacing:.065em;text-transform:uppercase;color:#8f8a81}
-.article-reader-credit strong{font-family:"Gobold",Arial,sans-serif;color:#c8c3ba;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.article-reader-topline{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 0 12px;border-bottom:1px solid rgba(255,255,255,.11)}
+.article-reader-credit{display:flex;align-items:center;gap:7px;min-width:0;font:700 10px/1 Arial,sans-serif;letter-spacing:.075em;text-transform:uppercase;color:#89857e}
+.article-reader-credit strong{font-family:"Gobold",Arial,sans-serif;color:#d2cdc4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .article-reader-credit span{white-space:nowrap}
+.article-reader-page{display:flex;align-items:center;gap:8px;flex:none;font:700 10px/1 "Gobold",Arial,sans-serif!important;letter-spacing:.08em!important;color:#a29d94!important}
+.article-reader-continuation{padding:4px 6px;border:1px solid rgba(242,139,37,.45);color:var(--accent);font-size:9px;letter-spacing:.08em}
 .stage.split-desk.event-reader .story-context .article-reader-card{background:transparent;color:#e9e6df;border:0}
 .stage.split-desk.event-reader .article-reader-body p{font-family:Arial,Helvetica,sans-serif;font-size:25px;line-height:1.43;color:#e0dcd4}
 .stage.split-desk .story-context .article-reader-card{position:absolute;inset:0;width:100%;z-index:1}
@@ -135,8 +139,9 @@ h1{margin:0 0 25px;font-family:Arial,Helvetica,sans-serif;font-size:42px;line-he
 .stage.split-desk.narrow-reader .story-panel{padding:22px 24px 20px}
 .stage.split-desk.narrow-reader .story-panel h1{font-size:27px;line-height:1.06;margin-bottom:13px;padding-bottom:12px}
 .stage.split-desk.narrow-reader .story-panel h1.is-long{font-size:24px;line-height:1.08}
-.stage.split-desk.narrow-reader .article-reader-body p{font-size:23px;line-height:1.37}
-.stage.split-desk.narrow-reader .article-reader-card.is-first-card .article-reader-body>p:first-child{font-size:25px;line-height:1.35;padding-left:12px}
-.stage.split-desk.narrow-reader .article-reader-body h2{font-size:20px}
-.stage.split-desk.narrow-reader .article-reader-body h3{font-size:19px}
-.stage.split-desk.narrow-reader .article-reader-footer{padding-top:10px}
+.stage.split-desk.narrow-reader .article-reader-body{justify-content:flex-start;padding-top:14px}
+.stage.split-desk.narrow-reader .article-reader-body p{font-size:21px;line-height:1.46}
+.stage.split-desk.narrow-reader .article-reader-card.is-first-card .article-reader-body>p:first-child{font-size:23px;line-height:1.42}
+.stage.split-desk.narrow-reader .article-reader-body h2{font-size:19px}
+.stage.split-desk.narrow-reader .article-reader-body h3{font-size:18px}
+.stage.split-desk.narrow-reader .article-reader-topline{padding-bottom:10px}
