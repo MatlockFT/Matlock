@@ -15,7 +15,7 @@
     const fightHeadings = explicitFightHeadings.length
         ? explicitFightHeadings
         : directHeadings.filter((heading) => (
-            heading.tagName === 'H2' && matchupPattern.test(heading.textContent || '')
+            matchupPattern.test(heading.textContent || '')
         ));
     const useFightIndex = explicitFightHeadings.length > 0 || mode === 'fights' || fightHeadings.length >= 3;
     const headings = useFightIndex ? fightHeadings : directHeadings;
@@ -223,8 +223,9 @@
             }
 
             pickCards.forEach((card, index) => {
-                const fighter = card.querySelector('.article-pick-card__main strong')?.textContent?.trim() || 'Pick ' + (index + 1);
-                const detail = card.querySelector('.article-pick-card__main span')?.textContent?.trim() || '';
+                const fighter = card.querySelector('.article-pick-card__fighter, .article-pick-card__main strong')?.textContent?.trim() || 'Pick ' + (index + 1);
+                const detailNode = card.querySelector('.article-pick-card__result, .article-pick-card__main span');
+                const detail = detailNode?.textContent?.trim().replace(/\s+/g, ' ') || '';
                 const heading = findFightHeading(card);
                 const matchup = heading?.textContent?.trim() || 'Fight ' + (index + 1);
                 const result = resultsByPick[fighter] || null;
