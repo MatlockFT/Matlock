@@ -167,7 +167,7 @@
         const picksPanel = picksRoot.querySelector('[data-article-picks-panel]');
         const picksList = picksRoot.querySelector('[data-article-picks-list]');
         const picksHeading = picksRoot.querySelector('.article-picks-heading');
-        const pickCards = Array.from(article.querySelectorAll('.article-pick-card'));
+        const pickCards = Array.from(article.querySelectorAll('.article-pick-card')).filter((card) => !card.closest('[data-picks-summary="exclude"]'));
 
         const findFightHeading = (card) => {
             const block = card.closest('[data-writer-block="pick"]') || card;
