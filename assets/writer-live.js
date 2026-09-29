@@ -20,7 +20,7 @@
 
   const SESSION_ID_KEY = 'matlock-writer:server-session';
   const PUBLIC_PATH = '/live-notes/';
-  const LIVE_REPO_PATH = 'assets/uploads/live-writer.json';
+  const LIVE_REPO_PATH = 'assets/uploads/runtime/live-writer.json';
   const LIVE_API_PATH = '/contents/' + LIVE_REPO_PATH;
   const MIN_AUTO_PUSH_MS = 8000;
   let active = false;
