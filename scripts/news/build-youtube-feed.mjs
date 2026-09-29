@@ -2,11 +2,11 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
 const API="https://www.googleapis.com/youtube/v3";
-const MAX_AGE_MS=168*60*60*1000;
-const MAX_PER_CHANNEL=24;
+const MAX_AGE_MS=336*60*60*1000;
+const MAX_PER_CHANNEL=50;
 let channels=[
   {name:"MMA Junkie",handle:"@MMAJunkieOfficial"},
-  {name:"MMA Fighting",handle:"@MMAFighting"},
+  {name:"MMA Fighting",handle:"@mmafightingonsbn"},
   {name:"UFC",handle:"@ufc"},
   {name:"PFL MMA",handle:"@PFLMMA"},
   {name:"ONE Championship",handle:"@ONEChampionship"}
@@ -77,8 +77,8 @@ if(apiKey){
 
 const cutoff=Date.now()-MAX_AGE_MS;
 videos=videos.filter(v=>{const t=Date.parse(v.publishedAt);return Number.isFinite(t)&&t>=cutoff&&t<=Date.now()+5*60*1000&&v.embeddable!==false&&v.isShort!==true})
-  .sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt)).slice(0,120);
+  .sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt)).slice(0,200);
 
-const output={version:3,generatedAt:new Date().toISOString(),maxAgeHours:168,shortsExcluded:true,channels:channels.map(c=>c.name),videos,...(errors.length?{warnings:errors}:{})};
+const output={version:3,generatedAt:new Date().toISOString(),maxAgeHours:336,shortsExcluded:true,channels:channels.map(c=>c.name),videos,...(errors.length?{warnings:errors}:{})};
 await mkdir(dirname(destination),{recursive:true});await writeFile(destination,JSON.stringify(output,null,2)+"\n");
 console.log("Wrote "+videos.length+" embeddable recent YouTube uploads to "+destination);if(errors.length)console.warn(errors.join("\n"));
