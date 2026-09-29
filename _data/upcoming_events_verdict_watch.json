@@ -13,13 +13,13 @@
       "verdict_event_id": "1933",
       "verdict_url": "https://verdictmma.com/event/1933",
       "verdict_date": "2026-09-29",
-      "local_fight_count": 5,
+      "local_fight_count": 4,
       "verdict_fight_count": null,
-      "local_main_count": 5,
+      "local_main_count": 4,
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
-      "confirmed_local_bouts": 5
+      "confirmed_local_bouts": 4
     },
     {
       "event_id": "rizin-abc-presents-rizin-landmark-16-in-nagasaki-2026-10-03",
@@ -64,11 +64,11 @@
       "verdict_event_id": "1966",
       "verdict_url": "https://verdictmma.com/event/1966",
       "verdict_date": "2026-10-10",
-      "local_fight_count": 1,
+      "local_fight_count": 12,
       "verdict_fight_count": null,
-      "local_main_count": 1,
+      "local_main_count": 6,
       "verdict_main_count": null,
-      "local_prelim_count": 0,
+      "local_prelim_count": 6,
       "verdict_prelim_count": null,
       "confirmed_local_bouts": 1
     },
@@ -115,9 +115,9 @@
       "verdict_event_id": "1969",
       "verdict_url": "https://verdictmma.com/event/1969",
       "verdict_date": "2026-10-31",
-      "local_fight_count": 3,
+      "local_fight_count": 11,
       "verdict_fight_count": null,
-      "local_main_count": 3,
+      "local_main_count": 11,
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
@@ -132,13 +132,13 @@
       "verdict_event_id": "1957",
       "verdict_url": "https://verdictmma.com/event/1957",
       "verdict_date": "2026-11-07",
-      "local_fight_count": 1,
+      "local_fight_count": 13,
       "verdict_fight_count": 2,
-      "local_main_count": 1,
+      "local_main_count": 13,
       "verdict_main_count": 1,
       "local_prelim_count": 0,
       "verdict_prelim_count": 1,
-      "confirmed_local_bouts": 1
+      "confirmed_local_bouts": 2
     },
     {
       "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
@@ -464,6 +464,116 @@
       ]
     },
     {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-10-fight-card",
+      "verdict_event_id": "1966",
+      "order": 10,
+      "fighters": [
+        "Allen Frye Jr.",
+        "RJ Harris"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-10-fight-card",
+      "verdict_event_id": "1966",
+      "order": 11,
+      "fighters": [
+        "Alice Pereira",
+        "Daria Zhelezniakova"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-10-fight-card",
+      "verdict_event_id": "1966",
+      "order": 12,
+      "fighters": [
+        "Ernesta Kareckaitė",
+        "Melissa Gatto"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-10-fight-card",
+      "verdict_event_id": "1966",
+      "order": 2,
+      "fighters": [
+        "Matheus Camilo",
+        "Jai Herbert"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-10-fight-card",
+      "verdict_event_id": "1966",
+      "order": 3,
+      "fighters": [
+        "Loopy Godinez",
+        "Ketlen Souza"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-10-fight-card",
+      "verdict_event_id": "1966",
+      "order": 4,
+      "fighters": [
+        "Andre Fili",
+        "Kai Kamaka III"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-10-fight-card",
+      "verdict_event_id": "1966",
+      "order": 5,
+      "fighters": [
+        "Julius Walker",
+        "Gerald Meerschaert"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-10-fight-card",
+      "verdict_event_id": "1966",
+      "order": 6,
+      "fighters": [
+        "Malcolm Wellmaker",
+        "Otari Tanzilovi"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-10-fight-card",
+      "verdict_event_id": "1966",
+      "order": 7,
+      "fighters": [
+        "Francisco Prado",
+        "Ismael Bonfim"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-10-fight-card",
+      "verdict_event_id": "1966",
+      "order": 8,
+      "fighters": [
+        "Niko Price",
+        "Leon Shahbazyan"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-10-fight-card",
+      "verdict_event_id": "1966",
+      "order": 9,
+      "fighters": [
+        "Felipe Franco",
+        "Brendson Ribeiro"
+      ]
+    },
+    {
       "type": "bout_count_mismatch",
       "event_id": "ufc-fight-night-2026-10-17-fight-card",
       "verdict_event_id": "1936",
@@ -493,24 +603,214 @@
       "type": "local_bout_not_found_on_verdict",
       "event_id": "ufc-fight-night-2026-10-31-fight-card",
       "verdict_event_id": "1969",
-      "order": 3,
+      "order": 10,
+      "fighters": [
+        "Julian Erosa",
+        "JeongYeong Lee"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "verdict_event_id": "1969",
+      "order": 11,
+      "fighters": [
+        "Francis Marshall",
+        "Gaston Bolanos"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "verdict_event_id": "1969",
+      "order": 2,
+      "fighters": [
+        "Randy Brown",
+        "Carlos Leal"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "verdict_event_id": "1969",
+      "order": 4,
+      "fighters": [
+        "Yana Santos",
+        "Luana Santos"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "verdict_event_id": "1969",
+      "order": 5,
+      "fighters": [
+        "Talita Alencar",
+        "Piera Rodriguez"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "verdict_event_id": "1969",
+      "order": 6,
       "fighters": [
         "Nick Klein",
         "Joseph Kropschot"
       ]
     },
     {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "verdict_event_id": "1969",
+      "order": 7,
+      "fighters": [
+        "Rodrigo Sezinando",
+        "Theodor Berggren"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "verdict_event_id": "1969",
+      "order": 8,
+      "fighters": [
+        "Jean-Paul Lebosnoyani",
+        "Farman Hasanov"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-10-31-fight-card",
+      "verdict_event_id": "1969",
+      "order": 9,
+      "fighters": [
+        "Azamat Bekoev",
+        "Andre Petroski"
+      ]
+    },
+    {
       "type": "bout_count_mismatch",
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
       "verdict_event_id": "1957",
-      "local_fight_count": 1,
+      "local_fight_count": 13,
       "verdict_fight_count": 2
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 10,
+      "fighters": [
+        "Jonny Parsons",
+        "José Souza"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 11,
+      "fighters": [
+        "Davey Grant",
+        "Elijah Smith"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 12,
+      "fighters": [
+        "Jose Delano",
+        "Murtazali Magomedov"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 13,
+      "fighters": [
+        "Gabriel Lorenco",
+        "Alvin Hines"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 2,
+      "fighters": [
+        "Tatiana Suarez",
+        "Virna Jandiroba"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 3,
+      "fighters": [
+        "Mantas Kondratavičius",
+        "Wes Schultz"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 4,
+      "fighters": [
+        "Billy Elekana",
+        "Lucas Fernando"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 5,
+      "fighters": [
+        "Austin Bashi",
+        "Lucas Brennan"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 6,
+      "fighters": [
+        "Karine Silva",
+        "Gabriella Fernandes"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 7,
+      "fighters": [
+        "Priscila Cachoeira",
+        "Nina Milošević"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "ufc-fight-night-2026-11-07-fight-card",
+      "verdict_event_id": "1957",
+      "order": 9,
+      "fighters": [
+        "Seokhyeon Ko",
+        "Wellington Turman"
+      ]
     },
     {
       "type": "section_count_mismatch",
       "event_id": "ufc-fight-night-2026-11-07-fight-card",
       "verdict_event_id": "1957",
-      "local_main_count": 1,
+      "local_main_count": 13,
       "verdict_main_count": 1,
       "local_prelim_count": 0,
       "verdict_prelim_count": 1
