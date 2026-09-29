@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-28T21:56:16.258Z",
+  "generated_at": "2026-09-29T14:25:04.294Z",
   "changes": [
+    {
+      "id": "2026-09-29T14:25:04.294Z|rizin-abc-presents-rizin-55-2026-11-08|bout_added|1",
+      "at": "2026-09-29T14:25:04.294Z",
+      "type": "bout_added",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
+      "promotion": "RIZIN",
+      "event_title": "『abc presents RIZIN.55』",
+      "event_date": "2026-11-08",
+      "summary": "Tsukasa Mizoguchi vs Sho Sekihara added to 『abc presents RIZIN.55』.",
+      "details": {
+        "order": 11,
+        "section": "Fight Card",
+        "weight_class": "57.0 kg"
+      }
+    },
     {
       "id": "2026-09-28T21:56:16.258Z|ufc-332-2026-10-03-fight-card|bout_moved|1",
       "at": "2026-09-28T21:56:16.258Z",
@@ -4710,21 +4725,6 @@
       "summary": "Rinya Nakamura portrait source changed.",
       "details": {
         "fighter": "Rinya Nakamura",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-fight-night-2026-09-26-fight-card|portrait_changed|38",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "John Castaneda portrait source changed.",
-      "details": {
-        "fighter": "John Castaneda",
         "from_source": "sherdog",
         "to_source": "ufc"
       }

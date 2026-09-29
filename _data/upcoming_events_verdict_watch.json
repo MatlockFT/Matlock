@@ -149,9 +149,9 @@
       "verdict_event_id": "1974",
       "verdict_url": "https://verdictmma.com/event/1974",
       "verdict_date": "2026-11-08",
-      "local_fight_count": 10,
+      "local_fight_count": 11,
       "verdict_fight_count": null,
-      "local_main_count": 10,
+      "local_main_count": 11,
       "verdict_main_count": null,
       "local_prelim_count": 0,
       "verdict_prelim_count": null,
@@ -194,6 +194,16 @@
       "fighters": [
         "Rikiya",
         "Rio Kimura"
+      ]
+    },
+    {
+      "type": "local_bout_not_found_on_verdict",
+      "event_id": "rizin-abc-presents-rizin-55-2026-11-08",
+      "verdict_event_id": "1974",
+      "order": 11,
+      "fighters": [
+        "Tsukasa Mizoguchi",
+        "Sho Sekihara"
       ]
     },
     {
