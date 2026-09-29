@@ -76,6 +76,9 @@ h1{margin:0 0 25px;font-family:Arial,Helvetica,sans-serif;font-size:42px;line-he
 .stage.split-desk .video-shell{display:block!important}
 .stage.split-desk .visual-badge{background:rgba(8,8,8,.88);color:#f5f1e9;border-left:4px solid var(--accent);max-width:80%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .stage.split-desk .story-panel{order:2;position:relative!important;left:auto!important;bottom:auto!important;width:auto!important;pointer-events:auto!important;padding:24px 28px 20px;background:radial-gradient(circle at 100% 0%,rgba(242,139,37,.055),transparent 34%),linear-gradient(180deg,#121316 0%,#0d0e11 100%)!important;border:0!important;display:flex;flex-direction:column;overflow:hidden}
+.stage.split-desk .story-panel:before{content:"";position:absolute;z-index:0;left:0;right:0;top:0;height:255px;background-image:linear-gradient(180deg,rgba(13,14,17,.30),rgba(13,14,17,.82) 58%,#0d0e11 100%),var(--story-art);background-size:cover;background-position:center;opacity:0;transform:scale(1.015);transition:opacity .35s ease;pointer-events:none}
+.stage.split-desk .story-panel.has-story-art:before{opacity:.38}
+.stage.split-desk .story-panel>*{position:relative;z-index:1}
 .stage.split-desk .story-kicker{margin-bottom:12px;font-size:12px}.stage.split-desk .story-kicker:empty{display:none}
 .stage.split-desk .story-panel h1{position:relative;margin:0 0 15px;padding-bottom:14px;font-family:Arial,Helvetica,sans-serif;font-size:30px;line-height:1.07;letter-spacing:-.024em;text-shadow:none;color:#faf7f0}.stage.split-desk .story-panel h1:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,var(--accent) 0 72px,rgba(255,255,255,.12) 72px 100%)}.stage.split-desk .story-panel h1.is-long{font-size:27px;line-height:1.09}
 .stage.split-desk .story-context{display:block!important;max-width:none;min-height:0;flex:1;position:relative;margin:0}
