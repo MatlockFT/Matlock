@@ -21,8 +21,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: optimize-images-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   optimize:
@@ -31,6 +31,16 @@ jobs:
     steps:
       - name: Check out current branch
         uses: actions/checkout@v4
+
+      - name: Let the article deploy first
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git show --pretty='' --name-only HEAD | grep -q '^_posts/'; then
+            echo "Post content changed; delaying generated-image commit so the article can deploy first."
+            sleep 240
+          fi
 
       - name: Set up Node.js
         uses: actions/setup-node@v4

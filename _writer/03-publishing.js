@@ -147,6 +147,19 @@ async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
   const oldLabel = button.textContent;
   const clearSchedule = mode === 'publish';
 
+  // Publishing an unchanged already-live article should not create an empty commit.
+  // Empty commits restart GitHub Pages and can make the Writer say Published while
+  // the public site is still waiting on a newer deployment.
+  if (mode === 'publish' && currentPath && currentPublished && !dirty && !fields.publishAt.value) {
+    const stamp = new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
+    setSaveState(`Published • ${stamp}`);
+    setLocalStatus(`Saved to GitHub · ${stamp}`, 'github');
+    updateDocumentStatus();
+    updateLiveLink();
+    showToast('Already published. No changes to publish.');
+    return;
+  }
+
   saveInFlight = true;
   setPublishingControls(false);
   button.textContent = mode === 'publish' ? 'Publishing…' : mode === 'schedule' ? 'Scheduling…' : 'Saving…';
