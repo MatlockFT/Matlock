@@ -14,7 +14,7 @@ const DEFAULT_CONTROL={
   rundown:["news","news","video","news","event"],
   timing:{newsSeconds:45,eventSeconds:35,transitionMs:650,controlPollSeconds:10},
   news:{maxAgeHours:168,maxItems:64,sources:[],requireContext:true,contextFacts:4},
-  video:{maxAgeHours:168,maxItems:32,minSeconds:181,maxSeconds:3600,volume:50,channels:[],playFull:true},
+  video:{maxAgeHours:336,maxItems:48,minSeconds:181,maxSeconds:3600,volume:50,channels:[],playFull:true},
   events:{maxItems:12,usePosters:true},
   audio:{enabled:true,musicUrl:"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3",musicVolume:14,duckVolume:3.5},
   ticker:{enabled:true,speedSeconds:240,maxItems:14},
