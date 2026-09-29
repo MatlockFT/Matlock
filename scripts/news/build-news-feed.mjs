@@ -554,6 +554,10 @@ function broadcastContextText(value) {
     const text = plainText(value)
         .replace(/\bRead the Full Article Here\b.*$/i, "")
         .replace(/\bAdvertisement\b/gi, " ")
+        .replace(/(?:https?:\/\/)?(?:www\.)?(?:pic\.twitter\.com|x\.com|twitter\.com)\/\S+/gi, " ")
+        .replace(/https?:\/\/\S+/gi, " ")
+        .replace(/([.!?])(?=[A-Z])/g, "$1 ")
+        .replace(/\s+([,.;:!?])/g, "$1")
         .replace(/\s+/g, " ")
         .trim();
 
