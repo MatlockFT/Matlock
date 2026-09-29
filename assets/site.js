@@ -603,5 +603,6 @@
     }
 
     setupArticleVideos();
+    window.addEventListener("matlock-live:content", setupArticleVideos);
     setupArticleBackToTop();
 })();
