@@ -11,6 +11,7 @@
     const refreshButton = newsPage.querySelector("[data-news-refresh]");
     const sourceFilter = newsPage.querySelector("[data-news-source-filter]");
     const showMoreButton = newsPage.querySelector("[data-news-show-more]");
+    const newsFeatureTemplates = [...newsPage.querySelectorAll("template[data-news-feature]")];
     const remoteFeedUrl = newsPage.dataset.feedUrl;
     const apiFallbackFeedUrl = newsPage.dataset.apiFallbackUrl || "";
     const fallbackFeedUrl = newsPage.dataset.fallbackUrl;
@@ -32,6 +33,10 @@
     let selectedSource = "all";
     let lastRemoteRefresh = 0;
     let renderVersion = 0;
+    let currentLeadOffset = 1;
+    let newsFeatureTimer = 0;
+    let lastFeedData = null;
+    let lastFeedOptions = {};
 
     const runWhenIdle = callback => {
         if (typeof window.requestIdleCallback === "function") {
@@ -68,6 +73,41 @@
         link.target = "_blank";
         link.rel = "noopener noreferrer";
         return link;
+    }
+
+    function storyLink(story, className, text) {
+        if (!story?.local) return externalLink(story.url, className, text);
+        const link = element("a", className, text);
+        link.href = story.url;
+        return link;
+    }
+
+    function activeNewsFeature() {
+        const now = Date.now();
+        for (const template of newsFeatureTemplates) {
+            const until = Date.parse(template.dataset.until || "");
+            if (!Number.isFinite(until) || until <= now) continue;
+            return {
+                id: template.dataset.id || template.dataset.url,
+                title: template.dataset.title || "Matlock",
+                url: template.dataset.url || "/",
+                image: template.dataset.image || "",
+                imageAlt: template.dataset.imageAlt || "",
+                publishedAt: template.dataset.publishedAt || "",
+                source: template.dataset.source || "Matlock",
+                until,
+                local: true
+            };
+        }
+        return null;
+    }
+
+    function scheduleNewsFeatureExpiry(feature) {
+        window.clearTimeout(newsFeatureTimer);
+        if (!feature?.until) return;
+        newsFeatureTimer = window.setTimeout(() => {
+            if (lastFeedData) renderFeed(lastFeedData, lastFeedOptions);
+        }, Math.max(100, feature.until - Date.now() + 100));
     }
 
     function safeDate(value) {
@@ -187,7 +227,7 @@
 
         const image = document.createElement("img");
         const src = optimizedImageUrl(story.image, className);
-        image.alt = "";
+        image.alt = story.imageAlt || "";
         image.decoding = "async";
         image.referrerPolicy = "no-referrer";
 
@@ -255,7 +295,7 @@
         appendMeta(meta, story, true);
 
         const heading = element("h2");
-        heading.append(externalLink(story.url, "", story.title));
+        heading.append(storyLink(story, "", story.title));
 
         content.append(meta, heading);
         article.append(media, content);
@@ -354,7 +394,7 @@
     function updateSourceFilter() {
         const previous = selectedSource;
         const sources = [...new Set(
-            allStories.slice(1 + LATEST_COUNT).map(story => story.source).filter(Boolean)
+            allStories.slice(currentLeadOffset + LATEST_COUNT).map(story => story.source).filter(Boolean)
         )].sort((a, b) => a.localeCompare(b));
 
         const options = [element("option", "", "All sources")];
@@ -372,7 +412,7 @@
     }
 
     function filteredMoreStories() {
-        const stories = allStories.slice(1 + LATEST_COUNT);
+        const stories = allStories.slice(currentLeadOffset + LATEST_COUNT);
         if (selectedSource === "all") return stories;
         return stories.filter(story => story.source === selectedSource);
     }
@@ -421,16 +461,21 @@
     }
 
     function renderFeed(data, options = {}) {
+        lastFeedData = data;
+        lastFeedOptions = options;
         allStories = uniqueStories(data);
         moreVisibleCount = MORE_INCREMENT;
         const version = ++renderVersion;
+        const newsFeature = activeNewsFeature();
 
-        const topStory = allStories[0];
-        const latestStories = allStories.slice(1, 1 + LATEST_COUNT);
+        currentLeadOffset = newsFeature ? 0 : 1;
+        const topStory = newsFeature || allStories[0];
+        const latestStories = allStories.slice(currentLeadOffset, currentLeadOffset + LATEST_COUNT);
 
         unobserveImages(topStorySlot);
         unobserveImages(latestList);
         topStorySlot.replaceChildren(renderTopStory(topStory));
+        scheduleNewsFeatureExpiry(newsFeature);
         leadGrid.setAttribute("aria-busy", "false");
         setStatus(data, options);
 
@@ -519,9 +564,13 @@
                 moreList.setAttribute("aria-busy", "false");
 
                 if (!allStories.length) {
+                    const newsFeature = activeNewsFeature();
                     topStorySlot.replaceChildren(
-                        element("p", "news-empty", "The latest MMA stories could not be loaded. Use Refresh to try again.")
+                        newsFeature
+                            ? renderTopStory(newsFeature)
+                            : element("p", "news-empty", "The latest MMA stories could not be loaded. Use Refresh to try again.")
                     );
+                    scheduleNewsFeatureExpiry(newsFeature);
                     latestList.replaceChildren();
                     moreList.replaceChildren();
                 }
@@ -571,6 +620,7 @@
 
     window.addEventListener("pagehide", () => {
         window.clearInterval(refreshTimer);
+        window.clearTimeout(newsFeatureTimer);
         deferredImageObserver?.disconnect();
     });
 })();
