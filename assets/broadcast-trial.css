@@ -11,7 +11,7 @@ body{width:1920px;height:1080px}
 .visual-blur{position:absolute;inset:-40px;background:#111 center/cover no-repeat;filter:blur(30px) brightness(.32) saturate(.75);transform:scale(1.08);opacity:.88;transition:opacity .8s ease}
 .story-image{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;padding:28px 32px;opacity:1;transition:opacity .8s ease}
 .video-shell{position:absolute;inset:0;display:none;background:#000;z-index:2}
-.video-shell iframe{position:absolute!important;inset:0;width:100%!important;height:100%!important;border:0;background:#000}
+.video-shell iframe{position:absolute!important;inset:0;width:100%!important;height:100%!important;border:0;background:#000;pointer-events:none;transform:scale(1.08);transform-origin:center}
 .video-shell:after{content:"";position:absolute;inset:0;z-index:6;pointer-events:none;background:#000;opacity:0;transition:opacity .7s cubic-bezier(.22,.61,.36,1)}
 .video-shell.is-covering:after{opacity:1}
 .visual-badge{position:absolute;left:32px;top:28px;z-index:7;padding:8px 11px;background:rgba(8,8,8,.9);border-left:4px solid var(--accent);font:700 14px/1 "Gobold",Arial,sans-serif;letter-spacing:.09em}
@@ -42,9 +42,9 @@ h1{margin:0 0 25px;font-family:Arial,Helvetica,sans-serif;font-size:42px;line-he
 .ticker{display:grid;grid-template-columns:108px minmax(0,1fr) 284px;align-items:stretch;background:#090a0c;color:#e8e4dc;border-top:6px solid var(--accent);box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
 .ticker-label{display:flex;align-items:center;justify-content:center;padding:0 12px;background:#121418;color:#fff;font:700 16px/1 "Gobold",Arial,sans-serif;letter-spacing:.085em;border-right:1px solid #2a2d31}
 .ticker-window{min-width:0;display:flex;align-items:center;overflow:hidden;white-space:nowrap;background:#090a0c}
-.ticker-track{display:inline-flex;align-items:center;gap:54px;padding-left:26px;font:700 22px/1.2 Arial,sans-serif;color:#e4e0d8;animation:ticker 240s linear infinite}
+.ticker-track{display:inline-flex;align-items:center;gap:0;padding-left:18px;font:700 22px/1.2 Arial,sans-serif;color:#e4e0d8;animation:ticker 240s linear infinite}
 .ticker-track span{display:inline-flex;align-items:center}
-.ticker-track span:before{content:"◆";color:var(--accent);margin-right:14px;font-size:9px}
+.ticker-track span:after{content:"•";color:var(--accent);margin:0 14px;font-size:17px;line-height:1;transform:translateY(-1px)}
 .next-event{min-width:0;display:grid;grid-template-rows:auto auto auto;align-content:center;justify-items:center;gap:4px;padding:10px 18px 9px;border-left:1px solid #2a2d31;background:#101216;text-align:center;overflow:hidden}
 .next-event-label{font:700 11px/1 "Gobold",Arial,sans-serif;letter-spacing:.13em;color:var(--accent)}
 .next-event-name{display:block;max-width:100%;font:700 16px/1.08 "Gobold",Arial,sans-serif;letter-spacing:.02em;color:#f3f0e9;white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:normal;word-break:normal;text-wrap:balance}
@@ -76,20 +76,20 @@ h1{margin:0 0 25px;font-family:Arial,Helvetica,sans-serif;font-size:42px;line-he
 .stage.split-desk .video-shell{display:block!important}
 .stage.split-desk .visual-badge{background:rgba(8,8,8,.88);color:#f5f1e9;border-left:4px solid var(--accent);max-width:80%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .stage.split-desk .story-panel{order:2;position:relative!important;left:auto!important;bottom:auto!important;width:auto!important;pointer-events:auto!important;padding:26px 28px 22px;background:#111!important;border:0!important;display:flex;flex-direction:column;overflow:hidden}
-.stage.split-desk .story-kicker{margin-bottom:12px;font-size:12px}
+.stage.split-desk .story-kicker{margin-bottom:12px;font-size:12px}.stage.split-desk .story-kicker:empty{display:none}
 .stage.split-desk .story-panel h1{margin:0 0 14px;font-family:Arial,Helvetica,sans-serif;font-size:30px;line-height:1.08;letter-spacing:-.018em;text-shadow:none}.stage.split-desk .story-panel h1.is-long{font-size:27px;line-height:1.1}
 .stage.split-desk .story-context{display:block!important;max-width:none;min-height:0;flex:1;position:relative;margin:0}
 .stage.split-desk .coverage{display:none!important}
 .stage.split-desk .story-meta{margin-top:14px;padding-top:13px;border-top:1px solid var(--rule);font-size:12px}
-.article-reader-card{height:100%;min-height:290px;padding:24px 25px 22px;background:var(--paper);color:#121212;border:1px solid #d8d2c7;display:flex;flex-direction:column;justify-content:flex-start;transition:opacity .85s cubic-bezier(.22,.61,.36,1),transform .85s cubic-bezier(.22,.61,.36,1)}
+.article-reader-card{height:100%;min-height:0;padding:0;background:transparent;color:#e9e6df;border:0;display:flex;flex-direction:column;justify-content:flex-start;transition:opacity .85s cubic-bezier(.22,.61,.36,1),transform .85s cubic-bezier(.22,.61,.36,1)}
 .article-reader-card.is-switching,.article-reader-card.is-exiting{opacity:0;transform:translateY(-8px) scale(1.004)}
 .article-reader-card.is-entering{opacity:0;transform:translateY(10px) scale(.996)}
 .article-reader-card p{margin:0;font-family:Arial,Helvetica,sans-serif;font-size:27px;line-height:1.43;letter-spacing:-.006em}
-.article-reader-card .article-reader-label{margin-bottom:14px;font:700 11px/1 "Gobold",Arial,sans-serif;color:#9b571b;letter-spacing:.1em;text-transform:uppercase}
+.article-reader-card .article-reader-label{display:none}
 .article-reader-card .article-reader-page{margin-top:auto;padding-top:18px;font:700 10px/1 Arial,sans-serif;color:#777168;letter-spacing:.06em;text-transform:uppercase}
 .article-reader-card .article-reader-source{margin-top:8px;font-size:11px;line-height:1.25;color:#635e57}
 .stage.split-desk .progress{height:4px}
-.stage.split-desk.event-reader .story-context .article-reader-card{background:#171717;color:#eee;border-color:#343434}
+.stage.split-desk.event-reader .story-context .article-reader-card{background:transparent;color:#eee;border:0}
 .stage.split-desk.event-reader .article-reader-card p{font-family:Arial,Helvetica,sans-serif;font-size:20px;line-height:1.45}
 @media (prefers-reduced-motion:reduce){
   .article-reader-card{transition:none}
@@ -102,12 +102,12 @@ h1{margin:0 0 25px;font-family:Arial,Helvetica,sans-serif;font-size:42px;line-he
 /* Dark editorial article reader */
 .article-reader-card{
   position:relative;
-  background:linear-gradient(180deg,#111317 0%,#0c0d10 100%);
+  background:transparent;
   color:#e9e6df;
-  border:1px solid #292c31;
-  box-shadow:inset 3px 0 0 rgba(242,139,37,.82),0 16px 40px rgba(0,0,0,.24);
+  border:0;
+  box-shadow:none;
 }
-.article-reader-card:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.025),transparent 22%);opacity:.8}
+.article-reader-card:after{display:none}
 .article-reader-body{position:relative;z-index:1;min-height:0;overflow:hidden}
 .article-reader-body p{margin:0 0 16px;font-family:Arial,Helvetica,sans-serif;font-size:27px;line-height:1.43;letter-spacing:-.003em;color:#e7e3da}
 .article-reader-body p:last-child{margin-bottom:0}
@@ -120,10 +120,10 @@ h1{margin:0 0 25px;font-family:Arial,Helvetica,sans-serif;font-size:42px;line-he
 .article-reader-list-item{display:grid;grid-template-columns:12px 1fr;gap:9px;align-items:start;margin:0 0 12px}
 .article-reader-list-item>span{color:var(--accent);font-size:14px;line-height:1.65}
 .article-reader-list-item p{margin:0}
-.article-reader-card .article-reader-label{color:var(--accent);position:relative;z-index:1}
+.article-reader-card .article-reader-label{display:none}
 .article-reader-card .article-reader-page{color:#817c73;position:relative;z-index:1;border-top:1px solid #25282c;margin-top:auto}
-.article-reader-card .article-reader-source{color:#9a958c;position:relative;z-index:1}
-.stage.split-desk.event-reader .story-context .article-reader-card{background:linear-gradient(180deg,#111317,#0c0d10);color:#e9e6df;border-color:#292c31}
+.article-reader-card .article-reader-source{display:none}
+.stage.split-desk.event-reader .story-context .article-reader-card{background:transparent;color:#e9e6df;border:0}
 .stage.split-desk.event-reader .article-reader-body p{font-family:Arial,Helvetica,sans-serif;font-size:25px;line-height:1.43;color:#e0dcd4}
 .stage.split-desk .story-context .article-reader-card{position:absolute;inset:0;width:100%;z-index:1}
 .stage.split-desk .story-context .article-reader-card.is-entering{z-index:2}
