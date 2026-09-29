@@ -39,6 +39,13 @@
     if (!description) add('warning', 'Description is empty', 'The article can publish, but its listing and social summary will have no description.');
     if (!expandedBody.trim()) add('warning', 'Article body is empty', 'There is no article content below the front matter.');
     if (fields.imagePath.value.trim() && !fields.imageAlt.value.trim()) add('warning', 'Featured image alt text is missing', 'Add a short description of the featured image for accessibility.');
+    if (fields.homeFeature?.checked && !fields.homeFeatureUntil?.value) add('blocker', 'Homepage lead needs an end time', 'Choose when this article should stop being the homepage lead.');
+    if (fields.homeFeature?.checked && fields.homeFeatureUntil?.value) {
+      const homeFeatureUntil = new Date(fields.homeFeatureUntil.value);
+      if (!Number.isNaN(homeFeatureUntil.getTime()) && homeFeatureUntil.getTime() <= Date.now()) {
+        add('warning', 'Homepage lead end time has passed', 'The article will save, but it will not take over the homepage unless you choose a future end time.');
+      }
+    }
     if (/!\[\s*\]\([^)]+\)/.test(body)) add('warning', 'Inline image is missing alt text', 'At least one Markdown image uses ![](...) with no description.');
     if (dirty) add('warning', 'Unsaved local changes', currentPath
       ? 'This article has changes that have not yet been saved to GitHub. Publishing will save the current version.'
@@ -98,6 +105,10 @@
     if (!fields.date.value) throw new Error('Choose an article date.');
     if (!fields.filename.value.trim()) throw new Error('Add a filename.');
     if (!/^\d{4}-\d{2}-\d{2}-.+\.md$/i.test(fields.filename.value.trim())) throw new Error('Filename must look like YYYY-MM-DD-article-name.md.');
+    if (fields.homeFeature?.checked) {
+      const homeFeatureUntil = new Date(fields.homeFeatureUntil?.value || '');
+      if (!fields.homeFeatureUntil?.value || Number.isNaN(homeFeatureUntil.getTime())) throw new Error('Choose a valid homepage lead end time first.');
+    }
     if (mode === 'schedule') {
       const when = new Date(fields.publishAt.value);
       if (!fields.publishAt.value || Number.isNaN(when.getTime())) throw new Error('Choose a valid publication date and time first.');
