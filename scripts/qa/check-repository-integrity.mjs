@@ -10,7 +10,8 @@ const SAME_ORIGIN_VIDEO_COMPATIBILITY_EXCEPTIONS = new Set([
   'assets/article-media/rosas-jr-vs-barcelos-ufc-vegas-121-video-20260924-193315-968.mp4',
   'assets/article-media/rosas-jr-vs-barcelos-ufc-vegas-121-video-20260925-011655-703.mp4'
 ]);
-const ARTICLE_UPLOAD = /^assets\/uploads\/articles\/\d{4}\/(?:0[1-9]|1[0-2])\/[a-z0-9][a-z0-9-]*\/[^/]+\.(?:png|jpe?g|webp|gif|avif|svg)$/i;\nconst RUNTIME_UPLOADS = new Set(['assets/uploads/runtime/live-writer.json']);
+const ARTICLE_UPLOAD = /^assets\/uploads\/articles\/\d{4}\/(?:0[1-9]|1[0-2])\/[a-z0-9][a-z0-9-]*\/[^/]+\.(?:png|jpe?g|webp|gif|avif|svg)$/i;
+const RUNTIME_UPLOADS = new Set(['assets/uploads/runtime/live-writer.json']);
 
 const requiredFiles = [
   '_config.yml',
@@ -96,7 +97,8 @@ if (legacySet.size !== legacyPaths.length) errors.push('Legacy media manifest co
 
 const currentLegacyUploads = tracked.filter(file =>
   file.startsWith('assets/uploads/') &&
-  !file.startsWith('assets/uploads/articles/')
+  !file.startsWith('assets/uploads/articles/') &&
+  !RUNTIME_UPLOADS.has(file)
 );
 for (const file of currentLegacyUploads) {
   if (!legacySet.has(file)) {
