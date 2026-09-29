@@ -1,6 +1,6 @@
 import { corsHeaders, isAllowedOrigin, normalizeOrigin } from './_github-auth.mjs';
 import { getWriterSession } from './_writer-session.mjs';
-import { endLiveRecord, publicLiveRecord, readLiveRecord, writeLiveRecord } from './_writer-live.mjs';
+import { publicLiveRecord, readLiveRecord, writeLiveRecord } from './_writer-live.mjs';
 
 function sessionId(request) {
   return request.headers.get('x-writer-session') || '';
@@ -16,7 +16,7 @@ export default async function handler(request) {
       status: 204,
       headers: {
         ...headers,
-        'Access-Control-Allow-Methods': 'GET, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Methods': 'GET, PUT, OPTIONS',
         'Access-Control-Allow-Headers': 'Accept, Content-Type, X-Writer-Session'
       }
     });
@@ -42,18 +42,13 @@ export default async function handler(request) {
       const record = await writeLiveRecord(body, { login: session.login || 'Matlock' });
       return Response.json({ ok: true, live: publicLiveRecord(record) }, { status: 200, headers });
     } catch (error) {
-      return Response.json({ ok: false, error: error.message || 'Could not update live writer.' }, { status: 400, headers });
+      return Response.json({ ok: false, error: error.message || 'Could not update Live Writer.' }, { status: 400, headers });
     }
-  }
-
-  if (request.method === 'DELETE') {
-    const record = await endLiveRecord({ login: session.login || 'Matlock' });
-    return Response.json({ ok: true, live: publicLiveRecord(record) }, { status: 200, headers });
   }
 
   return Response.json(
     { ok: false, error: 'Method not allowed' },
-    { status: 405, headers: { ...headers, Allow: 'GET, PUT, DELETE, OPTIONS' } }
+    { status: 405, headers: { ...headers, Allow: 'GET, PUT, OPTIONS' } }
   );
 }
 
