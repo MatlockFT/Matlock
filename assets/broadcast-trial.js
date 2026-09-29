@@ -104,7 +104,7 @@ function cleanContext(value){
   const codeLike=/(?:function\s*\(|=>|\bconst\s+\w+\s*=|\bvar\s+\w+\s*=|window\.|document\.|webpack|__NEXT_DATA__|application\/ld\+json|<\/?script|\{\s*["'][\w-]+["']\s*:)/i;
   const punctuation=(text.match(/[{};=<>]/g)||[]).length;
   if(codeLike.test(text)||punctuation>Math.max(8,text.length*.035))return"";
-  return text.slice(0,1400);
+  return text;
 }
 function contextFacts(value){
   const text=cleanContext(value);if(!text)return[];
@@ -368,8 +368,16 @@ function fadeVideoOut(done){if(!videoPlayer||typeof videoPlayer.getVolume!=="fun
 function beginProgress(ms,startPercent=0){els.progress.style.transition="none";els.progress.style.width=Math.max(0,Math.min(100,Number(startPercent)||0))+"%";requestAnimationFrame(()=>{els.progress.style.transition="width "+ms+"ms linear";els.progress.style.width="100%"})}
 function articleReaderText(slide){
   if(slide.type==="event")return (Array.isArray(slide.context)?slide.context:contextFacts(slide.context)).join(" ");
-  const parts=[cleanContext(slide.context||""),cleanContext(slide.excerpt||"")].filter(Boolean);
-  return [...new Set(parts)].join(" ");
+  const full=cleanContext(slide.fullText||"");
+  if(full)return full;
+  const context=cleanContext(slide.context||""),excerpt=cleanContext(slide.excerpt||"");
+  if(context&&excerpt){
+    const a=context.toLowerCase(),b=excerpt.toLowerCase();
+    if(a.includes(b))return context;
+    if(b.includes(a))return excerpt;
+    return context+" "+excerpt;
+  }
+  return context||excerpt;
 }
 function safeReaderInline(value){
   const template=document.createElement("template");template.innerHTML=String(value||"");
@@ -399,20 +407,41 @@ function readerBlockHtml(block){
   if(type==="h2"||type==="h3")return"<"+type+">"+inline+"</"+type+">";
   return"<p>"+inline+"</p>";
 }
-function plainReaderCards(text,max){
-  if(!text)return[];
-  const sentences=text.split(/(?<=[.!?])\s+(?=[A-Z0-9“"'(])/).map(x=>x.trim()).filter(Boolean);
-  const cards=[];let current="";
-  for(const sentence of sentences){
-    if(current&&current.length+1+sentence.length>max){cards.push({html:"<p>"+escapeHtml(current)+"</p>"});current=sentence}
-    else current=current?current+" "+sentence:sentence;
+function readerTextChunks(text,max){
+  const source=String(text||"").replace(/\s+/g," ").trim();
+  if(!source)return[];
+  const sentences=source.split(/(?<=[.!?])\s+(?=[A-Z0-9“"'(])/).map(x=>x.trim()).filter(Boolean);
+  const units=sentences.length?sentences:[source],chunks=[];
+  let current="";
+  const flush=()=>{if(current){chunks.push(current);current=""}};
+  const addWords=value=>{
+    const words=String(value||"").split(/\s+/).filter(Boolean);
+    for(const word of words){
+      if(word.length>max){
+        flush();
+        for(let i=0;i<word.length;i+=max)chunks.push(word.slice(i,i+max));
+        continue;
+      }
+      const candidate=current?current+" "+word:word;
+      if(candidate.length>max){flush();current=word}
+      else current=candidate;
+    }
+  };
+  for(const unit of units){
+    if(unit.length>max){flush();addWords(unit);flush();continue}
+    const candidate=current?current+" "+unit:unit;
+    if(candidate.length>max){flush();current=unit}
+    else current=candidate;
   }
-  if(current)cards.push({html:"<p>"+escapeHtml(current)+"</p>"});
-  return cards.length?cards:[{html:"<p>"+escapeHtml(text.slice(0,max))+"</p>"}];
+  flush();
+  return chunks;
+}
+function plainReaderCards(text,max){
+  return readerTextChunks(text,max).map(chunk=>({html:"<p>"+escapeHtml(chunk)+"</p>"}));
 }
 function articleReaderCards(slide){
   const max=Math.max(200,Math.min(320,Number(cfg().visual.articleCharsPerCard||320)));
-  const sourceBlocks=Array.isArray(slide.contextBlocks)?slide.contextBlocks.filter(Boolean):[];
+  const sourceBlocks=Array.isArray(slide.fullTextBlocks)&&slide.fullTextBlocks.length?slide.fullTextBlocks.filter(Boolean):(Array.isArray(slide.contextBlocks)?slide.contextBlocks.filter(Boolean):[]);
   if(sourceBlocks.length){
     const cards=[];let html="",count=0;
     const flush=()=>{if(html){cards.push({html});html="";count=0}};
