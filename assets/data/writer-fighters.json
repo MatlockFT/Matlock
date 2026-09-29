@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "generatedAt": "2026-09-28T16:59:22.005Z",
-  "builtAt": "2026-09-29T18:04:09.540Z",
+  "builtAt": "2026-09-29T20:56:32.051Z",
   "mirrorThrough": "2026-09-26",
   "sources": {
     "fighters": "https://raw.githubusercontent.com/Greco1899/scrape_ufc_stats/main/ufc_fighter_details.csv",
@@ -21,7 +21,7 @@
     "withCareer": 734,
     "sherdogCareer": {
       "mode": "live-on-selection",
-      "targets": 8,
+      "targets": 10,
       "resolved": 0,
       "missed": 0,
       "appliedFromCache": 0,
@@ -1893,7 +1893,13 @@
       "recordOutsideUfc": "5-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-02/TOPURIA_ALEKSANDRE_R_02-08.png?itok=v-giNC1x",
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Santiago Luna",
+        "opponentId": "santiago-luna"
+      },
       "checkedAt": "2026-09-26T11:42:32.000Z",
       "ufcStatsId": "4a6dff1b260bcf61",
       "sourceUrl": "https://ufcstats.com/fighter-details/4a6dff1b260bcf61",
@@ -1968,7 +1974,13 @@
       "recordOutsideUfc": "12-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/COSTA_ALESSANDRO_L_07-11.png?itok=okElYxK7",
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Amir Albazi",
+        "opponentId": "amir-albazi"
+      },
       "checkedAt": "2026-09-26T11:42:32.009Z",
       "ufcStatsId": "3fa97913cfd205d3",
       "sourceUrl": "https://ufcstats.com/fighter-details/3fa97913cfd205d3",
@@ -3471,7 +3483,11 @@
       "recordOutsideUfc": "6-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/PEREIRA_ALICE_L_04-04.png?itok=971jtgjZ",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:32.108Z",
       "ufcStatsId": "81d2c551886bd5a1",
       "sourceUrl": "https://ufcstats.com/fighter-details/81d2c551886bd5a1",
@@ -3741,7 +3757,11 @@
       "recordOutsideUfc": "6-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/FRYE_ALLEN_L_12-13.png?itok=JTD8nXM0",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:32.179Z",
       "ufcStatsId": "73a78713bd899f4c",
       "sourceUrl": "https://ufcstats.com/fighter-details/73a78713bd899f4c",
@@ -3951,7 +3971,11 @@
       "recordOutsideUfc": "7-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/HINES_ALVIN_R_06-28.png?itok=4Yj9bfkr",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:32.189Z",
       "ufcStatsId": "ab2a4b5e04dc5fe9",
       "sourceUrl": "https://ufcstats.com/fighter-details/ab2a4b5e04dc5fe9",
@@ -4347,7 +4371,13 @@
       "recordOutsideUfc": "12-1-0",
       "rank": 9,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/ALBAZI_AMIR_L_02-07.png?itok=eWJL3Orf",
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Alessandro Costa",
+        "opponentId": "alessandro-costa"
+      },
       "checkedAt": "2026-09-28T16:59:24.787Z",
       "ufcStatsId": "6d35bf94f7d30241",
       "sourceUrl": "https://ufcstats.com/fighter-details/6d35bf94f7d30241",
@@ -4631,7 +4661,11 @@
       "recordOutsideUfc": "12-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/FILI_ANDRE_L_03-14.png?itok=Zud7jwf3",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:32.205Z",
       "ufcStatsId": "8fd808923cffff82",
       "sourceUrl": "https://ufcstats.com/fighter-details/8fd808923cffff82",
@@ -4841,7 +4875,11 @@
       "recordOutsideUfc": "5-2-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-12/3/PETROSKI_ANDRE_L_09-07.png?itok=XRHPUO-h",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "checkedAt": "2026-09-26T11:42:32.225Z",
       "ufcStatsId": "5f61780fe5e9b6d0",
       "sourceUrl": "https://ufcstats.com/fighter-details/5f61780fe5e9b6d0",
@@ -6458,7 +6496,13 @@
       "recordOutsideUfc": "17-2-0",
       "rank": 7,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ALMABAYEV_ASU_L_06-27.png?itok=Y0SjNrdV",
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Kyoji Horiguchi",
+        "opponentId": "kyoji-horiguchi"
+      },
       "checkedAt": "2026-09-28T16:59:24.890Z",
       "ufcStatsId": "8d3273573b85be09",
       "sourceUrl": "https://ufcstats.com/fighter-details/8d3273573b85be09",
@@ -6689,7 +6733,11 @@
       "recordOutsideUfc": "13-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/BASHI_AUSTIN_L_07-18.png?itok=ICEox51M",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:32.371Z",
       "ufcStatsId": "d3f89fa685bd8420",
       "sourceUrl": "https://ufcstats.com/fighter-details/d3f89fa685bd8420",
@@ -7089,7 +7137,11 @@
       "recordOutsideUfc": "18-3-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/BEKOEV_AZAMAT_L_04-04.png?itok=a6lk_o5N",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "checkedAt": "2026-09-26T11:42:32.470Z",
       "ufcStatsId": "3bc3f60b21cddc6a",
       "sourceUrl": "https://ufcstats.com/fighter-details/3bc3f60b21cddc6a",
@@ -8139,7 +8191,11 @@
       "recordOutsideUfc": "7-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/ELEKANA_BILLY_L_01-31.png?itok=l0IviRUv",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:32.524Z",
       "ufcStatsId": "07a74004d964c7f4",
       "sourceUrl": "https://ufcstats.com/fighter-details/07a74004d964c7f4",
@@ -9729,7 +9785,11 @@
       "recordOutsideUfc": "15-5-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-02/RIBEIRO_BRENDSON_L_02-17.png?itok=T2HXVKsB",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:32.728Z",
       "ufcStatsId": "49edd0d90f60fb7d",
       "sourceUrl": "https://ufcstats.com/fighter-details/49edd0d90f60fb7d",
@@ -11258,7 +11318,11 @@
       "recordOutsideUfc": "21-5-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-11/LEAL_CARLOS_L_10-26.png?itok=ZJxDU-p0",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "checkedAt": "2026-09-26T11:42:32.833Z",
       "ufcStatsId": "28d421729451c8ca",
       "sourceUrl": "https://ufcstats.com/fighter-details/28d421729451c8ca",
@@ -18187,7 +18251,11 @@
       "recordOutsideUfc": "8-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/ZHELEZNIAKOVA_DARIA_L_06-21.png?itok=2_fWceIz",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:34.264Z",
       "ufcStatsId": "07047eb7d17fb0a2",
       "sourceUrl": "https://ufcstats.com/fighter-details/07047eb7d17fb0a2",
@@ -18522,7 +18590,11 @@
       "recordOutsideUfc": "9-2-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/GRANT_DAVEY_L_04-25.png?itok=eXuCU5Cp",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:34.281Z",
       "ufcStatsId": "113df4fde64735c6",
       "sourceUrl": "https://ufcstats.com/fighter-details/113df4fde64735c6",
@@ -22777,7 +22849,11 @@
       "recordOutsideUfc": "7-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/SMITH_ELIJAH_L_03-14.png?itok=3MoxFy9W",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:34.698Z",
       "ufcStatsId": "7478b7f959ba61f5",
       "sourceUrl": "https://ufcstats.com/fighter-details/7478b7f959ba61f5",
@@ -23643,7 +23719,11 @@
       "recordOutsideUfc": "5-0-1",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-01/9/KARECKAITE_ERNESTA_L_01-11.png?itok=1zansFiR",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:34.795Z",
       "ufcStatsId": "e4faa79383c9f214",
       "sourceUrl": "https://ufcstats.com/fighter-details/e4faa79383c9f214",
@@ -24522,7 +24602,11 @@
       "recordOutsideUfc": "5-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/HASANOV_FARMAN_L_06-27.png?itok=_Ex8iG6f",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "checkedAt": "2026-09-26T11:42:34.897Z",
       "ufcStatsId": "c88f8a9c1ea7165d",
       "sourceUrl": "https://ufcstats.com/fighter-details/c88f8a9c1ea7165d",
@@ -24692,7 +24776,11 @@
       "recordOutsideUfc": "10-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/FRANCO_FELIPE_R_03-21.png?itok=B1SXaZg8",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:34.902Z",
       "ufcStatsId": "e564146b9cf6dbef",
       "sourceUrl": "https://ufcstats.com/fighter-details/e564146b9cf6dbef",
@@ -25207,7 +25295,11 @@
       "recordOutsideUfc": "6-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/MARSHALL_FRANCIS_L_04-25.png?itok=Dz7HMd3L",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "checkedAt": "2026-09-26T11:42:34.939Z",
       "ufcStatsId": "5d495dec23d7c68e",
       "sourceUrl": "https://ufcstats.com/fighter-details/5d495dec23d7c68e",
@@ -25312,7 +25404,11 @@
       "recordOutsideUfc": "11-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-07/PRADO_FRANCISCO_L_07-19.png?itok=DtuntsjN",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:34.933Z",
       "ufcStatsId": "3920d0cc288f9b0d",
       "sourceUrl": "https://ufcstats.com/fighter-details/3920d0cc288f9b0d",
@@ -25881,7 +25977,11 @@
       "recordOutsideUfc": "1-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-09/LORENCO_GABRIEL_L_09-01.png?itok=NdbmVc1d",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:35.030Z",
       "ufcStatsId": "e3fc6c1fab298561",
       "sourceUrl": "https://ufcstats.com/fighter-details/e3fc6c1fab298561",
@@ -26016,7 +26116,11 @@
       "recordOutsideUfc": "8-1-0",
       "rank": 14,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/FERNANDES_GABRIELLA_L_08-09.png?itok=sUYuxLOm",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-28T16:59:25.770Z",
       "ufcStatsId": "a6eb54ae17a551be",
       "sourceUrl": "https://ufcstats.com/fighter-details/a6eb54ae17a551be",
@@ -26300,7 +26404,11 @@
       "recordOutsideUfc": "6-3-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/BOLANOS_GASTON_L_06-20.png?itok=WvUQBhDT",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "checkedAt": "2026-09-26T11:42:35.086Z",
       "ufcStatsId": "96924b0019b3aff1",
       "sourceUrl": "https://ufcstats.com/fighter-details/96924b0019b3aff1",
@@ -26645,7 +26753,11 @@
       "recordOutsideUfc": "27-8-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/MEERSCHAERT_GERALD_L_08-16.png?itok=ZSkiqY23",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:35.103Z",
       "ufcStatsId": "6ac9bc2953c47345",
       "sourceUrl": "https://ufcstats.com/fighter-details/6ac9bc2953c47345",
@@ -29556,7 +29668,13 @@
       "recordOutsideUfc": "13-1-0",
       "rank": 13,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ALISKEROV_IKRAM_L_06-27.png?itok=3ij01m2a",
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Jared Cannonier",
+        "opponentId": "jared-cannonier"
+      },
       "checkedAt": "2026-09-28T16:59:25.937Z",
       "ufcStatsId": "b07aed698fba8624",
       "sourceUrl": "https://ufcstats.com/fighter-details/b07aed698fba8624",
@@ -30377,7 +30495,11 @@
       "recordOutsideUfc": "18-3-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/BONFIM_ISMAEL_L_07-25.png?itok=HPyzWmnE",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:35.443Z",
       "ufcStatsId": "eb393afdbe3293d5",
       "sourceUrl": "https://ufcstats.com/fighter-details/eb393afdbe3293d5",
@@ -31864,7 +31986,11 @@
       "recordOutsideUfc": "10-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/HERBERT_JAI_L_03-22.png?itok=dCAcIrpk",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:35.703Z",
       "ufcStatsId": "4c88a1db5a46c6a4",
       "sourceUrl": "https://ufcstats.com/fighter-details/4c88a1db5a46c6a4",
@@ -32154,7 +32280,13 @@
       "recordOutsideUfc": "7-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/MATTHEWS_JAKE_L_05-30.png?itok=kYM4Kq87",
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Tahir Abdullayev",
+        "opponentId": "tahir-abdullayev"
+      },
       "checkedAt": "2026-09-26T11:42:35.754Z",
       "ufcStatsId": "a845f0735bc67405",
       "sourceUrl": "https://ufcstats.com/fighter-details/a845f0735bc67405",
@@ -33340,7 +33472,13 @@
       "recordOutsideUfc": "9-0-0",
       "rank": 11,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/CANNONIER_JARED_L_07-18.png?itok=_lep6e-l",
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Ikram Aliskerov",
+        "opponentId": "ikram-aliskerov"
+      },
       "checkedAt": "2026-09-28T16:59:26.177Z",
       "ufcStatsId": "13a0275fa13c4d26",
       "sourceUrl": "https://ufcstats.com/fighter-details/13a0275fa13c4d26",
@@ -33887,7 +34025,11 @@
       "recordOutsideUfc": "9-2-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/LEBOSNOYANI_JEAN-PAUL_R_02-21.png?itok=FM_JbPj8",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "checkedAt": "2026-09-26T11:42:35.886Z",
       "ufcStatsId": "a3dda21be645be93",
       "sourceUrl": "https://ufcstats.com/fighter-details/a3dda21be645be93",
@@ -34312,7 +34454,11 @@
       "recordOutsideUfc": "9-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/LEE_JEONGYEONG_L_03-07.png?itok=Znq_QNLd",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "checkedAt": "2026-09-26T11:42:35.924Z",
       "ufcStatsId": "d008d785f6347dc2",
       "sourceUrl": "https://ufcstats.com/fighter-details/d008d785f6347dc2",
@@ -37219,7 +37365,11 @@
       "recordOutsideUfc": "8-3-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-07/PARSONS_JONNY_L_07-22.png?itok=r2aeVJ95",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:36.207Z",
       "ufcStatsId": "2975297f505e9447",
       "sourceUrl": "https://ufcstats.com/fighter-details/2975297f505e9447",
@@ -37588,7 +37738,11 @@
       "recordOutsideUfc": "16-3-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/DELANO_JOSE_L_04-04.png?itok=yx6OJq5I",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:36.267Z",
       "ufcStatsId": "d7c4956d61ae76a9",
       "sourceUrl": "https://ufcstats.com/fighter-details/d7c4956d61ae76a9",
@@ -37653,7 +37807,11 @@
       "recordOutsideUfc": "8-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/SOUZA_JOSE_R_05-30.png?itok=-YP5UjdJ",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:36.275Z",
       "ufcStatsId": "20a0e4cc5227c117",
       "sourceUrl": "https://ufcstats.com/fighter-details/20a0e4cc5227c117",
@@ -39679,7 +39837,11 @@
       "recordOutsideUfc": "23-5-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/EROSA_JULIAN_L_03-28.png?itok=QBTJINN6",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "checkedAt": "2026-09-26T11:42:36.408Z",
       "ufcStatsId": "902ec2cc48c8ae8a",
       "sourceUrl": "https://ufcstats.com/fighter-details/902ec2cc48c8ae8a",
@@ -40105,7 +40267,11 @@
       "recordOutsideUfc": "6-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/WALKER_JULIUS_L_08-09.png?itok=U6ZUMaBd",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:36.485Z",
       "ufcStatsId": "6add18754930182b",
       "sourceUrl": "https://ufcstats.com/fighter-details/6add18754930182b",
@@ -40950,7 +41116,11 @@
       "recordOutsideUfc": "17-7-1",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/KAMAKA_KAI_L_04-04.png?itok=608oMHfq",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:36.604Z",
       "ufcStatsId": "eee0ef3e2b14816b",
       "sourceUrl": "https://ufcstats.com/fighter-details/eee0ef3e2b14816b",
@@ -41485,7 +41655,11 @@
       "recordOutsideUfc": "14-4-0",
       "rank": 11,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-08/SILVA_KARINE_L_08-16.png?itok=6JdZdcEV",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-28T16:59:26.565Z",
       "ufcStatsId": "9d62c2d8ee151f08",
       "sourceUrl": "https://ufcstats.com/fighter-details/9d62c2d8ee151f08",
@@ -42326,7 +42500,11 @@
       "recordOutsideUfc": "8-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-01/NAKAMURA_KEIICHIRO_L_01-31.png?itok=-vL6J_TE",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:36.689Z",
       "ufcStatsId": "",
       "sourceUrl": null,
@@ -42690,7 +42868,11 @@
       "recordOutsideUfc": "13-3-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/SOUZA_KETLEN_L_06-06.png?itok=6jQmx9wf",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:36.718Z",
       "ufcStatsId": "8bd4200561c77a62",
       "sourceUrl": "https://ufcstats.com/fighter-details/8bd4200561c77a62",
@@ -44727,7 +44909,13 @@
       "recordOutsideUfc": "27-4-0",
       "rank": 5,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/HORIGUCHI_KYOJI_R_11-22.png?itok=Dn6SxnwP",
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Asu Almabayev",
+        "opponentId": "asu-almabayev"
+      },
       "checkedAt": "2026-09-28T16:59:26.720Z",
       "ufcStatsId": "98aa60cf58071fd6",
       "sourceUrl": "https://ufcstats.com/fighter-details/98aa60cf58071fd6",
@@ -45272,7 +45460,11 @@
       "recordOutsideUfc": "12-4-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/SHAHBAZYAN_LEON_L_06-20.png?itok=ToSA3_7-",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:36.997Z",
       "ufcStatsId": "9eed2bcc9e0b92af",
       "sourceUrl": "https://ufcstats.com/fighter-details/9eed2bcc9e0b92af",
@@ -46185,7 +46377,11 @@
       "recordOutsideUfc": "4-0-0",
       "rank": 8,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-03/GODINEZ_LOOPY_L_03-29.png?itok=GYu4a1a8",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-28T16:59:26.784Z",
       "ufcStatsId": "8e5d953bdb9ae5e7",
       "sourceUrl": "https://ufcstats.com/fighter-details/8e5d953bdb9ae5e7",
@@ -46777,7 +46973,11 @@
       "recordOutsideUfc": "5-1-0",
       "rank": 7,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/SANTOS_LUANA_L_05-17.png?itok=F9R3I5g7",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "checkedAt": "2026-09-28T16:59:26.835Z",
       "ufcStatsId": "5078e1dacf9d25f4",
       "sourceUrl": "https://ufcstats.com/fighter-details/5078e1dacf9d25f4",
@@ -46994,7 +47194,11 @@
       "recordOutsideUfc": "11-2-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/BRENNAN_LUCAS_R_04-25.png?itok=ajTVXdf5",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:37.221Z",
       "ufcStatsId": "33a8708747b7f943",
       "sourceUrl": "https://ufcstats.com/fighter-details/33a8708747b7f943",
@@ -47059,7 +47263,11 @@
       "recordOutsideUfc": "13-3-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/FERNANDO_LUCAS_R_08-15.png?itok=T9Ij6iMO",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-28T16:59:26.856Z",
       "ufcStatsId": "3df223aeaacecf3f",
       "sourceUrl": "https://ufcstats.com/fighter-details/3df223aeaacecf3f",
@@ -48765,7 +48973,11 @@
       "recordOutsideUfc": "8-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/WELLMAKER_MALCOM_L_05-16.png?itok=5FHWs2Te",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:37.414Z",
       "ufcStatsId": "2e45d08b3f2f02c8",
       "sourceUrl": "https://ufcstats.com/fighter-details/2e45d08b3f2f02c8",
@@ -49601,7 +49813,11 @@
       "recordOutsideUfc": "8-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/KONDRATAVICIUS_MANTAS_L_03-21.png?itok=vn9NYCgj",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:37.527Z",
       "ufcStatsId": "3cc506f115cbb9d5",
       "sourceUrl": "https://ufcstats.com/fighter-details/3cc506f115cbb9d5",
@@ -52343,7 +52559,11 @@
       "recordOutsideUfc": "9-2-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/CAMILO_MATHEUS_R.png?itok=YPpivJ_i",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:37.850Z",
       "ufcStatsId": "72f890c5d421e705",
       "sourceUrl": "https://ufcstats.com/fighter-details/72f890c5d421e705",
@@ -53254,7 +53474,11 @@
       "recordOutsideUfc": "6-0-2",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2024-03/GATTO_MELISSA_L_07-01.png?itok=xSfep8cI",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:37.896Z",
       "ufcStatsId": "a4a80dd7336ffd59",
       "sourceUrl": "https://ufcstats.com/fighter-details/a4a80dd7336ffd59",
@@ -56949,7 +57173,11 @@
       "recordOutsideUfc": "10-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/MAGOMEDOV_MURTAZLI_R_06-20.png?itok=wXAJELZD",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:38.326Z",
       "ufcStatsId": "d436f5d55156a521",
       "sourceUrl": "https://ufcstats.com/fighter-details/d436f5d55156a521",
@@ -59006,7 +59234,11 @@
       "recordOutsideUfc": "8-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/PRICE_NIKO_L_06-28.png?itok=pV3E99ve",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:38.545Z",
       "ufcStatsId": "d8da10db80131bec",
       "sourceUrl": "https://ufcstats.com/fighter-details/d8da10db80131bec",
@@ -59386,7 +59618,11 @@
       "recordOutsideUfc": "8-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/MILOSEVIC_NINA_L_08-01.png?itok=6zq_3wtV",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-28T16:59:27.458Z",
       "ufcStatsId": "eabece0edc2d62ca",
       "sourceUrl": "https://ufcstats.com/fighter-details/eabece0edc2d62ca",
@@ -60267,7 +60503,11 @@
       "recordOutsideUfc": "4-2-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/SCHMID_OLLIE_R_05-02.png?itok=yb6L6zTk",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:38.604Z",
       "ufcStatsId": "b701f095e6ccb149",
       "sourceUrl": "https://ufcstats.com/fighter-details/b701f095e6ccb149",
@@ -60412,7 +60652,11 @@
       "recordOutsideUfc": "10-1-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/TANZILOVI_OTARI_R_06-20.png?itok=0A7J24BS",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:38.645Z",
       "ufcStatsId": "b9124c308671e303",
       "sourceUrl": "https://ufcstats.com/fighter-details/b9124c308671e303",
@@ -62114,7 +62358,11 @@
       "recordOutsideUfc": "7-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-03/RODRIGUEZ_PIERA_L_03-14.png?itok=UDMKBpY8",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "checkedAt": "2026-09-26T11:42:38.783Z",
       "ufcStatsId": "e375cb5caf4717b6",
       "sourceUrl": "https://ufcstats.com/fighter-details/e375cb5caf4717b6",
@@ -62364,7 +62612,11 @@
       "recordOutsideUfc": "8-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/CACHOEIRA_PRISCILA_L_06-06.png?itok=FFiYkCQu",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:38.809Z",
       "ufcStatsId": "b1e5bcaad32a3cac",
       "sourceUrl": "https://ufcstats.com/fighter-details/b1e5bcaad32a3cac",
@@ -63815,7 +64067,11 @@
       "recordOutsideUfc": "6-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-04/BROWN_RANDY_L_04-26.png?itok=alaUuEEQ",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "checkedAt": "2026-09-26T11:42:38.953Z",
       "ufcStatsId": "c6aee362c7a7d482",
       "sourceUrl": "https://ufcstats.com/fighter-details/c6aee362c7a7d482",
@@ -65660,7 +65916,11 @@
       "recordOutsideUfc": "5-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/HARRIS_RJ_L_07-18.png?itok=688ZICwh",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "checkedAt": "2026-09-26T11:42:39.187Z",
       "ufcStatsId": "e03187ec8b5b6abc",
       "sourceUrl": "https://ufcstats.com/fighter-details/e03187ec8b5b6abc",
@@ -66782,7 +67042,11 @@
       "recordOutsideUfc": "9-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-09/SEZINANDO_RODRIGO_L_09-13.png?itok=tmb-7P2Y",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "checkedAt": "2026-09-26T11:42:39.285Z",
       "ufcStatsId": "c06d6b18862f9a53",
       "sourceUrl": "https://ufcstats.com/fighter-details/c06d6b18862f9a53",
@@ -68686,7 +68950,13 @@
       "recordOutsideUfc": "5-0-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/LUNA_SANTIAGO_L_02-28.png?itok=zdTFJx55",
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Aleksandre Topuria",
+        "opponentId": "aleksandre-topuria"
+      },
       "checkedAt": "2026-09-26T11:42:39.422Z",
       "ufcStatsId": "faf317c665546a36",
       "sourceUrl": "https://ufcstats.com/fighter-details/faf317c665546a36",
@@ -69756,7 +70026,11 @@
       "recordOutsideUfc": "11-2-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-06/KO_SEOKHYEON_L_06-21.png?itok=QRZ7e0tm",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:39.511Z",
       "ufcStatsId": "4a07b1988477502c",
       "sourceUrl": "https://ufcstats.com/fighter-details/4a07b1988477502c",
@@ -73243,7 +73517,13 @@
       "recordOutsideUfc": "19-3-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ABDULLAYEV_TAHIR_L_06-27.png?itok=OjpS2GZ7",
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Jake Matthews",
+        "opponentId": "jake-matthews"
+      },
       "checkedAt": "2026-09-26T11:42:39.872Z",
       "ufcStatsId": "e047d3b541afd4a7",
       "sourceUrl": "https://ufcstats.com/fighter-details/e047d3b541afd4a7",
@@ -73684,7 +73964,11 @@
       "recordOutsideUfc": "4-0-1",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/ALENCAR_TALITA_L_04-25.png?itok=onBqiGWH",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "checkedAt": "2026-09-26T11:42:39.905Z",
       "ufcStatsId": "d35298b6df168456",
       "sourceUrl": "https://ufcstats.com/fighter-details/d35298b6df168456",
@@ -74180,7 +74464,11 @@
       "recordOutsideUfc": "4-0-0",
       "rank": 2,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/SUAREZ_TATIANA_L_04-11.png?itok=hkAiQqtr",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-28T16:59:28.255Z",
       "ufcStatsId": "b08012bbe542592a",
       "sourceUrl": "https://ufcstats.com/fighter-details/b08012bbe542592a",
@@ -74875,7 +75163,11 @@
       "recordOutsideUfc": "8-3-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/BERGGREN_THEODOR_R_06-27.png?itok=OcKsL0Tw",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "checkedAt": "2026-09-26T11:42:40.043Z",
       "ufcStatsId": "feef5f8f5629e5e7",
       "sourceUrl": "https://ufcstats.com/fighter-details/feef5f8f5629e5e7",
@@ -78581,7 +78873,11 @@
       "recordOutsideUfc": "14-0-0",
       "rank": 3,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-04/JANDIROBA_VIRNA_L_04-04.png?itok=AL1UZCHe",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-28T16:59:28.455Z",
       "ufcStatsId": "7dda2cf308f24a02",
       "sourceUrl": "https://ufcstats.com/fighter-details/7dda2cf308f24a02",
@@ -79192,7 +79488,11 @@
       "recordOutsideUfc": "15-2-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2023-11/TURMAN_WELLINGTON_L_12-02.png?itok=icqJ0amp",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-26T11:42:40.395Z",
       "ufcStatsId": "4dcfb28c011c11b2",
       "sourceUrl": "https://ufcstats.com/fighter-details/4dcfb28c011c11b2",
@@ -79331,7 +79631,11 @@
       "recordOutsideUfc": "8-2-0",
       "rank": null,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-08/SCHULTZ_WESLEY_L_08-22.png?itok=1WjwlRQ3",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "checkedAt": "2026-09-28T16:59:28.493Z",
       "ufcStatsId": "b4443fae47e7eb9d",
       "sourceUrl": "https://ufcstats.com/fighter-details/b4443fae47e7eb9d",
@@ -80080,7 +80384,11 @@
       "recordOutsideUfc": "10-3-0",
       "rank": 6,
       "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-05/SANTOS_YANA_L_05-03.png?itok=pkR_XniN",
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "checkedAt": "2026-09-28T16:59:28.550Z",
       "ufcStatsId": "3143bf892608139a",
       "sourceUrl": "https://ufcstats.com/fighter-details/3143bf892608139a",
