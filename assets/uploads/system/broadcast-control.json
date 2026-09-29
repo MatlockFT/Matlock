@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "revision": 1790391028324,
-  "updatedAt": "2026-09-26T02:50:28.324Z",
+  "revision": 1790658658653,
+  "updatedAt": "2026-09-29T05:10:58.653Z",
   "modules": {
     "news": true,
     "video": true,
@@ -26,23 +26,23 @@
     "controlPollSeconds": 10
   },
   "news": {
-    "maxAgeHours": 48,
-    "maxItems": 16,
+    "maxAgeHours": 168,
+    "maxItems": 64,
     "sources": [],
     "requireContext": true,
     "contextFacts": 4
   },
   "video": {
-    "maxAgeHours": 48,
-    "maxItems": 8,
-    "minSeconds": 20,
-    "maxSeconds": 600,
+    "maxAgeHours": 168,
+    "maxItems": 32,
+    "minSeconds": 181,
+    "maxSeconds": 3600,
     "volume": 50,
     "channels": [],
     "playFull": true
   },
   "events": {
-    "maxItems": 3,
+    "maxItems": 12,
     "usePosters": true
   },
   "audio": {
@@ -60,7 +60,7 @@
     "layout": "splitDesk",
     "videoWidth": 76,
     "articleCardSeconds": 9,
-    "articleCharsPerCard": 340,
+    "articleCharsPerCard": 320,
     "flipNews": true,
     "showRail": true,
     "showClock": true,
@@ -102,5 +102,6 @@
       "id": "Leghzu7ZBrA"
     }
   },
-  "updatedBy": "MatlockFT"
+  "updatedBy": "MatlockFT",
+  "clockEpoch": "2026-01-01T00:00:00.000Z"
 }
