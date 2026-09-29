@@ -128,6 +128,53 @@ page_scripts:
     </section>
   {% endif %}
 
+  {% for featured_post in homepage_posts %}
+    {% if featured_post.home_feature and featured_post.home_feature_until %}
+      {% assign featured_image = featured_post.image.path | default: featured_post.image %}
+      {% assign featured_alt = featured_post.image.alt | default: featured_post.image_alt | default: featured_post.title %}
+      {% assign featured_responsive = site.data.responsive_images[featured_image] %}
+      {% assign featured_src = featured_responsive.src | default: featured_image %}
+      {% assign featured_width = featured_responsive.width | default: featured_post.image.width %}
+      {% assign featured_height = featured_responsive.height | default: featured_post.image.height %}
+      {% assign featured_author = featured_post.author.name | default: featured_post.author | default: site.author.name %}
+      <template
+        data-v3-home-feature
+        data-until="{{ featured_post.home_feature_until | date_to_xmlschema }}"
+        data-post-url="{{ featured_post.url | relative_url }}"
+      >
+        <h1><a href="{{ featured_post.url | relative_url }}">{{ featured_post.title }}</a></h1>
+        {% if featured_post.description %}
+          <p class="v3-lead-deck">{{ featured_post.description | strip_html | truncate: 225 }}</p>
+        {% elsif featured_post.excerpt %}
+          <p class="v3-lead-deck">{{ featured_post.excerpt | strip_html | normalize_whitespace | truncate: 225 }}</p>
+        {% endif %}
+
+        {% if featured_image %}
+          <a class="v3-lead-image" href="{{ featured_post.url | relative_url }}" aria-label="Read {{ featured_post.title | escape }}">
+            <img
+              src="{{ featured_src | relative_url }}"
+              {% if featured_responsive.srcset %}
+                srcset="{{ featured_responsive.srcset }}"
+                sizes="(min-width: 1100px) 55vw, 100vw"
+              {% endif %}
+              alt="{{ featured_alt | escape }}"
+              {% if featured_width %}width="{{ featured_width }}"{% endif %}
+              {% if featured_height %}height="{{ featured_height }}"{% endif %}
+              fetchpriority="high"
+              decoding="async"
+              data-hide-broken
+            >
+          </a>
+        {% endif %}
+
+        <div class="v3-byline">
+          <span>By {{ featured_author }}</span>
+          <time datetime="{{ featured_post.date | date_to_xmlschema }}">{{ featured_post.date | date: "%B %-d, %Y" }}</time>
+        </div>
+      </template>
+    {% endif %}
+  {% endfor %}
+
   <section class="v3-section" aria-labelledby="v3-breakdowns-title">
     <header class="v3-section-head">
       <h2 id="v3-breakdowns-title">Breakdowns & Commentary</h2>
