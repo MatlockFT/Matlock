@@ -2,8 +2,8 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 
 const API="https://www.googleapis.com/youtube/v3";
-const MAX_AGE_MS=48*60*60*1000;
-const MAX_PER_CHANNEL=6;
+const MAX_AGE_MS=168*60*60*1000;
+const MAX_PER_CHANNEL=24;
 let channels=[
   {name:"MMA Junkie",handle:"@MMAJunkieOfficial"},
   {name:"MMA Fighting",handle:"@MMAFighting"},
@@ -57,9 +57,16 @@ async function channelVideos(config){
 }
 async function enrichVideos(items){
   const ids=[...new Set(items.map(v=>v.videoId))];if(!ids.length)return items;
-  const details=await youtube("videos",{part:"contentDetails,status,snippet",id:ids.join(","),maxResults:50});
-  const map=new Map((details.items||[]).map(v=>[v.id,v]));
-  return items.map(item=>{const d=map.get(item.videoId);return {...item,durationSeconds:isoDurationSeconds(d?.contentDetails?.duration||""),embeddable:d?.status?.embeddable!==false,liveBroadcastContent:d?.snippet?.liveBroadcastContent||"none"}})
+  const map=new Map();
+  for(let i=0;i<ids.length;i+=50){
+    const batch=ids.slice(i,i+50);
+    const details=await youtube("videos",{part:"contentDetails,status,snippet",id:batch.join(","),maxResults:50});
+    for(const video of details.items||[])map.set(video.id,video);
+  }
+  return items.map(item=>{
+    const d=map.get(item.videoId),durationSeconds=isoDurationSeconds(d?.contentDetails?.duration||"");
+    return {...item,durationSeconds,isShort:durationSeconds>0&&durationSeconds<=180,embeddable:d?.status?.embeddable!==false,liveBroadcastContent:d?.snippet?.liveBroadcastContent||"none"};
+  })
 }
 
 let videos=[];const errors=[];
@@ -69,9 +76,9 @@ if(apiKey){
 }else errors.push("YOUTUBE_API_KEY is not configured");
 
 const cutoff=Date.now()-MAX_AGE_MS;
-videos=videos.filter(v=>{const t=Date.parse(v.publishedAt);return Number.isFinite(t)&&t>=cutoff&&t<=Date.now()+5*60*1000&&v.embeddable!==false})
-  .sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt)).slice(0,30);
+videos=videos.filter(v=>{const t=Date.parse(v.publishedAt);return Number.isFinite(t)&&t>=cutoff&&t<=Date.now()+5*60*1000&&v.embeddable!==false&&v.isShort!==true})
+  .sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt)).slice(0,120);
 
-const output={version:2,generatedAt:new Date().toISOString(),maxAgeHours:48,channels:channels.map(c=>c.name),videos,...(errors.length?{warnings:errors}:{})};
+const output={version:3,generatedAt:new Date().toISOString(),maxAgeHours:168,shortsExcluded:true,channels:channels.map(c=>c.name),videos,...(errors.length?{warnings:errors}:{})};
 await mkdir(dirname(destination),{recursive:true});await writeFile(destination,JSON.stringify(output,null,2)+"\n");
 console.log("Wrote "+videos.length+" embeddable recent YouTube uploads to "+destination);if(errors.length)console.warn(errors.join("\n"));
