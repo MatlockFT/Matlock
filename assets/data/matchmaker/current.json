@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-09-29T15:55:21.693Z"
+      "checkedAt": "2026-09-29T20:36:55.884Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-29T15:55:41.745Z",
+      "checkedAt": "2026-09-29T20:37:22.493Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -5901,7 +5901,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Santiago Luna",
+        "opponentId": "santiago-luna"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -6279,7 +6285,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Amir Albazi",
+        "opponentId": "amir-albazi"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -13530,7 +13542,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -14829,7 +14845,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -15959,7 +15979,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -18597,7 +18621,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Alessandro Costa",
+        "opponentId": "alessandro-costa"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -20199,7 +20229,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -21269,7 +21303,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -27350,7 +27388,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Kyoji Horiguchi",
+        "opponentId": "kyoji-horiguchi"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -27884,7 +27928,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -28873,7 +28921,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -33474,7 +33526,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -42058,7 +42114,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -48990,7 +49050,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -79783,7 +79847,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -80788,7 +80856,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -100488,7 +100560,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -102904,7 +102980,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -105355,7 +105435,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -105798,7 +105882,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -107110,7 +107198,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -107450,7 +107542,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -109028,7 +109124,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -109572,7 +109672,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -110276,7 +110380,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -112347,7 +112455,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -123157,7 +123269,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Jared Cannonier",
+        "opponentId": "jared-cannonier"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -126517,7 +126635,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -132317,7 +132439,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -134149,7 +134275,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Tahir Abdullayev",
+        "opponentId": "tahir-abdullayev"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -139944,7 +140076,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Ikram Aliskerov",
+        "opponentId": "ikram-aliskerov"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -142246,7 +142384,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -143768,7 +143910,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -161921,7 +162067,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -162918,7 +163068,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -163030,7 +163184,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -169961,7 +170119,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -171414,7 +171576,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -174541,7 +174707,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -177077,7 +177247,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -180411,7 +180585,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -182882,7 +183060,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -191532,7 +191714,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Asu Almabayev",
+        "opponentId": "asu-almabayev"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -193803,7 +193991,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -197517,7 +197709,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -199058,7 +199254,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -199283,7 +199483,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -199395,7 +199599,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -205207,7 +205415,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -207583,7 +207795,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -218639,7 +218855,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -222870,7 +223090,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -237822,7 +238046,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -248908,7 +249136,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -249988,7 +250220,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -253034,7 +253270,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -253272,7 +253512,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -259353,7 +259597,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -260656,7 +260904,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -267312,7 +267564,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -274776,7 +275032,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-10",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-10-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -279298,7 +279558,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -286457,7 +286721,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Aleksandre Topuria",
+        "opponentId": "aleksandre-topuria"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -291883,7 +292153,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -304189,7 +304463,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Cannonier vs Aliskerov",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Jake Matthews",
+        "opponentId": "jake-matthews"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -306095,7 +306375,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -308002,7 +308286,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -310332,7 +310620,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -325568,7 +325860,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -328506,7 +328802,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -328809,7 +329109,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-11-07",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-07-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -332022,7 +332326,11 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "UFC Fight Night",
+        "date": "2026-10-31",
+        "source": "https://www.ufc.com/event/ufc-fight-night-october-31-2026"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
