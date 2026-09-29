@@ -18,7 +18,7 @@ const DEFAULT_CONTROL={
   events:{maxItems:12,usePosters:true},
   audio:{enabled:true,musicUrl:"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3",musicVolume:14,duckVolume:3.5},
   ticker:{enabled:true,speedSeconds:240,maxItems:14},
-  visual:{layout:"splitDesk",videoWidth:64,articleCardSeconds:9,articleCharsPerCard:320,flipNews:false,showRail:true,showClock:true,showBadge:true,showSource:true},
+  visual:{layout:"splitDesk",videoWidth:64,articleCardSeconds:9,articleCharsPerCard:440,flipNews:false,showRail:true,showClock:true,showBadge:true,showSource:true},
   sources:{customNewsFeeds:[],customVideoChannels:[],removedNewsSources:[],removedVideoChannels:[]},
   programming:{mode:"auto",tickerMode:"auto",manualQueue:[]},
   hidden:{news:[],videos:[],events:[]},
@@ -281,7 +281,10 @@ function renderRail(){
 function applyDisplay(){
   const c=cfg(),tickerOn=Boolean(c.modules.ticker&&c.ticker.enabled!==false),railOn=Boolean(c.modules.comingUp&&c.visual.showRail),split=isSplitDesk();
   els.stage.classList.toggle("split-desk",split);
-  if(split)els.stage.style.setProperty("--video-width",Math.max(50,Math.min(76,Number(c.visual.videoWidth||64)))+"%");
+  els.stage.classList.toggle("has-rail",railOn);
+  const videoWidth=Math.max(50,Math.min(76,Number(c.visual.videoWidth||64)));
+  els.stage.classList.toggle("narrow-reader",split&&videoWidth>=70);
+  if(split)els.stage.style.setProperty("--video-width",videoWidth+"%");
   else els.stage.style.removeProperty("--video-width");
   els.tickerFooter.style.display=tickerOn?"grid":"none";
   els.root.style.gridTemplateRows=tickerOn?"984px 96px":"1080px 0px";
@@ -365,7 +368,13 @@ document.addEventListener("click",configureBed,{once:true});
 
 function resetVideoHost(){try{videoPlayer?.destroy()}catch{}videoPlayer=null;clearTimeout(videoWatchdog);videoWatchdog=0;els.videoShell.innerHTML='<div id="broadcast-youtube-player"></div>'}
 function fadeVideoOut(done){if(!videoPlayer||typeof videoPlayer.getVolume!=="function"){done();return}let start=Number(cfg().video.volume||50);try{start=Number(videoPlayer.getVolume())||start}catch{}let step=0;const steps=12,iv=setInterval(()=>{step++;try{videoPlayer.setVolume(Math.max(0,Math.round(start*(1-step/steps))))}catch{}if(step>=steps){clearInterval(iv);done()}},60)}
-function beginProgress(ms,startPercent=0){els.progress.style.transition="none";els.progress.style.width=Math.max(0,Math.min(100,Number(startPercent)||0))+"%";requestAnimationFrame(()=>{els.progress.style.transition="width "+ms+"ms linear";els.progress.style.width="100%"})}
+function beginProgress(ms,startPercent=0,endPercent=100){
+  const start=Math.max(0,Math.min(100,Number(startPercent)||0)),end=Math.max(start,Math.min(100,Number(endPercent)||100));
+  els.progress.style.transition="none";
+  els.progress.style.width=start+"%";
+  void els.progress.offsetWidth;
+  requestAnimationFrame(()=>{els.progress.style.transition="width "+Math.max(0,Number(ms)||0)+"ms linear";els.progress.style.width=end+"%"});
+}
 function articleReaderText(slide){
   if(slide.type==="event")return (Array.isArray(slide.context)?slide.context:contextFacts(slide.context)).join(" ");
   const full=cleanContext(slide.fullText||"");
@@ -410,27 +419,25 @@ function readerBlockHtml(block){
 function readerTextChunks(text,max){
   const source=String(text||"").replace(/\s+/g," ").trim();
   if(!source)return[];
-  const sentences=source.split(/(?<=[.!?])\s+(?=[A-Z0-9“"'(])/).map(x=>x.trim()).filter(Boolean);
-  const units=sentences.length?sentences:[source],chunks=[];
+  const cardCount=Math.max(1,Math.ceil(source.length/max));
+  if(cardCount===1)return[source];
+  const target=Math.ceil(source.length/cardCount),chunks=[];
+  const units=source.split(/(?<=[.!?])\s+(?=[A-Z0-9“"'(])/).map(x=>x.trim()).filter(Boolean);
   let current="";
   const flush=()=>{if(current){chunks.push(current);current=""}};
   const addWords=value=>{
-    const words=String(value||"").split(/\s+/).filter(Boolean);
-    for(const word of words){
-      if(word.length>max){
-        flush();
-        for(let i=0;i<word.length;i+=max)chunks.push(word.slice(i,i+max));
-        continue;
-      }
+    for(const word of String(value||"").split(/\s+/).filter(Boolean)){
       const candidate=current?current+" "+word:word;
-      if(candidate.length>max){flush();current=word}
+      const cardsLeft=cardCount-chunks.length;
+      if(current&&candidate.length>target&&cardsLeft>1){flush();current=word}
       else current=candidate;
     }
   };
-  for(const unit of units){
-    if(unit.length>max){flush();addWords(unit);flush();continue}
+  for(const unit of (units.length?units:[source])){
     const candidate=current?current+" "+unit:unit;
-    if(candidate.length>max){flush();current=unit}
+    const cardsLeft=cardCount-chunks.length;
+    if(unit.length>target*1.25){if(current)flush();addWords(unit);continue}
+    if(current&&candidate.length>target&&cardsLeft>1){flush();current=unit}
     else current=candidate;
   }
   flush();
@@ -440,7 +447,7 @@ function plainReaderCards(text,max){
   return readerTextChunks(text,max).map(chunk=>({html:"<p>"+escapeHtml(chunk)+"</p>"}));
 }
 function articleReaderCards(slide){
-  const max=Math.max(200,Math.min(320,Number(cfg().visual.articleCharsPerCard||320)));
+  const max=Math.max(220,Math.min(620,Number(cfg().visual.articleCharsPerCard||440)));
   const sourceBlocks=Array.isArray(slide.fullTextBlocks)&&slide.fullTextBlocks.length?slide.fullTextBlocks.filter(Boolean):(Array.isArray(slide.contextBlocks)?slide.contextBlocks.filter(Boolean):[]);
   if(sourceBlocks.length){
     const cards=[];let html="",count=0;
@@ -467,7 +474,8 @@ function buildArticleCardNode(slide,cards,cardIndex){
   const body=cards[cardIndex]?.html||"",wrap=document.createElement("div");
   const source=escapeHtml(slide.source||"Combat Sports");
   const time=escapeHtml(slide.type==="event"?"UPCOMING":slide.type==="custom"?"MANUAL":relativeTime(slide.publishedAt));
-  wrap.innerHTML='<div class="article-reader-card"><div class="article-reader-label">'+escapeHtml(slide.type==="event"?"EVENT BRIEF":"STORY")+'</div><div class="article-reader-body">'+body+'</div><div class="article-reader-footer"><div class="article-reader-credit"><strong>'+source+'</strong><span>•</span><span>'+time+'</span></div><div class="article-reader-page">CARD '+(cardIndex+1)+' / '+cards.length+'</div></div></div>';
+  const stateClass=(cardIndex===0?" is-first-card":"")+(cardIndex===cards.length-1?" is-last-card":"");
+  wrap.innerHTML='<div class="article-reader-card'+stateClass+'"><div class="article-reader-label">'+escapeHtml(slide.type==="event"?"EVENT BRIEF":"STORY")+'</div><div class="article-reader-body">'+body+'</div><div class="article-reader-footer"><div class="article-reader-credit"><strong>'+source+'</strong><span>•</span><span>'+time+'</span></div><div class="article-reader-page">CARD '+(cardIndex+1)+' / '+cards.length+'</div></div></div>';
   return wrap.firstElementChild;
 }
 function drawArticleCard(slide,cards,cardIndex,{crossfade=true}={}){
@@ -484,8 +492,10 @@ function runArticleCards(slide,{startCardIndex=0,firstRemainingMs=null}={}){
   const show=()=>{
     const remaining=first&&Number.isFinite(Number(firstRemainingMs))?Math.max(100,Number(firstRemainingMs)):pace;
     drawArticleCard(slide,cards,cardIndex,{crossfade:Boolean(els.context.querySelector(".article-reader-card"))});
-    const startPercent=first?Math.max(0,Math.min(99.5,(1-remaining/pace)*100)):0;
-    beginProgress(remaining,startPercent);first=false;
+    const segmentStart=(cardIndex/cards.length)*100,segmentEnd=((cardIndex+1)/cards.length)*100;
+    const elapsedFraction=first?Math.max(0,Math.min(1,1-remaining/pace)):0;
+    const startPercent=segmentStart+(segmentEnd-segmentStart)*elapsedFraction;
+    beginProgress(remaining,startPercent,segmentEnd);first=false;
     clearTimeout(timer);
     timer=setTimeout(()=>{
       cardIndex++;
