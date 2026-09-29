@@ -120,12 +120,15 @@
 
       const nextKey = childKey(next);
       if (nextKey) {
-        let match = cursor;
+        let match = cursor.nextElementSibling;
         while (match && childKey(match) !== nextKey) match = match.nextElementSibling;
         if (match) {
-          if (match.outerHTML !== next.outerHTML) match.replaceWith(next);
-          else body.insertBefore(match, cursor);
-          cursor = next.nextElementSibling || match.nextElementSibling;
+          if (match.outerHTML === next.outerHTML) {
+            body.insertBefore(match, cursor);
+          } else {
+            body.insertBefore(next, cursor);
+            match.remove();
+          }
           continue;
         }
       }
