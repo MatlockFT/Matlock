@@ -33,7 +33,7 @@ const els={
   progress:q("[data-progress]"),ticker:q("[data-ticker-track]"),tickerFooter:q("footer.ticker"),event:q("[data-next-event]"),
   eventName:q("[data-next-event-name]"),eventDate:q("[data-next-event-date]"),
   coverage:q("[data-coverage]"),coverageText:q("[data-coverage-text]"),rail:q("[data-rail-items]"),
-  lowerRail:q(".lower-rail"),visual:q("[data-visual-panel]"),bed:q("[data-music-bed]"),storyMeta:q(".story-meta"),storyPanel:q(".story-panel")
+  lowerRail:q(".lower-rail"),visual:q("[data-visual-panel]"),bed:q("[data-music-bed]"),storyMeta:q(".story-meta"),storyPanel:q(".story-panel"),storyArt:q("[data-story-art]"),storyArtLabel:q("[data-story-art-label]")
 };
 
 let control=structuredClone(DEFAULT_CONTROL),previewControl=null,previewMuted=false;
@@ -605,13 +605,17 @@ function renderSplitDeskSlide(s,{startCardIndex=0,firstRemainingMs=null}={}){
   currentSlide=s;els.stage.classList.remove("event-mode","layout-flip","video-mode","event-reader");els.visual.querySelector(".event-board")?.remove();
   ensureSplitVideo();
   const art=String(s.image||"").trim();
-  if(els.storyPanel){
-    els.storyPanel.classList.toggle("has-story-art",Boolean(art));
+  if(els.storyArt){
     if(art){
       const safeArt=art.replace(/\\/g,"\\\\").replace(/"/g,'\\"').replace(/[\r\n]/g,"");
-      els.storyPanel.style.setProperty("--story-art",'url("'+safeArt+'")');
-    }else els.storyPanel.style.removeProperty("--story-art");
+      els.storyArt.style.backgroundImage='linear-gradient(180deg,rgba(0,0,0,.06),rgba(0,0,0,.58)),url("'+safeArt+'")';
+      els.storyArt.classList.add("has-image");
+    }else{
+      els.storyArt.style.backgroundImage="";
+      els.storyArt.classList.remove("has-image");
+    }
   }
+  if(els.storyArtLabel)els.storyArtLabel.textContent=s.type==="event"?"FIGHT CALENDAR":s.type==="custom"?"DESK UPDATE":"NEWS DESK";
   els.title.textContent=s.title||"Combat Sports Update";els.title.classList.toggle("is-long",String(s.title||"").length>92);
   els.source.textContent=(s.source||"Combat Sports").toUpperCase();
   els.time.textContent=s.type==="event"?"UPCOMING":s.type==="custom"?"MANUAL":relativeTime(s.publishedAt);
