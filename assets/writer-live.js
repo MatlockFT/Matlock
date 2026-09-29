@@ -22,7 +22,7 @@
   const PUBLIC_PATH = '/live-notes/';
   const LIVE_REPO_PATH = 'assets/uploads/runtime/live-writer.json';
   const LIVE_API_PATH = '/contents/' + LIVE_REPO_PATH;
-  const MIN_AUTO_PUSH_MS = 8000;
+  const MIN_AUTO_PUSH_MS = 12000;
   let active = false;
   let syncTimer = 0;
   let syncing = false;
@@ -125,7 +125,7 @@
   async function writeLiveRecord(record, { retry = true } = {}) {
     const content = encodeBase64Utf8(JSON.stringify(record));
     const body = {
-      message: record.active ? 'Update live writer' : 'End live writer',
+      message: record.active ? 'Update live writer [skip ci]' : 'End live writer [skip ci]',
       content,
       branch: 'main',
       ...(liveFileSha ? { sha: liveFileSha } : {})
