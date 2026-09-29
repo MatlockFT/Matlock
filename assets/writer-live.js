@@ -5,7 +5,10 @@
   const authBase = String(app.dataset.authBase || '').replace(/\/$/, '');
   const editor = app.querySelector('#writer-body');
   const titleInput = app.querySelector('[data-field="title"]');
+  const descriptionInput = app.querySelector('[data-field="description"]');
+  const filenameInput = app.querySelector('[data-field="filename"]');
   const preview = app.querySelector('[data-preview-content]');
+  const publishedLink = app.querySelector('[data-live-link]');
   const toggleButton = app.querySelector('[data-live-writer-toggle]');
   const panel = app.querySelector('[data-live-writer-panel]');
   const closeButton = app.querySelector('[data-live-writer-close]');
@@ -16,13 +19,12 @@
   const syncState = app.querySelector('[data-live-writer-sync-state]');
   const publicLink = app.querySelector('[data-live-writer-public-link]');
 
-  if (!authBase || !editor || !titleInput || !preview || !toggleButton || !panel || !startButton || !endButton) return;
+  if (!authBase || !editor || !titleInput || !filenameInput || !preview || !toggleButton || !panel || !startButton || !endButton) return;
 
   const SESSION_ID_KEY = 'matlock-writer:server-session';
-  const PUBLIC_PATH = '/live-notes/';
   const LIVE_REPO_PATH = 'assets/uploads/runtime/live-writer.json';
   const LIVE_API_PATH = '/contents/' + LIVE_REPO_PATH;
-  const MIN_AUTO_PUSH_MS = 12000;
+  const MIN_AUTO_PUSH_MS = 8000;
   let active = false;
   let syncTimer = 0;
   let syncing = false;
@@ -36,8 +38,36 @@
     try { return localStorage.getItem(SESSION_ID_KEY) || ''; } catch { return ''; }
   }
 
-  function publicUrl() {
-    return new URL(PUBLIC_PATH, location.origin).href;
+  function targetFromFilename() {
+    const filename = filenameInput.value.trim();
+    const match = filename.match(/^(\d{4})-(\d{2})-(\d{2})-(.+)\.md$/i);
+    if (!match) return null;
+    return {
+      sourcePath: '_posts/' + filename,
+      publicPath: '/' + match[1] + '/' + match[2] + '/' + match[3] + '/' + match[4] + '.html'
+    };
+  }
+
+  function currentTarget() {
+    const target = targetFromFilename();
+    if (!target) return null;
+    let published = false;
+    if (publishedLink && !publishedLink.hidden) {
+      try {
+        const url = new URL(publishedLink.href, location.origin);
+        if (url.pathname === target.publicPath) published = true;
+      } catch {}
+    }
+    return { ...target, published };
+  }
+
+  function publicUrl(target = currentTarget()) {
+    return target ? new URL(target.publicPath, location.origin).href : '';
+  }
+
+  function sameTarget(live, target = currentTarget()) {
+    if (!live || !target) return false;
+    return live.sourcePath === target.sourcePath || live.publicPath === target.publicPath;
   }
 
   function setPanelStatus(message, state = 'idle') {
@@ -57,14 +87,19 @@
   }
 
   function updateControls() {
+    const target = currentTarget();
     startButton.hidden = active;
     endButton.hidden = !active;
     if (pushButton) pushButton.disabled = !active;
+
     if (publicLink) {
-      publicLink.href = publicUrl();
-      publicLink.textContent = PUBLIC_PATH;
+      const url = publicUrl(target);
+      publicLink.href = url || '#';
+      publicLink.textContent = target?.publicPath || 'Open a published article first';
+      publicLink.toggleAttribute('aria-disabled', !url);
     }
-    if (active) setPanelStatus('Live on your public site', 'live');
+
+    if (active) setPanelStatus('Live on this article', 'live');
     else setPanelStatus('Not live', 'idle');
   }
 
@@ -122,10 +157,10 @@
     }
   }
 
-  async function writeLiveRecord(record, { retry = true } = {}) {
+  async function writeLiveRecord(record, { retry = true, message = '' } = {}) {
     const content = encodeBase64Utf8(JSON.stringify(record));
     const body = {
-      message: record.active ? 'Update live writer [skip ci]' : 'End live writer [skip ci]',
+      message: message || (record.active ? 'Update live article [skip ci]' : record.hold ? 'End live article [skip ci]' : 'Clear live article [skip ci]'),
       content,
       branch: 'main',
       ...(liveFileSha ? { sha: liveFileSha } : {})
@@ -138,43 +173,93 @@
     } catch (error) {
       if (retry && (error.status === 409 || error.status === 422)) {
         await readLiveRecord();
-        return writeLiveRecord(record, { retry: false });
+        return writeLiveRecord(record, { retry: false, message });
       }
       throw error;
     }
   }
 
+  function unwrap(node) {
+    const parent = node.parentNode;
+    if (!parent) return;
+    while (node.firstChild) parent.insertBefore(node.firstChild, node);
+    node.remove();
+  }
+
   function safePreviewHtml() {
     const clone = preview.cloneNode(true);
-    clone.querySelectorAll('script, object, embed').forEach(node => node.remove());
+
+    clone.querySelectorAll('script, object, embed, .writer-preview-block-tools, .writer-tale-crop-controls, .writer-media-resize-handle, .article-inline-video-controls, .article-inline-video-fallback, canvas.matlock-portrait-canvas').forEach(node => node.remove());
+
+    clone.querySelectorAll('.writer-preview-html-shell, .writer-preview-table-shell').forEach(unwrap);
+
+    clone.querySelectorAll('.writer-embed').forEach(node => {
+      node.classList.remove('writer-embed');
+      node.classList.add('article-embed', 'article-video-embed');
+      node.removeAttribute('data-writer-embed-src');
+    });
+
+    clone.querySelectorAll('.writer-x-embed').forEach(node => {
+      node.classList.remove('writer-x-embed');
+      node.classList.add('article-embed', 'article-x-embed');
+      node.removeAttribute('data-writer-x-url');
+    });
+
+    clone.querySelectorAll('img[data-writer-source]').forEach(img => {
+      const source = img.getAttribute('data-writer-source');
+      if (source) img.setAttribute('src', source);
+      img.removeAttribute('data-writer-source');
+      img.removeAttribute('data-writer-retry-attempt');
+    });
+
+    clone.querySelectorAll('video').forEach(video => {
+      video.controls = false;
+      video.removeAttribute('controls');
+      video.removeAttribute('tabindex');
+    });
+
     clone.querySelectorAll('*').forEach(node => {
+      node.removeAttribute('contenteditable');
+      node.removeAttribute('spellcheck');
+      node.removeAttribute('data-writer-video-ui');
+      node.removeAttribute('data-writer-table-index');
+      node.removeAttribute('data-editable-portrait');
+      node.removeAttribute('data-tale-portrait-editing');
       for (const attr of [...node.attributes]) {
         if (/^on/i.test(attr.name)) node.removeAttribute(attr.name);
         if ((attr.name === 'href' || attr.name === 'src') && /^\s*javascript:/i.test(attr.value)) node.removeAttribute(attr.name);
       }
     });
+
     const empty = clone.querySelector('.writer-preview-empty');
     if (empty && !editor.value.trim()) empty.remove();
     return clone.innerHTML.trim();
   }
 
-  function snapshot({ isActive = active, previous = null } = {}) {
+  function snapshot({ isActive = active, hold = false, previous = null } = {}) {
+    const target = currentTarget();
+    if (!target) throw new Error('This article needs a valid YYYY-MM-DD-slug.md filename first.');
     const now = new Date().toISOString();
     return {
       active: Boolean(isActive),
-      title: titleInput.value.trim() || previous?.title || 'Live notes',
+      hold: Boolean(hold),
+      sourcePath: target.sourcePath,
+      publicPath: target.publicPath,
+      title: titleInput.value.trim() || previous?.title || 'Live article',
+      description: descriptionInput?.value.trim() || previous?.description || '',
       html: safePreviewHtml() || previous?.html || '',
       text: editor.value || previous?.text || '',
       author: 'Matlock',
-      startedAt: previous?.startedAt || now,
+      startedAt: sameTarget(previous, target) && previous?.startedAt ? previous.startedAt : now,
       updatedAt: now,
-      endedAt: isActive ? null : now,
+      endedAt: isActive ? null : (hold ? now : previous?.endedAt || now),
+      publishedAt: hold ? null : previous?.publishedAt || null,
       version: Number(previous?.version || 0) + 1
     };
   }
 
   function signature(data) {
-    return data.title + '\n' + data.html + '\n' + data.text;
+    return [data.sourcePath, data.publicPath, data.title, data.description, data.html, data.text].join('\n');
   }
 
   async function pushNow({ force = false } = {}) {
@@ -185,17 +270,17 @@
     }
 
     const previous = await readLiveRecord().catch(() => null);
-    const data = snapshot({ isActive: true, previous });
+    const data = snapshot({ isActive: true, hold: false, previous });
     const nextSignature = signature(data);
     if (!force && nextSignature === lastSent) return;
 
     syncing = true;
-    setSyncState('Updating…', 'working');
+    setSyncState('Updating article…', 'working');
     try {
       await writeLiveRecord(data);
       lastSent = nextSignature;
       lastPushAt = Date.now();
-      setSyncState('Public page updated just now', 'success');
+      setSyncState('Readers have the latest version.', 'success');
     } catch (error) {
       setSyncState(error.message, 'error');
     } finally {
@@ -207,7 +292,7 @@
     }
   }
 
-  function queueSync(delay = 1200) {
+  function queueSync(delay = 900) {
     if (!active) return;
     window.clearTimeout(syncTimer);
     const waitForRateLimit = Math.max(0, MIN_AUTO_PUSH_MS - (Date.now() - lastPushAt));
@@ -221,7 +306,8 @@
     if (previewObserver) return;
     editor.addEventListener('input', onEditorInput);
     titleInput.addEventListener('input', onTitleInput);
-    previewObserver = new MutationObserver(() => queueSync(700));
+    descriptionInput?.addEventListener('input', onTitleInput);
+    previewObserver = new MutationObserver(() => queueSync(650));
     previewObserver.observe(preview, { childList: true, subtree: true, characterData: true, attributes: true });
   }
 
@@ -230,6 +316,7 @@
     syncTimer = 0;
     editor.removeEventListener('input', onEditorInput);
     titleInput.removeEventListener('input', onTitleInput);
+    descriptionInput?.removeEventListener('input', onTitleInput);
     previewObserver?.disconnect();
     previewObserver = null;
   }
@@ -243,15 +330,27 @@
       return;
     }
 
-    setSyncState('Checking live status…', 'working');
+    const target = currentTarget();
+    if (!target) {
+      active = false;
+      updateControls();
+      setSyncState('Open an article with a valid filename first.', 'idle');
+      return;
+    }
+
+    setSyncState('Checking this article…', 'working');
     try {
       const live = await readLiveRecord();
-      active = Boolean(live?.active);
+      active = Boolean(live?.active && sameTarget(live, target));
       updateControls();
       if (active) {
         lastSent = signature(live);
         attachLiveListeners();
-        setSyncState('Live session restored. Changes will sync automatically.', 'success');
+        setSyncState('Live session restored. Changes sync automatically.', 'success');
+      } else if (live?.active && !sameTarget(live, target)) {
+        setSyncState('A different article is currently live: ' + (live.publicPath || live.title || 'another article') + '.', 'idle');
+      } else if (live?.hold && sameTarget(live, target)) {
+        setSyncState('Live coverage ended. The last live version is still on this article until you publish.', 'success');
       } else {
         setSyncState('Ready.', 'idle');
       }
@@ -263,23 +362,28 @@
   }
 
   async function startLive() {
+    const target = currentTarget();
     if (!sessionId()) {
       setSyncState('Sign in with GitHub first.', 'error');
       return;
     }
+    if (!target?.published) {
+      setSyncState('Publish this article once before going live so readers have a public page to open.', 'error');
+      return;
+    }
 
     startButton.disabled = true;
-    setSyncState('Starting live session…', 'working');
+    setSyncState('Starting live updates on ' + target.publicPath + '…', 'working');
     try {
       const previous = await readLiveRecord();
       active = true;
-      const data = snapshot({ isActive: true, previous });
-      await writeLiveRecord(data);
+      const data = snapshot({ isActive: true, hold: false, previous });
+      await writeLiveRecord(data, { message: 'Start live article [skip ci]' });
       lastSent = signature(data);
       lastPushAt = Date.now();
       attachLiveListeners();
       updateControls();
-      setSyncState('Live. New edits sync automatically.', 'success');
+      setSyncState('Live. Readers on this article will receive updates automatically.', 'success');
     } catch (error) {
       active = false;
       updateControls();
@@ -291,19 +395,46 @@
 
   async function endLive() {
     endButton.disabled = true;
-    setSyncState('Ending live session…', 'working');
+    setSyncState('Ending live updates…', 'working');
     try {
       const previous = await readLiveRecord();
-      const data = snapshot({ isActive: false, previous });
-      await writeLiveRecord(data);
+      const data = snapshot({ isActive: false, hold: true, previous });
+      await writeLiveRecord(data, { message: 'End live article [skip ci]' });
       active = false;
       detachLiveListeners();
       updateControls();
-      setSyncState('Live session ended. The last version remains visible as ended.', 'success');
+      setSyncState('Live updates ended. The last live version stays on the article until you publish the final version.', 'success');
     } catch (error) {
       setSyncState(error.message, 'error');
     } finally {
       endButton.disabled = false;
+    }
+  }
+
+  async function clearAfterPublish(detail = {}) {
+    const target = currentTarget();
+    if (!target) return;
+    try {
+      const previous = await readLiveRecord();
+      if (!sameTarget(previous, target)) return;
+      const now = new Date().toISOString();
+      const record = {
+        ...previous,
+        active: false,
+        hold: false,
+        sourcePath: target.sourcePath,
+        publicPath: target.publicPath,
+        updatedAt: now,
+        publishedAt: now,
+        version: Number(previous?.version || 0) + 1
+      };
+      await writeLiveRecord(record, { message: 'Clear live article after publish [skip ci]' });
+      active = false;
+      detachLiveListeners();
+      updateControls();
+      setSyncState('Final article published. Live override cleared.', 'success');
+    } catch (error) {
+      setSyncState('Published, but the live override could not be cleared: ' + error.message, 'error');
     }
   }
 
@@ -323,7 +454,12 @@
   window.addEventListener('storage', event => {
     if (event.key === SESSION_ID_KEY && !panel.hidden) loadState();
   });
+  window.addEventListener('matlock-writer:published', event => clearAfterPublish(event.detail || {}));
 
-  if (publicLink) publicLink.href = publicUrl();
+  filenameInput.addEventListener('input', updateControls);
+  if (publicLink) publicLink.addEventListener('click', event => {
+    if (!publicUrl()) event.preventDefault();
+  });
+
   updateControls();
 })();
