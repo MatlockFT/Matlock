@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "revision": 1790658658653,
-  "updatedAt": "2026-09-29T05:10:58.653Z",
+  "revision": 1790658861016,
+  "updatedAt": "2026-09-29T05:14:21.016Z",
   "modules": {
     "news": true,
     "video": true,
@@ -33,8 +33,8 @@
     "contextFacts": 4
   },
   "video": {
-    "maxAgeHours": 168,
-    "maxItems": 32,
+    "maxAgeHours": 336,
+    "maxItems": 48,
     "minSeconds": 181,
     "maxSeconds": 3600,
     "volume": 50,
