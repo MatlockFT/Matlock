@@ -8,7 +8,7 @@ const NEWS_FALLBACK='/assets/data/mma-news.json';
 const VIDEOS='https://raw.githubusercontent.com/MatlockFT/Matlock/live-news-data/mma-videos.json';
 const VIDEOS_FALLBACK='/assets/data/mma-videos.json';
 const EVENTS='/assets/data/upcoming-events-live.json';
-const DEFAULT={"version":1,"revision":1,"updatedAt":null,"clockEpoch":"2026-01-01T00:00:00.000Z","modules":{"news":true,"video":true,"events":true,"ticker":true,"comingUp":true,"music":true},"rundown":["news","news","video","news","event"],"timing":{"newsSeconds":45,"eventSeconds":35,"transitionMs":650,"controlPollSeconds":10},"news":{"maxAgeHours":48,"maxItems":16,"sources":[],"requireContext":true,"contextFacts":4},"video":{"maxAgeHours":48,"maxItems":8,"minSeconds":20,"maxSeconds":600,"volume":50,"channels":[],"playFull":true},"events":{"maxItems":3,"usePosters":true},"audio":{"enabled":true,"musicUrl":"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3","musicVolume":14,"duckVolume":3.5},"ticker":{"enabled":true,"speedSeconds":240,"maxItems":14},"visual":{"layout":"splitDesk","videoWidth":64,"articleCardSeconds":9,"articleCharsPerCard":320,"flipNews":false,"showRail":true,"showClock":true,"showBadge":true,"showSource":true},"sources":{"customNewsFeeds":[],"customVideoChannels":[],"removedNewsSources":[],"removedVideoChannels":[]},"programming":{"mode":"auto","tickerMode":"auto","manualQueue":[]},"hidden":{"news":[],"videos":[],"events":[]},"forceNext":null};
+const DEFAULT={"version":1,"revision":1,"updatedAt":null,"clockEpoch":"2026-01-01T00:00:00.000Z","modules":{"news":true,"video":true,"events":true,"ticker":true,"comingUp":true,"music":true},"rundown":["news","news","video","news","event"],"timing":{"newsSeconds":45,"eventSeconds":35,"transitionMs":650,"controlPollSeconds":10},"news":{"maxAgeHours":168,"maxItems":64,"sources":[],"requireContext":true,"contextFacts":4},"video":{"maxAgeHours":168,"maxItems":32,"minSeconds":181,"maxSeconds":3600,"volume":50,"channels":[],"playFull":true},"events":{"maxItems":12,"usePosters":true},"audio":{"enabled":true,"musicUrl":"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3","musicVolume":14,"duckVolume":3.5},"ticker":{"enabled":true,"speedSeconds":240,"maxItems":14},"visual":{"layout":"splitDesk","videoWidth":64,"articleCardSeconds":9,"articleCharsPerCard":320,"flipNews":false,"showRail":true,"showClock":true,"showBadge":true,"showSource":true},"sources":{"customNewsFeeds":[],"customVideoChannels":[],"removedNewsSources":[],"removedVideoChannels":[]},"programming":{"mode":"auto","tickerMode":"auto","manualQueue":[]},"hidden":{"news":[],"videos":[],"events":[]},"forceNext":null};
 const q=s=>app.querySelector(s),qa=s=>[...app.querySelectorAll(s)];
 let state=structuredClone(DEFAULT),saved=structuredClone(DEFAULT),feeds={news:null,videos:null,events:null},contentTab='news',dragIndex=-1,toastTimer=0,feedWarnings=[],previewReady=false,previewLoadTimer=0,previewSyncTimer=0,previewFrameLoaded=false,feedsReady=false,previewQueue=null,previewMuted=true,programPoolTab='all',programSearch='',programDrag=null,programPlaceholder=null;
 
@@ -35,6 +35,10 @@ function markDirty({restartPreview=false}={}){
 }
 function normalize(v){return String(v??'').trim()}
 function itemId(type,item){if(type==='news')return item.id||item.url;if(type==='video')return item.videoId;if(type==='event')return item.id||[item.promotion,item.title,item.date].join('|');return''}
+function isShortVideo(item){
+  const duration=Number(item?.durationSeconds||0),url=String(item?.url||item?.channelUrl||'');
+  return item?.isShort===true||/\/shorts\//i.test(url)||(duration>0&&duration<=180);
+}
 
 function setPreviewStatus(text,stateName='connecting'){
   const mode=q('[data-preview-mode]'),renderer=q('[data-preview-renderer]'),overlay=q('[data-preview-overlay]'),status=q('[data-preview-status]');
@@ -140,10 +144,10 @@ function renderInputs(){
   const health=q('[data-program-health]');if(health)health.hidden=!split;
 }
 const PRESETS={
-  newsroom:{label:'Newsroom',modules:{news:true,video:true,events:true},rundown:['news','news','video','news','event'],timing:{newsSeconds:45,eventSeconds:35},video:{maxAgeHours:48,maxItems:8,maxSeconds:600}},
-  video:{label:'Fresh video',modules:{news:true,video:true,events:true},rundown:['news','video','news','video','event'],timing:{newsSeconds:40,eventSeconds:30},video:{maxAgeHours:24,maxItems:14,maxSeconds:900}},
-  headlines:{label:'Article focus',modules:{news:true,video:true,events:false},rundown:['news','news','news'],timing:{newsSeconds:50},video:{maxAgeHours:48,maxItems:8}},
-  event:{label:'Event day',modules:{news:true,video:true,events:true},rundown:['news','event','news','video','event'],timing:{newsSeconds:40,eventSeconds:50},video:{maxAgeHours:48,maxItems:8}}
+  newsroom:{label:'Newsroom',modules:{news:true,video:true,events:true},rundown:['news','news','video','news','event'],timing:{newsSeconds:45,eventSeconds:35},news:{maxAgeHours:168,maxItems:64},video:{maxAgeHours:168,maxItems:32,minSeconds:181,maxSeconds:3600},events:{maxItems:12}},
+  video:{label:'Fresh video',modules:{news:true,video:true,events:true},rundown:['news','video','news','video','event'],timing:{newsSeconds:40,eventSeconds:30},news:{maxAgeHours:168,maxItems:64},video:{maxAgeHours:168,maxItems:48,minSeconds:181,maxSeconds:3600},events:{maxItems:12}},
+  headlines:{label:'Article focus',modules:{news:true,video:true,events:false},rundown:['news','news','news'],timing:{newsSeconds:50},news:{maxAgeHours:168,maxItems:64},video:{maxAgeHours:168,maxItems:32,minSeconds:181,maxSeconds:3600}},
+  event:{label:'Event day',modules:{news:true,video:true,events:true},rundown:['news','event','news','video','event'],timing:{newsSeconds:40,eventSeconds:50},news:{maxAgeHours:168,maxItems:64},video:{maxAgeHours:168,maxItems:32,minSeconds:181,maxSeconds:3600},events:{maxItems:12}}
 };
 function subsetMatches(target,subset){
   if(Array.isArray(subset))return Array.isArray(target)&&JSON.stringify(target)===JSON.stringify(subset);
@@ -183,7 +187,7 @@ function renderMetrics(){
   const enabledNews=state.news.sources||[],enabledVideo=state.video.channels||[];
   const stories=[feeds.news?.topStory,...(feeds.news?.stories||[])].filter(Boolean);
   const news=stories.filter(x=>Date.now()-Date.parse(x.publishedAt)<=Number(state.news.maxAgeHours||48)*3600000).filter(x=>!removedNews.has(x.source)).filter(x=>!enabledNews.length||enabledNews.includes(x.source));
-  const vids=(feeds.videos?.videos||[]).filter(v=>{const d=Number(v.durationSeconds||0);return Date.now()-Date.parse(v.publishedAt)<=Number(state.video.maxAgeHours||48)*3600000&&d>=state.video.minSeconds&&d<=state.video.maxSeconds}).filter(v=>!removedVideo.has(v.channel)).filter(v=>!enabledVideo.length||enabledVideo.includes(v.channel));
+  const vids=(feeds.videos?.videos||[]).filter(v=>{const d=Number(v.durationSeconds||0);return !isShortVideo(v)&&Date.now()-Date.parse(v.publishedAt)<=Number(state.video.maxAgeHours||168)*3600000&&d>=state.video.minSeconds&&d<=state.video.maxSeconds}).filter(v=>!removedVideo.has(v.channel)).filter(v=>!enabledVideo.length||enabledVideo.includes(v.channel));
   const events=(feeds.events?.events||[]).filter(e=>normalize(e.date)>=(new Date().toISOString().slice(0,10)));
   const queue=manualProgramQueue(),videoPicks=queue.filter(x=>x.type==='video').length,readerPicks=queue.length-videoPicks;
   q('[data-metric-news]').textContent=news.length;q('[data-metric-videos]').textContent=vids.length;q('[data-metric-events]').textContent=events.length;
@@ -279,7 +283,7 @@ function compactProgramItem(type,item){
   };
   if(type==='video')return{
     videoId:item.videoId||'',title:item.title||'',channel:item.channel||item.source||'YouTube',publishedAt:item.publishedAt||'',
-    thumbnail:item.thumbnail||item.image||'',durationSeconds:Number(item.durationSeconds||0),embeddable:item.embeddable!==false,liveBroadcastContent:item.liveBroadcastContent||''
+    thumbnail:item.thumbnail||item.image||'',durationSeconds:Number(item.durationSeconds||0),embeddable:item.embeddable!==false,liveBroadcastContent:item.liveBroadcastContent||'',isShort:isShortVideo(item)
   };
   if(type==='event')return clone(item);
   return clone(item);
@@ -298,7 +302,7 @@ function poolEntries(){
     out.push({type,item,title,source,url:programUrl(type,item),publishedAt:item.publishedAt||item.date||'',durationSeconds:Number(item.durationSeconds||0)});
   };
   [feeds.news?.topStory,...(feeds.news?.stories||[])].filter(Boolean).forEach(x=>push('news',x));
-  (feeds.videos?.videos||[]).forEach(x=>push('video',x));
+  (feeds.videos?.videos||[]).filter(x=>!isShortVideo(x)).forEach(x=>push('video',x));
   (feeds.events?.events||[]).filter(x=>normalize(x.date)>=(new Date().toISOString().slice(0,10))).forEach(x=>push('event',x));
   return out;
 }
@@ -609,7 +613,7 @@ function installSectionSaveButtons(){
 function escapeHtml(v){const d=document.createElement('div');d.textContent=v||'';return d.innerHTML}
 function liveItems(){
   if(contentTab==='news')return [feeds.news?.topStory,...(feeds.news?.stories||[])].filter(Boolean).slice(0,30).map(x=>({type:'news',item:x,title:x.title,meta:x.source,image:x.image}));
-  if(contentTab==='video')return (feeds.videos?.videos||[]).slice(0,30).map(x=>({type:'video',item:x,title:x.title,meta:x.channel,image:x.thumbnail}));
+  if(contentTab==='video')return (feeds.videos?.videos||[]).filter(x=>!isShortVideo(x)).slice(0,60).map(x=>({type:'video',item:x,title:x.title,meta:x.channel,image:x.thumbnail}));
   return (feeds.events?.events||[]).filter(x=>normalize(x.date)>=(new Date().toISOString().slice(0,10))).slice(0,30).map(x=>({type:'event',item:x,title:x.title||x.promotion,meta:[x.promotion,x.date].filter(Boolean).join(' · '),image:x.poster_url}));
 }
 function renderLiveList(){
