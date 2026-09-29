@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-29T14:24:06.989Z",
+  "generated_at": "2026-09-29T19:38:33.788Z",
   "events": [
     {
       "id": "dwcs-season-10-week-8-2026-09-29",
@@ -773,7 +773,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-12/VETTORI_MARVIN_L_12-06.png?itok=FdvoLxjF",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "+102"
+                  "moneyline": "+110"
                 },
                 {
                   "name": "Ismail Naurdiev",
@@ -781,7 +781,7 @@
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/NAURDIEV_ISMAIL_L_11-22.png?itok=PK0HzWkv",
                   "image_source": "ufc",
                   "image_framing": "safe",
-                  "moneyline": "-130"
+                  "moneyline": "-140"
                 }
               ],
               "odds_source": "BestFightOdds",
@@ -2141,6 +2141,144 @@
                   "name": "Jefferson Nascimento",
                   "initials": "JN",
                   "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/image/fighter_images/SHADOW_Fighter_fullLength_RED.png?VersionId=niQpXmYT1tbiETIDAxTsCI5FDbiNt9kI&itok=DfVddCfn",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ufc-fight-night-2026-11-21-fight-card",
+      "promotion_key": "ufc",
+      "promotion": "UFC Fight Night",
+      "title": "Cannonier vs Aliskerov",
+      "date": "2026-11-21",
+      "date_label": "Saturday · November 21, 2026",
+      "starts_at": "",
+      "expires_at": "",
+      "venue": "Venue TBA",
+      "broadcast": "UFC Fight Pass",
+      "official_url": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+      "updated_label": "September 29, 2026",
+      "sections": [
+        {
+          "kind": "main",
+          "title": "Main Card",
+          "time": "Time TBA",
+          "bouts": [
+            {
+              "order": 1,
+              "label": "Main Event",
+              "weight_class": "Middleweight Bout",
+              "fighters": [
+                {
+                  "name": "Jared Cannonier",
+                  "initials": "JC",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/CANNONIER_JARED_L_07-18.png?itok=_lep6e-l",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Ikram Aliskerov",
+                  "initials": "IA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ALISKEROV_IKRAM_L_06-27.png?itok=3ij01m2a",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 2,
+              "label": "Co-Main Event",
+              "weight_class": "Welterweight Bout",
+              "fighters": [
+                {
+                  "name": "Jake Matthews",
+                  "initials": "JM",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-05/MATTHEWS_JAKE_L_05-30.png?itok=kYM4Kq87",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Tahir Abdullayev",
+                  "initials": "TA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ABDULLAYEV_TAHIR_L_06-27.png?itok=OjpS2GZ7",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 3,
+              "label": "",
+              "weight_class": "Bantamweight Bout",
+              "fighters": [
+                {
+                  "name": "Aleksandre Topuria",
+                  "initials": "AT",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-02/TOPURIA_ALEKSANDRE_R_02-08.png?itok=v-giNC1x",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Santiago Luna",
+                  "initials": "SL",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/LUNA_SANTIAGO_L_02-28.png?itok=zdTFJx55",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 4,
+              "label": "",
+              "weight_class": "Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Asu Almabayev",
+                  "initials": "AA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-06/ALMABAYEV_ASU_L_06-27.png?itok=Y0SjNrdV",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Kyoji Horiguchi",
+                  "initials": "KH",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2025-11/HORIGUCHI_KYOJI_R_11-22.png?itok=Dn6SxnwP",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                }
+              ]
+            },
+            {
+              "order": 5,
+              "label": "",
+              "weight_class": "Flyweight Bout",
+              "fighters": [
+                {
+                  "name": "Amir Albazi",
+                  "initials": "AA",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-02/ALBAZI_AMIR_L_02-07.png?itok=eWJL3Orf",
+                  "image_source": "ufc",
+                  "image_framing": "safe",
+                  "moneyline": ""
+                },
+                {
+                  "name": "Alessandro Costa",
+                  "initials": "AC",
+                  "image": "https://ufc.com/images/styles/athlete_bio_full_body/s3/2026-07/COSTA_ALESSANDRO_L_07-11.png?itok=okElYxK7",
                   "image_source": "ufc",
                   "image_framing": "safe",
                   "moneyline": ""

@@ -1,7 +1,22 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-29T14:25:04.294Z",
+  "generated_at": "2026-09-29T19:40:16.190Z",
   "changes": [
+    {
+      "id": "2026-09-29T19:40:16.190Z|ufc-fight-night-2026-11-21-fight-card|event_added|1",
+      "at": "2026-09-29T19:40:16.190Z",
+      "type": "event_added",
+      "event_id": "ufc-fight-night-2026-11-21-fight-card",
+      "promotion": "UFC Fight Night",
+      "event_title": "Cannonier vs Aliskerov",
+      "event_date": "2026-11-21",
+      "summary": "UFC Fight Night Cannonier vs Aliskerov added to Upcoming Events.",
+      "details": {
+        "bout_count": 5,
+        "venue": "Venue TBA",
+        "date": "2026-11-21"
+      }
+    },
     {
       "id": "2026-09-29T14:25:04.294Z|rizin-abc-presents-rizin-55-2026-11-08|bout_added|1",
       "at": "2026-09-29T14:25:04.294Z",
@@ -4710,21 +4725,6 @@
       "summary": "Brady Hiestand portrait source changed.",
       "details": {
         "fighter": "Brady Hiestand",
-        "from_source": "sherdog",
-        "to_source": "ufc"
-      }
-    },
-    {
-      "id": "2026-09-06T06:51:16.600Z|ufc-fight-night-2026-09-26-fight-card|portrait_changed|37",
-      "at": "2026-09-06T06:51:16.600Z",
-      "type": "portrait_changed",
-      "event_id": "ufc-fight-night-2026-09-26-fight-card",
-      "promotion": "UFC Fight Night",
-      "event_title": "Jr. vs Barcelos",
-      "event_date": "2026-09-26",
-      "summary": "Rinya Nakamura portrait source changed.",
-      "details": {
-        "fighter": "Rinya Nakamura",
         "from_source": "sherdog",
         "to_source": "ufc"
       }
