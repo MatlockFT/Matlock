@@ -18,7 +18,7 @@ const DEFAULT_CONTROL={
   events:{maxItems:12,usePosters:true},
   audio:{enabled:true,musicUrl:"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3",musicVolume:14,duckVolume:3.5},
   ticker:{enabled:true,speedSeconds:240,maxItems:14},
-  visual:{layout:"splitDesk",videoWidth:64,articleCardSeconds:9,articleCharsPerCard:440,flipNews:false,showRail:true,showClock:true,showBadge:true,showSource:true},
+  visual:{layout:"splitDesk",videoWidth:64,articleCardSeconds:9,articleCharsPerCard:500,flipNews:false,showRail:true,showClock:true,showBadge:true,showSource:true},
   sources:{customNewsFeeds:[],customVideoChannels:[],removedNewsSources:[],removedVideoChannels:[]},
   programming:{mode:"auto",tickerMode:"auto",manualQueue:[]},
   hidden:{news:[],videos:[],events:[]},
@@ -409,9 +409,23 @@ function safeReaderInline(value){
 function readerPlain(value){
   const div=document.createElement("div");div.innerHTML=String(value||"");return (div.textContent||"").replace(/\s+/g," ").trim();
 }
+function sanitizeReaderCopy(value){
+  return String(value||"")
+    .replace(/(?:https?:\/\/)?(?:www\.)?(?:pic\.twitter\.com|x\.com|twitter\.com)\/\S+/gi,"")
+    .replace(/https?:\/\/\S+/gi,"")
+    .replace(/\b(?:Read|View)\s+(?:the\s+)?Full\s+Article(?:\s+Here)?\b[^.!?]*/gi,"")
+    .replace(/\b(?:Photo|Image|Video)\s*:?\s*(?:credit|courtesy)?\s*https?:\/\/\S+/gi,"")
+    .replace(/\s+([,.;:!?])/g,"$1")
+    .replace(/\s{2,}/g," ")
+    .trim();
+}
 function readerBlockHtml(block){
-  const type=["p","h2","h3","li"].includes(block?.type)?block.type:"p",inline=safeReaderInline(block?.html||"");
-  if(!inline)return"";
+  const type=["p","h2","h3","li"].includes(block?.type)?block.type:"p";
+  const rich=safeReaderInline(block?.html||"");
+  if(!rich)return"";
+  const plain=sanitizeReaderCopy(readerPlain(rich));
+  if(!plain)return"";
+  const inline=escapeHtml(plain);
   if(type==="li")return'<div class="article-reader-list-item"><span>•</span><p>'+inline+"</p></div>";
   if(type==="h2"||type==="h3")return"<"+type+">"+inline+"</"+type+">";
   return"<p>"+inline+"</p>";
@@ -444,10 +458,11 @@ function readerTextChunks(text,max){
   return chunks;
 }
 function plainReaderCards(text,max){
-  return readerTextChunks(text,max).map(chunk=>({html:"<p>"+escapeHtml(chunk)+"</p>"}));
+  const clean=sanitizeReaderCopy(text);
+  return readerTextChunks(clean,max).map(chunk=>({html:"<p>"+escapeHtml(chunk)+"</p>"}));
 }
 function articleReaderCards(slide){
-  const max=Math.max(220,Math.min(620,Number(cfg().visual.articleCharsPerCard||440)));
+  const max=Math.max(220,Math.min(620,Number(cfg().visual.articleCharsPerCard||500)));
   const sourceBlocks=Array.isArray(slide.fullTextBlocks)&&slide.fullTextBlocks.length?slide.fullTextBlocks.filter(Boolean):(Array.isArray(slide.contextBlocks)?slide.contextBlocks.filter(Boolean):[]);
   if(sourceBlocks.length){
     const cards=[];let html="",count=0;
@@ -475,16 +490,20 @@ function buildArticleCardNode(slide,cards,cardIndex){
   const source=escapeHtml(slide.source||"Combat Sports");
   const time=escapeHtml(slide.type==="event"?"UPCOMING":slide.type==="custom"?"MANUAL":relativeTime(slide.publishedAt));
   const stateClass=(cardIndex===0?" is-first-card":"")+(cardIndex===cards.length-1?" is-last-card":"");
-  wrap.innerHTML='<div class="article-reader-card'+stateClass+'"><div class="article-reader-label">'+escapeHtml(slide.type==="event"?"EVENT BRIEF":"STORY")+'</div><div class="article-reader-body">'+body+'</div><div class="article-reader-footer"><div class="article-reader-credit"><strong>'+source+'</strong><span>•</span><span>'+time+'</span></div><div class="article-reader-page">CARD '+(cardIndex+1)+' / '+cards.length+'</div></div></div>';
+  const continuation=cardIndex>0?'<span class="article-reader-continuation">CONTINUED</span>':"";
+  wrap.innerHTML='<div class="article-reader-card'+stateClass+'"><div class="article-reader-topline"><div class="article-reader-credit"><strong>'+source+'</strong><span>•</span><span>'+time+'</span></div><div class="article-reader-page">'+continuation+'<span>'+(cardIndex+1)+' / '+cards.length+'</span></div></div><div class="article-reader-body">'+body+'</div></div>';
   return wrap.firstElementChild;
 }
 function drawArticleCard(slide,cards,cardIndex,{crossfade=true}={}){
   const next=buildArticleCardNode(slide,cards,cardIndex),existing=els.context.querySelector(".article-reader-card");
   currentArticleCardIndex=cardIndex;
   if(!existing||!crossfade){els.context.replaceChildren(next);return}
-  next.classList.add("is-entering");els.context.append(next);
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{existing.classList.add("is-exiting");next.classList.remove("is-entering")}));
-  setTimeout(()=>{if(existing.isConnected)existing.remove()},900);
+  existing.classList.add("is-exiting");
+  setTimeout(()=>{
+    next.classList.add("is-entering");
+    els.context.replaceChildren(next);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>next.classList.remove("is-entering")));
+  },170);
 }
 function runArticleCards(slide,{startCardIndex=0,firstRemainingMs=null}={}){
   const cards=articleReaderCards(slide),pace=articlePaceMs();
