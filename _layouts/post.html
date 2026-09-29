@@ -1008,11 +1008,18 @@ layout: default
         });
 
         /*
-         * Article links always open in a new tab.
-         * This applies sitewide to links authored inside post content,
-         * including existing posts and future posts.
+         * External/article links open in a new tab, but in-page jump links
+         * must stay in the current document.
          */
         article.querySelectorAll("a[href]").forEach(function (link) {
+            const authoredHref = link.getAttribute("href") || "";
+
+            if (authoredHref.startsWith("#")) {
+                link.removeAttribute("target");
+                link.removeAttribute("rel");
+                return;
+            }
+
             link.target = "_blank";
 
             const rel = new Set(
