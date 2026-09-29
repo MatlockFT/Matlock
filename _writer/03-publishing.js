@@ -168,6 +168,7 @@ async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
     updateDocumentStatus();
     updateLiveLink();
     showToast('Already published. No changes to publish.');
+    window.dispatchEvent(new CustomEvent('matlock-writer:published', { detail: { path: currentPath, sha: currentSha } }));
     return;
   }
 
@@ -225,6 +226,9 @@ async function saveArticle(mode = 'save', { skipConflict = false } = {}) {
       : mode === 'schedule'
         ? `Scheduled for ${formatDateTime(localInputToIso(fields.publishAt.value))}. GitHub checks due posts about every 15 minutes.`
         : 'Saved to GitHub.');
+    if (mode === 'publish') {
+      window.dispatchEvent(new CustomEvent('matlock-writer:published', { detail: { path: currentPath, sha: currentSha } }));
+    }
     loadLibrary({ hydrate: true });
   } catch (error) {
     persistLocalAutosave();
