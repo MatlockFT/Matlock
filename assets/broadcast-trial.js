@@ -18,7 +18,7 @@ const DEFAULT_CONTROL={
   events:{maxItems:12,usePosters:true},
   audio:{enabled:true,musicUrl:"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3",musicVolume:14,duckVolume:3.5},
   ticker:{enabled:true,speedSeconds:240,maxItems:14},
-  visual:{layout:"splitDesk",videoWidth:64,articleCardSeconds:9,articleCharsPerCard:460,flipNews:false,showRail:true,showClock:true,showBadge:true,showSource:true},
+  visual:{layout:"splitDesk",videoWidth:64,articleCardSeconds:9,articleCharsPerCard:900,flipNews:false,showRail:true,showClock:true,showBadge:true,showSource:true},
   sources:{customNewsFeeds:[],customVideoChannels:[],removedNewsSources:[],removedVideoChannels:[]},
   programming:{mode:"auto",tickerMode:"auto",manualQueue:[]},
   hidden:{news:[],videos:[],events:[]},
@@ -462,7 +462,7 @@ function plainReaderCards(text,max){
   return readerTextChunks(clean,max).map(chunk=>({html:"<p>"+escapeHtml(chunk)+"</p>"}));
 }
 function articleReaderCards(slide){
-  const max=Math.max(220,Math.min(620,Number(cfg().visual.articleCharsPerCard||500)));
+  const max=Math.max(220,Math.min(1000,Number(cfg().visual.articleCharsPerCard||900)));
   const sourceBlocks=Array.isArray(slide.fullTextBlocks)&&slide.fullTextBlocks.length?slide.fullTextBlocks.filter(Boolean):(Array.isArray(slide.contextBlocks)?slide.contextBlocks.filter(Boolean):[]);
   if(sourceBlocks.length){
     const cards=[];let html="",count=0;
