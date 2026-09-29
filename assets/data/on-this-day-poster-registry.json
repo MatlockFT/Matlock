@@ -3850,7 +3850,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "Bellator 99 event poster",
-      "verifiedAt": "2026-09-29T16:08:25.335Z",
+      "verifiedAt": "2026-09-29T16:57:47.361Z",
       "manualVisualVerified": true
     },
     "2013-09-14::wsof5 arlovski vs kyle": {
@@ -3864,7 +3864,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "WSOF5: Arlovski vs. Kyle event poster",
-      "verifiedAt": "2026-09-29T16:08:25.335Z",
+      "verifiedAt": "2026-09-29T16:57:47.361Z",
       "manualVisualVerified": true
     },
     "2013-09-21::ufc 165 jones vs gustafsson": {
@@ -4086,7 +4086,7 @@
       "credit": "Tapology",
       "confidence": 0.99,
       "alt": "WSOF13: Moraes vs. Bollinger event poster",
-      "verifiedAt": "2026-09-29T16:08:25.335Z",
+      "verifiedAt": "2026-09-29T16:57:47.361Z",
       "manualVisualVerified": true
     },
     "2014-09-20::ufc fight night hunt vs nelson": {
@@ -8114,9 +8114,50 @@
       "discovery": "tapology-search-unique-title-date",
       "transport": "tapology-via-public-reader-v1",
       "verifiedAt": "2026-09-28T18:38:32.378Z"
+    },
+    "2011-10-01::bellator 52": {
+      "key": "2011-10-01::bellator 52",
+      "status": "verified",
+      "sourceType": "tapology-event-poster",
+      "date": "2011-10-01",
+      "title": "Bellator 52",
+      "eventTitle": "Bellator 52",
+      "eventDate": "2011-10-01",
+      "dateMatch": "exact",
+      "eventUrl": "https://www.tapology.com/fightcenter/events/10681-bellator-52",
+      "sourceUrl": "https://www.tapology.com/fightcenter/events/10681-bellator-52",
+      "originPosterUrl": "https://images.tapology.com/poster_images/10681/profile/Bellator-52-poster.jpg?1316233996",
+      "posterUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2011-10-01-bellator-52-7439a65c8dab7f84.jpg",
+      "sha256": "7439a65c8dab7f8455c6c114b5829bb583dc03c530bbf3b981530220da006455",
+      "width": 338,
+      "height": 522,
+      "bytes": 49540,
+      "format": "jpeg",
+      "alt": "Bellator 52 event poster",
+      "credit": "Tapology",
+      "confidence": 1,
+      "titleScore": 100,
+      "eventIdBound": true,
+      "discovery": "tapology-search-unique-title-date",
+      "transport": "tapology-via-public-reader-v1",
+      "verifiedAt": "2026-09-29T16:53:51.930Z"
+    },
+    "2007-09-30::pancrase rising 7": {
+      "key": "2007-09-30::pancrase rising 7",
+      "status": "verified-unavailable",
+      "date": "2007-09-30",
+      "title": "Pancrase: Rising 7",
+      "eventTitle": "Pancrase 181: Rising 7",
+      "eventDate": "2007-09-30",
+      "dateMatch": "exact",
+      "eventUrl": "https://www.tapology.com/fightcenter/events/11982-pancrase-181-rising-7",
+      "titleScore": 86,
+      "transport": "tapology-via-public-reader-v1",
+      "checkedAt": "2026-09-29T16:54:54.763Z",
+      "reason": "The exact Tapology event page was verified by title and date but exposes no event poster."
     }
   },
-  "updatedAt": "2026-09-29T16:08:25.545Z",
+  "updatedAt": "2026-09-29T16:57:47.578Z",
   "policy": "One event-poster registry. Restore verified assignments first; new unresolved events resolve in source priority order: Tapology, Wikipedia/Wikimedia, official/archive/manual fallback.",
   "tapologyPolicy": "Exact Tapology title and date; unique search result; event-bound poster path; image bytes dimension-checked and SHA-256 pinned; verified bytes mirrored to otd-poster-cache; failures preserve last known-good records."
 }

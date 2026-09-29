@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "updatedAt": "2026-09-29T16:06:56.548Z",
+  "updatedAt": "2026-09-29T16:56:29.947Z",
   "entries": {
     "ufc:2018-09-08:ufc-228-woodley-vs-till": {
       "strategyVersion": 7,
@@ -1667,9 +1667,23 @@
     "bellator:2011-10-01:bellator-52": {
       "strategyVersion": 6,
       "status": "no-image-found",
-      "sourceType": "wikipedia-pageimage",
-      "checkedAt": "2026-09-09T00:04:35.440Z",
-      "wikipediaTitle": "Bellator 52"
+      "sourceType": "tapology-event-poster",
+      "checkedAt": "2026-09-29T16:53:51.930Z",
+      "wikipediaTitle": "Bellator 52",
+      "imageStatus": "resolved",
+      "imageUrl": "https://raw.githubusercontent.com/MatlockFT/Matlock/otd-poster-cache/2011-10-01-bellator-52-7439a65c8dab7f84.jpg",
+      "imageAlt": "Bellator 52 event poster",
+      "imageCredit": "Tapology",
+      "imageSourceUrl": "https://www.tapology.com/fightcenter/events/10681-bellator-52",
+      "imageSourceType": "tapology-event-poster",
+      "imageConfidence": 1,
+      "imageSubjectType": "event",
+      "imageMatchReason": "The Tapology event page matched the archive title and exact date; its event-bound poster bytes were dimension-checked, SHA-256 pinned, and mirrored to the immutable poster cache.",
+      "artworkType": "poster",
+      "tapologyPageUrl": "https://www.tapology.com/fightcenter/events/10681-bellator-52",
+      "tapologyBinding": "direct-event-page",
+      "posterSha256": "7439a65c8dab7f8455c6c114b5829bb583dc03c530bbf3b981530220da006455",
+      "posterRegistryKey": "2011-10-01::bellator 52"
     },
     "bellator:2020-10-01:bellator-247": {
       "strategyVersion": 6,
