@@ -39,7 +39,7 @@ const els={
 let control=structuredClone(DEFAULT_CONTROL),previewControl=null,previewMuted=false;
 let newsCache={stories:[]},videoCache={videos:[]},eventCache=[];
 let slides=[],index=0,timer=0,videoWatchdog=0,transitioning=false,currentSlide=null,currentArticleCardIndex=-1,videoPlayer=null,bedFadeTimer=0;
-let splitVideoIndex=0,splitVideoId="",splitVideoQueued=null;
+let splitVideoIndex=0,splitVideoId="",splitVideoQueued=null,splitVideoLoadingId="";
 let controlTimer=0,lastControlRevision=0;
 let ytReadyResolve;const ytReady=new Promise(resolve=>{ytReadyResolve=resolve});
 if(window.YT?.Player)ytReadyResolve(window.YT);
@@ -434,7 +434,7 @@ function runArticleCards(slide,{startCardIndex=0,firstRemainingMs=null}={}){
   show();
 }
 function splitVideoFallback(message="Waiting for an eligible video…"){
-  resetVideoHost();splitVideoId="";els.videoShell.classList.remove("is-covering");
+  resetVideoHost();splitVideoId="";splitVideoLoadingId="";els.videoShell.classList.remove("is-covering");
   els.videoShell.innerHTML='<div class="split-video-empty"><strong>VIDEO DESK</strong><span>'+escapeHtml(message)+'</span></div>';
   els.badge.textContent="VIDEO DESK";
   fadeBed(cfg().audio.musicVolume,700);
@@ -449,6 +449,8 @@ function scheduleSplitVideoBoundary(next,remainingSeconds){
 }
 async function startSplitVideo(slide,{startSeconds=0,remainingSeconds=null,clockSynced=false}={}){
   if(!isSplitDesk()||!slide?.videoId)return;
+  if(splitVideoLoadingId===slide.videoId&&!videoPlayer)return;
+  splitVideoLoadingId=slide.videoId;
   coverVideoTransition();
   const hadPlayer=Boolean(videoPlayer);
   if(hadPlayer)await new Promise(resolve=>setTimeout(resolve,360));
@@ -456,11 +458,11 @@ async function startSplitVideo(slide,{startSeconds=0,remainingSeconds=null,clock
   els.badge.textContent="NOW PLAYING · "+String(slide.source||"YOUTUBE").toUpperCase();
   fadeBed(cfg().audio.duckVolume,700);
   const YT=await Promise.race([ytReady,new Promise(resolve=>setTimeout(()=>resolve(null),9000))]);
-  if(!YT?.Player){splitVideoId="";setTimeout(()=>clockSynced?syncLiveSplitVideoClock(true):playNextSplitVideo(),3000);return}
+  if(!YT?.Player){splitVideoId="";splitVideoLoadingId="";setTimeout(()=>clockSynced?syncLiveSplitVideoClock(true):playNextSplitVideo(),3000);return}
   resetVideoHost();splitVideoId=slide.videoId;
   const initialStart=Math.max(0,Number(startSeconds)||0);
   videoPlayer=new YT.Player("broadcast-youtube-player",{videoId:slide.videoId,playerVars:{autoplay:1,controls:0,disablekb:1,rel:0,playsinline:1,fs:0,iv_load_policy:3,modestbranding:1,start:Math.floor(initialStart)},events:{
-    onReady:event=>{try{event.target.mute();event.target.setVolume(Number(cfg().video.volume||50));if(initialStart>.4)event.target.seekTo(initialStart,true);event.target.playVideo();setTimeout(()=>{applyPreviewAudio()},650)}catch{}},
+    onReady:event=>{splitVideoLoadingId="";try{event.target.mute();event.target.setVolume(Number(cfg().video.volume||50));if(initialStart>.4)event.target.seekTo(initialStart,true);event.target.playVideo();setTimeout(()=>{applyPreviewAudio()},650)}catch{}},
     onStateChange:event=>{
       if(event.data===YT.PlayerState.PLAYING){
         let sec=splitVideoDurationSeconds(slide);try{sec=Math.max(20,Number(event.target.getDuration())||sec)}catch{}
@@ -470,7 +472,7 @@ async function startSplitVideo(slide,{startSeconds=0,remainingSeconds=null,clock
       }
       if(event.data===YT.PlayerState.ENDED){coverVideoTransition();clockSynced?syncLiveSplitVideoClock(true):playNextSplitVideo()}
     },
-    onError:()=>setTimeout(()=>clockSynced?syncLiveSplitVideoClock(true):playNextSplitVideo(),1200)
+    onError:()=>{splitVideoLoadingId="";setTimeout(()=>clockSynced?syncLiveSplitVideoClock(true):playNextSplitVideo(),1200)}
   }});
   renderRail();
 }
@@ -479,6 +481,7 @@ function syncLiveSplitVideoClock(force=false){
   const pos=liveVideoPosition();
   if(!pos){splitVideoFallback();renderRail();return false}
   splitVideoIndex=(pos.index+1)%Math.max(1,videoSlides().length);
+  if(!force&&splitVideoLoadingId===pos.slide.videoId&&!videoPlayer){renderRail();return true}
   if(!force&&splitVideoId===pos.slide.videoId&&videoPlayer){
     try{
       const now=Number(videoPlayer.getCurrentTime())||0;
