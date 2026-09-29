@@ -24,23 +24,23 @@
     "controlPollSeconds": 10
   },
   "news": {
-    "maxAgeHours": 48,
-    "maxItems": 16,
+    "maxAgeHours": 168,
+    "maxItems": 64,
     "sources": [],
     "requireContext": true,
     "contextFacts": 4
   },
   "video": {
-    "maxAgeHours": 48,
-    "maxItems": 8,
-    "minSeconds": 20,
-    "maxSeconds": 600,
+    "maxAgeHours": 168,
+    "maxItems": 32,
+    "minSeconds": 181,
+    "maxSeconds": 3600,
     "volume": 50,
     "channels": [],
     "playFull": true
   },
   "events": {
-    "maxItems": 3,
+    "maxItems": 12,
     "usePosters": true
   },
   "audio": {
@@ -58,7 +58,7 @@
     "layout": "splitDesk",
     "videoWidth": 64,
     "articleCardSeconds": 9,
-    "articleCharsPerCard": 340,
+    "articleCharsPerCard": 320,
     "flipNews": false,
     "showRail": true,
     "showClock": true,
@@ -81,5 +81,6 @@
     "mode": "auto",
     "manualQueue": [],
     "tickerMode": "auto"
-  }
+  },
+  "clockEpoch": "2026-01-01T00:00:00.000Z"
 }
