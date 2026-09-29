@@ -5,7 +5,7 @@ import { XMLParser } from "fast-xml-parser";
 
 const FIVE_MINUTES = 5 * 60 * 1000;
 const MAX_STORY_AGE = 14 * 24 * 60 * 60 * 1000;
-const MAX_ITEMS = 60;
+const MAX_ITEMS = 100;
 const MINIMUM_HEALTHY_SOURCES = 4;
 const MINIMUM_STORIES = 20;
 const ARTICLE_IMAGE_CONCURRENCY = 6;
