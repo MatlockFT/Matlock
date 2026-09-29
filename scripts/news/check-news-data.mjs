@@ -75,8 +75,8 @@ if (!data.topStory?.title || !data.topStory?.url) {
 if (!Array.isArray(data.stories) || data.stories.length < 12) {
     failures.push("stories must include at least 12 entries");
 }
-if (Array.isArray(data.stories) && data.stories.length > 60) {
-    failures.push("stories exceeds the intended 60-item latest-feed cap");
+if (Array.isArray(data.stories) && data.stories.length > 72) {
+    failures.push("stories exceeds the intended 72-item latest-feed cap");
 }
 
 const stories = [data.topStory, ...(data.stories || [])].filter(Boolean);
