@@ -94,8 +94,8 @@ for (const filename of readdirSync(postsDirectory).filter(
     }
     const listingVisibility = scalar(frontmatter.yaml, 'listing_visibility');
     const publishAt = scalar(frontmatter.yaml, 'publish_at');
-    const homeFeature = scalar(frontmatter.yaml, 'home_feature');
-    const homeFeatureUntil = scalar(frontmatter.yaml, 'home_feature_until');
+    const newsFeature = scalar(frontmatter.yaml, 'news_feature');
+    const newsFeatureUntil = scalar(frontmatter.yaml, 'news_feature_until');
 
     if (!['true', 'false'].includes(published)) {
         failures.push(
@@ -121,16 +121,16 @@ for (const filename of readdirSync(postsDirectory).filter(
         failures.push(`${filename}: publish_at must be a valid date and time`);
     }
 
-    if (homeFeature && !['true', 'false'].includes(homeFeature)) {
-        failures.push(`${filename}: home_feature must be true or false`);
+    if (newsFeature && !['true', 'false'].includes(newsFeature)) {
+        failures.push(`${filename}: news_feature must be true or false`);
     }
 
-    if (homeFeatureUntil && Number.isNaN(Date.parse(homeFeatureUntil))) {
-        failures.push(`${filename}: home_feature_until must be a valid date and time`);
+    if (newsFeatureUntil && Number.isNaN(Date.parse(newsFeatureUntil))) {
+        failures.push(`${filename}: news_feature_until must be a valid date and time`);
     }
 
-    if (homeFeature === 'true' && !homeFeatureUntil) {
-        failures.push(`${filename}: home_feature requires home_feature_until`);
+    if (newsFeature === 'true' && !newsFeatureUntil) {
+        failures.push(`${filename}: news_feature requires news_feature_until`);
     }
 
     if (publishAt && published === 'true') {
