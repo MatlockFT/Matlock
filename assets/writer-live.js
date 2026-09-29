@@ -20,11 +20,16 @@
 
   const SESSION_ID_KEY = 'matlock-writer:server-session';
   const PUBLIC_PATH = '/live-notes/';
+  const LIVE_REPO_PATH = 'assets/uploads/live-writer.json';
+  const LIVE_API_PATH = '/contents/' + LIVE_REPO_PATH;
+  const MIN_AUTO_PUSH_MS = 8000;
   let active = false;
   let syncTimer = 0;
   let syncing = false;
   let queuedWhileSyncing = false;
   let lastSent = '';
+  let lastPushAt = 0;
+  let liveFileSha = '';
   let previewObserver = null;
 
   function sessionId() {
@@ -63,16 +68,26 @@
     else setPanelStatus('Not live', 'idle');
   }
 
-  async function request(method, body) {
+  function encodeBase64Utf8(value) {
+    const bytes = new TextEncoder().encode(String(value || ''));
+    let binary = '';
+    const chunk = 0x8000;
+    for (let i = 0; i < bytes.length; i += chunk) {
+      binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
+    }
+    return btoa(binary);
+  }
+
+  async function githubRequest(method, apiPath, body) {
     const id = sessionId();
     if (!id) throw new Error('Sign in with GitHub first. Live Writer uses your secure Writer session.');
 
-    const response = await fetch(authBase + '/api/writer/live', {
+    const response = await fetch(authBase + '/api/writer/github?path=' + encodeURIComponent(apiPath), {
       method,
       mode: 'cors',
       cache: 'no-store',
       headers: {
-        Accept: 'application/json',
+        Accept: 'application/vnd.github+json',
         'X-Writer-Session': id,
         ...(body ? { 'Content-Type': 'application/json' } : {})
       },
@@ -81,8 +96,52 @@
 
     const data = await response.json().catch(() => ({}));
     if (response.status === 401) window.dispatchEvent(new CustomEvent('matlock-writer:auth-expired'));
-    if (!response.ok) throw new Error(data.error || 'Live Writer request failed.');
-    return data.live || null;
+    if (!response.ok) {
+      const error = new Error(data.message || 'Live Writer request failed.');
+      error.status = response.status;
+      throw error;
+    }
+    return data;
+  }
+
+  async function readLiveRecord() {
+    try {
+      const data = await githubRequest('GET', LIVE_API_PATH + '?ref=main');
+      liveFileSha = data.sha || '';
+      const encoded = String(data.content || '').replace(/\s+/g, '');
+      if (!encoded) return null;
+      const binary = atob(encoded);
+      const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
+      return JSON.parse(new TextDecoder().decode(bytes));
+    } catch (error) {
+      if (error.status === 404) {
+        liveFileSha = '';
+        return null;
+      }
+      throw error;
+    }
+  }
+
+  async function writeLiveRecord(record, { retry = true } = {}) {
+    const content = encodeBase64Utf8(JSON.stringify(record));
+    const body = {
+      message: record.active ? 'Update live writer' : 'End live writer',
+      content,
+      branch: 'main',
+      ...(liveFileSha ? { sha: liveFileSha } : {})
+    };
+
+    try {
+      const data = await githubRequest('PUT', LIVE_API_PATH, body);
+      liveFileSha = data?.content?.sha || liveFileSha;
+      return record;
+    } catch (error) {
+      if (retry && (error.status === 409 || error.status === 422)) {
+        await readLiveRecord();
+        return writeLiveRecord(record, { retry: false });
+      }
+      throw error;
+    }
   }
 
   function safePreviewHtml() {
@@ -99,11 +158,18 @@
     return clone.innerHTML.trim();
   }
 
-  function snapshot() {
+  function snapshot({ isActive = active, previous = null } = {}) {
+    const now = new Date().toISOString();
     return {
-      title: titleInput.value.trim() || 'Live notes',
-      html: safePreviewHtml(),
-      text: editor.value
+      active: Boolean(isActive),
+      title: titleInput.value.trim() || previous?.title || 'Live notes',
+      html: safePreviewHtml() || previous?.html || '',
+      text: editor.value || previous?.text || '',
+      author: 'Matlock',
+      startedAt: previous?.startedAt || now,
+      updatedAt: now,
+      endedAt: isActive ? null : now,
+      version: Number(previous?.version || 0) + 1
     };
   }
 
@@ -118,15 +184,17 @@
       return;
     }
 
-    const data = snapshot();
+    const previous = await readLiveRecord().catch(() => null);
+    const data = snapshot({ isActive: true, previous });
     const nextSignature = signature(data);
     if (!force && nextSignature === lastSent) return;
 
     syncing = true;
     setSyncState('Updating…', 'working');
     try {
-      await request('PUT', data);
+      await writeLiveRecord(data);
       lastSent = nextSignature;
+      lastPushAt = Date.now();
       setSyncState('Public page updated just now', 'success');
     } catch (error) {
       setSyncState(error.message, 'error');
@@ -134,15 +202,16 @@
       syncing = false;
       if (queuedWhileSyncing) {
         queuedWhileSyncing = false;
-        queueSync(80);
+        queueSync(250);
       }
     }
   }
 
-  function queueSync(delay = 450) {
+  function queueSync(delay = 1200) {
     if (!active) return;
     window.clearTimeout(syncTimer);
-    syncTimer = window.setTimeout(() => pushNow(), delay);
+    const waitForRateLimit = Math.max(0, MIN_AUTO_PUSH_MS - (Date.now() - lastPushAt));
+    syncTimer = window.setTimeout(() => pushNow(), Math.max(delay, waitForRateLimit));
   }
 
   const onEditorInput = () => queueSync();
@@ -152,7 +221,7 @@
     if (previewObserver) return;
     editor.addEventListener('input', onEditorInput);
     titleInput.addEventListener('input', onTitleInput);
-    previewObserver = new MutationObserver(() => queueSync(260));
+    previewObserver = new MutationObserver(() => queueSync(700));
     previewObserver.observe(preview, { childList: true, subtree: true, characterData: true, attributes: true });
   }
 
@@ -176,10 +245,11 @@
 
     setSyncState('Checking live status…', 'working');
     try {
-      const live = await request('GET');
+      const live = await readLiveRecord();
       active = Boolean(live?.active);
       updateControls();
       if (active) {
+        lastSent = signature(live);
         attachLiveListeners();
         setSyncState('Live session restored. Changes will sync automatically.', 'success');
       } else {
@@ -201,10 +271,12 @@
     startButton.disabled = true;
     setSyncState('Starting live session…', 'working');
     try {
+      const previous = await readLiveRecord();
       active = true;
-      const data = snapshot();
-      await request('PUT', data);
+      const data = snapshot({ isActive: true, previous });
+      await writeLiveRecord(data);
       lastSent = signature(data);
+      lastPushAt = Date.now();
       attachLiveListeners();
       updateControls();
       setSyncState('Live. New edits sync automatically.', 'success');
@@ -221,7 +293,9 @@
     endButton.disabled = true;
     setSyncState('Ending live session…', 'working');
     try {
-      await request('DELETE');
+      const previous = await readLiveRecord();
+      const data = snapshot({ isActive: false, previous });
+      await writeLiveRecord(data);
       active = false;
       detachLiveListeners();
       updateControls();
