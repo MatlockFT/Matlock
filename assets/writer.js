@@ -71,7 +71,7 @@
 
   const controlledKeys = [
     'layout','title','description','date','category','author','image','tags',
-    'show_toc','pinned','listing_visibility','spoiler_warning','preserve_line_breaks','publish_at','published'
+    'show_toc','pinned','listing_visibility','spoiler_warning','preserve_line_breaks','home_feature','home_feature_until','publish_at','published'
   ];
 
   const templateBodies = {
@@ -282,6 +282,8 @@
     const imageAlt = fields.imageAlt.value.trim();
     const imagePosition = fields.imagePosition.value;
     const publishIso = clearSchedule ? '' : localInputToIso(fields.publishAt.value);
+    const homeFeature = Boolean(fields.homeFeature?.checked);
+    const homeFeatureUntilIso = homeFeature ? localInputToIso(fields.homeFeatureUntil?.value) : '';
     return {
       layout: ['layout: post'],
       title: [`title: ${yamlQuote(fields.title.value.trim())}`],
@@ -296,6 +298,8 @@
       listing_visibility: ['listing_visibility: normal'],
       spoiler_warning: [`spoiler_warning: ${fields.spoilerWarning.checked ? 'true' : 'false'}`],
       preserve_line_breaks: ['preserve_line_breaks: true'],
+      home_feature: homeFeature ? ['home_feature: true'] : [],
+      home_feature_until: homeFeature && homeFeatureUntilIso ? [`home_feature_until: ${yamlQuote(homeFeatureUntilIso)}`] : [],
       publish_at: publishIso && !publishedValue ? [`publish_at: ${yamlQuote(publishIso)}`] : [],
       published: [`published: ${publishedValue ? 'true' : 'false'}`]
     };
@@ -1937,6 +1941,8 @@
       imagePosition: fields.imagePosition.value,
       filename: fields.filename.value,
       publishAt: fields.publishAt.value,
+      homeFeature: Boolean(fields.homeFeature?.checked),
+      homeFeatureUntil: fields.homeFeatureUntil?.value || '',
       showToc: fields.showToc.checked,
       spoilerWarning: fields.spoilerWarning.checked,
       pinned: fields.pinned.checked,
@@ -1961,6 +1967,8 @@
     fields.imagePosition.value = state.imagePosition || 'center center';
     fields.filename.value = state.filename || '';
     fields.publishAt.value = state.publishAt || '';
+    if (fields.homeFeature) fields.homeFeature.checked = Boolean(state.homeFeature);
+    if (fields.homeFeatureUntil) fields.homeFeatureUntil.value = state.homeFeatureUntil || '';
     fields.showToc.checked = Boolean(state.showToc);
     fields.spoilerWarning.checked = Boolean(state.spoilerWarning);
     fields.pinned.checked = Boolean(state.pinned);
@@ -1995,6 +2003,8 @@
       imagePosition: image.position || 'center center',
       filename: path.split('/').pop(),
       publishAt: isoToLocalInput(m.publish_at || ''),
+      homeFeature: Boolean(m.home_feature),
+      homeFeatureUntil: isoToLocalInput(m.home_feature_until || ''),
       showToc: Boolean(m.show_toc),
       spoilerWarning: Boolean(m.spoiler_warning),
       pinned: Boolean(m.pinned),
@@ -2726,6 +2736,13 @@ function scheduleAutosave() {
     if (!description) add('warning', 'Description is empty', 'The article can publish, but its listing and social summary will have no description.');
     if (!expandedBody.trim()) add('warning', 'Article body is empty', 'There is no article content below the front matter.');
     if (fields.imagePath.value.trim() && !fields.imageAlt.value.trim()) add('warning', 'Featured image alt text is missing', 'Add a short description of the featured image for accessibility.');
+    if (fields.homeFeature?.checked && !fields.homeFeatureUntil?.value) add('blocker', 'Homepage lead needs an end time', 'Choose when this article should stop being the homepage lead.');
+    if (fields.homeFeature?.checked && fields.homeFeatureUntil?.value) {
+      const homeFeatureUntil = new Date(fields.homeFeatureUntil.value);
+      if (!Number.isNaN(homeFeatureUntil.getTime()) && homeFeatureUntil.getTime() <= Date.now()) {
+        add('warning', 'Homepage lead end time has passed', 'The article will save, but it will not take over the homepage unless you choose a future end time.');
+      }
+    }
     if (/!\[\s*\]\([^)]+\)/.test(body)) add('warning', 'Inline image is missing alt text', 'At least one Markdown image uses ![](...) with no description.');
     if (dirty) add('warning', 'Unsaved local changes', currentPath
       ? 'This article has changes that have not yet been saved to GitHub. Publishing will save the current version.'
@@ -2785,6 +2802,10 @@ function scheduleAutosave() {
     if (!fields.date.value) throw new Error('Choose an article date.');
     if (!fields.filename.value.trim()) throw new Error('Add a filename.');
     if (!/^\d{4}-\d{2}-\d{2}-.+\.md$/i.test(fields.filename.value.trim())) throw new Error('Filename must look like YYYY-MM-DD-article-name.md.');
+    if (fields.homeFeature?.checked) {
+      const homeFeatureUntil = new Date(fields.homeFeatureUntil?.value || '');
+      if (!fields.homeFeatureUntil?.value || Number.isNaN(homeFeatureUntil.getTime())) throw new Error('Choose a valid homepage lead end time first.');
+    }
     if (mode === 'schedule') {
       const when = new Date(fields.publishAt.value);
       if (!fields.publishAt.value || Number.isNaN(when.getTime())) throw new Error('Choose a valid publication date and time first.');
