@@ -471,7 +471,7 @@ function splitVideoFallback(message="Waiting for an eligible video…"){
   fadeBed(cfg().audio.musicVolume,700);
 }
 function coverVideoTransition(){els.videoShell.classList.add("is-covering")}
-function revealVideoTransition(){setTimeout(()=>els.videoShell.classList.remove("is-covering"),1350)}
+function revealVideoTransition(){setTimeout(()=>els.videoShell.classList.remove("is-covering"),1800)}
 function scheduleSplitVideoBoundary(next,remainingSeconds){
   clearTimeout(videoWatchdog);
   const ms=Math.max(250,Number(remainingSeconds||0)*1000),lead=Math.min(950,Math.max(500,ms*.08));
