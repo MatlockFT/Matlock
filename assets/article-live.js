@@ -3,7 +3,7 @@
   const body = document.getElementById('article-content');
   if (!article || !body) return;
 
-  const FEED = 'https://raw.githubusercontent.com/MatlockFT/Matlock/main/assets/uploads/runtime/live-writer.json';
+  const FEED = 'https://mmamatlock-writer-auth.netlify.app/api/live-writer';
   const sourcePath = String(article.dataset.writerSourcePath || '');
   const pagePath = location.pathname;
   const titleNode = document.getElementById('post-title');
@@ -49,7 +49,7 @@
     const template = document.createElement('template');
     template.innerHTML = String(html || '');
 
-    template.content.querySelectorAll('script, object, embed, .writer-preview-block-tools, .writer-tale-crop-controls, .writer-media-resize-handle, .article-inline-video-controls, .article-inline-video-fallback, canvas.matlock-portrait-canvas').forEach(node => node.remove());
+    template.content.querySelectorAll('script, object, embed, .writer-preview-block-tools, .writer-tale-crop-controls, .writer-media-toolbar, .writer-media-resize-handle, .article-inline-video-controls, .article-inline-video-fallback, canvas.matlock-portrait-canvas').forEach(node => node.remove());
     template.content.querySelectorAll('.writer-preview-html-shell, .writer-preview-table-shell').forEach(unwrap);
 
     template.content.querySelectorAll('.writer-embed').forEach(node => {
@@ -75,6 +75,7 @@
       node.removeAttribute('contenteditable');
       node.removeAttribute('spellcheck');
       node.removeAttribute('data-writer-video-ui');
+      node.removeAttribute('data-writer-media-tools');
       node.removeAttribute('data-writer-table-index');
       node.removeAttribute('data-editable-portrait');
       node.removeAttribute('data-tale-portrait-editing');
@@ -219,7 +220,7 @@
 
   function nextDelay(live) {
     if (document.hidden) return 12000;
-    if (sameArticle(live) && live.active) return 2500;
+    if (sameArticle(live) && live.active) return 1500;
     if (sameArticle(live) && live.hold) return 5000;
     return 12000;
   }
@@ -228,14 +229,15 @@
     if (stopped) return;
     let live = null;
     try {
-      const response = await fetch(FEED + '?live=' + Date.now(), {
+      const response = await fetch(FEED + '?path=' + encodeURIComponent(pagePath) + '&live=' + Date.now(), {
         method: 'GET',
         mode: 'cors',
         cache: 'no-store',
         headers: { Accept: 'application/json' }
       });
       if (!response.ok) throw new Error('Live feed unavailable.');
-      live = await response.json();
+      const data = await response.json();
+      live = data.live || null;
       render(live);
     } catch {
       // Published article remains usable if the live transport is temporarily unavailable.
