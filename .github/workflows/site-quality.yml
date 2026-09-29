@@ -69,6 +69,7 @@ jobs:
           node --check assets/broadcast-control-auth.js
           node --check assets/broadcast-control.js
           node --check assets/broadcast-trial.js
+          node --check assets/live-test.js
           node --check assets/article-toc.js
           node --check assets/news-feed.js
           node --check assets/news-otd-deferred.js
