@@ -13,12 +13,12 @@ const DEFAULT_CONTROL={
   modules:{news:true,video:true,events:true,ticker:true,comingUp:true,music:true},
   rundown:["news","news","video","news","event"],
   timing:{newsSeconds:45,eventSeconds:35,transitionMs:650,controlPollSeconds:10},
-  news:{maxAgeHours:48,maxItems:16,sources:[],requireContext:true,contextFacts:4},
-  video:{maxAgeHours:48,maxItems:8,minSeconds:20,maxSeconds:600,volume:50,channels:[],playFull:true},
-  events:{maxItems:3,usePosters:true},
+  news:{maxAgeHours:168,maxItems:64,sources:[],requireContext:true,contextFacts:4},
+  video:{maxAgeHours:168,maxItems:32,minSeconds:181,maxSeconds:3600,volume:50,channels:[],playFull:true},
+  events:{maxItems:12,usePosters:true},
   audio:{enabled:true,musicUrl:"https://opengameart.org/sites/default/files/8bit%20Bossa.mp3",musicVolume:14,duckVolume:3.5},
   ticker:{enabled:true,speedSeconds:240,maxItems:14},
-  visual:{layout:"splitDesk",videoWidth:64,articleCardSeconds:9,articleCharsPerCard:340,flipNews:false,showRail:true,showClock:true,showBadge:true,showSource:true},
+  visual:{layout:"splitDesk",videoWidth:64,articleCardSeconds:9,articleCharsPerCard:320,flipNews:false,showRail:true,showClock:true,showBadge:true,showSource:true},
   sources:{customNewsFeeds:[],customVideoChannels:[],removedNewsSources:[],removedVideoChannels:[]},
   programming:{mode:"auto",tickerMode:"auto",manualQueue:[]},
   hidden:{news:[],videos:[],events:[]},
@@ -67,6 +67,24 @@ function tickerEventDate(value){
   if(!d)return raw.toUpperCase();
   return new Intl.DateTimeFormat("en-US",{month:"short",day:"numeric",year:d.getFullYear()!==new Date().getFullYear()?"numeric":undefined}).format(d).toUpperCase();
 }
+function eventSectionTime(e){
+  const sections=Array.isArray(e?.sections)?e.sections:[];
+  const hit=sections.find(section=>scalar(section?.time));
+  return hit?scalar(hit.time):"";
+}
+function footerEventWhen(e){
+  const date=tickerEventDate(scalar(e?.date)||scalar(e?.starts_at));
+  const start=scalar(e?.starts_at);
+  if(start){
+    const d=safeDate(start);
+    if(d){
+      const time=new Intl.DateTimeFormat("en-US",{timeZone:"America/Chicago",hour:"numeric",minute:"2-digit"}).format(d).toUpperCase();
+      return date+" · "+time+" CT";
+    }
+  }
+  const supplied=eventSectionTime(e);
+  return supplied?date+" · "+supplied.toUpperCase():date+" · TIME TBA";
+}
 function renderNextEvent(){
   const next=eventCache[0];
   if(!els.eventName||!els.eventDate)return;
@@ -75,7 +93,7 @@ function renderNextEvent(){
   const promotionAlreadyNamed=promotion&&title&&title.toLowerCase().includes(promotion.toLowerCase());
   const name=title?(promotion&&!promotionAlreadyNamed?promotion+" · "+title:title):(promotion||"UPCOMING EVENT");
   els.eventName.textContent=String(name).toUpperCase();
-  els.eventDate.textContent=tickerEventDate(scalar(next.date)||scalar(next.starts_at));
+  els.eventDate.textContent=footerEventWhen(next);
 }
 function imageFor(story){return story.image||story.imageUrl||story.thumbnail||story.ogImage||""}
 function escapeHtml(v){const d=document.createElement("div");d.textContent=v||"";return d.innerHTML}
@@ -113,15 +131,28 @@ function newsSlide(s,{automatic=true}={}){
   if(automatic&&(!s.title||!s.url||!fresh(s.publishedAt,cfg().news.maxAgeHours)))return null;
   return{type:"news",id:itemId("news",s),title:s.title||"Untitled",context,contextBlocks:Array.isArray(s.contextBlocks)?s.contextBlocks:[],excerpt:cleanContext(s.excerpt||""),source:s.source||"Combat Sports",publishedAt:s.publishedAt||"",image:imageFor(s),url:s.url||"",relatedSources:s.relatedSources||[]};
 }
+function isShortVideo(v){
+  const duration=Number(v?.durationSeconds||0),url=String(v?.url||v?.channelUrl||"");
+  return v?.isShort===true||/\/shorts\//i.test(url)||(duration>0&&duration<=180);
+}
 function videoSlide(v,{automatic=true}={}){
   if(!v)return null;const duration=Number(v.durationSeconds||0);
+  if(isShortVideo(v))return null;
   if(automatic&&(!v.title||!v.videoId||!fresh(v.publishedAt,cfg().video.maxAgeHours)||v.embeddable===false||v.liveBroadcastContent==="live"||duration<Number(cfg().video.minSeconds||0)||duration>Number(cfg().video.maxSeconds||3600)))return null;
   if(!v.videoId)return null;
-  return{type:"video",id:v.videoId,title:v.title||"Untitled video",source:v.channel||v.source||"YouTube",publishedAt:v.publishedAt||"",image:v.thumbnail||v.image||"",videoId:v.videoId,url:"https://www.youtube.com/watch?v="+encodeURIComponent(v.videoId),durationSeconds:duration};
+  return{type:"video",id:v.videoId,title:v.title||"Untitled video",source:v.channel||v.source||"YouTube",publishedAt:v.publishedAt||"",image:v.thumbnail||v.image||"",videoId:v.videoId,url:"https://www.youtube.com/watch?v="+encodeURIComponent(v.videoId),durationSeconds:duration,isShort:false};
 }
 function mainEventText(e){const raw=e?.main_event;if(raw&&typeof raw==="object"){const fighters=Array.isArray(raw.fighters)?raw.fighters.map(scalar).filter(Boolean):[];const matchup=fighters.length>=2?fighters.join(" vs. "):scalar(raw.name||raw.title);const wc=scalar(raw.weight_class);return[matchup,wc].filter(Boolean).join(" — ")}return scalar(raw)}
 function parseEventDate(e){const start=scalar(e?.starts_at);if(start){const d=safeDate(start);if(d)return{date:d,hasTime:true}}const day=scalar(e?.date);if(/^\d{4}-\d{2}-\d{2}$/.test(day)){const d=new Date(day+"T12:00:00");return Number.isNaN(d.getTime())?null:{date:d,hasTime:false}}const d=safeDate(day);return d?{date:d,hasTime:false}:null}
-function formatEventDate(e){const p=parseEventDate(e);if(!p)return"Date TBA";const opts=p.hasTime?{timeZone:"America/Chicago",weekday:"long",month:"long",day:"numeric",hour:"numeric",minute:"2-digit"}:{weekday:"long",month:"long",day:"numeric"};return p.date.toLocaleString("en-US",opts)+(p.hasTime?" CT":"")}
+function formatEventDate(e){
+  const p=parseEventDate(e);if(!p)return"Date TBA";
+  if(p.hasTime){
+    const opts={timeZone:"America/Chicago",weekday:"long",month:"long",day:"numeric",hour:"numeric",minute:"2-digit"};
+    return p.date.toLocaleString("en-US",opts)+" CT";
+  }
+  const date=p.date.toLocaleString("en-US",{weekday:"long",month:"long",day:"numeric"}),supplied=eventSectionTime(e);
+  return supplied?date+" · "+supplied:date+" · Time TBA";
+}
 function eventFacts(e){const facts=["When: "+formatEventDate(e)],main=mainEventText(e);if(main)facts.push("Main event: "+main);const venue=scalar(e.venue),location=scalar(e.location);if(venue||location)facts.push([venue,location].filter(Boolean).join(" · "));const broadcast=scalar(e.broadcast);if(broadcast)facts.push("Watch: "+broadcast);return facts}
 function eventSlide(e){
   if(!e)return null;
@@ -440,10 +471,10 @@ function splitVideoFallback(message="Waiting for an eligible video…"){
   fadeBed(cfg().audio.musicVolume,700);
 }
 function coverVideoTransition(){els.videoShell.classList.add("is-covering")}
-function revealVideoTransition(){setTimeout(()=>els.videoShell.classList.remove("is-covering"),260)}
+function revealVideoTransition(){setTimeout(()=>els.videoShell.classList.remove("is-covering"),1350)}
 function scheduleSplitVideoBoundary(next,remainingSeconds){
   clearTimeout(videoWatchdog);
-  const ms=Math.max(250,Number(remainingSeconds||0)*1000),lead=Math.min(700,Math.max(220,ms*.22));
+  const ms=Math.max(250,Number(remainingSeconds||0)*1000),lead=Math.min(950,Math.max(500,ms*.08));
   if(ms<=lead+120){coverVideoTransition();videoWatchdog=setTimeout(next,ms+80);return}
   videoWatchdog=setTimeout(()=>{coverVideoTransition();videoWatchdog=setTimeout(next,lead+80)},ms-lead);
 }
@@ -461,7 +492,7 @@ async function startSplitVideo(slide,{startSeconds=0,remainingSeconds=null,clock
   if(!YT?.Player){splitVideoId="";splitVideoLoadingId="";setTimeout(()=>clockSynced?syncLiveSplitVideoClock(true):playNextSplitVideo(),3000);return}
   resetVideoHost();splitVideoId=slide.videoId;
   const initialStart=Math.max(0,Number(startSeconds)||0);
-  videoPlayer=new YT.Player("broadcast-youtube-player",{videoId:slide.videoId,playerVars:{autoplay:1,controls:0,disablekb:1,rel:0,playsinline:1,fs:0,iv_load_policy:3,modestbranding:1,start:Math.floor(initialStart)},events:{
+  videoPlayer=new YT.Player("broadcast-youtube-player",{videoId:slide.videoId,playerVars:{autoplay:1,controls:0,disablekb:1,rel:0,playsinline:1,fs:0,iv_load_policy:3,modestbranding:1,cc_load_policy:0,showinfo:0,origin:location.origin,start:Math.floor(initialStart)},events:{
     onReady:event=>{splitVideoLoadingId="";try{event.target.mute();event.target.setVolume(Number(cfg().video.volume||50));if(initialStart>.4)event.target.seekTo(initialStart,true);event.target.playVideo();setTimeout(()=>{applyPreviewAudio()},650)}catch{}},
     onStateChange:event=>{
       if(event.data===YT.PlayerState.PLAYING){
@@ -516,7 +547,7 @@ function renderSplitDeskSlide(s,{startCardIndex=0,firstRemainingMs=null}={}){
   els.title.textContent=s.title||"Combat Sports Update";els.title.classList.toggle("is-long",String(s.title||"").length>92);
   els.source.textContent=(s.source||"Combat Sports").toUpperCase();
   els.time.textContent=s.type==="event"?"UPCOMING":s.type==="custom"?"MANUAL":relativeTime(s.publishedAt);
-  els.eyebrow.textContent=s.type==="event"?"FIGHT CALENDAR":s.type==="custom"?"MANUAL UPDATE":"ARTICLE READER";
+  els.eyebrow.textContent=s.type==="event"?"FIGHT CALENDAR":s.type==="custom"?"UPDATE":"";
   if(s.type==="event")els.stage.classList.add("event-reader");
   els.coverage.hidden=true;
   runArticleCards(s,{startCardIndex,firstRemainingMs});renderRail();applyDisplay();
@@ -533,7 +564,7 @@ async function startVideo(slide){
   els.stage.classList.add("video-mode");els.image.src="";els.image.style.display="none";els.blur.style.backgroundImage="none";fadeBed(cfg().audio.duckVolume,800);
   const YT=await Promise.race([ytReady,new Promise(resolve=>setTimeout(()=>resolve(null),9000))]);if(!YT?.Player){timer=setTimeout(advance,12000);return}
   resetVideoHost();
-  videoPlayer=new YT.Player("broadcast-youtube-player",{videoId:slide.videoId,playerVars:{autoplay:1,controls:0,rel:0,playsinline:1,fs:0,iv_load_policy:3},events:{
+  videoPlayer=new YT.Player("broadcast-youtube-player",{videoId:slide.videoId,playerVars:{autoplay:1,controls:0,disablekb:1,rel:0,playsinline:1,fs:0,iv_load_policy:3,modestbranding:1,cc_load_policy:0,showinfo:0,origin:location.origin},events:{
     onReady:event=>{try{event.target.mute();event.target.setVolume(Number(cfg().video.volume||50));event.target.playVideo();setTimeout(()=>{applyPreviewAudio()},650)}catch{}},
     onStateChange:event=>{if(event.data===YT.PlayerState.PLAYING){let sec=slide.durationSeconds;try{sec=Number(event.target.getDuration())||sec}catch{}beginProgress(Math.max(1000,sec*1000));clearTimeout(videoWatchdog);videoWatchdog=setTimeout(()=>transitionAdvance(true),(sec+18)*1000)}if(event.data===YT.PlayerState.ENDED)transitionAdvance(false)},
     onError:()=>setTimeout(()=>transitionAdvance(false),1200)
@@ -576,7 +607,7 @@ function resolveForce(ref){
   if(!ref)return null;
   if(ref.type==="custom"&&ref.item)return{...ref.item,type:"custom",id:"custom-"+Date.now()};
   if(ref.type==="news"){const all=[newsCache?.topStory,...(newsCache?.stories||[])].filter(Boolean),x=all.find(item=>itemId("news",item)===ref.id);if(!x)return null;return{type:"news",id:itemId("news",x),title:x.title,context:bestNewsContext(x),contextBlocks:Array.isArray(x.contextBlocks)?x.contextBlocks:[],excerpt:cleanContext(x.excerpt||""),source:x.source||"Combat Sports",publishedAt:x.publishedAt,image:imageFor(x),url:x.url||"",relatedSources:x.relatedSources||[]}}
-  if(ref.type==="video"){const x=(videoCache?.videos||[]).find(item=>itemId("video",item)===ref.id);if(!x)return null;return{type:"video",id:x.videoId,title:x.title,source:x.channel||"YouTube",publishedAt:x.publishedAt,image:x.thumbnail||"",videoId:x.videoId,url:"https://www.youtube.com/watch?v="+encodeURIComponent(x.videoId),durationSeconds:Number(x.durationSeconds||0)}}
+  if(ref.type==="video"){const x=(videoCache?.videos||[]).find(item=>itemId("video",item)===ref.id);if(!x||isShortVideo(x))return null;return{type:"video",id:x.videoId,title:x.title,source:x.channel||"YouTube",publishedAt:x.publishedAt,image:x.thumbnail||"",videoId:x.videoId,url:"https://www.youtube.com/watch?v="+encodeURIComponent(x.videoId),durationSeconds:Number(x.durationSeconds||0),isShort:false}}
   if(ref.type==="event"){const x=eventCache.find(item=>itemId("event",item)===ref.id);if(!x)return null;return{type:"event",id:itemId("event",x),title:scalar(x.title)||scalar(x.promotion)||"Upcoming Event",source:scalar(x.promotion)||"MMA",image:cfg().events.usePosters?(scalar(x.poster_url)||""):"",event:x,context:eventFacts(x)}}
   return null;
 }
