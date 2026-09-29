@@ -1,9 +1,11 @@
 name: Deploy Writer Auth Backend
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
     paths:
+      - "_netlify-auth/**"
       - ".github/workflows/deploy-writer-auth-once.yml"
 
 permissions:
