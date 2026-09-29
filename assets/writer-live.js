@@ -24,7 +24,7 @@
   const SESSION_ID_KEY = 'matlock-writer:server-session';
   const LIVE_REPO_PATH = 'assets/uploads/runtime/live-writer.json';
   const LIVE_API_PATH = '/contents/' + LIVE_REPO_PATH;
-  const MIN_AUTO_PUSH_MS = 8000;
+  const MIN_AUTO_PUSH_MS = 5000;
   let active = false;
   let syncTimer = 0;
   let syncing = false;
