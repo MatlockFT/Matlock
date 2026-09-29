@@ -205,8 +205,8 @@ jobs:
           grep -q 'data-globe-home' index.html
           grep -q '/assets/homepage-v3.js' index.html
           grep -q '/assets/homepage-v3.css' index.html
-          grep -q '/assets/news-matlock.css' news.html
-          grep -q 'news-matlock-latest' news.html
+          grep -q '/assets/news-feed.js' news.html
+          grep -q 'data-news-feature' news.html
           grep -q '/assets/upcoming-events-links.js' upcoming-events.html
           grep -q 'data-picker-map-link' _includes/fight-card-picker-event.html
           grep -q 'data-event-id' _includes/fight-card-picker-event.html

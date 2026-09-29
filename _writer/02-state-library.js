@@ -10,8 +10,8 @@
       imagePosition: fields.imagePosition.value,
       filename: fields.filename.value,
       publishAt: fields.publishAt.value,
-      homeFeature: Boolean(fields.homeFeature?.checked),
-      homeFeatureUntil: fields.homeFeatureUntil?.value || '',
+      newsFeature: Boolean(fields.newsFeature?.checked),
+      newsFeatureUntil: fields.newsFeatureUntil?.value || '',
       showToc: fields.showToc.checked,
       spoilerWarning: fields.spoilerWarning.checked,
       pinned: fields.pinned.checked,
@@ -36,8 +36,8 @@
     fields.imagePosition.value = state.imagePosition || 'center center';
     fields.filename.value = state.filename || '';
     fields.publishAt.value = state.publishAt || '';
-    if (fields.homeFeature) fields.homeFeature.checked = Boolean(state.homeFeature);
-    if (fields.homeFeatureUntil) fields.homeFeatureUntil.value = state.homeFeatureUntil || '';
+    if (fields.newsFeature) fields.newsFeature.checked = Boolean(state.newsFeature);
+    if (fields.newsFeatureUntil) fields.newsFeatureUntil.value = state.newsFeatureUntil || '';
     fields.showToc.checked = Boolean(state.showToc);
     fields.spoilerWarning.checked = Boolean(state.spoilerWarning);
     fields.pinned.checked = Boolean(state.pinned);
@@ -72,8 +72,8 @@
       imagePosition: image.position || 'center center',
       filename: path.split('/').pop(),
       publishAt: isoToLocalInput(m.publish_at || ''),
-      homeFeature: Boolean(m.home_feature),
-      homeFeatureUntil: isoToLocalInput(m.home_feature_until || ''),
+      newsFeature: Boolean(m.news_feature),
+      newsFeatureUntil: isoToLocalInput(m.news_feature_until || ''),
       showToc: Boolean(m.show_toc),
       spoilerWarning: Boolean(m.spoiler_warning),
       pinned: Boolean(m.pinned),

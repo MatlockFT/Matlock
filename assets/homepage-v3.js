@@ -5,11 +5,6 @@
   const newsList = root.querySelector('[data-v3-news-list]');
   const trendingRail = root.querySelector('[data-v3-trending]');
   const historyBox = root.querySelector('[data-v3-history]');
-  const leadStory = root.querySelector('.v3-lead');
-  const homeFeatureTemplates = [...root.querySelectorAll('template[data-v3-home-feature]')];
-  const regularLeadMarkup = leadStory?.innerHTML || '';
-  let homeFeatureTimer = 0;
-  let renderedHomeFeatureKey = '';
 
   const setupStickyShell = () => {
     const header = document.querySelector('.site-header');
@@ -149,38 +144,6 @@
 
       article.append(link, meta);
       newsList.append(article);
-    }
-  };
-
-  const syncHomeFeature = () => {
-    if (!leadStory || !homeFeatureTemplates.length) return;
-
-    window.clearTimeout(homeFeatureTimer);
-    const now = Date.now();
-    const candidates = homeFeatureTemplates
-      .map((template, index) => ({
-        template,
-        index,
-        until: Date.parse(template.dataset.until || '')
-      }))
-      .filter(item => Number.isFinite(item.until));
-
-    const active = candidates.find(item => item.until > now) || null;
-    const nextKey = active ? `${active.index}:${active.until}` : 'regular';
-
-    if (nextKey !== renderedHomeFeatureKey) {
-      if (active) leadStory.replaceChildren(active.template.content.cloneNode(true));
-      else leadStory.innerHTML = regularLeadMarkup;
-      renderedHomeFeatureKey = nextKey;
-    }
-
-    const nextExpiry = candidates
-      .map(item => item.until)
-      .filter(until => until > now)
-      .sort((a, b) => a - b)[0];
-
-    if (Number.isFinite(nextExpiry)) {
-      homeFeatureTimer = window.setTimeout(syncHomeFeature, Math.min(2147483647, Math.max(100, nextExpiry - now + 100)));
     }
   };
 
@@ -339,7 +302,6 @@
   const start = () => {
     setupStickyShell();
     setupThemeTransition();
-    syncHomeFeature();
     loadNews();
     window.setTimeout(loadHistory, 100);
   };
