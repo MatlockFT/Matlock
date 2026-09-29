@@ -160,32 +160,6 @@ const feeds = [
     }
 ];
 
-async function broadcastControlConfig() {
-    for (const path of [
-        "assets/uploads/system/broadcast-control.json",
-        "assets/data/broadcast-control.json"
-    ]) {
-        try {
-            return JSON.parse(await readFile(resolve(path), "utf8"));
-        } catch {}
-    }
-    return {};
-}
-
-const broadcastControl = await broadcastControlConfig();
-const removedBroadcastNewsSources = new Set(broadcastControl?.sources?.removedNewsSources || []);
-for (const source of broadcastControl?.sources?.customNewsFeeds || []) {
-    const name = plainText(source?.name);
-    const feedUrl = safeUrl(source?.feedUrl);
-    const siteUrl = safeUrl(source?.siteUrl) || (feedUrl ? new URL(feedUrl).origin + "/" : "");
-    if (!name || !feedUrl || removedBroadcastNewsSources.has(name) || feeds.some(feed => feed.name.toLowerCase() === name.toLowerCase())) continue;
-    feeds.push({
-        name: truncate(name, 80),
-        siteUrl,
-        feedUrl,
-        priority: Number.isFinite(Number(source?.priority)) ? Number(source.priority) : 8
-    });
-}
 
 const parser = new XMLParser({
     attributeNamePrefix: "@",
