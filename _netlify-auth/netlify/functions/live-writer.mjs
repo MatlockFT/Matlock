@@ -30,15 +30,34 @@ export default async function handler(request) {
 
   const record = await readLiveRecord();
   const live = publicLiveRecord(record);
+  const requestedPath = new URL(request.url).searchParams.get('path') || '';
+
   const responseHeaders = {
     ...headers,
-    'Cache-Control': 'no-store, max-age=0',
+    'Cache-Control': 'no-store, max-age=0, must-revalidate',
     'ETag': `W/"live-${live.version}"`
   };
 
-  const ifNoneMatch = request.headers.get('if-none-match');
-  if (ifNoneMatch && ifNoneMatch === responseHeaders.ETag) {
-    return new Response(null, { status: 304, headers: responseHeaders });
+  if (requestedPath && live.publicPath && requestedPath !== live.publicPath) {
+    return Response.json({
+      ok: true,
+      live: {
+        active: false,
+        hold: false,
+        sourcePath: '',
+        publicPath: requestedPath,
+        title: '',
+        description: '',
+        html: '',
+        text: '',
+        author: 'Matlock',
+        startedAt: null,
+        updatedAt: null,
+        endedAt: null,
+        publishedAt: null,
+        version: live.version
+      }
+    }, { status: 200, headers: responseHeaders });
   }
 
   return Response.json({ ok: true, live }, { status: 200, headers: responseHeaders });
