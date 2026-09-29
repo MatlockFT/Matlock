@@ -13,6 +13,7 @@ on:
       - "scripts/news/build-youtube-feed.mjs"
       - "assets/uploads/system/broadcast-control.json"
       - "scripts/news/dedupe-news-headlines.mjs"
+      - "scripts/news/check-news-data.mjs"
   schedule:
     - cron: "2-57/5 * * * *"
 
