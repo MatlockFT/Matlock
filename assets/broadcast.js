@@ -402,9 +402,18 @@
   }
 
   window.addEventListener('message', event => {
-    if (!useDraft || event.origin !== location.origin) return;
+    if (event.origin !== location.origin) return;
     const message = event.data;
-    if (!message || message.type !== 'matlock-broadcast-preview' || !message.channel) return;
+    if (!message) return;
+
+    if (monitorMode && message.type === 'matlock-broadcast-monitor-sound') {
+      setSoundState(Boolean(message.enabled));
+      const { elapsed, position } = syncProgram();
+      syncMusic(elapsed, position.item, .05);
+      return;
+    }
+
+    if (!useDraft || message.type !== 'matlock-broadcast-preview' || !message.channel) return;
     previewOverride = true;
     channel = message.channel;
     if (!channel.startedAt) channel.startedAt = new Date().toISOString();
