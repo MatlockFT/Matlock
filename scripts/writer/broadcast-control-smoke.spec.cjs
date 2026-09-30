@@ -210,10 +210,21 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
   await expect(page.locator('[data-save-draft]')).toBeDisabled();
   await expect(page.locator('[data-take-live]')).toBeEnabled();
   await expect(page.locator('[data-reload-state]')).toBeEnabled();
+  await expect(page.locator('[data-workspace-tab="rundown"]')).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('[data-workspace-panel="media"]')).toBeHidden();
+
+  await page.click('[data-workspace-tab="media"]');
+  await expect(page.locator('[data-workspace-panel="media"]')).toBeVisible();
+  await expect(page.locator('[data-workspace-tab="media"]')).toHaveAttribute('aria-selected', 'true');
 
   const libraryRows = page.locator('[data-video-library-list] .mfc-video-asset');
   await expect(libraryRows).toHaveCount(2);
   await expect(page.locator('[data-video-library-summary]')).toContainText('2 videos');
+  await page.selectOption('[data-video-library-filter]', 'unused');
+  await expect(libraryRows).toHaveCount(1);
+  await expect(libraryRows.first()).toContainText('UNUSED');
+  await page.selectOption('[data-video-library-filter]', 'all');
+  await expect(libraryRows).toHaveCount(2);
 
   const unusedRow = libraryRows.filter({ hasText: 'unused clip' });
   await expect(unusedRow).toContainText('UNUSED');
@@ -235,15 +246,14 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
   await expect(programBlocks).toHaveCount(2);
   await expect(page.locator('[data-draft-status]')).toHaveText('Draft saved');
 
+  await page.click('[data-workspace-tab="rundown"]');
+  await expect(page.locator('[data-workspace-panel="rundown"]')).toBeVisible();
   await expect(programBlocks).toHaveCount(2);
   await expect(page.locator('[data-program-fields] button', { hasText: '← Move left' })).toBeDisabled();
   await expect(page.locator('[data-program-fields] button', { hasText: 'Move right →' })).toBeEnabled();
 
   const musicBlocks = page.locator('[data-music-track] [data-music-id]');
   await expect(musicBlocks).toHaveCount(2);
-  await musicBlocks.nth(1).focus();
-  await page.keyboard.press('Enter');
-  await expect(musicBlocks.nth(1)).toHaveClass(/is-selected/);
 
   await page.click('[data-add-program="headline"]');
   await expect(programBlocks).toHaveCount(3);
@@ -260,7 +270,9 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
   await expect(page.locator('[data-draft-status]')).toHaveText('Draft saved');
   await expect(page.locator('[data-save-draft]')).toBeDisabled();
 
+  await page.click('[data-workspace-tab="graphics"]');
   await page.fill('[data-ticker-input]', 'SMOKE LIVE ONE\nSMOKE LIVE TWO');
+  await expect(page.locator('[data-ticker-preview]')).toContainText('SMOKE LIVE ONE');
   await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved changes');
   await page.click('[data-take-live]');
   await expect.poll(() => writes).toBe(2);
@@ -268,6 +280,7 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
   expect(remoteState.live.ticker).toEqual(['SMOKE LIVE ONE', 'SMOKE LIVE TWO']);
   expect(remoteState.live.program.at(-1).title).toBe('UPDATED SMOKE HEADLINE');
 
+  await page.click('[data-workspace-tab="rundown"]');
   await page.click('[data-add-program="breaking"]');
   await expect(programBlocks).toHaveCount(4);
   await expect(page.locator('[data-draft-status]')).toHaveText('Unsaved changes');
@@ -276,6 +289,12 @@ test('Broadcast Control core buttons and state transitions stay coherent', async
   await page.click('[data-reload-state]');
   await expect(programBlocks).toHaveCount(3);
   await expect(page.locator('[data-draft-status]')).toHaveText('Draft saved');
+
+  await page.click('[data-workspace-tab="audio"]');
+  await expect(page.locator('[data-workspace-panel="audio"]')).toBeVisible();
+  await musicBlocks.nth(1).focus();
+  await page.keyboard.press('Enter');
+  await expect(musicBlocks.nth(1)).toHaveClass(/is-selected/);
 
   await page.click('[data-add-music-url]');
   await expect(page.locator('[data-url-dialog]')).toBeVisible();
