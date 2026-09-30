@@ -13,6 +13,7 @@ function normalizeApiPath(value) {
 }
 
 export function allowedPath(path, method) {
+  // Broadcast Control also uses this scoped proxy for its JSON state file.
   const value = String(path || '');
   if (method === 'GET') {
     if (value === '') return true;
