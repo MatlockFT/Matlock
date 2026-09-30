@@ -8,11 +8,11 @@
     },
     "roster": {
       "url": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
-      "checkedAt": "2026-09-29T23:58:34.076Z"
+      "checkedAt": "2026-09-30T05:03:30.111Z"
     },
     "bookings": {
       "url": "https://www.ufc.com/events",
-      "checkedAt": "2026-09-29T23:59:02.053Z",
+      "checkedAt": "2026-09-30T05:03:54.125Z",
       "curatedOverrides": 1
     },
     "history": {
@@ -5902,7 +5902,7 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Santiago Luna",
@@ -6286,7 +6286,7 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Amir Albazi",
@@ -14534,7 +14534,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Procházka vs Stirling",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Kevin Vallejos",
+        "opponentId": "kevin-vallejos"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -18628,7 +18634,7 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Alessandro Costa",
@@ -27399,7 +27405,7 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Kyoji Horiguchi",
@@ -42781,7 +42787,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Procházka vs Stirling",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Dan Hooker",
+        "opponentId": "dan-hooker"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -75469,7 +75481,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Procházka vs Stirling",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Brian Ortega",
+        "opponentId": "brian-ortega"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -123312,7 +123330,7 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Jared Cannonier",
@@ -134322,7 +134340,7 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Tahir Abdullayev",
@@ -140123,7 +140141,7 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Ikram Aliskerov",
@@ -151200,7 +151218,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Procházka vs Stirling",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Navajo Stirling",
+        "opponentId": "navajo-stirling"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -186305,7 +186329,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Procházka vs Stirling",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Aljamain Sterling",
+        "opponentId": "aljamain-sterling"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -191779,7 +191809,7 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Asu Almabayev",
@@ -243252,7 +243282,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Procházka vs Stirling",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Jiří Procházka",
+        "opponentId": "jiri-prochazka"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -286824,7 +286860,7 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Aleksandre Topuria",
@@ -294708,7 +294744,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Procházka vs Stirling",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Tallison Teixeira",
+        "opponentId": "tallison-teixeira"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
@@ -304568,7 +304610,7 @@
         "officialThrough": "2026-09-26"
       },
       "booking": {
-        "event": "Cannonier vs Aliskerov",
+        "event": "Procházka vs Stirling",
         "date": "2026-11-21",
         "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
         "opponent": "Jake Matthews",
@@ -306735,7 +306777,13 @@
         "mirrorThrough": "2026-09-26",
         "officialThrough": "2026-09-26"
       },
-      "booking": null,
+      "booking": {
+        "event": "Procházka vs Stirling",
+        "date": "2026-11-21",
+        "source": "https://www.ufc.com/event/ufc-fight-night-november-21-2026",
+        "opponent": "Shamil Gaziev",
+        "opponentId": "shamil-gaziev"
+      },
       "rosterEligibility": {
         "reason": "ufc-active-roster",
         "source": "https://github.com/MatlockFT/Matlock/releases/download/ufc-roster-data/ufc-roster-state.json",
