@@ -58,6 +58,7 @@
   const urlDialog = app.querySelector('[data-url-dialog]');
   const musicUrlInput = app.querySelector('[data-music-url]');
   const musicUrlTitleInput = app.querySelector('[data-music-url-title]');
+  const musicUrlDurationInput = app.querySelector('[data-music-url-duration]');
   const confirmMusicUrlButton = app.querySelector('[data-confirm-music-url]');
   const uploadProgress = app.querySelector('[data-upload-progress]');
   const uploadLabel = app.querySelector('[data-upload-label]');
@@ -95,6 +96,22 @@
     const s = total % 60;
     return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
   };
+
+  const fmtInput = seconds => {
+    const total = Math.max(0, Math.round(Number(seconds) || 0));
+    const m = Math.floor(total / 60);
+    const s = total % 60;
+    return `${m}:${String(s).padStart(2, '0')}`;
+  };
+
+  function parseDurationInput(value) {
+    const text = String(value ?? '').trim();
+    if (!text) return NaN;
+    const clock = text.match(/^(\d+):([0-5]?\d)$/);
+    if (clock) return Number(clock[1]) * 60 + Number(clock[2]);
+    if (/^\d+(?:\.\d+)?$/.test(text)) return Number(text);
+    return NaN;
+  }
   const formatBytes = bytes => {
     const value = Math.max(0, Number(bytes) || 0);
     if (value < 1024) return `${Math.round(value)} B`;
@@ -1457,15 +1474,20 @@
         markDirty();
       }
     });
-    const durationField = field('Duration (seconds)', 'duration', {
-      type: 'number',
-      value: Math.max(1, Number(track.duration) || 180),
-      min: 1,
-      max: 86400,
-      step: .1,
+    const durationField = field('Duration (min:sec)', 'duration', {
+      type: 'text',
+      value: fmtInput(Math.max(1, Number(track.duration) || 180)),
+      placeholder: '3:30',
       live: false,
-      onChange: value => {
-        track.duration = clamp(value, 1, 86400);
+      onChange: (value, input) => {
+        const seconds = parseDurationInput(value);
+        if (!Number.isFinite(seconds) || seconds < 1 || seconds > 86400) {
+          showToast('Use min:sec for duration, for example 3:30.', 5500);
+          input.value = fmtInput(track.duration || 180);
+          return;
+        }
+        track.duration = seconds;
+        input.value = fmtInput(seconds);
         renderMusic();
         markDirty();
       }
@@ -2013,6 +2035,7 @@
     if (musicUploadInput.disabled) return showToast('Wait for the current media upload to finish.');
     musicUrlInput.value = '';
     musicUrlTitleInput.value = '';
+    if (musicUrlDurationInput) musicUrlDurationInput.value = '3:00';
     urlDialog.showModal();
   });
 
@@ -2026,14 +2049,15 @@
     const originalLabel = confirmMusicUrlButton.textContent;
     confirmMusicUrlButton.disabled = true;
     confirmMusicUrlButton.textContent = 'Checking…';
-    let duration = 180;
+    const typedDuration = parseDurationInput(musicUrlDurationInput?.value || '3:00');
+    let duration = Number.isFinite(typedDuration) && typedDuration > 0 ? typedDuration : 180;
     const youtubeId = youtubeVideoId(url);
     try {
       if (!youtubeId) {
         try {
           duration = await probeUrlDuration(url, 'audio');
         } catch {
-          showToast('Track added, but the host did not expose its duration. Set the duration manually.', 6500);
+          showToast('Track added using the duration you entered because the host did not expose its duration.', 6500);
         }
       }
       const track = {
@@ -2051,14 +2075,14 @@
       urlDialog.close();
       renderMusic();
       markDirty();
-      if (youtubeId) showToast('YouTube audio added. Set its duration to match the source before going live.', 7000);
+      if (youtubeId) showToast(`YouTube audio added at ${fmtInput(duration)}. Use Listen in Preview to audition it.`, 7000);
     } finally {
       confirmMusicUrlButton.disabled = false;
       confirmMusicUrlButton.textContent = originalLabel;
     }
   });
 
-  for (const input of [musicUrlInput, musicUrlTitleInput]) {
+  for (const input of [musicUrlInput, musicUrlTitleInput, musicUrlDurationInput].filter(Boolean)) {
     input.addEventListener('keydown', event => {
       if (event.key !== 'Enter') return;
       event.preventDefault();
