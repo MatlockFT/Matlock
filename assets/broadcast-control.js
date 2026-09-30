@@ -654,7 +654,7 @@
         return String(b.createdAt || '').localeCompare(String(a.createdAt || ''));
       });
     const totalBytes = videoLibraryAssets.reduce((sum, asset) => sum + (Number(asset.size) || 0), 0);
-    const mode = videoLibraryReadOnly ? ' · read-only fallback' : '';
+    const mode = videoLibraryReadOnly ? ' · public index fallback' : '';
     videoLibrarySummary.textContent = videoLibraryLoading
       ? 'Loading video library…'
       : `${visible.length === videoLibraryAssets.length ? videoLibraryAssets.length : `${visible.length} of ${videoLibraryAssets.length}`} video${videoLibraryAssets.length === 1 ? '' : 's'} · ${formatBytes(totalBytes)}${mode}`;
@@ -863,7 +863,7 @@
         if (error.status === 401 || !sessionId) throw error;
         videoLibraryAssets = await fetchPublicVideoLibrary();
         videoLibraryReadOnly = true;
-        if (!quiet) showToast('Video library loaded in read-only fallback mode. Reuse and preview still work.', 7000);
+        if (!quiet) showToast('Video library loaded from GitHub’s public index. Delete still works through the cleanup queue.', 7000);
       }
     } catch (error) {
       if (!quiet) showToast(`Could not load video library: ${error.message}`, 8000);
@@ -1686,7 +1686,7 @@
       };
       await writeState(fullState, 'Take broadcast programming live [skip ci]');
       setDirty(false);
-      showToast('New programming is live. Existing viewers will sync automatically.');
+      showToast('Preview is now live on Program. Existing viewers will sync automatically.');
       renderSummary();
       renderVideoLibrary();
       refreshProgramMonitor();
