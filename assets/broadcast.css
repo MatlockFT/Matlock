@@ -185,7 +185,7 @@ body {
   justify-content: center;
   height: 69%;
   margin-left: -1.15%;
-  padding: .75% 7.2% .8% 5.3%;
+  padding: .75% 5.6% .8% 4.8%;
   background:
     linear-gradient(180deg, rgba(255,255,255,.10), transparent 24%),
     linear-gradient(90deg, #c99243 0%, #a7652f 55%, #744122 100%);
@@ -226,15 +226,16 @@ body {
 
 .mfc-header-copy strong {
   display: block;
-  overflow: hidden;
+  overflow: visible;
+  max-width: 100%;
   font-family: var(--mfc-type-weather-display);
-  font-size: clamp(1.02rem, 3.95cqw, 2rem);
+  font-size: clamp(.88rem, 3.35cqw, 1.7rem);
   font-weight: 400;
   line-height: 1;
-  letter-spacing: 0;
+  letter-spacing: -.006em;
   word-spacing: 0;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  text-overflow: clip;
 }
 
 .mfc-program {
