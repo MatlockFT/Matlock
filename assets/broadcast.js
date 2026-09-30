@@ -275,8 +275,18 @@
     if (!Number.isFinite(musicLevel) || musicLevel <= 0) musicLevel = desiredDuck;
     else musicLevel += (desiredDuck - musicLevel) * clamp(speed, 0, 1);
 
-    const aVolume = clamp(baseMusicVolume(track) * musicLevel * fadeA, 0, 1);
-    const bVolume = clamp(baseMusicVolume(nextTrack) * musicLevel * fadeB, 0, 1);
+    const fadeIn = Math.max(0, Number(track.fadeIn) || 0);
+    const fadeOut = Math.max(0, Number(track.fadeOut) || 0);
+    const trackFadeIn = fadeIn > 0 ? clamp(pos.local / fadeIn, 0, 1) : 1;
+    const trackFadeOut = fadeOut > 0 ? clamp(remaining / fadeOut, 0, 1) : 1;
+    const trackEnvelope = Math.min(trackFadeIn, trackFadeOut);
+
+    const nextFadeIn = Math.max(0, Number(nextTrack?.fadeIn) || 0);
+    const nextLocal = inCrossfade ? Math.max(0, crossfade - remaining) : 0;
+    const nextEnvelope = nextFadeIn > 0 ? clamp(nextLocal / nextFadeIn, 0, 1) : 1;
+
+    const aVolume = clamp(baseMusicVolume(track) * musicLevel * fadeA * trackEnvelope, 0, 1);
+    const bVolume = clamp(baseMusicVolume(nextTrack) * musicLevel * fadeB * nextEnvelope, 0, 1);
     activeMusic.volume = aVolume;
     standbyMusic.volume = bVolume;
     activeMusic.play().catch(() => {});
