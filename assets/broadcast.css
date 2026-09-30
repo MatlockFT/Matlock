@@ -1,72 +1,27 @@
 /*
-  WeatherSTAR XL typography roles, pinned to the same font files used by the
-  Mist Weather Media recreation. These are loaded remotely so the Fight
-  Channel does not redistribute the font binaries from this repository.
+  WeatherSTAR 4000 recreation fonts. These URLs are pinned to the exact same
+  font bytes supplied for this project (verified by Git blob SHA), so the
+  broadcast uses Star4000 rather than an Akzidenz/Helvetica approximation.
 */
 @font-face {
-  font-family: "MFC Akzidenz Bold";
-  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/AkzidenzGroteskBE-Bold.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "MFC Akzidenz Condensed";
-  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/AkzidenzGroteskBE-Cn.ttf") format("truetype");
+  font-family: "MFC Star4000";
+  src: url("https://cdn.jsdelivr.net/gh/vbguyny/ws4kp@065688b6ee9a5aa93578e1e3e95b3ecce07d16ce/Fonts/Star4000.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "MFC Akzidenz Medium";
-  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/AkzidenzGroteskBE-Md.otf") format("opentype");
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "MFC Akzidenz Medium Extended";
-  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/AkzidenzGroteskBEMediumExtended.otf") format("opentype");
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "MFC Helvetica Neue Bold Condensed";
-  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/HelveticaNeueLT-BoldCond.otf") format("opentype");
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-}
-
-/*
-  These three faces are the modified WeatherSTAR XL recreation fonts used for
-  the lighter, narrower information screens and LDL readouts. Keeping them as
-  separate families prevents the browser from synthesizing extra bold weight.
-*/
-@font-face {
-  font-family: "MFC AG Bold Extended";
-  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/AG-BoldEx_degree_spaced.ttf") format("truetype");
+  font-family: "MFC Star4000 Large";
+  src: url("https://cdn.jsdelivr.net/gh/vbguyny/ws4kp@065688b6ee9a5aa93578e1e3e95b3ecce07d16ce/Fonts/Star4000%20Large.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "MFC AKZID Medium Extended";
-  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/AKZID_SmallCaps_MdEx.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "MFC Akzidenz Tabular Condensed";
-  src: url("https://cdn.jsdelivr.net/gh/MistWeatherMedia/weatherstar-xl@aea1f8e6bc652d2b35d9f76315ac76d75d09f822/webroot/xlfonts/AkzidenzTabularBE-Cn.ttf") format("truetype");
+  font-family: "MFC Star4000 Small";
+  src: url("https://cdn.jsdelivr.net/gh/vbguyny/ws4kp@065688b6ee9a5aa93578e1e3e95b3ecce07d16ce/Fonts/Star4000%20Small.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -84,13 +39,13 @@
   --mfc-gold-deep: #704322;
   --mfc-rust: #8a4e2a;
   --mfc-line: rgba(186, 199, 231, .42);
-  --mfc-type: "MFC Akzidenz Medium", "Helvetica Neue", Arial, sans-serif;
-  --mfc-type-bold: "MFC Akzidenz Bold", "Arial Narrow", Arial, sans-serif;
-  --mfc-type-condensed: "MFC Helvetica Neue Bold Condensed", "MFC Akzidenz Condensed", "Arial Narrow", sans-serif;
-  --mfc-type-extended: "MFC Akzidenz Medium Extended", "MFC Akzidenz Medium", Arial, sans-serif;
-  --mfc-type-weather-display: "MFC AG Bold Extended", "MFC Akzidenz Medium Extended", "Arial Narrow", sans-serif;
-  --mfc-type-weather-info: "MFC AKZID Medium Extended", "MFC Akzidenz Medium Extended", "Arial Narrow", sans-serif;
-  --mfc-type-weather-tabular: "MFC Akzidenz Tabular Condensed", "MFC Akzidenz Condensed", "Arial Narrow", sans-serif;
+  --mfc-type: "MFC Star4000", Arial, sans-serif;
+  --mfc-type-bold: "MFC Star4000 Large", "MFC Star4000", Arial, sans-serif;
+  --mfc-type-condensed: "MFC Star4000", Arial, sans-serif;
+  --mfc-type-extended: "MFC Star4000", Arial, sans-serif;
+  --mfc-type-weather-display: "MFC Star4000 Large", "MFC Star4000", Arial, sans-serif;
+  --mfc-type-weather-info: "MFC Star4000", Arial, sans-serif;
+  --mfc-type-weather-small: "MFC Star4000 Small", "MFC Star4000", Arial, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -132,6 +87,7 @@ body {
     0 0 1px rgba(240,245,255,.08);
   color: var(--mfc-ink);
   container-type: inline-size;
+  font-synthesis: none;
   filter: saturate(.84) contrast(.96) brightness(.98) blur(.12px);
 }
 
@@ -232,22 +188,22 @@ body {
 
 .mfc-header-kicker {
   display: block;
-  margin-bottom: .15%;
-  font-family: var(--mfc-type-weather-info);
-  font-size: clamp(.31rem, 1.18cqw, .58rem);
+  margin-bottom: .1%;
+  font-family: var(--mfc-type-weather-small);
+  font-size: clamp(.31rem, 1.45cqw, .70rem);
   font-weight: 400;
-  letter-spacing: .055em;
+  letter-spacing: 0;
   opacity: .72;
 }
 
 .mfc-header-copy strong {
   display: block;
   overflow: hidden;
-  font-family: var(--mfc-type-weather-display);
-  font-size: clamp(.9rem, 3.75cqw, 1.9rem);
+  font-family: var(--mfc-type-weather-info);
+  font-size: clamp(.94rem, 4.05cqw, 2.05rem);
   font-weight: 400;
-  line-height: .92;
-  letter-spacing: -.022em;
+  line-height: .94;
+  letter-spacing: -.012em;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -305,53 +261,53 @@ body {
 }
 
 .mfc-eyebrow {
-  margin: 0 0 2.35%;
+  margin: 0 0 2.4%;
   font-family: var(--mfc-type-weather-info);
-  font-size: clamp(.56rem, 2.35cqw, 1.15rem);
+  font-size: clamp(.58rem, 2.55cqw, 1.26rem);
   font-weight: 400;
-  line-height: 1.02;
-  letter-spacing: -.018em;
+  line-height: 1;
+  letter-spacing: 0;
   text-transform: uppercase;
   text-shadow:
     .045em .055em 0 var(--mfc-shadow),
-    .085em .09em .025em rgba(0,0,0,.42),
-    -.014em 0 rgba(98,142,255,.17),
-    .014em 0 rgba(255,118,103,.13);
+    .08em .085em .02em rgba(0,0,0,.40),
+    -.012em 0 rgba(98,142,255,.15),
+    .012em 0 rgba(255,118,103,.11);
 }
 
 .mfc-title {
   max-width: 93%;
   margin: 0;
   font-family: var(--mfc-type-weather-display);
-  font-size: clamp(1.05rem, 4.25cqw, 2.15rem);
+  font-size: clamp(1.08rem, 4.65cqw, 2.35rem);
   font-weight: 400;
-  line-height: 1.02;
-  letter-spacing: -.025em;
+  line-height: 1;
+  letter-spacing: -.012em;
   text-transform: uppercase;
   text-shadow:
-    .05em .06em 0 var(--mfc-shadow),
-    .095em .105em .025em rgba(0,0,0,.44),
-    -.014em 0 rgba(98,140,255,.16),
-    .014em 0 rgba(255,112,98,.12),
-    0 0 .025em rgba(255,255,255,.18);
+    .045em .055em 0 var(--mfc-shadow),
+    .082em .09em .02em rgba(0,0,0,.42),
+    -.012em 0 rgba(98,140,255,.14),
+    .012em 0 rgba(255,112,98,.10),
+    0 0 .02em rgba(255,255,255,.16);
   text-wrap: balance;
 }
 
 .mfc-body-copy {
   max-width: 94%;
-  margin: 3.6% 0 0;
-  font-family: var(--mfc-type-weather-info);
-  font-size: clamp(.68rem, 3.0cqw, 1.52rem);
+  margin: 3.5% 0 0;
+  font-family: var(--mfc-type-weather-display);
+  font-size: clamp(.70rem, 3.30cqw, 1.66rem);
   font-weight: 400;
-  line-height: 1.28;
-  letter-spacing: -.018em;
+  line-height: 1.22;
+  letter-spacing: -.008em;
   text-transform: uppercase;
   white-space: pre-line;
   text-shadow:
-    .045em .055em 0 var(--mfc-shadow),
-    .085em .09em .022em rgba(0,0,0,.41),
-    -.012em 0 rgba(95,139,255,.14),
-    .012em 0 rgba(255,113,100,.10);
+    .04em .05em 0 var(--mfc-shadow),
+    .075em .082em .018em rgba(0,0,0,.39),
+    -.01em 0 rgba(95,139,255,.12),
+    .01em 0 rgba(255,113,100,.09);
 }
 
 .mfc-image,
@@ -405,10 +361,10 @@ body {
   align-items: center;
   height: 43%;
   padding: .55% 4.25% 0;
-  font-family: var(--mfc-type-weather-info);
-  font-size: clamp(.48rem, 2.22cqw, 1.08rem);
+  font-family: var(--mfc-type-weather-small);
+  font-size: clamp(.48rem, 2.42cqw, 1.16rem);
   font-weight: 400;
-  letter-spacing: -.018em;
+  letter-spacing: 0;
   white-space: nowrap;
 }
 
@@ -448,17 +404,17 @@ body {
   flex: 0 0 auto;
   padding-right: 5.2rem;
   padding-left: 22cqw;
-  font-family: var(--mfc-type-condensed);
-  font-size: clamp(.55rem, 2.75cqw, 1.34rem);
-  font-weight: 700;
+  font-family: var(--mfc-type-weather-info);
+  font-size: clamp(.56rem, 2.90cqw, 1.42rem);
+  font-weight: 400;
   line-height: 1;
-  letter-spacing: -.022em;
+  letter-spacing: -.008em;
   white-space: nowrap;
   text-shadow:
     .04em .05em 0 #05050b,
-    .075em .08em .018em rgba(0,0,0,.42),
-    -.012em 0 rgba(94,138,255,.12),
-    .012em 0 rgba(255,113,98,.09);
+    .072em .078em .016em rgba(0,0,0,.40),
+    -.01em 0 rgba(94,138,255,.11),
+    .01em 0 rgba(255,113,98,.08);
 }
 
 .mfc-sound {
