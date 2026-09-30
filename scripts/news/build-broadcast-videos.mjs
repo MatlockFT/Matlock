@@ -118,10 +118,15 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
   const argument = name => process.argv[process.argv.indexOf(name) + 1];
   const destination = process.argv.includes('--output') ? argument('--output') : 'assets/data/broadcast-news-videos.json';
   let previous = null;
+  // Seed the first scheduled run even when the remote snapshot does not exist yet.
+  try { previous = JSON.parse(await readFile('assets/data/broadcast-news-videos.json', 'utf8')); } catch {}
   try {
     if (process.argv.includes('--previous-url')) {
       const r = await fetch(argument('--previous-url'), { signal: AbortSignal.timeout(10000) });
-      if (r.ok) previous = await r.json();
+      if (r.ok) {
+        const remote = await r.json();
+        if (Array.isArray(remote.videos) && remote.videos.length) previous = remote;
+      }
     } else previous = JSON.parse(await readFile(destination, 'utf8'));
   } catch {}
   const output = await buildVideos({ previous });
